@@ -1,11 +1,11 @@
 /**
- * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2019 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -15,16 +15,16 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.jface.wizard.IWizard;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardDialog;
-import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 
 /**
  * A wizard dialog to create a new editor.
- * 
+ *
  * @author Alessio Di Sandro
- * 
+ *
  */
 public class EditorCreationWizardDialog extends WizardDialog {
 
@@ -44,7 +44,7 @@ public class EditorCreationWizardDialog extends WizardDialog {
 			);
 			filePage = nextPage;
 		}
-		createdModelUri = filePage.getContainerFullPath().toString() + IPath.SEPARATOR + filePage.getFileName();
+		this.createdModelUri = filePage.getContainerFullPath().toString() + IPath.SEPARATOR + filePage.getFileName();
 	}
 
 	/**
@@ -54,40 +54,39 @@ public class EditorCreationWizardDialog extends WizardDialog {
 	@Override
 	protected void finishPressed() {
 
-		IWizardPage page = getCurrentPage();
+		IWizardPage page = this.getCurrentPage();
 		while (page.getPreviousPage() != null) { // first page or last WizardNewFileCreationPage
 			if (page instanceof WizardNewFileCreationPage) {
 				break;
 			}
 			page = page.getPreviousPage();
 		}
-		storeCreatedModelUri(page);
-
+		this.storeCreatedModelUri(page);
 		super.finishPressed();
 	}
 
 	/**
 	 * Constructor: initialises the superclass.
-	 * 
+	 *
 	 * @param parentShell
 	 *            The parent shell.
 	 * @param newWizard
 	 *            The wizard.
 	 */
-	public EditorCreationWizardDialog(Shell parentShell, IWizard newWizard) {
+	public EditorCreationWizardDialog(IWizard newWizard) {
 
 		//TODO MMINT[EDITOR] Create interface, this as the base class is misleading, then maybe make finishPressed to be inherited too
-		super(parentShell, newWizard);
+		super(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), newWizard);
 	}
 
 	/**
 	 * Gets the uri of the created model.
-	 * 
+	 *
 	 * @return The uri of the created model.
 	 */
 	public String getCreatedModelUri() {
 
-		return createdModelUri;
+		return this.createdModelUri;
 	}
 
 }

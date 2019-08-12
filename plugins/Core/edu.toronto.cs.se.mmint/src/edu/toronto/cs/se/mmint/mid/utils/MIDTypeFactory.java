@@ -1,11 +1,11 @@
 /**
- * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2019 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -14,6 +14,7 @@ package edu.toronto.cs.se.mmint.mid.utils;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 
@@ -44,9 +45,9 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
 /**
  * The factory to create/modify/remove all types.
- * 
+ *
  * @author Alessio Di Sandro
- * 
+ *
  */
 public class MIDTypeFactory {
 
@@ -59,7 +60,7 @@ public class MIDTypeFactory {
 
 	/**
 	 * Adds a type to the Type MID.
-	 * 
+	 *
 	 * @param newType
 	 *            The new type to be added.
 	 * @param type
@@ -88,7 +89,7 @@ public class MIDTypeFactory {
 
 	/**
 	 * Adds the cardinality to a type endpoint.
-	 * 
+	 *
 	 * @param typeEndpoint
 	 *            The type endpoint.
 	 * @param lowerBound
@@ -104,7 +105,7 @@ public class MIDTypeFactory {
 
 	/**
 	 * Adds the target to a new type endpoint.
-	 * 
+	 *
 	 * @param newTypeEndpoint
 	 *            The new type endpoint.
 	 * @param newType
@@ -118,7 +119,7 @@ public class MIDTypeFactory {
 
 	/**
 	 * Adds additional info for a reference to a type.
-	 * 
+	 *
 	 * @param newTypeRef
 	 *            The new reference being added.
 	 * @param newType
@@ -154,7 +155,7 @@ public class MIDTypeFactory {
 
 	/**
 	 * Adds a model type to the Type MID.
-	 * 
+	 *
 	 * @param newModelType
 	 *            The new model type to be added.
 	 * @param typeMID
@@ -167,7 +168,7 @@ public class MIDTypeFactory {
 
 	/**
 	 * Adds a model element type to a model type.
-	 * 
+	 *
 	 * @param newModelElemType
 	 *            The new model element type being added.
 	 * @param eInfo
@@ -184,16 +185,16 @@ public class MIDTypeFactory {
 
 	/**
 	 * Adds additional info for a model relationship type.
-	 * 
+	 *
 	 * @param newModelRelType
 	 *            The new model relationship type being added.
 	 * @param modelRelType
 	 *            The supertype of the new model relationship type.
-	 * @throws MMINTException 
+	 * @throws MMINTException
 	 */
 	public static void addModelRelType(ModelRel newModelRelType, ModelRel modelRelType) throws MMINTException {
 
-		List<MappingReference> skipMappingRefs = new ArrayList<>();
+	    List<MappingReference> skipMappingRefs = new ArrayList<>();
 		// copy model type references
 		Iterator<ModelEndpointReference> modelTypeEndpointRefIter = MIDTypeHierarchy.getTypeRefHierarchyIterator(modelRelType.getModelEndpointRefs());
 		while (modelTypeEndpointRefIter.hasNext()) {
@@ -245,7 +246,7 @@ public class MIDTypeFactory {
 
 	/**
 	 * Adds a model type endpoint to a model relationship type.
-	 * 
+	 *
 	 * @param newModelTypeEndpoint
 	 *            The new model type endpoint to be added.
 	 * @param targetModelType
@@ -273,7 +274,7 @@ public class MIDTypeFactory {
 
 	/**
 	 * Adds a model type endpoint to an operator type.
-	 * 
+	 *
 	 * @param newModelTypeEndpoint
 	 *            The new model type endpoint to be added.
 	 * @param targetModelType
@@ -297,7 +298,7 @@ public class MIDTypeFactory {
 
 	/**
 	 * Adds a mapping type to a model relationship type.
-	 * 
+	 *
 	 * @param newMappingType
 	 *            The new mapping type to be added.
 	 * @param mappingType
@@ -319,7 +320,7 @@ public class MIDTypeFactory {
 
 	/**
 	 * Adds a model element type endpoint to a mapping type.
-	 * 
+	 *
 	 * @param newModelElemTypeEndpoint
 	 *            The new model element type endpoint to be added.
 	 * @param targetModelElemType
@@ -337,7 +338,7 @@ public class MIDTypeFactory {
 
 	/**
 	 * Adds additional info for a reference to a model element type endpoint.
-	 * 
+	 *
 	 * @param newModelElemTypeEndpointRef
 	 *            The new reference to the new model element type endpoint being
 	 *            added.
@@ -352,7 +353,7 @@ public class MIDTypeFactory {
 
 	/**
 	 * Adds an editor type to a multimodel.
-	 * 
+	 *
 	 * @param newEditorType
 	 *            The new editor type to be added.
 	 * @param modelTypeUri
@@ -379,7 +380,7 @@ public class MIDTypeFactory {
 
 	/**
 	 * Adds a editor type to a model type.
-	 * 
+	 *
 	 * @param editorType
 	 *            The editor type.
 	 * @param modelType
@@ -392,7 +393,7 @@ public class MIDTypeFactory {
 
 	/**
 	 * Adds an operator type to the Type MID.
-	 * 
+	 *
 	 * @param newOperatorType
 	 *            The new operator type to be added.
 	 * @param typeMID
@@ -406,7 +407,7 @@ public class MIDTypeFactory {
 
 	/**
 	 * Adds additional info for a conversion operator type.
-	 * 
+	 *
 	 * @param operatorType
 	 *            The conversion operator type being added.
 	 */

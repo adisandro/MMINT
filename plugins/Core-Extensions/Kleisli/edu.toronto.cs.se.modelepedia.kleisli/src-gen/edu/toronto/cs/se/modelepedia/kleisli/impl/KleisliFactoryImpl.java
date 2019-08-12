@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2019 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -32,120 +32,120 @@ import edu.toronto.cs.se.modelepedia.kleisli.KleisliPackage;
  */
 public class KleisliFactoryImpl extends EFactoryImpl implements KleisliFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
+     * Creates the default factory implementation.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public static KleisliFactory init() {
-		try {
-			KleisliFactory theKleisliFactory = (KleisliFactory)EPackage.Registry.INSTANCE.getEFactory(KleisliPackage.eNS_URI);
-			if (theKleisliFactory != null) {
-				return theKleisliFactory;
-			}
-		}
-		catch (Exception exception) {
-			EcorePlugin.INSTANCE.log(exception);
-		}
-		return new KleisliFactoryImpl();
-	}
+        try {
+            KleisliFactory theKleisliFactory = (KleisliFactory)EPackage.Registry.INSTANCE.getEFactory(KleisliPackage.eNS_URI);
+            if (theKleisliFactory != null) {
+                return theKleisliFactory;
+            }
+        }
+        catch (Exception exception) {
+            EcorePlugin.INSTANCE.log(exception);
+        }
+        return new KleisliFactoryImpl();
+    }
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
+     * Creates an instance of the factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public KleisliFactoryImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-			case KleisliPackage.KLEISLI_MODEL: return createKleisliModel();
-			case KleisliPackage.KLEISLI_MODEL_ENDPOINT: return createKleisliModelEndpoint();
-			case KleisliPackage.KLEISLI_MODEL_REL: return createKleisliModelRel();
-			case KleisliPackage.BINARY_KLEISLI_MODEL_REL: return createBinaryKleisliModelRel();
-			case KleisliPackage.KLEISLI_MODEL_ENDPOINT_REFERENCE: return createKleisliModelEndpointReference();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-		}
-	}
+        switch (eClass.getClassifierID()) {
+            case KleisliPackage.KLEISLI_MODEL: return createKleisliModel();
+            case KleisliPackage.KLEISLI_MODEL_ENDPOINT: return createKleisliModelEndpoint();
+            case KleisliPackage.KLEISLI_MODEL_REL: return createKleisliModelRel();
+            case KleisliPackage.BINARY_KLEISLI_MODEL_REL: return createBinaryKleisliModelRel();
+            case KleisliPackage.KLEISLI_MODEL_ENDPOINT_REFERENCE: return createKleisliModelEndpointReference();
+            default:
+                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+        }
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public KleisliModel createKleisliModel() {
-		KleisliModelImpl kleisliModel = new KleisliModelImpl();
-		return kleisliModel;
-	}
+        KleisliModelImpl kleisliModel = new KleisliModelImpl();
+        return kleisliModel;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public KleisliModelRel createKleisliModelRel() {
-		KleisliModelRelImpl kleisliModelRel = new KleisliModelRelImpl();
-		return kleisliModelRel;
-	}
+        KleisliModelRelImpl kleisliModelRel = new KleisliModelRelImpl();
+        return kleisliModelRel;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public BinaryKleisliModelRel createBinaryKleisliModelRel() {
-		BinaryKleisliModelRelImpl binaryKleisliModelRel = new BinaryKleisliModelRelImpl();
-		return binaryKleisliModelRel;
-	}
+        BinaryKleisliModelRelImpl binaryKleisliModelRel = new BinaryKleisliModelRelImpl();
+        return binaryKleisliModelRel;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public KleisliModelEndpoint createKleisliModelEndpoint() {
-		KleisliModelEndpointImpl kleisliModelEndpoint = new KleisliModelEndpointImpl();
-		return kleisliModelEndpoint;
-	}
+        KleisliModelEndpointImpl kleisliModelEndpoint = new KleisliModelEndpointImpl();
+        return kleisliModelEndpoint;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public KleisliModelEndpointReference createKleisliModelEndpointReference() {
-		KleisliModelEndpointReferenceImpl kleisliModelEndpointReference = new KleisliModelEndpointReferenceImpl();
-		return kleisliModelEndpointReference;
-	}
+        KleisliModelEndpointReferenceImpl kleisliModelEndpointReference = new KleisliModelEndpointReferenceImpl();
+        return kleisliModelEndpointReference;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public KleisliPackage getKleisliPackage() {
-		return (KleisliPackage)getEPackage();
-	}
+        return (KleisliPackage)getEPackage();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @deprecated
-	 * @generated
-	 */
+     * @deprecated
+     * @generated
+     */
 	@Deprecated
 	public static KleisliPackage getPackage() {
-		return KleisliPackage.eINSTANCE;
-	}
+        return KleisliPackage.eINSTANCE;
+    }
 
 } //KleisliFactoryImpl

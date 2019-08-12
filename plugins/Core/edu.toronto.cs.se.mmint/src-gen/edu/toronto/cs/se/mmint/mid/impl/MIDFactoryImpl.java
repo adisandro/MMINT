@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2019 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -28,216 +28,223 @@ import edu.toronto.cs.se.mmint.mid.*;
  */
 public class MIDFactoryImpl extends EFactoryImpl implements MIDFactory {
     /**
-     * Creates the default factory implementation.
-     * <!-- begin-user-doc -->
+   * Creates the default factory implementation.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     public static MIDFactory init() {
-        try {
-            MIDFactory theMIDFactory = (MIDFactory)EPackage.Registry.INSTANCE.getEFactory(MIDPackage.eNS_URI);
-            if (theMIDFactory != null) {
-                return theMIDFactory;
-            }
-        }
-        catch (Exception exception) {
-            EcorePlugin.INSTANCE.log(exception);
-        }
-        return new MIDFactoryImpl();
+    try {
+      MIDFactory theMIDFactory = (MIDFactory)EPackage.Registry.INSTANCE.getEFactory(MIDPackage.eNS_URI);
+      if (theMIDFactory != null) {
+        return theMIDFactory;
+      }
     }
+    catch (Exception exception) {
+      EcorePlugin.INSTANCE.log(exception);
+    }
+    return new MIDFactoryImpl();
+  }
 
     /**
-     * Creates an instance of the factory.
-     * <!-- begin-user-doc -->
+   * Creates an instance of the factory.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     public MIDFactoryImpl() {
-        super();
-    }
+    super();
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public EObject create(EClass eClass) {
-        switch (eClass.getClassifierID()) {
-            case MIDPackage.MID: return createMID();
-            case MIDPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP: return (EObject)createEStringToExtendibleElementMap();
-            case MIDPackage.MODEL: return createModel();
-            case MIDPackage.EXTENDIBLE_ELEMENT_CONSTRAINT: return createExtendibleElementConstraint();
-            case MIDPackage.MODEL_ELEMENT: return createModelElement();
-            case MIDPackage.MODEL_ENDPOINT: return createModelEndpoint();
-            case MIDPackage.EMF_INFO: return createEMFInfo();
-            default:
-                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-        }
+    switch (eClass.getClassifierID()) {
+      case MIDPackage.MID: return createMID();
+      case MIDPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP: return (EObject)createEStringToExtendibleElementMap();
+      case MIDPackage.MODEL: return createModel();
+      case MIDPackage.EXTENDIBLE_ELEMENT_CONSTRAINT: return createExtendibleElementConstraint();
+      case MIDPackage.MODEL_ELEMENT: return createModelElement();
+      case MIDPackage.MODEL_ENDPOINT: return createModelEndpoint();
+      case MIDPackage.EMF_INFO: return createEMFInfo();
+      default:
+        throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public Object createFromString(EDataType eDataType, String initialValue) {
-        switch (eDataType.getClassifierID()) {
-            case MIDPackage.MID_LEVEL:
-                return createMIDLevelFromString(eDataType, initialValue);
-            case MIDPackage.MODEL_ORIGIN:
-                return createModelOriginFromString(eDataType, initialValue);
-            default:
-                throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
-        }
+    switch (eDataType.getClassifierID()) {
+      case MIDPackage.MID_LEVEL:
+        return createMIDLevelFromString(eDataType, initialValue);
+      case MIDPackage.MODEL_ORIGIN:
+        return createModelOriginFromString(eDataType, initialValue);
+      default:
+        throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public String convertToString(EDataType eDataType, Object instanceValue) {
-        switch (eDataType.getClassifierID()) {
-            case MIDPackage.MID_LEVEL:
-                return convertMIDLevelToString(eDataType, instanceValue);
-            case MIDPackage.MODEL_ORIGIN:
-                return convertModelOriginToString(eDataType, instanceValue);
-            default:
-                throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
-        }
+    switch (eDataType.getClassifierID()) {
+      case MIDPackage.MID_LEVEL:
+        return convertMIDLevelToString(eDataType, instanceValue);
+      case MIDPackage.MODEL_ORIGIN:
+        return convertModelOriginToString(eDataType, instanceValue);
+      default:
+        throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public MID createMID() {
-        MIDImpl mid = new MIDImpl();
-        return mid;
-    }
+    MIDImpl mid = new MIDImpl();
+    return mid;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     public Map.Entry<String, ExtendibleElement> createEStringToExtendibleElementMap() {
-        EStringToExtendibleElementMapImpl eStringToExtendibleElementMap = new EStringToExtendibleElementMapImpl();
-        return eStringToExtendibleElementMap;
-    }
+    EStringToExtendibleElementMapImpl eStringToExtendibleElementMap = new EStringToExtendibleElementMapImpl();
+    return eStringToExtendibleElementMap;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public Model createModel() {
-        ModelImpl model = new ModelImpl();
-        return model;
-    }
+    ModelImpl model = new ModelImpl();
+    return model;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public ExtendibleElementConstraint createExtendibleElementConstraint() {
-        ExtendibleElementConstraintImpl extendibleElementConstraint = new ExtendibleElementConstraintImpl();
-        return extendibleElementConstraint;
-    }
+    ExtendibleElementConstraintImpl extendibleElementConstraint = new ExtendibleElementConstraintImpl();
+    return extendibleElementConstraint;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public ModelElement createModelElement() {
-        ModelElementImpl modelElement = new ModelElementImpl();
-        return modelElement;
-    }
+    ModelElementImpl modelElement = new ModelElementImpl();
+    return modelElement;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public ModelEndpoint createModelEndpoint() {
-        ModelEndpointImpl modelEndpoint = new ModelEndpointImpl();
-        return modelEndpoint;
-    }
+    ModelEndpointImpl modelEndpoint = new ModelEndpointImpl();
+    return modelEndpoint;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public EMFInfo createEMFInfo() {
-        EMFInfoImpl emfInfo = new EMFInfoImpl();
-        return emfInfo;
-    }
+    EMFInfoImpl emfInfo = new EMFInfoImpl();
+    return emfInfo;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     public MIDLevel createMIDLevelFromString(EDataType eDataType, String initialValue) {
-        MIDLevel result = MIDLevel.get(initialValue);
-        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-        return result;
-    }
+    MIDLevel result = MIDLevel.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     public String convertMIDLevelToString(EDataType eDataType, Object instanceValue) {
-        return instanceValue == null ? null : instanceValue.toString();
-    }
+    return instanceValue == null ? null : instanceValue.toString();
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     public ModelOrigin createModelOriginFromString(EDataType eDataType, String initialValue) {
-        ModelOrigin result = ModelOrigin.get(initialValue);
-        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-        return result;
-    }
+    ModelOrigin result = ModelOrigin.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     public String convertModelOriginToString(EDataType eDataType, Object instanceValue) {
-        return instanceValue == null ? null : instanceValue.toString();
-    }
+    return instanceValue == null ? null : instanceValue.toString();
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public MIDPackage getMIDPackage() {
-        return (MIDPackage)getEPackage();
-    }
+    return (MIDPackage)getEPackage();
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @deprecated
-     * @generated
-     */
+   * @deprecated
+   * @generated
+   */
     @Deprecated
     public static MIDPackage getPackage() {
-        return MIDPackage.eINSTANCE;
-    }
+    return MIDPackage.eINSTANCE;
+  }
 
 } //MIDFactoryImpl

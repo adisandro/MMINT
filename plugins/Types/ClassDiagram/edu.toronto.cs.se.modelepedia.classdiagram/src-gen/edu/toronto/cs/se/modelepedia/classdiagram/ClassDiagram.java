@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2019 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -27,6 +27,8 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagram#getClasses <em>Classes</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagram#getDependencies <em>Dependencies</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagram#getAssociations <em>Associations</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagram#getDatatypes <em>Datatypes</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagram#getCompositions <em>Compositions</em>}</li>
  * </ul>
  *
  * @see edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage#getClassDiagram()
@@ -81,5 +83,37 @@ public interface ClassDiagram extends EObject {
 	 * @generated
 	 */
 	EList<Association> getAssociations();
+
+	/**
+	 * Returns the value of the '<em><b>Datatypes</b></em>' containment reference list.
+	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.classdiagram.DataType}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Datatypes</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Datatypes</em>' containment reference list.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage#getClassDiagram_Datatypes()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<DataType> getDatatypes();
+
+	/**
+	 * Returns the value of the '<em><b>Compositions</b></em>' containment reference list.
+	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.classdiagram.Composition}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Compositions</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Compositions</em>' containment reference list.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage#getClassDiagram_Compositions()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<Composition> getCompositions();
 
 } // ClassDiagram

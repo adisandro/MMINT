@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2019 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -31,7 +31,6 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.ui.URIEditorInput;
@@ -53,6 +52,7 @@ import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTActivator;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ui.GMFUtils;
+import edu.toronto.cs.se.mmint.mid.ui.SiriusUtils;
 
 public class FileUtils {
 
@@ -166,14 +166,21 @@ public class FileUtils {
 		return uniquePath;
 	}
 
+	public static @Nullable IProject getWorkspaceProject(@NonNull String relativePath) {
+
+	    String projectName = FileUtils.getFirstSegmentFromPath(relativePath);
+        IWorkspaceRoot workspaceRoot = ResourcesPlugin.getWorkspace().getRoot();
+        IProject project = workspaceRoot.getProject(projectName);
+
+        return project;
+	}
+
 	public static @NonNull String prependWorkspacePath(@NonNull String relativePath) {
 
-		String projectName = FileUtils.getFirstSegmentFromPath(relativePath);
-		IWorkspaceRoot workspaceRoot = ResourcesPlugin.getWorkspace().getRoot();
-		IProject project = workspaceRoot.getProject(projectName);
+		IProject project = FileUtils.getWorkspaceProject(relativePath);
 		String absolutePath = (project == null) ?
 			ResourcesPlugin.getWorkspace().getRoot().getLocation().toString() + relativePath :
-			project.getLocation().toString() + relativePath.replaceFirst(IPath.SEPARATOR + projectName, "");
+			project.getLocation().toString() + relativePath.replaceFirst(IPath.SEPARATOR + project.getName(), "");
 
 		return absolutePath;
 	}
@@ -420,41 +427,52 @@ public class FileUtils {
 
 	public static void openEclipseEditor(@NonNull String filePath, @Nullable String editorId, boolean isWorkspaceRelative) throws MMINTException {
 
+        //TODO MMINT[OO] Move all into Editor/Diagram
+	    String sReprUri = null;
+	    if (filePath.contains(MMINT.MODEL_URI_SEPARATOR)) { // Sirius
+	        sReprUri = filePath;
+	        filePath = MIDRegistry.getModelUri(sReprUri);
+	    }
 		if (!FileUtils.isFile(filePath, isWorkspaceRelative)) {
 			throw new MMINTException("The file " + filePath + " does not exist");
 		}
 
 		try {
-			IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-			if (isWorkspaceRelative) {
-				IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(
-					new org.eclipse.core.runtime.Path(filePath));
-				if (editorId != null) {
-					IDE.openEditor(activePage, file, editorId);
-				}
-				else {
-					IDE.openEditor(activePage, file);
-				}
-			}
-			else {
-				if (editorId != null) {
-					if (filePath.endsWith(GMFUtils.DIAGRAM_SUFFIX)) {
-						URI emfUri = FileUtils.createEMFUri(filePath, false);
-						IDE.openEditor(activePage, new URIEditorInput(emfUri), editorId);
-					}
-					else {
-						java.net.URI fileUri = new File(filePath).toURI();
-						IDE.openEditor(activePage, fileUri, editorId, true);
-					}
-				}
-				else {
-					java.net.URI fileUri = new File(filePath).toURI();
-					IFileStore file = EFS.getStore(fileUri);
-					IDE.openEditorOnFileStore(activePage, file);
-				}
-			}
+		    if (sReprUri != null) {
+		        SiriusUtils.openRepresentation(sReprUri);
+		    }
+		    else {
+    			IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+    			if (isWorkspaceRelative) {
+    				IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(
+    					new org.eclipse.core.runtime.Path(filePath));
+    				if (editorId != null) {
+    					IDE.openEditor(activePage, file, editorId);
+    				}
+    				else {
+    					IDE.openEditor(activePage, file);
+    				}
+    			}
+    			else {
+    				if (editorId != null) {
+    					if (filePath.endsWith(GMFUtils.DIAGRAM_SUFFIX)) {
+    						URI emfUri = FileUtils.createEMFUri(filePath, false);
+    						IDE.openEditor(activePage, new URIEditorInput(emfUri), editorId);
+    					}
+    					else {
+    						java.net.URI fileUri = new File(filePath).toURI();
+    						IDE.openEditor(activePage, fileUri, editorId, true);
+    					}
+    				}
+    				else {
+    					java.net.URI fileUri = new File(filePath).toURI();
+    					IFileStore file = EFS.getStore(fileUri);
+    					IDE.openEditorOnFileStore(activePage, file);
+    				}
+    			}
+		    }
 		}
-		catch (CoreException e) {
+		catch (Exception e) {
 			throw new MMINTException("Error opening Eclipse editor", e);
 		}
 	}

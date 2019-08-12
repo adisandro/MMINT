@@ -1,11 +1,11 @@
 /**
- * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2019 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -22,31 +22,32 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
+import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 
 /**
  * The command to create a binary link.
- * 
+ *
  * @author Alessio Di Sandro
- * 
+ *
  */
 public class BinaryMappingReferenceNewBinaryMappingCommand extends BinaryMappingReferenceCreateCommand {
 
 	/**
 	 * Constructor: initialises the superclass.
-	 * 
+	 *
 	 * @param req
 	 *            The request.
 	 * @param source
@@ -67,7 +68,7 @@ public class BinaryMappingReferenceNewBinaryMappingCommand extends BinaryMapping
 	protected IStatus doUndo(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		IStatus status = super.doUndo(monitor, info);
-		MID mid = ((ModelRel) getContainer()).getMIDContainer();
+		MID mid = getContainer().getMIDContainer();
 		if (mid.isTypesLevel()) {
 			MMINT.createTypeHierarchy(mid);
 		}
@@ -82,7 +83,7 @@ public class BinaryMappingReferenceNewBinaryMappingCommand extends BinaryMapping
 	protected IStatus doRedo(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		IStatus status = super.doRedo(monitor, info);
-		MID mid = ((ModelRel) getContainer()).getMIDContainer();
+		MID mid = getContainer().getMIDContainer();
 		if (mid.isTypesLevel()) {
 			MMINT.createTypeHierarchy(mid);
 		}
@@ -92,7 +93,7 @@ public class BinaryMappingReferenceNewBinaryMappingCommand extends BinaryMapping
 
 	/**
 	 * Checks if a binary link can be created.
-	 * 
+	 *
 	 * @return True if a binary link can be created, false otherwise.
 	 */
 	@Override
@@ -139,8 +140,8 @@ public class BinaryMappingReferenceNewBinaryMappingCommand extends BinaryMapping
 	protected BinaryMappingReference doExecuteInstancesLevel() throws MMINTException, MIDDialogCancellation {
 
 		ModelRel modelRel = getContainer();
-		MappingReference mappingTypeRef = MIDDialogs.selectMappingTypeReferenceToCreate(modelRel, getSource(), getTarget());
-		BinaryMappingReference newMappingRef = (BinaryMappingReference) mappingTypeRef.getObject().createInstanceAndReference(true, modelRel);
+		Mapping mappingType = MIDDialogs.selectMappingTypeToCreate(modelRel, getSource(), getTarget());
+		BinaryMappingReference newMappingRef = (BinaryMappingReference) mappingType.createInstanceAndReference(true, modelRel);
 
 		List<String> modelElemTypeEndpointUris = MIDConstraintChecker.getAllowedModelElementEndpointReferences(newMappingRef, null, getSource());
 		ModelElementEndpointReference modelElemTypeEndpointRef = MIDDialogs.selectModelElementTypeEndpointToCreate(newMappingRef, modelElemTypeEndpointUris);
@@ -154,7 +155,7 @@ public class BinaryMappingReferenceNewBinaryMappingCommand extends BinaryMapping
 
 	/**
 	 * Creates a new binary link.
-	 * 
+	 *
 	 * @param monitor
 	 *            The progress monitor.
 	 * @param info

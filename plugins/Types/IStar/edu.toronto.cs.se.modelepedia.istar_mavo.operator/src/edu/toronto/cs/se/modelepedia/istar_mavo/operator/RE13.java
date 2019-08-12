@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2019 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -108,8 +108,8 @@ public class RE13 extends OperatorImpl {
 	public void readInputProperties(Properties inputProperties) throws MMINTException {
 
 		super.readInputProperties(inputProperties);
-		timeModelEnabled = MIDOperatorIOUtils.getBoolProperty(inputProperties, PROPERTY_OUT_TIMEMODEL+MIDOperatorIOUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX);
-		timeTargetsEnabled = MIDOperatorIOUtils.getBoolProperty(inputProperties, PROPERTY_OUT_TIMETARGETS+MIDOperatorIOUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX);
+		timeModelEnabled = MIDOperatorIOUtils.getBoolProperty(inputProperties, PROPERTY_OUT_TIMEMODEL+MIDOperatorIOUtils.PROP_OUTENABLED_SUFFIX);
+		timeTargetsEnabled = MIDOperatorIOUtils.getBoolProperty(inputProperties, PROPERTY_OUT_TIMETARGETS+MIDOperatorIOUtils.PROP_OUTENABLED_SUFFIX);
 		targetsProperty = MIDOperatorIOUtils.getOptionalStringProperty(inputProperties, PROPERTY_IN_TARGETSPROPERTY, PROPERTY_IN_TARGETSPROPERTY_DEFAULT);
 	}
 
@@ -119,9 +119,10 @@ public class RE13 extends OperatorImpl {
 		istar = null;
 		intentions = new HashMap<String, Intention>();
 		initialIntentions = new HashSet<String>();
-		IStarMAVOToSMTLIB previousOperator = (getPreviousOperator() == null) ?
-			(IStarMAVOToSMTLIB) MIDTypeRegistry.<Operator>getType(PREVIOUS_OPERATOR_URI) :
-			(IStarMAVOToSMTLIB) getPreviousOperator();
+//		IStarMAVOToSMTLIB previousOperator = (getPreviousOperator() == null) ?
+//			(IStarMAVOToSMTLIB) MIDTypeRegistry.<Operator>getType(PREVIOUS_OPERATOR_URI) :
+//			(IStarMAVOToSMTLIB) getPreviousOperator();
+		IStarMAVOToSMTLIB previousOperator = (IStarMAVOToSMTLIB) MIDTypeRegistry.<Operator>getType(PREVIOUS_OPERATOR_URI);
 		z3ModelParser = previousOperator.getZ3MAVOModelParser();
 		smtEncoding = z3ModelParser.getSMTLIBEncoding();
 		// output

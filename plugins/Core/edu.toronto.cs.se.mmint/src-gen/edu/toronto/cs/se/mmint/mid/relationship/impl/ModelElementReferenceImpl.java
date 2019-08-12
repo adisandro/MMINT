@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2019 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -53,201 +53,204 @@ import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
  */
 public class ModelElementReferenceImpl extends ExtendibleElementReferenceImpl implements ModelElementReference {
     /**
-     * The cached value of the '{@link #getModelElemEndpointRefs() <em>Model Elem Endpoint Refs</em>}' reference list.
-     * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getModelElemEndpointRefs() <em>Model Elem Endpoint Refs</em>}' reference list.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getModelElemEndpointRefs()
-     * @generated
-     * @ordered
-     */
+   * @see #getModelElemEndpointRefs()
+   * @generated
+   * @ordered
+   */
     protected EList<ModelElementEndpointReference> modelElemEndpointRefs;
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     protected ModelElementReferenceImpl() {
-        super();
-    }
+    super();
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     protected EClass eStaticClass() {
-        return RelationshipPackage.Literals.MODEL_ELEMENT_REFERENCE;
-    }
+    return RelationshipPackage.Literals.MODEL_ELEMENT_REFERENCE;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public EList<ModelElementEndpointReference> getModelElemEndpointRefs() {
-        if (modelElemEndpointRefs == null) {
-            modelElemEndpointRefs = new EObjectWithInverseResolvingEList<ModelElementEndpointReference>(ModelElementEndpointReference.class, this, RelationshipPackage.MODEL_ELEMENT_REFERENCE__MODEL_ELEM_ENDPOINT_REFS, RelationshipPackage.MODEL_ELEMENT_ENDPOINT_REFERENCE__MODEL_ELEM_REF);
-        }
-        return modelElemEndpointRefs;
+    if (modelElemEndpointRefs == null) {
+      modelElemEndpointRefs = new EObjectWithInverseResolvingEList<ModelElementEndpointReference>(ModelElementEndpointReference.class, this, RelationshipPackage.MODEL_ELEMENT_REFERENCE__MODEL_ELEM_ENDPOINT_REFS, RelationshipPackage.MODEL_ELEMENT_ENDPOINT_REFERENCE__MODEL_ELEM_REF);
     }
+    return modelElemEndpointRefs;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public ModelElement getObject() {
-        ExtendibleElement object = super.getObject();
-        return (object == null) ? null : (ModelElement) object;
-    }
+    ExtendibleElement object = super.getObject();
+    return (object == null) ? null : (ModelElement) object;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public ModelElementReference getSupertypeRef() {
-        ExtendibleElementReference supertypeRef = super.getSupertypeRef();
-        return (supertypeRef == null) ? null : (ModelElementReference) supertypeRef;
-    }
+    ExtendibleElementReference supertypeRef = super.getSupertypeRef();
+    return (supertypeRef == null) ? null : (ModelElementReference) supertypeRef;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @SuppressWarnings("unchecked")
     @Override
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case RelationshipPackage.MODEL_ELEMENT_REFERENCE__MODEL_ELEM_ENDPOINT_REFS:
-                return ((InternalEList<InternalEObject>)(InternalEList<?>)getModelElemEndpointRefs()).basicAdd(otherEnd, msgs);
-        }
-        return super.eInverseAdd(otherEnd, featureID, msgs);
+    switch (featureID) {
+      case RelationshipPackage.MODEL_ELEMENT_REFERENCE__MODEL_ELEM_ENDPOINT_REFS:
+        return ((InternalEList<InternalEObject>)(InternalEList<?>)getModelElemEndpointRefs()).basicAdd(otherEnd, msgs);
     }
+    return super.eInverseAdd(otherEnd, featureID, msgs);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case RelationshipPackage.MODEL_ELEMENT_REFERENCE__MODEL_ELEM_ENDPOINT_REFS:
-                return ((InternalEList<?>)getModelElemEndpointRefs()).basicRemove(otherEnd, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
+    switch (featureID) {
+      case RelationshipPackage.MODEL_ELEMENT_REFERENCE__MODEL_ELEM_ENDPOINT_REFS:
+        return ((InternalEList<?>)getModelElemEndpointRefs()).basicRemove(otherEnd, msgs);
     }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case RelationshipPackage.MODEL_ELEMENT_REFERENCE__MODEL_ELEM_ENDPOINT_REFS:
-                return getModelElemEndpointRefs();
-        }
-        return super.eGet(featureID, resolve, coreType);
+    switch (featureID) {
+      case RelationshipPackage.MODEL_ELEMENT_REFERENCE__MODEL_ELEM_ENDPOINT_REFS:
+        return getModelElemEndpointRefs();
     }
+    return super.eGet(featureID, resolve, coreType);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @SuppressWarnings("unchecked")
     @Override
     public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case RelationshipPackage.MODEL_ELEMENT_REFERENCE__MODEL_ELEM_ENDPOINT_REFS:
-                getModelElemEndpointRefs().clear();
-                getModelElemEndpointRefs().addAll((Collection<? extends ModelElementEndpointReference>)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
+    switch (featureID) {
+      case RelationshipPackage.MODEL_ELEMENT_REFERENCE__MODEL_ELEM_ENDPOINT_REFS:
+        getModelElemEndpointRefs().clear();
+        getModelElemEndpointRefs().addAll((Collection<? extends ModelElementEndpointReference>)newValue);
+        return;
     }
+    super.eSet(featureID, newValue);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public void eUnset(int featureID) {
-        switch (featureID) {
-            case RelationshipPackage.MODEL_ELEMENT_REFERENCE__MODEL_ELEM_ENDPOINT_REFS:
-                getModelElemEndpointRefs().clear();
-                return;
-        }
-        super.eUnset(featureID);
+    switch (featureID) {
+      case RelationshipPackage.MODEL_ELEMENT_REFERENCE__MODEL_ELEM_ENDPOINT_REFS:
+        getModelElemEndpointRefs().clear();
+        return;
     }
+    super.eUnset(featureID);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case RelationshipPackage.MODEL_ELEMENT_REFERENCE__MODEL_ELEM_ENDPOINT_REFS:
-                return modelElemEndpointRefs != null && !modelElemEndpointRefs.isEmpty();
-        }
-        return super.eIsSet(featureID);
+    switch (featureID) {
+      case RelationshipPackage.MODEL_ELEMENT_REFERENCE__MODEL_ELEM_ENDPOINT_REFS:
+        return modelElemEndpointRefs != null && !modelElemEndpointRefs.isEmpty();
     }
+    return super.eIsSet(featureID);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
-        if (baseClass == ExtendibleElementReference.class) {
-            switch (baseOperationID) {
-                case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE___GET_OBJECT: return RelationshipPackage.MODEL_ELEMENT_REFERENCE___GET_OBJECT;
-                default: return super.eDerivedOperationID(baseOperationID, baseClass);
-            }
-        }
-        return super.eDerivedOperationID(baseOperationID, baseClass);
+    if (baseClass == ExtendibleElementReference.class) {
+      switch (baseOperationID) {
+        case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE___GET_OBJECT: return RelationshipPackage.MODEL_ELEMENT_REFERENCE___GET_OBJECT;
+        default: return super.eDerivedOperationID(baseOperationID, baseClass);
+      }
     }
+    return super.eDerivedOperationID(baseOperationID, baseClass);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-        switch (operationID) {
-            case RelationshipPackage.MODEL_ELEMENT_REFERENCE___GET_OBJECT:
-                return getObject();
-            case RelationshipPackage.MODEL_ELEMENT_REFERENCE___GET_SUPERTYPE_REF:
-                return getSupertypeRef();
-            case RelationshipPackage.MODEL_ELEMENT_REFERENCE___DELETE_TYPE_REFERENCE:
-                try {
-                    deleteTypeReference();
-                    return null;
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case RelationshipPackage.MODEL_ELEMENT_REFERENCE___DELETE_INSTANCE_REFERENCE:
-                try {
-                    deleteInstanceReference();
-                    return null;
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
+    switch (operationID) {
+      case RelationshipPackage.MODEL_ELEMENT_REFERENCE___GET_OBJECT:
+        return getObject();
+      case RelationshipPackage.MODEL_ELEMENT_REFERENCE___GET_SUPERTYPE_REF:
+        return getSupertypeRef();
+      case RelationshipPackage.MODEL_ELEMENT_REFERENCE___DELETE_TYPE_REFERENCE:
+        try {
+          deleteTypeReference();
+          return null;
         }
-        return super.eInvoke(operationID, arguments);
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case RelationshipPackage.MODEL_ELEMENT_REFERENCE___DELETE_INSTANCE_REFERENCE:
+        try {
+          deleteInstanceReference();
+          return null;
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
     }
+    return super.eInvoke(operationID, arguments);
+  }
 
     /**
      * Removes a reference to a model element type from the MID that

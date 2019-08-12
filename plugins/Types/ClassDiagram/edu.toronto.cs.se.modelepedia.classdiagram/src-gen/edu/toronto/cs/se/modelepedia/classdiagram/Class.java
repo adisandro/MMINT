@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2019 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -32,13 +32,15 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.Class#getSubclasses <em>Subclasses</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.Class#getAssociationsAsSource <em>Associations As Source</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.Class#getAssociationsAsTarget <em>Associations As Target</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.Class#getCompositionsAsConstituent <em>Compositions As Constituent</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.Class#getCompositionsAsComposite <em>Compositions As Composite</em>}</li>
  * </ul>
  *
  * @see edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage#getClass_()
  * @model annotation="gmf.node label='name'"
  * @generated
  */
-public interface Class extends NamedElement {
+public interface Class extends Typeable {
 	/**
 	 * Returns the value of the '<em><b>Owned Attributes</b></em>' containment reference list.
 	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.classdiagram.Attribute}.
@@ -242,5 +244,41 @@ public interface Class extends NamedElement {
 	 * @generated
 	 */
 	EList<Association> getAssociationsAsTarget();
+
+	/**
+	 * Returns the value of the '<em><b>Compositions As Constituent</b></em>' reference list.
+	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.classdiagram.Composition}.
+	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.classdiagram.Composition#getConstituent <em>Constituent</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Compositions As Constituent</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Compositions As Constituent</em>' reference list.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage#getClass_CompositionsAsConstituent()
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.Composition#getConstituent
+	 * @model opposite="constituent"
+	 * @generated
+	 */
+	EList<Composition> getCompositionsAsConstituent();
+
+	/**
+	 * Returns the value of the '<em><b>Compositions As Composite</b></em>' reference list.
+	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.classdiagram.Composition}.
+	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.classdiagram.Composition#getComposite <em>Composite</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Compositions As Composite</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Compositions As Composite</em>' reference list.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage#getClass_CompositionsAsComposite()
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.Composition#getComposite
+	 * @model opposite="composite"
+	 * @generated
+	 */
+	EList<Composition> getCompositionsAsComposite();
 
 } // Class

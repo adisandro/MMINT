@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2019 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -52,345 +52,351 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
  */
 public class MIDItemProviderAdapterFactory extends MIDAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable, IChildCreationExtender {
 	/**
-	 * This keeps track of the root adapter factory that delegates to this adapter factory.
-	 * <!-- begin-user-doc -->
+   * This keeps track of the root adapter factory that delegates to this adapter factory.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	protected ComposedAdapterFactory parentAdapterFactory;
 
 	/**
-	 * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}.
-	 * <!-- begin-user-doc -->
+   * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	protected IChangeNotifier changeNotifier = new ChangeNotifier();
 
 	/**
-	 * This helps manage the child creation extenders.
-	 * <!-- begin-user-doc -->
+   * This helps manage the child creation extenders.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	protected ChildCreationExtenderManager childCreationExtenderManager = new ChildCreationExtenderManager(MIDEditPlugin.INSTANCE, MIDPackage.eNS_URI);
 
 	/**
-	 * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
-	 * <!-- begin-user-doc -->
+   * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	protected Collection<Object> supportedTypes = new ArrayList<Object>();
 
 	/**
-	 * This constructs an instance.
-	 * <!-- begin-user-doc -->
+   * This constructs an instance.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public MIDItemProviderAdapterFactory() {
-		supportedTypes.add(IEditingDomainItemProvider.class);
-		supportedTypes.add(IStructuredItemContentProvider.class);
-		supportedTypes.add(ITreeItemContentProvider.class);
-		supportedTypes.add(IItemLabelProvider.class);
-		supportedTypes.add(IItemPropertySource.class);
-	}
+    supportedTypes.add(IEditingDomainItemProvider.class);
+    supportedTypes.add(IStructuredItemContentProvider.class);
+    supportedTypes.add(ITreeItemContentProvider.class);
+    supportedTypes.add(IItemLabelProvider.class);
+    supportedTypes.add(IItemPropertySource.class);
+  }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint.mid.MID} instances.
-	 * <!-- begin-user-doc -->
+   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint.mid.MID} instances.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	protected MIDItemProvider midItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.mmint.mid.MID}.
-	 * <!-- begin-user-doc -->
+   * This creates an adapter for a {@link edu.toronto.cs.se.mmint.mid.MID}.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public Adapter createMIDAdapter() {
-		if (midItemProvider == null) {
-			midItemProvider = new MIDItemProvider(this);
-		}
+    if (midItemProvider == null) {
+      midItemProvider = new MIDItemProvider(this);
+    }
 
-		return midItemProvider;
-	}
+    return midItemProvider;
+  }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link java.util.Map.Entry} instances.
-	 * <!-- begin-user-doc -->
+   * This keeps track of the one adapter used for all {@link java.util.Map.Entry} instances.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	protected EStringToExtendibleElementMapItemProvider eStringToExtendibleElementMapItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link java.util.Map.Entry}.
-	 * <!-- begin-user-doc -->
+   * This creates an adapter for a {@link java.util.Map.Entry}.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public Adapter createEStringToExtendibleElementMapAdapter() {
-		if (eStringToExtendibleElementMapItemProvider == null) {
-			eStringToExtendibleElementMapItemProvider = new EStringToExtendibleElementMapItemProvider(this);
-		}
+    if (eStringToExtendibleElementMapItemProvider == null) {
+      eStringToExtendibleElementMapItemProvider = new EStringToExtendibleElementMapItemProvider(this);
+    }
 
-		return eStringToExtendibleElementMapItemProvider;
-	}
+    return eStringToExtendibleElementMapItemProvider;
+  }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint.mid.Model} instances.
-	 * <!-- begin-user-doc -->
+   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint.mid.Model} instances.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	protected ModelItemProvider modelItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.mmint.mid.Model}.
-	 * <!-- begin-user-doc -->
+   * This creates an adapter for a {@link edu.toronto.cs.se.mmint.mid.Model}.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public Adapter createModelAdapter() {
-		if (modelItemProvider == null) {
-			modelItemProvider = new ModelItemProvider(this);
-		}
+    if (modelItemProvider == null) {
+      modelItemProvider = new ModelItemProvider(this);
+    }
 
-		return modelItemProvider;
-	}
+    return modelItemProvider;
+  }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint} instances.
-	 * <!-- begin-user-doc -->
+   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint} instances.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	protected ExtendibleElementConstraintItemProvider extendibleElementConstraintItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint}.
-	 * <!-- begin-user-doc -->
+   * This creates an adapter for a {@link edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint}.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public Adapter createExtendibleElementConstraintAdapter() {
-		if (extendibleElementConstraintItemProvider == null) {
-			extendibleElementConstraintItemProvider = new ExtendibleElementConstraintItemProvider(this);
-		}
+    if (extendibleElementConstraintItemProvider == null) {
+      extendibleElementConstraintItemProvider = new ExtendibleElementConstraintItemProvider(this);
+    }
 
-		return extendibleElementConstraintItemProvider;
-	}
+    return extendibleElementConstraintItemProvider;
+  }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint.mid.ModelElement} instances.
-	 * <!-- begin-user-doc -->
+   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint.mid.ModelElement} instances.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	protected ModelElementItemProvider modelElementItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.mmint.mid.ModelElement}.
-	 * <!-- begin-user-doc -->
+   * This creates an adapter for a {@link edu.toronto.cs.se.mmint.mid.ModelElement}.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public Adapter createModelElementAdapter() {
-		if (modelElementItemProvider == null) {
-			modelElementItemProvider = new ModelElementItemProvider(this);
-		}
+    if (modelElementItemProvider == null) {
+      modelElementItemProvider = new ModelElementItemProvider(this);
+    }
 
-		return modelElementItemProvider;
-	}
+    return modelElementItemProvider;
+  }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint.mid.ModelEndpoint} instances.
-	 * <!-- begin-user-doc -->
+   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint.mid.ModelEndpoint} instances.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	protected ModelEndpointItemProvider modelEndpointItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.mmint.mid.ModelEndpoint}.
-	 * <!-- begin-user-doc -->
+   * This creates an adapter for a {@link edu.toronto.cs.se.mmint.mid.ModelEndpoint}.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public Adapter createModelEndpointAdapter() {
-		if (modelEndpointItemProvider == null) {
-			modelEndpointItemProvider = new ModelEndpointItemProvider(this);
-		}
+    if (modelEndpointItemProvider == null) {
+      modelEndpointItemProvider = new ModelEndpointItemProvider(this);
+    }
 
-		return modelEndpointItemProvider;
-	}
+    return modelEndpointItemProvider;
+  }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint.mid.EMFInfo} instances.
-	 * <!-- begin-user-doc -->
+   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint.mid.EMFInfo} instances.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	protected EMFInfoItemProvider emfInfoItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.mmint.mid.EMFInfo}.
-	 * <!-- begin-user-doc -->
+   * This creates an adapter for a {@link edu.toronto.cs.se.mmint.mid.EMFInfo}.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public Adapter createEMFInfoAdapter() {
-		if (emfInfoItemProvider == null) {
-			emfInfoItemProvider = new EMFInfoItemProvider(this);
-		}
+    if (emfInfoItemProvider == null) {
+      emfInfoItemProvider = new EMFInfoItemProvider(this);
+    }
 
-		return emfInfoItemProvider;
-	}
-
-	/**
-	 * This returns the root adapter factory that contains this factory.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ComposeableAdapterFactory getRootAdapterFactory() {
-		return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
-	}
+    return emfInfoItemProvider;
+  }
 
 	/**
-	 * This sets the composed adapter factory that contains this factory.
-	 * <!-- begin-user-doc -->
+   * This returns the root adapter factory that contains this factory.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
-		this.parentAdapterFactory = parentAdapterFactory;
-	}
+   * @generated
+   */
+	@Override
+  public ComposeableAdapterFactory getRootAdapterFactory() {
+    return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * This sets the composed adapter factory that contains this factory.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
+	@Override
+  public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
+    this.parentAdapterFactory = parentAdapterFactory;
+  }
+
+	/**
+   * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+   * @generated
+   */
 	@Override
 	public boolean isFactoryForType(Object type) {
-		return supportedTypes.contains(type) || super.isFactoryForType(type);
-	}
+    return supportedTypes.contains(type) || super.isFactoryForType(type);
+  }
 
 	/**
-	 * This implementation substitutes the factory itself as the key for the adapter.
-	 * <!-- begin-user-doc -->
+   * This implementation substitutes the factory itself as the key for the adapter.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public Adapter adapt(Notifier notifier, Object type) {
-		return super.adapt(notifier, this);
-	}
+    return super.adapt(notifier, this);
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public Object adapt(Object object, Object type) {
-		if (isFactoryForType(type)) {
-			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter))) {
-				return adapter;
-			}
-		}
+    if (isFactoryForType(type)) {
+      Object adapter = super.adapt(object, type);
+      if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter))) {
+        return adapter;
+      }
+    }
 
-		return null;
-	}
+    return null;
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public List<IChildCreationExtender> getChildCreationExtenders() {
-		return childCreationExtenderManager.getChildCreationExtenders();
-	}
+    return childCreationExtenderManager.getChildCreationExtenders();
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public Collection<?> getNewChildDescriptors(Object object, EditingDomain editingDomain) {
-		return childCreationExtenderManager.getNewChildDescriptors(object, editingDomain);
-	}
+    return childCreationExtenderManager.getNewChildDescriptors(object, editingDomain);
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public ResourceLocator getResourceLocator() {
-		return childCreationExtenderManager;
-	}
+    return childCreationExtenderManager;
+  }
 
 	/**
-	 * This adds a listener.
-	 * <!-- begin-user-doc -->
+   * This adds a listener.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void addListener(INotifyChangedListener notifyChangedListener) {
-		changeNotifier.addListener(notifyChangedListener);
-	}
+   * @generated
+   */
+	@Override
+  public void addListener(INotifyChangedListener notifyChangedListener) {
+    changeNotifier.addListener(notifyChangedListener);
+  }
 
 	/**
-	 * This removes a listener.
-	 * <!-- begin-user-doc -->
+   * This removes a listener.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void removeListener(INotifyChangedListener notifyChangedListener) {
-		changeNotifier.removeListener(notifyChangedListener);
-	}
+   * @generated
+   */
+	@Override
+  public void removeListener(INotifyChangedListener notifyChangedListener) {
+    changeNotifier.removeListener(notifyChangedListener);
+  }
 
 	/**
-	 * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}.
-	 * <!-- begin-user-doc -->
+   * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void fireNotifyChanged(Notification notification) {
-		changeNotifier.fireNotifyChanged(notification);
+   * @generated
+   */
+	@Override
+  public void fireNotifyChanged(Notification notification) {
+    changeNotifier.fireNotifyChanged(notification);
 
-		if (parentAdapterFactory != null) {
-			parentAdapterFactory.fireNotifyChanged(notification);
-		}
-	}
+    if (parentAdapterFactory != null) {
+      parentAdapterFactory.fireNotifyChanged(notification);
+    }
+  }
 
 	/**
-	 * This disposes all of the item providers created by this factory. 
-	 * <!-- begin-user-doc -->
+   * This disposes all of the item providers created by this factory. 
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void dispose() {
-		if (midItemProvider != null) midItemProvider.dispose();
-		if (eStringToExtendibleElementMapItemProvider != null) eStringToExtendibleElementMapItemProvider.dispose();
-		if (modelItemProvider != null) modelItemProvider.dispose();
-		if (extendibleElementConstraintItemProvider != null) extendibleElementConstraintItemProvider.dispose();
-		if (modelElementItemProvider != null) modelElementItemProvider.dispose();
-		if (modelEndpointItemProvider != null) modelEndpointItemProvider.dispose();
-		if (emfInfoItemProvider != null) emfInfoItemProvider.dispose();
-	}
+   * @generated
+   */
+	@Override
+  public void dispose() {
+    if (midItemProvider != null) midItemProvider.dispose();
+    if (eStringToExtendibleElementMapItemProvider != null) eStringToExtendibleElementMapItemProvider.dispose();
+    if (modelItemProvider != null) modelItemProvider.dispose();
+    if (extendibleElementConstraintItemProvider != null) extendibleElementConstraintItemProvider.dispose();
+    if (modelElementItemProvider != null) modelElementItemProvider.dispose();
+    if (modelEndpointItemProvider != null) modelEndpointItemProvider.dispose();
+    if (emfInfoItemProvider != null) emfInfoItemProvider.dispose();
+  }
 
 }

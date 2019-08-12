@@ -1,11 +1,11 @@
 /**
- * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2019 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -23,12 +23,13 @@ import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.reasoning.IReasoningEngine;
 import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
-import edu.toronto.cs.se.modelepedia.ocl.reasoning.OCLReasoningEngine;
+import edu.toronto.cs.se.mmint.ocl.reasoning.OCLReasoningEngine;
 
 public class KleisliReasoningEngine implements IReasoningEngine {
 
@@ -51,7 +52,7 @@ public class KleisliReasoningEngine implements IReasoningEngine {
 			String[] kQueryAssignment = kQueryRow.split(UNION_ASSIGNMENT);
 			String oclQuery = kQueryAssignment[1].trim();
 			String unionName = kQueryAssignment[0].substring(kQueryAssignment[0].indexOf(UNION_KEYWORD)+UNION_KEYWORD.length(), kQueryAssignment[0].length()).trim();
-			Map<EObject, EObject> queryRow = new LinkedHashMap<EObject, EObject>();
+			Map<EObject, EObject> queryRow = new LinkedHashMap<>();
 			queryUnion.put(unionName, queryRow);
 			Object queryObjs = oclReasoner.evaluateQuery(kRootModelObj, oclQuery);
 			if (!(queryObjs instanceof Collection<?>)) {

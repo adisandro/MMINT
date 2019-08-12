@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2019 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -134,7 +134,7 @@ public class MIDContextMenu extends ContributionItem {
 				doCopy = false;
 				doModelepedia = false;
 				doRefineByConstraint = false;
-				if (((MID) editPartElement).isInstancesLevel()) { // instances only
+				if (((MID) editPartElement).isInstancesLevel() || ((MID) editPartElement).isWorkflowsLevel()) {
 					mid = (MID) editPartElement;
 				}
 			}

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2019 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -30,15 +30,15 @@ import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 public interface MAVOMappingReference extends MappingReference {
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * {@inheritDoc}<br />
-	 * Gets the referenced MAVO mapping.
-	 * <!-- end-model-doc -->
-	 * @model kind="operation" required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElement object = super.getObject();\nreturn (object == null) ? null : (MAVOMapping) object;'"
-	 * @generated
-	 */
+     * <!-- begin-model-doc -->
+     * {@inheritDoc}<br />
+     * Gets the referenced MAVO mapping.
+     * <!-- end-model-doc -->
+     * @model kind="operation" required="true"
+     *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElement object = super.getObject();\nreturn (object == null) ? null : (MAVOMapping) object;'"
+     * @generated
+     */
 	MAVOMapping getObject();
 } // MAVOMappingReference

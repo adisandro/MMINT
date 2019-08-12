@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2019 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -31,28 +31,28 @@ import edu.toronto.cs.se.mmint.MMINTException;
 public interface ConversionOperator extends Operator {
 
     /**
-     * <!-- begin-user-doc --> Deletes this conversion operator type from the
+   * <!-- begin-user-doc --> Deletes this conversion operator type from the
      * Type MID.
      * 
      * @throws MMINTException
      *             If this is a conversion operator instance.
      *             <!-- end-user-doc -->
-     * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
-     * @generated
-     */
+   * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
+   * @generated
+   */
     void deleteType() throws MMINTException;
 
     /**
-     * <!-- begin-user-doc --> Cleans up temporary artifacts created during the
+   * <!-- begin-user-doc --> Cleans up temporary artifacts created during the
      * execution of the operator, when this operator is used in a conversion
      * chain and not standalone.
      * 
      * @throws Exception
      *             If something went wrong during the cleanup of the operator.
      *             <!-- end-user-doc -->
-     * @model exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception"
-     * @generated
-     */
+   * @model exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception"
+   * @generated
+   */
     void cleanup() throws Exception;
 
 } // ConversionOperator

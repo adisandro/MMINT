@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2019 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -59,7 +59,7 @@ public class Merge extends OperatorImpl {
 	private final static @NonNull String OUT_MODELREL2 = "trace2";
 	// constants
 	private static final @NonNull String MERGED_MODELOBJECT_ATTRIBUTE = "name";
-	private static final @NonNull String MERGED_SEPARATOR = "+";
+	private static final @NonNull String MERGE_SEPARATOR = "⨝";
 
     private static class Input {
 
@@ -73,8 +73,8 @@ public class Merge extends OperatorImpl {
             if (this.overlapRel.getModelEndpoints().size() != 2) {
                 throw new IllegalArgumentException();
             }
-            this.model1 = overlapRel.getModelEndpoints().get(0).getTarget();
-            this.model2 = overlapRel.getModelEndpoints().get(1).getTarget();
+            this.model1 = this.overlapRel.getModelEndpoints().get(0).getTarget();
+            this.model2 = this.overlapRel.getModelEndpoints().get(1).getTarget();
             if (this.model1.getMetatype() != this.model2.getMetatype()) {
                 throw new IllegalArgumentException();
             }
@@ -143,7 +143,7 @@ public class Merge extends OperatorImpl {
 		EObject rootMergedModelObj = mergedModelFactory.create(rootModelObj1.eClass());
 		Map<String, ModelElement> matchModelElems1 = new HashMap<>();
 		for (ModelElementReference modelElemRef1 : overlapRel.getModelEndpointRefs().get(0).getModelElemRefs()) {
-			ModelElementReference modelElemRef2 = getConnected(modelElemRef1).stream().findFirst().get();
+			ModelElementReference modelElemRef2 = this.getConnected(modelElemRef1).stream().findFirst().get();
 			matchModelElems1.put(
 				modelElemRef1.getUri().substring(0, modelElemRef1.getUri().indexOf(MMINT.ROLE_SEPARATOR)),
 				modelElemRef2.getObject());
@@ -169,7 +169,7 @@ public class Merge extends OperatorImpl {
 						FileUtils.setModelObjectFeature(
 							mergedModelObj,
 							MERGED_MODELOBJECT_ATTRIBUTE,
-							modelObjAttr1 + MERGED_SEPARATOR + modelObjAttr2);
+							modelObjAttr1 + MERGE_SEPARATOR + modelObjAttr2);
 					}
 				}
 				catch (MMINTException e) {
@@ -277,7 +277,7 @@ public class Merge extends OperatorImpl {
 		MID mergedModelMID = outputMIDsByName.get(OUT_MODEL);
 		String mergedModelPath = FileUtils.replaceLastSegmentInPath(
 			MIDRegistry.getModelUri(mergedModelMID),
-			input.model1.getName() + MERGED_SEPARATOR + input.model2.getName() + MMINT.MODEL_FILEEXTENSION_SEPARATOR
+			input.model1.getName() + MERGE_SEPARATOR + input.model2.getName() + MMINT.MODEL_FILEEXTENSION_SEPARATOR
 					+ input.model1.getFileExtension());
 		Model mergedModel = input.model1.getMetatype().createInstance(null, mergedModelPath, mergedModelMID);
 		BinaryModelRel traceRel1 = MIDTypeHierarchy.getRootModelRelType().createBinaryInstanceAndEndpoints(
@@ -293,9 +293,9 @@ public class Merge extends OperatorImpl {
 			mergedModel,
 			outputMIDsByName.get(OUT_MODELREL2));
 		// merge the models
-		EObject rootMergedModelObj = merge(input.model1, input.model2, input.overlapRel, mergedModel, traceRel1, traceRel2);
+		EObject rootMergedModelObj = this.merge(input.model1, input.model2, input.overlapRel, mergedModel, traceRel1, traceRel2);
 		FileUtils.writeModelFile(rootMergedModelObj, mergedModelPath, true);
-		mergedModel.createInstanceEditor(); // opens the new model editor as side effect
+		mergedModel.createInstanceEditor(true); // opens the new model editor as side effect
 
 		// output
 		Map<String, Model> outputsByName = new HashMap<>();

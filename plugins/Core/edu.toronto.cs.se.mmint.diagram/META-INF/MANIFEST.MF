@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.mmint.diagram; singleton:=true
-Bundle-Version: 2.2.0
+Bundle-Version: 2.2.99.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorPlugin
 Bundle-Vendor: %providerName
@@ -36,7 +36,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide,
  org.eclipse.ocl.ecore,
  org.eclipse.emf.validation,
- org.eclipse.gmf.tooling.runtime,
+ org.eclipse.papyrus.infra.gmfdiag.tooling.runtime,
  org.eclipse.draw2d,
  org.eclipse.gmf.runtime.draw2d.ui,
  org.eclipse.gef,
@@ -45,4 +45,4 @@ Require-Bundle: org.eclipse.core.runtime,
  edu.toronto.cs.se.mmint,
  edu.toronto.cs.se.mmint.edit
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-12

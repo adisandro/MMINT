@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2019 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -14,9 +14,8 @@ package edu.toronto.cs.se.mmint.mid.operator.impl;
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.BasicEList;
@@ -40,6 +39,7 @@ import edu.toronto.cs.se.mmint.mid.operator.OperatorFactory;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
+import edu.toronto.cs.se.mmint.mid.operator.RandomOperator;
 import edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator;
 import edu.toronto.cs.se.mmint.mid.ui.GMFUtils;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
@@ -62,33 +62,33 @@ public class WorkflowOperatorImpl extends NestingOperatorImpl implements Workflo
     }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     protected EClass eStaticClass() {
-        return OperatorPackage.Literals.WORKFLOW_OPERATOR;
-    }
+    return OperatorPackage.Literals.WORKFLOW_OPERATOR;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-        switch (operationID) {
-            case OperatorPackage.WORKFLOW_OPERATOR___GET_NESTED_WORKFLOW_MID:
-                try {
-                    return getNestedWorkflowMID();
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
+    switch (operationID) {
+      case OperatorPackage.WORKFLOW_OPERATOR___GET_NESTED_WORKFLOW_MID:
+        try {
+          return getNestedWorkflowMID();
         }
-        return super.eInvoke(operationID, arguments);
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
     }
+    return super.eInvoke(operationID, arguments);
+  }
 
     /**
      * @generated NOT
@@ -115,7 +115,7 @@ public class WorkflowOperatorImpl extends NestingOperatorImpl implements Workflo
             else {
                 //TODO MMINT[WORKFLOW] Generalize addSubtype for heavy factory, setting nestedMIDPath there, then use it
                 String workflowMIDPath = this.getClass().getName().replace(".", File.separator) +
-                                         MMINT.MODEL_FILEEXTENSION_SEPARATOR + MIDPackage.eNAME;
+                                         MMINTConstants.MODEL_FILEEXTENSION_SEPARATOR + MIDPackage.eNAME;
                 String workflowMIDBundlePath = MIDTypeRegistry.getFileBundlePath(this, workflowMIDPath);
                 workflowMID = (MID) FileUtils.readModelFile(workflowMIDBundlePath, false);
             }
@@ -158,7 +158,7 @@ public class WorkflowOperatorImpl extends NestingOperatorImpl implements Workflo
         else {
             //TODO MMINT[WORKFLOW] Generalize addSubtype for heavy factory, setting nestedMIDPath there, then use it
             String workflowMIDPath = this.getClass().getName().replace(".", File.separator) +
-                                     MMINT.MODEL_FILEEXTENSION_SEPARATOR + MIDPackage.eNAME;
+                                     MMINTConstants.MODEL_FILEEXTENSION_SEPARATOR + MIDPackage.eNAME;
             // in a binary install, extracts the file from the jar as a side effect
             MIDTypeRegistry.getFileBundlePath(this, workflowMIDPath);
             String workflowMIDDiagramBundlePath = MIDTypeRegistry.getFileBundlePath(this, workflowMIDPath +
@@ -195,6 +195,7 @@ public class WorkflowOperatorImpl extends NestingOperatorImpl implements Workflo
         MID nestedMID = this.getNestedInstanceMID();
         String nestedMIDPath = this.getNestedMIDPath();
         Map<String, Model> allModelsByName = new HashMap<>(inputsByName);
+        Random state = null;
         // create shortcuts to input models
         if (nestedMIDPath != null) {
             super.createNestedInstanceMIDModelShortcuts(ECollections.toEList(inputsByName.values()));
@@ -223,17 +224,18 @@ public class WorkflowOperatorImpl extends NestingOperatorImpl implements Workflo
                 workflowOutputMIDsByName.put(outputModelEndpoint.getName(), outputMID); // ..with operator output names
             }
             Operator workflowOperatorType = workflowOperator.getMetatype();
-            if (Boolean.parseBoolean( // multiple dispatch enabled
-                MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_POLYMORPHISM_MULTIPLEDISPATCH_ENABLED))
-            ) {
-                EList<Operator> polyOperators = ECollections.asEList(MIDTypeHierarchy.getSubtypes(workflowOperatorType));
-                Iterator<Operator> polyIter = MIDTypeHierarchy.getInverseTypeHierarchyIterator(polyOperators);
-                List<Model> inputModels = workflowInputs.stream()
+            if (Boolean.parseBoolean(MMINT.getPreference(
+                                       MMINTConstants.PREFERENCE_MENU_POLYMORPHISM_MULTIPLEDISPATCH_ENABLED))
+            ) { // multiple dispatch enabled
+                var polyOperators = ECollections.asEList(MIDTypeHierarchy.getSubtypes(workflowOperatorType));
+                var polyIter = MIDTypeHierarchy.getInverseTypeHierarchyIterator(polyOperators);
+                var inputModels = ECollections.asEList(
+                  workflowInputs.stream()
                     .map(OperatorInput::getModel)
-                    .collect(Collectors.toList());
+                    .collect(Collectors.toList()));
                 while (polyIter.hasNext()) { // start from the most specialized operator backwards
-                    Operator polyOperator = polyIter.next();
-                    EList<OperatorInput> polyInputs = polyOperator.checkAllowedInputs(ECollections.toEList(inputModels));
+                    var polyOperator = polyIter.next();
+                    var polyInputs = polyOperator.checkAllowedInputs(inputModels);
                     if (polyInputs != null) {
                         workflowOperatorType = polyOperator;
                         workflowInputs = polyInputs;
@@ -241,18 +243,26 @@ public class WorkflowOperatorImpl extends NestingOperatorImpl implements Workflo
                     }
                 }
             }
-            Map<String, Model> workflowOutputsByName = workflowOperatorType.startInstance(
+            workflowOperatorType.setWorkingPath(getWorkingPath());
+            if (state != null && workflowOperatorType instanceof RandomOperator) {
+                ((RandomOperator) workflowOperatorType).setState(state);
+            }
+            //TODO MMINT[WORKFLOW] Add api getWorkflowData(Operator prevOperator) to fetch in-memory data
+            var operator = workflowOperatorType.startInstance(
                 workflowInputs,
                 null,
                 workflowGenerics,
                 workflowOutputMIDsByName,
-                nestedMID)
-                    .getOutputsByName();
+                nestedMID);
+            if (operator instanceof RandomOperator) {
+               state = ((RandomOperator) operator).getState();
+            }
+            var workflowOutputsByName = operator.getOutputsByName();
             EList<Model> outputModels = new BasicEList<>();
             for (ModelEndpoint outputModelEndpoint : workflowOperator.getOutputs()) {
                 Model outputModel = workflowOutputsByName.get(outputModelEndpoint.getName());
                 allModelsByName.put(outputModelEndpoint.getTargetUri(), outputModel); // ids are unique in a workflowMID
-                if (workflowOutputMIDsByName.get(outputModelEndpoint.getName()) != nestedMID) { // final outputs
+                if (outputMIDsByName.containsKey(outputModelEndpoint.getTargetUri())) { // final outputs
                     outputsByName.put(outputModelEndpoint.getTargetUri(), outputModel);
                     outputModels.add(outputModel);
                 }

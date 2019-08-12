@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2019 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -35,190 +35,194 @@ import edu.toronto.cs.se.mmint.mid.MIDPackage;
  */
 public class ExtendibleElementConstraintImpl extends MinimalEObjectImpl.Container implements ExtendibleElementConstraint {
     /**
-     * The default value of the '{@link #getImplementation() <em>Implementation</em>}' attribute.
-     * <!-- begin-user-doc -->
+   * The default value of the '{@link #getImplementation() <em>Implementation</em>}' attribute.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getImplementation()
-     * @generated
-     * @ordered
-     */
+   * @see #getImplementation()
+   * @generated
+   * @ordered
+   */
     protected static final String IMPLEMENTATION_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getImplementation() <em>Implementation</em>}' attribute.
-     * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getImplementation() <em>Implementation</em>}' attribute.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getImplementation()
-     * @generated
-     * @ordered
-     */
+   * @see #getImplementation()
+   * @generated
+   * @ordered
+   */
     protected String implementation = IMPLEMENTATION_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getLanguage() <em>Language</em>}' attribute.
-     * <!-- begin-user-doc -->
+   * The default value of the '{@link #getLanguage() <em>Language</em>}' attribute.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getLanguage()
-     * @generated
-     * @ordered
-     */
+   * @see #getLanguage()
+   * @generated
+   * @ordered
+   */
     protected static final String LANGUAGE_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getLanguage() <em>Language</em>}' attribute.
-     * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getLanguage() <em>Language</em>}' attribute.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getLanguage()
-     * @generated
-     * @ordered
-     */
+   * @see #getLanguage()
+   * @generated
+   * @ordered
+   */
     protected String language = LANGUAGE_EDEFAULT;
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     protected ExtendibleElementConstraintImpl() {
-        super();
-    }
+    super();
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     protected EClass eStaticClass() {
-        return MIDPackage.Literals.EXTENDIBLE_ELEMENT_CONSTRAINT;
-    }
+    return MIDPackage.Literals.EXTENDIBLE_ELEMENT_CONSTRAINT;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public String getImplementation() {
-        return implementation;
-    }
+    return implementation;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public void setImplementation(String newImplementation) {
-        String oldImplementation = implementation;
-        implementation = newImplementation;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__IMPLEMENTATION, oldImplementation, implementation));
-    }
+    String oldImplementation = implementation;
+    implementation = newImplementation;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__IMPLEMENTATION, oldImplementation, implementation));
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public String getLanguage() {
-        return language;
-    }
+    return language;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public void setLanguage(String newLanguage) {
-        String oldLanguage = language;
-        language = newLanguage;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__LANGUAGE, oldLanguage, language));
-    }
+    String oldLanguage = language;
+    language = newLanguage;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__LANGUAGE, oldLanguage, language));
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case MIDPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__IMPLEMENTATION:
-                return getImplementation();
-            case MIDPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__LANGUAGE:
-                return getLanguage();
-        }
-        return super.eGet(featureID, resolve, coreType);
+    switch (featureID) {
+      case MIDPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__IMPLEMENTATION:
+        return getImplementation();
+      case MIDPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__LANGUAGE:
+        return getLanguage();
     }
+    return super.eGet(featureID, resolve, coreType);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case MIDPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__IMPLEMENTATION:
-                setImplementation((String)newValue);
-                return;
-            case MIDPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__LANGUAGE:
-                setLanguage((String)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
+    switch (featureID) {
+      case MIDPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__IMPLEMENTATION:
+        setImplementation((String)newValue);
+        return;
+      case MIDPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__LANGUAGE:
+        setLanguage((String)newValue);
+        return;
     }
+    super.eSet(featureID, newValue);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public void eUnset(int featureID) {
-        switch (featureID) {
-            case MIDPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__IMPLEMENTATION:
-                setImplementation(IMPLEMENTATION_EDEFAULT);
-                return;
-            case MIDPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__LANGUAGE:
-                setLanguage(LANGUAGE_EDEFAULT);
-                return;
-        }
-        super.eUnset(featureID);
+    switch (featureID) {
+      case MIDPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__IMPLEMENTATION:
+        setImplementation(IMPLEMENTATION_EDEFAULT);
+        return;
+      case MIDPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__LANGUAGE:
+        setLanguage(LANGUAGE_EDEFAULT);
+        return;
     }
+    super.eUnset(featureID);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case MIDPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__IMPLEMENTATION:
-                return IMPLEMENTATION_EDEFAULT == null ? implementation != null : !IMPLEMENTATION_EDEFAULT.equals(implementation);
-            case MIDPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__LANGUAGE:
-                return LANGUAGE_EDEFAULT == null ? language != null : !LANGUAGE_EDEFAULT.equals(language);
-        }
-        return super.eIsSet(featureID);
+    switch (featureID) {
+      case MIDPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__IMPLEMENTATION:
+        return IMPLEMENTATION_EDEFAULT == null ? implementation != null : !IMPLEMENTATION_EDEFAULT.equals(implementation);
+      case MIDPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__LANGUAGE:
+        return LANGUAGE_EDEFAULT == null ? language != null : !LANGUAGE_EDEFAULT.equals(language);
     }
+    return super.eIsSet(featureID);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public String toString() {
-        if (eIsProxy()) return super.toString();
+    if (eIsProxy()) return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (implementation: ");
-        result.append(implementation);
-        result.append(", language: ");
-        result.append(language);
-        result.append(')');
-        return result.toString();
-    }
+    StringBuilder result = new StringBuilder(super.toString());
+    result.append(" (implementation: ");
+    result.append(implementation);
+    result.append(", language: ");
+    result.append(language);
+    result.append(')');
+    return result.toString();
+  }
 
 } //ExtendibleElementConstraintImpl

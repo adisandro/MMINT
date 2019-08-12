@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2019 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -29,41 +29,41 @@ import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
  */
 public interface ExtendibleElementEndpointReference extends ExtendibleElementReference {
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * <!-- begin-model-doc -->
-     * The uri of the referenced endpoint's target.
-     * <!-- end-model-doc -->
-     * @model kind="operation"
-     *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElementEndpoint object = this.getObject();\nreturn (object == null) ? null : object.getTargetUri();'"
-     * @generated
-     */
+   * <!-- begin-model-doc -->
+   * The uri of the referenced endpoint's target.
+   * <!-- end-model-doc -->
+   * @model kind="operation"
+   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElementEndpoint object = this.getObject();\nreturn (object == null) ? null : object.getTargetUri();'"
+   * @generated
+   */
     String getTargetUri();
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * <!-- begin-model-doc -->
-     * {@inheritDoc}<br />
-     * Gets the referenced element endpoint.
-     * <!-- end-model-doc -->
-     * @model kind="operation" required="true"
-     *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElement object = super.getObject();\nreturn (object == null) ? null : (ExtendibleElementEndpoint) object;'"
-     * @generated
-     */
+   * <!-- begin-model-doc -->
+   * {@inheritDoc}<br />
+   * Gets the referenced element endpoint.
+   * <!-- end-model-doc -->
+   * @model kind="operation" required="true"
+   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElement object = super.getObject();\nreturn (object == null) ? null : (ExtendibleElementEndpoint) object;'"
+   * @generated
+   */
     ExtendibleElementEndpoint getObject();
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * <!-- begin-model-doc -->
-     * {@inheritDoc}<br />
-     * Gets the element supertype endpoint reference of this element type endpoint reference.
-     * <!-- end-model-doc -->
-     * @model kind="operation"
-     *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElementReference supertypeRef = super.getSupertypeRef();\nreturn (supertypeRef == null) ? null : (ExtendibleElementEndpointReference) supertypeRef;'"
-     * @generated
-     */
+   * <!-- begin-model-doc -->
+   * {@inheritDoc}<br />
+   * Gets the element supertype endpoint reference of this element type endpoint reference.
+   * <!-- end-model-doc -->
+   * @model kind="operation"
+   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElementReference supertypeRef = super.getSupertypeRef();\nreturn (supertypeRef == null) ? null : (ExtendibleElementEndpointReference) supertypeRef;'"
+   * @generated
+   */
     ExtendibleElementEndpointReference getSupertypeRef();
 
 } // ExtendibleElementEndpointReference

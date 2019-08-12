@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2019 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -33,136 +33,138 @@ import edu.toronto.cs.se.mmint.mid.MIDPackage;
  */
 public abstract class GenericElementImpl extends ExtendibleElementImpl implements GenericElement {
     /**
-     * The default value of the '{@link #isAbstract() <em>Abstract</em>}' attribute.
-     * <!-- begin-user-doc -->
+   * The default value of the '{@link #isAbstract() <em>Abstract</em>}' attribute.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isAbstract()
-     * @generated
-     * @ordered
-     */
+   * @see #isAbstract()
+   * @generated
+   * @ordered
+   */
     protected static final boolean ABSTRACT_EDEFAULT = false;
     /**
-     * The cached value of the '{@link #isAbstract() <em>Abstract</em>}' attribute.
-     * <!-- begin-user-doc -->
+   * The cached value of the '{@link #isAbstract() <em>Abstract</em>}' attribute.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isAbstract()
-     * @generated
-     * @ordered
-     */
+   * @see #isAbstract()
+   * @generated
+   * @ordered
+   */
     protected boolean abstract_ = ABSTRACT_EDEFAULT;
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     protected GenericElementImpl() {
-        super();
-    }
+    super();
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     protected EClass eStaticClass() {
-        return MIDPackage.Literals.GENERIC_ELEMENT;
-    }
+    return MIDPackage.Literals.GENERIC_ELEMENT;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public boolean isAbstract() {
-        return abstract_;
-    }
+    return abstract_;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public void setAbstract(boolean newAbstract) {
-        boolean oldAbstract = abstract_;
-        abstract_ = newAbstract;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.GENERIC_ELEMENT__ABSTRACT, oldAbstract, abstract_));
-    }
+    boolean oldAbstract = abstract_;
+    abstract_ = newAbstract;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.GENERIC_ELEMENT__ABSTRACT, oldAbstract, abstract_));
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case MIDPackage.GENERIC_ELEMENT__ABSTRACT:
-                return isAbstract();
-        }
-        return super.eGet(featureID, resolve, coreType);
+    switch (featureID) {
+      case MIDPackage.GENERIC_ELEMENT__ABSTRACT:
+        return isAbstract();
     }
+    return super.eGet(featureID, resolve, coreType);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case MIDPackage.GENERIC_ELEMENT__ABSTRACT:
-                setAbstract((Boolean)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
+    switch (featureID) {
+      case MIDPackage.GENERIC_ELEMENT__ABSTRACT:
+        setAbstract((Boolean)newValue);
+        return;
     }
+    super.eSet(featureID, newValue);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public void eUnset(int featureID) {
-        switch (featureID) {
-            case MIDPackage.GENERIC_ELEMENT__ABSTRACT:
-                setAbstract(ABSTRACT_EDEFAULT);
-                return;
-        }
-        super.eUnset(featureID);
+    switch (featureID) {
+      case MIDPackage.GENERIC_ELEMENT__ABSTRACT:
+        setAbstract(ABSTRACT_EDEFAULT);
+        return;
     }
+    super.eUnset(featureID);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case MIDPackage.GENERIC_ELEMENT__ABSTRACT:
-                return abstract_ != ABSTRACT_EDEFAULT;
-        }
-        return super.eIsSet(featureID);
+    switch (featureID) {
+      case MIDPackage.GENERIC_ELEMENT__ABSTRACT:
+        return abstract_ != ABSTRACT_EDEFAULT;
     }
+    return super.eIsSet(featureID);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public String toString() {
-        if (eIsProxy()) return super.toString();
+    if (eIsProxy()) return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (abstract: ");
-        result.append(abstract_);
-        result.append(')');
-        return result.toString();
-    }
+    StringBuilder result = new StringBuilder(super.toString());
+    result.append(" (abstract: ");
+    result.append(abstract_);
+    result.append(')');
+    return result.toString();
+  }
 
 } //GenericElementImpl

@@ -5,7 +5,41 @@
   <parent>
   	<groupId>MMINT</groupId>
   	<artifactId>edu.toronto.cs.se.mmint.releng</artifactId>
-  	<version>2.2.0</version>
+  	<version>2.2.99-SNAPSHOT</version>
   	<relativePath>../../../releng/edu.toronto.cs.se.mmint.releng</relativePath>
   </parent>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.eclipse.acceleo</groupId>
+        <artifactId>org.eclipse.acceleo.maven</artifactId>
+        <executions>
+          <execution>
+            <phase>compile</phase>
+            <goals>
+              <goal>acceleo-compile</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <useBinaryResources>false</useBinaryResources>
+          <usePlatformResourcePath>true</usePlatformResourcePath>
+          <acceleoProject>
+            <root>${project.basedir}</root>
+            <entries>
+              <entry>
+                <input>src</input>
+                <output>target/classes</output>
+              </entry>
+            </entries>
+          </acceleoProject>
+          <packagesToRegister>
+            <packageToRegister>edu.toronto.cs.se.mmint.mid.MIDPackage</packageToRegister>
+            <packageToRegister>edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage</packageToRegister>
+          </packagesToRegister>
+          <uriHandler>org.eclipse.acceleo.maven.AcceleoURIHandler</uriHandler>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 </project>

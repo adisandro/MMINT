@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2019 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -237,10 +237,10 @@ public class ICMT15 extends RandomOperatorImpl {
 		}
 
 		// output
-		String uri = (getInputSubdir() != null) ?
+		String uri = (getWorkingPath() != null) ?
 			FileUtils.replaceLastSegmentInPath(
 				inputModel.getUri(),
-				getInputSubdir() + MMINT.URI_SEPARATOR + FileUtils.getLastSegmentFromPath(inputModel.getUri())
+				getWorkingPath() + MMINT.URI_SEPARATOR + FileUtils.getLastSegmentFromPath(inputModel.getUri())
 			) :
 			inputModel.getUri();
 		String outputModelPath = FileUtils.getUniquePath(FileUtils.addFileNameSuffixInPath(uri, MODEL_GENERATED_SUFFIX), true, false);

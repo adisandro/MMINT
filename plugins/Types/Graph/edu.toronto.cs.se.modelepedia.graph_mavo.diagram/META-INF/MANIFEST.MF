@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.graph_mavo.diagram; singleton:=true
-Bundle-Version: 2.2.0
+Bundle-Version: 2.2.99.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Graph_MAVODiagramEditorPlugin
 Bundle-Vendor: %providerName
@@ -33,7 +33,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.gmf.runtime.diagram.ui.render,
  org.eclipse.gmf.runtime.diagram.ui.resources.editor,
  org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide,
- org.eclipse.gmf.tooling.runtime,
+ org.eclipse.papyrus.infra.gmfdiag.tooling.runtime,
  org.eclipse.draw2d,
  org.eclipse.gmf.runtime.draw2d.ui,
  edu.toronto.cs.se.mavo,
@@ -44,4 +44,4 @@ Require-Bundle: org.eclipse.core.runtime,
  edu.toronto.cs.se.modelepedia.graph_mavo,
  edu.toronto.cs.se.modelepedia.graph_mavo.edit
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-12

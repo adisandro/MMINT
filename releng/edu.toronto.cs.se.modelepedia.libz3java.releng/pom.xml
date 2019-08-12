@@ -2,12 +2,18 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>libz3java</groupId>
   <artifactId>edu.toronto.cs.se.modelepedia.libz3java.releng</artifactId>
-  <version>2.2.0</version>
+  <version>2.2.99-SNAPSHOT</version>
   <packaging>pom</packaging>
   <properties>
-    <tycho-version>1.0.0</tycho-version>
+    <tycho-version>1.5.0-SNAPSHOT</tycho-version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
+  <pluginRepositories>
+    <pluginRepository>
+      <id>tycho-snapshots</id>
+      <url>https://repo.eclipse.org/content/repositories/tycho-snapshots/</url>
+    </pluginRepository>
+  </pluginRepositories>
   <build>
     <plugins>
       <plugin>
@@ -38,17 +44,7 @@
             <environment>
               <os>linux</os>
               <ws>gtk</ws>
-              <arch>x86</arch>
-            </environment>
-            <environment>
-              <os>linux</os>
-              <ws>gtk</ws>
               <arch>x86_64</arch>
-            </environment>
-            <environment>
-              <os>win32</os>
-              <ws>win32</ws>
-              <arch>x86</arch>
             </environment>
             <environment>
               <os>win32</os>

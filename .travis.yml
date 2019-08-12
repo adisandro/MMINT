@@ -1,10 +1,10 @@
+dist: xenial
 language: java
 jdk:
- - oraclejdk8
-addons:
- apt:
-  packages:
-   - oracle-java8-installer
+ - openjdk12
+env:
+ global:
+  - secure: "sMmtgFFxccY2FZ5F/ujvZ/RuqzjyFXU1vuaRxgD+pgPjJPOsTEzqRBEsCsZrFVAZAZVFBBQiLIrKugaZTpL9sFVuuxPuv3nQ5lPcDvIlNHBym4Hyk/82lGn7o315tKUUS4CvSKVwCO7Ep0x3EILLDRDxMi1Xn481eoDFs/vGYTfCRRvgh052kiIuttoDzxz7jvSfuNwOdy9G7kziuufTt07EwCqbOJozGaveEmX3fGxKMXoYu4j8SHgAydjdgvcB5YPdSWxtDgLkwvB8qj/wLvq/zHNDXyii4Ll57AopLqaT8AIpe6NbDYwGLNiMoiGKM2I3668nE5QIP6Qz6L3kEPvUAZiVCD/o4My2K68L0FTvZwuqBe9O0I/29bVc1zVdGrjddLSvHZkJfZiOpiMWmLUfCd1e2AQJmlcxJqPj/SNQsNIbsHp1Y9QR8FBxJOnfKDtETeHQ1N2u2eetl7Ibem9QLqu+JjlbRkl5M/F5+LMl+PWOEWsYqZZ07cvP3msOXTBsqGBk8Oc3ssDTPRknoIzwI3n4fCJkkXSMtuj7c/e8X0A3yeaLA+hBgzvGYWd2NES7p2XRS02cM5L/JEzHDB9vKZT0MRtPb4SDu5sX4FNR64iy2loQVNHSr5HqpWSVxR2G7VHFTBdwT1SZRhs5n33Wv+mERLN/cBuKXsFWFi0="
 cache:
  directories:
   - $HOME/.m2
@@ -13,10 +13,13 @@ script:
  - mvn -f releng/edu.toronto.cs.se.modelepedia.libz3java.releng/pom.xml clean install
  - mvn -f releng/edu.toronto.cs.se.mmint.releng/pom.xml clean install
 after_success:
- - test $TRAVIS_PULL_REQUEST = false
-   && openssl aes-256-cbc -K $encrypted_631ea21ad1d0_key -iv $encrypted_631ea21ad1d0_iv -in releng/deploy_key.enc -out releng/deploy_key -d
-   && chmod 600 releng/deploy_key
-   && mv releng/deploy_key ~/.ssh/id_rsa
-   && echo -e "Host cs.toronto.edu\nStrictHostKeyChecking no" >> ~/.ssh/config
-   && ssh adisandro@cs.toronto.edu "rm -rf ~/public_html/mmint/${TRAVIS_BRANCH/master/release}/"
-   && rsync -r releng/edu.toronto.cs.se.mmint.install/target/repository/ adisandro@cs.toronto.edu:~/public_html/mmint/${TRAVIS_BRANCH/master/release}/
+ - >
+   test $TRAVIS_PULL_REQUEST = false &&
+   git clone https://github.com/adisandro/adisandro.github.io.git &&
+   cd adisandro.github.io &&
+   rm -rf mmint/${TRAVIS_BRANCH/master/release} &&
+   mv $TRAVIS_BUILD_DIR/releng/edu.toronto.cs.se.mmint.install/target/repository mmint/${TRAVIS_BRANCH/master/release} &&
+   git add . &&
+   git reset --soft HEAD~1 &&
+   git commit --author="Alessio Di Sandro <alessio.disandro@gmail.com>" -m "mmint: Update builds" &&
+   git push -f -q https://adisandro:$GITHUB_API_KEY@github.com/adisandro/adisandro.github.io.git master &> /dev/null

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2019 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -44,49 +44,49 @@ import edu.toronto.cs.se.modelepedia.kleisli.reasoning.KleisliReasoningEngine;
  */
 public class KleisliModelImpl extends ModelImpl implements KleisliModel {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected KleisliModelImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return KleisliPackage.Literals.KLEISLI_MODEL;
-	}
+        return KleisliPackage.Literals.KLEISLI_MODEL;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-		switch (operationID) {
-			case KleisliPackage.KLEISLI_MODEL___KLEISLI_CREATE_TYPE__KLEISLIMODELENDPOINT:
-				try {
-					return kleisliCreateType((KleisliModelEndpoint)arguments.get(0));
-				}
-				catch (Throwable throwable) {
-					throw new InvocationTargetException(throwable);
-				}
-			case KleisliPackage.KLEISLI_MODEL___KLEISLI_CREATE_INSTANCE__KLEISLIMODELENDPOINT:
-				try {
-					return kleisliCreateInstance((KleisliModelEndpoint)arguments.get(0));
-				}
-				catch (Throwable throwable) {
-					throw new InvocationTargetException(throwable);
-				}
-		}
-		return super.eInvoke(operationID, arguments);
-	}
+        switch (operationID) {
+            case KleisliPackage.KLEISLI_MODEL___KLEISLI_CREATE_TYPE__KLEISLIMODELENDPOINT:
+                try {
+                    return kleisliCreateType((KleisliModelEndpoint)arguments.get(0));
+                }
+                catch (Throwable throwable) {
+                    throw new InvocationTargetException(throwable);
+                }
+            case KleisliPackage.KLEISLI_MODEL___KLEISLI_CREATE_INSTANCE__KLEISLIMODELENDPOINT:
+                try {
+                    return kleisliCreateInstance((KleisliModelEndpoint)arguments.get(0));
+                }
+                catch (Throwable throwable) {
+                    throw new InvocationTargetException(throwable);
+                }
+        }
+        return super.eInvoke(operationID, arguments);
+    }
 
 	/**
 	 * Gets the uri of a Kleisli model type extension.

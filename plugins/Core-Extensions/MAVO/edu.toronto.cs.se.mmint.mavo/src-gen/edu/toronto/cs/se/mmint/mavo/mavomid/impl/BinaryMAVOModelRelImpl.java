@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2019 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -27,22 +27,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class BinaryMAVOModelRelImpl extends BinaryModelRelImpl implements BinaryMAVOModelRel {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected BinaryMAVOModelRelImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return MAVOMIDPackage.Literals.BINARY_MAVO_MODEL_REL;
-	}
+        return MAVOMIDPackage.Literals.BINARY_MAVO_MODEL_REL;
+    }
 
 } //MAVOBinaryModelRelImpl

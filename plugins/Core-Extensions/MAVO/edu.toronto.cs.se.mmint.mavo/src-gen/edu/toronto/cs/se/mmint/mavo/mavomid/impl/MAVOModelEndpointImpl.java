@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2019 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -32,62 +32,62 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class MAVOModelEndpointImpl extends ModelEndpointImpl implements MAVOModelEndpoint {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected MAVOModelEndpointImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return MAVOMIDPackage.Literals.MAVO_MODEL_ENDPOINT;
-	}
+        return MAVOMIDPackage.Literals.MAVO_MODEL_ENDPOINT;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public MAVOModel getTarget() {
-		ExtendibleElement target = super.getTarget();
-		return (target == null) ? null : (MAVOModel) target;
-	}
+        ExtendibleElement target = super.getTarget();
+        return (target == null) ? null : (MAVOModel) target;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
-		if (baseClass == ModelEndpoint.class) {
-			switch (baseOperationID) {
-				case MIDPackage.MODEL_ENDPOINT___GET_TARGET: return MAVOMIDPackage.MAVO_MODEL_ENDPOINT___GET_TARGET;
-				default: return super.eDerivedOperationID(baseOperationID, baseClass);
-			}
-		}
-		return super.eDerivedOperationID(baseOperationID, baseClass);
-	}
+        if (baseClass == ModelEndpoint.class) {
+            switch (baseOperationID) {
+                case MIDPackage.MODEL_ENDPOINT___GET_TARGET: return MAVOMIDPackage.MAVO_MODEL_ENDPOINT___GET_TARGET;
+                default: return super.eDerivedOperationID(baseOperationID, baseClass);
+            }
+        }
+        return super.eDerivedOperationID(baseOperationID, baseClass);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-		switch (operationID) {
-			case MAVOMIDPackage.MAVO_MODEL_ENDPOINT___GET_TARGET:
-				return getTarget();
-		}
-		return super.eInvoke(operationID, arguments);
-	}
+        switch (operationID) {
+            case MAVOMIDPackage.MAVO_MODEL_ENDPOINT___GET_TARGET:
+                return getTarget();
+        }
+        return super.eInvoke(operationID, arguments);
+    }
 
 } //MAVOModelEndpointImpl

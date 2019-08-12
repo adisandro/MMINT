@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2019 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -14,6 +14,7 @@ package edu.toronto.cs.se.modelepedia.classdiagram.impl;
 import edu.toronto.cs.se.modelepedia.classdiagram.Association;
 import edu.toronto.cs.se.modelepedia.classdiagram.Attribute;
 import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage;
+import edu.toronto.cs.se.modelepedia.classdiagram.Composition;
 import edu.toronto.cs.se.modelepedia.classdiagram.Dependency;
 import edu.toronto.cs.se.modelepedia.classdiagram.Operation;
 
@@ -28,6 +29,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -50,11 +52,13 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.ClassImpl#getSubclasses <em>Subclasses</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.ClassImpl#getAssociationsAsSource <em>Associations As Source</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.ClassImpl#getAssociationsAsTarget <em>Associations As Target</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.ClassImpl#getCompositionsAsConstituent <em>Compositions As Constituent</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.ClassImpl#getCompositionsAsComposite <em>Compositions As Composite</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ClassImpl extends NamedElementImpl implements edu.toronto.cs.se.modelepedia.classdiagram.Class {
+public class ClassImpl extends TypeableImpl implements edu.toronto.cs.se.modelepedia.classdiagram.Class {
 	/**
 	 * The cached value of the '{@link #getOwnedAttributes() <em>Owned Attributes</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -154,6 +158,26 @@ public class ClassImpl extends NamedElementImpl implements edu.toronto.cs.se.mod
 	 * @ordered
 	 */
 	protected EList<Association> associationsAsTarget;
+
+	/**
+	 * The cached value of the '{@link #getCompositionsAsConstituent() <em>Compositions As Constituent</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCompositionsAsConstituent()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Composition> compositionsAsConstituent;
+
+	/**
+	 * The cached value of the '{@link #getCompositionsAsComposite() <em>Compositions As Composite</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCompositionsAsComposite()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Composition> compositionsAsComposite;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -395,6 +419,30 @@ public class ClassImpl extends NamedElementImpl implements edu.toronto.cs.se.mod
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<Composition> getCompositionsAsConstituent() {
+		if (compositionsAsConstituent == null) {
+			compositionsAsConstituent = new EObjectWithInverseResolvingEList<Composition>(Composition.class, this, ClassDiagramPackage.CLASS__COMPOSITIONS_AS_CONSTITUENT, ClassDiagramPackage.COMPOSITION__CONSTITUENT);
+		}
+		return compositionsAsConstituent;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Composition> getCompositionsAsComposite() {
+		if (compositionsAsComposite == null) {
+			compositionsAsComposite = new EObjectWithInverseResolvingEList<Composition>(Composition.class, this, ClassDiagramPackage.CLASS__COMPOSITIONS_AS_COMPOSITE, ClassDiagramPackage.COMPOSITION__COMPOSITE);
+		}
+		return compositionsAsComposite;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -423,6 +471,10 @@ public class ClassImpl extends NamedElementImpl implements edu.toronto.cs.se.mod
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getAssociationsAsSource()).basicAdd(otherEnd, msgs);
 			case ClassDiagramPackage.CLASS__ASSOCIATIONS_AS_TARGET:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getAssociationsAsTarget()).basicAdd(otherEnd, msgs);
+			case ClassDiagramPackage.CLASS__COMPOSITIONS_AS_CONSTITUENT:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getCompositionsAsConstituent()).basicAdd(otherEnd, msgs);
+			case ClassDiagramPackage.CLASS__COMPOSITIONS_AS_COMPOSITE:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getCompositionsAsComposite()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -455,6 +507,10 @@ public class ClassImpl extends NamedElementImpl implements edu.toronto.cs.se.mod
 				return ((InternalEList<?>)getAssociationsAsSource()).basicRemove(otherEnd, msgs);
 			case ClassDiagramPackage.CLASS__ASSOCIATIONS_AS_TARGET:
 				return ((InternalEList<?>)getAssociationsAsTarget()).basicRemove(otherEnd, msgs);
+			case ClassDiagramPackage.CLASS__COMPOSITIONS_AS_CONSTITUENT:
+				return ((InternalEList<?>)getCompositionsAsConstituent()).basicRemove(otherEnd, msgs);
+			case ClassDiagramPackage.CLASS__COMPOSITIONS_AS_COMPOSITE:
+				return ((InternalEList<?>)getCompositionsAsComposite()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -489,6 +545,10 @@ public class ClassImpl extends NamedElementImpl implements edu.toronto.cs.se.mod
 				return getAssociationsAsSource();
 			case ClassDiagramPackage.CLASS__ASSOCIATIONS_AS_TARGET:
 				return getAssociationsAsTarget();
+			case ClassDiagramPackage.CLASS__COMPOSITIONS_AS_CONSTITUENT:
+				return getCompositionsAsConstituent();
+			case ClassDiagramPackage.CLASS__COMPOSITIONS_AS_COMPOSITE:
+				return getCompositionsAsComposite();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -540,6 +600,14 @@ public class ClassImpl extends NamedElementImpl implements edu.toronto.cs.se.mod
 				getAssociationsAsTarget().clear();
 				getAssociationsAsTarget().addAll((Collection<? extends Association>)newValue);
 				return;
+			case ClassDiagramPackage.CLASS__COMPOSITIONS_AS_CONSTITUENT:
+				getCompositionsAsConstituent().clear();
+				getCompositionsAsConstituent().addAll((Collection<? extends Composition>)newValue);
+				return;
+			case ClassDiagramPackage.CLASS__COMPOSITIONS_AS_COMPOSITE:
+				getCompositionsAsComposite().clear();
+				getCompositionsAsComposite().addAll((Collection<? extends Composition>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -582,6 +650,12 @@ public class ClassImpl extends NamedElementImpl implements edu.toronto.cs.se.mod
 			case ClassDiagramPackage.CLASS__ASSOCIATIONS_AS_TARGET:
 				getAssociationsAsTarget().clear();
 				return;
+			case ClassDiagramPackage.CLASS__COMPOSITIONS_AS_CONSTITUENT:
+				getCompositionsAsConstituent().clear();
+				return;
+			case ClassDiagramPackage.CLASS__COMPOSITIONS_AS_COMPOSITE:
+				getCompositionsAsComposite().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -614,6 +688,10 @@ public class ClassImpl extends NamedElementImpl implements edu.toronto.cs.se.mod
 				return associationsAsSource != null && !associationsAsSource.isEmpty();
 			case ClassDiagramPackage.CLASS__ASSOCIATIONS_AS_TARGET:
 				return associationsAsTarget != null && !associationsAsTarget.isEmpty();
+			case ClassDiagramPackage.CLASS__COMPOSITIONS_AS_CONSTITUENT:
+				return compositionsAsConstituent != null && !compositionsAsConstituent.isEmpty();
+			case ClassDiagramPackage.CLASS__COMPOSITIONS_AS_COMPOSITE:
+				return compositionsAsComposite != null && !compositionsAsComposite.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

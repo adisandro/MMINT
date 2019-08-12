@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2019 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.AssociationImpl#getSource <em>Source</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.AssociationImpl#getTarget <em>Target</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.AssociationImpl#getMultiplicity <em>Multiplicity</em>}</li>
  * </ul>
  *
  * @generated
@@ -56,6 +57,26 @@ public class AssociationImpl extends NamedElementImpl implements Association {
 	 * @ordered
 	 */
 	protected edu.toronto.cs.se.modelepedia.classdiagram.Class target;
+
+	/**
+	 * The default value of the '{@link #getMultiplicity() <em>Multiplicity</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMultiplicity()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String MULTIPLICITY_EDEFAULT = "";
+
+	/**
+	 * The cached value of the '{@link #getMultiplicity() <em>Multiplicity</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMultiplicity()
+	 * @generated
+	 * @ordered
+	 */
+	protected String multiplicity = MULTIPLICITY_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -201,6 +222,27 @@ public class AssociationImpl extends NamedElementImpl implements Association {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getMultiplicity() {
+		return multiplicity;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMultiplicity(String newMultiplicity) {
+		String oldMultiplicity = multiplicity;
+		multiplicity = newMultiplicity;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ClassDiagramPackage.ASSOCIATION__MULTIPLICITY, oldMultiplicity, multiplicity));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -246,6 +288,8 @@ public class AssociationImpl extends NamedElementImpl implements Association {
 			case ClassDiagramPackage.ASSOCIATION__TARGET:
 				if (resolve) return getTarget();
 				return basicGetTarget();
+			case ClassDiagramPackage.ASSOCIATION__MULTIPLICITY:
+				return getMultiplicity();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -263,6 +307,9 @@ public class AssociationImpl extends NamedElementImpl implements Association {
 				return;
 			case ClassDiagramPackage.ASSOCIATION__TARGET:
 				setTarget((edu.toronto.cs.se.modelepedia.classdiagram.Class)newValue);
+				return;
+			case ClassDiagramPackage.ASSOCIATION__MULTIPLICITY:
+				setMultiplicity((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -282,6 +329,9 @@ public class AssociationImpl extends NamedElementImpl implements Association {
 			case ClassDiagramPackage.ASSOCIATION__TARGET:
 				setTarget((edu.toronto.cs.se.modelepedia.classdiagram.Class)null);
 				return;
+			case ClassDiagramPackage.ASSOCIATION__MULTIPLICITY:
+				setMultiplicity(MULTIPLICITY_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -298,8 +348,26 @@ public class AssociationImpl extends NamedElementImpl implements Association {
 				return source != null;
 			case ClassDiagramPackage.ASSOCIATION__TARGET:
 				return target != null;
+			case ClassDiagramPackage.ASSOCIATION__MULTIPLICITY:
+				return MULTIPLICITY_EDEFAULT == null ? multiplicity != null : !MULTIPLICITY_EDEFAULT.equals(multiplicity);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (multiplicity: ");
+		result.append(multiplicity);
+		result.append(')');
+		return result.toString();
 	}
 
 } //AssociationImpl

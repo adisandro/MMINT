@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+
+<!--
+ Copyright (c) 2012-2019 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ Rick Salay, Nick Fung.
+ All rights reserved. This program and the accompanying materials
+ are made available under the terms of the Eclipse Public License v1.0
+ which accompanies this distribution, and is available at
+ http://www.eclipse.org/legal/epl-v10.html
+ 
+ Contributors:
+    Alessio Di Sandro - Implementation.
+    Nick Fung - Implementation.
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated safetycase -->
+      <package
+            uri="http://se.cs.toronto.edu/modelepedia/SafetyCase"
+            class="edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage"
+            genModel="model/safetycase.genmodel"/>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.models">
+      <modelType>
+         <type
+               name="SafetyCase"
+               uri="http://se.cs.toronto.edu/modelepedia/SafetyCase">
+         </type>
+      </modelType>
+   </extension>
+
+   <extension
+         point="org.eclipse.emf.ecore.generated_package">
+      <package
+            class="edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage"
+            uri="http://se.cs.toronto.edu/modelepedia/SCRel">
+      </package>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.relationships">
+      <relationshipType>
+         <modelType>
+            <type
+                  name="SCRel"
+                  uri="http://se.cs.toronto.edu/modelepedia/SCRel">
+            </type>
+         </modelType>
+         <modelTypeEndpoint>
+            <type
+                  name="SCEndpoint"
+                  uri="http://se.cs.toronto.edu/modelepedia/SCRel-SafetyCase/SCEndpoint">
+            </type>
+            <typeEndpoint
+                  lowerBound="0"
+                  upperBound="-1"
+                  targetTypeUri="http://se.cs.toronto.edu/modelepedia/SafetyCase">
+            </typeEndpoint>
+         </modelTypeEndpoint>
+      </relationshipType>
+   </extension>
+
+</plugin>

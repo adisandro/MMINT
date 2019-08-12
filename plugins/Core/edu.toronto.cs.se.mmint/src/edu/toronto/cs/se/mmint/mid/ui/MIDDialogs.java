@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2019 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -12,9 +12,10 @@
 package edu.toronto.cs.se.mmint.mid.ui;
 
 import java.util.List;
-
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.jdt.annotation.NonNull;
@@ -23,12 +24,15 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.window.Window;
+import org.eclipse.sirius.business.api.helper.SiriusUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.model.BaseWorkbenchContentProvider;
+import org.eclipse.ui.model.WorkbenchLabelProvider;
 
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.MMINTException;
@@ -39,6 +43,7 @@ import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
+import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
@@ -125,8 +130,8 @@ public class MIDDialogs {
 	public static MappingReference selectMappingTypeReferenceToExtend(ModelRel modelRelType, ModelElementReference srcModelElemTypeRef, ModelElementReference tgtModelElemTypeRef) throws MIDDialogCancellation {
 
 		MIDTreeSelectionDialog dialog = MIDTypeRegistry.getMappingTypeReferenceCreationDialog(srcModelElemTypeRef, tgtModelElemTypeRef, modelRelType);
-		String title = "Create new light link type";
-		String message = "Choose link supertype";
+		String title = "Create new light mapping type";
+		String message = "Choose mapping supertype";
 
 		return (MappingReference) openSelectionDialogWithDefault(dialog, title, message);
 	}
@@ -152,13 +157,48 @@ public class MIDDialogs {
         catch (Exception e) {
             throw new MMINTException("Error opening the Workflow MID", e);
         }
-        Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-        MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(shell, new MIDDialogLabelProvider(), contentProvider,
+        MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(new MIDDialogLabelProvider(), contentProvider,
                                                                    typeMID);
 	    String title = "Create new operator type from workflow";
 	    String message = "Other operators exist with the same name, you can select one of them to override";
 
 	    return (Operator) MIDDialogs.openSelectionDialogWithDefault(dialog, title, message);
+	}
+
+	public static @NonNull String selectSiriusRepresentationsFileToContainModelDiagram(@NonNull String modelPath)
+	                              throws MIDDialogCancellation {
+
+	    // try a default representations file next to the model first..
+	    String sAirdPath = FileUtils.replaceLastSegmentInPath(modelPath, SiriusUtils.DEFAULT_REPRESENTATIONS_FILE);
+	    if (FileUtils.isFile(sAirdPath, true)) {
+	        return sAirdPath;
+	    }
+	    // ..then a default representations file at the top level..
+	    Object dialogRoot;
+        IProject project = FileUtils.getWorkspaceProject(modelPath);
+        if (project == null) {
+            dialogRoot = ResourcesPlugin.getWorkspace().getRoot();
+            sAirdPath = SiriusUtils.DEFAULT_REPRESENTATIONS_FILE;
+        }
+        else {
+            dialogRoot = project;
+            sAirdPath = project.getFullPath().toString() + IPath.SEPARATOR + SiriusUtils.DEFAULT_REPRESENTATIONS_FILE;
+        }
+        if (FileUtils.isFile(sAirdPath, true)) {
+            return sAirdPath;
+        }
+	    // ..or let the user choose otherwise
+        MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(new WorkbenchLabelProvider(),
+                                                                   new BaseWorkbenchContentProvider(), dialogRoot);
+        dialog.addFilter(new FileExtensionsDialogFilter(List.of(SiriusUtil.SESSION_RESOURCE_EXTENSION)));
+        dialog.setValidator(new FilesOnlyDialogSelectionValidator());
+
+        String title = "Model with Sirius Representation";
+        String message = "Select Sirius representations file";
+        IFile sAirdFile = (IFile) MIDDialogs.openSelectionDialogWithDefault(dialog, title, message);
+        sAirdPath = sAirdFile.getFullPath().toString();
+
+        return sAirdPath;
 	}
 
 	/**
@@ -173,12 +213,15 @@ public class MIDDialogs {
 	 */
 	public static Editor selectModelTypeToCreate(MID instanceMID) throws MIDDialogCancellation, MMINTException {
 
-		MIDTreeSelectionDialog dialog = MIDTypeRegistry.getModelCreationDialog();
+        MIDTreeSelectionDialog dialog = MIDTypeRegistry.getMIDTreeTypeSelectionDialog(
+            new MIDDialogLabelProvider(), new NewModelDialogContentProvider());
+        dialog.setValidator(new NewModelDialogSelectionValidator());
 		String title = "Create new model";
 		String message = "Choose editor to create model";
 		Editor editorType = (Editor) openSelectionDialog(dialog, title, message);
 		IStructuredSelection midContainer;
-		String midContainerUri = FileUtils.replaceLastSegmentInPath(instanceMID.eResource().getURI().toPlatformString(true), "");
+		String midContainerUri = FileUtils.replaceLastSegmentInPath(
+		    instanceMID.eResource().getURI().toPlatformString(true), "");
 		try {
 			midContainer = new StructuredSelection(
 				ResourcesPlugin.getWorkspace().getRoot().getFolder(
@@ -196,7 +239,7 @@ public class MIDDialogs {
 			throw new MIDDialogCancellation();
 		}
 
-		return editorType.createInstance(wizDialog.getCreatedModelUri(), instanceMID);
+		return editorType.createInstance(wizDialog.getCreatedModelUri(), false, instanceMID);
 	}
 
 	/**
@@ -237,13 +280,18 @@ public class MIDDialogs {
 		return (ModelEndpointReference) openSelectionDialogWithDefault(dialog, title, message);
 	}
 
-	public static MappingReference selectMappingTypeReferenceToCreate(ModelRel modelRel, ModelElementReference srcModelElemRef, ModelElementReference tgtModelElemRef) throws MIDDialogCancellation {
+	public static Mapping selectMappingTypeToCreate(ModelRel modelRel, ModelElementReference srcModelElemRef, ModelElementReference tgtModelElemRef) throws MIDDialogCancellation {
 
-		MIDTreeSelectionDialog dialog = MIDTypeRegistry.getMappingReferenceCreationDialog(srcModelElemRef, tgtModelElemRef, modelRel);
-		String title = "Create new link";
-		String message = "Choose link type";
+        ModelRel modelRelType = modelRel.getMetatype();
+        MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
+            new MIDDialogLabelProvider(),
+            new NewMappingDialogContentProvider(modelRelType, srcModelElemRef, tgtModelElemRef),
+            modelRelType
+        );
+		String title = "Create new mapping";
+		String message = "Choose mapping type";
 
-		return (MappingReference) openSelectionDialogWithDefault(dialog, title, message);
+		return (Mapping) openSelectionDialogWithDefault(dialog, title, message);
 	}
 
 	public static ModelElementEndpointReference selectModelElementTypeEndpointToCreate(MappingReference mappingRef, List<String> modelElemTypeEndpointUris) throws MIDDialogCancellation {

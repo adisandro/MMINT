@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2019 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -38,91 +38,91 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
  */
 public interface KleisliModelRel extends ModelRel {
 	/**
-	 * Returns the value of the '<em><b>Extended Uri</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Extended Uri</b></em>' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * The uri of the directory that contains Kleisli extensions (types: state-relative; instances: workspace-relative).
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Extended Uri</em>' attribute.
-	 * @see #setExtendedUri(String)
-	 * @see edu.toronto.cs.se.modelepedia.kleisli.KleisliPackage#getKleisliModelRel_ExtendedUri()
-	 * @model required="true"
-	 * @generated
-	 */
+     * <!-- begin-model-doc -->
+     * The uri of the directory that contains Kleisli extensions (types: state-relative; instances: workspace-relative).
+     * <!-- end-model-doc -->
+     * @return the value of the '<em>Extended Uri</em>' attribute.
+     * @see #setExtendedUri(String)
+     * @see edu.toronto.cs.se.modelepedia.kleisli.KleisliPackage#getKleisliModelRel_ExtendedUri()
+     * @model required="true"
+     * @generated
+     */
 	String getExtendedUri();
 
 	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel#getExtendedUri <em>Extended Uri</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel#getExtendedUri <em>Extended Uri</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Extended Uri</em>' attribute.
-	 * @see #getExtendedUri()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Extended Uri</em>' attribute.
+     * @see #getExtendedUri()
+     * @generated
+     */
 	void setExtendedUri(String value);
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * Kleisli version. {@inheritDoc}
 	 * <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" origModelRelTypeRequired="true"
-	 * @generated
-	 */
+     * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" origModelRelTypeRequired="true"
+     * @generated
+     */
 	ModelRel copySubtype(ModelRel origModelRelType) throws MMINTException;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * Kleisli version. {@inheritDoc}
 	 * <!-- end-user-doc -->
-	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
-	 * @generated
-	 */
+     * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
+     * @generated
+     */
 	void deleteType() throws MMINTException;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * Kleisli version. {@inheritDoc}
 	 * <!-- end-user-doc -->
-	 * @model kind="operation" required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
-	 * @generated
-	 */
+     * @model kind="operation" required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
+     * @generated
+     */
 	ResourceSet getOutlineResourceTypes() throws MMINTException;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * Kleisli version. {@inheritDoc}
 	 * <!-- end-user-doc -->
-	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
-	 * @generated
-	 */
+     * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
+     * @generated
+     */
 	void deleteInstance() throws MMINTException;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * Kleisli version. {@inheritDoc}
 	 * <!-- end-user-doc -->
-	 * @model kind="operation" required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
-	 * @generated
-	 */
+     * @model kind="operation" required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
+     * @generated
+     */
 	ResourceSet getOutlineResourceInstances() throws MMINTException;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * Kleisli version. {@inheritDoc}
 	 * <!-- end-user-doc -->
-	 * @model exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception"
-	 * @generated
-	 */
+     * @model exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception"
+     * @generated
+     */
 	void openType() throws Exception;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * Kleisli version. {@inheritDoc}
 	 * <!-- end-user-doc -->
-	 * @model exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception"
-	 * @generated
-	 */
+     * @model exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception"
+     * @generated
+     */
 	void openInstance() throws Exception;
 
 } // KleisliModelRel

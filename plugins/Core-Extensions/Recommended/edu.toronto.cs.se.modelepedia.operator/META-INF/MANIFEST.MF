@@ -2,8 +2,8 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.operator;singleton:=true
-Bundle-Version: 2.2.0
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-Version: 2.2.99.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-12
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.core.runtime,
@@ -15,6 +15,6 @@ Require-Bundle: org.eclipse.core.runtime,
  edu.toronto.cs.se.mmint.java,
  edu.toronto.cs.se.modelepedia.primitive
 Bundle-ClassPath: .
-Export-Package: edu.toronto.cs.se.modelepedia.operator.experiment,
+Export-Package: edu.toronto.cs.se.modelepedia.operator.diff,
  edu.toronto.cs.se.modelepedia.operator.merge,
  edu.toronto.cs.se.modelepedia.operator.patch

@@ -2,7 +2,7 @@
 <feature
       id="edu.toronto.cs.se.mmint.sdk.feature"
       label="MMINT SDK"
-      version="2.2.0"
+      version="2.2.99.qualifier"
       provider-name="Software Engineering Group, University of Toronto">
 
    <description url="https://github.com/adisandro/MMINT">
@@ -17,7 +17,7 @@ sets of related models.
    </description>
 
    <copyright>
-      Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis, Rick Salay. All rights reserved.
+      Copyright (c) 2012-2019 Marsha Chechik, Alessio Di Sandro, Michalis Famelis, Rick Salay. All rights reserved.
    </copyright>
 
    <license url="http://www.eclipse.org/legal/epl-v10.html">
@@ -64,21 +64,7 @@ sets of related models.
          unpack="false"/>
 
    <plugin
-         id="edu.toronto.cs.se.modelepedia.operator.source"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="edu.toronto.cs.se.modelepedia.uml.source"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="edu.toronto.cs.se.modelepedia.ocl.source"
+         id="edu.toronto.cs.se.mmint.ocl.source"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -103,26 +89,5 @@ sets of related models.
          download-size="0"
          install-size="0"
          version="0.0.0"/>
-
-   <plugin
-         id="edu.toronto.cs.se.modelepedia.primitive.source"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="edu.toronto.cs.se.modelepedia.primitive.edit.source"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="edu.toronto.cs.se.modelepedia.primitive.editor.source"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
 
 </feature>

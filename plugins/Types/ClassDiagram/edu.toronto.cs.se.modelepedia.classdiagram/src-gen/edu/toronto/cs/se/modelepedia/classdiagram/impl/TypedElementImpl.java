@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2019 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -12,7 +12,9 @@
 package edu.toronto.cs.se.modelepedia.classdiagram.impl;
 
 import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage;
+import edu.toronto.cs.se.modelepedia.classdiagram.Typeable;
 import edu.toronto.cs.se.modelepedia.classdiagram.TypedElement;
+
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
@@ -43,7 +45,7 @@ public abstract class TypedElementImpl extends NamedElementImpl implements Typed
 	 * @generated
 	 * @ordered
 	 */
-	protected edu.toronto.cs.se.modelepedia.classdiagram.Class type;
+	protected Typeable type;
 
 	/**
 	 * The default value of the '{@link #isPublic() <em>Public</em>}' attribute.
@@ -89,10 +91,10 @@ public abstract class TypedElementImpl extends NamedElementImpl implements Typed
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public edu.toronto.cs.se.modelepedia.classdiagram.Class getType() {
+	public Typeable getType() {
 		if (type != null && type.eIsProxy()) {
 			InternalEObject oldType = (InternalEObject)type;
-			type = (edu.toronto.cs.se.modelepedia.classdiagram.Class)eResolveProxy(oldType);
+			type = (Typeable)eResolveProxy(oldType);
 			if (type != oldType) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ClassDiagramPackage.TYPED_ELEMENT__TYPE, oldType, type));
@@ -106,7 +108,7 @@ public abstract class TypedElementImpl extends NamedElementImpl implements Typed
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public edu.toronto.cs.se.modelepedia.classdiagram.Class basicGetType() {
+	public Typeable basicGetType() {
 		return type;
 	}
 
@@ -115,8 +117,8 @@ public abstract class TypedElementImpl extends NamedElementImpl implements Typed
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setType(edu.toronto.cs.se.modelepedia.classdiagram.Class newType) {
-		edu.toronto.cs.se.modelepedia.classdiagram.Class oldType = type;
+	public void setType(Typeable newType) {
+		Typeable oldType = type;
 		type = newType;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ClassDiagramPackage.TYPED_ELEMENT__TYPE, oldType, type));
@@ -169,7 +171,7 @@ public abstract class TypedElementImpl extends NamedElementImpl implements Typed
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case ClassDiagramPackage.TYPED_ELEMENT__TYPE:
-				setType((edu.toronto.cs.se.modelepedia.classdiagram.Class)newValue);
+				setType((Typeable)newValue);
 				return;
 			case ClassDiagramPackage.TYPED_ELEMENT__PUBLIC:
 				setPublic((Boolean)newValue);
@@ -187,7 +189,7 @@ public abstract class TypedElementImpl extends NamedElementImpl implements Typed
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case ClassDiagramPackage.TYPED_ELEMENT__TYPE:
-				setType((edu.toronto.cs.se.modelepedia.classdiagram.Class)null);
+				setType((Typeable)null);
 				return;
 			case ClassDiagramPackage.TYPED_ELEMENT__PUBLIC:
 				setPublic(PUBLIC_EDEFAULT);

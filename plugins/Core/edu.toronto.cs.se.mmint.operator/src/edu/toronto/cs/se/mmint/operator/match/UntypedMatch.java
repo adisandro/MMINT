@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2019 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -20,6 +20,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Properties;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
@@ -50,7 +51,7 @@ public class UntypedMatch extends OperatorImpl {
     private final static @NonNull String PROPERTY_IN_MATCHATTRIBUTE = "matchAttribute";
     private final static @NonNull String PROPERTY_IN_MATCHATTRIBUTE_DEFAULT = "name";
     // constants
-    private final static @NonNull String MODELREL_NAME = "match";
+    private final static @NonNull String MATCH_SEPARATOR = "∩";
     // state
     protected String matchAttribute;
     protected ModelRel modelRelType;
@@ -111,7 +112,7 @@ public class UntypedMatch extends OperatorImpl {
     @Override
     public void readInputProperties(Properties inputProperties) throws MMINTException {
 
-        matchAttribute = MIDOperatorIOUtils.getOptionalStringProperty(inputProperties, PROPERTY_IN_MATCHATTRIBUTE, PROPERTY_IN_MATCHATTRIBUTE_DEFAULT);
+        this.matchAttribute = MIDOperatorIOUtils.getOptionalStringProperty(inputProperties, PROPERTY_IN_MATCHATTRIBUTE, PROPERTY_IN_MATCHATTRIBUTE_DEFAULT);
     }
 
     protected void init() {
@@ -127,7 +128,7 @@ public class UntypedMatch extends OperatorImpl {
 
         Object modelObjAttr;
         try {
-            modelObjAttr = FileUtils.getModelObjectFeature(modelObj, matchAttribute);
+            modelObjAttr = FileUtils.getModelObjectFeature(modelObj, this.matchAttribute);
             if (modelObjAttr != null && modelObjAttr instanceof String) {
                 Set<EObject> modelObjs = modelObjAttrs.get(modelObjAttr);
                 if (modelObjs == null) {
@@ -142,7 +143,7 @@ public class UntypedMatch extends OperatorImpl {
             // do nothing
         }
         for (EObject contained : modelObj.eContents()) {
-            matchModelObjAttributes(contained, modelEndpointRef, modelObjAttrs, modelObjTable);
+            this.matchModelObjAttributes(contained, modelEndpointRef, modelObjAttrs, modelObjTable);
         }
     }
 
@@ -170,7 +171,9 @@ public class UntypedMatch extends OperatorImpl {
     private ModelRel match(List<Model> models, MID instanceMID) throws MMINTException, IOException {
 
         // create model relationship among models
-        ModelRel overlapRel = (ModelRel) this.modelRelType.createInstance(null, MODELREL_NAME, instanceMID);
+        String overlapRelName = String.join(MATCH_SEPARATOR,
+                                            models.stream().map(Model::getName).collect(Collectors.toList()));
+        ModelRel overlapRel = (ModelRel) this.modelRelType.createInstance(null, overlapRelName, instanceMID);
         // loop through selected models
         Map<String, Set<EObject>> modelObjAttrs = new HashMap<>();
         Map<EObject, ModelEndpointReference> modelObjTable = new HashMap<>();
@@ -178,10 +181,10 @@ public class UntypedMatch extends OperatorImpl {
             // create model endpoint
             ModelEndpointReference newModelEndpointRef = this.modelTypeEndpoint.createInstance(model, overlapRel);
             // look for identical names in the models
-            matchModelObjAttributes(model.getEMFInstanceRoot(), newModelEndpointRef, modelObjAttrs, modelObjTable);
+            this.matchModelObjAttributes(model.getEMFInstanceRoot(), newModelEndpointRef, modelObjAttrs, modelObjTable);
         }
         // create model relationship links
-        createMatchLinks(overlapRel, modelObjAttrs, modelObjTable);
+        this.createMatchLinks(overlapRel, modelObjAttrs, modelObjTable);
 
         return overlapRel;
     }
@@ -199,7 +202,7 @@ public class UntypedMatch extends OperatorImpl {
         List<Model> models = new ArrayList<>();
         models.add(input.model1);
         models.add(input.model2);
-        ModelRel overlapRel = match(models, outputMIDsByName.get(OUT_MODELREL));
+        ModelRel overlapRel = this.match(models, outputMIDsByName.get(OUT_MODELREL));
 
         // output
         Map<String, Model> outputsByName = new HashMap<>();

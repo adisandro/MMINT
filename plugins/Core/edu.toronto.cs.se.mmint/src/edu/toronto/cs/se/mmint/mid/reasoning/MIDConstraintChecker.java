@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2019 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -17,6 +17,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EClass;
@@ -165,9 +166,14 @@ public class MIDConstraintChecker {
 		return modelRelTypeUris;
 	}
 
-	public static List<String> getAllowedMappingTypeReferences(ModelRel modelRelType, ModelElementReference targetSrcModelElemRef, ModelElementReference targetTgtModelElemRef) {
+	public static List<Mapping> getAllowedMappingTypes(ModelRel modelRelType, ModelElementReference targetSrcModelElemRef, ModelElementReference targetTgtModelElemRef) {
 
-		List<String> mappingTypeUris = new ArrayList<>();
+		List<Mapping> mappingTypes = new ArrayList<>();
+        // shortcut for empty model rel types that just take advantage of types of endpoints
+        if (modelRelType.getMappingRefs().isEmpty() && MIDTypeHierarchy.isRootType(modelRelType.getSupertype())) {
+            mappingTypes.add(MIDTypeHierarchy.getRootMappingType());
+            return mappingTypes;
+        }
 		for (MappingReference mappingTypeRef : modelRelType.getMappingRefs()) {
 			boolean isAllowed = true, isAllowedSrc = false, isAllowedTgt = false;
 			HashMap<String, Integer> cardinalityTable = new HashMap<>();
@@ -193,15 +199,15 @@ public class MIDConstraintChecker {
 				isAllowed = isAllowed && isAllowedTgt;
 			}
 			if (isAllowed) {
-				mappingTypeUris.add(mappingTypeRef.getUri());
+				mappingTypes.add(mappingTypeRef.getObject());
 			}
 		}
 		// check for overrides
-		for (String mappingTypeUri : mappingTypeUris) {
+		for (Mapping mappingType : mappingTypes) {
 			//TODO MMINT[OVERRIDE] if one link type points to another one in this list through its override pointer, then delete it
 		}
 
-		return mappingTypeUris;
+		return mappingTypes;
 	}
 
 	public static boolean isAllowedModelEndpoint(ModelEndpointReference modelTypeEndpointRef, Model targetModel, Map<String, Integer> cardinalityTable) {
@@ -221,6 +227,7 @@ public class MIDConstraintChecker {
 
 	public static @Nullable List<String> getAllowedModelEndpoints(@NonNull ModelRel modelRel, @Nullable ModelEndpoint oldModelEndpoint, @Nullable Model targetModel) {
 
+	  //TODO MMINT[TYPES] Should return List<ModelEndpoint> directly
 		if (targetModel == null) { // model not added yet
 			return new ArrayList<>();
 		}
@@ -257,9 +264,13 @@ public class MIDConstraintChecker {
 
 		HashMap<String, Integer> cardinalityTable = new HashMap<>();
 		for (ModelEndpoint modelEndpoint : modelRel.getModelEndpoints()) {
-			boolean isAllowed = false;
-			//TODO MMINT[INTROSPECTION] order of visit might affect the result, should be from the most specific to the less
-			for (ModelEndpointReference modelTypeEndpointRef : newModelRelType.getModelEndpointRefs()) {
+			var isAllowed = false;
+			var nonOverriddenModelTypeEndpointRefs = newModelRelType.getModelEndpointRefs().stream()
+			  .filter(mer -> newModelRelType.getModelEndpointRefs().stream()
+			                   .noneMatch(overriding -> overriding.getSupertypeRef() == mer))
+			  .collect(Collectors.toList());
+      //TODO MMINT[INTROSPECTION] order of visit might affect the result, should be from the most specific to the less
+			for (ModelEndpointReference modelTypeEndpointRef : nonOverriddenModelTypeEndpointRefs) {
 				if (isAllowed = isAllowedModelEndpoint(modelTypeEndpointRef, modelEndpoint.getTarget(), cardinalityTable)) {
 					MIDRegistry.addEndpointCardinality(modelTypeEndpointRef.getUri(), cardinalityTable);
 					break;
@@ -433,6 +444,11 @@ public class MIDConstraintChecker {
 
 		ModelRel modelRelType = ((ModelRel) modelEndpointRef.eContainer()).getMetatype();
 		ModelEndpointReference modelTypeEndpointRef = MIDRegistry.getReference(modelEndpointRef.getObject().getMetatypeUri(), modelRelType.getModelEndpointRefs());
+        // shortcut for empty model rel types that just take advantage of types of endpoints
+		if (modelTypeEndpointRef.getModelElemRefs().isEmpty() && MIDTypeHierarchy.isRootType(modelRelType.getSupertype())) {
+		    return MIDTypeHierarchy.getRootModelElementType();
+		}
+		// search for an allowed model element type
 		Iterator<ModelElementReference> modelElemTypeRefIter = MIDTypeHierarchy.getInverseTypeRefHierarchyIterator(modelTypeEndpointRef.getModelElemRefs());
 		while (modelElemTypeRefIter.hasNext()) {
 			ModelElementReference modelElemTypeRef = modelElemTypeRefIter.next();

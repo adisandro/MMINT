@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2019 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -23,38 +23,38 @@ import org.eclipse.emf.ecore.EFactory;
  */
 public interface EditorFactory extends EFactory {
     /**
-     * The singleton instance of the factory.
-     * <!-- begin-user-doc -->
+   * The singleton instance of the factory.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     EditorFactory eINSTANCE = edu.toronto.cs.se.mmint.mid.editor.impl.EditorFactoryImpl.init();
 
     /**
-     * Returns a new object of class '<em>Editor</em>'.
-     * <!-- begin-user-doc -->
+   * Returns a new object of class '<em>Editor</em>'.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return a new object of class '<em>Editor</em>'.
-     * @generated
-     */
+   * @return a new object of class '<em>Editor</em>'.
+   * @generated
+   */
     Editor createEditor();
 
     /**
-     * Returns a new object of class '<em>Diagram</em>'.
-     * <!-- begin-user-doc -->
+   * Returns a new object of class '<em>Diagram</em>'.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return a new object of class '<em>Diagram</em>'.
-     * @generated
-     */
+   * @return a new object of class '<em>Diagram</em>'.
+   * @generated
+   */
     Diagram createDiagram();
 
     /**
-     * Returns the package supported by this factory.
-     * <!-- begin-user-doc -->
+   * Returns the package supported by this factory.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the package supported by this factory.
-     * @generated
-     */
+   * @return the package supported by this factory.
+   * @generated
+   */
     EditorPackage getEditorPackage();
 
 } //EditorFactory

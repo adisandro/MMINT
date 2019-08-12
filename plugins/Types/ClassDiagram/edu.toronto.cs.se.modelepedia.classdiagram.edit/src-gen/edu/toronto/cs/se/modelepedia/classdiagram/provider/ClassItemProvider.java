@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2019 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -12,18 +12,20 @@
 package edu.toronto.cs.se.modelepedia.classdiagram.provider;
 
 
+import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramFactory;
+import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage;
+
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
-import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramFactory;
-import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage;
 
 /**
  * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.classdiagram.Class} object.
@@ -31,8 +33,7 @@ import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ClassItemProvider
-	extends NamedElementItemProvider {
+public class ClassItemProvider extends TypeableItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -62,6 +63,8 @@ public class ClassItemProvider
 			addSubclassesPropertyDescriptor(object);
 			addAssociationsAsSourcePropertyDescriptor(object);
 			addAssociationsAsTargetPropertyDescriptor(object);
+			addCompositionsAsConstituentPropertyDescriptor(object);
+			addCompositionsAsCompositePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -243,6 +246,50 @@ public class ClassItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Compositions As Constituent feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addCompositionsAsConstituentPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Class_compositionsAsConstituent_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Class_compositionsAsConstituent_feature", "_UI_Class_type"),
+				 ClassDiagramPackage.Literals.CLASS__COMPOSITIONS_AS_CONSTITUENT,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Compositions As Composite feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addCompositionsAsCompositePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Class_compositionsAsComposite_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Class_compositionsAsComposite_feature", "_UI_Class_type"),
+				 ClassDiagramPackage.Literals.CLASS__COMPOSITIONS_AS_COMPOSITE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -297,6 +344,7 @@ public class ClassItemProvider
 			getString("_UI_Class_type") :
 			getString("_UI_Class_type") + " " + label;
 	}
+	
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached

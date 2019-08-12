@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2019 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -23,6 +23,7 @@ package edu.toronto.cs.se.modelepedia.classdiagram;
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.Association#getSource <em>Source</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.Association#getTarget <em>Target</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.Association#getMultiplicity <em>Multiplicity</em>}</li>
  * </ul>
  *
  * @see edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage#getAssociation()
@@ -85,5 +86,32 @@ public interface Association extends NamedElement {
 	 * @generated
 	 */
 	void setTarget(edu.toronto.cs.se.modelepedia.classdiagram.Class value);
+
+	/**
+	 * Returns the value of the '<em><b>Multiplicity</b></em>' attribute.
+	 * The default value is <code>""</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Multiplicity</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Multiplicity</em>' attribute.
+	 * @see #setMultiplicity(String)
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage#getAssociation_Multiplicity()
+	 * @model default=""
+	 * @generated
+	 */
+	String getMultiplicity();
+
+	/**
+	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.classdiagram.Association#getMultiplicity <em>Multiplicity</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Multiplicity</em>' attribute.
+	 * @see #getMultiplicity()
+	 * @generated
+	 */
+	void setMultiplicity(String value);
 
 } // Association

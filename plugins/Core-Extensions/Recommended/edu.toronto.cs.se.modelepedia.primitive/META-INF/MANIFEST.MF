@@ -2,11 +2,11 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.primitive;singleton:=true
-Bundle-Version: 2.2.0
+Bundle-Version: 2.2.99.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-12
 Export-Package: edu.toronto.cs.se.modelepedia.primitive.boolean_,
  edu.toronto.cs.se.modelepedia.primitive.boolean_.impl,
  edu.toronto.cs.se.modelepedia.primitive.boolean_.util,

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2019 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -17,10 +17,10 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.text.MessageFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -45,9 +45,7 @@ public class MIDOperatorIOUtils {
 	public static final String PROPERTIES_SUFFIX = ".properties";
 	/** The separator for multiple properties with the same key. */
 	private static final String PROPERTY_SEPARATOR = ",";
-	public static final String PROPERTY_IN_UPDATEMID = "updateMID";
-	public static final String PROPERTY_IN_SUBDIR = "subdir";
-	public static final String PROPERTY_IN_OUTPUTENABLED_SUFFIX = ".enabled";
+	public static final String PROP_OUTENABLED_SUFFIX = ".enabled";
 
 //	public void writeOutputPropertiesFile(Properties properties) throws Exception {
 //
@@ -90,6 +88,13 @@ public class MIDOperatorIOUtils {
 			suffix +
 			PROPERTIES_SUFFIX;
 		outputProperties.store(new FileOutputStream(outputPropertiesFile), null);
+	}
+
+	public static void writeOutputProperties(Operator operator, Properties outProps) throws Exception {
+	  var outPropsPath = Path.of(operator.getWorkingPath(),
+	                             MessageFormat.format("{0}{1}{2}", operator.getName(), OUTPUT_PROPERTIES_SUFFIX,
+	                                                  PROPERTIES_SUFFIX));
+	  outProps.store(new FileOutputStream(FileUtils.prependWorkspacePath(outPropsPath.toString())), null);
 	}
 
 	//TODO MMINT[OPERATOR] Remove
@@ -207,33 +212,14 @@ public class MIDOperatorIOUtils {
 		}
 	}
 
-	//TODO MMINT[OPERATOR] Remove
-	@Deprecated
-	public static @NonNull String[] getStringProperties(@NonNull Properties properties, @NonNull String propertyName) throws MMINTException {
-
-		return getStringProperty(properties, propertyName).split(PROPERTY_SEPARATOR);
-	}
-
-	//TODO MMINT[OPERATOR] Remove
-	@Deprecated
-	public static @NonNull String[] getOptionalStringProperties(@NonNull Properties properties, @NonNull String propertyName, @NonNull String[] defaultValue) {
-
-		try {
-			return getStringProperties(properties, propertyName);
-		}
-		catch (MMINTException e) {
-			return defaultValue;
-		}
-	}
-
 	public static @NonNull List<String> getStringPropertyList(@NonNull Properties properties, @NonNull String propertyName) throws MMINTException {
 
-		return Arrays.asList(getStringProperty(properties, propertyName).split(PROPERTY_SEPARATOR));
+		return List.of(getStringProperty(properties, propertyName).split(PROPERTY_SEPARATOR));
 	}
 
 	public static @NonNull Set<String> getStringPropertySet(@NonNull Properties properties, @NonNull String propertyName) throws MMINTException {
 
-		return new HashSet<>(getStringPropertyList(properties, propertyName));
+	    return Set.of(getStringProperty(properties, propertyName).split(PROPERTY_SEPARATOR));
 	}
 
 	public static @NonNull List<String> getOptionalStringPropertyList(@NonNull Properties properties, @NonNull String propertyName, @NonNull List<String> defaultValue) {

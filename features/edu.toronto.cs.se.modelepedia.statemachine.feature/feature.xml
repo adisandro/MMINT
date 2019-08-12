@@ -2,7 +2,7 @@
 <feature
       id="edu.toronto.cs.se.modelepedia.statemachine.feature"
       label="Modelepedia StateMachine"
-      version="2.2.0"
+      version="2.2.99.qualifier"
       provider-name="Software Engineering Group, University of Toronto">
 
    <description>
@@ -10,7 +10,7 @@
    </description>
 
    <copyright>
-      Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis
+      Copyright (c) 2012-2019 Marsha Chechik, Alessio Di Sandro, Michalis
 Famelis, Rick Salay. All rights reserved.
    </copyright>
 
@@ -40,20 +40,17 @@ Famelis, Rick Salay. All rights reserved.
       <import plugin="org.eclipse.gmf.runtime.diagram.ui.render"/>
       <import plugin="org.eclipse.gmf.runtime.diagram.ui.resources.editor"/>
       <import plugin="org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide"/>
-      <import plugin="org.eclipse.gmf.tooling.runtime"/>
+      <import plugin="org.eclipse.papyrus.infra.gmfdiag.tooling.runtime"/>
       <import plugin="org.eclipse.draw2d"/>
       <import plugin="org.eclipse.gmf.runtime.draw2d.ui"/>
       <import plugin="org.eclipse.emf.validation"/>
       <import plugin="org.eclipse.gef"/>
       <import plugin="org.eclipse.emf.edit"/>
-      <import plugin="edu.toronto.cs.se.mavo"/>
       <import plugin="edu.toronto.cs.se.mmint"/>
-      <import plugin="edu.toronto.cs.se.mmint.mavo"/>
-      <import plugin="org.eclipse.gmf.runtime.diagram.ui.printing"/>
-      <import plugin="org.eclipse.gmf.runtime.diagram.ui.printing.render"/>
-      <import plugin="edu.toronto.cs.se.mavo.edit"/>
-      <import plugin="org.eclipse.acceleo.engine"/>
-      <import plugin="edu.toronto.cs.se.modelepedia.z3"/>
+      <import plugin="org.eclipse.ui"/>
+      <import plugin="org.eclipse.sirius"/>
+      <import plugin="org.eclipse.sirius.common.acceleo.aql"/>
+      <import plugin="edu.toronto.cs.se.mmint.operator"/>
    </requires>
 
    <plugin
@@ -85,35 +82,14 @@ Famelis, Rick Salay. All rights reserved.
          unpack="false"/>
 
    <plugin
-         id="edu.toronto.cs.se.modelepedia.statemachine_mavo"
+         id="edu.toronto.cs.se.modelepedia.statemachine.design"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="edu.toronto.cs.se.modelepedia.statemachine_mavo.edit"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="edu.toronto.cs.se.modelepedia.statemachine_mavo.editor"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="edu.toronto.cs.se.modelepedia.statemachine_mavo.operator"
+         id="edu.toronto.cs.se.modelepedia.statemachine.operator"
          download-size="0"
          install-size="0"
          version="0.0.0"

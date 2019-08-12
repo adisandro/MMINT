@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2019 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -42,257 +42,257 @@ import edu.toronto.cs.se.modelepedia.kleisli.KleisliPackage;
  */
 public class BinaryKleisliModelRelImpl extends KleisliModelRelImpl implements BinaryKleisliModelRel {
 	/**
-	 * The cached value of the '{@link #getSourceModel() <em>Source Model</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getSourceModel() <em>Source Model</em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSourceModel()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getSourceModel()
+     * @generated
+     * @ordered
+     */
 	protected Model sourceModel;
 	/**
-	 * The cached value of the '{@link #getTargetModel() <em>Target Model</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getTargetModel() <em>Target Model</em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTargetModel()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getTargetModel()
+     * @generated
+     * @ordered
+     */
 	protected Model targetModel;
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected BinaryKleisliModelRelImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return KleisliPackage.Literals.BINARY_KLEISLI_MODEL_REL;
-	}
+        return KleisliPackage.Literals.BINARY_KLEISLI_MODEL_REL;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Model getSourceModel() {
-		if (sourceModel != null && sourceModel.eIsProxy()) {
-			InternalEObject oldSourceModel = (InternalEObject)sourceModel;
-			sourceModel = (Model)eResolveProxy(oldSourceModel);
-			if (sourceModel != oldSourceModel) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, KleisliPackage.BINARY_KLEISLI_MODEL_REL__SOURCE_MODEL, oldSourceModel, sourceModel));
-			}
-		}
-		return sourceModel;
-	}
+        if (sourceModel != null && sourceModel.eIsProxy()) {
+            InternalEObject oldSourceModel = (InternalEObject)sourceModel;
+            sourceModel = (Model)eResolveProxy(oldSourceModel);
+            if (sourceModel != oldSourceModel) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, KleisliPackage.BINARY_KLEISLI_MODEL_REL__SOURCE_MODEL, oldSourceModel, sourceModel));
+            }
+        }
+        return sourceModel;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Model basicGetSourceModel() {
-		return sourceModel;
-	}
+        return sourceModel;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setSourceModel(Model newSourceModel) {
-		Model oldSourceModel = sourceModel;
-		sourceModel = newSourceModel;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, KleisliPackage.BINARY_KLEISLI_MODEL_REL__SOURCE_MODEL, oldSourceModel, sourceModel));
-	}
+        Model oldSourceModel = sourceModel;
+        sourceModel = newSourceModel;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, KleisliPackage.BINARY_KLEISLI_MODEL_REL__SOURCE_MODEL, oldSourceModel, sourceModel));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Model getTargetModel() {
-		if (targetModel != null && targetModel.eIsProxy()) {
-			InternalEObject oldTargetModel = (InternalEObject)targetModel;
-			targetModel = (Model)eResolveProxy(oldTargetModel);
-			if (targetModel != oldTargetModel) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, KleisliPackage.BINARY_KLEISLI_MODEL_REL__TARGET_MODEL, oldTargetModel, targetModel));
-			}
-		}
-		return targetModel;
-	}
+        if (targetModel != null && targetModel.eIsProxy()) {
+            InternalEObject oldTargetModel = (InternalEObject)targetModel;
+            targetModel = (Model)eResolveProxy(oldTargetModel);
+            if (targetModel != oldTargetModel) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, KleisliPackage.BINARY_KLEISLI_MODEL_REL__TARGET_MODEL, oldTargetModel, targetModel));
+            }
+        }
+        return targetModel;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Model basicGetTargetModel() {
-		return targetModel;
-	}
+        return targetModel;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setTargetModel(Model newTargetModel) {
-		Model oldTargetModel = targetModel;
-		targetModel = newTargetModel;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, KleisliPackage.BINARY_KLEISLI_MODEL_REL__TARGET_MODEL, oldTargetModel, targetModel));
-	}
+        Model oldTargetModel = targetModel;
+        targetModel = newTargetModel;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, KleisliPackage.BINARY_KLEISLI_MODEL_REL__TARGET_MODEL, oldTargetModel, targetModel));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case KleisliPackage.BINARY_KLEISLI_MODEL_REL__SOURCE_MODEL:
-				if (resolve) return getSourceModel();
-				return basicGetSourceModel();
-			case KleisliPackage.BINARY_KLEISLI_MODEL_REL__TARGET_MODEL:
-				if (resolve) return getTargetModel();
-				return basicGetTargetModel();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case KleisliPackage.BINARY_KLEISLI_MODEL_REL__SOURCE_MODEL:
+                if (resolve) return getSourceModel();
+                return basicGetSourceModel();
+            case KleisliPackage.BINARY_KLEISLI_MODEL_REL__TARGET_MODEL:
+                if (resolve) return getTargetModel();
+                return basicGetTargetModel();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case KleisliPackage.BINARY_KLEISLI_MODEL_REL__SOURCE_MODEL:
-				setSourceModel((Model)newValue);
-				return;
-			case KleisliPackage.BINARY_KLEISLI_MODEL_REL__TARGET_MODEL:
-				setTargetModel((Model)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case KleisliPackage.BINARY_KLEISLI_MODEL_REL__SOURCE_MODEL:
+                setSourceModel((Model)newValue);
+                return;
+            case KleisliPackage.BINARY_KLEISLI_MODEL_REL__TARGET_MODEL:
+                setTargetModel((Model)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case KleisliPackage.BINARY_KLEISLI_MODEL_REL__SOURCE_MODEL:
-				setSourceModel((Model)null);
-				return;
-			case KleisliPackage.BINARY_KLEISLI_MODEL_REL__TARGET_MODEL:
-				setTargetModel((Model)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case KleisliPackage.BINARY_KLEISLI_MODEL_REL__SOURCE_MODEL:
+                setSourceModel((Model)null);
+                return;
+            case KleisliPackage.BINARY_KLEISLI_MODEL_REL__TARGET_MODEL:
+                setTargetModel((Model)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case KleisliPackage.BINARY_KLEISLI_MODEL_REL__SOURCE_MODEL:
-				return sourceModel != null;
-			case KleisliPackage.BINARY_KLEISLI_MODEL_REL__TARGET_MODEL:
-				return targetModel != null;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case KleisliPackage.BINARY_KLEISLI_MODEL_REL__SOURCE_MODEL:
+                return sourceModel != null;
+            case KleisliPackage.BINARY_KLEISLI_MODEL_REL__TARGET_MODEL:
+                return targetModel != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == BinaryModelRel.class) {
-			switch (derivedFeatureID) {
-				case KleisliPackage.BINARY_KLEISLI_MODEL_REL__SOURCE_MODEL: return RelationshipPackage.BINARY_MODEL_REL__SOURCE_MODEL;
-				case KleisliPackage.BINARY_KLEISLI_MODEL_REL__TARGET_MODEL: return RelationshipPackage.BINARY_MODEL_REL__TARGET_MODEL;
-				default: return -1;
-			}
-		}
-		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-	}
+        if (baseClass == BinaryModelRel.class) {
+            switch (derivedFeatureID) {
+                case KleisliPackage.BINARY_KLEISLI_MODEL_REL__SOURCE_MODEL: return RelationshipPackage.BINARY_MODEL_REL__SOURCE_MODEL;
+                case KleisliPackage.BINARY_KLEISLI_MODEL_REL__TARGET_MODEL: return RelationshipPackage.BINARY_MODEL_REL__TARGET_MODEL;
+                default: return -1;
+            }
+        }
+        return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == BinaryModelRel.class) {
-			switch (baseFeatureID) {
-				case RelationshipPackage.BINARY_MODEL_REL__SOURCE_MODEL: return KleisliPackage.BINARY_KLEISLI_MODEL_REL__SOURCE_MODEL;
-				case RelationshipPackage.BINARY_MODEL_REL__TARGET_MODEL: return KleisliPackage.BINARY_KLEISLI_MODEL_REL__TARGET_MODEL;
-				default: return -1;
-			}
-		}
-		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-	}
+        if (baseClass == BinaryModelRel.class) {
+            switch (baseFeatureID) {
+                case RelationshipPackage.BINARY_MODEL_REL__SOURCE_MODEL: return KleisliPackage.BINARY_KLEISLI_MODEL_REL__SOURCE_MODEL;
+                case RelationshipPackage.BINARY_MODEL_REL__TARGET_MODEL: return KleisliPackage.BINARY_KLEISLI_MODEL_REL__TARGET_MODEL;
+                default: return -1;
+            }
+        }
+        return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
-		if (baseClass == BinaryModelRel.class) {
-			switch (baseOperationID) {
-				case RelationshipPackage.BINARY_MODEL_REL___ADD_MODEL_TYPE__MODEL_BOOLEAN: return KleisliPackage.BINARY_KLEISLI_MODEL_REL___ADD_MODEL_TYPE__MODEL_BOOLEAN;
-				default: return -1;
-			}
-		}
-		return super.eDerivedOperationID(baseOperationID, baseClass);
-	}
+        if (baseClass == BinaryModelRel.class) {
+            switch (baseOperationID) {
+                case RelationshipPackage.BINARY_MODEL_REL___ADD_MODEL_TYPE__MODEL_BOOLEAN: return KleisliPackage.BINARY_KLEISLI_MODEL_REL___ADD_MODEL_TYPE__MODEL_BOOLEAN;
+                default: return -1;
+            }
+        }
+        return super.eDerivedOperationID(baseOperationID, baseClass);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-		switch (operationID) {
-			case KleisliPackage.BINARY_KLEISLI_MODEL_REL___ADD_MODEL_TYPE__MODEL_BOOLEAN:
-				try {
-					addModelType((Model)arguments.get(0), (Boolean)arguments.get(1));
-					return null;
-				}
-				catch (Throwable throwable) {
-					throw new InvocationTargetException(throwable);
-				}
-		}
-		return super.eInvoke(operationID, arguments);
-	}
+        switch (operationID) {
+            case KleisliPackage.BINARY_KLEISLI_MODEL_REL___ADD_MODEL_TYPE__MODEL_BOOLEAN:
+                try {
+                    addModelType((Model)arguments.get(0), (Boolean)arguments.get(1));
+                    return null;
+                }
+                catch (Throwable throwable) {
+                    throw new InvocationTargetException(throwable);
+                }
+        }
+        return super.eInvoke(operationID, arguments);
+    }
 
 	/**
 	 * @generated NOT

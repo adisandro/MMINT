@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2019 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -154,6 +154,8 @@ public interface MMINTConstants {
 	public final static String ECLIPSE_EDITORS_ATTR_ID = "id";
 	/** The Eclipse's Editors extension's extensions attribute. */
 	public final static String ECLIPSE_EDITORS_ATTR_EXTENSIONS = "extensions";
+	public final static String SIRIUS_EDITORS_EXT_POINT = "org.eclipse.sirius.componentization";
+    public final static String SIRIUS_EDITORS_ATTR_ID = "id";
 
 	/** The Reasoners extension point's id. */
 	public final static String REASONERS_EXT_POINT = "edu.toronto.cs.se.mmint.reasoners";

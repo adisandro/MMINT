@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2019 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -70,23 +70,23 @@ import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
  */
 public class NestingOperatorImpl extends OperatorImpl implements NestingOperator {
     /**
-     * The default value of the '{@link #getNestedMIDPath() <em>Nested MID Path</em>}' attribute.
-     * <!-- begin-user-doc -->
+   * The default value of the '{@link #getNestedMIDPath() <em>Nested MID Path</em>}' attribute.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getNestedMIDPath()
-     * @generated
-     * @ordered
-     */
+   * @see #getNestedMIDPath()
+   * @generated
+   * @ordered
+   */
     protected static final String NESTED_MID_PATH_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getNestedMIDPath() <em>Nested MID Path</em>}' attribute.
-     * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getNestedMIDPath() <em>Nested MID Path</em>}' attribute.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getNestedMIDPath()
-     * @generated
-     * @ordered
-     */
+   * @see #getNestedMIDPath()
+   * @generated
+   * @ordered
+   */
     protected String nestedMIDPath = NESTED_MID_PATH_EDEFAULT;
 
     /**
@@ -108,149 +108,152 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
     protected Diagram inMemoryNestedMIDDiagramRoot;
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     protected NestingOperatorImpl() {
-        super();
-    }
+    super();
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     protected EClass eStaticClass() {
-        return OperatorPackage.Literals.NESTING_OPERATOR;
-    }
+    return OperatorPackage.Literals.NESTING_OPERATOR;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public String getNestedMIDPath() {
-        return nestedMIDPath;
-    }
+    return nestedMIDPath;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public void setNestedMIDPath(String newNestedMIDPath) {
-        String oldNestedMIDPath = nestedMIDPath;
-        nestedMIDPath = newNestedMIDPath;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.NESTING_OPERATOR__NESTED_MID_PATH, oldNestedMIDPath, nestedMIDPath));
-    }
+    String oldNestedMIDPath = nestedMIDPath;
+    nestedMIDPath = newNestedMIDPath;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.NESTING_OPERATOR__NESTED_MID_PATH, oldNestedMIDPath, nestedMIDPath));
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case OperatorPackage.NESTING_OPERATOR__NESTED_MID_PATH:
-                return getNestedMIDPath();
-        }
-        return super.eGet(featureID, resolve, coreType);
+    switch (featureID) {
+      case OperatorPackage.NESTING_OPERATOR__NESTED_MID_PATH:
+        return getNestedMIDPath();
     }
+    return super.eGet(featureID, resolve, coreType);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case OperatorPackage.NESTING_OPERATOR__NESTED_MID_PATH:
-                setNestedMIDPath((String)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
+    switch (featureID) {
+      case OperatorPackage.NESTING_OPERATOR__NESTED_MID_PATH:
+        setNestedMIDPath((String)newValue);
+        return;
     }
+    super.eSet(featureID, newValue);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public void eUnset(int featureID) {
-        switch (featureID) {
-            case OperatorPackage.NESTING_OPERATOR__NESTED_MID_PATH:
-                setNestedMIDPath(NESTED_MID_PATH_EDEFAULT);
-                return;
-        }
-        super.eUnset(featureID);
+    switch (featureID) {
+      case OperatorPackage.NESTING_OPERATOR__NESTED_MID_PATH:
+        setNestedMIDPath(NESTED_MID_PATH_EDEFAULT);
+        return;
     }
+    super.eUnset(featureID);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case OperatorPackage.NESTING_OPERATOR__NESTED_MID_PATH:
-                return NESTED_MID_PATH_EDEFAULT == null ? nestedMIDPath != null : !NESTED_MID_PATH_EDEFAULT.equals(nestedMIDPath);
-        }
-        return super.eIsSet(featureID);
+    switch (featureID) {
+      case OperatorPackage.NESTING_OPERATOR__NESTED_MID_PATH:
+        return NESTED_MID_PATH_EDEFAULT == null ? nestedMIDPath != null : !NESTED_MID_PATH_EDEFAULT.equals(nestedMIDPath);
     }
+    return super.eIsSet(featureID);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     @SuppressWarnings("unchecked")
     public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-        switch (operationID) {
-            case OperatorPackage.NESTING_OPERATOR___GET_NESTED_INSTANCE_MID:
-                try {
-                    return getNestedInstanceMID();
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case OperatorPackage.NESTING_OPERATOR___START_NESTED_INSTANCE__OPERATOR_ELIST_PROPERTIES_ELIST_MAP:
-                try {
-                    return startNestedInstance((Operator)arguments.get(0), (EList<OperatorInput>)arguments.get(1), (Properties)arguments.get(2), (EList<OperatorGeneric>)arguments.get(3), (Map<String, MID>)arguments.get(4));
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
+    switch (operationID) {
+      case OperatorPackage.NESTING_OPERATOR___GET_NESTED_INSTANCE_MID:
+        try {
+          return getNestedInstanceMID();
         }
-        return super.eInvoke(operationID, arguments);
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case OperatorPackage.NESTING_OPERATOR___START_NESTED_INSTANCE__OPERATOR_ELIST_PROPERTIES_ELIST_MAP:
+        try {
+          return startNestedInstance((Operator)arguments.get(0), (EList<OperatorInput>)arguments.get(1), (Properties)arguments.get(2), (EList<OperatorGeneric>)arguments.get(3), (Map<String, MID>)arguments.get(4));
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
     }
+    return super.eInvoke(operationID, arguments);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public String toStringGen() {
-        if (eIsProxy()) return super.toString();
+    if (eIsProxy()) return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (nestedMIDPath: ");
-        result.append(nestedMIDPath);
-        result.append(')');
-        return result.toString();
-    }
+    StringBuilder result = new StringBuilder(super.toString());
+    result.append(" (nestedMIDPath: ");
+    result.append(nestedMIDPath);
+    result.append(')');
+    return result.toString();
+  }
 
     /**
      * @generated NOT
      */
+    @Override
     public MID getNestedInstanceMID() throws MMINTException {
 
         MMINTException.mustBeInstance(this);
@@ -310,7 +313,8 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
         super.addInstance(newOperator, midLevel, instanceMID);
         if (instanceMID == null || midLevel == MIDLevel.WORKFLOWS) {
             /* TODO MMINT[OPERATOR] Could we put a nestedMID in memory when not serialized too, or will it defeat the purpose of having a null instanceMID?
-             * (find the cases where it could be useful)
+             * (could be useful for experiments, to keep track of random states and fetch execution times)
+             * (normal operators that receive the nestedMID need to be able to create models in it without serializing them: need two different flags)
              */
             return;
         }
@@ -479,6 +483,7 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
     /**
      * @generated NOT
      */
+    @Override
     public Operator startNestedInstance(Operator nestedOperatorType, EList<OperatorInput> inputs, Properties inputProperties, EList<OperatorGeneric> generics, Map<String, MID> outputMIDsByName) throws Exception {
 
         //TODO MMINT[NESTED] Add option to detect when the nested MID is enabled, different from when operator instances are enabled (WorkflowOperator too)

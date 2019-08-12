@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2019 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -32,29 +32,29 @@ import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
 public interface MAVOMapping extends Mapping, MAVOElement {
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * MAVO version. {@inheritDoc}
 	 * <!-- end-user-doc -->
-	 * @model required="true"
-	 * @generated
-	 */
+     * @model required="true"
+     * @generated
+     */
 	String toMIDCustomPrintLabel();
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * MAVO version. {@inheritDoc}
 	 * <!-- end-user-doc -->
-	 * @model required="true"
-	 * @generated
-	 */
+     * @model required="true"
+     * @generated
+     */
 	String toMIDCustomEditLabel();
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * MAVO version. {@inheritDoc}
 	 * <!-- end-user-doc -->
-	 * @model newLabelRequired="true"
-	 * @generated
-	 */
+     * @model newLabelRequired="true"
+     * @generated
+     */
 	void updateMIDCustomLabel(String newLabel);
 } // MAVOMapping

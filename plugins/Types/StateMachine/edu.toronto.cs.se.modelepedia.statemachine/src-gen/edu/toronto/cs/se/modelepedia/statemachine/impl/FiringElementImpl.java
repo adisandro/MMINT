@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2019 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -29,33 +29,13 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.statemachine.impl.FiringElementImpl#getTrigger <em>Trigger</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.statemachine.impl.FiringElementImpl#getAction <em>Action</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.statemachine.impl.FiringElementImpl#getTrigger <em>Trigger</em>}</li>
  * </ul>
  *
  * @generated
  */
 public abstract class FiringElementImpl extends MinimalEObjectImpl.Container implements FiringElement {
-	/**
-	 * The default value of the '{@link #getTrigger() <em>Trigger</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTrigger()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String TRIGGER_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getTrigger() <em>Trigger</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTrigger()
-	 * @generated
-	 * @ordered
-	 */
-	protected String trigger = TRIGGER_EDEFAULT;
-
 	/**
 	 * The default value of the '{@link #getAction() <em>Action</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -75,6 +55,26 @@ public abstract class FiringElementImpl extends MinimalEObjectImpl.Container imp
 	 * @ordered
 	 */
 	protected String action = ACTION_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getTrigger() <em>Trigger</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTrigger()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String TRIGGER_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getTrigger() <em>Trigger</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTrigger()
+	 * @generated
+	 * @ordered
+	 */
+	protected String trigger = TRIGGER_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -145,10 +145,10 @@ public abstract class FiringElementImpl extends MinimalEObjectImpl.Container imp
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case StateMachinePackage.FIRING_ELEMENT__TRIGGER:
-				return getTrigger();
 			case StateMachinePackage.FIRING_ELEMENT__ACTION:
 				return getAction();
+			case StateMachinePackage.FIRING_ELEMENT__TRIGGER:
+				return getTrigger();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -161,11 +161,11 @@ public abstract class FiringElementImpl extends MinimalEObjectImpl.Container imp
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case StateMachinePackage.FIRING_ELEMENT__TRIGGER:
-				setTrigger((String)newValue);
-				return;
 			case StateMachinePackage.FIRING_ELEMENT__ACTION:
 				setAction((String)newValue);
+				return;
+			case StateMachinePackage.FIRING_ELEMENT__TRIGGER:
+				setTrigger((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -179,11 +179,11 @@ public abstract class FiringElementImpl extends MinimalEObjectImpl.Container imp
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case StateMachinePackage.FIRING_ELEMENT__TRIGGER:
-				setTrigger(TRIGGER_EDEFAULT);
-				return;
 			case StateMachinePackage.FIRING_ELEMENT__ACTION:
 				setAction(ACTION_EDEFAULT);
+				return;
+			case StateMachinePackage.FIRING_ELEMENT__TRIGGER:
+				setTrigger(TRIGGER_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -197,10 +197,10 @@ public abstract class FiringElementImpl extends MinimalEObjectImpl.Container imp
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case StateMachinePackage.FIRING_ELEMENT__TRIGGER:
-				return TRIGGER_EDEFAULT == null ? trigger != null : !TRIGGER_EDEFAULT.equals(trigger);
 			case StateMachinePackage.FIRING_ELEMENT__ACTION:
 				return ACTION_EDEFAULT == null ? action != null : !ACTION_EDEFAULT.equals(action);
+			case StateMachinePackage.FIRING_ELEMENT__TRIGGER:
+				return TRIGGER_EDEFAULT == null ? trigger != null : !TRIGGER_EDEFAULT.equals(trigger);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -215,10 +215,10 @@ public abstract class FiringElementImpl extends MinimalEObjectImpl.Container imp
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (trigger: ");
-		result.append(trigger);
-		result.append(", action: ");
+		result.append(" (action: ");
 		result.append(action);
+		result.append(", trigger: ");
+		result.append(trigger);
 		result.append(')');
 		return result.toString();
 	}

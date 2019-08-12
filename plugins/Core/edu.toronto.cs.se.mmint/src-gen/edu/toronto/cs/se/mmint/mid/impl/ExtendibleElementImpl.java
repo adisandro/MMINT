@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2019 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -70,569 +70,583 @@ import edu.toronto.cs.se.mmint.mid.utils.MIDTypeFactory;
  */
 public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container implements ExtendibleElement {
     /**
-     * The cached value of the '{@link #getSupertype() <em>Supertype</em>}' reference.
-     * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getSupertype() <em>Supertype</em>}' reference.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getSupertype()
-     * @generated
-     * @ordered
-     */
+   * @see #getSupertype()
+   * @generated
+   * @ordered
+   */
     protected ExtendibleElement supertype;
 
     /**
-     * The default value of the '{@link #getUri() <em>Uri</em>}' attribute.
-     * <!-- begin-user-doc -->
+   * The default value of the '{@link #getUri() <em>Uri</em>}' attribute.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getUri()
-     * @generated
-     * @ordered
-     */
+   * @see #getUri()
+   * @generated
+   * @ordered
+   */
     protected static final String URI_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getUri() <em>Uri</em>}' attribute.
-     * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getUri() <em>Uri</em>}' attribute.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getUri()
-     * @generated
-     * @ordered
-     */
+   * @see #getUri()
+   * @generated
+   * @ordered
+   */
     protected String uri = URI_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-     * <!-- begin-user-doc -->
+   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getName()
-     * @generated
-     * @ordered
-     */
+   * @see #getName()
+   * @generated
+   * @ordered
+   */
     protected static final String NAME_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-     * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getName()
-     * @generated
-     * @ordered
-     */
+   * @see #getName()
+   * @generated
+   * @ordered
+   */
     protected String name = NAME_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getLevel() <em>Level</em>}' attribute.
-     * <!-- begin-user-doc -->
+   * The default value of the '{@link #getLevel() <em>Level</em>}' attribute.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getLevel()
-     * @generated
-     * @ordered
-     */
+   * @see #getLevel()
+   * @generated
+   * @ordered
+   */
     protected static final MIDLevel LEVEL_EDEFAULT = MIDLevel.INSTANCES;
 
     /**
-     * The cached value of the '{@link #getLevel() <em>Level</em>}' attribute.
-     * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getLevel() <em>Level</em>}' attribute.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getLevel()
-     * @generated
-     * @ordered
-     */
+   * @see #getLevel()
+   * @generated
+   * @ordered
+   */
     protected MIDLevel level = LEVEL_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getMetatypeUri() <em>Metatype Uri</em>}' attribute.
-     * <!-- begin-user-doc -->
+   * The default value of the '{@link #getMetatypeUri() <em>Metatype Uri</em>}' attribute.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getMetatypeUri()
-     * @generated
-     * @ordered
-     */
+   * @see #getMetatypeUri()
+   * @generated
+   * @ordered
+   */
     protected static final String METATYPE_URI_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getMetatypeUri() <em>Metatype Uri</em>}' attribute.
-     * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getMetatypeUri() <em>Metatype Uri</em>}' attribute.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getMetatypeUri()
-     * @generated
-     * @ordered
-     */
+   * @see #getMetatypeUri()
+   * @generated
+   * @ordered
+   */
     protected String metatypeUri = METATYPE_URI_EDEFAULT;
 
     /**
-     * The default value of the '{@link #isDynamic() <em>Dynamic</em>}' attribute.
-     * <!-- begin-user-doc -->
+   * The default value of the '{@link #isDynamic() <em>Dynamic</em>}' attribute.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isDynamic()
-     * @generated
-     * @ordered
-     */
+   * @see #isDynamic()
+   * @generated
+   * @ordered
+   */
     protected static final boolean DYNAMIC_EDEFAULT = false;
 
     /**
-     * The cached value of the '{@link #isDynamic() <em>Dynamic</em>}' attribute.
-     * <!-- begin-user-doc -->
+   * The cached value of the '{@link #isDynamic() <em>Dynamic</em>}' attribute.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isDynamic()
-     * @generated
-     * @ordered
-     */
+   * @see #isDynamic()
+   * @generated
+   * @ordered
+   */
     protected boolean dynamic = DYNAMIC_EDEFAULT;
 
     /**
-     * The cached value of the '{@link #getConstraint() <em>Constraint</em>}' containment reference.
-     * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getConstraint() <em>Constraint</em>}' containment reference.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getConstraint()
-     * @generated
-     * @ordered
-     */
+   * @see #getConstraint()
+   * @generated
+   * @ordered
+   */
     protected ExtendibleElementConstraint constraint;
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     protected ExtendibleElementImpl() {
-        super();
-    }
+    super();
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     protected EClass eStaticClass() {
-        return MIDPackage.Literals.EXTENDIBLE_ELEMENT;
-    }
+    return MIDPackage.Literals.EXTENDIBLE_ELEMENT;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public String getUri() {
-        return uri;
-    }
+    return uri;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public void setUri(String newUri) {
-        String oldUri = uri;
-        uri = newUri;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EXTENDIBLE_ELEMENT__URI, oldUri, uri));
-    }
+    String oldUri = uri;
+    uri = newUri;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EXTENDIBLE_ELEMENT__URI, oldUri, uri));
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public ExtendibleElement getSupertype() {
-        if (supertype != null && supertype.eIsProxy()) {
-            InternalEObject oldSupertype = (InternalEObject)supertype;
-            supertype = (ExtendibleElement)eResolveProxy(oldSupertype);
-            if (supertype != oldSupertype) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, MIDPackage.EXTENDIBLE_ELEMENT__SUPERTYPE, oldSupertype, supertype));
-            }
-        }
-        return supertype;
+    if (supertype != null && supertype.eIsProxy()) {
+      InternalEObject oldSupertype = (InternalEObject)supertype;
+      supertype = (ExtendibleElement)eResolveProxy(oldSupertype);
+      if (supertype != oldSupertype) {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, MIDPackage.EXTENDIBLE_ELEMENT__SUPERTYPE, oldSupertype, supertype));
+      }
     }
+    return supertype;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     public ExtendibleElement basicGetSupertype() {
-        return supertype;
-    }
+    return supertype;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public void setSupertype(ExtendibleElement newSupertype) {
-        ExtendibleElement oldSupertype = supertype;
-        supertype = newSupertype;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EXTENDIBLE_ELEMENT__SUPERTYPE, oldSupertype, supertype));
-    }
+    ExtendibleElement oldSupertype = supertype;
+    supertype = newSupertype;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EXTENDIBLE_ELEMENT__SUPERTYPE, oldSupertype, supertype));
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public String getName() {
-        return name;
-    }
+    return name;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public void setName(String newName) {
-        String oldName = name;
-        name = newName;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EXTENDIBLE_ELEMENT__NAME, oldName, name));
-    }
+    String oldName = name;
+    name = newName;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EXTENDIBLE_ELEMENT__NAME, oldName, name));
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public MIDLevel getLevel() {
-        return level;
-    }
+    return level;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public void setLevel(MIDLevel newLevel) {
-        MIDLevel oldLevel = level;
-        level = newLevel == null ? LEVEL_EDEFAULT : newLevel;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EXTENDIBLE_ELEMENT__LEVEL, oldLevel, level));
-    }
+    MIDLevel oldLevel = level;
+    level = newLevel == null ? LEVEL_EDEFAULT : newLevel;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EXTENDIBLE_ELEMENT__LEVEL, oldLevel, level));
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public String getMetatypeUri() {
-        return metatypeUri;
-    }
+    return metatypeUri;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public void setMetatypeUri(String newMetatypeUri) {
-        String oldMetatypeUri = metatypeUri;
-        metatypeUri = newMetatypeUri;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EXTENDIBLE_ELEMENT__METATYPE_URI, oldMetatypeUri, metatypeUri));
-    }
+    String oldMetatypeUri = metatypeUri;
+    metatypeUri = newMetatypeUri;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EXTENDIBLE_ELEMENT__METATYPE_URI, oldMetatypeUri, metatypeUri));
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public boolean isDynamic() {
-        return dynamic;
-    }
+    return dynamic;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public void setDynamic(boolean newDynamic) {
-        boolean oldDynamic = dynamic;
-        dynamic = newDynamic;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EXTENDIBLE_ELEMENT__DYNAMIC, oldDynamic, dynamic));
-    }
+    boolean oldDynamic = dynamic;
+    dynamic = newDynamic;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EXTENDIBLE_ELEMENT__DYNAMIC, oldDynamic, dynamic));
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public ExtendibleElementConstraint getConstraint() {
-        return constraint;
-    }
+    return constraint;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     public NotificationChain basicSetConstraint(ExtendibleElementConstraint newConstraint, NotificationChain msgs) {
-        ExtendibleElementConstraint oldConstraint = constraint;
-        constraint = newConstraint;
-        if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MIDPackage.EXTENDIBLE_ELEMENT__CONSTRAINT, oldConstraint, newConstraint);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
-        }
-        return msgs;
+    ExtendibleElementConstraint oldConstraint = constraint;
+    constraint = newConstraint;
+    if (eNotificationRequired()) {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MIDPackage.EXTENDIBLE_ELEMENT__CONSTRAINT, oldConstraint, newConstraint);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
     }
+    return msgs;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public void setConstraint(ExtendibleElementConstraint newConstraint) {
-        if (newConstraint != constraint) {
-            NotificationChain msgs = null;
-            if (constraint != null)
-                msgs = ((InternalEObject)constraint).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MIDPackage.EXTENDIBLE_ELEMENT__CONSTRAINT, null, msgs);
-            if (newConstraint != null)
-                msgs = ((InternalEObject)newConstraint).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MIDPackage.EXTENDIBLE_ELEMENT__CONSTRAINT, null, msgs);
-            msgs = basicSetConstraint(newConstraint, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EXTENDIBLE_ELEMENT__CONSTRAINT, newConstraint, newConstraint));
+    if (newConstraint != constraint) {
+      NotificationChain msgs = null;
+      if (constraint != null)
+        msgs = ((InternalEObject)constraint).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MIDPackage.EXTENDIBLE_ELEMENT__CONSTRAINT, null, msgs);
+      if (newConstraint != null)
+        msgs = ((InternalEObject)newConstraint).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MIDPackage.EXTENDIBLE_ELEMENT__CONSTRAINT, null, msgs);
+      msgs = basicSetConstraint(newConstraint, msgs);
+      if (msgs != null) msgs.dispatch();
     }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EXTENDIBLE_ELEMENT__CONSTRAINT, newConstraint, newConstraint));
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case MIDPackage.EXTENDIBLE_ELEMENT__CONSTRAINT:
-                return basicSetConstraint(null, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
+    switch (featureID) {
+      case MIDPackage.EXTENDIBLE_ELEMENT__CONSTRAINT:
+        return basicSetConstraint(null, msgs);
     }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case MIDPackage.EXTENDIBLE_ELEMENT__SUPERTYPE:
-                if (resolve) return getSupertype();
-                return basicGetSupertype();
-            case MIDPackage.EXTENDIBLE_ELEMENT__URI:
-                return getUri();
-            case MIDPackage.EXTENDIBLE_ELEMENT__NAME:
-                return getName();
-            case MIDPackage.EXTENDIBLE_ELEMENT__LEVEL:
-                return getLevel();
-            case MIDPackage.EXTENDIBLE_ELEMENT__METATYPE_URI:
-                return getMetatypeUri();
-            case MIDPackage.EXTENDIBLE_ELEMENT__DYNAMIC:
-                return isDynamic();
-            case MIDPackage.EXTENDIBLE_ELEMENT__CONSTRAINT:
-                return getConstraint();
-        }
-        return super.eGet(featureID, resolve, coreType);
+    switch (featureID) {
+      case MIDPackage.EXTENDIBLE_ELEMENT__SUPERTYPE:
+        if (resolve) return getSupertype();
+        return basicGetSupertype();
+      case MIDPackage.EXTENDIBLE_ELEMENT__URI:
+        return getUri();
+      case MIDPackage.EXTENDIBLE_ELEMENT__NAME:
+        return getName();
+      case MIDPackage.EXTENDIBLE_ELEMENT__LEVEL:
+        return getLevel();
+      case MIDPackage.EXTENDIBLE_ELEMENT__METATYPE_URI:
+        return getMetatypeUri();
+      case MIDPackage.EXTENDIBLE_ELEMENT__DYNAMIC:
+        return isDynamic();
+      case MIDPackage.EXTENDIBLE_ELEMENT__CONSTRAINT:
+        return getConstraint();
     }
+    return super.eGet(featureID, resolve, coreType);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case MIDPackage.EXTENDIBLE_ELEMENT__SUPERTYPE:
-                setSupertype((ExtendibleElement)newValue);
-                return;
-            case MIDPackage.EXTENDIBLE_ELEMENT__URI:
-                setUri((String)newValue);
-                return;
-            case MIDPackage.EXTENDIBLE_ELEMENT__NAME:
-                setName((String)newValue);
-                return;
-            case MIDPackage.EXTENDIBLE_ELEMENT__LEVEL:
-                setLevel((MIDLevel)newValue);
-                return;
-            case MIDPackage.EXTENDIBLE_ELEMENT__METATYPE_URI:
-                setMetatypeUri((String)newValue);
-                return;
-            case MIDPackage.EXTENDIBLE_ELEMENT__DYNAMIC:
-                setDynamic((Boolean)newValue);
-                return;
-            case MIDPackage.EXTENDIBLE_ELEMENT__CONSTRAINT:
-                setConstraint((ExtendibleElementConstraint)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
+    switch (featureID) {
+      case MIDPackage.EXTENDIBLE_ELEMENT__SUPERTYPE:
+        setSupertype((ExtendibleElement)newValue);
+        return;
+      case MIDPackage.EXTENDIBLE_ELEMENT__URI:
+        setUri((String)newValue);
+        return;
+      case MIDPackage.EXTENDIBLE_ELEMENT__NAME:
+        setName((String)newValue);
+        return;
+      case MIDPackage.EXTENDIBLE_ELEMENT__LEVEL:
+        setLevel((MIDLevel)newValue);
+        return;
+      case MIDPackage.EXTENDIBLE_ELEMENT__METATYPE_URI:
+        setMetatypeUri((String)newValue);
+        return;
+      case MIDPackage.EXTENDIBLE_ELEMENT__DYNAMIC:
+        setDynamic((Boolean)newValue);
+        return;
+      case MIDPackage.EXTENDIBLE_ELEMENT__CONSTRAINT:
+        setConstraint((ExtendibleElementConstraint)newValue);
+        return;
     }
+    super.eSet(featureID, newValue);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public void eUnset(int featureID) {
-        switch (featureID) {
-            case MIDPackage.EXTENDIBLE_ELEMENT__SUPERTYPE:
-                setSupertype((ExtendibleElement)null);
-                return;
-            case MIDPackage.EXTENDIBLE_ELEMENT__URI:
-                setUri(URI_EDEFAULT);
-                return;
-            case MIDPackage.EXTENDIBLE_ELEMENT__NAME:
-                setName(NAME_EDEFAULT);
-                return;
-            case MIDPackage.EXTENDIBLE_ELEMENT__LEVEL:
-                setLevel(LEVEL_EDEFAULT);
-                return;
-            case MIDPackage.EXTENDIBLE_ELEMENT__METATYPE_URI:
-                setMetatypeUri(METATYPE_URI_EDEFAULT);
-                return;
-            case MIDPackage.EXTENDIBLE_ELEMENT__DYNAMIC:
-                setDynamic(DYNAMIC_EDEFAULT);
-                return;
-            case MIDPackage.EXTENDIBLE_ELEMENT__CONSTRAINT:
-                setConstraint((ExtendibleElementConstraint)null);
-                return;
-        }
-        super.eUnset(featureID);
+    switch (featureID) {
+      case MIDPackage.EXTENDIBLE_ELEMENT__SUPERTYPE:
+        setSupertype((ExtendibleElement)null);
+        return;
+      case MIDPackage.EXTENDIBLE_ELEMENT__URI:
+        setUri(URI_EDEFAULT);
+        return;
+      case MIDPackage.EXTENDIBLE_ELEMENT__NAME:
+        setName(NAME_EDEFAULT);
+        return;
+      case MIDPackage.EXTENDIBLE_ELEMENT__LEVEL:
+        setLevel(LEVEL_EDEFAULT);
+        return;
+      case MIDPackage.EXTENDIBLE_ELEMENT__METATYPE_URI:
+        setMetatypeUri(METATYPE_URI_EDEFAULT);
+        return;
+      case MIDPackage.EXTENDIBLE_ELEMENT__DYNAMIC:
+        setDynamic(DYNAMIC_EDEFAULT);
+        return;
+      case MIDPackage.EXTENDIBLE_ELEMENT__CONSTRAINT:
+        setConstraint((ExtendibleElementConstraint)null);
+        return;
     }
+    super.eUnset(featureID);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case MIDPackage.EXTENDIBLE_ELEMENT__SUPERTYPE:
-                return supertype != null;
-            case MIDPackage.EXTENDIBLE_ELEMENT__URI:
-                return URI_EDEFAULT == null ? uri != null : !URI_EDEFAULT.equals(uri);
-            case MIDPackage.EXTENDIBLE_ELEMENT__NAME:
-                return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-            case MIDPackage.EXTENDIBLE_ELEMENT__LEVEL:
-                return level != LEVEL_EDEFAULT;
-            case MIDPackage.EXTENDIBLE_ELEMENT__METATYPE_URI:
-                return METATYPE_URI_EDEFAULT == null ? metatypeUri != null : !METATYPE_URI_EDEFAULT.equals(metatypeUri);
-            case MIDPackage.EXTENDIBLE_ELEMENT__DYNAMIC:
-                return dynamic != DYNAMIC_EDEFAULT;
-            case MIDPackage.EXTENDIBLE_ELEMENT__CONSTRAINT:
-                return constraint != null;
-        }
-        return super.eIsSet(featureID);
+    switch (featureID) {
+      case MIDPackage.EXTENDIBLE_ELEMENT__SUPERTYPE:
+        return supertype != null;
+      case MIDPackage.EXTENDIBLE_ELEMENT__URI:
+        return URI_EDEFAULT == null ? uri != null : !URI_EDEFAULT.equals(uri);
+      case MIDPackage.EXTENDIBLE_ELEMENT__NAME:
+        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case MIDPackage.EXTENDIBLE_ELEMENT__LEVEL:
+        return level != LEVEL_EDEFAULT;
+      case MIDPackage.EXTENDIBLE_ELEMENT__METATYPE_URI:
+        return METATYPE_URI_EDEFAULT == null ? metatypeUri != null : !METATYPE_URI_EDEFAULT.equals(metatypeUri);
+      case MIDPackage.EXTENDIBLE_ELEMENT__DYNAMIC:
+        return dynamic != DYNAMIC_EDEFAULT;
+      case MIDPackage.EXTENDIBLE_ELEMENT__CONSTRAINT:
+        return constraint != null;
     }
+    return super.eIsSet(featureID);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-        switch (operationID) {
-            case MIDPackage.EXTENDIBLE_ELEMENT___GET_METATYPE:
-                return getMetatype();
-            case MIDPackage.EXTENDIBLE_ELEMENT___GET_MID_CONTAINER:
-                return getMIDContainer();
-            case MIDPackage.EXTENDIBLE_ELEMENT___IS_LEVEL__MIDLEVEL:
-                return isLevel((MIDLevel)arguments.get(0));
-            case MIDPackage.EXTENDIBLE_ELEMENT___IS_TYPES_LEVEL:
-                return isTypesLevel();
-            case MIDPackage.EXTENDIBLE_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING:
-                return createSubtypeUri((String)arguments.get(0), (String)arguments.get(1));
-            case MIDPackage.EXTENDIBLE_ELEMENT___ADD_TYPE_CONSTRAINT__STRING_STRING:
-                try {
-                    addTypeConstraint((String)arguments.get(0), (String)arguments.get(1));
-                    return null;
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case MIDPackage.EXTENDIBLE_ELEMENT___IS_INSTANCES_LEVEL:
-                return isInstancesLevel();
-            case MIDPackage.EXTENDIBLE_ELEMENT___GET_RUNTIME_TYPES:
-                try {
-                    return getRuntimeTypes();
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case MIDPackage.EXTENDIBLE_ELEMENT___GET_CLOSEST_TYPE_CONSTRAINT:
-                try {
-                    return getClosestTypeConstraint();
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case MIDPackage.EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT:
-                try {
-                    return validateInstanceType((ExtendibleElement)arguments.get(0));
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case MIDPackage.EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE:
-                try {
-                    return validateInstance();
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case MIDPackage.EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT:
-                try {
-                    return validateInstanceInEditor((IValidationContext)arguments.get(0));
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case MIDPackage.EXTENDIBLE_ELEMENT___IS_WORKFLOWS_LEVEL:
-                return isWorkflowsLevel();
-            case MIDPackage.EXTENDIBLE_ELEMENT___UPDATE_WORKFLOW_INSTANCE_ID__STRING:
-                try {
-                    updateWorkflowInstanceId((String)arguments.get(0));
-                    return null;
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case MIDPackage.EXTENDIBLE_ELEMENT___TO_MID_CUSTOM_PRINT_LABEL:
-                return toMIDCustomPrintLabel();
-            case MIDPackage.EXTENDIBLE_ELEMENT___TO_MID_CUSTOM_EDIT_LABEL:
-                return toMIDCustomEditLabel();
-            case MIDPackage.EXTENDIBLE_ELEMENT___UPDATE_MID_CUSTOM_LABEL__STRING:
-                updateMIDCustomLabel((String)arguments.get(0));
-                return null;
+    switch (operationID) {
+      case MIDPackage.EXTENDIBLE_ELEMENT___GET_METATYPE:
+        return getMetatype();
+      case MIDPackage.EXTENDIBLE_ELEMENT___GET_MID_CONTAINER:
+        return getMIDContainer();
+      case MIDPackage.EXTENDIBLE_ELEMENT___IS_LEVEL__MIDLEVEL:
+        return isLevel((MIDLevel)arguments.get(0));
+      case MIDPackage.EXTENDIBLE_ELEMENT___IS_TYPES_LEVEL:
+        return isTypesLevel();
+      case MIDPackage.EXTENDIBLE_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING:
+        return createSubtypeUri((String)arguments.get(0), (String)arguments.get(1));
+      case MIDPackage.EXTENDIBLE_ELEMENT___ADD_TYPE_CONSTRAINT__STRING_STRING:
+        try {
+          addTypeConstraint((String)arguments.get(0), (String)arguments.get(1));
+          return null;
         }
-        return super.eInvoke(operationID, arguments);
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case MIDPackage.EXTENDIBLE_ELEMENT___IS_INSTANCES_LEVEL:
+        return isInstancesLevel();
+      case MIDPackage.EXTENDIBLE_ELEMENT___GET_RUNTIME_TYPES:
+        try {
+          return getRuntimeTypes();
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case MIDPackage.EXTENDIBLE_ELEMENT___GET_CLOSEST_TYPE_CONSTRAINT:
+        try {
+          return getClosestTypeConstraint();
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case MIDPackage.EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT:
+        try {
+          return validateInstanceType((ExtendibleElement)arguments.get(0));
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case MIDPackage.EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE:
+        try {
+          return validateInstance();
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case MIDPackage.EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT:
+        try {
+          return validateInstanceInEditor((IValidationContext)arguments.get(0));
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case MIDPackage.EXTENDIBLE_ELEMENT___IS_WORKFLOWS_LEVEL:
+        return isWorkflowsLevel();
+      case MIDPackage.EXTENDIBLE_ELEMENT___UPDATE_WORKFLOW_INSTANCE_ID__STRING:
+        try {
+          updateWorkflowInstanceId((String)arguments.get(0));
+          return null;
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case MIDPackage.EXTENDIBLE_ELEMENT___TO_MID_CUSTOM_PRINT_LABEL:
+        return toMIDCustomPrintLabel();
+      case MIDPackage.EXTENDIBLE_ELEMENT___TO_MID_CUSTOM_EDIT_LABEL:
+        return toMIDCustomEditLabel();
+      case MIDPackage.EXTENDIBLE_ELEMENT___UPDATE_MID_CUSTOM_LABEL__STRING:
+        updateMIDCustomLabel((String)arguments.get(0));
+        return null;
     }
+    return super.eInvoke(operationID, arguments);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     public String toStringGen() {
-        if (eIsProxy()) return super.toString();
+    if (eIsProxy()) return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (uri: ");
-        result.append(uri);
-        result.append(", name: ");
-        result.append(name);
-        result.append(", level: ");
-        result.append(level);
-        result.append(", metatypeUri: ");
-        result.append(metatypeUri);
-        result.append(", dynamic: ");
-        result.append(dynamic);
-        result.append(')');
-        return result.toString();
-    }
+    StringBuilder result = new StringBuilder(super.toString());
+    result.append(" (uri: ");
+    result.append(uri);
+    result.append(", name: ");
+    result.append(name);
+    result.append(", level: ");
+    result.append(level);
+    result.append(", metatypeUri: ");
+    result.append(metatypeUri);
+    result.append(", dynamic: ");
+    result.append(dynamic);
+    result.append(')');
+    return result.toString();
+  }
 
     /**
      * @generated NOT
@@ -653,30 +667,34 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
     /**
      * @generated
      */
+    @Override
     public ExtendibleElement getMetatype() {
-        return MIDTypeRegistry.getType(getMetatypeUri());
-    }
+    return MIDTypeRegistry.getType(getMetatypeUri());
+  }
 
     /**
      * @generated
      */
+    @Override
     public MID getMIDContainer() {
-        return null;
-    }
+    return null;
+  }
 
     /**
      * @generated
      */
+    @Override
     public boolean isLevel(final MIDLevel midLevel) {
-        return this.getLevel() == midLevel;
-    }
+    return this.getLevel() == midLevel;
+  }
 
     /**
      * @generated
      */
+    @Override
     public boolean isTypesLevel() {
-        return this.isLevel(MIDLevel.TYPES);
-    }
+    return this.isLevel(MIDLevel.TYPES);
+  }
 
     /**
      * Searches for an EClass in a package and subpackages.
@@ -813,9 +831,10 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
     /**
      * @generated
      */
+    @Override
     public boolean isInstancesLevel() {
-        return this.isLevel(MIDLevel.INSTANCES);
-    }
+    return this.isLevel(MIDLevel.INSTANCES);
+  }
 
     /**
      * Filters a list of subtypes of a type to contain only direct and metamodel-compatible subtypes.
@@ -1183,9 +1202,10 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
     /**
      * @generated
      */
+    @Override
     public boolean isWorkflowsLevel() {
-        return this.isLevel(MIDLevel.WORKFLOWS);
-    }
+    return this.isLevel(MIDLevel.WORKFLOWS);
+  }
 
     /**
      * @generated NOT

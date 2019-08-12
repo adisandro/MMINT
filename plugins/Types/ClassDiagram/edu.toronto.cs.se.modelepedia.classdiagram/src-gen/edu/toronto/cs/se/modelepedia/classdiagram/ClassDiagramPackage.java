@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2019 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -104,13 +104,31 @@ public interface ClassDiagramPackage extends EPackage {
 	int CLASS_DIAGRAM__ASSOCIATIONS = 2;
 
 	/**
+	 * The feature id for the '<em><b>Datatypes</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS_DIAGRAM__DATATYPES = 3;
+
+	/**
+	 * The feature id for the '<em><b>Compositions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS_DIAGRAM__COMPOSITIONS = 4;
+
+	/**
 	 * The number of structural features of the '<em>Class Diagram</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_DIAGRAM_FEATURE_COUNT = 3;
+	int CLASS_DIAGRAM_FEATURE_COUNT = 5;
 
 	/**
 	 * The number of operations of the '<em>Class Diagram</em>' class.
@@ -159,6 +177,43 @@ public interface ClassDiagramPackage extends EPackage {
 	int NAMED_ELEMENT_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.TypeableImpl <em>Typeable</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.impl.TypeableImpl
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.impl.ClassDiagramPackageImpl#getTypeable()
+	 * @generated
+	 */
+	int TYPEABLE = 8;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPEABLE__NAME = NAMED_ELEMENT__NAME;
+
+	/**
+	 * The number of structural features of the '<em>Typeable</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPEABLE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Typeable</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPEABLE_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.ClassImpl <em>Class</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -175,7 +230,7 @@ public interface ClassDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__NAME = NAMED_ELEMENT__NAME;
+	int CLASS__NAME = TYPEABLE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Owned Attributes</b></em>' containment reference list.
@@ -184,7 +239,7 @@ public interface ClassDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__OWNED_ATTRIBUTES = NAMED_ELEMENT_FEATURE_COUNT + 0;
+	int CLASS__OWNED_ATTRIBUTES = TYPEABLE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Owned Operations</b></em>' containment reference list.
@@ -193,7 +248,7 @@ public interface ClassDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__OWNED_OPERATIONS = NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int CLASS__OWNED_OPERATIONS = TYPEABLE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Dependencies As Dependee</b></em>' reference list.
@@ -202,7 +257,7 @@ public interface ClassDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__DEPENDENCIES_AS_DEPENDEE = NAMED_ELEMENT_FEATURE_COUNT + 2;
+	int CLASS__DEPENDENCIES_AS_DEPENDEE = TYPEABLE_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Dependencies As Depender</b></em>' reference list.
@@ -211,7 +266,7 @@ public interface ClassDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__DEPENDENCIES_AS_DEPENDER = NAMED_ELEMENT_FEATURE_COUNT + 3;
+	int CLASS__DEPENDENCIES_AS_DEPENDER = TYPEABLE_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Nested In</b></em>' reference.
@@ -220,7 +275,7 @@ public interface ClassDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__NESTED_IN = NAMED_ELEMENT_FEATURE_COUNT + 4;
+	int CLASS__NESTED_IN = TYPEABLE_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Nested</b></em>' reference list.
@@ -229,7 +284,7 @@ public interface ClassDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__NESTED = NAMED_ELEMENT_FEATURE_COUNT + 5;
+	int CLASS__NESTED = TYPEABLE_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Superclass</b></em>' reference.
@@ -238,7 +293,7 @@ public interface ClassDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__SUPERCLASS = NAMED_ELEMENT_FEATURE_COUNT + 6;
+	int CLASS__SUPERCLASS = TYPEABLE_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Subclasses</b></em>' reference list.
@@ -247,7 +302,7 @@ public interface ClassDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__SUBCLASSES = NAMED_ELEMENT_FEATURE_COUNT + 7;
+	int CLASS__SUBCLASSES = TYPEABLE_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Associations As Source</b></em>' reference list.
@@ -256,7 +311,7 @@ public interface ClassDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__ASSOCIATIONS_AS_SOURCE = NAMED_ELEMENT_FEATURE_COUNT + 8;
+	int CLASS__ASSOCIATIONS_AS_SOURCE = TYPEABLE_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Associations As Target</b></em>' reference list.
@@ -265,7 +320,25 @@ public interface ClassDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__ASSOCIATIONS_AS_TARGET = NAMED_ELEMENT_FEATURE_COUNT + 9;
+	int CLASS__ASSOCIATIONS_AS_TARGET = TYPEABLE_FEATURE_COUNT + 9;
+
+	/**
+	 * The feature id for the '<em><b>Compositions As Constituent</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS__COMPOSITIONS_AS_CONSTITUENT = TYPEABLE_FEATURE_COUNT + 10;
+
+	/**
+	 * The feature id for the '<em><b>Compositions As Composite</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS__COMPOSITIONS_AS_COMPOSITE = TYPEABLE_FEATURE_COUNT + 11;
 
 	/**
 	 * The number of structural features of the '<em>Class</em>' class.
@@ -274,7 +347,7 @@ public interface ClassDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 10;
+	int CLASS_FEATURE_COUNT = TYPEABLE_FEATURE_COUNT + 12;
 
 	/**
 	 * The number of operations of the '<em>Class</em>' class.
@@ -283,7 +356,7 @@ public interface ClassDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
+	int CLASS_OPERATION_COUNT = TYPEABLE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.TypedElementImpl <em>Typed Element</em>}' class.
@@ -451,13 +524,22 @@ public interface ClassDiagramPackage extends EPackage {
 	int OPERATION__OWNER = TYPED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Parameter Types</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION__PARAMETER_TYPES = TYPED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Operation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_FEATURE_COUNT = TYPED_ELEMENT_FEATURE_COUNT + 1;
+	int OPERATION_FEATURE_COUNT = TYPED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Operation</em>' class.
@@ -561,13 +643,22 @@ public interface ClassDiagramPackage extends EPackage {
 	int ASSOCIATION__TARGET = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Multiplicity</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION__MULTIPLICITY = NAMED_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Association</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 2;
+	int ASSOCIATION_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Association</em>' class.
@@ -577,6 +668,109 @@ public interface ClassDiagramPackage extends EPackage {
 	 * @ordered
 	 */
 	int ASSOCIATION_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.DataTypeImpl <em>Data Type</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.impl.DataTypeImpl
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.impl.ClassDiagramPackageImpl#getDataType()
+	 * @generated
+	 */
+	int DATA_TYPE = 9;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_TYPE__NAME = TYPEABLE__NAME;
+
+	/**
+	 * The number of structural features of the '<em>Data Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_TYPE_FEATURE_COUNT = TYPEABLE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Data Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_TYPE_OPERATION_COUNT = TYPEABLE_OPERATION_COUNT + 0;
+
+
+	/**
+	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.CompositionImpl <em>Composition</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.impl.CompositionImpl
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.impl.ClassDiagramPackageImpl#getComposition()
+	 * @generated
+	 */
+	int COMPOSITION = 10;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITION__NAME = NAMED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Constituent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITION__CONSTITUENT = NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Composite</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITION__COMPOSITE = NAMED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Multiplicity</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITION__MULTIPLICITY = NAMED_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Composition</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITION_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of operations of the '<em>Composition</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITION_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
+
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagram <em>Class Diagram</em>}'.
@@ -620,6 +814,28 @@ public interface ClassDiagramPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getClassDiagram_Associations();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagram#getDatatypes <em>Datatypes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Datatypes</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagram#getDatatypes()
+	 * @see #getClassDiagram()
+	 * @generated
+	 */
+	EReference getClassDiagram_Datatypes();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagram#getCompositions <em>Compositions</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Compositions</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagram#getCompositions()
+	 * @see #getClassDiagram()
+	 * @generated
+	 */
+	EReference getClassDiagram_Compositions();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.classdiagram.Class <em>Class</em>}'.
@@ -742,6 +958,28 @@ public interface ClassDiagramPackage extends EPackage {
 	EReference getClass_AssociationsAsTarget();
 
 	/**
+	 * Returns the meta object for the reference list '{@link edu.toronto.cs.se.modelepedia.classdiagram.Class#getCompositionsAsConstituent <em>Compositions As Constituent</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Compositions As Constituent</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.Class#getCompositionsAsConstituent()
+	 * @see #getClass_()
+	 * @generated
+	 */
+	EReference getClass_CompositionsAsConstituent();
+
+	/**
+	 * Returns the meta object for the reference list '{@link edu.toronto.cs.se.modelepedia.classdiagram.Class#getCompositionsAsComposite <em>Compositions As Composite</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Compositions As Composite</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.Class#getCompositionsAsComposite()
+	 * @see #getClass_()
+	 * @generated
+	 */
+	EReference getClass_CompositionsAsComposite();
+
+	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.classdiagram.Attribute <em>Attribute</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -803,6 +1041,17 @@ public interface ClassDiagramPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getOperation_Owner();
+
+	/**
+	 * Returns the meta object for the reference list '{@link edu.toronto.cs.se.modelepedia.classdiagram.Operation#getParameterTypes <em>Parameter Types</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Parameter Types</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.Operation#getParameterTypes()
+	 * @see #getOperation()
+	 * @generated
+	 */
+	EReference getOperation_ParameterTypes();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.classdiagram.Dependency <em>Dependency</em>}'.
@@ -912,6 +1161,80 @@ public interface ClassDiagramPackage extends EPackage {
 	EReference getAssociation_Target();
 
 	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.classdiagram.Association#getMultiplicity <em>Multiplicity</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Multiplicity</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.Association#getMultiplicity()
+	 * @see #getAssociation()
+	 * @generated
+	 */
+	EAttribute getAssociation_Multiplicity();
+
+	/**
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.classdiagram.Typeable <em>Typeable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Typeable</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.Typeable
+	 * @generated
+	 */
+	EClass getTypeable();
+
+	/**
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.classdiagram.DataType <em>Data Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Data Type</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.DataType
+	 * @generated
+	 */
+	EClass getDataType();
+
+	/**
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.classdiagram.Composition <em>Composition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Composition</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.Composition
+	 * @generated
+	 */
+	EClass getComposition();
+
+	/**
+	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.modelepedia.classdiagram.Composition#getConstituent <em>Constituent</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Constituent</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.Composition#getConstituent()
+	 * @see #getComposition()
+	 * @generated
+	 */
+	EReference getComposition_Constituent();
+
+	/**
+	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.modelepedia.classdiagram.Composition#getComposite <em>Composite</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Composite</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.Composition#getComposite()
+	 * @see #getComposition()
+	 * @generated
+	 */
+	EReference getComposition_Composite();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.classdiagram.Composition#getMultiplicity <em>Multiplicity</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Multiplicity</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.Composition#getMultiplicity()
+	 * @see #getComposition()
+	 * @generated
+	 */
+	EAttribute getComposition_Multiplicity();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -967,6 +1290,22 @@ public interface ClassDiagramPackage extends EPackage {
 		 * @generated
 		 */
 		EReference CLASS_DIAGRAM__ASSOCIATIONS = eINSTANCE.getClassDiagram_Associations();
+
+		/**
+		 * The meta object literal for the '<em><b>Datatypes</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CLASS_DIAGRAM__DATATYPES = eINSTANCE.getClassDiagram_Datatypes();
+
+		/**
+		 * The meta object literal for the '<em><b>Compositions</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CLASS_DIAGRAM__COMPOSITIONS = eINSTANCE.getClassDiagram_Compositions();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.ClassImpl <em>Class</em>}' class.
@@ -1059,6 +1398,22 @@ public interface ClassDiagramPackage extends EPackage {
 		EReference CLASS__ASSOCIATIONS_AS_TARGET = eINSTANCE.getClass_AssociationsAsTarget();
 
 		/**
+		 * The meta object literal for the '<em><b>Compositions As Constituent</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CLASS__COMPOSITIONS_AS_CONSTITUENT = eINSTANCE.getClass_CompositionsAsConstituent();
+
+		/**
+		 * The meta object literal for the '<em><b>Compositions As Composite</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CLASS__COMPOSITIONS_AS_COMPOSITE = eINSTANCE.getClass_CompositionsAsComposite();
+
+		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.AttributeImpl <em>Attribute</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1111,6 +1466,14 @@ public interface ClassDiagramPackage extends EPackage {
 		 * @generated
 		 */
 		EReference OPERATION__OWNER = eINSTANCE.getOperation_Owner();
+
+		/**
+		 * The meta object literal for the '<em><b>Parameter Types</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OPERATION__PARAMETER_TYPES = eINSTANCE.getOperation_ParameterTypes();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.DependencyImpl <em>Dependency</em>}' class.
@@ -1197,6 +1560,68 @@ public interface ClassDiagramPackage extends EPackage {
 		 * @generated
 		 */
 		EReference ASSOCIATION__TARGET = eINSTANCE.getAssociation_Target();
+
+		/**
+		 * The meta object literal for the '<em><b>Multiplicity</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ASSOCIATION__MULTIPLICITY = eINSTANCE.getAssociation_Multiplicity();
+
+		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.TypeableImpl <em>Typeable</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.modelepedia.classdiagram.impl.TypeableImpl
+		 * @see edu.toronto.cs.se.modelepedia.classdiagram.impl.ClassDiagramPackageImpl#getTypeable()
+		 * @generated
+		 */
+		EClass TYPEABLE = eINSTANCE.getTypeable();
+
+		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.DataTypeImpl <em>Data Type</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.modelepedia.classdiagram.impl.DataTypeImpl
+		 * @see edu.toronto.cs.se.modelepedia.classdiagram.impl.ClassDiagramPackageImpl#getDataType()
+		 * @generated
+		 */
+		EClass DATA_TYPE = eINSTANCE.getDataType();
+
+		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.CompositionImpl <em>Composition</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.modelepedia.classdiagram.impl.CompositionImpl
+		 * @see edu.toronto.cs.se.modelepedia.classdiagram.impl.ClassDiagramPackageImpl#getComposition()
+		 * @generated
+		 */
+		EClass COMPOSITION = eINSTANCE.getComposition();
+
+		/**
+		 * The meta object literal for the '<em><b>Constituent</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPOSITION__CONSTITUENT = eINSTANCE.getComposition_Constituent();
+
+		/**
+		 * The meta object literal for the '<em><b>Composite</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPOSITION__COMPOSITE = eINSTANCE.getComposition_Composite();
+
+		/**
+		 * The meta object literal for the '<em><b>Multiplicity</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COMPOSITION__MULTIPLICITY = eINSTANCE.getComposition_Multiplicity();
 
 	}
 

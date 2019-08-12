@@ -281,7 +281,9 @@
       <eParameters name="instanceMID" eType="#//MID"/>
     </eOperations>
     <eOperations name="createInstanceEditor" lowerBound="1" eType="#//editor/Editor"
-        eExceptions="#//MMINTException"/>
+        eExceptions="#//MMINTException">
+      <eParameters name="createEditorFile" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eOperations>
     <eOperations name="createInstanceAndEditor" lowerBound="1" eType="#//Model" eExceptions="#//MMINTException #//IOException">
       <eParameters name="rootModelObj" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
       <eParameters name="newModelPath" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -1108,7 +1110,8 @@
       </eOperations>
       <eOperations name="deleteType" eExceptions="#//MMINTException"/>
       <eOperations name="createInstance" lowerBound="1" eType="#//editor/Editor" eExceptions="#//MMINTException">
-        <eParameters name="modelUri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        <eParameters name="modelPath" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        <eParameters name="createEditorFile" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
         <eParameters name="instanceMID" lowerBound="1" eType="#//MID"/>
       </eOperations>
       <eOperations name="invokeInstanceWizard" lowerBound="1" eType="#//editor/EditorCreationWizardDialog"
@@ -1149,22 +1152,6 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="A diagram type or a diagram instance."/>
       </eAnnotations>
-      <eOperations name="createSubtype" lowerBound="1" eType="#//editor/Editor" eExceptions="#//MMINTException">
-        <eParameters name="newEditorTypeFragmentUri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-        <eParameters name="newEditorTypeName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-        <eParameters name="modelTypeUri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-        <eParameters name="editorId" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-        <eParameters name="wizardId" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-        <eParameters name="wizardDialogClassName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      </eOperations>
-      <eOperations name="createInstance" lowerBound="1" eType="#//editor/Editor" eExceptions="#//MMINTException">
-        <eParameters name="modelUri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-        <eParameters name="instanceMID" lowerBound="1" eType="#//MID"/>
-      </eOperations>
-      <eOperations name="invokeInstanceWizard" lowerBound="1" eType="#//editor/EditorCreationWizardDialog"
-          eExceptions="#//MMINTException">
-        <eParameters name="initialSelection" lowerBound="1" eType="#//editor/IStructuredSelection"/>
-      </eOperations>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EDataType" name="IStructuredSelection" instanceClassName="org.eclipse.jface.viewers.IStructuredSelection"
         serializable="false">
@@ -1337,17 +1324,11 @@
           <details key="documentation" value="The list of generics of this operator."/>
         </eAnnotations>
       </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="inputSubdir" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="workingPath" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="The subdirectory from where to get the input, when used in an operator chain."/>
+          <details key="documentation" value="The path where the operator is working, e.g. where it creates its output models."/>
         </eAnnotations>
       </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="previousOperator" eType="#//operator/Operator">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="The previous operator, when used in an operator chain."/>
-        </eAnnotations>
-      </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="updateMID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="executionTime" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">

@@ -1,11 +1,11 @@
 /**
- * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2019 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -16,6 +16,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.Set;
@@ -40,11 +41,13 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.sirius.business.api.helper.SiriusUtil;
 import org.osgi.framework.Bundle;
-import edu.toronto.cs.se.mmint.MMINT;
-import edu.toronto.cs.se.mmint.MMINTException;
+
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
+import edu.toronto.cs.se.mmint.MMINTConstants;
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
@@ -60,6 +63,8 @@ import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
+import edu.toronto.cs.se.mmint.mid.ui.SiriusUtils;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.utils.MIDTypeFactory;
@@ -83,507 +88,517 @@ import edu.toronto.cs.se.mmint.mid.utils.MIDTypeFactory;
  */
 public class ModelImpl extends GenericElementImpl implements Model {
     /**
-     * The default value of the '{@link #getOrigin() <em>Origin</em>}' attribute.
-     * <!-- begin-user-doc -->
+   * The default value of the '{@link #getOrigin() <em>Origin</em>}' attribute.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getOrigin()
-     * @generated
-     * @ordered
-     */
+   * @see #getOrigin()
+   * @generated
+   * @ordered
+   */
     protected static final ModelOrigin ORIGIN_EDEFAULT = ModelOrigin.IMPORTED;
 
     /**
-     * The cached value of the '{@link #getOrigin() <em>Origin</em>}' attribute.
-     * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getOrigin() <em>Origin</em>}' attribute.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getOrigin()
-     * @generated
-     * @ordered
-     */
+   * @see #getOrigin()
+   * @generated
+   * @ordered
+   */
     protected ModelOrigin origin = ORIGIN_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getFileExtension() <em>File Extension</em>}' attribute.
-     * <!-- begin-user-doc -->
+   * The default value of the '{@link #getFileExtension() <em>File Extension</em>}' attribute.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getFileExtension()
-     * @generated
-     * @ordered
-     */
+   * @see #getFileExtension()
+   * @generated
+   * @ordered
+   */
     protected static final String FILE_EXTENSION_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getFileExtension() <em>File Extension</em>}' attribute.
-     * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getFileExtension() <em>File Extension</em>}' attribute.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getFileExtension()
-     * @generated
-     * @ordered
-     */
+   * @see #getFileExtension()
+   * @generated
+   * @ordered
+   */
     protected String fileExtension = FILE_EXTENSION_EDEFAULT;
 
     /**
-     * The cached value of the '{@link #getEditors() <em>Editors</em>}' reference list.
-     * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getEditors() <em>Editors</em>}' reference list.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getEditors()
-     * @generated
-     * @ordered
-     */
+   * @see #getEditors()
+   * @generated
+   * @ordered
+   */
     protected EList<Editor> editors;
 
     /**
-     * The cached value of the '{@link #getModelElems() <em>Model Elems</em>}' containment reference list.
-     * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getModelElems() <em>Model Elems</em>}' containment reference list.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getModelElems()
-     * @generated
-     * @ordered
-     */
+   * @see #getModelElems()
+   * @generated
+   * @ordered
+   */
     protected EList<ModelElement> modelElems;
 
     /**
-     * The cached value of the '{@link #getConversionOperators() <em>Conversion Operators</em>}' reference list.
-     * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getConversionOperators() <em>Conversion Operators</em>}' reference list.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getConversionOperators()
-     * @generated
-     * @ordered
-     */
+   * @see #getConversionOperators()
+   * @generated
+   * @ordered
+   */
     protected EList<ConversionOperator> conversionOperators;
 
     /**
      * The root model object when it is not serialized in an ECore model file (different from
      * {@link edu.toronto.cs.se.mmint.mid.operator.impl.NestingOperatorImpl#inMemoryNestedMID}, this is NOT for
      * performance reasons).
-     * 
+     *
      * @generated NOT
      */
     protected EObject inMemoryRootModelObj;
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     protected ModelImpl() {
-        super();
-    }
+    super();
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     protected EClass eStaticClass() {
-        return MIDPackage.Literals.MODEL;
-    }
+    return MIDPackage.Literals.MODEL;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public ModelOrigin getOrigin() {
-        return origin;
-    }
+    return origin;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public void setOrigin(ModelOrigin newOrigin) {
-        ModelOrigin oldOrigin = origin;
-        origin = newOrigin == null ? ORIGIN_EDEFAULT : newOrigin;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.MODEL__ORIGIN, oldOrigin, origin));
-    }
+    ModelOrigin oldOrigin = origin;
+    origin = newOrigin == null ? ORIGIN_EDEFAULT : newOrigin;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.MODEL__ORIGIN, oldOrigin, origin));
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public String getFileExtension() {
-        return fileExtension;
-    }
+    return fileExtension;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public void setFileExtension(String newFileExtension) {
-        String oldFileExtension = fileExtension;
-        fileExtension = newFileExtension;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.MODEL__FILE_EXTENSION, oldFileExtension, fileExtension));
-    }
+    String oldFileExtension = fileExtension;
+    fileExtension = newFileExtension;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.MODEL__FILE_EXTENSION, oldFileExtension, fileExtension));
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public EList<Editor> getEditors() {
-        if (editors == null) {
-            editors = new EObjectResolvingEList<Editor>(Editor.class, this, MIDPackage.MODEL__EDITORS);
-        }
-        return editors;
+    if (editors == null) {
+      editors = new EObjectResolvingEList<Editor>(Editor.class, this, MIDPackage.MODEL__EDITORS);
     }
+    return editors;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public EList<ModelElement> getModelElems() {
-        if (modelElems == null) {
-            modelElems = new EObjectContainmentEList<ModelElement>(ModelElement.class, this, MIDPackage.MODEL__MODEL_ELEMS);
-        }
-        return modelElems;
+    if (modelElems == null) {
+      modelElems = new EObjectContainmentEList<ModelElement>(ModelElement.class, this, MIDPackage.MODEL__MODEL_ELEMS);
     }
+    return modelElems;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public EList<ConversionOperator> getConversionOperators() {
-        if (conversionOperators == null) {
-            conversionOperators = new EObjectResolvingEList<ConversionOperator>(ConversionOperator.class, this, MIDPackage.MODEL__CONVERSION_OPERATORS);
-        }
-        return conversionOperators;
+    if (conversionOperators == null) {
+      conversionOperators = new EObjectResolvingEList<ConversionOperator>(ConversionOperator.class, this, MIDPackage.MODEL__CONVERSION_OPERATORS);
     }
+    return conversionOperators;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public Model getMetatype() {
-        ExtendibleElement metatype = super.getMetatype();
-        return (metatype == null) ? null : (Model) metatype;
-    }
+    ExtendibleElement metatype = super.getMetatype();
+    return (metatype == null) ? null : (Model) metatype;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public Model getSupertype() {
-        ExtendibleElement supertype = super.getSupertype();
-        return (supertype == null) ? null : (Model) supertype;
-    }
+    ExtendibleElement supertype = super.getSupertype();
+    return (supertype == null) ? null : (Model) supertype;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public MID getMIDContainer() {
-        return (MID) this.eContainer();
-    }
+    return (MID) this.eContainer();
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case MIDPackage.MODEL__MODEL_ELEMS:
-                return ((InternalEList<?>)getModelElems()).basicRemove(otherEnd, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
+    switch (featureID) {
+      case MIDPackage.MODEL__MODEL_ELEMS:
+        return ((InternalEList<?>)getModelElems()).basicRemove(otherEnd, msgs);
     }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case MIDPackage.MODEL__ORIGIN:
-                return getOrigin();
-            case MIDPackage.MODEL__FILE_EXTENSION:
-                return getFileExtension();
-            case MIDPackage.MODEL__EDITORS:
-                return getEditors();
-            case MIDPackage.MODEL__MODEL_ELEMS:
-                return getModelElems();
-            case MIDPackage.MODEL__CONVERSION_OPERATORS:
-                return getConversionOperators();
-        }
-        return super.eGet(featureID, resolve, coreType);
+    switch (featureID) {
+      case MIDPackage.MODEL__ORIGIN:
+        return getOrigin();
+      case MIDPackage.MODEL__FILE_EXTENSION:
+        return getFileExtension();
+      case MIDPackage.MODEL__EDITORS:
+        return getEditors();
+      case MIDPackage.MODEL__MODEL_ELEMS:
+        return getModelElems();
+      case MIDPackage.MODEL__CONVERSION_OPERATORS:
+        return getConversionOperators();
     }
+    return super.eGet(featureID, resolve, coreType);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @SuppressWarnings("unchecked")
     @Override
     public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case MIDPackage.MODEL__ORIGIN:
-                setOrigin((ModelOrigin)newValue);
-                return;
-            case MIDPackage.MODEL__FILE_EXTENSION:
-                setFileExtension((String)newValue);
-                return;
-            case MIDPackage.MODEL__EDITORS:
-                getEditors().clear();
-                getEditors().addAll((Collection<? extends Editor>)newValue);
-                return;
-            case MIDPackage.MODEL__MODEL_ELEMS:
-                getModelElems().clear();
-                getModelElems().addAll((Collection<? extends ModelElement>)newValue);
-                return;
-            case MIDPackage.MODEL__CONVERSION_OPERATORS:
-                getConversionOperators().clear();
-                getConversionOperators().addAll((Collection<? extends ConversionOperator>)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
+    switch (featureID) {
+      case MIDPackage.MODEL__ORIGIN:
+        setOrigin((ModelOrigin)newValue);
+        return;
+      case MIDPackage.MODEL__FILE_EXTENSION:
+        setFileExtension((String)newValue);
+        return;
+      case MIDPackage.MODEL__EDITORS:
+        getEditors().clear();
+        getEditors().addAll((Collection<? extends Editor>)newValue);
+        return;
+      case MIDPackage.MODEL__MODEL_ELEMS:
+        getModelElems().clear();
+        getModelElems().addAll((Collection<? extends ModelElement>)newValue);
+        return;
+      case MIDPackage.MODEL__CONVERSION_OPERATORS:
+        getConversionOperators().clear();
+        getConversionOperators().addAll((Collection<? extends ConversionOperator>)newValue);
+        return;
     }
+    super.eSet(featureID, newValue);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public void eUnset(int featureID) {
-        switch (featureID) {
-            case MIDPackage.MODEL__ORIGIN:
-                setOrigin(ORIGIN_EDEFAULT);
-                return;
-            case MIDPackage.MODEL__FILE_EXTENSION:
-                setFileExtension(FILE_EXTENSION_EDEFAULT);
-                return;
-            case MIDPackage.MODEL__EDITORS:
-                getEditors().clear();
-                return;
-            case MIDPackage.MODEL__MODEL_ELEMS:
-                getModelElems().clear();
-                return;
-            case MIDPackage.MODEL__CONVERSION_OPERATORS:
-                getConversionOperators().clear();
-                return;
-        }
-        super.eUnset(featureID);
+    switch (featureID) {
+      case MIDPackage.MODEL__ORIGIN:
+        setOrigin(ORIGIN_EDEFAULT);
+        return;
+      case MIDPackage.MODEL__FILE_EXTENSION:
+        setFileExtension(FILE_EXTENSION_EDEFAULT);
+        return;
+      case MIDPackage.MODEL__EDITORS:
+        getEditors().clear();
+        return;
+      case MIDPackage.MODEL__MODEL_ELEMS:
+        getModelElems().clear();
+        return;
+      case MIDPackage.MODEL__CONVERSION_OPERATORS:
+        getConversionOperators().clear();
+        return;
     }
+    super.eUnset(featureID);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case MIDPackage.MODEL__ORIGIN:
-                return origin != ORIGIN_EDEFAULT;
-            case MIDPackage.MODEL__FILE_EXTENSION:
-                return FILE_EXTENSION_EDEFAULT == null ? fileExtension != null : !FILE_EXTENSION_EDEFAULT.equals(fileExtension);
-            case MIDPackage.MODEL__EDITORS:
-                return editors != null && !editors.isEmpty();
-            case MIDPackage.MODEL__MODEL_ELEMS:
-                return modelElems != null && !modelElems.isEmpty();
-            case MIDPackage.MODEL__CONVERSION_OPERATORS:
-                return conversionOperators != null && !conversionOperators.isEmpty();
-        }
-        return super.eIsSet(featureID);
+    switch (featureID) {
+      case MIDPackage.MODEL__ORIGIN:
+        return origin != ORIGIN_EDEFAULT;
+      case MIDPackage.MODEL__FILE_EXTENSION:
+        return FILE_EXTENSION_EDEFAULT == null ? fileExtension != null : !FILE_EXTENSION_EDEFAULT.equals(fileExtension);
+      case MIDPackage.MODEL__EDITORS:
+        return editors != null && !editors.isEmpty();
+      case MIDPackage.MODEL__MODEL_ELEMS:
+        return modelElems != null && !modelElems.isEmpty();
+      case MIDPackage.MODEL__CONVERSION_OPERATORS:
+        return conversionOperators != null && !conversionOperators.isEmpty();
     }
+    return super.eIsSet(featureID);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
-        if (baseClass == ExtendibleElement.class) {
-            switch (baseOperationID) {
-                case MIDPackage.EXTENDIBLE_ELEMENT___GET_METATYPE: return MIDPackage.MODEL___GET_METATYPE;
-                case MIDPackage.EXTENDIBLE_ELEMENT___GET_MID_CONTAINER: return MIDPackage.MODEL___GET_MID_CONTAINER;
-                default: return super.eDerivedOperationID(baseOperationID, baseClass);
-            }
-        }
-        return super.eDerivedOperationID(baseOperationID, baseClass);
+    if (baseClass == ExtendibleElement.class) {
+      switch (baseOperationID) {
+        case MIDPackage.EXTENDIBLE_ELEMENT___GET_METATYPE: return MIDPackage.MODEL___GET_METATYPE;
+        case MIDPackage.EXTENDIBLE_ELEMENT___GET_MID_CONTAINER: return MIDPackage.MODEL___GET_MID_CONTAINER;
+        default: return super.eDerivedOperationID(baseOperationID, baseClass);
+      }
     }
+    return super.eDerivedOperationID(baseOperationID, baseClass);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-        switch (operationID) {
-            case MIDPackage.MODEL___GET_METATYPE:
-                return getMetatype();
-            case MIDPackage.MODEL___GET_SUPERTYPE:
-                return getSupertype();
-            case MIDPackage.MODEL___GET_MID_CONTAINER:
-                return getMIDContainer();
-            case MIDPackage.MODEL___CREATE_SUBTYPE__STRING_BOOLEAN:
-                try {
-                    return createSubtype((String)arguments.get(0), (Boolean)arguments.get(1));
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case MIDPackage.MODEL___DELETE_TYPE:
-                try {
-                    deleteType();
-                    return null;
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case MIDPackage.MODEL___GET_EMF_TYPE_ROOT:
-                try {
-                    return getEMFTypeRoot();
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case MIDPackage.MODEL___OPEN_TYPE:
-                try {
-                    openType();
-                    return null;
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case MIDPackage.MODEL___CREATE_INSTANCE__EOBJECT_STRING_MID:
-                try {
-                    return createInstance((EObject)arguments.get(0), (String)arguments.get(1), (MID)arguments.get(2));
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case MIDPackage.MODEL___CREATE_INSTANCE_EDITOR:
-                try {
-                    return createInstanceEditor();
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case MIDPackage.MODEL___CREATE_INSTANCE_AND_EDITOR__EOBJECT_STRING_MID:
-                try {
-                    return createInstanceAndEditor((EObject)arguments.get(0), (String)arguments.get(1), (MID)arguments.get(2));
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case MIDPackage.MODEL___IMPORT_INSTANCE__STRING_MID:
-                try {
-                    return importInstance((String)arguments.get(0), (MID)arguments.get(1));
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case MIDPackage.MODEL___IMPORT_INSTANCE_AND_EDITOR__STRING_MID:
-                try {
-                    return importInstanceAndEditor((String)arguments.get(0), (MID)arguments.get(1));
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case MIDPackage.MODEL___COPY_INSTANCE__MODEL_STRING_MID:
-                try {
-                    return copyInstance((Model)arguments.get(0), (String)arguments.get(1), (MID)arguments.get(2));
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case MIDPackage.MODEL___COPY_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MID:
-                try {
-                    return copyInstanceAndEditor((Model)arguments.get(0), (String)arguments.get(1), (Boolean)arguments.get(2), (MID)arguments.get(3));
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case MIDPackage.MODEL___DELETE_INSTANCE:
-                try {
-                    deleteInstance();
-                    return null;
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case MIDPackage.MODEL___DELETE_INSTANCE_AND_FILE:
-                try {
-                    deleteInstanceAndFile();
-                    return null;
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case MIDPackage.MODEL___GET_EMF_INSTANCE_ROOT:
-                try {
-                    return getEMFInstanceRoot();
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case MIDPackage.MODEL___OPEN_INSTANCE:
-                try {
-                    openInstance();
-                    return null;
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case MIDPackage.MODEL___CREATE_WORKFLOW_INSTANCE__STRING_MID:
-                try {
-                    return createWorkflowInstance((String)arguments.get(0), (MID)arguments.get(1));
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case MIDPackage.MODEL___DELETE_WORKFLOW_INSTANCE:
-                try {
-                    deleteWorkflowInstance();
-                    return null;
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
+    switch (operationID) {
+      case MIDPackage.MODEL___GET_METATYPE:
+        return getMetatype();
+      case MIDPackage.MODEL___GET_SUPERTYPE:
+        return getSupertype();
+      case MIDPackage.MODEL___GET_MID_CONTAINER:
+        return getMIDContainer();
+      case MIDPackage.MODEL___CREATE_SUBTYPE__STRING_BOOLEAN:
+        try {
+          return createSubtype((String)arguments.get(0), (Boolean)arguments.get(1));
         }
-        return super.eInvoke(operationID, arguments);
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case MIDPackage.MODEL___DELETE_TYPE:
+        try {
+          deleteType();
+          return null;
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case MIDPackage.MODEL___GET_EMF_TYPE_ROOT:
+        try {
+          return getEMFTypeRoot();
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case MIDPackage.MODEL___OPEN_TYPE:
+        try {
+          openType();
+          return null;
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case MIDPackage.MODEL___CREATE_INSTANCE__EOBJECT_STRING_MID:
+        try {
+          return createInstance((EObject)arguments.get(0), (String)arguments.get(1), (MID)arguments.get(2));
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case MIDPackage.MODEL___CREATE_INSTANCE_EDITOR__BOOLEAN:
+        try {
+          return createInstanceEditor((Boolean)arguments.get(0));
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case MIDPackage.MODEL___CREATE_INSTANCE_AND_EDITOR__EOBJECT_STRING_MID:
+        try {
+          return createInstanceAndEditor((EObject)arguments.get(0), (String)arguments.get(1), (MID)arguments.get(2));
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case MIDPackage.MODEL___IMPORT_INSTANCE__STRING_MID:
+        try {
+          return importInstance((String)arguments.get(0), (MID)arguments.get(1));
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case MIDPackage.MODEL___IMPORT_INSTANCE_AND_EDITOR__STRING_MID:
+        try {
+          return importInstanceAndEditor((String)arguments.get(0), (MID)arguments.get(1));
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case MIDPackage.MODEL___COPY_INSTANCE__MODEL_STRING_MID:
+        try {
+          return copyInstance((Model)arguments.get(0), (String)arguments.get(1), (MID)arguments.get(2));
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case MIDPackage.MODEL___COPY_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MID:
+        try {
+          return copyInstanceAndEditor((Model)arguments.get(0), (String)arguments.get(1), (Boolean)arguments.get(2), (MID)arguments.get(3));
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case MIDPackage.MODEL___DELETE_INSTANCE:
+        try {
+          deleteInstance();
+          return null;
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case MIDPackage.MODEL___DELETE_INSTANCE_AND_FILE:
+        try {
+          deleteInstanceAndFile();
+          return null;
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case MIDPackage.MODEL___GET_EMF_INSTANCE_ROOT:
+        try {
+          return getEMFInstanceRoot();
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case MIDPackage.MODEL___OPEN_INSTANCE:
+        try {
+          openInstance();
+          return null;
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case MIDPackage.MODEL___CREATE_WORKFLOW_INSTANCE__STRING_MID:
+        try {
+          return createWorkflowInstance((String)arguments.get(0), (MID)arguments.get(1));
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case MIDPackage.MODEL___DELETE_WORKFLOW_INSTANCE:
+        try {
+          deleteWorkflowInstance();
+          return null;
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
     }
+    return super.eInvoke(operationID, arguments);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public String toString() {
-        if (eIsProxy()) return super.toString();
+    if (eIsProxy()) return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (origin: ");
-        result.append(origin);
-        result.append(", fileExtension: ");
-        result.append(fileExtension);
-        result.append(')');
-        return result.toString();
-    }
+    StringBuilder result = new StringBuilder(super.toString());
+    result.append(" (origin: ");
+    result.append(origin);
+    result.append(", fileExtension: ");
+    result.append(fileExtension);
+    result.append(')');
+    return result.toString();
+  }
 
     /**
      * Adds a subtype of this model type to the Type MID, together with an editor type for it.
-     * 
+     *
      * @param newModelType
      *            The new model type to be added.
      * @param newModelTypeName
@@ -619,7 +634,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
                     EClass newRootEClass = EcoreFactory.eINSTANCE.createEClass();
                     newRootEClass.setName(newModelTypeName);
                     if (!MIDTypeHierarchy.isRootType(this)) {
-                        EClass rootEClass = (EClass) getEMFTypeRoot().getEClassifiers().get(0);
+                        EClass rootEClass = (EClass) this.getEMFTypeRoot().getEClassifiers().get(0);
                         newRootEClass.getESuperTypes().add(rootEClass);
                     }
                     newEPackage.getEClassifiers().add(newRootEClass);
@@ -630,23 +645,23 @@ public class ModelImpl extends GenericElementImpl implements Model {
             }
             catch (Exception e) {
                 MMINTException.print(IStatus.WARNING, "Error creating extended metamodel file, fallback to no extension", e);
-                newModelType.setFileExtension(getFileExtension());
+                newModelType.setFileExtension(this.getFileExtension());
                 isMetamodelExtension = false;
             }
         }
         else {
-            newModelType.setFileExtension(getFileExtension());
+            newModelType.setFileExtension(this.getFileExtension());
         }
 
         // create editors
         String newEditorTypeFragmentUri = newModelType.getName(), newEditorTypeName, newModelTypeUri = newModelType.getUri(), editorId, wizardId, wizardDialogClassName;
-        for (Editor editorType : getEditors()) {
+        for (Editor editorType : this.getEditors()) {
             if (isMetamodelExtension) {
                 if (editorType instanceof Diagram) {
                     continue;
                 }
-                newEditorTypeName = MMINT.ROOT_EDITOR_NAME;
-                editorId = MMINT.ROOT_EDITOR_ID;
+                newEditorTypeName = MMINTConstants.ROOT_EDITOR_NAME;
+                editorId = MMINTConstants.ROOT_EDITOR_ID;
                 wizardId = null;
                 wizardDialogClassName = null;
             }
@@ -677,6 +692,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
     /**
      * @generated NOT
      */
+    @Override
     public Model createSubtype(String newModelTypeName, boolean isMetamodelExtension) throws MMINTException {
 
         MMINTException.mustBeType(this);
@@ -690,16 +706,17 @@ public class ModelImpl extends GenericElementImpl implements Model {
     /**
      * @generated NOT
      */
+    @Override
     public void deleteType() throws MMINTException {
 
         MMINTException.mustBeType(this);
 
         MID typeMID = this.getMIDContainer();
         // delete the "thing"
-        for (ModelElement modelElemType : getModelElems()) {
+        for (ModelElement modelElemType : this.getModelElems()) {
             super.delete(modelElemType.getUri(), typeMID);
         }
-        List<Editor> delEditorTypes = new ArrayList<Editor>(getEditors());
+        List<Editor> delEditorTypes = new ArrayList<>(this.getEditors());
         for (Editor delEditorType : delEditorTypes) {
             delEditorType.deleteType();
         }
@@ -713,12 +730,12 @@ public class ModelImpl extends GenericElementImpl implements Model {
         List<Operator> delOperatorTypes = new ArrayList<>();
         for (Operator operatorType : typeMID.getOperators()) {
             for (ModelEndpoint inputModelTypeEndpoint : operatorType.getInputs()) {
-                if (inputModelTypeEndpoint.getTargetUri().equals(getUri()) && !delOperatorTypes.contains(operatorType)) {
+                if (inputModelTypeEndpoint.getTargetUri().equals(this.getUri()) && !delOperatorTypes.contains(operatorType)) {
                     delOperatorTypes.add(operatorType);
                 }
             }
             for (ModelEndpoint outputModelTypeEndpoint : operatorType.getOutputs()) {
-                if (outputModelTypeEndpoint.getTargetUri().equals(getUri()) && !delOperatorTypes.contains(operatorType)) {
+                if (outputModelTypeEndpoint.getTargetUri().equals(this.getUri()) && !delOperatorTypes.contains(operatorType)) {
                     delOperatorTypes.add(operatorType);
                 }
             }
@@ -731,7 +748,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
         List<ModelEndpoint> delModelTypeEndpoints = new ArrayList<>();
         for (ModelRel modelRelType : typeMID.getModelRels()) {
             for (ModelEndpoint modelTypeEndpoint : modelRelType.getModelEndpoints()) {
-                if (modelTypeEndpoint.getTargetUri().equals(getUri())) {
+                if (modelTypeEndpoint.getTargetUri().equals(this.getUri())) {
                     if (modelRelType instanceof BinaryModelRel) {
                         if (!delModelRelTypes.contains(modelRelType)) {
                             delModelRelTypes.add(modelRelType);
@@ -758,13 +775,14 @@ public class ModelImpl extends GenericElementImpl implements Model {
     /**
      * @generated NOT
      */
+    @Override
     public EPackage getEMFTypeRoot() throws MMINTException {
 
         MMINTException.mustBeType(this);
 
         EPackage rootModelTypeObj;
-        if (!isDynamic()) { // get package from registry
-            rootModelTypeObj = EPackage.Registry.INSTANCE.getEPackage(getUri());
+        if (!this.isDynamic()) { // get package from registry
+            rootModelTypeObj = EPackage.Registry.INSTANCE.getEPackage(this.getUri());
         }
         else {
             String metamodelUri = MIDTypeRegistry.getExtendedMetamodelPath(this);
@@ -773,11 +791,11 @@ public class ModelImpl extends GenericElementImpl implements Model {
                     rootModelTypeObj = (EPackage) FileUtils.readModelFile(metamodelUri, false);
                 }
                 catch (Exception e) {
-                    throw new MMINTException("Error accessing the metamodel file for model type" + getUri(), e);
+                    throw new MMINTException("Error accessing the metamodel file for model type" + this.getUri(), e);
                 }
             }
             else { // climb up light types
-                rootModelTypeObj = getSupertype().getEMFTypeRoot();
+                rootModelTypeObj = this.getSupertype().getEMFTypeRoot();
             }
         }
 
@@ -787,6 +805,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
     /**
      * @generated NOT
      */
+    @Override
     public void openType() throws Exception {
 
         MMINTException.mustBeType(this);
@@ -808,7 +827,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
             }
             else { // get metamodel files from bundle
                 Bundle bundle = MIDTypeRegistry.getTypeBundle(modelType.getUri());
-                Enumeration<URL> metamodels = bundle.findEntries("/", "*" + MMINT.MODEL_FILEEXTENSION_SEPARATOR + EcorePackage.eNAME, true);
+                Enumeration<URL> metamodels = bundle.findEntries("/", "*" + MMINTConstants.MODEL_FILEEXTENSION_SEPARATOR + EcorePackage.eNAME, true);
                 List<String> tempMetamodelPaths = new ArrayList<>();
                 String tempMetamodelPath = null;
                 while (metamodels.hasMoreElements()) {
@@ -845,7 +864,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
     /**
      * Adds an instance of this model type to an Instance or Workflow MID, or simply adds additional info to the model
      * instance.
-     * 
+     *
      * @param newModel
      *            The new model to be added.
      * @param newModelId
@@ -881,9 +900,13 @@ public class ModelImpl extends GenericElementImpl implements Model {
     /**
      * @generated NOT
      */
+    @Override
     public Model createInstance(EObject rootModelObj, String newModelPath, MID instanceMID) throws MMINTException, IOException {
 
         MMINTException.mustBeType(this);
+        if (this.isAbstract()) {
+            throw new MMINTException("Can't instanciate an abstract model type");
+        }
 
         Model newModel = super.createThisEClass();
         this.addInstance(
@@ -894,7 +917,9 @@ public class ModelImpl extends GenericElementImpl implements Model {
             FileUtils.getFileExtensionFromPath(newModelPath),
             MIDLevel.INSTANCES,
             instanceMID);
-        //TODO MMINT[OPERATOR] Separate using instanceMID = null from not creating the model file, with a setting flag enabled by operators that need it?
+        /*TODO MMINT[OPERATOR] Separate using instanceMID = null from creating the model file,
+         *                     using a flag set by invokers of startInstance
+         */
         if (rootModelObj != null) {
             if (instanceMID == null) {
                 /* TODO MMINT[OPERATOR] Could we put it in memory when serialized too as optimization, or will it consume too much memory?
@@ -915,40 +940,48 @@ public class ModelImpl extends GenericElementImpl implements Model {
     /**
      * @generated NOT
      */
-    public Editor createInstanceEditor() throws MMINTException {
+    @Override
+    public Editor createInstanceEditor(boolean createEditorFile) throws MMINTException {
 
         MMINTException.mustBeInstance(this);
 
         MID instanceMID = this.getMIDContainer();
         Editor newEditor = null;
-        //TODO MMINT[EDITOR] prioritize editors list instead of running twice?
-        // all diagrams are tried..
-        for (Editor diagramType : this.getMetatype().getEditors()) {
-            if (!(diagramType instanceof Diagram)) {
-                continue;
+        MMINTException lastException = null;
+        List<Editor> sortedEditors = new ArrayList<>(this.getMetatype().getEditors());
+        sortedEditors.sort(new Comparator<Editor>() {
+            @Override
+            public int compare(Editor e1, Editor e2) {
+                // diagrams before editors, alphabetical within same type
+                boolean d1 = e1 instanceof Diagram;
+                boolean d2 = e2 instanceof Diagram;
+                if (d1 == d2) {
+                    return e1.getId().compareTo(e2.getId());
+                }
+                if (d1) {
+                    return -1;
+                }
+                return 1;
             }
+        });
+        for (Editor editorType : sortedEditors) {
             try {
-                newEditor = diagramType.createInstance(getUri(), instanceMID);
+                newEditor = editorType.createInstance(this.getUri(), createEditorFile, instanceMID);
                 break;
+            }
+            catch (MIDDialogCancellation e) {
+                // bubble up to signal user cancellation
+                throw e;
             }
             catch (MMINTException e) {
+                lastException = e;
                 continue;
             }
         }
-        // ..or first editor is used
         if (newEditor == null) {
-            for (Editor editorType : this.getMetatype().getEditors()) {
-                if (editorType instanceof Diagram) {
-                    continue;
-                }
-                newEditor = editorType.createInstance(getUri(), instanceMID);
-                break;
-            }
+            throw new MMINTException("No editor type found", lastException);
         }
-        if (newEditor == null) {
-            throw new MMINTException("No editor type found");
-        }
-        getEditors().add(newEditor);
+        this.getEditors().add(newEditor);
 
         return newEditor;
     }
@@ -956,11 +989,13 @@ public class ModelImpl extends GenericElementImpl implements Model {
     /**
      * @generated NOT
      */
+    @Override
     public Model createInstanceAndEditor(EObject rootModelObj, String newModelPath, MID instanceMID) throws MMINTException, IOException {
 
         Model newModel = this.createInstance(rootModelObj, newModelPath, instanceMID);
         if (instanceMID != null) {
-            newModel.createInstanceEditor();
+            //TODO MMINT[EDITOR] Add an optional way to select an explicit editor, to avoid creating unwanted diagrams
+            newModel.createInstanceEditor(true);
         }
 
         return newModel;
@@ -969,6 +1004,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
     /**
      * @generated NOT
      */
+    @Override
     public Model importInstance(String modelPath, MID instanceMID) throws MMINTException {
 
         MMINTException.mustBeType(this);
@@ -992,11 +1028,12 @@ public class ModelImpl extends GenericElementImpl implements Model {
     /**
      * @generated NOT
      */
+    @Override
     public Model importInstanceAndEditor(String modelPath, MID instanceMID) throws MMINTException {
 
         Model newModel = this.importInstance(modelPath, instanceMID);
         if (instanceMID != null) {
-            newModel.createInstanceEditor();
+            newModel.createInstanceEditor(false);
         }
 
         return newModel;
@@ -1005,6 +1042,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
     /**
      * @generated NOT
      */
+    @Override
     public Model copyInstance(Model origModel, String newModelName, MID instanceMID) throws MMINTException, IOException {
 
         MMINTException.mustBeType(this);
@@ -1017,9 +1055,11 @@ public class ModelImpl extends GenericElementImpl implements Model {
     /**
      * @generated NOT
      */
+    @Override
     public Model copyInstanceAndEditor(Model origModel, String newModelName, boolean copyDiagram, MID instanceMID) throws MMINTException, IOException {
 
-        Model newModel = copyInstance(origModel, newModelName, instanceMID);
+        //TODO MMINT[SIRIUS] Make this work when copying a sirius representation
+        Model newModel = this.copyInstance(origModel, newModelName, instanceMID);
         // copy diagrams
         if (copyDiagram && instanceMID != null) {
             for (Editor oldEditor : origModel.getEditors()) {
@@ -1030,8 +1070,8 @@ public class ModelImpl extends GenericElementImpl implements Model {
                     FileUtils.copyTextFileAndReplaceText(
                         oldEditor.getUri(),
                         FileUtils.replaceFileNameInPath(oldEditor.getUri(), newModelName),
-                        origModel.getName() + MMINT.MODEL_FILEEXTENSION_SEPARATOR,
-                        newModelName + MMINT.MODEL_FILEEXTENSION_SEPARATOR,
+                        origModel.getName() + MMINTConstants.MODEL_FILEEXTENSION_SEPARATOR,
+                        newModelName + MMINTConstants.MODEL_FILEEXTENSION_SEPARATOR,
                         true);
                 } catch (Exception e) {
                     MMINTException.print(IStatus.WARNING, "Error copying diagram file, skipping it", e);
@@ -1040,7 +1080,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
                 //TODO MMINT[UML] add support for notation extra file (e.g. in UML)
             }
         }
-        newModel.createInstanceEditor();
+        newModel.createInstanceEditor(false);
 
         return newModel;
     }
@@ -1072,10 +1112,10 @@ public class ModelImpl extends GenericElementImpl implements Model {
 
     /**
      * Deletes this model instance from an Instance or Workflow MID.
-     * 
+     *
      * @param instanceMID
      *            The Instance or Workflow MID that contains the operator.
-     * 
+     *
      * @generated NOT
      */
     protected void deleteInstance(MID instanceMID) {
@@ -1086,6 +1126,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
     /**
      * @generated NOT
      */
+    @Override
     public void deleteInstance() throws MMINTException {
 
         MMINTException.mustBeInstance(this);
@@ -1120,6 +1161,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
     /**
      * @generated NOT
      */
+    @Override
     public void deleteInstanceAndFile() throws MMINTException {
 
         MMINTException.mustBeInstance(this);
@@ -1134,7 +1176,12 @@ public class ModelImpl extends GenericElementImpl implements Model {
         }
          */
         for (Editor editor : this.getEditors()) {
-            FileUtils.deleteFile(editor.getUri(), true);
+            if (editor.getFileExtensions().get(0).equals(SiriusUtil.SESSION_RESOURCE_EXTENSION)) { // Sirius
+                SiriusUtils.deleteRepresentation((Diagram) editor);
+            }
+            else {
+                FileUtils.deleteFile(editor.getUri(), true);
+            }
         }
         FileUtils.deleteFile(this.getUri(), true);
         this.deleteInstance();
@@ -1143,6 +1190,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
     /**
      * @generated NOT
      */
+    @Override
     public EObject getEMFInstanceRoot() throws MMINTException {
 
         MMINTException.mustBeInstance(this);
@@ -1156,13 +1204,14 @@ public class ModelImpl extends GenericElementImpl implements Model {
             return rootModelObj;
         }
         catch (Exception e) {
-            throw new MMINTException("Error accessing the model file for model " + getUri(), e);
+            throw new MMINTException("Error accessing the model file for model " + this.getUri(), e);
         }
     }
 
     /**
      * @generated NOT
      */
+    @Override
     public void openInstance() throws Exception {
 
         MMINTException.mustBeInstance(this);
@@ -1174,6 +1223,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
     /**
      * @generated NOT
      */
+    @Override
     public Model createWorkflowInstance(String newModelId, MID workflowMID) throws MMINTException {
 
         MMINTException.mustBeType(this);
@@ -1194,6 +1244,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
     /**
      * @generated NOT
      */
+    @Override
     public void deleteWorkflowInstance() throws MMINTException {
 
         MMINTException.mustBeWorkflow(this);

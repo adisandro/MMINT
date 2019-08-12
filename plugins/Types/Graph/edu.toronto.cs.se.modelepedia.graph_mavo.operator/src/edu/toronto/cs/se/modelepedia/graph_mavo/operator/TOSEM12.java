@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2019 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -89,9 +89,9 @@ public class TOSEM12 extends RandomOperatorImpl {
 		super.readInputProperties(inputProperties);
 		numConcretizations = MIDOperatorIOUtils.getOptionalIntProperty(inputProperties, PROPERTY_IN_NUMCONCRETIZATIONS, 1);
 		propertyId = MIDOperatorIOUtils.getOptionalIntProperty(inputProperties, PROPERTY_IN_PROPERTYID, 0);
-		timeClassicalEnabled = MIDOperatorIOUtils.getOptionalBoolProperty(inputProperties, PROPERTY_OUT_TIMECLASSICAL+MIDOperatorIOUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX, false);
-		timeMAVOBackboneEnabled = MIDOperatorIOUtils.getOptionalBoolProperty(inputProperties, PROPERTY_OUT_TIMEMAVOBACKBONE+MIDOperatorIOUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX, false);
-		timeMAVOAllsatEnabled = MIDOperatorIOUtils.getOptionalBoolProperty(inputProperties, PROPERTY_OUT_TIMEMAVOALLSAT+MIDOperatorIOUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX, false);
+		timeClassicalEnabled = MIDOperatorIOUtils.getOptionalBoolProperty(inputProperties, PROPERTY_OUT_TIMECLASSICAL+MIDOperatorIOUtils.PROP_OUTENABLED_SUFFIX, false);
+		timeMAVOBackboneEnabled = MIDOperatorIOUtils.getOptionalBoolProperty(inputProperties, PROPERTY_OUT_TIMEMAVOBACKBONE+MIDOperatorIOUtils.PROP_OUTENABLED_SUFFIX, false);
+		timeMAVOAllsatEnabled = MIDOperatorIOUtils.getOptionalBoolProperty(inputProperties, PROPERTY_OUT_TIMEMAVOALLSAT+MIDOperatorIOUtils.PROP_OUTENABLED_SUFFIX, false);
 	}
 
 	private MAVORoot init(Model mayModel) throws Exception {
@@ -109,7 +109,8 @@ public class TOSEM12 extends RandomOperatorImpl {
 		z3ModelParser = z3Reasoner.generateSMTLIBEncoding(mayModel);
 		smtEncoding = z3ModelParser.getSMTLIBEncoding();
 		MAVORoot rootMayModelObj = (MAVORoot) mayModel.getEMFInstanceRoot();
-		Operator previousOperator = getPreviousOperator(); // GenerateRandomGraphMAVO
+//		Operator previousOperator = getPreviousOperator(); // GenerateRandomGraphMAVO
+		Operator previousOperator = null;
 		if (previousOperator != null) {
 			mayModelObjs = ((GenerateRandomGraphMAVO) previousOperator).getMAVOModelObjects();
 			generateSMTLIBGroundedProperty((Graph) rootMayModelObj);
@@ -433,7 +434,7 @@ public class TOSEM12 extends RandomOperatorImpl {
 			if (timeMAVOBackboneEnabled) {
 				doMAVOBackbone();
 			}
-			if (timeMAVOAllsatEnabled && getPreviousOperator() != null) {
+			if (timeMAVOAllsatEnabled) {
 				doMAVOAllsat(rootMayModelObj);
 			}
 			if (timeMAVOBackboneEnabled && timeMAVOAllsatEnabled) {
@@ -448,7 +449,7 @@ public class TOSEM12 extends RandomOperatorImpl {
 			outputProperties,
 			this,
 			mayModel,
-			getInputSubdir(),
+			getWorkingPath(),
 			MIDOperatorIOUtils.OUTPUT_PROPERTIES_SUFFIX
 		);
 

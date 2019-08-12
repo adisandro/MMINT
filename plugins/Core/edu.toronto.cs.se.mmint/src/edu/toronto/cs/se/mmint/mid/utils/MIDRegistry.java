@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2019 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -204,6 +204,16 @@ public class MIDRegistry {
 		return false;
 	}
 
+	public static @NonNull String getModelUri(@NonNull String modelObjUri) {
+
+	    int sep = modelObjUri.lastIndexOf(MMINT.MODEL_URI_SEPARATOR);
+	    if (sep == -1) {
+	        return modelObjUri;
+	    }
+
+        return modelObjUri.substring(0, sep);
+	}
+
 	public static @NonNull String getModelUri(@NonNull EObject modelObj) {
 
 		String modelUri;
@@ -218,7 +228,7 @@ public class MIDRegistry {
 			if (emfUri.startsWith(RESOURCE_URI_PREFIX)) {
 				emfUri = emfUri.substring(RESOURCE_URI_PREFIX.length());
 			}
-			modelUri = emfUri.substring(0, emfUri.indexOf(MMINT.ECORE_MODEL_URI_SEPARATOR));
+			modelUri = MIDRegistry.getModelUri(emfUri);
 		}
 
 		return modelUri;

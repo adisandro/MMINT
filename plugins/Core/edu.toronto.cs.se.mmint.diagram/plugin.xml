@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <!--
-Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+Copyright (c) 2012-2019 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
 Rick Salay.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
@@ -807,15 +807,15 @@ Contributors:
             </command>
             <command
                   commandId="edu.toronto.cs.se.mmint.mid.diagram.menu.OpenModelEditorsEnabled"
-                  label="Open editors for new Models"
+                  label="Open editors when Operators create Models"
                   style="toggle"
-                  tooltip="Enables editors to be automatically opened when new models are created">
+                  tooltip="Enables editors to be automatically opened when new models are created by operators">
             </command>
             <command
                   commandId="edu.toronto.cs.se.mmint.mid.diagram.menu.DeleteModelFileEnabled"
                   label="Delete Models from file system"
                   style="toggle"
-                  tooltip="Enables deletion of models from the file system when they are deleted from an Instance MID">
+                  tooltip="Enables automatic deletion of models from the file system when they are deleted from an Instance MID">
             </command>
             <separator
                   name="edu.toronto.cs.se.mmint.mid.diagram.menu.separator1"

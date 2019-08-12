@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2019 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -44,203 +44,207 @@ import edu.toronto.cs.se.mmint.mid.utils.MIDTypeFactory;
  */
 public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements ModelEndpoint {
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     protected ModelEndpointImpl() {
-        super();
-    }
+    super();
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     protected EClass eStaticClass() {
-        return MIDPackage.Literals.MODEL_ENDPOINT;
-    }
+    return MIDPackage.Literals.MODEL_ENDPOINT;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public ModelEndpoint getSupertype() {
-        ExtendibleElementEndpoint supertype = super.getSupertype();
-        return (supertype == null) ? null : (ModelEndpoint) supertype;
-    }
+    ExtendibleElementEndpoint supertype = super.getSupertype();
+    return (supertype == null) ? null : (ModelEndpoint) supertype;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public MID getMIDContainer() {
-        return (MID) this.eContainer().eContainer();
-    }
+    return (MID) this.eContainer().eContainer();
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public Model getTarget() {
-        ExtendibleElement target = super.getTarget();
-        return (target == null) ? null : (Model) target;
-    }
+    ExtendibleElement target = super.getTarget();
+    return (target == null) ? null : (Model) target;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public ModelEndpoint getMetatype() {
-        ExtendibleElementEndpoint metatype = super.getMetatype();
-        return (metatype == null) ? null : (ModelEndpoint) metatype;
-    }
+    ExtendibleElementEndpoint metatype = super.getMetatype();
+    return (metatype == null) ? null : (ModelEndpoint) metatype;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
-        if (baseClass == ExtendibleElement.class) {
-            switch (baseOperationID) {
-                case MIDPackage.EXTENDIBLE_ELEMENT___GET_METATYPE: return MIDPackage.MODEL_ENDPOINT___GET_METATYPE;
-                case MIDPackage.EXTENDIBLE_ELEMENT___GET_MID_CONTAINER: return MIDPackage.MODEL_ENDPOINT___GET_MID_CONTAINER;
-                default: return super.eDerivedOperationID(baseOperationID, baseClass);
-            }
-        }
-        if (baseClass == ExtendibleElementEndpoint.class) {
-            switch (baseOperationID) {
-                case MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___GET_METATYPE: return MIDPackage.MODEL_ENDPOINT___GET_METATYPE;
-                case MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___GET_SUPERTYPE: return MIDPackage.MODEL_ENDPOINT___GET_SUPERTYPE;
-                default: return super.eDerivedOperationID(baseOperationID, baseClass);
-            }
-        }
-        return super.eDerivedOperationID(baseOperationID, baseClass);
+    if (baseClass == ExtendibleElement.class) {
+      switch (baseOperationID) {
+        case MIDPackage.EXTENDIBLE_ELEMENT___GET_METATYPE: return MIDPackage.MODEL_ENDPOINT___GET_METATYPE;
+        case MIDPackage.EXTENDIBLE_ELEMENT___GET_MID_CONTAINER: return MIDPackage.MODEL_ENDPOINT___GET_MID_CONTAINER;
+        default: return super.eDerivedOperationID(baseOperationID, baseClass);
+      }
     }
+    if (baseClass == ExtendibleElementEndpoint.class) {
+      switch (baseOperationID) {
+        case MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___GET_METATYPE: return MIDPackage.MODEL_ENDPOINT___GET_METATYPE;
+        case MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___GET_SUPERTYPE: return MIDPackage.MODEL_ENDPOINT___GET_SUPERTYPE;
+        default: return super.eDerivedOperationID(baseOperationID, baseClass);
+      }
+    }
+    return super.eDerivedOperationID(baseOperationID, baseClass);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-        switch (operationID) {
-            case MIDPackage.MODEL_ENDPOINT___GET_METATYPE:
-                return getMetatype();
-            case MIDPackage.MODEL_ENDPOINT___GET_SUPERTYPE:
-                return getSupertype();
-            case MIDPackage.MODEL_ENDPOINT___GET_MID_CONTAINER:
-                return getMIDContainer();
-            case MIDPackage.MODEL_ENDPOINT___GET_TARGET:
-                return getTarget();
-            case MIDPackage.MODEL_ENDPOINT___CREATE_TYPE_REFERENCE__BOOLEAN_MODELREL:
-                try {
-                    return createTypeReference((Boolean)arguments.get(0), (ModelRel)arguments.get(1));
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case MIDPackage.MODEL_ENDPOINT___CREATE_SUBTYPE__STRING_MODEL_BOOLEAN_MODELREL:
-                try {
-                    return createSubtype((String)arguments.get(0), (Model)arguments.get(1), (Boolean)arguments.get(2), (ModelRel)arguments.get(3));
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case MIDPackage.MODEL_ENDPOINT___REPLACE_SUBTYPE__MODELENDPOINT_STRING_MODEL:
-                try {
-                    replaceSubtype((ModelEndpoint)arguments.get(0), (String)arguments.get(1), (Model)arguments.get(2));
-                    return null;
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case MIDPackage.MODEL_ENDPOINT___DELETE_TYPE__BOOLEAN:
-                try {
-                    deleteType((Boolean)arguments.get(0));
-                    return null;
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case MIDPackage.MODEL_ENDPOINT___CREATE_INSTANCE_REFERENCE__MODELREL:
-                try {
-                    return createInstanceReference((ModelRel)arguments.get(0));
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case MIDPackage.MODEL_ENDPOINT___CREATE_INSTANCE__MODEL_MODELREL:
-                try {
-                    return createInstance((Model)arguments.get(0), (ModelRel)arguments.get(1));
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case MIDPackage.MODEL_ENDPOINT___CREATE_INSTANCE__MODEL_OPERATOR_STRING:
-                try {
-                    return createInstance((Model)arguments.get(0), (Operator)arguments.get(1), (String)arguments.get(2));
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case MIDPackage.MODEL_ENDPOINT___REPLACE_INSTANCE__MODELENDPOINT_MODEL:
-                try {
-                    replaceInstance((ModelEndpoint)arguments.get(0), (Model)arguments.get(1));
-                    return null;
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case MIDPackage.MODEL_ENDPOINT___DELETE_INSTANCE__BOOLEAN:
-                try {
-                    deleteInstance((Boolean)arguments.get(0));
-                    return null;
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case MIDPackage.MODEL_ENDPOINT___CREATE_WORKFLOW_INSTANCE__MODEL_MODELREL:
-                try {
-                    return createWorkflowInstance((Model)arguments.get(0), (ModelRel)arguments.get(1));
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case MIDPackage.MODEL_ENDPOINT___CREATE_WORKFLOW_INSTANCE__MODEL_OPERATOR_STRING:
-                try {
-                    return createWorkflowInstance((Model)arguments.get(0), (Operator)arguments.get(1), (String)arguments.get(2));
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case MIDPackage.MODEL_ENDPOINT___REPLACE_WORKFLOW_INSTANCE__MODELENDPOINT_MODEL:
-                try {
-                    replaceWorkflowInstance((ModelEndpoint)arguments.get(0), (Model)arguments.get(1));
-                    return null;
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case MIDPackage.MODEL_ENDPOINT___DELETE_WORKFLOW_INSTANCE:
-                try {
-                    deleteWorkflowInstance();
-                    return null;
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
+    switch (operationID) {
+      case MIDPackage.MODEL_ENDPOINT___GET_METATYPE:
+        return getMetatype();
+      case MIDPackage.MODEL_ENDPOINT___GET_SUPERTYPE:
+        return getSupertype();
+      case MIDPackage.MODEL_ENDPOINT___GET_MID_CONTAINER:
+        return getMIDContainer();
+      case MIDPackage.MODEL_ENDPOINT___GET_TARGET:
+        return getTarget();
+      case MIDPackage.MODEL_ENDPOINT___CREATE_TYPE_REFERENCE__BOOLEAN_MODELREL:
+        try {
+          return createTypeReference((Boolean)arguments.get(0), (ModelRel)arguments.get(1));
         }
-        return super.eInvoke(operationID, arguments);
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case MIDPackage.MODEL_ENDPOINT___CREATE_SUBTYPE__STRING_MODEL_BOOLEAN_MODELREL:
+        try {
+          return createSubtype((String)arguments.get(0), (Model)arguments.get(1), (Boolean)arguments.get(2), (ModelRel)arguments.get(3));
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case MIDPackage.MODEL_ENDPOINT___REPLACE_SUBTYPE__MODELENDPOINT_STRING_MODEL:
+        try {
+          replaceSubtype((ModelEndpoint)arguments.get(0), (String)arguments.get(1), (Model)arguments.get(2));
+          return null;
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case MIDPackage.MODEL_ENDPOINT___DELETE_TYPE__BOOLEAN:
+        try {
+          deleteType((Boolean)arguments.get(0));
+          return null;
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case MIDPackage.MODEL_ENDPOINT___CREATE_INSTANCE_REFERENCE__MODELREL:
+        try {
+          return createInstanceReference((ModelRel)arguments.get(0));
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case MIDPackage.MODEL_ENDPOINT___CREATE_INSTANCE__MODEL_MODELREL:
+        try {
+          return createInstance((Model)arguments.get(0), (ModelRel)arguments.get(1));
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case MIDPackage.MODEL_ENDPOINT___CREATE_INSTANCE__MODEL_OPERATOR_STRING:
+        try {
+          return createInstance((Model)arguments.get(0), (Operator)arguments.get(1), (String)arguments.get(2));
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case MIDPackage.MODEL_ENDPOINT___REPLACE_INSTANCE__MODELENDPOINT_MODEL:
+        try {
+          replaceInstance((ModelEndpoint)arguments.get(0), (Model)arguments.get(1));
+          return null;
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case MIDPackage.MODEL_ENDPOINT___DELETE_INSTANCE__BOOLEAN:
+        try {
+          deleteInstance((Boolean)arguments.get(0));
+          return null;
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case MIDPackage.MODEL_ENDPOINT___CREATE_WORKFLOW_INSTANCE__MODEL_MODELREL:
+        try {
+          return createWorkflowInstance((Model)arguments.get(0), (ModelRel)arguments.get(1));
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case MIDPackage.MODEL_ENDPOINT___CREATE_WORKFLOW_INSTANCE__MODEL_OPERATOR_STRING:
+        try {
+          return createWorkflowInstance((Model)arguments.get(0), (Operator)arguments.get(1), (String)arguments.get(2));
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case MIDPackage.MODEL_ENDPOINT___REPLACE_WORKFLOW_INSTANCE__MODELENDPOINT_MODEL:
+        try {
+          replaceWorkflowInstance((ModelEndpoint)arguments.get(0), (Model)arguments.get(1));
+          return null;
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case MIDPackage.MODEL_ENDPOINT___DELETE_WORKFLOW_INSTANCE:
+        try {
+          deleteWorkflowInstance();
+          return null;
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
     }
+    return super.eInvoke(operationID, arguments);
+  }
 
     /**
      * Adds a reference to this model type endpoint to the Type MID.
