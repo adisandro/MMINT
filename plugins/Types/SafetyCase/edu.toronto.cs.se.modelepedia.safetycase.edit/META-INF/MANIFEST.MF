@@ -8,7 +8,7 @@ Bundle-ClassPath: .
 Bundle-Activator: edu.toronto.cs.se.modelepedia.safetycase.provider.SafetyCaseEditPlugin$Implementation
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-12
+Bundle-RequiredExecutionEnvironment: JavaSE-13
 Export-Package: edu.toronto.cs.se.modelepedia.safetycase.provider
 Require-Bundle: org.eclipse.core.runtime,
  edu.toronto.cs.se.modelepedia.safetycase,

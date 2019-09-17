@@ -7,7 +7,7 @@ Bundle-Version: 2.3.0
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-12
+Bundle-RequiredExecutionEnvironment: JavaSE-13
 Export-Package: edu.toronto.cs.se.mmint,
  edu.toronto.cs.se.mmint.extensions,
  edu.toronto.cs.se.mmint.mid,

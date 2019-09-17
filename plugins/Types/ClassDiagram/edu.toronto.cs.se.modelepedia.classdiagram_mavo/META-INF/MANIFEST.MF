@@ -6,7 +6,7 @@ Bundle-Version: 2.3.0
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-12
+Bundle-RequiredExecutionEnvironment: JavaSE-13
 Export-Package: edu.toronto.cs.se.modelepedia.classdiagram_mavo,
  edu.toronto.cs.se.modelepedia.classdiagram_mavo.impl,
  edu.toronto.cs.se.modelepedia.classdiagram_mavo.util

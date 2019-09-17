@@ -6,7 +6,7 @@ Bundle-Version: 2.3.0
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-12
+Bundle-RequiredExecutionEnvironment: JavaSE-13
 Export-Package: edu.toronto.cs.se.modelepedia.primitive.boolean_,
  edu.toronto.cs.se.modelepedia.primitive.boolean_.impl,
  edu.toronto.cs.se.modelepedia.primitive.boolean_.util,
