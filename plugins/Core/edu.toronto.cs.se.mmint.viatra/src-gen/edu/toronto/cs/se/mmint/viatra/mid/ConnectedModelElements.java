@@ -86,9 +86,20 @@ public final class ConnectedModelElements extends BaseGeneratedEMFQuerySpecifica
     
     @Override
     public Object get(final String parameterName) {
-      if ("modelElemSrc".equals(parameterName)) return this.fModelElemSrc;
-      if ("modelElemTgt".equals(parameterName)) return this.fModelElemTgt;
-      return null;
+      switch(parameterName) {
+          case "modelElemSrc": return this.fModelElemSrc;
+          case "modelElemTgt": return this.fModelElemTgt;
+          default: return null;
+      }
+    }
+    
+    @Override
+    public Object get(final int index) {
+      switch(index) {
+          case 0: return this.fModelElemSrc;
+          case 1: return this.fModelElemTgt;
+          default: return null;
+      }
     }
     
     public ModelElement getModelElemSrc() {
@@ -623,9 +634,9 @@ public final class ConnectedModelElements extends BaseGeneratedEMFQuerySpecifica
   }
   
   /**
-   * Inner class allowing the singleton instance of {@link JvmGenericType: edu.toronto.cs.se.mmint.viatra.mid.ConnectedModelElements (visibility: PUBLIC, simpleName: ConnectedModelElements, identifier: edu.toronto.cs.se.mmint.viatra.mid.ConnectedModelElements, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: edu.toronto.cs.se.mmint.viatra.mid) (interface: false, strictFloatingPoint: false, anonymous: false)} to be created 
+   * Inner class allowing the singleton instance of {@link ConnectedModelElements} to be created 
    *     <b>not</b> at the class load time of the outer class, 
-   *     but rather at the first call to {@link JvmGenericType: edu.toronto.cs.se.mmint.viatra.mid.ConnectedModelElements (visibility: PUBLIC, simpleName: ConnectedModelElements, identifier: edu.toronto.cs.se.mmint.viatra.mid.ConnectedModelElements, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: edu.toronto.cs.se.mmint.viatra.mid) (interface: false, strictFloatingPoint: false, anonymous: false)#instance()}.
+   *     but rather at the first call to {@link ConnectedModelElements#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 

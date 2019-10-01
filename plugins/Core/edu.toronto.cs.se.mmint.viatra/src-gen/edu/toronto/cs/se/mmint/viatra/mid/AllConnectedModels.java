@@ -82,9 +82,20 @@ public final class AllConnectedModels extends BaseGeneratedEMFQuerySpecification
     
     @Override
     public Object get(final String parameterName) {
-      if ("modelSrc".equals(parameterName)) return this.fModelSrc;
-      if ("modelTgt".equals(parameterName)) return this.fModelTgt;
-      return null;
+      switch(parameterName) {
+          case "modelSrc": return this.fModelSrc;
+          case "modelTgt": return this.fModelTgt;
+          default: return null;
+      }
+    }
+    
+    @Override
+    public Object get(final int index) {
+      switch(index) {
+          case 0: return this.fModelSrc;
+          case 1: return this.fModelTgt;
+          default: return null;
+      }
     }
     
     public Model getModelSrc() {
@@ -615,9 +626,9 @@ public final class AllConnectedModels extends BaseGeneratedEMFQuerySpecification
   }
   
   /**
-   * Inner class allowing the singleton instance of {@link JvmGenericType: edu.toronto.cs.se.mmint.viatra.mid.AllConnectedModels (visibility: PUBLIC, simpleName: AllConnectedModels, identifier: edu.toronto.cs.se.mmint.viatra.mid.AllConnectedModels, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: edu.toronto.cs.se.mmint.viatra.mid) (interface: false, strictFloatingPoint: false, anonymous: false)} to be created 
+   * Inner class allowing the singleton instance of {@link AllConnectedModels} to be created 
    *     <b>not</b> at the class load time of the outer class, 
-   *     but rather at the first call to {@link JvmGenericType: edu.toronto.cs.se.mmint.viatra.mid.AllConnectedModels (visibility: PUBLIC, simpleName: AllConnectedModels, identifier: edu.toronto.cs.se.mmint.viatra.mid.AllConnectedModels, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: edu.toronto.cs.se.mmint.viatra.mid) (interface: false, strictFloatingPoint: false, anonymous: false)#instance()}.
+   *     but rather at the first call to {@link AllConnectedModels#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 
