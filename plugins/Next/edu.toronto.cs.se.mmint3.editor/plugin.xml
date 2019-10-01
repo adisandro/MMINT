@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated mm -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="edu.toronto.cs.se.mmint3.mm.presentation.MMModelWizardID"
+            name="%_UI_MMModelWizard_label"
+            class="edu.toronto.cs.se.mmint3.mm.presentation.MMModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/MMModelFile.gif">
+         <description>%_UI_MMModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated mm -->
+      <editor
+            id="edu.toronto.cs.se.mmint3.mm.presentation.MMEditorID"
+            name="%_UI_MMEditor_label"
+            icon="icons/full/obj16/MMModelFile.gif"
+            extensions="mm"
+            class="edu.toronto.cs.se.mmint3.mm.presentation.MMEditor"
+            contributorClass="edu.toronto.cs.se.mmint3.mm.presentation.MMActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>
