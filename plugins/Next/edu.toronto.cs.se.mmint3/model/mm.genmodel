@@ -4,7 +4,7 @@
     modelDirectory="/edu.toronto.cs.se.mmint3/src-gen" creationIcons="false"
     editDirectory="/edu.toronto.cs.se.mmint3.edit/src-gen" editorDirectory="/edu.toronto.cs.se.mmint3.editor/src-gen"
     modelPluginID="edu.toronto.cs.se.mmint3" modelName="MM" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
-    codeFormatting="true" importerID="org.eclipse.emf.importer.ecore" complianceLevel="12.0"
+    codeFormatting="true" importerID="org.eclipse.emf.importer.ecore" complianceLevel="13.0"
     copyrightFields="false" operationReflection="true" importOrganizing="true">
   <foreignModel>mm.ecore</foreignModel>
   <testsDirectory xsi:nil="true"/>
