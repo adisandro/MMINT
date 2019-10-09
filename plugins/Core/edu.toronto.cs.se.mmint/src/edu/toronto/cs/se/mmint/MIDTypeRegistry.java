@@ -517,6 +517,9 @@ public class MIDTypeRegistry {
                 throw new MMINTException("Can't find the source file for " + fileName);
             }
             filePath = FileLocator.toFileURL(bundleEntries.nextElement()).getFile();
+            if (Platform.getOS().equals(Platform.OS_WIN32)) {
+                filePath = filePath.substring(1); // remove leading slash
+            }
         }
 
         return filePath;
