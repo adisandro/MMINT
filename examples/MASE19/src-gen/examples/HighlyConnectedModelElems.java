@@ -88,9 +88,20 @@ public final class HighlyConnectedModelElems extends BaseGeneratedEMFQuerySpecif
     
     @Override
     public Object get(final String parameterName) {
-      if ("modelElem".equals(parameterName)) return this.fModelElem;
-      if ("connections".equals(parameterName)) return this.fConnections;
-      return null;
+      switch(parameterName) {
+          case "modelElem": return this.fModelElem;
+          case "connections": return this.fConnections;
+          default: return null;
+      }
+    }
+    
+    @Override
+    public Object get(final int index) {
+      switch(index) {
+          case 0: return this.fModelElem;
+          case 1: return this.fConnections;
+          default: return null;
+      }
     }
     
     public ModelElement getModelElem() {
@@ -622,9 +633,9 @@ public final class HighlyConnectedModelElems extends BaseGeneratedEMFQuerySpecif
   }
   
   /**
-   * Inner class allowing the singleton instance of {@link JvmGenericType: examples.HighlyConnectedModelElems (visibility: PUBLIC, simpleName: HighlyConnectedModelElems, identifier: examples.HighlyConnectedModelElems, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: examples) (interface: false, strictFloatingPoint: false, anonymous: false)} to be created 
+   * Inner class allowing the singleton instance of {@link HighlyConnectedModelElems} to be created 
    *     <b>not</b> at the class load time of the outer class, 
-   *     but rather at the first call to {@link JvmGenericType: examples.HighlyConnectedModelElems (visibility: PUBLIC, simpleName: HighlyConnectedModelElems, identifier: examples.HighlyConnectedModelElems, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: examples) (interface: false, strictFloatingPoint: false, anonymous: false)#instance()}.
+   *     but rather at the first call to {@link HighlyConnectedModelElems#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 

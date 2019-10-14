@@ -88,9 +88,20 @@ public final class AllConnectedModelElems extends BaseGeneratedEMFQuerySpecifica
     
     @Override
     public Object get(final String parameterName) {
-      if ("modelElemSrc".equals(parameterName)) return this.fModelElemSrc;
-      if ("modelElemTgt".equals(parameterName)) return this.fModelElemTgt;
-      return null;
+      switch(parameterName) {
+          case "modelElemSrc": return this.fModelElemSrc;
+          case "modelElemTgt": return this.fModelElemTgt;
+          default: return null;
+      }
+    }
+    
+    @Override
+    public Object get(final int index) {
+      switch(index) {
+          case 0: return this.fModelElemSrc;
+          case 1: return this.fModelElemTgt;
+          default: return null;
+      }
     }
     
     public ModelElement getModelElemSrc() {
@@ -625,9 +636,9 @@ public final class AllConnectedModelElems extends BaseGeneratedEMFQuerySpecifica
   }
   
   /**
-   * Inner class allowing the singleton instance of {@link JvmGenericType: library.AllConnectedModelElems (visibility: PUBLIC, simpleName: AllConnectedModelElems, identifier: library.AllConnectedModelElems, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: library) (interface: false, strictFloatingPoint: false, anonymous: false)} to be created 
+   * Inner class allowing the singleton instance of {@link AllConnectedModelElems} to be created 
    *     <b>not</b> at the class load time of the outer class, 
-   *     but rather at the first call to {@link JvmGenericType: library.AllConnectedModelElems (visibility: PUBLIC, simpleName: AllConnectedModelElems, identifier: library.AllConnectedModelElems, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: library) (interface: false, strictFloatingPoint: false, anonymous: false)#instance()}.
+   *     but rather at the first call to {@link AllConnectedModelElems#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 

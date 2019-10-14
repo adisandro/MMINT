@@ -94,9 +94,20 @@ public final class AsilBConnectedModelElems extends BaseGeneratedEMFQuerySpecifi
     
     @Override
     public Object get(final String parameterName) {
-      if ("goal".equals(parameterName)) return this.fGoal;
-      if ("modelElem".equals(parameterName)) return this.fModelElem;
-      return null;
+      switch(parameterName) {
+          case "goal": return this.fGoal;
+          case "modelElem": return this.fModelElem;
+          default: return null;
+      }
+    }
+    
+    @Override
+    public Object get(final int index) {
+      switch(index) {
+          case 0: return this.fGoal;
+          case 1: return this.fModelElem;
+          default: return null;
+      }
     }
     
     public Goal getGoal() {
@@ -631,9 +642,9 @@ public final class AsilBConnectedModelElems extends BaseGeneratedEMFQuerySpecifi
   }
   
   /**
-   * Inner class allowing the singleton instance of {@link JvmGenericType: examples.AsilBConnectedModelElems (visibility: PUBLIC, simpleName: AsilBConnectedModelElems, identifier: examples.AsilBConnectedModelElems, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: examples) (interface: false, strictFloatingPoint: false, anonymous: false)} to be created 
+   * Inner class allowing the singleton instance of {@link AsilBConnectedModelElems} to be created 
    *     <b>not</b> at the class load time of the outer class, 
-   *     but rather at the first call to {@link JvmGenericType: examples.AsilBConnectedModelElems (visibility: PUBLIC, simpleName: AsilBConnectedModelElems, identifier: examples.AsilBConnectedModelElems, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: examples) (interface: false, strictFloatingPoint: false, anonymous: false)#instance()}.
+   *     but rather at the first call to {@link AsilBConnectedModelElems#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 
