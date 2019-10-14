@@ -18,7 +18,6 @@ import java.util.stream.Collectors;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.viatra.query.patternlanguage.emf.specification.SpecificationBuilder;
 import org.eclipse.viatra.query.patternlanguage.emf.vql.PatternModel;
 import org.eclipse.viatra.query.runtime.api.AdvancedViatraQueryEngine;
@@ -26,7 +25,9 @@ import org.eclipse.viatra.query.runtime.api.GenericPatternMatcher;
 import org.eclipse.viatra.query.runtime.emf.EMFScope;
 
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.reasoning.IReasoningEngine;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 
 public class ViatraReasoningEngine implements IReasoningEngine {
@@ -61,8 +62,18 @@ public class ViatraReasoningEngine implements IReasoningEngine {
           }
         }
       }
+      // if context is a MID, preload all model roots into the same resource set
+      var resourceSet = context.eResource().getResourceSet();
+      if (context instanceof MID) {
+        for (var model : ((MID) context).getModels()) {
+          if (model instanceof ModelRel) {
+            continue;
+          }
+          FileUtils.readModelFile(model.getUri(), resourceSet, true);
+        }
+      }
       // find query matches within context
-      engine = AdvancedViatraQueryEngine.createUnmanagedEngine(new EMFScope(context.eResource().getResourceSet()));
+      engine = AdvancedViatraQueryEngine.createUnmanagedEngine(new EMFScope(resourceSet));
       var builder = new SpecificationBuilder();
       var spec = builder.getOrCreateSpecification(pattern);
       var matcher = (GenericPatternMatcher) engine.getMatcher(spec);

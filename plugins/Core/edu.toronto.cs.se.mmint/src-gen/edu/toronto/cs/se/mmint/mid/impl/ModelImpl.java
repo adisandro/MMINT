@@ -301,8 +301,8 @@ public class ModelImpl extends GenericElementImpl implements Model {
        */
       var rootModelObj = getEMFInstanceRootGen();
       if (rootModelObj == null) {
-        rootModelObj = FileUtils.readModelFile(this.getUri(), this.eResource().getResourceSet(), true);
-        this.emfInstanceRoot = rootModelObj;
+        rootModelObj = FileUtils.readModelFile(this.getUri(), null, true);
+        this.emfInstanceRoot = rootModelObj; // bypass EMF notifications and the need for a write transaction
       }
       return rootModelObj;
     }
@@ -993,7 +993,6 @@ public class ModelImpl extends GenericElementImpl implements Model {
             }
             /* TODO MMINT[OPERATOR] Will it consume too much memory?
              * (find the cases where it really stays in memory, which shouldn't happen when working with a MID diagram, only in a workflow)
-             * Also, should cache it when using getEMFInstanceRoot() in that case, but it's not in a write transaction.
              */
             newModel.setEMFInstanceRoot(rootModelObj);
         }
