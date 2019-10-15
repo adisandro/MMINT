@@ -74,6 +74,7 @@ sets of related models.
       <import feature="org.eclipse.jdt.java13patch"/>
       <import feature="org.eclipse.pde.java13patch"/>
       <import feature="org.eclipse.jdt"/>
+      <import feature="org.eclipse.pde"/>
    </requires>
 
    <plugin
