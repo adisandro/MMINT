@@ -8,7 +8,6 @@ Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Export-Package: edu.toronto.cs.se.mmint3.mm,
- edu.toronto.cs.se.mmint3.mm.impl,
  edu.toronto.cs.se.mmint3.mm.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,

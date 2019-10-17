@@ -4,8 +4,9 @@
     modelDirectory="/edu.toronto.cs.se.mmint3/src-gen" creationIcons="false"
     editDirectory="/edu.toronto.cs.se.mmint3.edit/src-gen" editorDirectory="/edu.toronto.cs.se.mmint3.editor/src-gen"
     modelPluginID="edu.toronto.cs.se.mmint3" modelName="MM" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
-    codeFormatting="true" importerID="org.eclipse.emf.importer.ecore" complianceLevel="13.0"
-    copyrightFields="false" operationReflection="true" importOrganizing="true">
+    suppressInterfaces="true" codeFormatting="true" commentFormatting="true" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="13.0" copyrightFields="false" operationReflection="true" importOrganizing="true"
+    cleanup="true">
   <foreignModel>mm.ecore</foreignModel>
   <testsDirectory xsi:nil="true"/>
   <genPackages prefix="MM" basePackage="edu.toronto.cs.se.mmint3" disposableProviderFactory="true"
@@ -21,7 +22,7 @@
     <genClasses ecoreClass="mm.ecore#//InstanceMegaModel"/>
     <genClasses ecoreClass="mm.ecore#//Model"/>
     <genClasses ecoreClass="mm.ecore#//ModelType">
-      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference mm.ecore#//ModelType/t"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mm.ecore#//ModelType/t"/>
       <genOperations ecoreOperation="mm.ecore#//ModelType/getPackage"/>
       <genOperations ecoreOperation="mm.ecore#//ModelType/createInstance">
         <genParameters ecoreParameter="mm.ecore#//ModelType/createInstance/root"/>
@@ -34,21 +35,47 @@
       <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference mm.ecore#//ModelInstance/i"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mm.ecore#//ModelInstance/root"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="mm.ecore#//Instance">
-      <genOperations ecoreOperation="mm.ecore#//Instance/getType"/>
-    </genClasses>
-    <genClasses image="false" ecoreClass="mm.ecore#//Type">
-      <genOperations ecoreOperation="mm.ecore#//Type/isDynamic"/>
-      <genOperations ecoreOperation="mm.ecore#//Type/isAbstract"/>
-    </genClasses>
     <genClasses ecoreClass="mm.ecore#//MMInstance">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mm.ecore#//MMInstance/typeId"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mm.ecore#//MMInstance/type"/>
     </genClasses>
     <genClasses ecoreClass="mm.ecore#//MMType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mm.ecore#//MMType/dynamic"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mm.ecore#//MMType/supertype"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mm.ecore#//MMType/subtypes"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mm.ecore#//MMType/abstract"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mm.ecore#//MMType/subtypes"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mm.ecore#//MMType/supertype"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="mm.ecore#//Instance">
+      <genOperations ecoreOperation="mm.ecore#//Instance/getTypeId"/>
+      <genOperations ecoreOperation="mm.ecore#//Instance/setTypeId">
+        <genParameters ecoreParameter="mm.ecore#//Instance/setTypeId/value"/>
+      </genOperations>
+      <genOperations ecoreOperation="mm.ecore#//Instance/getType"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="mm.ecore#//Element">
+      <genOperations ecoreOperation="mm.ecore#//Element/getId"/>
+      <genOperations ecoreOperation="mm.ecore#//Element/setId">
+        <genParameters ecoreParameter="mm.ecore#//Element/setId/value"/>
+      </genOperations>
+      <genOperations ecoreOperation="mm.ecore#//Element/getName"/>
+      <genOperations ecoreOperation="mm.ecore#//Element/setName">
+        <genParameters ecoreParameter="mm.ecore#//Element/setName/value"/>
+      </genOperations>
+    </genClasses>
+    <genClasses image="false" ecoreClass="mm.ecore#//Type">
+      <genOperations ecoreOperation="mm.ecore#//Type/isDynamic"/>
+      <genOperations ecoreOperation="mm.ecore#//Type/setDynamic">
+        <genParameters ecoreParameter="mm.ecore#//Type/setDynamic/value"/>
+      </genOperations>
+      <genOperations ecoreOperation="mm.ecore#//Type/isAbstract"/>
+      <genOperations ecoreOperation="mm.ecore#//Type/setAbstract">
+        <genParameters ecoreParameter="mm.ecore#//Type/setAbstract/value"/>
+      </genOperations>
+      <genOperations ecoreOperation="mm.ecore#//Type/getSupertype"/>
+      <genOperations ecoreOperation="mm.ecore#//Type/setSupertype">
+        <genParameters ecoreParameter="mm.ecore#//Type/setSupertype/value"/>
+      </genOperations>
+      <genOperations ecoreOperation="mm.ecore#//Type/getSubtypes"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

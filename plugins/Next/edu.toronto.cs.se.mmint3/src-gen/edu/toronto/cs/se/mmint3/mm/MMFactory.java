@@ -2,86 +2,157 @@
  */
 package edu.toronto.cs.se.mmint3.mm;
 
-import org.eclipse.emf.ecore.EFactory;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.impl.EFactoryImpl;
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 /**
- * <!-- begin-user-doc -->
- * The <b>Factory</b> for the model.
- * It provides a create method for each non-abstract class of the model.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> The <b>Factory</b> for the model. It provides a create method for each non-abstract class of
+ * the model. <!-- end-user-doc -->
+ *
  * @see edu.toronto.cs.se.mmint3.mm.MMPackage
  * @generated
  */
-public interface MMFactory extends EFactory {
+public class MMFactory extends EFactoryImpl {
   /**
-   * The singleton instance of the factory.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The singleton instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
    * @generated
    */
-  MMFactory eINSTANCE = edu.toronto.cs.se.mmint3.mm.impl.MMFactoryImpl.init();
+  public static final MMFactory eINSTANCE = init();
 
   /**
-   * Returns a new object of class '<em>Type Mega Model</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Type Mega Model</em>'.
+   * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
    * @generated
    */
-  TypeMegaModel createTypeMegaModel();
+  public static MMFactory init() {
+    try {
+      MMFactory theMMFactory = (MMFactory) EPackage.Registry.INSTANCE.getEFactory(MMPackage.eNS_URI);
+      if (theMMFactory != null) {
+        return theMMFactory;
+      }
+    }
+    catch (Exception exception) {
+      EcorePlugin.INSTANCE.log(exception);
+    }
+    return new MMFactory();
+  }
 
   /**
-   * Returns a new object of class '<em>Instance Mega Model</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Instance Mega Model</em>'.
+   * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
    * @generated
    */
-  InstanceMegaModel createInstanceMegaModel();
+  public MMFactory() {
+    super();
+  }
 
   /**
-   * Returns a new object of class '<em>Model Type</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Model Type</em>'.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
    * @generated
    */
-  ModelType createModelType();
+  @Override
+  public EObject create(EClass eClass) {
+    switch (eClass.getClassifierID()) {
+    case MMPackage.TYPE_MEGA_MODEL:
+      return createTypeMegaModel();
+    case MMPackage.INSTANCE_MEGA_MODEL:
+      return createInstanceMegaModel();
+    case MMPackage.MODEL_TYPE:
+      return createModelType();
+    case MMPackage.MODEL_INSTANCE:
+      return createModelInstance();
+    case MMPackage.MM_INSTANCE:
+      return createMMInstance();
+    case MMPackage.MM_TYPE:
+      return createMMType();
+    default:
+      throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+    }
+  }
 
   /**
-   * Returns a new object of class '<em>Model Instance</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Model Instance</em>'.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
    * @generated
    */
-  ModelInstance createModelInstance();
+  public TypeMegaModel createTypeMegaModel() {
+    TypeMegaModel typeMegaModel = new TypeMegaModel();
+    return typeMegaModel;
+  }
 
   /**
-   * Returns a new object of class '<em>Instance</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Instance</em>'.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
    * @generated
    */
-  MMInstance createMMInstance();
+  public InstanceMegaModel createInstanceMegaModel() {
+    InstanceMegaModel instanceMegaModel = new InstanceMegaModel();
+    return instanceMegaModel;
+  }
 
   /**
-   * Returns a new object of class '<em>Type</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Type</em>'.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
    * @generated
    */
-  MMType createMMType();
+  public ModelType createModelType() {
+    ModelType modelType = new ModelType();
+    return modelType;
+  }
 
   /**
-   * Returns the package supported by this factory.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the package supported by this factory.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
    * @generated
    */
-  MMPackage getMMPackage();
+  public ModelInstance createModelInstance() {
+    ModelInstance modelInstance = new ModelInstance();
+    return modelInstance;
+  }
 
-} //MMFactory
+  /**
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   */
+  public MMInstance createMMInstance() {
+    MMInstance mmInstance = new MMInstance();
+    return mmInstance;
+  }
+
+  /**
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   */
+  public MMType createMMType() {
+    MMType mmType = new MMType();
+    return mmType;
+  }
+
+  /**
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   */
+  public MMPackage getMMPackage() {
+    return (MMPackage) getEPackage();
+  }
+
+  /**
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @deprecated
+   * @generated
+   */
+  @Deprecated
+  public static MMPackage getPackage() {
+    return MMPackage.eINSTANCE;
+  }
+
+} // MMFactory
