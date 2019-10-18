@@ -4,8 +4,8 @@
     <ownedRepresentations xsi:type="description_1:DiagramDescription" name="InstanceMegaModel" domainClass="mm.InstanceMegaModel" enablePopupBars="true">
       <metamodel href="../../edu.toronto.cs.se.mmint3/model/mm.ecore#/"/>
       <defaultLayer name="Default">
-        <nodeMappings name="ModelInstance" domainClass="mm.ModelInstance">
-          <style xsi:type="style:SquareDescription" labelSize="12" labelPosition="node" resizeKind="NSEW">
+        <nodeMappings name="ModelInstance" labelDirectEdit="//@ownedViewpoints[name='InstanceMegaModelViewpoint']/@ownedRepresentations[name='InstanceMegaModel']/@defaultLayer/@toolSections.0/@ownedTools[name='ModelInstanceName']" semanticCandidatesExpression="feature:models" domainClass="mm.ModelInstance">
+          <style xsi:type="style:SquareDescription" labelSize="12" labelExpression="aql:self.getName()" labelPosition="node" resizeKind="NSEW" width="12" height="8">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='yellow']"/>
@@ -18,6 +18,17 @@
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
                 <subModelOperations xsi:type="tool_1:CreateInstance" typeName="mm.ModelInstance" referenceName="models"/>
+                <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:instance">
+                  <subModelOperations xsi:type="tool_1:CreateInstance" typeName="mm.MMInstance" referenceName="i" variableName="composition"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:DirectEditLabel" name="ModelInstanceName">
+            <mask mask="{0}"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="feature:i">
+                <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="var:0"/>
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
