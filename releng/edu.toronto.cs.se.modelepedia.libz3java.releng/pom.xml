@@ -5,15 +5,15 @@
   <version>2.3.99-SNAPSHOT</version>
   <packaging>pom</packaging>
   <properties>
-    <tycho-version>1.5.1</tycho-version>
+    <tycho-version>1.6.0-SNAPSHOT</tycho-version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
-  <!--<pluginRepositories>
+  <pluginRepositories>
     <pluginRepository>
       <id>tycho-snapshots</id>
       <url>https://repo.eclipse.org/content/repositories/tycho-snapshots/</url>
     </pluginRepository>
-  </pluginRepositories>-->
+  </pluginRepositories>
   <build>
     <plugins>
       <plugin>
@@ -57,7 +57,6 @@
               <arch>x86_64</arch>
             </environment>
           </environments>
-          <executionEnvironment>JavaSE-12</executionEnvironment>
         </configuration>
       </plugin>
     </plugins>
