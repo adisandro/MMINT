@@ -71,10 +71,6 @@ sets of related models.
       <import feature="org.eclipse.acceleo"/>
       <import feature="org.eclipse.sirius.specifier"/>
       <import feature="org.eclipse.sirius.specifier.properties.feature"/>
-      <import feature="org.eclipse.jdt.java13patch"/>
-      <import feature="org.eclipse.pde.java13patch"/>
-      <import feature="org.eclipse.jdt"/>
-      <import feature="org.eclipse.pde"/>
    </requires>
 
    <plugin

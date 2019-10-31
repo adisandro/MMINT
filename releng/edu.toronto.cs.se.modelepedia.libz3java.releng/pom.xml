@@ -57,6 +57,7 @@
               <arch>x86_64</arch>
             </environment>
           </environments>
+          <executionEnvironment>JavaSE-12</executionEnvironment>
         </configuration>
       </plugin>
     </plugins>
