@@ -42,7 +42,7 @@ public interface Instance extends Element {
    * @generated NOT
    */
   default MMType getType() {
-    MMType type = basicGetType();
+    var type = basicGetType();
     return type != null && type.eIsProxy() ? (MMType) EcoreUtil.resolve(type, this) : type;
   }
 

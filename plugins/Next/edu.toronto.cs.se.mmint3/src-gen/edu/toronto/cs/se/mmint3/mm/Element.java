@@ -20,7 +20,7 @@ public interface Element extends EObject {
   /**
    * @generated NOT
    */
-  private @Nullable EStructuralFeature getComposedIOrT() {
+  private @Nullable EStructuralFeature getComposedFeature() {
     var feature = eClass().getEStructuralFeature("i");
     if (feature == null) {
       feature = eClass().getEStructuralFeature("t");
@@ -35,7 +35,7 @@ public interface Element extends EObject {
    * @generated NOT
    */
   default <T> T getAttribute(int featureID) {
-    var feature = getComposedIOrT();
+    var feature = getComposedFeature();
     if (feature == null) {
       return null;
     }
@@ -46,7 +46,7 @@ public interface Element extends EObject {
    * @generated NOT
    */
   default void setAttribute(int featureID, Object value) {
-    var feature = getComposedIOrT();
+    var feature = getComposedFeature();
     if (feature == null) {
       return;
     }

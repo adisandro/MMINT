@@ -16,11 +16,8 @@
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
-              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
-                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="mm.ModelInstance" referenceName="models"/>
-                <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:instance">
-                  <subModelOperations xsi:type="tool_1:CreateInstance" typeName="mm.MMInstance" referenceName="i" variableName="composition"/>
-                </subModelOperations>
+              <firstModelOperations xsi:type="tool_1:ExternalJavaAction" name="ModelInstanceCreate" id="edu.toronto.cs.se.mmint3.design.actions.ModelInstanceCreate">
+                <parameters name="mm" value="var:container"/>
               </firstModelOperations>
             </initialOperation>
           </ownedTools>

@@ -7,4 +7,11 @@
 	       name="mm">
     </component>
   </extension>
+  <extension
+        point="org.eclipse.sirius.externalJavaAction">
+     <javaActions
+           actionClass="edu.toronto.cs.se.mmint3.design.actions.ModelInstanceCreate"
+           id="edu.toronto.cs.se.mmint3.design.actions.ModelInstanceCreate">
+     </javaActions>
+  </extension>
 </plugin>
