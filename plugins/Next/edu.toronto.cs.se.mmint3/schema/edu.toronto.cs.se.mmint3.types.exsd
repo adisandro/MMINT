@@ -1,0 +1,184 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="edu.toronto.cs.se.mmint3" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appInfo>
+         <meta.schema plugin="edu.toronto.cs.se.mmint3" id="edu.toronto.cs.se.mmint3.types" name="MMINT types"/>
+      </appInfo>
+      <documentation>
+         Defines types in MMINT.
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <annotation>
+         <appInfo>
+            <meta.element />
+         </appInfo>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="type"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appInfo>
+                  <meta.attribute translatable="true"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="constraint">
+      <annotation>
+         <documentation>
+            A type constraint.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="language" use="required">
+            <annotation>
+               <documentation>
+                  The constraint language (ocl | java | smt | vql).
+               </documentation>
+            </annotation>
+            <simpleType>
+               <restriction base="string">
+                  <enumeration value="ocl">
+                  </enumeration>
+                  <enumeration value="java">
+                  </enumeration>
+                  <enumeration value="smt">
+                  </enumeration>
+                  <enumeration value="vql">
+                  </enumeration>
+               </restriction>
+            </simpleType>
+         </attribute>
+         <attribute name="implementation" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The constraint implementation (an OCL statement, the fully qualified name of a JAVA class, an SMTLIB assertion, or a VQL statement).
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="type">
+      <annotation>
+         <documentation>
+            A type in MMINT.
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="superType" minOccurs="0" maxOccurs="unbounded"/>
+         </sequence>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  The unique identifier of this type.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The name of the type.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="class" type="string">
+            <annotation>
+               <documentation>
+                  The fully qualified name of a Java class that: a) implements this type; or b) extends MMHeavyTypeFactory and handles the creation of this type in a custom way.
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="abstract" type="boolean">
+            <annotation>
+               <documentation>
+                  True if the type can&apos;t be instanciated, false otherwise.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="superType">
+      <annotation>
+         <documentation>
+            The supertype of a type (although allowed here, multiple inheritance is not supported yet for user-defined types).
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="id" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The unique identifier of the supertype.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="binaryType">
+      <annotation>
+         <documentation>
+            A binary type that connects two other types.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="sourceTypeId" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The unique identifier of the source type connected by the binary type.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="targetTypeId" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The unique identifier of the target type connected by the binary type.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+
+   <annotation>
+      <appInfo>
+         <meta.section type="examples"/>
+      </appInfo>
+      <documentation>
+         https://github.com/adisandro/MMINT
+      </documentation>
+   </annotation>
+
+
+
+
+</schema>

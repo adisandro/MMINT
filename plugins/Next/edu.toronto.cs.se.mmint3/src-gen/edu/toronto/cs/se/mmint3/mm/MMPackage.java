@@ -37,7 +37,7 @@ public class MMPackage extends EPackageImpl {
    *
    * @generated
    */
-  public static final String eNS_URI = "edu.toronto.cs.se.mmint.mm";
+  public static final String eNS_URI = "edu.toronto.cs.se.mmint3.mm";
 
   /**
    * The package namespace name. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -162,7 +162,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MM_ELEMENT__ID = ELEMENT_FEATURE_COUNT + 0;
+  public static final int MM_ELEMENT__ID = MMPackage.ELEMENT_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -170,7 +170,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MM_ELEMENT__NAME = ELEMENT_FEATURE_COUNT + 1;
+  public static final int MM_ELEMENT__NAME = MMPackage.ELEMENT_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Element</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -178,7 +178,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MM_ELEMENT_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 2;
+  public static final int MM_ELEMENT_FEATURE_COUNT = MMPackage.ELEMENT_FEATURE_COUNT + 2;
 
   /**
    * The operation id for the '<em>Get Id</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -186,7 +186,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MM_ELEMENT___GET_ID = ELEMENT___GET_ID;
+  public static final int MM_ELEMENT___GET_ID = MMPackage.ELEMENT___GET_ID;
 
   /**
    * The operation id for the '<em>Set Id</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -194,7 +194,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MM_ELEMENT___SET_ID__STRING = ELEMENT___SET_ID__STRING;
+  public static final int MM_ELEMENT___SET_ID__STRING = MMPackage.ELEMENT___SET_ID__STRING;
 
   /**
    * The operation id for the '<em>Get Name</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -202,7 +202,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MM_ELEMENT___GET_NAME = ELEMENT___GET_NAME;
+  public static final int MM_ELEMENT___GET_NAME = MMPackage.ELEMENT___GET_NAME;
 
   /**
    * The operation id for the '<em>Set Name</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -210,7 +210,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MM_ELEMENT___SET_NAME__STRING = ELEMENT___SET_NAME__STRING;
+  public static final int MM_ELEMENT___SET_NAME__STRING = MMPackage.ELEMENT___SET_NAME__STRING;
 
   /**
    * The number of operations of the '<em>Element</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -218,7 +218,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MM_ELEMENT_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 0;
+  public static final int MM_ELEMENT_OPERATION_COUNT = MMPackage.ELEMENT_OPERATION_COUNT + 0;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.mmint3.mm.TypeMegaModel <em>Type Mega Model</em>}' class. <!--
@@ -237,7 +237,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int TYPE_MEGA_MODEL__MODELS = MEGA_MODEL__MODELS;
+  public static final int TYPE_MEGA_MODEL__MODELS = MMPackage.MEGA_MODEL__MODELS;
 
   /**
    * The number of structural features of the '<em>Type Mega Model</em>' class. <!-- begin-user-doc --> <!--
@@ -246,7 +246,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int TYPE_MEGA_MODEL_FEATURE_COUNT = MEGA_MODEL_FEATURE_COUNT + 0;
+  public static final int TYPE_MEGA_MODEL_FEATURE_COUNT = MMPackage.MEGA_MODEL_FEATURE_COUNT + 0;
 
   /**
    * The number of operations of the '<em>Type Mega Model</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -254,7 +254,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int TYPE_MEGA_MODEL_OPERATION_COUNT = MEGA_MODEL_OPERATION_COUNT + 0;
+  public static final int TYPE_MEGA_MODEL_OPERATION_COUNT = MMPackage.MEGA_MODEL_OPERATION_COUNT + 0;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.mmint3.mm.InstanceMegaModel <em>Instance Mega Model</em>}'
@@ -273,7 +273,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int INSTANCE_MEGA_MODEL__MODELS = MEGA_MODEL__MODELS;
+  public static final int INSTANCE_MEGA_MODEL__MODELS = MMPackage.MEGA_MODEL__MODELS;
 
   /**
    * The number of structural features of the '<em>Instance Mega Model</em>' class. <!-- begin-user-doc --> <!--
@@ -282,7 +282,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int INSTANCE_MEGA_MODEL_FEATURE_COUNT = MEGA_MODEL_FEATURE_COUNT + 0;
+  public static final int INSTANCE_MEGA_MODEL_FEATURE_COUNT = MMPackage.MEGA_MODEL_FEATURE_COUNT + 0;
 
   /**
    * The number of operations of the '<em>Instance Mega Model</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -290,7 +290,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int INSTANCE_MEGA_MODEL_OPERATION_COUNT = MEGA_MODEL_OPERATION_COUNT + 0;
+  public static final int INSTANCE_MEGA_MODEL_OPERATION_COUNT = MMPackage.MEGA_MODEL_OPERATION_COUNT + 0;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.mmint3.mm.Model <em>Model</em>}' class. <!-- begin-user-doc
@@ -334,7 +334,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MODEL_TYPE__T = MODEL_FEATURE_COUNT + 0;
+  public static final int MODEL_TYPE__T = MMPackage.MODEL_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Model Type</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -342,7 +342,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MODEL_TYPE_FEATURE_COUNT = MODEL_FEATURE_COUNT + 1;
+  public static final int MODEL_TYPE_FEATURE_COUNT = MMPackage.MODEL_FEATURE_COUNT + 1;
 
   /**
    * The operation id for the '<em>Get Id</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -350,7 +350,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MODEL_TYPE___GET_ID = MODEL_OPERATION_COUNT + 0;
+  public static final int MODEL_TYPE___GET_ID = MMPackage.MODEL_OPERATION_COUNT + 0;
 
   /**
    * The operation id for the '<em>Set Id</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -358,7 +358,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MODEL_TYPE___SET_ID__STRING = MODEL_OPERATION_COUNT + 1;
+  public static final int MODEL_TYPE___SET_ID__STRING = MMPackage.MODEL_OPERATION_COUNT + 1;
 
   /**
    * The operation id for the '<em>Get Name</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -366,7 +366,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MODEL_TYPE___GET_NAME = MODEL_OPERATION_COUNT + 2;
+  public static final int MODEL_TYPE___GET_NAME = MMPackage.MODEL_OPERATION_COUNT + 2;
 
   /**
    * The operation id for the '<em>Set Name</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -374,7 +374,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MODEL_TYPE___SET_NAME__STRING = MODEL_OPERATION_COUNT + 3;
+  public static final int MODEL_TYPE___SET_NAME__STRING = MMPackage.MODEL_OPERATION_COUNT + 3;
 
   /**
    * The operation id for the '<em>Is Dynamic</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -382,7 +382,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MODEL_TYPE___IS_DYNAMIC = MODEL_OPERATION_COUNT + 4;
+  public static final int MODEL_TYPE___IS_DYNAMIC = MMPackage.MODEL_OPERATION_COUNT + 4;
 
   /**
    * The operation id for the '<em>Set Dynamic</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -390,7 +390,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MODEL_TYPE___SET_DYNAMIC__BOOLEAN = MODEL_OPERATION_COUNT + 5;
+  public static final int MODEL_TYPE___SET_DYNAMIC__BOOLEAN = MMPackage.MODEL_OPERATION_COUNT + 5;
 
   /**
    * The operation id for the '<em>Is Abstract</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -398,7 +398,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MODEL_TYPE___IS_ABSTRACT = MODEL_OPERATION_COUNT + 6;
+  public static final int MODEL_TYPE___IS_ABSTRACT = MMPackage.MODEL_OPERATION_COUNT + 6;
 
   /**
    * The operation id for the '<em>Set Abstract</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -406,7 +406,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MODEL_TYPE___SET_ABSTRACT__BOOLEAN = MODEL_OPERATION_COUNT + 7;
+  public static final int MODEL_TYPE___SET_ABSTRACT__BOOLEAN = MMPackage.MODEL_OPERATION_COUNT + 7;
 
   /**
    * The operation id for the '<em>Get Supertype</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -414,7 +414,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MODEL_TYPE___GET_SUPERTYPE = MODEL_OPERATION_COUNT + 8;
+  public static final int MODEL_TYPE___GET_SUPERTYPE = MMPackage.MODEL_OPERATION_COUNT + 8;
 
   /**
    * The operation id for the '<em>Set Supertype</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -422,7 +422,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MODEL_TYPE___SET_SUPERTYPE__MMTYPE = MODEL_OPERATION_COUNT + 9;
+  public static final int MODEL_TYPE___SET_SUPERTYPE__MMTYPE = MMPackage.MODEL_OPERATION_COUNT + 9;
 
   /**
    * The operation id for the '<em>Get Subtypes</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -430,7 +430,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MODEL_TYPE___GET_SUBTYPES = MODEL_OPERATION_COUNT + 10;
+  public static final int MODEL_TYPE___GET_SUBTYPES = MMPackage.MODEL_OPERATION_COUNT + 10;
 
   /**
    * The operation id for the '<em>Get Package</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -438,7 +438,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MODEL_TYPE___GET_PACKAGE = MODEL_OPERATION_COUNT + 11;
+  public static final int MODEL_TYPE___GET_PACKAGE = MMPackage.MODEL_OPERATION_COUNT + 11;
 
   /**
    * The operation id for the '<em>Create Instance</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -446,7 +446,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MODEL_TYPE___CREATE_INSTANCE__EOBJECT_STRING_BOOLEAN_INSTANCEMEGAMODEL = MODEL_OPERATION_COUNT
+  public static final int MODEL_TYPE___CREATE_INSTANCE__EOBJECT_STRING_BOOLEAN_INSTANCEMEGAMODEL = MMPackage.MODEL_OPERATION_COUNT
     + 12;
 
   /**
@@ -455,7 +455,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MODEL_TYPE_OPERATION_COUNT = MODEL_OPERATION_COUNT + 13;
+  public static final int MODEL_TYPE_OPERATION_COUNT = MMPackage.MODEL_OPERATION_COUNT + 13;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.mmint3.mm.ModelInstance <em>Model Instance</em>}' class. <!--
@@ -473,7 +473,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MODEL_INSTANCE__I = MODEL_FEATURE_COUNT + 0;
+  public static final int MODEL_INSTANCE__I = MMPackage.MODEL_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Root</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -481,7 +481,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MODEL_INSTANCE__ROOT = MODEL_FEATURE_COUNT + 1;
+  public static final int MODEL_INSTANCE__ROOT = MMPackage.MODEL_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Model Instance</em>' class. <!-- begin-user-doc --> <!-- end-user-doc
@@ -490,7 +490,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MODEL_INSTANCE_FEATURE_COUNT = MODEL_FEATURE_COUNT + 2;
+  public static final int MODEL_INSTANCE_FEATURE_COUNT = MMPackage.MODEL_FEATURE_COUNT + 2;
 
   /**
    * The operation id for the '<em>Get Id</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -498,7 +498,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MODEL_INSTANCE___GET_ID = MODEL_OPERATION_COUNT + 0;
+  public static final int MODEL_INSTANCE___GET_ID = MMPackage.MODEL_OPERATION_COUNT + 0;
 
   /**
    * The operation id for the '<em>Set Id</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -506,7 +506,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MODEL_INSTANCE___SET_ID__STRING = MODEL_OPERATION_COUNT + 1;
+  public static final int MODEL_INSTANCE___SET_ID__STRING = MMPackage.MODEL_OPERATION_COUNT + 1;
 
   /**
    * The operation id for the '<em>Get Name</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -514,7 +514,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MODEL_INSTANCE___GET_NAME = MODEL_OPERATION_COUNT + 2;
+  public static final int MODEL_INSTANCE___GET_NAME = MMPackage.MODEL_OPERATION_COUNT + 2;
 
   /**
    * The operation id for the '<em>Set Name</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -522,7 +522,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MODEL_INSTANCE___SET_NAME__STRING = MODEL_OPERATION_COUNT + 3;
+  public static final int MODEL_INSTANCE___SET_NAME__STRING = MMPackage.MODEL_OPERATION_COUNT + 3;
 
   /**
    * The operation id for the '<em>Get Type Id</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -530,7 +530,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MODEL_INSTANCE___GET_TYPE_ID = MODEL_OPERATION_COUNT + 4;
+  public static final int MODEL_INSTANCE___GET_TYPE_ID = MMPackage.MODEL_OPERATION_COUNT + 4;
 
   /**
    * The operation id for the '<em>Set Type Id</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -538,7 +538,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MODEL_INSTANCE___SET_TYPE_ID__STRING = MODEL_OPERATION_COUNT + 5;
+  public static final int MODEL_INSTANCE___SET_TYPE_ID__STRING = MMPackage.MODEL_OPERATION_COUNT + 5;
 
   /**
    * The operation id for the '<em>Get Type</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -546,7 +546,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MODEL_INSTANCE___GET_TYPE = MODEL_OPERATION_COUNT + 6;
+  public static final int MODEL_INSTANCE___GET_TYPE = MMPackage.MODEL_OPERATION_COUNT + 6;
 
   /**
    * The number of operations of the '<em>Model Instance</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -554,7 +554,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MODEL_INSTANCE_OPERATION_COUNT = MODEL_OPERATION_COUNT + 7;
+  public static final int MODEL_INSTANCE_OPERATION_COUNT = MMPackage.MODEL_OPERATION_COUNT + 7;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.mmint3.mm.MMInstance <em>Instance</em>}' class. <!--
@@ -572,7 +572,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MM_INSTANCE__ID = MM_ELEMENT__ID;
+  public static final int MM_INSTANCE__ID = MMPackage.MM_ELEMENT__ID;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -580,7 +580,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MM_INSTANCE__NAME = MM_ELEMENT__NAME;
+  public static final int MM_INSTANCE__NAME = MMPackage.MM_ELEMENT__NAME;
 
   /**
    * The feature id for the '<em><b>Type Id</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -588,7 +588,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MM_INSTANCE__TYPE_ID = MM_ELEMENT_FEATURE_COUNT + 0;
+  public static final int MM_INSTANCE__TYPE_ID = MMPackage.MM_ELEMENT_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -596,7 +596,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MM_INSTANCE__TYPE = MM_ELEMENT_FEATURE_COUNT + 1;
+  public static final int MM_INSTANCE__TYPE = MMPackage.MM_ELEMENT_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Instance</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -604,7 +604,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MM_INSTANCE_FEATURE_COUNT = MM_ELEMENT_FEATURE_COUNT + 2;
+  public static final int MM_INSTANCE_FEATURE_COUNT = MMPackage.MM_ELEMENT_FEATURE_COUNT + 2;
 
   /**
    * The operation id for the '<em>Get Id</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -612,7 +612,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MM_INSTANCE___GET_ID = MM_ELEMENT___GET_ID;
+  public static final int MM_INSTANCE___GET_ID = MMPackage.MM_ELEMENT___GET_ID;
 
   /**
    * The operation id for the '<em>Set Id</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -620,7 +620,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MM_INSTANCE___SET_ID__STRING = MM_ELEMENT___SET_ID__STRING;
+  public static final int MM_INSTANCE___SET_ID__STRING = MMPackage.MM_ELEMENT___SET_ID__STRING;
 
   /**
    * The operation id for the '<em>Get Name</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -628,7 +628,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MM_INSTANCE___GET_NAME = MM_ELEMENT___GET_NAME;
+  public static final int MM_INSTANCE___GET_NAME = MMPackage.MM_ELEMENT___GET_NAME;
 
   /**
    * The operation id for the '<em>Set Name</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -636,7 +636,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MM_INSTANCE___SET_NAME__STRING = MM_ELEMENT___SET_NAME__STRING;
+  public static final int MM_INSTANCE___SET_NAME__STRING = MMPackage.MM_ELEMENT___SET_NAME__STRING;
 
   /**
    * The operation id for the '<em>Get Type Id</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -644,7 +644,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MM_INSTANCE___GET_TYPE_ID = MM_ELEMENT_OPERATION_COUNT + 0;
+  public static final int MM_INSTANCE___GET_TYPE_ID = MMPackage.MM_ELEMENT_OPERATION_COUNT + 0;
 
   /**
    * The operation id for the '<em>Set Type Id</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -652,7 +652,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MM_INSTANCE___SET_TYPE_ID__STRING = MM_ELEMENT_OPERATION_COUNT + 1;
+  public static final int MM_INSTANCE___SET_TYPE_ID__STRING = MMPackage.MM_ELEMENT_OPERATION_COUNT + 1;
 
   /**
    * The operation id for the '<em>Get Type</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -660,7 +660,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MM_INSTANCE___GET_TYPE = MM_ELEMENT_OPERATION_COUNT + 2;
+  public static final int MM_INSTANCE___GET_TYPE = MMPackage.MM_ELEMENT_OPERATION_COUNT + 2;
 
   /**
    * The number of operations of the '<em>Instance</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -668,7 +668,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MM_INSTANCE_OPERATION_COUNT = MM_ELEMENT_OPERATION_COUNT + 3;
+  public static final int MM_INSTANCE_OPERATION_COUNT = MMPackage.MM_ELEMENT_OPERATION_COUNT + 3;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.mmint3.mm.MMType <em>Type</em>}' class. <!-- begin-user-doc
@@ -686,7 +686,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MM_TYPE__ID = MM_ELEMENT__ID;
+  public static final int MM_TYPE__ID = MMPackage.MM_ELEMENT__ID;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -694,7 +694,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MM_TYPE__NAME = MM_ELEMENT__NAME;
+  public static final int MM_TYPE__NAME = MMPackage.MM_ELEMENT__NAME;
 
   /**
    * The feature id for the '<em><b>Dynamic</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -702,7 +702,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MM_TYPE__DYNAMIC = MM_ELEMENT_FEATURE_COUNT + 0;
+  public static final int MM_TYPE__DYNAMIC = MMPackage.MM_ELEMENT_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Abstract</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -710,7 +710,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MM_TYPE__ABSTRACT = MM_ELEMENT_FEATURE_COUNT + 1;
+  public static final int MM_TYPE__ABSTRACT = MMPackage.MM_ELEMENT_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Subtypes</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -718,7 +718,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MM_TYPE__SUBTYPES = MM_ELEMENT_FEATURE_COUNT + 2;
+  public static final int MM_TYPE__SUBTYPES = MMPackage.MM_ELEMENT_FEATURE_COUNT + 2;
 
   /**
    * The feature id for the '<em><b>Supertype</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -726,7 +726,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MM_TYPE__SUPERTYPE = MM_ELEMENT_FEATURE_COUNT + 3;
+  public static final int MM_TYPE__SUPERTYPE = MMPackage.MM_ELEMENT_FEATURE_COUNT + 3;
 
   /**
    * The number of structural features of the '<em>Type</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -734,7 +734,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MM_TYPE_FEATURE_COUNT = MM_ELEMENT_FEATURE_COUNT + 4;
+  public static final int MM_TYPE_FEATURE_COUNT = MMPackage.MM_ELEMENT_FEATURE_COUNT + 4;
 
   /**
    * The operation id for the '<em>Get Id</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -742,7 +742,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MM_TYPE___GET_ID = MM_ELEMENT___GET_ID;
+  public static final int MM_TYPE___GET_ID = MMPackage.MM_ELEMENT___GET_ID;
 
   /**
    * The operation id for the '<em>Set Id</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -750,7 +750,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MM_TYPE___SET_ID__STRING = MM_ELEMENT___SET_ID__STRING;
+  public static final int MM_TYPE___SET_ID__STRING = MMPackage.MM_ELEMENT___SET_ID__STRING;
 
   /**
    * The operation id for the '<em>Get Name</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -758,7 +758,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MM_TYPE___GET_NAME = MM_ELEMENT___GET_NAME;
+  public static final int MM_TYPE___GET_NAME = MMPackage.MM_ELEMENT___GET_NAME;
 
   /**
    * The operation id for the '<em>Set Name</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -766,7 +766,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MM_TYPE___SET_NAME__STRING = MM_ELEMENT___SET_NAME__STRING;
+  public static final int MM_TYPE___SET_NAME__STRING = MMPackage.MM_ELEMENT___SET_NAME__STRING;
 
   /**
    * The operation id for the '<em>Is Dynamic</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -774,7 +774,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MM_TYPE___IS_DYNAMIC = MM_ELEMENT_OPERATION_COUNT + 0;
+  public static final int MM_TYPE___IS_DYNAMIC = MMPackage.MM_ELEMENT_OPERATION_COUNT + 0;
 
   /**
    * The operation id for the '<em>Set Dynamic</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -782,7 +782,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MM_TYPE___SET_DYNAMIC__BOOLEAN = MM_ELEMENT_OPERATION_COUNT + 1;
+  public static final int MM_TYPE___SET_DYNAMIC__BOOLEAN = MMPackage.MM_ELEMENT_OPERATION_COUNT + 1;
 
   /**
    * The operation id for the '<em>Is Abstract</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -790,7 +790,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MM_TYPE___IS_ABSTRACT = MM_ELEMENT_OPERATION_COUNT + 2;
+  public static final int MM_TYPE___IS_ABSTRACT = MMPackage.MM_ELEMENT_OPERATION_COUNT + 2;
 
   /**
    * The operation id for the '<em>Set Abstract</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -798,7 +798,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MM_TYPE___SET_ABSTRACT__BOOLEAN = MM_ELEMENT_OPERATION_COUNT + 3;
+  public static final int MM_TYPE___SET_ABSTRACT__BOOLEAN = MMPackage.MM_ELEMENT_OPERATION_COUNT + 3;
 
   /**
    * The operation id for the '<em>Get Supertype</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -806,7 +806,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MM_TYPE___GET_SUPERTYPE = MM_ELEMENT_OPERATION_COUNT + 4;
+  public static final int MM_TYPE___GET_SUPERTYPE = MMPackage.MM_ELEMENT_OPERATION_COUNT + 4;
 
   /**
    * The operation id for the '<em>Set Supertype</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -814,7 +814,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MM_TYPE___SET_SUPERTYPE__MMTYPE = MM_ELEMENT_OPERATION_COUNT + 5;
+  public static final int MM_TYPE___SET_SUPERTYPE__MMTYPE = MMPackage.MM_ELEMENT_OPERATION_COUNT + 5;
 
   /**
    * The operation id for the '<em>Get Subtypes</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -822,7 +822,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MM_TYPE___GET_SUBTYPES = MM_ELEMENT_OPERATION_COUNT + 6;
+  public static final int MM_TYPE___GET_SUBTYPES = MMPackage.MM_ELEMENT_OPERATION_COUNT + 6;
 
   /**
    * The number of operations of the '<em>Type</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -830,7 +830,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MM_TYPE_OPERATION_COUNT = MM_ELEMENT_OPERATION_COUNT + 7;
+  public static final int MM_TYPE_OPERATION_COUNT = MMPackage.MM_ELEMENT_OPERATION_COUNT + 7;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.mmint3.mm.Instance <em>Instance</em>}' class. <!--
@@ -848,7 +848,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int INSTANCE_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 0;
+  public static final int INSTANCE_FEATURE_COUNT = MMPackage.ELEMENT_FEATURE_COUNT + 0;
 
   /**
    * The operation id for the '<em>Get Id</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -856,7 +856,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int INSTANCE___GET_ID = ELEMENT___GET_ID;
+  public static final int INSTANCE___GET_ID = MMPackage.ELEMENT___GET_ID;
 
   /**
    * The operation id for the '<em>Set Id</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -864,7 +864,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int INSTANCE___SET_ID__STRING = ELEMENT___SET_ID__STRING;
+  public static final int INSTANCE___SET_ID__STRING = MMPackage.ELEMENT___SET_ID__STRING;
 
   /**
    * The operation id for the '<em>Get Name</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -872,7 +872,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int INSTANCE___GET_NAME = ELEMENT___GET_NAME;
+  public static final int INSTANCE___GET_NAME = MMPackage.ELEMENT___GET_NAME;
 
   /**
    * The operation id for the '<em>Set Name</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -880,7 +880,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int INSTANCE___SET_NAME__STRING = ELEMENT___SET_NAME__STRING;
+  public static final int INSTANCE___SET_NAME__STRING = MMPackage.ELEMENT___SET_NAME__STRING;
 
   /**
    * The operation id for the '<em>Get Type Id</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -888,7 +888,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int INSTANCE___GET_TYPE_ID = ELEMENT_OPERATION_COUNT + 0;
+  public static final int INSTANCE___GET_TYPE_ID = MMPackage.ELEMENT_OPERATION_COUNT + 0;
 
   /**
    * The operation id for the '<em>Set Type Id</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -896,7 +896,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int INSTANCE___SET_TYPE_ID__STRING = ELEMENT_OPERATION_COUNT + 1;
+  public static final int INSTANCE___SET_TYPE_ID__STRING = MMPackage.ELEMENT_OPERATION_COUNT + 1;
 
   /**
    * The operation id for the '<em>Get Type</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -904,7 +904,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int INSTANCE___GET_TYPE = ELEMENT_OPERATION_COUNT + 2;
+  public static final int INSTANCE___GET_TYPE = MMPackage.ELEMENT_OPERATION_COUNT + 2;
 
   /**
    * The number of operations of the '<em>Instance</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -912,7 +912,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int INSTANCE_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 3;
+  public static final int INSTANCE_OPERATION_COUNT = MMPackage.ELEMENT_OPERATION_COUNT + 3;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.mmint3.mm.Type <em>Type</em>}' class. <!-- begin-user-doc -->
@@ -930,7 +930,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int TYPE_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 0;
+  public static final int TYPE_FEATURE_COUNT = MMPackage.ELEMENT_FEATURE_COUNT + 0;
 
   /**
    * The operation id for the '<em>Get Id</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -938,7 +938,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int TYPE___GET_ID = ELEMENT___GET_ID;
+  public static final int TYPE___GET_ID = MMPackage.ELEMENT___GET_ID;
 
   /**
    * The operation id for the '<em>Set Id</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -946,7 +946,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int TYPE___SET_ID__STRING = ELEMENT___SET_ID__STRING;
+  public static final int TYPE___SET_ID__STRING = MMPackage.ELEMENT___SET_ID__STRING;
 
   /**
    * The operation id for the '<em>Get Name</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -954,7 +954,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int TYPE___GET_NAME = ELEMENT___GET_NAME;
+  public static final int TYPE___GET_NAME = MMPackage.ELEMENT___GET_NAME;
 
   /**
    * The operation id for the '<em>Set Name</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -962,7 +962,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int TYPE___SET_NAME__STRING = ELEMENT___SET_NAME__STRING;
+  public static final int TYPE___SET_NAME__STRING = MMPackage.ELEMENT___SET_NAME__STRING;
 
   /**
    * The operation id for the '<em>Is Dynamic</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -970,7 +970,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int TYPE___IS_DYNAMIC = ELEMENT_OPERATION_COUNT + 0;
+  public static final int TYPE___IS_DYNAMIC = MMPackage.ELEMENT_OPERATION_COUNT + 0;
 
   /**
    * The operation id for the '<em>Set Dynamic</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -978,7 +978,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int TYPE___SET_DYNAMIC__BOOLEAN = ELEMENT_OPERATION_COUNT + 1;
+  public static final int TYPE___SET_DYNAMIC__BOOLEAN = MMPackage.ELEMENT_OPERATION_COUNT + 1;
 
   /**
    * The operation id for the '<em>Is Abstract</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -986,7 +986,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int TYPE___IS_ABSTRACT = ELEMENT_OPERATION_COUNT + 2;
+  public static final int TYPE___IS_ABSTRACT = MMPackage.ELEMENT_OPERATION_COUNT + 2;
 
   /**
    * The operation id for the '<em>Set Abstract</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -994,7 +994,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int TYPE___SET_ABSTRACT__BOOLEAN = ELEMENT_OPERATION_COUNT + 3;
+  public static final int TYPE___SET_ABSTRACT__BOOLEAN = MMPackage.ELEMENT_OPERATION_COUNT + 3;
 
   /**
    * The operation id for the '<em>Get Supertype</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -1002,7 +1002,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int TYPE___GET_SUPERTYPE = ELEMENT_OPERATION_COUNT + 4;
+  public static final int TYPE___GET_SUPERTYPE = MMPackage.ELEMENT_OPERATION_COUNT + 4;
 
   /**
    * The operation id for the '<em>Set Supertype</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -1010,7 +1010,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int TYPE___SET_SUPERTYPE__MMTYPE = ELEMENT_OPERATION_COUNT + 5;
+  public static final int TYPE___SET_SUPERTYPE__MMTYPE = MMPackage.ELEMENT_OPERATION_COUNT + 5;
 
   /**
    * The operation id for the '<em>Get Subtypes</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -1018,7 +1018,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int TYPE___GET_SUBTYPES = ELEMENT_OPERATION_COUNT + 6;
+  public static final int TYPE___GET_SUBTYPES = MMPackage.ELEMENT_OPERATION_COUNT + 6;
 
   /**
    * The number of operations of the '<em>Type</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -1026,7 +1026,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int TYPE_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 7;
+  public static final int TYPE_OPERATION_COUNT = MMPackage.ELEMENT_OPERATION_COUNT + 7;
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -1126,7 +1126,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    */
   private MMPackage() {
-    super(eNS_URI, MMFactory.eINSTANCE);
+    super(MMPackage.eNS_URI, MMFactory.eINSTANCE);
   }
 
   /**
@@ -1150,15 +1150,15 @@ public class MMPackage extends EPackageImpl {
    * @generated
    */
   public static MMPackage init() {
-    if (isInited)
+    if (MMPackage.isInited)
       return (MMPackage) EPackage.Registry.INSTANCE.getEPackage(MMPackage.eNS_URI);
 
     // Obtain or create and register package
-    Object registeredMMPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+    Object registeredMMPackage = EPackage.Registry.INSTANCE.get(MMPackage.eNS_URI);
     MMPackage theMMPackage = registeredMMPackage instanceof MMPackage ? (MMPackage) registeredMMPackage
       : new MMPackage();
 
-    isInited = true;
+    MMPackage.isInited = true;
 
     // Create package meta-data objects
     theMMPackage.createPackageContents();
@@ -1698,57 +1698,57 @@ public class MMPackage extends EPackageImpl {
     this.isCreated = true;
 
     // Create classes and their features
-    this.megaModelEClass = createEClass(MEGA_MODEL);
-    createEReference(this.megaModelEClass, MEGA_MODEL__MODELS);
+    this.megaModelEClass = createEClass(MMPackage.MEGA_MODEL);
+    createEReference(this.megaModelEClass, MMPackage.MEGA_MODEL__MODELS);
 
-    this.mmElementEClass = createEClass(MM_ELEMENT);
-    createEAttribute(this.mmElementEClass, MM_ELEMENT__ID);
-    createEAttribute(this.mmElementEClass, MM_ELEMENT__NAME);
+    this.mmElementEClass = createEClass(MMPackage.MM_ELEMENT);
+    createEAttribute(this.mmElementEClass, MMPackage.MM_ELEMENT__ID);
+    createEAttribute(this.mmElementEClass, MMPackage.MM_ELEMENT__NAME);
 
-    this.typeMegaModelEClass = createEClass(TYPE_MEGA_MODEL);
+    this.typeMegaModelEClass = createEClass(MMPackage.TYPE_MEGA_MODEL);
 
-    this.instanceMegaModelEClass = createEClass(INSTANCE_MEGA_MODEL);
+    this.instanceMegaModelEClass = createEClass(MMPackage.INSTANCE_MEGA_MODEL);
 
-    this.modelEClass = createEClass(MODEL);
+    this.modelEClass = createEClass(MMPackage.MODEL);
 
-    this.modelTypeEClass = createEClass(MODEL_TYPE);
-    createEReference(this.modelTypeEClass, MODEL_TYPE__T);
-    createEOperation(this.modelTypeEClass, MODEL_TYPE___GET_PACKAGE);
-    createEOperation(this.modelTypeEClass, MODEL_TYPE___CREATE_INSTANCE__EOBJECT_STRING_BOOLEAN_INSTANCEMEGAMODEL);
+    this.modelTypeEClass = createEClass(MMPackage.MODEL_TYPE);
+    createEReference(this.modelTypeEClass, MMPackage.MODEL_TYPE__T);
+    createEOperation(this.modelTypeEClass, MMPackage.MODEL_TYPE___GET_PACKAGE);
+    createEOperation(this.modelTypeEClass, MMPackage.MODEL_TYPE___CREATE_INSTANCE__EOBJECT_STRING_BOOLEAN_INSTANCEMEGAMODEL);
 
-    this.modelInstanceEClass = createEClass(MODEL_INSTANCE);
-    createEReference(this.modelInstanceEClass, MODEL_INSTANCE__I);
-    createEReference(this.modelInstanceEClass, MODEL_INSTANCE__ROOT);
+    this.modelInstanceEClass = createEClass(MMPackage.MODEL_INSTANCE);
+    createEReference(this.modelInstanceEClass, MMPackage.MODEL_INSTANCE__I);
+    createEReference(this.modelInstanceEClass, MMPackage.MODEL_INSTANCE__ROOT);
 
-    this.mmInstanceEClass = createEClass(MM_INSTANCE);
-    createEAttribute(this.mmInstanceEClass, MM_INSTANCE__TYPE_ID);
-    createEReference(this.mmInstanceEClass, MM_INSTANCE__TYPE);
+    this.mmInstanceEClass = createEClass(MMPackage.MM_INSTANCE);
+    createEAttribute(this.mmInstanceEClass, MMPackage.MM_INSTANCE__TYPE_ID);
+    createEReference(this.mmInstanceEClass, MMPackage.MM_INSTANCE__TYPE);
 
-    this.mmTypeEClass = createEClass(MM_TYPE);
-    createEAttribute(this.mmTypeEClass, MM_TYPE__DYNAMIC);
-    createEAttribute(this.mmTypeEClass, MM_TYPE__ABSTRACT);
-    createEReference(this.mmTypeEClass, MM_TYPE__SUBTYPES);
-    createEReference(this.mmTypeEClass, MM_TYPE__SUPERTYPE);
+    this.mmTypeEClass = createEClass(MMPackage.MM_TYPE);
+    createEAttribute(this.mmTypeEClass, MMPackage.MM_TYPE__DYNAMIC);
+    createEAttribute(this.mmTypeEClass, MMPackage.MM_TYPE__ABSTRACT);
+    createEReference(this.mmTypeEClass, MMPackage.MM_TYPE__SUBTYPES);
+    createEReference(this.mmTypeEClass, MMPackage.MM_TYPE__SUPERTYPE);
 
-    this.instanceEClass = createEClass(INSTANCE);
-    createEOperation(this.instanceEClass, INSTANCE___GET_TYPE_ID);
-    createEOperation(this.instanceEClass, INSTANCE___SET_TYPE_ID__STRING);
-    createEOperation(this.instanceEClass, INSTANCE___GET_TYPE);
+    this.instanceEClass = createEClass(MMPackage.INSTANCE);
+    createEOperation(this.instanceEClass, MMPackage.INSTANCE___GET_TYPE_ID);
+    createEOperation(this.instanceEClass, MMPackage.INSTANCE___SET_TYPE_ID__STRING);
+    createEOperation(this.instanceEClass, MMPackage.INSTANCE___GET_TYPE);
 
-    this.elementEClass = createEClass(ELEMENT);
-    createEOperation(this.elementEClass, ELEMENT___GET_ID);
-    createEOperation(this.elementEClass, ELEMENT___SET_ID__STRING);
-    createEOperation(this.elementEClass, ELEMENT___GET_NAME);
-    createEOperation(this.elementEClass, ELEMENT___SET_NAME__STRING);
+    this.elementEClass = createEClass(MMPackage.ELEMENT);
+    createEOperation(this.elementEClass, MMPackage.ELEMENT___GET_ID);
+    createEOperation(this.elementEClass, MMPackage.ELEMENT___SET_ID__STRING);
+    createEOperation(this.elementEClass, MMPackage.ELEMENT___GET_NAME);
+    createEOperation(this.elementEClass, MMPackage.ELEMENT___SET_NAME__STRING);
 
-    this.typeEClass = createEClass(TYPE);
-    createEOperation(this.typeEClass, TYPE___IS_DYNAMIC);
-    createEOperation(this.typeEClass, TYPE___SET_DYNAMIC__BOOLEAN);
-    createEOperation(this.typeEClass, TYPE___IS_ABSTRACT);
-    createEOperation(this.typeEClass, TYPE___SET_ABSTRACT__BOOLEAN);
-    createEOperation(this.typeEClass, TYPE___GET_SUPERTYPE);
-    createEOperation(this.typeEClass, TYPE___SET_SUPERTYPE__MMTYPE);
-    createEOperation(this.typeEClass, TYPE___GET_SUBTYPES);
+    this.typeEClass = createEClass(MMPackage.TYPE);
+    createEOperation(this.typeEClass, MMPackage.TYPE___IS_DYNAMIC);
+    createEOperation(this.typeEClass, MMPackage.TYPE___SET_DYNAMIC__BOOLEAN);
+    createEOperation(this.typeEClass, MMPackage.TYPE___IS_ABSTRACT);
+    createEOperation(this.typeEClass, MMPackage.TYPE___SET_ABSTRACT__BOOLEAN);
+    createEOperation(this.typeEClass, MMPackage.TYPE___GET_SUPERTYPE);
+    createEOperation(this.typeEClass, MMPackage.TYPE___SET_SUPERTYPE__MMTYPE);
+    createEOperation(this.typeEClass, MMPackage.TYPE___GET_SUBTYPES);
   }
 
   /**
@@ -1770,9 +1770,9 @@ public class MMPackage extends EPackageImpl {
     this.isInitialized = true;
 
     // Initialize package
-    setName(eNAME);
-    setNsPrefix(eNS_PREFIX);
-    setNsURI(eNS_URI);
+    setName(MMPackage.eNAME);
+    setNsPrefix(MMPackage.eNS_PREFIX);
+    setNsURI(MMPackage.eNS_URI);
 
     // Create type parameters
 
@@ -1794,113 +1794,113 @@ public class MMPackage extends EPackageImpl {
     this.typeEClass.getESuperTypes().add(this.getElement());
 
     // Initialize classes, features, and operations; add parameters
-    initEClass(this.megaModelEClass, MegaModel.class, "MegaModel", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getMegaModel_Models(), this.getModel(), null, "models", null, 0, -1, MegaModel.class, !IS_TRANSIENT,
-                   !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-                   !IS_DERIVED, IS_ORDERED);
+    initEClass(this.megaModelEClass, MegaModel.class, "MegaModel", EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getMegaModel_Models(), this.getModel(), null, "models", null, 0, -1, MegaModel.class, !EPackageImpl.IS_TRANSIENT,
+                   !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, EPackageImpl.IS_COMPOSITE, !EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE,
+                   !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
 
-    initEClass(this.mmElementEClass, MMElement.class, "MMElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getMMElement_Id(), this.ecorePackage.getEString(), "id", null, 1, 1, MMElement.class, !IS_TRANSIENT,
-                   !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getMMElement_Name(), this.ecorePackage.getEString(), "name", null, 1, 1, MMElement.class, !IS_TRANSIENT,
-                   !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(this.mmElementEClass, MMElement.class, "MMElement", EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getMMElement_Id(), this.ecorePackage.getEString(), "id", null, 1, 1, MMElement.class, !EPackageImpl.IS_TRANSIENT,
+                   !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
+    initEAttribute(getMMElement_Name(), this.ecorePackage.getEString(), "name", null, 1, 1, MMElement.class, !EPackageImpl.IS_TRANSIENT,
+                   !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
 
-    initEClass(this.typeMegaModelEClass, TypeMegaModel.class, "TypeMegaModel", !IS_ABSTRACT, !IS_INTERFACE,
-               IS_GENERATED_INSTANCE_CLASS);
+    initEClass(this.typeMegaModelEClass, TypeMegaModel.class, "TypeMegaModel", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE,
+               EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(this.instanceMegaModelEClass, InstanceMegaModel.class, "InstanceMegaModel", !IS_ABSTRACT, !IS_INTERFACE,
-               IS_GENERATED_INSTANCE_CLASS);
+    initEClass(this.instanceMegaModelEClass, InstanceMegaModel.class, "InstanceMegaModel", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE,
+               EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(this.modelEClass, Model.class, "Model", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEClass(this.modelEClass, Model.class, "Model", EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(this.modelTypeEClass, ModelType.class, "ModelType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getModelType_T(), this.getMMType(), null, "t", null, 1, 1, ModelType.class, !IS_TRANSIENT,
-                   !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-                   !IS_DERIVED, IS_ORDERED);
+    initEClass(this.modelTypeEClass, ModelType.class, "ModelType", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getModelType_T(), this.getMMType(), null, "t", null, 1, 1, ModelType.class, !EPackageImpl.IS_TRANSIENT,
+                   !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, EPackageImpl.IS_COMPOSITE, !EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE,
+                   !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
 
-    initEOperation(getModelType__GetPackage(), this.ecorePackage.getEPackage(), "getPackage", 1, 1, IS_UNIQUE, IS_ORDERED);
+    initEOperation(getModelType__GetPackage(), this.ecorePackage.getEPackage(), "getPackage", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
 
     EOperation op = initEOperation(getModelType__CreateInstance__EObject_String_boolean_InstanceMegaModel(), this
                                                                                                                  .getModelInstance(),
-                                   "createInstance", 1, 1, IS_UNIQUE, IS_ORDERED);
-    addEParameter(op, this.ecorePackage.getEObject(), "root", 0, 1, IS_UNIQUE, IS_ORDERED);
-    addEParameter(op, this.ecorePackage.getEString(), "path", 0, 1, IS_UNIQUE, IS_ORDERED);
-    addEParameter(op, this.ecorePackage.getEBoolean(), "serialize", 0, 1, IS_UNIQUE, IS_ORDERED);
-    addEParameter(op, this.getInstanceMegaModel(), "mm", 0, 1, IS_UNIQUE, IS_ORDERED);
+                                   "createInstance", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    addEParameter(op, this.ecorePackage.getEObject(), "root", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    addEParameter(op, this.ecorePackage.getEString(), "path", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    addEParameter(op, this.ecorePackage.getEBoolean(), "serialize", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    addEParameter(op, this.getInstanceMegaModel(), "mm", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
 
-    initEClass(this.modelInstanceEClass, ModelInstance.class, "ModelInstance", !IS_ABSTRACT, !IS_INTERFACE,
-               IS_GENERATED_INSTANCE_CLASS);
+    initEClass(this.modelInstanceEClass, ModelInstance.class, "ModelInstance", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE,
+               EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
     initEReference(getModelInstance_I(), this.getMMInstance(), null, "i", null, 1, 1, ModelInstance.class,
-                   !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
-                   IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+                   !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, EPackageImpl.IS_COMPOSITE, !EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE,
+                   EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
     initEReference(getModelInstance_Root(), this.ecorePackage.getEObject(), null, "root", null, 0, 1, ModelInstance.class,
-                   !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
-                   IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+                   !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE,
+                   EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
 
-    initEClass(this.mmInstanceEClass, MMInstance.class, "MMInstance", !IS_ABSTRACT, !IS_INTERFACE,
-               IS_GENERATED_INSTANCE_CLASS);
+    initEClass(this.mmInstanceEClass, MMInstance.class, "MMInstance", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE,
+               EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getMMInstance_TypeId(), this.ecorePackage.getEString(), "typeId", null, 1, 1, MMInstance.class,
-                   !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
-                   IS_ORDERED);
-    initEReference(getMMInstance_Type(), this.getMMType(), null, "type", null, 1, 1, MMInstance.class, IS_TRANSIENT,
-                   IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-                   IS_DERIVED, IS_ORDERED);
+                   !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED,
+                   EPackageImpl.IS_ORDERED);
+    initEReference(getMMInstance_Type(), this.getMMType(), null, "type", null, 1, 1, MMInstance.class, EPackageImpl.IS_TRANSIENT,
+                   EPackageImpl.IS_VOLATILE, !EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE,
+                   EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
 
-    initEClass(this.mmTypeEClass, MMType.class, "MMType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getMMType_Dynamic(), this.ecorePackage.getEBoolean(), "dynamic", null, 1, 1, MMType.class, !IS_TRANSIENT,
-                   !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(this.mmTypeEClass, MMType.class, "MMType", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getMMType_Dynamic(), this.ecorePackage.getEBoolean(), "dynamic", null, 1, 1, MMType.class, !EPackageImpl.IS_TRANSIENT,
+                   !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
     initEAttribute(getMMType_Abstract(), this.ecorePackage.getEBoolean(), "abstract", null, 1, 1, MMType.class,
-                   !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
-                   IS_ORDERED);
+                   !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED,
+                   EPackageImpl.IS_ORDERED);
     initEReference(getMMType_Subtypes(), this.getMMType(), this.getMMType_Supertype(), "subtypes", null, 0, -1,
-                   MMType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-                   !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+                   MMType.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES,
+                   !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
     initEReference(getMMType_Supertype(), this.getMMType(), this.getMMType_Subtypes(), "supertype", null, 0, 1,
-                   MMType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-                   !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+                   MMType.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES,
+                   !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
 
-    initEClass(this.instanceEClass, Instance.class, "Instance", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEClass(this.instanceEClass, Instance.class, "Instance", EPackageImpl.IS_ABSTRACT, EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 
-    initEOperation(getInstance__GetTypeId(), this.ecorePackage.getEString(), "getTypeId", 1, 1, IS_UNIQUE, IS_ORDERED);
+    initEOperation(getInstance__GetTypeId(), this.ecorePackage.getEString(), "getTypeId", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
 
-    op = initEOperation(getInstance__SetTypeId__String(), null, "setTypeId", 0, 1, IS_UNIQUE, IS_ORDERED);
-    addEParameter(op, this.ecorePackage.getEString(), "value", 0, 1, IS_UNIQUE, IS_ORDERED);
+    op = initEOperation(getInstance__SetTypeId__String(), null, "setTypeId", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    addEParameter(op, this.ecorePackage.getEString(), "value", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
 
-    initEOperation(getInstance__GetType(), this.getMMType(), "getType", 1, 1, IS_UNIQUE, IS_ORDERED);
+    initEOperation(getInstance__GetType(), this.getMMType(), "getType", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
 
-    initEClass(this.elementEClass, Element.class, "Element", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEClass(this.elementEClass, Element.class, "Element", EPackageImpl.IS_ABSTRACT, EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 
-    initEOperation(getElement__GetId(), this.ecorePackage.getEString(), "getId", 1, 1, IS_UNIQUE, IS_ORDERED);
+    initEOperation(getElement__GetId(), this.ecorePackage.getEString(), "getId", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
 
-    op = initEOperation(getElement__SetId__String(), null, "setId", 0, 1, IS_UNIQUE, IS_ORDERED);
-    addEParameter(op, this.ecorePackage.getEString(), "value", 0, 1, IS_UNIQUE, IS_ORDERED);
+    op = initEOperation(getElement__SetId__String(), null, "setId", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    addEParameter(op, this.ecorePackage.getEString(), "value", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
 
-    initEOperation(getElement__GetName(), this.ecorePackage.getEString(), "getName", 1, 1, IS_UNIQUE, IS_ORDERED);
+    initEOperation(getElement__GetName(), this.ecorePackage.getEString(), "getName", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
 
-    op = initEOperation(getElement__SetName__String(), null, "setName", 0, 1, IS_UNIQUE, IS_ORDERED);
-    addEParameter(op, this.ecorePackage.getEString(), "value", 0, 1, IS_UNIQUE, IS_ORDERED);
+    op = initEOperation(getElement__SetName__String(), null, "setName", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    addEParameter(op, this.ecorePackage.getEString(), "value", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
 
-    initEClass(this.typeEClass, Type.class, "Type", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEClass(this.typeEClass, Type.class, "Type", EPackageImpl.IS_ABSTRACT, EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 
-    initEOperation(getType__IsDynamic(), this.ecorePackage.getEBoolean(), "isDynamic", 1, 1, IS_UNIQUE, IS_ORDERED);
+    initEOperation(getType__IsDynamic(), this.ecorePackage.getEBoolean(), "isDynamic", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
 
-    op = initEOperation(getType__SetDynamic__boolean(), null, "setDynamic", 0, 1, IS_UNIQUE, IS_ORDERED);
-    addEParameter(op, this.ecorePackage.getEBoolean(), "value", 0, 1, IS_UNIQUE, IS_ORDERED);
+    op = initEOperation(getType__SetDynamic__boolean(), null, "setDynamic", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    addEParameter(op, this.ecorePackage.getEBoolean(), "value", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
 
-    initEOperation(getType__IsAbstract(), this.ecorePackage.getEBoolean(), "isAbstract", 1, 1, IS_UNIQUE, IS_ORDERED);
+    initEOperation(getType__IsAbstract(), this.ecorePackage.getEBoolean(), "isAbstract", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
 
-    op = initEOperation(getType__SetAbstract__boolean(), null, "setAbstract", 0, 1, IS_UNIQUE, IS_ORDERED);
-    addEParameter(op, this.ecorePackage.getEBoolean(), "value", 0, 1, IS_UNIQUE, IS_ORDERED);
+    op = initEOperation(getType__SetAbstract__boolean(), null, "setAbstract", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    addEParameter(op, this.ecorePackage.getEBoolean(), "value", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
 
-    initEOperation(getType__GetSupertype(), this.getMMType(), "getSupertype", 0, 1, IS_UNIQUE, IS_ORDERED);
+    initEOperation(getType__GetSupertype(), this.getMMType(), "getSupertype", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
 
-    op = initEOperation(getType__SetSupertype__MMType(), null, "setSupertype", 0, 1, IS_UNIQUE, IS_ORDERED);
-    addEParameter(op, this.getMMType(), "value", 0, 1, IS_UNIQUE, IS_ORDERED);
+    op = initEOperation(getType__SetSupertype__MMType(), null, "setSupertype", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    addEParameter(op, this.getMMType(), "value", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
 
-    initEOperation(getType__GetSubtypes(), this.getMMType(), "getSubtypes", 0, -1, IS_UNIQUE, IS_ORDERED);
+    initEOperation(getType__GetSubtypes(), this.getMMType(), "getSubtypes", 0, -1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
 
     // Create resource
-    createResource(eNS_URI);
+    createResource(MMPackage.eNS_URI);
   }
 
   /**
@@ -1925,7 +1925,7 @@ public class MMPackage extends EPackageImpl {
      * @see edu.toronto.cs.se.mmint3.mm.MMPackage#getMegaModel()
      * @generated
      */
-    public static final EClass MEGA_MODEL = eINSTANCE.getMegaModel();
+    public static final EClass MEGA_MODEL = MMPackage.eINSTANCE.getMegaModel();
 
     /**
      * The meta object literal for the '<em><b>Models</b></em>' containment reference list feature. <!-- begin-user-doc
@@ -1933,7 +1933,7 @@ public class MMPackage extends EPackageImpl {
      *
      * @generated
      */
-    public static final EReference MEGA_MODEL__MODELS = eINSTANCE.getMegaModel_Models();
+    public static final EReference MEGA_MODEL__MODELS = MMPackage.eINSTANCE.getMegaModel_Models();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint3.mm.MMElement <em>Element</em>}' class. <!--
@@ -1943,7 +1943,7 @@ public class MMPackage extends EPackageImpl {
      * @see edu.toronto.cs.se.mmint3.mm.MMPackage#getMMElement()
      * @generated
      */
-    public static final EClass MM_ELEMENT = eINSTANCE.getMMElement();
+    public static final EClass MM_ELEMENT = MMPackage.eINSTANCE.getMMElement();
 
     /**
      * The meta object literal for the '<em><b>Id</b></em>' attribute feature. <!-- begin-user-doc --> <!-- end-user-doc
@@ -1951,7 +1951,7 @@ public class MMPackage extends EPackageImpl {
      *
      * @generated
      */
-    public static final EAttribute MM_ELEMENT__ID = eINSTANCE.getMMElement_Id();
+    public static final EAttribute MM_ELEMENT__ID = MMPackage.eINSTANCE.getMMElement_Id();
 
     /**
      * The meta object literal for the '<em><b>Name</b></em>' attribute feature. <!-- begin-user-doc --> <!--
@@ -1959,7 +1959,7 @@ public class MMPackage extends EPackageImpl {
      *
      * @generated
      */
-    public static final EAttribute MM_ELEMENT__NAME = eINSTANCE.getMMElement_Name();
+    public static final EAttribute MM_ELEMENT__NAME = MMPackage.eINSTANCE.getMMElement_Name();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint3.mm.TypeMegaModel <em>Type Mega Model</em>}'
@@ -1969,7 +1969,7 @@ public class MMPackage extends EPackageImpl {
      * @see edu.toronto.cs.se.mmint3.mm.MMPackage#getTypeMegaModel()
      * @generated
      */
-    public static final EClass TYPE_MEGA_MODEL = eINSTANCE.getTypeMegaModel();
+    public static final EClass TYPE_MEGA_MODEL = MMPackage.eINSTANCE.getTypeMegaModel();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint3.mm.InstanceMegaModel <em>Instance Mega
@@ -1979,7 +1979,7 @@ public class MMPackage extends EPackageImpl {
      * @see edu.toronto.cs.se.mmint3.mm.MMPackage#getInstanceMegaModel()
      * @generated
      */
-    public static final EClass INSTANCE_MEGA_MODEL = eINSTANCE.getInstanceMegaModel();
+    public static final EClass INSTANCE_MEGA_MODEL = MMPackage.eINSTANCE.getInstanceMegaModel();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint3.mm.Model <em>Model</em>}' class. <!--
@@ -1989,7 +1989,7 @@ public class MMPackage extends EPackageImpl {
      * @see edu.toronto.cs.se.mmint3.mm.MMPackage#getModel()
      * @generated
      */
-    public static final EClass MODEL = eINSTANCE.getModel();
+    public static final EClass MODEL = MMPackage.eINSTANCE.getModel();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint3.mm.ModelType <em>Model Type</em>}' class. <!--
@@ -1999,7 +1999,7 @@ public class MMPackage extends EPackageImpl {
      * @see edu.toronto.cs.se.mmint3.mm.MMPackage#getModelType()
      * @generated
      */
-    public static final EClass MODEL_TYPE = eINSTANCE.getModelType();
+    public static final EClass MODEL_TYPE = MMPackage.eINSTANCE.getModelType();
 
     /**
      * The meta object literal for the '<em><b>T</b></em>' containment reference feature. <!-- begin-user-doc --> <!--
@@ -2007,7 +2007,7 @@ public class MMPackage extends EPackageImpl {
      *
      * @generated
      */
-    public static final EReference MODEL_TYPE__T = eINSTANCE.getModelType_T();
+    public static final EReference MODEL_TYPE__T = MMPackage.eINSTANCE.getModelType_T();
 
     /**
      * The meta object literal for the '<em><b>Get Package</b></em>' operation. <!-- begin-user-doc --> <!--
@@ -2015,7 +2015,7 @@ public class MMPackage extends EPackageImpl {
      *
      * @generated
      */
-    public static final EOperation MODEL_TYPE___GET_PACKAGE = eINSTANCE.getModelType__GetPackage();
+    public static final EOperation MODEL_TYPE___GET_PACKAGE = MMPackage.eINSTANCE.getModelType__GetPackage();
 
     /**
      * The meta object literal for the '<em><b>Create Instance</b></em>' operation. <!-- begin-user-doc --> <!--
@@ -2023,7 +2023,7 @@ public class MMPackage extends EPackageImpl {
      *
      * @generated
      */
-    public static final EOperation MODEL_TYPE___CREATE_INSTANCE__EOBJECT_STRING_BOOLEAN_INSTANCEMEGAMODEL = eINSTANCE.getModelType__CreateInstance__EObject_String_boolean_InstanceMegaModel();
+    public static final EOperation MODEL_TYPE___CREATE_INSTANCE__EOBJECT_STRING_BOOLEAN_INSTANCEMEGAMODEL = MMPackage.eINSTANCE.getModelType__CreateInstance__EObject_String_boolean_InstanceMegaModel();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint3.mm.ModelInstance <em>Model Instance</em>}'
@@ -2033,7 +2033,7 @@ public class MMPackage extends EPackageImpl {
      * @see edu.toronto.cs.se.mmint3.mm.MMPackage#getModelInstance()
      * @generated
      */
-    public static final EClass MODEL_INSTANCE = eINSTANCE.getModelInstance();
+    public static final EClass MODEL_INSTANCE = MMPackage.eINSTANCE.getModelInstance();
 
     /**
      * The meta object literal for the '<em><b>I</b></em>' containment reference feature. <!-- begin-user-doc --> <!--
@@ -2041,7 +2041,7 @@ public class MMPackage extends EPackageImpl {
      *
      * @generated
      */
-    public static final EReference MODEL_INSTANCE__I = eINSTANCE.getModelInstance_I();
+    public static final EReference MODEL_INSTANCE__I = MMPackage.eINSTANCE.getModelInstance_I();
 
     /**
      * The meta object literal for the '<em><b>Root</b></em>' reference feature. <!-- begin-user-doc --> <!--
@@ -2049,7 +2049,7 @@ public class MMPackage extends EPackageImpl {
      *
      * @generated
      */
-    public static final EReference MODEL_INSTANCE__ROOT = eINSTANCE.getModelInstance_Root();
+    public static final EReference MODEL_INSTANCE__ROOT = MMPackage.eINSTANCE.getModelInstance_Root();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint3.mm.MMInstance <em>Instance</em>}' class. <!--
@@ -2059,7 +2059,7 @@ public class MMPackage extends EPackageImpl {
      * @see edu.toronto.cs.se.mmint3.mm.MMPackage#getMMInstance()
      * @generated
      */
-    public static final EClass MM_INSTANCE = eINSTANCE.getMMInstance();
+    public static final EClass MM_INSTANCE = MMPackage.eINSTANCE.getMMInstance();
 
     /**
      * The meta object literal for the '<em><b>Type Id</b></em>' attribute feature. <!-- begin-user-doc --> <!--
@@ -2067,7 +2067,7 @@ public class MMPackage extends EPackageImpl {
      *
      * @generated
      */
-    public static final EAttribute MM_INSTANCE__TYPE_ID = eINSTANCE.getMMInstance_TypeId();
+    public static final EAttribute MM_INSTANCE__TYPE_ID = MMPackage.eINSTANCE.getMMInstance_TypeId();
 
     /**
      * The meta object literal for the '<em><b>Type</b></em>' reference feature. <!-- begin-user-doc --> <!--
@@ -2075,7 +2075,7 @@ public class MMPackage extends EPackageImpl {
      *
      * @generated
      */
-    public static final EReference MM_INSTANCE__TYPE = eINSTANCE.getMMInstance_Type();
+    public static final EReference MM_INSTANCE__TYPE = MMPackage.eINSTANCE.getMMInstance_Type();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint3.mm.MMType <em>Type</em>}' class. <!--
@@ -2085,7 +2085,7 @@ public class MMPackage extends EPackageImpl {
      * @see edu.toronto.cs.se.mmint3.mm.MMPackage#getMMType()
      * @generated
      */
-    public static final EClass MM_TYPE = eINSTANCE.getMMType();
+    public static final EClass MM_TYPE = MMPackage.eINSTANCE.getMMType();
 
     /**
      * The meta object literal for the '<em><b>Dynamic</b></em>' attribute feature. <!-- begin-user-doc --> <!--
@@ -2093,7 +2093,7 @@ public class MMPackage extends EPackageImpl {
      *
      * @generated
      */
-    public static final EAttribute MM_TYPE__DYNAMIC = eINSTANCE.getMMType_Dynamic();
+    public static final EAttribute MM_TYPE__DYNAMIC = MMPackage.eINSTANCE.getMMType_Dynamic();
 
     /**
      * The meta object literal for the '<em><b>Abstract</b></em>' attribute feature. <!-- begin-user-doc --> <!--
@@ -2101,7 +2101,7 @@ public class MMPackage extends EPackageImpl {
      *
      * @generated
      */
-    public static final EAttribute MM_TYPE__ABSTRACT = eINSTANCE.getMMType_Abstract();
+    public static final EAttribute MM_TYPE__ABSTRACT = MMPackage.eINSTANCE.getMMType_Abstract();
 
     /**
      * The meta object literal for the '<em><b>Subtypes</b></em>' reference list feature. <!-- begin-user-doc --> <!--
@@ -2109,7 +2109,7 @@ public class MMPackage extends EPackageImpl {
      *
      * @generated
      */
-    public static final EReference MM_TYPE__SUBTYPES = eINSTANCE.getMMType_Subtypes();
+    public static final EReference MM_TYPE__SUBTYPES = MMPackage.eINSTANCE.getMMType_Subtypes();
 
     /**
      * The meta object literal for the '<em><b>Supertype</b></em>' reference feature. <!-- begin-user-doc --> <!--
@@ -2117,7 +2117,7 @@ public class MMPackage extends EPackageImpl {
      *
      * @generated
      */
-    public static final EReference MM_TYPE__SUPERTYPE = eINSTANCE.getMMType_Supertype();
+    public static final EReference MM_TYPE__SUPERTYPE = MMPackage.eINSTANCE.getMMType_Supertype();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint3.mm.Instance <em>Instance</em>}' class. <!--
@@ -2127,7 +2127,7 @@ public class MMPackage extends EPackageImpl {
      * @see edu.toronto.cs.se.mmint3.mm.MMPackage#getInstance()
      * @generated
      */
-    public static final EClass INSTANCE = eINSTANCE.getInstance();
+    public static final EClass INSTANCE = MMPackage.eINSTANCE.getInstance();
 
     /**
      * The meta object literal for the '<em><b>Get Type Id</b></em>' operation. <!-- begin-user-doc --> <!--
@@ -2135,7 +2135,7 @@ public class MMPackage extends EPackageImpl {
      *
      * @generated
      */
-    public static final EOperation INSTANCE___GET_TYPE_ID = eINSTANCE.getInstance__GetTypeId();
+    public static final EOperation INSTANCE___GET_TYPE_ID = MMPackage.eINSTANCE.getInstance__GetTypeId();
 
     /**
      * The meta object literal for the '<em><b>Set Type Id</b></em>' operation. <!-- begin-user-doc --> <!--
@@ -2143,7 +2143,7 @@ public class MMPackage extends EPackageImpl {
      *
      * @generated
      */
-    public static final EOperation INSTANCE___SET_TYPE_ID__STRING = eINSTANCE.getInstance__SetTypeId__String();
+    public static final EOperation INSTANCE___SET_TYPE_ID__STRING = MMPackage.eINSTANCE.getInstance__SetTypeId__String();
 
     /**
      * The meta object literal for the '<em><b>Get Type</b></em>' operation. <!-- begin-user-doc --> <!-- end-user-doc
@@ -2151,7 +2151,7 @@ public class MMPackage extends EPackageImpl {
      *
      * @generated
      */
-    public static final EOperation INSTANCE___GET_TYPE = eINSTANCE.getInstance__GetType();
+    public static final EOperation INSTANCE___GET_TYPE = MMPackage.eINSTANCE.getInstance__GetType();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint3.mm.Element <em>Element</em>}' class. <!--
@@ -2161,21 +2161,21 @@ public class MMPackage extends EPackageImpl {
      * @see edu.toronto.cs.se.mmint3.mm.MMPackage#getElement()
      * @generated
      */
-    public static final EClass ELEMENT = eINSTANCE.getElement();
+    public static final EClass ELEMENT = MMPackage.eINSTANCE.getElement();
 
     /**
      * The meta object literal for the '<em><b>Get Id</b></em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
      *
      * @generated
      */
-    public static final EOperation ELEMENT___GET_ID = eINSTANCE.getElement__GetId();
+    public static final EOperation ELEMENT___GET_ID = MMPackage.eINSTANCE.getElement__GetId();
 
     /**
      * The meta object literal for the '<em><b>Set Id</b></em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
      *
      * @generated
      */
-    public static final EOperation ELEMENT___SET_ID__STRING = eINSTANCE.getElement__SetId__String();
+    public static final EOperation ELEMENT___SET_ID__STRING = MMPackage.eINSTANCE.getElement__SetId__String();
 
     /**
      * The meta object literal for the '<em><b>Get Name</b></em>' operation. <!-- begin-user-doc --> <!-- end-user-doc
@@ -2183,7 +2183,7 @@ public class MMPackage extends EPackageImpl {
      *
      * @generated
      */
-    public static final EOperation ELEMENT___GET_NAME = eINSTANCE.getElement__GetName();
+    public static final EOperation ELEMENT___GET_NAME = MMPackage.eINSTANCE.getElement__GetName();
 
     /**
      * The meta object literal for the '<em><b>Set Name</b></em>' operation. <!-- begin-user-doc --> <!-- end-user-doc
@@ -2191,7 +2191,7 @@ public class MMPackage extends EPackageImpl {
      *
      * @generated
      */
-    public static final EOperation ELEMENT___SET_NAME__STRING = eINSTANCE.getElement__SetName__String();
+    public static final EOperation ELEMENT___SET_NAME__STRING = MMPackage.eINSTANCE.getElement__SetName__String();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint3.mm.Type <em>Type</em>}' class. <!--
@@ -2201,7 +2201,7 @@ public class MMPackage extends EPackageImpl {
      * @see edu.toronto.cs.se.mmint3.mm.MMPackage#getType()
      * @generated
      */
-    public static final EClass TYPE = eINSTANCE.getType();
+    public static final EClass TYPE = MMPackage.eINSTANCE.getType();
 
     /**
      * The meta object literal for the '<em><b>Is Dynamic</b></em>' operation. <!-- begin-user-doc --> <!-- end-user-doc
@@ -2209,7 +2209,7 @@ public class MMPackage extends EPackageImpl {
      *
      * @generated
      */
-    public static final EOperation TYPE___IS_DYNAMIC = eINSTANCE.getType__IsDynamic();
+    public static final EOperation TYPE___IS_DYNAMIC = MMPackage.eINSTANCE.getType__IsDynamic();
 
     /**
      * The meta object literal for the '<em><b>Set Dynamic</b></em>' operation. <!-- begin-user-doc --> <!--
@@ -2217,7 +2217,7 @@ public class MMPackage extends EPackageImpl {
      *
      * @generated
      */
-    public static final EOperation TYPE___SET_DYNAMIC__BOOLEAN = eINSTANCE.getType__SetDynamic__boolean();
+    public static final EOperation TYPE___SET_DYNAMIC__BOOLEAN = MMPackage.eINSTANCE.getType__SetDynamic__boolean();
 
     /**
      * The meta object literal for the '<em><b>Is Abstract</b></em>' operation. <!-- begin-user-doc --> <!--
@@ -2225,7 +2225,7 @@ public class MMPackage extends EPackageImpl {
      *
      * @generated
      */
-    public static final EOperation TYPE___IS_ABSTRACT = eINSTANCE.getType__IsAbstract();
+    public static final EOperation TYPE___IS_ABSTRACT = MMPackage.eINSTANCE.getType__IsAbstract();
 
     /**
      * The meta object literal for the '<em><b>Set Abstract</b></em>' operation. <!-- begin-user-doc --> <!--
@@ -2233,7 +2233,7 @@ public class MMPackage extends EPackageImpl {
      *
      * @generated
      */
-    public static final EOperation TYPE___SET_ABSTRACT__BOOLEAN = eINSTANCE.getType__SetAbstract__boolean();
+    public static final EOperation TYPE___SET_ABSTRACT__BOOLEAN = MMPackage.eINSTANCE.getType__SetAbstract__boolean();
 
     /**
      * The meta object literal for the '<em><b>Get Supertype</b></em>' operation. <!-- begin-user-doc --> <!--
@@ -2241,7 +2241,7 @@ public class MMPackage extends EPackageImpl {
      *
      * @generated
      */
-    public static final EOperation TYPE___GET_SUPERTYPE = eINSTANCE.getType__GetSupertype();
+    public static final EOperation TYPE___GET_SUPERTYPE = MMPackage.eINSTANCE.getType__GetSupertype();
 
     /**
      * The meta object literal for the '<em><b>Set Supertype</b></em>' operation. <!-- begin-user-doc --> <!--
@@ -2249,7 +2249,7 @@ public class MMPackage extends EPackageImpl {
      *
      * @generated
      */
-    public static final EOperation TYPE___SET_SUPERTYPE__MMTYPE = eINSTANCE.getType__SetSupertype__MMType();
+    public static final EOperation TYPE___SET_SUPERTYPE__MMTYPE = MMPackage.eINSTANCE.getType__SetSupertype__MMType();
 
     /**
      * The meta object literal for the '<em><b>Get Subtypes</b></em>' operation. <!-- begin-user-doc --> <!--
@@ -2257,7 +2257,7 @@ public class MMPackage extends EPackageImpl {
      *
      * @generated
      */
-    public static final EOperation TYPE___GET_SUBTYPES = eINSTANCE.getType__GetSubtypes();
+    public static final EOperation TYPE___GET_SUBTYPES = MMPackage.eINSTANCE.getType__GetSubtypes();
 
   }
 

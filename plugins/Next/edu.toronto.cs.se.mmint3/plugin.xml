@@ -6,12 +6,24 @@
 
 <plugin>
 
+   <extension-point id="edu.toronto.cs.se.mmint3.models" name="MMINT model types" schema="schema/edu.toronto.cs.se.mmint3.models.exsd"/>
+
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated mm -->
       <package
-            uri="edu.toronto.cs.se.mmint.mm"
+            uri="edu.toronto.cs.se.mmint3.mm"
             class="edu.toronto.cs.se.mmint3.mm.MMPackage"
             genModel="model/mm.genmodel"/>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint3.models">
+      <modelType>
+         <type
+               id="edu.toronto.cs.se.mmint3.mm"
+               name="MegaModel">
+         </type>
+      </modelType>
    </extension>
 
 </plugin>
