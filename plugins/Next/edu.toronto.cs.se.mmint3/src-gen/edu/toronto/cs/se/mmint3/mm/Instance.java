@@ -4,7 +4,7 @@ package edu.toronto.cs.se.mmint3.mm;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
-import edu.toronto.cs.se.mmint.MIDTypeRegistry;
+import edu.toronto.cs.se.mmint3.MMTypes;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Instance</b></em>'. <!-- end-user-doc -->
@@ -41,16 +41,16 @@ public interface Instance extends Element {
    * @model kind="operation" required="true"
    * @generated NOT
    */
-  default MMType getType() {
+  default Type getType() {
     var type = basicGetType();
-    return type != null && type.eIsProxy() ? (MMType) EcoreUtil.resolve(type, this) : type;
+    return type != null && type.eIsProxy() ? (Type) EcoreUtil.resolve(type, this) : type;
   }
 
   /**
    * @generated NOT
    */
-  default MMType basicGetType() {
-    return MIDTypeRegistry.getType(getTypeId());
+  default Type basicGetType() {
+    return MMTypes.getType(getTypeId());
   }
 
 } // Instance

@@ -40,7 +40,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="MMInstance" eSuperTypes="#//MMElement #//Instance">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="typeId" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="#//MMType"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="#//Type"
         changeable="false" volatile="true" transient="true" derived="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MMType" eSuperTypes="#//MMElement #//Type">
@@ -48,10 +48,7 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="abstract" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="subtypes" upperBound="-1"
-        eType="#//MMType" eOpposite="#//MMType/supertype"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="supertype" eType="#//MMType"
-        eOpposite="#//MMType/subtypes"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="supertype" eType="#//Type"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Instance" abstract="true" interface="true"
       eSuperTypes="#//Element">
@@ -59,7 +56,7 @@
     <eOperations name="setTypeId">
       <eParameters name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eOperations>
-    <eOperations name="getType" lowerBound="1" eType="#//MMType"/>
+    <eOperations name="getType" lowerBound="1" eType="#//Type"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Element" abstract="true" interface="true">
     <eOperations name="getId" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -81,11 +78,10 @@
     <eOperations name="setAbstract">
       <eParameters name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     </eOperations>
-    <eOperations name="getSupertype" eType="#//MMType"/>
+    <eOperations name="getSupertype" eType="#//Type"/>
     <eOperations name="setSupertype">
-      <eParameters name="value" eType="#//MMType"/>
+      <eParameters name="value" eType="#//Type"/>
     </eOperations>
-    <eOperations name="getSubtypes" upperBound="-1" eType="#//MMType"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EStringToElementMap" instanceClassName="java.util.Map$Entry">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="key" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

@@ -166,149 +166,6 @@ public class ModelType extends Model implements Type {
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    *
-   * @model kind="operation" required="true"
-   * @generated
-   */
-  @Override
-  public boolean isDynamic() {
-    // TODO: implement this method
-    // Ensure that you remove @generated or mark it @generated NOT
-    throw new UnsupportedOperationException();
-  }
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   *
-   * @model
-   * @generated
-   */
-  @Override
-  public void setDynamic(boolean value) {
-    // TODO: implement this method
-    // Ensure that you remove @generated or mark it @generated NOT
-    throw new UnsupportedOperationException();
-  }
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   *
-   * @model kind="operation" required="true"
-   * @generated
-   */
-  @Override
-  public boolean isAbstract() {
-    // TODO: implement this method
-    // Ensure that you remove @generated or mark it @generated NOT
-    throw new UnsupportedOperationException();
-  }
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   *
-   * @model
-   * @generated
-   */
-  @Override
-  public void setAbstract(boolean value) {
-    // TODO: implement this method
-    // Ensure that you remove @generated or mark it @generated NOT
-    throw new UnsupportedOperationException();
-  }
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   *
-   * @model kind="operation"
-   * @generated
-   */
-  @Override
-  public MMType getSupertype() {
-    // TODO: implement this method
-    // Ensure that you remove @generated or mark it @generated NOT
-    throw new UnsupportedOperationException();
-  }
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   *
-   * @model
-   * @generated
-   */
-  @Override
-  public void setSupertype(MMType value) {
-    // TODO: implement this method
-    // Ensure that you remove @generated or mark it @generated NOT
-    throw new UnsupportedOperationException();
-  }
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   *
-   * @model kind="operation"
-   * @generated
-   */
-  @Override
-  public EList<MMType> getSubtypes() {
-    // TODO: implement this method
-    // Ensure that you remove @generated or mark it @generated NOT
-    throw new UnsupportedOperationException();
-  }
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   *
-   * @model kind="operation" required="true"
-   * @generated
-   */
-  @Override
-  public String getId() {
-    // TODO: implement this method
-    // Ensure that you remove @generated or mark it @generated NOT
-    throw new UnsupportedOperationException();
-  }
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   *
-   * @model
-   * @generated
-   */
-  @Override
-  public void setId(String value) {
-    // TODO: implement this method
-    // Ensure that you remove @generated or mark it @generated NOT
-    throw new UnsupportedOperationException();
-  }
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   *
-   * @model kind="operation" required="true"
-   * @generated
-   */
-  @Override
-  public String getName() {
-    // TODO: implement this method
-    // Ensure that you remove @generated or mark it @generated NOT
-    throw new UnsupportedOperationException();
-  }
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   *
-   * @model
-   * @generated
-   */
-  @Override
-  public void setName(String value) {
-    // TODO: implement this method
-    // Ensure that you remove @generated or mark it @generated NOT
-    throw new UnsupportedOperationException();
-  }
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   *
    * @generated
    */
   @Override
@@ -411,10 +268,8 @@ public class ModelType extends Model implements Type {
         return MMPackage.MODEL_TYPE___SET_ABSTRACT__BOOLEAN;
       case MMPackage.TYPE___GET_SUPERTYPE:
         return MMPackage.MODEL_TYPE___GET_SUPERTYPE;
-      case MMPackage.TYPE___SET_SUPERTYPE__MMTYPE:
-        return MMPackage.MODEL_TYPE___SET_SUPERTYPE__MMTYPE;
-      case MMPackage.TYPE___GET_SUBTYPES:
-        return MMPackage.MODEL_TYPE___GET_SUBTYPES;
+      case MMPackage.TYPE___SET_SUPERTYPE__TYPE:
+        return MMPackage.MODEL_TYPE___SET_SUPERTYPE__TYPE;
       default:
         return -1;
       }
@@ -447,11 +302,9 @@ public class ModelType extends Model implements Type {
       return null;
     case MMPackage.MODEL_TYPE___GET_SUPERTYPE:
       return getSupertype();
-    case MMPackage.MODEL_TYPE___SET_SUPERTYPE__MMTYPE:
-      setSupertype((MMType) arguments.get(0));
+    case MMPackage.MODEL_TYPE___SET_SUPERTYPE__TYPE:
+      setSupertype((Type) arguments.get(0));
       return null;
-    case MMPackage.MODEL_TYPE___GET_SUBTYPES:
-      return getSubtypes();
     case MMPackage.MODEL_TYPE___GET_ID:
       return getId();
     case MMPackage.MODEL_TYPE___SET_ID__STRING:

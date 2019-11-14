@@ -2,16 +2,10 @@
  */
 package edu.toronto.cs.se.mmint3.mm;
 
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Type</b></em>'. <!-- end-user-doc -->
@@ -22,7 +16,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  * <li>{@link edu.toronto.cs.se.mmint3.mm.MMType#isDynamic <em>Dynamic</em>}</li>
  * <li>{@link edu.toronto.cs.se.mmint3.mm.MMType#isAbstract <em>Abstract</em>}</li>
- * <li>{@link edu.toronto.cs.se.mmint3.mm.MMType#getSubtypes <em>Subtypes</em>}</li>
  * <li>{@link edu.toronto.cs.se.mmint3.mm.MMType#getSupertype <em>Supertype</em>}</li>
  * </ul>
  *
@@ -72,16 +65,6 @@ public class MMType extends MMElement implements Type {
   protected boolean abstract_ = MMType.ABSTRACT_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getSubtypes() <em>Subtypes</em>}' reference list. <!-- begin-user-doc --> <!--
-   * end-user-doc -->
-   *
-   * @see #getSubtypes()
-   * @generated
-   * @ordered
-   */
-  protected EList<MMType> subtypes;
-
-  /**
    * The cached value of the '{@link #getSupertype() <em>Supertype</em>}' reference. <!-- begin-user-doc --> <!--
    * end-user-doc -->
    *
@@ -89,7 +72,7 @@ public class MMType extends MMElement implements Type {
    * @generated
    * @ordered
    */
-  protected MMType supertype;
+  protected Type supertype;
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -173,43 +156,19 @@ public class MMType extends MMElement implements Type {
   }
 
   /**
-   * Returns the value of the '<em><b>Subtypes</b></em>' reference list. The list contents are of type
-   * {@link edu.toronto.cs.se.mmint3.mm.MMType}. It is bidirectional and its opposite is
-   * '{@link edu.toronto.cs.se.mmint3.mm.MMType#getSupertype <em>Supertype</em>}'. <!-- begin-user-doc --> <!--
-   * end-user-doc -->
-   *
-   * @return the value of the '<em>Subtypes</em>' reference list.
-   * @see edu.toronto.cs.se.mmint3.mm.MMPackage#getMMType_Subtypes()
-   * @see edu.toronto.cs.se.mmint3.mm.MMType#getSupertype
-   * @model opposite="supertype"
-   * @generated
-   */
-  @Override
-  public EList<MMType> getSubtypes() {
-    if (this.subtypes == null) {
-      this.subtypes = new EObjectWithInverseResolvingEList<>(MMType.class, this, MMPackage.MM_TYPE__SUBTYPES,
-                                                              MMPackage.MM_TYPE__SUPERTYPE);
-    }
-    return this.subtypes;
-  }
-
-  /**
-   * Returns the value of the '<em><b>Supertype</b></em>' reference. It is bidirectional and its opposite is
-   * '{@link edu.toronto.cs.se.mmint3.mm.MMType#getSubtypes <em>Subtypes</em>}'. <!-- begin-user-doc --> <!--
-   * end-user-doc -->
+   * Returns the value of the '<em><b>Supertype</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
    *
    * @return the value of the '<em>Supertype</em>' reference.
-   * @see #setSupertype(MMType)
+   * @see #setSupertype(Type)
    * @see edu.toronto.cs.se.mmint3.mm.MMPackage#getMMType_Supertype()
-   * @see edu.toronto.cs.se.mmint3.mm.MMType#getSubtypes
-   * @model opposite="subtypes"
+   * @model
    * @generated
    */
   @Override
-  public MMType getSupertype() {
+  public Type getSupertype() {
     if (this.supertype != null && this.supertype.eIsProxy()) {
-      InternalEObject oldSupertype = this.supertype;
-      this.supertype = (MMType) eResolveProxy(oldSupertype);
+      InternalEObject oldSupertype = (InternalEObject) this.supertype;
+      this.supertype = (Type) eResolveProxy(oldSupertype);
       if (this.supertype != oldSupertype) {
         if (eNotificationRequired())
           eNotify(new ENotificationImpl(this, Notification.RESOLVE, MMPackage.MM_TYPE__SUPERTYPE, oldSupertype,
@@ -224,27 +183,8 @@ public class MMType extends MMElement implements Type {
    *
    * @generated
    */
-  public MMType basicGetSupertype() {
+  public Type basicGetSupertype() {
     return this.supertype;
-  }
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   *
-   * @generated
-   */
-  public NotificationChain basicSetSupertype(MMType newSupertype, NotificationChain msgs) {
-    MMType oldSupertype = this.supertype;
-    this.supertype = newSupertype;
-    if (eNotificationRequired()) {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MMPackage.MM_TYPE__SUPERTYPE,
-                                                             oldSupertype, newSupertype);
-      if (msgs == null)
-        msgs = notification;
-      else
-        msgs.add(notification);
-    }
-    return msgs;
   }
 
   /**
@@ -257,54 +197,11 @@ public class MMType extends MMElement implements Type {
    * @generated
    */
   @Override
-  public void setSupertype(MMType newSupertype) {
-    if (newSupertype != this.supertype) {
-      NotificationChain msgs = null;
-      if (this.supertype != null)
-        msgs = this.supertype.eInverseRemove(this, MMPackage.MM_TYPE__SUBTYPES, MMType.class, msgs);
-      if (newSupertype != null)
-        msgs = newSupertype.eInverseAdd(this, MMPackage.MM_TYPE__SUBTYPES, MMType.class, msgs);
-      msgs = basicSetSupertype(newSupertype, msgs);
-      if (msgs != null)
-        msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MMPackage.MM_TYPE__SUPERTYPE, newSupertype, newSupertype));
-  }
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   *
-   * @generated
-   */
-  @SuppressWarnings("unchecked")
-  @Override
-  public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-    switch (featureID) {
-    case MMPackage.MM_TYPE__SUBTYPES:
-      return ((InternalEList<InternalEObject>) (InternalEList<?>) getSubtypes()).basicAdd(otherEnd, msgs);
-    case MMPackage.MM_TYPE__SUPERTYPE:
-      if (this.supertype != null)
-        msgs = this.supertype.eInverseRemove(this, MMPackage.MM_TYPE__SUBTYPES, MMType.class, msgs);
-      return basicSetSupertype((MMType) otherEnd, msgs);
-    }
-    return super.eInverseAdd(otherEnd, featureID, msgs);
-  }
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   *
-   * @generated
-   */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-    switch (featureID) {
-    case MMPackage.MM_TYPE__SUBTYPES:
-      return ((InternalEList<?>) getSubtypes()).basicRemove(otherEnd, msgs);
-    case MMPackage.MM_TYPE__SUPERTYPE:
-      return basicSetSupertype(null, msgs);
-    }
-    return super.eInverseRemove(otherEnd, featureID, msgs);
+  public void setSupertype(Type newSupertype) {
+    Type oldSupertype = this.supertype;
+    this.supertype = newSupertype;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MMPackage.MM_TYPE__SUPERTYPE, oldSupertype, this.supertype));
   }
 
   /**
@@ -319,8 +216,6 @@ public class MMType extends MMElement implements Type {
       return isDynamic();
     case MMPackage.MM_TYPE__ABSTRACT:
       return isAbstract();
-    case MMPackage.MM_TYPE__SUBTYPES:
-      return getSubtypes();
     case MMPackage.MM_TYPE__SUPERTYPE:
       if (resolve)
         return getSupertype();
@@ -334,7 +229,6 @@ public class MMType extends MMElement implements Type {
    *
    * @generated
    */
-  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
@@ -344,12 +238,8 @@ public class MMType extends MMElement implements Type {
     case MMPackage.MM_TYPE__ABSTRACT:
       setAbstract((Boolean) newValue);
       return;
-    case MMPackage.MM_TYPE__SUBTYPES:
-      getSubtypes().clear();
-      getSubtypes().addAll((Collection<? extends MMType>) newValue);
-      return;
     case MMPackage.MM_TYPE__SUPERTYPE:
-      setSupertype((MMType) newValue);
+      setSupertype((Type) newValue);
       return;
     }
     super.eSet(featureID, newValue);
@@ -369,11 +259,8 @@ public class MMType extends MMElement implements Type {
     case MMPackage.MM_TYPE__ABSTRACT:
       setAbstract(MMType.ABSTRACT_EDEFAULT);
       return;
-    case MMPackage.MM_TYPE__SUBTYPES:
-      getSubtypes().clear();
-      return;
     case MMPackage.MM_TYPE__SUPERTYPE:
-      setSupertype((MMType) null);
+      setSupertype((Type) null);
       return;
     }
     super.eUnset(featureID);
@@ -391,8 +278,6 @@ public class MMType extends MMElement implements Type {
       return this.dynamic != MMType.DYNAMIC_EDEFAULT;
     case MMPackage.MM_TYPE__ABSTRACT:
       return this.abstract_ != MMType.ABSTRACT_EDEFAULT;
-    case MMPackage.MM_TYPE__SUBTYPES:
-      return this.subtypes != null && !this.subtypes.isEmpty();
     case MMPackage.MM_TYPE__SUPERTYPE:
       return this.supertype != null;
     }

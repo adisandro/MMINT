@@ -2,8 +2,6 @@
  */
 package edu.toronto.cs.se.mmint3.mm;
 
-import org.eclipse.emf.common.util.EList;
-
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Type</b></em>'. <!-- end-user-doc -->
  *
@@ -59,7 +57,7 @@ public interface Type extends Element {
    * @model kind="operation"
    * @generated NOT
    */
-  default MMType getSupertype() {
+  default Type getSupertype() {
     return getAttribute(MMPackage.MM_TYPE__SUPERTYPE);
   }
 
@@ -69,18 +67,8 @@ public interface Type extends Element {
    * @model
    * @generated NOT
    */
-  default void setSupertype(MMType value) {
+  default void setSupertype(Type value) {
     setAttribute(MMPackage.MM_TYPE__SUPERTYPE, value);
-  }
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   *
-   * @model kind="operation"
-   * @generated NOT
-   */
-  default EList<MMType> getSubtypes() {
-    return getAttribute(MMPackage.MM_TYPE__SUBTYPES);
   }
 
 } // Type

@@ -48,7 +48,6 @@
     <genClasses ecoreClass="mm.ecore#//MMType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mm.ecore#//MMType/dynamic"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mm.ecore#//MMType/abstract"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mm.ecore#//MMType/subtypes"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mm.ecore#//MMType/supertype"/>
     </genClasses>
     <genClasses image="false" ecoreClass="mm.ecore#//Instance">
@@ -81,7 +80,6 @@
       <genOperations ecoreOperation="mm.ecore#//Type/setSupertype">
         <genParameters ecoreParameter="mm.ecore#//Type/setSupertype/value"/>
       </genOperations>
-      <genOperations ecoreOperation="mm.ecore#//Type/getSubtypes"/>
     </genClasses>
     <genClasses ecoreClass="mm.ecore#//EStringToElementMap">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mm.ecore#//EStringToElementMap/key"/>

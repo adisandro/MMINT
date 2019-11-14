@@ -43,7 +43,6 @@ public class MMTypeItemProvider extends MMElementItemProvider {
 
       addDynamicPropertyDescriptor(object);
       addAbstractPropertyDescriptor(object);
-      addSubtypesPropertyDescriptor(object);
       addSupertypePropertyDescriptor(object);
     }
     return this.itemPropertyDescriptors;
@@ -77,22 +76,6 @@ public class MMTypeItemProvider extends MMElementItemProvider {
                                                                        "_UI_MMType_supertype_feature",
                                                                        "_UI_MMType_type"),
                                                              MMPackage.Literals.MM_TYPE__SUPERTYPE, true, false, true,
-                                                             null, null, null));
-  }
-
-  /**
-   * This adds a property descriptor for the Subtypes feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-   *
-   * @generated
-   */
-  protected void addSubtypesPropertyDescriptor(Object object) {
-    this.itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(),
-                                                             getResourceLocator(), getString(
-                                                                                             "_UI_MMType_subtypes_feature"),
-                                                             getString("_UI_PropertyDescriptor_description",
-                                                                       "_UI_MMType_subtypes_feature",
-                                                                       "_UI_MMType_type"),
-                                                             MMPackage.Literals.MM_TYPE__SUBTYPES, true, false, true,
                                                              null, null, null));
   }
 
