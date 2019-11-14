@@ -113,9 +113,9 @@ public class ModelInstance extends Model implements Instance {
     if (newI != this.i) {
       NotificationChain msgs = null;
       if (this.i != null)
-        msgs = this.i.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MMPackage.MODEL_INSTANCE__I, null, msgs);
+        msgs = this.i.eInverseRemove(this, InternalEObject.EOPPOSITE_FEATURE_BASE - MMPackage.MODEL_INSTANCE__I, null, msgs);
       if (newI != null)
-        msgs = newI.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MMPackage.MODEL_INSTANCE__I, null, msgs);
+        msgs = newI.eInverseAdd(this, InternalEObject.EOPPOSITE_FEATURE_BASE - MMPackage.MODEL_INSTANCE__I, null, msgs);
       msgs = basicSetI(newI, msgs);
       if (msgs != null)
         msgs.dispatch();
@@ -155,22 +155,6 @@ public class ModelInstance extends Model implements Instance {
   }
 
   /**
-   * @generated NOT
-   */
-  public EObject getRoot() {
-    var root = getRootGen();
-    if (root == null) {
-      try {
-        root = FileUtils.readModelFile(getId(), null, true);
-        this.root = root; // bypass EMF notifications and the need for a write transaction
-      }
-      catch (Exception e) {
-      }
-    }
-    return root;
-  }
-
-  /**
    * Sets the value of the '{@link edu.toronto.cs.se.mmint3.mm.ModelInstance#getRoot <em>Root</em>}' reference. <!--
    * begin-user-doc --> <!-- end-user-doc -->
    *
@@ -184,6 +168,113 @@ public class ModelInstance extends Model implements Instance {
     this.root = newRoot;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, MMPackage.MODEL_INSTANCE__ROOT, oldRoot, this.root));
+  }
+
+  /**
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @model kind="operation" required="true"
+   * @generated
+   */
+  @Override
+  public String getTypeId() {
+    // TODO: implement this method
+    // Ensure that you remove @generated or mark it @generated NOT
+    throw new UnsupportedOperationException();
+  }
+
+  /**
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @model
+   * @generated
+   */
+  @Override
+  public void setTypeId(String value) {
+    // TODO: implement this method
+    // Ensure that you remove @generated or mark it @generated NOT
+    throw new UnsupportedOperationException();
+  }
+
+  /**
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @model kind="operation" required="true"
+   * @generated
+   */
+  @Override
+  public MMType getType() {
+    // TODO: implement this method
+    // Ensure that you remove @generated or mark it @generated NOT
+    throw new UnsupportedOperationException();
+  }
+
+  /**
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @model kind="operation" required="true"
+   * @generated
+   */
+  @Override
+  public String getId() {
+    // TODO: implement this method
+    // Ensure that you remove @generated or mark it @generated NOT
+    throw new UnsupportedOperationException();
+  }
+
+  /**
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @model
+   * @generated
+   */
+  @Override
+  public void setId(String value) {
+    // TODO: implement this method
+    // Ensure that you remove @generated or mark it @generated NOT
+    throw new UnsupportedOperationException();
+  }
+
+  /**
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @model kind="operation" required="true"
+   * @generated
+   */
+  @Override
+  public String getName() {
+    // TODO: implement this method
+    // Ensure that you remove @generated or mark it @generated NOT
+    throw new UnsupportedOperationException();
+  }
+
+  /**
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @model
+   * @generated
+   */
+  @Override
+  public void setName(String value) {
+    // TODO: implement this method
+    // Ensure that you remove @generated or mark it @generated NOT
+    throw new UnsupportedOperationException();
+  }
+
+  /**
+   * @generated NOT
+   */
+  public EObject getRoot() {
+    var root = getRootGen();
+    if (root == null) {
+      try {
+        root = FileUtils.readModelFile(getId(), null, true);
+        this.root = root; // bypass EMF notifications and the need for a write transaction
+      }
+      catch (Exception e) {
+      }
+    }
+    return root;
   }
 
   /**

@@ -39,7 +39,7 @@ public abstract class MMElement extends MinimalEObjectImpl.Container implements 
    * @generated
    * @ordered
    */
-  protected String id = ID_EDEFAULT;
+  protected String id = MMElement.ID_EDEFAULT;
 
   /**
    * The default value of the '{@link #getName() <em>Name</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
@@ -58,7 +58,7 @@ public abstract class MMElement extends MinimalEObjectImpl.Container implements 
    * @generated
    * @ordered
    */
-  protected String name = NAME_EDEFAULT;
+  protected String name = MMElement.NAME_EDEFAULT;
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -184,10 +184,10 @@ public abstract class MMElement extends MinimalEObjectImpl.Container implements 
   public void eUnset(int featureID) {
     switch (featureID) {
     case MMPackage.MM_ELEMENT__ID:
-      setId(ID_EDEFAULT);
+      setId(MMElement.ID_EDEFAULT);
       return;
     case MMPackage.MM_ELEMENT__NAME:
-      setName(NAME_EDEFAULT);
+      setName(MMElement.NAME_EDEFAULT);
       return;
     }
     super.eUnset(featureID);
@@ -202,9 +202,9 @@ public abstract class MMElement extends MinimalEObjectImpl.Container implements 
   public boolean eIsSet(int featureID) {
     switch (featureID) {
     case MMPackage.MM_ELEMENT__ID:
-      return ID_EDEFAULT == null ? this.id != null : !ID_EDEFAULT.equals(this.id);
+      return MMElement.ID_EDEFAULT == null ? this.id != null : !MMElement.ID_EDEFAULT.equals(this.id);
     case MMPackage.MM_ELEMENT__NAME:
-      return NAME_EDEFAULT == null ? this.name != null : !NAME_EDEFAULT.equals(this.name);
+      return MMElement.NAME_EDEFAULT == null ? this.name != null : !MMElement.NAME_EDEFAULT.equals(this.name);
     }
     return super.eIsSet(featureID);
   }

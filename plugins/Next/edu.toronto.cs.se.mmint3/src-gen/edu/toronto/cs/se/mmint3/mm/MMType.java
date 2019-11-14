@@ -49,7 +49,7 @@ public class MMType extends MMElement implements Type {
    * @generated
    * @ordered
    */
-  protected boolean dynamic = DYNAMIC_EDEFAULT;
+  protected boolean dynamic = MMType.DYNAMIC_EDEFAULT;
 
   /**
    * The default value of the '{@link #isAbstract() <em>Abstract</em>}' attribute. <!-- begin-user-doc --> <!--
@@ -69,7 +69,7 @@ public class MMType extends MMElement implements Type {
    * @generated
    * @ordered
    */
-  protected boolean abstract_ = ABSTRACT_EDEFAULT;
+  protected boolean abstract_ = MMType.ABSTRACT_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getSubtypes() <em>Subtypes</em>}' reference list. <!-- begin-user-doc --> <!--
@@ -364,10 +364,10 @@ public class MMType extends MMElement implements Type {
   public void eUnset(int featureID) {
     switch (featureID) {
     case MMPackage.MM_TYPE__DYNAMIC:
-      setDynamic(DYNAMIC_EDEFAULT);
+      setDynamic(MMType.DYNAMIC_EDEFAULT);
       return;
     case MMPackage.MM_TYPE__ABSTRACT:
-      setAbstract(ABSTRACT_EDEFAULT);
+      setAbstract(MMType.ABSTRACT_EDEFAULT);
       return;
     case MMPackage.MM_TYPE__SUBTYPES:
       getSubtypes().clear();
@@ -388,9 +388,9 @@ public class MMType extends MMElement implements Type {
   public boolean eIsSet(int featureID) {
     switch (featureID) {
     case MMPackage.MM_TYPE__DYNAMIC:
-      return this.dynamic != DYNAMIC_EDEFAULT;
+      return this.dynamic != MMType.DYNAMIC_EDEFAULT;
     case MMPackage.MM_TYPE__ABSTRACT:
-      return this.abstract_ != ABSTRACT_EDEFAULT;
+      return this.abstract_ != MMType.ABSTRACT_EDEFAULT;
     case MMPackage.MM_TYPE__SUBTYPES:
       return this.subtypes != null && !this.subtypes.isEmpty();
     case MMPackage.MM_TYPE__SUPERTYPE:

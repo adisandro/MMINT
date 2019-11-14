@@ -4,6 +4,7 @@ package edu.toronto.cs.se.mmint3.mm.provider;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
@@ -20,23 +21,22 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import edu.toronto.cs.se.mmint3.mm.MMElement;
 import edu.toronto.cs.se.mmint3.mm.MMPackage;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.mmint3.mm.MMElement} object. <!-- begin-user-doc -->
- * <!-- end-user-doc -->
+ * This is the item provider adapter for a {@link java.util.Map.Entry} object. <!-- begin-user-doc --> <!-- end-user-doc
+ * -->
  *
  * @generated
  */
-public class MMElementItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+public class EStringToElementMapItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
   IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
   /**
    * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
    *
    * @generated
    */
-  public MMElementItemProvider(AdapterFactory adapterFactory) {
+  public EStringToElementMapItemProvider(AdapterFactory adapterFactory) {
     super(adapterFactory);
   }
 
@@ -50,52 +50,53 @@ public class MMElementItemProvider extends ItemProviderAdapter implements IEditi
     if (this.itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
-      addIdPropertyDescriptor(object);
-      addNamePropertyDescriptor(object);
+      addKeyPropertyDescriptor(object);
+      addValuePropertyDescriptor(object);
     }
     return this.itemPropertyDescriptors;
   }
 
   /**
-   * This adds a property descriptor for the Id feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * This adds a property descriptor for the Key feature. <!-- begin-user-doc --> <!-- end-user-doc -->
    *
    * @generated
    */
-  protected void addIdPropertyDescriptor(Object object) {
+  protected void addKeyPropertyDescriptor(Object object) {
     this.itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(),
                                                              getResourceLocator(), getString(
-                                                                                             "_UI_MMElement_id_feature"),
+                                                                                             "_UI_EStringToElementMap_key_feature"),
                                                              getString("_UI_PropertyDescriptor_description",
-                                                                       "_UI_MMElement_id_feature",
-                                                                       "_UI_MMElement_type"),
-                                                             MMPackage.Literals.MM_ELEMENT__ID, true, false, false,
-                                                             ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+                                                                       "_UI_EStringToElementMap_key_feature",
+                                                                       "_UI_EStringToElementMap_type"),
+                                                             MMPackage.Literals.ESTRING_TO_ELEMENT_MAP__KEY, true,
+                                                             false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                                                             null, null));
   }
 
   /**
-   * This adds a property descriptor for the Name feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * This adds a property descriptor for the Value feature. <!-- begin-user-doc --> <!-- end-user-doc -->
    *
    * @generated
    */
-  protected void addNamePropertyDescriptor(Object object) {
+  protected void addValuePropertyDescriptor(Object object) {
     this.itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(),
                                                              getResourceLocator(), getString(
-                                                                                             "_UI_MMElement_name_feature"),
+                                                                                             "_UI_EStringToElementMap_value_feature"),
                                                              getString("_UI_PropertyDescriptor_description",
-                                                                       "_UI_MMElement_name_feature",
-                                                                       "_UI_MMElement_type"),
-                                                             MMPackage.Literals.MM_ELEMENT__NAME, true, false, false,
-                                                             ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+                                                                       "_UI_EStringToElementMap_value_feature",
+                                                                       "_UI_EStringToElementMap_type"),
+                                                             MMPackage.Literals.ESTRING_TO_ELEMENT_MAP__VALUE, true,
+                                                             false, true, null, null, null));
   }
 
   /**
-   * This returns MMElement.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * This returns EStringToElementMap.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
    *
    * @generated
    */
   @Override
   public Object getImage(Object object) {
-    return overlayImage(object, getResourceLocator().getImage("full/obj16/MMElement"));
+    return overlayImage(object, getResourceLocator().getImage("full/obj16/EStringToElementMap"));
   }
 
   /**
@@ -115,9 +116,8 @@ public class MMElementItemProvider extends ItemProviderAdapter implements IEditi
    */
   @Override
   public String getText(Object object) {
-    String label = ((MMElement) object).getName();
-    return label == null || label.length() == 0 ? getString("_UI_MMElement_type")
-      : getString("_UI_MMElement_type") + " " + label;
+    Map.Entry<?, ?> eStringToElementMap = (Map.Entry<?, ?>) object;
+    return "" + eStringToElementMap.getKey() + " -> " + eStringToElementMap.getValue();
   }
 
   /**
@@ -130,9 +130,8 @@ public class MMElementItemProvider extends ItemProviderAdapter implements IEditi
   public void notifyChanged(Notification notification) {
     updateChildren(notification);
 
-    switch (notification.getFeatureID(MMElement.class)) {
-    case MMPackage.MM_ELEMENT__ID:
-    case MMPackage.MM_ELEMENT__NAME:
+    switch (notification.getFeatureID(Map.Entry.class)) {
+    case MMPackage.ESTRING_TO_ELEMENT_MAP__KEY:
       fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
       return;
     }

@@ -1,0 +1,2 @@
+1) EStringToElementMap: fix with the suggested cast.
+2) MMInstance: remove getType() and basicGetType().

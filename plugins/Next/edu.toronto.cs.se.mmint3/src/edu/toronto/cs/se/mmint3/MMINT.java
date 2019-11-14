@@ -16,7 +16,7 @@ import edu.toronto.cs.se.mmint3.mm.TypeMegaModel;
 public class MMINT {
 
   /** The singleton instance of this class. */
-  static final MMINT INSTANCE = new MMINT();
+  static final MMINT I = new MMINT();
   /** The Type MegaModel in memory. */
   TypeMegaModel cachedTypeMM;
 

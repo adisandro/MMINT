@@ -2,6 +2,8 @@
  */
 package edu.toronto.cs.se.mmint3.mm.util;
 
+import java.util.Map;
+
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
@@ -42,8 +44,8 @@ public class MMAdapterFactory extends AdapterFactoryImpl {
    * @generated
    */
   public MMAdapterFactory() {
-    if (modelPackage == null) {
-      modelPackage = MMPackage.eINSTANCE;
+    if (MMAdapterFactory.modelPackage == null) {
+      MMAdapterFactory.modelPackage = MMPackage.eINSTANCE;
     }
   }
 
@@ -57,11 +59,11 @@ public class MMAdapterFactory extends AdapterFactoryImpl {
    */
   @Override
   public boolean isFactoryForType(Object object) {
-    if (object == modelPackage) {
+    if (object == MMAdapterFactory.modelPackage) {
       return true;
     }
     if (object instanceof EObject) {
-      return ((EObject) object).eClass().getEPackage() == modelPackage;
+      return ((EObject) object).eClass().getEPackage() == MMAdapterFactory.modelPackage;
     }
     return false;
   }
@@ -130,6 +132,11 @@ public class MMAdapterFactory extends AdapterFactoryImpl {
     @Override
     public Adapter caseType(Type object) {
       return createTypeAdapter();
+    }
+
+    @Override
+    public Adapter caseEStringToElementMap(Map.Entry<String, Element> object) {
+      return createEStringToElementMapAdapter();
     }
 
     @Override
@@ -304,6 +311,19 @@ public class MMAdapterFactory extends AdapterFactoryImpl {
    * @generated
    */
   public Adapter createTypeAdapter() {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link java.util.Map.Entry <em>EString To Element Map</em>}'. <!--
+   * begin-user-doc --> This default implementation returns null so that we can easily ignore cases; it's useful to
+   * ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
+   *
+   * @return the new adapter.
+   * @see java.util.Map.Entry
+   * @generated
+   */
+  public Adapter createEStringToElementMapAdapter() {
     return null;
   }
 

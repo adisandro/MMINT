@@ -13,6 +13,11 @@
       extensibleProviderFactory="true" ecorePackage="mm.ecore#/">
     <genClasses ecoreClass="mm.ecore#//MegaModel">
       <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference mm.ecore#//MegaModel/models"/>
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference mm.ecore#//MegaModel/elements"/>
+      <genOperations ecoreOperation="mm.ecore#//MegaModel/getElement">
+        <genParameters ecoreParameter="mm.ecore#//MegaModel/getElement/id"/>
+        <genTypeParameters ecoreTypeParameter="mm.ecore#//MegaModel/getElement/T"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="mm.ecore#//MMElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mm.ecore#//MMElement/id"/>
@@ -33,7 +38,8 @@
     </genClasses>
     <genClasses ecoreClass="mm.ecore#//ModelInstance">
       <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference mm.ecore#//ModelInstance/i"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mm.ecore#//ModelInstance/root"/>
+      <genFeatures property="None" notify="false" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference mm.ecore#//ModelInstance/root"/>
     </genClasses>
     <genClasses ecoreClass="mm.ecore#//MMInstance">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mm.ecore#//MMInstance/typeId"/>
@@ -76,6 +82,10 @@
         <genParameters ecoreParameter="mm.ecore#//Type/setSupertype/value"/>
       </genOperations>
       <genOperations ecoreOperation="mm.ecore#//Type/getSubtypes"/>
+    </genClasses>
+    <genClasses ecoreClass="mm.ecore#//EStringToElementMap">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mm.ecore#//EStringToElementMap/key"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mm.ecore#//EStringToElementMap/value"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

@@ -2,11 +2,15 @@
  */
 package edu.toronto.cs.se.mmint3.mm;
 
+import java.util.Map;
+
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 /**
@@ -73,12 +77,28 @@ public class MMPackage extends EPackageImpl {
   public static final int MEGA_MODEL__MODELS = 0;
 
   /**
+   * The feature id for the '<em><b>Elements</b></em>' map. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int MEGA_MODEL__ELEMENTS = 1;
+
+  /**
    * The number of structural features of the '<em>Mega Model</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
    *
    * @generated
    * @ordered
    */
-  public static final int MEGA_MODEL_FEATURE_COUNT = 1;
+  public static final int MEGA_MODEL_FEATURE_COUNT = 2;
+
+  /**
+   * The operation id for the '<em>Get Element</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int MEGA_MODEL___GET_ELEMENT__STRING = 0;
 
   /**
    * The number of operations of the '<em>Mega Model</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -86,7 +106,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MEGA_MODEL_OPERATION_COUNT = 0;
+  public static final int MEGA_MODEL_OPERATION_COUNT = 1;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.mmint3.mm.Element <em>Element</em>}' class. <!--
@@ -240,6 +260,14 @@ public class MMPackage extends EPackageImpl {
   public static final int TYPE_MEGA_MODEL__MODELS = MMPackage.MEGA_MODEL__MODELS;
 
   /**
+   * The feature id for the '<em><b>Elements</b></em>' map. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int TYPE_MEGA_MODEL__ELEMENTS = MMPackage.MEGA_MODEL__ELEMENTS;
+
+  /**
    * The number of structural features of the '<em>Type Mega Model</em>' class. <!-- begin-user-doc --> <!--
    * end-user-doc -->
    *
@@ -247,6 +275,14 @@ public class MMPackage extends EPackageImpl {
    * @ordered
    */
   public static final int TYPE_MEGA_MODEL_FEATURE_COUNT = MMPackage.MEGA_MODEL_FEATURE_COUNT + 0;
+
+  /**
+   * The operation id for the '<em>Get Element</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int TYPE_MEGA_MODEL___GET_ELEMENT__STRING = MMPackage.MEGA_MODEL___GET_ELEMENT__STRING;
 
   /**
    * The number of operations of the '<em>Type Mega Model</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -276,6 +312,14 @@ public class MMPackage extends EPackageImpl {
   public static final int INSTANCE_MEGA_MODEL__MODELS = MMPackage.MEGA_MODEL__MODELS;
 
   /**
+   * The feature id for the '<em><b>Elements</b></em>' map. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int INSTANCE_MEGA_MODEL__ELEMENTS = MMPackage.MEGA_MODEL__ELEMENTS;
+
+  /**
    * The number of structural features of the '<em>Instance Mega Model</em>' class. <!-- begin-user-doc --> <!--
    * end-user-doc -->
    *
@@ -283,6 +327,14 @@ public class MMPackage extends EPackageImpl {
    * @ordered
    */
   public static final int INSTANCE_MEGA_MODEL_FEATURE_COUNT = MMPackage.MEGA_MODEL_FEATURE_COUNT + 0;
+
+  /**
+   * The operation id for the '<em>Get Element</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int INSTANCE_MEGA_MODEL___GET_ELEMENT__STRING = MMPackage.MEGA_MODEL___GET_ELEMENT__STRING;
 
   /**
    * The number of operations of the '<em>Instance Mega Model</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -1029,6 +1081,50 @@ public class MMPackage extends EPackageImpl {
   public static final int TYPE_OPERATION_COUNT = MMPackage.ELEMENT_OPERATION_COUNT + 7;
 
   /**
+   * The meta object id for the '{@link edu.toronto.cs.se.mmint3.mm.EStringToElementMap <em>EString To Element
+   * Map</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @see edu.toronto.cs.se.mmint3.mm.EStringToElementMap
+   * @see edu.toronto.cs.se.mmint3.mm.MMPackage#getEStringToElementMap()
+   * @generated
+   */
+  public static final int ESTRING_TO_ELEMENT_MAP = 12;
+
+  /**
+   * The feature id for the '<em><b>Key</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int ESTRING_TO_ELEMENT_MAP__KEY = 0;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int ESTRING_TO_ELEMENT_MAP__VALUE = 1;
+
+  /**
+   * The number of structural features of the '<em>EString To Element Map</em>' class. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int ESTRING_TO_ELEMENT_MAP_FEATURE_COUNT = 2;
+
+  /**
+   * The number of operations of the '<em>EString To Element Map</em>' class. <!-- begin-user-doc --> <!-- end-user-doc
+   * -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int ESTRING_TO_ELEMENT_MAP_OPERATION_COUNT = 0;
+
+  /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    *
    * @generated
@@ -1111,6 +1207,13 @@ public class MMPackage extends EPackageImpl {
    * @generated
    */
   private EClass typeEClass = null;
+
+  /**
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   */
+  private EClass eStringToElementMapEClass = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry
@@ -1197,6 +1300,31 @@ public class MMPackage extends EPackageImpl {
    */
   public EReference getMegaModel_Models() {
     return (EReference) this.megaModelEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * Returns the meta object for the map '{@link edu.toronto.cs.se.mmint3.mm.MegaModel#getElements <em>Elements</em>}'.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @return the meta object for the map '<em>Elements</em>'.
+   * @see edu.toronto.cs.se.mmint3.mm.MegaModel#getElements()
+   * @see #getMegaModel()
+   * @generated
+   */
+  public EReference getMegaModel_Elements() {
+    return (EReference) this.megaModelEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint3.mm.MegaModel#getElement(java.lang.String) <em>Get
+   * Element</em>}' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @return the meta object for the '<em>Get Element</em>' operation.
+   * @see edu.toronto.cs.se.mmint3.mm.MegaModel#getElement(java.lang.String)
+   * @generated
+   */
+  public EOperation getMegaModel__GetElement__String() {
+    return this.megaModelEClass.getEOperations().get(0);
   }
 
   /**
@@ -1670,6 +1798,46 @@ public class MMPackage extends EPackageImpl {
   }
 
   /**
+   * Returns the meta object for class '{@link java.util.Map.Entry <em>EString To Element Map</em>}'. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @return the meta object for class '<em>EString To Element Map</em>'.
+   * @see java.util.Map.Entry
+   * @model keyDataType="org.eclipse.emf.ecore.EString" keyRequired="true"
+   *        valueType="edu.toronto.cs.se.mmint3.mm.Element" valueRequired="true"
+   * @generated
+   */
+  public EClass getEStringToElementMap() {
+    return this.eStringToElementMapEClass;
+  }
+
+  /**
+   * Returns the meta object for the attribute '{@link java.util.Map.Entry <em>Key</em>}'. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
+   *
+   * @return the meta object for the attribute '<em>Key</em>'.
+   * @see java.util.Map.Entry
+   * @see #getEStringToElementMap()
+   * @generated
+   */
+  public EAttribute getEStringToElementMap_Key() {
+    return (EAttribute) this.eStringToElementMapEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * Returns the meta object for the reference '{@link java.util.Map.Entry <em>Value</em>}'. <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   *
+   * @return the meta object for the reference '<em>Value</em>'.
+   * @see java.util.Map.Entry
+   * @see #getEStringToElementMap()
+   * @generated
+   */
+  public EReference getEStringToElementMap_Value() {
+    return (EReference) this.eStringToElementMapEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
    * Returns the factory that creates the instances of the model. <!-- begin-user-doc --> <!-- end-user-doc -->
    *
    * @return the factory that creates the instances of the model.
@@ -1700,6 +1868,8 @@ public class MMPackage extends EPackageImpl {
     // Create classes and their features
     this.megaModelEClass = createEClass(MMPackage.MEGA_MODEL);
     createEReference(this.megaModelEClass, MMPackage.MEGA_MODEL__MODELS);
+    createEReference(this.megaModelEClass, MMPackage.MEGA_MODEL__ELEMENTS);
+    createEOperation(this.megaModelEClass, MMPackage.MEGA_MODEL___GET_ELEMENT__STRING);
 
     this.mmElementEClass = createEClass(MMPackage.MM_ELEMENT);
     createEAttribute(this.mmElementEClass, MMPackage.MM_ELEMENT__ID);
@@ -1749,6 +1919,10 @@ public class MMPackage extends EPackageImpl {
     createEOperation(this.typeEClass, MMPackage.TYPE___GET_SUPERTYPE);
     createEOperation(this.typeEClass, MMPackage.TYPE___SET_SUPERTYPE__MMTYPE);
     createEOperation(this.typeEClass, MMPackage.TYPE___GET_SUBTYPES);
+
+    this.eStringToElementMapEClass = createEClass(MMPackage.ESTRING_TO_ELEMENT_MAP);
+    createEAttribute(this.eStringToElementMapEClass, MMPackage.ESTRING_TO_ELEMENT_MAP__KEY);
+    createEReference(this.eStringToElementMapEClass, MMPackage.ESTRING_TO_ELEMENT_MAP__VALUE);
   }
 
   /**
@@ -1798,6 +1972,17 @@ public class MMPackage extends EPackageImpl {
     initEReference(getMegaModel_Models(), this.getModel(), null, "models", null, 0, -1, MegaModel.class, !EPackageImpl.IS_TRANSIENT,
                    !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, EPackageImpl.IS_COMPOSITE, !EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE,
                    !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
+    initEReference(getMegaModel_Elements(), this.getEStringToElementMap(), null, "elements", null, 0, -1,
+                   MegaModel.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, EPackageImpl.IS_COMPOSITE, !EPackageImpl.IS_RESOLVE_PROXIES,
+                   !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
+
+    EOperation op = initEOperation(getMegaModel__GetElement__String(), null, "getElement", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    ETypeParameter t1 = addETypeParameter(op, "T");
+    EGenericType g1 = createEGenericType(this.getElement());
+    t1.getEBounds().add(g1);
+    addEParameter(op, this.ecorePackage.getEString(), "id", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    g1 = createEGenericType(t1);
+    initEOperation(op, g1);
 
     initEClass(this.mmElementEClass, MMElement.class, "MMElement", EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getMMElement_Id(), this.ecorePackage.getEString(), "id", null, 1, 1, MMElement.class, !EPackageImpl.IS_TRANSIENT,
@@ -1820,9 +2005,9 @@ public class MMPackage extends EPackageImpl {
 
     initEOperation(getModelType__GetPackage(), this.ecorePackage.getEPackage(), "getPackage", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
 
-    EOperation op = initEOperation(getModelType__CreateInstance__EObject_String_boolean_InstanceMegaModel(), this
-                                                                                                                 .getModelInstance(),
-                                   "createInstance", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    op = initEOperation(getModelType__CreateInstance__EObject_String_boolean_InstanceMegaModel(), this
+                                                                                                      .getModelInstance(),
+                        "createInstance", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEParameter(op, this.ecorePackage.getEObject(), "root", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEParameter(op, this.ecorePackage.getEString(), "path", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEParameter(op, this.ecorePackage.getEBoolean(), "serialize", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
@@ -1899,6 +2084,15 @@ public class MMPackage extends EPackageImpl {
 
     initEOperation(getType__GetSubtypes(), this.getMMType(), "getSubtypes", 0, -1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
 
+    initEClass(this.eStringToElementMapEClass, Map.Entry.class, "EStringToElementMap", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE,
+               !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getEStringToElementMap_Key(), this.ecorePackage.getEString(), "key", null, 1, 1, Map.Entry.class,
+                   !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED,
+                   EPackageImpl.IS_ORDERED);
+    initEReference(getEStringToElementMap_Value(), this.getElement(), null, "value", null, 1, 1, Map.Entry.class,
+                   !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE,
+                   EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
+
     // Create resource
     createResource(MMPackage.eNS_URI);
   }
@@ -1934,6 +2128,22 @@ public class MMPackage extends EPackageImpl {
      * @generated
      */
     public static final EReference MEGA_MODEL__MODELS = MMPackage.eINSTANCE.getMegaModel_Models();
+
+    /**
+     * The meta object literal for the '<em><b>Elements</b></em>' map feature. <!-- begin-user-doc --> <!-- end-user-doc
+     * -->
+     *
+     * @generated
+     */
+    public static final EReference MEGA_MODEL__ELEMENTS = MMPackage.eINSTANCE.getMegaModel_Elements();
+
+    /**
+     * The meta object literal for the '<em><b>Get Element</b></em>' operation. <!-- begin-user-doc --> <!--
+     * end-user-doc -->
+     *
+     * @generated
+     */
+    public static final EOperation MEGA_MODEL___GET_ELEMENT__STRING = MMPackage.eINSTANCE.getMegaModel__GetElement__String();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint3.mm.MMElement <em>Element</em>}' class. <!--
@@ -2258,6 +2468,32 @@ public class MMPackage extends EPackageImpl {
      * @generated
      */
     public static final EOperation TYPE___GET_SUBTYPES = MMPackage.eINSTANCE.getType__GetSubtypes();
+
+    /**
+     * The meta object literal for the '{@link edu.toronto.cs.se.mmint3.mm.EStringToElementMap <em>EString To Element
+     * Map</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
+     * @see edu.toronto.cs.se.mmint3.mm.EStringToElementMap
+     * @see edu.toronto.cs.se.mmint3.mm.MMPackage#getEStringToElementMap()
+     * @generated
+     */
+    public static final EClass ESTRING_TO_ELEMENT_MAP = MMPackage.eINSTANCE.getEStringToElementMap();
+
+    /**
+     * The meta object literal for the '<em><b>Key</b></em>' attribute feature. <!-- begin-user-doc --> <!--
+     * end-user-doc -->
+     *
+     * @generated
+     */
+    public static final EAttribute ESTRING_TO_ELEMENT_MAP__KEY = MMPackage.eINSTANCE.getEStringToElementMap_Key();
+
+    /**
+     * The meta object literal for the '<em><b>Value</b></em>' reference feature. <!-- begin-user-doc --> <!--
+     * end-user-doc -->
+     *
+     * @generated
+     */
+    public static final EReference ESTRING_TO_ELEMENT_MAP__VALUE = MMPackage.eINSTANCE.getEStringToElementMap_Value();
 
   }
 

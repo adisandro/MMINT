@@ -2,6 +2,8 @@
  */
 package edu.toronto.cs.se.mmint3.mm.util;
 
+import java.util.Map;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
@@ -43,8 +45,8 @@ public class MMSwitch<T> extends Switch<T> {
    * @generated
    */
   public MMSwitch() {
-    if (modelPackage == null) {
-      modelPackage = MMPackage.eINSTANCE;
+    if (MMSwitch.modelPackage == null) {
+      MMSwitch.modelPackage = MMPackage.eINSTANCE;
     }
   }
 
@@ -58,7 +60,7 @@ public class MMSwitch<T> extends Switch<T> {
    */
   @Override
   protected boolean isSwitchFor(EPackage ePackage) {
-    return ePackage == modelPackage;
+    return ePackage == MMSwitch.modelPackage;
   }
 
   /**
@@ -185,6 +187,14 @@ public class MMSwitch<T> extends Switch<T> {
       T result = caseType(type);
       if (result == null)
         result = caseElement(type);
+      if (result == null)
+        result = defaultCase(theEObject);
+      return result;
+    }
+    case MMPackage.ESTRING_TO_ELEMENT_MAP: {
+      @SuppressWarnings("unchecked")
+      Map.Entry<String, Element> eStringToElementMap = (Map.Entry<String, Element>) theEObject;
+      T result = caseEStringToElementMap(eStringToElementMap);
       if (result == null)
         result = defaultCase(theEObject);
       return result;
@@ -359,6 +369,21 @@ public class MMSwitch<T> extends Switch<T> {
    * @generated
    */
   public T caseType(Type object) {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>EString To Element Map</em>'. <!--
+   * begin-user-doc --> This implementation returns null; returning a non-null result will terminate the switch. <!--
+   * end-user-doc -->
+   *
+   * @param object
+   *          the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>EString To Element Map</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseEStringToElementMap(Map.Entry<String, Element> object) {
     return null;
   }
 

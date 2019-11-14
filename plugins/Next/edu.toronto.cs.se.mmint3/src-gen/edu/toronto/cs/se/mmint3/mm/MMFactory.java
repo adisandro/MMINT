@@ -2,6 +2,8 @@
  */
 package edu.toronto.cs.se.mmint3.mm;
 
+import java.util.Map;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -70,6 +72,8 @@ public class MMFactory extends EFactoryImpl {
       return createMMInstance();
     case MMPackage.MM_TYPE:
       return createMMType();
+    case MMPackage.ESTRING_TO_ELEMENT_MAP:
+      return (EObject) createEStringToElementMap();
     default:
       throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -133,6 +137,16 @@ public class MMFactory extends EFactoryImpl {
   public MMType createMMType() {
     MMType mmType = new MMType();
     return mmType;
+  }
+
+  /**
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   */
+  public Map.Entry<String, Element> createEStringToElementMap() {
+    EStringToElementMap eStringToElementMap = new EStringToElementMap();
+    return eStringToElementMap;
   }
 
   /**

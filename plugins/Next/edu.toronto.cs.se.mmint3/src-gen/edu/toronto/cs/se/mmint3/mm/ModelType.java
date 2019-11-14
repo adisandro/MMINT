@@ -105,9 +105,9 @@ public class ModelType extends Model implements Type {
     if (newT != this.t) {
       NotificationChain msgs = null;
       if (this.t != null)
-        msgs = this.t.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MMPackage.MODEL_TYPE__T, null, msgs);
+        msgs = this.t.eInverseRemove(this, InternalEObject.EOPPOSITE_FEATURE_BASE - MMPackage.MODEL_TYPE__T, null, msgs);
       if (newT != null)
-        msgs = newT.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MMPackage.MODEL_TYPE__T, null, msgs);
+        msgs = newT.eInverseAdd(this, InternalEObject.EOPPOSITE_FEATURE_BASE - MMPackage.MODEL_TYPE__T, null, msgs);
       msgs = basicSetT(newT, msgs);
       if (msgs != null)
         msgs.dispatch();
@@ -161,6 +161,149 @@ public class ModelType extends Model implements Type {
     }
 
     return model;
+  }
+
+  /**
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @model kind="operation" required="true"
+   * @generated
+   */
+  @Override
+  public boolean isDynamic() {
+    // TODO: implement this method
+    // Ensure that you remove @generated or mark it @generated NOT
+    throw new UnsupportedOperationException();
+  }
+
+  /**
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @model
+   * @generated
+   */
+  @Override
+  public void setDynamic(boolean value) {
+    // TODO: implement this method
+    // Ensure that you remove @generated or mark it @generated NOT
+    throw new UnsupportedOperationException();
+  }
+
+  /**
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @model kind="operation" required="true"
+   * @generated
+   */
+  @Override
+  public boolean isAbstract() {
+    // TODO: implement this method
+    // Ensure that you remove @generated or mark it @generated NOT
+    throw new UnsupportedOperationException();
+  }
+
+  /**
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @model
+   * @generated
+   */
+  @Override
+  public void setAbstract(boolean value) {
+    // TODO: implement this method
+    // Ensure that you remove @generated or mark it @generated NOT
+    throw new UnsupportedOperationException();
+  }
+
+  /**
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @model kind="operation"
+   * @generated
+   */
+  @Override
+  public MMType getSupertype() {
+    // TODO: implement this method
+    // Ensure that you remove @generated or mark it @generated NOT
+    throw new UnsupportedOperationException();
+  }
+
+  /**
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @model
+   * @generated
+   */
+  @Override
+  public void setSupertype(MMType value) {
+    // TODO: implement this method
+    // Ensure that you remove @generated or mark it @generated NOT
+    throw new UnsupportedOperationException();
+  }
+
+  /**
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @model kind="operation"
+   * @generated
+   */
+  @Override
+  public EList<MMType> getSubtypes() {
+    // TODO: implement this method
+    // Ensure that you remove @generated or mark it @generated NOT
+    throw new UnsupportedOperationException();
+  }
+
+  /**
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @model kind="operation" required="true"
+   * @generated
+   */
+  @Override
+  public String getId() {
+    // TODO: implement this method
+    // Ensure that you remove @generated or mark it @generated NOT
+    throw new UnsupportedOperationException();
+  }
+
+  /**
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @model
+   * @generated
+   */
+  @Override
+  public void setId(String value) {
+    // TODO: implement this method
+    // Ensure that you remove @generated or mark it @generated NOT
+    throw new UnsupportedOperationException();
+  }
+
+  /**
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @model kind="operation" required="true"
+   * @generated
+   */
+  @Override
+  public String getName() {
+    // TODO: implement this method
+    // Ensure that you remove @generated or mark it @generated NOT
+    throw new UnsupportedOperationException();
+  }
+
+  /**
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @model
+   * @generated
+   */
+  @Override
+  public void setName(String value) {
+    // TODO: implement this method
+    // Ensure that you remove @generated or mark it @generated NOT
+    throw new UnsupportedOperationException();
   }
 
   /**

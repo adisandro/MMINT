@@ -40,7 +40,7 @@ public class MMInstance extends MMElement implements Instance {
    * @generated
    * @ordered
    */
-  protected String typeId = TYPE_ID_EDEFAULT;
+  protected String typeId = MMInstance.TYPE_ID_EDEFAULT;
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -134,7 +134,7 @@ public class MMInstance extends MMElement implements Instance {
   public void eUnset(int featureID) {
     switch (featureID) {
     case MMPackage.MM_INSTANCE__TYPE_ID:
-      setTypeId(TYPE_ID_EDEFAULT);
+      setTypeId(MMInstance.TYPE_ID_EDEFAULT);
       return;
     }
     super.eUnset(featureID);
@@ -149,7 +149,7 @@ public class MMInstance extends MMElement implements Instance {
   public boolean eIsSet(int featureID) {
     switch (featureID) {
     case MMPackage.MM_INSTANCE__TYPE_ID:
-      return TYPE_ID_EDEFAULT == null ? this.typeId != null : !TYPE_ID_EDEFAULT.equals(this.typeId);
+      return MMInstance.TYPE_ID_EDEFAULT == null ? this.typeId != null : !MMInstance.TYPE_ID_EDEFAULT.equals(this.typeId);
     case MMPackage.MM_INSTANCE__TYPE:
       return basicGetType() != null;
     }

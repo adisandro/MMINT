@@ -9,7 +9,7 @@
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <!-- @generated mm -->
       <factory
-            uri="edu.toronto.cs.se.mmint.mm"
+            uri="edu.toronto.cs.se.mmint3.mm"
             class="edu.toronto.cs.se.mmint3.mm.provider.MMItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
