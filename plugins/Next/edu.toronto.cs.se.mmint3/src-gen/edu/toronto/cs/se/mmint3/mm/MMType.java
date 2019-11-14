@@ -167,7 +167,7 @@ public class MMType extends MMElement implements Type {
   @Override
   public Type getSupertype() {
     if (this.supertype != null && this.supertype.eIsProxy()) {
-      InternalEObject oldSupertype = (InternalEObject) this.supertype;
+      InternalEObject oldSupertype = this.supertype;
       this.supertype = (Type) eResolveProxy(oldSupertype);
       if (this.supertype != oldSupertype) {
         if (eNotificationRequired())

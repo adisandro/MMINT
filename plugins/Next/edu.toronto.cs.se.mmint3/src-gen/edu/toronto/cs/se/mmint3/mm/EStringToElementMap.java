@@ -118,7 +118,7 @@ public class EStringToElementMap extends MinimalEObjectImpl.Container implements
    */
   public Element getTypedValue() {
     if (this.value != null && this.value.eIsProxy()) {
-      InternalEObject oldValue = (InternalEObject) this.value;
+      InternalEObject oldValue = this.value;
       this.value = (Element) eResolveProxy(oldValue);
       if (this.value != oldValue) {
         if (eNotificationRequired())

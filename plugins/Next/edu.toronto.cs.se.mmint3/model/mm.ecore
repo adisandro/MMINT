@@ -58,7 +58,8 @@
     </eOperations>
     <eOperations name="getType" lowerBound="1" eType="#//Type"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Element" abstract="true" interface="true">
+  <eClassifiers xsi:type="ecore:EClass" name="Element" abstract="true" interface="true"
+      eSuperTypes="#//InternalEObject">
     <eOperations name="getId" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eOperations name="setId">
       <eParameters name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -87,4 +88,6 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="key" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1" eType="#//Element"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InternalEObject" instanceClassName="org.eclipse.emf.ecore.InternalEObject"
+      abstract="true" interface="true"/>
 </ecore:EPackage>

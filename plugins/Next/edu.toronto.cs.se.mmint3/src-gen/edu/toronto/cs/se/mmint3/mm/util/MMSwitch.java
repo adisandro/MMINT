@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.Switch;
 
 import edu.toronto.cs.se.mmint3.mm.Element;
@@ -86,6 +87,8 @@ public class MMSwitch<T> extends Switch<T> {
       if (result == null)
         result = caseElement(mmElement);
       if (result == null)
+        result = caseInternalEObject(mmElement);
+      if (result == null)
         result = defaultCase(theEObject);
       return result;
     }
@@ -124,6 +127,8 @@ public class MMSwitch<T> extends Switch<T> {
       if (result == null)
         result = caseElement(modelType);
       if (result == null)
+        result = caseInternalEObject(modelType);
+      if (result == null)
         result = defaultCase(theEObject);
       return result;
     }
@@ -136,6 +141,8 @@ public class MMSwitch<T> extends Switch<T> {
         result = caseInstance(modelInstance);
       if (result == null)
         result = caseElement(modelInstance);
+      if (result == null)
+        result = caseInternalEObject(modelInstance);
       if (result == null)
         result = defaultCase(theEObject);
       return result;
@@ -150,6 +157,8 @@ public class MMSwitch<T> extends Switch<T> {
       if (result == null)
         result = caseElement(mmInstance);
       if (result == null)
+        result = caseInternalEObject(mmInstance);
+      if (result == null)
         result = defaultCase(theEObject);
       return result;
     }
@@ -163,6 +172,8 @@ public class MMSwitch<T> extends Switch<T> {
       if (result == null)
         result = caseElement(mmType);
       if (result == null)
+        result = caseInternalEObject(mmType);
+      if (result == null)
         result = defaultCase(theEObject);
       return result;
     }
@@ -172,12 +183,16 @@ public class MMSwitch<T> extends Switch<T> {
       if (result == null)
         result = caseElement(instance);
       if (result == null)
+        result = caseInternalEObject(instance);
+      if (result == null)
         result = defaultCase(theEObject);
       return result;
     }
     case MMPackage.ELEMENT: {
       Element element = (Element) theEObject;
       T result = caseElement(element);
+      if (result == null)
+        result = caseInternalEObject(element);
       if (result == null)
         result = defaultCase(theEObject);
       return result;
@@ -188,6 +203,8 @@ public class MMSwitch<T> extends Switch<T> {
       if (result == null)
         result = caseElement(type);
       if (result == null)
+        result = caseInternalEObject(type);
+      if (result == null)
         result = defaultCase(theEObject);
       return result;
     }
@@ -195,6 +212,13 @@ public class MMSwitch<T> extends Switch<T> {
       @SuppressWarnings("unchecked")
       Map.Entry<String, Element> eStringToElementMap = (Map.Entry<String, Element>) theEObject;
       T result = caseEStringToElementMap(eStringToElementMap);
+      if (result == null)
+        result = defaultCase(theEObject);
+      return result;
+    }
+    case MMPackage.INTERNAL_EOBJECT: {
+      InternalEObject internalEObject = (InternalEObject) theEObject;
+      T result = caseInternalEObject(internalEObject);
       if (result == null)
         result = defaultCase(theEObject);
       return result;
@@ -384,6 +408,20 @@ public class MMSwitch<T> extends Switch<T> {
    * @generated
    */
   public T caseEStringToElementMap(Map.Entry<String, Element> object) {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Internal EObject</em>'. <!-- begin-user-doc
+   * --> This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
+   *
+   * @param object
+   *          the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Internal EObject</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseInternalEObject(InternalEObject object) {
     return null;
   }
 

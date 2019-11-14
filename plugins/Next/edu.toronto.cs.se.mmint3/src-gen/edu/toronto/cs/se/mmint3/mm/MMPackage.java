@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.ETypeParameter;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 /**
@@ -109,6 +110,33 @@ public class MMPackage extends EPackageImpl {
   public static final int MEGA_MODEL_OPERATION_COUNT = 1;
 
   /**
+   * The meta object id for the '{@link org.eclipse.emf.ecore.InternalEObject <em>Internal EObject</em>}' class. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @see org.eclipse.emf.ecore.InternalEObject
+   * @see edu.toronto.cs.se.mmint3.mm.MMPackage#getInternalEObject()
+   * @generated
+   */
+  public static final int INTERNAL_EOBJECT = 13;
+
+  /**
+   * The number of structural features of the '<em>Internal EObject</em>' class. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int INTERNAL_EOBJECT_FEATURE_COUNT = 0;
+
+  /**
+   * The number of operations of the '<em>Internal EObject</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int INTERNAL_EOBJECT_OPERATION_COUNT = 0;
+
+  /**
    * The meta object id for the '{@link edu.toronto.cs.se.mmint3.mm.Element <em>Element</em>}' class. <!--
    * begin-user-doc --> <!-- end-user-doc -->
    *
@@ -124,7 +152,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int ELEMENT_FEATURE_COUNT = 0;
+  public static final int ELEMENT_FEATURE_COUNT = MMPackage.INTERNAL_EOBJECT_FEATURE_COUNT + 0;
 
   /**
    * The operation id for the '<em>Get Id</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -132,7 +160,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int ELEMENT___GET_ID = 0;
+  public static final int ELEMENT___GET_ID = MMPackage.INTERNAL_EOBJECT_OPERATION_COUNT + 0;
 
   /**
    * The operation id for the '<em>Set Id</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -140,7 +168,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int ELEMENT___SET_ID__STRING = 1;
+  public static final int ELEMENT___SET_ID__STRING = MMPackage.INTERNAL_EOBJECT_OPERATION_COUNT + 1;
 
   /**
    * The operation id for the '<em>Get Name</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -148,7 +176,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int ELEMENT___GET_NAME = 2;
+  public static final int ELEMENT___GET_NAME = MMPackage.INTERNAL_EOBJECT_OPERATION_COUNT + 2;
 
   /**
    * The operation id for the '<em>Set Name</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -156,7 +184,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int ELEMENT___SET_NAME__STRING = 3;
+  public static final int ELEMENT___SET_NAME__STRING = MMPackage.INTERNAL_EOBJECT_OPERATION_COUNT + 3;
 
   /**
    * The number of operations of the '<em>Element</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -164,7 +192,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int ELEMENT_OPERATION_COUNT = 4;
+  public static final int ELEMENT_OPERATION_COUNT = MMPackage.INTERNAL_EOBJECT_OPERATION_COUNT + 4;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.mmint3.mm.MMElement <em>Element</em>}' class. <!--
@@ -1184,6 +1212,13 @@ public class MMPackage extends EPackageImpl {
   private EClass eStringToElementMapEClass = null;
 
   /**
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   */
+  private EClass internalEObjectEClass = null;
+
+  /**
    * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry
    * EPackage.Registry} by the package package URI value.
    * <p>
@@ -1781,6 +1816,19 @@ public class MMPackage extends EPackageImpl {
   }
 
   /**
+   * Returns the meta object for class '{@link org.eclipse.emf.ecore.InternalEObject <em>Internal EObject</em>}'. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @return the meta object for class '<em>Internal EObject</em>'.
+   * @see org.eclipse.emf.ecore.InternalEObject
+   * @model instanceClass="org.eclipse.emf.ecore.InternalEObject"
+   * @generated
+   */
+  public EClass getInternalEObject() {
+    return this.internalEObjectEClass;
+  }
+
+  /**
    * Returns the factory that creates the instances of the model. <!-- begin-user-doc --> <!-- end-user-doc -->
    *
    * @return the factory that creates the instances of the model.
@@ -1864,6 +1912,8 @@ public class MMPackage extends EPackageImpl {
     this.eStringToElementMapEClass = createEClass(MMPackage.ESTRING_TO_ELEMENT_MAP);
     createEAttribute(this.eStringToElementMapEClass, MMPackage.ESTRING_TO_ELEMENT_MAP__KEY);
     createEReference(this.eStringToElementMapEClass, MMPackage.ESTRING_TO_ELEMENT_MAP__VALUE);
+
+    this.internalEObjectEClass = createEClass(MMPackage.INTERNAL_EOBJECT);
   }
 
   /**
@@ -1906,6 +1956,7 @@ public class MMPackage extends EPackageImpl {
     this.mmTypeEClass.getESuperTypes().add(this.getMMElement());
     this.mmTypeEClass.getESuperTypes().add(this.getType());
     this.instanceEClass.getESuperTypes().add(this.getElement());
+    this.elementEClass.getESuperTypes().add(this.getInternalEObject());
     this.typeEClass.getESuperTypes().add(this.getElement());
 
     // Initialize classes, features, and operations; add parameters
@@ -2028,6 +2079,9 @@ public class MMPackage extends EPackageImpl {
     initEReference(getEStringToElementMap_Value(), this.getElement(), null, "value", null, 1, 1, Map.Entry.class,
                    !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE,
                    EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
+
+    initEClass(this.internalEObjectEClass, InternalEObject.class, "InternalEObject", EPackageImpl.IS_ABSTRACT, EPackageImpl.IS_INTERFACE,
+               !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 
     // Create resource
     createResource(MMPackage.eNS_URI);
@@ -2414,6 +2468,16 @@ public class MMPackage extends EPackageImpl {
      * @generated
      */
     public static final EReference ESTRING_TO_ELEMENT_MAP__VALUE = MMPackage.eINSTANCE.getEStringToElementMap_Value();
+
+    /**
+     * The meta object literal for the '{@link org.eclipse.emf.ecore.InternalEObject <em>Internal EObject</em>}' class.
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
+     * @see org.eclipse.emf.ecore.InternalEObject
+     * @see edu.toronto.cs.se.mmint3.mm.MMPackage#getInternalEObject()
+     * @generated
+     */
+    public static final EClass INTERNAL_EOBJECT = MMPackage.eINSTANCE.getInternalEObject();
 
   }
 

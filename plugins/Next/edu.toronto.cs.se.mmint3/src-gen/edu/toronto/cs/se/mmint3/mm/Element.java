@@ -4,6 +4,7 @@ package edu.toronto.cs.se.mmint3.mm;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.BasicEObjectImpl;
 import org.eclipse.jdt.annotation.Nullable;
 
@@ -12,10 +13,10 @@ import org.eclipse.jdt.annotation.Nullable;
  *
  *
  * @see edu.toronto.cs.se.mmint3.mm.MMPackage#getElement()
- * @model kind="class" interface="true" abstract="true"
+ * @model kind="class" interface="true" abstract="true" superTypes="edu.toronto.cs.se.mmint3.mm.InternalEObject"
  * @generated
  */
-public interface Element extends EObject {
+public interface Element extends EObject, InternalEObject {
 
   /**
    * @generated NOT

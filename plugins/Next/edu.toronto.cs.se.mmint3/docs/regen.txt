@@ -1,5 +1,3 @@
-- EStringToElementMap: fix getTypedValue() with the suggested cast.
-- MMType: fix getSupertype() with the suggested cast.
 - MMInstance: remove getType() and basicGetType().
 - ModelType: remove autogen operations.
 - ModelInstance: remove autogen operations.

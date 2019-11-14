@@ -277,6 +277,12 @@ public class ModelInstance extends Model implements Instance {
    */
   @Override
   public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
+    if (baseClass == InternalEObject.class) {
+      switch (baseOperationID) {
+      default:
+        return -1;
+      }
+    }
     if (baseClass == Element.class) {
       switch (baseOperationID) {
       case MMPackage.ELEMENT___GET_ID:

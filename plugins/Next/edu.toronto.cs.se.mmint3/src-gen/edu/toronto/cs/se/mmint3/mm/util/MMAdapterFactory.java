@@ -8,6 +8,7 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import edu.toronto.cs.se.mmint3.mm.Element;
 import edu.toronto.cs.se.mmint3.mm.Instance;
@@ -137,6 +138,11 @@ public class MMAdapterFactory extends AdapterFactoryImpl {
     @Override
     public Adapter caseEStringToElementMap(Map.Entry<String, Element> object) {
       return createEStringToElementMapAdapter();
+    }
+
+    @Override
+    public Adapter caseInternalEObject(InternalEObject object) {
+      return createInternalEObjectAdapter();
     }
 
     @Override
@@ -324,6 +330,19 @@ public class MMAdapterFactory extends AdapterFactoryImpl {
    * @generated
    */
   public Adapter createEStringToElementMapAdapter() {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.eclipse.emf.ecore.InternalEObject <em>Internal
+   * EObject</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can easily ignore
+   * cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
+   *
+   * @return the new adapter.
+   * @see org.eclipse.emf.ecore.InternalEObject
+   * @generated
+   */
+  public Adapter createInternalEObjectAdapter() {
     return null;
   }
 
