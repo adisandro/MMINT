@@ -1,4 +1,5 @@
 import 'http://se.cs.toronto.edu/mmint/MID'
+import 'http://se.cs.toronto.edu/modelepedia/ClassDiagram'
 import 'http://se.cs.toronto.edu/modelepedia/SafetyCase'
 
 context mid::ModelElement
@@ -64,4 +65,12 @@ def: highlyConnectedModelElems : Set(Tuple(elem : ModelElement, conn : Integer))
   modelElems->select(e | connectedModelElems2(e)->size() > 5)
             ->collect(he | Tuple{elem=he, conn=connectedModelElems2(he)->size()})
             ->asSet()
-  
+
+def: alarms : Set(classdiagram::NamedElement) =
+  let classDiagrams = Model.allInstances()
+                           ->collect(EMFInstanceRoot)
+                           ->select(oclIsTypeOf(classdiagram::ClassDiagram))
+                           ->collect(oclAsType(classdiagram::ClassDiagram)) in
+  classDiagrams->collect(classes)
+               ->select(e | e.name.toLower().matches('.*alarm.*'))
+               ->asSet()

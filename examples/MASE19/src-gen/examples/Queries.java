@@ -3,6 +3,7 @@
  */
 package examples;
 
+import examples.Alarms;
 import examples.AsilBConnectedModelElems;
 import examples.HighlyConnectedModelElems;
 import org.eclipse.viatra.query.runtime.api.ViatraQueryEngine;
@@ -16,6 +17,7 @@ import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedPatternGroup;
  * in order to achieve better performance than one-by-one on-demand matcher initialization.
  * 
  * <p> From package examples, the group contains the definition of the following patterns: <ul>
+ * <li>alarms</li>
  * <li>asilBConnectedModelElems</li>
  * <li>highlyConnectedModelElems</li>
  * </ul>
@@ -42,8 +44,17 @@ public final class Queries extends BaseGeneratedPatternGroup {
   private static Queries INSTANCE;
   
   private Queries() {
+    querySpecifications.add(Alarms.instance());
     querySpecifications.add(AsilBConnectedModelElems.instance());
     querySpecifications.add(HighlyConnectedModelElems.instance());
+  }
+  
+  public Alarms getAlarms() {
+    return Alarms.instance();
+  }
+  
+  public Alarms.Matcher getAlarms(final ViatraQueryEngine engine) {
+    return Alarms.Matcher.on(engine);
   }
   
   public AsilBConnectedModelElems getAsilBConnectedModelElems() {

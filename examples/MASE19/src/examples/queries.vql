@@ -2,7 +2,13 @@ package examples
 
 import "http://se.cs.toronto.edu/mmint/MID"
 import "http://se.cs.toronto.edu/mmint/MID/Relationship"
+import "http://se.cs.toronto.edu/modelepedia/ClassDiagram"
 import "http://se.cs.toronto.edu/modelepedia/SafetyCase"
+
+pattern alarms(classElem: NamedElement) {
+  NamedElement.name(classElem, elemName);
+  check(elemName.toLowerCase().contains("alarm"));
+}
 
 pattern asilBConnectedModelElems(goal: Goal,
                                  modelElem: ModelElement) {
