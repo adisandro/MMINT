@@ -3,9 +3,10 @@
  */
 package examples;
 
-import examples.Alarms;
+import examples.AlarmClasses;
 import examples.AsilBConnectedModelElems;
 import examples.HighlyConnectedModelElems;
+import examples.TurnOffFunctions;
 import org.eclipse.viatra.query.runtime.api.ViatraQueryEngine;
 import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedPatternGroup;
 
@@ -17,7 +18,8 @@ import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedPatternGroup;
  * in order to achieve better performance than one-by-one on-demand matcher initialization.
  * 
  * <p> From package examples, the group contains the definition of the following patterns: <ul>
- * <li>alarms</li>
+ * <li>alarmClasses</li>
+ * <li>turnOffFunctions</li>
  * <li>asilBConnectedModelElems</li>
  * <li>highlyConnectedModelElems</li>
  * </ul>
@@ -44,17 +46,26 @@ public final class Queries extends BaseGeneratedPatternGroup {
   private static Queries INSTANCE;
   
   private Queries() {
-    querySpecifications.add(Alarms.instance());
+    querySpecifications.add(AlarmClasses.instance());
+    querySpecifications.add(TurnOffFunctions.instance());
     querySpecifications.add(AsilBConnectedModelElems.instance());
     querySpecifications.add(HighlyConnectedModelElems.instance());
   }
   
-  public Alarms getAlarms() {
-    return Alarms.instance();
+  public AlarmClasses getAlarmClasses() {
+    return AlarmClasses.instance();
   }
   
-  public Alarms.Matcher getAlarms(final ViatraQueryEngine engine) {
-    return Alarms.Matcher.on(engine);
+  public AlarmClasses.Matcher getAlarmClasses(final ViatraQueryEngine engine) {
+    return AlarmClasses.Matcher.on(engine);
+  }
+  
+  public TurnOffFunctions getTurnOffFunctions() {
+    return TurnOffFunctions.instance();
+  }
+  
+  public TurnOffFunctions.Matcher getTurnOffFunctions(final ViatraQueryEngine engine) {
+    return TurnOffFunctions.Matcher.on(engine);
   }
   
   public AsilBConnectedModelElems getAsilBConnectedModelElems() {
