@@ -130,7 +130,7 @@
   	<module>../../plugins/Core-Extensions/MAVO/edu.toronto.cs.se.modelepedia.mavo.operator</module>
   	<module>../../plugins/Core-Extensions/MAVO/edu.toronto.cs.se.modelepedia.mavo.uml</module>
   	<module>../../plugins/External/Z3/edu.toronto.cs.se.modelepedia.z3</module>
-  	<!--<module>../../plugins/External/Z3/edu.toronto.cs.se.modelepedia.z3.operator</module>-->
+  	<module>../../plugins/External/Z3/edu.toronto.cs.se.modelepedia.z3.operator</module>
   	<module>../../plugins/Types/ClassDiagram/edu.toronto.cs.se.modelepedia.classdiagram</module>
     <module>../../plugins/Types/ClassDiagram/edu.toronto.cs.se.modelepedia.classdiagram.design</module>
   	<module>../../plugins/Types/ClassDiagram/edu.toronto.cs.se.modelepedia.classdiagram.diagram</module>
@@ -141,7 +141,7 @@
   	<module>../../plugins/Types/ClassDiagram/edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram</module>
   	<module>../../plugins/Types/ClassDiagram/edu.toronto.cs.se.modelepedia.classdiagram_mavo.edit</module>
   	<module>../../plugins/Types/ClassDiagram/edu.toronto.cs.se.modelepedia.classdiagram_mavo.editor</module>
-  	<!--<module>../../plugins/Types/ClassDiagram/edu.toronto.cs.se.modelepedia.classdiagram_mavo.operator</module>-->
+  	<module>../../plugins/Types/ClassDiagram/edu.toronto.cs.se.modelepedia.classdiagram_mavo.operator</module>
   	<module>../../plugins/Types/Graph/edu.toronto.cs.se.modelepedia.graph_mavo</module>
   	<module>../../plugins/Types/Graph/edu.toronto.cs.se.modelepedia.graph_mavo.diagram</module>
   	<module>../../plugins/Types/Graph/edu.toronto.cs.se.modelepedia.graph_mavo.edit</module>
