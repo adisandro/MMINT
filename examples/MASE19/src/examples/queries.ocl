@@ -6,8 +6,8 @@ context mid::ModelElement
 
 def: connectedModelElems : OrderedSet(ModelElement) =
   let mid = self.oclContainer().oclContainer().oclAsType(MID) in
-  let rels = mid.models->select(rel |
-    rel.oclIsTypeOf(ModelRel))->collect(oclAsType(ModelRel)) in
+  let rels = mid.models->select(oclIsTypeOf(relationship::ModelRel))
+                       ->collect(oclAsType(relationship::ModelRel)) in
   let modelElems = rels->collect(mappings)
                        ->collect(modelElemEndpoints)
                        ->collect(target.oclAsType(ModelElement))

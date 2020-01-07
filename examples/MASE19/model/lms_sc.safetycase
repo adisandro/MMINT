@@ -91,7 +91,7 @@
     <supportedBy target="//@strategies.22"/>
     <asil value="B"/>
   </goals>
-  <goals xsi:type="safetycase:BasicGoal" supports="//@strategies.19/@supportedBy.0" id="G11" description="LKA TurnOff() functions works correctly" stateValidity="Valid">
+  <goals xsi:type="safetycase:BasicGoal" supports="//@strategies.19/@supportedBy.0" id="G11" description="LKS TurnOff() functions works correctly" stateValidity="Valid">
     <supportedBy target="//@strategies.23"/>
     <asil value="B"/>
   </goals>
