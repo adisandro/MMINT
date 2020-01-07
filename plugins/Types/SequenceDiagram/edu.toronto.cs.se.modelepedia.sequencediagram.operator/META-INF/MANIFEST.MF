@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.sequencediagram.operator;singleton:=true
-Bundle-Version: 2.3.99.qualifier
+Bundle-Version: 2.4.0
 Bundle-RequiredExecutionEnvironment: JavaSE-13
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore,

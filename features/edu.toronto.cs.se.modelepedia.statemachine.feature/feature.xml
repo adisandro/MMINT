@@ -2,7 +2,7 @@
 <feature
       id="edu.toronto.cs.se.modelepedia.statemachine.feature"
       label="Modelepedia StateMachine"
-      version="2.3.99.qualifier"
+      version="2.4.0"
       provider-name="Software Engineering Group, University of Toronto">
 
    <description>

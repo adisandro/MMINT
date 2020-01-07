@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.safetycase.editor;singleton:=true
 Automatic-Module-Name: edu.toronto.cs.se.modelepedia.safetycase.editor
-Bundle-Version: 2.3.99.qualifier
+Bundle-Version: 2.4.0
 Bundle-ClassPath: .
 Bundle-Activator: edu.toronto.cs.se.modelepedia.safetycase.presentation.SafetyCaseEditorPlugin$Implementation
 Bundle-Vendor: %providerName
