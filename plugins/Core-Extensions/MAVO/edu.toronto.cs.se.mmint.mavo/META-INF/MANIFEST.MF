@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.mmint.mavo;singleton:=true
 Automatic-Module-Name: edu.toronto.cs.se.mmint.mavo
-Bundle-Version: 2.4.0
+Bundle-Version: 2.4.99.qualifier
 Bundle-ClassPath: .
 Bundle-RequiredExecutionEnvironment: JavaSE-13
 Bundle-ActivationPolicy: lazy
