@@ -315,7 +315,7 @@ matchesN:
 			outputProperties,
 			this,
 			input.original,
-			getInputSubdir(),
+			null,
 			MIDOperatorIOUtils.OUTPUT_PROPERTIES_SUFFIX
 		);
 

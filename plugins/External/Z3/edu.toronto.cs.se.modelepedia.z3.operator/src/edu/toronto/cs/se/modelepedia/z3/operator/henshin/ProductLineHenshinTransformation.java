@@ -283,7 +283,7 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 			outputProperties,
 			this,
 			input.original,
-			getInputSubdir(),
+			null,
 			MIDOperatorIOUtils.OUTPUT_PROPERTIES_SUFFIX
 		);
 

@@ -114,10 +114,10 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorImpl {
 	public static final String PROPERTY_IN_CONSTRAINT = "constraint";
 	private static final String PROPERTY_IN_CONSTRAINT_DEFAULT = Z3Utils.SMTLIB_TRUE;
 	public static final String PROPERTY_IN_CONSTRAINTVARIABLES = "constraintVariables";
-	private static final String[] PROPERTY_IN_CONSTRAINTVARIABLES_DEFAULT = {};
+	private static final List<String> PROPERTY_IN_CONSTRAINTVARIABLES_DEFAULT = List.of();
 	private static final String PROPERTY_IN_TRANSFORMATIONMODULE = "transformationModule";
 	private static final String PROPERTY_IN_TRANSFORMATIONRULES = "transformationRules";
-	private static final String[] PROPERTY_IN_TRANSFORMATIONRULES_DEFAULT = {};
+	private static final List<String> PROPERTY_IN_TRANSFORMATIONRULES_DEFAULT = List.of();
 	private static final String PROPERTY_IN_TRANSFORMATIONRULESLIFTING = "transformationRulesLifting";
 	private static final String PROPERTY_OUT_TIMECLASSICAL = "timeClassical";
 	protected static final String PROPERTY_OUT_TIMELIFTING = "timeLifting";
@@ -145,10 +145,10 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorImpl {
 	protected static final String SMTLIB_APPLICABILITY_FUN_A = SMTLIB_APPLICABILITY_FUN + "A ";
 
 	protected String constraint;
-	protected String[] constraintVariables;
+	protected List<String> constraintVariables;
 	protected String transformationModule;
-	protected String[] transformationRules;
-	protected String[] transformationRulesLifting;
+	protected List<String> transformationRules;
+	protected List<String> transformationRulesLifting;
 
 	protected List<Set<MAVOElement>> modelObjsNBar;
 	protected Set<MAVOElement> modelObjsC;
@@ -177,12 +177,12 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorImpl {
 
 		super.readInputProperties(inputProperties);
 		constraint = MIDOperatorIOUtils.getOptionalStringProperty(inputProperties, PROPERTY_IN_CONSTRAINT, PROPERTY_IN_CONSTRAINT_DEFAULT);
-		constraintVariables = MIDOperatorIOUtils.getOptionalStringProperties(inputProperties, PROPERTY_IN_CONSTRAINTVARIABLES, PROPERTY_IN_CONSTRAINTVARIABLES_DEFAULT);
+		constraintVariables = MIDOperatorIOUtils.getOptionalStringPropertyList(inputProperties, PROPERTY_IN_CONSTRAINTVARIABLES, PROPERTY_IN_CONSTRAINTVARIABLES_DEFAULT);
 		transformationModule = MIDOperatorIOUtils.getStringProperty(inputProperties, PROPERTY_IN_TRANSFORMATIONMODULE);
-		transformationRules = MIDOperatorIOUtils.getOptionalStringProperties(inputProperties, PROPERTY_IN_TRANSFORMATIONRULES, PROPERTY_IN_TRANSFORMATIONRULES_DEFAULT);
-		transformationRulesLifting = MIDOperatorIOUtils.getStringProperties(inputProperties, PROPERTY_IN_TRANSFORMATIONRULESLIFTING);
-		timeClassicalEnabled = MIDOperatorIOUtils.getBoolProperty(inputProperties, PROPERTY_OUT_TIMECLASSICAL+MIDOperatorIOUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX);
-		transformedConstraintEnabled = MIDOperatorIOUtils.getOptionalBoolProperty(inputProperties, PROPERTY_OUT_TRANSFORMEDCONSTRAINT+MIDOperatorIOUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX, false);
+		transformationRules = MIDOperatorIOUtils.getOptionalStringPropertyList(inputProperties, PROPERTY_IN_TRANSFORMATIONRULES, PROPERTY_IN_TRANSFORMATIONRULES_DEFAULT);
+		transformationRulesLifting = MIDOperatorIOUtils.getStringPropertyList(inputProperties, PROPERTY_IN_TRANSFORMATIONRULESLIFTING);
+		timeClassicalEnabled = MIDOperatorIOUtils.getBoolProperty(inputProperties, PROPERTY_OUT_TIMECLASSICAL+MIDOperatorIOUtils.PROP_OUTENABLED_SUFFIX);
+		transformedConstraintEnabled = MIDOperatorIOUtils.getOptionalBoolProperty(inputProperties, PROPERTY_OUT_TRANSFORMEDCONSTRAINT+MIDOperatorIOUtils.PROP_OUTENABLED_SUFFIX, false);
 	}
 
 	protected void writeProperties(Properties properties) {
