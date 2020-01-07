@@ -41,8 +41,8 @@ import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
+import edu.toronto.cs.se.mmint.operator.experiment.ExperimentRunner;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOFactory;
-import edu.toronto.cs.se.modelepedia.operator.experiment.ExperimentDriver;
 import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver;
 import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
 import edu.toronto.cs.se.modelepedia.z3.operator.henshin.ProductLineHenshinTransformation;
@@ -95,7 +95,7 @@ public class ICSE14 extends ProductLineHenshinTransformation {
 		catch (Exception e) {
 		}
 		constraint = MIDOperatorIOUtils.getStringProperty(constraintProperties, PROPERTY_IN_CONSTRAINT);
-		constraintVariables = MIDOperatorIOUtils.getStringProperties(constraintProperties, PROPERTY_IN_CONSTRAINTVARIABLES);
+		constraintVariables = MIDOperatorIOUtils.getStringPropertyList(constraintProperties, PROPERTY_IN_CONSTRAINTVARIABLES);
 		String[] numRuleElements = MIDOperatorIOUtils.getStringProperty(inputProperties, PROPERTY_IN_NUMRULEELEMENTS).split(PROPERTY_IN_NUMRULEELEMENTS_SEPARATOR);
 		numRuleElementsN = Integer.parseInt(numRuleElements[0]);
 		numRuleElementsC = Integer.parseInt(numRuleElements[1]);
@@ -133,7 +133,7 @@ public class ICSE14 extends ProductLineHenshinTransformation {
 			MAVOElement modelObjA = ClassDiagram_MAVOFactory.eINSTANCE.createClass();
 			modelObjA.setFormulaVariable(SMTLIB_APPLICABILITY_FUN_APPLY + (ruleApplicationsLifting+1) + Z3Utils.SMTLIB_PREDICATE_END);
 			modelObjsBucketA.add(modelObjA);
-			modelObjsChainsA.add(new Integer(maxChains));
+			modelObjsChainsA.add(Integer.valueOf(maxChains));
 		}
 	}
 
@@ -160,7 +160,7 @@ public class ICSE14 extends ProductLineHenshinTransformation {
 					}
 					else {
 						modelObj = modelObjsBucketA.get(indexA);
-						modelObjsChainsA.add(indexA, new Integer(chains));
+						modelObjsChainsA.add(indexA, Integer.valueOf(chains));
 					}
 				}
 			}
@@ -168,7 +168,7 @@ public class ICSE14 extends ProductLineHenshinTransformation {
 				modelObj = ClassDiagram_MAVOFactory.eINSTANCE.createClass();
 				String formulaId = (state.nextDouble() < alwaysPresentPerc) ?
 					Z3Utils.SMTLIB_TRUE :
-					constraintVariables[state.nextInt(constraintVariables.length)];
+					constraintVariables.get(state.nextInt(constraintVariables.size()));
 				modelObj.setFormulaVariable(formulaId);
 			}
 			if (i < numRuleElementsC) { // (C)ontext element matched
@@ -221,7 +221,7 @@ public class ICSE14 extends ProductLineHenshinTransformation {
 			outputProperties,
 			this,
 			inputModel,
-			getInputSubdir(),
+			null,
 			MIDOperatorIOUtils.OUTPUT_PROPERTIES_SUFFIX
 		);
 
@@ -231,13 +231,13 @@ public class ICSE14 extends ProductLineHenshinTransformation {
 	private static class DatLine implements Comparable<DatLine> {
 		public static final Map<String, Integer> TIMELIFTING_NUMRULEELEMENTS_INDEXES = new HashMap<String, Integer>();
 		static {
-			TIMELIFTING_NUMRULEELEMENTS_INDEXES.put("1-2-1", new Integer(0));
-			TIMELIFTING_NUMRULEELEMENTS_INDEXES.put("7-2-7", new Integer(1));
-			TIMELIFTING_NUMRULEELEMENTS_INDEXES.put("3-2-3", new Integer(2));
-			TIMELIFTING_NUMRULEELEMENTS_INDEXES.put("30-9-24", new Integer(3));
-			TIMELIFTING_NUMRULEELEMENTS_INDEXES.put("1-12-1", new Integer(4));
-			TIMELIFTING_NUMRULEELEMENTS_INDEXES.put("6-19-6", new Integer(5));
-			TIMELIFTING_NUMRULEELEMENTS_INDEXES.put("16-21-16", new Integer(6));
+			TIMELIFTING_NUMRULEELEMENTS_INDEXES.put("1-2-1", Integer.valueOf(0));
+			TIMELIFTING_NUMRULEELEMENTS_INDEXES.put("7-2-7", Integer.valueOf(1));
+			TIMELIFTING_NUMRULEELEMENTS_INDEXES.put("3-2-3", Integer.valueOf(2));
+			TIMELIFTING_NUMRULEELEMENTS_INDEXES.put("30-9-24", Integer.valueOf(3));
+			TIMELIFTING_NUMRULEELEMENTS_INDEXES.put("1-12-1", Integer.valueOf(4));
+			TIMELIFTING_NUMRULEELEMENTS_INDEXES.put("6-19-6", Integer.valueOf(5));
+			TIMELIFTING_NUMRULEELEMENTS_INDEXES.put("16-21-16", Integer.valueOf(6));
 		}
 		public double smtEncodingVariables;
 		public double[] timeLifting_numRuleElements;
@@ -264,10 +264,10 @@ public class ICSE14 extends ProductLineHenshinTransformation {
 	private static void getOutput(Path outputPath) throws Exception {
 		Properties outputProperties = new Properties();
 		outputProperties.load(new FileInputStream(outputPath.toString()));
-		String featureModelName = MIDOperatorIOUtils.getStringProperty(outputProperties, PROPERTY_IN_FEATUREMODELNAME+ExperimentDriver.PROPERTY_OUT_VARIABLEINSTANCE_SUFFIX);
-		double smtEncodingVariables = MIDOperatorIOUtils.getDoubleProperty(outputProperties, PROPERTY_OUT_SMTENCODINGVARIABLES+ExperimentDriver.PROPERTY_OUT_RESULTAVG_SUFFIX);
-		String numRuleElements = MIDOperatorIOUtils.getStringProperty(outputProperties, PROPERTY_IN_NUMRULEELEMENTS+ExperimentDriver.PROPERTY_OUT_VARIABLEINSTANCE_SUFFIX);
-		double timeLifting = MIDOperatorIOUtils.getDoubleProperty(outputProperties, PROPERTY_OUT_TIMELIFTING+ExperimentDriver.PROPERTY_OUT_RESULTAVG_SUFFIX);
+		String featureModelName = MIDOperatorIOUtils.getStringProperty(outputProperties, PROPERTY_IN_FEATUREMODELNAME);
+		double smtEncodingVariables = MIDOperatorIOUtils.getDoubleProperty(outputProperties, PROPERTY_OUT_SMTENCODINGVARIABLES+ExperimentRunner.PROP_OUT_AVG_SUFFIX);
+		String numRuleElements = MIDOperatorIOUtils.getStringProperty(outputProperties, PROPERTY_IN_NUMRULEELEMENTS);
+		double timeLifting = MIDOperatorIOUtils.getDoubleProperty(outputProperties, PROPERTY_OUT_TIMELIFTING+ExperimentRunner.PROP_OUT_AVG_SUFFIX);
 //		double timeLifting = MultiModelOperatorUtils.getDoubleProperty(outputProperties, PROPERTY_OUT_UNSATCOUNTLIFTING+ExperimentDriver.PROPERTY_OUT_RESULTAVG_SUFFIX);
 		DatLine datLine = datLinesMap.get(featureModelName);
 		if (datLine == null) {

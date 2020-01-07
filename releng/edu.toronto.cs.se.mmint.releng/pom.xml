@@ -15,11 +15,11 @@
   	  <layout>p2</layout>
   	  <url>http://download.eclipse.org/releases/2019-12</url>
     </repository>
-    <!--<repository>
+    <repository>
   	  <id>Henshin</id>
   	  <layout>p2</layout>
   	  <url>http://download.eclipse.org/modeling/emft/henshin/updates/release</url>
-    </repository>-->
+    </repository>
   </repositories>
   <pluginRepositories>
     <pluginRepository>

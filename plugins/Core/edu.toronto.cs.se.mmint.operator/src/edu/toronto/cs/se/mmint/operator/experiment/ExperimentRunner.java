@@ -31,11 +31,11 @@ import edu.toronto.cs.se.mmint.mid.operator.RandomOperator;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 
-class ExperimentRunner implements Runnable {
+public class ExperimentRunner implements Runnable {
 
   final static @NonNull String EXPERIMENT_SUBDIR = "experiment";
   private final static @NonNull String PROP_OUT_LOWER_SUFFIX = ".lower";
-  private final static @NonNull String PROP_OUT_AVG_SUFFIX = ".avg";
+  public final static @NonNull String PROP_OUT_AVG_SUFFIX = ".avg";
   private final static @NonNull String PROP_OUT_UPPER_SUFFIX = ".upper";
   private final static @NonNull String PROP_OUT_NUMSAMPLES_SUFFIX = ".numSamples";
 

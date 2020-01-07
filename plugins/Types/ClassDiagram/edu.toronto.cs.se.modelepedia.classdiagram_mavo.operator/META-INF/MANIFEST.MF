@@ -1,4 +1,5 @@
 Manifest-Version: 1.0
+Automatic-Module-Name: edu.toronto.cs.se.modelepedia.classdiagram_mavo.operator
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.classdiagram_mavo.operator;singleton:=true
@@ -14,7 +15,6 @@ Require-Bundle: org.eclipse.uml2.uml,
  edu.toronto.cs.se.mavo,
  edu.toronto.cs.se.mmint,
  edu.toronto.cs.se.mmint.operator,
- edu.toronto.cs.se.modelepedia.operator,
  edu.toronto.cs.se.modelepedia.z3,
  edu.toronto.cs.se.modelepedia.z3.operator,
  edu.toronto.cs.se.modelepedia.classdiagram_mavo
