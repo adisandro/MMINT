@@ -58,6 +58,7 @@ public class MMINT {
     var modelT = MMFactory.eINSTANCE.createModelType();
     modelT.setT(type);
     this.cachedTypeMM.getModels().add(modelT);
+    this.cachedTypeMM.getElements().put(modelT.getId(), modelT);
 
     return modelT;
   }

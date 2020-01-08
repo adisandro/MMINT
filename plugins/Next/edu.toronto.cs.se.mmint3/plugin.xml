@@ -6,7 +6,7 @@
 
 <plugin>
 
-   <extension-point id="edu.toronto.cs.se.mmint3.models" name="MMINT model types" schema="schema/edu.toronto.cs.se.mmint3.models.exsd"/>
+   <extension-point id="models" name="MMINT model types" schema="schema/models.exsd"/>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated mm -->

@@ -2,21 +2,21 @@
 <!-- Schema file written by PDE -->
 <schema targetNamespace="edu.toronto.cs.se.mmint3" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
-      <appinfo>
-         <meta.schema plugin="edu.toronto.cs.se.mmint3" id="edu.toronto.cs.se.mmint3.models" name="MMINT model types"/>
-      </appinfo>
+      <appInfo>
+         <meta.schema plugin="edu.toronto.cs.se.mmint3" id="models" name="MMINT model types"/>
+      </appInfo>
       <documentation>
          Adds model types in MMINT.
       </documentation>
    </annotation>
 
-   <include schemaLocation="edu.toronto.cs.se.mmint3.types.exsd"/>
+   <include schemaLocation="types.exsd"/>
 
    <element name="extension">
       <annotation>
-         <appinfo>
+         <appInfo>
             <meta.element />
-         </appinfo>
+         </appInfo>
       </annotation>
       <complexType>
          <sequence>
@@ -41,9 +41,9 @@
                <documentation>
                   
                </documentation>
-               <appinfo>
+               <appInfo>
                   <meta.attribute translatable="true"/>
-               </appinfo>
+               </appInfo>
             </annotation>
          </attribute>
       </complexType>
@@ -65,9 +65,9 @@
 
 
    <annotation>
-      <appinfo>
+      <appInfo>
          <meta.section type="examples"/>
-      </appinfo>
+      </appInfo>
       <documentation>
          https://github.com/adisandro/MMINT
       </documentation>

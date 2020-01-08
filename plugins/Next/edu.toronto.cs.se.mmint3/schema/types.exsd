@@ -3,7 +3,7 @@
 <schema targetNamespace="edu.toronto.cs.se.mmint3" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appInfo>
-         <meta.schema plugin="edu.toronto.cs.se.mmint3" id="edu.toronto.cs.se.mmint3.types" name="MMINT types"/>
+         <meta.schema plugin="edu.toronto.cs.se.mmint3" id="types" name="MMINT types"/>
       </appInfo>
       <documentation>
          Defines types in MMINT.
