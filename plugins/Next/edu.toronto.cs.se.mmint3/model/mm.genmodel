@@ -11,6 +11,11 @@
   <testsDirectory xsi:nil="true"/>
   <genPackages prefix="MM" basePackage="edu.toronto.cs.se.mmint3" disposableProviderFactory="true"
       extensibleProviderFactory="true" ecorePackage="mm.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="mm.ecore#//EditorKind">
+      <genEnumLiterals ecoreEnumLiteral="mm.ecore#//EditorKind/EMF"/>
+      <genEnumLiterals ecoreEnumLiteral="mm.ecore#//EditorKind/GMF"/>
+      <genEnumLiterals ecoreEnumLiteral="mm.ecore#//EditorKind/SIRIUS"/>
+    </genEnums>
     <genClasses ecoreClass="mm.ecore#//MegaModel">
       <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference mm.ecore#//MegaModel/models"/>
       <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference mm.ecore#//MegaModel/elements"/>
@@ -25,7 +30,9 @@
     </genClasses>
     <genClasses ecoreClass="mm.ecore#//TypeMegaModel"/>
     <genClasses ecoreClass="mm.ecore#//InstanceMegaModel"/>
-    <genClasses ecoreClass="mm.ecore#//Model"/>
+    <genClasses ecoreClass="mm.ecore#//Model">
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference mm.ecore#//Model/editors"/>
+    </genClasses>
     <genClasses ecoreClass="mm.ecore#//ModelType">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mm.ecore#//ModelType/t"/>
       <genOperations ecoreOperation="mm.ecore#//ModelType/getPackage"/>
@@ -87,5 +94,19 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mm.ecore#//EStringToElementMap/value"/>
     </genClasses>
     <genClasses image="false" ecoreClass="mm.ecore#//InternalEObject"/>
+    <genClasses ecoreClass="mm.ecore#//Editor">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mm.ecore#//Editor/model"/>
+    </genClasses>
+    <genClasses ecoreClass="mm.ecore#//EditorType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mm.ecore#//EditorType/wizardId"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mm.ecore#//EditorType/t"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mm.ecore#//EditorType/kind"/>
+    </genClasses>
+    <genClasses ecoreClass="mm.ecore#//EditorInstance">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mm.ecore#//EditorInstance/i"/>
+    </genClasses>
+    <genClasses ecoreClass="mm.ecore#//EMFTree"/>
+    <genClasses ecoreClass="mm.ecore#//GMFDiagram"/>
+    <genClasses ecoreClass="mm.ecore#//SiriusRepresentation"/>
   </genPackages>
 </genmodel:GenModel>

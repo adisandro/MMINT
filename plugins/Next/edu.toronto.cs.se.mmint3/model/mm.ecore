@@ -20,7 +20,10 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypeMegaModel" eSuperTypes="#//MegaModel"/>
   <eClassifiers xsi:type="ecore:EClass" name="InstanceMegaModel" eSuperTypes="#//MegaModel"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Model" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Model" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="editors" upperBound="-1"
+        eType="#//Editor" containment="true" eOpposite="#//Editor/model"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ModelType" eSuperTypes="#//Model #//Type">
     <eOperations name="getPackage" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EPackage"/>
     <eOperations name="createInstance" lowerBound="1" eType="#//ModelInstance">
@@ -91,4 +94,26 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InternalEObject" instanceClassName="org.eclipse.emf.ecore.InternalEObject"
       abstract="true" interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Editor" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="model" lowerBound="1" eType="#//Model"
+        eOpposite="#//Model/editors"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EditorType" eSuperTypes="#//Editor #//Type">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="wizardId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="t" lowerBound="1" eType="#//MMType"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" lowerBound="1" eType="#//EditorKind"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EditorInstance" eSuperTypes="#//Editor #//Instance">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="i" lowerBound="1" eType="#//MMInstance"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="EditorKind">
+    <eLiterals name="EMF"/>
+    <eLiterals name="GMF" value="1"/>
+    <eLiterals name="SIRIUS" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EMFTree" eSuperTypes="#//EditorInstance"/>
+  <eClassifiers xsi:type="ecore:EClass" name="GMFDiagram" eSuperTypes="#//EditorInstance"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SiriusRepresentation" eSuperTypes="#//EditorInstance"/>
 </ecore:EPackage>
