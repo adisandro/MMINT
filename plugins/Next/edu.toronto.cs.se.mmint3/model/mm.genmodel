@@ -66,6 +66,7 @@
       <genOperations ecoreOperation="mm.ecore#//Element/setName">
         <genParameters ecoreParameter="mm.ecore#//Element/setName/value"/>
       </genOperations>
+      <genOperations ecoreOperation="mm.ecore#//Element/getMegaModel"/>
     </genClasses>
     <genClasses image="false" ecoreClass="mm.ecore#//Type">
       <genOperations ecoreOperation="mm.ecore#//Type/isDynamic"/>

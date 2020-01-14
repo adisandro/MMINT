@@ -2,6 +2,9 @@
  */
 package edu.toronto.cs.se.mmint3.mm;
 
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.jdt.annotation.Nullable;
+
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Type</b></em>'. <!-- end-user-doc -->
  *
@@ -11,6 +14,19 @@ package edu.toronto.cs.se.mmint3.mm;
  * @generated
  */
 public interface Type extends Element {
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  default @Nullable EStructuralFeature getComposedFeature() {
+    var feature = eClass().getEStructuralFeature("t");
+    if (feature == null) {
+      return null;
+    }
+    return feature;
+  }
+
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    *

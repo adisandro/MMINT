@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:diagram="http://www.eclipse.org/sirius/diagram/1.1.0" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:viewpoint="http://www.eclipse.org/sirius/1.1.0" xsi:schemaLocation="http://www.eclipse.org/sirius/description/1.1.0 http://www.eclipse.org/sirius/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/style/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description/style">
-  <viewpoint:DAnalysis uid="_fgt1cPs4Eeew4NXxue_DCg" selectedViews="_fkJj8Ps4Eeew4NXxue_DCg" version="14.1.0.201810161215">
+  <viewpoint:DAnalysis uid="_fgt1cPs4Eeew4NXxue_DCg" selectedViews="_fkJj8Ps4Eeew4NXxue_DCg" version="14.3.0.201909031200">
     <semanticResources>mm.ecore</semanticResources>
     <semanticResources>mm.genmodel</semanticResources>
     <semanticResources>../build.properties</semanticResources>
     <semanticResources>../plugin.properties</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" uid="_fkJj8Ps4Eeew4NXxue_DCg">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_fnucYPs4Eeew4NXxue_DCg" name="mm" repPath="#_fnqyAPs4Eeew4NXxue_DCg">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_fnucYPs4Eeew4NXxue_DCg" name="mm" repPath="#_fnqyAPs4Eeew4NXxue_DCg" changeId="0aee78d8-6583-4f45-b6d1-afffb9f324d4">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']"/>
         <target xmi:type="ecore:EPackage" href="mm.ecore#/"/>
       </ownedRepresentationDescriptors>
     </ownedViews>
   </viewpoint:DAnalysis>
-  <diagram:DSemanticDiagram uid="_fnqyAPs4Eeew4NXxue_DCg" name="mm">
+  <diagram:DSemanticDiagram uid="_fnqyAPs4Eeew4NXxue_DCg">
     <ownedAnnotationEntries xmi:type="description:AnnotationEntry" uid="_fnqyAfs4Eeew4NXxue_DCg" source="DANNOTATION_CUSTOMIZATION_KEY">
       <data xmi:type="diagram:ComputedStyleDescriptionRegistry" uid="_fnqyAvs4Eeew4NXxue_DCg">
         <computedStyleDescriptions xmi:type="style:BundledImageDescription" xmi:id="_jDeDIPs7Eeew4NXxue_DCg" labelExpression="service:render" labelAlignment="LEFT" tooltipExpression="service:renderTooltip" sizeComputationExpression="1">
@@ -221,6 +221,10 @@
             <children xmi:type="notation:Node" xmi:id="_raveIPDLEemTWa0t3qsY6A" type="3010" element="_raj38PDLEemTWa0t3qsY6A">
               <styles xmi:type="notation:FontStyle" xmi:id="_raveIfDLEemTWa0t3qsY6A" fontName="Cantarell" fontHeight="8"/>
               <layoutConstraint xmi:type="notation:Location" xmi:id="_raveIvDLEemTWa0t3qsY6A"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_QBUtoDbiEeqTGNkN5wsDow" type="3010" element="_QA_WcDbiEeqTGNkN5wsDow">
+              <styles xmi:type="notation:FontStyle" xmi:id="_QBUtoTbiEeqTGNkN5wsDow" fontName="Cantarell" fontHeight="8"/>
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_QBUtojbiEeqTGNkN5wsDow"/>
             </children>
             <styles xmi:type="notation:SortingStyle" xmi:id="_GJ2P8vDKEemTWa0t3qsY6A"/>
             <styles xmi:type="notation:FilteringStyle" xmi:id="_GJ2P8_DKEemTWa0t3qsY6A"/>
@@ -1007,6 +1011,14 @@
         <semanticElements xmi:type="ecore:EOperation" href="mm.ecore#//Element/setName"/>
         <semanticElements xmi:type="ecore:EParameter" href="mm.ecore#//Element/setName/value"/>
         <ownedStyle xmi:type="diagram:BundledImage" uid="_rakfAPDLEemTWa0t3qsY6A" labelAlignment="LEFT">
+          <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']"/>
+      </ownedElements>
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_QA_WcDbiEeqTGNkN5wsDow" name="getMegaModel() : MegaModel" tooltipText="getMegaModel() : MegaModel">
+        <target xmi:type="ecore:EOperation" href="mm.ecore#//Element/getMegaModel"/>
+        <semanticElements xmi:type="ecore:EOperation" href="mm.ecore#//Element/getMegaModel"/>
+        <ownedStyle xmi:type="diagram:BundledImage" uid="_QA_9gDbiEeqTGNkN5wsDow" labelAlignment="LEFT">
           <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']"/>

@@ -93,7 +93,7 @@
          <sequence>
             <element ref="superType" minOccurs="0" maxOccurs="unbounded"/>
          </sequence>
-         <attribute name="id" type="string">
+         <attribute name="id" type="string" use="required">
             <annotation>
                <documentation>
                   The unique identifier of this type.
@@ -103,7 +103,7 @@
          <attribute name="name" type="string" use="required">
             <annotation>
                <documentation>
-                  The name of the type.
+                  The name of this type.
                </documentation>
             </annotation>
          </attribute>
@@ -120,7 +120,7 @@
          <attribute name="abstract" type="boolean">
             <annotation>
                <documentation>
-                  True if the type can&apos;t be instanciated, false otherwise.
+                  True if this type can&apos;t be instanciated, false otherwise.
                </documentation>
             </annotation>
          </attribute>

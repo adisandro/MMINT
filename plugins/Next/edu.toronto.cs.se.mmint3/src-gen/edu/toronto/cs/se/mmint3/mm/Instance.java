@@ -2,7 +2,9 @@
  */
 package edu.toronto.cs.se.mmint3.mm;
 
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mmint3.MMTypes;
 
@@ -15,6 +17,19 @@ import edu.toronto.cs.se.mmint3.MMTypes;
  * @generated
  */
 public interface Instance extends Element {
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  default @Nullable EStructuralFeature getComposedFeature() {
+    var feature = eClass().getEStructuralFeature("i");
+    if (feature == null) {
+      return null;
+    }
+    return feature;
+  }
+
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    *

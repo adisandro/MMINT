@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.0"?>
 <plugin>
+
   <extension point="org.eclipse.sirius.componentization">
     <component class="edu.toronto.cs.se.mmint3.design.Activator"
                id="edu.toronto.cs.se.mmint3.design"
 	       name="mm">
     </component>
   </extension>
+
   <extension
         point="org.eclipse.sirius.externalJavaAction">
      <javaActions
@@ -14,4 +16,18 @@
            id="edu.toronto.cs.se.mmint3.design.actions.ModelInstanceCreate">
      </javaActions>
   </extension>
+
+  <extension
+        point="edu.toronto.cs.se.mmint3.editors">
+     <editorType
+           kind="sirius"
+           modelTypeId="edu.toronto.cs.se.mmint3.mm"
+           wizardId="edu.toronto.cs.se.mmint3.mm.presentation.MMModelWizardID">
+        <type
+              id="edu.toronto.cs.se.mmint3.design"
+              name="MegaModel Sirius representation">
+        </type>
+     </editorType>
+  </extension>
+
 </plugin>

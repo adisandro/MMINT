@@ -21,7 +21,7 @@ public interface Element extends EObject, InternalEObject {
   /**
    * @generated NOT
    */
-  private @Nullable EStructuralFeature getComposedFeature() {
+  default @Nullable EStructuralFeature getComposedFeature() {
     var feature = eClass().getEStructuralFeature("i");
     if (feature == null) {
       feature = eClass().getEStructuralFeature("t");
@@ -46,7 +46,7 @@ public interface Element extends EObject, InternalEObject {
   /**
    * @generated NOT
    */
-  default void setAttribute(int featureID, Object value) {
+  default void setAttribute(int featureID, @Nullable Object value) {
     var feature = getComposedFeature();
     if (feature == null) {
       return;

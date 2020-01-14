@@ -68,6 +68,7 @@
     <eOperations name="setName">
       <eParameters name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eOperations>
+    <eOperations name="getMegaModel" lowerBound="1" eType="#//MegaModel"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Type" abstract="true" interface="true"
       eSuperTypes="#//Element">

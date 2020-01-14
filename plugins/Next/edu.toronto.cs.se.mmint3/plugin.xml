@@ -7,6 +7,7 @@
 <plugin>
 
    <extension-point id="models" name="MMINT model types" schema="schema/models.exsd"/>
+   <extension-point id="editors" name="MMINT editor types" schema="schema/editors.exsd"/>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated mm -->

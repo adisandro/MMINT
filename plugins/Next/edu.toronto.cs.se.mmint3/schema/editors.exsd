@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="edu.toronto.cs.se.mmint3" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appInfo>
+         <meta.schema plugin="edu.toronto.cs.se.mmint3" id="editors" name="MMINT editor types"/>
+      </appInfo>
+      <documentation>
+         Adds editor types in MMINT.
+      </documentation>
+   </annotation>
+
+   <include schemaLocation="types.exsd"/>
+
+   <element name="extension">
+      <annotation>
+         <appInfo>
+            <meta.element />
+         </appInfo>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="editorType"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appInfo>
+                  <meta.attribute translatable="true"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="editorType">
+      <annotation>
+         <documentation>
+            An editor type. Its unique identifier must match the id of an editor registered with the org.eclipse.ui.editors or the org.eclipse.sirius.componentization extension points.
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="type"/>
+         </sequence>
+         <attribute name="modelTypeId" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The unique identifier of the model type that this editor can visualize.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="wizardId" type="string">
+            <annotation>
+               <documentation>
+                  The unique identifier of the wizard to create an empty model with this editor. It must match the id of a wizard registered with the org.eclipse.ui.newWizards extension point.
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="identifier" basedOn="org.eclipse.ui.newWizards/wizard/@id"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="kind" use="required">
+            <annotation>
+               <documentation>
+                  The kind of editor (emf | gmf | sirius).
+               </documentation>
+            </annotation>
+            <simpleType>
+               <restriction base="string">
+                  <enumeration value="emf">
+                  </enumeration>
+                  <enumeration value="gmf">
+                  </enumeration>
+                  <enumeration value="sirius">
+                  </enumeration>
+               </restriction>
+            </simpleType>
+         </attribute>
+      </complexType>
+   </element>
+
+
+   <annotation>
+      <appInfo>
+         <meta.section type="examples"/>
+      </appInfo>
+      <documentation>
+         https://github.com/adisandro/MMINT
+      </documentation>
+   </annotation>
+
+
+
+
+</schema>
