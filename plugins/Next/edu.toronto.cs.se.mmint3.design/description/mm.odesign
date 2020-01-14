@@ -21,6 +21,15 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="ModelInstanceImport" label="Import Model" nodeMappings="//@ownedViewpoints[name='InstanceMegaModelViewpoint']/@ownedRepresentations[name='InstanceMegaModel']/@defaultLayer/@nodeMappings[name='ModelInstance']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ExternalJavaAction" name="ModelInstanceImport" id="edu.toronto.cs.se.mmint3.design.actions.ModelInstanceImport">
+                <parameters name="mm" value="var:container"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
           <ownedTools xsi:type="tool:DirectEditLabel" name="ModelInstanceName">
             <mask mask="{0}"/>
             <initialOperation>

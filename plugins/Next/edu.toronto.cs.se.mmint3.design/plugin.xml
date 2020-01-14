@@ -18,6 +18,14 @@
   </extension>
 
   <extension
+        point="org.eclipse.sirius.externalJavaAction">
+     <javaActions
+           actionClass="edu.toronto.cs.se.mmint3.design.actions.ModelInstanceImport"
+           id="edu.toronto.cs.se.mmint3.design.actions.ModelInstanceImport">
+     </javaActions>
+  </extension>
+
+  <extension
         point="edu.toronto.cs.se.mmint3.editors">
      <editorType
            kind="sirius"
