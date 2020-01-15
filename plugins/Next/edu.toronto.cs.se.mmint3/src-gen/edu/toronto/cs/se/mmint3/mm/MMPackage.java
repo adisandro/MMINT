@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
@@ -187,12 +188,20 @@ public class MMPackage extends EPackageImpl {
   public static final int ELEMENT___SET_NAME__STRING = MMPackage.INTERNAL_EOBJECT_OPERATION_COUNT + 3;
 
   /**
+   * The operation id for the '<em>Get Mega Model</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int ELEMENT___GET_MEGA_MODEL = MMPackage.INTERNAL_EOBJECT_OPERATION_COUNT + 4;
+
+  /**
    * The number of operations of the '<em>Element</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
    *
    * @generated
    * @ordered
    */
-  public static final int ELEMENT_OPERATION_COUNT = MMPackage.INTERNAL_EOBJECT_OPERATION_COUNT + 4;
+  public static final int ELEMENT_OPERATION_COUNT = MMPackage.INTERNAL_EOBJECT_OPERATION_COUNT + 5;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.mmint3.mm.MMElement <em>Element</em>}' class. <!--
@@ -259,6 +268,14 @@ public class MMPackage extends EPackageImpl {
    * @ordered
    */
   public static final int MM_ELEMENT___SET_NAME__STRING = MMPackage.ELEMENT___SET_NAME__STRING;
+
+  /**
+   * The operation id for the '<em>Get Mega Model</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int MM_ELEMENT___GET_MEGA_MODEL = MMPackage.ELEMENT___GET_MEGA_MODEL;
 
   /**
    * The number of operations of the '<em>Element</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -383,12 +400,21 @@ public class MMPackage extends EPackageImpl {
   public static final int MODEL = 4;
 
   /**
+   * The feature id for the '<em><b>Editors</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int MODEL__EDITORS = 0;
+
+  /**
    * The number of structural features of the '<em>Model</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
    *
    * @generated
    * @ordered
    */
-  public static final int MODEL_FEATURE_COUNT = 0;
+  public static final int MODEL_FEATURE_COUNT = 1;
 
   /**
    * The number of operations of the '<em>Model</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -407,6 +433,15 @@ public class MMPackage extends EPackageImpl {
    * @generated
    */
   public static final int MODEL_TYPE = 5;
+
+  /**
+   * The feature id for the '<em><b>Editors</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int MODEL_TYPE__EDITORS = MMPackage.MODEL__EDITORS;
 
   /**
    * The feature id for the '<em><b>T</b></em>' containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -457,12 +492,20 @@ public class MMPackage extends EPackageImpl {
   public static final int MODEL_TYPE___SET_NAME__STRING = MMPackage.MODEL_OPERATION_COUNT + 3;
 
   /**
+   * The operation id for the '<em>Get Mega Model</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int MODEL_TYPE___GET_MEGA_MODEL = MMPackage.MODEL_OPERATION_COUNT + 4;
+
+  /**
    * The operation id for the '<em>Is Dynamic</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
    *
    * @generated
    * @ordered
    */
-  public static final int MODEL_TYPE___IS_DYNAMIC = MMPackage.MODEL_OPERATION_COUNT + 4;
+  public static final int MODEL_TYPE___IS_DYNAMIC = MMPackage.MODEL_OPERATION_COUNT + 5;
 
   /**
    * The operation id for the '<em>Set Dynamic</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -470,7 +513,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MODEL_TYPE___SET_DYNAMIC__BOOLEAN = MMPackage.MODEL_OPERATION_COUNT + 5;
+  public static final int MODEL_TYPE___SET_DYNAMIC__BOOLEAN = MMPackage.MODEL_OPERATION_COUNT + 6;
 
   /**
    * The operation id for the '<em>Is Abstract</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -478,7 +521,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MODEL_TYPE___IS_ABSTRACT = MMPackage.MODEL_OPERATION_COUNT + 6;
+  public static final int MODEL_TYPE___IS_ABSTRACT = MMPackage.MODEL_OPERATION_COUNT + 7;
 
   /**
    * The operation id for the '<em>Set Abstract</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -486,7 +529,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MODEL_TYPE___SET_ABSTRACT__BOOLEAN = MMPackage.MODEL_OPERATION_COUNT + 7;
+  public static final int MODEL_TYPE___SET_ABSTRACT__BOOLEAN = MMPackage.MODEL_OPERATION_COUNT + 8;
 
   /**
    * The operation id for the '<em>Get Supertype</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -494,7 +537,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MODEL_TYPE___GET_SUPERTYPE = MMPackage.MODEL_OPERATION_COUNT + 8;
+  public static final int MODEL_TYPE___GET_SUPERTYPE = MMPackage.MODEL_OPERATION_COUNT + 9;
 
   /**
    * The operation id for the '<em>Set Supertype</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -502,7 +545,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MODEL_TYPE___SET_SUPERTYPE__TYPE = MMPackage.MODEL_OPERATION_COUNT + 9;
+  public static final int MODEL_TYPE___SET_SUPERTYPE__TYPE = MMPackage.MODEL_OPERATION_COUNT + 10;
 
   /**
    * The operation id for the '<em>Get Package</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -510,7 +553,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MODEL_TYPE___GET_PACKAGE = MMPackage.MODEL_OPERATION_COUNT + 10;
+  public static final int MODEL_TYPE___GET_PACKAGE = MMPackage.MODEL_OPERATION_COUNT + 11;
 
   /**
    * The operation id for the '<em>Create Instance</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -519,7 +562,7 @@ public class MMPackage extends EPackageImpl {
    * @ordered
    */
   public static final int MODEL_TYPE___CREATE_INSTANCE__EOBJECT_STRING_BOOLEAN_INSTANCEMEGAMODEL = MMPackage.MODEL_OPERATION_COUNT
-    + 11;
+    + 12;
 
   /**
    * The number of operations of the '<em>Model Type</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -527,7 +570,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MODEL_TYPE_OPERATION_COUNT = MMPackage.MODEL_OPERATION_COUNT + 12;
+  public static final int MODEL_TYPE_OPERATION_COUNT = MMPackage.MODEL_OPERATION_COUNT + 13;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.mmint3.mm.ModelInstance <em>Model Instance</em>}' class. <!--
@@ -538,6 +581,15 @@ public class MMPackage extends EPackageImpl {
    * @generated
    */
   public static final int MODEL_INSTANCE = 6;
+
+  /**
+   * The feature id for the '<em><b>Editors</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int MODEL_INSTANCE__EDITORS = MMPackage.MODEL__EDITORS;
 
   /**
    * The feature id for the '<em><b>I</b></em>' containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -597,12 +649,20 @@ public class MMPackage extends EPackageImpl {
   public static final int MODEL_INSTANCE___SET_NAME__STRING = MMPackage.MODEL_OPERATION_COUNT + 3;
 
   /**
+   * The operation id for the '<em>Get Mega Model</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int MODEL_INSTANCE___GET_MEGA_MODEL = MMPackage.MODEL_OPERATION_COUNT + 4;
+
+  /**
    * The operation id for the '<em>Get Type Id</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
    *
    * @generated
    * @ordered
    */
-  public static final int MODEL_INSTANCE___GET_TYPE_ID = MMPackage.MODEL_OPERATION_COUNT + 4;
+  public static final int MODEL_INSTANCE___GET_TYPE_ID = MMPackage.MODEL_OPERATION_COUNT + 5;
 
   /**
    * The operation id for the '<em>Set Type Id</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -610,7 +670,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MODEL_INSTANCE___SET_TYPE_ID__STRING = MMPackage.MODEL_OPERATION_COUNT + 5;
+  public static final int MODEL_INSTANCE___SET_TYPE_ID__STRING = MMPackage.MODEL_OPERATION_COUNT + 6;
 
   /**
    * The operation id for the '<em>Get Type</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -618,7 +678,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MODEL_INSTANCE___GET_TYPE = MMPackage.MODEL_OPERATION_COUNT + 6;
+  public static final int MODEL_INSTANCE___GET_TYPE = MMPackage.MODEL_OPERATION_COUNT + 7;
 
   /**
    * The number of operations of the '<em>Model Instance</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -626,7 +686,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MODEL_INSTANCE_OPERATION_COUNT = MMPackage.MODEL_OPERATION_COUNT + 7;
+  public static final int MODEL_INSTANCE_OPERATION_COUNT = MMPackage.MODEL_OPERATION_COUNT + 8;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.mmint3.mm.MMInstance <em>Instance</em>}' class. <!--
@@ -709,6 +769,14 @@ public class MMPackage extends EPackageImpl {
    * @ordered
    */
   public static final int MM_INSTANCE___SET_NAME__STRING = MMPackage.MM_ELEMENT___SET_NAME__STRING;
+
+  /**
+   * The operation id for the '<em>Get Mega Model</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int MM_INSTANCE___GET_MEGA_MODEL = MMPackage.MM_ELEMENT___GET_MEGA_MODEL;
 
   /**
    * The operation id for the '<em>Get Type Id</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -833,6 +901,14 @@ public class MMPackage extends EPackageImpl {
   public static final int MM_TYPE___SET_NAME__STRING = MMPackage.MM_ELEMENT___SET_NAME__STRING;
 
   /**
+   * The operation id for the '<em>Get Mega Model</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int MM_TYPE___GET_MEGA_MODEL = MMPackage.MM_ELEMENT___GET_MEGA_MODEL;
+
+  /**
    * The operation id for the '<em>Is Dynamic</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
    *
    * @generated
@@ -939,6 +1015,14 @@ public class MMPackage extends EPackageImpl {
   public static final int INSTANCE___SET_NAME__STRING = MMPackage.ELEMENT___SET_NAME__STRING;
 
   /**
+   * The operation id for the '<em>Get Mega Model</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int INSTANCE___GET_MEGA_MODEL = MMPackage.ELEMENT___GET_MEGA_MODEL;
+
+  /**
    * The operation id for the '<em>Get Type Id</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
    *
    * @generated
@@ -1019,6 +1103,14 @@ public class MMPackage extends EPackageImpl {
    * @ordered
    */
   public static final int TYPE___SET_NAME__STRING = MMPackage.ELEMENT___SET_NAME__STRING;
+
+  /**
+   * The operation id for the '<em>Get Mega Model</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int TYPE___GET_MEGA_MODEL = MMPackage.ELEMENT___GET_MEGA_MODEL;
 
   /**
    * The operation id for the '<em>Is Dynamic</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -1121,6 +1213,625 @@ public class MMPackage extends EPackageImpl {
   public static final int ESTRING_TO_ELEMENT_MAP_OPERATION_COUNT = 0;
 
   /**
+   * The meta object id for the '{@link edu.toronto.cs.se.mmint3.mm.Editor <em>Editor</em>}' class. <!-- begin-user-doc
+   * --> <!-- end-user-doc -->
+   *
+   * @see edu.toronto.cs.se.mmint3.mm.Editor
+   * @see edu.toronto.cs.se.mmint3.mm.MMPackage#getEditor()
+   * @generated
+   */
+  public static final int EDITOR = 14;
+
+  /**
+   * The feature id for the '<em><b>Model</b></em>' container reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int EDITOR__MODEL = 0;
+
+  /**
+   * The number of structural features of the '<em>Editor</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int EDITOR_FEATURE_COUNT = 1;
+
+  /**
+   * The number of operations of the '<em>Editor</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int EDITOR_OPERATION_COUNT = 0;
+
+  /**
+   * The meta object id for the '{@link edu.toronto.cs.se.mmint3.mm.EditorType <em>Editor Type</em>}' class. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @see edu.toronto.cs.se.mmint3.mm.EditorType
+   * @see edu.toronto.cs.se.mmint3.mm.MMPackage#getEditorType()
+   * @generated
+   */
+  public static final int EDITOR_TYPE = 15;
+
+  /**
+   * The feature id for the '<em><b>Model</b></em>' container reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int EDITOR_TYPE__MODEL = MMPackage.EDITOR__MODEL;
+
+  /**
+   * The feature id for the '<em><b>Wizard Id</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int EDITOR_TYPE__WIZARD_ID = MMPackage.EDITOR_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>T</b></em>' containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int EDITOR_TYPE__T = MMPackage.EDITOR_FEATURE_COUNT + 1;
+
+  /**
+   * The feature id for the '<em><b>Kind</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int EDITOR_TYPE__KIND = MMPackage.EDITOR_FEATURE_COUNT + 2;
+
+  /**
+   * The number of structural features of the '<em>Editor Type</em>' class. <!-- begin-user-doc --> <!-- end-user-doc
+   * -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int EDITOR_TYPE_FEATURE_COUNT = MMPackage.EDITOR_FEATURE_COUNT + 3;
+
+  /**
+   * The operation id for the '<em>Get Id</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int EDITOR_TYPE___GET_ID = MMPackage.EDITOR_OPERATION_COUNT + 0;
+
+  /**
+   * The operation id for the '<em>Set Id</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int EDITOR_TYPE___SET_ID__STRING = MMPackage.EDITOR_OPERATION_COUNT + 1;
+
+  /**
+   * The operation id for the '<em>Get Name</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int EDITOR_TYPE___GET_NAME = MMPackage.EDITOR_OPERATION_COUNT + 2;
+
+  /**
+   * The operation id for the '<em>Set Name</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int EDITOR_TYPE___SET_NAME__STRING = MMPackage.EDITOR_OPERATION_COUNT + 3;
+
+  /**
+   * The operation id for the '<em>Get Mega Model</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int EDITOR_TYPE___GET_MEGA_MODEL = MMPackage.EDITOR_OPERATION_COUNT + 4;
+
+  /**
+   * The operation id for the '<em>Is Dynamic</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int EDITOR_TYPE___IS_DYNAMIC = MMPackage.EDITOR_OPERATION_COUNT + 5;
+
+  /**
+   * The operation id for the '<em>Set Dynamic</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int EDITOR_TYPE___SET_DYNAMIC__BOOLEAN = MMPackage.EDITOR_OPERATION_COUNT + 6;
+
+  /**
+   * The operation id for the '<em>Is Abstract</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int EDITOR_TYPE___IS_ABSTRACT = MMPackage.EDITOR_OPERATION_COUNT + 7;
+
+  /**
+   * The operation id for the '<em>Set Abstract</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int EDITOR_TYPE___SET_ABSTRACT__BOOLEAN = MMPackage.EDITOR_OPERATION_COUNT + 8;
+
+  /**
+   * The operation id for the '<em>Get Supertype</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int EDITOR_TYPE___GET_SUPERTYPE = MMPackage.EDITOR_OPERATION_COUNT + 9;
+
+  /**
+   * The operation id for the '<em>Set Supertype</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int EDITOR_TYPE___SET_SUPERTYPE__TYPE = MMPackage.EDITOR_OPERATION_COUNT + 10;
+
+  /**
+   * The number of operations of the '<em>Editor Type</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int EDITOR_TYPE_OPERATION_COUNT = MMPackage.EDITOR_OPERATION_COUNT + 11;
+
+  /**
+   * The meta object id for the '{@link edu.toronto.cs.se.mmint3.mm.EditorInstance <em>Editor Instance</em>}' class.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @see edu.toronto.cs.se.mmint3.mm.EditorInstance
+   * @see edu.toronto.cs.se.mmint3.mm.MMPackage#getEditorInstance()
+   * @generated
+   */
+  public static final int EDITOR_INSTANCE = 16;
+
+  /**
+   * The feature id for the '<em><b>Model</b></em>' container reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int EDITOR_INSTANCE__MODEL = MMPackage.EDITOR__MODEL;
+
+  /**
+   * The feature id for the '<em><b>I</b></em>' containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int EDITOR_INSTANCE__I = MMPackage.EDITOR_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Editor Instance</em>' class. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int EDITOR_INSTANCE_FEATURE_COUNT = MMPackage.EDITOR_FEATURE_COUNT + 1;
+
+  /**
+   * The operation id for the '<em>Get Id</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int EDITOR_INSTANCE___GET_ID = MMPackage.EDITOR_OPERATION_COUNT + 0;
+
+  /**
+   * The operation id for the '<em>Set Id</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int EDITOR_INSTANCE___SET_ID__STRING = MMPackage.EDITOR_OPERATION_COUNT + 1;
+
+  /**
+   * The operation id for the '<em>Get Name</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int EDITOR_INSTANCE___GET_NAME = MMPackage.EDITOR_OPERATION_COUNT + 2;
+
+  /**
+   * The operation id for the '<em>Set Name</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int EDITOR_INSTANCE___SET_NAME__STRING = MMPackage.EDITOR_OPERATION_COUNT + 3;
+
+  /**
+   * The operation id for the '<em>Get Mega Model</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int EDITOR_INSTANCE___GET_MEGA_MODEL = MMPackage.EDITOR_OPERATION_COUNT + 4;
+
+  /**
+   * The operation id for the '<em>Get Type Id</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int EDITOR_INSTANCE___GET_TYPE_ID = MMPackage.EDITOR_OPERATION_COUNT + 5;
+
+  /**
+   * The operation id for the '<em>Set Type Id</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int EDITOR_INSTANCE___SET_TYPE_ID__STRING = MMPackage.EDITOR_OPERATION_COUNT + 6;
+
+  /**
+   * The operation id for the '<em>Get Type</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int EDITOR_INSTANCE___GET_TYPE = MMPackage.EDITOR_OPERATION_COUNT + 7;
+
+  /**
+   * The number of operations of the '<em>Editor Instance</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int EDITOR_INSTANCE_OPERATION_COUNT = MMPackage.EDITOR_OPERATION_COUNT + 8;
+
+  /**
+   * The meta object id for the '{@link edu.toronto.cs.se.mmint3.mm.EMFTree <em>EMF Tree</em>}' class. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @see edu.toronto.cs.se.mmint3.mm.EMFTree
+   * @see edu.toronto.cs.se.mmint3.mm.MMPackage#getEMFTree()
+   * @generated
+   */
+  public static final int EMF_TREE = 17;
+
+  /**
+   * The feature id for the '<em><b>Model</b></em>' container reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int EMF_TREE__MODEL = MMPackage.EDITOR_INSTANCE__MODEL;
+
+  /**
+   * The feature id for the '<em><b>I</b></em>' containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int EMF_TREE__I = MMPackage.EDITOR_INSTANCE__I;
+
+  /**
+   * The number of structural features of the '<em>EMF Tree</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int EMF_TREE_FEATURE_COUNT = MMPackage.EDITOR_INSTANCE_FEATURE_COUNT + 0;
+
+  /**
+   * The operation id for the '<em>Get Id</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int EMF_TREE___GET_ID = MMPackage.EDITOR_INSTANCE___GET_ID;
+
+  /**
+   * The operation id for the '<em>Set Id</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int EMF_TREE___SET_ID__STRING = MMPackage.EDITOR_INSTANCE___SET_ID__STRING;
+
+  /**
+   * The operation id for the '<em>Get Name</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int EMF_TREE___GET_NAME = MMPackage.EDITOR_INSTANCE___GET_NAME;
+
+  /**
+   * The operation id for the '<em>Set Name</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int EMF_TREE___SET_NAME__STRING = MMPackage.EDITOR_INSTANCE___SET_NAME__STRING;
+
+  /**
+   * The operation id for the '<em>Get Mega Model</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int EMF_TREE___GET_MEGA_MODEL = MMPackage.EDITOR_INSTANCE___GET_MEGA_MODEL;
+
+  /**
+   * The operation id for the '<em>Get Type Id</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int EMF_TREE___GET_TYPE_ID = MMPackage.EDITOR_INSTANCE___GET_TYPE_ID;
+
+  /**
+   * The operation id for the '<em>Set Type Id</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int EMF_TREE___SET_TYPE_ID__STRING = MMPackage.EDITOR_INSTANCE___SET_TYPE_ID__STRING;
+
+  /**
+   * The operation id for the '<em>Get Type</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int EMF_TREE___GET_TYPE = MMPackage.EDITOR_INSTANCE___GET_TYPE;
+
+  /**
+   * The number of operations of the '<em>EMF Tree</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int EMF_TREE_OPERATION_COUNT = MMPackage.EDITOR_INSTANCE_OPERATION_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link edu.toronto.cs.se.mmint3.mm.GMFDiagram <em>GMF Diagram</em>}' class. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @see edu.toronto.cs.se.mmint3.mm.GMFDiagram
+   * @see edu.toronto.cs.se.mmint3.mm.MMPackage#getGMFDiagram()
+   * @generated
+   */
+  public static final int GMF_DIAGRAM = 18;
+
+  /**
+   * The feature id for the '<em><b>Model</b></em>' container reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int GMF_DIAGRAM__MODEL = MMPackage.EDITOR_INSTANCE__MODEL;
+
+  /**
+   * The feature id for the '<em><b>I</b></em>' containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int GMF_DIAGRAM__I = MMPackage.EDITOR_INSTANCE__I;
+
+  /**
+   * The number of structural features of the '<em>GMF Diagram</em>' class. <!-- begin-user-doc --> <!-- end-user-doc
+   * -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int GMF_DIAGRAM_FEATURE_COUNT = MMPackage.EDITOR_INSTANCE_FEATURE_COUNT + 0;
+
+  /**
+   * The operation id for the '<em>Get Id</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int GMF_DIAGRAM___GET_ID = MMPackage.EDITOR_INSTANCE___GET_ID;
+
+  /**
+   * The operation id for the '<em>Set Id</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int GMF_DIAGRAM___SET_ID__STRING = MMPackage.EDITOR_INSTANCE___SET_ID__STRING;
+
+  /**
+   * The operation id for the '<em>Get Name</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int GMF_DIAGRAM___GET_NAME = MMPackage.EDITOR_INSTANCE___GET_NAME;
+
+  /**
+   * The operation id for the '<em>Set Name</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int GMF_DIAGRAM___SET_NAME__STRING = MMPackage.EDITOR_INSTANCE___SET_NAME__STRING;
+
+  /**
+   * The operation id for the '<em>Get Mega Model</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int GMF_DIAGRAM___GET_MEGA_MODEL = MMPackage.EDITOR_INSTANCE___GET_MEGA_MODEL;
+
+  /**
+   * The operation id for the '<em>Get Type Id</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int GMF_DIAGRAM___GET_TYPE_ID = MMPackage.EDITOR_INSTANCE___GET_TYPE_ID;
+
+  /**
+   * The operation id for the '<em>Set Type Id</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int GMF_DIAGRAM___SET_TYPE_ID__STRING = MMPackage.EDITOR_INSTANCE___SET_TYPE_ID__STRING;
+
+  /**
+   * The operation id for the '<em>Get Type</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int GMF_DIAGRAM___GET_TYPE = MMPackage.EDITOR_INSTANCE___GET_TYPE;
+
+  /**
+   * The number of operations of the '<em>GMF Diagram</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int GMF_DIAGRAM_OPERATION_COUNT = MMPackage.EDITOR_INSTANCE_OPERATION_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link edu.toronto.cs.se.mmint3.mm.SiriusRepresentation <em>Sirius
+   * Representation</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @see edu.toronto.cs.se.mmint3.mm.SiriusRepresentation
+   * @see edu.toronto.cs.se.mmint3.mm.MMPackage#getSiriusRepresentation()
+   * @generated
+   */
+  public static final int SIRIUS_REPRESENTATION = 19;
+
+  /**
+   * The feature id for the '<em><b>Model</b></em>' container reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int SIRIUS_REPRESENTATION__MODEL = MMPackage.EDITOR_INSTANCE__MODEL;
+
+  /**
+   * The feature id for the '<em><b>I</b></em>' containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int SIRIUS_REPRESENTATION__I = MMPackage.EDITOR_INSTANCE__I;
+
+  /**
+   * The number of structural features of the '<em>Sirius Representation</em>' class. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int SIRIUS_REPRESENTATION_FEATURE_COUNT = MMPackage.EDITOR_INSTANCE_FEATURE_COUNT + 0;
+
+  /**
+   * The operation id for the '<em>Get Id</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int SIRIUS_REPRESENTATION___GET_ID = MMPackage.EDITOR_INSTANCE___GET_ID;
+
+  /**
+   * The operation id for the '<em>Set Id</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int SIRIUS_REPRESENTATION___SET_ID__STRING = MMPackage.EDITOR_INSTANCE___SET_ID__STRING;
+
+  /**
+   * The operation id for the '<em>Get Name</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int SIRIUS_REPRESENTATION___GET_NAME = MMPackage.EDITOR_INSTANCE___GET_NAME;
+
+  /**
+   * The operation id for the '<em>Set Name</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int SIRIUS_REPRESENTATION___SET_NAME__STRING = MMPackage.EDITOR_INSTANCE___SET_NAME__STRING;
+
+  /**
+   * The operation id for the '<em>Get Mega Model</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int SIRIUS_REPRESENTATION___GET_MEGA_MODEL = MMPackage.EDITOR_INSTANCE___GET_MEGA_MODEL;
+
+  /**
+   * The operation id for the '<em>Get Type Id</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int SIRIUS_REPRESENTATION___GET_TYPE_ID = MMPackage.EDITOR_INSTANCE___GET_TYPE_ID;
+
+  /**
+   * The operation id for the '<em>Set Type Id</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int SIRIUS_REPRESENTATION___SET_TYPE_ID__STRING = MMPackage.EDITOR_INSTANCE___SET_TYPE_ID__STRING;
+
+  /**
+   * The operation id for the '<em>Get Type</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int SIRIUS_REPRESENTATION___GET_TYPE = MMPackage.EDITOR_INSTANCE___GET_TYPE;
+
+  /**
+   * The number of operations of the '<em>Sirius Representation</em>' class. <!-- begin-user-doc --> <!-- end-user-doc
+   * -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int SIRIUS_REPRESENTATION_OPERATION_COUNT = MMPackage.EDITOR_INSTANCE_OPERATION_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link edu.toronto.cs.se.mmint3.mm.EditorKind <em>Editor Kind</em>}' enum. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @see edu.toronto.cs.se.mmint3.mm.EditorKind
+   * @see edu.toronto.cs.se.mmint3.mm.MMPackage#getEditorKind()
+   * @generated
+   */
+  public static final int EDITOR_KIND = 20;
+
+  /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    *
    * @generated
@@ -1217,6 +1928,55 @@ public class MMPackage extends EPackageImpl {
    * @generated
    */
   private EClass internalEObjectEClass = null;
+
+  /**
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   */
+  private EClass editorEClass = null;
+
+  /**
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   */
+  private EClass editorTypeEClass = null;
+
+  /**
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   */
+  private EClass editorInstanceEClass = null;
+
+  /**
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   */
+  private EClass emfTreeEClass = null;
+
+  /**
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   */
+  private EClass gmfDiagramEClass = null;
+
+  /**
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   */
+  private EClass siriusRepresentationEClass = null;
+
+  /**
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   */
+  private EEnum editorKindEEnum = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry
@@ -1402,6 +2162,19 @@ public class MMPackage extends EPackageImpl {
    */
   public EClass getModel() {
     return this.modelEClass;
+  }
+
+  /**
+   * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.mmint3.mm.Model#getEditors
+   * <em>Editors</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @return the meta object for the containment reference list '<em>Editors</em>'.
+   * @see edu.toronto.cs.se.mmint3.mm.Model#getEditors()
+   * @see #getModel()
+   * @generated
+   */
+  public EReference getModel_Editors() {
+    return (EReference) this.modelEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1691,6 +2464,18 @@ public class MMPackage extends EPackageImpl {
   }
 
   /**
+   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint3.mm.Element#getMegaModel() <em>Get Mega
+   * Model</em>}' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @return the meta object for the '<em>Get Mega Model</em>' operation.
+   * @see edu.toronto.cs.se.mmint3.mm.Element#getMegaModel()
+   * @generated
+   */
+  public EOperation getElement__GetMegaModel() {
+    return this.elementEClass.getEOperations().get(4);
+  }
+
+  /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.mmint3.mm.Type <em>Type</em>}'. <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    *
@@ -1829,6 +2614,155 @@ public class MMPackage extends EPackageImpl {
   }
 
   /**
+   * Returns the meta object for class '{@link edu.toronto.cs.se.mmint3.mm.Editor <em>Editor</em>}'. <!-- begin-user-doc
+   * --> <!-- end-user-doc -->
+   *
+   * @return the meta object for class '<em>Editor</em>'.
+   * @see edu.toronto.cs.se.mmint3.mm.Editor
+   * @generated
+   */
+  public EClass getEditor() {
+    return this.editorEClass;
+  }
+
+  /**
+   * Returns the meta object for the container reference '{@link edu.toronto.cs.se.mmint3.mm.Editor#getModel
+   * <em>Model</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @return the meta object for the container reference '<em>Model</em>'.
+   * @see edu.toronto.cs.se.mmint3.mm.Editor#getModel()
+   * @see #getEditor()
+   * @generated
+   */
+  public EReference getEditor_Model() {
+    return (EReference) this.editorEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * Returns the meta object for class '{@link edu.toronto.cs.se.mmint3.mm.EditorType <em>Editor Type</em>}'. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @return the meta object for class '<em>Editor Type</em>'.
+   * @see edu.toronto.cs.se.mmint3.mm.EditorType
+   * @generated
+   */
+  public EClass getEditorType() {
+    return this.editorTypeEClass;
+  }
+
+  /**
+   * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmint3.mm.EditorType#getWizardId <em>Wizard
+   * Id</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @return the meta object for the attribute '<em>Wizard Id</em>'.
+   * @see edu.toronto.cs.se.mmint3.mm.EditorType#getWizardId()
+   * @see #getEditorType()
+   * @generated
+   */
+  public EAttribute getEditorType_WizardId() {
+    return (EAttribute) this.editorTypeEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * Returns the meta object for the containment reference '{@link edu.toronto.cs.se.mmint3.mm.EditorType#getT
+   * <em>T</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @return the meta object for the containment reference '<em>T</em>'.
+   * @see edu.toronto.cs.se.mmint3.mm.EditorType#getT()
+   * @see #getEditorType()
+   * @generated
+   */
+  public EReference getEditorType_T() {
+    return (EReference) this.editorTypeEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmint3.mm.EditorType#getKind <em>Kind</em>}'.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @return the meta object for the attribute '<em>Kind</em>'.
+   * @see edu.toronto.cs.se.mmint3.mm.EditorType#getKind()
+   * @see #getEditorType()
+   * @generated
+   */
+  public EAttribute getEditorType_Kind() {
+    return (EAttribute) this.editorTypeEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * Returns the meta object for class '{@link edu.toronto.cs.se.mmint3.mm.EditorInstance <em>Editor Instance</em>}'.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @return the meta object for class '<em>Editor Instance</em>'.
+   * @see edu.toronto.cs.se.mmint3.mm.EditorInstance
+   * @generated
+   */
+  public EClass getEditorInstance() {
+    return this.editorInstanceEClass;
+  }
+
+  /**
+   * Returns the meta object for the containment reference '{@link edu.toronto.cs.se.mmint3.mm.EditorInstance#getI
+   * <em>I</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @return the meta object for the containment reference '<em>I</em>'.
+   * @see edu.toronto.cs.se.mmint3.mm.EditorInstance#getI()
+   * @see #getEditorInstance()
+   * @generated
+   */
+  public EReference getEditorInstance_I() {
+    return (EReference) this.editorInstanceEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * Returns the meta object for class '{@link edu.toronto.cs.se.mmint3.mm.EMFTree <em>EMF Tree</em>}'. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @return the meta object for class '<em>EMF Tree</em>'.
+   * @see edu.toronto.cs.se.mmint3.mm.EMFTree
+   * @generated
+   */
+  public EClass getEMFTree() {
+    return this.emfTreeEClass;
+  }
+
+  /**
+   * Returns the meta object for class '{@link edu.toronto.cs.se.mmint3.mm.GMFDiagram <em>GMF Diagram</em>}'. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @return the meta object for class '<em>GMF Diagram</em>'.
+   * @see edu.toronto.cs.se.mmint3.mm.GMFDiagram
+   * @generated
+   */
+  public EClass getGMFDiagram() {
+    return this.gmfDiagramEClass;
+  }
+
+  /**
+   * Returns the meta object for class '{@link edu.toronto.cs.se.mmint3.mm.SiriusRepresentation <em>Sirius
+   * Representation</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @return the meta object for class '<em>Sirius Representation</em>'.
+   * @see edu.toronto.cs.se.mmint3.mm.SiriusRepresentation
+   * @generated
+   */
+  public EClass getSiriusRepresentation() {
+    return this.siriusRepresentationEClass;
+  }
+
+  /**
+   * Returns the meta object for enum '{@link edu.toronto.cs.se.mmint3.mm.EditorKind <em>Editor Kind</em>}'. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @return the meta object for enum '<em>Editor Kind</em>'.
+   * @see edu.toronto.cs.se.mmint3.mm.EditorKind
+   * @generated
+   */
+  public EEnum getEditorKind() {
+    return this.editorKindEEnum;
+  }
+
+  /**
    * Returns the factory that creates the instances of the model. <!-- begin-user-doc --> <!-- end-user-doc -->
    *
    * @return the factory that creates the instances of the model.
@@ -1871,6 +2805,7 @@ public class MMPackage extends EPackageImpl {
     this.instanceMegaModelEClass = createEClass(MMPackage.INSTANCE_MEGA_MODEL);
 
     this.modelEClass = createEClass(MMPackage.MODEL);
+    createEReference(this.modelEClass, MMPackage.MODEL__EDITORS);
 
     this.modelTypeEClass = createEClass(MMPackage.MODEL_TYPE);
     createEReference(this.modelTypeEClass, MMPackage.MODEL_TYPE__T);
@@ -1900,6 +2835,7 @@ public class MMPackage extends EPackageImpl {
     createEOperation(this.elementEClass, MMPackage.ELEMENT___SET_ID__STRING);
     createEOperation(this.elementEClass, MMPackage.ELEMENT___GET_NAME);
     createEOperation(this.elementEClass, MMPackage.ELEMENT___SET_NAME__STRING);
+    createEOperation(this.elementEClass, MMPackage.ELEMENT___GET_MEGA_MODEL);
 
     this.typeEClass = createEClass(MMPackage.TYPE);
     createEOperation(this.typeEClass, MMPackage.TYPE___IS_DYNAMIC);
@@ -1914,6 +2850,26 @@ public class MMPackage extends EPackageImpl {
     createEReference(this.eStringToElementMapEClass, MMPackage.ESTRING_TO_ELEMENT_MAP__VALUE);
 
     this.internalEObjectEClass = createEClass(MMPackage.INTERNAL_EOBJECT);
+
+    this.editorEClass = createEClass(MMPackage.EDITOR);
+    createEReference(this.editorEClass, MMPackage.EDITOR__MODEL);
+
+    this.editorTypeEClass = createEClass(MMPackage.EDITOR_TYPE);
+    createEAttribute(this.editorTypeEClass, MMPackage.EDITOR_TYPE__WIZARD_ID);
+    createEReference(this.editorTypeEClass, MMPackage.EDITOR_TYPE__T);
+    createEAttribute(this.editorTypeEClass, MMPackage.EDITOR_TYPE__KIND);
+
+    this.editorInstanceEClass = createEClass(MMPackage.EDITOR_INSTANCE);
+    createEReference(this.editorInstanceEClass, MMPackage.EDITOR_INSTANCE__I);
+
+    this.emfTreeEClass = createEClass(MMPackage.EMF_TREE);
+
+    this.gmfDiagramEClass = createEClass(MMPackage.GMF_DIAGRAM);
+
+    this.siriusRepresentationEClass = createEClass(MMPackage.SIRIUS_REPRESENTATION);
+
+    // Create enums
+    this.editorKindEEnum = createEEnum(MMPackage.EDITOR_KIND);
   }
 
   /**
@@ -1958,6 +2914,13 @@ public class MMPackage extends EPackageImpl {
     this.instanceEClass.getESuperTypes().add(this.getElement());
     this.elementEClass.getESuperTypes().add(this.getInternalEObject());
     this.typeEClass.getESuperTypes().add(this.getElement());
+    this.editorTypeEClass.getESuperTypes().add(this.getEditor());
+    this.editorTypeEClass.getESuperTypes().add(this.getType());
+    this.editorInstanceEClass.getESuperTypes().add(this.getEditor());
+    this.editorInstanceEClass.getESuperTypes().add(this.getInstance());
+    this.emfTreeEClass.getESuperTypes().add(this.getEditorInstance());
+    this.gmfDiagramEClass.getESuperTypes().add(this.getEditorInstance());
+    this.siriusRepresentationEClass.getESuperTypes().add(this.getEditorInstance());
 
     // Initialize classes, features, and operations; add parameters
     initEClass(this.megaModelEClass, MegaModel.class, "MegaModel", EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
@@ -1989,6 +2952,9 @@ public class MMPackage extends EPackageImpl {
                EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(this.modelEClass, Model.class, "Model", EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getModel_Editors(), this.getEditor(), this.getEditor_Model(), "editors", null, 0, -1, Model.class,
+                   !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, EPackageImpl.IS_COMPOSITE, !EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE,
+                   EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
 
     initEClass(this.modelTypeEClass, ModelType.class, "ModelType", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
     initEReference(getModelType_T(), this.getMMType(), null, "t", null, 1, 1, ModelType.class, !EPackageImpl.IS_TRANSIENT,
@@ -2054,6 +3020,8 @@ public class MMPackage extends EPackageImpl {
     op = initEOperation(getElement__SetName__String(), null, "setName", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEParameter(op, this.ecorePackage.getEString(), "value", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
 
+    initEOperation(getElement__GetMegaModel(), this.getMegaModel(), "getMegaModel", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+
     initEClass(this.typeEClass, Type.class, "Type", EPackageImpl.IS_ABSTRACT, EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 
     initEOperation(getType__IsDynamic(), this.ecorePackage.getEBoolean(), "isDynamic", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
@@ -2082,6 +3050,42 @@ public class MMPackage extends EPackageImpl {
 
     initEClass(this.internalEObjectEClass, InternalEObject.class, "InternalEObject", EPackageImpl.IS_ABSTRACT, EPackageImpl.IS_INTERFACE,
                !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(this.editorEClass, Editor.class, "Editor", EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getEditor_Model(), this.getModel(), this.getModel_Editors(), "model", null, 1, 1, Editor.class,
+                   !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, !EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE,
+                   EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
+
+    initEClass(this.editorTypeEClass, EditorType.class, "EditorType", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE,
+               EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getEditorType_WizardId(), this.ecorePackage.getEString(), "wizardId", null, 0, 1, EditorType.class,
+                   !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED,
+                   EPackageImpl.IS_ORDERED);
+    initEReference(getEditorType_T(), this.getMMType(), null, "t", null, 1, 1, EditorType.class, !EPackageImpl.IS_TRANSIENT,
+                   !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, EPackageImpl.IS_COMPOSITE, !EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE,
+                   !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
+    initEAttribute(getEditorType_Kind(), this.getEditorKind(), "kind", null, 1, 1, EditorType.class, !EPackageImpl.IS_TRANSIENT,
+                   !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
+
+    initEClass(this.editorInstanceEClass, EditorInstance.class, "EditorInstance", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE,
+               EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getEditorInstance_I(), this.getMMInstance(), null, "i", null, 1, 1, EditorInstance.class,
+                   !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, EPackageImpl.IS_COMPOSITE, !EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE,
+                   EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
+
+    initEClass(this.emfTreeEClass, EMFTree.class, "EMFTree", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(this.gmfDiagramEClass, GMFDiagram.class, "GMFDiagram", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE,
+               EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(this.siriusRepresentationEClass, SiriusRepresentation.class, "SiriusRepresentation", !EPackageImpl.IS_ABSTRACT,
+               !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+
+    // Initialize enums and add enum literals
+    initEEnum(this.editorKindEEnum, EditorKind.class, "EditorKind");
+    addEEnumLiteral(this.editorKindEEnum, EditorKind.EMF);
+    addEEnumLiteral(this.editorKindEEnum, EditorKind.GMF);
+    addEEnumLiteral(this.editorKindEEnum, EditorKind.SIRIUS);
 
     // Create resource
     createResource(MMPackage.eNS_URI);
@@ -2190,6 +3194,14 @@ public class MMPackage extends EPackageImpl {
      * @generated
      */
     public static final EClass MODEL = MMPackage.eINSTANCE.getModel();
+
+    /**
+     * The meta object literal for the '<em><b>Editors</b></em>' containment reference list feature. <!-- begin-user-doc
+     * --> <!-- end-user-doc -->
+     *
+     * @generated
+     */
+    public static final EReference MODEL__EDITORS = MMPackage.eINSTANCE.getModel_Editors();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint3.mm.ModelType <em>Model Type</em>}' class. <!--
@@ -2386,6 +3398,14 @@ public class MMPackage extends EPackageImpl {
     public static final EOperation ELEMENT___SET_NAME__STRING = MMPackage.eINSTANCE.getElement__SetName__String();
 
     /**
+     * The meta object literal for the '<em><b>Get Mega Model</b></em>' operation. <!-- begin-user-doc --> <!--
+     * end-user-doc -->
+     *
+     * @generated
+     */
+    public static final EOperation ELEMENT___GET_MEGA_MODEL = MMPackage.eINSTANCE.getElement__GetMegaModel();
+
+    /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint3.mm.Type <em>Type</em>}' class. <!--
      * begin-user-doc --> <!-- end-user-doc -->
      *
@@ -2478,6 +3498,116 @@ public class MMPackage extends EPackageImpl {
      * @generated
      */
     public static final EClass INTERNAL_EOBJECT = MMPackage.eINSTANCE.getInternalEObject();
+
+    /**
+     * The meta object literal for the '{@link edu.toronto.cs.se.mmint3.mm.Editor <em>Editor</em>}' class. <!--
+     * begin-user-doc --> <!-- end-user-doc -->
+     *
+     * @see edu.toronto.cs.se.mmint3.mm.Editor
+     * @see edu.toronto.cs.se.mmint3.mm.MMPackage#getEditor()
+     * @generated
+     */
+    public static final EClass EDITOR = MMPackage.eINSTANCE.getEditor();
+
+    /**
+     * The meta object literal for the '<em><b>Model</b></em>' container reference feature. <!-- begin-user-doc --> <!--
+     * end-user-doc -->
+     *
+     * @generated
+     */
+    public static final EReference EDITOR__MODEL = MMPackage.eINSTANCE.getEditor_Model();
+
+    /**
+     * The meta object literal for the '{@link edu.toronto.cs.se.mmint3.mm.EditorType <em>Editor Type</em>}' class. <!--
+     * begin-user-doc --> <!-- end-user-doc -->
+     *
+     * @see edu.toronto.cs.se.mmint3.mm.EditorType
+     * @see edu.toronto.cs.se.mmint3.mm.MMPackage#getEditorType()
+     * @generated
+     */
+    public static final EClass EDITOR_TYPE = MMPackage.eINSTANCE.getEditorType();
+
+    /**
+     * The meta object literal for the '<em><b>Wizard Id</b></em>' attribute feature. <!-- begin-user-doc --> <!--
+     * end-user-doc -->
+     *
+     * @generated
+     */
+    public static final EAttribute EDITOR_TYPE__WIZARD_ID = MMPackage.eINSTANCE.getEditorType_WizardId();
+
+    /**
+     * The meta object literal for the '<em><b>T</b></em>' containment reference feature. <!-- begin-user-doc --> <!--
+     * end-user-doc -->
+     *
+     * @generated
+     */
+    public static final EReference EDITOR_TYPE__T = MMPackage.eINSTANCE.getEditorType_T();
+
+    /**
+     * The meta object literal for the '<em><b>Kind</b></em>' attribute feature. <!-- begin-user-doc --> <!--
+     * end-user-doc -->
+     *
+     * @generated
+     */
+    public static final EAttribute EDITOR_TYPE__KIND = MMPackage.eINSTANCE.getEditorType_Kind();
+
+    /**
+     * The meta object literal for the '{@link edu.toronto.cs.se.mmint3.mm.EditorInstance <em>Editor Instance</em>}'
+     * class. <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
+     * @see edu.toronto.cs.se.mmint3.mm.EditorInstance
+     * @see edu.toronto.cs.se.mmint3.mm.MMPackage#getEditorInstance()
+     * @generated
+     */
+    public static final EClass EDITOR_INSTANCE = MMPackage.eINSTANCE.getEditorInstance();
+
+    /**
+     * The meta object literal for the '<em><b>I</b></em>' containment reference feature. <!-- begin-user-doc --> <!--
+     * end-user-doc -->
+     *
+     * @generated
+     */
+    public static final EReference EDITOR_INSTANCE__I = MMPackage.eINSTANCE.getEditorInstance_I();
+
+    /**
+     * The meta object literal for the '{@link edu.toronto.cs.se.mmint3.mm.EMFTree <em>EMF Tree</em>}' class. <!--
+     * begin-user-doc --> <!-- end-user-doc -->
+     *
+     * @see edu.toronto.cs.se.mmint3.mm.EMFTree
+     * @see edu.toronto.cs.se.mmint3.mm.MMPackage#getEMFTree()
+     * @generated
+     */
+    public static final EClass EMF_TREE = MMPackage.eINSTANCE.getEMFTree();
+
+    /**
+     * The meta object literal for the '{@link edu.toronto.cs.se.mmint3.mm.GMFDiagram <em>GMF Diagram</em>}' class. <!--
+     * begin-user-doc --> <!-- end-user-doc -->
+     *
+     * @see edu.toronto.cs.se.mmint3.mm.GMFDiagram
+     * @see edu.toronto.cs.se.mmint3.mm.MMPackage#getGMFDiagram()
+     * @generated
+     */
+    public static final EClass GMF_DIAGRAM = MMPackage.eINSTANCE.getGMFDiagram();
+
+    /**
+     * The meta object literal for the '{@link edu.toronto.cs.se.mmint3.mm.SiriusRepresentation <em>Sirius
+     * Representation</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
+     * @see edu.toronto.cs.se.mmint3.mm.SiriusRepresentation
+     * @see edu.toronto.cs.se.mmint3.mm.MMPackage#getSiriusRepresentation()
+     * @generated
+     */
+    public static final EClass SIRIUS_REPRESENTATION = MMPackage.eINSTANCE.getSiriusRepresentation();
+
+    /**
+     * The meta object literal for the '{@link edu.toronto.cs.se.mmint3.mm.EditorKind <em>Editor Kind</em>}' enum. <!--
+     * begin-user-doc --> <!-- end-user-doc -->
+     *
+     * @see edu.toronto.cs.se.mmint3.mm.EditorKind
+     * @see edu.toronto.cs.se.mmint3.mm.MMPackage#getEditorKind()
+     * @generated
+     */
+    public static final EEnum EDITOR_KIND = MMPackage.eINSTANCE.getEditorKind();
 
   }
 

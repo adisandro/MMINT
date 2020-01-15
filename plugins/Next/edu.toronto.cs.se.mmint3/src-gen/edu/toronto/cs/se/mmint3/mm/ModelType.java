@@ -258,6 +258,8 @@ public class ModelType extends Model implements Type {
         return MMPackage.MODEL_TYPE___GET_NAME;
       case MMPackage.ELEMENT___SET_NAME__STRING:
         return MMPackage.MODEL_TYPE___SET_NAME__STRING;
+      case MMPackage.ELEMENT___GET_MEGA_MODEL:
+        return MMPackage.MODEL_TYPE___GET_MEGA_MODEL;
       default:
         return -1;
       }
@@ -321,6 +323,8 @@ public class ModelType extends Model implements Type {
     case MMPackage.MODEL_TYPE___SET_NAME__STRING:
       setName((String) arguments.get(0));
       return null;
+    case MMPackage.MODEL_TYPE___GET_MEGA_MODEL:
+      return getMegaModel();
     }
     return super.eInvoke(operationID, arguments);
   }

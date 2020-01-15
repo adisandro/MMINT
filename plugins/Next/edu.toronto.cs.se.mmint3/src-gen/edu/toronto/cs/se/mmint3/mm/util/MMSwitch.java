@@ -9,7 +9,12 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.Switch;
 
+import edu.toronto.cs.se.mmint3.mm.EMFTree;
+import edu.toronto.cs.se.mmint3.mm.Editor;
+import edu.toronto.cs.se.mmint3.mm.EditorInstance;
+import edu.toronto.cs.se.mmint3.mm.EditorType;
 import edu.toronto.cs.se.mmint3.mm.Element;
+import edu.toronto.cs.se.mmint3.mm.GMFDiagram;
 import edu.toronto.cs.se.mmint3.mm.Instance;
 import edu.toronto.cs.se.mmint3.mm.InstanceMegaModel;
 import edu.toronto.cs.se.mmint3.mm.MMElement;
@@ -20,6 +25,7 @@ import edu.toronto.cs.se.mmint3.mm.MegaModel;
 import edu.toronto.cs.se.mmint3.mm.Model;
 import edu.toronto.cs.se.mmint3.mm.ModelInstance;
 import edu.toronto.cs.se.mmint3.mm.ModelType;
+import edu.toronto.cs.se.mmint3.mm.SiriusRepresentation;
 import edu.toronto.cs.se.mmint3.mm.Type;
 import edu.toronto.cs.se.mmint3.mm.TypeMegaModel;
 
@@ -223,6 +229,94 @@ public class MMSwitch<T> extends Switch<T> {
         result = defaultCase(theEObject);
       return result;
     }
+    case MMPackage.EDITOR: {
+      Editor editor = (Editor) theEObject;
+      T result = caseEditor(editor);
+      if (result == null)
+        result = defaultCase(theEObject);
+      return result;
+    }
+    case MMPackage.EDITOR_TYPE: {
+      EditorType editorType = (EditorType) theEObject;
+      T result = caseEditorType(editorType);
+      if (result == null)
+        result = caseEditor(editorType);
+      if (result == null)
+        result = caseType(editorType);
+      if (result == null)
+        result = caseElement(editorType);
+      if (result == null)
+        result = caseInternalEObject(editorType);
+      if (result == null)
+        result = defaultCase(theEObject);
+      return result;
+    }
+    case MMPackage.EDITOR_INSTANCE: {
+      EditorInstance editorInstance = (EditorInstance) theEObject;
+      T result = caseEditorInstance(editorInstance);
+      if (result == null)
+        result = caseEditor(editorInstance);
+      if (result == null)
+        result = caseInstance(editorInstance);
+      if (result == null)
+        result = caseElement(editorInstance);
+      if (result == null)
+        result = caseInternalEObject(editorInstance);
+      if (result == null)
+        result = defaultCase(theEObject);
+      return result;
+    }
+    case MMPackage.EMF_TREE: {
+      EMFTree emfTree = (EMFTree) theEObject;
+      T result = caseEMFTree(emfTree);
+      if (result == null)
+        result = caseEditorInstance(emfTree);
+      if (result == null)
+        result = caseEditor(emfTree);
+      if (result == null)
+        result = caseInstance(emfTree);
+      if (result == null)
+        result = caseElement(emfTree);
+      if (result == null)
+        result = caseInternalEObject(emfTree);
+      if (result == null)
+        result = defaultCase(theEObject);
+      return result;
+    }
+    case MMPackage.GMF_DIAGRAM: {
+      GMFDiagram gmfDiagram = (GMFDiagram) theEObject;
+      T result = caseGMFDiagram(gmfDiagram);
+      if (result == null)
+        result = caseEditorInstance(gmfDiagram);
+      if (result == null)
+        result = caseEditor(gmfDiagram);
+      if (result == null)
+        result = caseInstance(gmfDiagram);
+      if (result == null)
+        result = caseElement(gmfDiagram);
+      if (result == null)
+        result = caseInternalEObject(gmfDiagram);
+      if (result == null)
+        result = defaultCase(theEObject);
+      return result;
+    }
+    case MMPackage.SIRIUS_REPRESENTATION: {
+      SiriusRepresentation siriusRepresentation = (SiriusRepresentation) theEObject;
+      T result = caseSiriusRepresentation(siriusRepresentation);
+      if (result == null)
+        result = caseEditorInstance(siriusRepresentation);
+      if (result == null)
+        result = caseEditor(siriusRepresentation);
+      if (result == null)
+        result = caseInstance(siriusRepresentation);
+      if (result == null)
+        result = caseElement(siriusRepresentation);
+      if (result == null)
+        result = caseInternalEObject(siriusRepresentation);
+      if (result == null)
+        result = defaultCase(theEObject);
+      return result;
+    }
     default:
       return defaultCase(theEObject);
     }
@@ -422,6 +516,91 @@ public class MMSwitch<T> extends Switch<T> {
    * @generated
    */
   public T caseInternalEObject(InternalEObject object) {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Editor</em>'. <!-- begin-user-doc --> This
+   * implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
+   *
+   * @param object
+   *          the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Editor</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseEditor(Editor object) {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Editor Type</em>'. <!-- begin-user-doc -->
+   * This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
+   *
+   * @param object
+   *          the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Editor Type</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseEditorType(EditorType object) {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Editor Instance</em>'. <!-- begin-user-doc -->
+   * This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
+   *
+   * @param object
+   *          the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Editor Instance</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseEditorInstance(EditorInstance object) {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>EMF Tree</em>'. <!-- begin-user-doc --> This
+   * implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
+   *
+   * @param object
+   *          the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>EMF Tree</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseEMFTree(EMFTree object) {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>GMF Diagram</em>'. <!-- begin-user-doc -->
+   * This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
+   *
+   * @param object
+   *          the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>GMF Diagram</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseGMFDiagram(GMFDiagram object) {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Sirius Representation</em>'. <!--
+   * begin-user-doc --> This implementation returns null; returning a non-null result will terminate the switch. <!--
+   * end-user-doc -->
+   *
+   * @param object
+   *          the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Sirius Representation</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseSiriusRepresentation(SiriusRepresentation object) {
     return null;
   }
 

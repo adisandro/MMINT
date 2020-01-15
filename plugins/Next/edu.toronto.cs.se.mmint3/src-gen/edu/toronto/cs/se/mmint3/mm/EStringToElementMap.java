@@ -95,7 +95,7 @@ public class EStringToElementMap extends MinimalEObjectImpl.Container implements
    * Sets the value of the '{@link java.util.Map.Entry#getTypedKey <em>Key</em>}' attribute. <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    *
-   * @param value
+   * @param newKey
    *          the new value of the '<em>Key</em>' attribute.
    * @see #getTypedKey()
    * @generated
@@ -142,7 +142,7 @@ public class EStringToElementMap extends MinimalEObjectImpl.Container implements
    * Sets the value of the '{@link java.util.Map.Entry#getTypedValue <em>Value</em>}' reference. <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    *
-   * @param value
+   * @param newValue
    *          the new value of the '<em>Value</em>' reference.
    * @see #getTypedValue()
    * @generated

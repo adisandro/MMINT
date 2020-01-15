@@ -7,37 +7,29 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
-import org.eclipse.emf.edit.provider.IChildCreationExtender;
-import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.IItemPropertySource;
-import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
-import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import edu.toronto.cs.se.mmint3.mm.EditorType;
 import edu.toronto.cs.se.mmint3.mm.MMFactory;
 import edu.toronto.cs.se.mmint3.mm.MMPackage;
-import edu.toronto.cs.se.mmint3.mm.Model;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.mmint3.mm.Model} object. <!-- begin-user-doc -->
- * <!-- end-user-doc -->
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.mmint3.mm.EditorType} object. <!-- begin-user-doc
+ * --> <!-- end-user-doc -->
  *
  * @generated
  */
-public class ModelItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
-  IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class EditorTypeItemProvider extends EditorItemProvider {
   /**
    * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
    *
    * @generated
    */
-  public ModelItemProvider(AdapterFactory adapterFactory) {
+  public EditorTypeItemProvider(AdapterFactory adapterFactory) {
     super(adapterFactory);
   }
 
@@ -51,24 +43,43 @@ public class ModelItemProvider extends ItemProviderAdapter implements IEditingDo
     if (this.itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
-      addEditorsPropertyDescriptor(object);
+      addWizardIdPropertyDescriptor(object);
+      addKindPropertyDescriptor(object);
     }
     return this.itemPropertyDescriptors;
   }
 
   /**
-   * This adds a property descriptor for the Editors feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * This adds a property descriptor for the Wizard Id feature. <!-- begin-user-doc --> <!-- end-user-doc -->
    *
    * @generated
    */
-  protected void addEditorsPropertyDescriptor(Object object) {
+  protected void addWizardIdPropertyDescriptor(Object object) {
     this.itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(),
                                                              getResourceLocator(), getString(
-                                                                                             "_UI_Model_editors_feature"),
+                                                                                             "_UI_EditorType_wizardId_feature"),
                                                              getString("_UI_PropertyDescriptor_description",
-                                                                       "_UI_Model_editors_feature", "_UI_Model_type"),
-                                                             MMPackage.Literals.MODEL__EDITORS, true, false, true, null,
-                                                             null, null));
+                                                                       "_UI_EditorType_wizardId_feature",
+                                                                       "_UI_EditorType_type"),
+                                                             MMPackage.Literals.EDITOR_TYPE__WIZARD_ID, true, false,
+                                                             false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
+                                                             null));
+  }
+
+  /**
+   * This adds a property descriptor for the Kind feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   */
+  protected void addKindPropertyDescriptor(Object object) {
+    this.itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(),
+                                                             getResourceLocator(), getString(
+                                                                                             "_UI_EditorType_kind_feature"),
+                                                             getString("_UI_PropertyDescriptor_description",
+                                                                       "_UI_EditorType_kind_feature",
+                                                                       "_UI_EditorType_type"),
+                                                             MMPackage.Literals.EDITOR_TYPE__KIND, true, false, false,
+                                                             ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
   }
 
   /**
@@ -83,7 +94,7 @@ public class ModelItemProvider extends ItemProviderAdapter implements IEditingDo
   public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
     if (this.childrenFeatures == null) {
       super.getChildrenFeatures(object);
-      this.childrenFeatures.add(MMPackage.Literals.MODEL__EDITORS);
+      this.childrenFeatures.add(MMPackage.Literals.EDITOR_TYPE__T);
     }
     return this.childrenFeatures;
   }
@@ -102,13 +113,13 @@ public class ModelItemProvider extends ItemProviderAdapter implements IEditingDo
   }
 
   /**
-   * This returns Model.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * This returns EditorType.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
    *
    * @generated
    */
   @Override
   public Object getImage(Object object) {
-    return overlayImage(object, getResourceLocator().getImage("full/obj16/Model"));
+    return overlayImage(object, getResourceLocator().getImage("full/obj16/EditorType"));
   }
 
   /**
@@ -128,7 +139,9 @@ public class ModelItemProvider extends ItemProviderAdapter implements IEditingDo
    */
   @Override
   public String getText(Object object) {
-    return getString("_UI_Model_type");
+    String label = ((EditorType) object).getWizardId();
+    return label == null || label.length() == 0 ? getString("_UI_EditorType_type")
+      : getString("_UI_EditorType_type") + " " + label;
   }
 
   /**
@@ -141,8 +154,12 @@ public class ModelItemProvider extends ItemProviderAdapter implements IEditingDo
   public void notifyChanged(Notification notification) {
     updateChildren(notification);
 
-    switch (notification.getFeatureID(Model.class)) {
-    case MMPackage.MODEL__EDITORS:
+    switch (notification.getFeatureID(EditorType.class)) {
+    case MMPackage.EDITOR_TYPE__WIZARD_ID:
+    case MMPackage.EDITOR_TYPE__KIND:
+      fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+      return;
+    case MMPackage.EDITOR_TYPE__T:
       fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
       return;
     }
@@ -159,30 +176,8 @@ public class ModelItemProvider extends ItemProviderAdapter implements IEditingDo
   protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
     super.collectNewChildDescriptors(newChildDescriptors, object);
 
-    newChildDescriptors.add(createChildParameter(MMPackage.Literals.MODEL__EDITORS, MMFactory.eINSTANCE
-                                                                                                       .createEditorType()));
-
-    newChildDescriptors.add(createChildParameter(MMPackage.Literals.MODEL__EDITORS, MMFactory.eINSTANCE
-                                                                                                       .createEditorInstance()));
-
-    newChildDescriptors.add(createChildParameter(MMPackage.Literals.MODEL__EDITORS, MMFactory.eINSTANCE
-                                                                                                       .createEMFTree()));
-
-    newChildDescriptors.add(createChildParameter(MMPackage.Literals.MODEL__EDITORS, MMFactory.eINSTANCE
-                                                                                                       .createGMFDiagram()));
-
-    newChildDescriptors.add(createChildParameter(MMPackage.Literals.MODEL__EDITORS, MMFactory.eINSTANCE
-                                                                                                       .createSiriusRepresentation()));
-  }
-
-  /**
-   * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
-   *
-   * @generated
-   */
-  @Override
-  public ResourceLocator getResourceLocator() {
-    return ((IChildCreationExtender) this.adapterFactory).getResourceLocator();
+    newChildDescriptors.add(createChildParameter(MMPackage.Literals.EDITOR_TYPE__T, MMFactory.eINSTANCE
+                                                                                                       .createMMType()));
   }
 
 }

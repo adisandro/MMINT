@@ -10,7 +10,12 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import edu.toronto.cs.se.mmint3.mm.EMFTree;
+import edu.toronto.cs.se.mmint3.mm.Editor;
+import edu.toronto.cs.se.mmint3.mm.EditorInstance;
+import edu.toronto.cs.se.mmint3.mm.EditorType;
 import edu.toronto.cs.se.mmint3.mm.Element;
+import edu.toronto.cs.se.mmint3.mm.GMFDiagram;
 import edu.toronto.cs.se.mmint3.mm.Instance;
 import edu.toronto.cs.se.mmint3.mm.InstanceMegaModel;
 import edu.toronto.cs.se.mmint3.mm.MMElement;
@@ -21,6 +26,7 @@ import edu.toronto.cs.se.mmint3.mm.MegaModel;
 import edu.toronto.cs.se.mmint3.mm.Model;
 import edu.toronto.cs.se.mmint3.mm.ModelInstance;
 import edu.toronto.cs.se.mmint3.mm.ModelType;
+import edu.toronto.cs.se.mmint3.mm.SiriusRepresentation;
 import edu.toronto.cs.se.mmint3.mm.Type;
 import edu.toronto.cs.se.mmint3.mm.TypeMegaModel;
 
@@ -143,6 +149,36 @@ public class MMAdapterFactory extends AdapterFactoryImpl {
     @Override
     public Adapter caseInternalEObject(InternalEObject object) {
       return createInternalEObjectAdapter();
+    }
+
+    @Override
+    public Adapter caseEditor(Editor object) {
+      return createEditorAdapter();
+    }
+
+    @Override
+    public Adapter caseEditorType(EditorType object) {
+      return createEditorTypeAdapter();
+    }
+
+    @Override
+    public Adapter caseEditorInstance(EditorInstance object) {
+      return createEditorInstanceAdapter();
+    }
+
+    @Override
+    public Adapter caseEMFTree(EMFTree object) {
+      return createEMFTreeAdapter();
+    }
+
+    @Override
+    public Adapter caseGMFDiagram(GMFDiagram object) {
+      return createGMFDiagramAdapter();
+    }
+
+    @Override
+    public Adapter caseSiriusRepresentation(SiriusRepresentation object) {
+      return createSiriusRepresentationAdapter();
     }
 
     @Override
@@ -343,6 +379,84 @@ public class MMAdapterFactory extends AdapterFactoryImpl {
    * @generated
    */
   public Adapter createInternalEObjectAdapter() {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint3.mm.Editor <em>Editor</em>}'. <!--
+   * begin-user-doc --> This default implementation returns null so that we can easily ignore cases; it's useful to
+   * ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
+   *
+   * @return the new adapter.
+   * @see edu.toronto.cs.se.mmint3.mm.Editor
+   * @generated
+   */
+  public Adapter createEditorAdapter() {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint3.mm.EditorType <em>Editor Type</em>}'.
+   * <!-- begin-user-doc --> This default implementation returns null so that we can easily ignore cases; it's useful to
+   * ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
+   *
+   * @return the new adapter.
+   * @see edu.toronto.cs.se.mmint3.mm.EditorType
+   * @generated
+   */
+  public Adapter createEditorTypeAdapter() {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint3.mm.EditorInstance <em>Editor
+   * Instance</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can easily ignore
+   * cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
+   *
+   * @return the new adapter.
+   * @see edu.toronto.cs.se.mmint3.mm.EditorInstance
+   * @generated
+   */
+  public Adapter createEditorInstanceAdapter() {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint3.mm.EMFTree <em>EMF Tree</em>}'. <!--
+   * begin-user-doc --> This default implementation returns null so that we can easily ignore cases; it's useful to
+   * ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
+   *
+   * @return the new adapter.
+   * @see edu.toronto.cs.se.mmint3.mm.EMFTree
+   * @generated
+   */
+  public Adapter createEMFTreeAdapter() {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint3.mm.GMFDiagram <em>GMF Diagram</em>}'.
+   * <!-- begin-user-doc --> This default implementation returns null so that we can easily ignore cases; it's useful to
+   * ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
+   *
+   * @return the new adapter.
+   * @see edu.toronto.cs.se.mmint3.mm.GMFDiagram
+   * @generated
+   */
+  public Adapter createGMFDiagramAdapter() {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint3.mm.SiriusRepresentation <em>Sirius
+   * Representation</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can easily
+   * ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
+   *
+   * @return the new adapter.
+   * @see edu.toronto.cs.se.mmint3.mm.SiriusRepresentation
+   * @generated
+   */
+  public Adapter createSiriusRepresentationAdapter() {
     return null;
   }
 

@@ -5,6 +5,7 @@ package edu.toronto.cs.se.mmint3.mm;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
@@ -74,8 +75,48 @@ public class MMFactory extends EFactoryImpl {
       return createMMType();
     case MMPackage.ESTRING_TO_ELEMENT_MAP:
       return (EObject) createEStringToElementMap();
+    case MMPackage.EDITOR_TYPE:
+      return createEditorType();
+    case MMPackage.EDITOR_INSTANCE:
+      return createEditorInstance();
+    case MMPackage.EMF_TREE:
+      return createEMFTree();
+    case MMPackage.GMF_DIAGRAM:
+      return createGMFDiagram();
+    case MMPackage.SIRIUS_REPRESENTATION:
+      return createSiriusRepresentation();
     default:
       throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+    }
+  }
+
+  /**
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   */
+  @Override
+  public Object createFromString(EDataType eDataType, String initialValue) {
+    switch (eDataType.getClassifierID()) {
+    case MMPackage.EDITOR_KIND:
+      return createEditorKindFromString(eDataType, initialValue);
+    default:
+      throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+    }
+  }
+
+  /**
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   */
+  @Override
+  public String convertToString(EDataType eDataType, Object instanceValue) {
+    switch (eDataType.getClassifierID()) {
+    case MMPackage.EDITOR_KIND:
+      return convertEditorKindToString(eDataType, instanceValue);
+    default:
+      throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
   }
 
@@ -147,6 +188,79 @@ public class MMFactory extends EFactoryImpl {
   public Map.Entry<String, Element> createEStringToElementMap() {
     EStringToElementMap eStringToElementMap = new EStringToElementMap();
     return eStringToElementMap;
+  }
+
+  /**
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   */
+  public EditorType createEditorType() {
+    EditorType editorType = new EditorType();
+    return editorType;
+  }
+
+  /**
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   */
+  public EditorInstance createEditorInstance() {
+    EditorInstance editorInstance = new EditorInstance();
+    return editorInstance;
+  }
+
+  /**
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   */
+  public EMFTree createEMFTree() {
+    EMFTree emfTree = new EMFTree();
+    return emfTree;
+  }
+
+  /**
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   */
+  public GMFDiagram createGMFDiagram() {
+    GMFDiagram gmfDiagram = new GMFDiagram();
+    return gmfDiagram;
+  }
+
+  /**
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   */
+  public SiriusRepresentation createSiriusRepresentation() {
+    SiriusRepresentation siriusRepresentation = new SiriusRepresentation();
+    return siriusRepresentation;
+  }
+
+  /**
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   */
+  public EditorKind createEditorKindFromString(EDataType eDataType, String initialValue) {
+    EditorKind result = EditorKind.get(initialValue);
+    if (result == null)
+      throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType
+                                                                                                                      .getName()
+        + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   */
+  public String convertEditorKindToString(EDataType eDataType, Object instanceValue) {
+    return instanceValue == null ? null : instanceValue.toString();
   }
 
   /**

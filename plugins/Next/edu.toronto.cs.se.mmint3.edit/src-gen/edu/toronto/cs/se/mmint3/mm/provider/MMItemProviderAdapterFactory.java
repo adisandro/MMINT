@@ -244,6 +244,121 @@ public class MMItemProviderAdapterFactory extends MMAdapterFactory implements Co
   }
 
   /**
+   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint3.mm.EditorType} instances. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   */
+  protected EditorTypeItemProvider editorTypeItemProvider;
+
+  /**
+   * This creates an adapter for a {@link edu.toronto.cs.se.mmint3.mm.EditorType}. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
+   *
+   * @generated
+   */
+  @Override
+  public Adapter createEditorTypeAdapter() {
+    if (this.editorTypeItemProvider == null) {
+      this.editorTypeItemProvider = new EditorTypeItemProvider(this);
+    }
+
+    return this.editorTypeItemProvider;
+  }
+
+  /**
+   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint3.mm.EditorInstance} instances. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   */
+  protected EditorInstanceItemProvider editorInstanceItemProvider;
+
+  /**
+   * This creates an adapter for a {@link edu.toronto.cs.se.mmint3.mm.EditorInstance}. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
+   *
+   * @generated
+   */
+  @Override
+  public Adapter createEditorInstanceAdapter() {
+    if (this.editorInstanceItemProvider == null) {
+      this.editorInstanceItemProvider = new EditorInstanceItemProvider(this);
+    }
+
+    return this.editorInstanceItemProvider;
+  }
+
+  /**
+   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint3.mm.EMFTree} instances. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   */
+  protected EMFTreeItemProvider emfTreeItemProvider;
+
+  /**
+   * This creates an adapter for a {@link edu.toronto.cs.se.mmint3.mm.EMFTree}. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
+   *
+   * @generated
+   */
+  @Override
+  public Adapter createEMFTreeAdapter() {
+    if (this.emfTreeItemProvider == null) {
+      this.emfTreeItemProvider = new EMFTreeItemProvider(this);
+    }
+
+    return this.emfTreeItemProvider;
+  }
+
+  /**
+   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint3.mm.GMFDiagram} instances. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   */
+  protected GMFDiagramItemProvider gmfDiagramItemProvider;
+
+  /**
+   * This creates an adapter for a {@link edu.toronto.cs.se.mmint3.mm.GMFDiagram}. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
+   *
+   * @generated
+   */
+  @Override
+  public Adapter createGMFDiagramAdapter() {
+    if (this.gmfDiagramItemProvider == null) {
+      this.gmfDiagramItemProvider = new GMFDiagramItemProvider(this);
+    }
+
+    return this.gmfDiagramItemProvider;
+  }
+
+  /**
+   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint3.mm.SiriusRepresentation}
+   * instances. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   */
+  protected SiriusRepresentationItemProvider siriusRepresentationItemProvider;
+
+  /**
+   * This creates an adapter for a {@link edu.toronto.cs.se.mmint3.mm.SiriusRepresentation}. <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   *
+   * @generated
+   */
+  @Override
+  public Adapter createSiriusRepresentationAdapter() {
+    if (this.siriusRepresentationItemProvider == null) {
+      this.siriusRepresentationItemProvider = new SiriusRepresentationItemProvider(this);
+    }
+
+    return this.siriusRepresentationItemProvider;
+  }
+
+  /**
    * This returns the root adapter factory that contains this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
    *
    * @generated
@@ -386,6 +501,16 @@ public class MMItemProviderAdapterFactory extends MMAdapterFactory implements Co
       this.mmTypeItemProvider.dispose();
     if (this.eStringToElementMapItemProvider != null)
       this.eStringToElementMapItemProvider.dispose();
+    if (this.editorTypeItemProvider != null)
+      this.editorTypeItemProvider.dispose();
+    if (this.editorInstanceItemProvider != null)
+      this.editorInstanceItemProvider.dispose();
+    if (this.emfTreeItemProvider != null)
+      this.emfTreeItemProvider.dispose();
+    if (this.gmfDiagramItemProvider != null)
+      this.gmfDiagramItemProvider.dispose();
+    if (this.siriusRepresentationItemProvider != null)
+      this.siriusRepresentationItemProvider.dispose();
   }
 
 }

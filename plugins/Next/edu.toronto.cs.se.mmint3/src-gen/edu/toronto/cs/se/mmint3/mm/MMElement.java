@@ -2,7 +2,10 @@
  */
 package edu.toronto.cs.se.mmint3.mm;
 
+import java.lang.reflect.InvocationTargetException;
+
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
@@ -207,6 +210,20 @@ public abstract class MMElement extends MinimalEObjectImpl.Container implements 
       return MMElement.NAME_EDEFAULT == null ? this.name != null : !MMElement.NAME_EDEFAULT.equals(this.name);
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   */
+  @Override
+  public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+    switch (operationID) {
+    case MMPackage.MM_ELEMENT___GET_MEGA_MODEL:
+      return getMegaModel();
+    }
+    return super.eInvoke(operationID, arguments);
   }
 
   /**

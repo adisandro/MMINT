@@ -35,6 +35,7 @@ public interface Element extends EObject, InternalEObject {
   /**
    * @generated NOT
    */
+  @SuppressWarnings("unchecked")
   default <T> T getAttribute(int featureID) {
     var feature = getComposedFeature();
     if (feature == null) {
@@ -92,6 +93,20 @@ public interface Element extends EObject, InternalEObject {
    */
   default void setName(String value) {
     setAttribute(MMPackage.MM_ELEMENT__NAME, value);
+  }
+
+  /**
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @model kind="operation" required="true"
+   * @generated NOT
+   */
+  default MegaModel getMegaModel() {
+    var container = this.eContainer();
+    while (!(container instanceof MegaModel)) {
+      container = container.eContainer();
+    }
+    return (MegaModel) container;
   }
 
 } // Element
