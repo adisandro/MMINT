@@ -5,6 +5,7 @@ package edu.toronto.cs.se.mmint3;
  * @author Alessio Di Sandro
  */
 public interface MMINTConstants {
+
   /** The configuration element for a type. */
   String EXT_TYPE = "type";
   /** The configuration attribute for the id of a type. */
