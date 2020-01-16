@@ -10,6 +10,6 @@ import edu.toronto.cs.se.mmint3.mm.Type;
  */
 public class MMTypes {
   public static <T extends Type> @Nullable T getType(String typeId) {
-    return MMINT.I.cachedTypeMM.getElement(typeId);
+    return MMINT.I.getType(typeId);
   }
 }

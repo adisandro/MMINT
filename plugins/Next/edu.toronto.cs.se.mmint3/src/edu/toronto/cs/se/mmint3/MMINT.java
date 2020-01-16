@@ -3,10 +3,14 @@ package edu.toronto.cs.se.mmint3;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.RegistryFactory;
+import org.eclipse.jdt.annotation.Nullable;
 
+import edu.toronto.cs.se.mmint3.mm.EditorKind;
+import edu.toronto.cs.se.mmint3.mm.EditorType;
 import edu.toronto.cs.se.mmint3.mm.MMFactory;
 import edu.toronto.cs.se.mmint3.mm.MMType;
 import edu.toronto.cs.se.mmint3.mm.ModelType;
+import edu.toronto.cs.se.mmint3.mm.Type;
 import edu.toronto.cs.se.mmint3.mm.TypeMegaModel;
 
 /**
@@ -64,6 +68,44 @@ public class MMINT {
   }
 
   /**
+   * Creates an editor type from an edu.toronto.cs.se.mmint3.editors extension.
+   * @param config The extension configuration.
+   * @return The editor type.
+   * @throws Exception If the extension configuration is malformed.
+   */
+  private EditorType createEditorType(IConfigurationElement config) throws Exception {
+    var msg = "Malformed editor type extension";
+    var modelTId = config.getAttribute(MMINTConstants.EXT_EDITORTYPE_MODELTYPEID);
+    if (modelTId == null) {
+      throw new Exception(msg);
+    }
+    ModelType modelT = getType(modelTId);
+    if (modelT == null) {
+      throw new Exception(msg);
+    }
+    var wizardId = config.getAttribute(MMINTConstants.EXT_EDITORTYPE_WIZARDID);
+    if (wizardId == null) {
+      throw new Exception(msg);
+    }
+    var kind = config.getAttribute(MMINTConstants.EXT_EDITORTYPE_KIND);
+    if (kind == null) {
+      throw new Exception(msg);
+    }
+    var editorKind = EditorKind.get(kind.toUpperCase());
+    if (editorKind == null) {
+      throw new Exception(msg);
+    }
+    var type = createType(config);
+    var editorT = MMFactory.eINSTANCE.createEditorType();
+    editorT.setT(type);
+    editorT.setModel(modelT);
+    editorT.setWizardId(wizardId);
+    editorT.setKind(editorKind);
+
+    return editorT;
+  }
+
+  /**
    * Initializes the type megamodel.
    * @param registry The extension registry.
    */
@@ -73,6 +115,15 @@ public class MMINT {
     for (var config : configs) {
       try {
         createModelType(config);
+      }
+      catch (Exception e) {
+        e.printStackTrace();
+      }
+    }
+    configs = registry.getConfigurationElementsFor(MMINTConstants.EXT_EDITORS);
+    for (var config : configs) {
+      try {
+        createEditorType(config);
       }
       catch (Exception e) {
         e.printStackTrace();
@@ -88,5 +139,15 @@ public class MMINT {
     if (registry != null) {
       initTypeMM(registry);
     }
+  }
+
+  /**
+   * Gets a type from the cached type megamodel, given its unique identifier.
+   * @param <T> A subclass of the {@link edu.toronto.cs.se.mmint3.Type} interface.
+   * @param typeId The unique identifier of the type.
+   * @return The type, null if the unique identifier is not found.
+   */
+  <T extends Type> @Nullable T getType(String typeId) {
+    return this.cachedTypeMM.getElement(typeId);
   }
 }
