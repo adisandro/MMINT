@@ -6,7 +6,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.Nullable;
 
-import edu.toronto.cs.se.mmint3.MMTypes;
+import edu.toronto.cs.se.mmint3.MMINT;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Instance</b></em>'. <!-- end-user-doc -->
@@ -65,7 +65,7 @@ public interface Instance extends Element {
    * @generated NOT
    */
   default Type basicGetType() {
-    return MMTypes.getType(getTypeId());
+    return MMINT.I.getType(getTypeId());
   }
 
 } // Instance

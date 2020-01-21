@@ -20,9 +20,9 @@ import edu.toronto.cs.se.mmint3.mm.TypeMegaModel;
 public class MMINT {
 
   /** The singleton instance of this class. */
-  static final MMINT I = new MMINT();
+  public static final MMINT I = new MMINT();
   /** The Type MegaModel in memory. */
-  TypeMegaModel cachedTypeMM;
+  private TypeMegaModel typeMM;
 
   /**
    * Creates a type from an edu.toronto.cs.se.mmint3.types extension.
@@ -61,8 +61,8 @@ public class MMINT {
     var type = createType(config);
     var modelT = MMFactory.eINSTANCE.createModelType();
     modelT.setT(type);
-    this.cachedTypeMM.getModels().add(modelT);
-    this.cachedTypeMM.getElements().put(modelT.getId(), modelT);
+    this.typeMM.getModels().add(modelT);
+    this.typeMM.getElements().put(modelT.getId(), modelT);
 
     return modelT;
   }
@@ -110,7 +110,7 @@ public class MMINT {
    * @param registry The extension registry.
    */
   private void initTypeMM(IExtensionRegistry registry) {
-    this.cachedTypeMM = MMFactory.eINSTANCE.createTypeMegaModel();
+    this.typeMM = MMFactory.eINSTANCE.createTypeMegaModel();
     var configs = registry.getConfigurationElementsFor(MMINTConstants.EXT_MODELS);
     for (var config : configs) {
       try {
@@ -142,12 +142,20 @@ public class MMINT {
   }
 
   /**
-   * Gets a type from the cached type megamodel, given its unique identifier.
+   * Gets the type megamodel.
+   * @return The type megamodel.
+   */
+  public TypeMegaModel getTypeMegaModel() {
+    return this.typeMM;
+  }
+
+  /**
+   * Gets a type from the type megamodel, given its unique identifier.
    * @param <T> A subclass of the {@link edu.toronto.cs.se.mmint3.Type} interface.
    * @param typeId The unique identifier of the type.
    * @return The type, null if the unique identifier is not found.
    */
-  <T extends Type> @Nullable T getType(String typeId) {
-    return this.cachedTypeMM.getElement(typeId);
+  public <T extends Type> @Nullable T getType(String typeId) {
+    return this.typeMM.getElement(typeId);
   }
 }
