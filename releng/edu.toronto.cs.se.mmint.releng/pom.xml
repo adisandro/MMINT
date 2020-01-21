@@ -5,7 +5,7 @@
   <version>2.4.99-SNAPSHOT</version>
   <packaging>pom</packaging>
   <properties>
-    <tycho-version>1.6.0-SNAPSHOT</tycho-version>
+    <tycho-version>1.6.0</tycho-version>
     <acceleo-version>3.6.4</acceleo-version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
@@ -13,7 +13,7 @@
     <repository>
   	  <id>Eclipse</id>
   	  <layout>p2</layout>
-  	  <url>http://download.eclipse.org/releases/2019-12</url>
+  	  <url>http://download.eclipse.org/releases/2020-03</url>
     </repository>
     <repository>
   	  <id>Henshin</id>
