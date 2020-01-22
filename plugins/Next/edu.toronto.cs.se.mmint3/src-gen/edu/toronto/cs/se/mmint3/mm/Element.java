@@ -36,7 +36,7 @@ public interface Element extends EObject, InternalEObject {
    * @generated NOT
    */
   @SuppressWarnings("unchecked")
-  default <T> T getAttribute(int featureID) {
+  default <T> T getComposedAttribute(int featureID) {
     var feature = getComposedFeature();
     if (feature == null) {
       return null;
@@ -47,7 +47,7 @@ public interface Element extends EObject, InternalEObject {
   /**
    * @generated NOT
    */
-  default void setAttribute(int featureID, @Nullable Object value) {
+  default void setComposedAttribute(int featureID, @Nullable Object value) {
     var feature = getComposedFeature();
     if (feature == null) {
       return;
@@ -62,7 +62,7 @@ public interface Element extends EObject, InternalEObject {
    * @generated NOT
    */
   default String getId() {
-    return getAttribute(MMPackage.MM_ELEMENT__ID);
+    return getComposedAttribute(MMPackage.MM_ELEMENT__ID);
   }
 
   /**
@@ -72,7 +72,7 @@ public interface Element extends EObject, InternalEObject {
    * @generated NOT
    */
   default void setId(String value) {
-    setAttribute(MMPackage.MM_ELEMENT__ID, value);
+    setComposedAttribute(MMPackage.MM_ELEMENT__ID, value);
   }
 
   /**
@@ -82,7 +82,7 @@ public interface Element extends EObject, InternalEObject {
    * @generated NOT
    */
   default String getName() {
-    return getAttribute(MMPackage.MM_ELEMENT__NAME);
+    return getComposedAttribute(MMPackage.MM_ELEMENT__NAME);
   }
 
   /**
@@ -92,7 +92,7 @@ public interface Element extends EObject, InternalEObject {
    * @generated NOT
    */
   default void setName(String value) {
-    setAttribute(MMPackage.MM_ELEMENT__NAME, value);
+    setComposedAttribute(MMPackage.MM_ELEMENT__NAME, value);
   }
 
   /**

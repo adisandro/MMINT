@@ -88,6 +88,11 @@
       <genOperations ecoreOperation="mm.ecore#//Type/setSupertype">
         <genParameters ecoreParameter="mm.ecore#//Type/setSupertype/value"/>
       </genOperations>
+      <genOperations ecoreOperation="mm.ecore#//Type/createInstance">
+        <genParameters ecoreParameter="mm.ecore#//Type/createInstance/instanceClass"/>
+        <genParameters ecoreParameter="mm.ecore#//Type/createInstance/id"/>
+        <genParameters ecoreParameter="mm.ecore#//Type/createInstance/name"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="mm.ecore#//EStringToElementMap">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mm.ecore#//EStringToElementMap/key"/>
@@ -101,6 +106,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mm.ecore#//EditorType/wizardId"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mm.ecore#//EditorType/t"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mm.ecore#//EditorType/kind"/>
+      <genOperations ecoreOperation="mm.ecore#//EditorType/createInstance"/>
     </genClasses>
     <genClasses ecoreClass="mm.ecore#//EditorInstance">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mm.ecore#//EditorInstance/i"/>

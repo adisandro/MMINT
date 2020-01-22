@@ -137,15 +137,10 @@ public class ModelType extends Model implements Type {
    */
   public ModelInstance createInstance(EObject root, String path, boolean serialize, InstanceMegaModel mm) {
     if (isAbstract()) {
-      // throw exception
+      // TODO throw exception
     }
     var name = FileUtils.getFileNameFromPath(path);
-    var inst = MMFactory.eINSTANCE.createMMInstance();
-    inst.setId(path);
-    inst.setName(name);
-    inst.setTypeId(getId());
-    var model = MMFactory.eINSTANCE.createModelInstance();
-    model.setI(inst);
+    var model = (ModelInstance) createInstance(MMPackage.eINSTANCE.getModelInstance(), path, name);
     if (root != null) {
       model.setRoot(root);
       if (serialize) {
@@ -278,6 +273,8 @@ public class ModelType extends Model implements Type {
         return MMPackage.MODEL_TYPE___GET_SUPERTYPE;
       case MMPackage.TYPE___SET_SUPERTYPE__TYPE:
         return MMPackage.MODEL_TYPE___SET_SUPERTYPE__TYPE;
+      case MMPackage.TYPE___CREATE_INSTANCE__ECLASS_STRING_STRING:
+        return MMPackage.MODEL_TYPE___CREATE_INSTANCE__ECLASS_STRING_STRING;
       default:
         return -1;
       }
@@ -313,6 +310,8 @@ public class ModelType extends Model implements Type {
     case MMPackage.MODEL_TYPE___SET_SUPERTYPE__TYPE:
       setSupertype((Type) arguments.get(0));
       return null;
+    case MMPackage.MODEL_TYPE___CREATE_INSTANCE__ECLASS_STRING_STRING:
+      return createInstance((EClass) arguments.get(0), (String) arguments.get(1), (String) arguments.get(2));
     case MMPackage.MODEL_TYPE___GET_ID:
       return getId();
     case MMPackage.MODEL_TYPE___SET_ID__STRING:

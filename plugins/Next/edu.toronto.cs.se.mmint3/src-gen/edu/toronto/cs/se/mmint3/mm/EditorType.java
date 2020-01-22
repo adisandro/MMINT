@@ -216,6 +216,30 @@ public class EditorType extends Editor implements Type {
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    *
+   * @model required="true"
+   * @generated NOT
+   */
+  public EditorInstance createInstance() {
+    EClass editorClass;
+    switch (getKind()) {
+    case GMF:
+      editorClass = MMPackage.eINSTANCE.getGMFDiagram();
+      break;
+    case SIRIUS:
+      editorClass = MMPackage.eINSTANCE.getSiriusRepresentation();
+      break;
+    case EMF:
+    default:
+      editorClass = MMPackage.eINSTANCE.getEMFTree();
+      break;
+    }
+    var editor = (EditorInstance) createInstance(editorClass, "", "");
+    return editor;
+  }
+
+  /**
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
    * @generated
    */
   @Override
@@ -348,6 +372,8 @@ public class EditorType extends Editor implements Type {
         return MMPackage.EDITOR_TYPE___GET_SUPERTYPE;
       case MMPackage.TYPE___SET_SUPERTYPE__TYPE:
         return MMPackage.EDITOR_TYPE___SET_SUPERTYPE__TYPE;
+      case MMPackage.TYPE___CREATE_INSTANCE__ECLASS_STRING_STRING:
+        return MMPackage.EDITOR_TYPE___CREATE_INSTANCE__ECLASS_STRING_STRING;
       default:
         return -1;
       }
@@ -363,6 +389,8 @@ public class EditorType extends Editor implements Type {
   @Override
   public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
     switch (operationID) {
+    case MMPackage.EDITOR_TYPE___CREATE_INSTANCE:
+      return createInstance();
     case MMPackage.EDITOR_TYPE___IS_DYNAMIC:
       return isDynamic();
     case MMPackage.EDITOR_TYPE___SET_DYNAMIC__BOOLEAN:
@@ -378,6 +406,8 @@ public class EditorType extends Editor implements Type {
     case MMPackage.EDITOR_TYPE___SET_SUPERTYPE__TYPE:
       setSupertype((Type) arguments.get(0));
       return null;
+    case MMPackage.EDITOR_TYPE___CREATE_INSTANCE__ECLASS_STRING_STRING:
+      return createInstance((EClass) arguments.get(0), (String) arguments.get(1), (String) arguments.get(2));
     case MMPackage.EDITOR_TYPE___GET_ID:
       return getId();
     case MMPackage.EDITOR_TYPE___SET_ID__STRING:

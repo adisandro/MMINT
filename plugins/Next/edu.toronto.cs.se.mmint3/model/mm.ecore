@@ -87,6 +87,11 @@
     <eOperations name="setSupertype">
       <eParameters name="value" eType="#//Type"/>
     </eOperations>
+    <eOperations name="createInstance" lowerBound="1" eType="#//Instance">
+      <eParameters name="instanceClass" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+      <eParameters name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eParameters name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EStringToElementMap" instanceClassName="java.util.Map$Entry">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="key" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -99,6 +104,7 @@
         eOpposite="#//Model/editors"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EditorType" eSuperTypes="#//Editor #//Type">
+    <eOperations name="createInstance" lowerBound="1" eType="#//EditorInstance"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="wizardId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="t" lowerBound="1" eType="#//MMType"
         containment="true"/>

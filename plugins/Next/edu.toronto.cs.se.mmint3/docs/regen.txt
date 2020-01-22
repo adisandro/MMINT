@@ -1,3 +1,4 @@
 - MMInstance: remove getType() and basicGetType().
+- MMElement, MMType: remove autogen operations.
 - ModelType, EditorType: remove autogen operations.
 - ModelInstance, EditorInstance: remove autogen operations.

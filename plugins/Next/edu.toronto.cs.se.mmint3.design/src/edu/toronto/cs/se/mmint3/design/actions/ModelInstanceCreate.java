@@ -53,7 +53,7 @@ public class ModelInstanceCreate extends AbstractExternalJavaAction {
     if (dialog.open() == Window.CANCEL) {
       return;
     }
-    var selection = dialog.getFirstResult();
+    var selection = (EditorType) dialog.getFirstResult();
     if (selection == null) {
       return;
     }

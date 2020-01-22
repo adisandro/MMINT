@@ -2,7 +2,10 @@
  */
 package edu.toronto.cs.se.mmint3.mm;
 
+import java.lang.reflect.InvocationTargetException;
+
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -282,6 +285,50 @@ public class MMType extends MMElement implements Type {
       return this.supertype != null;
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   */
+  @Override
+  public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
+    if (baseClass == Type.class) {
+      switch (baseOperationID) {
+      case MMPackage.TYPE___IS_DYNAMIC:
+        return MMPackage.MM_TYPE___IS_DYNAMIC;
+      case MMPackage.TYPE___SET_DYNAMIC__BOOLEAN:
+        return MMPackage.MM_TYPE___SET_DYNAMIC__BOOLEAN;
+      case MMPackage.TYPE___IS_ABSTRACT:
+        return MMPackage.MM_TYPE___IS_ABSTRACT;
+      case MMPackage.TYPE___SET_ABSTRACT__BOOLEAN:
+        return MMPackage.MM_TYPE___SET_ABSTRACT__BOOLEAN;
+      case MMPackage.TYPE___GET_SUPERTYPE:
+        return MMPackage.MM_TYPE___GET_SUPERTYPE;
+      case MMPackage.TYPE___SET_SUPERTYPE__TYPE:
+        return MMPackage.MM_TYPE___SET_SUPERTYPE__TYPE;
+      case MMPackage.TYPE___CREATE_INSTANCE__ECLASS_STRING_STRING:
+        return MMPackage.MM_TYPE___CREATE_INSTANCE__ECLASS_STRING_STRING;
+      default:
+        return -1;
+      }
+    }
+    return super.eDerivedOperationID(baseOperationID, baseClass);
+  }
+
+  /**
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   */
+  @Override
+  public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+    switch (operationID) {
+    case MMPackage.MM_TYPE___CREATE_INSTANCE__ECLASS_STRING_STRING:
+      return createInstance((EClass) arguments.get(0), (String) arguments.get(1), (String) arguments.get(2));
+    }
+    return super.eInvoke(operationID, arguments);
   }
 
   /**

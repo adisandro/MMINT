@@ -548,12 +548,20 @@ public class MMPackage extends EPackageImpl {
   public static final int MODEL_TYPE___SET_SUPERTYPE__TYPE = MMPackage.MODEL_OPERATION_COUNT + 10;
 
   /**
+   * The operation id for the '<em>Create Instance</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int MODEL_TYPE___CREATE_INSTANCE__ECLASS_STRING_STRING = MMPackage.MODEL_OPERATION_COUNT + 11;
+
+  /**
    * The operation id for the '<em>Get Package</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
    *
    * @generated
    * @ordered
    */
-  public static final int MODEL_TYPE___GET_PACKAGE = MMPackage.MODEL_OPERATION_COUNT + 11;
+  public static final int MODEL_TYPE___GET_PACKAGE = MMPackage.MODEL_OPERATION_COUNT + 12;
 
   /**
    * The operation id for the '<em>Create Instance</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -562,7 +570,7 @@ public class MMPackage extends EPackageImpl {
    * @ordered
    */
   public static final int MODEL_TYPE___CREATE_INSTANCE__EOBJECT_STRING_BOOLEAN_INSTANCEMEGAMODEL = MMPackage.MODEL_OPERATION_COUNT
-    + 12;
+    + 13;
 
   /**
    * The number of operations of the '<em>Model Type</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -570,7 +578,7 @@ public class MMPackage extends EPackageImpl {
    * @generated
    * @ordered
    */
-  public static final int MODEL_TYPE_OPERATION_COUNT = MMPackage.MODEL_OPERATION_COUNT + 13;
+  public static final int MODEL_TYPE_OPERATION_COUNT = MMPackage.MODEL_OPERATION_COUNT + 14;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.mmint3.mm.ModelInstance <em>Model Instance</em>}' class. <!--
@@ -957,12 +965,20 @@ public class MMPackage extends EPackageImpl {
   public static final int MM_TYPE___SET_SUPERTYPE__TYPE = MMPackage.MM_ELEMENT_OPERATION_COUNT + 5;
 
   /**
+   * The operation id for the '<em>Create Instance</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int MM_TYPE___CREATE_INSTANCE__ECLASS_STRING_STRING = MMPackage.MM_ELEMENT_OPERATION_COUNT + 6;
+
+  /**
    * The number of operations of the '<em>Type</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
    *
    * @generated
    * @ordered
    */
-  public static final int MM_TYPE_OPERATION_COUNT = MMPackage.MM_ELEMENT_OPERATION_COUNT + 6;
+  public static final int MM_TYPE_OPERATION_COUNT = MMPackage.MM_ELEMENT_OPERATION_COUNT + 7;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.mmint3.mm.Instance <em>Instance</em>}' class. <!--
@@ -1161,12 +1177,20 @@ public class MMPackage extends EPackageImpl {
   public static final int TYPE___SET_SUPERTYPE__TYPE = MMPackage.ELEMENT_OPERATION_COUNT + 5;
 
   /**
+   * The operation id for the '<em>Create Instance</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int TYPE___CREATE_INSTANCE__ECLASS_STRING_STRING = MMPackage.ELEMENT_OPERATION_COUNT + 6;
+
+  /**
    * The number of operations of the '<em>Type</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
    *
    * @generated
    * @ordered
    */
-  public static final int TYPE_OPERATION_COUNT = MMPackage.ELEMENT_OPERATION_COUNT + 6;
+  public static final int TYPE_OPERATION_COUNT = MMPackage.ELEMENT_OPERATION_COUNT + 7;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.mmint3.mm.EStringToElementMap <em>EString To Element
@@ -1386,12 +1410,28 @@ public class MMPackage extends EPackageImpl {
   public static final int EDITOR_TYPE___SET_SUPERTYPE__TYPE = MMPackage.EDITOR_OPERATION_COUNT + 10;
 
   /**
+   * The operation id for the '<em>Create Instance</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int EDITOR_TYPE___CREATE_INSTANCE__ECLASS_STRING_STRING = MMPackage.EDITOR_OPERATION_COUNT + 11;
+
+  /**
+   * The operation id for the '<em>Create Instance</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @generated
+   * @ordered
+   */
+  public static final int EDITOR_TYPE___CREATE_INSTANCE = MMPackage.EDITOR_OPERATION_COUNT + 12;
+
+  /**
    * The number of operations of the '<em>Editor Type</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
    *
    * @generated
    * @ordered
    */
-  public static final int EDITOR_TYPE_OPERATION_COUNT = MMPackage.EDITOR_OPERATION_COUNT + 11;
+  public static final int EDITOR_TYPE_OPERATION_COUNT = MMPackage.EDITOR_OPERATION_COUNT + 13;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.mmint3.mm.EditorInstance <em>Editor Instance</em>}' class.
@@ -2561,6 +2601,20 @@ public class MMPackage extends EPackageImpl {
   }
 
   /**
+   * Returns the meta object for the
+   * '{@link edu.toronto.cs.se.mmint3.mm.Type#createInstance(org.eclipse.emf.ecore.EClass, java.lang.String, java.lang.String)
+   * <em>Create Instance</em>}' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @return the meta object for the '<em>Create Instance</em>' operation.
+   * @see edu.toronto.cs.se.mmint3.mm.Type#createInstance(org.eclipse.emf.ecore.EClass, java.lang.String,
+   *      java.lang.String)
+   * @generated
+   */
+  public EOperation getType__CreateInstance__EClass_String_String() {
+    return this.typeEClass.getEOperations().get(6);
+  }
+
+  /**
    * Returns the meta object for class '{@link java.util.Map.Entry <em>EString To Element Map</em>}'. <!--
    * begin-user-doc --> <!-- end-user-doc -->
    *
@@ -2687,6 +2741,18 @@ public class MMPackage extends EPackageImpl {
    */
   public EAttribute getEditorType_Kind() {
     return (EAttribute) this.editorTypeEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint3.mm.EditorType#createInstance() <em>Create
+   * Instance</em>}' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @return the meta object for the '<em>Create Instance</em>' operation.
+   * @see edu.toronto.cs.se.mmint3.mm.EditorType#createInstance()
+   * @generated
+   */
+  public EOperation getEditorType__CreateInstance() {
+    return this.editorTypeEClass.getEOperations().get(0);
   }
 
   /**
@@ -2844,6 +2910,7 @@ public class MMPackage extends EPackageImpl {
     createEOperation(this.typeEClass, MMPackage.TYPE___SET_ABSTRACT__BOOLEAN);
     createEOperation(this.typeEClass, MMPackage.TYPE___GET_SUPERTYPE);
     createEOperation(this.typeEClass, MMPackage.TYPE___SET_SUPERTYPE__TYPE);
+    createEOperation(this.typeEClass, MMPackage.TYPE___CREATE_INSTANCE__ECLASS_STRING_STRING);
 
     this.eStringToElementMapEClass = createEClass(MMPackage.ESTRING_TO_ELEMENT_MAP);
     createEAttribute(this.eStringToElementMapEClass, MMPackage.ESTRING_TO_ELEMENT_MAP__KEY);
@@ -2858,6 +2925,7 @@ public class MMPackage extends EPackageImpl {
     createEAttribute(this.editorTypeEClass, MMPackage.EDITOR_TYPE__WIZARD_ID);
     createEReference(this.editorTypeEClass, MMPackage.EDITOR_TYPE__T);
     createEAttribute(this.editorTypeEClass, MMPackage.EDITOR_TYPE__KIND);
+    createEOperation(this.editorTypeEClass, MMPackage.EDITOR_TYPE___CREATE_INSTANCE);
 
     this.editorInstanceEClass = createEClass(MMPackage.EDITOR_INSTANCE);
     createEReference(this.editorInstanceEClass, MMPackage.EDITOR_INSTANCE__I);
@@ -3039,6 +3107,12 @@ public class MMPackage extends EPackageImpl {
     op = initEOperation(getType__SetSupertype__Type(), null, "setSupertype", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEParameter(op, this.getType(), "value", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
 
+    op = initEOperation(getType__CreateInstance__EClass_String_String(), this.getInstance(), "createInstance", 1, 1,
+                        EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    addEParameter(op, this.ecorePackage.getEClass(), "instanceClass", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    addEParameter(op, this.ecorePackage.getEString(), "id", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    addEParameter(op, this.ecorePackage.getEString(), "name", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+
     initEClass(this.eStringToElementMapEClass, Map.Entry.class, "EStringToElementMap", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE,
                !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getEStringToElementMap_Key(), this.ecorePackage.getEString(), "key", null, 1, 1, Map.Entry.class,
@@ -3066,6 +3140,9 @@ public class MMPackage extends EPackageImpl {
                    !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
     initEAttribute(getEditorType_Kind(), this.getEditorKind(), "kind", null, 1, 1, EditorType.class, !EPackageImpl.IS_TRANSIENT,
                    !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
+
+    initEOperation(getEditorType__CreateInstance(), this.getEditorInstance(), "createInstance", 1, 1, EPackageImpl.IS_UNIQUE,
+                   EPackageImpl.IS_ORDERED);
 
     initEClass(this.editorInstanceEClass, EditorInstance.class, "EditorInstance", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE,
                EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
@@ -3464,6 +3541,14 @@ public class MMPackage extends EPackageImpl {
     public static final EOperation TYPE___SET_SUPERTYPE__TYPE = MMPackage.eINSTANCE.getType__SetSupertype__Type();
 
     /**
+     * The meta object literal for the '<em><b>Create Instance</b></em>' operation. <!-- begin-user-doc --> <!--
+     * end-user-doc -->
+     *
+     * @generated
+     */
+    public static final EOperation TYPE___CREATE_INSTANCE__ECLASS_STRING_STRING = MMPackage.eINSTANCE.getType__CreateInstance__EClass_String_String();
+
+    /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint3.mm.EStringToElementMap <em>EString To Element
      * Map</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
      *
@@ -3550,6 +3635,14 @@ public class MMPackage extends EPackageImpl {
      * @generated
      */
     public static final EAttribute EDITOR_TYPE__KIND = MMPackage.eINSTANCE.getEditorType_Kind();
+
+    /**
+     * The meta object literal for the '<em><b>Create Instance</b></em>' operation. <!-- begin-user-doc --> <!--
+     * end-user-doc -->
+     *
+     * @generated
+     */
+    public static final EOperation EDITOR_TYPE___CREATE_INSTANCE = MMPackage.eINSTANCE.getEditorType__CreateInstance();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint3.mm.EditorInstance <em>Editor Instance</em>}'

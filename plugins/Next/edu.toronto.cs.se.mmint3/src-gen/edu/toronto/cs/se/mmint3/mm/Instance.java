@@ -37,7 +37,7 @@ public interface Instance extends Element {
    * @generated NOT
    */
   default String getTypeId() {
-    return getAttribute(MMPackage.MM_INSTANCE__TYPE_ID);
+    return getComposedAttribute(MMPackage.MM_INSTANCE__TYPE_ID);
   }
 
   /**
@@ -47,7 +47,7 @@ public interface Instance extends Element {
    * @generated NOT
    */
   default void setTypeId(String value) {
-    setAttribute(MMPackage.MM_INSTANCE__TYPE_ID, value);
+    setComposedAttribute(MMPackage.MM_INSTANCE__TYPE_ID, value);
   }
 
   /**

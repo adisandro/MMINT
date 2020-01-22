@@ -2,6 +2,7 @@
  */
 package edu.toronto.cs.se.mmint3.mm;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.Nullable;
 
@@ -34,7 +35,7 @@ public interface Type extends Element {
    * @generated NOT
    */
   default boolean isDynamic() {
-    return getAttribute(MMPackage.MM_TYPE__DYNAMIC);
+    return getComposedAttribute(MMPackage.MM_TYPE__DYNAMIC);
   }
 
   /**
@@ -44,7 +45,7 @@ public interface Type extends Element {
    * @generated NOT
    */
   default void setDynamic(boolean value) {
-    setAttribute(MMPackage.MM_TYPE__DYNAMIC, value);
+    setComposedAttribute(MMPackage.MM_TYPE__DYNAMIC, value);
   }
 
   /**
@@ -54,7 +55,7 @@ public interface Type extends Element {
    * @generated NOT
    */
   default boolean isAbstract() {
-    return getAttribute(MMPackage.MM_TYPE__ABSTRACT);
+    return getComposedAttribute(MMPackage.MM_TYPE__ABSTRACT);
   }
 
   /**
@@ -64,7 +65,7 @@ public interface Type extends Element {
    * @generated NOT
    */
   default void setAbstract(boolean value) {
-    setAttribute(MMPackage.MM_TYPE__ABSTRACT, value);
+    setComposedAttribute(MMPackage.MM_TYPE__ABSTRACT, value);
   }
 
   /**
@@ -74,7 +75,7 @@ public interface Type extends Element {
    * @generated NOT
    */
   default Type getSupertype() {
-    return getAttribute(MMPackage.MM_TYPE__SUPERTYPE);
+    return getComposedAttribute(MMPackage.MM_TYPE__SUPERTYPE);
   }
 
   /**
@@ -84,7 +85,28 @@ public interface Type extends Element {
    * @generated NOT
    */
   default void setSupertype(Type value) {
-    setAttribute(MMPackage.MM_TYPE__SUPERTYPE, value);
+    setComposedAttribute(MMPackage.MM_TYPE__SUPERTYPE, value);
+  }
+
+  /**
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @model required="true"
+   * @generated NOT
+   */
+  default Instance createInstance(EClass instanceClass, String id, String name) {
+    var obj = MMFactory.eINSTANCE.create(instanceClass);
+    if (!(obj instanceof Instance)) {
+      // TODO throw exception
+    }
+    var instance = (Instance) obj;
+    var composed = MMFactory.eINSTANCE.createMMInstance();
+    composed.setId(id);
+    composed.setName(name);
+    composed.setTypeId(getId());
+    instance.eSet(instance.getComposedFeature(), composed);
+
+    return instance;
   }
 
 } // Type
