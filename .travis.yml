@@ -10,8 +10,8 @@ cache:
   - $HOME/.m2
 script:
  - echo "MAVEN_OPTS='-Xmx2g'" > ~/.mavenrc
- - mvn -f releng/edu.toronto.cs.se.modelepedia.libz3java.releng/pom.xml clean install
- - mvn -f releng/edu.toronto.cs.se.mmint.releng/pom.xml clean install
+ - mvn -T 1C -f releng/edu.toronto.cs.se.modelepedia.libz3java.releng/pom.xml clean install
+ - mvn -T 1C -f releng/edu.toronto.cs.se.mmint.releng/pom.xml clean install
 after_success:
  - >
    test $TRAVIS_PULL_REQUEST = false &&
