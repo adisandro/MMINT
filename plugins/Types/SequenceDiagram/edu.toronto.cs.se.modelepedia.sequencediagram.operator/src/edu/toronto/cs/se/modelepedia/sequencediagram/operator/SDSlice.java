@@ -16,6 +16,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 
 import edu.toronto.cs.se.mmint.operator.slice.Slice;
 import edu.toronto.cs.se.modelepedia.sequencediagram.ActivationBox;
@@ -23,6 +24,7 @@ import edu.toronto.cs.se.modelepedia.sequencediagram.Lifeline;
 import edu.toronto.cs.se.modelepedia.sequencediagram.Message;
 import edu.toronto.cs.se.modelepedia.sequencediagram.Object;
 import edu.toronto.cs.se.modelepedia.sequencediagram.SequenceDiagram;
+import edu.toronto.cs.se.modelepedia.sequencediagram.SequenceDiagramPackage;
 
 public class SDSlice extends Slice {
 
@@ -72,43 +74,37 @@ public class SDSlice extends Slice {
     // 4) The target activation box if it (or its descendants) does not have any other preceding messages.
     if (modelObj instanceof Message) {
       var m = (Message) modelObj;
-
       // Get all descendants and ancestors of the source activation box.
       // Note: The original box is considered its own descendant and ancestor.
       var sourceBoxes = new HashSet<ActivationBox>();
-      var sourceAncestors = getAncestorBoxes(m.getSource());
-      var sourceDescendants = getDescendantBoxes(m.getSource());
-      sourceBoxes.addAll(sourceDescendants);
+      var sourceAncestors = getAncestors(m.getSource());
+      var sourceDescendants = getDescendants(m.getSource());
       sourceBoxes.addAll(sourceAncestors);
-
+      sourceBoxes.addAll(sourceDescendants);
       // Get the next message related to the source activation box (if any).
-      var nextSourceMessage = getNextMessageOnBoxes(sourceBoxes, m);
+      var nextSourceMessage = getMessage(sourceBoxes, m.getSuccessor(), SequenceDiagramPackage.eINSTANCE.getMessage_Successor());
       if (nextSourceMessage != null) {
         impacted.add(nextSourceMessage);
       }
-
       // Check if source activation box (or its descendants) has any preceding messages.
-      var previousSourceMessage = getPreviousMessageOnBoxes(sourceDescendants, m);
-      if (previousSourceMessage == null)  {
+      var previousSourceMessage = getMessage(sourceDescendants, m.getPredecessor(), SequenceDiagramPackage.eINSTANCE.getMessage_Predecessor());
+      if (previousSourceMessage == null) {
         impacted.add(m.getSource());
       }
-
       // Get all descendants and ancestors of the target activation box.
       // Note: The original box is considered its own descendant and ancestor.
-      Set<ActivationBox> targetBoxes = new HashSet<>();
-      Set<ActivationBox> targetAncestors = getAncestorBoxes(m.getTarget());
-      Set<ActivationBox> targetDescendants = getDescendantBoxes(m.getTarget());
+      var targetBoxes = new HashSet<ActivationBox>();
+      var targetAncestors = getAncestors(m.getTarget());
+      var targetDescendants = getDescendants(m.getTarget());
       targetBoxes.addAll(targetDescendants);
       targetBoxes.addAll(targetAncestors);
-
-      // Get the next message related to the source activation box (if any).
-      var nextTargetMessage = getNextMessageOnBoxes(targetBoxes, m);
+      // Get the next message related to the target activation box (if any).
+      var nextTargetMessage = getMessage(targetBoxes, m.getSuccessor(), SequenceDiagramPackage.eINSTANCE.getMessage_Successor());
       if (nextTargetMessage != null) {
         impacted.add(nextTargetMessage);
       }
-
-      // Check if source activation box (or its descendants) has any preceding messages.
-      var previousTargetMessage = getPreviousMessageOnBoxes(targetDescendants, m);
+      // Check if target activation box (or its descendants) has any preceding messages.
+      var previousTargetMessage = getMessage(targetDescendants, m.getPredecessor(), SequenceDiagramPackage.eINSTANCE.getMessage_Predecessor());
       if (previousTargetMessage == null)  {
         impacted.add(m.getTarget());
       }
@@ -118,88 +114,36 @@ public class SDSlice extends Slice {
     return impacted;
   }
 
-  // Return the set of activation boxes that are contained within the input box (including itself).
-  public Set<ActivationBox> getDescendantBoxes(ActivationBox ancestor) {
-    Set<ActivationBox> descendantsAll = new HashSet<>();
-    Set<ActivationBox> descendantsCur = new HashSet<>();
-    Set<ActivationBox> descendantsNext = new HashSet<>();
-
-    // Iterate through the current set of newly added descendants
-    // to identify the next generation of descendants.
-    descendantsAll.add(ancestor);
-    descendantsCur.add(ancestor);
-    while (!descendantsCur.isEmpty()) {
-      for (ActivationBox curElem : descendantsCur) {
-        if (!curElem.getActivationBoxes().isEmpty()) {
-          descendantsNext.addAll(curElem.getActivationBoxes());
-        }
-      }
-
-      descendantsCur.clear();
-      for (ActivationBox newElem : descendantsNext) {
-        if (!descendantsAll.contains(newElem)) {
-          descendantsAll.add(newElem);
-          descendantsCur.add(newElem);
-        }
-      }
-
-      descendantsNext.clear();
-    }
-
-    return descendantsAll;
-  }
-
   // Return the set of activation boxes that are ancestors of the input box (including itself).
-  public Set<ActivationBox> getAncestorBoxes(ActivationBox descendant) {
-    ActivationBox nextAncestor = descendant;
-    Set<ActivationBox> ancestorsAll = new HashSet<>();
-
-    do {
-      ancestorsAll.add(nextAncestor);
-      nextAncestor = nextAncestor.getOwnerActivationBox();
-    } while (nextAncestor != null);
-
-    return ancestorsAll;
+  public Set<ActivationBox> getAncestors(ActivationBox box) {
+    var ancestors = new HashSet<ActivationBox>();
+    while (box != null) {
+      ancestors.add(box);
+      box = box.getOwnerActivationBox();
+    }
+    return ancestors;
   }
 
-  // Return the message (if any) that succeeds the input message and is on the input activation boxes.
-  public Message getNextMessageOnBoxes(Set<ActivationBox> boxes, Message m) {
-    ActivationBox nextSource;
-    ActivationBox nextTarget;
-    Message nextMessage = m.getSuccessor();
+  // Return the set of activation boxes that are contained within the input box (including itself).
+  public Set<ActivationBox> getDescendants(ActivationBox box) {
+    var descendants = new HashSet<ActivationBox>();
+    descendants.add(box);
+    for (var descendant : box.getActivationBoxes()) {
+      descendants.addAll(getDescendants(descendant));
+    }
+    return descendants;
+  }
 
-    while (nextMessage != null) {
-      nextSource = nextMessage.getSource();
-      nextTarget = nextMessage.getTarget();
-
-      if (boxes.contains(nextSource) || boxes.contains(nextTarget)) {
+  // Return the message (if any) that precedes or succeeds the input message and is on the input activation boxes.
+  public Message getMessage(Set<ActivationBox> boxes, Message msg, EStructuralFeature follow) {
+    while (msg != null) {
+      if (boxes.contains(msg.getSource()) || boxes.contains(msg.getTarget())) {
         break;
-      } else {
-        nextMessage = nextMessage.getSuccessor();
+      }
+      else {
+        msg = (Message) msg.eGet(follow);
       }
     }
-
-    return nextMessage;
+    return msg;
   }
-
-  // Return the message (if any) that precedes the input message and is on the input activation boxes.
-  public Message getPreviousMessageOnBoxes(Set<ActivationBox> boxes, Message m) {
-    ActivationBox previousSource;
-    ActivationBox previousTarget;
-    Message previousMessage = m.getPredecessor();
-
-    while (previousMessage != null) {
-      previousSource = previousMessage.getSource();
-      previousTarget = previousMessage.getTarget();
-
-      if (boxes.contains(previousSource) || boxes.contains(previousTarget)) {
-        break;
-      } else {
-        previousMessage = previousMessage.getPredecessor();
-      }
-    }
-
-    return previousMessage;
-  }
-
 }
