@@ -58,22 +58,23 @@ public class GSNSliceRecheck extends GSNSlice {
     return impacted;
   }
 
-  // Get impacted model elements directly reachable from the input element.
   @Override
   protected Set<EObject> getDirectlyImpactedElements(EObject modelObj, Set<EObject> alreadyImpacted) {
     var impacted = new HashSet<EObject>();
+
     // If input is a goal, then the state validity of all ancestor goals should be rechecked.
     if (modelObj instanceof Goal) {
       var g = (Goal) modelObj;
       impacted.addAll(getAncestorGoals(g, alreadyImpacted));
     }
+
     // If input is a solution, then the state validity of all ancestor goals should be rechecked.
-    else if (modelObj instanceof Solution) {
+    if (modelObj instanceof Solution) {
       var s = (Solution) modelObj;
       impacted.addAll(getAncestorGoals(s, alreadyImpacted));
     }
-    impacted.removeAll(alreadyImpacted);
 
+    impacted.removeAll(alreadyImpacted);
     return impacted;
   }
 }

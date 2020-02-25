@@ -39,9 +39,10 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
-// The slice operator performs a slice on a model instance given the input
-// slicing criteria, which is a unary model relation containing the model
-// elements to slice.
+/**
+ * Performs a slice on a model instance starting from a slicing criterion, which is a unary model relation containing the
+ * initial model elements to slice, and propagating to other impacted model elements following a set of rules.
+ */
 public class Slice extends OperatorImpl {
 
   private Input input;
@@ -111,17 +112,32 @@ public class Slice extends OperatorImpl {
     this.output = new Output(outputMIDsByName);
   }
 
-  // Returns the set of model elements that may be directly impacted
-  // by the input model element.
-  // By default, the contained elements are assumed to be impacted.
+  /**
+   * Gets the sliced model objects by applying the impact rules once, starting from a model object.
+   *
+   * @param modelObj
+   *          The initial model object.
+   * @param alreadyImpacted
+   *          A set of model objects that are already part of the slice.
+   * @return The set of sliced model objects.
+   */
   protected Set<EObject> getDirectlyImpactedElements(EObject modelObj, Set<EObject> alreadyImpacted) {
+    // only rule: contained model objects are impacted
     return modelObj.eContents().stream()
       .filter(modelObj2 -> !alreadyImpacted.contains(modelObj2))
       .collect(Collectors.toSet());
   }
 
-  // Returns the complete set of model elements that may be impacted
-  // by the input model element.
+  /**
+   * Gets all sliced model objects recursively, starting from a model object that is part of the input slice criterion
+   * and following the impact rules.
+   *
+   * @param critModelObj
+   *          The initial model object, part of the slice criterion.
+   * @param alreadyImpacted
+   *          A set of model objects that are already part of the slice.
+   * @return The sliced model objects, grouped in subsets by the model object that triggered a slice rule.
+   */
   protected Map<EObject, Set<EObject>> getAllImpactedElements(EObject critModelObj, Set<EObject> alreadyImpacted) {
     var impacted = new HashMap<EObject, Set<EObject>>();
     var impactedCur = new HashSet<EObject>();

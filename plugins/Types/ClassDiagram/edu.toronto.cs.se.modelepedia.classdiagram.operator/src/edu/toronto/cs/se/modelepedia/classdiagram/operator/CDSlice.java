@@ -29,7 +29,6 @@ import edu.toronto.cs.se.modelepedia.classdiagram.Typeable;
 
 public class CDSlice extends Slice {
 
-  // Get impacted model elements directly reachable from the input element.
   @Override
   protected Set<EObject> getDirectlyImpactedElements(EObject modelObj, Set<EObject> alreadyImpacted) {
     var impacted = new HashSet<EObject>();
