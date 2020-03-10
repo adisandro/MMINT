@@ -33,8 +33,10 @@ public class NewOperatorTypeDialogFilter extends FileExtensionsDialogFilter {
     if (!super.select(viewer, parentElement, element)) {
       return false;
     }
+    if (!(element instanceof IFile)) {
+      return true;
+    }
     try {
-      super.select(viewer, parentElement, element);
       MID mid = (MID) FileUtils.readModelFile(((IFile) element).getFullPath().toString(), null, true);
       return mid.isWorkflowsLevel();
     }
