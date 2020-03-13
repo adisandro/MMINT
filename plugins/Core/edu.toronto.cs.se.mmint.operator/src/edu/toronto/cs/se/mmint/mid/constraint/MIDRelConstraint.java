@@ -20,26 +20,32 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
 public class MIDRelConstraint implements IJavaModelConstraint {
 
-	@Override
-	public boolean validate(Model model) {
+  @Override
+  public boolean validate(Model model) {
 
     EObject modelObjRoot = model.getEMFInstanceRoot();
     if (!(modelObjRoot instanceof MID)) {
+        // a MIDRel is a MID too
         return false;
     }
-		MID instanceMID = (MID) modelObjRoot;
-		if (instanceMID.getOperators().size() > 0) {
-			return false;
-		}
-		if (instanceMID.getModelRels().size() == 0) {
-			return false;
-		}
-		for (Model instanceMIDModel : instanceMID.getModels()) {
-			if (!(instanceMIDModel instanceof ModelRel)) {
-				return false;
-			}
-		}
-		return true;
-	}
+    MID instanceMID = (MID) modelObjRoot;
+    if (instanceMID.getOperators().size() > 0) {
+      // a MIDRel contains only model rels
+      return false;
+    }
+    var modelRels = 0;
+    for (Model instanceMIDModel : instanceMID.getModels()) {
+      if (!(instanceMIDModel instanceof ModelRel)) {
+        // a MIDRel contains only model rels
+        return false;
+      }
+      modelRels++;
+    }
+    if (modelRels == 0) {
+      // an empty MID is not a MIDRel
+      return false;
+    }
+    return true;
+  }
 
 }
