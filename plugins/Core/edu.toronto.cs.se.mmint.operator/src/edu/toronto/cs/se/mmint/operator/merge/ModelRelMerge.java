@@ -45,7 +45,7 @@ public class ModelRelMerge extends OperatorImpl {
     // input-output
     private final static @NonNull String IN_MODELREL1 = "rel1";
     private final static @NonNull String IN_MODELREL2 = "rel2";
-    private final static @NonNull String OUT_MODELREL = "merge";
+    private final static @NonNull String OUT_MODELREL = "merged";
     // constants
     private final static @NonNull String MERGE_SEPARATOR = "+";
     // state
@@ -61,8 +61,8 @@ public class ModelRelMerge extends OperatorImpl {
 
         public Input(Map<String, Model> inputsByName) {
 
-            this.rel1 = (ModelRel) inputsByName.get(IN_MODELREL1);
-            this.rel2 = (ModelRel) inputsByName.get(IN_MODELREL2);
+            this.rel1 = (ModelRel) inputsByName.get(ModelRelMerge.IN_MODELREL1);
+            this.rel2 = (ModelRel) inputsByName.get(ModelRelMerge.IN_MODELREL2);
             if (this.rel1 == this.rel2) {
                 throw new IllegalArgumentException();
             }
@@ -124,7 +124,7 @@ public class ModelRelMerge extends OperatorImpl {
         public @NonNull Map<ModelRel, List<Model>> getAllowedOutputModelRelEndpoints(@NonNull Map<String, Model> inputsByName, @NonNull Map<String, Model> outputsByName) {
 
             Input input = new Input(inputsByName);
-            ModelRel mergedRel = (ModelRel) outputsByName.get(OUT_MODELREL);
+            ModelRel mergedRel = (ModelRel) outputsByName.get(ModelRelMerge.OUT_MODELREL);
             Map<ModelRel, List<Model>> validOutputs = new HashMap<>();
             List<Model> endpointModels = new ArrayList<>();
             endpointModels.add(input.model1);
@@ -198,7 +198,7 @@ public class ModelRelMerge extends OperatorImpl {
             }
             else {
                 // warning: this will merge mappings with same endpoints even from a single rel
-                String mergedName = mergedMappingRef.getObject().getName() + MERGE_SEPARATOR +
+                String mergedName = mergedMappingRef.getObject().getName() + ModelRelMerge.MERGE_SEPARATOR +
                                     origMappingRef.getObject().getName();
                 mergedMappingRef.getObject().setName(mergedName);
             }
@@ -209,7 +209,7 @@ public class ModelRelMerge extends OperatorImpl {
                                     @Nullable Model model2, @NonNull MID instanceMID) throws MMINTException {
 
         ModelRel mergedRel = null;
-        String mergedRelName = rel1.getName() + MERGE_SEPARATOR + rel2.getName();
+        String mergedRelName = rel1.getName() + ModelRelMerge.MERGE_SEPARATOR + rel2.getName();
         if (rel1 instanceof BinaryModelRel && rel2 instanceof BinaryModelRel) { // binary merge
             mergedRel = rel1.getMetatype().createBinaryInstanceAndEndpoints(null, mergedRelName, model1, model2,
                                                                             instanceMID);
@@ -237,11 +237,11 @@ public class ModelRelMerge extends OperatorImpl {
 
         // merge the two model rels
         ModelRel mergedRel = this.merge(input.rel1, input.rel2, input.model1, input.model2,
-                                        outputMIDsByName.get(OUT_MODELREL));
+                                        outputMIDsByName.get(ModelRelMerge.OUT_MODELREL));
 
         // output
         Map<String, Model> outputsByName = new HashMap<>();
-        outputsByName.put(OUT_MODELREL, mergedRel);
+        outputsByName.put(ModelRelMerge.OUT_MODELREL, mergedRel);
 
         return outputsByName;
     }

@@ -64,7 +64,6 @@ public class Map extends NestingOperatorImpl {
   private long timeOverhead;
   private long timeCheckpoint;
   // constants
-  private final static @NonNull String MAPPED_MID_SUFFIX = "_map";
   private final static @NonNull String MIDREL_MODELTYPE_URI_SUFFIX = "Rel";
 
   public static class OperatorConstraint implements IJavaOperatorConstraint {
@@ -76,13 +75,10 @@ public class Map extends NestingOperatorImpl {
       final String FILTERNOT_URI = "http://se.cs.toronto.edu/mmint/Operator_FilterNot";
       final String MAP_URI = "http://se.cs.toronto.edu/mmint/Operator_Map";
       final String REDUCE_URI = "http://se.cs.toronto.edu/mmint/Operator_Reduce";
-      if (
-        genericType.getUri().equals(FILTER_URI) || genericType.getUri().equals(FILTERNOT_URI) ||
-        genericType.getUri().equals(MAP_URI) || genericType.getUri().equals(REDUCE_URI)
-      ) {
+      if (genericType.getUri().equals(FILTER_URI) || genericType.getUri().equals(FILTERNOT_URI) ||
+          genericType.getUri().equals(MAP_URI) || genericType.getUri().equals(REDUCE_URI)) {
         return false;
       }
-
       return true;
     }
   }
@@ -90,12 +86,12 @@ public class Map extends NestingOperatorImpl {
   @Override
   public void readInputProperties(Properties inputProps) throws MMINTException {
     this.timeOverheadEnabled = MIDOperatorIOUtils.getOptionalBoolProperty(
-                                 inputProps, PROP_OUT_TIMEOVERHEAD+MIDOperatorIOUtils.PROP_OUTENABLED_SUFFIX, false);
+                                 inputProps, Map.PROP_OUT_TIMEOVERHEAD+MIDOperatorIOUtils.PROP_OUTENABLED_SUFFIX, false);
   }
 
   public void writeOutputProperties() throws Exception {
     var outProps = new Properties();
-    outProps.setProperty(PROP_OUT_TIMEOVERHEAD, String.valueOf(this.timeOverhead));
+    outProps.setProperty(Map.PROP_OUT_TIMEOVERHEAD, String.valueOf(this.timeOverhead));
     MIDOperatorIOUtils.writeOutputProperties(this, outProps);
   }
 
@@ -105,7 +101,7 @@ public class Map extends NestingOperatorImpl {
     // create the vararg mapped mids
     Operator mapperOperatorType = (Operator) newOperator.getGenerics().get(0).getTarget();
     Model midModelType = MIDTypeRegistry.getMIDModelType();
-    Model midrelModelType = MIDTypeRegistry.getType(MIDPackage.eNS_URI + MIDREL_MODELTYPE_URI_SUFFIX);
+    Model midrelModelType = MIDTypeRegistry.getType(MIDPackage.eNS_URI + Map.MIDREL_MODELTYPE_URI_SUFFIX);
     for (int i = 0; i < mapperOperatorType.getOutputs().size(); i++) {
       Model outputModelType = (mapperOperatorType.getOutputs().get(i).getTarget() instanceof ModelRel) ?
         midrelModelType : midModelType;
@@ -125,7 +121,7 @@ public class Map extends NestingOperatorImpl {
       MMINT.getActiveInstanceMIDFile().getFullPath().toOSString() :
       MIDRegistry.getModelUri(instanceMID);
     String outputMIDPath = FileUtils.getUniquePath(
-      FileUtils.replaceFileNameInPath(baseOutputPath, outputName + MAPPED_MID_SUFFIX),
+      FileUtils.replaceFileNameInPath(baseOutputPath, outputName),
       true,
       false);
     Model outputMIDModel = midModelType.createInstanceAndEditor(
@@ -248,7 +244,7 @@ public class Map extends NestingOperatorImpl {
       outputMIDModels.add(outputMIDModel);
     }
     // pass 2: output MIDRels only
-    Model midrelModelType = MIDTypeRegistry.getType(MIDPackage.eNS_URI + MIDREL_MODELTYPE_URI_SUFFIX);
+    Model midrelModelType = MIDTypeRegistry.getType(MIDPackage.eNS_URI + Map.MIDREL_MODELTYPE_URI_SUFFIX);
     String midDiagramPluginId = MIDTypeRegistry.getTypeBundle(MIDTypeRegistry.getMIDDiagramType().getUri()).getSymbolicName();
     for (Entry<String, MID> outputMIDByName : mapperOutputMIDsByName.entrySet()) {
       String outputName = outputMIDByName.getKey();
@@ -309,7 +305,7 @@ public class Map extends NestingOperatorImpl {
       FileUtils.writeModelFile(inputMIDToSerialize.getValue(), inputMIDToSerialize.getKey(), true);
     }
 
-    return MIDOperatorIOUtils.setVarargs(outputMIDModels, OUT_MIDS);
+    return MIDOperatorIOUtils.setVarargs(outputMIDModels, Map.OUT_MIDS);
   }
 
   private java.util.@NonNull Map<String, EList<OperatorInput>> diffMultipleDispatchInputs(java.util.@NonNull Map<String, EList<OperatorInput>> assignedInputs, @NonNull Set<EList<OperatorInput>> mapperInputs) {
@@ -337,15 +333,15 @@ public class Map extends NestingOperatorImpl {
       this.timeCheckpoint = System.nanoTime();
     }
     // input
-    List<Model> inputMIDModels = MIDOperatorIOUtils.getVarargs(inputsByName, IN_MIDS);
+    List<Model> inputMIDModels = MIDOperatorIOUtils.getVarargs(inputsByName, Map.IN_MIDS);
     EList<MID> inputMIDs = ECollections.newBasicEList();
     EList<Set<Model>> modelBlacklists = ECollections.newBasicEList();
     for (Model inputMIDModel : inputMIDModels) {
       inputMIDs.add((MID) inputMIDModel.getEMFInstanceRoot());
       modelBlacklists.add(new HashSet<>());
     }
-    Operator mapperOperatorType = (Operator) genericsByName.get(GENERIC_OPERATORTYPE);
-    java.util.Map<String, MID> instanceMIDsByMapperOutput = MIDOperatorIOUtils.getVarargOutputMIDsByOtherName(outputMIDsByName, OUT_MIDS, mapperOperatorType.getOutputs());
+    Operator mapperOperatorType = (Operator) genericsByName.get(Map.GENERIC_OPERATORTYPE);
+    java.util.Map<String, MID> instanceMIDsByMapperOutput = MIDOperatorIOUtils.getVarargOutputMIDsByOtherName(outputMIDsByName, Map.OUT_MIDS, mapperOperatorType.getOutputs());
 
     // find all possible combinations of inputs and execute them
     var mapperSpecs = new LinkedHashMap<Operator, Set<EList<OperatorInput>>>(); // reproducible order

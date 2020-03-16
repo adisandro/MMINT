@@ -364,7 +364,7 @@
          <outputs>
             <parameter>
 	           <type
-	                 name="merge">
+	                 name="merged">
 	           </type>
 	           <typeEndpoint
 	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
