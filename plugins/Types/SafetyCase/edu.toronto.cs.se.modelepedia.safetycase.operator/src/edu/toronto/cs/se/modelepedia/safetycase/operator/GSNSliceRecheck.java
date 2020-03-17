@@ -12,9 +12,7 @@
  */
 package edu.toronto.cs.se.modelepedia.safetycase.operator;
 
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
@@ -23,40 +21,6 @@ import edu.toronto.cs.se.modelepedia.safetycase.Goal;
 import edu.toronto.cs.se.modelepedia.safetycase.Solution;
 
 public class GSNSliceRecheck extends GSNSlice {
-
-  // Get all model elements in a safety case that needs to be re-checked for
-  // state validity given the input element that requires content re-check.
-  @Override
-  protected Map<EObject, Set<EObject>> getAllImpactedElements(EObject critModelObj, Set<EObject> alreadyImpacted) {
-    var impacted = new HashMap<EObject, Set<EObject>>();
-    var impactedModelObjs = new HashSet<EObject>();
-    impactedModelObjs.add(critModelObj);
-    alreadyImpacted.add(critModelObj);
-    // Slice all elements iteratively until a fixed point is reached.
-    var impactedCur = new HashSet<EObject>();
-    var impactedNext = new HashSet<EObject>();
-    impactedCur.addAll(alreadyImpacted);
-    while (!impactedCur.isEmpty()) {
-      for (var elem : alreadyImpacted) {
-        impactedNext.addAll(getDirectlyImpactedElements(elem, alreadyImpacted));
-      }
-      var isRepeat = false;
-      impactedCur.clear();
-      for (var elem : impactedNext) {
-        if (!alreadyImpacted.contains(elem)) {
-          isRepeat = true;
-          alreadyImpacted.add(elem);
-          impactedModelObjs.add(elem);
-        }
-      }
-      if (isRepeat) {
-        impactedCur.addAll(alreadyImpacted);
-      }
-    }
-    impacted.put(critModelObj, impactedModelObjs);
-
-    return impacted;
-  }
 
   @Override
   protected Set<EObject> getDirectlyImpactedElements(EObject modelObj, Set<EObject> alreadyImpacted) {
