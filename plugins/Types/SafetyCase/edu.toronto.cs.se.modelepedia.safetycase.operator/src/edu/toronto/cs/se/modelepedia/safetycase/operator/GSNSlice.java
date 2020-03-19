@@ -14,6 +14,7 @@ package edu.toronto.cs.se.modelepedia.safetycase.operator;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
 
@@ -26,6 +27,7 @@ import edu.toronto.cs.se.modelepedia.safetycase.MofNSupporter;
 import edu.toronto.cs.se.modelepedia.safetycase.OrSupporter;
 import edu.toronto.cs.se.modelepedia.safetycase.SupportConnector;
 import edu.toronto.cs.se.modelepedia.safetycase.Supportable;
+import edu.toronto.cs.se.modelepedia.safetycase.SupportedBy;
 import edu.toronto.cs.se.modelepedia.safetycase.XorSupporter;
 
 // Contains useful functions for slicing safety cases.
@@ -104,57 +106,29 @@ public class GSNSlice extends Slice {
 
   // Returns all ancestor goals of the input core element, stopping when one is already impacted.
   public Set<Goal> getAncestorGoals(CoreElement elem, Set<EObject> alreadyImpacted) {
-    var ancestorsCur = new HashSet<Supportable>();
-    var ancestorsNext = new HashSet<Supportable>();
-    var ancestorsAll = new HashSet<Supportable>();
-    var goalAncestors = new HashSet<Goal>();
-
-//    for (var rel : elem.getSupports()) {
-//      var source = rel.getSource();
-//      if (source instanceof Goal) {
-//        goalAncestors.add((Goal) source);
-//      }
-//      if (isImpactPropagatedUp(source, alreadyImpacted)) {
-//
-//      }
-//    }
-
-    // Iterate through the current set of newly added ancestors
-    // to identify the next generation of ancestors.
-    for (var rel : elem.getSupports()) {
-      ancestorsNext.add(rel.getSource());
-      if (rel.getSource() instanceof Goal) {
-        goalAncestors.add((Goal) rel.getSource());
-      }
-    }
-    ancestorsCur.addAll(ancestorsNext);
-    ancestorsAll.addAll(ancestorsNext);
-    ancestorsNext.clear();
+    var ancestors = new HashSet<Goal>();
+    var ancestorsCur = elem.getSupports().stream()
+                           .map(SupportedBy::getSource)
+                           .collect(Collectors.toSet());
+    var alreadyImpacted2 = new HashSet<>(alreadyImpacted);
     while (!ancestorsCur.isEmpty()) {
-      var impactedAll = new HashSet<EObject>();
-      impactedAll.addAll(alreadyImpacted);
-      impactedAll.addAll(ancestorsAll);
-      for (var curElem : ancestorsCur) {
-        if (isImpactPropagatedUp(curElem, impactedAll)) {
-          for (var rel : curElem.getSupports()) {
-            ancestorsNext.add(rel.getSource());
-          }
+      var ancestorsNext = new HashSet<Supportable>();
+      alreadyImpacted2.addAll(ancestorsCur);
+      for (var ancestor : ancestorsCur) {
+        if (ancestor instanceof Goal) {
+          ancestors.add((Goal) ancestor);
+        }
+        if (isImpactPropagatedUp(ancestor, alreadyImpacted2)) {
+          ancestorsNext.addAll(ancestor.getSupports().stream()
+                                       .map(SupportedBy::getSource)
+                                       .filter(a -> !alreadyImpacted2.contains(a))
+                                       .collect(Collectors.toSet()));
         }
       }
-      ancestorsCur.clear();
-      for (var newElem : ancestorsNext) {
-        if (!ancestorsAll.contains(newElem)) {
-          ancestorsAll.add(newElem);
-          ancestorsCur.add(newElem);
-        }
-        if (newElem instanceof Goal) {
-          goalAncestors.add((Goal) newElem);
-        }
-      }
-      ancestorsNext.clear();
+      ancestorsCur = ancestorsNext;
     }
 
-    return goalAncestors;
+    return ancestors;
   }
 
   // Determines whether a change impact is propagated up or not given the
