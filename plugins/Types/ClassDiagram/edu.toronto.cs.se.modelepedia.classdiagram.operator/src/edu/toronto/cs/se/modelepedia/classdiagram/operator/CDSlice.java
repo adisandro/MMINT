@@ -30,18 +30,18 @@ import edu.toronto.cs.se.modelepedia.classdiagram.Typeable;
 public class CDSlice extends Slice {
 
   @Override
-  protected Set<EObject> getDirectlyImpactedElements(EObject modelObj, Set<EObject> alreadyImpacted) {
-    var impacted = new HashSet<EObject>();
+  protected Set<EObject> getDirectlySlicedElements(EObject modelObj, Set<EObject> alreadySliced) {
+    var sliced = new HashSet<EObject>();
 
     // If input is a class diagram, then the following are also impacted:
     // 1) Owned classes, associations, dependencies, data types and compositions.
     if (modelObj instanceof ClassDiagram) {
       var cd = (ClassDiagram) modelObj;
-      impacted.addAll(cd.getClasses());
-      impacted.addAll(cd.getAssociations());
-      impacted.addAll(cd.getDependencies());
-      impacted.addAll(cd.getDatatypes());
-      impacted.addAll(cd.getCompositions());
+      sliced.addAll(cd.getClasses());
+      sliced.addAll(cd.getAssociations());
+      sliced.addAll(cd.getDependencies());
+      sliced.addAll(cd.getDatatypes());
+      sliced.addAll(cd.getCompositions());
     }
 
     // If input is a class, then the following are also impacted:
@@ -54,18 +54,18 @@ public class CDSlice extends Slice {
     // the dependency rules for Typeable will also be triggered.
     if (modelObj instanceof Class) {
       var c = (Class) modelObj;
-      impacted.addAll(c.getOwnedAttributes());
-      impacted.addAll(c.getOwnedOperations());
-      impacted.addAll(c.getAssociationsAsSource());
-      impacted.addAll(c.getAssociationsAsTarget());
-      impacted.addAll(c.getDependenciesAsDependee());
-      impacted.addAll(c.getDependenciesAsDepender());
-      impacted.addAll(c.getCompositionsAsComposite());
-      impacted.addAll(c.getCompositionsAsConstituent());
-      impacted.addAll(c.getNested());
-      impacted.addAll(c.getSubclasses());
+      sliced.addAll(c.getOwnedAttributes());
+      sliced.addAll(c.getOwnedOperations());
+      sliced.addAll(c.getAssociationsAsSource());
+      sliced.addAll(c.getAssociationsAsTarget());
+      sliced.addAll(c.getDependenciesAsDependee());
+      sliced.addAll(c.getDependenciesAsDepender());
+      sliced.addAll(c.getCompositionsAsComposite());
+      sliced.addAll(c.getCompositionsAsConstituent());
+      sliced.addAll(c.getNested());
+      sliced.addAll(c.getSubclasses());
       if (c.getNestedIn() != null) {
-        impacted.add(c.getNestedIn());
+        sliced.add(c.getNestedIn());
       }
     }
 
@@ -81,17 +81,17 @@ public class CDSlice extends Slice {
       for (var c : cd.getClasses()) {
         for (var a : c.getOwnedAttributes()) {
           if (a.getType() == t) {
-            impacted.add(a);
+            sliced.add(a);
           }
         }
         for (var o : c.getOwnedOperations()) {
           if (o.getType() == t) {
-            impacted.add(o);
+            sliced.add(o);
             continue;
           }
           for (var p : o.getParameterTypes()) {
             if (p == t) {
-              impacted.add(o);
+              sliced.add(o);
               break;
             }
           }
@@ -103,7 +103,7 @@ public class CDSlice extends Slice {
     if (modelObj instanceof Attribute) {
       var a = (Attribute) modelObj;
       if (a.getOwner() != null) {
-        impacted.add(a.getOwner());
+        sliced.add(a.getOwner());
       }
     }
 
@@ -111,7 +111,7 @@ public class CDSlice extends Slice {
     if (modelObj instanceof Operation) {
       var o = (Operation) modelObj;
       if (o.getOwner() != null) {
-        impacted.add(o.getOwner());
+        sliced.add(o.getOwner());
       }
     }
 
@@ -119,7 +119,7 @@ public class CDSlice extends Slice {
     if (modelObj instanceof Association) {
       var a = (Association) modelObj;
       if (a.getSource() != null) {
-        impacted.add(a.getSource());
+        sliced.add(a.getSource());
       }
     }
 
@@ -127,7 +127,7 @@ public class CDSlice extends Slice {
     if (modelObj instanceof Dependency) {
       var d = (Dependency) modelObj;
       if (d.getDepender() != null) {
-        impacted.add(d.getDepender());
+        sliced.add(d.getDepender());
       }
     }
 
@@ -135,11 +135,11 @@ public class CDSlice extends Slice {
     if (modelObj instanceof Composition) {
       var c = (Composition) modelObj;
       if (c.getComposite() != null) {
-        impacted.add(c.getComposite());
+        sliced.add(c.getComposite());
       }
     }
 
-    impacted.removeAll(alreadyImpacted);
-    return impacted;
+    sliced.removeAll(alreadySliced);
+    return sliced;
   }
 }

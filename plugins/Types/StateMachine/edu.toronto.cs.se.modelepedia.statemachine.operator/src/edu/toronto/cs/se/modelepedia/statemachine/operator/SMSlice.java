@@ -21,63 +21,57 @@ import edu.toronto.cs.se.mmint.operator.slice.Slice;
 import edu.toronto.cs.se.modelepedia.statemachine.FinalState;
 import edu.toronto.cs.se.modelepedia.statemachine.InitialState;
 import edu.toronto.cs.se.modelepedia.statemachine.State;
-import edu.toronto.cs.se.modelepedia.statemachine.StateAction;
 import edu.toronto.cs.se.modelepedia.statemachine.StateMachine;
 import edu.toronto.cs.se.modelepedia.statemachine.Transition;
 
-
 public class SMSlice extends Slice {
 
-	// Get impacted model elements directly reachable from the input element.
-	@Override
-	protected Set<EObject> getDirectlyImpactedElements(EObject modelObj, Set<EObject> alreadyImpacted) {
-	    Set<EObject> impacted = new HashSet<>();
+  @Override
+  protected Set<EObject> getDirectlySlicedElements(EObject modelObj, Set<EObject> alreadySliced) {
+    Set<EObject> sliced = new HashSet<>();
 
-	    // If input is a state machine, then the following are impacted:
-	    // 1) Owned states and transitions.
-	    if (modelObj instanceof StateMachine) {
-	    	StateMachine m = (StateMachine) modelObj;
-	    	impacted.addAll(m.getStates());
-	    	impacted.addAll(m.getTransitions());
+    // If input is a state machine, then the following are impacted:
+    // 1) Owned states and transitions.
+    if (modelObj instanceof StateMachine) {
+      StateMachine m = (StateMachine) modelObj;
+      sliced.addAll(m.getStates());
+      sliced.addAll(m.getTransitions());
+    }
 
-	    // If input is an (intermediate) state, then the following are impacted:
-	    // 1) Transitions originating or terminating at the state.
-	    // 2) Internal state actions.
-	    } else if (modelObj instanceof State) {
-	    	State s = (State) modelObj;
-	    	impacted.addAll(s.getTransitionsAsSource());
-	    	impacted.addAll(s.getTransitionsAsTarget());
-	    	impacted.addAll(s.getInternalActions());
+    // If input is an (intermediate) state, then the following are impacted:
+    // 1) Transitions originating or terminating at the state.
+    // 2) Internal state actions.
+    if (modelObj instanceof State) {
+      State s = (State) modelObj;
+      sliced.addAll(s.getTransitionsAsSource());
+      sliced.addAll(s.getTransitionsAsTarget());
+      sliced.addAll(s.getInternalActions());
+    }
 
-	    // If input is an initial state, then the following are impacted:
-	    // 1) Transitions originating or terminating at the state.
-	    } else if (modelObj instanceof InitialState) {
-	    	InitialState s = (InitialState) modelObj;
-	    	impacted.addAll(s.getTransitionsAsSource());
-	    	impacted.addAll(s.getTransitionsAsTarget());
+    // If input is an initial state, then the following are impacted:
+    // 1) Transitions originating or terminating at the state.
+    if (modelObj instanceof InitialState) {
+      InitialState s = (InitialState) modelObj;
+      sliced.addAll(s.getTransitionsAsSource());
+      sliced.addAll(s.getTransitionsAsTarget());
+    }
 
-	    // If input is a final state, then the following are impacted:
-	    // 1) Transitions originating or terminating at the state.
-	    } else if (modelObj instanceof FinalState) {
-		    FinalState s = (FinalState) modelObj;
-		    impacted.addAll(s.getTransitionsAsSource());
-		    impacted.addAll(s.getTransitionsAsTarget());
+    // If input is a final state, then the following are impacted:
+    // 1) Transitions originating or terminating at the state.
+    if (modelObj instanceof FinalState) {
+      FinalState s = (FinalState) modelObj;
+      sliced.addAll(s.getTransitionsAsSource());
+      sliced.addAll(s.getTransitionsAsTarget());
+    }
 
-		// If input is a transition, then the following are impacted:
-		// 1) The state the transition points to.
-	    } else if (modelObj instanceof Transition) {
-	    	Transition t = (Transition) modelObj;
-	    	impacted.add(t.getTarget());
+    // If input is a transition, then the following are impacted:
+    // 1) The state the transition points to.
+    if (modelObj instanceof Transition) {
+      Transition t = (Transition) modelObj;
+      sliced.add(t.getTarget());
+    }
 
-	    // If input is a state action, then nothing else is impacted.
-	    } else if (modelObj instanceof StateAction) {
-
-	    }
-
-		impacted.removeAll(alreadyImpacted);
-
-		return impacted;
-	}
-
+    sliced.removeAll(alreadySliced);
+    return sliced;
+  }
 }
-

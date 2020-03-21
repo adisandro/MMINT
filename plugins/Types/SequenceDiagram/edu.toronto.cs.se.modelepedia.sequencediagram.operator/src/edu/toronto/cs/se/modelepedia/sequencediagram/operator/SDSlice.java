@@ -29,15 +29,15 @@ import edu.toronto.cs.se.modelepedia.sequencediagram.SequenceDiagramPackage;
 public class SDSlice extends Slice {
 
   @Override
-  protected Set<EObject> getDirectlyImpactedElements(EObject modelObj, Set<EObject> alreadyImpacted) {
-    var impacted = new HashSet<EObject>();
+  protected Set<EObject> getDirectlySlicedElements(EObject modelObj, Set<EObject> alreadySliced) {
+    var sliced = new HashSet<EObject>();
 
     // If input is a sequence diagram, then the following are impacted:
     // 1) Owned objects and messages.
     if (modelObj instanceof SequenceDiagram) {
       var d = (SequenceDiagram) modelObj;
-      impacted.addAll(d.getObjects());
-      impacted.addAll(d.getMessages());
+      sliced.addAll(d.getObjects());
+      sliced.addAll(d.getMessages());
     }
 
     // If input is an object, then the following are impacted:
@@ -45,7 +45,7 @@ public class SDSlice extends Slice {
     if (modelObj instanceof Object) {
       var o = (Object) modelObj;
       if (o.getLifeline() != null) {
-        impacted.add(o.getLifeline());
+        sliced.add(o.getLifeline());
       }
     }
 
@@ -53,7 +53,7 @@ public class SDSlice extends Slice {
     // 1) Owned activation boxes.
     if (modelObj instanceof Lifeline) {
       var l = (Lifeline) modelObj;
-      impacted.addAll(l.getActivationBoxes());
+      sliced.addAll(l.getActivationBoxes());
     }
 
     // If input is an activation box, then the following are impacted:
@@ -61,9 +61,9 @@ public class SDSlice extends Slice {
     // 2) All messages as source and as target.
     if (modelObj instanceof ActivationBox) {
       var a = (ActivationBox) modelObj;
-      impacted.addAll(a.getActivationBoxes());
-      impacted.addAll(a.getMessagesAsSource());
-      impacted.addAll(a.getMessagesAsTarget());
+      sliced.addAll(a.getActivationBoxes());
+      sliced.addAll(a.getMessagesAsSource());
+      sliced.addAll(a.getMessagesAsTarget());
     }
 
     // If input is a message, then the following are impacted:
@@ -83,12 +83,12 @@ public class SDSlice extends Slice {
       // Get the next message related to the source activation box (if any).
       var nextSourceMessage = getMessage(sourceBoxes, m.getSuccessor(), SequenceDiagramPackage.eINSTANCE.getMessage_Successor());
       if (nextSourceMessage != null) {
-        impacted.add(nextSourceMessage);
+        sliced.add(nextSourceMessage);
       }
       // Check if source activation box (or its descendants) has any preceding messages.
       var previousSourceMessage = getMessage(sourceDescendants, m.getPredecessor(), SequenceDiagramPackage.eINSTANCE.getMessage_Predecessor());
       if (previousSourceMessage == null) {
-        impacted.add(m.getSource());
+        sliced.add(m.getSource());
       }
       // Get all descendants and ancestors of the target activation box.
       // Note: The original box is considered its own descendant and ancestor.
@@ -100,17 +100,17 @@ public class SDSlice extends Slice {
       // Get the next message related to the target activation box (if any).
       var nextTargetMessage = getMessage(targetBoxes, m.getSuccessor(), SequenceDiagramPackage.eINSTANCE.getMessage_Successor());
       if (nextTargetMessage != null) {
-        impacted.add(nextTargetMessage);
+        sliced.add(nextTargetMessage);
       }
       // Check if target activation box (or its descendants) has any preceding messages.
       var previousTargetMessage = getMessage(targetDescendants, m.getPredecessor(), SequenceDiagramPackage.eINSTANCE.getMessage_Predecessor());
       if (previousTargetMessage == null)  {
-        impacted.add(m.getTarget());
+        sliced.add(m.getTarget());
       }
     }
 
-    impacted.removeAll(alreadyImpacted);
-    return impacted;
+    sliced.removeAll(alreadySliced);
+    return sliced;
   }
 
   // Return the set of activation boxes that are ancestors of the input box (including itself).

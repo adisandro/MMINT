@@ -80,7 +80,7 @@ public class GSNSlice extends Slice {
     impactedAll.addAll(supportablesAll);
       for (var elem : supportablesCur) {
         // Add parents to impacted set if necessary.
-        if (isImpactPropagatedUp(elem, impactedAll)) {
+        if (isPropagatedUp(elem, impactedAll)) {
           for (var rel : elem.getSupports()) {
             supportablesNext.add(rel.getSource());
           }
@@ -118,7 +118,7 @@ public class GSNSlice extends Slice {
         if (ancestor instanceof Goal) {
           ancestors.add((Goal) ancestor);
         }
-        if (isImpactPropagatedUp(ancestor, alreadyImpacted2)) {
+        if (isPropagatedUp(ancestor, alreadyImpacted2)) {
           ancestorsNext.addAll(ancestor.getSupports().stream()
                                        .map(SupportedBy::getSource)
                                        .filter(a -> !alreadyImpacted2.contains(a))
@@ -133,14 +133,14 @@ public class GSNSlice extends Slice {
 
   // Determines whether a change impact is propagated up or not given the
   // source impacted element and a set of other impacted elements.
-  public boolean isImpactPropagatedUp(Supportable elem, Set<EObject> alreadyImpacted) {
+  public boolean isPropagatedUp(Supportable elem, Set<EObject> alreadyImpacted) {
 
     // If a core element is impacted, then its parents are also impacted.
     if (elem instanceof CoreElement) {
       return true;
     }
     // Count the number of children impacted.
-    boolean isImpactPropagated = false;
+    boolean isPropagated = false;
     int impactCount = 0;
     int totalCount = 0;
     for (var rel : elem.getSupportedBy()) {
@@ -150,7 +150,7 @@ public class GSNSlice extends Slice {
         impactCount += 1;
       }
       else if (target instanceof SupportConnector) {
-        if (isImpactPropagatedUp((SupportConnector) target, alreadyImpacted)) {
+        if (isPropagatedUp((SupportConnector) target, alreadyImpacted)) {
           impactCount += 1;
         }
       }
@@ -159,14 +159,14 @@ public class GSNSlice extends Slice {
     // impacted if any of its children are impacted.
     if ((elem instanceof AndSupporter) || (elem instanceof XorSupporter)) {
       if (impactCount >= 1) {
-        isImpactPropagated = true;
+        isPropagated = true;
       }
     }
     // If an OR-connector is impacted, then its parents are
     // impacted if all its children are impacted.
     else if (elem instanceof OrSupporter) {
       if (impactCount == totalCount) {
-        isImpactPropagated = true;
+        isPropagated = true;
       }
     }
     // If an M-of-N connector is impacted, then its parents are
@@ -174,10 +174,10 @@ public class GSNSlice extends Slice {
     else if (elem instanceof MofNSupporter) {
       var target = ((MofNSupporter) elem).getTarget();
       if (impactCount > totalCount - target) {
-        isImpactPropagated = true;
+        isPropagated = true;
       }
     }
 
-    return isImpactPropagated;
+    return isPropagated;
   }
 }

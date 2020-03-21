@@ -40,12 +40,13 @@ public class GSNSliceRevise2Content extends GSNSlice {
   // Get all model elements in a safety case that needs to be re-checked for
   // content validity given the input element that requires revision.
   @Override
-  protected Map<EObject, Set<EObject>> getAllImpactedElements(EObject critModelObj, Set<EObject> alreadyImpacted) {
-    var impacted = new HashMap<EObject, Set<EObject>>();
+  protected Map<EObject, EObject> getAllSlicedElements(EObject critModelObj, Set<EObject> alreadyImpacted) {
+    var impacted = new HashMap<EObject, EObject>();
+    impacted.put(critModelObj, null);
     alreadyImpacted.add(critModelObj);
     // Identify all elements (including supported-by connectors) that are
     // dependent on the revised element.
-    var impactedModelObjs = getDirectlyImpactedElements(critModelObj, alreadyImpacted);
+    var impactedModelObjs = getDirectlySlicedElements(critModelObj, alreadyImpacted);
     alreadyImpacted.addAll(impactedModelObjs);
     // Iterate through newly impacted supported-by connectors and check
     // whether their sources are impacted as well. Repeat the process
@@ -79,15 +80,14 @@ public class GSNSliceRevise2Content extends GSNSlice {
     // Remove supported-by connectors from the impacted elements.
     impactedModelObjs.removeIf(elem -> elem instanceof SupportConnector);
     // Return the impacted elements (excluding supported-by connectors).
-    impactedModelObjs.add(critModelObj);
-    impacted.put(critModelObj, impactedModelObjs);
+    impactedModelObjs.stream().forEach(i -> impacted.put(i, critModelObj));
 
     return impacted;
   }
 
   // Get impacted model elements directly reachable from the input element.
   @Override
-  protected Set<EObject> getDirectlyImpactedElements(EObject modelObj, Set<EObject> alreadyImpacted) {
+  protected Set<EObject> getDirectlySlicedElements(EObject modelObj, Set<EObject> alreadyImpacted) {
     var impacted = new HashSet<EObject>();
     // If input is a goal, then the following are potentially impacted:
     // 1) Any parent supportable (including supported-by connectors)
