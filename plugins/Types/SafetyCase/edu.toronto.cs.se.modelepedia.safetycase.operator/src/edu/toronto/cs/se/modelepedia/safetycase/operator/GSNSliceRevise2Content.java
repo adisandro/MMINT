@@ -19,6 +19,7 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 
+import edu.toronto.cs.se.mmint.operator.slice.Slice;
 import edu.toronto.cs.se.modelepedia.safetycase.ASILDecompositionStrategy;
 import edu.toronto.cs.se.modelepedia.safetycase.ArgumentElement;
 import edu.toronto.cs.se.modelepedia.safetycase.Assumption;
@@ -35,7 +36,7 @@ import edu.toronto.cs.se.modelepedia.safetycase.Strategy;
 import edu.toronto.cs.se.modelepedia.safetycase.SupportConnector;
 import edu.toronto.cs.se.modelepedia.safetycase.Supportable;
 
-public class GSNSliceRevise2Content extends GSNSlice {
+public class GSNSliceRevise2Content extends Slice {
 
   // Get all model elements in a safety case that needs to be re-checked for
   // content validity given the input element that requires revision.
@@ -58,7 +59,7 @@ public class GSNSliceRevise2Content extends GSNSlice {
       }
     }
     var connectorDependants = new HashSet<Supportable>();
-    for (var dependant : getConnectorDependants(connectors, alreadyImpacted)) {
+    for (var dependant : GSNUtils.getConnectorDependants(connectors, alreadyImpacted)) {
       if (dependant instanceof CoreElement) {
         connectorDependants.add(dependant);
       }
@@ -69,7 +70,7 @@ public class GSNSliceRevise2Content extends GSNSlice {
     var independenceGoals = new HashSet<IndependenceGoal>();
     for (var elem : impactedModelObjs) {
       if (elem instanceof ASILDecompositionStrategy) {
-        for (var child : getChildCoreElements((ASILDecompositionStrategy) elem)) {
+        for (var child : GSNUtils.getChildCoreElements((ASILDecompositionStrategy) elem)) {
           if (child instanceof IndependenceGoal) {
             independenceGoals.add((IndependenceGoal) child);
           }
@@ -94,7 +95,7 @@ public class GSNSliceRevise2Content extends GSNSlice {
     // 2) Any child core element (i.e. goal, strategy or solution).
     if (modelObj instanceof Goal) {
       var g = (Goal) modelObj;
-      var children = getChildCoreElements(g);
+      var children = GSNUtils.getChildCoreElements(g);
       var parents = new HashSet<Supportable>();
       for (var rel : g.getSupports()) {
         parents.add(rel.getSource());
@@ -107,7 +108,7 @@ public class GSNSliceRevise2Content extends GSNSlice {
     // 3) Any contexts and justifications connected to it.
     else if (modelObj instanceof Strategy) {
       var s = (Strategy) modelObj;
-      var children = getChildCoreElements(s);
+      var children = GSNUtils.getChildCoreElements(s);
       var contexts = new HashSet<ContextualElement>();
       for (var rel : s.getInContextOf()) {
         contexts.add(rel.getContext());
@@ -170,7 +171,7 @@ public class GSNSliceRevise2Content extends GSNSlice {
         if (curElem instanceof DecomposableCoreElement) {
           var d = (DecomposableCoreElement) curElem;
           if (d.getSupportedBy() != null) {
-            descendantsNext.addAll(getChildCoreElements(d));
+            descendantsNext.addAll(GSNUtils.getChildCoreElements(d));
           }
           if (d.getInContextOf() != null) {
             for (var rel : d.getInContextOf()) {

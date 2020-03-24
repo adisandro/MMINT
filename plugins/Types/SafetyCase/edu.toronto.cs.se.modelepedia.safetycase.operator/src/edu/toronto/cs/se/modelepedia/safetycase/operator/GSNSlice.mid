@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mid:MID xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mid="http://se.cs.toronto.edu/mmint/MID" xmlns:relationship="http://se.cs.toronto.edu/mmint/MID/Relationship" level="WORKFLOWS">
+  <models xsi:type="relationship:ModelRel" uri="criterionDM" name="criterionDM" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/modelepedia/GSNRel" dynamic="true" origin="CREATED" fileExtension="">
+    <modelEndpoints uri="" name="w0" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/modelepedia/GSNRel-GSN/GSNEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.2"/>
+  </models>
+  <models xsi:type="relationship:ModelRel" uri="criterionD" name="criterionD" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/modelepedia/GSNRel" dynamic="true" origin="CREATED" fileExtension="">
+    <modelEndpoints uri="" name="w0" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/modelepedia/GSNRel-GSN/GSNEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.2"/>
+  </models>
+  <models uri="gsn" name="gsn" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/modelepedia/GSN" dynamic="true" origin="CREATED" fileExtension="safetycase"/>
+  <models xsi:type="relationship:ModelRel" uri="state1" name="state1" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/modelepedia/GSNRel" dynamic="true" origin="CREATED" fileExtension="">
+    <modelEndpoints uri="" name="gsn" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/modelepedia/GSNRel-GSN/GSNEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.2"/>
+  </models>
+  <models xsi:type="relationship:ModelRel" uri="state2" name="state2" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/modelepedia/GSNRel" dynamic="true" origin="CREATED" fileExtension="">
+    <modelEndpoints uri="" name="gsn" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/modelepedia/GSNRel-GSN/GSNEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.2"/>
+  </models>
+  <models xsi:type="relationship:ModelRel" uri="recheckState" name="recheckState" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/modelepedia/GSNRel" dynamic="true" origin="CREATED" fileExtension="">
+    <modelEndpoints uri="" name="gsn" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/modelepedia/GSNRel-GSN/GSNEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.2"/>
+  </models>
+  <models xsi:type="relationship:ModelRel" uri="content" name="content" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/modelepedia/GSNRel" dynamic="true" origin="CREATED" fileExtension="">
+    <modelEndpoints uri="" name="gsn" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/modelepedia/GSNRel-GSN/GSNEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.2"/>
+  </models>
+  <models xsi:type="relationship:ModelRel" uri="recheckContent" name="recheckContent" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/modelepedia/GSNRel" dynamic="true" origin="CREATED" fileExtension="">
+    <modelEndpoints uri="" name="gsn" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/modelepedia/GSNRel-GSN/GSNEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.2"/>
+  </models>
+  <models xsi:type="relationship:ModelRel" uri="revise" name="revise" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/modelepedia/GSNRel" dynamic="true" origin="CREATED" fileExtension="">
+    <modelEndpoints uri="" name="gsn" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/modelepedia/GSNRel-GSN/GSNEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.2"/>
+  </models>
+  <operators uri="" name="GSNSliceRevise2State" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/modelepedia/Operator_GSNSliceRevise2State" dynamic="true">
+    <inputs uri="" name="criterion" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/modelepedia/Operator_GSNSliceRevise2State-GSNRel/criterion" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1"/>
+    <outputs uri="" name="slice" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/modelepedia/Operator_GSNSliceRevise2State-GSNRel/slice" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3"/>
+  </operators>
+  <operators uri="" name="ModelRelMerge" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_ModelRelMerge" dynamic="true">
+    <inputs uri="" name="rel1" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_ModelRelMerge/rel1" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0"/>
+    <inputs uri="" name="rel2" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_ModelRelMerge/rel2" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3"/>
+    <outputs uri="" name="merged" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_ModelRelMerge/merged" dynamic="true" lowerBound="1" upperBound="1" target="//@models.4"/>
+  </operators>
+  <operators uri="" name="GSNSliceRecheck" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/modelepedia/Operator_GSNSliceRecheck" dynamic="true">
+    <inputs uri="" name="criterion" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/modelepedia/Operator_GSNSliceRecheck-GSNRel/criterion" dynamic="true" lowerBound="1" upperBound="1" target="//@models.4"/>
+    <outputs uri="" name="slice" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/modelepedia/Operator_GSNSliceRecheck-GSNRel/slice" dynamic="true" lowerBound="1" upperBound="1" target="//@models.5"/>
+  </operators>
+  <operators uri="" name="GSNSliceRevise2Content" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/modelepedia/Operator_GSNSliceRevise2Content" dynamic="true">
+    <inputs uri="" name="criterion" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/modelepedia/Operator_GSNSliceRevise2Content-GSNRel/criterion" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1"/>
+    <outputs uri="" name="slice" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/modelepedia/Operator_GSNSliceRevise2Content-GSNRel/slice" dynamic="true" lowerBound="1" upperBound="1" target="//@models.6"/>
+  </operators>
+  <operators uri="" name="ModelRelMerge" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_ModelRelMerge" dynamic="true">
+    <inputs uri="" name="rel1" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_ModelRelMerge/rel1" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0"/>
+    <inputs uri="" name="rel2" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_ModelRelMerge/rel2" dynamic="true" lowerBound="1" upperBound="1" target="//@models.6"/>
+    <outputs uri="" name="merged" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_ModelRelMerge/merged" dynamic="true" lowerBound="1" upperBound="1" target="//@models.7"/>
+  </operators>
+  <operators uri="" name="Identity" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_Identity" dynamic="true">
+    <inputs uri="" name="model" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_Identity/model" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1"/>
+    <outputs uri="" name="sameModel" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_Identity/sameModel" dynamic="true" lowerBound="1" upperBound="1" target="//@models.8"/>
+  </operators>
+  <extendibleTable key="criterionDM" value="//@models.0"/>
+  <extendibleTable key="criterionD" value="//@models.1"/>
+  <extendibleTable key="gsn" value="//@models.2"/>
+  <extendibleTable key="recheckState" value="//@models.5"/>
+  <extendibleTable key="recheckContent" value="//@models.7"/>
+  <extendibleTable key="revise" value="//@models.8"/>
+  <extendibleTable key="content" value="//@models.6"/>
+  <extendibleTable key="state1" value="//@models.3"/>
+  <extendibleTable key="state2" value="//@models.4"/>
+</mid:MID>

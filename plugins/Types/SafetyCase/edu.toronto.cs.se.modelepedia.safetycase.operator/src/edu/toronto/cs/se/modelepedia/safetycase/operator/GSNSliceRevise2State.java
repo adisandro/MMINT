@@ -20,12 +20,13 @@ import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
 
+import edu.toronto.cs.se.mmint.operator.slice.Slice;
 import edu.toronto.cs.se.modelepedia.safetycase.Goal;
 import edu.toronto.cs.se.modelepedia.safetycase.Strategy;
 import edu.toronto.cs.se.modelepedia.safetycase.Supportable;
 import edu.toronto.cs.se.modelepedia.safetycase.SupportedBy;
 
-public class GSNSliceRevise2State extends GSNSlice {
+public class GSNSliceRevise2State extends Slice {
 
   @Override
   protected Map<EObject, EObject> getAllSlicedElements(EObject critModelObj, Set<EObject> alreadySliced) {
@@ -65,7 +66,7 @@ public class GSNSliceRevise2State extends GSNSlice {
 
     // propagate to supported ancestors
     if (modelObj instanceof Supportable) {
-      if (isPropagatedUp((Supportable) modelObj, alreadyPropagated)) {
+      if (GSNUtils.isPropagatedUp((Supportable) modelObj, alreadyPropagated)) {
         var supported = ((Supportable) modelObj).getSupports().stream()
                                                 .map(SupportedBy::getSource)
                                                 .filter(s -> !alreadyPropagated.contains(s))

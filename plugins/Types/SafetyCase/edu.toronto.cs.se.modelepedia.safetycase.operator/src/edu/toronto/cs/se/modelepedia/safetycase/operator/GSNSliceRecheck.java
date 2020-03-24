@@ -17,11 +17,12 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 
+import edu.toronto.cs.se.mmint.operator.slice.Slice;
 import edu.toronto.cs.se.modelepedia.safetycase.CoreElement;
 import edu.toronto.cs.se.modelepedia.safetycase.Goal;
 import edu.toronto.cs.se.modelepedia.safetycase.Solution;
 
-public class GSNSliceRecheck extends GSNSlice {
+public class GSNSliceRecheck extends Slice {
 
   @Override
   protected Set<EObject> getDirectlySlicedElements(EObject modelObj, Set<EObject> alreadyImpacted) {
@@ -29,7 +30,7 @@ public class GSNSliceRecheck extends GSNSlice {
 
     // If input is a goal or a solution, then the state validity of all ancestor goals should be rechecked.
     if (modelObj instanceof Goal || modelObj instanceof Solution) {
-      impacted.addAll(getAncestorGoals((CoreElement) modelObj, alreadyImpacted));
+      impacted.addAll(GSNUtils.getAncestorGoals((CoreElement) modelObj, alreadyImpacted));
     }
 
     impacted.removeAll(alreadyImpacted);

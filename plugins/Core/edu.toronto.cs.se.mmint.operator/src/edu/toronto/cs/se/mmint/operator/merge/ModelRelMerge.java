@@ -125,6 +125,7 @@ public class ModelRelMerge extends OperatorImpl {
 
             Input input = new Input(inputsByName);
             ModelRel mergedRel = (ModelRel) outputsByName.get(ModelRelMerge.OUT_MODELREL);
+            mergedRel.setMetatypeUri(input.rel1.getMetatypeUri());
             Map<ModelRel, List<Model>> validOutputs = new HashMap<>();
             List<Model> endpointModels = new ArrayList<>();
             endpointModels.add(input.model1);
