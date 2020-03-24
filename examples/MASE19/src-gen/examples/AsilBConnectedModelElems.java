@@ -670,7 +670,7 @@ public final class AsilBConnectedModelElems extends BaseGeneratedEMFQuerySpecifi
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private static final AsilBConnectedModelElems.GeneratedPQuery INSTANCE = new GeneratedPQuery();
     
-    private final PParameter parameter_goal = new PParameter("goal", "edu.toronto.cs.se.modelepedia.safetycase.Goal", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://se.cs.toronto.edu/modelepedia/SafetyCase", "Goal")), PParameterDirection.INOUT);
+    private final PParameter parameter_goal = new PParameter("goal", "edu.toronto.cs.se.modelepedia.safetycase.Goal", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://se.cs.toronto.edu/modelepedia/GSN", "Goal")), PParameterDirection.INOUT);
     
     private final PParameter parameter_modelElem = new PParameter("modelElem", "edu.toronto.cs.se.mmint.mid.ModelElement", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://se.cs.toronto.edu/mmint/MID", "ModelElement")), PParameterDirection.INOUT);
     
@@ -706,7 +706,7 @@ public final class AsilBConnectedModelElems extends BaseGeneratedEMFQuerySpecifi
           PVariable var_goalId = body.getOrCreateVariableByName("goalId");
           PVariable var_goalElem = body.getOrCreateVariableByName("goalElem");
           PVariable var_goalName = body.getOrCreateVariableByName("goalName");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_goal), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://se.cs.toronto.edu/modelepedia/SafetyCase", "Goal")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_goal), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://se.cs.toronto.edu/modelepedia/GSN", "Goal")));
           new TypeConstraint(body, Tuples.flatTupleOf(var_modelElem), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://se.cs.toronto.edu/mmint/MID", "ModelElement")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
              new ExportedParameter(body, var_goal, parameter_goal),
@@ -715,18 +715,18 @@ public final class AsilBConnectedModelElems extends BaseGeneratedEMFQuerySpecifi
           //   Goal.asil.value(goal, ASILLevel::B)
           PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
           new ConstantValue(body, var__virtual_0_, edu.toronto.cs.se.modelepedia.safetycase.ASILLevel.get("B"));
-          new TypeConstraint(body, Tuples.flatTupleOf(var_goal), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://se.cs.toronto.edu/modelepedia/SafetyCase", "Goal")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_goal), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://se.cs.toronto.edu/modelepedia/GSN", "Goal")));
           PVariable var__virtual_1_ = body.getOrCreateVariableByName(".virtual{1}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_goal, var__virtual_1_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://se.cs.toronto.edu/modelepedia/SafetyCase", "ASILfulElement", "asil")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_1_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://se.cs.toronto.edu/modelepedia/SafetyCase", "ASIL")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_goal, var__virtual_1_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://se.cs.toronto.edu/modelepedia/GSN", "ASILfulElement", "asil")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_1_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://se.cs.toronto.edu/modelepedia/GSN", "ASIL")));
           PVariable var__virtual_2_ = body.getOrCreateVariableByName(".virtual{2}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_1_, var__virtual_2_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://se.cs.toronto.edu/modelepedia/SafetyCase", "ASIL", "value")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_2_), new EDataTypeInSlotsKey((EDataType)getClassifierLiteral("http://se.cs.toronto.edu/modelepedia/SafetyCase", "ASILLevel")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_1_, var__virtual_2_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://se.cs.toronto.edu/modelepedia/GSN", "ASIL", "value")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_2_), new EDataTypeInSlotsKey((EDataType)getClassifierLiteral("http://se.cs.toronto.edu/modelepedia/GSN", "ASILLevel")));
           new Equality(body, var__virtual_2_, var__virtual_0_);
           //   Goal.id(goal, goalId)
-          new TypeConstraint(body, Tuples.flatTupleOf(var_goal), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://se.cs.toronto.edu/modelepedia/SafetyCase", "Goal")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_goal), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://se.cs.toronto.edu/modelepedia/GSN", "Goal")));
           PVariable var__virtual_3_ = body.getOrCreateVariableByName(".virtual{3}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_goal, var__virtual_3_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://se.cs.toronto.edu/modelepedia/SafetyCase", "ArgumentElement", "id")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_goal, var__virtual_3_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://se.cs.toronto.edu/modelepedia/GSN", "ArgumentElement", "id")));
           new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_3_), new EDataTypeInSlotsKey((EDataType)getClassifierLiteral("http://www.eclipse.org/emf/2002/Ecore", "EString")));
           new Equality(body, var__virtual_3_, var_goalId);
           //   ModelElement.name(goalElem, goalName)

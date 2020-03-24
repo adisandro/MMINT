@@ -1,6 +1,6 @@
 import 'http://se.cs.toronto.edu/mmint/MID'
 import 'http://se.cs.toronto.edu/modelepedia/ClassDiagram'
-import 'http://se.cs.toronto.edu/modelepedia/SafetyCase'
+import 'http://se.cs.toronto.edu/modelepedia/GSN'
 
 context mid::ModelElement
 

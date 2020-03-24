@@ -25,12 +25,12 @@
    <extension
          point="edu.toronto.cs.se.mmint.editors">
       <editorType
-            modelTypeUri="http://se.cs.toronto.edu/modelepedia/SafetyCase"
+            modelTypeUri="http://se.cs.toronto.edu/modelepedia/GSN"
             id="edu.toronto.cs.se.modelepedia.safetycase.design"
             isDiagram="true">
          <type
-               name="SafetyCase Viewpoint"
-               uri="SafetyCaseRepresentation">
+               name="GSN Representation"
+               uri="http://se.cs.toronto.edu/modelepedia/Representation_GSN">
          </type>
       </editorType>
    </extension>

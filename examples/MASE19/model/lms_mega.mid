@@ -1365,7 +1365,7 @@
       <modelElemEndpointRefs referencedObject="//@models.16/@mappings.14/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.16/@modelEndpointRefs.1/@modelElemRefs.14"/>
     </mappingRefs>
   </models>
-  <models uri="/MASE19/model/lms_sc.safetycase" name="lms_sc" metatypeUri="http://se.cs.toronto.edu/modelepedia/SafetyCase" dynamic="true" fileExtension="safetycase" editors="//@editors.9">
+  <models uri="/MASE19/model/lms_sc.safetycase" name="lms_sc" metatypeUri="http://se.cs.toronto.edu/modelepedia/GSN" dynamic="true" fileExtension="safetycase" editors="//@editors.9">
     <modelElems uri="/MASE19/model/lms_sc.safetycase#//@goals.0_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Basic Goal G0" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="BasicGoal" featureName="goals" relatedClassName="SafetyCase"/>
     </modelElems>
@@ -1850,7 +1850,7 @@
   <editors uri="/MASE19/model/lms_state_lms.statemachine" name="StateMachine tree for model /MASE19/model/lms_state_lms.statemachine" metatypeUri="http://se.cs.toronto.edu/modelepedia/Tree_StateMachine" dynamic="true" modelUri="/MASE19/model/lms_state_lms.statemachine" id="edu.toronto.cs.se.modelepedia.statemachine.presentation.StateMachineEditorID" wizardId="edu.toronto.cs.se.modelepedia.statemachine.presentation.StateMachineModelWizardID">
     <fileExtensions>statemachine</fileExtensions>
   </editors>
-  <editors xsi:type="editor:Diagram" uri="/MASE19/representations.aird#_8SXUYGgvEeihGP6yb4cCyQ" name="SafetyCase Viewpoint for model /MASE19/model/lms_sc.safetycase" metatypeUri="SafetyCaseRepresentation" dynamic="true" modelUri="/MASE19/model/lms_sc.safetycase" id="edu.toronto.cs.se.modelepedia.safetycase.design">
+  <editors xsi:type="editor:Diagram" uri="/MASE19/representations.aird#_8SXUYGgvEeihGP6yb4cCyQ" name="GSN Representation for model /MASE19/model/lms_sc.safetycase" metatypeUri="http://se.cs.toronto.edu/modelepedia/Representation_GSN" dynamic="true" modelUri="/MASE19/model/lms_sc.safetycase" id="edu.toronto.cs.se.modelepedia.safetycase.design">
     <fileExtensions>aird</fileExtensions>
   </editors>
   <extendibleTable key="/MASE19/model/lms_cd.classdiagram" value="//@models.0"/>

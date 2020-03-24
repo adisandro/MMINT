@@ -51,7 +51,7 @@ public interface SafetyCasePackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://se.cs.toronto.edu/modelepedia/SafetyCase";
+	String eNS_URI = "http://se.cs.toronto.edu/modelepedia/GSN";
 
 	/**
 	 * The package namespace name.

@@ -43,15 +43,16 @@
             contributorClass="edu.toronto.cs.se.modelepedia.safetycase.presentation.SafetyCaseActionBarContributor">
       </editor>
    </extension>
+
    <extension
          point="edu.toronto.cs.se.mmint.editors">
       <editorType
             id="edu.toronto.cs.se.modelepedia.safetycase.presentation.SafetyCaseEditorID"
-            modelTypeUri="http://se.cs.toronto.edu/modelepedia/SafetyCase"
+            modelTypeUri="http://se.cs.toronto.edu/modelepedia/GSN"
             wizardId="edu.toronto.cs.se.modelepedia.safetycase.presentation.SafetyCaseModelWizardID">
          <type
-               name="SafetyCase Editor"
-               uri="http://se.cs.toronto.edu/modelepedia/Editor_SafetyCase">
+               name="GSN Editor"
+               uri="http://se.cs.toronto.edu/modelepedia/Editor_GSN">
          </type>
       </editorType>
    </extension>

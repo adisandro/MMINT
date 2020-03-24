@@ -19,7 +19,7 @@
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <!-- @generated safetycase -->
       <factory
-            uri="http://se.cs.toronto.edu/modelepedia/SafetyCase"
+            uri="http://se.cs.toronto.edu/modelepedia/GSN"
             class="edu.toronto.cs.se.modelepedia.safetycase.provider.SafetyCaseItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
