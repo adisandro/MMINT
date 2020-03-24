@@ -53,8 +53,8 @@
          </modelType>
          <modelTypeEndpoint>
             <type
-                  name="SCEndpoint"
-                  uri="http://se.cs.toronto.edu/modelepedia/GSNRel-SafetyCase/SCEndpoint">
+                  name="GSNEndpoint"
+                  uri="http://se.cs.toronto.edu/modelepedia/GSNRel-GSN/GSNEndpoint">
             </type>
             <typeEndpoint
                   lowerBound="0"
