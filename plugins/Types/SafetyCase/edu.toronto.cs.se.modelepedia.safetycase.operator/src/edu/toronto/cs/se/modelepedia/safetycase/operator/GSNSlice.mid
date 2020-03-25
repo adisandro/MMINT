@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mid:MID xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mid="http://se.cs.toronto.edu/mmint/MID" xmlns:relationship="http://se.cs.toronto.edu/mmint/MID/Relationship" level="WORKFLOWS">
-  <models xsi:type="relationship:ModelRel" uri="criterionDM" name="criterionDM" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/modelepedia/GSNRel" dynamic="true" origin="CREATED" fileExtension="">
+  <models xsi:type="relationship:ModelRel" uri="criterionMD" name="criterionMD" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/modelepedia/GSNRel" dynamic="true" origin="CREATED" fileExtension="">
     <modelEndpoints uri="" name="w0" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/modelepedia/GSNRel-GSN/GSNEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.2"/>
   </models>
   <models xsi:type="relationship:ModelRel" uri="criterionD" name="criterionD" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/modelepedia/GSNRel" dynamic="true" origin="CREATED" fileExtension="">
@@ -51,7 +51,6 @@
     <inputs uri="" name="model" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_Identity/model" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1"/>
     <outputs uri="" name="sameModel" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_Identity/sameModel" dynamic="true" lowerBound="1" upperBound="1" target="//@models.8"/>
   </operators>
-  <extendibleTable key="criterionDM" value="//@models.0"/>
   <extendibleTable key="criterionD" value="//@models.1"/>
   <extendibleTable key="gsn" value="//@models.2"/>
   <extendibleTable key="recheckState" value="//@models.5"/>
@@ -60,4 +59,5 @@
   <extendibleTable key="content" value="//@models.6"/>
   <extendibleTable key="state1" value="//@models.3"/>
   <extendibleTable key="state2" value="//@models.4"/>
+  <extendibleTable key="criterionMD" value="//@models.0"/>
 </mid:MID>

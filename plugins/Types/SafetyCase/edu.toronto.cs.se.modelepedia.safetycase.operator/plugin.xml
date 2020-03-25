@@ -235,4 +235,64 @@
       </operatorType>
    </extension>   
 
+   <extension
+         point="edu.toronto.cs.se.mmint.operators">
+      <operatorType>
+         <type
+               name="SafetySlice"
+               uri="http://se.cs.toronto.edu/modelepedia/Operator_GSNSlice"
+               class="edu.toronto.cs.se.modelepedia.safetycase.operator.GSNSlice">
+         </type>
+         <inputs>
+            <parameter>
+             <type
+                   name="criterionMD"
+                   uri="http://se.cs.toronto.edu/modelepedia/Operator_GSNSlice-GSNRel/criterionMD">
+             </type>
+             <typeEndpoint
+                   targetTypeUri="http://se.cs.toronto.edu/modelepedia/GSNRel">
+             </typeEndpoint>
+            </parameter>
+            <parameter>
+             <type
+                   name="criterionD"
+                   uri="http://se.cs.toronto.edu/modelepedia/Operator_GSNSlice-GSNRel/criterionD">
+             </type>
+             <typeEndpoint
+                   targetTypeUri="http://se.cs.toronto.edu/modelepedia/GSNRel">
+             </typeEndpoint>
+            </parameter>
+         </inputs>
+         <outputs>
+            <parameter>
+             <type
+                   name="recheckState"
+                   uri="http://se.cs.toronto.edu/modelepedia/Operator_GSNSlice-GSNRel/recheckState">
+             </type>
+             <typeEndpoint
+                   targetTypeUri="http://se.cs.toronto.edu/modelepedia/GSNRel">
+             </typeEndpoint>
+            </parameter>
+            <parameter>
+             <type
+                   name="recheckContent"
+                   uri="http://se.cs.toronto.edu/modelepedia/Operator_GSNSlice-GSNRel/recheckContent">
+             </type>
+             <typeEndpoint
+                   targetTypeUri="http://se.cs.toronto.edu/modelepedia/GSNRel">
+             </typeEndpoint>
+            </parameter>
+            <parameter>
+             <type
+                   name="revise"
+                   uri="http://se.cs.toronto.edu/modelepedia/Operator_GSNSlice-GSNRel/revise">
+             </type>
+             <typeEndpoint
+                   targetTypeUri="http://se.cs.toronto.edu/modelepedia/GSNRel">
+             </typeEndpoint>
+            </parameter>
+         </outputs>
+      </operatorType>
+   </extension>
+
 </plugin>

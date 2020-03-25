@@ -23,7 +23,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.gmf.runtime.notation.Diagram;
@@ -162,7 +161,7 @@ public class Map extends NestingOperatorImpl {
     MID mapperMID = super.getNestedInstanceMID();
     // start operator types
     java.util.Map<String, Set<Model>> midrelEndpointModelsByOutputName = new HashMap<>();
-    EList<Model> mapperShortcutModels = new BasicEList<>();
+    var mapperShortcutModels = new HashSet<Model>();
     for (Entry<Operator, Set<EList<OperatorInput>>> mapperSpec : mapperSpecs.entrySet()) {
       Operator mapper = mapperSpec.getKey();
       for (EList<OperatorInput> mapperInputs : mapperSpec.getValue()) {

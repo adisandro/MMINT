@@ -15,14 +15,14 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Properties;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -87,7 +87,7 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
    * @generated
    * @ordered
    */
-    protected String nestedMIDPath = NESTED_MID_PATH_EDEFAULT;
+    protected String nestedMIDPath = NestingOperatorImpl.NESTED_MID_PATH_EDEFAULT;
 
     /**
      * The nested MID, kept in memory for performance reasons (different from
@@ -133,7 +133,7 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
    */
     @Override
     public String getNestedMIDPath() {
-    return nestedMIDPath;
+    return this.nestedMIDPath;
   }
 
     /**
@@ -143,10 +143,10 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
    */
     @Override
     public void setNestedMIDPath(String newNestedMIDPath) {
-    String oldNestedMIDPath = nestedMIDPath;
-    nestedMIDPath = newNestedMIDPath;
+    String oldNestedMIDPath = this.nestedMIDPath;
+    this.nestedMIDPath = newNestedMIDPath;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.NESTING_OPERATOR__NESTED_MID_PATH, oldNestedMIDPath, nestedMIDPath));
+      eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.NESTING_OPERATOR__NESTED_MID_PATH, oldNestedMIDPath, this.nestedMIDPath));
   }
 
     /**
@@ -187,7 +187,7 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
     public void eUnset(int featureID) {
     switch (featureID) {
       case OperatorPackage.NESTING_OPERATOR__NESTED_MID_PATH:
-        setNestedMIDPath(NESTED_MID_PATH_EDEFAULT);
+        setNestedMIDPath(NestingOperatorImpl.NESTED_MID_PATH_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -202,7 +202,7 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
     public boolean eIsSet(int featureID) {
     switch (featureID) {
       case OperatorPackage.NESTING_OPERATOR__NESTED_MID_PATH:
-        return NESTED_MID_PATH_EDEFAULT == null ? nestedMIDPath != null : !NESTED_MID_PATH_EDEFAULT.equals(nestedMIDPath);
+        return NestingOperatorImpl.NESTED_MID_PATH_EDEFAULT == null ? this.nestedMIDPath != null : !NestingOperatorImpl.NESTED_MID_PATH_EDEFAULT.equals(this.nestedMIDPath);
     }
     return super.eIsSet(featureID);
   }
@@ -245,7 +245,7 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
 
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (nestedMIDPath: ");
-    result.append(nestedMIDPath);
+    result.append(this.nestedMIDPath);
     result.append(')');
     return result.toString();
   }
@@ -353,7 +353,7 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
      *             If this is not an operator instance, or if this operator was created without a nested Instance MID.
      * @generated NOT
      */
-    protected void createNestedInstanceMIDModelShortcuts(@NonNull List<Model> models) throws MMINTException {
+    protected void createNestedInstanceMIDModelShortcuts(@NonNull Set<Model> models) throws MMINTException {
 
         MMINTException.mustBeInstance(this);
 
@@ -370,32 +370,33 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
         Model midModelType = MIDTypeRegistry.getMIDModelType();
         String midDiagramPluginId = MIDTypeRegistry.getTypeBundle(MIDTypeRegistry.getMIDDiagramType().getUri()).getSymbolicName();
         IViewProvider midViewProvider = MIDTypeRegistry.getCachedMIDViewProvider();
-        // models first, then model rels
-        for (Model model : models) {
-            if (model instanceof BinaryModelRel) {
+        // models first, then rels
+        // TODO MMINT[NESTED] Is it really needed?
+        for (var model : models) {
+            if (model instanceof ModelRel) {
                 continue;
             }
-            GMFUtils.createGMFNodeShortcut(
-                model,
-                nestedMIDDiagramRoot,
-                midDiagramPluginId,
-                midModelType.getName(),
-                midViewProvider);
-            if (model instanceof Model) {
-                nestedMID.getExtendibleTable().put(model.getUri(), model);
-            }
+            GMFUtils.createGMFNodeShortcut(model, nestedMIDDiagramRoot, midDiagramPluginId, midModelType.getName(),
+                                           midViewProvider);
+            nestedMID.getExtendibleTable().put(model.getUri(), model);
         }
-        for (Model binaryModelRel : models) {
-            if (!(binaryModelRel instanceof BinaryModelRel)) {
+        for (var modelRel : models) {
+            if (!(modelRel instanceof ModelRel)) {
                 continue;
             }
-            // gmf shortcuts can't be created for links, fake the shortcut as an nary rel
-            String gmfTypeHint = GMFUtils.getGMFRegistryType(RelationshipFactory.eINSTANCE.createModelRel(), midDiagramPluginId + ".TypeContext");
-            Node gmfNode = (midViewProvider == null) ?
-                ViewService.createNode(nestedMIDDiagramRoot, binaryModelRel, gmfTypeHint, new PreferencesHint(midDiagramPluginId)) :
-                midViewProvider.createNode(new EObjectAdapter(binaryModelRel), nestedMIDDiagramRoot, gmfTypeHint, -1, true, new PreferencesHint(midDiagramPluginId));
-            GMFUtils.addGMFShortcut(gmfNode, midModelType.getName());
-            //TODO MMINT[NESTED] Can't create model rel endpoints, but maybe can use some simple connectors
+            if (modelRel instanceof BinaryModelRel) {
+                // gmf shortcuts can't be created for links, fake the shortcut as an nary rel
+                String gmfTypeHint = GMFUtils.getGMFRegistryType(RelationshipFactory.eINSTANCE.createModelRel(), midDiagramPluginId + ".TypeContext");
+                Node gmfNode = (midViewProvider == null) ?
+                    ViewService.createNode(nestedMIDDiagramRoot, modelRel, gmfTypeHint, new PreferencesHint(midDiagramPluginId)) :
+                    midViewProvider.createNode(new EObjectAdapter(modelRel), nestedMIDDiagramRoot, gmfTypeHint, -1, true, new PreferencesHint(midDiagramPluginId));
+                GMFUtils.addGMFShortcut(gmfNode, midModelType.getName());
+                //TODO MMINT[NESTED] Can't create model rel endpoints, but maybe can use some simple connectors
+            }
+            else {
+                GMFUtils.createGMFNodeShortcut(modelRel, nestedMIDDiagramRoot, midDiagramPluginId,
+                                               midModelType.getName(), midViewProvider);
+            }
         }
     }
 
@@ -449,7 +450,7 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
         }
 
         if (nestedMID != null) {
-            this.createNestedInstanceMIDModelShortcuts(new ArrayList<>(nestedToCopiedModels.values()));
+            this.createNestedInstanceMIDModelShortcuts(new HashSet<>(nestedToCopiedModels.values()));
         }
 
         return nestedToCopiedModels;
@@ -492,10 +493,9 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
         // create shortcuts to input models
         String nestedMIDPath = this.getNestedMIDPath();
         if (nestedMIDPath != null) {
-            EList<Model> inputModels = ECollections.toEList(
-                inputs.stream()
-                    .map(OperatorInput::getModel)
-                    .collect(Collectors.toList()));
+            var inputModels = inputs.stream()
+                .map(OperatorInput::getModel)
+                .collect(Collectors.toSet());
             this.createNestedInstanceMIDModelShortcuts(inputModels);
         }
         // run nested operator

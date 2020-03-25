@@ -35,7 +35,7 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 
-import edu.toronto.cs.se.mmint.MMINT;
+import edu.toronto.cs.se.mmint.MMINTConstants;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
@@ -54,7 +54,6 @@ import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementEndpointReferen
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
-import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.ui.GMFUtils;
 
 /**
@@ -206,7 +205,7 @@ public class MIDRegistry {
 
 	public static @NonNull String getModelUri(@NonNull String modelObjUri) {
 
-	    int sep = modelObjUri.lastIndexOf(MMINT.MODEL_URI_SEPARATOR);
+	    int sep = modelObjUri.lastIndexOf(MMINTConstants.MODEL_URI_SEPARATOR);
 	    if (sep == -1) {
 	        return modelObjUri;
 	    }
@@ -225,8 +224,8 @@ public class MIDRegistry {
 				modelObj = ((PrimitiveEObjectWrapper) modelObj).getOwner();
 			}
 			String emfUri = EcoreUtil.getURI(modelObj).toString();
-			if (emfUri.startsWith(RESOURCE_URI_PREFIX)) {
-				emfUri = emfUri.substring(RESOURCE_URI_PREFIX.length());
+			if (emfUri.startsWith(MIDRegistry.RESOURCE_URI_PREFIX)) {
+				emfUri = emfUri.substring(MIDRegistry.RESOURCE_URI_PREFIX.length());
 			}
 			modelUri = MIDRegistry.getModelUri(emfUri);
 		}
@@ -240,7 +239,7 @@ public class MIDRegistry {
 		String emfUri = EcoreUtil.getURI(modelObj).toString();
 		if (modelObj instanceof EClass) { // MIDLevel.TYPES
 			String metamodelUri = MIDRegistry.getModelUri(modelObj);
-			modelElemUri = metamodelUri + MMINT.ECORE_MODEL_URI_SEPARATOR + emfUri.substring(emfUri.indexOf(MMINT.ECORE_MODEL_URI_SEPARATOR)+MMINT.ECORE_MODEL_URI_SEPARATOR.length());
+			modelElemUri = metamodelUri + MMINTConstants.ECORE_MODEL_URI_SEPARATOR + emfUri.substring(emfUri.indexOf(MMINTConstants.ECORE_MODEL_URI_SEPARATOR)+MMINTConstants.ECORE_MODEL_URI_SEPARATOR.length());
 		}
 		else { // MIDLevel.INSTANCES
 			String attributeFeatureName = null;
@@ -248,12 +247,12 @@ public class MIDRegistry {
 				attributeFeatureName = ((PrimitiveEObjectWrapper) modelObj).getFeature().getName();
 				modelObj = ((PrimitiveEObjectWrapper) modelObj).getOwner();
 			}
-			if (emfUri.startsWith(RESOURCE_URI_PREFIX)) {
-				emfUri = emfUri.substring(RESOURCE_URI_PREFIX.length());
+			if (emfUri.startsWith(MIDRegistry.RESOURCE_URI_PREFIX)) {
+				emfUri = emfUri.substring(MIDRegistry.RESOURCE_URI_PREFIX.length());
 			}
 			modelElemUri = emfUri;
 			if (attributeFeatureName != null) {
-				modelElemUri += MMINT.URI_SEPARATOR + attributeFeatureName;
+				modelElemUri += MMINTConstants.URI_SEPARATOR + attributeFeatureName;
 			}
 		}
 
@@ -263,7 +262,7 @@ public class MIDRegistry {
 	//TODO MMINT[OO] Remove when switching to ModelElementIntermediate owned by ModelElementReference
     public static @NonNull String getModelObjectUri(@NonNull ModelElement modelElem) {
 
-        return modelElem.getUri().substring(0, modelElem.getUri().indexOf(MMINT.ROLE_SEPARATOR));
+        return modelElem.getUri().substring(0, modelElem.getUri().indexOf(MMINTConstants.ROLE_SEPARATOR));
     }
 
 	//TODO MMINT[MODELELEMENT] some info here are redundant and/or misplaced, review EMFInfo
@@ -286,7 +285,7 @@ public class MIDRegistry {
 					relatedClassName = modelObj.eContainer().eClass().getName();
 				}
 				else {
-					featureName = ECORE_ROOT_FEATURE;
+					featureName = MIDRegistry.ECORE_ROOT_FEATURE;
 				}
 			}
 		}
@@ -319,11 +318,11 @@ public class MIDRegistry {
 			AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(adapterFactory);
 			name = eInfo.toInstanceString();
 			if (modelObj instanceof PrimitiveEObjectWrapper) {
-				name = name.replace(MMINT.MODELELEMENT_PRIMITIVEVALUE_PLACEHOLDER, ((PrimitiveEObjectWrapper) modelObj).getValue().toString());
-				name = name.replace(MMINT.MODELELEMENT_EMFVALUE_PLACEHOLDER, labelProvider.getText(((PrimitiveEObjectWrapper) modelObj).getOwner()));
+				name = name.replace(MMINTConstants.MODELELEMENT_PRIMITIVEVALUE_PLACEHOLDER, ((PrimitiveEObjectWrapper) modelObj).getValue().toString());
+				name = name.replace(MMINTConstants.MODELELEMENT_EMFVALUE_PLACEHOLDER, labelProvider.getText(((PrimitiveEObjectWrapper) modelObj).getOwner()));
 			}
 			else {
-				name = name.replace(MMINT.MODELELEMENT_EMFVALUE_PLACEHOLDER, labelProvider.getText(modelObj));
+				name = name.replace(MMINTConstants.MODELELEMENT_EMFVALUE_PLACEHOLDER, labelProvider.getText(modelObj));
 			}
 		}
 		else {
@@ -336,7 +335,7 @@ public class MIDRegistry {
 	public static ModelElementReference getModelElementReference(ModelEndpointReference modelEndpointRef, EObject modelObj) {
 
 		ModelElement modelElemType = MIDConstraintChecker.getAllowedModelElementType(modelEndpointRef, modelObj);
-		String modelElemUri = MIDRegistry.getModelElementUri(modelObj) + MMINT.ROLE_SEPARATOR + modelElemType.getUri();
+		String modelElemUri = MIDRegistry.getModelElementUri(modelObj) + MMINTConstants.ROLE_SEPARATOR + modelElemType.getUri();
 
 		return MIDRegistry.getReference(modelElemUri, modelEndpointRef.getModelElemRefs());
 	}
@@ -385,32 +384,27 @@ public class MIDRegistry {
 		return ioOperators;
 	}
 
-	public static @NonNull LinkedHashMap<Model, String> getInputOutputWorkflowModels(@NonNull MID workflowMID) {
+  public static @NonNull LinkedHashMap<Model, String> getInputOutputWorkflowModels(@NonNull MID workflowMID) {
 
-	    LinkedHashMap<Model, String> inoutWorkflowModels = new LinkedHashMap<>();
-        for (Model workflowModel : workflowMID.getModels()) {
-            boolean isInput = MIDRegistry.getOutputOperators(workflowModel, workflowMID).isEmpty();
-            if (isInput) { // no operator created this model as output
-                inoutWorkflowModels.put(workflowModel, OperatorPackage.eINSTANCE.getOperator_Inputs().getName());
-                continue; // an input can't be output too
-            }
-            boolean isOutput = MIDRegistry.getInputOperators(workflowModel, workflowMID).isEmpty();
-            if (isOutput) { // no operator has this model as input
-                inoutWorkflowModels.put(workflowModel, OperatorPackage.eINSTANCE.getOperator_Outputs().getName());
-                if (workflowModel instanceof ModelRel) { // an output model rel needs its endpoint models as output too
-                    for (ModelEndpoint outModelEndpoint : ((ModelRel) workflowModel).getModelEndpoints()) {
-                        Model outModel = outModelEndpoint.getTarget();
-                        if (inoutWorkflowModels.containsKey(outModel)) {
-                            continue;
-                        }
-                        inoutWorkflowModels.put(outModel, OperatorPackage.eINSTANCE.getOperator_Outputs().getName());
-                    }
-                }
-            }
-        }
-
-        return inoutWorkflowModels;
+    var inoutWorkflowModels = new LinkedHashMap<Model, String>();
+    for (var workflowModel : workflowMID.getModels()) {
+      var isInput = MIDRegistry.getOutputOperators(workflowModel, workflowMID).isEmpty();
+      var isOutput = MIDRegistry.getInputOperators(workflowModel, workflowMID).isEmpty();
+      // 1) model that is in the workflow just as endpoint of input/output rels
+      // 2) intermediate model/rel
+      if ((isInput && isOutput) || (!isInput && !isOutput)) {
+        continue;
+      }
+      // 3) input model/rel
+      // 4) output model/rel
+      var inout = (isInput) ?
+        OperatorPackage.eINSTANCE.getOperator_Inputs().getName() :
+        OperatorPackage.eINSTANCE.getOperator_Outputs().getName();
+      inoutWorkflowModels.put(workflowModel, inout);
     }
+
+    return inoutWorkflowModels;
+  }
 
 	public static Set<BinaryModelRel> getConnectedBinaryModelRels(Model model, MID mid) {
 

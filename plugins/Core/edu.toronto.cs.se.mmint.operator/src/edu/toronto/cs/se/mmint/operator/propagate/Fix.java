@@ -12,6 +12,7 @@
 package edu.toronto.cs.se.mmint.operator.propagate;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -284,7 +285,7 @@ public class Fix extends NestingOperatorImpl {
         // prepare nested MID
         MID fixingMID = super.getNestedInstanceMID();
         if (fixingMID != null) {
-            super.createNestedInstanceMIDModelShortcuts(models);
+            createNestedInstanceMIDModelShortcuts(new HashSet<>(models));
         }
 
         // fixer loop
@@ -329,11 +330,11 @@ public class Fix extends NestingOperatorImpl {
             Map<String, MID> outputMIDsByName) throws Exception {
 
         // input
-        List<Model> models = MIDOperatorIOUtils.getVarargs(inputsByName, IN_MODELS);
-        Operator fixerOperatorType = (Operator) genericsByName.get(GENERIC_OPERATORTYPE);
+        List<Model> models = MIDOperatorIOUtils.getVarargs(inputsByName, Fix.IN_MODELS);
+        Operator fixerOperatorType = (Operator) genericsByName.get(Fix.GENERIC_OPERATORTYPE);
         Map<String, MID> outputMIDsByFixerOutputs = MIDOperatorIOUtils.getVarargOutputMIDsByOtherName(
             outputMIDsByName,
-            OUT_MODELS,
+            Fix.OUT_MODELS,
             fixerOperatorType.getOutputs());
         //TODO MMINT[FIXEDPOINT] Running a workflow as fixer breaks when traceability is disabled, because it can't detect the outputs
 
@@ -341,7 +342,7 @@ public class Fix extends NestingOperatorImpl {
         List<Model> fixedModels = this.fix(models, fixerOperatorType, outputMIDsByFixerOutputs);
 
         // output
-        Map<String, Model> outputsByName = MIDOperatorIOUtils.setVarargs(fixedModels, OUT_MODELS);
+        Map<String, Model> outputsByName = MIDOperatorIOUtils.setVarargs(fixedModels, Fix.OUT_MODELS);
 
         return outputsByName;
     }

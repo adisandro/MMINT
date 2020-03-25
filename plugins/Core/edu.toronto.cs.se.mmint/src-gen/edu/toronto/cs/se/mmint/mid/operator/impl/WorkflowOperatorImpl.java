@@ -41,6 +41,7 @@ import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmint.mid.operator.RandomOperator;
 import edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.ui.GMFUtils;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 
@@ -198,7 +199,13 @@ public class WorkflowOperatorImpl extends NestingOperatorImpl implements Workflo
         Random state = null;
         // create shortcuts to input models
         if (nestedMIDPath != null) {
-            super.createNestedInstanceMIDModelShortcuts(ECollections.toEList(inputsByName.values()));
+            var inputShortcuts = inputsByName.values().stream()
+                .filter(i -> i instanceof ModelRel)
+                .flatMap(r -> ((ModelRel) r).getModelEndpoints().stream())
+                .map(ModelEndpoint::getTarget)
+                .collect(Collectors.toSet());
+            inputShortcuts.addAll(inputsByName.values());
+            createNestedInstanceMIDModelShortcuts(inputShortcuts);
         }
         // the order of operator creation in the workflow is a safe order of execution too
         Map<String, Model> outputsByName = new HashMap<>();
@@ -269,7 +276,13 @@ public class WorkflowOperatorImpl extends NestingOperatorImpl implements Workflo
             }
             // create shortcuts to output models
             if (nestedMIDPath != null) {
-                super.createNestedInstanceMIDModelShortcuts(outputModels);
+                var outputShortcuts = outputModels.stream()
+                    .filter(i -> i instanceof ModelRel)
+                    .flatMap(r -> ((ModelRel) r).getModelEndpoints().stream())
+                    .map(ModelEndpoint::getTarget)
+                    .collect(Collectors.toSet());
+                outputShortcuts.addAll(outputModels);
+                createNestedInstanceMIDModelShortcuts(outputShortcuts);
             }
         }
         if (nestedMIDPath != null) {
