@@ -27,7 +27,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
-import org.eclipse.gmf.runtime.diagram.core.providers.IViewProvider;
 import org.eclipse.gmf.runtime.diagram.core.services.ViewService;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.Diagram;
@@ -357,7 +356,7 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
 
         MMINTException.mustBeInstance(this);
 
-        String nestedMIDPath = this.getNestedMIDPath();
+        var nestedMIDPath = this.getNestedMIDPath();
         if (nestedMIDPath == null) {
             throw new MMINTException("The nested MID is not serialized");
         }
@@ -365,22 +364,29 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
             return;
         }
 
-        MID nestedMID = this.getNestedInstanceMID();
-        Diagram nestedMIDDiagramRoot = this.getNestedInstanceMIDDiagramRoot();
-        Model midModelType = MIDTypeRegistry.getMIDModelType();
-        String midDiagramPluginId = MIDTypeRegistry.getTypeBundle(MIDTypeRegistry.getMIDDiagramType().getUri()).getSymbolicName();
-        IViewProvider midViewProvider = MIDTypeRegistry.getCachedMIDViewProvider();
+        var nestedMID = this.getNestedInstanceMID();
+        var nestedMIDDiagramRoot = this.getNestedInstanceMIDDiagramRoot();
+        var midModelType = MIDTypeRegistry.getMIDModelType();
+        var midDiagramPluginId = MIDTypeRegistry.getTypeBundle(MIDTypeRegistry.getMIDDiagramType().getUri()).getSymbolicName();
+        var midViewProvider = MIDTypeRegistry.getCachedMIDViewProvider();
+        var allShortcuts = models.stream() // collect model endpoints of rels
+            .filter(m -> m instanceof ModelRel)
+            .flatMap(r -> ((ModelRel) r).getModelEndpoints().stream())
+            .map(ModelEndpoint::getTarget)
+            .collect(Collectors.toSet());
+        allShortcuts.addAll(models);
         // models first, then rels
-        // TODO MMINT[NESTED] Is it really needed?
-        for (var model : models) {
-            if (model instanceof ModelRel) {
+        //TODO MMINT[NESTED] Is the double loop really needed?
+        for (var model : allShortcuts) {
+            if (model instanceof ModelRel || nestedMID.getExtendibleElement(model.getUri()) != null) {
                 continue;
             }
             GMFUtils.createGMFNodeShortcut(model, nestedMIDDiagramRoot, midDiagramPluginId, midModelType.getName(),
                                            midViewProvider);
             nestedMID.getExtendibleTable().put(model.getUri(), model);
         }
-        for (var modelRel : models) {
+        for (var modelRel : allShortcuts) {
+            //TODO MMINT[NESTED] Is there a way to detect duplicate rel shortcuts, like in the model case?
             if (!(modelRel instanceof ModelRel)) {
                 continue;
             }

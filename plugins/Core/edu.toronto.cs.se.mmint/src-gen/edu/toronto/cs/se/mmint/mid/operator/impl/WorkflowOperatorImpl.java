@@ -13,6 +13,7 @@ package edu.toronto.cs.se.mmint.mid.operator.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -41,7 +42,6 @@ import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmint.mid.operator.RandomOperator;
 import edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator;
-import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.ui.GMFUtils;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 
@@ -199,13 +199,7 @@ public class WorkflowOperatorImpl extends NestingOperatorImpl implements Workflo
         Random state = null;
         // create shortcuts to input models
         if (nestedMIDPath != null) {
-            var inputShortcuts = inputsByName.values().stream()
-                .filter(i -> i instanceof ModelRel)
-                .flatMap(r -> ((ModelRel) r).getModelEndpoints().stream())
-                .map(ModelEndpoint::getTarget)
-                .collect(Collectors.toSet());
-            inputShortcuts.addAll(inputsByName.values());
-            createNestedInstanceMIDModelShortcuts(inputShortcuts);
+            createNestedInstanceMIDModelShortcuts(new HashSet<>(inputsByName.values()));
         }
         // the order of operator creation in the workflow is a safe order of execution too
         Map<String, Model> outputsByName = new HashMap<>();
@@ -265,7 +259,7 @@ public class WorkflowOperatorImpl extends NestingOperatorImpl implements Workflo
                state = ((RandomOperator) operator).getState();
             }
             var workflowOutputsByName = operator.getOutputsByName();
-            EList<Model> outputModels = new BasicEList<>();
+            var outputModels = new HashSet<Model>();
             for (ModelEndpoint outputModelEndpoint : workflowOperator.getOutputs()) {
                 Model outputModel = workflowOutputsByName.get(outputModelEndpoint.getName());
                 allModelsByName.put(outputModelEndpoint.getTargetUri(), outputModel); // ids are unique in a workflowMID
@@ -275,14 +269,8 @@ public class WorkflowOperatorImpl extends NestingOperatorImpl implements Workflo
                 }
             }
             // create shortcuts to output models
-            if (nestedMIDPath != null) {
-                var outputShortcuts = outputModels.stream()
-                    .filter(i -> i instanceof ModelRel)
-                    .flatMap(r -> ((ModelRel) r).getModelEndpoints().stream())
-                    .map(ModelEndpoint::getTarget)
-                    .collect(Collectors.toSet());
-                outputShortcuts.addAll(outputModels);
-                createNestedInstanceMIDModelShortcuts(outputShortcuts);
+            if (nestedMIDPath != null && !outputModels.isEmpty()) {
+                createNestedInstanceMIDModelShortcuts(outputModels);
             }
         }
         if (nestedMIDPath != null) {

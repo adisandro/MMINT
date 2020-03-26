@@ -43,7 +43,7 @@ public class Union extends OperatorImpl {
 	private final static @NonNull String IN_MIDS = "mids";
 	private final static @NonNull String OUT_MID = "unionMid";
 	// constants
-	private final static @NonNull String UNION_SEPARATOR = "∪";
+	private final static @NonNull String UNION_SEPARATOR = "+";
 
 	private @NonNull MID union(@NonNull List<Model> inputMIDModels) throws MMINTException, IOException {
 
@@ -97,6 +97,7 @@ public class Union extends OperatorImpl {
 					midDiagramPluginId,
 					midModelType.getName(),
 					gmfViewProvider);
+				unionMID.getExtendibleTable().put(modelEndpoint.getTargetUri(), modelEndpoint.getTarget());
 			}
 		}
 		if (unionMIDDiagramPath != null) { // store the gmf diagram
@@ -110,8 +111,8 @@ public class Union extends OperatorImpl {
 			Map<String, MID> outputMIDsByName) throws Exception {
 
 		// input
-		List<Model> inputMIDModels = MIDOperatorIOUtils.getVarargs(inputsByName, IN_MIDS);
-		MID instanceMID = outputMIDsByName.get(OUT_MID);
+		List<Model> inputMIDModels = MIDOperatorIOUtils.getVarargs(inputsByName, Union.IN_MIDS);
+		MID instanceMID = outputMIDsByName.get(Union.OUT_MID);
 
 		// create union of input mids
 		MID unionMID = this.union(inputMIDModels);
@@ -119,7 +120,7 @@ public class Union extends OperatorImpl {
 		// output
 		String unionMIDModelName = inputMIDModels.stream()
 			.map(Model::getName)
-			.collect(Collectors.joining(UNION_SEPARATOR));
+			.collect(Collectors.joining(Union.UNION_SEPARATOR));
 		String unionMIDModelPath = FileUtils.replaceFileNameInPath(
 			MIDRegistry.getModelUri(instanceMID),
 			unionMIDModelName);
@@ -129,7 +130,7 @@ public class Union extends OperatorImpl {
 			instanceMID);
 		this.createModelShortcuts(unionMID, unionMIDModel);
 		Map<String, Model> outputsByName = new HashMap<>();
-		outputsByName.put(OUT_MID, unionMIDModel);
+		outputsByName.put(Union.OUT_MID, unionMIDModel);
 
 		return outputsByName;
 	}

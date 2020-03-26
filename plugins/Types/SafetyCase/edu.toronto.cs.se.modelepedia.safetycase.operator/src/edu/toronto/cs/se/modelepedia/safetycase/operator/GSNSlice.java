@@ -16,11 +16,6 @@ import edu.toronto.cs.se.mmint.mid.operator.impl.WorkflowOperatorImpl;
 /**
  * Defaults to using GSNSlice.mid as the implementation.
  * TODO: Does it need a constraint for the input?
- * TODO: Nesting operators don't create shortcuts for rels' endpoints, should they? (it clutters a bit)
- *       workflow - Implemented, but Identity causes problems
- *       map - Not implemented
- * TODO: Previously, model rel as outputs in workflows MUST had their model endpoints as outputs too:
- *       makes sense if those models are created too, but then they would be outputs by construction
- *       if those models exist already, then they should simply be shortcuts (what if they are created within the workflow?)
+ * TODO: unify all creation of endpoints (map, union, nesting)
  */
 public class GSNSlice extends WorkflowOperatorImpl {}

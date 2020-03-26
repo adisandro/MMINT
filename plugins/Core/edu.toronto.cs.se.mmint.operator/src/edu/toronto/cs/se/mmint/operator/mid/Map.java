@@ -17,7 +17,6 @@ import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Map.Entry;
 import java.util.Properties;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -42,7 +41,6 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
-import edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmint.mid.operator.impl.NestingOperatorImpl;
@@ -85,7 +83,8 @@ public class Map extends NestingOperatorImpl {
   @Override
   public void readInputProperties(Properties inputProps) throws MMINTException {
     this.timeOverheadEnabled = MIDOperatorIOUtils.getOptionalBoolProperty(
-                                 inputProps, Map.PROP_OUT_TIMEOVERHEAD+MIDOperatorIOUtils.PROP_OUTENABLED_SUFFIX, false);
+                                 inputProps, Map.PROP_OUT_TIMEOVERHEAD+MIDOperatorIOUtils.PROP_OUTENABLED_SUFFIX,
+                                 false);
   }
 
   public void writeOutputProperties() throws Exception {
@@ -95,78 +94,73 @@ public class Map extends NestingOperatorImpl {
   }
 
   @Override
-  public void createWorkflowInstanceOutputs(Operator newOperator, java.util.Map<String, Model> inputsByName, MID workflowMID) throws MMINTException {
+  public void createWorkflowInstanceOutputs(Operator newOperator, java.util.Map<String, Model> inputsByName,
+                                            MID workflowMID) throws MMINTException {
 
     // create the vararg mapped mids
-    Operator mapperOperatorType = (Operator) newOperator.getGenerics().get(0).getTarget();
-    Model midModelType = MIDTypeRegistry.getMIDModelType();
-    Model midrelModelType = MIDTypeRegistry.getType(MIDPackage.eNS_URI + Map.MIDREL_MODELTYPE_URI_SUFFIX);
-    for (int i = 0; i < mapperOperatorType.getOutputs().size(); i++) {
-      Model outputModelType = (mapperOperatorType.getOutputs().get(i).getTarget() instanceof ModelRel) ?
-        midrelModelType : midModelType;
-      String outputModelId = MIDRegistry.getNextWorkflowID(workflowMID);
-      Model outputModel = outputModelType.createWorkflowInstance(outputModelId, workflowMID);
-      ModelEndpoint outputModelEndpoint = this.getOutputs().get(0).createWorkflowInstance(
-        outputModel,
-        newOperator,
-        OperatorPackage.eINSTANCE.getOperator_Outputs().getName());
+    var mapperOperatorType = (Operator) newOperator.getGenerics().get(0).getTarget();
+    var midModelType = MIDTypeRegistry.getMIDModelType();
+    var midrelModelType = MIDTypeRegistry.<Model>getType(MIDPackage.eNS_URI + Map.MIDREL_MODELTYPE_URI_SUFFIX);
+    for (var i = 0; i < mapperOperatorType.getOutputs().size(); i++) {
+      var outputModelType = (mapperOperatorType.getOutputs().get(i).getTarget() instanceof ModelRel) ?
+        midrelModelType :
+        midModelType;
+      var outputModelId = MIDRegistry.getNextWorkflowID(workflowMID);
+      var outputModel = outputModelType.createWorkflowInstance(outputModelId, workflowMID);
+      var outputModelEndpoint = this.getOutputs().get(0).createWorkflowInstance(
+        outputModel, newOperator, OperatorPackage.eINSTANCE.getOperator_Outputs().getName());
       outputModelEndpoint.setName(outputModelEndpoint.getName() + i);
     }
   }
 
-  private Model createOutputMIDModel(String outputName, MID outputMID, Model midModelType, MID instanceMID) throws Exception {
+  private void createOutputMIDRelShortcuts(Model outputMIDModel, Model midModelType, String midDiagramPluginId,
+                                           Set<Model> midrelEndpointModels) throws Exception {
 
-    String baseOutputPath = (instanceMID == null) ?
-      MMINT.getActiveInstanceMIDFile().getFullPath().toOSString() :
-      MIDRegistry.getModelUri(instanceMID);
-    String outputMIDPath = FileUtils.getUniquePath(
-      FileUtils.replaceFileNameInPath(baseOutputPath, outputName),
-      true,
-      false);
-    Model outputMIDModel = midModelType.createInstanceAndEditor(
-      outputMID,
-      outputMIDPath,
-      instanceMID);
-
-    return outputMIDModel;
-  }
-
-  private Model createOutputMIDRelModel(String outputName, MID outputMID, Model midModelType, Model midrelModelType, String midDiagramPluginId, MID instanceMID, Set<Model> midrelEndpointModels) throws Exception {
-
-    Model outputMIDModel = createOutputMIDModel(outputName, outputMID, midrelModelType, instanceMID);
-    // create gmf shortcuts
-    edu.toronto.cs.se.mmint.mid.editor.Diagram outputMIDModelDiagram = MIDRegistry.getModelDiagram(outputMIDModel);
-    Diagram gmfDiagram = (Diagram) FileUtils.readModelFile(outputMIDModelDiagram.getUri(), null, true);
-    for (Model midrelEndpointModel : midrelEndpointModels) {
-      GMFUtils.createGMFNodeShortcut(midrelEndpointModel, gmfDiagram, midDiagramPluginId, midModelType.getName(), MIDTypeRegistry.getCachedMIDViewProvider());
+    var outputMIDModelDiagram = MIDRegistry.getModelDiagram(outputMIDModel);
+    var gmfDiagram = (Diagram) FileUtils.readModelFile(outputMIDModelDiagram.getUri(), null, true);
+    for (var midrelEndpointModel : midrelEndpointModels) {
+      GMFUtils.createGMFNodeShortcut(midrelEndpointModel, gmfDiagram, midDiagramPluginId, midModelType.getName(),
+                                     MIDTypeRegistry.getCachedMIDViewProvider());
     }
     FileUtils.writeModelFile(gmfDiagram, outputMIDModelDiagram.getUri(), true);
-
-    return outputMIDModel;
   }
 
-  private java.util.@NonNull Map<String, Model> map(
-      @NonNull List<Model> inputMIDModels,
-      @NonNull EList<MID> inputMIDs,
-      Operator mapperOperatorType,
-      java.util.@NonNull Map<Operator, Set<EList<OperatorInput>>> mapperSpecs,
-      java.util.@NonNull Map<String, MID> instanceMIDsByMapperOutput) throws Exception {
+  private java.util.@NonNull Map<String, Model> map(@NonNull List<Model> inputMIDModels, @NonNull EList<MID> inputMIDs,
+                                                    Operator mapperOperatorType, java.util.@NonNull Map<Operator,
+                                                    Set<EList<OperatorInput>>> mapperSpecs,
+                                                    java.util.@NonNull Map<String, MID> instanceMIDsByMapperOutput)
+                                                    throws Exception {
 
-    // create output MIDs
-    java.util.Map<String, MID> mapperOutputMIDsByName = mapperOperatorType.getOutputs().stream()
-      .collect(Collectors.toMap(
-        outputModelTypeEndpoint -> outputModelTypeEndpoint.getName(),
-        outputModelTypeEndpoint -> MIDFactory.eINSTANCE.createMID()));
-    String mapperMIDPath = this.getNestedMIDPath();
-    MID mapperMID = super.getNestedInstanceMID();
+    // create output MIDs and pre-serialize them:
+    // it is necessary if the mapper is a nesting operator, does not hurt for other mappers
+    var mapperOutputMIDsByName = new HashMap<String, MID>();
+    var mapperOutputMIDPathsByName = new HashMap<String, String>();
+    for (var mapperOutputEndpoint : mapperOperatorType.getOutputs()) {
+      var outputName = mapperOutputEndpoint.getName();
+      var outputMID = MIDFactory.eINSTANCE.createMID();
+      mapperOutputMIDsByName.put(outputName, outputMID);
+      var instanceMID = instanceMIDsByMapperOutput.get(outputName);
+      var baseOutputPath = (instanceMID == null) ?
+        MMINT.getActiveInstanceMIDFile().getFullPath().toOSString() :
+        MIDRegistry.getModelUri(instanceMID);
+      var outputMIDPath = FileUtils.getUniquePath(FileUtils.replaceFileNameInPath(baseOutputPath, outputName), true,
+                                                  false);
+      mapperOutputMIDPathsByName.put(outputName, outputMIDPath);
+      if (instanceMID != null) {
+        FileUtils.writeModelFile(outputMID, outputMIDPath, true);
+      }
+    }
+
     // start operator types
-    java.util.Map<String, Set<Model>> midrelEndpointModelsByOutputName = new HashMap<>();
+    var mapperMIDPath = this.getNestedMIDPath();
+    var mapperMID = super.getNestedInstanceMID();
+    var midrelEndpointModelsByOutputName = new HashMap<String, Set<Model>>();
     var mapperShortcutModels = new HashSet<Model>();
-    for (Entry<Operator, Set<EList<OperatorInput>>> mapperSpec : mapperSpecs.entrySet()) {
-      Operator mapper = mapperSpec.getKey();
-      for (EList<OperatorInput> mapperInputs : mapperSpec.getValue()) {
+    for (var mapperSpec : mapperSpecs.entrySet()) {
+      var mapper = mapperSpec.getKey();
+      for (var mapperInputs : mapperSpec.getValue()) {
         try {
-          EList<OperatorGeneric> mapperGenerics = mapper.selectAllowedGenerics(mapperInputs);
+          var mapperGenerics = mapper.selectAllowedGenerics(mapperInputs);
           var workingPath = getWorkingPath();
           if (workingPath != null) {
             mapper.setWorkingPath(workingPath);
@@ -174,12 +168,8 @@ public class Map extends NestingOperatorImpl {
           if (this.timeOverheadEnabled) {
             this.timeOverhead += System.nanoTime() - this.timeCheckpoint;
           }
-          var mapperOperator = mapper.startInstance(
-            mapperInputs,
-            null,
-            mapperGenerics,
-            mapperOutputMIDsByName,
-            mapperMID);
+          var mapperOperator = mapper.startInstance(mapperInputs, null, mapperGenerics, mapperOutputMIDsByName,
+                                                    mapperMID);
           if (this.timeOverheadEnabled) {
             this.timeCheckpoint = System.nanoTime();
           }
@@ -191,18 +181,17 @@ public class Map extends NestingOperatorImpl {
             mapperShortcutModels.addAll(mapperOutputsByName.values());
           }
           // get model shortcuts to create for output MIDRels (to model endpoints)
-          for (Entry<String, Model> mapperOutput : mapperOutputsByName.entrySet()) {
-            Model mapperOutputModel = mapperOutput.getValue();
+          for (var mapperOutput : mapperOutputsByName.entrySet()) {
+            var mapperOutputModel = mapperOutput.getValue();
             if (!(mapperOutputModel instanceof ModelRel)) {
               continue;
             }
-            String mapperOutputName = mapperOutput.getKey();
-            Set<Model> newMidrelEndpointModels = ((ModelRel) mapperOutputModel).getModelEndpoints().stream()
+            var mapperOutputName = mapperOutput.getKey();
+            var newMidrelEndpointModels = ((ModelRel) mapperOutputModel).getModelEndpoints().stream()
               .map(ModelEndpoint::getTarget)
               .collect(Collectors.toSet());
-            Set<Model> midrelEndpointModels = midrelEndpointModelsByOutputName.putIfAbsent(
-              mapperOutputName,
-              newMidrelEndpointModels);
+            var midrelEndpointModels = midrelEndpointModelsByOutputName.putIfAbsent(mapperOutputName,
+                                                                                    newMidrelEndpointModels);
             if (midrelEndpointModels != null) {
               midrelEndpointModels.addAll(newMidrelEndpointModels);
             }
@@ -220,48 +209,43 @@ public class Map extends NestingOperatorImpl {
         }
         catch (Exception e) {
           // other than errors, the operator can fail because of input constraints due to the cartesian product
-          MMINTException.print(
-            IStatus.WARNING, "Operator " + mapper + " execution error, skipping it", e);
+          MMINTException.print(IStatus.WARNING, "Operator " + mapper + " execution error, skipping it", e);
         }
       }
     }
+
     // store all involved MIDs
-    Model midModelType = MIDTypeRegistry.getMIDModelType();
-    List<Model> outputMIDModels = new ArrayList<>();
+    var outputMIDModels = new ArrayList<Model>();
     // pass 1: output MIDs only
-    for (Entry<String, MID> outputMIDByName : mapperOutputMIDsByName.entrySet()) {
-      String outputName = outputMIDByName.getKey();
+    var midModelType = MIDTypeRegistry.getMIDModelType();
+    for (var outputMIDByName : mapperOutputMIDsByName.entrySet()) {
+      var outputName = outputMIDByName.getKey();
       if (midrelEndpointModelsByOutputName.containsKey(outputName)) { // is a MIDRel
         continue;
       }
-      MID outputMID = outputMIDByName.getValue();
-      Model outputMIDModel = this.createOutputMIDModel(
-        outputName,
-        outputMID,
-        midModelType,
-        instanceMIDsByMapperOutput.get(outputName));
+      var outputMID = outputMIDByName.getValue();
+      var outputMIDPath = mapperOutputMIDPathsByName.get(outputName);
+      var instanceMID = instanceMIDsByMapperOutput.get(outputName);
+      var outputMIDModel = midModelType.createInstanceAndEditor(outputMID, outputMIDPath, instanceMID);
       outputMIDModels.add(outputMIDModel);
     }
     // pass 2: output MIDRels only
-    Model midrelModelType = MIDTypeRegistry.getType(MIDPackage.eNS_URI + Map.MIDREL_MODELTYPE_URI_SUFFIX);
-    String midDiagramPluginId = MIDTypeRegistry.getTypeBundle(MIDTypeRegistry.getMIDDiagramType().getUri()).getSymbolicName();
-    for (Entry<String, MID> outputMIDByName : mapperOutputMIDsByName.entrySet()) {
-      String outputName = outputMIDByName.getKey();
+    var midrelModelType = MIDTypeRegistry.<Model>getType(MIDPackage.eNS_URI + Map.MIDREL_MODELTYPE_URI_SUFFIX);
+    var midDiagramPluginId = MIDTypeRegistry.getTypeBundle(MIDTypeRegistry.getMIDDiagramType().getUri()).getSymbolicName();
+    for (var outputMIDByName : mapperOutputMIDsByName.entrySet()) {
+      var outputName = outputMIDByName.getKey();
       if (!midrelEndpointModelsByOutputName.containsKey(outputName)) { // is not a MIDRel
         continue;
       }
-      MID outputMID = outputMIDByName.getValue();
-      MID instanceMID = instanceMIDsByMapperOutput.get(outputName);
-      Model outputMIDModel = this.createOutputMIDRelModel(
-        outputName,
-        outputMID,
-        midModelType,
-        midrelModelType,
-        midDiagramPluginId,
-        instanceMID,
-        midrelEndpointModelsByOutputName.get(outputName));
+      var outputMID = outputMIDByName.getValue();
+      var outputMIDPath = mapperOutputMIDPathsByName.get(outputName);
+      var instanceMID = instanceMIDsByMapperOutput.get(outputName);
+      var outputMIDModel = midrelModelType.createInstanceAndEditor(outputMID, outputMIDPath, instanceMID);
       outputMIDModels.add(outputMIDModel);
-      //TODO MMINT[MAP] A MIDRel is just a Model, so this was to fake it to have endpoints (a proper metamodel object and gmf figure would be needed)
+      if (instanceMID != null) {
+        createOutputMIDRelShortcuts(outputMIDModel, midModelType, midDiagramPluginId,
+                                    midrelEndpointModelsByOutputName.get(outputName));
+        //TODO MMINT[MAP] A MIDRel is just a Model, so this was to fake it to have endpoints (a proper metamodel object and gmf figure would be needed)
 //      for (MID midrelEndpointMID : midrelEndpointMIDsByOutputName.get(outputName)) {
 //        if (midrelEndpointMID != instanceMID) { // can't create the rel
 //          continue;
@@ -274,33 +258,33 @@ public class Map extends NestingOperatorImpl {
 //          midrelEndpointMIDModel,
 //          instanceMID);
 //      }
+      }
     }
     // pass 3: mapper MID, after output MIDs and MIDRels are serialized
     if (mapperMIDPath != null) {
-      super.createNestedInstanceMIDModelShortcuts(mapperShortcutModels);
-      super.writeNestedInstanceMID();
+      createNestedInstanceMIDModelShortcuts(mapperShortcutModels);
+      writeNestedInstanceMID();
     }
-
     // pass 4: input MIDs and endpoint MIDs of input MIDRels, since model elements can be created there
-    java.util.Map<String, MID> inputMIDsToSerialize = new HashMap<>();
-    Set<MID> inputMIDRels = new HashSet<>();
+    var inputMIDsToSerialize = new HashMap<String, MID>();
+    var inputMIDRels = new HashSet<MID>();
     for (int i = 0; i < inputMIDModels.size(); i++) {
-      MID inputMID = inputMIDs.get(i);
+      var inputMID = inputMIDs.get(i);
       if (MIDTypeHierarchy.instanceOf(inputMIDModels.get(i), midrelModelType.getUri(), false)) {
         inputMIDRels.add(inputMID);
         continue;
       }
       inputMIDsToSerialize.put(inputMIDModels.get(i).getUri(), inputMID);
     }
-    for (MID inputMIDRel : inputMIDRels) {
-      java.util.Map<String, MID> endpointMIDs = inputMIDRel.getModelRels().stream()
+    for (var inputMIDRel : inputMIDRels) {
+      var endpointMIDs = inputMIDRel.getModelRels().stream()
         .flatMap(modelRel -> modelRel.getModelEndpoints().stream()
         .map(modelEndpoint -> modelEndpoint.getTarget()))
         .map(model -> model.getMIDContainer())
         .collect(Collectors.toMap(mid -> MIDRegistry.getModelUri(mid), mid -> mid, (mid1, mid2) -> mid1)); // duplicates should simply be used once
       inputMIDsToSerialize.putAll(endpointMIDs);
     }
-    for (Entry<String, MID> inputMIDToSerialize : inputMIDsToSerialize.entrySet()) {
+    for (var inputMIDToSerialize : inputMIDsToSerialize.entrySet()) {
       FileUtils.writeModelFile(inputMIDToSerialize.getValue(), inputMIDToSerialize.getKey(), true);
     }
 
@@ -309,9 +293,9 @@ public class Map extends NestingOperatorImpl {
 
   private java.util.@NonNull Map<String, EList<OperatorInput>> diffMultipleDispatchInputs(java.util.@NonNull Map<String, EList<OperatorInput>> assignedInputs, @NonNull Set<EList<OperatorInput>> mapperInputs) {
 
-    java.util.Map<String, EList<OperatorInput>> newInputs = new LinkedHashMap<>(); // reproducible order
-    for (EList<OperatorInput> mapperInput : mapperInputs) {
-      String key = mapperInput.stream()
+    var newInputs = new LinkedHashMap<String, EList<OperatorInput>>(); // reproducible order
+    for (var mapperInput : mapperInputs) {
+      var key = mapperInput.stream()
         .map(input -> MIDRegistry.getModelElementUri(input.getModel()))
         .collect(Collectors.joining(";"));
       if (!assignedInputs.containsKey(key)) {
