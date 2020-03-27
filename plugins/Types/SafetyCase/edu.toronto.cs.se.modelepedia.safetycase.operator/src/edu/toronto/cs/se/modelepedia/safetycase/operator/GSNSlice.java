@@ -16,6 +16,5 @@ import edu.toronto.cs.se.mmint.mid.operator.impl.WorkflowOperatorImpl;
 /**
  * Defaults to using GSNSlice.mid as the implementation.
  * TODO: Does it need a constraint for the input?
- * TODO: unify all creation of endpoints (map, union, nesting)
  */
 public class GSNSlice extends WorkflowOperatorImpl {}

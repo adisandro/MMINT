@@ -179,6 +179,7 @@ public class Map extends NestingOperatorImpl {
           if (sameInOut == null) {
             // detect mapper outputs that are identical to inputs, in order to properly handle map output MIDs
             // e.g. it can happen when using the Identity operator
+            //TODO MMINT[MAP] This is not correct with polymorphism, the first executed operator may not represent all
             sameInOut = new HashMap<>();
             for (var i = 0; i < mapperInputs.size(); i++) {
               var mapperInput = mapperInputs.get(i);
