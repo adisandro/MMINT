@@ -34,7 +34,7 @@ public class Identity extends OperatorImpl {
 
   @Override
   public void createWorkflowInstanceOutputs(Operator newOperator, Map<String, Model> inputsByName, MID workflowMID)
-              throws MMINTException {
+                                            throws MMINTException {
     MMINTException.mustBeType(this);
 
     // use the input model type to create the same output type

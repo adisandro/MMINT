@@ -17,6 +17,7 @@ import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Map.Entry;
 import java.util.Properties;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -156,6 +157,7 @@ public class Map extends NestingOperatorImpl {
     var mapperMID = super.getNestedInstanceMID();
     var midrelEndpointModelsByOutputName = new HashMap<String, Set<Model>>();
     var mapperShortcutModels = new HashSet<Model>();
+    java.util.Map<String, Model> sameInOut = null;
     for (var mapperSpec : mapperSpecs.entrySet()) {
       var mapper = mapperSpec.getKey();
       for (var mapperInputs : mapperSpec.getValue()) {
@@ -174,6 +176,24 @@ public class Map extends NestingOperatorImpl {
             this.timeCheckpoint = System.nanoTime();
           }
           var mapperOutputsByName = mapperOperator.getOutputsByName();
+          if (sameInOut == null) {
+            // detect mapper outputs that are identical to inputs, in order to properly handle map output MIDs
+            // e.g. it can happen when using the Identity operator
+            sameInOut = new HashMap<>();
+            for (var i = 0; i < mapperInputs.size(); i++) {
+              var mapperInput = mapperInputs.get(i);
+              var outputNames = mapperOutputsByName.entrySet().stream()
+                .filter(e -> e.getValue() == mapperInput.getModel())
+                .map(Entry::getKey)
+                .collect(Collectors.toSet());
+              if (!outputNames.isEmpty()) {
+                var j = Math.min(i, inputMIDModels.size()-1); // there may not be a 1-to-1 correspondence
+                for (var outputName : outputNames) {
+                  sameInOut.put(outputName, inputMIDModels.get(j));
+                }
+              }
+            }
+          }
           if (mapperMIDPath != null) {
             mapperShortcutModels.addAll(mapperInputs.stream()
               .map(OperatorInput::getModel)
@@ -226,6 +246,13 @@ public class Map extends NestingOperatorImpl {
       var outputMID = outputMIDByName.getValue();
       var outputMIDPath = mapperOutputMIDPathsByName.get(outputName);
       var instanceMID = instanceMIDsByMapperOutput.get(outputName);
+      if (sameInOut.containsKey(outputName)) { // handle mapper outputs that are identical to inputs, e.g. Identity
+        outputMIDModels.add(sameInOut.get(outputName));
+        if (instanceMID != null) {
+          FileUtils.deleteFile(outputMIDPath, true);
+        }
+        continue;
+      }
       var outputMIDModel = midModelType.createInstanceAndEditor(outputMID, outputMIDPath, instanceMID);
       outputMIDModels.add(outputMIDModel);
     }
@@ -240,6 +267,13 @@ public class Map extends NestingOperatorImpl {
       var outputMID = outputMIDByName.getValue();
       var outputMIDPath = mapperOutputMIDPathsByName.get(outputName);
       var instanceMID = instanceMIDsByMapperOutput.get(outputName);
+      if (sameInOut.containsKey(outputName)) { // handle mapper outputs that are identical to inputs, e.g. Identity
+        outputMIDModels.add(sameInOut.get(outputName));
+        if (instanceMID != null) {
+          FileUtils.deleteFile(outputMIDPath, true);
+        }
+        continue;
+      }
       var outputMIDModel = midrelModelType.createInstanceAndEditor(outputMID, outputMIDPath, instanceMID);
       outputMIDModels.add(outputMIDModel);
       if (instanceMID != null) {
