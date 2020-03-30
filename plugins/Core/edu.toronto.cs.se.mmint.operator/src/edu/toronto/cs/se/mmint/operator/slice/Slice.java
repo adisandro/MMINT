@@ -24,7 +24,6 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MMINTException;
@@ -49,8 +48,7 @@ public class Slice extends OperatorImpl {
   private Output output;
 
   private static class Input {
-
-    private final static @NonNull String IN_MODELREL = "criterion";
+    private final static String IN_MODELREL = "criterion";
     private ModelRel critRel;
     private Model model;
 
@@ -64,16 +62,15 @@ public class Slice extends OperatorImpl {
   }
 
   private static class Output {
-
-    private final static @NonNull String OUT_MODELREL = "slice";
+    private final static String OUT_MODELREL = "slice";
     private ModelRel sliceRel;
     private MID mid;
 
-    public Output(@NonNull Map<String, MID> outputMIDsByName) {
+    public Output(Map<String, MID> outputMIDsByName) {
       this.mid = outputMIDsByName.get(Output.OUT_MODELREL);
     }
 
-    public @NonNull Map<String, Model> packed() {
+    public Map<String, Model> packed() {
       var outputsByName = new HashMap<String, Model>();
       outputsByName.put(Output.OUT_MODELREL, this.sliceRel);
       return outputsByName;
@@ -81,9 +78,8 @@ public class Slice extends OperatorImpl {
   }
 
   public static class Constraint implements IJavaOperatorConstraint {
-
     @Override
-    public boolean isAllowedInput(@NonNull Map<String, Model> inputsByName) {
+    public boolean isAllowedInput(Map<String, Model> inputsByName) {
       try {
         new Input(inputsByName);
         return true;
@@ -94,9 +90,8 @@ public class Slice extends OperatorImpl {
     }
 
     @Override
-    public @NonNull Map<ModelRel, List<Model>> getAllowedOutputModelRelEndpoints(
-                                                 @NonNull Map<String, Model> inputsByName,
-                                                 @NonNull Map<String, Model> outputsByName) {
+    public Map<ModelRel, List<Model>> getAllowedOutputModelRelEndpoints(Map<String, Model> inputsByName,
+                                                                        Map<String, Model> outputsByName) {
       var input = new Input(inputsByName);
       var sliceRel = (ModelRel) outputsByName.get(Output.OUT_MODELREL);
       var validOutputs = new HashMap<ModelRel, List<Model>>();
@@ -107,7 +102,7 @@ public class Slice extends OperatorImpl {
     }
   }
 
-  private void init(@NonNull Map<String, Model> inputsByName, @NonNull Map<String, MID> outputMIDsByName) {
+  private void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) {
     this.input = new Input(inputsByName);
     this.output = new Output(outputMIDsByName);
   }

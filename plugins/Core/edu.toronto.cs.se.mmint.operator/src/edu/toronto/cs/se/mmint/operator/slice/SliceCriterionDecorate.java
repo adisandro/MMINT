@@ -21,7 +21,6 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MMINTException;
@@ -44,12 +43,11 @@ public class SliceCriterionDecorate extends OperatorImpl {
 
   private static class Input {
 
-    private final static @NonNull String IN_MODELREL = "criterion";
+    private final static String IN_MODELREL = "criterion";
     private ModelRel critRel;
     private Model model;
 
-    public Input(@NonNull Map<String, Model> inputsByName) {
-
+    public Input(Map<String, Model> inputsByName) {
       this.critRel = (ModelRel) inputsByName.get(Input.IN_MODELREL);
       if (this.critRel.getModelEndpoints().size() > 1) {
         // critRel must be unary
@@ -64,31 +62,25 @@ public class SliceCriterionDecorate extends OperatorImpl {
   }
 
   private static class Output {
-
-    private final static @NonNull String OUT_MODELREL = "decorated";
-    private final static @NonNull String OUT_SUFFIX = "_dec";
+    private final static String OUT_MODELREL = "decorated";
+    private final static String OUT_SUFFIX = "_dec";
     private ModelRel decRel;
     private MID mid;
 
-    public Output(@NonNull Map<String, MID> outputMIDsByName) {
-
+    public Output(Map<String, MID> outputMIDsByName) {
       this.mid = outputMIDsByName.get(Output.OUT_MODELREL);
     }
 
-    public @NonNull Map<String, Model> packed() {
-
+    public Map<String, Model> packed() {
       Map<String, Model> outputsByName = new HashMap<>();
       outputsByName.put(Output.OUT_MODELREL, this.decRel);
-
       return outputsByName;
     }
   }
 
   public static class Constraint implements IJavaOperatorConstraint {
-
     @Override
     public boolean isAllowedInput(Map<String, Model> inputsByName) {
-
       try {
         new Input(inputsByName);
         return true;
@@ -112,7 +104,7 @@ public class SliceCriterionDecorate extends OperatorImpl {
     }
   }
 
-  private void init(@NonNull Map<String, Model> inputsByName, @NonNull Map<String, MID> outputMIDsByName) {
+  private void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) {
     this.input = new Input(inputsByName);
     this.output = new Output(outputMIDsByName);
   }
@@ -141,7 +133,6 @@ public class SliceCriterionDecorate extends OperatorImpl {
                                 Map<String, MID> outputMIDsByName) throws Exception {
     init(inputsByName, outputMIDsByName);
     decorate();
-
     return this.output.packed();
   }
 
