@@ -12,7 +12,6 @@
  */
 package edu.toronto.cs.se.mmint.operator.slice;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -94,11 +93,7 @@ public class Slice extends OperatorImpl {
                                                                         Map<String, Model> outputsByName) {
       var input = new Input(inputsByName);
       var sliceRel = (ModelRel) outputsByName.get(Output.OUT_MODELREL);
-      var validOutputs = new HashMap<ModelRel, List<Model>>();
-      var endpointModels = new ArrayList<Model>();
-      endpointModels.add(input.model);
-      validOutputs.put(sliceRel, endpointModels);
-      return validOutputs;
+      return Map.of(sliceRel, List.of(input.model));
     }
   }
 
@@ -221,5 +216,4 @@ public class Slice extends OperatorImpl {
     slice();
     return this.output.packed();
   }
-
 }

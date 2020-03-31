@@ -12,9 +12,13 @@
 package edu.toronto.cs.se.modelepedia.safetycase.operator;
 
 import edu.toronto.cs.se.mmint.mid.operator.impl.WorkflowOperatorImpl;
+import edu.toronto.cs.se.mmint.operator.slice.SafetySlice.Constraint;
 
 /**
  * Defaults to using GSNSlice.mid as the implementation.
- * TODO: Does it need a constraint for the input?
  */
-public class GSNSlice extends WorkflowOperatorImpl {}
+public class GSNSlice extends WorkflowOperatorImpl {
+  public static class SafetySliceConstraint extends Constraint {
+    // necessary because we can't inherit from SafetySlice too
+  }
+}

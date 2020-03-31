@@ -1222,6 +1222,70 @@
          point="edu.toronto.cs.se.mmint.operators">
       <operatorType>
          <type
+               name="SafetySlice"
+               uri="http://se.cs.toronto.edu/mmint/Operator_SafetySlice"
+               class="edu.toronto.cs.se.mmint.operator.slice.SafetySlice">
+         </type>
+         <constraint
+               implementation="edu.toronto.cs.se.mmint.operator.slice.SafetySlice$Constraint"
+               language="java">
+         </constraint>
+         <inputs>
+            <parameter>
+               <type
+                     name="criterionMD"
+                     uri="http://se.cs.toronto.edu/mmint/Operator_SafetySlice-ModelRel/criterionMD">
+               </type>
+               <typeEndpoint
+                     targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
+               </typeEndpoint>
+            </parameter>
+            <parameter>
+               <type
+                     name="criterionD"
+                     uri="http://se.cs.toronto.edu/mmint/Operator_SafetySlice-ModelRel/criterionD">
+               </type>
+               <typeEndpoint
+                     targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
+               </typeEndpoint>
+            </parameter>
+         </inputs>
+         <outputs>
+            <parameter>
+               <type
+                     name="revise"
+                     uri="http://se.cs.toronto.edu/mmint/Operator_SafetySlice-ModelRel/revise">
+               </type>
+               <typeEndpoint
+                     targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
+               </typeEndpoint>
+            </parameter>
+            <parameter>
+               <type
+                     name="recheckContent"
+                     uri="http://se.cs.toronto.edu/mmint/Operator_SafetySlice-ModelRel/recheckContent">
+               </type>
+               <typeEndpoint
+                     targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
+               </typeEndpoint>
+            </parameter>
+            <parameter>
+               <type
+                     name="recheckState"
+                     uri="http://se.cs.toronto.edu/mmint/Operator_SafetySlice-ModelRel/recheckState">
+               </type>
+               <typeEndpoint
+                     targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
+               </typeEndpoint>
+            </parameter>
+         </outputs>
+      </operatorType>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.operators">
+      <operatorType>
+         <type
                name="Annotate"
                uri="http://se.cs.toronto.edu/mmint/Operator_Annotate"
                class="edu.toronto.cs.se.mmint.operator.slice.Annotate">
@@ -1232,28 +1296,28 @@
          </constraint>
          <inputs>
             <parameter>
-             <type
-                   name="revise"
+               <type
+                     name="revise"
                      uri="http://se.cs.toronto.edu/mmint/Operator_Annotate-ModelRel/revise">
-             </type>
+               </type>
              <typeEndpoint
                    targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
              </typeEndpoint>
             </parameter>
             <parameter>
-             <type
-                   name="recheckContent"
+               <type
+                     name="recheckContent"
                      uri="http://se.cs.toronto.edu/mmint/Operator_Annotate-ModelRel/recheckContent">
-             </type>
+               </type>
              <typeEndpoint
                    targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
              </typeEndpoint>
             </parameter>
             <parameter>
-             <type
-                   name="recheckState"
+               <type
+                     name="recheckState"
                      uri="http://se.cs.toronto.edu/mmint/Operator_Annotate-ModelRel/recheckState">
-             </type>
+               </type>
              <typeEndpoint
                    targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
              </typeEndpoint>
@@ -1261,10 +1325,10 @@
          </inputs>
          <outputs>
             <parameter>
-             <type
-                   name="annotated"
+               <type
+                     name="annotated"
                      uri="http://se.cs.toronto.edu/mmint/Operator_Annotate-Model/annotated">
-             </type>
+               </type>
              <typeEndpoint
                    targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
              </typeEndpoint>
