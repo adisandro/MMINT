@@ -2,7 +2,7 @@
 <mid:MID xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mid="http://se.cs.toronto.edu/mmint/MID" level="WORKFLOWS">
   <models uri="mid" name="mid" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/MID" dynamic="true" origin="CREATED" fileExtension="mid"/>
   <models uri="criterion" name="criterion" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/MIDRel" dynamic="true" origin="CREATED" fileExtension="mid"/>
-  <models uri="sameMID" name="sameMID" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Model" dynamic="true" origin="CREATED" fileExtension="xmi"/>
+  <models uri="sameMID" name="sameMID" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/MID" dynamic="true" origin="CREATED" fileExtension="xmi"/>
   <models uri="slice" name="slice" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/MIDRel" dynamic="true" origin="CREATED" fileExtension="mid"/>
   <operators uri="" name="Fix" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_Fix" dynamic="true">
     <inputs uri="" name="models0" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_Fix/models" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0"/>

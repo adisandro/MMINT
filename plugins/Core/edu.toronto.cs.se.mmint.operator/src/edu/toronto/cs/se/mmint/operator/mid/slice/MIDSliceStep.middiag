@@ -25,7 +25,7 @@
     <styles xmi:type="notation:FontStyle" xmi:id="_VEwg8hGpEeeMW89lr7qxzQ" fontName="Cantarell" fontHeight="12"/>
     <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_VEwg8xGpEeeMW89lr7qxzQ" hint="Mid"/>
     <element xmi:type="mid:Model" href="MIDSliceStep.mid#//@models.2"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_VEwg9BGpEeeMW89lr7qxzQ" x="1216" y="384" width="189"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_VEwg9BGpEeeMW89lr7qxzQ" x="1232" y="384" width="173"/>
   </children>
   <children xmi:type="notation:Node" xmi:id="_VEwg9xGpEeeMW89lr7qxzQ" type="2005">
     <children xmi:type="notation:DecorationNode" xmi:id="_VEwg_BGpEeeMW89lr7qxzQ" type="5009"/>
