@@ -24,7 +24,7 @@ import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
-import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
+import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorConstraint;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
@@ -32,6 +32,7 @@ import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
+import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
@@ -45,6 +46,12 @@ public class Slice extends OperatorImpl {
 
   private Input input;
   private Output output;
+  private Mapping addType;
+  private Mapping delType;
+  private Mapping modType;
+  private Mapping reviseType;
+  private Mapping recheckContentType;
+  private Mapping recheckStateType;
 
   private static class Input {
     private final static String IN_MODELREL = "criterion";
@@ -97,9 +104,19 @@ public class Slice extends OperatorImpl {
     }
   }
 
-  private void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) {
+  private void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws MMINTException {
     this.input = new Input(inputsByName);
     this.output = new Output(outputMIDsByName);
+    this.addType = MIDTypeRegistry.getType("http://se.cs.toronto.edu/mmint/SliceRel/Add");
+    this.delType = MIDTypeRegistry.getType("http://se.cs.toronto.edu/mmint/SliceRel/Del");
+    this.modType = MIDTypeRegistry.getType("http://se.cs.toronto.edu/mmint/SliceRel/Mod");
+    this.reviseType = MIDTypeRegistry.getType("http://se.cs.toronto.edu/mmint/SliceRel/Revise");
+    this.recheckContentType = MIDTypeRegistry.getType("http://se.cs.toronto.edu/mmint/SliceRel/RecheckContent");
+    this.recheckStateType = MIDTypeRegistry.getType("http://se.cs.toronto.edu/mmint/SliceRel/RecheckState");
+    if (this.addType == null || this.delType == null || this.modType == null || this.reviseType == null ||
+        this.recheckContentType == null || this.recheckStateType == null) {
+      throw new MMINTException("The SliceRel mapping types are missing");
+    }
   }
 
   /**
@@ -181,8 +198,7 @@ public class Slice extends OperatorImpl {
           var slicer = slicedFromCritEntry.getValue();
           try {
             var sliceModelElemRef = sliceModelEndpointRef.createModelElementInstanceAndReference(slicee, null);
-            var sliceMappingRef = MIDTypeHierarchy.getRootMappingType()
-                                                  .createInstanceAndReferenceAndEndpointsAndReferences(
+            var sliceMappingRef = this.reviseType.createInstanceAndReferenceAndEndpointsAndReferences(
                                                     false, ECollections.asEList(sliceModelElemRef));
             String slicerName = null;
             if (slicer == null) { // slicee == critModelObj

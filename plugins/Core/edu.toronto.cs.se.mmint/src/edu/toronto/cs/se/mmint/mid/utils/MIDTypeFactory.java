@@ -19,7 +19,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
-import edu.toronto.cs.se.mmint.MMINT;
+import edu.toronto.cs.se.mmint.MMINTConstants;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
@@ -199,7 +199,7 @@ public class MIDTypeFactory {
 		Iterator<ModelEndpointReference> modelTypeEndpointRefIter = MIDTypeHierarchy.getTypeRefHierarchyIterator(modelRelType.getModelEndpointRefs());
 		while (modelTypeEndpointRefIter.hasNext()) {
 			ModelEndpointReference modelTypeEndpointRefSuper = modelTypeEndpointRefIter.next();
-			if (MIDTypeHierarchy.isRootType(modelTypeEndpointRefSuper.getObject().getTarget())) { // don't copy model type endpoints to the root model type
+			if (MIDTypeHierarchy.isRootType(modelTypeEndpointRefSuper.getObject())) { // don't copy root model type endpoints
 				for (ModelElementReference modelElemTypeRefSuper : modelTypeEndpointRefSuper.getModelElemRefs()) {
 					for (ModelElementEndpointReference modelElemTypeEndpointRefSuper : modelElemTypeRefSuper.getModelElemEndpointRefs()) {
 						skipMappingRefs.add((MappingReference) modelElemTypeEndpointRefSuper.eContainer());
@@ -310,7 +310,7 @@ public class MIDTypeFactory {
 	public static void addMappingType(Mapping newMappingType, Mapping mappingType, ModelRel modelRelType) {
 
 		// keep track of inherited model elements, but not root ones
-		if (mappingType != null && !mappingType.getUri().equals(MMINT.ROOT_MAPPING_URI)) {
+		if (mappingType != null && !mappingType.getUri().equals(MMINTConstants.ROOT_MAPPING_URI)) {
 			for (ModelElementEndpointReference modelElemTypeEndpointRef : mappingType.getModelElemEndpointRefs()) {
 				newMappingType.getModelElemEndpointRefs().add(modelElemTypeEndpointRef);
 			}

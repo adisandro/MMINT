@@ -248,7 +248,12 @@ public class MIDConstraintChecker {
 			}
 		}
 		// check allowance
-		for (ModelEndpointReference modelTypeEndpointRef : modelRel.getMetatype().getModelEndpointRefs()) {
+		var modelTypeEndpointRefs = modelRel.getMetatype().getModelEndpointRefs();
+		for (var modelTypeEndpointRef : modelTypeEndpointRefs) {
+		  if (modelTypeEndpointRefs.stream().anyMatch(r -> r.getSupertypeRef() == modelTypeEndpointRef)) {
+	      // skip overridden endpoint
+		    continue;
+		  }
 			if (isAllowedModelEndpoint(modelTypeEndpointRef, targetModel, cardinalityTable)) {
 				if (modelTypeEndpointUris == null) {
 					modelTypeEndpointUris = new ArrayList<>();
@@ -444,8 +449,8 @@ public class MIDConstraintChecker {
 
 		ModelRel modelRelType = ((ModelRel) modelEndpointRef.eContainer()).getMetatype();
 		ModelEndpointReference modelTypeEndpointRef = MIDRegistry.getReference(modelEndpointRef.getObject().getMetatypeUri(), modelRelType.getModelEndpointRefs());
-        // shortcut for empty model rel types that just take advantage of types of endpoints
-		if (modelTypeEndpointRef.getModelElemRefs().isEmpty() && MIDTypeHierarchy.isRootType(modelRelType.getSupertype())) {
+    // shortcut for empty model rel types that just constrain types of endpoints
+		if (modelTypeEndpointRef.getModelElemRefs().isEmpty()) {
 		    return MIDTypeHierarchy.getRootModelElementType();
 		}
 		// search for an allowed model element type

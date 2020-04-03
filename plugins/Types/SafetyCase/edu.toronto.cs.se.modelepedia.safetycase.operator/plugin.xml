@@ -30,26 +30,26 @@
             <parameter>
                <type
                      name="criterion"
-                     uri="http://se.cs.toronto.edu/modelepedia/Operator_GSNSliceRevise2Content-GSNRel/criterion">
+                     uri="http://se.cs.toronto.edu/modelepedia/Operator_GSNSliceRevise2Content-GSNSliceRel/criterion">
                   <superType
                         uri="http://se.cs.toronto.edu/mmint/Operator_Slice-ModelRel/criterion">
                   </superType>
                </type>
                <typeEndpoint
-                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/GSNRel">
+                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/GSNSliceRel">
                </typeEndpoint>
             </parameter></inputs>
          <outputs>
             <parameter>
                <type
                      name="slice"
-                     uri="http://se.cs.toronto.edu/modelepedia/Operator_GSNSliceRevise2Content-GSNRel/slice">
+                     uri="http://se.cs.toronto.edu/modelepedia/Operator_GSNSliceRevise2Content-GSNSliceRel/slice">
                   <superType
                         uri="http://se.cs.toronto.edu/mmint/Operator_Slice-ModelRel/slice">
                   </superType>
                </type>
                <typeEndpoint
-                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/GSNRel">
+                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/GSNSliceRel">
                </typeEndpoint>
             </parameter></outputs>
       </operatorType>
@@ -70,26 +70,26 @@
             <parameter>
                <type
                      name="criterion"
-                     uri="http://se.cs.toronto.edu/modelepedia/Operator_GSNSliceRecheck-GSNRel/criterion">
+                     uri="http://se.cs.toronto.edu/modelepedia/Operator_GSNSliceRecheck-GSNSliceRel/criterion">
                   <superType
                         uri="http://se.cs.toronto.edu/mmint/Operator_Slice-ModelRel/criterion">
                   </superType>
                </type>
                <typeEndpoint
-                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/GSNRel">
+                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/GSNSliceRel">
                </typeEndpoint>
             </parameter></inputs>
          <outputs>
             <parameter>
                <type
                      name="slice"
-                     uri="http://se.cs.toronto.edu/modelepedia/Operator_GSNSliceRecheck-GSNRel/slice">
+                     uri="http://se.cs.toronto.edu/modelepedia/Operator_GSNSliceRecheck-GSNSliceRel/slice">
                   <superType
                         uri="http://se.cs.toronto.edu/mmint/Operator_Slice-ModelRel/slice">
                   </superType>
                </type>
                <typeEndpoint
-                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/GSNRel">
+                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/GSNSliceRel">
                </typeEndpoint>
             </parameter></outputs>
       </operatorType>
@@ -110,29 +110,66 @@
             <parameter>
                <type
                      name="criterion"
-                     uri="http://se.cs.toronto.edu/modelepedia/Operator_GSNSliceRevise2State-GSNRel/criterion">
+                     uri="http://se.cs.toronto.edu/modelepedia/Operator_GSNSliceRevise2State-GSNSliceRel/criterion">
                   <superType
                         uri="http://se.cs.toronto.edu/mmint/Operator_Slice-ModelRel/criterion">
                   </superType>
                </type>
                <typeEndpoint
-                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/GSNRel">
+                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/GSNSliceRel">
                </typeEndpoint>
             </parameter></inputs>
          <outputs>
             <parameter>
                <type
                      name="slice"
-                     uri="http://se.cs.toronto.edu/modelepedia/Operator_GSNSliceRevise2State-GSNRel/slice">
+                     uri="http://se.cs.toronto.edu/modelepedia/Operator_GSNSliceRevise2State-GSNSliceRel/slice">
                   <superType
                         uri="http://se.cs.toronto.edu/mmint/Operator_Slice-ModelRel/slice">
                   </superType>
                </type>
                <typeEndpoint
-                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/GSNRel">
+                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/GSNSliceRel">
                </typeEndpoint>
             </parameter></outputs>
       </operatorType>
+   </extension>
+
+   <extension
+         point="org.eclipse.emf.ecore.generated_package">
+      <package
+            class="edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage"
+            uri="http://se.cs.toronto.edu/modelepedia/GSNSliceRel">
+      </package>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.relationships">
+      <relationshipType>
+         <modelType>
+            <type
+                  name="GSNSliceRel"
+                  uri="http://se.cs.toronto.edu/modelepedia/GSNSliceRel">
+               <superType
+                     uri="http://se.cs.toronto.edu/mmint/SliceRel">
+               </superType>
+            </type>
+         </modelType>
+         <modelTypeEndpoint>
+            <type
+                  name="GSNEndpoint"
+                  uri="http://se.cs.toronto.edu/modelepedia/GSNSliceRel-GSN/GSNEndpoint">
+               <superType
+                     uri="http://se.cs.toronto.edu/mmint/SliceRel-Model/ModelEndpoint">
+               </superType>
+            </type>
+            <typeEndpoint
+                  lowerBound="1"
+                  upperBound="1"
+                  targetTypeUri="http://se.cs.toronto.edu/modelepedia/GSN">
+            </typeEndpoint>
+         </modelTypeEndpoint>
+      </relationshipType>
    </extension>
 
    <extension
@@ -154,25 +191,25 @@
             <parameter>
                <type
                      name="criterionMD"
-                     uri="http://se.cs.toronto.edu/modelepedia/Operator_GSNSlice-GSNRel/criterionMD">
+                     uri="http://se.cs.toronto.edu/modelepedia/Operator_GSNSlice-GSNSliceRel/criterionMD">
                   <superType
                         uri="http://se.cs.toronto.edu/mmint/Operator_SafetySlice-ModelRel/criterionMD">
                   </superType>
                </type>
                <typeEndpoint
-                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/GSNRel">
+                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/GSNSliceRel">
                </typeEndpoint>
             </parameter>
             <parameter>
                <type
                      name="criterionD"
-                     uri="http://se.cs.toronto.edu/modelepedia/Operator_GSNSlice-GSNRel/criterionD">
+                     uri="http://se.cs.toronto.edu/modelepedia/Operator_GSNSlice-GSNSliceRel/criterionD">
                   <superType
                         uri="http://se.cs.toronto.edu/mmint/Operator_SafetySlice-ModelRel/criterionD">
                   </superType>
                </type>
                <typeEndpoint
-                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/GSNRel">
+                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/GSNSliceRel">
                </typeEndpoint>
             </parameter>
          </inputs>
@@ -180,37 +217,37 @@
             <parameter>
                <type
                      name="revise"
-                     uri="http://se.cs.toronto.edu/modelepedia/Operator_GSNSlice-GSNRel/revise">
+                     uri="http://se.cs.toronto.edu/modelepedia/Operator_GSNSlice-GSNSliceRel/revise">
                   <superType
                         uri="http://se.cs.toronto.edu/mmint/Operator_SafetySlice-ModelRel/revise">
                   </superType>
                </type>
                <typeEndpoint
-                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/GSNRel">
+                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/GSNSliceRel">
                </typeEndpoint>
             </parameter>
             <parameter>
                <type
                      name="recheckContent"
-                     uri="http://se.cs.toronto.edu/modelepedia/Operator_GSNSlice-GSNRel/recheckContent">
+                     uri="http://se.cs.toronto.edu/modelepedia/Operator_GSNSlice-GSNSliceRel/recheckContent">
                   <superType
                         uri="http://se.cs.toronto.edu/mmint/Operator_SafetySlice-ModelRel/recheckContent">
                   </superType>
                </type>
                <typeEndpoint
-                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/GSNRel">
+                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/GSNSliceRel">
                </typeEndpoint>
             </parameter>
             <parameter>
                <type
                      name="recheckState"
-                     uri="http://se.cs.toronto.edu/modelepedia/Operator_GSNSlice-GSNRel/recheckState">
+                     uri="http://se.cs.toronto.edu/modelepedia/Operator_GSNSlice-GSNSliceRel/recheckState">
                   <superType
                         uri="http://se.cs.toronto.edu/mmint/Operator_SafetySlice-ModelRel/recheckState">
                   </superType>
                </type>
                <typeEndpoint
-                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/GSNRel">
+                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/GSNSliceRel">
                </typeEndpoint>
             </parameter>
          </outputs>
@@ -232,37 +269,37 @@
             <parameter>
                <type
                      name="revise"
-                     uri="http://se.cs.toronto.edu/modelepedia/Operator_GSNAnnotate-GSNRel/revise">
+                     uri="http://se.cs.toronto.edu/modelepedia/Operator_GSNAnnotate-GSNSliceRel/revise">
                   <superType
                         uri="http://se.cs.toronto.edu/mmint/Operator_Annotate-ModelRel/revise">
                   </superType>
                </type>
                <typeEndpoint
-                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/GSNRel">
+                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/GSNSliceRel">
                </typeEndpoint>
             </parameter>
             <parameter>
                <type
                      name="recheckContent"
-                     uri="http://se.cs.toronto.edu/modelepedia/Operator_GSNAnnotate-GSNRel/recheckContent">
+                     uri="http://se.cs.toronto.edu/modelepedia/Operator_GSNAnnotate-GSNSliceRel/recheckContent">
                   <superType
                         uri="http://se.cs.toronto.edu/mmint/Operator_Annotate-ModelRel/recheckContent">
                   </superType>
                </type>
                <typeEndpoint
-                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/GSNRel">
+                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/GSNSliceRel">
                </typeEndpoint>
             </parameter>
             <parameter>
                <type
                      name="recheckState"
-                     uri="http://se.cs.toronto.edu/modelepedia/Operator_GSNAnnotate-GSNRel/recheckState">
+                     uri="http://se.cs.toronto.edu/modelepedia/Operator_GSNAnnotate-GSNSliceRel/recheckState">
                   <superType
                         uri="http://se.cs.toronto.edu/mmint/Operator_Annotate-ModelRel/recheckState">
                   </superType>
                </type>
                <typeEndpoint
-                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/GSNRel">
+                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/GSNSliceRel">
                </typeEndpoint>
             </parameter>
          </inputs>
