@@ -67,7 +67,7 @@
                     name="criterion"
                     uri="http://se.cs.toronto.edu/modelepedia/Operator_SDSlice-SDSliceRel/criterion">
                   <superType
-                        uri="http://se.cs.toronto.edu/mmint/Operator_Slice-ModelRel/criterion">
+                        uri="http://se.cs.toronto.edu/mmint/Operator_Slice-SliceRel/criterion">
                   </superType>
   	           </type>
   	           <typeEndpoint
@@ -81,7 +81,7 @@
                     name="slice"
                     uri="http://se.cs.toronto.edu/modelepedia/Operator_SDSlice-SDSliceRel/slice">
                   <superType
-                        uri="http://se.cs.toronto.edu/mmint/Operator_Slice-ModelRel/slice">
+                        uri="http://se.cs.toronto.edu/mmint/Operator_Slice-SliceRel/slice">
                   </superType>
   	           </type>
   	           <typeEndpoint

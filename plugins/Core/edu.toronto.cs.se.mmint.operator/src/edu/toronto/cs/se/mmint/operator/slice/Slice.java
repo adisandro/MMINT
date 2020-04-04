@@ -77,9 +77,7 @@ public class Slice extends OperatorImpl {
     }
 
     public Map<String, Model> packed() {
-      var outputsByName = new HashMap<String, Model>();
-      outputsByName.put(Output.OUT_MODELREL, this.sliceRel);
-      return outputsByName;
+      return Map.of(Output.OUT_MODELREL, this.sliceRel);
     }
   }
 
@@ -147,10 +145,9 @@ public class Slice extends OperatorImpl {
    */
   protected Map<EObject, EObject> getAllSlicedElements(EObject critModelObj, Set<EObject> alreadySliced) {
     var sliced = new HashMap<EObject, EObject>();
-    var slicedCur = new HashSet<EObject>();
+    var slicedCur = Set.of(critModelObj);
     sliced.put(critModelObj, null);
     alreadySliced.add(critModelObj);
-    slicedCur.add(critModelObj);
 
     // iterate through the current set of newly sliced model elements
     // to identify the next ones that are going to be sliced
@@ -192,6 +189,8 @@ public class Slice extends OperatorImpl {
                                                                .getObject().getName();
         }
         // add sliced elements to the output model relation
+        //TODO Add mapping type info to take different decisions
+        //TODO Results should specify the output mapping type
         var slicedFromCrit = getAllSlicedElements(critModelObj, sliced);
         for (var slicedFromCritEntry : slicedFromCrit.entrySet()) {
           var slicee = slicedFromCritEntry.getKey();

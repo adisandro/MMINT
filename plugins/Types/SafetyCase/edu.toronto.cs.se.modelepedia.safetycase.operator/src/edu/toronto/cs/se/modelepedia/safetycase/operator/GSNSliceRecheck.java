@@ -25,15 +25,15 @@ import edu.toronto.cs.se.modelepedia.safetycase.Solution;
 public class GSNSliceRecheck extends Slice {
 
   @Override
-  protected Set<EObject> getDirectlySlicedElements(EObject modelObj, Set<EObject> alreadyImpacted) {
-    var impacted = new HashSet<EObject>();
+  protected Set<EObject> getDirectlySlicedElements(EObject modelObj, Set<EObject> alreadySliced) {
+    var sliced = new HashSet<EObject>();
 
-    // If input is a goal or a solution, then the state validity of all ancestor goals should be rechecked.
     if (modelObj instanceof Goal || modelObj instanceof Solution) {
-      impacted.addAll(GSNUtils.getAncestorGoals((CoreElement) modelObj, alreadyImpacted));
+      // slice all ancestor goals
+      sliced.addAll(GSNUtils.getAncestorGoals((CoreElement) modelObj, alreadySliced));
     }
 
-    impacted.removeAll(alreadyImpacted);
-    return impacted;
+    sliced.removeAll(alreadySliced);
+    return sliced;
   }
 }

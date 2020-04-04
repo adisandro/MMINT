@@ -30,6 +30,7 @@ public class GSNSliceRevise2State extends Slice {
 
   @Override
   protected Map<EObject, EObject> getAllSlicedElements(EObject critModelObj, Set<EObject> alreadySliced) {
+    //TODO Generalize this version of the algorithm up into Slice?
     var sliced = new HashMap<EObject, EObject>();
     sliced.put(critModelObj, null);
     alreadySliced.add(critModelObj);
@@ -37,31 +38,30 @@ public class GSNSliceRevise2State extends Slice {
     if (!(critModelObj instanceof Strategy)) {
       return sliced;
     }
-    var propagatedCur = new HashSet<EObject>();
-    propagatedCur.add(critModelObj);
-    var alreadyPropagated = new HashSet<>(alreadySliced);
+    var visitedCur = Set.of(critModelObj);
+    var alreadyVisited = new HashSet<>(alreadySliced);
 
     // iterate through the current set of newly propagated model elements
     // to identify the next ones that are going to be sliced and propagated
-    while (!propagatedCur.isEmpty()) {
-      var propagatedNext = new HashSet<EObject>();
-      for (var modelObj : propagatedCur) {
+    while (!visitedCur.isEmpty()) {
+      var visitedNext = new HashSet<EObject>();
+      for (var modelObj : visitedCur) {
         // get all model elements directly sliced and propagated by the current one without adding duplicates
-        var slicedModelObjs = getDirectlySlicedElements(modelObj, alreadyPropagated);
-        var propagatedModelObjs = getDirectlyPropagatedElements(modelObj, alreadyPropagated);
+        var slicedModelObjs = getDirectlySlicedElements(modelObj, alreadyVisited);
+        var visitedModelObjs = getDirectlyVisitedElements(modelObj, alreadyVisited);
         slicedModelObjs.stream().forEach(s -> sliced.put(s, modelObj));
-        propagatedNext.addAll(propagatedModelObjs);
+        visitedNext.addAll(visitedModelObjs);
         alreadySliced.addAll(slicedModelObjs);
-        alreadyPropagated.addAll(propagatedModelObjs);
+        alreadyVisited.addAll(visitedModelObjs);
       }
       // prepare for next iteration
-      propagatedCur = propagatedNext;
+      visitedCur = visitedNext;
     }
 
     return sliced;
   }
 
-  protected Set<EObject> getDirectlyPropagatedElements(EObject modelObj, Set<EObject> alreadyPropagated) {
+  protected Set<EObject> getDirectlyVisitedElements(EObject modelObj, Set<EObject> alreadyPropagated) {
     var propagated = new HashSet<EObject>();
 
     // propagate to supported ancestors
@@ -81,7 +81,7 @@ public class GSNSliceRevise2State extends Slice {
   @Override
   protected Set<EObject> getDirectlySlicedElements(EObject modelObj, Set<EObject> alreadyPropagated) {
     // slice all propagated goals
-    var sliced = getDirectlyPropagatedElements(modelObj, alreadyPropagated).stream()
+    var sliced = getDirectlyVisitedElements(modelObj, alreadyPropagated).stream()
                    .filter(p -> p instanceof Goal)
                    .collect(Collectors.toSet());
 

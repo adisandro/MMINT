@@ -21,7 +21,6 @@ import org.eclipse.emf.ecore.EObject;
 import edu.toronto.cs.se.mmint.operator.slice.Slice;
 import edu.toronto.cs.se.modelepedia.safetycase.AndSupporter;
 import edu.toronto.cs.se.modelepedia.safetycase.CoreElement;
-import edu.toronto.cs.se.modelepedia.safetycase.DecomposableCoreElement;
 import edu.toronto.cs.se.modelepedia.safetycase.Goal;
 import edu.toronto.cs.se.modelepedia.safetycase.MofNSupporter;
 import edu.toronto.cs.se.modelepedia.safetycase.OrSupporter;
@@ -30,44 +29,10 @@ import edu.toronto.cs.se.modelepedia.safetycase.Supportable;
 import edu.toronto.cs.se.modelepedia.safetycase.SupportedBy;
 import edu.toronto.cs.se.modelepedia.safetycase.XorSupporter;
 
-// Contains useful functions for slicing gsn models
 public class GSNUtils extends Slice {
 
-  // Returns all child core elements of the input decomposable core element.
-  public static Set<CoreElement> getChildCoreElements(DecomposableCoreElement inputElem) {
-    var children = new HashSet<CoreElement>();
-    var supportablesCur = new HashSet<Supportable>();
-    var supportablesAll = new HashSet<Supportable>();
-    var supportablesNext = new HashSet<Supportable>();
-
-    supportablesCur.add(inputElem);
-    while (!supportablesCur.isEmpty()) {
-      for (var elem : supportablesCur) {
-        for (var rel : elem.getSupportedBy()) {
-          var s = rel.getTarget();
-          if (s instanceof CoreElement) {
-            children.add((CoreElement) s);
-          }
-          else if (s instanceof SupportConnector) {
-            supportablesNext.add((SupportConnector) s);
-          }
-        }
-      }
-      supportablesCur.clear();
-      for (var s : supportablesNext) {
-        if (!supportablesAll.contains(s)) {
-          supportablesAll.add(s);
-          supportablesCur.add(s);
-        }
-      }
-      supportablesNext.clear();
-    }
-
-    return children;
-  }
-
   // Returns all parents of support connectors that are impacted.
-  public static Set<Supportable> getConnectorDependants(Set<SupportConnector> connectors, Set<EObject> alreadyImpacted) {
+  public static Set<Supportable> getConnectorDependants(Set<SupportConnector> connectors, Set<EObject> alreadySliced) {
     var supportablesCur = new HashSet<Supportable>();
     var supportablesNext = new HashSet<Supportable>();
     var supportablesAll = new HashSet<Supportable>();
@@ -76,7 +41,7 @@ public class GSNUtils extends Slice {
     supportablesAll.addAll(connectors);
     while (!supportablesCur.isEmpty()) {
     var impactedAll = new HashSet<EObject>();
-    impactedAll.addAll(alreadyImpacted);
+    impactedAll.addAll(alreadySliced);
     impactedAll.addAll(supportablesAll);
       for (var elem : supportablesCur) {
         // Add parents to impacted set if necessary.
@@ -105,12 +70,12 @@ public class GSNUtils extends Slice {
   }
 
   // Returns all ancestor goals of the input core element, stopping when one is already impacted.
-  public static Set<Goal> getAncestorGoals(CoreElement elem, Set<EObject> alreadyImpacted) {
+  public static Set<Goal> getAncestorGoals(CoreElement elem, Set<EObject> alreadySliced) {
     var ancestors = new HashSet<Goal>();
     var ancestorsCur = elem.getSupports().stream()
                            .map(SupportedBy::getSource)
                            .collect(Collectors.toSet());
-    var alreadyImpacted2 = new HashSet<>(alreadyImpacted);
+    var alreadyImpacted2 = new HashSet<>(alreadySliced);
     while (!ancestorsCur.isEmpty()) {
       var ancestorsNext = new HashSet<Supportable>();
       alreadyImpacted2.addAll(ancestorsCur);
@@ -133,24 +98,24 @@ public class GSNUtils extends Slice {
 
   // Determines whether a change impact is propagated up or not given the
   // source impacted element and a set of other impacted elements.
-  public static boolean isPropagatedUp(Supportable elem, Set<EObject> alreadyImpacted) {
+  public static boolean isPropagatedUp(Supportable elem, Set<EObject> alreadySliced) {
 
     // If a core element is impacted, then its parents are also impacted.
     if (elem instanceof CoreElement) {
       return true;
     }
     // Count the number of children impacted.
-    boolean isPropagated = false;
-    int impactCount = 0;
-    int totalCount = 0;
+    var isPropagated = false;
+    var impactCount = 0;
+    var totalCount = 0;
     for (var rel : elem.getSupportedBy()) {
       totalCount += 1;
       var target = rel.getTarget();
-      if (alreadyImpacted.contains(target)) {
+      if (alreadySliced.contains(target)) {
         impactCount += 1;
       }
       else if (target instanceof SupportConnector) {
-        if (isPropagatedUp((SupportConnector) target, alreadyImpacted)) {
+        if (isPropagatedUp((SupportConnector) target, alreadySliced)) {
           impactCount += 1;
         }
       }
