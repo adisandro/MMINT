@@ -14,6 +14,7 @@ package edu.toronto.cs.se.modelepedia.sequencediagram.operator;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -27,91 +28,6 @@ import edu.toronto.cs.se.modelepedia.sequencediagram.SequenceDiagram;
 import edu.toronto.cs.se.modelepedia.sequencediagram.SequenceDiagramPackage;
 
 public class SDSlice extends Slice {
-
-  @Override
-  protected Set<EObject> getDirectlySlicedElements(EObject modelObj, Set<EObject> alreadySliced) {
-    var sliced = new HashSet<EObject>();
-
-    // If input is a sequence diagram, then the following are impacted:
-    // 1) Owned objects and messages.
-    if (modelObj instanceof SequenceDiagram) {
-      var d = (SequenceDiagram) modelObj;
-      sliced.addAll(d.getObjects());
-      sliced.addAll(d.getMessages());
-    }
-
-    // If input is an object, then the following are impacted:
-    // 1) Owned lifeline.
-    if (modelObj instanceof Object) {
-      var o = (Object) modelObj;
-      if (o.getLifeline() != null) {
-        sliced.add(o.getLifeline());
-      }
-    }
-
-    // If input is a lifeline, then the following are impacted:
-    // 1) Owned activation boxes.
-    if (modelObj instanceof Lifeline) {
-      var l = (Lifeline) modelObj;
-      sliced.addAll(l.getActivationBoxes());
-    }
-
-    // If input is an activation box, then the following are impacted:
-    // 1) Owned activation boxes.
-    // 2) All messages as source and as target.
-    if (modelObj instanceof ActivationBox) {
-      var a = (ActivationBox) modelObj;
-      sliced.addAll(a.getActivationBoxes());
-      sliced.addAll(a.getMessagesAsSource());
-      sliced.addAll(a.getMessagesAsTarget());
-    }
-
-    // If input is a message, then the following are impacted:
-    // 1) The next message on the source activation box (or its descendants or ancestors).
-    // 2) The next message on the target activation box (or its descendants or ancestors).
-    // 3) The source activation box if it (or its descendants) does not have any other preceding messages.
-    // 4) The target activation box if it (or its descendants) does not have any other preceding messages.
-    if (modelObj instanceof Message) {
-      var m = (Message) modelObj;
-      // Get all descendants and ancestors of the source activation box.
-      // Note: The original box is considered its own descendant and ancestor.
-      var sourceBoxes = new HashSet<ActivationBox>();
-      var sourceAncestors = getAncestors(m.getSource());
-      var sourceDescendants = getDescendants(m.getSource());
-      sourceBoxes.addAll(sourceAncestors);
-      sourceBoxes.addAll(sourceDescendants);
-      // Get the next message related to the source activation box (if any).
-      var nextSourceMessage = getMessage(sourceBoxes, m.getSuccessor(), SequenceDiagramPackage.eINSTANCE.getMessage_Successor());
-      if (nextSourceMessage != null) {
-        sliced.add(nextSourceMessage);
-      }
-      // Check if source activation box (or its descendants) has any preceding messages.
-      var previousSourceMessage = getMessage(sourceDescendants, m.getPredecessor(), SequenceDiagramPackage.eINSTANCE.getMessage_Predecessor());
-      if (previousSourceMessage == null) {
-        sliced.add(m.getSource());
-      }
-      // Get all descendants and ancestors of the target activation box.
-      // Note: The original box is considered its own descendant and ancestor.
-      var targetBoxes = new HashSet<ActivationBox>();
-      var targetAncestors = getAncestors(m.getTarget());
-      var targetDescendants = getDescendants(m.getTarget());
-      targetBoxes.addAll(targetDescendants);
-      targetBoxes.addAll(targetAncestors);
-      // Get the next message related to the target activation box (if any).
-      var nextTargetMessage = getMessage(targetBoxes, m.getSuccessor(), SequenceDiagramPackage.eINSTANCE.getMessage_Successor());
-      if (nextTargetMessage != null) {
-        sliced.add(nextTargetMessage);
-      }
-      // Check if target activation box (or its descendants) has any preceding messages.
-      var previousTargetMessage = getMessage(targetDescendants, m.getPredecessor(), SequenceDiagramPackage.eINSTANCE.getMessage_Predecessor());
-      if (previousTargetMessage == null)  {
-        sliced.add(m.getTarget());
-      }
-    }
-
-    sliced.removeAll(alreadySliced);
-    return sliced;
-  }
 
   // Return the set of activation boxes that are ancestors of the input box (including itself).
   public Set<ActivationBox> getAncestors(ActivationBox box) {
@@ -144,5 +60,90 @@ public class SDSlice extends Slice {
       }
     }
     return msg;
+  }
+
+  @Override
+  protected SliceStep getDirectlySlicedElements(SliceObject sliceObj) {
+    var slicedObjs = new HashSet<EObject>();
+    var modelObj = sliceObj.modelObj;
+
+    // If input is a sequence diagram, then the following are impacted:
+    // 1) Owned objects and messages.
+    if (modelObj instanceof SequenceDiagram) {
+      var d = (SequenceDiagram) modelObj;
+      slicedObjs.addAll(d.getObjects());
+      slicedObjs.addAll(d.getMessages());
+    }
+    // If input is an object, then the following are impacted:
+    // 1) Owned lifeline.
+    if (modelObj instanceof Object) {
+      var o = (Object) modelObj;
+      if (o.getLifeline() != null) {
+        slicedObjs.add(o.getLifeline());
+      }
+    }
+    // If input is a lifeline, then the following are impacted:
+    // 1) Owned activation boxes.
+    if (modelObj instanceof Lifeline) {
+      var l = (Lifeline) modelObj;
+      slicedObjs.addAll(l.getActivationBoxes());
+    }
+    // If input is an activation box, then the following are impacted:
+    // 1) Owned activation boxes.
+    // 2) All messages as source and as target.
+    if (modelObj instanceof ActivationBox) {
+      var a = (ActivationBox) modelObj;
+      slicedObjs.addAll(a.getActivationBoxes());
+      slicedObjs.addAll(a.getMessagesAsSource());
+      slicedObjs.addAll(a.getMessagesAsTarget());
+    }
+    // If input is a message, then the following are impacted:
+    // 1) The next message on the source activation box (or its descendants or ancestors).
+    // 2) The next message on the target activation box (or its descendants or ancestors).
+    // 3) The source activation box if it (or its descendants) does not have any other preceding messages.
+    // 4) The target activation box if it (or its descendants) does not have any other preceding messages.
+    if (modelObj instanceof Message) {
+      var m = (Message) modelObj;
+      // Get all descendants and ancestors of the source activation box.
+      // Note: The original box is considered its own descendant and ancestor.
+      var sourceBoxes = new HashSet<ActivationBox>();
+      var sourceAncestors = getAncestors(m.getSource());
+      var sourceDescendants = getDescendants(m.getSource());
+      sourceBoxes.addAll(sourceAncestors);
+      sourceBoxes.addAll(sourceDescendants);
+      // Get the next message related to the source activation box (if any).
+      var nextSourceMessage = getMessage(sourceBoxes, m.getSuccessor(), SequenceDiagramPackage.eINSTANCE.getMessage_Successor());
+      if (nextSourceMessage != null) {
+        slicedObjs.add(nextSourceMessage);
+      }
+      // Check if source activation box (or its descendants) has any preceding messages.
+      var previousSourceMessage = getMessage(sourceDescendants, m.getPredecessor(), SequenceDiagramPackage.eINSTANCE.getMessage_Predecessor());
+      if (previousSourceMessage == null) {
+        slicedObjs.add(m.getSource());
+      }
+      // Get all descendants and ancestors of the target activation box.
+      // Note: The original box is considered its own descendant and ancestor.
+      var targetBoxes = new HashSet<ActivationBox>();
+      var targetAncestors = getAncestors(m.getTarget());
+      var targetDescendants = getDescendants(m.getTarget());
+      targetBoxes.addAll(targetDescendants);
+      targetBoxes.addAll(targetAncestors);
+      // Get the next message related to the target activation box (if any).
+      var nextTargetMessage = getMessage(targetBoxes, m.getSuccessor(), SequenceDiagramPackage.eINSTANCE.getMessage_Successor());
+      if (nextTargetMessage != null) {
+        slicedObjs.add(nextTargetMessage);
+      }
+      // Check if target activation box (or its descendants) has any preceding messages.
+      var previousTargetMessage = getMessage(targetDescendants, m.getPredecessor(), SequenceDiagramPackage.eINSTANCE.getMessage_Predecessor());
+      if (previousTargetMessage == null)  {
+        slicedObjs.add(m.getTarget());
+      }
+    }
+
+    var sliced = slicedObjs.stream()
+      .filter(s -> !this.alreadySliced.contains(s))
+      .map(s -> new SliceObject(s, SliceType.REVISE))
+      .collect(Collectors.toSet());
+    return new SliceStep(sliced, sliced);
   }
 }

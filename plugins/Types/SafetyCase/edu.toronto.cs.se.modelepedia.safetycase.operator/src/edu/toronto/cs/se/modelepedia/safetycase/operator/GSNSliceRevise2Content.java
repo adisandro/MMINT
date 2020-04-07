@@ -12,9 +12,7 @@
  */
 package edu.toronto.cs.se.modelepedia.safetycase.operator;
 
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -102,19 +100,24 @@ public class GSNSliceRevise2Content extends Slice {
   }
 
   @Override
-  protected Set<EObject> getDirectlySlicedElements(EObject modelObj, Set<EObject> alreadySliced) {
-    var sliced = new HashSet<EObject>();
+  protected SliceStep getDirectlySlicedElements(SliceObject sliceObj) {
+    var sliced = new HashSet<SliceObject>();
+    var modelObj = sliceObj.modelObj;
 
     if (modelObj instanceof DecomposableCoreElement) {
       // slice child core elements
-      sliced.addAll(getChildCoreElements((DecomposableCoreElement) modelObj, alreadySliced));
+      sliced.addAll(
+        getChildCoreElements((DecomposableCoreElement) modelObj, this.alreadySliced).stream()
+          .map(s -> new SliceObject(s, SliceType.RECHECK_CONTENT))
+          .collect(Collectors.toSet()));
     }
     if (modelObj instanceof Goal || modelObj instanceof Solution) {
       // slice parent supportables (including support connectors)
       sliced.addAll(
         ((Supporter) modelObj).getSupports().stream()
           .map(SupportedBy::getSource)
-          .filter(s -> !alreadySliced.contains(s))
+          .filter(s -> !this.alreadySliced.contains(s))
+          .map(s -> new SliceObject(s, SliceType.RECHECK_CONTENT))
           .collect(Collectors.toSet()));
     }
     if (modelObj instanceof Strategy) {
@@ -122,50 +125,53 @@ public class GSNSliceRevise2Content extends Slice {
       sliced.addAll(
         ((Strategy) modelObj).getInContextOf().stream()
           .map(InContextOf::getContext)
-          .filter(c -> !alreadySliced.contains(c))
+          .filter(s -> !this.alreadySliced.contains(s))
+          .map(s -> new SliceObject(s, SliceType.RECHECK_CONTENT))
           .collect(Collectors.toSet()));
     }
     if (modelObj instanceof Context || modelObj instanceof Assumption) {
       // slice all argument elements that use or inherit it
       ((ContextualElement) modelObj).getContextOf().stream()
         .map(InContextOf::getContextOf)
-        .forEach(c -> sliced.addAll(getContextInheritors(c, alreadySliced)));
+        .flatMap(s -> getContextInheritors(s, this.alreadySliced).stream())
+        .map(s -> new SliceObject(s, SliceType.RECHECK_CONTENT))
+        .collect(Collectors.toSet());
     }
 
-    return sliced;
+    return new SliceStep(sliced, sliced);
   }
 
-  @Override
-  protected Map<EObject, EObject> getAllSlicedElements(EObject critModelObj, Set<EObject> alreadySliced) {
-    //TODO Does this function mean that there is no slicing recursion, e.g. for goals
-    var sliced = new HashMap<EObject, EObject>();
-    sliced.put(critModelObj, null);
-    alreadySliced.add(critModelObj);
-    // Identify all elements (including supported-by connectors) that are
-    // dependent on the revised element.
-    var impactedModelObjs = getDirectlySlicedElements(critModelObj, alreadySliced);
-    alreadySliced.addAll(impactedModelObjs);
-    // Iterate through newly impacted supported-by connectors and check
-    // whether their sources are impacted as well. Repeat the process
-    // until a fixed point is reached.
-    var connectors = new HashSet<SupportConnector>();
-    for (var elem : alreadySliced) {
-      if (elem instanceof SupportConnector) {
-        connectors.add((SupportConnector) elem);
-      }
-    }
-    var connectorDependants = new HashSet<Supportable>();
-    for (var dependant : GSNUtils.getConnectorDependants(connectors, alreadySliced)) {
-      if (dependant instanceof CoreElement) {
-        connectorDependants.add(dependant);
-      }
-    }
-    impactedModelObjs.addAll(connectorDependants);
-    // Remove supported-by connectors from the impacted elements.
-    impactedModelObjs.removeIf(elem -> elem instanceof SupportConnector);
-    // Return the impacted elements (excluding supported-by connectors).
-    impactedModelObjs.stream().forEach(i -> sliced.put(i, critModelObj));
-
-    return sliced;
-  }
+//  @Override
+//  protected Map<EObject, EObject> getAllSlicedElements(EObject critModelObj, Set<EObject> alreadySliced) {
+//    //TODO Does this function mean that there is no slicing recursion, e.g. for goals
+//    var sliced = new HashMap<EObject, EObject>();
+//    sliced.put(critModelObj, null);
+//    alreadySliced.add(critModelObj);
+//    // Identify all elements (including supported-by connectors) that are
+//    // dependent on the revised element.
+//    var impactedModelObjs = getDirectlySlicedElements(critModelObj, alreadySliced);
+//    alreadySliced.addAll(impactedModelObjs);
+//    // Iterate through newly impacted supported-by connectors and check
+//    // whether their sources are impacted as well. Repeat the process
+//    // until a fixed point is reached.
+//    var connectors = new HashSet<SupportConnector>();
+//    for (var elem : alreadySliced) {
+//      if (elem instanceof SupportConnector) {
+//        connectors.add((SupportConnector) elem);
+//      }
+//    }
+//    var connectorDependants = new HashSet<Supportable>();
+//    for (var dependant : GSNUtils.getConnectorDependants(connectors, alreadySliced)) {
+//      if (dependant instanceof CoreElement) {
+//        connectorDependants.add(dependant);
+//      }
+//    }
+//    impactedModelObjs.addAll(connectorDependants);
+//    // Remove supported-by connectors from the impacted elements.
+//    impactedModelObjs.removeIf(elem -> elem instanceof SupportConnector);
+//    // Return the impacted elements (excluding supported-by connectors).
+//    impactedModelObjs.stream().forEach(i -> sliced.put(i, critModelObj));
+//
+//    return sliced;
+//  }
 }

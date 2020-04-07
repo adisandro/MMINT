@@ -13,7 +13,7 @@
 package edu.toronto.cs.se.modelepedia.classdiagram.operator;
 
 import java.util.HashSet;
-import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
 
@@ -30,20 +30,20 @@ import edu.toronto.cs.se.modelepedia.classdiagram.Typeable;
 public class CDSlice extends Slice {
 
   @Override
-  protected Set<EObject> getDirectlySlicedElements(EObject modelObj, Set<EObject> alreadySliced) {
-    var sliced = new HashSet<EObject>();
+  protected SliceStep getDirectlySlicedElements(SliceObject sliceObj) {
+    var slicedObjs = new HashSet<EObject>();
+    var modelObj = sliceObj.modelObj;
 
     // If input is a class diagram, then the following are also impacted:
     // 1) Owned classes, associations, dependencies, data types and compositions.
     if (modelObj instanceof ClassDiagram) {
       var cd = (ClassDiagram) modelObj;
-      sliced.addAll(cd.getClasses());
-      sliced.addAll(cd.getAssociations());
-      sliced.addAll(cd.getDependencies());
-      sliced.addAll(cd.getDatatypes());
-      sliced.addAll(cd.getCompositions());
+      slicedObjs.addAll(cd.getClasses());
+      slicedObjs.addAll(cd.getAssociations());
+      slicedObjs.addAll(cd.getDependencies());
+      slicedObjs.addAll(cd.getDatatypes());
+      slicedObjs.addAll(cd.getCompositions());
     }
-
     // If input is a class, then the following are also impacted:
     // 1) Owned attributes and operations.
     // 2) All associations, dependencies and compositions connected to it.
@@ -54,21 +54,20 @@ public class CDSlice extends Slice {
     // the dependency rules for Typeable will also be triggered.
     if (modelObj instanceof Class) {
       var c = (Class) modelObj;
-      sliced.addAll(c.getOwnedAttributes());
-      sliced.addAll(c.getOwnedOperations());
-      sliced.addAll(c.getAssociationsAsSource());
-      sliced.addAll(c.getAssociationsAsTarget());
-      sliced.addAll(c.getDependenciesAsDependee());
-      sliced.addAll(c.getDependenciesAsDepender());
-      sliced.addAll(c.getCompositionsAsComposite());
-      sliced.addAll(c.getCompositionsAsConstituent());
-      sliced.addAll(c.getNested());
-      sliced.addAll(c.getSubclasses());
+      slicedObjs.addAll(c.getOwnedAttributes());
+      slicedObjs.addAll(c.getOwnedOperations());
+      slicedObjs.addAll(c.getAssociationsAsSource());
+      slicedObjs.addAll(c.getAssociationsAsTarget());
+      slicedObjs.addAll(c.getDependenciesAsDependee());
+      slicedObjs.addAll(c.getDependenciesAsDepender());
+      slicedObjs.addAll(c.getCompositionsAsComposite());
+      slicedObjs.addAll(c.getCompositionsAsConstituent());
+      slicedObjs.addAll(c.getNested());
+      slicedObjs.addAll(c.getSubclasses());
       if (c.getNestedIn() != null) {
-        sliced.add(c.getNestedIn());
+        slicedObjs.add(c.getNestedIn());
       }
     }
-
     // If input is a typeable (i.e. a class or a data type),
     // then the following are also impacted:
     // 1) All attributes and operations with the input type.
@@ -81,65 +80,63 @@ public class CDSlice extends Slice {
       for (var c : cd.getClasses()) {
         for (var a : c.getOwnedAttributes()) {
           if (a.getType() == t) {
-            sliced.add(a);
+            slicedObjs.add(a);
           }
         }
         for (var o : c.getOwnedOperations()) {
           if (o.getType() == t) {
-            sliced.add(o);
+            slicedObjs.add(o);
             continue;
           }
           for (var p : o.getParameterTypes()) {
             if (p == t) {
-              sliced.add(o);
+              slicedObjs.add(o);
               break;
             }
           }
         }
       }
     }
-
     // If input is an attribute, then its class is also impacted.
     if (modelObj instanceof Attribute) {
       var a = (Attribute) modelObj;
       if (a.getOwner() != null) {
-        sliced.add(a.getOwner());
+        slicedObjs.add(a.getOwner());
       }
     }
-
     // If input is an operation, then its class is also impacted.
     if (modelObj instanceof Operation) {
       var o = (Operation) modelObj;
       if (o.getOwner() != null) {
-        sliced.add(o.getOwner());
+        slicedObjs.add(o.getOwner());
       }
     }
-
     // If input is an association, then its source class is also impacted.
     if (modelObj instanceof Association) {
       var a = (Association) modelObj;
       if (a.getSource() != null) {
-        sliced.add(a.getSource());
+        slicedObjs.add(a.getSource());
       }
     }
-
     // If input is a dependency, then its depender class is also impacted.
     if (modelObj instanceof Dependency) {
       var d = (Dependency) modelObj;
       if (d.getDepender() != null) {
-        sliced.add(d.getDepender());
+        slicedObjs.add(d.getDepender());
       }
     }
-
     // If input is a composition, then its composite class is also impacted.
     if (modelObj instanceof Composition) {
       var c = (Composition) modelObj;
       if (c.getComposite() != null) {
-        sliced.add(c.getComposite());
+        slicedObjs.add(c.getComposite());
       }
     }
 
-    sliced.removeAll(alreadySliced);
-    return sliced;
+    var sliced = slicedObjs.stream()
+      .filter(s -> !this.alreadySliced.contains(s))
+      .map(s -> new SliceObject(s, SliceType.REVISE))
+      .collect(Collectors.toSet());
+    return new SliceStep(sliced, sliced);
   }
 }

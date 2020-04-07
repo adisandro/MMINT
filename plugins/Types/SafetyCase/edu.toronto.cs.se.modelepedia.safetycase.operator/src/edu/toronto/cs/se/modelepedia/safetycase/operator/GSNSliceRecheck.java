@@ -13,9 +13,7 @@
 package edu.toronto.cs.se.modelepedia.safetycase.operator;
 
 import java.util.HashSet;
-import java.util.Set;
-
-import org.eclipse.emf.ecore.EObject;
+import java.util.stream.Collectors;
 
 import edu.toronto.cs.se.mmint.operator.slice.Slice;
 import edu.toronto.cs.se.modelepedia.safetycase.CoreElement;
@@ -25,15 +23,18 @@ import edu.toronto.cs.se.modelepedia.safetycase.Solution;
 public class GSNSliceRecheck extends Slice {
 
   @Override
-  protected Set<EObject> getDirectlySlicedElements(EObject modelObj, Set<EObject> alreadySliced) {
-    var sliced = new HashSet<EObject>();
+  protected SliceStep getDirectlySlicedElements(SliceObject sliceObj) {
+    var sliced = new HashSet<SliceObject>();
 
-    if (modelObj instanceof Goal || modelObj instanceof Solution) {
+    if (sliceObj.modelObj instanceof Goal || sliceObj.modelObj instanceof Solution) {
       // slice all ancestor goals
-      sliced.addAll(GSNUtils.getAncestorGoals((CoreElement) modelObj, alreadySliced));
+      sliced.addAll(
+        GSNUtils.getAncestorGoals((CoreElement) sliceObj.modelObj, this.alreadySliced).stream()
+          .filter(a -> !this.alreadySliced.contains(a))
+          .map(a -> new SliceObject(a, SliceType.RECHECK_STATE))
+          .collect(Collectors.toSet()));
     }
 
-    sliced.removeAll(alreadySliced);
-    return sliced;
+    return new SliceStep(sliced, sliced);
   }
 }

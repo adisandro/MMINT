@@ -13,7 +13,7 @@
 package edu.toronto.cs.se.modelepedia.statemachine.operator;
 
 import java.util.HashSet;
-import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
 
@@ -27,51 +27,52 @@ import edu.toronto.cs.se.modelepedia.statemachine.Transition;
 public class SMSlice extends Slice {
 
   @Override
-  protected Set<EObject> getDirectlySlicedElements(EObject modelObj, Set<EObject> alreadySliced) {
-    Set<EObject> sliced = new HashSet<>();
+  protected SliceStep getDirectlySlicedElements(SliceObject sliceObj) {
+    var slicedObjs = new HashSet<EObject>();
+    var modelObj = sliceObj.modelObj;
 
     // If input is a state machine, then the following are impacted:
     // 1) Owned states and transitions.
     if (modelObj instanceof StateMachine) {
       StateMachine m = (StateMachine) modelObj;
-      sliced.addAll(m.getStates());
-      sliced.addAll(m.getTransitions());
+      slicedObjs.addAll(m.getStates());
+      slicedObjs.addAll(m.getTransitions());
     }
-
     // If input is an (intermediate) state, then the following are impacted:
     // 1) Transitions originating or terminating at the state.
     // 2) Internal state actions.
     if (modelObj instanceof State) {
       State s = (State) modelObj;
-      sliced.addAll(s.getTransitionsAsSource());
-      sliced.addAll(s.getTransitionsAsTarget());
-      sliced.addAll(s.getInternalActions());
+      slicedObjs.addAll(s.getTransitionsAsSource());
+      slicedObjs.addAll(s.getTransitionsAsTarget());
+      slicedObjs.addAll(s.getInternalActions());
     }
-
     // If input is an initial state, then the following are impacted:
     // 1) Transitions originating or terminating at the state.
     if (modelObj instanceof InitialState) {
       InitialState s = (InitialState) modelObj;
-      sliced.addAll(s.getTransitionsAsSource());
-      sliced.addAll(s.getTransitionsAsTarget());
+      slicedObjs.addAll(s.getTransitionsAsSource());
+      slicedObjs.addAll(s.getTransitionsAsTarget());
     }
-
     // If input is a final state, then the following are impacted:
     // 1) Transitions originating or terminating at the state.
     if (modelObj instanceof FinalState) {
       FinalState s = (FinalState) modelObj;
-      sliced.addAll(s.getTransitionsAsSource());
-      sliced.addAll(s.getTransitionsAsTarget());
+      slicedObjs.addAll(s.getTransitionsAsSource());
+      slicedObjs.addAll(s.getTransitionsAsTarget());
     }
-
     // If input is a transition, then the following are impacted:
     // 1) The state the transition points to.
     if (modelObj instanceof Transition) {
       Transition t = (Transition) modelObj;
-      sliced.add(t.getTarget());
+      slicedObjs.add(t.getTarget());
     }
 
-    sliced.removeAll(alreadySliced);
-    return sliced;
+
+    var sliced = slicedObjs.stream()
+      .filter(s -> !this.alreadySliced.contains(s))
+      .map(s -> new SliceObject(s, SliceType.REVISE))
+      .collect(Collectors.toSet());
+    return new SliceStep(sliced, sliced);
   }
 }

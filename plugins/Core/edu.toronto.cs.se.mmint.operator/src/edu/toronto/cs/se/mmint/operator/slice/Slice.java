@@ -23,6 +23,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.MMINTException;
@@ -46,12 +47,9 @@ public class Slice extends OperatorImpl {
 
   private Input input;
   private Output output;
-  private Mapping addType;
-  private Mapping delType;
-  private Mapping modType;
-  private Mapping reviseType;
-  private Mapping recheckContentType;
-  private Mapping recheckStateType;
+  private Map<SliceType, Mapping> sliceTypes;
+  protected Set<EObject> alreadySliced;
+  protected Set<EObject> alreadyVisited;
 
   private static class Input {
     private final static String IN_MODELREL = "criterion";
@@ -102,66 +100,109 @@ public class Slice extends OperatorImpl {
     }
   }
 
+  protected enum SliceType {
+    ADD("http://se.cs.toronto.edu/mmint/SliceRel/Add"),
+    DEL("http://se.cs.toronto.edu/mmint/SliceRel/Del"),
+    MOD("http://se.cs.toronto.edu/mmint/SliceRel/Mod"),
+    REVISE("http://se.cs.toronto.edu/mmint/SliceRel/Revise"),
+    RECHECK_CONTENT("http://se.cs.toronto.edu/mmint/SliceRel/RecheckContent"),
+    RECHECK_STATE("http://se.cs.toronto.edu/mmint/SliceRel/RecheckState");
+    public final String id;
+
+    private SliceType(String id) {
+      this.id = id;
+    }
+
+    public static @Nullable SliceType fromMapping(Mapping mapping) {
+      var mappingTypeId = mapping.getMetatypeUri();
+      for (var type : values()) {
+        if (type.id.equals(mappingTypeId)) {
+          return type;
+        }
+      }
+      return null;
+    }
+  };
+
+  protected class SliceObject {
+    public EObject modelObj;
+    public SliceType type;
+    public SliceObject(EObject modelObj, SliceType type) {
+      this.modelObj = modelObj;
+      this.type = type;
+    }
+  }
+
+  protected class SliceStep {
+    public Set<SliceObject> sliced;
+    public Set<SliceObject> visited;
+    public SliceStep(Set<SliceObject> sliced, Set<SliceObject> visited) {
+      this.sliced = sliced;
+      this.visited = visited;
+    }
+  }
+
   private void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws MMINTException {
     this.input = new Input(inputsByName);
     this.output = new Output(outputMIDsByName);
-    this.addType = MIDTypeRegistry.getType("http://se.cs.toronto.edu/mmint/SliceRel/Add");
-    this.delType = MIDTypeRegistry.getType("http://se.cs.toronto.edu/mmint/SliceRel/Del");
-    this.modType = MIDTypeRegistry.getType("http://se.cs.toronto.edu/mmint/SliceRel/Mod");
-    this.reviseType = MIDTypeRegistry.getType("http://se.cs.toronto.edu/mmint/SliceRel/Revise");
-    this.recheckContentType = MIDTypeRegistry.getType("http://se.cs.toronto.edu/mmint/SliceRel/RecheckContent");
-    this.recheckStateType = MIDTypeRegistry.getType("http://se.cs.toronto.edu/mmint/SliceRel/RecheckState");
-    if (this.addType == null || this.delType == null || this.modType == null || this.reviseType == null ||
-        this.recheckContentType == null || this.recheckStateType == null) {
-      throw new MMINTException("The SliceRel mapping types are missing");
+    for (var sliceType : SliceType.values()) {
+      var mappingType = MIDTypeRegistry.<Mapping>getType(sliceType.id);
+      if (mappingType == null) {
+        throw new MMINTException("Missing SliceRel mapping type " + sliceType.id);
+      }
+      this.sliceTypes.put(sliceType, mappingType);
     }
   }
 
   /**
    * Gets model objects sliced by applying the rules to a single model object.
    *
-   * @param modelObj
-   *          The model object to apply the slicing rules to.
-   * @param alreadySliced
-   *          A set of model objects that are already part of the slice.
-   * @return The set of sliced model objects.
+   * @param sliceObj
+   *          The model object to apply the slicing rules to, together with its type of slicing.
+   * @return The model objects to be added to the slice set, the model objects to visit next (they may or may not be
+   *         equivalent), and the type of slicing applied for each model object.
    */
-  protected Set<EObject> getDirectlySlicedElements(EObject modelObj, Set<EObject> alreadySliced) {
-    // only rule: contained model objects are sliced
-    return modelObj.eContents().stream()
-      .filter(modelObj2 -> !alreadySliced.contains(modelObj2))
+  protected SliceStep getDirectlySlicedElements(SliceObject sliceObj) {
+    // only rule: contained model objects are sliced and visited
+    var sliced = sliceObj.modelObj.eContents().stream()
+      .filter(obj -> !this.alreadySliced.contains(obj))
+      .map(obj -> new SliceObject(obj, SliceType.REVISE))
       .collect(Collectors.toSet());
+    return new SliceStep(sliced, sliced);
   }
 
   /**
    * Gets all sliced model objects recursively, starting from a model object that is part of the input slice criterion
    * and following the slicing rules.
    *
-   * @param critModelObj
-   *          The starting model object, part of the slice criterion.
-   * @param alreadySliced
-   *          A set of model objects that are already part of the slice.
-   * @return The sliced model objects as keys, and the model object that caused them to be sliced as values.
+   * @param critObj
+   *          The starting model object (part of the slice criterion), together with its type of slicing.
+   * @return The sliced model objects as keys, together with their type of slicing, and the model object that caused
+   *         them to be sliced as values.
    */
-  protected Map<EObject, EObject> getAllSlicedElements(EObject critModelObj, Set<EObject> alreadySliced) {
-    var sliced = new HashMap<EObject, EObject>();
-    var slicedCur = Set.of(critModelObj);
-    sliced.put(critModelObj, null);
-    alreadySliced.add(critModelObj);
+  protected Map<SliceObject, EObject> getAllSlicedElements(SliceObject critObj) {
+    var sliced = new HashMap<SliceObject, EObject>();
+    sliced.put(critObj, null);
+    this.alreadySliced.add(critObj.modelObj);
+    var visitedCur = Set.of(critObj);
+    this.alreadyVisited.add(critObj.modelObj);
 
     // iterate through the current set of newly sliced model elements
     // to identify the next ones that are going to be sliced
-    while (!slicedCur.isEmpty()) {
-      var slicedNext = new HashSet<EObject>();
-      for (var modelObj : slicedCur) {
+    while (!visitedCur.isEmpty()) {
+      var visitedNext = new HashSet<SliceObject>();
+      for (var visitedObj : visitedCur) {
         // get all model elements directly sliced by the current one without adding duplicates
-        var slicedModelObjs = getDirectlySlicedElements(modelObj, alreadySliced);
-        slicedModelObjs.stream().forEach(s -> sliced.put(s, modelObj));
-        slicedNext.addAll(slicedModelObjs);
-        alreadySliced.addAll(slicedModelObjs);
+        var slicedObjs = getDirectlySlicedElements(visitedObj);
+        slicedObjs.sliced.stream().forEach(s -> { sliced.put(s, visitedObj.modelObj);
+                                                  this.alreadySliced.add(s.modelObj); });
+        visitedNext.addAll(slicedObjs.visited);
+        this.alreadyVisited.addAll(slicedObjs.visited.stream()
+                                     .map(v -> v.modelObj)
+                                     .collect(Collectors.toSet()));
       }
       // prepare for next iteration
-      slicedCur = slicedNext;
+      visitedCur = visitedNext;
     }
 
     return sliced;
@@ -179,31 +220,30 @@ public class Slice extends OperatorImpl {
     var r = rs.getResource(rUri, true);
 
     // loop through the model objects in the input criterion
-    var sliced = new HashSet<EObject>();
     for (var critModelElemRef : critModelEndpointRef.getModelElemRefs()) {
       try {
         var critModelObj = critModelElemRef.getObject().getEMFInstanceObject(r);
-        String prevSlicerName = null;
+        Mapping critMapping = null;
+        SliceType critType = null;
         if (critModelElemRef.getModelElemEndpointRefs().size() == 1) { // criterion with info about previous slice steps
-          prevSlicerName = ((MappingReference) critModelElemRef.getModelElemEndpointRefs().get(0).eContainer())
-                                                               .getObject().getName();
+          critMapping = ((MappingReference) critModelElemRef.getModelElemEndpointRefs().get(0).eContainer())
+                          .getObject();
+          critType = SliceType.fromMapping(critMapping);
         }
         // add sliced elements to the output model relation
-        //TODO Add mapping type info to take different decisions
-        //TODO Results should specify the output mapping type
-        var slicedFromCrit = getAllSlicedElements(critModelObj, sliced);
+        var slicedFromCrit = getAllSlicedElements(new SliceObject(critModelObj, critType));
         for (var slicedFromCritEntry : slicedFromCrit.entrySet()) {
           var slicee = slicedFromCritEntry.getKey();
           var slicer = slicedFromCritEntry.getValue();
           try {
-            var sliceModelElemRef = sliceModelEndpointRef.createModelElementInstanceAndReference(slicee, null);
-            var sliceMappingRef = this.reviseType.createInstanceAndReferenceAndEndpointsAndReferences(
-                                                    false, ECollections.asEList(sliceModelElemRef));
+            var sliceModelElemRef = sliceModelEndpointRef.createModelElementInstanceAndReference(slicee.modelObj, null);
+            var sliceMappingRef = this.sliceTypes.get(slicee.type).createInstanceAndReferenceAndEndpointsAndReferences(
+                                    false, ECollections.asEList(sliceModelElemRef));
             String slicerName = null;
             if (slicer == null) { // slicee == critModelObj
-              slicerName = (prevSlicerName == null) ?
+              slicerName = (critMapping == null) ?
                 this.input.model.getName() + "." + critModelElemRef.getObject().getName() :
-                prevSlicerName;
+                critMapping.getName();
             }
             else {
               var slicerEInfo = MIDRegistry.getModelElementEMFInfo(slicer, MIDLevel.INSTANCES);
@@ -213,7 +253,7 @@ public class Slice extends OperatorImpl {
             sliceMappingRef.getObject().setName(slicerName);
           }
           catch (MMINTException e) {
-            MMINTException.print(IStatus.WARNING, "Skipping sliced model element " + slicee, e);
+            MMINTException.print(IStatus.WARNING, "Skipping sliced model element " + slicee.modelObj, e);
           }
         }
       }
