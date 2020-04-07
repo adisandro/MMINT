@@ -17,7 +17,6 @@ import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Map.Entry;
 import java.util.Properties;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -157,7 +156,6 @@ public class Map extends NestingOperatorImpl {
     var mapperMID = super.getNestedInstanceMID();
     var midrelEndpointModelsByOutputName = new HashMap<String, Set<Model>>();
     var mapperShortcutModels = new HashSet<Model>();
-    java.util.Map<String, Model> sameInOut = null;
     for (var mapperSpec : mapperSpecs.entrySet()) {
       var mapper = mapperSpec.getKey();
       for (var mapperInputs : mapperSpec.getValue()) {
@@ -176,25 +174,6 @@ public class Map extends NestingOperatorImpl {
             this.timeCheckpoint = System.nanoTime();
           }
           var mapperOutputsByName = mapperOperator.getOutputsByName();
-          if (sameInOut == null) {
-            // detect mapper outputs that are identical to inputs, in order to properly handle map output MIDs
-            // e.g. it can happen when using the Identity operator
-            //TODO MMINT[MAP] This is not correct with polymorphism, the first executed operator may not represent all
-            sameInOut = new HashMap<>();
-            for (var i = 0; i < mapperInputs.size(); i++) {
-              var mapperInput = mapperInputs.get(i);
-              var outputNames = mapperOutputsByName.entrySet().stream()
-                .filter(e -> e.getValue() == mapperInput.getModel())
-                .map(Entry::getKey)
-                .collect(Collectors.toSet());
-              if (!outputNames.isEmpty()) {
-                var j = Math.min(i, inputMIDModels.size()-1); // there may not be a 1-to-1 correspondence
-                for (var outputName : outputNames) {
-                  sameInOut.put(outputName, inputMIDModels.get(j));
-                }
-              }
-            }
-          }
           if (mapperMIDPath != null) {
             mapperShortcutModels.addAll(mapperInputs.stream()
               .map(OperatorInput::getModel)
@@ -216,16 +195,6 @@ public class Map extends NestingOperatorImpl {
             if (midrelEndpointModels != null) {
               midrelEndpointModels.addAll(newMidrelEndpointModels);
             }
-            //TODO MMINT[MAP] Not needed unless we reactivate the fake endpoints
-//            Set<MID> newMidrelEndpointMIDs = ((ModelRel) mapperOutputModel).getModelEndpoints().stream()
-//              .map(modelEndpoint -> modelEndpoint.getTarget().getMIDContainer())
-//              .collect(Collectors.toSet());
-//            Set<MID> midrelEndpointMIDs = midrelEndpointMIDsByOutputName.putIfAbsent(
-//              mapperOutputName,
-//              newMidrelEndpointMIDs);
-//            if (midrelEndpointMIDs != null) {
-//              midrelEndpointMIDs.addAll(newMidrelEndpointMIDs);
-//            }
           }
         }
         catch (Exception e) {
@@ -247,13 +216,6 @@ public class Map extends NestingOperatorImpl {
       var outputMID = outputMIDByName.getValue();
       var outputMIDPath = mapperOutputMIDPathsByName.get(outputName);
       var instanceMID = instanceMIDsByMapperOutput.get(outputName);
-      if (sameInOut.containsKey(outputName)) { // handle mapper outputs that are identical to inputs, e.g. Identity
-        outputMIDModels.add(sameInOut.get(outputName));
-        if (instanceMID != null) {
-          FileUtils.deleteFile(outputMIDPath, true);
-        }
-        continue;
-      }
       var outputMIDModel = midModelType.createInstanceAndEditor(outputMID, outputMIDPath, instanceMID);
       outputMIDModels.add(outputMIDModel);
     }
@@ -268,31 +230,11 @@ public class Map extends NestingOperatorImpl {
       var outputMID = outputMIDByName.getValue();
       var outputMIDPath = mapperOutputMIDPathsByName.get(outputName);
       var instanceMID = instanceMIDsByMapperOutput.get(outputName);
-      if (sameInOut.containsKey(outputName)) { // handle mapper outputs that are identical to inputs, e.g. Identity
-        outputMIDModels.add(sameInOut.get(outputName));
-        if (instanceMID != null) {
-          FileUtils.deleteFile(outputMIDPath, true);
-        }
-        continue;
-      }
       var outputMIDModel = midrelModelType.createInstanceAndEditor(outputMID, outputMIDPath, instanceMID);
       outputMIDModels.add(outputMIDModel);
       if (instanceMID != null) {
         createOutputMIDRelShortcuts(outputMIDModel, midModelType, midDiagramPluginId,
                                     midrelEndpointModelsByOutputName.get(outputName));
-        //TODO MMINT[MAP] A MIDRel is just a Model, so this was to fake it to have endpoints (a proper metamodel object and gmf figure would be needed)
-//      for (MID midrelEndpointMID : midrelEndpointMIDsByOutputName.get(outputName)) {
-//        if (midrelEndpointMID != instanceMID) { // can't create the rel
-//          continue;
-//        }
-//        Model midrelEndpointMIDModel = instanceMID.getExtendibleElement(MIDRegistry.getModelUri(midrelEndpointMID));
-//        MIDTypeHierarchy.getRootModelRelType().createBinaryInstanceAndEndpoints(
-//          null,
-//          midrelEndpointMIDModel.getName(),
-//          outputMIDModel,
-//          midrelEndpointMIDModel,
-//          instanceMID);
-//      }
       }
     }
     // pass 3: mapper MID, after output MIDs and MIDRels are serialized
