@@ -51,7 +51,7 @@ public class GSNSliceRevise2State extends Slice {
   @Override
   protected Map<SliceObject, EObject> getAllSlicedElements(SliceObject critObj) {
     // only if input is a strategy the state validity should be revised for all ancestor goals.
-    if (!(critObj instanceof Strategy)) {
+    if (!(critObj.modelObj instanceof Strategy)) {
       this.alreadySliced.put(critObj.modelObj, critObj.type);
       this.alreadyVisited.put(critObj.modelObj, critObj.type);
       return Map.of(critObj, null);

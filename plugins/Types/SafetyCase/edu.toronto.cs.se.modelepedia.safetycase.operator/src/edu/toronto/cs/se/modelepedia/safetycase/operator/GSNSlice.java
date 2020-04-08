@@ -28,6 +28,33 @@ import edu.toronto.cs.se.modelepedia.safetycase.Supportable;
 import edu.toronto.cs.se.modelepedia.safetycase.SupportedBy;
 import edu.toronto.cs.se.modelepedia.safetycase.Supporter;
 
+/*
+ * TODO
+ * Algorithm:
+ * REVISE:
+ * 1) Trace deleted elements to gsn
+ * RECHECK CONTENT:
+ * 1) Trace deleted elements to gsn
+ * 2) Apply V1, V2, V3, V4 once (not recursively)
+ * 3) Add traced sysmega slice
+ * RECHECK STATE:
+ * 1) Trace deleted elements to gsn
+ * 2) Apply V2 once (not recursively)
+ * 3) Add traced sysmega slice
+ * 4) Apply C1, C2 recursively
+ * RECHECK:
+ * 1) Trace deleted elements to gsn
+ * 2) Apply V1, V2, V3, V4 once (not recursively)
+ * 3) Add traced sysmega slice
+ * 4) Apply C1, C2 recursively (excluding newly generated RECHECK_CONTENT)
+ *
+ * Questions:
+ * - Remap traced sysmega slice to MOD, or keep them as R_C? (works only because system slicers mark them as R_C)
+ * - Order criteria to do DEL first, or use SliceType in alreadySliced to overwrite? (e.g. from R_S to R_C)
+ * - ModelRelMerge merges mappings with different type, it should be fixed. (Implications for slicing?)
+ * - Some slice rules are dependent on the crit element being of a certain type. (Need to carry that info)
+ * - GSNSlice is a multiple-pass slicer. (Slice must be generalized with a method to execute a pass)
+ */
 public class GSNSlice extends Slice {
 
   private SliceStep gsnSliceRevise2Content(SliceObject sliceObj) {

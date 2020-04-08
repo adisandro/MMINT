@@ -200,7 +200,7 @@ public class Slice extends OperatorImpl {
         slicedObjs.sliced.stream().forEach(s -> {
           sliced.put(s, visitedObj.modelObj);
           this.alreadySliced.put(s.modelObj, s.type); });
-        slicedObjs.visited.parallelStream().forEach(v -> {
+        slicedObjs.visited.stream().forEach(v -> {
           visitedNext.add(v);
           this.alreadyVisited.put(v.modelObj, v.type); });
       }
