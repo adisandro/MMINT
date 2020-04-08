@@ -29,8 +29,8 @@ public class GSNSliceRecheck extends Slice {
     if (sliceObj.modelObj instanceof Goal || sliceObj.modelObj instanceof Solution) {
       // slice all ancestor goals
       sliced.addAll(
-        GSNUtils.getAncestorGoals((CoreElement) sliceObj.modelObj, this.alreadySliced).stream()
-          .filter(a -> !this.alreadySliced.contains(a))
+        GSNUtils.getAncestorGoals((CoreElement) sliceObj.modelObj, this.alreadySliced.keySet()).stream()
+          .filter(a -> !this.alreadySliced.containsKey(a))
           .map(a -> new SliceObject(a, SliceType.RECHECK_STATE))
           .collect(Collectors.toSet()));
     }

@@ -33,10 +33,10 @@ public class GSNSliceRevise2State extends Slice {
 
     if (sliceObj.modelObj instanceof Supportable) {
       // visit supported ancestors, slice visited goals
-      if (GSNUtils.isPropagatedUp((Supportable) sliceObj.modelObj, this.alreadyVisited)) {
+      if (GSNUtils.isPropagatedUp((Supportable) sliceObj.modelObj, this.alreadyVisited.keySet())) {
         var supported = ((Supportable) sliceObj.modelObj).getSupports().stream()
           .map(SupportedBy::getSource)
-          .filter(s -> !this.alreadyVisited.contains(s));
+          .filter(s -> !this.alreadyVisited.containsKey(s));
         visited.addAll(supported.map(s -> new SliceObject(s, SliceType.RECHECK_STATE))
                                 .collect(Collectors.toSet()));
         sliced.addAll(supported.filter(s -> s instanceof Goal)
@@ -52,8 +52,8 @@ public class GSNSliceRevise2State extends Slice {
   protected Map<SliceObject, EObject> getAllSlicedElements(SliceObject critObj) {
     // only if input is a strategy the state validity should be revised for all ancestor goals.
     if (!(critObj instanceof Strategy)) {
-      this.alreadySliced.add(critObj.modelObj);
-      this.alreadyVisited.add(critObj.modelObj);
+      this.alreadySliced.put(critObj.modelObj, critObj.type);
+      this.alreadyVisited.put(critObj.modelObj, critObj.type);
       return Map.of(critObj, null);
     }
     return super.getAllSlicedElements(critObj);

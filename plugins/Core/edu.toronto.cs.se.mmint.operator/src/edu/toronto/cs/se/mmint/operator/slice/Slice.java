@@ -48,8 +48,8 @@ public class Slice extends OperatorImpl {
   private Input input;
   private Output output;
   private Map<SliceType, Mapping> sliceTypes;
-  protected Set<EObject> alreadySliced;
-  protected Set<EObject> alreadyVisited;
+  protected Map<EObject, SliceType> alreadySliced;
+  protected Map<EObject, SliceType> alreadyVisited;
 
   private static class Input {
     private final static String IN_MODELREL = "criterion";
@@ -145,6 +145,9 @@ public class Slice extends OperatorImpl {
   private void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws MMINTException {
     this.input = new Input(inputsByName);
     this.output = new Output(outputMIDsByName);
+    this.sliceTypes = new HashMap<>();
+    this.alreadySliced = new HashMap<>();
+    this.alreadyVisited = new HashMap<>();
     for (var sliceType : SliceType.values()) {
       var mappingType = MIDTypeRegistry.<Mapping>getType(sliceType.id);
       if (mappingType == null) {
@@ -165,7 +168,7 @@ public class Slice extends OperatorImpl {
   protected SliceStep getDirectlySlicedElements(SliceObject sliceObj) {
     // only rule: contained model objects are sliced and visited
     var sliced = sliceObj.modelObj.eContents().stream()
-      .filter(obj -> !this.alreadySliced.contains(obj))
+      .filter(obj -> !this.alreadySliced.containsKey(obj))
       .map(obj -> new SliceObject(obj, SliceType.REVISE))
       .collect(Collectors.toSet());
     return new SliceStep(sliced, sliced);
@@ -183,9 +186,9 @@ public class Slice extends OperatorImpl {
   protected Map<SliceObject, EObject> getAllSlicedElements(SliceObject critObj) {
     var sliced = new HashMap<SliceObject, EObject>();
     sliced.put(critObj, null);
-    this.alreadySliced.add(critObj.modelObj);
+    this.alreadySliced.put(critObj.modelObj, critObj.type);
     var visitedCur = Set.of(critObj);
-    this.alreadyVisited.add(critObj.modelObj);
+    this.alreadyVisited.put(critObj.modelObj, critObj.type);
 
     // iterate through the current set of newly sliced model elements
     // to identify the next ones that are going to be sliced
@@ -194,12 +197,12 @@ public class Slice extends OperatorImpl {
       for (var visitedObj : visitedCur) {
         // get all model elements directly sliced by the current one without adding duplicates
         var slicedObjs = getDirectlySlicedElements(visitedObj);
-        slicedObjs.sliced.stream().forEach(s -> { sliced.put(s, visitedObj.modelObj);
-                                                  this.alreadySliced.add(s.modelObj); });
-        visitedNext.addAll(slicedObjs.visited);
-        this.alreadyVisited.addAll(slicedObjs.visited.stream()
-                                     .map(v -> v.modelObj)
-                                     .collect(Collectors.toSet()));
+        slicedObjs.sliced.stream().forEach(s -> {
+          sliced.put(s, visitedObj.modelObj);
+          this.alreadySliced.put(s.modelObj, s.type); });
+        slicedObjs.visited.parallelStream().forEach(v -> {
+          visitedNext.add(v);
+          this.alreadyVisited.put(v.modelObj, v.type); });
       }
       // prepare for next iteration
       visitedCur = visitedNext;

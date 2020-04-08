@@ -134,8 +134,8 @@ public class CDSlice extends Slice {
     }
 
     var sliced = slicedObjs.stream()
-      .filter(s -> !this.alreadySliced.contains(s))
-      .map(s -> new SliceObject(s, SliceType.REVISE))
+      .filter(s -> !this.alreadySliced.containsKey(s))
+      .map(s -> new SliceObject(s, SliceType.RECHECK_CONTENT))
       .collect(Collectors.toSet());
     return new SliceStep(sliced, sliced);
   }

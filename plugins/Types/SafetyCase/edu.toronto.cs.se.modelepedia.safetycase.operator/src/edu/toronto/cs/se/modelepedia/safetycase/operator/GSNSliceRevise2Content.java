@@ -13,91 +13,21 @@
 package edu.toronto.cs.se.modelepedia.safetycase.operator;
 
 import java.util.HashSet;
-import java.util.Set;
 import java.util.stream.Collectors;
 
-import org.eclipse.emf.ecore.EObject;
-
 import edu.toronto.cs.se.mmint.operator.slice.Slice;
-import edu.toronto.cs.se.modelepedia.safetycase.ArgumentElement;
 import edu.toronto.cs.se.modelepedia.safetycase.Assumption;
 import edu.toronto.cs.se.modelepedia.safetycase.Context;
 import edu.toronto.cs.se.modelepedia.safetycase.ContextualElement;
-import edu.toronto.cs.se.modelepedia.safetycase.CoreElement;
 import edu.toronto.cs.se.modelepedia.safetycase.DecomposableCoreElement;
 import edu.toronto.cs.se.modelepedia.safetycase.Goal;
 import edu.toronto.cs.se.modelepedia.safetycase.InContextOf;
 import edu.toronto.cs.se.modelepedia.safetycase.Solution;
 import edu.toronto.cs.se.modelepedia.safetycase.Strategy;
-import edu.toronto.cs.se.modelepedia.safetycase.SupportConnector;
-import edu.toronto.cs.se.modelepedia.safetycase.Supportable;
 import edu.toronto.cs.se.modelepedia.safetycase.SupportedBy;
 import edu.toronto.cs.se.modelepedia.safetycase.Supporter;
 
 public class GSNSliceRevise2Content extends Slice {
-
-  private Set<CoreElement> getChildCoreElements(DecomposableCoreElement inputElem, Set<EObject> alreadySliced) {
-    //TODO Integrate SupportConnector with the dual algorithm sliced/visited?
-    var children = new HashSet<CoreElement>();
-    var supportablesCur = new HashSet<Supportable>();
-    var alreadyVisited = new HashSet<Supportable>(); // prevents loops
-    supportablesCur.add(inputElem);
-
-    while (!supportablesCur.isEmpty()) {
-      var supportablesNext = new HashSet<Supportable>();
-      for (var supBy : inputElem.getSupportedBy()) {
-        var supporter = supBy.getTarget();
-        if (supporter instanceof CoreElement && !alreadySliced.contains(supporter)) {
-          children.add((CoreElement) supporter);
-        }
-        else if (supporter instanceof SupportConnector && !alreadyVisited.contains(supporter)) {
-          supportablesNext.add((Supportable) supporter);
-          alreadyVisited.add((Supportable) supporter);
-        }
-      }
-      supportablesCur = supportablesNext;
-    }
-
-    return children;
-  }
-
-  // Returns all the descendant argument elements (core and contextual
-  // elements) of the input decomposable core element.
-  public Set<ArgumentElement> getContextInheritors(DecomposableCoreElement elem, Set<EObject> alreadySliced) {
-    var descendantsAll = new HashSet<ArgumentElement>();
-    var descendantsCur = new HashSet<ArgumentElement>();
-    var descendantsNext = new HashSet<ArgumentElement>();
-
-    // Iterate through the current set of newly added descendants
-    // to identify the next generation of descendants.
-    descendantsAll.add(elem);
-    descendantsCur.add(elem);
-    while (!descendantsCur.isEmpty()) {
-      for (var curElem : descendantsCur) {
-        if (curElem instanceof DecomposableCoreElement) {
-          var d = (DecomposableCoreElement) curElem;
-          if (d.getSupportedBy() != null) {
-            descendantsNext.addAll(getChildCoreElements(d, alreadySliced));
-          }
-          if (d.getInContextOf() != null) {
-            for (var rel : d.getInContextOf()) {
-              descendantsNext.add(rel.getContext());
-            }
-          }
-        }
-      }
-      descendantsCur.clear();
-      for (var newElem : descendantsNext) {
-        if (!descendantsAll.contains(newElem)) {
-          descendantsAll.add(newElem);
-          descendantsCur.add(newElem);
-        }
-      }
-      descendantsNext.clear();
-    }
-
-    return descendantsAll;
-  }
 
   @Override
   protected SliceStep getDirectlySlicedElements(SliceObject sliceObj) {
@@ -107,7 +37,7 @@ public class GSNSliceRevise2Content extends Slice {
     if (modelObj instanceof DecomposableCoreElement) {
       // slice child core elements
       sliced.addAll(
-        getChildCoreElements((DecomposableCoreElement) modelObj, this.alreadySliced).stream()
+        GSNUtils.getChildCoreElements((DecomposableCoreElement) modelObj, this.alreadySliced.keySet()).stream()
           .map(s -> new SliceObject(s, SliceType.RECHECK_CONTENT))
           .collect(Collectors.toSet()));
     }
@@ -116,7 +46,7 @@ public class GSNSliceRevise2Content extends Slice {
       sliced.addAll(
         ((Supporter) modelObj).getSupports().stream()
           .map(SupportedBy::getSource)
-          .filter(s -> !this.alreadySliced.contains(s))
+          .filter(s -> !this.alreadySliced.containsKey(s))
           .map(s -> new SliceObject(s, SliceType.RECHECK_CONTENT))
           .collect(Collectors.toSet()));
     }
@@ -125,7 +55,7 @@ public class GSNSliceRevise2Content extends Slice {
       sliced.addAll(
         ((Strategy) modelObj).getInContextOf().stream()
           .map(InContextOf::getContext)
-          .filter(s -> !this.alreadySliced.contains(s))
+          .filter(s -> !this.alreadySliced.containsKey(s))
           .map(s -> new SliceObject(s, SliceType.RECHECK_CONTENT))
           .collect(Collectors.toSet()));
     }
@@ -133,7 +63,7 @@ public class GSNSliceRevise2Content extends Slice {
       // slice all argument elements that use or inherit it
       ((ContextualElement) modelObj).getContextOf().stream()
         .map(InContextOf::getContextOf)
-        .flatMap(s -> getContextInheritors(s, this.alreadySliced).stream())
+        .flatMap(s -> GSNUtils.getContextInheritors(s, this.alreadySliced.keySet()).stream())
         .map(s -> new SliceObject(s, SliceType.RECHECK_CONTENT))
         .collect(Collectors.toSet());
     }
