@@ -136,6 +136,11 @@ public class Slice extends OperatorImpl {
   protected class SliceStep {
     public Set<SliceObject> sliced;
     public Set<SliceObject> visited;
+    public SliceStep() {
+      var emptySet = new HashSet<SliceObject>();
+      this.sliced = emptySet;
+      this.visited = emptySet;
+    }
     public SliceStep(Set<SliceObject> sliced, Set<SliceObject> visited) {
       this.sliced = sliced;
       this.visited = visited;
@@ -185,11 +190,16 @@ public class Slice extends OperatorImpl {
    */
   protected Map<SliceObject, EObject> getAllSlicedElements(SliceObject critObj) {
     var sliced = new HashMap<SliceObject, EObject>();
+    var alreadyType = this.alreadySliced.get(critObj.modelObj);
+    if (alreadyType != null && alreadyType == critObj.type) {
+      // stop early if already sliced with the same slice type
+      return sliced;
+    }
+
     sliced.put(critObj, null);
     this.alreadySliced.put(critObj.modelObj, critObj.type);
     var visitedCur = Set.of(critObj);
     this.alreadyVisited.put(critObj.modelObj, critObj.type);
-
     // iterate through the current set of newly sliced model elements
     // to identify the next ones that are going to be sliced
     while (!visitedCur.isEmpty()) {
@@ -199,10 +209,12 @@ public class Slice extends OperatorImpl {
         var slicedObjs = getDirectlySlicedElements(visitedObj);
         slicedObjs.sliced.stream().forEach(s -> {
           sliced.put(s, visitedObj.modelObj);
-          this.alreadySliced.put(s.modelObj, s.type); });
+          this.alreadySliced.put(s.modelObj, s.type);
+        });
         slicedObjs.visited.stream().forEach(v -> {
           visitedNext.add(v);
-          this.alreadyVisited.put(v.modelObj, v.type); });
+          this.alreadyVisited.put(v.modelObj, v.type);
+        });
       }
       // prepare for next iteration
       visitedCur = visitedNext;

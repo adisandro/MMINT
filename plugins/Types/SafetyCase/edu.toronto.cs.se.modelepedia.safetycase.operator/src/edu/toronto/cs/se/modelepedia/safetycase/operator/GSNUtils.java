@@ -14,7 +14,6 @@ package edu.toronto.cs.se.modelepedia.safetycase.operator;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
 
@@ -23,12 +22,10 @@ import edu.toronto.cs.se.modelepedia.safetycase.AndSupporter;
 import edu.toronto.cs.se.modelepedia.safetycase.ArgumentElement;
 import edu.toronto.cs.se.modelepedia.safetycase.CoreElement;
 import edu.toronto.cs.se.modelepedia.safetycase.DecomposableCoreElement;
-import edu.toronto.cs.se.modelepedia.safetycase.Goal;
 import edu.toronto.cs.se.modelepedia.safetycase.MofNSupporter;
 import edu.toronto.cs.se.modelepedia.safetycase.OrSupporter;
 import edu.toronto.cs.se.modelepedia.safetycase.SupportConnector;
 import edu.toronto.cs.se.modelepedia.safetycase.Supportable;
-import edu.toronto.cs.se.modelepedia.safetycase.SupportedBy;
 import edu.toronto.cs.se.modelepedia.safetycase.XorSupporter;
 
 public class GSNUtils extends Slice {
@@ -47,7 +44,7 @@ public class GSNUtils extends Slice {
     impactedAll.addAll(supportablesAll);
       for (var elem : supportablesCur) {
         // Add parents to impacted set if necessary.
-        if (isPropagatedUp(elem, impactedAll)) {
+        if (isSupported(elem, impactedAll)) {
           for (var rel : elem.getSupports()) {
             supportablesNext.add(rel.getSource());
           }
@@ -71,36 +68,9 @@ public class GSNUtils extends Slice {
     return supportablesAll;
   }
 
-  // Returns all ancestor goals of the input core element, stopping when one is already impacted.
-  public static Set<Goal> getAncestorGoals(CoreElement elem, Set<EObject> alreadySliced) {
-    var ancestors = new HashSet<Goal>();
-    var ancestorsCur = elem.getSupports().stream()
-                           .map(SupportedBy::getSource)
-                           .collect(Collectors.toSet());
-    var alreadyImpacted2 = new HashSet<>(alreadySliced);
-    while (!ancestorsCur.isEmpty()) {
-      var ancestorsNext = new HashSet<Supportable>();
-      alreadyImpacted2.addAll(ancestorsCur);
-      for (var ancestor : ancestorsCur) {
-        if (ancestor instanceof Goal) {
-          ancestors.add((Goal) ancestor);
-        }
-        if (isPropagatedUp(ancestor, alreadyImpacted2)) {
-          ancestorsNext.addAll(ancestor.getSupports().stream()
-                                       .map(SupportedBy::getSource)
-                                       .filter(a -> !alreadyImpacted2.contains(a))
-                                       .collect(Collectors.toSet()));
-        }
-      }
-      ancestorsCur = ancestorsNext;
-    }
-
-    return ancestors;
-  }
-
   // Determines whether a change impact is propagated up or not given the
   // source impacted element and a set of other impacted elements.
-  public static boolean isPropagatedUp(Supportable elem, Set<EObject> alreadySliced) {
+  public static boolean isSupported(Supportable elem, Set<EObject> alreadySliced) {
 
     // If a core element is impacted, then its parents are also impacted.
     if (elem instanceof CoreElement) {
@@ -117,7 +87,7 @@ public class GSNUtils extends Slice {
         impactCount += 1;
       }
       else if (target instanceof SupportConnector) {
-        if (isPropagatedUp((SupportConnector) target, alreadySliced)) {
+        if (isSupported((SupportConnector) target, alreadySliced)) {
           impactCount += 1;
         }
       }
@@ -149,7 +119,6 @@ public class GSNUtils extends Slice {
   }
 
   public static Set<CoreElement> getChildCoreElements(DecomposableCoreElement inputElem, Set<EObject> alreadySliced) {
-    //TODO Integrate SupportConnector with the dual algorithm sliced/visited?
     var children = new HashSet<CoreElement>();
     var supportablesCur = new HashSet<Supportable>();
     var alreadyVisited = new HashSet<Supportable>(); // prevents loops
