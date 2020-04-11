@@ -27,9 +27,8 @@ import edu.toronto.cs.se.modelepedia.statemachine.Transition;
 public class SMSlice extends Slice {
 
   @Override
-  protected SliceStep getDirectlySlicedElements(SliceObject sliceObj) {
+  protected SliceStep getDirectlySlicedElements(EObject modelObj, SliceInfo info) {
     var slicedObjs = new HashSet<EObject>();
-    var modelObj = sliceObj.modelObj;
 
     // If input is a state machine, then the following are impacted:
     // 1) Owned states and transitions.
@@ -68,11 +67,10 @@ public class SMSlice extends Slice {
       slicedObjs.add(t.getTarget());
     }
 
-
+    var newInfo = new SliceInfo(SliceType.RECHECK_CONTENT, modelObj, "sm");
     var sliced = slicedObjs.stream()
-      .filter(s -> !this.alreadySliced.containsKey(s))
-      .map(s -> new SliceObject(s, SliceType.RECHECK_CONTENT))
-      .collect(Collectors.toSet());
+      .filter(s -> !this.allSliced.containsKey(s))
+      .collect(Collectors.toMap(s -> s, s -> newInfo, SliceInfo.ORDER_DUPLICATES));
     return new SliceStep(sliced, sliced);
   }
 }

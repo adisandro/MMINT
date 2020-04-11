@@ -13,10 +13,9 @@
 package edu.toronto.cs.se.mmint.operator.slice;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
+import java.util.function.BinaryOperator;
 import java.util.stream.Collectors;
 
 import org.eclipse.core.runtime.IStatus;
@@ -34,7 +33,6 @@ import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
-import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
@@ -48,8 +46,8 @@ public class Slice extends OperatorImpl {
   private Input input;
   private Output output;
   private Map<SliceType, Mapping> sliceTypes;
-  protected Map<EObject, SliceType> alreadySliced;
-  protected Map<EObject, SliceType> alreadyVisited;
+  protected Map<EObject, SliceInfo> allSliced;
+  protected Map<EObject, SliceInfo> allVisited;
 
   private static class Input {
     private final static String IN_MODELREL = "criterion";
@@ -124,24 +122,32 @@ public class Slice extends OperatorImpl {
     }
   };
 
-  protected class SliceObject {
-    public EObject modelObj;
+  protected static class SliceInfo {
     public SliceType type;
-    public SliceObject(EObject modelObj, SliceType type) {
-      this.modelObj = modelObj;
+    public @Nullable EObject prevObj;
+    public @Nullable String rule;
+    public static BinaryOperator<SliceInfo> ORDER_DUPLICATES =
+      (info1, info2) -> (info1.type.ordinal() <= info2.type.ordinal()) ? info1 : info2;
+
+    public SliceInfo(SliceType type, @Nullable EObject prevObj) {
       this.type = type;
+      this.prevObj = prevObj;
+    }
+    public SliceInfo(SliceType type, @Nullable EObject prevObj, @Nullable String rule) {
+      this(type, prevObj);
+      this.rule = rule;
     }
   }
 
   protected class SliceStep {
-    public Set<SliceObject> sliced;
-    public Set<SliceObject> visited;
+    public Map<EObject, SliceInfo> sliced;
+    public Map<EObject, SliceInfo> visited;
     public SliceStep() {
-      var emptySet = new HashSet<SliceObject>();
-      this.sliced = emptySet;
-      this.visited = emptySet;
+      var emptyMap = new HashMap<EObject, SliceInfo>();
+      this.sliced = emptyMap;
+      this.visited = emptyMap;
     }
-    public SliceStep(Set<SliceObject> sliced, Set<SliceObject> visited) {
+    public SliceStep(Map<EObject, SliceInfo> sliced, Map<EObject, SliceInfo> visited) {
       this.sliced = sliced;
       this.visited = visited;
     }
@@ -151,8 +157,8 @@ public class Slice extends OperatorImpl {
     this.input = new Input(inputsByName);
     this.output = new Output(outputMIDsByName);
     this.sliceTypes = new HashMap<>();
-    this.alreadySliced = new HashMap<>();
-    this.alreadyVisited = new HashMap<>();
+    this.allSliced = new HashMap<>();
+    this.allVisited = new HashMap<>();
     for (var sliceType : SliceType.values()) {
       var mappingType = MIDTypeRegistry.<Mapping>getType(sliceType.id);
       if (mappingType == null) {
@@ -165,62 +171,56 @@ public class Slice extends OperatorImpl {
   /**
    * Gets model objects sliced by applying the rules to a single model object.
    *
-   * @param sliceObj
-   *          The model object to apply the slicing rules to, together with its type of slicing.
+   * @param modelObj
+   *          The model object to apply the slicing rules to.
+   * @param info
+   *          The slicing information.
    * @return The model objects to be added to the slice set, the model objects to visit next (they may or may not be
-   *         equivalent), and the type of slicing applied for each model object.
+   *         equivalent), and the slicing information applied for each model object.
    */
-  protected SliceStep getDirectlySlicedElements(SliceObject sliceObj) {
+  protected SliceStep getDirectlySlicedElements(EObject modelObj, SliceInfo info) {
     // only rule: contained model objects are sliced and visited
-    var sliced = sliceObj.modelObj.eContents().stream()
-      .filter(obj -> !this.alreadySliced.containsKey(obj))
-      .map(obj -> new SliceObject(obj, SliceType.REVISE))
-      .collect(Collectors.toSet());
+    var sliced = modelObj.eContents().stream()
+      .filter(s -> !this.allSliced.containsKey(s))
+      .collect(Collectors.toMap(s -> s, s -> new SliceInfo(SliceType.REVISE, modelObj, "econtents"),
+                                SliceInfo.ORDER_DUPLICATES));
+    // MERGE_DUPLICATES is not needed here because of eContents() semantics, but is a good example for inheritors
     return new SliceStep(sliced, sliced);
   }
 
   /**
-   * Gets all sliced model objects recursively, starting from a model object that is part of the input slice criterion
-   * and following the slicing rules.
+   * Slice model objects recursively, starting from a model object that is part of the input slice criterion and
+   * following the slicing rules.
    *
    * @param critObj
-   *          The starting model object (part of the slice criterion), together with its type of slicing.
-   * @return The sliced model objects as keys, together with their type of slicing, and the model object that caused
-   *         them to be sliced as values.
+   *          The starting model object (part of the slice criterion)
+   * @param info
+   *          The slicing information.
    */
-  protected Map<SliceObject, EObject> getAllSlicedElements(SliceObject critObj) {
-    var sliced = new HashMap<SliceObject, EObject>();
-    var alreadyType = this.alreadySliced.get(critObj.modelObj);
-    if (alreadyType != null && alreadyType == critObj.type) {
+  protected void sliceCriterionElement(EObject critObj, SliceInfo info) {
+    var slicedInfo = this.allSliced.get(critObj);
+    if (slicedInfo != null && slicedInfo.type == info.type) {
       // stop early if already sliced with the same slice type
-      return sliced;
+      return;
     }
 
-    sliced.put(critObj, null);
-    this.alreadySliced.put(critObj.modelObj, critObj.type);
-    var visitedCur = Set.of(critObj);
-    this.alreadyVisited.put(critObj.modelObj, critObj.type);
+    this.allSliced.put(critObj, info);
+    this.allVisited.put(critObj, info);
+    var visitedCur = Map.of(critObj, info);
     // iterate through the current set of newly sliced model elements
     // to identify the next ones that are going to be sliced
     while (!visitedCur.isEmpty()) {
-      var visitedNext = new HashSet<SliceObject>();
-      for (var visitedObj : visitedCur) {
+      var visitedNext = new HashMap<EObject, SliceInfo>();
+      for (var visitedObj : visitedCur.entrySet()) {
         // get all model elements directly sliced by the current one without adding duplicates
-        var slicedObjs = getDirectlySlicedElements(visitedObj);
-        slicedObjs.sliced.stream().forEach(s -> {
-          sliced.put(s, visitedObj.modelObj);
-          this.alreadySliced.put(s.modelObj, s.type);
-        });
-        slicedObjs.visited.stream().forEach(v -> {
-          visitedNext.add(v);
-          this.alreadyVisited.put(v.modelObj, v.type);
-        });
+        var sliceStep = getDirectlySlicedElements(visitedObj.getKey(), visitedObj.getValue());
+        this.allSliced.putAll(sliceStep.sliced);
+        this.allVisited.putAll(sliceStep.visited);
+        visitedNext.putAll(sliceStep.visited);
       }
       // prepare for next iteration
       visitedCur = visitedNext;
     }
-
-    return sliced;
   }
 
   protected void slice() throws MMINTException {
@@ -234,47 +234,45 @@ public class Slice extends OperatorImpl {
     var rs = new ResourceSetImpl();
     var r = rs.getResource(rUri, true);
 
-    // loop through the model objects in the input criterion
-    for (var critModelElemRef : critModelEndpointRef.getModelElemRefs()) {
-      try {
-        var critModelObj = critModelElemRef.getObject().getEMFInstanceObject(r);
-        Mapping critMapping = null;
-        SliceType critType = null;
-        if (critModelElemRef.getModelElemEndpointRefs().size() == 1) { // criterion with info about previous slice steps
-          critMapping = ((MappingReference) critModelElemRef.getModelElemEndpointRefs().get(0).eContainer())
-                          .getObject();
-          critType = SliceType.fromMapping(critMapping);
+    // loop through the input criterion and slice the model elements
+    for (var critMapping : this.input.critRel.getMappings()) {
+      var critType = SliceType.fromMapping(critMapping);
+      for (var critModelElemEndpoint : critMapping.getModelElemEndpoints()) {
+        var critModelElem = critModelElemEndpoint.getTarget();
+        var critName = (critMapping.getName().equals("")) ?
+          this.input.model.getName() + "." + critModelElem.getName() :
+          critMapping.getName();
+        try {
+          var critModelObj = critModelElem.getEMFInstanceObject(r);
+          sliceCriterionElement(critModelObj, new SliceInfo(critType, null, critName));
         }
-        // add sliced elements to the output model relation
-        var slicedFromCrit = getAllSlicedElements(new SliceObject(critModelObj, critType));
-        for (var slicedFromCritEntry : slicedFromCrit.entrySet()) {
-          var slicee = slicedFromCritEntry.getKey();
-          var slicer = slicedFromCritEntry.getValue();
-          try {
-            var sliceModelElemRef = sliceModelEndpointRef.createModelElementInstanceAndReference(slicee.modelObj, null);
-            var sliceMappingRef = this.sliceTypes.get(slicee.type).createInstanceAndReferenceAndEndpointsAndReferences(
-                                    false, ECollections.asEList(sliceModelElemRef));
-            String slicerName = null;
-            if (slicer == null) { // slicee == critModelObj
-              slicerName = (critMapping == null) ?
-                this.input.model.getName() + "." + critModelElemRef.getObject().getName() :
-                critMapping.getName();
-            }
-            else {
-              var slicerEInfo = MIDRegistry.getModelElementEMFInfo(slicer, MIDLevel.INSTANCES);
-              slicerName = this.input.model.getName() + "." +
-                           MIDRegistry.getModelElementName(slicerEInfo, slicer, MIDLevel.INSTANCES);
-            }
-            sliceMappingRef.getObject().setName(slicerName);
-          }
-          catch (MMINTException e) {
-            MMINTException.print(IStatus.WARNING, "Skipping sliced model element " + slicee.modelObj, e);
-          }
+        catch (MMINTException e) {
+          MMINTException.print(IStatus.WARNING, "Skipping criterion model element " + critModelElem.getName(), e);
         }
       }
+    }
+
+    // create output model rel from sliced elements
+    for (var sliced : this.allSliced.entrySet()) {
+      var modelObj = sliced.getKey();
+      var info = sliced.getValue();
+      try {
+        var modelElemRef = sliceModelEndpointRef.createModelElementInstanceAndReference(modelObj, null);
+        var mappingRef = this.sliceTypes.get(info.type).createInstanceAndReferenceAndEndpointsAndReferences(
+                           false, ECollections.asEList(modelElemRef));
+        String mappingName = null;
+        if (info.prevObj == null) { // from criterion
+          mappingName = info.rule;
+        }
+        else {
+          var slicerEInfo = MIDRegistry.getModelElementEMFInfo(info.prevObj, MIDLevel.INSTANCES);
+          mappingName = this.input.model.getName() + "." +
+                        MIDRegistry.getModelElementName(slicerEInfo, info.prevObj, MIDLevel.INSTANCES);
+        }
+        mappingRef.getObject().setName(mappingName);
+      }
       catch (MMINTException e) {
-        MMINTException.print(IStatus.WARNING,
-                             "Skipping criterion model element " + critModelElemRef.getObject().getName(), e);
+        MMINTException.print(IStatus.WARNING, "Skipping sliced model element " + modelObj, e);
       }
     }
   }

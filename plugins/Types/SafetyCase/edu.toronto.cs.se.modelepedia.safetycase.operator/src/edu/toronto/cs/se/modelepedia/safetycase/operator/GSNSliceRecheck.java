@@ -12,8 +12,7 @@
  */
 package edu.toronto.cs.se.modelepedia.safetycase.operator;
 
-import java.util.HashSet;
-import java.util.Map;
+import java.util.HashMap;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
@@ -28,43 +27,40 @@ import edu.toronto.cs.se.modelepedia.safetycase.SupportedBy;
 public class GSNSliceRecheck extends Slice {
 
   @Override
-  protected SliceStep getDirectlySlicedElements(SliceObject sliceObj) {
-    var sliced = new HashSet<SliceObject>();
-    var visited = new HashSet<SliceObject>();
-    var modelObj = sliceObj.modelObj;
+  protected SliceStep getDirectlySlicedElements(EObject modelObj, SliceInfo info) {
+    var sliced = new HashMap<EObject, SliceInfo>();
+    var visited = new HashMap<EObject, SliceInfo>();
 
     if (modelObj instanceof Supportable) {
-      // visit all supported elements, slice goals only
+      // Assure18: C1, C2, V2.1
+      // visit supported (parent) elements, slice goals only
+      var newInfo = new SliceInfo(SliceType.RECHECK_STATE, modelObj, "supports");
       var visitedStream = ((Supportable) modelObj).getSupports().stream()
         .map(SupportedBy::getSource)
-        .filter(v -> !this.alreadyVisited.containsKey(v))
-        .filter(v -> GSNUtils.isSupported(v, this.alreadySliced.keySet()));
+        .filter(v -> !this.allVisited.containsKey(v))
+        .filter(v -> GSNUtils.isSupported(v, this.allSliced.keySet()));
       var slicedStream = visitedStream.filter(s -> s instanceof Goal);
-      visited.addAll(visitedStream
-        .map(v -> new SliceObject(v, SliceType.RECHECK_STATE))
-        .collect(Collectors.toSet()));
-      sliced.addAll(slicedStream
-        .map(s -> new SliceObject(s, SliceType.RECHECK_STATE))
-        .collect(Collectors.toSet()));
+      visited.putAll(visitedStream.collect(
+        Collectors.toMap(v -> v, v -> newInfo, SliceInfo.ORDER_DUPLICATES)));
+      sliced.putAll(slicedStream.collect(
+        Collectors.toMap(s -> s, s -> newInfo, SliceInfo.ORDER_DUPLICATES)));
     }
 
     return new SliceStep(sliced, visited);
   }
 
   @Override
-  protected Map<SliceObject, EObject> getAllSlicedElements(SliceObject critObj) {
-    var modelObj = critObj.modelObj;
-    var type = critObj.type;
-
-    if (modelObj instanceof Goal || modelObj instanceof Solution ||
-        (modelObj instanceof Strategy && (type == SliceType.DEL || type == SliceType.REVISE))) {
+  protected void sliceCriterionElement(EObject critObj, SliceInfo info) {
+    if (critObj instanceof Goal || // Assure18: C1
+        critObj instanceof Solution ||  // Assure18: C2
+        (critObj instanceof Strategy && (info.type == SliceType.DEL || info.type == SliceType.REVISE)) // Assure18: V2.1
+    ) {
       // start from goals, solutions and strategies only
-      return super.getAllSlicedElements(critObj);
+      super.sliceCriterionElement(critObj, info);
     }
     else {
-      this.alreadySliced.put(modelObj, type);
-      this.alreadyVisited.put(modelObj, type);
-      return Map.of(critObj, null);
+      this.allSliced.put(critObj, info);
+      this.allVisited.put(critObj, info);
     }
   }
 }
