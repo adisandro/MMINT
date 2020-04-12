@@ -11,7 +11,18 @@
  */
 package edu.toronto.cs.se.modelepedia.safetycase.operator;
 
+import java.util.Set;
+
+import org.eclipse.emf.ecore.EObject;
+
 import edu.toronto.cs.se.mmint.operator.slice.Slice;
+import edu.toronto.cs.se.modelepedia.safetycase.AndSupporter;
+import edu.toronto.cs.se.modelepedia.safetycase.CoreElement;
+import edu.toronto.cs.se.modelepedia.safetycase.MofNSupporter;
+import edu.toronto.cs.se.modelepedia.safetycase.OrSupporter;
+import edu.toronto.cs.se.modelepedia.safetycase.SupportConnector;
+import edu.toronto.cs.se.modelepedia.safetycase.Supportable;
+import edu.toronto.cs.se.modelepedia.safetycase.XorSupporter;
 
 /*
  * Algorithm (from Assure18 paper):
@@ -44,4 +55,54 @@ import edu.toronto.cs.se.mmint.operator.slice.Slice;
  *   -> Ok, we should check those too, but all checks should consider the existing SliceType too, and proceed with a dual mapping if necessary!
  *   -> Maybe add an api to do it within the main method, without having to overload it? Could be called "preconditions" and serve the initial type purpose too.
  */
-public class GSNSlice extends Slice {}
+public class GSNSlice extends Slice {
+
+  // Determines whether a change impact is propagated up or not given the
+  // source impacted element and a set of other impacted elements.
+  public static boolean isSupported(Supportable elem, Set<EObject> alreadySliced) {
+    // If a core element is impacted, then its parents are also impacted.
+    if (elem instanceof CoreElement) {
+      return true;
+    }
+    // Count the number of children impacted.
+    var isPropagated = false;
+    var impactCount = 0;
+    var totalCount = 0;
+    for (var rel : elem.getSupportedBy()) {
+      totalCount += 1;
+      var target = rel.getTarget();
+      if (alreadySliced.contains(target)) {
+        impactCount += 1;
+      }
+      else if (target instanceof SupportConnector) {
+        if (isSupported((SupportConnector) target, alreadySliced)) {
+          impactCount += 1;
+        }
+      }
+    }
+    // If an AND-connector or an XOR-connector is impacted, then its parents are
+    // impacted if any of its children are impacted.
+    if ((elem instanceof AndSupporter) || (elem instanceof XorSupporter)) {
+      if (impactCount >= 1) {
+        isPropagated = true;
+      }
+    }
+    // If an OR-connector is impacted, then its parents are
+    // impacted if all its children are impacted.
+    else if (elem instanceof OrSupporter) {
+      if (impactCount == totalCount) {
+        isPropagated = true;
+      }
+    }
+    // If an M-of-N connector is impacted, then its parents are
+    // impacted if more than (N-M) children are impacted.
+    else if (elem instanceof MofNSupporter) {
+      var target = ((MofNSupporter) elem).getTarget();
+      if (impactCount > totalCount - target) {
+        isPropagated = true;
+      }
+    }
+
+    return isPropagated;
+  }
+}

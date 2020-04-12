@@ -127,7 +127,7 @@ public class Slice extends OperatorImpl {
     public @Nullable EObject prevObj;
     public @Nullable String rule;
     public static BinaryOperator<SliceInfo> ORDER_DUPLICATES =
-      (info1, info2) -> (info1.type.ordinal() <= info2.type.ordinal()) ? info1 : info2;
+      (info1, info2) -> (info1.type.ordinal() < info2.type.ordinal()) ? info1 : info2;
 
     public SliceInfo(SliceType type, @Nullable EObject prevObj) {
       this.type = type;
@@ -150,6 +150,39 @@ public class Slice extends OperatorImpl {
     public SliceStep(Map<EObject, SliceInfo> sliced, Map<EObject, SliceInfo> visited) {
       this.sliced = sliced;
       this.visited = visited;
+    }
+    public SliceStep(SliceStep... steps) {
+      this.sliced = new HashMap<>();
+      this.visited = new HashMap<>();
+      for (var step : steps) {
+        step.mergeInto(this.sliced, this.visited);
+      }
+    }
+    /**
+     * Merges this slice step into existing sets of sliced and visited elements. You should use this function instead of
+     * e.g.
+     *
+     * <pre>
+     * {@code
+     * SliceStep sliceStep = ...;
+     * sliced.putAll(sliceStep.sliced);
+     * }
+     * </pre>
+     *
+     * to enforce a reproducible ordering of elements that are sliced multiple times with different slicing types.
+     *
+     * @param sliced
+     *          A map of sliced elements and their slicing info.
+     * @param visited
+     *          A map of visited elements and their slicing info.
+     */
+    public void mergeInto(@Nullable Map<EObject, SliceInfo> sliced, @Nullable Map<EObject, SliceInfo> visited) {
+      if (sliced != null) {
+        this.sliced.forEach((k, v) -> sliced.merge(k, v, SliceInfo.ORDER_DUPLICATES));
+      }
+      if (visited != null) {
+        this.visited.forEach((k, v) -> visited.merge(k, v, SliceInfo.ORDER_DUPLICATES));
+      }
     }
   }
 
@@ -182,9 +215,10 @@ public class Slice extends OperatorImpl {
     // only rule: contained model objects are sliced and visited
     var sliced = modelObj.eContents().stream()
       .filter(s -> !this.allSliced.containsKey(s))
-      .collect(Collectors.toMap(s -> s, s -> new SliceInfo(SliceType.REVISE, modelObj, "econtents"),
+      .collect(Collectors.toMap(s -> s, s -> new SliceInfo(SliceType.RECHECK_CONTENT, modelObj, "econtents"),
                                 SliceInfo.ORDER_DUPLICATES));
-    // MERGE_DUPLICATES is not needed here because of eContents() semantics, but is a good example for inheritors
+    // MERGE_DUPLICATES is not strictly needed here because of eContents() semantics (no duplicates)
+    // it's usually good for inheritors, both to avoid IllegalStateException in streams and to order slicing types
     return new SliceStep(sliced, sliced);
   }
 
@@ -204,8 +238,8 @@ public class Slice extends OperatorImpl {
       return;
     }
 
-    this.allSliced.put(critObj, info);
-    this.allVisited.put(critObj, info);
+    this.allSliced.merge(critObj, info, SliceInfo.ORDER_DUPLICATES);
+    this.allVisited.merge(critObj, info, SliceInfo.ORDER_DUPLICATES);
     var visitedCur = Map.of(critObj, info);
     // iterate through the current set of newly sliced model elements
     // to identify the next ones that are going to be sliced
@@ -214,9 +248,8 @@ public class Slice extends OperatorImpl {
       for (var visitedObj : visitedCur.entrySet()) {
         // get all model elements directly sliced by the current one without adding duplicates
         var sliceStep = getDirectlySlicedElements(visitedObj.getKey(), visitedObj.getValue());
-        this.allSliced.putAll(sliceStep.sliced);
-        this.allVisited.putAll(sliceStep.visited);
-        visitedNext.putAll(sliceStep.visited);
+        sliceStep.mergeInto(this.allSliced, this.allVisited);
+        sliceStep.mergeInto(null, visitedNext);
       }
       // prepare for next iteration
       visitedCur = visitedNext;
