@@ -99,7 +99,7 @@ public class GSNAnnotateSlice extends AnnotateSlice {
       if (!(gsnModelObj instanceof ArgumentElement)) {
         continue;
       }
-      if (((ArgumentElement) gsnModelObj).getStatus() != null) {
+      if (((ArgumentElement) gsnModelObj).getStatus() == null) {
         var annotation = SafetyCaseFactory.eINSTANCE.createImpactAnnotation();
         annotation.setType(ImpactType.REUSE);
         annotation.setSource("Not applicable");
