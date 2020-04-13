@@ -16,6 +16,6 @@ import edu.toronto.cs.se.mmint.mid.operator.impl.WorkflowOperatorImpl;
 /**
  * Defaults to using SafetyChangeImpact.mid as the implementation.
  */
-public class SafetyChangeImpact extends WorkflowOperatorImpl {
+public class ChangeImpact extends WorkflowOperatorImpl {
 
 }

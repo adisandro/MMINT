@@ -12,6 +12,7 @@
  */
 package edu.toronto.cs.se.mmint.operator.slice;
 
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -98,17 +99,21 @@ public class Slice extends OperatorImpl {
     }
   }
 
-  protected enum SliceType {
-    ADD("http://se.cs.toronto.edu/mmint/SliceRel/Add"),
-    DEL("http://se.cs.toronto.edu/mmint/SliceRel/Del"),
-    MOD("http://se.cs.toronto.edu/mmint/SliceRel/Mod"),
-    REVISE("http://se.cs.toronto.edu/mmint/SliceRel/Revise"),
-    RECHECK_CONTENT("http://se.cs.toronto.edu/mmint/SliceRel/RecheckContent"),
-    RECHECK_STATE("http://se.cs.toronto.edu/mmint/SliceRel/RecheckState");
+  public enum SliceType {
+    ADD("http://se.cs.toronto.edu/mmint/SliceRel/Add", 1),
+    DEL("http://se.cs.toronto.edu/mmint/SliceRel/Del", 2),
+    MOD("http://se.cs.toronto.edu/mmint/SliceRel/Mod", 3),
+    REVISE("http://se.cs.toronto.edu/mmint/SliceRel/Revise", 4),
+    RECHECK_CONTENT("http://se.cs.toronto.edu/mmint/SliceRel/RecheckContent", 5),
+    RECHECK_STATE("http://se.cs.toronto.edu/mmint/SliceRel/RecheckState", 6);
+    public final static Comparator<SliceType> COMPARATOR =
+      (type1, type2) -> type1.priority - type2.priority;
     public final String id;
+    public final int priority;
 
-    private SliceType(String id) {
+    private SliceType(String id, int priority) {
       this.id = id;
+      this.priority = priority;
     }
 
     public static @Nullable SliceType fromMapping(Mapping mapping) {
@@ -126,8 +131,8 @@ public class Slice extends OperatorImpl {
     public SliceType type;
     public @Nullable EObject prevObj;
     public @Nullable String rule;
-    public static BinaryOperator<SliceInfo> ORDER_DUPLICATES =
-      (info1, info2) -> (info1.type.ordinal() < info2.type.ordinal()) ? info1 : info2;
+    public final static BinaryOperator<SliceInfo> ORDER_DUPLICATES =
+      (info1, info2) -> (info1.type.priority < info2.type.priority) ? info1 : info2;
 
     public SliceInfo(SliceType type, @Nullable EObject prevObj) {
       this.type = type;

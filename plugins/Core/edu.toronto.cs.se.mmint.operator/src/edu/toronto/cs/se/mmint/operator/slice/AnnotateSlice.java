@@ -16,8 +16,10 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -31,41 +33,29 @@ import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
+import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.mmint.operator.slice.Slice.SliceType;
 
-public class Annotate extends OperatorImpl {
+public class AnnotateSlice extends OperatorImpl {
 
   protected Input input;
   protected Output output;
 
   protected static class Input {
-    private final static String IN_MODELREL1 = "revise";
-    private final static String IN_MODELREL2 = "recheckContent";
-    private final static String IN_MODELREL3 = "recheckState";
-    public ModelRel reviseRel;
-    public ModelRel recheckContentRel;
-    public ModelRel recheckStateRel;
+    private final static String IN_MODELREL = "slice";
+    public ModelRel sliceRel;
     public Model model;
 
     public Input(Map<String, Model> inputsByName) {
-      this.reviseRel = (ModelRel) inputsByName.get(Input.IN_MODELREL1);
-      this.recheckContentRel = (ModelRel) inputsByName.get(Input.IN_MODELREL2);
-      this.recheckStateRel = (ModelRel) inputsByName.get(Input.IN_MODELREL3);
-      if (this.reviseRel.getModelEndpoints().size() != 1 ||
-          this.recheckContentRel.getModelEndpoints().size() != 1 ||
-          this.recheckStateRel.getModelEndpoints().size() != 1) {
-        // rels must be unary
+      this.sliceRel = (ModelRel) inputsByName.get(Input.IN_MODELREL);
+      if (this.sliceRel.getModelEndpoints().size() != 1) {
+        // rel must be unary
         throw new IllegalArgumentException();
       }
-      this.model = this.reviseRel.getModelEndpoints().get(0).getTarget();
-      var model2Path = this.recheckContentRel.getModelEndpoints().get(0).getTargetUri();
-      var model3Path = this.recheckStateRel.getModelEndpoints().get(0).getTargetUri();
-      if (!this.model.getUri().equals(model2Path) || !this.model.getUri().equals(model3Path)) {
-        // rels point to different models
-        throw new IllegalArgumentException();
-      }
+      this.model = this.sliceRel.getModelEndpoints().get(0).getTarget();
     }
   }
 
@@ -103,7 +93,7 @@ public class Annotate extends OperatorImpl {
     this.output = new Output(outputMIDsByName);
   }
 
-  protected void annotateModelElem(ModelElement modelElem, @Nullable String cause, BufferedWriter buffer)
+  private void annotateModelElem(ModelElement modelElem, @Nullable String cause, BufferedWriter buffer)
                                    throws IOException {
     buffer.write(modelElem.getName());
     if (cause != null) {
@@ -112,21 +102,27 @@ public class Annotate extends OperatorImpl {
     buffer.newLine();
   }
 
-  protected void annotateRel(ModelRel rel, String header, BufferedWriter buffer, Set<String> alreadyAnnotated)
-                             throws IOException {
+  private void annotateSliceType(List<MappingReference> mappingRefs, String header, BufferedWriter buffer,
+                                 Set<String> alreadyAnnotated) throws IOException {
     buffer.write(header);
     buffer.newLine();
     buffer.newLine();
-    for (var modelElemRef : rel.getModelEndpointRefs().get(0).getModelElemRefs()) {
-      var modelElem = modelElemRef.getObject();
-      if (alreadyAnnotated.contains(modelElem.getUri())) {
-        continue;
+    for (var mappingRef : mappingRefs) {
+      var sliceTypeId = mappingRef.getObject().getMetatypeUri();
+      for (var modelElemEndpointRef : mappingRef.getModelElemEndpointRefs()) {
+        var modelElemRef = modelElemEndpointRef.getModelElemRef();
+        // annotate each model element once, extracting all mappings attached as causes
+        if (alreadyAnnotated.contains(modelElemRef.getUri())) {
+          continue;
+        }
+        var cause = modelElemRef.getModelElemEndpointRefs().stream()
+          .map(meer -> ((MappingReference) meer.eContainer()).getObject())
+          .filter(m -> m.getMetatypeUri().equals(sliceTypeId)) // discard lower priority causes
+          .map(Mapping::getName)
+          .collect(Collectors.joining(", "));
+        annotateModelElem(modelElemRef.getObject(), cause, buffer);
+        alreadyAnnotated.add(modelElemRef.getUri());
       }
-      var cause = modelElemRef.getModelElemEndpointRefs().stream()
-        .map(meer -> ((MappingReference) meer.eContainer()).getObject().getName())
-        .collect(Collectors.joining(", "));
-      annotateModelElem(modelElem, cause, buffer);
-      alreadyAnnotated.add(modelElem.getUri());
     }
   }
 
@@ -135,13 +131,16 @@ public class Annotate extends OperatorImpl {
                                                       this.input.model.getName() + "_" + Output.OUT_MODEL + ".txt");
     var systemFilePath = FileUtils.prependWorkspacePath(filePath);
     try (var buffer = Files.newBufferedWriter(Paths.get(systemFilePath), Charset.forName("UTF-8"))) {
-      // annotate by priority: revise > recheck content > recheck state
+      // group mappings by slice types and order by priority
+      var mappingTypes = this.input.sliceRel.getMappingRefs().stream()
+        .collect(Collectors.groupingBy(mr -> mr.getObject().getMetatypeUri()));
+      var sliceTypes = SliceType.values();
       var alreadyAnnotated = new HashSet<String>();
-      annotateRel(this.input.reviseRel, "REVISE:", buffer, alreadyAnnotated);
-      buffer.newLine();
-      annotateRel(this.input.recheckContentRel, "RECHECK CONTENT:", buffer, alreadyAnnotated);
-      buffer.newLine();
-      annotateRel(this.input.recheckStateRel, "RECHECK STATE:", buffer, alreadyAnnotated);
+      Arrays.sort(sliceTypes, SliceType.COMPARATOR);
+      for (var sliceType : sliceTypes) {
+        annotateSliceType(mappingTypes.get(sliceType.id), sliceType.name(), buffer, alreadyAnnotated);
+        buffer.newLine();
+      }
     }
     var fileModelType = MIDTypeRegistry.<Model>getType("http://se.cs.toronto.edu/modelepedia/File");
     this.output.annotatedModel = fileModelType.createInstance(null, filePath, this.output.mid);

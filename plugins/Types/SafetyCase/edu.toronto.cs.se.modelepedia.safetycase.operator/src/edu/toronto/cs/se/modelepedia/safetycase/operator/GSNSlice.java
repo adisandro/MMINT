@@ -54,6 +54,9 @@ import edu.toronto.cs.se.modelepedia.safetycase.XorSupporter;
  *   -> It would prevent dual mappings, notably on criteria elements. But it's already prevented on normal elements, why are criteria special?
  *   -> Ok, we should check those too, but all checks should consider the existing SliceType too, and proceed with a dual mapping if necessary!
  *   -> Maybe add an api to do it within the main method, without having to overload it? Could be called "preconditions" and serve the initial type purpose too.
+ *
+ *   IDEA to make rule-based slicing easier: let each rules execute on a fresh alreadySliced
+ *   -> we may slice an element more than once (so for multiple reasons, but it's ok, annotate handles it)
  */
 public class GSNSlice extends Slice {
 
