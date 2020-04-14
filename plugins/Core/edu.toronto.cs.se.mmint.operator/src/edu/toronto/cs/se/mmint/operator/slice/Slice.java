@@ -22,7 +22,6 @@ import java.util.stream.Collectors;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
@@ -269,8 +268,7 @@ public class Slice extends OperatorImpl {
     // retrieve resource corresponding to the model instance
     var critModelEndpointRef = this.input.critRel.getModelEndpointRefs().get(0);
     var rUri = FileUtils.createEMFUri(critModelEndpointRef.getTargetUri(), true);
-    var rs = new ResourceSetImpl();
-    var r = rs.getResource(rUri, true);
+    var r = FileUtils.getResource(rUri, null);
 
     // loop through the input criterion and slice the model elements
     for (var critMapping : this.input.critRel.getMappings()) {

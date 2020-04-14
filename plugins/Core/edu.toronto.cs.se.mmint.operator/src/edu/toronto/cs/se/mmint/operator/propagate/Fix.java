@@ -53,6 +53,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
@@ -160,9 +161,9 @@ public class Fix extends NestingOperatorImpl {
     private boolean isFixed(Model model1, Model model2) {
 
         ResourceSet srcResourceSet = new ResourceSetImpl();
-        srcResourceSet.getResource(URI.createPlatformResourceURI(model1.getUri(), true), true);
+        FileUtils.getResource(URI.createPlatformResourceURI(model1.getUri(), true), srcResourceSet);
         ResourceSet tgtResourceSet = new ResourceSetImpl();
-        tgtResourceSet.getResource(URI.createPlatformResourceURI(model2.getUri(), true), true);
+        FileUtils.getResource(URI.createPlatformResourceURI(model2.getUri(), true), tgtResourceSet);
         IComparisonScope scope = new DefaultComparisonScope(srcResourceSet, tgtResourceSet, null);
         Comparison comparison = EMFCompare.builder().build().compare(scope);
         if (!comparison.getDifferences().isEmpty()) {

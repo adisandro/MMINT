@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
-import edu.toronto.cs.se.mmint.MMINT;
+import edu.toronto.cs.se.mmint.MMINTConstants;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
@@ -93,7 +93,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
    */
     @Override
     public EMFInfo getEInfo() {
-    return eInfo;
+    return this.eInfo;
   }
 
     /**
@@ -102,8 +102,8 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
    * @generated
    */
     public NotificationChain basicSetEInfo(EMFInfo newEInfo, NotificationChain msgs) {
-    EMFInfo oldEInfo = eInfo;
-    eInfo = newEInfo;
+    EMFInfo oldEInfo = this.eInfo;
+    this.eInfo = newEInfo;
     if (eNotificationRequired()) {
       ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MIDPackage.MODEL_ELEMENT__EINFO, oldEInfo, newEInfo);
       if (msgs == null) msgs = notification; else msgs.add(notification);
@@ -118,12 +118,12 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
    */
     @Override
     public void setEInfo(EMFInfo newEInfo) {
-    if (newEInfo != eInfo) {
+    if (newEInfo != this.eInfo) {
       NotificationChain msgs = null;
-      if (eInfo != null)
-        msgs = ((InternalEObject)eInfo).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MIDPackage.MODEL_ELEMENT__EINFO, null, msgs);
+      if (this.eInfo != null)
+        msgs = ((InternalEObject)this.eInfo).eInverseRemove(this, InternalEObject.EOPPOSITE_FEATURE_BASE - MIDPackage.MODEL_ELEMENT__EINFO, null, msgs);
       if (newEInfo != null)
-        msgs = ((InternalEObject)newEInfo).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MIDPackage.MODEL_ELEMENT__EINFO, null, msgs);
+        msgs = ((InternalEObject)newEInfo).eInverseAdd(this, InternalEObject.EOPPOSITE_FEATURE_BASE - MIDPackage.MODEL_ELEMENT__EINFO, null, msgs);
       msgs = basicSetEInfo(newEInfo, msgs);
       if (msgs != null) msgs.dispatch();
     }
@@ -230,7 +230,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
     public boolean eIsSet(int featureID) {
     switch (featureID) {
       case MIDPackage.MODEL_ELEMENT__EINFO:
-        return eInfo != null;
+        return this.eInfo != null;
     }
     return super.eIsSet(featureID);
   }
@@ -331,6 +331,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
     /**
      * @generated NOT
      */
+    @Override
     public ModelElementReference createTypeReference(ModelElementReference modelElemTypeRef, boolean isModifiable, ModelEndpointReference containerModelTypeEndpointRef) throws MMINTException {
 
         MMINTException.mustBeType(this);
@@ -345,6 +346,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
     /**
      * @generated NOT
      */
+    @Override
     public ModelElementReference createSubtypeAndReference(ModelElementReference modelElemTypeRef, String newModelElemTypeUri, String newModelElemTypeName, EMFInfo eInfo, ModelEndpointReference containerModelTypeEndpointRef) throws MMINTException {
 
         MMINTException.mustBeType(this);
@@ -377,6 +379,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
     /**
      * @generated NOT
      */
+    @Override
     public void deleteType() throws MMINTException {
 
         MMINTException.mustBeType(this);
@@ -388,6 +391,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
     /**
      * @generated NOT
      */
+    @Override
     public ENamedElement getEMFTypeObject() throws MMINTException {
 
         MMINTException.mustBeType(this);
@@ -406,6 +410,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
     /**
      * @generated NOT
      */
+    @Override
     public ModelElementReference createInstanceReference(ModelEndpointReference containerModelEndpointRef) throws MMINTException {
 
         MMINTException.mustBeInstance(this);
@@ -420,6 +425,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
     /**
      * @generated NOT
      */
+    @Override
     public ModelElementReference createInstanceAndReference(String newModelElemUri, String newModelElemName, EMFInfo eInfo, ModelEndpointReference containerModelEndpointRef) throws MMINTException {
 
         MMINTException.mustBeType(this);
@@ -427,7 +433,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
         Model containerModel = containerModelEndpointRef.getObject().getTarget();
         MID instanceMID = containerModel.getMIDContainer();
         ModelElement newModelElem = null;
-        newModelElemUri += MMINT.ROLE_SEPARATOR + this.getUri();
+        newModelElemUri += MMINTConstants.ROLE_SEPARATOR + this.getUri();
         if (instanceMID != null) { // can be null when the containing model is not stored in the MID
             newModelElem = instanceMID.getExtendibleElement(newModelElemUri);
         }
@@ -450,6 +456,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
     /**
      * @generated NOT
      */
+    @Override
     public void deleteInstance() throws MMINTException {
 
         MMINTException.mustBeInstance(this);
@@ -461,15 +468,18 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
     /**
      * @generated NOT
      */
+    @Override
     public EObject getEMFInstanceObject(@Nullable Resource emfResource) throws MMINTException {
 
         //TODO MMINT[OO] Add emfResource as a cached protected member of Model to optimize every memory access
         MMINTException.mustBeInstance(this);
 
         String modelObjUri = MIDRegistry.getModelObjectUri(this);
-        int lastSegmentIndex = modelObjUri.lastIndexOf(MMINT.URI_SEPARATOR);
+        int lastSegmentIndex = modelObjUri.lastIndexOf(MMINTConstants.MODEL_URI_SEPARATOR);
         String lastSegment = modelObjUri.substring(lastSegmentIndex + 1);
-        boolean isPrimitive = !lastSegment.equals("") && !lastSegment.startsWith(MIDRegistry.ECORE_EREFERENCE_URI_PREFIX);
+        boolean isPrimitive = !lastSegment.equals("") &&
+                              !lastSegment.contains(MIDRegistry.ECORE_EREFERENCE_URI_PREFIX) &&
+                              !lastSegment.startsWith("_");
         if (isPrimitive) {
             modelObjUri = modelObjUri.substring(0, lastSegmentIndex);
         }

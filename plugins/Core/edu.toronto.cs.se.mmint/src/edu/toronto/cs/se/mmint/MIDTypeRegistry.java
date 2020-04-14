@@ -24,6 +24,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.jar.JarFile;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import java.util.zip.ZipEntry;
 
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -157,9 +158,11 @@ public class MIDTypeRegistry {
 	 */
 	public static Set<String> getModelTypeFileExtensions() {
 
-		return getModelTypes().stream()
-			.map(Model::getFileExtension)
-			.collect(Collectors.toSet());
+	  var modelStream = getModelTypes().stream().map(Model::getFileExtension);
+	  var editorStream = getEditorTypes().stream()
+	    .filter(e -> !(e instanceof Diagram))
+	    .flatMap(e -> e.getFileExtensions().stream());
+		return Stream.concat(modelStream, editorStream).collect(Collectors.toSet());
 	}
 
 	public static @Nullable Model getMIDModelType() {

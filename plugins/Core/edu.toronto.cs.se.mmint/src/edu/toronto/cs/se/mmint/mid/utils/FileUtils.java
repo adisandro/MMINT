@@ -23,7 +23,6 @@ import java.nio.file.Paths;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.HashMap;
-import java.util.Map;
 
 import org.eclipse.core.filesystem.EFS;
 import org.eclipse.core.filesystem.IFileStore;
@@ -352,12 +351,10 @@ public class FileUtils {
 	 *             If the ECore model file could not be created or overwritten.
 	 */
 	public static void writeModelFile(@NonNull EObject rootModelObj, @NonNull String filePath, boolean isWorkspaceRelative) throws IOException {
-
-		URI emfUri = FileUtils.createEMFUri(filePath, isWorkspaceRelative);
-		ResourceSet resourceSet = new ResourceSetImpl();
-		Resource resource = resourceSet.createResource(emfUri);
+		var emfUri = FileUtils.createEMFUri(filePath, isWorkspaceRelative);
+		var resource = new ResourceSetImpl().createResource(emfUri);
 		resource.getContents().add(rootModelObj);
-		Map<String, Object> options = new HashMap<>();
+		var options = new HashMap<String, Object>();
 		options.put(XMLResource.OPTION_SCHEMA_LOCATION, true);
 		resource.save(options);
 	}
@@ -367,13 +364,20 @@ public class FileUtils {
 		FileUtils.writeModelFile(rootModelObj, FileUtils.prependStatePath(relativeFilePath), false);
 	}
 
-  public static @NonNull EObject readModelFile(@NonNull String filePath, @Nullable ResourceSet resourceSet,
-                                               boolean isWorkspaceRelative) throws Exception {
+  public static Resource getResource(URI emfUri, @Nullable ResourceSet resourceSet) {
     if (resourceSet == null) {
       resourceSet = new ResourceSetImpl();
     }
-    URI emfUri = FileUtils.createEMFUri(filePath, isWorkspaceRelative);
-    Resource resource = resourceSet.getResource(emfUri, true);
+    resourceSet.getLoadOptions().put(XMLResource.OPTION_RECORD_UNKNOWN_FEATURE, Boolean.TRUE);
+    var resource = resourceSet.getResource(emfUri, true);
+
+    return resource;
+  }
+
+  public static @NonNull EObject readModelFile(@NonNull String filePath, @Nullable ResourceSet resourceSet,
+                                               boolean isWorkspaceRelative) throws Exception {
+    var emfUri = FileUtils.createEMFUri(filePath, isWorkspaceRelative);
+    var resource = FileUtils.getResource(emfUri, resourceSet);
     if (resource.getErrors().size() > 0 || resource.getContents().size() == 0) {
       throw new MMINTException("Error loading model resource");
     }
@@ -382,16 +386,16 @@ public class FileUtils {
 	}
 
 	public static @NonNull EObject readModelFileInState(@NonNull String relativeFilePath) throws Exception {
-
 		return FileUtils.readModelFile(FileUtils.prependStatePath(relativeFilePath), null, false);
 	}
 
 	public static @NonNull EObject readModelObject(@NonNull String fileObjectUri, @Nullable Resource resource) throws Exception {
-
-		URI emfUri = URI.createURI(fileObjectUri, false, URI.FRAGMENT_LAST_SEPARATOR);
+		var emfUri = URI.createURI(fileObjectUri, false, URI.FRAGMENT_LAST_SEPARATOR);
 		if (resource == null) {
-			ResourceSet set = new ResourceSetImpl();
-			resource = set.getResource(emfUri, true);
+		  resource = FileUtils.getResource(emfUri, null);
+	    if (resource.getErrors().size() > 0 || resource.getContents().size() == 0) {
+	      throw new MMINTException("Error loading model resource");
+	    }
 		}
 
 		return resource.getEObject(emfUri.fragment());

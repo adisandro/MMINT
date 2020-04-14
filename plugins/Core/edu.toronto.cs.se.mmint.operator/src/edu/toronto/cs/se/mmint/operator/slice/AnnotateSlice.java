@@ -138,7 +138,11 @@ public class AnnotateSlice extends OperatorImpl {
       var alreadyAnnotated = new HashSet<String>();
       Arrays.sort(sliceTypes, SliceType.COMPARATOR);
       for (var sliceType : sliceTypes) {
-        annotateSliceType(mappingTypes.get(sliceType.id), sliceType.name(), buffer, alreadyAnnotated);
+        var mappingRefs = mappingTypes.get(sliceType.id);
+        if (mappingRefs == null) {
+          continue;
+        }
+        annotateSliceType(mappingRefs, sliceType.name(), buffer, alreadyAnnotated);
         buffer.newLine();
       }
     }

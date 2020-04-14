@@ -27,7 +27,6 @@ import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINTException;
@@ -63,8 +62,8 @@ public class ModelRelPropagation extends OperatorImpl {
 
         public Input(Map<String, Model> inputsByName) {
 
-            this.origRel = (ModelRel) inputsByName.get(IN_MODELREL1);
-            this.traceRel = (ModelRel) inputsByName.get(IN_MODELREL2);
+            this.origRel = (ModelRel) inputsByName.get(ModelRelPropagation.IN_MODELREL1);
+            this.traceRel = (ModelRel) inputsByName.get(ModelRelPropagation.IN_MODELREL2);
             if (this.origRel == this.traceRel) {
                 // must be different rels
                 throw new IllegalArgumentException();
@@ -114,7 +113,7 @@ public class ModelRelPropagation extends OperatorImpl {
         public Map<ModelRel, List<Model>> getAllowedOutputModelRelEndpoints(Map<String, Model> inputsByName, Map<String, Model> outputsByName) {
 
             Input input = new Input(inputsByName);
-            ModelRel propRel = (ModelRel) outputsByName.get(OUT_MODELREL);
+            ModelRel propRel = (ModelRel) outputsByName.get(ModelRelPropagation.OUT_MODELREL);
             Map<ModelRel, List<Model>> validOutputs = new HashMap<>();
             List<Model> endpointModels = new ArrayList<>();
             endpointModels.add(input.propModel);
@@ -128,12 +127,12 @@ public class ModelRelPropagation extends OperatorImpl {
 
         // prepare the propagated rel
         ModelRel propRel = origRel.getMetatype()
-                                  .createInstanceAndEndpoints(null, OUT_MODELREL, ECollections.newBasicEList(propModel),
+                                  .createInstanceAndEndpoints(null, ModelRelPropagation.OUT_MODELREL, ECollections.newBasicEList(propModel),
                                                               outputMID);
         ModelEndpointReference propModelEndpointRef = propRel.getModelEndpointRefs().get(0);
         String propModelUri = propModel.getUri();
         URI propModelEMFUri = FileUtils.createEMFUri(propModelUri, true);
-        Resource propModelEMFResource = new ResourceSetImpl().getResource(propModelEMFUri, true);
+        Resource propModelEMFResource = FileUtils.getResource(propModelEMFUri, null);
         // get sharedModel elements that are in origRel, in case there are traces for other sharedModel elements
         Set<String> origModelObjUris = origRel.getModelEndpointRefs().get(0).getModelElemRefs().stream()
             .map(origModelElemRef -> MIDRegistry.getModelObjectUri(origModelElemRef.getObject()))
@@ -233,14 +232,14 @@ public class ModelRelPropagation extends OperatorImpl {
 
         // input
         Input input = new Input(inputsByName);
-        MID outputMID = outputMIDsByName.get(OUT_MODELREL);
+        MID outputMID = outputMIDsByName.get(ModelRelPropagation.OUT_MODELREL);
 
         // propagate the unary original rel through the trace rel
         ModelRel propRel = propagate(input.origRel, input.traceRel, input.sharedModel, input.propModel, outputMID);
 
         // output
         Map<String, Model> outputsByName = new HashMap<>();
-        outputsByName.put(OUT_MODELREL, propRel);
+        outputsByName.put(ModelRelPropagation.OUT_MODELREL, propRel);
 
         return outputsByName;
     }

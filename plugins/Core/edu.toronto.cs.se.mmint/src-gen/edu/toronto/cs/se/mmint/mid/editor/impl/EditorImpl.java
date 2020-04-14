@@ -42,6 +42,7 @@ import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.editor.EditorPackage;
 import edu.toronto.cs.se.mmint.mid.impl.ExtendibleElementImpl;
 import edu.toronto.cs.se.mmint.mid.ui.EditorCreationWizardDialog;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDTypeFactory;
 
 /**
@@ -80,7 +81,7 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
    * @generated
    * @ordered
    */
-    protected String modelUri = MODEL_URI_EDEFAULT;
+    protected String modelUri = EditorImpl.MODEL_URI_EDEFAULT;
 
     /**
    * The default value of the '{@link #getId() <em>Id</em>}' attribute.
@@ -100,7 +101,7 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
    * @generated
    * @ordered
    */
-    protected String id = ID_EDEFAULT;
+    protected String id = EditorImpl.ID_EDEFAULT;
 
     /**
    * The default value of the '{@link #getWizardId() <em>Wizard Id</em>}' attribute.
@@ -120,7 +121,7 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
    * @generated
    * @ordered
    */
-    protected String wizardId = WIZARD_ID_EDEFAULT;
+    protected String wizardId = EditorImpl.WIZARD_ID_EDEFAULT;
 
     /**
    * The cached value of the '{@link #getFileExtensions() <em>File Extensions</em>}' attribute list.
@@ -150,7 +151,7 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
    * @generated
    * @ordered
    */
-    protected String wizardDialogClass = WIZARD_DIALOG_CLASS_EDEFAULT;
+    protected String wizardDialogClass = EditorImpl.WIZARD_DIALOG_CLASS_EDEFAULT;
 
     /**
    * <!-- begin-user-doc -->
@@ -178,7 +179,7 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
    */
     @Override
     public String getModelUri() {
-    return modelUri;
+    return this.modelUri;
   }
 
     /**
@@ -188,10 +189,10 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
    */
     @Override
     public void setModelUri(String newModelUri) {
-    String oldModelUri = modelUri;
-    modelUri = newModelUri;
+    String oldModelUri = this.modelUri;
+    this.modelUri = newModelUri;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, EditorPackage.EDITOR__MODEL_URI, oldModelUri, modelUri));
+      eNotify(new ENotificationImpl(this, Notification.SET, EditorPackage.EDITOR__MODEL_URI, oldModelUri, this.modelUri));
   }
 
     /**
@@ -201,7 +202,7 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
    */
     @Override
     public String getId() {
-    return id;
+    return this.id;
   }
 
     /**
@@ -211,10 +212,10 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
    */
     @Override
     public void setId(String newId) {
-    String oldId = id;
-    id = newId;
+    String oldId = this.id;
+    this.id = newId;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, EditorPackage.EDITOR__ID, oldId, id));
+      eNotify(new ENotificationImpl(this, Notification.SET, EditorPackage.EDITOR__ID, oldId, this.id));
   }
 
     /**
@@ -224,7 +225,7 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
    */
     @Override
     public String getWizardId() {
-    return wizardId;
+    return this.wizardId;
   }
 
     /**
@@ -234,10 +235,10 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
    */
     @Override
     public void setWizardId(String newWizardId) {
-    String oldWizardId = wizardId;
-    wizardId = newWizardId;
+    String oldWizardId = this.wizardId;
+    this.wizardId = newWizardId;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, EditorPackage.EDITOR__WIZARD_ID, oldWizardId, wizardId));
+      eNotify(new ENotificationImpl(this, Notification.SET, EditorPackage.EDITOR__WIZARD_ID, oldWizardId, this.wizardId));
   }
 
     /**
@@ -247,10 +248,10 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
    */
     @Override
     public EList<String> getFileExtensions() {
-    if (fileExtensions == null) {
-      fileExtensions = new EDataTypeUniqueEList<String>(String.class, this, EditorPackage.EDITOR__FILE_EXTENSIONS);
+    if (this.fileExtensions == null) {
+      this.fileExtensions = new EDataTypeUniqueEList<>(String.class, this, EditorPackage.EDITOR__FILE_EXTENSIONS);
     }
-    return fileExtensions;
+    return this.fileExtensions;
   }
 
     /**
@@ -260,7 +261,7 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
    */
     @Override
     public String getWizardDialogClass() {
-    return wizardDialogClass;
+    return this.wizardDialogClass;
   }
 
     /**
@@ -270,10 +271,10 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
    */
     @Override
     public void setWizardDialogClass(String newWizardDialogClass) {
-    String oldWizardDialogClass = wizardDialogClass;
-    wizardDialogClass = newWizardDialogClass;
+    String oldWizardDialogClass = this.wizardDialogClass;
+    this.wizardDialogClass = newWizardDialogClass;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, EditorPackage.EDITOR__WIZARD_DIALOG_CLASS, oldWizardDialogClass, wizardDialogClass));
+      eNotify(new ENotificationImpl(this, Notification.SET, EditorPackage.EDITOR__WIZARD_DIALOG_CLASS, oldWizardDialogClass, this.wizardDialogClass));
   }
 
     /**
@@ -368,19 +369,19 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
     public void eUnset(int featureID) {
     switch (featureID) {
       case EditorPackage.EDITOR__MODEL_URI:
-        setModelUri(MODEL_URI_EDEFAULT);
+        setModelUri(EditorImpl.MODEL_URI_EDEFAULT);
         return;
       case EditorPackage.EDITOR__ID:
-        setId(ID_EDEFAULT);
+        setId(EditorImpl.ID_EDEFAULT);
         return;
       case EditorPackage.EDITOR__WIZARD_ID:
-        setWizardId(WIZARD_ID_EDEFAULT);
+        setWizardId(EditorImpl.WIZARD_ID_EDEFAULT);
         return;
       case EditorPackage.EDITOR__FILE_EXTENSIONS:
         getFileExtensions().clear();
         return;
       case EditorPackage.EDITOR__WIZARD_DIALOG_CLASS:
-        setWizardDialogClass(WIZARD_DIALOG_CLASS_EDEFAULT);
+        setWizardDialogClass(EditorImpl.WIZARD_DIALOG_CLASS_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -395,15 +396,15 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
     public boolean eIsSet(int featureID) {
     switch (featureID) {
       case EditorPackage.EDITOR__MODEL_URI:
-        return MODEL_URI_EDEFAULT == null ? modelUri != null : !MODEL_URI_EDEFAULT.equals(modelUri);
+        return EditorImpl.MODEL_URI_EDEFAULT == null ? this.modelUri != null : !EditorImpl.MODEL_URI_EDEFAULT.equals(this.modelUri);
       case EditorPackage.EDITOR__ID:
-        return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
+        return EditorImpl.ID_EDEFAULT == null ? this.id != null : !EditorImpl.ID_EDEFAULT.equals(this.id);
       case EditorPackage.EDITOR__WIZARD_ID:
-        return WIZARD_ID_EDEFAULT == null ? wizardId != null : !WIZARD_ID_EDEFAULT.equals(wizardId);
+        return EditorImpl.WIZARD_ID_EDEFAULT == null ? this.wizardId != null : !EditorImpl.WIZARD_ID_EDEFAULT.equals(this.wizardId);
       case EditorPackage.EDITOR__FILE_EXTENSIONS:
-        return fileExtensions != null && !fileExtensions.isEmpty();
+        return this.fileExtensions != null && !this.fileExtensions.isEmpty();
       case EditorPackage.EDITOR__WIZARD_DIALOG_CLASS:
-        return WIZARD_DIALOG_CLASS_EDEFAULT == null ? wizardDialogClass != null : !WIZARD_DIALOG_CLASS_EDEFAULT.equals(wizardDialogClass);
+        return EditorImpl.WIZARD_DIALOG_CLASS_EDEFAULT == null ? this.wizardDialogClass != null : !EditorImpl.WIZARD_DIALOG_CLASS_EDEFAULT.equals(this.wizardDialogClass);
     }
     return super.eIsSet(featureID);
   }
@@ -491,15 +492,15 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
 
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (modelUri: ");
-    result.append(modelUri);
+    result.append(this.modelUri);
     result.append(", id: ");
-    result.append(id);
+    result.append(this.id);
     result.append(", wizardId: ");
-    result.append(wizardId);
+    result.append(this.wizardId);
     result.append(", fileExtensions: ");
-    result.append(fileExtensions);
+    result.append(this.fileExtensions);
     result.append(", wizardDialogClass: ");
-    result.append(wizardDialogClass);
+    result.append(this.wizardDialogClass);
     result.append(')');
     return result.toString();
   }
@@ -596,7 +597,7 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
         newEditor.setModelUri(modelPath);
         newEditor.setId(this.getId());
         newEditor.setWizardId(this.getWizardId());
-        newEditor.getFileExtensions().add(this.getFileExtensions().get(0));
+        newEditor.getFileExtensions().add(FileUtils.getFileExtensionFromPath(editorPath));
         if (instanceMID != null) {
             instanceMID.getEditors().add(newEditor);
         }
