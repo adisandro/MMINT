@@ -1396,7 +1396,7 @@
          point="edu.toronto.cs.se.mmint.operators">
       <operatorType>
          <type
-               name="SafetyChangeImpact"
+               name="ChangeImpact"
                uri="http://se.cs.toronto.edu/mmint/Operator_ChangeImpact"
                class="edu.toronto.cs.se.mmint.operator.mid.propagate.ChangeImpact">
          </type>
