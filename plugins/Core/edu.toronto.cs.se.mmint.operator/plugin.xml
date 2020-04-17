@@ -1412,6 +1412,15 @@
             </parameter>
             <parameter>
                <type
+                     name="trace"
+                     uri="http://se.cs.toronto.edu/mmint/Operator_ChangeImpact-MID/trace">
+               </type>
+             <typeEndpoint
+                   targetTypeUri="http://se.cs.toronto.edu/mmint/MIDRel">
+             </typeEndpoint>
+            </parameter>
+            <parameter>
+               <type
                      name="safety"
                      uri="http://se.cs.toronto.edu/mmint/Operator_ChangeImpact-MID/safety">
                </type>
