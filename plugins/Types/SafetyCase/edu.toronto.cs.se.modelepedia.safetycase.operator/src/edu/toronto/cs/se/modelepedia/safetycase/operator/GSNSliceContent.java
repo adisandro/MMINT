@@ -116,12 +116,7 @@ public class GSNSliceContent extends Slice {
 
     var supportingStream = modelObj.getSupportedBy().stream()
       .map(SupportedBy::getTarget)
-      .filter(s -> {
-        // stop only if visited already by this same rule
-        // (prevents unwanted interactions with other recursive rules)
-        var visitedInfo = this.allVisited.get(s);
-        return visitedInfo == null || !visitedInfo.rule.equals(newInfo.rule);
-      });
+      .filter(s -> !this.allVisited.containsKey(s));
     var visited = supportingStream
       .collect(Collectors.toMap(v -> (EObject) v, v -> newInfo, SliceInfo.ORDER_DUPLICATES));
     var sliced = supportingStream
@@ -144,23 +139,28 @@ public class GSNSliceContent extends Slice {
   protected SliceStep getDirectlySlicedElements(EObject modelObj, SliceInfo info) {
     SliceStep sliceStep;
 
-    if (info.prevObj == null && (info.type == SliceType.DEL || info.type == SliceType.REVISE)) {
+    if (info.prevObj == null) {
       // criterion object
-      if (modelObj instanceof Goal) {
-        var supports = ruleSupports((Goal) modelObj, info);
-        var supportedBy = ruleSupportedBy((Goal) modelObj, info);
-        sliceStep = new SliceStep(supports, supportedBy);
-      }
-      else if (modelObj instanceof Strategy) {
-        var supportedBy = ruleSupportedBy((Strategy) modelObj, info);
-        var inContextOf = ruleInContextOf((Strategy) modelObj, info);
-        sliceStep = new SliceStep(supportedBy, inContextOf);
-      }
-      else if (modelObj instanceof ContextualElement) {
-        sliceStep = ruleContextOf((ContextualElement) modelObj, info);
-      }
-      else if (modelObj instanceof Solution) {
-        sliceStep = ruleSupports((Solution) modelObj, info);
+      if (info.type == SliceType.DEL || info.type == SliceType.REVISE) {
+        if (modelObj instanceof Goal) {
+          var supports = ruleSupports((Goal) modelObj, info);
+          var supportedBy = ruleSupportedBy((Goal) modelObj, info);
+          sliceStep = new SliceStep(supports, supportedBy);
+        }
+        else if (modelObj instanceof Strategy) {
+          var supportedBy = ruleSupportedBy((Strategy) modelObj, info);
+          var inContextOf = ruleInContextOf((Strategy) modelObj, info);
+          sliceStep = new SliceStep(supportedBy, inContextOf);
+        }
+        else if (modelObj instanceof ContextualElement) {
+          sliceStep = ruleContextOf((ContextualElement) modelObj, info);
+        }
+        else if (modelObj instanceof Solution) {
+          sliceStep = ruleSupports((Solution) modelObj, info);
+        }
+        else {
+          sliceStep = new SliceStep();
+        }
       }
       else {
         sliceStep = new SliceStep();
@@ -179,5 +179,20 @@ public class GSNSliceContent extends Slice {
 
     //TODO MMINT[GSN] If at the end an ASIL decomposition strategy is impacted, then its independence goal among all children is also impacted
     return sliceStep;
+  }
+
+  /**
+   * Resets for each criterion, i.e. executes each rule independently.
+   */
+  @Override
+  protected void sliceCriterionElement(EObject critObj, SliceInfo info) {
+    var slicedBackup = this.allSliced;
+    var visitedBackup = this.allVisited;
+    this.allSliced = new HashMap<>();
+    this.allVisited = new HashMap<>();
+    super.sliceCriterionElement(critObj, info);
+    new SliceStep(this.allSliced, this.allVisited).mergeInto(slicedBackup, visitedBackup);
+    this.allSliced = slicedBackup;
+    this.allVisited = visitedBackup;
   }
 }

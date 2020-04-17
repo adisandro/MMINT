@@ -222,7 +222,7 @@ public class Slice extends OperatorImpl {
       .collect(Collectors.toMap(s -> s, s -> new SliceInfo(SliceType.RECHECK_CONTENT, modelObj, "econtents"),
                                 SliceInfo.ORDER_DUPLICATES));
     // MERGE_DUPLICATES is not strictly needed here because of eContents() semantics (no duplicates)
-    // it's usually good for inheritors, both to avoid IllegalStateException in streams and to order slicing types
+    // it's usually good for inheritors, both to avoid the stream exception on duplicates and to order slicing types
     return new SliceStep(sliced, sliced);
   }
 

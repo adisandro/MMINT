@@ -27,7 +27,7 @@ import edu.toronto.cs.se.modelepedia.safetycase.Supporter;
 public class GSNSliceState extends Slice {
 
   /**
-   * Assure18 rules: C1, C2, V2.1
+   * Assure18 rules: V2.1, C1, C2
    * Visit supported (parent) elements, slice goals only.
    */
   private SliceStep ruleSupports(Supporter modelObj, SliceInfo info) {
@@ -56,14 +56,9 @@ public class GSNSliceState extends Slice {
 
     if (info.prevObj == null) {
       // criterion object
-      if (modelObj instanceof Goal) {
-        sliceStep = ruleSupports((Goal) modelObj, info);
-      }
-      else if (modelObj instanceof Solution) {
-        sliceStep = ruleSupports((Solution) modelObj, info);
-      }
-      else if (modelObj instanceof Strategy && (info.type == SliceType.DEL || info.type == SliceType.REVISE)) {
-        sliceStep = ruleSupports((Strategy) modelObj, info);
+      if (modelObj instanceof Goal || modelObj instanceof Solution || (
+          modelObj instanceof Strategy && (info.type == SliceType.DEL || info.type == SliceType.REVISE))) {
+        sliceStep = ruleSupports((Supporter) modelObj, info);
       }
       else {
         sliceStep = new SliceStep();

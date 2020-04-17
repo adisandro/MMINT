@@ -45,18 +45,8 @@ import edu.toronto.cs.se.modelepedia.safetycase.XorSupporter;
  *
  * Questions:
  * - Remap traced sysmega slice to MOD, or keep them as R_C? (works only because system slicers mark them as R_C)
- * - ModelRelMerge merges mappings with different type, it should be fixed. (Implications for slicing?)
- *   -> There can be multiple mappings to the same model element, i.e. Annotate must use ordering to pick only one
- * - Some slice rules are dependent on the crit element being of a certain type. (Need to carry that info)
  * - If this becomes a workflow again, it needs to reintroduce the input constraint from Slice, since it'll inherit from WorkflowOperatorImpl instead.
- * - The 3 subslicers are peculiar in that they don't pass all the crit inputs in the outputs. (Do they? Should they?)
- * - We should check for alreadySliced/Visited for the input of getDirectlySlicedElements, isn't it?
- *   -> It would prevent dual mappings, notably on criteria elements. But it's already prevented on normal elements, why are criteria special?
- *   -> Ok, we should check those too, but all checks should consider the existing SliceType too, and proceed with a dual mapping if necessary!
- *   -> Maybe add an api to do it within the main method, without having to overload it? Could be called "preconditions" and serve the initial type purpose too.
- *
- *   IDEA to make rule-based slicing easier: let each rules execute on a fresh alreadySliced
- *   -> we may slice an element more than once (so for multiple reasons, but it's ok, annotate handles it)
+ *   -> Also, how would the poly engine choose this over the two sub-slicers? They all have the same signature.
  */
 public class GSNSlice extends Slice {
 
