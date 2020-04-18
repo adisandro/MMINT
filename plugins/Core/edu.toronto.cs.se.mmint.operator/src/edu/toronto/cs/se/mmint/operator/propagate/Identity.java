@@ -11,7 +11,6 @@
  */
 package edu.toronto.cs.se.mmint.operator.propagate;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.jdt.annotation.NonNull;
@@ -53,10 +52,6 @@ public class Identity extends OperatorImpl {
   @Override
   public Map<String, Model> run(Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
                                 Map<String, MID> outputMIDsByName) throws Exception {
-    var model = inputsByName.get(Identity.IN_MODEL);
-    var outputsByName = new HashMap<String, Model>();
-    outputsByName.put(Identity.OUT_MODEL, model);
-
-    return outputsByName;
+    return Map.of(Identity.OUT_MODEL, inputsByName.get(Identity.IN_MODEL));
   }
 }

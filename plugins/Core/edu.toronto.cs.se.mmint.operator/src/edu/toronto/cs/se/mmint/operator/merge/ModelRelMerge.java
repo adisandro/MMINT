@@ -177,6 +177,7 @@ public class ModelRelMerge extends OperatorImpl {
     }
     // mappings
     for (var origMappingRef : origRel.getMappingRefs()) {
+      // warning: this will merge mappings with same endpoints and type even from a single rel
       var origMapping = origMappingRef.getObject();
       var origMappingRefKey = Collections.unmodifiableSet(
         Stream.concat(
@@ -196,10 +197,11 @@ public class ModelRelMerge extends OperatorImpl {
         this.mergedMappingRefs.put(origMappingRefKey, mergedMappingRef);
       }
       else {
-        // warning: this will merge mappings with same endpoints even from a single rel
-        var mergedName = mergedMappingRef.getObject().getName() + ModelRelMerge.MERGE_SEPARATOR +
-                         origMappingRef.getObject().getName();
-        mergedMappingRef.getObject().setName(mergedName);
+        var mergedName = mergedMappingRef.getObject().getName();
+        if (!mergedName.equals(origMapping.getName())) {
+          mergedName = mergedMappingRef.getObject().getName() + ModelRelMerge.MERGE_SEPARATOR + origMapping.getName();
+          mergedMappingRef.getObject().setName(mergedName);
+        }
       }
     }
   }

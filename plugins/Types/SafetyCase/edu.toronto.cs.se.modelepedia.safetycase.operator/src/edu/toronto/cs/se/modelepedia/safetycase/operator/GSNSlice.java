@@ -225,7 +225,11 @@ public class GSNSlice extends Slice {
     var realVisited = this.allVisited;
     this.allSliced = new HashMap<>();
     this.allVisited = new HashMap<>();
+    this.allSliced.put(critObj, info);
+    this.allVisited.put(critObj, info);
     super.sliceCriterionElement(critObj, info);
+    this.allSliced.remove(critObj);
+    this.allVisited.remove(critObj);
     new SliceStep(this.allSliced, this.allVisited).mergeInto(realSliced, realVisited);
     this.allSliced = realSliced;
     this.allVisited = realVisited;
@@ -238,49 +242,37 @@ public class GSNSlice extends Slice {
    */
   @Override
   protected void sliceCriterionElement(EObject critObj, SliceInfo info) {
-    var origRule = info.rule;
-
-    if (info.rule.startsWith(this.input.model.getName())) {
-      //TODO MMINT[SLICE] Extend to all slicers?
-      // run only from external causes, e.g. in a fixed-point loop don't re-run from previous internal results
-      if (critObj instanceof Goal) {
-        if (info.type == SliceType.DEL || info.type == SliceType.REVISE) {
-          info.rule = "supportsContent";
-          sliceRule(critObj, info);
-          info.rule = "supportedBy";
-          sliceRule(critObj, info);
-        }
-        info.rule = "supportsState";
+    if (critObj instanceof Goal) {
+      if (info.type == SliceType.DEL || info.type == SliceType.REVISE) {
+        info.rule = "supportsContent";
         sliceRule(critObj, info);
-      }
-      else if (critObj instanceof Strategy && (
-               info.type == SliceType.DEL || info.type == SliceType.REVISE)) {
         info.rule = "supportedBy";
         sliceRule(critObj, info);
-        info.rule = "inContextOf";
-        sliceRule(critObj, info);
-        info.rule = "supportsState";
-        sliceRule(critObj, info);
       }
-      else if (critObj instanceof ContextualElement && (
-               info.type == SliceType.DEL || info.type == SliceType.REVISE)) {
-        info.rule = "contextOf";
-        sliceRule(critObj, info);
-      }
-      else if (critObj instanceof Solution) {
-        if (info.type == SliceType.DEL || info.type == SliceType.REVISE) {
-          info.rule = "supportsContent";
-          sliceRule(critObj, info);
-        }
-        info.rule = "supportsState";
-        sliceRule(critObj, info);
-      }
+      info.rule = "supportsState";
+      sliceRule(critObj, info);
     }
-    // this has two effects:
-    // 1) if no rule is triggered, the criterion itself is passed to the output
-    // 2) if a rule is triggered, we restore the original rule (i.e. the external cause)
-    info.rule = origRule;
-    this.allSliced.merge(critObj, info, SliceInfo.ORDER_DUPLICATES);
-    this.allVisited.merge(critObj, info, SliceInfo.ORDER_DUPLICATES);
+    else if (critObj instanceof Strategy && (
+             info.type == SliceType.DEL || info.type == SliceType.REVISE)) {
+      info.rule = "supportedBy";
+      sliceRule(critObj, info);
+      info.rule = "inContextOf";
+      sliceRule(critObj, info);
+      info.rule = "supportsState";
+      sliceRule(critObj, info);
+    }
+    else if (critObj instanceof ContextualElement && (
+             info.type == SliceType.DEL || info.type == SliceType.REVISE)) {
+      info.rule = "contextOf";
+      sliceRule(critObj, info);
+    }
+    else if (critObj instanceof Solution) {
+      if (info.type == SliceType.DEL || info.type == SliceType.REVISE) {
+        info.rule = "supportsContent";
+        sliceRule(critObj, info);
+      }
+      info.rule = "supportsState";
+      sliceRule(critObj, info);
+    }
   }
 }

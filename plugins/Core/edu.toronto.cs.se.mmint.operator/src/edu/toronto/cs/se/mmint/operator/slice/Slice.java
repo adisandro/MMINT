@@ -236,14 +236,11 @@ public class Slice extends OperatorImpl {
    *          The slicing information.
    */
   protected void sliceCriterionElement(EObject critObj, SliceInfo info) {
-    var slicedInfo = this.allSliced.get(critObj);
-    if (slicedInfo != null && slicedInfo.type == info.type) {
-      // stop early if already sliced with the same slice type
-      return;
-    }
-
-    this.allSliced.merge(critObj, info, SliceInfo.ORDER_DUPLICATES);
-    this.allVisited.merge(critObj, info, SliceInfo.ORDER_DUPLICATES);
+//    var slicedInfo = this.allSliced.get(critObj);
+//    if (slicedInfo != null && slicedInfo.type == info.type) {
+//      // stop early if already sliced with the same slice type
+//      return;
+//    }
     var visitedCur = Map.of(critObj, info);
     // iterate through the current set of newly sliced model elements
     // to identify the next ones that are going to be sliced
@@ -275,12 +272,21 @@ public class Slice extends OperatorImpl {
       var critType = SliceType.fromMapping(critMapping);
       for (var critModelElemEndpoint : critMapping.getModelElemEndpoints()) {
         var critModelElem = critModelElemEndpoint.getTarget();
-        var critName = (critMapping.getName().equals("")) ?
+        var critName = critMapping.getName();
+        var ruleName = (critName.equals("")) ?
           this.input.model.getName() + "." + critModelElem.getName() :
-          critMapping.getName();
+          critName;
+        var info = new SliceInfo(critType, null, ruleName);
         try {
           var critModelObj = critModelElem.getEMFInstanceObject(r);
-          sliceCriterionElement(critModelObj, new SliceInfo(critType, null, critName));
+          // pass criterion to output as-is first
+          this.allSliced.merge(critModelObj, info, SliceInfo.ORDER_DUPLICATES);
+          this.allVisited.merge(critModelObj, info, SliceInfo.ORDER_DUPLICATES);
+          // slice only from external causes or original criterion input
+          // e.g. in a fixed-point loop don't re-run from previous internal results
+          if (!critName.startsWith(this.input.model.getName())) {
+            sliceCriterionElement(critModelObj, info);
+          }
         }
         catch (MMINTException e) {
           MMINTException.print(IStatus.WARNING, "Skipping criterion model element " + critModelElem.getName(), e);
