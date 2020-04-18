@@ -595,41 +595,6 @@
          point="edu.toronto.cs.se.mmint.operators">
       <operatorType>
          <type
-               name="SliceCriterionDecorate"
-               uri="http://se.cs.toronto.edu/mmint/Operator_SliceCriterionDecorate"
-               class="edu.toronto.cs.se.mmint.operator.slice.SliceCriterionDecorate">
-         </type>
-         <constraint
-               implementation="edu.toronto.cs.se.mmint.operator.slice.SliceCriterionDecorate$Constraint"
-               language="java">
-         </constraint>
-         <inputs>
-            <parameter>
-               <type
-                     name="criterion">
-               </type>
-               <typeEndpoint
-                     targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
-               </typeEndpoint>
-            </parameter>
-         </inputs>
-         <outputs>
-            <parameter>
-               <type
-                     name="decorated">
-               </type>
-               <typeEndpoint
-                     targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
-               </typeEndpoint>
-            </parameter>
-         </outputs>
-      </operatorType>
-   </extension>
-
-   <extension
-         point="edu.toronto.cs.se.mmint.operators">
-      <operatorType>
-         <type
                name="Map"
                uri="http://se.cs.toronto.edu/mmint/Operator_Map"
                class="edu.toronto.cs.se.mmint.operator.mid.Map">

@@ -43,16 +43,16 @@ import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
  */
 public class Slice extends OperatorImpl {
 
-  private Input input;
-  private Output output;
-  private Map<SliceType, Mapping> sliceTypes;
+  protected Input input;
+  protected Output output;
+  protected Map<SliceType, Mapping> sliceTypes;
   protected Map<EObject, SliceInfo> allSliced;
   protected Map<EObject, SliceInfo> allVisited;
 
-  private static class Input {
-    private final static String IN_MODELREL = "criterion";
-    private ModelRel critRel;
-    private Model model;
+  protected static class Input {
+    public final static String IN_MODELREL = "criterion";
+    public ModelRel critRel;
+    public Model model;
 
     public Input(Map<String, Model> inputsByName) {
       this.critRel = (ModelRel) inputsByName.get(Input.IN_MODELREL);
@@ -63,10 +63,10 @@ public class Slice extends OperatorImpl {
     }
   }
 
-  private static class Output {
-    private final static String OUT_MODELREL = "slice";
-    private ModelRel sliceRel;
-    private MID mid;
+  protected static class Output {
+    public final static String OUT_MODELREL = "slice";
+    public ModelRel sliceRel;
+    public MID mid;
 
     public Output(Map<String, MID> outputMIDsByName) {
       this.mid = outputMIDsByName.get(Output.OUT_MODELREL);
