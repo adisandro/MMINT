@@ -140,14 +140,15 @@ public class ModelRelPropagation extends OperatorImpl {
         // loop through traceability mappings (can be n-ary, and not include any sharedModel or propModel model elem)
         Map<String, Set<Set<ModelElementReference>>> origToProp = new HashMap<>();
         for (Mapping traceMapping : traceRel.getMappings()) {
-            if (
-                traceMapping instanceof BinaryMapping &&
-                propModelUri.equals(MIDRegistry.getModelUri(MIDRegistry.getModelObjectUri(
-                    traceMapping.getModelElemEndpoints().get(0).getTarget())))
-            ) {
-                // if trace mapping is binary, the direction must be from sharedModel to propModel
-                continue;
-            }
+//TODO MMINT[REL] A binary mapping was really born as a shortcut shape for two endpoints, not a way to express direction
+//            if (
+//                traceMapping instanceof BinaryMapping &&
+//                propModelUri.equals(MIDRegistry.getModelUri(MIDRegistry.getModelObjectUri(
+//                    traceMapping.getModelElemEndpoints().get(0).getTarget())))
+//            ) {
+//                // if trace mapping is binary, the direction must be from sharedModel to propModel
+//                continue;
+//            }
             Set<ModelElement> propModelElems = null;
             Set<ModelElementReference> propModelElemRefs = null;
             for (ModelElementEndpoint traceModelElemEndpoint : traceMapping.getModelElemEndpoints()) {
