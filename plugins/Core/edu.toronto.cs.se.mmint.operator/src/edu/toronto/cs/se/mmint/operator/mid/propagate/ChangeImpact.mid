@@ -4,11 +4,11 @@
   <models uri="trace" name="trace" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/MIDRel" dynamic="true" origin="CREATED" fileExtension="mid"/>
   <models uri="safety" name="safety" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/MID" dynamic="true" origin="CREATED" fileExtension="mid"/>
   <models uri="criterion" name="criterion" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/MIDRel" dynamic="true" origin="CREATED" fileExtension="mid"/>
-  <models uri="useless1" name="useless1" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/MID" dynamic="true" origin="CREATED" fileExtension="mid"/>
+  <models uri="temp1" name="temp1" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/MID" dynamic="true" origin="CREATED" fileExtension="mid"/>
   <models uri="systemSlice" name="systemSlice" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/MIDRel" dynamic="true" origin="CREATED" fileExtension="mid"/>
   <models uri="tracedSlice" name="tracedSlice" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/MIDRel" dynamic="true" origin="CREATED" fileExtension="mid"/>
   <models uri="safetyCriterion" name="safetyCriterion" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/MIDRel" dynamic="true" origin="CREATED" fileExtension="mid"/>
-  <models uri="useless2" name="useless2" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/MID" dynamic="true" origin="CREATED" fileExtension="mid"/>
+  <models uri="temp2" name="temp2" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/MID" dynamic="true" origin="CREATED" fileExtension="mid"/>
   <models uri="safetySlice" name="safetySlice" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/MIDRel" dynamic="true" origin="CREATED" fileExtension="mid"/>
   <models uri="safetyAnnotated" name="safetyAnnotated" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/MID" dynamic="true" origin="CREATED" fileExtension="mid"/>
   <operators uri="" name="Slice" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_MIDSlice" dynamic="true">
@@ -43,11 +43,11 @@
   <extendibleTable key="trace" value="//@models.1"/>
   <extendibleTable key="safety" value="//@models.2"/>
   <extendibleTable key="criterion" value="//@models.3"/>
-  <extendibleTable key="useless1" value="//@models.4"/>
   <extendibleTable key="systemSlice" value="//@models.5"/>
   <extendibleTable key="tracedSlice" value="//@models.6"/>
   <extendibleTable key="safetyCriterion" value="//@models.7"/>
-  <extendibleTable key="useless2" value="//@models.8"/>
   <extendibleTable key="safetySlice" value="//@models.9"/>
   <extendibleTable key="safetyAnnotated" value="//@models.10"/>
+  <extendibleTable key="temp1" value="//@models.4"/>
+  <extendibleTable key="temp2" value="//@models.8"/>
 </mid:MID>
