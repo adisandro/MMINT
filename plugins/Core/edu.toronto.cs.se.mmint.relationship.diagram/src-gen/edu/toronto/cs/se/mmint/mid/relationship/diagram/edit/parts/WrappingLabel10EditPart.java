@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -19,6 +19,8 @@ import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.transaction.RunnableWithResult;
 import org.eclipse.gef.AccessibleEditPart;
 import org.eclipse.gef.EditPolicy;
@@ -27,7 +29,6 @@ import org.eclipse.gef.requests.DirectEditRequest;
 import org.eclipse.gef.tools.DirectEditManager;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
-import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserOptions;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
@@ -44,21 +45,23 @@ import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
 import org.eclipse.gmf.runtime.notation.FontStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
+import org.eclipse.jface.viewers.ICellEditorValidator;
 import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.draw2d.labels.SimpleLabelDelegate;
 import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.edit.policies.DefaultNodeLabelDragPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.edit.policies.labels.IRefreshableFeedbackEditPolicy;
-import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
-import org.eclipse.jface.viewers.ICellEditorValidator;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.accessibility.AccessibleEvent;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
 
+import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.policies.MIDTextSelectionEditPolicy;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.part.MIDVisualIDRegistry;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.MIDElementTypes;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.MIDParserProvider;
+import edu.toronto.cs.se.mmint.mid.ui.GMFUtils;
 
 /**
  * @generated
@@ -105,7 +108,8 @@ public class WrappingLabel10EditPart extends CompartmentEditPart implements ITex
 	/**
 	* @generated
 	*/
-	protected void createDefaultEditPolicies() {
+	@Override
+  protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE, new MIDTextSelectionEditPolicy());
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());
@@ -172,7 +176,7 @@ public class WrappingLabel10EditPart extends CompartmentEditPart implements ITex
 	public void setLabel(WrappingLabel figure) {
 		unregisterVisuals();
 		setFigure(figure);
-		defaultText = getLabelTextHelper(figure);
+		this.defaultText = getLabelTextHelper(figure);
 		registerVisuals();
 		refreshVisuals();
 	}
@@ -180,7 +184,8 @@ public class WrappingLabel10EditPart extends CompartmentEditPart implements ITex
 	/**
 	* @generated
 	*/
-	@SuppressWarnings("rawtypes")
+	@Override
+  @SuppressWarnings("rawtypes")
 	protected List getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}
@@ -188,7 +193,8 @@ public class WrappingLabel10EditPart extends CompartmentEditPart implements ITex
 	/**
 	* @generated
 	*/
-	public IGraphicalEditPart getChildBySemanticHint(String semanticHint) {
+	@Override
+  public IGraphicalEditPart getChildBySemanticHint(String semanticHint) {
 		return null;
 	}
 
@@ -202,13 +208,32 @@ public class WrappingLabel10EditPart extends CompartmentEditPart implements ITex
 	/**
 	* @generated
 	*/
-	protected Image getLabelIcon() {
+	protected Image getLabelIconGen() {
 		EObject parserElement = getParserElement();
 		if (parserElement == null) {
 			return null;
 		}
 		return MIDElementTypes.getImage(parserElement.eClass());
 	}
+
+	/**
+	 * @generated NOT
+	 */
+	protected Image getLabelIcon() {
+    EObject parserElement = getParserElement();
+    if (parserElement == null) {
+      return null;
+    }
+    try {
+      var modelObj = ((ModelElementReference) parserElement).getObject().getEMFInstanceObject(null);
+      ComposedAdapterFactory adapterFactory = GMFUtils.getAdapterFactory();
+      AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(adapterFactory);
+      return labelProvider.getImage(modelObj);
+    }
+    catch (Exception e) {
+      return MIDElementTypes.getImage(parserElement.eClass());
+    }
+  }
 
 	/**
 	* @generated
@@ -220,7 +245,7 @@ public class WrappingLabel10EditPart extends CompartmentEditPart implements ITex
 			text = getParser().getPrintString(new EObjectAdapter(parserElement), getParserOptions().intValue());
 		}
 		if (text == null || text.length() == 0) {
-			text = defaultText;
+			text = this.defaultText;
 		}
 		return text;
 	}
@@ -228,7 +253,8 @@ public class WrappingLabel10EditPart extends CompartmentEditPart implements ITex
 	/**
 	* @generated
 	*/
-	public void setLabelText(String text) {
+	@Override
+  public void setLabelText(String text) {
 		setLabelTextHelper(getFigure(), text);
 		refreshSelectionFeedback();
 	}
@@ -236,7 +262,8 @@ public class WrappingLabel10EditPart extends CompartmentEditPart implements ITex
 	/**
 	* @generated
 	*/
-	public String getEditText() {
+	@Override
+  public String getEditText() {
 		if (getParserElement() == null || getParser() == null) {
 			return ""; //$NON-NLS-1$
 		}
@@ -253,10 +280,12 @@ public class WrappingLabel10EditPart extends CompartmentEditPart implements ITex
 	/**
 	* @generated
 	*/
-	public ICellEditorValidator getEditTextValidator() {
+	@Override
+  public ICellEditorValidator getEditTextValidator() {
 		return new ICellEditorValidator() {
 
-			public String isValid(final Object value) {
+			@Override
+      public String isValid(final Object value) {
 				if (value instanceof String) {
 					final EObject element = getParserElement();
 					final IParser parser = getParser();
@@ -264,11 +293,12 @@ public class WrappingLabel10EditPart extends CompartmentEditPart implements ITex
 						IParserEditStatus valid = (IParserEditStatus) getEditingDomain()
 								.runExclusive(new RunnableWithResult.Impl<IParserEditStatus>() {
 
-							public void run() {
+							@Override
+              public void run() {
 								setResult(parser.isValidEditString(new EObjectAdapter(element), (String) value));
 							}
 						});
-						return valid.getCode() == ParserEditStatus.EDITABLE ? null : valid.getMessage();
+						return valid.getCode() == IParserEditStatus.EDITABLE ? null : valid.getMessage();
 					} catch (InterruptedException ie) {
 						ie.printStackTrace();
 					}
@@ -283,7 +313,8 @@ public class WrappingLabel10EditPart extends CompartmentEditPart implements ITex
 	/**
 	* @generated
 	*/
-	public IContentAssistProcessor getCompletionProcessor() {
+	@Override
+  public IContentAssistProcessor getCompletionProcessor() {
 		if (getParserElement() == null || getParser() == null) {
 			return null;
 		}
@@ -293,30 +324,32 @@ public class WrappingLabel10EditPart extends CompartmentEditPart implements ITex
 	/**
 	* @generated
 	*/
-	public ParserOptions getParserOptions() {
+	@Override
+  public ParserOptions getParserOptions() {
 		return ParserOptions.NONE;
 	}
 
 	/**
 	* @generated
 	*/
-	public IParser getParser() {
-		if (parser == null) {
-			parser = MIDParserProvider.getParser(MIDElementTypes.ModelElementReference_3001, getParserElement(),
+	@Override
+  public IParser getParser() {
+		if (this.parser == null) {
+			this.parser = MIDParserProvider.getParser(MIDElementTypes.ModelElementReference_3001, getParserElement(),
 					MIDVisualIDRegistry.getType(
 							edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.WrappingLabel10EditPart.VISUAL_ID));
 		}
-		return parser;
+		return this.parser;
 	}
 
 	/**
 	* @generated
 	*/
 	protected DirectEditManager getManager() {
-		if (manager == null) {
+		if (this.manager == null) {
 			setManager(new TextDirectEditManager(this, null, MIDEditPartFactory.getTextCellEditorLocator(this)));
 		}
-		return manager;
+		return this.manager;
 	}
 
 	/**
@@ -357,12 +390,14 @@ public class WrappingLabel10EditPart extends CompartmentEditPart implements ITex
 	/**
 	* @generated
 	*/
-	protected void performDirectEditRequest(Request request) {
+	@Override
+  protected void performDirectEditRequest(Request request) {
 		final Request theRequest = request;
 		try {
 			getEditingDomain().runExclusive(new Runnable() {
 
-				public void run() {
+				@Override
+        public void run() {
 					if (isActive() && isEditable()) {
 						if (theRequest.getExtendedData()
 								.get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
@@ -387,7 +422,8 @@ public class WrappingLabel10EditPart extends CompartmentEditPart implements ITex
 	/**
 	* @generated
 	*/
-	protected void refreshVisuals() {
+	@Override
+  protected void refreshVisuals() {
 		super.refreshVisuals();
 		refreshLabel();
 		refreshFont();
@@ -428,7 +464,8 @@ public class WrappingLabel10EditPart extends CompartmentEditPart implements ITex
 	/**
 	* @generated
 	*/
-	protected void refreshFont() {
+	@Override
+  protected void refreshFont() {
 		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
 		if (style != null) {
 			FontData fontData = new FontData(style.getFontName(), style.getFontHeight(),
@@ -458,19 +495,21 @@ public class WrappingLabel10EditPart extends CompartmentEditPart implements ITex
 	/**
 	* @generated
 	*/
-	protected void setFontColor(Color color) {
+	@Override
+  protected void setFontColor(Color color) {
 		getFigure().setForegroundColor(color);
 	}
 
 	/**
 	* @generated
 	*/
-	protected void addSemanticListeners() {
+	@Override
+  protected void addSemanticListeners() {
 		if (getParser() instanceof ISemanticParser) {
 			EObject element = resolveSemanticElement();
-			parserElements = ((ISemanticParser) getParser()).getSemanticElementsBeingParsed(element);
-			for (int i = 0; i < parserElements.size(); i++) {
-				addListenerFilter("SemanticModel" + i, this, (EObject) parserElements.get(i)); //$NON-NLS-1$
+			this.parserElements = ((ISemanticParser) getParser()).getSemanticElementsBeingParsed(element);
+			for (int i = 0; i < this.parserElements.size(); i++) {
+				addListenerFilter("SemanticModel" + i, this, (EObject) this.parserElements.get(i)); //$NON-NLS-1$
 			}
 		} else {
 			super.addSemanticListeners();
@@ -480,9 +519,10 @@ public class WrappingLabel10EditPart extends CompartmentEditPart implements ITex
 	/**
 	* @generated
 	*/
-	protected void removeSemanticListeners() {
-		if (parserElements != null) {
-			for (int i = 0; i < parserElements.size(); i++) {
+	@Override
+  protected void removeSemanticListeners() {
+		if (this.parserElements != null) {
+			for (int i = 0; i < this.parserElements.size(); i++) {
 				removeListenerFilter("SemanticModel" + i); //$NON-NLS-1$
 			}
 		} else {
@@ -493,16 +533,18 @@ public class WrappingLabel10EditPart extends CompartmentEditPart implements ITex
 	/**
 	* @generated
 	*/
-	protected AccessibleEditPart getAccessibleEditPart() {
-		if (accessibleEP == null) {
-			accessibleEP = new AccessibleGraphicalEditPart() {
+	@Override
+  protected AccessibleEditPart getAccessibleEditPart() {
+		if (this.accessibleEP == null) {
+			this.accessibleEP = new AccessibleGraphicalEditPart() {
 
-				public void getName(AccessibleEvent e) {
+				@Override
+        public void getName(AccessibleEvent e) {
 					e.result = getLabelTextHelper(getFigure());
 				}
 			};
 		}
-		return accessibleEP;
+		return this.accessibleEP;
 	}
 
 	/**
@@ -516,15 +558,15 @@ public class WrappingLabel10EditPart extends CompartmentEditPart implements ITex
 	* @generated
 	*/
 	private ILabelDelegate getLabelDelegate() {
-		if (labelDelegate == null) {
+		if (this.labelDelegate == null) {
 			IFigure label = getFigure();
 			if (label instanceof WrappingLabel) {
-				labelDelegate = new WrappingLabelDelegate((WrappingLabel) label);
+				this.labelDelegate = new WrappingLabelDelegate((WrappingLabel) label);
 			} else {
-				labelDelegate = new SimpleLabelDelegate((Label) label);
+				this.labelDelegate = new SimpleLabelDelegate((Label) label);
 			}
 		}
-		return labelDelegate;
+		return this.labelDelegate;
 	}
 
 	/**
@@ -541,7 +583,8 @@ public class WrappingLabel10EditPart extends CompartmentEditPart implements ITex
 	/**
 	* @generated
 	*/
-	protected void addNotationalListeners() {
+	@Override
+  protected void addNotationalListeners() {
 		super.addNotationalListeners();
 		addListenerFilter("PrimaryView", this, getPrimaryView()); //$NON-NLS-1$
 	}
@@ -549,7 +592,8 @@ public class WrappingLabel10EditPart extends CompartmentEditPart implements ITex
 	/**
 	* @generated
 	*/
-	protected void removeNotationalListeners() {
+	@Override
+  protected void removeNotationalListeners() {
 		super.removeNotationalListeners();
 		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
 	}
@@ -557,7 +601,8 @@ public class WrappingLabel10EditPart extends CompartmentEditPart implements ITex
 	/**
 	* @generated
 	*/
-	protected void handleNotificationEvent(Notification event) {
+	@Override
+  protected void handleNotificationEvent(Notification event) {
 		Object feature = event.getFeature();
 		if (NotationPackage.eINSTANCE.getFontStyle_FontColor().equals(feature)) {
 			Integer c = (Integer) event.getNewValue();
@@ -592,7 +637,8 @@ public class WrappingLabel10EditPart extends CompartmentEditPart implements ITex
 	/**
 	* @generated
 	*/
-	protected IFigure createFigure() {
+	@Override
+  protected IFigure createFigure() {
 		// Parent should assign one using setLabel() method
 		return null;
 	}
