@@ -239,43 +239,42 @@ public class GSNSlice extends Slice {
    * This slicer follows a rule-based approach, rather than element-based.
    * (and it has a filter on initial allowed types from the criterion)
    * Rules reset the sliced/visited sets every time, i.e. each rule is executed independently.
-   * TODO:
-   * 1) When slicing from visited, prevObj should be fetched from allSliced
-   * 2) With ModelRelPropagation, we lose one step of the prevObj chain, can we even fix it?
+   * TODO: With ModelRelPropagation, we lose one step of the prevObj chain, can we even fix it?
    */
   @Override
   protected void sliceCriterionElement(EObject critObj, SliceInfo info) {
+    var tempInfo = new SliceInfo(info);
     if (critObj instanceof Goal) {
       if (info.type == SliceType.DEL || info.type == SliceType.REVISE) {
-        info.rule = "supportsContent";
-        sliceRule(critObj, info);
-        info.rule = "supportedBy";
-        sliceRule(critObj, info);
+        tempInfo.rule = "supportsContent";
+        sliceRule(critObj, tempInfo);
+        tempInfo.rule = "supportedBy";
+        sliceRule(critObj, tempInfo);
       }
-      info.rule = "supportsState";
-      sliceRule(critObj, info);
+      tempInfo.rule = "supportsState";
+      sliceRule(critObj, tempInfo);
     }
     else if (critObj instanceof Strategy && (
              info.type == SliceType.DEL || info.type == SliceType.REVISE)) {
-      info.rule = "supportedBy";
-      sliceRule(critObj, info);
-      info.rule = "inContextOf";
-      sliceRule(critObj, info);
-      info.rule = "supportsState";
-      sliceRule(critObj, info);
+      tempInfo.rule = "supportedBy";
+      sliceRule(critObj, tempInfo);
+      tempInfo.rule = "inContextOf";
+      sliceRule(critObj, tempInfo);
+      tempInfo.rule = "supportsState";
+      sliceRule(critObj, tempInfo);
     }
     else if (critObj instanceof ContextualElement && (
              info.type == SliceType.DEL || info.type == SliceType.REVISE)) {
-      info.rule = "contextOf";
-      sliceRule(critObj, info);
+      tempInfo.rule = "contextOf";
+      sliceRule(critObj, tempInfo);
     }
     else if (critObj instanceof Solution) {
       if (info.type == SliceType.DEL || info.type == SliceType.REVISE) {
-        info.rule = "supportsContent";
-        sliceRule(critObj, info);
+        tempInfo.rule = "supportsContent";
+        sliceRule(critObj, tempInfo);
       }
-      info.rule = "supportsState";
-      sliceRule(critObj, info);
+      tempInfo.rule = "supportsState";
+      sliceRule(critObj, tempInfo);
     }
   }
 }

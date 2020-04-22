@@ -141,6 +141,9 @@ public class Slice extends OperatorImpl {
       this(type, prevObj);
       this.rule = rule;
     }
+    public SliceInfo(SliceInfo info) {
+      this(info.type, info.prevObj, info.rule);
+    }
   }
 
   protected class SliceStep {
@@ -302,8 +305,13 @@ public class Slice extends OperatorImpl {
         var modelElemRef = sliceModelEndpointRef.createModelElementInstanceAndReference(modelObj, null);
         var mappingRef = this.sliceTypes.get(info.type).createInstanceAndReferenceAndEndpointsAndReferences(
                            false, ECollections.asEList(modelElemRef));
+        while (info.prevObj != null && !this.allSliced.containsKey(info.prevObj)) {
+          // navigate the chain of visited objs, if any, to get the last sliced prevObj
+          info = this.allVisited.get(info.prevObj);
+        }
         String mappingName = null;
-        if (info.prevObj == null) { // from criterion
+        if (info.prevObj == null) {
+          // from criterion
           mappingName = info.rule;
         }
         else {
