@@ -2,6 +2,7 @@
 <safetycase:SafetyCase xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:safetycase="http://se.cs.toronto.edu/modelepedia/GSN">
   <goals xsi:type="safetycase:BasicGoal" id="G0" description="The LMS System Safety Goals are satisfied">
     <supportedBy target="//@strategies.0"/>
+    <asil/>
   </goals>
   <goals xsi:type="safetycase:BasicGoal" supports="//@strategies.0/@supportedBy.0" id="G1" description="The set of safety goals is complete">
     <supportedBy target="//@strategies.1"/>
@@ -9,7 +10,7 @@
   <goals xsi:type="safetycase:BasicGoal" supports="//@strategies.0/@supportedBy.1" id="G2" description="The LMS system notifies driver if it fails">
     <supportedBy target="//@strategies.2"/>
     <inContextOf context="//@contexts.0"/>
-    <asil value="A"/>
+    <asil value="B"/>
   </goals>
   <goals xsi:type="safetycase:BasicGoal" supports="//@strategies.0/@supportedBy.2" id="G3" description="LMS always allows user to override and take control">
     <supportedBy target="//@strategies.3"/>
@@ -19,7 +20,7 @@
   <goals xsi:type="safetycase:BasicGoal" supports="//@strategies.2/@supportedBy.0" id="G5" description="If the LMS fails, prior to shutting off, it will alert the driver">
     <supportedBy target="//@strategies.4"/>
     <supportedBy target="//@strategies.27"/>
-    <asil value="A"/>
+    <asil value="B"/>
   </goals>
   <goals xsi:type="safetycase:BasicGoal" supports="//@strategies.2/@supportedBy.1 //@strategies.7/@supportedBy.0" id="G4" description="LMS can detect failure in any of its subsystems">
     <supportedBy target="//@strategies.5"/>
