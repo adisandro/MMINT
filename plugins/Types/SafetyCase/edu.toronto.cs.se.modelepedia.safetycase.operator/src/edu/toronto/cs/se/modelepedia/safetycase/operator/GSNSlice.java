@@ -207,37 +207,14 @@ public class GSNSlice extends Slice {
 
   @Override
   protected SliceStep getDirectlySlicedElements(EObject modelObj, SliceInfo info) {
-//    var sliceStep = switch (info.rule) {
-//      case "contextOf" -> ruleContextOf((ContextualElement) modelObj, info);
-//      case "inContextOf" -> ruleInContextOf((Strategy) modelObj, info);
-//      case "supportedBy" -> ruleSupportedBy((Supportable) modelObj, info);
-//      case "supportedByContextOf" -> ruleSupportedByContextOf((DecomposableCoreElement) modelObj, info);
-//      case "supportsContent", "supportsState" -> ruleSupports((Supporter) modelObj, info);
-//      //TODO MMINT[GSN] To add: if at the end an ASIL decomposition strategy is impacted, then its independence goal among all children is also impacted
-//      default -> new SliceStep();
-//    };
-    SliceStep sliceStep;
-    switch (info.rule) {
-      case "contextOf":
-        sliceStep = ruleContextOf((ContextualElement) modelObj, info);
-        break;
-      case "inContextOf":
-        sliceStep = ruleInContextOf((Strategy) modelObj, info);
-        break;
-      case "supportedBy":
-        sliceStep = ruleSupportedBy((Supportable) modelObj, info);
-        break;
-      case "supportedByContextOf":
-        sliceStep = ruleSupportedByContextOf((DecomposableCoreElement) modelObj, info);
-        break;
-      case "supportsContent":
-      case "supportsState":
-        sliceStep = ruleSupports((Supporter) modelObj, info);
-        break;
+    var sliceStep = switch (info.rule) {
+      case "contextOf" -> ruleContextOf((ContextualElement) modelObj, info);
+      case "inContextOf" -> ruleInContextOf((Strategy) modelObj, info);
+      case "supportedBy" -> ruleSupportedBy((Supportable) modelObj, info);
+      case "supportedByContextOf" -> ruleSupportedByContextOf((DecomposableCoreElement) modelObj, info);
+      case "supportsContent", "supportsState" -> ruleSupports((Supporter) modelObj, info);
       //TODO MMINT[GSN] To add: if at the end an ASIL decomposition strategy is impacted, then its independence goal among all children is also impacted
-      default:
-        sliceStep = new SliceStep();
-        break;
+      default -> new SliceStep();
     };
 
     return sliceStep;

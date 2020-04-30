@@ -44,29 +44,11 @@ public class GSNAnnotateSlice extends AnnotateSlice {
   private void annotateModelElem(ArgumentElement gsnModelObj, @Nullable String cause, SliceType sliceType) {
     var annotation = SafetyCaseFactory.eINSTANCE.createImpactAnnotation();
     annotation.setSource(cause);
-//    var impactType = switch (sliceType) {
-//      case DEL, REVISE -> ImpactType.REVISE;
-//      case MOD, RECHECK_CONTENT -> ImpactType.RECHECK_CONTENT;
-//      case RECHECK_STATE -> ImpactType.RECHECK_STATE;
-//      case ADD -> ImpactType.REUSE; //TODO MMINT[SLICE] Not supported yet
-//    };
-    ImpactType impactType;
-    switch (sliceType) {
-      case DEL:
-      case REVISE:
-        impactType = ImpactType.REVISE;
-        break;
-      case MOD:
-      case RECHECK_CONTENT:
-        impactType = ImpactType.RECHECK_CONTENT;
-        break;
-      case RECHECK_STATE:
-        impactType = ImpactType.RECHECK_STATE;
-        break;
-      case ADD:
-      default:
-        impactType = ImpactType.REUSE; //TODO MMINT[SLICE] Not supported yet
-        break;
+    var impactType = switch (sliceType) {
+      case DEL, REVISE -> ImpactType.REVISE;
+      case MOD, RECHECK_CONTENT -> ImpactType.RECHECK_CONTENT;
+      case RECHECK_STATE -> ImpactType.RECHECK_STATE;
+      case ADD -> ImpactType.REUSE; //TODO MMINT[SLICE] Not supported yet
     };
     annotation.setType(impactType);
     gsnModelObj.setStatus(annotation);
