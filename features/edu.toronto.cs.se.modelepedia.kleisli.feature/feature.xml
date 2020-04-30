@@ -2,7 +2,7 @@
 <feature
       id="edu.toronto.cs.se.modelepedia.kleisli.feature"
       label="MMINT Kleisli"
-      version="2.4.99.qualifier"
+      version="2.5.0"
       provider-name="Software Engineering Group, University of Toronto">
 
    <description>
