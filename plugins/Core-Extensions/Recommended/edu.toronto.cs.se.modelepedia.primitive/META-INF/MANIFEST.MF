@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.primitive;singleton:=true
 Automatic-Module-Name: edu.toronto.cs.se.modelepedia.primitive
-Bundle-Version: 2.5.0
+Bundle-Version: 2.5.99.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
