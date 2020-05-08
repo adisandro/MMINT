@@ -1248,30 +1248,13 @@
          </mappingType>
          <mappingType>
             <type
-                  name="RecheckContent"
-                  uri="http://se.cs.toronto.edu/mmint/SliceRel/RecheckContent">
+                  name="Recheck"
+                  uri="http://se.cs.toronto.edu/mmint/SliceRel/Recheck">
             </type>
             <modelElemTypeEndpoint>
                <type
-                     name="RecheckContentEndpoint"
-                     uri="http://se.cs.toronto.edu/mmint/SliceRel/RecheckContent-ModelElem/RecheckContentEndpoint">
-               </type>
-               <typeEndpoint
-                     lowerBound="1"
-                     upperBound="-1"
-                     targetTypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement">
-               </typeEndpoint>
-            </modelElemTypeEndpoint>
-         </mappingType>
-         <mappingType>
-            <type
-                  name="RecheckState"
-                  uri="http://se.cs.toronto.edu/mmint/SliceRel/RecheckState">
-            </type>
-            <modelElemTypeEndpoint>
-               <type
-                     name="RecheckStateEndpoint"
-                     uri="http://se.cs.toronto.edu/mmint/SliceRel/RecheckState-ModelElem/RecheckStateEndpoint">
+                     name="RecheckEndpoint"
+                     uri="http://se.cs.toronto.edu/mmint/SliceRel/Recheck-ModelElem/RecheckEndpoint">
                </type>
                <typeEndpoint
                      lowerBound="1"

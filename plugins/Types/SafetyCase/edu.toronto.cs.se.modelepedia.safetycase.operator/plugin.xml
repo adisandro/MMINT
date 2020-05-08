@@ -50,6 +50,24 @@
                   targetTypeUri="http://se.cs.toronto.edu/modelepedia/GSN">
             </typeEndpoint>
          </modelTypeEndpoint>
+         <mappingType>
+            <type
+                  name="RecheckContent"
+                  uri="http://se.cs.toronto.edu/modelepedia/GSNSliceRel/RecheckContent">
+               <superType
+                     uri="http://se.cs.toronto.edu/mmint/SliceRel/Recheck">
+               </superType>
+            </type>
+         </mappingType>
+         <mappingType>
+            <type
+                  name="RecheckState"
+                  uri="http://se.cs.toronto.edu/modelepedia/GSNSliceRel/RecheckState">
+               <superType
+                     uri="http://se.cs.toronto.edu/mmint/SliceRel/Recheck">
+               </superType>
+            </type>
+         </mappingType>
       </relationshipType>
    </extension>
 

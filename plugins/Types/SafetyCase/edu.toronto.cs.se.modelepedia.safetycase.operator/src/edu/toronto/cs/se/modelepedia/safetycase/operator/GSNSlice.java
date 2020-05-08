@@ -13,11 +13,18 @@
 package edu.toronto.cs.se.modelepedia.safetycase.operator;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
 
+import edu.toronto.cs.se.mmint.MIDTypeRegistry;
+import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.mid.MID;
+import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
 import edu.toronto.cs.se.mmint.operator.slice.Slice;
 import edu.toronto.cs.se.modelepedia.safetycase.AndSupporter;
 import edu.toronto.cs.se.modelepedia.safetycase.ContextualElement;
@@ -35,6 +42,21 @@ import edu.toronto.cs.se.modelepedia.safetycase.Supporter;
 import edu.toronto.cs.se.modelepedia.safetycase.XorSupporter;
 
 public class GSNSlice extends Slice {
+
+  public static final String RECHECK_CONTENT = "http://se.cs.toronto.edu/modelepedia/GSNSliceRel/RecheckContent";
+  public static final String RECHECK_STATE = "http://se.cs.toronto.edu/modelepedia/GSNSliceRel/RecheckState";
+
+  @Override
+  protected void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws MMINTException {
+    super.init(inputsByName, outputMIDsByName);
+    for (var sliceType : List.of(GSNSlice.RECHECK_CONTENT, GSNSlice.RECHECK_STATE)) {
+      var mappingType = MIDTypeRegistry.<Mapping>getType(sliceType);
+      if (mappingType == null) {
+        throw new MMINTException("Missing GSNSliceRel mapping type " + sliceType);
+      }
+      this.sliceTypes.put(sliceType, mappingType);
+    }
+  }
 
   // Determines whether a change impact is propagated up or not given the
   // source impacted element and a set of other impacted elements.
@@ -92,9 +114,9 @@ public class GSNSlice extends Slice {
    * State: visit supported (parent) elements, slice supported goals.
    */
   private SliceStep ruleSupports(Supporter modelObj, SliceInfo info) {
-    var newInfo = info.rule.equals("supportsContent") ?
-      new SliceInfo(SliceType.RECHECK_CONTENT, modelObj, "supportsContent") :
-      new SliceInfo(SliceType.RECHECK_STATE, modelObj, "supportsState");
+    var newInfo = "supportsContent".equals(info.rule) ?
+      new SliceInfo(GSNSlice.RECHECK_CONTENT, modelObj, "supportsContent") :
+      new SliceInfo(GSNSlice.RECHECK_STATE, modelObj, "supportsState");
     var visited = new HashMap<EObject, SliceInfo>();
     var sliced = new HashMap<EObject, SliceInfo>();
 
@@ -122,7 +144,7 @@ public class GSNSlice extends Slice {
    * Visit supporting (children) connectors, slice supporting core elements.
    */
   private SliceStep ruleSupportedBy(Supportable modelObj, SliceInfo info) {
-    var newInfo = new SliceInfo(SliceType.RECHECK_CONTENT, modelObj, "supportedBy");
+    var newInfo = new SliceInfo(GSNSlice.RECHECK_CONTENT, modelObj, "supportedBy");
     var visited = new HashMap<EObject, SliceInfo>();
     var sliced = new HashMap<EObject, SliceInfo>();
 
@@ -144,7 +166,7 @@ public class GSNSlice extends Slice {
    * Slice connected contextual elements.
    */
   private SliceStep ruleInContextOf(Strategy modelObj, SliceInfo info) {
-    var newInfo = new SliceInfo(SliceType.RECHECK_CONTENT, modelObj, "inContextOf");
+    var newInfo = new SliceInfo(GSNSlice.RECHECK_CONTENT, modelObj, "inContextOf");
 
     var sliced = modelObj.getInContextOf().stream()
       .map(InContextOf::getContext)
@@ -159,8 +181,8 @@ public class GSNSlice extends Slice {
    * Visit and slice attached elements.
    */
   private SliceStep ruleContextOf(ContextualElement modelObj, SliceInfo info) {
-    var newInfoVisited = new SliceInfo(SliceType.RECHECK_CONTENT, modelObj, "supportedByContextOf");
-    var newInfoSliced = new SliceInfo(SliceType.RECHECK_CONTENT, modelObj, "contextOf");
+    var newInfoVisited = new SliceInfo(GSNSlice.RECHECK_CONTENT, modelObj, "supportedByContextOf");
+    var newInfoSliced = new SliceInfo(GSNSlice.RECHECK_CONTENT, modelObj, "contextOf");
     var visited = new HashMap<EObject, SliceInfo>();
     var sliced = new HashMap<EObject, SliceInfo>();
 
@@ -183,7 +205,7 @@ public class GSNSlice extends Slice {
    * Visit supporting (children) elements, slice supporting core elements and attached contexts.
    */
   private SliceStep ruleSupportedByContextOf(DecomposableCoreElement modelObj, SliceInfo info) {
-    var newInfo = new SliceInfo(SliceType.RECHECK_CONTENT, modelObj, "supportedByContextOf");
+    var newInfo = new SliceInfo(GSNSlice.RECHECK_CONTENT, modelObj, "supportedByContextOf");
     var visited = new HashMap<EObject, SliceInfo>();
     var sliced = new HashMap<EObject, SliceInfo>();
 
@@ -245,7 +267,7 @@ public class GSNSlice extends Slice {
   protected void sliceCriterionElement(EObject critObj, SliceInfo info) {
     var tempInfo = new SliceInfo(info);
     if (critObj instanceof Goal) {
-      if (info.type == SliceType.DEL || info.type == SliceType.REVISE) {
+      if (Slice.DEL.equals(info.type) || Slice.REVISE.equals(info.type)) {
         tempInfo.rule = "supportsContent";
         sliceRule(critObj, tempInfo);
         tempInfo.rule = "supportedBy";
@@ -255,7 +277,7 @@ public class GSNSlice extends Slice {
       sliceRule(critObj, tempInfo);
     }
     else if (critObj instanceof Strategy && (
-             info.type == SliceType.DEL || info.type == SliceType.REVISE)) {
+             Slice.DEL.equals(info.type) || Slice.REVISE.equals(info.type))) {
       tempInfo.rule = "supportedBy";
       sliceRule(critObj, tempInfo);
       tempInfo.rule = "inContextOf";
@@ -264,12 +286,12 @@ public class GSNSlice extends Slice {
       sliceRule(critObj, tempInfo);
     }
     else if (critObj instanceof ContextualElement && (
-             info.type == SliceType.DEL || info.type == SliceType.REVISE)) {
+             Slice.DEL.equals(info.type) || Slice.REVISE.equals(info.type))) {
       tempInfo.rule = "contextOf";
       sliceRule(critObj, tempInfo);
     }
     else if (critObj instanceof Solution) {
-      if (info.type == SliceType.DEL || info.type == SliceType.REVISE) {
+      if (Slice.DEL.equals(info.type)  || Slice.REVISE.equals(info.type)) {
         tempInfo.rule = "supportsContent";
         sliceRule(critObj, tempInfo);
       }

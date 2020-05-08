@@ -12,7 +12,6 @@
  */
 package edu.toronto.cs.se.mmint.operator.slice;
 
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,7 +44,7 @@ public class Slice extends OperatorImpl {
 
   protected Input input;
   protected Output output;
-  protected Map<SliceType, Mapping> sliceTypes;
+  protected Map<String, Mapping> sliceTypes;
   protected Map<EObject, SliceInfo> allSliced;
   protected Map<EObject, SliceInfo> allVisited;
 
@@ -98,46 +97,21 @@ public class Slice extends OperatorImpl {
     }
   }
 
-  public enum SliceType {
-    ADD("http://se.cs.toronto.edu/mmint/SliceRel/Add", 1),
-    DEL("http://se.cs.toronto.edu/mmint/SliceRel/Del", 2),
-    MOD("http://se.cs.toronto.edu/mmint/SliceRel/Mod", 3),
-    REVISE("http://se.cs.toronto.edu/mmint/SliceRel/Revise", 4),
-    RECHECK_CONTENT("http://se.cs.toronto.edu/mmint/SliceRel/RecheckContent", 5),
-    RECHECK_STATE("http://se.cs.toronto.edu/mmint/SliceRel/RecheckState", 6);
-    public final static Comparator<SliceType> COMPARATOR =
-      (type1, type2) -> type1.priority - type2.priority;
-    public final String id;
-    public final int priority;
-
-    private SliceType(String id, int priority) {
-      this.id = id;
-      this.priority = priority;
-    }
-
-    public static @Nullable SliceType fromMapping(Mapping mapping) {
-      var mappingTypeId = mapping.getMetatypeUri();
-      for (var type : values()) {
-        if (type.id.equals(mappingTypeId)) {
-          return type;
-        }
-      }
-      return null;
-    }
-  };
+//  public final static Comparator<Annotation> COMPARATOR =
+//    (type1, type2) -> type1.priority - type2.priority;
 
   protected static class SliceInfo {
-    public SliceType type;
+    public String type;
     public @Nullable EObject prevObj;
     public @Nullable String rule;
     public final static BinaryOperator<SliceInfo> ORDER_DUPLICATES =
       (info1, info2) -> (info1.type.priority < info2.type.priority) ? info1 : info2;
 
-    public SliceInfo(SliceType type, @Nullable EObject prevObj) {
+    public SliceInfo(String type, @Nullable EObject prevObj) {
       this.type = type;
       this.prevObj = prevObj;
     }
-    public SliceInfo(SliceType type, @Nullable EObject prevObj, @Nullable String rule) {
+    public SliceInfo(String type, @Nullable EObject prevObj, @Nullable String rule) {
       this(type, prevObj);
       this.rule = rule;
     }
@@ -193,16 +167,28 @@ public class Slice extends OperatorImpl {
     }
   }
 
-  private void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws MMINTException {
+  public static final String ADD = "http://se.cs.toronto.edu/mmint/SliceRel/Add";
+  public static final String DEL = "http://se.cs.toronto.edu/mmint/SliceRel/Del";
+  public static final String MOD = "http://se.cs.toronto.edu/mmint/SliceRel/Mod";
+  public static final String REVISE = "http://se.cs.toronto.edu/mmint/SliceRel/Revise";
+  public static final String RECHECK = "http://se.cs.toronto.edu/mmint/SliceRel/Recheck";
+  /* TODO: Typing problems:
+   * 1) Propagate to the best rel, equal or supertype (that means a prop CDSliceRel becomes a SliceRel for GSN)
+   * 1a) Mapping types must be accounted accordingly, create the best equal or supertype.
+   * 2) Each Slice subtype should override init()/Output to create a proper subtype rel as output.
+   * 3) How to compare priorities?
+   */
+
+  protected void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws MMINTException {
     this.input = new Input(inputsByName);
     this.output = new Output(outputMIDsByName);
     this.sliceTypes = new HashMap<>();
     this.allSliced = new HashMap<>();
     this.allVisited = new HashMap<>();
-    for (var sliceType : SliceType.values()) {
-      var mappingType = MIDTypeRegistry.<Mapping>getType(sliceType.id);
+    for (var sliceType : List.of(Slice.ADD, Slice.DEL, Slice.MOD, Slice.REVISE, Slice.RECHECK)) {
+      var mappingType = MIDTypeRegistry.<Mapping>getType(sliceType);
       if (mappingType == null) {
-        throw new MMINTException("Missing SliceRel mapping type " + sliceType.id);
+        throw new MMINTException("Missing SliceRel mapping type " + sliceType);
       }
       this.sliceTypes.put(sliceType, mappingType);
     }
@@ -222,7 +208,7 @@ public class Slice extends OperatorImpl {
     // only rule: contained model objects are sliced and visited
     var sliced = modelObj.eContents().stream()
       .filter(s -> !this.allSliced.containsKey(s))
-      .collect(Collectors.toMap(s -> s, s -> new SliceInfo(SliceType.RECHECK_CONTENT, modelObj, "econtents"),
+      .collect(Collectors.toMap(s -> s, s -> new SliceInfo(Slice.RECHECK, modelObj, "econtents"),
                                 SliceInfo.ORDER_DUPLICATES));
     // MERGE_DUPLICATES is not strictly needed here because of eContents() semantics (no duplicates)
     // it's usually good for inheritors, both to avoid the stream exception on duplicates and to order slicing types
@@ -272,14 +258,13 @@ public class Slice extends OperatorImpl {
 
     // loop through the input criterion and slice the model elements
     for (var critMapping : this.input.critRel.getMappings()) {
-      var critType = SliceType.fromMapping(critMapping);
       for (var critModelElemEndpoint : critMapping.getModelElemEndpoints()) {
         var critModelElem = critModelElemEndpoint.getTarget();
         var critName = critMapping.getName();
         var ruleName = (critName.equals("")) ?
           this.input.model.getName() + "." + critModelElem.getName() :
           critName;
-        var info = new SliceInfo(critType, null, ruleName);
+        var info = new SliceInfo(critMapping.getMetatypeUri(), null, ruleName);
         try {
           var critModelObj = critModelElem.getEMFInstanceObject(r);
           // pass criterion to output as-is first
