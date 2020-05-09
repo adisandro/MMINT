@@ -13,12 +13,19 @@
 package edu.toronto.cs.se.modelepedia.sequencediagram.operator;
 
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
+import edu.toronto.cs.se.mmint.MIDTypeRegistry;
+import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.mid.MID;
+import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.operator.slice.Slice;
 import edu.toronto.cs.se.modelepedia.sequencediagram.ActivationBox;
 import edu.toronto.cs.se.modelepedia.sequencediagram.Lifeline;
@@ -28,6 +35,20 @@ import edu.toronto.cs.se.modelepedia.sequencediagram.SequenceDiagram;
 import edu.toronto.cs.se.modelepedia.sequencediagram.SequenceDiagramPackage;
 
 public class SDSlice extends Slice {
+
+  public static final String REL_TYPE_ID = "http://se.cs.toronto.edu/modelepedia/SDSliceRel";
+
+  @Override
+  protected void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws MMINTException {
+    init2(inputsByName, outputMIDsByName);
+    var sdSliceRelType = MIDTypeRegistry.<ModelRel>getType(SDSlice.REL_TYPE_ID);
+    if (sdSliceRelType == null) {
+      throw new MMINTException("Missing SD slice rel type " + SDSlice.REL_TYPE_ID);
+    }
+    this.output.sliceRel = sdSliceRelType.createInstanceAndEndpoints(null, Output.OUT_MODELREL,
+                                                                     ECollections.asEList(this.input.model),
+                                                                     this.output.mid);
+  }
 
   // Return the set of activation boxes that are ancestors of the input box (including itself).
   public Set<ActivationBox> getAncestors(ActivationBox box) {
@@ -139,10 +160,10 @@ public class SDSlice extends Slice {
       }
     }
 
-    var newInfo = new SliceInfo(SliceType.RECHECK_CONTENT, modelObj, "sd");
+    var newInfo = new SliceInfo(SliceAnnotation.RECHECK, modelObj, "sd");
     var sliced = slicedObjs.stream()
       .filter(s -> !this.allSliced.containsKey(s))
-      .collect(Collectors.toMap(s -> s, s -> newInfo, SliceInfo.ORDER_DUPLICATES));
+      .collect(Collectors.toMap(s -> s, s -> newInfo, this.annotationOrder));
     return new SliceStep(sliced, sliced);
   }
 }

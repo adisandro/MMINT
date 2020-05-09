@@ -13,10 +13,17 @@
 package edu.toronto.cs.se.modelepedia.classdiagram.operator;
 
 import java.util.HashSet;
+import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.ecore.EObject;
 
+import edu.toronto.cs.se.mmint.MIDTypeRegistry;
+import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.mid.MID;
+import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.operator.slice.Slice;
 import edu.toronto.cs.se.modelepedia.classdiagram.Association;
 import edu.toronto.cs.se.modelepedia.classdiagram.Attribute;
@@ -28,6 +35,20 @@ import edu.toronto.cs.se.modelepedia.classdiagram.Operation;
 import edu.toronto.cs.se.modelepedia.classdiagram.Typeable;
 
 public class CDSlice extends Slice {
+
+  public static final String REL_TYPE_ID = "http://se.cs.toronto.edu/modelepedia/CDSliceRel";
+
+  @Override
+  protected void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws MMINTException {
+    init2(inputsByName, outputMIDsByName);
+    var cdSliceRelType = MIDTypeRegistry.<ModelRel>getType(CDSlice.REL_TYPE_ID);
+    if (cdSliceRelType == null) {
+      throw new MMINTException("Missing CD slice rel type " + CDSlice.REL_TYPE_ID);
+    }
+    this.output.sliceRel = cdSliceRelType.createInstanceAndEndpoints(null, Output.OUT_MODELREL,
+                                                                     ECollections.asEList(this.input.model),
+                                                                     this.output.mid);
+  }
 
   @Override
   protected SliceStep getDirectlySlicedElements(EObject modelObj, SliceInfo info) {
@@ -132,10 +153,10 @@ public class CDSlice extends Slice {
       }
     }
 
-    var newInfo = new SliceInfo(SliceType.RECHECK_CONTENT, modelObj, "cd");
+    var newInfo = new SliceInfo(SliceAnnotation.RECHECK, modelObj, "cd");
     var sliced = slicedObjs.stream()
       .filter(s -> !this.allSliced.containsKey(s))
-      .collect(Collectors.toMap(s -> s, s -> newInfo, SliceInfo.ORDER_DUPLICATES));
+      .collect(Collectors.toMap(s -> s, s -> newInfo, this.annotationOrder));
     return new SliceStep(sliced, sliced);
   }
 }

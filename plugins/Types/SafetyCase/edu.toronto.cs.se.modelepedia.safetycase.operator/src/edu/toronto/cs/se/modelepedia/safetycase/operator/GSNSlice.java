@@ -13,18 +13,18 @@
 package edu.toronto.cs.se.modelepedia.safetycase.operator;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.ecore.EObject;
 
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.operator.slice.Slice;
 import edu.toronto.cs.se.modelepedia.safetycase.AndSupporter;
 import edu.toronto.cs.se.modelepedia.safetycase.ContextualElement;
@@ -43,19 +43,30 @@ import edu.toronto.cs.se.modelepedia.safetycase.XorSupporter;
 
 public class GSNSlice extends Slice {
 
-  public static final String RECHECK_CONTENT = "http://se.cs.toronto.edu/modelepedia/GSNSliceRel/RecheckContent";
-  public static final String RECHECK_STATE = "http://se.cs.toronto.edu/modelepedia/GSNSliceRel/RecheckState";
+  public static final String REL_TYPE_ID = "http://se.cs.toronto.edu/modelepedia/GSNSliceRel";
+
+  public class GSNSliceAnnotation extends SliceAnnotation {
+    public static final String RECHECK_CONTENT = "http://se.cs.toronto.edu/modelepedia/GSNSliceRel/RecheckContent";
+    public static final String RECHECK_STATE = "http://se.cs.toronto.edu/modelepedia/GSNSliceRel/RecheckState";
+    public GSNSliceAnnotation(String id, int priority) throws MMINTException {
+      super(id, priority);
+    }
+  }
 
   @Override
   protected void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws MMINTException {
-    super.init(inputsByName, outputMIDsByName);
-    for (var sliceType : List.of(GSNSlice.RECHECK_CONTENT, GSNSlice.RECHECK_STATE)) {
-      var mappingType = MIDTypeRegistry.<Mapping>getType(sliceType);
-      if (mappingType == null) {
-        throw new MMINTException("Missing GSNSliceRel mapping type " + sliceType);
-      }
-      this.sliceTypes.put(sliceType, mappingType);
+    init2(inputsByName, outputMIDsByName);
+    var gsnSliceRelType = MIDTypeRegistry.<ModelRel>getType(GSNSlice.REL_TYPE_ID);
+    if (gsnSliceRelType == null) {
+      throw new MMINTException("Missing GSN slice rel type " + GSNSlice.REL_TYPE_ID);
     }
+    this.output.sliceRel = gsnSliceRelType.createInstanceAndEndpoints(null, Output.OUT_MODELREL,
+                                                                      ECollections.asEList(this.input.model),
+                                                                      this.output.mid);
+    this.annotations.put(GSNSliceAnnotation.RECHECK_CONTENT,
+                         new GSNSliceAnnotation(GSNSliceAnnotation.RECHECK_CONTENT, 51));
+    this.annotations.put(GSNSliceAnnotation.RECHECK_STATE,
+                         new GSNSliceAnnotation(GSNSliceAnnotation.RECHECK_STATE, 52));
   }
 
   // Determines whether a change impact is propagated up or not given the
@@ -115,8 +126,8 @@ public class GSNSlice extends Slice {
    */
   private SliceStep ruleSupports(Supporter modelObj, SliceInfo info) {
     var newInfo = "supportsContent".equals(info.rule) ?
-      new SliceInfo(GSNSlice.RECHECK_CONTENT, modelObj, "supportsContent") :
-      new SliceInfo(GSNSlice.RECHECK_STATE, modelObj, "supportsState");
+      new SliceInfo(GSNSliceAnnotation.RECHECK_CONTENT, modelObj, "supportsContent") :
+      new SliceInfo(GSNSliceAnnotation.RECHECK_STATE, modelObj, "supportsState");
     var visited = new HashMap<EObject, SliceInfo>();
     var sliced = new HashMap<EObject, SliceInfo>();
 
@@ -127,12 +138,12 @@ public class GSNSlice extends Slice {
       }
       if (!this.allVisited.containsKey(supported) && (
             info.rule.equals("supportsState") || supported instanceof SupportConnector)) {
-        visited.merge(supported, newInfo, SliceInfo.ORDER_DUPLICATES);
+        visited.merge(supported, newInfo, this.annotationOrder);
       }
       if (!this.allSliced.containsKey(supported) && (
             (info.rule.equals("supportsState") && supported instanceof Goal) ||
             info.rule.equals("supportsContent"))) {
-        sliced.merge(supported, newInfo, SliceInfo.ORDER_DUPLICATES);
+        sliced.merge(supported, newInfo, this.annotationOrder);
       }
     }
 
@@ -144,17 +155,17 @@ public class GSNSlice extends Slice {
    * Visit supporting (children) connectors, slice supporting core elements.
    */
   private SliceStep ruleSupportedBy(Supportable modelObj, SliceInfo info) {
-    var newInfo = new SliceInfo(GSNSlice.RECHECK_CONTENT, modelObj, "supportedBy");
+    var newInfo = new SliceInfo(GSNSliceAnnotation.RECHECK_CONTENT, modelObj, "supportedBy");
     var visited = new HashMap<EObject, SliceInfo>();
     var sliced = new HashMap<EObject, SliceInfo>();
 
     for (var supportedBy : modelObj.getSupportedBy()) {
       var supporting = supportedBy.getTarget();
       if (!this.allVisited.containsKey(supporting) && supporting instanceof SupportConnector) {
-        visited.merge(supporting, newInfo, SliceInfo.ORDER_DUPLICATES);
+        visited.merge(supporting, newInfo, this.annotationOrder);
       }
       if (!this.allSliced.containsKey(supporting) && supporting instanceof CoreElement) {
-        sliced.merge(supporting, newInfo, SliceInfo.ORDER_DUPLICATES);
+        sliced.merge(supporting, newInfo, this.annotationOrder);
       }
     }
 
@@ -166,12 +177,12 @@ public class GSNSlice extends Slice {
    * Slice connected contextual elements.
    */
   private SliceStep ruleInContextOf(Strategy modelObj, SliceInfo info) {
-    var newInfo = new SliceInfo(GSNSlice.RECHECK_CONTENT, modelObj, "inContextOf");
+    var newInfo = new SliceInfo(GSNSliceAnnotation.RECHECK_CONTENT, modelObj, "inContextOf");
 
     var sliced = modelObj.getInContextOf().stream()
       .map(InContextOf::getContext)
       .filter(s -> !this.allSliced.containsKey(s))
-      .collect(Collectors.toMap(s -> (EObject) s, s -> newInfo, SliceInfo.ORDER_DUPLICATES));
+      .collect(Collectors.toMap(s -> (EObject) s, s -> newInfo, this.annotationOrder));
 
     return new SliceStep(sliced, new HashMap<EObject, SliceInfo>());
   }
@@ -181,8 +192,8 @@ public class GSNSlice extends Slice {
    * Visit and slice attached elements.
    */
   private SliceStep ruleContextOf(ContextualElement modelObj, SliceInfo info) {
-    var newInfoVisited = new SliceInfo(GSNSlice.RECHECK_CONTENT, modelObj, "supportedByContextOf");
-    var newInfoSliced = new SliceInfo(GSNSlice.RECHECK_CONTENT, modelObj, "contextOf");
+    var newInfoVisited = new SliceInfo(GSNSliceAnnotation.RECHECK_CONTENT, modelObj, "supportedByContextOf");
+    var newInfoSliced = new SliceInfo(GSNSliceAnnotation.RECHECK_CONTENT, modelObj, "contextOf");
     var visited = new HashMap<EObject, SliceInfo>();
     var sliced = new HashMap<EObject, SliceInfo>();
 
@@ -190,10 +201,10 @@ public class GSNSlice extends Slice {
       var contextOf = inContextOf.getContextOf();
       if (!this.allVisited.containsKey(contextOf)) {
         // continues to ruleSupportedByContextOf
-        visited.merge(contextOf, newInfoVisited, SliceInfo.ORDER_DUPLICATES);
+        visited.merge(contextOf, newInfoVisited, this.annotationOrder);
       }
       if (!this.allSliced.containsKey(contextOf)) {
-        sliced.merge(contextOf, newInfoSliced, SliceInfo.ORDER_DUPLICATES);
+        sliced.merge(contextOf, newInfoSliced, this.annotationOrder);
       }
     }
 
@@ -205,20 +216,20 @@ public class GSNSlice extends Slice {
    * Visit supporting (children) elements, slice supporting core elements and attached contexts.
    */
   private SliceStep ruleSupportedByContextOf(DecomposableCoreElement modelObj, SliceInfo info) {
-    var newInfo = new SliceInfo(GSNSlice.RECHECK_CONTENT, modelObj, "supportedByContextOf");
+    var newInfo = new SliceInfo(GSNSliceAnnotation.RECHECK_CONTENT, modelObj, "supportedByContextOf");
     var visited = new HashMap<EObject, SliceInfo>();
     var sliced = new HashMap<EObject, SliceInfo>();
 
     for (var supportedBy : modelObj.getSupportedBy()) {
       var supporting = supportedBy.getTarget();
       if (!this.allVisited.containsKey(supporting)) {
-        visited.merge(supporting, newInfo, SliceInfo.ORDER_DUPLICATES);
+        visited.merge(supporting, newInfo, this.annotationOrder);
       }
       if (!this.allSliced.containsKey(supporting) && supporting instanceof CoreElement) {
-        sliced.merge(supporting, newInfo, SliceInfo.ORDER_DUPLICATES);
+        sliced.merge(supporting, newInfo, this.annotationOrder);
         if (supporting instanceof DecomposableCoreElement) {
           for (var inContextOf : ((DecomposableCoreElement) supporting).getInContextOf()) {
-            sliced.merge(inContextOf.getContext(), newInfo, SliceInfo.ORDER_DUPLICATES);
+            sliced.merge(inContextOf.getContext(), newInfo, this.annotationOrder);
           }
         }
       }
@@ -265,9 +276,17 @@ public class GSNSlice extends Slice {
    */
   @Override
   protected void sliceCriterionElement(EObject critObj, SliceInfo info) {
+    /* TODO: Typing problems:
+     * 1) Propagate to the best rel, equal or supertype (that means a prop CDSliceRel becomes a SliceRel for GSN)
+     * 1bis) Mapping types must be accounted as well, create the best equal or supertype.
+     * 2) Each Slice subtype should override init()/Output to create a proper subtype rel as output.
+     * 3) Should there be a real inheritance of SliceAnnotation? Equals below is not correct if a custom annotation arrive, but propagation would not make that happen.
+     * 4) Should RECHECK be in the list of annotations for this operator or not? It can arrive, for sure.
+     */
     var tempInfo = new SliceInfo(info);
     if (critObj instanceof Goal) {
-      if (Slice.DEL.equals(info.type) || Slice.REVISE.equals(info.type)) {
+      if (SliceAnnotation.DEL.equals(info.annotationId) ||
+          SliceAnnotation.REVISE.equals(info.annotationId)) {
         tempInfo.rule = "supportsContent";
         sliceRule(critObj, tempInfo);
         tempInfo.rule = "supportedBy";
@@ -277,7 +296,8 @@ public class GSNSlice extends Slice {
       sliceRule(critObj, tempInfo);
     }
     else if (critObj instanceof Strategy && (
-             Slice.DEL.equals(info.type) || Slice.REVISE.equals(info.type))) {
+               SliceAnnotation.DEL.equals(info.annotationId) ||
+               SliceAnnotation.REVISE.equals(info.annotationId))) {
       tempInfo.rule = "supportedBy";
       sliceRule(critObj, tempInfo);
       tempInfo.rule = "inContextOf";
@@ -286,12 +306,14 @@ public class GSNSlice extends Slice {
       sliceRule(critObj, tempInfo);
     }
     else if (critObj instanceof ContextualElement && (
-             Slice.DEL.equals(info.type) || Slice.REVISE.equals(info.type))) {
+               SliceAnnotation.DEL.equals(info.annotationId) ||
+               SliceAnnotation.REVISE.equals(info.annotationId))) {
       tempInfo.rule = "contextOf";
       sliceRule(critObj, tempInfo);
     }
     else if (critObj instanceof Solution) {
-      if (Slice.DEL.equals(info.type)  || Slice.REVISE.equals(info.type)) {
+      if (SliceAnnotation.DEL.equals(info.annotationId) ||
+          SliceAnnotation.REVISE.equals(info.annotationId)) {
         tempInfo.rule = "supportsContent";
         sliceRule(critObj, tempInfo);
       }

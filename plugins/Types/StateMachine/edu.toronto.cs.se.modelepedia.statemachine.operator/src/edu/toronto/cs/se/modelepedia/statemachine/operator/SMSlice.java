@@ -13,10 +13,17 @@
 package edu.toronto.cs.se.modelepedia.statemachine.operator;
 
 import java.util.HashSet;
+import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.ecore.EObject;
 
+import edu.toronto.cs.se.mmint.MIDTypeRegistry;
+import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.mid.MID;
+import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.operator.slice.Slice;
 import edu.toronto.cs.se.modelepedia.statemachine.FinalState;
 import edu.toronto.cs.se.modelepedia.statemachine.InitialState;
@@ -25,6 +32,20 @@ import edu.toronto.cs.se.modelepedia.statemachine.StateMachine;
 import edu.toronto.cs.se.modelepedia.statemachine.Transition;
 
 public class SMSlice extends Slice {
+
+  public static final String REL_TYPE_ID = "http://se.cs.toronto.edu/modelepedia/SMSliceRel";
+
+  @Override
+  protected void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws MMINTException {
+    init2(inputsByName, outputMIDsByName);
+    var smSliceRelType = MIDTypeRegistry.<ModelRel>getType(SMSlice.REL_TYPE_ID);
+    if (smSliceRelType == null) {
+      throw new MMINTException("Missing SM slice rel type " + SMSlice.REL_TYPE_ID);
+    }
+    this.output.sliceRel = smSliceRelType.createInstanceAndEndpoints(null, Output.OUT_MODELREL,
+                                                                     ECollections.asEList(this.input.model),
+                                                                     this.output.mid);
+  }
 
   @Override
   protected SliceStep getDirectlySlicedElements(EObject modelObj, SliceInfo info) {
@@ -67,10 +88,10 @@ public class SMSlice extends Slice {
       slicedObjs.add(t.getTarget());
     }
 
-    var newInfo = new SliceInfo(SliceType.RECHECK_CONTENT, modelObj, "sm");
+    var newInfo = new SliceInfo(SliceAnnotation.RECHECK, modelObj, "sm");
     var sliced = slicedObjs.stream()
       .filter(s -> !this.allSliced.containsKey(s))
-      .collect(Collectors.toMap(s -> s, s -> newInfo, SliceInfo.ORDER_DUPLICATES));
+      .collect(Collectors.toMap(s -> s, s -> newInfo, this.annotationOrder));
     return new SliceStep(sliced, sliced);
   }
 }

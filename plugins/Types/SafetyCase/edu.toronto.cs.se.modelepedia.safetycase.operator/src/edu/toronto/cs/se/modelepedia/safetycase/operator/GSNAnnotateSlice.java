@@ -27,7 +27,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.operator.slice.AnnotateSlice;
-import edu.toronto.cs.se.mmint.operator.slice.Slice.SliceType;
+import edu.toronto.cs.se.mmint.operator.slice.Slice.SliceAnnotation;
 import edu.toronto.cs.se.modelepedia.safetycase.ASILDecompositionStrategy;
 import edu.toronto.cs.se.modelepedia.safetycase.ASILfulElement;
 import edu.toronto.cs.se.modelepedia.safetycase.ArgumentElement;
@@ -38,17 +38,20 @@ import edu.toronto.cs.se.modelepedia.safetycase.SafetyCaseFactory;
 import edu.toronto.cs.se.modelepedia.safetycase.SupportConnector;
 import edu.toronto.cs.se.modelepedia.safetycase.Supportable;
 import edu.toronto.cs.se.modelepedia.safetycase.SupportedBy;
+import edu.toronto.cs.se.modelepedia.safetycase.operator.GSNSlice.GSNSliceAnnotation;
 
 public class GSNAnnotateSlice extends AnnotateSlice {
 
-  private void annotateModelElem(ArgumentElement gsnModelObj, @Nullable String cause, SliceType sliceType) {
+  private void annotateModelElem(ArgumentElement gsnModelObj, @Nullable String cause, String annotationId) {
     var annotation = SafetyCaseFactory.eINSTANCE.createImpactAnnotation();
     annotation.setSource(cause);
-    var impactType = switch (sliceType) {
-      case DEL, REVISE -> ImpactType.REVISE;
-      case MOD, RECHECK_CONTENT -> ImpactType.RECHECK_CONTENT;
-      case RECHECK_STATE -> ImpactType.RECHECK_STATE;
-      case ADD -> ImpactType.REUSE; //TODO MMINT[SLICE] Not supported yet
+    var impactType = switch (annotationId) {
+      case SliceAnnotation.DEL, SliceAnnotation.REVISE -> ImpactType.REVISE;
+      case SliceAnnotation.MOD, SliceAnnotation.RECHECK, GSNSliceAnnotation.RECHECK_CONTENT ->
+        ImpactType.RECHECK_CONTENT;
+      case GSNSliceAnnotation.RECHECK_STATE -> ImpactType.RECHECK_STATE;
+      case SliceAnnotation.ADD -> ImpactType.REUSE; //TODO MMINT[SLICE] Not supported yet
+      default -> ImpactType.REUSE;
     };
     annotation.setType(impactType);
     gsnModelObj.setStatus(annotation);
@@ -57,7 +60,7 @@ public class GSNAnnotateSlice extends AnnotateSlice {
   private void annotateSliceTypes(Resource gsnResource, ModelRel rel) {
     var alreadyAnnotated = new HashSet<String>();
     for (var mappingRef : rel.getMappingRefs()) {
-      var sliceType = SliceType.fromMapping(mappingRef.getObject());
+      var annotationId = mappingRef.getObject().getMetatypeUri();
       for (var modelElemEndpointRef : mappingRef.getModelElemEndpointRefs()) {
         var modelElemRef = modelElemEndpointRef.getModelElemRef();
         var modelElem = modelElemRef.getObject();
@@ -72,10 +75,10 @@ public class GSNAnnotateSlice extends AnnotateSlice {
           }
           var cause = modelElemRef.getModelElemEndpointRefs().stream()
             .map(meer -> ((MappingReference) meer.eContainer()).getObject())
-            .filter(m -> m.getMetatypeUri().equals(sliceType.id)) // discard lower priority causes
+            .filter(m -> m.getMetatypeUri().equals(annotationId)) // discard lower priority causes
             .map(Mapping::getName)
             .collect(Collectors.joining(", "));
-          annotateModelElem((ArgumentElement) gsnModelObj, cause, sliceType);
+          annotateModelElem((ArgumentElement) gsnModelObj, cause, annotationId);
           alreadyAnnotated.add(modelElem.getUri());
         }
         catch (MMINTException e) {
