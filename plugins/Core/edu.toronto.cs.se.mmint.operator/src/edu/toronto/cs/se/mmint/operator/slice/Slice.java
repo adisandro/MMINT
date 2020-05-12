@@ -44,10 +44,10 @@ public class Slice extends OperatorImpl {
 
   protected Input input;
   protected Output output;
-  protected Map<String, SliceAnnotation> annotations;
+  protected Map<String, SliceType> sliceTypes;
   protected Map<EObject, SliceInfo> allSliced;
   protected Map<EObject, SliceInfo> allVisited;
-  protected BinaryOperator<SliceInfo> annotationOrder;
+  protected BinaryOperator<SliceInfo> typesOrder;
 
   protected static class Input {
     public final static String IN_MODELREL = "criterion";
@@ -98,7 +98,7 @@ public class Slice extends OperatorImpl {
     }
   }
 
-  public static class SliceAnnotation {
+  public static class SliceType {
     public static final String ADD = "http://se.cs.toronto.edu/mmint/SliceRel/Add";
     public static final String DEL = "http://se.cs.toronto.edu/mmint/SliceRel/Del";
     public static final String MOD = "http://se.cs.toronto.edu/mmint/SliceRel/Mod";
@@ -106,29 +106,29 @@ public class Slice extends OperatorImpl {
     public static final String RECHECK = "http://se.cs.toronto.edu/mmint/SliceRel/Recheck";
     public @Nullable Mapping mappingType;
     public int priority;
-    public SliceAnnotation(String id, int priority) throws MMINTException {
+    public SliceType(String id, int priority) throws MMINTException {
       this.mappingType = MIDTypeRegistry.<Mapping>getType(id);
       if (this.mappingType == null) {
-        throw new MMINTException("Missing slice annotation mapping type " + id);
+        throw new MMINTException("Missing slice mapping type " + id);
       }
       this.priority = priority;
     }
   }
 
   protected static class SliceInfo {
-    public String annotationId;
+    public String typeId;
     public @Nullable EObject prevObj;
     public @Nullable String rule;
-    public SliceInfo(String type, @Nullable EObject prevObj) {
-      this.annotationId = type;
+    public SliceInfo(String typeId, @Nullable EObject prevObj) {
+      this.typeId = typeId;
       this.prevObj = prevObj;
     }
-    public SliceInfo(String type, @Nullable EObject prevObj, @Nullable String rule) {
-      this(type, prevObj);
+    public SliceInfo(String typeId, @Nullable EObject prevObj, @Nullable String rule) {
+      this(typeId, prevObj);
       this.rule = rule;
     }
     public SliceInfo(SliceInfo info) {
-      this(info.annotationId, info.prevObj, info.rule);
+      this(info.typeId, info.prevObj, info.rule);
     }
   }
 
@@ -171,34 +171,34 @@ public class Slice extends OperatorImpl {
      */
     public void mergeInto(@Nullable Map<EObject, SliceInfo> sliced, @Nullable Map<EObject, SliceInfo> visited) {
       if (sliced != null) {
-        this.sliced.forEach((k, v) -> sliced.merge(k, v, Slice.this.annotationOrder));
+        this.sliced.forEach((k, v) -> sliced.merge(k, v, Slice.this.typesOrder));
       }
       if (visited != null) {
-        this.visited.forEach((k, v) -> visited.merge(k, v, Slice.this.annotationOrder));
+        this.visited.forEach((k, v) -> visited.merge(k, v, Slice.this.typesOrder));
       }
     }
   }
 
-  protected void init2(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws MMINTException {
+  protected void basicInit(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws MMINTException {
     this.input = new Input(inputsByName);
     this.output = new Output(outputMIDsByName);
     this.allSliced = new HashMap<>();
     this.allVisited = new HashMap<>();
     // allow priorities to be modifiable by slicers
-    this.annotations = new HashMap<>();
-    this.annotations.put(SliceAnnotation.ADD, new SliceAnnotation(SliceAnnotation.ADD, 10));
-    this.annotations.put(SliceAnnotation.DEL, new SliceAnnotation(SliceAnnotation.DEL, 20));
-    this.annotations.put(SliceAnnotation.MOD, new SliceAnnotation(SliceAnnotation.MOD, 30));
-    this.annotations.put(SliceAnnotation.REVISE, new SliceAnnotation(SliceAnnotation.REVISE, 40));
-    this.annotations.put(SliceAnnotation.RECHECK, new SliceAnnotation(SliceAnnotation.RECHECK, 50));
-    this.annotationOrder = (info1, info2) ->
-      (this.annotations.get(info1.annotationId).priority < this.annotations.get(info2.annotationId).priority) ?
+    this.sliceTypes = new HashMap<>();
+    this.sliceTypes.put(SliceType.ADD, new SliceType(SliceType.ADD, 10));
+    this.sliceTypes.put(SliceType.DEL, new SliceType(SliceType.DEL, 20));
+    this.sliceTypes.put(SliceType.MOD, new SliceType(SliceType.MOD, 30));
+    this.sliceTypes.put(SliceType.REVISE, new SliceType(SliceType.REVISE, 40));
+    this.sliceTypes.put(SliceType.RECHECK, new SliceType(SliceType.RECHECK, 50));
+    this.typesOrder = (info1, info2) ->
+      (this.sliceTypes.get(info1.typeId).priority < this.sliceTypes.get(info2.typeId).priority) ?
         info1 :
         info2;
   }
 
   protected void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws MMINTException {
-    init2(inputsByName, outputMIDsByName);
+    basicInit(inputsByName, outputMIDsByName);
     this.output.sliceRel = this.input.critRel.getMetatype()
       .createInstanceAndEndpoints(null, Output.OUT_MODELREL, ECollections.asEList(this.input.model), this.output.mid);
   }
@@ -217,8 +217,8 @@ public class Slice extends OperatorImpl {
     // only rule: contained model objects are sliced and visited
     var sliced = modelObj.eContents().stream()
       .filter(s -> !this.allSliced.containsKey(s))
-      .collect(Collectors.toMap(s -> s, s -> new SliceInfo(SliceAnnotation.RECHECK, modelObj, "econtents"),
-                                this.annotationOrder));
+      .collect(Collectors.toMap(s -> s, s -> new SliceInfo(SliceType.RECHECK, modelObj, "econtents"),
+                                this.typesOrder));
     // ORDER_DUPLICATES is not strictly needed here because of eContents() semantics (no duplicates)
     // it's useful for inheritors, both to avoid the stream exception on duplicates and to order annotations by priority
     return new SliceStep(sliced, sliced);
@@ -273,8 +273,8 @@ public class Slice extends OperatorImpl {
         try {
           var critModelObj = critModelElem.getEMFInstanceObject(r);
           // pass criterion to output as-is first
-          this.allSliced.merge(critModelObj, info, this.annotationOrder);
-          this.allVisited.merge(critModelObj, info, this.annotationOrder);
+          this.allSliced.merge(critModelObj, info, this.typesOrder);
+          this.allVisited.merge(critModelObj, info, this.typesOrder);
           // slice only from external causes or original criterion input
           // e.g. in a fixed-point loop don't re-run from previous internal results
           if (!critName.startsWith(this.input.model.getName())) {
@@ -294,7 +294,7 @@ public class Slice extends OperatorImpl {
       var info = sliced.getValue();
       try {
         var modelElemRef = sliceModelEndpointRef.createModelElementInstanceAndReference(modelObj, null);
-        var mappingRef = this.annotations.get(info.annotationId).mappingType
+        var mappingRef = this.sliceTypes.get(info.typeId).mappingType
           .createInstanceAndReferenceAndEndpointsAndReferences(false, ECollections.asEList(modelElemRef));
         while (info.prevObj != null && !this.allSliced.containsKey(info.prevObj)) {
           // navigate the chain of visited objs, if any, to get the last sliced prevObj

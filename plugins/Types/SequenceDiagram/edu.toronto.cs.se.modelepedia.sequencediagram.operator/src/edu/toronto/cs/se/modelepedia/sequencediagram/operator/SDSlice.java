@@ -40,7 +40,7 @@ public class SDSlice extends Slice {
 
   @Override
   protected void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws MMINTException {
-    init2(inputsByName, outputMIDsByName);
+    basicInit(inputsByName, outputMIDsByName);
     var sdSliceRelType = MIDTypeRegistry.<ModelRel>getType(SDSlice.REL_TYPE_ID);
     if (sdSliceRelType == null) {
       throw new MMINTException("Missing SD slice rel type " + SDSlice.REL_TYPE_ID);
@@ -160,10 +160,10 @@ public class SDSlice extends Slice {
       }
     }
 
-    var newInfo = new SliceInfo(SliceAnnotation.RECHECK, modelObj, "sd");
+    var newInfo = new SliceInfo(SliceType.RECHECK, modelObj, "sd");
     var sliced = slicedObjs.stream()
       .filter(s -> !this.allSliced.containsKey(s))
-      .collect(Collectors.toMap(s -> s, s -> newInfo, this.annotationOrder));
+      .collect(Collectors.toMap(s -> s, s -> newInfo, this.typesOrder));
     return new SliceStep(sliced, sliced);
   }
 }

@@ -27,7 +27,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.operator.slice.AnnotateSlice;
-import edu.toronto.cs.se.mmint.operator.slice.Slice.SliceAnnotation;
+import edu.toronto.cs.se.mmint.operator.slice.Slice.SliceType;
 import edu.toronto.cs.se.modelepedia.safetycase.ASILDecompositionStrategy;
 import edu.toronto.cs.se.modelepedia.safetycase.ASILfulElement;
 import edu.toronto.cs.se.modelepedia.safetycase.ArgumentElement;
@@ -38,7 +38,7 @@ import edu.toronto.cs.se.modelepedia.safetycase.SafetyCaseFactory;
 import edu.toronto.cs.se.modelepedia.safetycase.SupportConnector;
 import edu.toronto.cs.se.modelepedia.safetycase.Supportable;
 import edu.toronto.cs.se.modelepedia.safetycase.SupportedBy;
-import edu.toronto.cs.se.modelepedia.safetycase.operator.GSNSlice.GSNSliceAnnotation;
+import edu.toronto.cs.se.modelepedia.safetycase.operator.GSNSlice.GSNSliceType;
 
 public class GSNAnnotateSlice extends AnnotateSlice {
 
@@ -46,11 +46,10 @@ public class GSNAnnotateSlice extends AnnotateSlice {
     var annotation = SafetyCaseFactory.eINSTANCE.createImpactAnnotation();
     annotation.setSource(cause);
     var impactType = switch (annotationId) {
-      case SliceAnnotation.DEL, SliceAnnotation.REVISE -> ImpactType.REVISE;
-      case SliceAnnotation.MOD, SliceAnnotation.RECHECK, GSNSliceAnnotation.RECHECK_CONTENT ->
-        ImpactType.RECHECK_CONTENT;
-      case GSNSliceAnnotation.RECHECK_STATE -> ImpactType.RECHECK_STATE;
-      case SliceAnnotation.ADD -> ImpactType.REUSE; //TODO MMINT[SLICE] Not supported yet
+      case SliceType.DEL, SliceType.REVISE -> ImpactType.REVISE;
+      case SliceType.MOD, SliceType.RECHECK, GSNSliceType.RECHECK_CONTENT -> ImpactType.RECHECK_CONTENT;
+      case GSNSliceType.RECHECK_STATE -> ImpactType.RECHECK_STATE;
+      case SliceType.ADD -> ImpactType.REUSE; //TODO MMINT[SLICE] Not supported yet
       default -> ImpactType.REUSE;
     };
     annotation.setType(impactType);

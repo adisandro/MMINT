@@ -16,7 +16,6 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -40,6 +39,7 @@ import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 
 public class AnnotateSlice extends OperatorImpl {
 
+  public static final String MODEL_TYPE_ID = "http://se.cs.toronto.edu/modelepedia/File";
   protected Input input;
   protected Output output;
 
@@ -111,16 +111,16 @@ public class AnnotateSlice extends OperatorImpl {
       for (var modelElemEndpointRef : mappingRef.getModelElemEndpointRefs()) {
         var modelElemRef = modelElemEndpointRef.getModelElemRef();
         // annotate each model element once, extracting all mappings attached as causes
-        if (alreadyAnnotated.contains(modelElemRef.getUri())) {
+        if (alreadyAnnotated.contains(modelElemRef.getUri())) {//TODO
           continue;
         }
         var cause = modelElemRef.getModelElemEndpointRefs().stream()
           .map(meer -> ((MappingReference) meer.eContainer()).getObject())
-          .filter(m -> m.getMetatypeUri().equals(sliceTypeId)) // discard lower priority causes
+          .filter(m -> m.getMetatypeUri().equals(sliceTypeId)) // discard lower priority causes TODO
           .map(Mapping::getName)
           .collect(Collectors.joining(", "));
         annotateModelElem(modelElemRef.getObject(), cause, buffer);
-        alreadyAnnotated.add(modelElemRef.getUri());
+        alreadyAnnotated.add(modelElemRef.getUri());//TODO
       }
     }
   }
@@ -132,20 +132,14 @@ public class AnnotateSlice extends OperatorImpl {
     try (var buffer = Files.newBufferedWriter(Paths.get(systemFilePath), Charset.forName("UTF-8"))) {
       // group mappings by slice types and order by priority
       var mappingTypes = this.input.sliceRel.getMappingRefs().stream()
-        .collect(Collectors.groupingBy(mr -> mr.getObject().getMetatypeUri()));
-      var sliceTypes = SliceType.values();
+        .collect(Collectors.groupingBy(mr -> mr.getObject().getMetatype().getName()));
       var alreadyAnnotated = new HashSet<String>();
-      Arrays.sort(sliceTypes, SliceType.COMPARATOR);
-      for (var sliceType : sliceTypes) {
-        var mappingRefs = mappingTypes.get(sliceType.id);
-        if (mappingRefs == null) {
-          continue;
-        }
-        annotateSliceType(mappingRefs, sliceType.name(), buffer, alreadyAnnotated);
+      for (var mappingEntry : mappingTypes.entrySet()) {
+        annotateSliceType(mappingEntry.getValue(), mappingEntry.getKey(), buffer, alreadyAnnotated);
         buffer.newLine();
       }
     }
-    var fileModelType = MIDTypeRegistry.<Model>getType("http://se.cs.toronto.edu/modelepedia/File");
+    var fileModelType = MIDTypeRegistry.<Model>getType(AnnotateSlice.MODEL_TYPE_ID);
     this.output.annotatedModel = fileModelType.createInstance(null, filePath, this.output.mid);
   }
 

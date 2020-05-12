@@ -37,7 +37,7 @@ public class SMSlice extends Slice {
 
   @Override
   protected void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws MMINTException {
-    init2(inputsByName, outputMIDsByName);
+    basicInit(inputsByName, outputMIDsByName);
     var smSliceRelType = MIDTypeRegistry.<ModelRel>getType(SMSlice.REL_TYPE_ID);
     if (smSliceRelType == null) {
       throw new MMINTException("Missing SM slice rel type " + SMSlice.REL_TYPE_ID);
@@ -88,10 +88,10 @@ public class SMSlice extends Slice {
       slicedObjs.add(t.getTarget());
     }
 
-    var newInfo = new SliceInfo(SliceAnnotation.RECHECK, modelObj, "sm");
+    var newInfo = new SliceInfo(SliceType.RECHECK, modelObj, "sm");
     var sliced = slicedObjs.stream()
       .filter(s -> !this.allSliced.containsKey(s))
-      .collect(Collectors.toMap(s -> s, s -> newInfo, this.annotationOrder));
+      .collect(Collectors.toMap(s -> s, s -> newInfo, this.typesOrder));
     return new SliceStep(sliced, sliced);
   }
 }

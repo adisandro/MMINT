@@ -40,7 +40,7 @@ public class CDSlice extends Slice {
 
   @Override
   protected void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws MMINTException {
-    init2(inputsByName, outputMIDsByName);
+    basicInit(inputsByName, outputMIDsByName);
     var cdSliceRelType = MIDTypeRegistry.<ModelRel>getType(CDSlice.REL_TYPE_ID);
     if (cdSliceRelType == null) {
       throw new MMINTException("Missing CD slice rel type " + CDSlice.REL_TYPE_ID);
@@ -153,10 +153,10 @@ public class CDSlice extends Slice {
       }
     }
 
-    var newInfo = new SliceInfo(SliceAnnotation.RECHECK, modelObj, "cd");
+    var newInfo = new SliceInfo(SliceType.RECHECK, modelObj, "cd");
     var sliced = slicedObjs.stream()
       .filter(s -> !this.allSliced.containsKey(s))
-      .collect(Collectors.toMap(s -> s, s -> newInfo, this.annotationOrder));
+      .collect(Collectors.toMap(s -> s, s -> newInfo, this.typesOrder));
     return new SliceStep(sliced, sliced);
   }
 }
