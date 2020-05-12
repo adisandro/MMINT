@@ -275,9 +275,8 @@ public class GSNSlice extends Slice {
   @Override
   protected void sliceCriterionElement(EObject critObj, SliceInfo info) {
     /* TODO: Typing problems:
-     * 1) Propagate to the best rel, equal or supertype (that means a prop CDSliceRel becomes a SliceRel for GSN)
-     * 1bis) Mapping types must be accounted as well, create the best equal or supertype.
-     * 3) Should there be a real inheritance of SliceAnnotation? Equals below is not correct if a custom annotation arrive, but propagation would not make that happen.
+     * 2) Merge too should account for different types with common supertype
+     * 3) Check if GSNSliceRel works
      */
     var tempInfo = new SliceInfo(info);
     if (critObj instanceof Goal) {

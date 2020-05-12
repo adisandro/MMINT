@@ -92,8 +92,18 @@ public class ModelRelPropagation extends OperatorImpl {
 
     public Output(Input input, Map<String, MID> outputMIDsByName) throws MMINTException {
       this.mid = outputMIDsByName.get(Output.OUT_MODELREL);
-      this.propRel = input.origRel.getMetatype()
-        .createInstanceAndEndpoints(null, Output.OUT_MODELREL, ECollections.newBasicEList(input.propModel), this.mid);
+      // propagate to the same rel type if possible, or fallback to the closest supertype
+      var propRelType = input.origRel.getMetatype();
+      while (propRelType != null) {
+        try {
+          this.propRel = propRelType
+            .createInstanceAndEndpoints(null, Output.OUT_MODELREL, ECollections.newBasicEList(input.propModel), this.mid);
+          break;
+        }
+        catch (MMINTException e) {
+          propRelType = (ModelRel) propRelType.getSupertype();
+        }
+      }
     }
 
     public Map<String, Model> packed() {
@@ -126,8 +136,8 @@ public class ModelRelPropagation extends OperatorImpl {
 
     // prepare the propagated rel
     var propModelEndpointRef = this.output.propRel.getModelEndpointRefs().get(0);
-    var propModelUri = this.input.propModel.getUri();
-    var propModelEMFUri = FileUtils.createEMFUri(propModelUri, true);
+    var propModelPath = this.input.propModel.getUri();
+    var propModelEMFUri = FileUtils.createEMFUri(propModelPath, true);
     var propModelEMFResource = FileUtils.getResource(propModelEMFUri, null);
     // get sharedModel elements that are in origRel, in case there are traces for other sharedModel elements
     var origModelObjUris = this.input.origRel.getModelEndpointRefs().get(0).getModelElemRefs().stream()
@@ -150,7 +160,7 @@ public class ModelRelPropagation extends OperatorImpl {
       for (var traceModelElemEndpoint : traceMapping.getModelElemEndpoints()) {
         var traceModelElem = traceModelElemEndpoint.getTarget();
         var traceModelElemUri = MIDRegistry.getModelObjectUri(traceModelElem);
-        if (propModelUri.equals(MIDRegistry.getModelUri(traceModelElemUri))) {
+        if (propModelPath.equals(MIDRegistry.getModelUri(traceModelElemUri))) {
           // collect model elems from propModel to propagate to
           if (propModelElems == null) {
             propModelElems = new HashSet<>();
@@ -213,15 +223,25 @@ public class ModelRelPropagation extends OperatorImpl {
         if (allPropModelElemRefs.isEmpty()) { // nothing to propagate
           continue;
         }
-        var propMappingRef = origMapping.getMetatype()
-          .createInstanceAndReferenceAndEndpointsAndReferences(
-            origMapping instanceof BinaryMapping && allPropModelElemRefs.size() == 2, allPropModelElemRefs);
-        propMappingRef.getObject().setName(origMapping.getName());
+        // propagate to the same mapping type if possible, or fallback to the closest supertype
+        var propMappingType = origMapping.getMetatype();
+        while (propMappingType != null) {
+          try {
+            var propMappingRef = origMapping.getMetatype()
+              .createInstanceAndReferenceAndEndpointsAndReferences(
+                origMapping instanceof BinaryMapping && allPropModelElemRefs.size() == 2, allPropModelElemRefs);
+            propMappingRef.getObject().setName(origMapping.getName());
+            break;
+          }
+          catch (MMINTException e) {
+            propMappingType = propMappingType.getSupertype();
+          }
+        }
       }
     }
   }
 
-  protected void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws MMINTException {
+  private void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws MMINTException {
     this.input = new Input(inputsByName);
     this.output = new Output(this.input, outputMIDsByName);
   }

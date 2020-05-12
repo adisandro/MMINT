@@ -20,8 +20,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.eclipse.emf.common.util.ECollections;
-import org.eclipse.jdt.annotation.NonNull;
 
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorConstraint;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
@@ -39,15 +39,14 @@ import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
 public class ModelRelMerge extends OperatorImpl {
 
-  private final static @NonNull String MERGE_SEPARATOR = "+";
   private Input input;
   private Output output;
   private Map<String, ModelElementReference> mergedModelElemRefs;
   private Map<Set<String>, MappingReference> mergedMappingRefs;
 
   private static class Input {
-    private final static @NonNull String IN_MODELREL1 = "rel1";
-    private final static @NonNull String IN_MODELREL2 = "rel2";
+    private final static String IN_MODELREL1 = "rel1";
+    private final static String IN_MODELREL2 = "rel2";
     private ModelRel rel1;
     private ModelRel rel2;
     private Model model1;
@@ -57,9 +56,6 @@ public class ModelRelMerge extends OperatorImpl {
       this.rel1 = (ModelRel) inputsByName.get(Input.IN_MODELREL1);
       this.rel2 = (ModelRel) inputsByName.get(Input.IN_MODELREL2);
       if (this.rel1 == this.rel2) {
-        throw new IllegalArgumentException();
-      }
-      if (this.rel1.getMetatype() != this.rel2.getMetatype()) {
         throw new IllegalArgumentException();
       }
       if ( // works with unary and binary rels, as long as they're both unary or both binary
@@ -99,12 +95,43 @@ public class ModelRelMerge extends OperatorImpl {
   }
 
   private static class Output {
-    private final static @NonNull String OUT_MODELREL = "merged";
+    public final static String OUT_SEPARATOR = "+";
+    private final static String OUT_MODELREL = "merged";
     private ModelRel mergedRel;
     private MID mid;
 
-    public Output(Map<String, MID> outputMIDsByName) {
+    public Output(Input input, Map<String, MID> outputMIDsByName) throws MMINTException {
       this.mid = outputMIDsByName.get(Output.OUT_MODELREL);
+      // merge to the same rel type if possible, or fallback to the lowest common supertype
+      ModelRel mergedRelType = null;
+      var rel1Type = input.rel1.getMetatype();
+      var rel2Type = input.rel2.getMetatype();
+      if (rel1Type == rel2Type) {
+        mergedRelType = rel1Type;
+      }
+      else if (MIDTypeHierarchy.instanceOf(input.rel2, rel1Type.getUri(), false)) {
+        mergedRelType = rel1Type;
+      }
+      else if (MIDTypeHierarchy.instanceOf(input.rel1, rel2Type.getUri(), false)) {
+        mergedRelType = rel2Type;
+      }
+      else {
+        // TODO MMINT[MERGE] Run a proper lowest common ancestor algorithm
+        mergedRelType = MIDTypeHierarchy.getRootModelRelType();
+      }
+      var mergedRelName = input.rel1.getName() + Output.OUT_SEPARATOR + input.rel2.getName();
+      if (input.rel1 instanceof BinaryModelRel && input.rel2 instanceof BinaryModelRel) {
+        // binary merge
+        this.mergedRel = mergedRelType.createBinaryInstanceAndEndpoints(null, mergedRelName, input.model1, input.model2,
+                                                                        this.mid);
+      }
+      else {
+        // unary merge, or binary merge with nary rel
+        var models = (input.model2 == null) ?
+          ECollections.asEList(input.model1) :
+          ECollections.asEList(input.model1, input.model2);
+        this.mergedRel = mergedRelType.createInstanceAndEndpoints(null, mergedRelName, models, this.mid);
+      }
     }
 
     public Map<String, Model> packed() {
@@ -114,7 +141,7 @@ public class ModelRelMerge extends OperatorImpl {
 
   public static class Constraint implements IJavaOperatorConstraint {
     @Override
-    public boolean isAllowedInput(@NonNull Map<String, Model> inputsByName) {
+    public boolean isAllowedInput(Map<String, Model> inputsByName) {
       try {
         new Input(inputsByName);
         return true;
@@ -125,7 +152,8 @@ public class ModelRelMerge extends OperatorImpl {
     }
 
     @Override
-    public @NonNull Map<ModelRel, List<Model>> getAllowedOutputModelRelEndpoints(@NonNull Map<String, Model> inputsByName, @NonNull Map<String, Model> outputsByName) {
+    public Map<ModelRel, List<Model>> getAllowedOutputModelRelEndpoints(Map<String, Model> inputsByName,
+                                                                        Map<String, Model> outputsByName) {
       var input = new Input(inputsByName);
       var mergedRel = (ModelRel) outputsByName.get(Output.OUT_MODELREL);
       mergedRel.setMetatypeUri(input.rel1.getMetatypeUri());
@@ -142,14 +170,14 @@ public class ModelRelMerge extends OperatorImpl {
     return true;
   }
 
-  private void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) {
+  private void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws MMINTException {
     this.mergedModelElemRefs = new HashMap<>();
     this.mergedMappingRefs = new HashMap<>();
     this.input = new Input(inputsByName);
-    this.output = new Output(outputMIDsByName);
+    this.output = new Output(this.input, outputMIDsByName);
   }
 
-  private void populate(ModelRel origRel) throws MMINTException {
+  private void merge(ModelRel origRel) throws MMINTException {
     // models
     for (var origModelEndpointRef : origRel.getModelEndpointRefs()) {
       var mergedModelEndpointRefs = MIDRegistry.getEndpointReferences(
@@ -199,37 +227,19 @@ public class ModelRelMerge extends OperatorImpl {
       else {
         var mergedName = mergedMappingRef.getObject().getName();
         if (!mergedName.equals(origMapping.getName())) {
-          mergedName = mergedMappingRef.getObject().getName() + ModelRelMerge.MERGE_SEPARATOR + origMapping.getName();
+          mergedName = mergedMappingRef.getObject().getName() + Output.OUT_SEPARATOR + origMapping.getName();
           mergedMappingRef.getObject().setName(mergedName);
         }
       }
     }
   }
 
-  private void merge() throws MMINTException {
-    var mergedRelName = this.input.rel1.getName() + ModelRelMerge.MERGE_SEPARATOR + this.input.rel2.getName();
-    if (this.input.rel1 instanceof BinaryModelRel && this.input.rel2 instanceof BinaryModelRel) {
-      // binary merge
-      this.output.mergedRel = this.input.rel1.getMetatype().createBinaryInstanceAndEndpoints(
-        null, mergedRelName, this.input.model1, this.input.model2, this.output.mid);
-    }
-    else {
-      // unary merge, or binary merge with nary rel
-      var models = (this.input.model2 == null) ?
-        ECollections.asEList(this.input.model1) :
-        ECollections.asEList(this.input.model1, this.input.model2);
-      this.output.mergedRel = this.input.rel1.getMetatype().createInstanceAndEndpoints(null, mergedRelName, models,
-                                                                                       this.output.mid);
-    }
-    populate(this.input.rel1);
-    populate(this.input.rel2);
-  }
-
   @Override
   public Map<String, Model> run(Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
                                 Map<String, MID> outputMIDsByName) throws Exception {
     init(inputsByName, outputMIDsByName);
-    merge();
+    merge(this.input.rel1);
+    merge(this.input.rel2);
     return this.output.packed();
   }
 }

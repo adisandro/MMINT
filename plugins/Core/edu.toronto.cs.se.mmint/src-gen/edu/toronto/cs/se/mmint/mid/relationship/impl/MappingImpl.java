@@ -5,15 +5,26 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.mmint.mid.relationship.impl;
 
-import edu.toronto.cs.se.mmint.MMINTException;
+import java.lang.reflect.InvocationTargetException;
+import java.util.Collection;
+
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.InternalEList;
+
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
@@ -29,21 +40,6 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.utils.MIDTypeFactory;
-
-import java.lang.reflect.InvocationTargetException;
-
-import java.util.Collection;
-
-import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
-
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -106,10 +102,10 @@ public class MappingImpl extends ExtendibleElementImpl implements Mapping {
    */
     @Override
     public EList<ModelElementEndpoint> getModelElemEndpoints() {
-    if (modelElemEndpoints == null) {
-      modelElemEndpoints = new EObjectContainmentEList<ModelElementEndpoint>(ModelElementEndpoint.class, this, RelationshipPackage.MAPPING__MODEL_ELEM_ENDPOINTS);
+    if (this.modelElemEndpoints == null) {
+      this.modelElemEndpoints = new EObjectContainmentEList<>(ModelElementEndpoint.class, this, RelationshipPackage.MAPPING__MODEL_ELEM_ENDPOINTS);
     }
-    return modelElemEndpoints;
+    return this.modelElemEndpoints;
   }
 
     /**
@@ -119,10 +115,10 @@ public class MappingImpl extends ExtendibleElementImpl implements Mapping {
    */
     @Override
     public EList<ModelElementEndpointReference> getModelElemEndpointRefs() {
-    if (modelElemEndpointRefs == null) {
-      modelElemEndpointRefs = new EObjectResolvingEList<ModelElementEndpointReference>(ModelElementEndpointReference.class, this, RelationshipPackage.MAPPING__MODEL_ELEM_ENDPOINT_REFS);
+    if (this.modelElemEndpointRefs == null) {
+      this.modelElemEndpointRefs = new EObjectResolvingEList<>(ModelElementEndpointReference.class, this, RelationshipPackage.MAPPING__MODEL_ELEM_ENDPOINT_REFS);
     }
-    return modelElemEndpointRefs;
+    return this.modelElemEndpointRefs;
   }
 
     /**
@@ -235,9 +231,9 @@ public class MappingImpl extends ExtendibleElementImpl implements Mapping {
     public boolean eIsSet(int featureID) {
     switch (featureID) {
       case RelationshipPackage.MAPPING__MODEL_ELEM_ENDPOINTS:
-        return modelElemEndpoints != null && !modelElemEndpoints.isEmpty();
+        return this.modelElemEndpoints != null && !this.modelElemEndpoints.isEmpty();
       case RelationshipPackage.MAPPING__MODEL_ELEM_ENDPOINT_REFS:
-        return modelElemEndpointRefs != null && !modelElemEndpointRefs.isEmpty();
+        return this.modelElemEndpointRefs != null && !this.modelElemEndpointRefs.isEmpty();
     }
     return super.eIsSet(featureID);
   }
@@ -331,7 +327,7 @@ public class MappingImpl extends ExtendibleElementImpl implements Mapping {
 
     /**
      * Adds a reference to this mapping type to the Type MID.
-     * 
+     *
      * @param newMappingTypeRef
      *            The new reference to this mapping type to be added.
      * @param mappingTypeRef
@@ -355,6 +351,7 @@ public class MappingImpl extends ExtendibleElementImpl implements Mapping {
     /**
      * @generated NOT
      */
+    @Override
     public MappingReference createTypeReference(MappingReference mappingTypeRef, boolean isModifiable, ModelRel containerModelRelType) throws MMINTException {
 
         MMINTException.mustBeType(this);
@@ -368,6 +365,7 @@ public class MappingImpl extends ExtendibleElementImpl implements Mapping {
     /**
      * @generated NOT
      */
+    @Override
     public MappingReference createSubtypeAndReference(MappingReference mappingTypeRef, String newMappingTypeName, boolean isBinary, ModelRel containerModelRelType) throws MMINTException {
 
         MMINTException.mustBeType(this);
@@ -394,6 +392,7 @@ public class MappingImpl extends ExtendibleElementImpl implements Mapping {
     /**
      * @generated NOT
      */
+    @Override
     public void deleteType() throws MMINTException {
 
         MMINTException.mustBeType(this);
@@ -408,7 +407,7 @@ public class MappingImpl extends ExtendibleElementImpl implements Mapping {
 
     /**
      * Adds a reference to this mapping instance to an Instance MID.
-     * 
+     *
      * @param newMappingRef
      *            The new reference to this mapping to be added.
      * @param containerModelRel
@@ -425,6 +424,7 @@ public class MappingImpl extends ExtendibleElementImpl implements Mapping {
     /**
      * @generated NOT
      */
+    @Override
     public MappingReference createInstanceReference(ModelRel containerModelRel) throws MMINTException {
 
         MMINTException.mustBeInstance(this);
@@ -438,6 +438,7 @@ public class MappingImpl extends ExtendibleElementImpl implements Mapping {
     /**
      * @generated NOT
      */
+    @Override
     public MappingReference createInstanceAndReference(boolean isBinary, ModelRel containerModelRel) throws MMINTException {
 
         MMINTException.mustBeType(this);
@@ -455,6 +456,7 @@ public class MappingImpl extends ExtendibleElementImpl implements Mapping {
     /**
      * @generated NOT
      */
+    @Override
     public MappingReference createInstanceAndReferenceAndEndpointsAndReferences(boolean isBinary, EList<ModelElementReference> targetModelElemRefs) throws MMINTException {
 
         MMINTException.mustBeType(this);
@@ -465,13 +467,19 @@ public class MappingImpl extends ExtendibleElementImpl implements Mapping {
             throw new MMINTException("A binary mapping must have 2 target model elements");
         }
 
-        ModelRel containerModelRel = (ModelRel) targetModelElemRefs.get(0).eContainer().eContainer();
+        var containerModelRel = (ModelRel) targetModelElemRefs.get(0).eContainer().eContainer();
         // create mapping
-        MappingReference newMappingRef = createInstanceAndReference(isBinary, containerModelRel);
+        var newMappingRef = createInstanceAndReference(isBinary, containerModelRel);
         // create model element endpoints
-        for (ModelElementReference targetModelElemRef : targetModelElemRefs) {
-            String modelElemTypeEndpointUri = MIDConstraintChecker.getAllowedModelElementEndpointReferences(newMappingRef, null, targetModelElemRef).get(0);
-            ModelElementEndpoint modelElemTypeEndpoint = MIDTypeRegistry.getType(modelElemTypeEndpointUri);
+        for (var targetModelElemRef : targetModelElemRefs) {
+            var modelElemTypeEndpointIds = MIDConstraintChecker.getAllowedModelElementEndpointReferences(newMappingRef, null, targetModelElemRef);
+            if (modelElemTypeEndpointIds == null) {
+                // wrong endpoints, clean up mapping
+                newMappingRef.deleteInstanceAndReference();
+                throw new MMINTException("Can't find allowed model element type endpoints");
+            }
+            var modelElemTypeEndpointId = modelElemTypeEndpointIds.get(0);
+            var modelElemTypeEndpoint = MIDTypeRegistry.<ModelElementEndpoint>getType(modelElemTypeEndpointId);
             modelElemTypeEndpoint.createInstanceAndReference(targetModelElemRef, newMappingRef);
         }
 
@@ -493,6 +501,7 @@ public class MappingImpl extends ExtendibleElementImpl implements Mapping {
     /**
      * @generated NOT
      */
+    @Override
     public void deleteInstance() throws MMINTException {
 
         MMINTException.mustBeInstance(this);
