@@ -442,13 +442,16 @@ public class MappingImpl extends ExtendibleElementImpl implements Mapping {
     public MappingReference createInstanceAndReference(boolean isBinary, ModelRel containerModelRel) throws MMINTException {
 
         MMINTException.mustBeType(this);
+        if (!MIDConstraintChecker.getAllowedMappingTypes(containerModelRel.getMetatype(), null, null).contains(this)) {
+            throw new MMINTException("This mapping type is not allowed in the container model rel");
+        }
 
         Mapping newMapping = (isBinary) ?
             super.createThisBinaryEClass() :
             super.createThisEClass();
         super.addBasicInstance(newMapping, null, null, MIDLevel.INSTANCES);
         containerModelRel.getMappings().add(newMapping);
-        MappingReference newMappingRef = newMapping.createInstanceReference(containerModelRel);
+        var newMappingRef = newMapping.createInstanceReference(containerModelRel);
 
         return newMappingRef;
     }

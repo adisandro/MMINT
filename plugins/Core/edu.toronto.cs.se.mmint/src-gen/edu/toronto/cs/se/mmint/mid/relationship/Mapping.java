@@ -5,18 +5,17 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.mmint.mid.relationship;
 
-import edu.toronto.cs.se.mmint.MMINTException;
-
-import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
-
-import edu.toronto.cs.se.mmint.mid.MID;
 import org.eclipse.emf.common.util.EList;
+
+import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
+import edu.toronto.cs.se.mmint.mid.MID;
 
 /**
  * <!-- begin-user-doc -->
@@ -81,6 +80,7 @@ public interface Mapping extends ExtendibleElement {
    *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElement metatype = super.getMetatype();\nreturn (metatype == null) ? null : (Mapping) metatype;'"
    * @generated
    */
+    @Override
     Mapping getMetatype();
 
     /**
@@ -94,6 +94,7 @@ public interface Mapping extends ExtendibleElement {
    *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElement supertype = super.getSupertype();\nreturn (supertype == null) ? null : (Mapping) supertype;'"
    * @generated
    */
+    @Override
     Mapping getSupertype();
 
     /**
@@ -103,12 +104,13 @@ public interface Mapping extends ExtendibleElement {
    *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return (MID) this.eContainer().eContainer();'"
    * @generated
    */
+    @Override
     MID getMIDContainer();
 
     /**
    * <!-- begin-user-doc --> Creates and adds a reference to this mapping type to
      * the Type MID.
-     * 
+     *
      * @param mappingTypeRef
      *            The reference to the supertype of the mapping type, null if
      *            such reference doesn't exist in the model relationship type
@@ -130,7 +132,7 @@ public interface Mapping extends ExtendibleElement {
     /**
    * <!-- begin-user-doc --> Creates and adds a subtype of this mapping type and
      * a reference to it to the Type MID.
-     * 
+     *
      * @param mappingTypeRef
      *            The reference to the supertype of the new mapping type, null if
      *            such reference doesn't exist in the model relationship type
@@ -154,7 +156,7 @@ public interface Mapping extends ExtendibleElement {
 
     /**
    * <!-- begin-user-doc --> Deletes this mapping type from the Type MID.
-     * 
+     *
      * @throws MMINTException
      *             If this is a mapping instance. <!-- end-user-doc -->
    * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
@@ -165,7 +167,7 @@ public interface Mapping extends ExtendibleElement {
     /**
    * <!-- begin-user-doc --> Creates and adds a reference to this mapping
      * instance to an Instance MID.
-     * 
+     *
      * @param containerModelRel
      *            The model relationship that will contain the new reference to
      *            the mapping.
@@ -178,25 +180,27 @@ public interface Mapping extends ExtendibleElement {
     MappingReference createInstanceReference(ModelRel containerModelRel) throws MMINTException;
 
     /**
-   * <!-- begin-user-doc --> Creates and adds a mapping instance of this mapping
-     * type and a reference to it to an Instance MID.
-     * 
+     * <!-- begin-user-doc --> Creates and adds a mapping instance of this mapping type and a reference to it to an
+     * Instance MID.
+     *
      * @param isBinary
-     *            True if the new mapping is binary, false otherwise.
+     *          True if the new mapping is binary, false otherwise.
      * @param containerModelRel
-     *            The model relationship that will contain the new mapping.
+     *          The model relationship that will contain the new mapping.
      * @return The created reference to the new mapping.
      * @throws MMINTException
-     *             If this is a mapping instance. <!-- end-user-doc -->
-   * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" isBinaryRequired="true" containerModelRelRequired="true"
-   * @generated
-   */
+     *           If this is a mapping instance, or if this mapping type is not allowed in the container model rel.
+     * <!-- end-user-doc -->
+     * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" isBinaryRequired="true"
+     *        containerModelRelRequired="true"
+     * @generated
+     */
     MappingReference createInstanceAndReference(boolean isBinary, ModelRel containerModelRel) throws MMINTException;
 
     /**
    * <!-- begin-user-doc --> Creates and adds a mapping instance of this mapping type and a reference to it to an Instance
      * MID, together with its model element instance endpoints and references to them.
-     * 
+     *
      * @param isBinary
      *            True if the new mapping is binary, false otherwise.
      * @param targetModelElemRefs
@@ -213,7 +217,7 @@ public interface Mapping extends ExtendibleElement {
     /**
    * <!-- begin-user-doc --> Deletes this mapping instance from the Instance MID
      * that contains it.
-     * 
+     *
      * @throws MMINTException
      *             If this is a mapping type. <!-- end-user-doc -->
    * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"

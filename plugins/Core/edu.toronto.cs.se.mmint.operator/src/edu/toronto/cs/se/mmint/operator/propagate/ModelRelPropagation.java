@@ -227,8 +227,7 @@ public class ModelRelPropagation extends OperatorImpl {
         var propMappingType = origMapping.getMetatype();
         while (propMappingType != null) {
           try {
-            var propMappingRef = origMapping.getMetatype()
-              .createInstanceAndReferenceAndEndpointsAndReferences(
+            var propMappingRef = propMappingType.createInstanceAndReferenceAndEndpointsAndReferences(
                 origMapping instanceof BinaryMapping && allPropModelElemRefs.size() == 2, allPropModelElemRefs);
             propMappingRef.getObject().setName(origMapping.getName());
             break;
