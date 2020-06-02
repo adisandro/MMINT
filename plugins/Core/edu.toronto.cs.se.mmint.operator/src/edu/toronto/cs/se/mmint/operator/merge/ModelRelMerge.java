@@ -33,7 +33,6 @@ import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
-import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
@@ -102,22 +101,22 @@ public class ModelRelMerge extends OperatorImpl {
 
     public Output(Input input, Map<String, MID> outputMIDsByName) throws MMINTException {
       this.mid = outputMIDsByName.get(Output.OUT_MODELREL);
-      // merge to the same rel type if possible, or fallback to the lowest common supertype
+      // merge to the same rel type if possible, or go up to the lowest common subtype
       ModelRel mergedRelType = null;
       var rel1Type = input.rel1.getMetatype();
       var rel2Type = input.rel2.getMetatype();
       if (rel1Type == rel2Type) {
         mergedRelType = rel1Type;
       }
-      else if (MIDTypeHierarchy.instanceOf(input.rel2, rel1Type.getUri(), false)) {
+      else if (MIDTypeHierarchy.isSubtypeOf(rel1Type.getUri(), rel2Type.getUri())) {
         mergedRelType = rel1Type;
       }
-      else if (MIDTypeHierarchy.instanceOf(input.rel1, rel2Type.getUri(), false)) {
+      else if (MIDTypeHierarchy.isSubtypeOf(rel2Type.getUri(), rel1Type.getUri())) {
         mergedRelType = rel2Type;
       }
       else {
-        // TODO MMINT[MERGE] Run a proper lowest common ancestor algorithm
-        mergedRelType = MIDTypeHierarchy.getRootModelRelType();
+        // TODO MMINT[MERGE] Run a proper lowest common subtype algorithm
+        throw new IllegalArgumentException();
       }
       var mergedRelName = input.rel1.getName() + Output.OUT_SEPARATOR + input.rel2.getName();
       if (input.rel1 instanceof BinaryModelRel && input.rel2 instanceof BinaryModelRel) {
@@ -178,20 +177,13 @@ public class ModelRelMerge extends OperatorImpl {
   }
 
   private void merge(ModelRel origRel) throws MMINTException {
+    // TODO MMINT[MERGE] merged model elems and mappings should not take the orig type as-is, but check for potential overriding first
     // models
     for (var origModelEndpointRef : origRel.getModelEndpointRefs()) {
       var mergedModelEndpointRefs = MIDRegistry.getEndpointReferences(
         origModelEndpointRef.getTargetUri(), this.output.mergedRel.getModelEndpointRefs());
-      ModelEndpointReference mergedModelEndpointRef;
-      if (mergedModelEndpointRefs.isEmpty()) {
-        var model = this.output.mid.<Model>getExtendibleElement(origModelEndpointRef.getTargetUri());
-        mergedModelEndpointRef = origModelEndpointRef.getObject().getMetatype().createInstance(model,
-                                                                                               this.output.mergedRel);
-      }
-      else {
-        //TODO MMINT[REDUCE] this is suspect, what about model rels with endpoints to the same model?
-        mergedModelEndpointRef = mergedModelEndpointRefs.get(0);
-      }
+      //TODO MMINT[REDUCE] this is suspect, what about model rels with endpoints to the same model?
+      var mergedModelEndpointRef = mergedModelEndpointRefs.get(0);
       // model elements
       for (var origModelElemRef : origModelEndpointRef.getModelElemRefs()) {
         var mergedModelElemRef = this.mergedModelElemRefs.get(origModelElemRef.getUri());

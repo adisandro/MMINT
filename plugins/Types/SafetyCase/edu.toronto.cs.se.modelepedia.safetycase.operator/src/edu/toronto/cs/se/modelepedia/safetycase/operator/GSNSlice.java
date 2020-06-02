@@ -270,14 +270,10 @@ public class GSNSlice extends Slice {
    * This slicer follows a rule-based approach, rather than element-based.
    * (and it has a filter on initial allowed types from the criterion)
    * Rules reset the sliced/visited sets every time, i.e. each rule is executed independently.
-   * TODO: With ModelRelPropagation, we lose one step of the prevObj chain, can we even fix it?
    */
   @Override
   protected void sliceCriterionElement(EObject critObj, SliceInfo info) {
-    /* TODO: Typing problems:
-     * 2) Merge too should account for different types with common supertype
-     * 3) Check if GSNSliceRel works
-     */
+    // TODO: With ModelRelPropagation, we lose one step of the prevObj chain, can we even fix it?
     var tempInfo = new SliceInfo(info);
     if (critObj instanceof Goal) {
       if (SliceType.DEL.equals(info.typeId) ||

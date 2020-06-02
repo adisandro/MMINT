@@ -180,7 +180,7 @@ public class MIDConstraintChecker {
 			//TODO MMINT[INTROSPECTION] consider direction for binary?
 			if (targetSrcModelElemRef != null) {
 				for (ModelElementEndpointReference modelElemTypeEndpointRef : mappingTypeRef.getObject().getModelElemEndpointRefs()) {
-					if (MIDConstraintChecker.isAllowedModelElementEndpointReference(modelElemTypeEndpointRef.getObject(), targetSrcModelElemRef, cardinalityTable)) {
+					if (MIDConstraintChecker.isAllowedModelElementEndpointReference(modelElemTypeEndpointRef, targetSrcModelElemRef, cardinalityTable)) {
 						MIDRegistry.addEndpointCardinality(modelElemTypeEndpointRef.getUri(), cardinalityTable);
 						isAllowedSrc = true;
 						break;
@@ -190,7 +190,7 @@ public class MIDConstraintChecker {
 			}
 			if (targetTgtModelElemRef != null) {
 				for (ModelElementEndpointReference modelElemTypeEndpointRef : mappingTypeRef.getObject().getModelElemEndpointRefs()) {
-					if (MIDConstraintChecker.isAllowedModelElementEndpointReference(modelElemTypeEndpointRef.getObject(), targetTgtModelElemRef, cardinalityTable)) {
+					if (MIDConstraintChecker.isAllowedModelElementEndpointReference(modelElemTypeEndpointRef, targetTgtModelElemRef, cardinalityTable)) {
 						MIDRegistry.addEndpointCardinality(modelElemTypeEndpointRef.getUri(), cardinalityTable);
 						isAllowedTgt = true;
 						break;
@@ -213,7 +213,7 @@ public class MIDConstraintChecker {
 	public static boolean isAllowedModelEndpoint(ModelEndpointReference modelTypeEndpointRef, Model targetModel, Map<String, Integer> cardinalityTable) {
 
 		//TODO MMINT[INTROSPECTION] consider static (like now) or runtime types?
-		String targetModelTypeUri = targetModel.getMetatypeUri();
+		var targetModelTypeUri = targetModel.getMetatypeUri();
 		// check if the type is allowed
 		if (modelTypeEndpointRef.getTargetUri().equals(targetModelTypeUri) || MIDTypeHierarchy.isSubtypeOf(targetModelTypeUri, modelTypeEndpointRef.getTargetUri())) {
 			// check if the cardinality is allowed
@@ -234,8 +234,8 @@ public class MIDConstraintChecker {
 
 		List<String> modelTypeEndpointUris = null;
 		// count existing instances
-		HashMap<String, Integer> cardinalityTable = new HashMap<>();
-		for (ModelEndpoint modelEndpoint : modelRel.getModelEndpoints()) {
+		var cardinalityTable = new HashMap<String, Integer>();
+		for (var modelEndpoint : modelRel.getModelEndpoints()) {
 			MIDRegistry.addEndpointCardinality(modelEndpoint.getMetatypeUri(), cardinalityTable);
 		}
 		// possibly subtract model endpoint to be replaced
@@ -289,14 +289,14 @@ public class MIDConstraintChecker {
 		return true;
 	}
 
-	public static boolean isAllowedModelElementEndpointReference(ModelElementEndpoint modelElemTypeEndpoint, ModelElementReference newModelElemRef, HashMap<String, Integer> cardinalityTable) {
+	public static boolean isAllowedModelElementEndpointReference(ModelElementEndpointReference modelElemTypeEndpointRef, ModelElementReference newModelElemRef, HashMap<String, Integer> cardinalityTable) {
 
 		//TODO MMINT[INTROSPECTION] consider static (like now) or runtime types?
-		String newModelElemTypeUri = newModelElemRef.getObject().getMetatypeUri();
+		var targetModelElemTypeUri = newModelElemRef.getObject().getMetatypeUri();
 		// check if the type is allowed
-		if (modelElemTypeEndpoint.getTargetUri().equals(newModelElemTypeUri) || MIDTypeHierarchy.isSubtypeOf(newModelElemTypeUri, modelElemTypeEndpoint.getTargetUri())) {
+		if (modelElemTypeEndpointRef.getTargetUri().equals(targetModelElemTypeUri) || MIDTypeHierarchy.isSubtypeOf(targetModelElemTypeUri, modelElemTypeEndpointRef.getTargetUri())) {
 			// check if the cardinality is allowed
-			if (MIDRegistry.checkNewEndpointUpperCardinality(modelElemTypeEndpoint, cardinalityTable)) {
+			if (MIDRegistry.checkNewEndpointUpperCardinality(modelElemTypeEndpointRef.getObject(), cardinalityTable)) {
 				return true;
 			}
 		}
@@ -304,16 +304,19 @@ public class MIDConstraintChecker {
 		return false;
 	}
 
-	public static List<String> getAllowedModelElementEndpointReferences(MappingReference mappingRef, ModelElementEndpointReference oldModelElemEndpointRef, ModelElementReference newModelElemRef) {
+	public static @Nullable List<String> getAllowedModelElementEndpointReferences(
+	                                       MappingReference mappingRef,
+	                                       @Nullable ModelElementEndpointReference oldModelElemEndpointRef,
+	                                       @Nullable ModelElementReference targetModelElemRef) {
 
-		if (newModelElemRef == null) { // model element reference not added yet
+		if (targetModelElemRef == null) { // model element reference not added yet
 			return new ArrayList<>();
 		}
 
 		List<String> modelElemTypeEndpointUris = null;
 		// count existing instances
-		HashMap<String, Integer> cardinalityTable = new HashMap<>();
-		for (ModelElementEndpointReference modelElemEndpointRef : mappingRef.getModelElemEndpointRefs()) {
+		var cardinalityTable = new HashMap<String, Integer>();
+		for (var modelElemEndpointRef : mappingRef.getModelElemEndpointRefs()) {
 			MIDRegistry.addEndpointCardinality(modelElemEndpointRef.getObject().getMetatypeUri(), cardinalityTable);
 		}
 		// possibly subtract model element endpoint to be replaced
@@ -326,12 +329,17 @@ public class MIDConstraintChecker {
 			}
 		}
 		// check allowance
-		for (ModelElementEndpoint modelElemTypeEndpoint : mappingRef.getObject().getMetatype().getModelElemEndpoints()) {
-			if (isAllowedModelElementEndpointReference(modelElemTypeEndpoint, newModelElemRef, cardinalityTable)) {
+		var modelElemTypeEndpointRefs = mappingRef.getObject().getMetatype().getModelElemEndpointRefs();
+		for (var modelElemTypeEndpointRef : modelElemTypeEndpointRefs) {
+      if (modelElemTypeEndpointRefs.stream().anyMatch(r -> r.getSupertypeRef() == modelElemTypeEndpointRef)) {
+        // skip overridden endpoint
+        continue;
+      }
+			if (isAllowedModelElementEndpointReference(modelElemTypeEndpointRef, targetModelElemRef, cardinalityTable)) {
 				if (modelElemTypeEndpointUris == null) {
 					modelElemTypeEndpointUris = new ArrayList<>();
 				}
-				modelElemTypeEndpointUris.add(modelElemTypeEndpoint.getUri());
+				modelElemTypeEndpointUris.add(modelElemTypeEndpointRef.getUri());
 			}
 		}
 
@@ -345,7 +353,7 @@ public class MIDConstraintChecker {
 			boolean isAllowed = false;
 			//TODO MMINT[INTROSPECTION] order of visit might affect the result, should be from the most specific to the less
 			for (ModelElementEndpointReference modelElemTypeEndpointRef : newMappingType.getModelElemEndpointRefs()) {
-				if (isAllowed = isAllowedModelElementEndpointReference(modelElemTypeEndpointRef.getObject(), modelElemEndpointRef.getModelElemRef(), cardinalityTable)) {
+				if (isAllowed = isAllowedModelElementEndpointReference(modelElemTypeEndpointRef, modelElemEndpointRef.getModelElemRef(), cardinalityTable)) {
 					MIDRegistry.addEndpointCardinality(modelElemTypeEndpointRef.getUri(), cardinalityTable);
 					break;
 				}
