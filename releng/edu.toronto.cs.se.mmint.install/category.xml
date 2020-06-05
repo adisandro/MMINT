@@ -54,6 +54,9 @@
    <feature url="features/edu.toronto.cs.se.modelepedia.sosym18.feature_2.5.99.qualifier.jar" id="edu.toronto.cs.se.modelepedia.sosym18.feature" version="2.5.99.qualifier">
       <category name="Examples"/>
    </feature>
+   <feature url="features/edu.toronto.cs.se.mmmint.jase20.feature_2.5.99.qualifier.jar" id="edu.toronto.cs.se.mmint.jase20.feature" version="2.5.99.qualifier">
+      <category name="Examples"/>
+   </feature>
    <category-def name="Modeling" label="Modeling"/>
    <category-def name="Modelepedia" label="Modelepedia"/>
    <category-def name="Examples" label="Examples"/>

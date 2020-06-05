@@ -1,0 +1,13 @@
+package iso26262
+
+import "edu.toronto.cs.se.mmint.jase20.iso26262.gsn"
+import "edu.toronto.cs.se.mmint.jase20.iso26262.hara"
+import "edu.toronto.cs.se.mmint.jase20.iso26262.sysml"
+
+pattern queryC(event: HazardousEvent) {
+  HazardousEvent.ASIL(event, "QM");
+  HazardousEvent.ASIL(event, "A");
+  HazardousEvent.ASIL(event, "B");
+  HazardousEvent.ASIL(event, "C");
+  HazardousEvent.ASIL(event, "D");
+}

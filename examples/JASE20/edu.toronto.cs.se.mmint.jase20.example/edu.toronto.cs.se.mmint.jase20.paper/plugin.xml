@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><plugin>
+  <extension id="iso26262.Iso26262" point="org.eclipse.viatra.query.runtime.queryspecification">
+    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:iso26262.Iso26262" id="iso26262.Iso26262">
+      <query-specification fqn="iso26262.queryC"/>
+    </group>
+  </extension>
+</plugin>

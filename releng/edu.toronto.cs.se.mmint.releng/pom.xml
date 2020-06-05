@@ -193,6 +193,8 @@
   	<module>../../examples/MODELS15/edu.toronto.cs.se.modelepedia.models15_java</module>
   	<module>../../examples/MODELS15/edu.toronto.cs.se.modelepedia.models15_java.edit</module>
   	<module>../../examples/MODELS15/edu.toronto.cs.se.modelepedia.models15_java.editor</module>
+    <module>../../examples/JASE20/edu.toronto.cs.se.mmint.jase20</module>
+    <module>../../examples/JASE20/edu.toronto.cs.se.mmint.jase20.example</module>
   	<module>../../features/edu.toronto.cs.se.mmint.feature</module>
   	<module>../../features/edu.toronto.cs.se.mmint.sdk.feature</module>
   	<module>../../features/edu.toronto.cs.se.mummint.feature</module>
@@ -211,6 +213,7 @@
   	<module>../../features/edu.toronto.cs.se.modelepedia.models15.feature</module>
     <module>../../features/edu.toronto.cs.se.modelepedia.icse15.feature</module>
     <module>../../features/edu.toronto.cs.se.modelepedia.sosym18.feature</module>
+    <module>../../features/edu.toronto.cs.se.mmint.jase20.feature</module>
   	<module>../../tests/edu.toronto.cs.se.modelepedia.tests</module>
   	<module>../edu.toronto.cs.se.mmint.install</module>
   </modules>
