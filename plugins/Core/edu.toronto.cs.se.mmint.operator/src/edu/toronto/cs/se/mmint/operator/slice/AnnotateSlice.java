@@ -17,10 +17,8 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.jdt.annotation.Nullable;
@@ -101,8 +99,8 @@ public class AnnotateSlice extends OperatorImpl {
     buffer.newLine();
   }
 
-  private void annotateSliceType(List<MappingReference> mappingRefs, String header, BufferedWriter buffer,
-                                 Set<String> alreadyAnnotated) throws IOException {
+  private void annotateSliceType(List<MappingReference> mappingRefs, String header, BufferedWriter buffer)
+                                throws IOException {
     buffer.write(header);
     buffer.newLine();
     buffer.newLine();
@@ -110,17 +108,13 @@ public class AnnotateSlice extends OperatorImpl {
       var sliceTypeId = mappingRef.getObject().getMetatypeUri();
       for (var modelElemEndpointRef : mappingRef.getModelElemEndpointRefs()) {
         var modelElemRef = modelElemEndpointRef.getModelElemRef();
-        // annotate each model element once, extracting all mappings attached as causes
-        if (alreadyAnnotated.contains(modelElemRef.getUri())) {//TODO
-          continue;
-        }
+        // extract all mappings attached as causes
         var cause = modelElemRef.getModelElemEndpointRefs().stream()
           .map(meer -> ((MappingReference) meer.eContainer()).getObject())
-          .filter(m -> m.getMetatypeUri().equals(sliceTypeId)) // discard lower priority causes TODO
+          .filter(m -> m.getMetatypeUri().equals(sliceTypeId)) // use only causes from same slice type
           .map(Mapping::getName)
           .collect(Collectors.joining(", "));
         annotateModelElem(modelElemRef.getObject(), cause, buffer);
-        alreadyAnnotated.add(modelElemRef.getUri());//TODO
       }
     }
   }
@@ -130,12 +124,11 @@ public class AnnotateSlice extends OperatorImpl {
                                                       this.input.model.getName() + "_" + Output.OUT_MODEL + ".txt");
     var systemFilePath = FileUtils.prependWorkspacePath(filePath);
     try (var buffer = Files.newBufferedWriter(Paths.get(systemFilePath), Charset.forName("UTF-8"))) {
-      // group mappings by slice types and order by priority
+      // group mappings by slice types
       var mappingTypes = this.input.sliceRel.getMappingRefs().stream()
         .collect(Collectors.groupingBy(mr -> mr.getObject().getMetatype().getName()));
-      var alreadyAnnotated = new HashSet<String>();
       for (var mappingEntry : mappingTypes.entrySet()) {
-        annotateSliceType(mappingEntry.getValue(), mappingEntry.getKey(), buffer, alreadyAnnotated);
+        annotateSliceType(mappingEntry.getValue(), mappingEntry.getKey(), buffer);
         buffer.newLine();
       }
     }
