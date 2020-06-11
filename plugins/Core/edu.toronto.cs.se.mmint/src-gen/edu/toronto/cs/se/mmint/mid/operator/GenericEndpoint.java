@@ -74,7 +74,6 @@ public interface GenericEndpoint extends ExtendibleElementEndpoint {
    * Gets the generic supertype endpoint of this generic type endpoint.
    * <!-- end-model-doc -->
    * @model kind="operation"
-   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElementEndpoint supertype = super.getSupertype();\nreturn (supertype == null) ? null : (GenericEndpoint) supertype;'"
    * @generated
    */
     GenericEndpoint getSupertype();
@@ -87,7 +86,6 @@ public interface GenericEndpoint extends ExtendibleElementEndpoint {
    * Gets the generic target of this generic endpoint.
    * <!-- end-model-doc -->
    * @model kind="operation" required="true"
-   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='GenericElement target = MIDTypeRegistry.getType(getMetatargetUri());\nreturn target;'"
    * @generated
    */
     GenericElement getTarget();
@@ -100,7 +98,6 @@ public interface GenericEndpoint extends ExtendibleElementEndpoint {
    * Sets the generic target of this generic endpoint.
    * <!-- end-model-doc -->
    * @model newTargetRequired="true"
-   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='setMetatargetUri(newTarget.getUri());'"
    * @generated
    */
     void setTarget(ExtendibleElement newTarget);
@@ -113,7 +110,6 @@ public interface GenericEndpoint extends ExtendibleElementEndpoint {
    * Gets the generic type endpoint of this generic instance endpoint.
    * <!-- end-model-doc -->
    * @model kind="operation" required="true"
-   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElementEndpoint metatype = super.getMetatype();\nreturn (metatype == null) ? null : (GenericEndpoint) metatype;'"
    * @generated
    */
     GenericEndpoint getMetatype();

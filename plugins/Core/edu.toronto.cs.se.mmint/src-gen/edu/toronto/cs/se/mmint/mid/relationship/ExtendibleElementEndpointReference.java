@@ -35,7 +35,6 @@ public interface ExtendibleElementEndpointReference extends ExtendibleElementRef
    * The uri of the referenced endpoint's target.
    * <!-- end-model-doc -->
    * @model kind="operation"
-   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElementEndpoint object = this.getObject();\nreturn (object == null) ? null : object.getTargetUri();'"
    * @generated
    */
     String getTargetUri();
@@ -48,7 +47,6 @@ public interface ExtendibleElementEndpointReference extends ExtendibleElementRef
    * Gets the referenced element endpoint.
    * <!-- end-model-doc -->
    * @model kind="operation" required="true"
-   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElement object = super.getObject();\nreturn (object == null) ? null : (ExtendibleElementEndpoint) object;'"
    * @generated
    */
     ExtendibleElementEndpoint getObject();
@@ -61,7 +59,6 @@ public interface ExtendibleElementEndpointReference extends ExtendibleElementRef
    * Gets the element supertype endpoint reference of this element type endpoint reference.
    * <!-- end-model-doc -->
    * @model kind="operation"
-   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElementReference supertypeRef = super.getSupertypeRef();\nreturn (supertypeRef == null) ? null : (ExtendibleElementEndpointReference) supertypeRef;'"
    * @generated
    */
     ExtendibleElementEndpointReference getSupertypeRef();

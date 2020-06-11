@@ -471,7 +471,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
     @Override
     public EObject getEMFInstanceObject(@Nullable Resource emfResource) throws MMINTException {
 
-        //TODO MMINT[OO] Add emfResource as a cached protected member of Model to optimize every memory access
+        //TODO MMINT[OO] Does the argument still make sense?
         MMINTException.mustBeInstance(this);
 
         String modelObjUri = MIDRegistry.getModelObjectUri(this);
@@ -482,6 +482,10 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
                               !lastSegment.startsWith("_");
         if (isPrimitive) {
             modelObjUri = modelObjUri.substring(0, lastSegmentIndex);
+        }
+        if (emfResource == null) {
+            var modelContainer = (Model) this.eContainer();
+            emfResource = modelContainer.getEMFInstanceResource();
         }
         EObject modelObj;
         try {

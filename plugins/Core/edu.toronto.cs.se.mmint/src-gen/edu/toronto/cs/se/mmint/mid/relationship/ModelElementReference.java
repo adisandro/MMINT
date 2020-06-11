@@ -62,7 +62,6 @@ public interface ModelElementReference extends ExtendibleElementReference {
    * Gets the referenced model element.
    * <!-- end-model-doc -->
    * @model kind="operation" required="true"
-   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElement object = super.getObject();\nreturn (object == null) ? null : (ModelElement) object;'"
    * @generated
    */
     ModelElement getObject();
@@ -75,7 +74,6 @@ public interface ModelElementReference extends ExtendibleElementReference {
    * Gets the model element supertype reference of this model element type reference.
    * <!-- end-model-doc -->
    * @model kind="operation"
-   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElementReference supertypeRef = super.getSupertypeRef();\nreturn (supertypeRef == null) ? null : (ModelElementReference) supertypeRef;'"
    * @generated
    */
     ModelElementReference getSupertypeRef();

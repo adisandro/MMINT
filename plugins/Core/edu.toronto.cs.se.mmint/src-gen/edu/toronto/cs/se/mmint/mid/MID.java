@@ -140,7 +140,6 @@ public interface MID extends EObject {
      * 
      * @return True if this is a Type MID, false otherwise. <!-- end-user-doc -->
    * @model kind="operation" required="true"
-   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return this.getLevel() == MIDLevel.TYPES;'"
    * @generated
    */
     boolean isTypesLevel();
@@ -150,7 +149,6 @@ public interface MID extends EObject {
      * 
      * @return True if this is an Instance MID, false otherwise. <!-- end-user-doc -->
    * @model kind="operation" required="true"
-   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return this.getLevel() == MIDLevel.INSTANCES;'"
    * @generated
    */
     boolean isInstancesLevel();
@@ -160,7 +158,6 @@ public interface MID extends EObject {
      * 
      * @return True if this is a Workflow MID, false otherwise. <!-- end-user-doc -->
    * @model kind="operation" required="true"
-   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return this.getLevel() == MIDLevel.WORKFLOWS;'"
    * @generated
    */
     boolean isWorkflowsLevel();
@@ -182,7 +179,6 @@ public interface MID extends EObject {
      * 
      * @return The model rels contained in this MID. <!-- end-user-doc -->
    * @model kind="operation"
-   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='EList&lt;ModelRel&gt; modelRels = new BasicEList&lt;&gt;();\nfor (Model model : this.getModels()) {\n\tif (model instanceof ModelRel) {\n\t\tmodelRels.add((ModelRel) model);\n\t}\n}\nreturn modelRels;'"
    * @generated
    */
     EList<ModelRel> getModelRels();

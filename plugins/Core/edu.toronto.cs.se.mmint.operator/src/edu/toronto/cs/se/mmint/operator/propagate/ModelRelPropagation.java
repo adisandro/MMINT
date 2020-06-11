@@ -35,7 +35,6 @@ import edu.toronto.cs.se.mmint.mid.relationship.BinaryMapping;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
 public class ModelRelPropagation extends OperatorImpl {
@@ -137,8 +136,6 @@ public class ModelRelPropagation extends OperatorImpl {
     // prepare the propagated rel
     var propModelEndpointRef = this.output.propRel.getModelEndpointRefs().get(0);
     var propModelPath = this.input.propModel.getUri();
-    var propModelEMFUri = FileUtils.createEMFUri(propModelPath, true);
-    var propModelEMFResource = FileUtils.getResource(propModelEMFUri, null);
     // get sharedModel elements that are in origRel, in case there are traces for other sharedModel elements
     var origModelObjUris = this.input.origRel.getModelEndpointRefs().get(0).getModelElemRefs().stream()
       .map(origModelElemRef -> MIDRegistry.getModelObjectUri(origModelElemRef.getObject()))
@@ -188,7 +185,7 @@ public class ModelRelPropagation extends OperatorImpl {
           (propModelElemRef.isPresent()) ?
             propModelElemRef.get() :
             propModelEndpointRef.createModelElementInstanceAndReference(
-              propModelElem.getEMFInstanceObject(propModelEMFResource), propModelElem.getName()));
+              propModelElem.getEMFInstanceObject(null), propModelElem.getName()));
       }
     }
 

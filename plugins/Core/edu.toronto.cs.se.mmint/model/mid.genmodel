@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="Copyright (c) 2012-2020 Marsha Chechik, Alessio Di Sandro, Rick Salay.&#xA;All rights reserved. This program and the accompanying materials&#xA;are made available under the terms of the Eclipse Public License v1.0&#xA;which accompanies this distribution, and is available at&#xA;http://www.eclipse.org/legal/epl-v10.html&#xA;&#xA;Contributors:&#xA;   Alessio Di Sandro - Implementation."
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="Copyright (c) 2012-2020 Alessio Di Sandro, Marsha Chechik, Rick Salay.&#xA;All rights reserved. This program and the accompanying materials are made available under the terms&#xA;of the Eclipse Public License v1.0 which accompanies this distribution, and is available at&#xA;http://www.eclipse.org/legal/epl-v10.html&#xA;&#xA;Contributors:&#xA;   Alessio Di Sandro - Implementation"
     modelDirectory="/edu.toronto.cs.se.mmint/src-gen" editDirectory="/edu.toronto.cs.se.mmint.edit/src-gen"
     editorDirectory="/edu.toronto.cs.se.mmint.editor/src-gen" modelPluginID="edu.toronto.cs.se.mmint"
     modelName="MID" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
-    importerID="org.eclipse.emf.importer.ecore" complianceLevel="12.0" copyrightFields="false"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="14.0" copyrightFields="false"
     operationReflection="true" importOrganizing="true">
   <foreignModel>mid.ecore</foreignModel>
   <genPackages prefix="MID" basePackage="edu.toronto.cs.se.mmint" disposableProviderFactory="true"
@@ -105,8 +105,8 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mid.ecore#//Model/editors"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//Model/modelElems"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mid.ecore#//Model/conversionOperators"/>
-      <genFeatures property="None" notify="false" createChild="false" propertySortChoices="true"
-          ecoreFeature="ecore:EReference mid.ecore#//Model/EMFInstanceRoot"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//Model/EMFInstanceResource"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference mid.ecore#//Model/EMFInstanceRoot"/>
       <genOperations ecoreOperation="mid.ecore#//Model/getMetatype" body="ExtendibleElement metatype = super.getMetatype();&#xA;return (metatype == null) ? null : (Model) metatype;"/>
       <genOperations ecoreOperation="mid.ecore#//Model/getSupertype" body="ExtendibleElement supertype = super.getSupertype();&#xA;return (supertype == null) ? null : (Model) supertype;"/>
       <genOperations ecoreOperation="mid.ecore#//Model/getMIDContainer" body="return (MID) this.eContainer();"/>

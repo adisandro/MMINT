@@ -1146,13 +1146,22 @@ public interface MIDPackage extends EPackage {
     int MODEL__CONVERSION_OPERATORS = GENERIC_ELEMENT_FEATURE_COUNT + 4;
 
     /**
+   * The feature id for the '<em><b>EMF Instance Resource</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MODEL__EMF_INSTANCE_RESOURCE = GENERIC_ELEMENT_FEATURE_COUNT + 5;
+
+    /**
    * The feature id for the '<em><b>EMF Instance Root</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int MODEL__EMF_INSTANCE_ROOT = GENERIC_ELEMENT_FEATURE_COUNT + 5;
+  int MODEL__EMF_INSTANCE_ROOT = GENERIC_ELEMENT_FEATURE_COUNT + 6;
 
     /**
    * The number of structural features of the '<em>Model</em>' class.
@@ -1161,7 +1170,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_FEATURE_COUNT = GENERIC_ELEMENT_FEATURE_COUNT + 6;
+    int MODEL_FEATURE_COUNT = GENERIC_ELEMENT_FEATURE_COUNT + 7;
 
     /**
    * The operation id for the '<em>Is Level</em>' operation.
@@ -2962,6 +2971,17 @@ public interface MIDPackage extends EPackage {
     EReference getModel_ConversionOperators();
 
     /**
+   * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmint.mid.Model#getEMFInstanceResource <em>EMF Instance Resource</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>EMF Instance Resource</em>'.
+   * @see edu.toronto.cs.se.mmint.mid.Model#getEMFInstanceResource()
+   * @see #getModel()
+   * @generated
+   */
+  EAttribute getModel_EMFInstanceResource();
+
+    /**
    * Returns the meta object for the reference '{@link edu.toronto.cs.se.mmint.mid.Model#getEMFInstanceRoot <em>EMF Instance Root</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -4124,6 +4144,14 @@ public interface MIDPackage extends EPackage {
      * @generated
      */
         EReference MODEL__CONVERSION_OPERATORS = eINSTANCE.getModel_ConversionOperators();
+
+        /**
+     * The meta object literal for the '<em><b>EMF Instance Resource</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute MODEL__EMF_INSTANCE_RESOURCE = eINSTANCE.getModel_EMFInstanceResource();
 
         /**
      * The meta object literal for the '<em><b>EMF Instance Root</b></em>' reference feature.

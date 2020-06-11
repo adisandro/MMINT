@@ -177,7 +177,6 @@ public interface Operator extends GenericElement {
    * Gets the operator type of this operator instance.
    * <!-- end-model-doc -->
    * @model kind="operation" required="true"
-   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElement metatype = super.getMetatype();\nreturn (metatype == null) ? null : (Operator) metatype;'"
    * @generated
    */
     Operator getMetatype();
@@ -190,7 +189,6 @@ public interface Operator extends GenericElement {
    * Gets the operator supertype of this operator type.
    * <!-- end-model-doc -->
    * @model kind="operation"
-   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElement supertype = super.getSupertype();\nreturn (supertype == null) ? null : (Operator) supertype;'"
    * @generated
    */
     Operator getSupertype();
@@ -199,7 +197,6 @@ public interface Operator extends GenericElement {
    * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
    * @model kind="operation"
-   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return (MID) this.eContainer();'"
    * @generated
    */
     MID getMIDContainer();

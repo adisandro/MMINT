@@ -22,7 +22,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
-import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.eclipse.core.filesystem.EFS;
 import org.eclipse.core.filesystem.IFileStore;
@@ -38,6 +39,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.Resource.Diagnostic;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMLResource;
@@ -354,9 +356,7 @@ public class FileUtils {
 		var emfUri = FileUtils.createEMFUri(filePath, isWorkspaceRelative);
 		var resource = new ResourceSetImpl().createResource(emfUri);
 		resource.getContents().add(rootModelObj);
-		var options = new HashMap<String, Object>();
-		options.put(XMLResource.OPTION_SCHEMA_LOCATION, true);
-		resource.save(options);
+		resource.save(Map.of(XMLResource.OPTION_SCHEMA_LOCATION, true));
 	}
 
 	public static void writeModelFileInState(@NonNull EObject rootModelObj, @NonNull String relativeFilePath) throws IOException {
@@ -364,24 +364,32 @@ public class FileUtils {
 		FileUtils.writeModelFile(rootModelObj, FileUtils.prependStatePath(relativeFilePath), false);
 	}
 
-  public static Resource getResource(URI emfUri, @Nullable ResourceSet resourceSet) {
+  public static Resource getEMFResource(URI emfUri, @Nullable ResourceSet resourceSet) throws Exception {
     if (resourceSet == null) {
       resourceSet = new ResourceSetImpl();
     }
     resourceSet.getLoadOptions().put(XMLResource.OPTION_RECORD_UNKNOWN_FEATURE, Boolean.TRUE);
     var resource = resourceSet.getResource(emfUri, true);
+    if (resource.getErrors().size() > 0) {
+      var errors = resource.getErrors().stream().map(Diagnostic::getMessage).collect(Collectors.joining(". "));
+      throw new MMINTException("Errors loading resource: " + errors);
+    }
+    if (resource.getContents().size() == 0) {
+      throw new MMINTException("Empty resource");
+    }
 
     return resource;
   }
 
+  public static Resource getEMFResource(String filePath, @Nullable ResourceSet resourceSet, boolean isWorkspaceRelative)
+                                    throws Exception {
+    var emfUri = FileUtils.createEMFUri(filePath, isWorkspaceRelative);
+    return FileUtils.getEMFResource(emfUri, resourceSet);
+  }
+
   public static @NonNull EObject readModelFile(@NonNull String filePath, @Nullable ResourceSet resourceSet,
                                                boolean isWorkspaceRelative) throws Exception {
-    var emfUri = FileUtils.createEMFUri(filePath, isWorkspaceRelative);
-    var resource = FileUtils.getResource(emfUri, resourceSet);
-    if (resource.getErrors().size() > 0 || resource.getContents().size() == 0) {
-      throw new MMINTException("Error loading model resource");
-    }
-
+    var resource = FileUtils.getEMFResource(filePath, resourceSet, isWorkspaceRelative);
     return resource.getContents().get(0);
 	}
 
@@ -389,15 +397,12 @@ public class FileUtils {
 		return FileUtils.readModelFile(FileUtils.prependStatePath(relativeFilePath), null, false);
 	}
 
-	public static @NonNull EObject readModelObject(@NonNull String fileObjectUri, @Nullable Resource resource) throws Exception {
+	public static @NonNull EObject readModelObject(@NonNull String fileObjectUri, @Nullable Resource resource)
+	                                              throws Exception {
 		var emfUri = URI.createURI(fileObjectUri, false, URI.FRAGMENT_LAST_SEPARATOR);
 		if (resource == null) {
-		  resource = FileUtils.getResource(emfUri, null);
-	    if (resource.getErrors().size() > 0 || resource.getContents().size() == 0) {
-	      throw new MMINTException("Error loading model resource");
-	    }
+		  resource = FileUtils.getEMFResource(emfUri, null);
 		}
-
 		return resource.getEObject(emfUri.fragment());
 	}
 

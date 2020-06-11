@@ -93,7 +93,6 @@ public interface BinaryMappingReference extends MappingReference {
    * Gets the referenced binary mapping.
    * <!-- end-model-doc -->
    * @model kind="operation" required="true"
-   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElement object = super.getObject();\nreturn (object == null) ? null : (BinaryMapping) object;'"
    * @generated
    */
     BinaryMapping getObject();

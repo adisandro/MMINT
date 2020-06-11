@@ -86,7 +86,7 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
    * @generated
    * @ordered
    */
-    protected String nestedMIDPath = NestingOperatorImpl.NESTED_MID_PATH_EDEFAULT;
+    protected String nestedMIDPath = NESTED_MID_PATH_EDEFAULT;
 
     /**
      * The nested MID, kept in memory for performance reasons (different from
@@ -132,7 +132,7 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
    */
     @Override
     public String getNestedMIDPath() {
-    return this.nestedMIDPath;
+    return nestedMIDPath;
   }
 
     /**
@@ -142,10 +142,10 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
    */
     @Override
     public void setNestedMIDPath(String newNestedMIDPath) {
-    String oldNestedMIDPath = this.nestedMIDPath;
-    this.nestedMIDPath = newNestedMIDPath;
+    String oldNestedMIDPath = nestedMIDPath;
+    nestedMIDPath = newNestedMIDPath;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.NESTING_OPERATOR__NESTED_MID_PATH, oldNestedMIDPath, this.nestedMIDPath));
+      eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.NESTING_OPERATOR__NESTED_MID_PATH, oldNestedMIDPath, nestedMIDPath));
   }
 
     /**
@@ -186,7 +186,7 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
     public void eUnset(int featureID) {
     switch (featureID) {
       case OperatorPackage.NESTING_OPERATOR__NESTED_MID_PATH:
-        setNestedMIDPath(NestingOperatorImpl.NESTED_MID_PATH_EDEFAULT);
+        setNestedMIDPath(NESTED_MID_PATH_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -201,7 +201,7 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
     public boolean eIsSet(int featureID) {
     switch (featureID) {
       case OperatorPackage.NESTING_OPERATOR__NESTED_MID_PATH:
-        return NestingOperatorImpl.NESTED_MID_PATH_EDEFAULT == null ? this.nestedMIDPath != null : !NestingOperatorImpl.NESTED_MID_PATH_EDEFAULT.equals(this.nestedMIDPath);
+        return NESTED_MID_PATH_EDEFAULT == null ? nestedMIDPath != null : !NESTED_MID_PATH_EDEFAULT.equals(nestedMIDPath);
     }
     return super.eIsSet(featureID);
   }
@@ -244,7 +244,7 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
 
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (nestedMIDPath: ");
-    result.append(this.nestedMIDPath);
+    result.append(nestedMIDPath);
     result.append(')');
     return result.toString();
   }

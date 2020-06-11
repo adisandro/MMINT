@@ -17,6 +17,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
+import org.eclipse.emf.ecore.resource.Resource;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
@@ -39,6 +40,7 @@ import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
  *   <li>{@link edu.toronto.cs.se.mmint.mid.Model#getEditors <em>Editors</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.Model#getModelElems <em>Model Elems</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.Model#getConversionOperators <em>Conversion Operators</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmint.mid.Model#getEMFInstanceResource <em>EMF Instance Resource</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.Model#getEMFInstanceRoot <em>EMF Instance Root</em>}</li>
  * </ul>
  *
@@ -146,6 +148,28 @@ public interface Model extends GenericElement {
     EList<ConversionOperator> getConversionOperators();
 
     /**
+   * Returns the value of the '<em><b>EMF Instance Resource</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>EMF Instance Resource</em>' attribute.
+   * @see #setEMFInstanceResource(Resource)
+   * @see edu.toronto.cs.se.mmint.mid.MIDPackage#getModel_EMFInstanceResource()
+   * @model transient="true"
+   * @generated
+   */
+  Resource getEMFInstanceResource();
+
+    /**
+   * Sets the value of the '{@link edu.toronto.cs.se.mmint.mid.Model#getEMFInstanceResource <em>EMF Instance Resource</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>EMF Instance Resource</em>' attribute.
+   * @see #getEMFInstanceResource()
+   * @generated
+   */
+  void setEMFInstanceResource(Resource value);
+
+    /**
    * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
    * <!-- begin-model-doc -->
@@ -153,7 +177,6 @@ public interface Model extends GenericElement {
    * Gets the model type of this model instance.
    * <!-- end-model-doc -->
    * @model kind="operation" required="true"
-   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElement metatype = super.getMetatype();\nreturn (metatype == null) ? null : (Model) metatype;'"
    * @generated
    */
     @Override
@@ -167,7 +190,6 @@ public interface Model extends GenericElement {
    * Gets the model supertype of this model type.
    * <!-- end-model-doc -->
    * @model kind="operation"
-   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElement supertype = super.getSupertype();\nreturn (supertype == null) ? null : (Model) supertype;'"
    * @generated
    */
     @Override
@@ -177,7 +199,6 @@ public interface Model extends GenericElement {
    * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
    * @model kind="operation"
-   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return (MID) this.eContainer();'"
    * @generated
    */
     @Override

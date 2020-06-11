@@ -766,8 +766,18 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
    * @generated
    */
   @Override
+  public EAttribute getModel_EMFInstanceResource() {
+    return (EAttribute)modelEClass.getEStructuralFeatures().get(5);
+  }
+
+    /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EReference getModel_EMFInstanceRoot() {
-    return (EReference)modelEClass.getEStructuralFeatures().get(5);
+    return (EReference)modelEClass.getEStructuralFeatures().get(6);
   }
 
     /**
@@ -1535,6 +1545,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
     createEReference(modelEClass, MODEL__EDITORS);
     createEReference(modelEClass, MODEL__MODEL_ELEMS);
     createEReference(modelEClass, MODEL__CONVERSION_OPERATORS);
+    createEAttribute(modelEClass, MODEL__EMF_INSTANCE_RESOURCE);
     createEReference(modelEClass, MODEL__EMF_INSTANCE_ROOT);
     createEOperation(modelEClass, MODEL___GET_METATYPE);
     createEOperation(modelEClass, MODEL___GET_SUPERTYPE);
@@ -1768,6 +1779,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
     initEReference(getModel_Editors(), theEditorPackage.getEditor(), null, "editors", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getModel_ModelElems(), this.getModelElement(), null, "modelElems", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getModel_ConversionOperators(), theOperatorPackage.getConversionOperator(), null, "conversionOperators", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getModel_EMFInstanceResource(), ecorePackage.getEResource(), "EMFInstanceResource", null, 0, 1, Model.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getModel_EMFInstanceRoot(), ecorePackage.getEObject(), null, "EMFInstanceRoot", null, 0, 1, Model.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEOperation(getModel__GetMetatype(), this.getModel(), "getMetatype", 1, 1, IS_UNIQUE, IS_ORDERED);

@@ -59,7 +59,6 @@ public interface MappingReference extends ExtendibleElementReference {
    * Gets the referenced mapping.
    * <!-- end-model-doc -->
    * @model kind="operation" required="true"
-   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElement object = super.getObject();\nreturn (object == null) ? null : (Mapping) object;'"
    * @generated
    */
     Mapping getObject();
@@ -72,7 +71,6 @@ public interface MappingReference extends ExtendibleElementReference {
    * Gets the mapping supertype reference of this mapping type reference.
    * <!-- end-model-doc -->
    * @model kind="operation"
-   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElementReference supertypeRef = super.getSupertypeRef();\nreturn (supertypeRef == null) ? null : (MappingReference) supertypeRef;'"
    * @generated
    */
     MappingReference getSupertypeRef();

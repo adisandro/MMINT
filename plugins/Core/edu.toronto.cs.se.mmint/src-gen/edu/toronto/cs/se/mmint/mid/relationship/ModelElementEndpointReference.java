@@ -70,7 +70,6 @@ public interface ModelElementEndpointReference extends ExtendibleElementEndpoint
    * Gets the referenced model element endpoint.
    * <!-- end-model-doc -->
    * @model kind="operation" required="true"
-   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElementEndpoint object = super.getObject();\nreturn (object == null) ? null : (ModelElementEndpoint) object;'"
    * @generated
    */
     ModelElementEndpoint getObject();
@@ -83,7 +82,6 @@ public interface ModelElementEndpointReference extends ExtendibleElementEndpoint
    * Gets the model element supertype endpoint reference of this model element type endpoint reference.
    * <!-- end-model-doc -->
    * @model kind="operation"
-   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElementEndpointReference supertypeRef = super.getSupertypeRef();\nreturn (supertypeRef == null) ? null : (ModelElementEndpointReference) supertypeRef;'"
    * @generated
    */
     ModelElementEndpointReference getSupertypeRef();

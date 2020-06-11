@@ -33,7 +33,6 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
 /**
@@ -258,8 +257,6 @@ public class Slice extends OperatorImpl {
   protected void slice() throws MMINTException {
     // retrieve resource corresponding to the model instance
     var critModelEndpointRef = this.input.critRel.getModelEndpointRefs().get(0);
-    var rUri = FileUtils.createEMFUri(critModelEndpointRef.getTargetUri(), true);
-    var r = FileUtils.getResource(rUri, null);
 
     // loop through the input criterion and slice the model elements
     for (var critMapping : this.input.critRel.getMappings()) {
@@ -271,7 +268,7 @@ public class Slice extends OperatorImpl {
           critName;
         var info = new SliceInfo(critMapping.getMetatypeUri(), null, ruleName);
         try {
-          var critModelObj = critModelElem.getEMFInstanceObject(r);
+          var critModelObj = critModelElem.getEMFInstanceObject(null);
           // pass criterion to output as-is first
           this.allSliced.merge(critModelObj, info, this.typesOrder);
           this.allVisited.merge(critModelObj, info, this.typesOrder);

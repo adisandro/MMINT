@@ -125,7 +125,6 @@ public interface ExtendibleElement extends EObject {
      * 
      * @return The static metatype. <!-- end-user-doc -->
    * @model kind="operation" required="true"
-   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return MIDTypeRegistry.getType(getMetatypeUri());'"
    * @generated
    */
     ExtendibleElement getMetatype();
@@ -135,7 +134,6 @@ public interface ExtendibleElement extends EObject {
      * 
      * @return The MID container, or null if this element is not contained in a MID. <!-- end-user-doc -->
    * @model kind="operation"
-   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return null;'"
    * @generated
    */
     MID getMIDContainer();
@@ -147,7 +145,6 @@ public interface ExtendibleElement extends EObject {
      *            The MID level to check against.
      * @return True if this element is at the specified MID level, false otherwise. <!-- end-user-doc -->
    * @model required="true" midLevelRequired="true"
-   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return this.getLevel() == midLevel;'"
    * @generated
    */
     boolean isLevel(MIDLevel midLevel);
@@ -157,7 +154,6 @@ public interface ExtendibleElement extends EObject {
      * 
      * @return True if this is a type, false otherwise. <!-- end-user-doc -->
    * @model kind="operation" required="true"
-   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return this.isLevel(MIDLevel.TYPES);'"
    * @generated
    */
     boolean isTypesLevel();
@@ -298,7 +294,6 @@ public interface ExtendibleElement extends EObject {
      * 
      * @return True if this is an instance, false otherwise. <!-- end-user-doc -->
    * @model kind="operation" required="true"
-   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return this.isLevel(MIDLevel.INSTANCES);'"
    * @generated
    */
     boolean isInstancesLevel();
@@ -381,7 +376,6 @@ public interface ExtendibleElement extends EObject {
      * 
      * @return True if this is a workflow element, false otherwise. <!-- end-user-doc -->
    * @model kind="operation" required="true"
-   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return this.isLevel(MIDLevel.WORKFLOWS);'"
    * @generated
    */
     boolean isWorkflowsLevel();

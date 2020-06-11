@@ -346,6 +346,8 @@
         <details key="documentation" value="The conversion operator types that use this model type as input (instances: always null)."/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="EMFInstanceResource" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EResource"
+        transient="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="EMFInstanceRoot" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
         transient="true"/>
   </eClassifiers>

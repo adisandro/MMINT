@@ -77,7 +77,6 @@ public interface Mapping extends ExtendibleElement {
    * Gets the mapping type of this mapping instance.
    * <!-- end-model-doc -->
    * @model kind="operation" required="true"
-   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElement metatype = super.getMetatype();\nreturn (metatype == null) ? null : (Mapping) metatype;'"
    * @generated
    */
     @Override
@@ -91,7 +90,6 @@ public interface Mapping extends ExtendibleElement {
    * Gets the mapping supertype of this mapping type.
    * <!-- end-model-doc -->
    * @model kind="operation"
-   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElement supertype = super.getSupertype();\nreturn (supertype == null) ? null : (Mapping) supertype;'"
    * @generated
    */
     @Override
@@ -101,7 +99,6 @@ public interface Mapping extends ExtendibleElement {
    * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
    * @model kind="operation"
-   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return (MID) this.eContainer().eContainer();'"
    * @generated
    */
     @Override
@@ -180,7 +177,7 @@ public interface Mapping extends ExtendibleElement {
     MappingReference createInstanceReference(ModelRel containerModelRel) throws MMINTException;
 
     /**
-     * <!-- begin-user-doc --> Creates and adds a mapping instance of this mapping type and a reference to it to an
+   * <!-- begin-user-doc --> Creates and adds a mapping instance of this mapping type and a reference to it to an
      * Instance MID.
      *
      * @param isBinary
@@ -191,10 +188,9 @@ public interface Mapping extends ExtendibleElement {
      * @throws MMINTException
      *           If this is a mapping instance, or if this mapping type is not allowed in the container model rel.
      * <!-- end-user-doc -->
-     * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" isBinaryRequired="true"
-     *        containerModelRelRequired="true"
-     * @generated
-     */
+   * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" isBinaryRequired="true" containerModelRelRequired="true"
+   * @generated
+   */
     MappingReference createInstanceAndReference(boolean isBinary, ModelRel containerModelRel) throws MMINTException;
 
     /**

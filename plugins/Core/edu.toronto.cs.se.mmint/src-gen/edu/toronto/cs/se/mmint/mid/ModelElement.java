@@ -73,7 +73,6 @@ public interface ModelElement extends ExtendibleElement {
    * Gets the model element type of this model element instance.
    * <!-- end-model-doc -->
    * @model kind="operation" required="true"
-   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElement metatype = super.getMetatype();\nreturn (metatype == null) ? null : (ModelElement) metatype;'"
    * @generated
    */
     ModelElement getMetatype();
@@ -86,7 +85,6 @@ public interface ModelElement extends ExtendibleElement {
    * Gets the model element supertype of this model element type.
    * <!-- end-model-doc -->
    * @model kind="operation"
-   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElement supertype = super.getSupertype();\nreturn (supertype == null) ? null : (ModelElement) supertype;'"
    * @generated
    */
     ModelElement getSupertype();
@@ -95,7 +93,6 @@ public interface ModelElement extends ExtendibleElement {
    * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
    * @model kind="operation"
-   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return (MID) this.eContainer().eContainer();'"
    * @generated
    */
     MID getMIDContainer();

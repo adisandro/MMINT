@@ -35,6 +35,7 @@ import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -81,6 +82,7 @@ import edu.toronto.cs.se.mmint.mid.utils.MIDTypeFactory;
  *   <li>{@link edu.toronto.cs.se.mmint.mid.impl.ModelImpl#getEditors <em>Editors</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.impl.ModelImpl#getModelElems <em>Model Elems</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.impl.ModelImpl#getConversionOperators <em>Conversion Operators</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmint.mid.impl.ModelImpl#getEMFInstanceResource <em>EMF Instance Resource</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.impl.ModelImpl#getEMFInstanceRoot <em>EMF Instance Root</em>}</li>
  * </ul>
  *
@@ -105,7 +107,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
    * @generated
    * @ordered
    */
-    protected ModelOrigin origin = ORIGIN_EDEFAULT;
+    protected ModelOrigin origin = ModelImpl.ORIGIN_EDEFAULT;
 
     /**
    * The default value of the '{@link #getFileExtension() <em>File Extension</em>}' attribute.
@@ -125,7 +127,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
    * @generated
    * @ordered
    */
-    protected String fileExtension = FILE_EXTENSION_EDEFAULT;
+    protected String fileExtension = ModelImpl.FILE_EXTENSION_EDEFAULT;
 
     /**
    * The cached value of the '{@link #getEditors() <em>Editors</em>}' reference list.
@@ -156,6 +158,26 @@ public class ModelImpl extends GenericElementImpl implements Model {
    * @ordered
    */
     protected EList<ConversionOperator> conversionOperators;
+
+    /**
+   * The default value of the '{@link #getEMFInstanceResource() <em>EMF Instance Resource</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getEMFInstanceResource()
+   * @generated
+   * @ordered
+   */
+  protected static final Resource EMF_INSTANCE_RESOURCE_EDEFAULT = null;
+
+    /**
+   * The cached value of the '{@link #getEMFInstanceResource() <em>EMF Instance Resource</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getEMFInstanceResource()
+   * @generated
+   * @ordered
+   */
+  protected Resource emfInstanceResource = ModelImpl.EMF_INSTANCE_RESOURCE_EDEFAULT;
 
     /**
    * The cached value of the '{@link #getEMFInstanceRoot() <em>EMF Instance Root</em>}' reference.
@@ -204,7 +226,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
     @Override
     public void setOrigin(ModelOrigin newOrigin) {
     ModelOrigin oldOrigin = this.origin;
-    this.origin = newOrigin == null ? ORIGIN_EDEFAULT : newOrigin;
+    this.origin = newOrigin == null ? ModelImpl.ORIGIN_EDEFAULT : newOrigin;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.MODEL__ORIGIN, oldOrigin, this.origin));
   }
@@ -276,6 +298,49 @@ public class ModelImpl extends GenericElementImpl implements Model {
    * <!-- end-user-doc -->
    * @generated
    */
+  public Resource getEMFInstanceResourceGen() {
+    return this.emfInstanceResource;
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public Resource getEMFInstanceResource() {
+    try {
+      MMINTException.mustBeInstance(this);
+      var emfResource = getEMFInstanceResourceGen();
+      if (emfResource == null) {
+        emfResource = FileUtils.getEMFResource(getUri(), null, true);
+        // bypass EMF notifications and the need for a write transaction
+        this.emfInstanceResource = emfResource;
+      }
+      return emfResource;
+    }
+    catch (Exception e) {
+      MMINTException.print(IStatus.WARNING, "Can't load EMF model resource, returning null", e);
+      return null;
+    }
+  }
+
+    /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setEMFInstanceResource(Resource newEMFInstanceResource) {
+    Resource oldEMFInstanceResource = this.emfInstanceResource;
+    this.emfInstanceResource = newEMFInstanceResource;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.MODEL__EMF_INSTANCE_RESOURCE, oldEMFInstanceResource, this.emfInstanceResource));
+  }
+
+    /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EObject getEMFInstanceRootGen() {
     if (this.emfInstanceRoot != null && this.emfInstanceRoot.eIsProxy()) {
       InternalEObject oldEMFInstanceRoot = (InternalEObject)this.emfInstanceRoot;
@@ -295,20 +360,26 @@ public class ModelImpl extends GenericElementImpl implements Model {
   public EObject getEMFInstanceRoot() {
     try {
       MMINTException.mustBeInstance(this);
-      /*TODO MMINT[OPERATOR]
-       * Previously, if rootModelObj was in memory, it would be copied (EcoreUtil.copy(this.inMemoryRootModelObj))
-       * Having to copy it is tricky because one never modifies a model in place with an operator (only with a MID diagram) but a new model is always created
-       */
-      var rootModelObj = getEMFInstanceRootGen();
-      if (rootModelObj == null) {
-        rootModelObj = FileUtils.readModelFile(this.getUri(), null, true);
-        this.emfInstanceRoot = rootModelObj; // bypass EMF notifications and the need for a write transaction
-      }
-      return rootModelObj;
     }
     catch (Exception e) {
+      MMINTException.print(IStatus.WARNING, "Can't load EMF model root, returning null", e);
       return null;
     }
+    /*TODO MMINT[OPERATOR]
+     * Previously, if rootModelObj was in memory, it would be copied (EcoreUtil.copy(this.inMemoryRootModelObj))
+     * Having to copy it is tricky because one never modifies a model in place with an operator (only with a MID diagram) but a new model is always created
+     */
+    var rootModelObj = getEMFInstanceRootGen();
+    if (rootModelObj == null) {
+      var emfResource = getEMFInstanceResource();
+      if (emfResource == null) {
+        return null;
+      }
+      rootModelObj = emfResource.getContents().get(0);
+      // bypass EMF notifications and the need for a write transaction
+      this.emfInstanceRoot = rootModelObj;
+    }
+    return rootModelObj;
   }
 
     /**
@@ -397,6 +468,8 @@ public class ModelImpl extends GenericElementImpl implements Model {
         return getModelElems();
       case MIDPackage.MODEL__CONVERSION_OPERATORS:
         return getConversionOperators();
+      case MIDPackage.MODEL__EMF_INSTANCE_RESOURCE:
+        return getEMFInstanceResource();
       case MIDPackage.MODEL__EMF_INSTANCE_ROOT:
         if (resolve) return getEMFInstanceRoot();
         return basicGetEMFInstanceRoot();
@@ -431,6 +504,9 @@ public class ModelImpl extends GenericElementImpl implements Model {
         getConversionOperators().clear();
         getConversionOperators().addAll((Collection<? extends ConversionOperator>)newValue);
         return;
+      case MIDPackage.MODEL__EMF_INSTANCE_RESOURCE:
+        setEMFInstanceResource((Resource)newValue);
+        return;
       case MIDPackage.MODEL__EMF_INSTANCE_ROOT:
         setEMFInstanceRoot((EObject)newValue);
         return;
@@ -447,10 +523,10 @@ public class ModelImpl extends GenericElementImpl implements Model {
     public void eUnset(int featureID) {
     switch (featureID) {
       case MIDPackage.MODEL__ORIGIN:
-        setOrigin(ORIGIN_EDEFAULT);
+        setOrigin(ModelImpl.ORIGIN_EDEFAULT);
         return;
       case MIDPackage.MODEL__FILE_EXTENSION:
-        setFileExtension(FILE_EXTENSION_EDEFAULT);
+        setFileExtension(ModelImpl.FILE_EXTENSION_EDEFAULT);
         return;
       case MIDPackage.MODEL__EDITORS:
         getEditors().clear();
@@ -460,6 +536,9 @@ public class ModelImpl extends GenericElementImpl implements Model {
         return;
       case MIDPackage.MODEL__CONVERSION_OPERATORS:
         getConversionOperators().clear();
+        return;
+      case MIDPackage.MODEL__EMF_INSTANCE_RESOURCE:
+        setEMFInstanceResource(ModelImpl.EMF_INSTANCE_RESOURCE_EDEFAULT);
         return;
       case MIDPackage.MODEL__EMF_INSTANCE_ROOT:
         setEMFInstanceRoot((EObject)null);
@@ -477,15 +556,17 @@ public class ModelImpl extends GenericElementImpl implements Model {
     public boolean eIsSet(int featureID) {
     switch (featureID) {
       case MIDPackage.MODEL__ORIGIN:
-        return this.origin != ORIGIN_EDEFAULT;
+        return this.origin != ModelImpl.ORIGIN_EDEFAULT;
       case MIDPackage.MODEL__FILE_EXTENSION:
-        return FILE_EXTENSION_EDEFAULT == null ? this.fileExtension != null : !FILE_EXTENSION_EDEFAULT.equals(this.fileExtension);
+        return ModelImpl.FILE_EXTENSION_EDEFAULT == null ? this.fileExtension != null : !ModelImpl.FILE_EXTENSION_EDEFAULT.equals(this.fileExtension);
       case MIDPackage.MODEL__EDITORS:
         return this.editors != null && !this.editors.isEmpty();
       case MIDPackage.MODEL__MODEL_ELEMS:
         return this.modelElems != null && !this.modelElems.isEmpty();
       case MIDPackage.MODEL__CONVERSION_OPERATORS:
         return this.conversionOperators != null && !this.conversionOperators.isEmpty();
+      case MIDPackage.MODEL__EMF_INSTANCE_RESOURCE:
+        return ModelImpl.EMF_INSTANCE_RESOURCE_EDEFAULT == null ? this.emfInstanceResource != null : !ModelImpl.EMF_INSTANCE_RESOURCE_EDEFAULT.equals(this.emfInstanceResource);
       case MIDPackage.MODEL__EMF_INSTANCE_ROOT:
         return this.emfInstanceRoot != null;
     }
@@ -659,6 +740,8 @@ public class ModelImpl extends GenericElementImpl implements Model {
     result.append(this.origin);
     result.append(", fileExtension: ");
     result.append(this.fileExtension);
+    result.append(", EMFInstanceResource: ");
+    result.append(this.emfInstanceResource);
     result.append(')');
     return result.toString();
   }

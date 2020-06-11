@@ -22,7 +22,6 @@ import java.util.stream.Stream;
 
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.compare.Comparison;
 import org.eclipse.emf.compare.EMFCompare;
 import org.eclipse.emf.compare.scope.DefaultComparisonScope;
@@ -158,19 +157,16 @@ public class Fix extends NestingOperatorImpl {
         }
     }
 
-    private boolean isFixed(Model model1, Model model2) {
+    private boolean isFixed(Model model1, Model model2) throws Exception {
 
         ResourceSet srcResourceSet = new ResourceSetImpl();
-        FileUtils.getResource(URI.createPlatformResourceURI(model1.getUri(), true), srcResourceSet);
+        FileUtils.getEMFResource(model1.getUri(), srcResourceSet, true);
         ResourceSet tgtResourceSet = new ResourceSetImpl();
-        FileUtils.getResource(URI.createPlatformResourceURI(model2.getUri(), true), tgtResourceSet);
+        FileUtils.getEMFResource(model2.getUri(), tgtResourceSet, true);
         IComparisonScope scope = new DefaultComparisonScope(srcResourceSet, tgtResourceSet, null);
         Comparison comparison = EMFCompare.builder().build().compare(scope);
-        if (!comparison.getDifferences().isEmpty()) {
-            return false;
-        }
 
-        return true;
+        return comparison.getDifferences().isEmpty();
     }
 
     private Map<String, Integer> getEndpointRefsMap(List<? extends ExtendibleElementEndpointReference> endpointRefs) {
@@ -248,7 +244,7 @@ public class Fix extends NestingOperatorImpl {
         return true;
     }
 
-    private boolean areFixed(@NonNull List<Model> inModels, @NonNull List<Model> outModels) throws MMINTException {
+    private boolean areFixed(@NonNull List<Model> inModels, @NonNull List<Model> outModels) throws Exception {
 
         Model midModelType = MIDTypeRegistry.getMIDModelType();
         for (int i = 0; i < inModels.size(); i++) {

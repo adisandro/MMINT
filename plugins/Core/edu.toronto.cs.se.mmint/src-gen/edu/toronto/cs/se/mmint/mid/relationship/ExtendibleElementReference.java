@@ -97,7 +97,6 @@ public interface ExtendibleElementReference extends EObject {
    * The referenced element. It can be owned by some other entity or by this reference itself, but not both.
    * <!-- end-model-doc -->
    * @model kind="operation"
-   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return (this.getContainedObject() == null) ?\n\tthis.getReferencedObject() :\n\tthis.getContainedObject();'"
    * @generated
    */
     ExtendibleElement getObject();
@@ -159,7 +158,6 @@ public interface ExtendibleElementReference extends EObject {
    * The uri of the referenced element.
    * <!-- end-model-doc -->
    * @model kind="operation"
-   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElement object = this.getObject();\nreturn (object == null) ? null : object.getUri();'"
    * @generated
    */
     String getUri();
@@ -170,7 +168,6 @@ public interface ExtendibleElementReference extends EObject {
      * @return The MID container, or null if this references an element that is not contained in a MID.
      * <!-- end-user-doc -->
    * @model kind="operation"
-   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return this.getObject().getMIDContainer();'"
    * @generated
    */
     MID getMIDContainer();
@@ -180,7 +177,6 @@ public interface ExtendibleElementReference extends EObject {
      * 
      * @return True if this is a reference to a type, false otherwise. <!-- end-user-doc -->
    * @model kind="operation" required="true"
-   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return this.getObject().isTypesLevel();'"
    * @generated
    */
     boolean isTypesLevel();
@@ -190,7 +186,6 @@ public interface ExtendibleElementReference extends EObject {
      * 
      * @return True if this is a reference to an instance, false otherwise. <!-- end-user-doc -->
    * @model kind="operation" required="true"
-   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return this.getObject().isInstancesLevel();'"
    * @generated
    */
     boolean isInstancesLevel();
@@ -200,7 +195,6 @@ public interface ExtendibleElementReference extends EObject {
      * 
      * @return True if this is a reference to a workflow element, false otherwise. <!-- end-user-doc -->
    * @model kind="operation" required="true"
-   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return this.getObject().isWorkflowsLevel();'"
    * @generated
    */
     boolean isWorkflowsLevel();

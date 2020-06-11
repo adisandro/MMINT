@@ -39,7 +39,6 @@ public interface ModelElementEndpoint extends ExtendibleElementEndpoint {
    * Gets the model element supertype endpoint of this model element type endpoint.
    * <!-- end-model-doc -->
    * @model kind="operation"
-   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElementEndpoint supertype = super.getSupertype();\nreturn (supertype == null) ? null : (ModelElementEndpoint) supertype;'"
    * @generated
    */
     ModelElementEndpoint getSupertype();
@@ -48,7 +47,6 @@ public interface ModelElementEndpoint extends ExtendibleElementEndpoint {
    * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
    * @model kind="operation"
-   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return (MID) this.eContainer().eContainer().eContainer();'"
    * @generated
    */
     MID getMIDContainer();
@@ -61,7 +59,6 @@ public interface ModelElementEndpoint extends ExtendibleElementEndpoint {
    * Gets the model element target of this model element endpoint.
    * <!-- end-model-doc -->
    * @model kind="operation" required="true"
-   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElement target = super.getTarget();\nreturn (target == null) ? null : (ModelElement) target;'"
    * @generated
    */
     ModelElement getTarget();
@@ -74,7 +71,6 @@ public interface ModelElementEndpoint extends ExtendibleElementEndpoint {
    * Gets the model element type endpoint of this model element instance endpoint.
    * <!-- end-model-doc -->
    * @model kind="operation" required="true"
-   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElementEndpoint metatype = super.getMetatype();\nreturn (metatype == null) ? null : (ModelElementEndpoint) metatype;'"
    * @generated
    */
     ModelElementEndpoint getMetatype();

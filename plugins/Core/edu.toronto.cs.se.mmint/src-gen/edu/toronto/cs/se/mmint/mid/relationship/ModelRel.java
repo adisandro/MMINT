@@ -112,7 +112,6 @@ public interface ModelRel extends Model {
    * Gets the model relationship type of this model relationship instance.
    * <!-- end-model-doc -->
    * @model kind="operation" required="true"
-   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElement metatype = super.getMetatype();\nreturn (metatype == null) ? null : (ModelRel) metatype;'"
    * @generated
    */
     @Override
@@ -126,7 +125,6 @@ public interface ModelRel extends Model {
    * Gets the model relationship supertype of this model relationship type.
    * <!-- end-model-doc -->
    * @model kind="operation"
-   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElement supertype = super.getSupertype();\nreturn (supertype == null) ? null : (Model) supertype;'"
    * @generated
    */
     @Override
@@ -136,7 +134,6 @@ public interface ModelRel extends Model {
    * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
    * @model kind="operation"
-   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return (MID) this.eContainer();'"
    * @generated
    */
     @Override

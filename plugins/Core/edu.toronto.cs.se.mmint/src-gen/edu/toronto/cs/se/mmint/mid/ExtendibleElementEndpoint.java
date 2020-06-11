@@ -117,7 +117,6 @@ public interface ExtendibleElementEndpoint extends ExtendibleElement {
    * The uri of the target element.
    * <!-- end-model-doc -->
    * @model kind="operation"
-   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElement target = this.getTarget();\nreturn (target == null) ? null : target.getUri();'"
    * @generated
    */
     String getTargetUri();
@@ -130,7 +129,6 @@ public interface ExtendibleElementEndpoint extends ExtendibleElement {
    * Gets the element type endpoint of this element instance endpoint.
    * <!-- end-model-doc -->
    * @model kind="operation" required="true"
-   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElement metatype = super.getMetatype();\nreturn (metatype == null) ? null : (ExtendibleElementEndpoint) metatype;'"
    * @generated
    */
     ExtendibleElementEndpoint getMetatype();
@@ -143,7 +141,6 @@ public interface ExtendibleElementEndpoint extends ExtendibleElement {
    * Gets the element supertype endpoint of this element type endpoint.
    * <!-- end-model-doc -->
    * @model kind="operation"
-   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElement supertype = super.getSupertype();\nreturn (supertype == null) ? null : (ExtendibleElementEndpoint) supertype;'"
    * @generated
    */
     ExtendibleElementEndpoint getSupertype();

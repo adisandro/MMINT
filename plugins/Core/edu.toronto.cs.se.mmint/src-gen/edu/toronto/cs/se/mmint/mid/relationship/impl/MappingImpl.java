@@ -102,10 +102,10 @@ public class MappingImpl extends ExtendibleElementImpl implements Mapping {
    */
     @Override
     public EList<ModelElementEndpoint> getModelElemEndpoints() {
-    if (this.modelElemEndpoints == null) {
-      this.modelElemEndpoints = new EObjectContainmentEList<>(ModelElementEndpoint.class, this, RelationshipPackage.MAPPING__MODEL_ELEM_ENDPOINTS);
+    if (modelElemEndpoints == null) {
+      modelElemEndpoints = new EObjectContainmentEList<ModelElementEndpoint>(ModelElementEndpoint.class, this, RelationshipPackage.MAPPING__MODEL_ELEM_ENDPOINTS);
     }
-    return this.modelElemEndpoints;
+    return modelElemEndpoints;
   }
 
     /**
@@ -115,10 +115,10 @@ public class MappingImpl extends ExtendibleElementImpl implements Mapping {
    */
     @Override
     public EList<ModelElementEndpointReference> getModelElemEndpointRefs() {
-    if (this.modelElemEndpointRefs == null) {
-      this.modelElemEndpointRefs = new EObjectResolvingEList<>(ModelElementEndpointReference.class, this, RelationshipPackage.MAPPING__MODEL_ELEM_ENDPOINT_REFS);
+    if (modelElemEndpointRefs == null) {
+      modelElemEndpointRefs = new EObjectResolvingEList<ModelElementEndpointReference>(ModelElementEndpointReference.class, this, RelationshipPackage.MAPPING__MODEL_ELEM_ENDPOINT_REFS);
     }
-    return this.modelElemEndpointRefs;
+    return modelElemEndpointRefs;
   }
 
     /**
@@ -231,9 +231,9 @@ public class MappingImpl extends ExtendibleElementImpl implements Mapping {
     public boolean eIsSet(int featureID) {
     switch (featureID) {
       case RelationshipPackage.MAPPING__MODEL_ELEM_ENDPOINTS:
-        return this.modelElemEndpoints != null && !this.modelElemEndpoints.isEmpty();
+        return modelElemEndpoints != null && !modelElemEndpoints.isEmpty();
       case RelationshipPackage.MAPPING__MODEL_ELEM_ENDPOINT_REFS:
-        return this.modelElemEndpointRefs != null && !this.modelElemEndpointRefs.isEmpty();
+        return modelElemEndpointRefs != null && !modelElemEndpointRefs.isEmpty();
     }
     return super.eIsSet(featureID);
   }

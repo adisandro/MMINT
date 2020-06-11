@@ -18,7 +18,6 @@ import java.util.stream.Collectors;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mmint.MMINTException;
@@ -56,7 +55,7 @@ public class GSNAnnotateSlice extends AnnotateSlice {
     gsnModelObj.setStatus(annotation);
   }
 
-  private void annotateSliceTypes(Resource gsnResource, ModelRel rel) {
+  private void annotateSliceTypes(ModelRel rel) {
     var alreadyAnnotated = new HashSet<String>();
     for (var mappingRef : rel.getMappingRefs()) {
       var annotationId = mappingRef.getObject().getMetatypeUri();
@@ -68,7 +67,7 @@ public class GSNAnnotateSlice extends AnnotateSlice {
           continue;
         }
         try {
-          var gsnModelObj = modelElem.getEMFInstanceObject(gsnResource);
+          var gsnModelObj = modelElem.getEMFInstanceObject(null);
           if (!(gsnModelObj instanceof ArgumentElement)) {
             continue;
           }
@@ -89,12 +88,10 @@ public class GSNAnnotateSlice extends AnnotateSlice {
 
   @Override
   protected void annotate() throws Exception {
-    var gsnRoot = (SafetyCase) this.input.model.getEMFInstanceRoot();
-    var gsnResource = gsnRoot.eResource();
-
     // annotate sliced elements first..
-    annotateSliceTypes(gsnResource, this.input.sliceRel);
+    annotateSliceTypes(this.input.sliceRel);
     // ..then iterate through each argument element and annotate with REUSE
+    var gsnRoot = (SafetyCase) this.input.model.getEMFInstanceRoot();
     Iterator<EObject> gsnIter = gsnRoot.eAllContents();
     while (gsnIter.hasNext()) {
       var gsnModelObj = gsnIter.next();

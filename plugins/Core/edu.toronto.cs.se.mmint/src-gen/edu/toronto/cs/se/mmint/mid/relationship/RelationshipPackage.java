@@ -236,6 +236,15 @@ public interface RelationshipPackage extends EPackage {
     int MODEL_REL__CONVERSION_OPERATORS = MIDPackage.MODEL__CONVERSION_OPERATORS;
 
     /**
+   * The feature id for the '<em><b>EMF Instance Resource</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MODEL_REL__EMF_INSTANCE_RESOURCE = MIDPackage.MODEL__EMF_INSTANCE_RESOURCE;
+
+    /**
    * The feature id for the '<em><b>EMF Instance Root</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -810,6 +819,15 @@ public interface RelationshipPackage extends EPackage {
    * @ordered
    */
     int BINARY_MODEL_REL__CONVERSION_OPERATORS = MODEL_REL__CONVERSION_OPERATORS;
+
+    /**
+   * The feature id for the '<em><b>EMF Instance Resource</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BINARY_MODEL_REL__EMF_INSTANCE_RESOURCE = MODEL_REL__EMF_INSTANCE_RESOURCE;
 
     /**
    * The feature id for the '<em><b>EMF Instance Root</b></em>' reference.
