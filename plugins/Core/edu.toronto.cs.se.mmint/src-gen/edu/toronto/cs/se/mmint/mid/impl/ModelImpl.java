@@ -13,21 +13,16 @@ package edu.toronto.cs.se.mmint.mid.impl;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
-import java.util.Enumeration;
 import java.util.List;
-import java.util.Set;
 
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.EMap;
-import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -225,7 +220,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
    */
     @Override
     public void setOrigin(ModelOrigin newOrigin) {
-    ModelOrigin oldOrigin = this.origin;
+    var oldOrigin = this.origin;
     this.origin = newOrigin == null ? ModelImpl.ORIGIN_EDEFAULT : newOrigin;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.MODEL__ORIGIN, oldOrigin, this.origin));
@@ -248,7 +243,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
    */
     @Override
     public void setFileExtension(String newFileExtension) {
-    String oldFileExtension = this.fileExtension;
+    var oldFileExtension = this.fileExtension;
     this.fileExtension = newFileExtension;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.MODEL__FILE_EXTENSION, oldFileExtension, this.fileExtension));
@@ -303,6 +298,9 @@ public class ModelImpl extends GenericElementImpl implements Model {
   }
 
   /**
+   * Gets the EMF resource representing this model instance.
+   *
+   * @return The EMF resource, null if it can't be loaded.
    * @generated NOT
    */
   @Override
@@ -330,7 +328,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
    */
   @Override
   public void setEMFInstanceResource(Resource newEMFInstanceResource) {
-    Resource oldEMFInstanceResource = this.emfInstanceResource;
+    var oldEMFInstanceResource = this.emfInstanceResource;
     this.emfInstanceResource = newEMFInstanceResource;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.MODEL__EMF_INSTANCE_RESOURCE, oldEMFInstanceResource, this.emfInstanceResource));
@@ -343,7 +341,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
    */
   public EObject getEMFInstanceRootGen() {
     if (this.emfInstanceRoot != null && this.emfInstanceRoot.eIsProxy()) {
-      InternalEObject oldEMFInstanceRoot = (InternalEObject)this.emfInstanceRoot;
+      var oldEMFInstanceRoot = (InternalEObject)this.emfInstanceRoot;
       this.emfInstanceRoot = eResolveProxy(oldEMFInstanceRoot);
       if (this.emfInstanceRoot != oldEMFInstanceRoot) {
         if (eNotificationRequired())
@@ -354,6 +352,9 @@ public class ModelImpl extends GenericElementImpl implements Model {
   }
 
   /**
+   * Gets the root EMF object of this model instance.
+   *
+   * @return The root EMF object, null if it can't be loaded.
    * @generated NOT
    */
   @Override
@@ -362,7 +363,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
       MMINTException.mustBeInstance(this);
     }
     catch (Exception e) {
-      MMINTException.print(IStatus.WARNING, "Can't load EMF model root, returning null", e);
+      MMINTException.print(IStatus.WARNING, "Can't load root EMF model object, returning null", e);
       return null;
     }
     /*TODO MMINT[OPERATOR]
@@ -398,7 +399,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
    */
   @Override
   public void setEMFInstanceRoot(EObject newEMFInstanceRoot) {
-    EObject oldEMFInstanceRoot = this.emfInstanceRoot;
+    var oldEMFInstanceRoot = this.emfInstanceRoot;
     this.emfInstanceRoot = newEMFInstanceRoot;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.MODEL__EMF_INSTANCE_ROOT, oldEMFInstanceRoot, this.emfInstanceRoot));
@@ -411,7 +412,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
    */
     @Override
     public Model getMetatype() {
-    ExtendibleElement metatype = super.getMetatype();
+    var metatype = super.getMetatype();
     return (metatype == null) ? null : (Model) metatype;
   }
 
@@ -422,7 +423,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
    */
     @Override
     public Model getSupertype() {
-    ExtendibleElement supertype = super.getSupertype();
+    var supertype = super.getSupertype();
     return (supertype == null) ? null : (Model) supertype;
   }
 
@@ -735,7 +736,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
     public String toString() {
     if (eIsProxy()) return super.toString();
 
-    StringBuilder result = new StringBuilder(super.toString());
+    var result = new StringBuilder(super.toString());
     result.append(" (origin: ");
     result.append(this.origin);
     result.append(", fileExtension: ");
@@ -761,30 +762,30 @@ public class ModelImpl extends GenericElementImpl implements Model {
      */
     protected void addSubtype(Model newModelType, String newModelTypeName, boolean isMetamodelExtension) throws MMINTException {
 
-        MID typeMID = this.getMIDContainer();
+        var typeMID = this.getMIDContainer();
         super.addSubtype(newModelType, this, null, newModelTypeName);
         MIDTypeFactory.addModelType(newModelType, typeMID);
         newModelType.setOrigin(ModelOrigin.CREATED);
 
         if (isMetamodelExtension) {
             try {
-                String newMetamodelUri = MIDTypeRegistry.getExtendedMetamodelPath(newModelType);
+                var newMetamodelUri = MIDTypeRegistry.getExtendedMetamodelPath(newModelType);
                 if (newMetamodelUri == null) { // create new metamodel file, else we're just recreating this subtype at startup
-                    EPackage newEPackage = EcoreFactory.eINSTANCE.createEPackage();
+                    var newEPackage = EcoreFactory.eINSTANCE.createEPackage();
                     newEPackage.setName(newModelTypeName.toLowerCase());
                     newEPackage.setNsPrefix(newModelTypeName.toLowerCase());
                     newEPackage.setNsURI(newModelType.getUri());
-                    EAnnotation newEAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
+                    var newEAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
                     newEAnnotation.setSource(EcorePackage.eNS_URI);
-                    EMap<String, String> newEAnnotationDetails = newEAnnotation.getDetails();
+                    var newEAnnotationDetails = newEAnnotation.getDetails();
                     newEAnnotationDetails.put(MIDTypeFactory.ECORE_INVOCATION_DELEGATE, MIDTypeFactory.ECORE_PIVOT_URI);
                     newEAnnotationDetails.put(MIDTypeFactory.ECORE_SETTING_DELEGATE, MIDTypeFactory.ECORE_PIVOT_URI);
                     newEAnnotationDetails.put(MIDTypeFactory.ECORE_VALIDATION_DELEGATE, MIDTypeFactory.ECORE_PIVOT_URI);
                     newEPackage.getEAnnotations().add(newEAnnotation);
-                    EClass newRootEClass = EcoreFactory.eINSTANCE.createEClass();
+                    var newRootEClass = EcoreFactory.eINSTANCE.createEClass();
                     newRootEClass.setName(newModelTypeName);
                     if (!MIDTypeHierarchy.isRootType(this)) {
-                        EClass rootEClass = (EClass) this.getEMFTypeRoot().getEClassifiers().get(0);
+                        var rootEClass = (EClass) this.getEMFTypeRoot().getEClassifiers().get(0);
                         newRootEClass.getESuperTypes().add(rootEClass);
                     }
                     newEPackage.getEClassifiers().add(newRootEClass);
@@ -824,7 +825,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
             try {
                 //TODO MMINT[EDITOR] a new editor is created instead of attaching existing ones
                 //TODO MMINT[EDITOR] because I couldn't find a way then from an editor to understand which model was being created
-                Editor newEditorType = editorType.createSubtype(newEditorTypeFragmentUri, newEditorTypeName, newModelTypeUri, editorId, wizardId, wizardDialogClassName);
+                var newEditorType = editorType.createSubtype(newEditorTypeFragmentUri, newEditorTypeName, newModelTypeUri, editorId, wizardId, wizardDialogClassName);
                 MIDTypeFactory.addModelTypeEditor(newEditorType, newModelType);
                 if (isMetamodelExtension) { // reflective editor only
                     newEditorType.getFileExtensions().clear();
@@ -847,7 +848,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 
         MMINTException.mustBeType(this);
 
-        Model newModelType = super.createThisEClass();
+        var newModelType = super.<Model>createThisEClass();
         this.addSubtype(newModelType, newModelTypeName, isMetamodelExtension);
 
         return newModelType;
@@ -861,7 +862,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 
         MMINTException.mustBeType(this);
 
-        MID typeMID = this.getMIDContainer();
+        var typeMID = this.getMIDContainer();
         // delete the "thing"
         for (ModelElement modelElemType : this.getModelElems()) {
             super.delete(modelElemType.getUri(), typeMID);
@@ -872,7 +873,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
         }
         super.delete();
         typeMID.getModels().remove(this);
-        String metamodelUri = MIDTypeRegistry.getExtendedMetamodelPath(this);
+        var metamodelUri = MIDTypeRegistry.getExtendedMetamodelPath(this);
         if (metamodelUri != null) {
             FileUtils.deleteFile(metamodelUri, false);
         }
@@ -935,7 +936,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
             rootModelTypeObj = EPackage.Registry.INSTANCE.getEPackage(this.getUri());
         }
         else {
-            String metamodelUri = MIDTypeRegistry.getExtendedMetamodelPath(this);
+            var metamodelUri = MIDTypeRegistry.getExtendedMetamodelPath(this);
             if (metamodelUri != null) { // get package from metamodel file
                 try {
                     rootModelTypeObj = (EPackage) FileUtils.readModelFile(metamodelUri, null, false);
@@ -969,7 +970,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
          */
         while (true) {
             if (modelType.isDynamic()) {
-                String metamodelPath = MIDTypeRegistry.getExtendedMetamodelPath(modelType);
+                var metamodelPath = MIDTypeRegistry.getExtendedMetamodelPath(modelType);
                 if (metamodelPath != null) { // get metamodel file from mmint state area
                     metamodelPaths.add(metamodelPath);
                     break;
@@ -977,11 +978,11 @@ public class ModelImpl extends GenericElementImpl implements Model {
             }
             else { // get metamodel files from bundle
                 Bundle bundle = MIDTypeRegistry.getTypeBundle(modelType.getUri());
-                Enumeration<URL> metamodels = bundle.findEntries("/", "*" + MMINTConstants.MODEL_FILEEXTENSION_SEPARATOR + EcorePackage.eNAME, true);
+                var metamodels = bundle.findEntries("/", "*" + MMINTConstants.MODEL_FILEEXTENSION_SEPARATOR + EcorePackage.eNAME, true);
                 List<String> tempMetamodelPaths = new ArrayList<>();
                 String tempMetamodelPath = null;
                 while (metamodels.hasMoreElements()) {
-                    String metamodelPath = FileLocator.toFileURL(metamodels.nextElement()).getFile();
+                    var metamodelPath = FileLocator.toFileURL(metamodels.nextElement()).getFile();
                     // heuristic to open just one metamodel with many in the same bundle
                     if (FileUtils.getFileNameFromPath(metamodelPath).equalsIgnoreCase(modelType.getName())) {
                         tempMetamodelPath = metamodelPath;
@@ -1003,7 +1004,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 
         // open editors
         Model ecoreModelType = MIDTypeRegistry.getType(EcorePackage.eNS_URI);
-        Editor ecoreEditorType = ecoreModelType.getEditors().get(0);
+        var ecoreEditorType = ecoreModelType.getEditors().get(0);
         for (String metamodelPath : metamodelPaths) {
             FileUtils.openEclipseEditor(metamodelPath, ecoreEditorType.getId(), false);
             //TODO MMINT[ECORE] Try to open ecore diagram
@@ -1058,7 +1059,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
             throw new MMINTException("Can't instanciate an abstract model type");
         }
 
-        Model newModel = super.createThisEClass();
+        var newModel = super.<Model>createThisEClass();
         this.addInstance(
             newModel,
             newModelPath,
@@ -1078,6 +1079,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
              * (find the cases where it really stays in memory, which shouldn't happen when working with a MID diagram, only in a workflow)
              */
             newModel.setEMFInstanceRoot(rootModelObj);
+            newModel.setEMFInstanceResource(rootModelObj.eResource());
         }
 
         return newModel;
@@ -1091,7 +1093,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 
         MMINTException.mustBeInstance(this);
 
-        MID instanceMID = this.getMIDContainer();
+        var instanceMID = this.getMIDContainer();
         Editor newEditor = null;
         MMINTException lastException = null;
         List<Editor> sortedEditors = new ArrayList<>(this.getMetatype().getEditors());
@@ -1099,8 +1101,8 @@ public class ModelImpl extends GenericElementImpl implements Model {
             @Override
             public int compare(Editor e1, Editor e2) {
                 // diagrams before editors, alphabetical within same type
-                boolean d1 = e1 instanceof Diagram;
-                boolean d2 = e2 instanceof Diagram;
+                var d1 = e1 instanceof Diagram;
+                var d2 = e2 instanceof Diagram;
                 if (d1 == d2) {
                     return e1.getId().compareTo(e2.getId());
                 }
@@ -1138,7 +1140,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
     @Override
     public Model createInstanceAndEditor(EObject rootModelObj, String newModelPath, MID instanceMID) throws MMINTException, IOException {
 
-        Model newModel = this.createInstance(rootModelObj, newModelPath, instanceMID);
+        var newModel = this.createInstance(rootModelObj, newModelPath, instanceMID);
         if (instanceMID != null) {
             //TODO MMINT[EDITOR] Add an optional way to select an explicit editor, to avoid creating unwanted diagrams
             newModel.createInstanceEditor(true);
@@ -1158,7 +1160,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
             throw new MMINTException("Missing ECore model file " + modelPath);
         }
 
-        Model newModel = super.createThisEClass();
+        var newModel = super.<Model>createThisEClass();
         this.addInstance(
             newModel,
             modelPath,
@@ -1177,7 +1179,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
     @Override
     public Model importInstanceAndEditor(String modelPath, MID instanceMID) throws MMINTException {
 
-        Model newModel = this.importInstance(modelPath, instanceMID);
+        var newModel = this.importInstance(modelPath, instanceMID);
         if (instanceMID != null) {
             newModel.createInstanceEditor(false);
         }
@@ -1205,7 +1207,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
     public Model copyInstanceAndEditor(Model origModel, String newModelName, boolean copyDiagram, MID instanceMID) throws MMINTException, IOException {
 
         //TODO MMINT[SIRIUS] Make this work when copying a sirius representation
-        Model newModel = this.copyInstance(origModel, newModelName, instanceMID);
+        var newModel = this.copyInstance(origModel, newModelName, instanceMID);
         // copy diagrams
         if (copyDiagram && instanceMID != null) {
             for (Editor oldEditor : origModel.getEditors()) {
@@ -1251,7 +1253,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 
         MMINTException.mustBeInstance(this);
 
-        boolean validates = MIDConstraintChecker.checkModelConstraint(this, this.getConstraint());
+        var validates = MIDConstraintChecker.checkModelConstraint(this, this.getConstraint());
 
         return validates && this.validateInstanceType(this.getMetatype());
     }
@@ -1277,7 +1279,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 
         MMINTException.mustBeInstance(this);
 
-        MID instanceMID = this.getMIDContainer();
+        var instanceMID = this.getMIDContainer();
         // delete model elements
         for (ModelElement modelElem : this.getModelElems()) {
             super.delete(modelElem.getUri(), instanceMID);
@@ -1289,16 +1291,16 @@ public class ModelImpl extends GenericElementImpl implements Model {
         super.delete();
         this.deleteInstance(instanceMID);
         // delete operators that use this model
-        Set<Operator> delOperators = MIDRegistry.getInputOutputOperators(this, instanceMID);
+        var delOperators = MIDRegistry.getInputOutputOperators(this, instanceMID);
         for (Operator delOperator : delOperators) {
             delOperator.deleteInstance();
         }
         // delete model relationships that use this model
-        Set<BinaryModelRel> delModelRels = MIDRegistry.getConnectedBinaryModelRels(this, instanceMID);
+        var delModelRels = MIDRegistry.getConnectedBinaryModelRels(this, instanceMID);
         for (BinaryModelRel delModelRel : delModelRels) {
             delModelRel.deleteInstance();
         }
-        Set<ModelEndpoint> delModelEndpoints = MIDRegistry.getConnectedNaryModelRelEndpoints(this, instanceMID);
+        var delModelEndpoints = MIDRegistry.getConnectedNaryModelRelEndpoints(this, instanceMID);
         for (ModelEndpoint delModelEndpoint : delModelEndpoints) {
             delModelEndpoint.deleteInstance(true);
         }
@@ -1341,7 +1343,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 
         MMINTException.mustBeInstance(this);
 
-        Editor editor = this.getEditors().get(0);
+        var editor = this.getEditors().get(0);
         FileUtils.openEclipseEditor(editor.getUri(), editor.getId(), true);
     }
 
@@ -1353,7 +1355,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 
         MMINTException.mustBeType(this);
 
-        Model newModel = super.createThisEClass();
+        var newModel = super.<Model>createThisEClass();
         this.addInstance(
             newModel,
             newModelId,
@@ -1374,21 +1376,21 @@ public class ModelImpl extends GenericElementImpl implements Model {
 
         MMINTException.mustBeWorkflow(this);
 
-        MID workflowMID = this.getMIDContainer();
+        var workflowMID = this.getMIDContainer();
         super.delete();
         this.deleteInstance(workflowMID);
         workflowMID.getModels().remove(this);
         // delete operators that use this model
-        Set<Operator> delOperators = MIDRegistry.getInputOutputOperators(this, workflowMID);
+        var delOperators = MIDRegistry.getInputOutputOperators(this, workflowMID);
         for (Operator delOperator : delOperators) {
             delOperator.deleteWorkflowInstance();
         }
         // delete model relationships that use this model
-        Set<BinaryModelRel> delModelRels = MIDRegistry.getConnectedBinaryModelRels(this, workflowMID);
+        var delModelRels = MIDRegistry.getConnectedBinaryModelRels(this, workflowMID);
         for (BinaryModelRel delModelRel : delModelRels) {
             delModelRel.deleteWorkflowInstance();
         }
-        Set<ModelEndpoint> delModelEndpoints = MIDRegistry.getConnectedNaryModelRelEndpoints(this, workflowMID);
+        var delModelEndpoints = MIDRegistry.getConnectedNaryModelRelEndpoints(this, workflowMID);
         for (ModelEndpoint delModelEndpoint : delModelEndpoints) {
             delModelEndpoint.deleteWorkflowInstance();
         }
