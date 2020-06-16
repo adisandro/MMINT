@@ -1,4 +1,4 @@
-package iso26262
+package jase20
 
 import "http://se.cs.toronto.edu/mmint/MID"
 import "http://se.cs.toronto.edu/mmint/MID/Relationship"
@@ -82,23 +82,23 @@ pattern c(event: HazardousEvent) {
   neg find queryC_D(event);
 }
 
-//pattern d(event: HazardousEvent) {
-//  SafetyGoal(goal);
-//  ModelElement.EMFInstanceObject(eventElem, event);
-//  ModelElement.EMFInstanceObject(goalElem, goal);
-//  connections == count find library.connectedModelElems(goalElem, eventElem);
-//  check(connections == 0);
-//}
-//
-//pattern e_asil(event: HazardousEvent, asil: java String) {
-//  HazardousEvent.ASIL(event, asil);
-//}
-//
-//pattern e(goal: SafetyGoal) {
-//  ModelElement.EMFInstanceObject(goalElem, goal);
-//  find library.connectedModelElems(goalElem, eventElem);
-//  ModelElement.EMFInstanceObject(eventElem, event);
-//  eventASIL == max find e_asil(event, #asil);
-//  SafetyGoal.ASIL(goal, goalASIL);
-//  eventASIL != goalASIL;
-//}
+pattern d(event: HazardousEvent) {
+  SafetyGoal(goal);
+  ModelElement.EMFInstanceObject(eventElem, event);
+  ModelElement.EMFInstanceObject(goalElem, goal);
+  connections == count find library.connectedModelElems(goalElem, eventElem);
+  check(connections == 0);
+}
+
+pattern e_asil(event: HazardousEvent, asil: java String) {
+  HazardousEvent.ASIL(event, asil);
+}
+
+pattern e(goal: SafetyGoal) {
+  ModelElement.EMFInstanceObject(goalElem, goal);
+  find library.connectedModelElems(goalElem, eventElem);
+  ModelElement.EMFInstanceObject(eventElem, event);
+  eventASIL == max find e_asil(event, #asil);
+  SafetyGoal.ASIL(goal, goalASIL);
+  eventASIL != goalASIL;
+}

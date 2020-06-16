@@ -1,0 +1,23 @@
+package library
+
+import "http://se.cs.toronto.edu/mmint/MID"
+import "http://se.cs.toronto.edu/mmint/MID/Relationship"
+
+pattern connectedModelElems(modelElemSrc: ModelElement,
+                            modelElemTgt: ModelElement) {
+  modelElemSrc != modelElemTgt;
+  Model.modelElems(modelSrc, modelElemSrc);
+  Model.modelElems(modelTgt, modelElemTgt);
+  modelSrc != modelTgt;
+  Mapping.modelElemEndpoints.target(mapping, modelElemSrc);
+  Mapping.modelElemEndpoints.target(mapping, modelElemTgt);
+}
+
+pattern allConnectedModelElems(modelElemSrc: ModelElement,
+                               modelElemTgt: ModelElement) {
+  modelElemSrc != modelElemTgt;
+  Model.modelElems(modelSrc, modelElemSrc);
+  Model.modelElems(modelTgt, modelElemTgt);
+  modelSrc != modelTgt;
+  find connectedModelElems+(modelElemSrc, modelElemTgt);
+}

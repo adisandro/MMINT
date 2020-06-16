@@ -6,6 +6,27 @@
 	</projects>
 	<buildSpec>
 		<buildCommand>
+			<name>org.eclipse.ocl.pivot.ui.oclbuilder</name>
+			<arguments>
+				<dictionary>
+					<key>disabledExtensions</key>
+					<value>*,essentialocl</value>
+				</dictionary>
+				<dictionary>
+					<key>disabledPaths</key>
+					<value>bin/**,target/**</value>
+				</dictionary>
+				<dictionary>
+					<key>enabledExtensions</key>
+					<value>ecore,ocl,oclinecore,oclstdlib,uml</value>
+				</dictionary>
+				<dictionary>
+					<key>enabledPaths</key>
+					<value>**</value>
+				</dictionary>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
 			<name>org.eclipse.xtext.ui.shared.xtextBuilder</name>
 			<arguments>
 			</arguments>
@@ -36,5 +57,6 @@
 		<nature>org.eclipse.jdt.core.javanature</nature>
 		<nature>org.eclipse.xtext.ui.shared.xtextNature</nature>
 		<nature>org.eclipse.viatra.query.projectnature</nature>
+		<nature>org.eclipse.ocl.pivot.ui.oclnature</nature>
 	</natures>
 </projectDescription>

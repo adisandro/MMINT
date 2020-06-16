@@ -1,0 +1,31 @@
+package mase19
+
+import "http://se.cs.toronto.edu/mmint/MID"
+import "http://se.cs.toronto.edu/mmint/MID/Relationship"
+import "http://se.cs.toronto.edu/modelepedia/ClassDiagram"
+import "http://se.cs.toronto.edu/modelepedia/GSN"
+
+pattern alarmClasses(class: Class) {
+  Class.name(class, className);
+  check(className.toLowerCase().contains("alarm"));
+}
+
+pattern turnOffFunctions(class: Class, operation: Operation) {
+  Class.ownedOperations(class, operation);
+  Operation.name(operation, "TurnOff()");
+}
+
+pattern asilBConnectedModelElems(goal: Goal,
+                                 modelElem: ModelElement) {
+  Goal.asil.value(goal, ASILLevel::B);
+  Goal.id(goal, goalId);
+  ModelElement.name(goalElem, goalName);
+  check(goalName.endsWith(goalId));
+  find library.connectedModelElems(goalElem, modelElem);
+}
+
+pattern highlyConnectedModelElems(modelElem: ModelElement,
+                                  connections: java Integer) {
+  connections == count find library.connectedModelElems(modelElem, _);
+  check(connections > 5);
+}

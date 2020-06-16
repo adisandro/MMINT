@@ -1,15 +1,18 @@
 /**
- * Generated from platform:/resource/edu.toronto.cs.se.mmint.jase20.paper/src/iso26262/iso26262.vql
+ * Generated from platform:/resource/edu.toronto.cs.se.mmint.jase20.paper/src/jase20/iso26262.vql
  */
-package iso26262;
+package jase20;
 
-import iso26262.B;
-import iso26262.C;
-import iso26262.QueryC_A;
-import iso26262.QueryC_B;
-import iso26262.QueryC_C;
-import iso26262.QueryC_D;
-import iso26262.QueryC_QM;
+import jase20.B;
+import jase20.C;
+import jase20.D;
+import jase20.E;
+import jase20.E_asil;
+import jase20.QueryC_A;
+import jase20.QueryC_B;
+import jase20.QueryC_C;
+import jase20.QueryC_D;
+import jase20.QueryC_QM;
 import org.eclipse.viatra.query.runtime.api.ViatraQueryEngine;
 import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedPatternGroup;
 
@@ -20,7 +23,7 @@ import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedPatternGroup;
  * a VIATRA Query engine for matching all patterns originally defined in file iso26262.vql,
  * in order to achieve better performance than one-by-one on-demand matcher initialization.
  * 
- * <p> From package iso26262, the group contains the definition of the following patterns: <ul>
+ * <p> From package jase20, the group contains the definition of the following patterns: <ul>
  * <li>b</li>
  * <li>queryC_QM</li>
  * <li>queryC_A</li>
@@ -28,6 +31,9 @@ import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedPatternGroup;
  * <li>queryC_C</li>
  * <li>queryC_D</li>
  * <li>c</li>
+ * <li>d</li>
+ * <li>e_asil</li>
+ * <li>e</li>
  * </ul>
  * 
  * @see IQueryGroup
@@ -59,6 +65,9 @@ public final class Iso26262 extends BaseGeneratedPatternGroup {
     querySpecifications.add(QueryC_C.instance());
     querySpecifications.add(QueryC_D.instance());
     querySpecifications.add(C.instance());
+    querySpecifications.add(D.instance());
+    querySpecifications.add(E_asil.instance());
+    querySpecifications.add(E.instance());
   }
   
   public B getB() {
@@ -115,5 +124,29 @@ public final class Iso26262 extends BaseGeneratedPatternGroup {
   
   public C.Matcher getC(final ViatraQueryEngine engine) {
     return C.Matcher.on(engine);
+  }
+  
+  public D getD() {
+    return D.instance();
+  }
+  
+  public D.Matcher getD(final ViatraQueryEngine engine) {
+    return D.Matcher.on(engine);
+  }
+  
+  public E_asil getE_asil() {
+    return E_asil.instance();
+  }
+  
+  public E_asil.Matcher getE_asil(final ViatraQueryEngine engine) {
+    return E_asil.Matcher.on(engine);
+  }
+  
+  public E getE() {
+    return E.instance();
+  }
+  
+  public E.Matcher getE(final ViatraQueryEngine engine) {
+    return E.Matcher.on(engine);
   }
 }

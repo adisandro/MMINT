@@ -4,14 +4,21 @@ Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.mmint.jase20.paper;singleton:=true
 Bundle-Version: 2.5.99.qualifier
 Bundle-Vendor: %providerName
-Export-Package: iso26262
+Export-Package: jase20,
+ library,
+ mase19
 Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.viatra.query.runtime,
  org.eclipse.viatra.query.runtime.rete,
  org.eclipse.viatra.query.runtime.localsearch,
  org.eclipse.xtext.xbase.lib,
  edu.toronto.cs.se.mmint,
- edu.toronto.cs.se.mmint.jase20
+ edu.toronto.cs.se.mmint.viatra,
+ edu.toronto.cs.se.mmint.jase20,
+ edu.toronto.cs.se.modelepedia.classdiagram,
+ edu.toronto.cs.se.modelepedia.safetycase,
+ edu.toronto.cs.se.modelepedia.sequencediagram,
+ edu.toronto.cs.se.modelepedia.statemachine
 Bundle-RequiredExecutionEnvironment: JavaSE-14
 Automatic-Module-Name: edu.toronto.cs.se.mmint.jase20.paper
 Import-Package: org.apache.log4j
