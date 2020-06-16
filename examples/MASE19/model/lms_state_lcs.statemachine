@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<statemachine:StateMachine xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:statemachine="http://se.cs.toronto.edu/modelepedia/StateMachine">
-  <states xsi:type="statemachine:State" name="LCS Active" transitionsAsSource="//@transitions.1" transitionsAsTarget="//@transitions.0 //@transitions.2"/>
-  <states xsi:type="statemachine:State" name="LCS Inactive" transitionsAsSource="//@transitions.2" transitionsAsTarget="//@transitions.1"/>
-  <states xsi:type="statemachine:InitialState" transitionsAsSource="//@transitions.0"/>
-  <transitions trigger="Speed > 5 MPH" action="Vehicle On" source="//@states.2" target="//@states.0"/>
-  <transitions trigger="LCS CheckConditions() == false" action="LCS TurnOff()" source="//@states.0" target="//@states.1"/>
-  <transitions trigger="LCS CheckConditions() == true" action="LCS TurnOn()" source="//@states.1" target="//@states.0"/>
-</statemachine:StateMachine>
