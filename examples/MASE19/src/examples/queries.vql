@@ -18,9 +18,7 @@ pattern turnOffFunctions(class: Class, operation: Operation) {
 pattern asilBConnectedModelElems(goal: Goal,
                                  modelElem: ModelElement) {
   Goal.asil.value(goal, ASILLevel::B);
-  Goal.id(goal, goalId);
-  ModelElement.name(goalElem, goalName);
-  check(goalName.endsWith(goalId));
+  ModelElement.EMFInstanceObject(goalElem, goal);
   find library.connectedModelElems(goalElem, modelElem);
 }
 

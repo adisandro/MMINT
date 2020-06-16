@@ -55,8 +55,7 @@ def: asilBConnectedModelElems : Set(Tuple(goal : safetycase::Goal, elem : ModelE
                          ->select(asil.value = safetycase::ASILLevel::B) in
   let modelElems = ModelElement.allInstances() in
   goals->collect(g | Set{g}->product(
-         let goalElem = modelElems->any(e |
-           e.name.substring(e.name.size()-g.id.size()+1, e.name.size()) = g.id) in
+         let goalElem = modelElems->any(e | e.EMFInstanceObject = g) in
          if goalElem.oclIsUndefined() then Set{} else connectedModelElems2(goalElem) endif))
        ->asSet()
 

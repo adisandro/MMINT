@@ -69,7 +69,9 @@ public class ViatraReasoningEngine implements IReasoningEngine {
           if (model instanceof ModelRel) {
             continue;
           }
-          FileUtils.readModelFile(model.getUri(), resourceSet, true);
+          var rootModelObj = FileUtils.readModelFile(model.getUri(), resourceSet, true);
+          model.setEMFInstanceRoot(rootModelObj);
+          model.setEMFInstanceResource(rootModelObj.eResource());
         }
       }
       // find query matches within context

@@ -30,13 +30,10 @@ import org.eclipse.viatra.query.runtime.emf.types.EClassTransitiveInstancesKey;
 import org.eclipse.viatra.query.runtime.emf.types.EDataTypeInSlotsKey;
 import org.eclipse.viatra.query.runtime.emf.types.EStructuralFeatureInstancesKey;
 import org.eclipse.viatra.query.runtime.matchers.backend.QueryEvaluationHint;
-import org.eclipse.viatra.query.runtime.matchers.psystem.IExpressionEvaluator;
-import org.eclipse.viatra.query.runtime.matchers.psystem.IValueProvider;
 import org.eclipse.viatra.query.runtime.matchers.psystem.PBody;
 import org.eclipse.viatra.query.runtime.matchers.psystem.PVariable;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.Equality;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.ExportedParameter;
-import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.ExpressionEvaluation;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicenumerables.ConstantValue;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicenumerables.PositivePatternCall;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicenumerables.TypeConstraint;
@@ -55,9 +52,7 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  *         pattern asilBConnectedModelElems(goal: Goal,
  *                                          modelElem: ModelElement) {
  *           Goal.asil.value(goal, ASILLevel::B);
- *           Goal.id(goal, goalId);
- *           ModelElement.name(goalElem, goalName);
- *           check(goalName.endsWith(goalId));
+ *           ModelElement.EMFInstanceObject(goalElem, goal);
  *           find library.connectedModelElems(goalElem, modelElem);
  *         }
  * </pre></code>
@@ -274,9 +269,7 @@ public final class AsilBConnectedModelElems extends BaseGeneratedEMFQuerySpecifi
    * pattern asilBConnectedModelElems(goal: Goal,
    *                                  modelElem: ModelElement) {
    *   Goal.asil.value(goal, ASILLevel::B);
-   *   Goal.id(goal, goalId);
-   *   ModelElement.name(goalElem, goalName);
-   *   check(goalName.endsWith(goalId));
+   *   ModelElement.EMFInstanceObject(goalElem, goal);
    *   find library.connectedModelElems(goalElem, modelElem);
    * }
    * </pre></code>
@@ -703,9 +696,7 @@ public final class AsilBConnectedModelElems extends BaseGeneratedEMFQuerySpecifi
           PBody body = new PBody(this);
           PVariable var_goal = body.getOrCreateVariableByName("goal");
           PVariable var_modelElem = body.getOrCreateVariableByName("modelElem");
-          PVariable var_goalId = body.getOrCreateVariableByName("goalId");
           PVariable var_goalElem = body.getOrCreateVariableByName("goalElem");
-          PVariable var_goalName = body.getOrCreateVariableByName("goalName");
           new TypeConstraint(body, Tuples.flatTupleOf(var_goal), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://se.cs.toronto.edu/modelepedia/GSN", "Goal")));
           new TypeConstraint(body, Tuples.flatTupleOf(var_modelElem), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://se.cs.toronto.edu/mmint/MID", "ModelElement")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
@@ -723,47 +714,17 @@ public final class AsilBConnectedModelElems extends BaseGeneratedEMFQuerySpecifi
           new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_1_, var__virtual_2_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://se.cs.toronto.edu/modelepedia/GSN", "ASIL", "value")));
           new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_2_), new EDataTypeInSlotsKey((EDataType)getClassifierLiteral("http://se.cs.toronto.edu/modelepedia/GSN", "ASILLevel")));
           new Equality(body, var__virtual_2_, var__virtual_0_);
-          //   Goal.id(goal, goalId)
-          new TypeConstraint(body, Tuples.flatTupleOf(var_goal), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://se.cs.toronto.edu/modelepedia/GSN", "Goal")));
-          PVariable var__virtual_3_ = body.getOrCreateVariableByName(".virtual{3}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_goal, var__virtual_3_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://se.cs.toronto.edu/modelepedia/GSN", "ArgumentElement", "id")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_3_), new EDataTypeInSlotsKey((EDataType)getClassifierLiteral("http://www.eclipse.org/emf/2002/Ecore", "EString")));
-          new Equality(body, var__virtual_3_, var_goalId);
-          //   ModelElement.name(goalElem, goalName)
+          //   ModelElement.EMFInstanceObject(goalElem, goal)
           new TypeConstraint(body, Tuples.flatTupleOf(var_goalElem), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://se.cs.toronto.edu/mmint/MID", "ModelElement")));
-          PVariable var__virtual_4_ = body.getOrCreateVariableByName(".virtual{4}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_goalElem, var__virtual_4_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://se.cs.toronto.edu/mmint/MID", "ExtendibleElement", "name")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_4_), new EDataTypeInSlotsKey((EDataType)getClassifierLiteral("http://www.eclipse.org/emf/2002/Ecore", "EString")));
-          new Equality(body, var__virtual_4_, var_goalName);
-          //   check(goalName.endsWith(goalId))
-          new ExpressionEvaluation(body, new IExpressionEvaluator() {
-          
-              @Override
-              public String getShortDescription() {
-                  return "Expression evaluation from pattern asilBConnectedModelElems";
-              }
-              
-              @Override
-              public Iterable<String> getInputParameterNames() {
-                  return Arrays.asList("goalId", "goalName");}
-          
-              @Override
-              public Object evaluateExpression(IValueProvider provider) throws Exception {
-                  String goalId = (String) provider.getValue("goalId");
-                  String goalName = (String) provider.getValue("goalName");
-                  return evaluateExpression_1_1(goalId, goalName);
-              }
-          },  null); 
+          PVariable var__virtual_3_ = body.getOrCreateVariableByName(".virtual{3}");
+          new TypeConstraint(body, Tuples.flatTupleOf(var_goalElem, var__virtual_3_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://se.cs.toronto.edu/mmint/MID", "ModelElement", "EMFInstanceObject")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_3_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.eclipse.org/emf/2002/Ecore", "EObject")));
+          new Equality(body, var__virtual_3_, var_goal);
           //   find library.connectedModelElems(goalElem, modelElem)
           new PositivePatternCall(body, Tuples.flatTupleOf(var_goalElem, var_modelElem), ConnectedModelElems.instance().getInternalQueryRepresentation());
           bodies.add(body);
       }
       return bodies;
     }
-  }
-  
-  private static boolean evaluateExpression_1_1(final String goalId, final String goalName) {
-    boolean _endsWith = goalName.endsWith(goalId);
-    return _endsWith;
   }
 }
