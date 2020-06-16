@@ -225,7 +225,7 @@ public class WrappingLabel10EditPart extends CompartmentEditPart implements ITex
       return null;
     }
     try {
-      var modelObj = ((ModelElementReference) parserElement).getObject().getEMFInstanceObject(null);
+      var modelObj = ((ModelElementReference) parserElement).getObject().getEMFInstanceObject();
       ComposedAdapterFactory adapterFactory = GMFUtils.getAdapterFactory();
       AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(adapterFactory);
       return labelProvider.getImage(modelObj);

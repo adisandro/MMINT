@@ -188,7 +188,7 @@ public class ModelRelMerge extends OperatorImpl {
       for (var origModelElemRef : origModelEndpointRef.getModelElemRefs()) {
         var mergedModelElemRef = this.mergedModelElemRefs.get(origModelElemRef.getUri());
         if (mergedModelElemRef == null) {
-          var mergedModelObj = origModelElemRef.getObject().getEMFInstanceObject(null);
+          var mergedModelObj = origModelElemRef.getObject().getEMFInstanceObject();
           mergedModelElemRef = mergedModelEndpointRef.createModelElementInstanceAndReference(
             mergedModelObj, origModelElemRef.getObject().getName());
           this.mergedModelElemRefs.put(mergedModelElemRef.getUri(), mergedModelElemRef);

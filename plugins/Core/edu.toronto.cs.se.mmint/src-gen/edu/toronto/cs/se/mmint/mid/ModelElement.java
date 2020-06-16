@@ -13,8 +13,6 @@ package edu.toronto.cs.se.mmint.mid;
 
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
-
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
@@ -33,6 +31,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
  * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.ModelElement#getEInfo <em>EInfo</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmint.mid.ModelElement#getEMFInstanceObject <em>EMF Instance Object</em>}</li>
  * </ul>
  *
  * @see edu.toronto.cs.se.mmint.mid.MIDPackage#getModelElement()
@@ -64,6 +63,28 @@ public interface ModelElement extends ExtendibleElement {
    * @generated
    */
     void setEInfo(EMFInfo value);
+
+    /**
+   * Returns the value of the '<em><b>EMF Instance Object</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>EMF Instance Object</em>' reference.
+   * @see #setEMFInstanceObject(EObject)
+   * @see edu.toronto.cs.se.mmint.mid.MIDPackage#getModelElement_EMFInstanceObject()
+   * @model transient="true"
+   * @generated
+   */
+  EObject getEMFInstanceObject();
+
+    /**
+   * Sets the value of the '{@link edu.toronto.cs.se.mmint.mid.ModelElement#getEMFInstanceObject <em>EMF Instance Object</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>EMF Instance Object</em>' reference.
+   * @see #getEMFInstanceObject()
+   * @generated
+   */
+  void setEMFInstanceObject(EObject value);
 
     /**
    * <!-- begin-user-doc -->
@@ -217,18 +238,5 @@ public interface ModelElement extends ExtendibleElement {
    * @generated
    */
     void deleteInstance() throws MMINTException;
-
-    /**
-   * <!-- begin-user-doc --> Gets the EMF model object of this model element instance.
-     *
-     * @param emfResource
-     *            An existing EMF model resource to get the model from.
-     *
-     * @throws MMINTException
-     *             If this is a model element type, or if the model file can't be accessed. <!-- end-user-doc -->
-   * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
-   * @generated
-   */
-    EObject getEMFInstanceObject(Resource emfResource) throws MMINTException;
 
 } // ModelElement

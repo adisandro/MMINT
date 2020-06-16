@@ -16,11 +16,9 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.stream.Collectors;
 
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.Nullable;
 
-import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
@@ -66,22 +64,17 @@ public class GSNAnnotateSlice extends AnnotateSlice {
         if (alreadyAnnotated.contains(modelElem.getUri())) {
           continue;
         }
-        try {
-          var gsnModelObj = modelElem.getEMFInstanceObject(null);
-          if (!(gsnModelObj instanceof ArgumentElement)) {
-            continue;
-          }
-          var cause = modelElemRef.getModelElemEndpointRefs().stream()
-            .map(meer -> ((MappingReference) meer.eContainer()).getObject())
-            .filter(m -> m.getMetatypeUri().equals(annotationId)) // discard lower priority causes
-            .map(Mapping::getName)
-            .collect(Collectors.joining(", "));
-          annotateModelElem((ArgumentElement) gsnModelObj, cause, annotationId);
-          alreadyAnnotated.add(modelElem.getUri());
+        var gsnModelObj = modelElem.getEMFInstanceObject();
+        if (!(gsnModelObj instanceof ArgumentElement)) {
+          continue;
         }
-        catch (MMINTException e) {
-          MMINTException.print(IStatus.WARNING, "Skipping annotated element " + modelElem.getName(), e);
-        }
+        var cause = modelElemRef.getModelElemEndpointRefs().stream()
+          .map(meer -> ((MappingReference) meer.eContainer()).getObject())
+          .filter(m -> m.getMetatypeUri().equals(annotationId)) // discard lower priority causes
+          .map(Mapping::getName)
+          .collect(Collectors.joining(", "));
+        annotateModelElem((ArgumentElement) gsnModelObj, cause, annotationId);
+        alreadyAnnotated.add(modelElem.getUri());
       }
     }
   }

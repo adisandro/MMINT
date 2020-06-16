@@ -13,17 +13,15 @@ package edu.toronto.cs.se.mmint.mid.impl;
 
 import java.lang.reflect.InvocationTargetException;
 
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MMINTConstants;
@@ -52,6 +50,7 @@ import edu.toronto.cs.se.mmint.mid.utils.PrimitiveEObjectWrapper;
  * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.impl.ModelElementImpl#getEInfo <em>EInfo</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmint.mid.impl.ModelElementImpl#getEMFInstanceObject <em>EMF Instance Object</em>}</li>
  * </ul>
  *
  * @generated
@@ -66,6 +65,16 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
    * @ordered
    */
     protected EMFInfo eInfo;
+
+    /**
+   * The cached value of the '{@link #getEMFInstanceObject() <em>EMF Instance Object</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getEMFInstanceObject()
+   * @generated
+   * @ordered
+   */
+  protected EObject emfInstanceObject;
 
     /**
    * <!-- begin-user-doc -->
@@ -133,6 +142,84 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 
     /**
    * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EObject getEMFInstanceObjectGen() {
+    if (this.emfInstanceObject != null && this.emfInstanceObject.eIsProxy()) {
+      InternalEObject oldEMFInstanceObject = (InternalEObject)this.emfInstanceObject;
+      this.emfInstanceObject = eResolveProxy(oldEMFInstanceObject);
+      if (this.emfInstanceObject != oldEMFInstanceObject) {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, MIDPackage.MODEL_ELEMENT__EMF_INSTANCE_OBJECT, oldEMFInstanceObject, this.emfInstanceObject));
+      }
+    }
+    return this.emfInstanceObject;
+  }
+
+  /**
+   * Gets the EMF object of this model element instance.
+   *
+   * @return The EMF object, null if it can't be loaded.
+   * @generated NOT
+   */
+  @Override
+  public EObject getEMFInstanceObject() {
+    try {
+      MMINTException.mustBeInstance(this);
+      var modelObj = getEMFInstanceObjectGen();
+      if (modelObj == null) {
+        String modelObjUri = MIDRegistry.getModelObjectUri(this);
+        int lastSegmentIndex = modelObjUri.lastIndexOf(MMINTConstants.MODEL_URI_SEPARATOR);
+        String lastSegment = modelObjUri.substring(lastSegmentIndex + 1);
+        boolean isPrimitive = !lastSegment.equals("") &&
+                              !lastSegment.contains(MIDRegistry.ECORE_EREFERENCE_URI_PREFIX) &&
+                              !lastSegment.startsWith("_");
+        if (isPrimitive) {
+          modelObjUri = modelObjUri.substring(0, lastSegmentIndex);
+        }
+        var emfResource = ((Model) this.eContainer()).getEMFInstanceResource();
+        modelObj = FileUtils.readModelObject(modelObjUri, emfResource);
+        if (isPrimitive) {
+          var modelObjOwner = modelObj;
+          var feature = modelObjOwner.eClass().getEStructuralFeature(lastSegment);
+          modelObj = new PrimitiveEObjectWrapper(modelObjOwner, feature, modelObjOwner.eGet(feature));
+        }
+        // bypass EMF notifications and the need for a write transaction
+        this.emfInstanceObject = modelObj;
+      }
+      return modelObj;
+    }
+    catch (Exception e) {
+      MMINTException.print(IStatus.WARNING, "Can't load EMF object '" + getUri() + "', returning null", e);
+      return null;
+    }
+  }
+
+    /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EObject basicGetEMFInstanceObject() {
+    return this.emfInstanceObject;
+  }
+
+    /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setEMFInstanceObject(EObject newEMFInstanceObject) {
+    EObject oldEMFInstanceObject = this.emfInstanceObject;
+    this.emfInstanceObject = newEMFInstanceObject;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.MODEL_ELEMENT__EMF_INSTANCE_OBJECT, oldEMFInstanceObject, this.emfInstanceObject));
+  }
+
+    /**
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
    * @generated
    */
@@ -187,6 +274,9 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
     switch (featureID) {
       case MIDPackage.MODEL_ELEMENT__EINFO:
         return getEInfo();
+      case MIDPackage.MODEL_ELEMENT__EMF_INSTANCE_OBJECT:
+        if (resolve) return getEMFInstanceObject();
+        return basicGetEMFInstanceObject();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -201,6 +291,9 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
     switch (featureID) {
       case MIDPackage.MODEL_ELEMENT__EINFO:
         setEInfo((EMFInfo)newValue);
+        return;
+      case MIDPackage.MODEL_ELEMENT__EMF_INSTANCE_OBJECT:
+        setEMFInstanceObject((EObject)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -217,6 +310,9 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
       case MIDPackage.MODEL_ELEMENT__EINFO:
         setEInfo((EMFInfo)null);
         return;
+      case MIDPackage.MODEL_ELEMENT__EMF_INSTANCE_OBJECT:
+        setEMFInstanceObject((EObject)null);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -231,6 +327,8 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
     switch (featureID) {
       case MIDPackage.MODEL_ELEMENT__EINFO:
         return this.eInfo != null;
+      case MIDPackage.MODEL_ELEMENT__EMF_INSTANCE_OBJECT:
+        return this.emfInstanceObject != null;
     }
     return super.eIsSet(featureID);
   }
@@ -313,13 +411,6 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
         try {
           deleteInstance();
           return null;
-        }
-        catch (Throwable throwable) {
-          throw new InvocationTargetException(throwable);
-        }
-      case MIDPackage.MODEL_ELEMENT___GET_EMF_INSTANCE_OBJECT__RESOURCE:
-        try {
-          return getEMFInstanceObject((Resource)arguments.get(0));
         }
         catch (Throwable throwable) {
           throw new InvocationTargetException(throwable);
@@ -463,44 +554,6 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 
         super.delete();
         //TODO MMINT[OO] might need to implement full removal
-    }
-
-    /**
-     * @generated NOT
-     */
-    @Override
-    public EObject getEMFInstanceObject(@Nullable Resource emfResource) throws MMINTException {
-
-        //TODO MMINT[OO] Does the argument still make sense?
-        MMINTException.mustBeInstance(this);
-
-        String modelObjUri = MIDRegistry.getModelObjectUri(this);
-        int lastSegmentIndex = modelObjUri.lastIndexOf(MMINTConstants.MODEL_URI_SEPARATOR);
-        String lastSegment = modelObjUri.substring(lastSegmentIndex + 1);
-        boolean isPrimitive = !lastSegment.equals("") &&
-                              !lastSegment.contains(MIDRegistry.ECORE_EREFERENCE_URI_PREFIX) &&
-                              !lastSegment.startsWith("_");
-        if (isPrimitive) {
-            modelObjUri = modelObjUri.substring(0, lastSegmentIndex);
-        }
-        if (emfResource == null) {
-            var modelContainer = (Model) this.eContainer();
-            emfResource = modelContainer.getEMFInstanceResource();
-        }
-        EObject modelObj;
-        try {
-            modelObj = FileUtils.readModelObject(modelObjUri, emfResource);
-        }
-        catch (Exception e) {
-            throw new MMINTException("Error accessing the model file for model element" + getUri(), e);
-        }
-        if (isPrimitive) {
-            EObject modelObjOwner = modelObj;
-            EStructuralFeature feature = modelObjOwner.eClass().getEStructuralFeature(lastSegment);
-            modelObj = new PrimitiveEObjectWrapper(modelObjOwner, feature, modelObjOwner.eGet(feature));
-        }
-
-        return modelObj;
     }
 
 } //ModelElementImpl

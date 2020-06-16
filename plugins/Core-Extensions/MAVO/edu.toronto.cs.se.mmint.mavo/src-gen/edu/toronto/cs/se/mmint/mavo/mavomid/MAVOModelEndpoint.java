@@ -37,7 +37,6 @@ public interface MAVOModelEndpoint extends ModelEndpoint {
    * Gets the MAVO model target of this MAVO model endpoint.
    * <!-- end-model-doc -->
    * @model kind="operation" required="true"
-   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElement target = super.getTarget();\nreturn (target == null) ? null : (MAVOModel) target;'"
    * @generated
    */
 	MAVOModel getTarget();

@@ -164,6 +164,7 @@
     </genClasses>
     <genClasses ecoreClass="mid.ecore#//ModelElement">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//ModelElement/eInfo"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference mid.ecore#//ModelElement/EMFInstanceObject"/>
       <genOperations ecoreOperation="mid.ecore#//ModelElement/getMetatype" body="ExtendibleElement metatype = super.getMetatype();&#xA;return (metatype == null) ? null : (ModelElement) metatype;"/>
       <genOperations ecoreOperation="mid.ecore#//ModelElement/getSupertype" body="ExtendibleElement supertype = super.getSupertype();&#xA;return (supertype == null) ? null : (ModelElement) supertype;"/>
       <genOperations ecoreOperation="mid.ecore#//ModelElement/getMIDContainer" body="return (MID) this.eContainer().eContainer();"/>
@@ -191,9 +192,6 @@
         <genParameters ecoreParameter="mid.ecore#//ModelElement/createInstanceAndReference/containerModelEndpointRef"/>
       </genOperations>
       <genOperations ecoreOperation="mid.ecore#//ModelElement/deleteInstance"/>
-      <genOperations ecoreOperation="mid.ecore#//ModelElement/getEMFInstanceObject">
-        <genParameters ecoreParameter="mid.ecore#//ModelElement/getEMFInstanceObject/emfResource"/>
-      </genOperations>
     </genClasses>
     <genClasses ecoreClass="mid.ecore#//ModelEndpoint">
       <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/getMetatype" body="ExtendibleElementEndpoint metatype = super.getMetatype();&#xA;return (metatype == null) ? null : (ModelEndpoint) metatype;"/>

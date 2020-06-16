@@ -220,7 +220,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
    */
     @Override
     public void setOrigin(ModelOrigin newOrigin) {
-    var oldOrigin = this.origin;
+    ModelOrigin oldOrigin = this.origin;
     this.origin = newOrigin == null ? ModelImpl.ORIGIN_EDEFAULT : newOrigin;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.MODEL__ORIGIN, oldOrigin, this.origin));
@@ -243,7 +243,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
    */
     @Override
     public void setFileExtension(String newFileExtension) {
-    var oldFileExtension = this.fileExtension;
+    String oldFileExtension = this.fileExtension;
     this.fileExtension = newFileExtension;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.MODEL__FILE_EXTENSION, oldFileExtension, this.fileExtension));
@@ -328,7 +328,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
    */
   @Override
   public void setEMFInstanceResource(Resource newEMFInstanceResource) {
-    var oldEMFInstanceResource = this.emfInstanceResource;
+    Resource oldEMFInstanceResource = this.emfInstanceResource;
     this.emfInstanceResource = newEMFInstanceResource;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.MODEL__EMF_INSTANCE_RESOURCE, oldEMFInstanceResource, this.emfInstanceResource));
@@ -341,7 +341,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
    */
   public EObject getEMFInstanceRootGen() {
     if (this.emfInstanceRoot != null && this.emfInstanceRoot.eIsProxy()) {
-      var oldEMFInstanceRoot = (InternalEObject)this.emfInstanceRoot;
+      InternalEObject oldEMFInstanceRoot = (InternalEObject)this.emfInstanceRoot;
       this.emfInstanceRoot = eResolveProxy(oldEMFInstanceRoot);
       if (this.emfInstanceRoot != oldEMFInstanceRoot) {
         if (eNotificationRequired())
@@ -363,7 +363,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
       MMINTException.mustBeInstance(this);
     }
     catch (Exception e) {
-      MMINTException.print(IStatus.WARNING, "Can't load root EMF model object, returning null", e);
+      MMINTException.print(IStatus.WARNING, "Can't load root EMF model object '" + getUri() + "', returning null", e);
       return null;
     }
     /*TODO MMINT[OPERATOR]
@@ -399,7 +399,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
    */
   @Override
   public void setEMFInstanceRoot(EObject newEMFInstanceRoot) {
-    var oldEMFInstanceRoot = this.emfInstanceRoot;
+    EObject oldEMFInstanceRoot = this.emfInstanceRoot;
     this.emfInstanceRoot = newEMFInstanceRoot;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.MODEL__EMF_INSTANCE_ROOT, oldEMFInstanceRoot, this.emfInstanceRoot));
@@ -412,7 +412,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
    */
     @Override
     public Model getMetatype() {
-    var metatype = super.getMetatype();
+    ExtendibleElement metatype = super.getMetatype();
     return (metatype == null) ? null : (Model) metatype;
   }
 
@@ -423,7 +423,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
    */
     @Override
     public Model getSupertype() {
-    var supertype = super.getSupertype();
+    ExtendibleElement supertype = super.getSupertype();
     return (supertype == null) ? null : (Model) supertype;
   }
 
@@ -736,7 +736,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
     public String toString() {
     if (eIsProxy()) return super.toString();
 
-    var result = new StringBuilder(super.toString());
+    StringBuilder result = new StringBuilder(super.toString());
     result.append(" (origin: ");
     result.append(this.origin);
     result.append(", fileExtension: ");

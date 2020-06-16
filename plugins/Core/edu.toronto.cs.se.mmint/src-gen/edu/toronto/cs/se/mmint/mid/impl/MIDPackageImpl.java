@@ -1022,6 +1022,16 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 
     /**
    * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getModelElement_EMFInstanceObject() {
+    return (EReference)modelElementEClass.getEStructuralFeatures().get(1);
+  }
+
+    /**
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
    * @generated
    */
@@ -1118,16 +1128,6 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
     @Override
     public EOperation getModelElement__DeleteInstance() {
     return modelElementEClass.getEOperations().get(9);
-  }
-
-    /**
-   * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-   * @generated
-   */
-    @Override
-    public EOperation getModelElement__GetEMFInstanceObject__Resource() {
-    return modelElementEClass.getEOperations().get(10);
   }
 
     /**
@@ -1573,6 +1573,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 
     modelElementEClass = createEClass(MODEL_ELEMENT);
     createEReference(modelElementEClass, MODEL_ELEMENT__EINFO);
+    createEReference(modelElementEClass, MODEL_ELEMENT__EMF_INSTANCE_OBJECT);
     createEOperation(modelElementEClass, MODEL_ELEMENT___GET_METATYPE);
     createEOperation(modelElementEClass, MODEL_ELEMENT___GET_SUPERTYPE);
     createEOperation(modelElementEClass, MODEL_ELEMENT___GET_MID_CONTAINER);
@@ -1583,7 +1584,6 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
     createEOperation(modelElementEClass, MODEL_ELEMENT___CREATE_INSTANCE_REFERENCE__MODELENDPOINTREFERENCE);
     createEOperation(modelElementEClass, MODEL_ELEMENT___CREATE_INSTANCE_AND_REFERENCE__STRING_STRING_EMFINFO_MODELENDPOINTREFERENCE);
     createEOperation(modelElementEClass, MODEL_ELEMENT___DELETE_INSTANCE);
-    createEOperation(modelElementEClass, MODEL_ELEMENT___GET_EMF_INSTANCE_OBJECT__RESOURCE);
 
     modelEndpointEClass = createEClass(MODEL_ENDPOINT);
     createEOperation(modelEndpointEClass, MODEL_ENDPOINT___GET_METATYPE);
@@ -1868,6 +1868,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 
     initEClass(modelElementEClass, ModelElement.class, "ModelElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getModelElement_EInfo(), this.getEMFInfo(), null, "eInfo", null, 1, 1, ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getModelElement_EMFInstanceObject(), ecorePackage.getEObject(), null, "EMFInstanceObject", null, 0, 1, ModelElement.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEOperation(getModelElement__GetMetatype(), this.getModelElement(), "getMetatype", 1, 1, IS_UNIQUE, IS_ORDERED);
 
@@ -1907,10 +1908,6 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
     addEException(op, this.getMMINTException());
 
     op = initEOperation(getModelElement__DeleteInstance(), null, "deleteInstance", 0, 1, IS_UNIQUE, IS_ORDERED);
-    addEException(op, this.getMMINTException());
-
-    op = initEOperation(getModelElement__GetEMFInstanceObject__Resource(), ecorePackage.getEObject(), "getEMFInstanceObject", 1, 1, IS_UNIQUE, IS_ORDERED);
-    addEParameter(op, ecorePackage.getEResource(), "emfResource", 0, 1, IS_UNIQUE, IS_ORDERED);
     addEException(op, this.getMMINTException());
 
     initEClass(modelEndpointEClass, ModelEndpoint.class, "ModelEndpoint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

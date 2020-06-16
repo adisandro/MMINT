@@ -267,19 +267,17 @@ public class Slice extends OperatorImpl {
           this.input.model.getName() + "." + critModelElem.getName() :
           critName;
         var info = new SliceInfo(critMapping.getMetatypeUri(), null, ruleName);
-        try {
-          var critModelObj = critModelElem.getEMFInstanceObject(null);
-          // pass criterion to output as-is first
-          this.allSliced.merge(critModelObj, info, this.typesOrder);
-          this.allVisited.merge(critModelObj, info, this.typesOrder);
-          // slice only from external causes or original criterion input
-          // e.g. in a fixed-point loop don't re-run from previous internal results
-          if (!critName.startsWith(this.input.model.getName())) {
-            sliceCriterionElement(critModelObj, info);
-          }
+        var critModelObj = critModelElem.getEMFInstanceObject();
+        if (critModelObj == null) {
+          continue;
         }
-        catch (MMINTException e) {
-          MMINTException.print(IStatus.WARNING, "Skipping criterion model element " + critModelElem.getName(), e);
+        // pass criterion to output as-is first
+        this.allSliced.merge(critModelObj, info, this.typesOrder);
+        this.allVisited.merge(critModelObj, info, this.typesOrder);
+        // slice only from external causes or original criterion input
+        // e.g. in a fixed-point loop don't re-run from previous internal results
+        if (!critName.startsWith(this.input.model.getName())) {
+          sliceCriterionElement(critModelObj, info);
         }
       }
     }

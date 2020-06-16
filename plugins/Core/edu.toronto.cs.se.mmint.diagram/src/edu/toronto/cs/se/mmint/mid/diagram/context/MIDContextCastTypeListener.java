@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -17,7 +17,6 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
@@ -25,7 +24,6 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.swt.events.SelectionEvent;
 
-import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
@@ -55,8 +53,8 @@ public class MIDContextCastTypeListener extends MIDContextMenuListener {
 	public void widgetSelected(SelectionEvent e) {
 
 		AbstractTransactionalCommand command = new MIDContextCastTypeCommand(
-			TransactionUtil.getEditingDomain(model),
-			menuLabel,
+			TransactionUtil.getEditingDomain(this.model),
+			this.menuLabel,
 			MIDDiagramUtils.getActiveInstanceMIDFiles()
 		);
 		runListenerCommand(command);
@@ -72,32 +70,25 @@ public class MIDContextCastTypeListener extends MIDContextMenuListener {
 		@Override
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-			model.setMetatypeUri(newMetatype.getUri());
+			MIDContextCastTypeListener.this.model.setMetatypeUri(MIDContextCastTypeListener.this.newMetatype.getUri());
 
 			// change model relationship structure metatypes
-			if (model instanceof ModelRel) {
-			    for (ModelEndpoint modelEndpoint : ((ModelRel) model).getModelEndpoints()) {
+			if (MIDContextCastTypeListener.this.model instanceof ModelRel) {
+			    for (ModelEndpoint modelEndpoint : ((ModelRel) MIDContextCastTypeListener.this.model).getModelEndpoints()) {
 			        modelEndpoint.setMetatypeUri(
 			            MIDConstraintChecker.getAllowedModelEndpoints(
-			                (ModelRel) model, null, modelEndpoint.getTarget()).get(0));
+			                (ModelRel) MIDContextCastTypeListener.this.model, null, modelEndpoint.getTarget()).get(0));
 			    }
-				for (ModelEndpointReference modelEndpointRef : ((ModelRel) model).getModelEndpointRefs()) {
+				for (ModelEndpointReference modelEndpointRef : ((ModelRel) MIDContextCastTypeListener.this.model).getModelEndpointRefs()) {
 					for (ModelElementReference modelElemRef : modelEndpointRef.getModelElemRefs()) {
 						ModelElement modelElem = modelElemRef.getObject();
-						ModelElement modelElemType;
-						try {
-							modelElemType = MIDConstraintChecker.getAllowedModelElementType(modelEndpointRef, modelElem.getEMFInstanceObject(null));
-						}
-						catch (MMINTException e) {
-							MMINTException.print(IStatus.WARNING, "Can't get model object, skipping model element cast", e);
-							continue;
-						}
+						ModelElement modelElemType = MIDConstraintChecker.getAllowedModelElementType(modelEndpointRef, modelElem.getEMFInstanceObject());
 						if (modelElemType != null) {
 							modelElem.setMetatypeUri(modelElemType.getUri());
 						}
 					}
 				}
-				for (Mapping mapping : ((ModelRel) model).getMappings()) {
+				for (Mapping mapping : ((ModelRel) MIDContextCastTypeListener.this.model).getMappings()) {
 					Mapping mappingType = MIDConstraintChecker.getAllowedMappingType(mapping);
 					if (mappingType != null) {
 						mapping.setMetatypeUri(mappingType.getUri());
@@ -105,7 +96,7 @@ public class MIDContextCastTypeListener extends MIDContextMenuListener {
 				}
 			}
 
-			label.refresh();
+			MIDContextCastTypeListener.this.label.refresh();
 
 			return CommandResult.newOKCommandResult();
 		}

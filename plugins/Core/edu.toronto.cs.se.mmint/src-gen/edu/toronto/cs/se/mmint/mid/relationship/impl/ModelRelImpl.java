@@ -145,10 +145,10 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
    */
     @Override
     public EList<ModelEndpoint> getModelEndpoints() {
-    if (modelEndpoints == null) {
-      modelEndpoints = new EObjectContainmentEList<ModelEndpoint>(ModelEndpoint.class, this, RelationshipPackage.MODEL_REL__MODEL_ENDPOINTS);
+    if (this.modelEndpoints == null) {
+      this.modelEndpoints = new EObjectContainmentEList<>(ModelEndpoint.class, this, RelationshipPackage.MODEL_REL__MODEL_ENDPOINTS);
     }
-    return modelEndpoints;
+    return this.modelEndpoints;
   }
 
     /**
@@ -158,10 +158,10 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
    */
     @Override
     public EList<Mapping> getMappings() {
-    if (mappings == null) {
-      mappings = new EObjectContainmentEList<Mapping>(Mapping.class, this, RelationshipPackage.MODEL_REL__MAPPINGS);
+    if (this.mappings == null) {
+      this.mappings = new EObjectContainmentEList<>(Mapping.class, this, RelationshipPackage.MODEL_REL__MAPPINGS);
     }
-    return mappings;
+    return this.mappings;
   }
 
     /**
@@ -171,10 +171,10 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
    */
     @Override
     public EList<ModelEndpointReference> getModelEndpointRefs() {
-    if (modelEndpointRefs == null) {
-      modelEndpointRefs = new EObjectContainmentEList<ModelEndpointReference>(ModelEndpointReference.class, this, RelationshipPackage.MODEL_REL__MODEL_ENDPOINT_REFS);
+    if (this.modelEndpointRefs == null) {
+      this.modelEndpointRefs = new EObjectContainmentEList<>(ModelEndpointReference.class, this, RelationshipPackage.MODEL_REL__MODEL_ENDPOINT_REFS);
     }
-    return modelEndpointRefs;
+    return this.modelEndpointRefs;
   }
 
     /**
@@ -184,10 +184,10 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
    */
     @Override
     public EList<MappingReference> getMappingRefs() {
-    if (mappingRefs == null) {
-      mappingRefs = new EObjectContainmentEList<MappingReference>(MappingReference.class, this, RelationshipPackage.MODEL_REL__MAPPING_REFS);
+    if (this.mappingRefs == null) {
+      this.mappingRefs = new EObjectContainmentEList<>(MappingReference.class, this, RelationshipPackage.MODEL_REL__MAPPING_REFS);
     }
-    return mappingRefs;
+    return this.mappingRefs;
   }
 
     /**
@@ -324,13 +324,13 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
     public boolean eIsSet(int featureID) {
     switch (featureID) {
       case RelationshipPackage.MODEL_REL__MODEL_ENDPOINTS:
-        return modelEndpoints != null && !modelEndpoints.isEmpty();
+        return this.modelEndpoints != null && !this.modelEndpoints.isEmpty();
       case RelationshipPackage.MODEL_REL__MAPPINGS:
-        return mappings != null && !mappings.isEmpty();
+        return this.mappings != null && !this.mappings.isEmpty();
       case RelationshipPackage.MODEL_REL__MODEL_ENDPOINT_REFS:
-        return modelEndpointRefs != null && !modelEndpointRefs.isEmpty();
+        return this.modelEndpointRefs != null && !this.modelEndpointRefs.isEmpty();
       case RelationshipPackage.MODEL_REL__MAPPING_REFS:
-        return mappingRefs != null && !mappingRefs.isEmpty();
+        return this.mappingRefs != null && !this.mappingRefs.isEmpty();
     }
     return super.eIsSet(featureID);
   }
@@ -853,7 +853,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
             ModelEndpointReference newModelEndpointRef = origModelEndpointRef.getObject().getMetatype().createInstance(newModel, newModelRel);
             // model elements
             for (ModelElementReference origModelElemRef : origModelEndpointRef.getModelElemRefs()) {
-                EObject newModelObj = origModelElemRef.getObject().getEMFInstanceObject(null);
+                EObject newModelObj = origModelElemRef.getObject().getEMFInstanceObject();
                 ModelElementReference newModelElemRef = newModelEndpointRef.createModelElementInstanceAndReference(newModelObj, origModelElemRef.getObject().getName());
                 newModelElemRefs.put(newModelElemRef.getUri(), newModelElemRef);
             }

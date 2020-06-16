@@ -1616,13 +1616,22 @@ public interface MIDPackage extends EPackage {
     int MODEL_ELEMENT__EINFO = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 0;
 
     /**
+   * The feature id for the '<em><b>EMF Instance Object</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MODEL_ELEMENT__EMF_INSTANCE_OBJECT = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 1;
+
+    /**
    * The number of structural features of the '<em>Model Element</em>' class.
    * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-    int MODEL_ELEMENT_FEATURE_COUNT = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 1;
+    int MODEL_ELEMENT_FEATURE_COUNT = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 2;
 
     /**
    * The operation id for the '<em>Is Level</em>' operation.
@@ -1850,22 +1859,13 @@ public interface MIDPackage extends EPackage {
     int MODEL_ELEMENT___DELETE_INSTANCE = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 9;
 
     /**
-   * The operation id for the '<em>Get EMF Instance Object</em>' operation.
-   * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-    int MODEL_ELEMENT___GET_EMF_INSTANCE_OBJECT__RESOURCE = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 10;
-
-    /**
    * The number of operations of the '<em>Model Element</em>' class.
    * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-    int MODEL_ELEMENT_OPERATION_COUNT = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 11;
+    int MODEL_ELEMENT_OPERATION_COUNT = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 10;
 
     /**
    * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.impl.ModelEndpointImpl <em>Model Endpoint</em>}' class.
@@ -3236,6 +3236,17 @@ public interface MIDPackage extends EPackage {
     EReference getModelElement_EInfo();
 
     /**
+   * Returns the meta object for the reference '{@link edu.toronto.cs.se.mmint.mid.ModelElement#getEMFInstanceObject <em>EMF Instance Object</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>EMF Instance Object</em>'.
+   * @see edu.toronto.cs.se.mmint.mid.ModelElement#getEMFInstanceObject()
+   * @see #getModelElement()
+   * @generated
+   */
+  EReference getModelElement_EMFInstanceObject();
+
+    /**
    * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.ModelElement#getMetatype() <em>Get Metatype</em>}' operation.
    * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -3334,16 +3345,6 @@ public interface MIDPackage extends EPackage {
    * @generated
    */
     EOperation getModelElement__DeleteInstance();
-
-    /**
-   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.ModelElement#getEMFInstanceObject(org.eclipse.emf.ecore.resource.Resource) <em>Get EMF Instance Object</em>}' operation.
-   * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-   * @return the meta object for the '<em>Get EMF Instance Object</em>' operation.
-   * @see edu.toronto.cs.se.mmint.mid.ModelElement#getEMFInstanceObject(org.eclipse.emf.ecore.resource.Resource)
-   * @generated
-   */
-    EOperation getModelElement__GetEMFInstanceObject__Resource();
 
     /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.mid.ModelEndpoint <em>Model Endpoint</em>}'.
@@ -4358,6 +4359,14 @@ public interface MIDPackage extends EPackage {
         EReference MODEL_ELEMENT__EINFO = eINSTANCE.getModelElement_EInfo();
 
         /**
+     * The meta object literal for the '<em><b>EMF Instance Object</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference MODEL_ELEMENT__EMF_INSTANCE_OBJECT = eINSTANCE.getModelElement_EMFInstanceObject();
+
+        /**
      * The meta object literal for the '<em><b>Get Metatype</b></em>' operation.
      * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -4436,14 +4445,6 @@ public interface MIDPackage extends EPackage {
      * @generated
      */
         EOperation MODEL_ELEMENT___DELETE_INSTANCE = eINSTANCE.getModelElement__DeleteInstance();
-
-        /**
-     * The meta object literal for the '<em><b>Get EMF Instance Object</b></em>' operation.
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        EOperation MODEL_ELEMENT___GET_EMF_INSTANCE_OBJECT__RESOURCE = eINSTANCE.getModelElement__GetEMFInstanceObject__Resource();
 
         /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.impl.ModelEndpointImpl <em>Model Endpoint</em>}' class.

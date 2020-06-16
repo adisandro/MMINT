@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -23,9 +23,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mavo.MAVOElement;
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorConstraint;
-import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModelElementReference;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
@@ -111,7 +111,7 @@ public class ChangeImpact extends OperatorImpl {
 		// type table
 		Model model = modelEndpointRef.getObject().getTarget();
 		for (ModelElement modelElemType : model.getMetatype().getModelElems()) {
-			List<EObject> unifiablesFromSameType = new ArrayList<EObject>();
+			List<EObject> unifiablesFromSameType = new ArrayList<>();
 			typeTable.put(modelElemType.getUri(), unifiablesFromSameType);
 		}
 		TreeIterator<EObject> iterator = model.getEMFInstanceRoot().eAllContents();
@@ -130,7 +130,7 @@ public class ChangeImpact extends OperatorImpl {
 		// merge table
 		for (List<EObject> unifiablesFromSameType : typeTable.values()) {
 			for (EObject modelObj : unifiablesFromSameType) {
-				List<EObject> unifiables = new ArrayList<EObject>();
+				List<EObject> unifiables = new ArrayList<>();
 				String modelObjUri = MIDRegistry.getModelElementUri(modelObj);
 				unifyTable.put(modelObjUri, unifiables);
 				unifiables.add(modelObj);
@@ -180,7 +180,7 @@ public class ChangeImpact extends OperatorImpl {
 					}
 					// add impacted model element endpoint to impact link
 					ModelElementEndpointReference newImpactModelElemEndpointRef = rootModelElemTypeEndpoint.createInstanceAndReference(newImpactedModelElemRef, impactMappingRef);
-					newImpactModelElemEndpointRef.getObject().setName(TGT_MODELELEMENDPOINT_NAME);
+					newImpactModelElemEndpointRef.getObject().setName(ChangeImpact.TGT_MODELELEMENDPOINT_NAME);
 				}
 			}
 		}
@@ -192,8 +192,8 @@ public class ChangeImpact extends OperatorImpl {
 			Map<String, MID> outputMIDsByName) throws Exception {
 
 		// input
-		BinaryModelRel diffRel = (BinaryModelRel) inputsByName.get(IN_MODELREL1);
-		BinaryModelRel traceRel = (BinaryModelRel) inputsByName.get(IN_MODELREL2);
+		BinaryModelRel diffRel = (BinaryModelRel) inputsByName.get(ChangeImpact.IN_MODELREL1);
+		BinaryModelRel traceRel = (BinaryModelRel) inputsByName.get(ChangeImpact.IN_MODELREL2);
 		Model impactedModel = traceRel.getTargetModel();
 
 		Map<String, List<ModelElementReference>> origUnifyTable = new HashMap<>();
@@ -208,10 +208,10 @@ public class ChangeImpact extends OperatorImpl {
 		ModelRel rootModelRelType = MIDTypeHierarchy.getRootModelRelType();
 		ModelRel newImpactModelRel = rootModelRelType.createBinaryInstanceAndEndpoints(
 			null,
-			OUT_MODELREL,
+			ChangeImpact.OUT_MODELREL,
 			diffRel,
 			impactedModel,
-			outputMIDsByName.get(OUT_MODELREL));
+			outputMIDsByName.get(ChangeImpact.OUT_MODELREL));
 		ModelEndpointReference newDiffModelEndpointRef = newImpactModelRel.getModelEndpointRefs().get(0);
 		ModelEndpointReference newImpactedModelEndpointRef = newImpactModelRel.getModelEndpointRefs().get(1);
 
@@ -222,18 +222,18 @@ public class ChangeImpact extends OperatorImpl {
 			// create diff model element ref
 			ModelElementReference newDiffModelElemRef = newDiffModelEndpointRef.createModelElementInstanceAndReference(diffModelElem, diffModelElem.getName());
 			// create impact link, add diff model element endpoint to it
-			EList<ModelElementReference> targetModelElemRefs = new BasicEList<ModelElementReference>();
+			EList<ModelElementReference> targetModelElemRefs = new BasicEList<>();
 			targetModelElemRefs.add(newDiffModelElemRef);
 			MappingReference newImpactMappingRef = rootMappingType.createInstanceAndReferenceAndEndpointsAndReferences(false, targetModelElemRefs);
-			newImpactMappingRef.getObject().setName(OUT_MODELREL);
+			newImpactMappingRef.getObject().setName(ChangeImpact.OUT_MODELREL);
 			ModelElementEndpointReference newDiffModelElemEndpointRef = newImpactMappingRef.getModelElemEndpointRefs().get(0);
-			newDiffModelElemEndpointRef.getObject().setName(SRC_MODELELEMENDPOINT_NAME);
+			newDiffModelElemEndpointRef.getObject().setName(ChangeImpact.SRC_MODELELEMENDPOINT_NAME);
 
 			// change impact algorithm
 			List<ModelElementReference> origUnifiables = origUnifyTable.get(diffModelElem.getUri());
 			if (origUnifiables == null) { // not in the trace rel
 				// get the type it would have if it was in the trace rel
-				ModelElement diffModelElemType = MIDConstraintChecker.getAllowedModelElementType(traceRel.getModelEndpointRefs().get(0), diffModelElem.getEMFInstanceObject(null));
+				ModelElement diffModelElemType = MIDConstraintChecker.getAllowedModelElementType(traceRel.getModelEndpointRefs().get(0), diffModelElem.getEMFInstanceObject());
 				if (diffModelElemType != null) {
 					List<MAVOModelElementReference> origUnifiablesFromSameType = origTypeTable.get(diffModelElemType.getUri());
 					for (MAVOModelElementReference origUnifiable : origUnifiablesFromSameType) {
@@ -252,7 +252,7 @@ public class ChangeImpact extends OperatorImpl {
 
 		// output
 		Map<String, Model> outputsByName = new HashMap<>();
-		outputsByName.put(OUT_MODELREL, newImpactModelRel);
+		outputsByName.put(ChangeImpact.OUT_MODELREL, newImpactModelRel);
 
 		return outputsByName;
 	}

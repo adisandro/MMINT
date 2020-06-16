@@ -36,7 +36,6 @@ public interface MAVOModelElementReference extends ModelElementReference {
    * Gets the referenced MAVO model element.
    * <!-- end-model-doc -->
    * @model kind="operation" required="true"
-   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElement object = super.getObject();\nreturn (object == null) ? null : (MAVOModelElement) object;'"
    * @generated
    */
 	MAVOModelElement getObject();

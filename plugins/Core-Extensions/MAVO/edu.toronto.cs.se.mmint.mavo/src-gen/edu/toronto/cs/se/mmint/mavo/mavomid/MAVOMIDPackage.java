@@ -195,6 +195,15 @@ public interface MAVOMIDPackage extends EPackage {
 	int MAVO_MODEL__CONVERSION_OPERATORS = MIDPackage.MODEL__CONVERSION_OPERATORS;
 
 	/**
+   * The feature id for the '<em><b>EMF Instance Resource</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MAVO_MODEL__EMF_INSTANCE_RESOURCE = MIDPackage.MODEL__EMF_INSTANCE_RESOURCE;
+
+  /**
    * The feature id for the '<em><b>EMF Instance Root</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -628,6 +637,15 @@ public interface MAVOMIDPackage extends EPackage {
 	int MAVO_MODEL_ELEMENT__EINFO = MIDPackage.MODEL_ELEMENT__EINFO;
 
 	/**
+   * The feature id for the '<em><b>EMF Instance Object</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MAVO_MODEL_ELEMENT__EMF_INSTANCE_OBJECT = MIDPackage.MODEL_ELEMENT__EMF_INSTANCE_OBJECT;
+
+  /**
    * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -880,15 +898,6 @@ public interface MAVOMIDPackage extends EPackage {
 	int MAVO_MODEL_ELEMENT___DELETE_INSTANCE = MIDPackage.MODEL_ELEMENT___DELETE_INSTANCE;
 
 	/**
-   * The operation id for the '<em>Get EMF Instance Object</em>' operation.
-   * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-    int MAVO_MODEL_ELEMENT___GET_EMF_INSTANCE_OBJECT__RESOURCE = MIDPackage.MODEL_ELEMENT___GET_EMF_INSTANCE_OBJECT__RESOURCE;
-
-    /**
    * The operation id for the '<em>To MID Custom Print Label</em>' operation.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1053,6 +1062,15 @@ public interface MAVOMIDPackage extends EPackage {
 	int MAVO_MODEL_REL__CONVERSION_OPERATORS = RelationshipPackage.MODEL_REL__CONVERSION_OPERATORS;
 
 	/**
+   * The feature id for the '<em><b>EMF Instance Resource</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MAVO_MODEL_REL__EMF_INSTANCE_RESOURCE = RelationshipPackage.MODEL_REL__EMF_INSTANCE_RESOURCE;
+
+  /**
    * The feature id for the '<em><b>EMF Instance Root</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1639,6 +1657,15 @@ public interface MAVOMIDPackage extends EPackage {
 	int BINARY_MAVO_MODEL_REL__CONVERSION_OPERATORS = RelationshipPackage.BINARY_MODEL_REL__CONVERSION_OPERATORS;
 
 	/**
+   * The feature id for the '<em><b>EMF Instance Resource</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BINARY_MAVO_MODEL_REL__EMF_INSTANCE_RESOURCE = RelationshipPackage.BINARY_MODEL_REL__EMF_INSTANCE_RESOURCE;
+
+  /**
    * The feature id for the '<em><b>EMF Instance Root</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

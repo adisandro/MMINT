@@ -37,7 +37,6 @@ public interface MAVOMappingReference extends MappingReference {
    * Gets the referenced MAVO mapping.
    * <!-- end-model-doc -->
    * @model kind="operation" required="true"
-   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElement object = super.getObject();\nreturn (object == null) ? null : (MAVOMapping) object;'"
    * @generated
    */
 	MAVOMapping getObject();

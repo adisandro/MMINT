@@ -41,7 +41,6 @@ public interface MAVOModelEndpointReference extends ModelEndpointReference {
    * Gets the referenced MAVO model endpoint.
    * <!-- end-model-doc -->
    * @model kind="operation" required="true"
-   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElement object = super.getObject();\nreturn (object == null) ? null : (MAVOModelEndpoint) object;'"
    * @generated
    */
 	MAVOModelEndpoint getObject();

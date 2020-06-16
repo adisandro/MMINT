@@ -19,7 +19,6 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -41,17 +40,17 @@ import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 public class MAVOUtils {
 
 	public static final @NonNull String UML_MAVO_PROFILE = "MAVOProfile";
-	private static final @NonNull String UML_INC_STEREOTYPE = UML_MAVO_PROFILE + "::" + "inc";
-	private static final @NonNull String UML_MAY_STEREOTYPE = UML_MAVO_PROFILE + "::" + "may";
-	private static final @NonNull String UML_SET_STEREOTYPE = UML_MAVO_PROFILE + "::" + "set";
-	private static final @NonNull String UML_VAR_STEREOTYPE = UML_MAVO_PROFILE + "::" + "var";
+	private static final @NonNull String UML_INC_STEREOTYPE = MAVOUtils.UML_MAVO_PROFILE + "::" + "inc";
+	private static final @NonNull String UML_MAY_STEREOTYPE = MAVOUtils.UML_MAVO_PROFILE + "::" + "may";
+	private static final @NonNull String UML_SET_STEREOTYPE = MAVOUtils.UML_MAVO_PROFILE + "::" + "set";
+	private static final @NonNull String UML_VAR_STEREOTYPE = MAVOUtils.UML_MAVO_PROFILE + "::" + "var";
 	public static final @NonNull Map<String, String> MAVO_UML_STEREOTYPE_EQUIVALENCE;
 	static {
 		MAVO_UML_STEREOTYPE_EQUIVALENCE = new HashMap<>();
-		MAVO_UML_STEREOTYPE_EQUIVALENCE.put("MAVORoot", "inc");
-		MAVO_UML_STEREOTYPE_EQUIVALENCE.put("MAVOElement", "may");
-		MAVO_UML_STEREOTYPE_EQUIVALENCE.put("MAVOElement", "set");
-		MAVO_UML_STEREOTYPE_EQUIVALENCE.put("MAVOElement", "var");
+		MAVOUtils.MAVO_UML_STEREOTYPE_EQUIVALENCE.put("MAVORoot", "inc");
+		MAVOUtils.MAVO_UML_STEREOTYPE_EQUIVALENCE.put("MAVOElement", "may");
+		MAVOUtils.MAVO_UML_STEREOTYPE_EQUIVALENCE.put("MAVOElement", "set");
+		MAVOUtils.MAVO_UML_STEREOTYPE_EQUIVALENCE.put("MAVOElement", "var");
 	}
 	private static final String NAME_FEATURE = "name";
 
@@ -142,7 +141,7 @@ public class MAVOUtils {
 		}
 		// UML
 		if (rootModelObj instanceof org.eclipse.uml2.uml.Model) {
-			return ((org.eclipse.uml2.uml.Model) rootModelObj).getAppliedProfile(UML_MAVO_PROFILE) != null;
+			return ((org.eclipse.uml2.uml.Model) rootModelObj).getAppliedProfile(MAVOUtils.UML_MAVO_PROFILE) != null;
 		}
 
 		return false;
@@ -157,7 +156,7 @@ public class MAVOUtils {
 		// UML
 		if (modelObj instanceof NamedElement) {
 			NamedElement umlModelObj = (NamedElement) modelObj;
-			Stereotype stereotype = umlModelObj.getApplicableStereotype(UML_MAY_STEREOTYPE);
+			Stereotype stereotype = umlModelObj.getApplicableStereotype(MAVOUtils.UML_MAY_STEREOTYPE);
 			if (stereotype != null) {
 				return true;
 			}
@@ -172,13 +171,7 @@ public class MAVOUtils {
 
 	public static boolean isMAVOElement(ModelElement modelElem) {
 
-		try {
-			return isMAVOElement(modelElem.getEMFInstanceObject(null));
-		}
-		catch (MMINTException e) {
-			MMINTException.print(IStatus.WARNING, "Can't get model object, skipping MAVO evaluation", e);
-			return false;
-		}
+		return isMAVOElement(modelElem.getEMFInstanceObject());
 	}
 
 	private static void initializeMAVOModel(MAVORoot rootModelObj, MAVOModel mavoModel) {
@@ -188,7 +181,7 @@ public class MAVOUtils {
 
 	private static void initializeMAVOModel(org.eclipse.uml2.uml.Model rootUmlModelObj, MAVOModel mavoModel) {
 
-		Stereotype stereotype = rootUmlModelObj.getAppliedStereotype(UML_INC_STEREOTYPE);
+		Stereotype stereotype = rootUmlModelObj.getAppliedStereotype(MAVOUtils.UML_INC_STEREOTYPE);
 		if (stereotype != null) {
 			mavoModel.setInc(true);
 		}
@@ -216,15 +209,15 @@ public class MAVOUtils {
 
 	private static void initializeMAVOModelElement(NamedElement umlModelObj, MAVOModelElement mavoModelElem) {
 
-		Stereotype stereotype = umlModelObj.getAppliedStereotype(UML_MAY_STEREOTYPE);
+		Stereotype stereotype = umlModelObj.getAppliedStereotype(MAVOUtils.UML_MAY_STEREOTYPE);
 		if (stereotype != null) {
 			mavoModelElem.setMay(true);
 		}
-		stereotype = umlModelObj.getAppliedStereotype(UML_SET_STEREOTYPE);
+		stereotype = umlModelObj.getAppliedStereotype(MAVOUtils.UML_SET_STEREOTYPE);
 		if (stereotype != null) {
 			mavoModelElem.setSet(true);
 		}
-		stereotype = umlModelObj.getAppliedStereotype(UML_VAR_STEREOTYPE);
+		stereotype = umlModelObj.getAppliedStereotype(MAVOUtils.UML_VAR_STEREOTYPE);
 		if (stereotype != null) {
 			mavoModelElem.setVar(true);
 		}
@@ -257,7 +250,7 @@ public class MAVOUtils {
 		// UML
 		else if (rootModelObj instanceof org.eclipse.uml2.uml.Model) {
 			org.eclipse.uml2.uml.Model umlRootModelObj = (org.eclipse.uml2.uml.Model) rootModelObj;
-			Stereotype stereotype = umlRootModelObj.getApplicableStereotype(UML_INC_STEREOTYPE);
+			Stereotype stereotype = umlRootModelObj.getApplicableStereotype(MAVOUtils.UML_INC_STEREOTYPE);
 			if (stereotype != null) {
 				if (inc && !umlRootModelObj.isStereotypeApplied(stereotype)) {
 					umlRootModelObj.applyStereotype(stereotype);
@@ -278,7 +271,7 @@ public class MAVOUtils {
 		// UML
 		else if (modelObj instanceof NamedElement) {
 			NamedElement umlModelObj = (NamedElement) modelObj;
-			Stereotype stereotype = umlModelObj.getApplicableStereotype(UML_MAY_STEREOTYPE);
+			Stereotype stereotype = umlModelObj.getApplicableStereotype(MAVOUtils.UML_MAY_STEREOTYPE);
 			if (stereotype != null) {
 				if (may && !umlModelObj.isStereotypeApplied(stereotype)) {
 					umlModelObj.applyStereotype(stereotype);
@@ -299,7 +292,7 @@ public class MAVOUtils {
 		// UML
 		else if (modelObj instanceof NamedElement) {
 			NamedElement umlModelObj = (NamedElement) modelObj;
-			Stereotype stereotype = umlModelObj.getApplicableStereotype(UML_SET_STEREOTYPE);
+			Stereotype stereotype = umlModelObj.getApplicableStereotype(MAVOUtils.UML_SET_STEREOTYPE);
 			if (stereotype != null) {
 				if (set && !umlModelObj.isStereotypeApplied(stereotype)) {
 					umlModelObj.applyStereotype(stereotype);
@@ -320,7 +313,7 @@ public class MAVOUtils {
 		// UML
 		else if (modelObj instanceof NamedElement) {
 			NamedElement umlModelObj = (NamedElement) modelObj;
-			Stereotype stereotype = umlModelObj.getApplicableStereotype(UML_VAR_STEREOTYPE);
+			Stereotype stereotype = umlModelObj.getApplicableStereotype(MAVOUtils.UML_VAR_STEREOTYPE);
 			if (stereotype != null) {
 				if (var && !umlModelObj.isStereotypeApplied(stereotype)) {
 					umlModelObj.applyStereotype(stereotype);
@@ -353,7 +346,7 @@ public class MAVOUtils {
 			}
 			MAVOElement mavoModelObj = (MAVOElement) modelObj;
 			if (mavoModelObj.getFormulaVariable() == null || mavoModelObj.getFormulaVariable().equals("")) {
-				EStructuralFeature nameFeature = mavoModelObj.eClass().getEStructuralFeature(NAME_FEATURE);
+				EStructuralFeature nameFeature = mavoModelObj.eClass().getEStructuralFeature(MAVOUtils.NAME_FEATURE);
 				if (nameFeature != null) {
 					mavoModelObj.setFormulaVariable(((String) mavoModelObj.eGet(nameFeature)).replace(" ", ""));
 					modified = true;

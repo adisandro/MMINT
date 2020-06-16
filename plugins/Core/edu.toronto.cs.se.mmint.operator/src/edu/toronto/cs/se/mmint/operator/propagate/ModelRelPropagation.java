@@ -185,7 +185,7 @@ public class ModelRelPropagation extends OperatorImpl {
           (propModelElemRef.isPresent()) ?
             propModelElemRef.get() :
             propModelEndpointRef.createModelElementInstanceAndReference(
-              propModelElem.getEMFInstanceObject(null), propModelElem.getName()));
+              propModelElem.getEMFInstanceObject(), propModelElem.getName()));
       }
     }
 
