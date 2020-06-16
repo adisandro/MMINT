@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequencediagram:SequenceDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sequencediagram="http://se.cs.toronto.edu/modelepedia/SequenceDiagram">
+  <objects xsi:type="sequencediagram:Actor" name="Driver">
+    <lifeline>
+      <activationBoxes messagesAsSource="//@messages.8"/>
+    </lifeline>
+  </objects>
+  <objects xsi:type="sequencediagram:Component" type="SupervisoryControlSystem">
+    <lifeline>
+      <activationBoxes messagesAsSource="//@messages.0 //@messages.2 //@messages.3 //@messages.4 //@messages.5 //@messages.6 //@messages.7" messagesAsTarget="//@messages.1 //@messages.2 //@messages.3"/>
+    </lifeline>
+  </objects>
+  <objects xsi:type="sequencediagram:Component" type="ImageProcessing">
+    <lifeline>
+      <activationBoxes messagesAsSource="//@messages.1" messagesAsTarget="//@messages.0"/>
+    </lifeline>
+  </objects>
+  <objects xsi:type="sequencediagram:Component" type="LaneCenteringSystem">
+    <lifeline>
+      <activationBoxes messagesAsTarget="//@messages.4"/>
+    </lifeline>
+  </objects>
+  <objects xsi:type="sequencediagram:Component" type="LaneKeepingSystem">
+    <lifeline>
+      <activationBoxes messagesAsTarget="//@messages.5"/>
+    </lifeline>
+  </objects>
+  <objects xsi:type="sequencediagram:Component" type="LaneDepartureWarningSystem">
+    <lifeline>
+      <activationBoxes messagesAsTarget="//@messages.6"/>
+    </lifeline>
+  </objects>
+  <objects xsi:type="sequencediagram:Component" type="Alarm">
+    <lifeline>
+      <activationBoxes messagesAsTarget="//@messages.7"/>
+      <activationBoxes messagesAsSource="//@messages.10" messagesAsTarget="//@messages.9"/>
+    </lifeline>
+  </objects>
+  <objects xsi:type="sequencediagram:Component" type="UserInterface">
+    <lifeline>
+      <activationBoxes messagesAsSource="//@messages.9" messagesAsTarget="//@messages.8 //@messages.10"/>
+    </lifeline>
+  </objects>
+  <messages source="//@objects.1/@lifeline/@activationBoxes.0" target="//@objects.2/@lifeline/@activationBoxes.0" content="CheckStatus()" successor="//@messages.1"/>
+  <messages type="Return" source="//@objects.2/@lifeline/@activationBoxes.0" target="//@objects.1/@lifeline/@activationBoxes.0" content="false" predecessor="//@messages.0" successor="//@messages.2"/>
+  <messages source="//@objects.1/@lifeline/@activationBoxes.0" target="//@objects.1/@lifeline/@activationBoxes.0" content="OkLightOff()" predecessor="//@messages.1" successor="//@messages.3"/>
+  <messages source="//@objects.1/@lifeline/@activationBoxes.0" target="//@objects.1/@lifeline/@activationBoxes.0" content="WarningIndicatorOn()" predecessor="//@messages.2" successor="//@messages.4"/>
+  <messages source="//@objects.1/@lifeline/@activationBoxes.0" target="//@objects.3/@lifeline/@activationBoxes.0" content="TurnOff()" predecessor="//@messages.3" successor="//@messages.5"/>
+  <messages source="//@objects.1/@lifeline/@activationBoxes.0" target="//@objects.4/@lifeline/@activationBoxes.0" content="TurnOff()" predecessor="//@messages.4" successor="//@messages.6"/>
+  <messages source="//@objects.1/@lifeline/@activationBoxes.0" target="//@objects.5/@lifeline/@activationBoxes.0" content="TurnOff()" predecessor="//@messages.5" successor="//@messages.7"/>
+  <messages source="//@objects.1/@lifeline/@activationBoxes.0" target="//@objects.6/@lifeline/@activationBoxes.0" content="Activate()" predecessor="//@messages.6" successor="//@messages.8"/>
+  <messages source="//@objects.0/@lifeline/@activationBoxes.0" target="//@objects.7/@lifeline/@activationBoxes.0" content="DeactivateAlarm()" predecessor="//@messages.7" successor="//@messages.9"/>
+  <messages source="//@objects.7/@lifeline/@activationBoxes.0" target="//@objects.6/@lifeline/@activationBoxes.1" content="Deactivate()" predecessor="//@messages.8" successor="//@messages.10"/>
+  <messages type="Return" source="//@objects.6/@lifeline/@activationBoxes.1" target="//@objects.7/@lifeline/@activationBoxes.0" predecessor="//@messages.9"/>
+</sequencediagram:SequenceDiagram>

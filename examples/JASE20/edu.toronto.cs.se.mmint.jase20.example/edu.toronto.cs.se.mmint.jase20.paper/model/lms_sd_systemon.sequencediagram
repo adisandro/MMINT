@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequencediagram:SequenceDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sequencediagram="http://se.cs.toronto.edu/modelepedia/SequenceDiagram">
+  <objects xsi:type="sequencediagram:Actor" name="IgnitionSystem">
+    <lifeline>
+      <activationBoxes messagesAsSource="//@messages.0"/>
+    </lifeline>
+  </objects>
+  <objects xsi:type="sequencediagram:Component" type="SupervisoryControlSystem">
+    <lifeline>
+      <activationBoxes messagesAsSource="//@messages.1 //@messages.3 //@messages.5 //@messages.7 //@messages.9 //@messages.11 //@messages.13" messagesAsTarget="//@messages.0 //@messages.2 //@messages.4 //@messages.6 //@messages.8 //@messages.10 //@messages.12 //@messages.13"/>
+    </lifeline>
+  </objects>
+  <objects xsi:type="sequencediagram:Component" type="LaneKeepingSystem">
+    <lifeline>
+      <activationBoxes messagesAsSource="//@messages.2 //@messages.4" messagesAsTarget="//@messages.1 //@messages.3"/>
+    </lifeline>
+  </objects>
+  <objects xsi:type="sequencediagram:Component" type="LaneCenteringSystem">
+    <lifeline>
+      <activationBoxes messagesAsSource="//@messages.6 //@messages.8" messagesAsTarget="//@messages.5 //@messages.7"/>
+    </lifeline>
+  </objects>
+  <objects xsi:type="sequencediagram:Component" type="LaneDepartureWarningSystem">
+    <lifeline>
+      <activationBoxes messagesAsSource="//@messages.10 //@messages.12" messagesAsTarget="//@messages.9 //@messages.11"/>
+    </lifeline>
+  </objects>
+  <messages source="//@objects.0/@lifeline/@activationBoxes.0" target="//@objects.1/@lifeline/@activationBoxes.0" content="TurnOn()" successor="//@messages.1"/>
+  <messages source="//@objects.1/@lifeline/@activationBoxes.0" target="//@objects.2/@lifeline/@activationBoxes.0" content="TurnOn()" predecessor="//@messages.0" successor="//@messages.2"/>
+  <messages type="Return" source="//@objects.2/@lifeline/@activationBoxes.0" target="//@objects.1/@lifeline/@activationBoxes.0" predecessor="//@messages.1" successor="//@messages.3"/>
+  <messages source="//@objects.1/@lifeline/@activationBoxes.0" target="//@objects.2/@lifeline/@activationBoxes.0" content="CheckStatus()" predecessor="//@messages.2" successor="//@messages.4"/>
+  <messages type="Return" source="//@objects.2/@lifeline/@activationBoxes.0" target="//@objects.1/@lifeline/@activationBoxes.0" predecessor="//@messages.3" successor="//@messages.5"/>
+  <messages source="//@objects.1/@lifeline/@activationBoxes.0" target="//@objects.3/@lifeline/@activationBoxes.0" content="TurnOn()" predecessor="//@messages.4" successor="//@messages.6"/>
+  <messages type="Return" source="//@objects.3/@lifeline/@activationBoxes.0" target="//@objects.1/@lifeline/@activationBoxes.0" predecessor="//@messages.5" successor="//@messages.7"/>
+  <messages source="//@objects.1/@lifeline/@activationBoxes.0" target="//@objects.3/@lifeline/@activationBoxes.0" content="CheckStatus()" predecessor="//@messages.6" successor="//@messages.8"/>
+  <messages type="Return" source="//@objects.3/@lifeline/@activationBoxes.0" target="//@objects.1/@lifeline/@activationBoxes.0" predecessor="//@messages.7" successor="//@messages.9"/>
+  <messages source="//@objects.1/@lifeline/@activationBoxes.0" target="//@objects.4/@lifeline/@activationBoxes.0" content="TurnOn()" predecessor="//@messages.8" successor="//@messages.10"/>
+  <messages type="Return" source="//@objects.4/@lifeline/@activationBoxes.0" target="//@objects.1/@lifeline/@activationBoxes.0" predecessor="//@messages.9" successor="//@messages.11"/>
+  <messages source="//@objects.1/@lifeline/@activationBoxes.0" target="//@objects.4/@lifeline/@activationBoxes.0" content="CheckStatus()" predecessor="//@messages.10" successor="//@messages.12"/>
+  <messages type="Return" source="//@objects.4/@lifeline/@activationBoxes.0" target="//@objects.1/@lifeline/@activationBoxes.0" predecessor="//@messages.11" successor="//@messages.13"/>
+  <messages source="//@objects.1/@lifeline/@activationBoxes.0" target="//@objects.1/@lifeline/@activationBoxes.0" content="[subsystemsOK = true] ..." predecessor="//@messages.12"/>
+</sequencediagram:SequenceDiagram>
