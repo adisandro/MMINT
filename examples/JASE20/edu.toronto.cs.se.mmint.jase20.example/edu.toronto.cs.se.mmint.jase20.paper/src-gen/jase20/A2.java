@@ -3,9 +3,10 @@
  */
 package jase20;
 
-import edu.toronto.cs.se.mmint.jase20.iso26262.hara.HazardousEvent;
+import edu.toronto.cs.se.mmint.jase20.iso26262.hara.OperationalSituation;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Objects;
@@ -16,7 +17,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.viatra.query.runtime.api.IPatternMatch;
 import org.eclipse.viatra.query.runtime.api.IQuerySpecification;
 import org.eclipse.viatra.query.runtime.api.ViatraQueryEngine;
@@ -25,14 +25,13 @@ import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedEMFQuerySpecificat
 import org.eclipse.viatra.query.runtime.api.impl.BaseMatcher;
 import org.eclipse.viatra.query.runtime.api.impl.BasePatternMatch;
 import org.eclipse.viatra.query.runtime.emf.types.EClassTransitiveInstancesKey;
-import org.eclipse.viatra.query.runtime.emf.types.EDataTypeInSlotsKey;
 import org.eclipse.viatra.query.runtime.emf.types.EStructuralFeatureInstancesKey;
 import org.eclipse.viatra.query.runtime.matchers.backend.QueryEvaluationHint;
 import org.eclipse.viatra.query.runtime.matchers.psystem.PBody;
 import org.eclipse.viatra.query.runtime.matchers.psystem.PVariable;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.Equality;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.ExportedParameter;
-import org.eclipse.viatra.query.runtime.matchers.psystem.basicenumerables.ConstantValue;
+import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.NegativePatternCall;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicenumerables.TypeConstraint;
 import org.eclipse.viatra.query.runtime.matchers.psystem.queries.PParameter;
 import org.eclipse.viatra.query.runtime.matchers.psystem.queries.PParameterDirection;
@@ -46,10 +45,9 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 
  * <p>Original source:
  *         <code><pre>
- *         pattern queryC_D(event: HazardousEvent) {
- *           HazardousEvent.severity(event, "S3");
- *           HazardousEvent.exposure(event, "E4");
- *           HazardousEvent.controllability(event, "C3");
+ *         pattern a2(situation: OperationalSituation) {
+ *           Hazard(hazard);
+ *           neg OperationalSituation.events.hazard(situation, hazard);
  *         }
  * </pre></code>
  * 
@@ -58,9 +56,9 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 
  */
 @SuppressWarnings("all")
-public final class QueryC_D extends BaseGeneratedEMFQuerySpecification<QueryC_D.Matcher> {
+public final class A2 extends BaseGeneratedEMFQuerySpecification<A2.Matcher> {
   /**
-   * Pattern-specific match representation of the jase20.queryC_D pattern,
+   * Pattern-specific match representation of the jase20.a2 pattern,
    * to be used in conjunction with {@link Matcher}.
    * 
    * <p>Class fields correspond to parameters of the pattern. Fields with value null are considered unassigned.
@@ -72,18 +70,18 @@ public final class QueryC_D extends BaseGeneratedEMFQuerySpecification<QueryC_D.
    * 
    */
   public static abstract class Match extends BasePatternMatch {
-    private HazardousEvent fEvent;
+    private OperationalSituation fSituation;
     
-    private static List<String> parameterNames = makeImmutableList("event");
+    private static List<String> parameterNames = makeImmutableList("situation");
     
-    private Match(final HazardousEvent pEvent) {
-      this.fEvent = pEvent;
+    private Match(final OperationalSituation pSituation) {
+      this.fSituation = pSituation;
     }
     
     @Override
     public Object get(final String parameterName) {
       switch(parameterName) {
-          case "event": return this.fEvent;
+          case "situation": return this.fSituation;
           default: return null;
       }
     }
@@ -91,60 +89,60 @@ public final class QueryC_D extends BaseGeneratedEMFQuerySpecification<QueryC_D.
     @Override
     public Object get(final int index) {
       switch(index) {
-          case 0: return this.fEvent;
+          case 0: return this.fSituation;
           default: return null;
       }
     }
     
-    public HazardousEvent getEvent() {
-      return this.fEvent;
+    public OperationalSituation getSituation() {
+      return this.fSituation;
     }
     
     @Override
     public boolean set(final String parameterName, final Object newValue) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
-      if ("event".equals(parameterName) ) {
-          this.fEvent = (HazardousEvent) newValue;
+      if ("situation".equals(parameterName) ) {
+          this.fSituation = (OperationalSituation) newValue;
           return true;
       }
       return false;
     }
     
-    public void setEvent(final HazardousEvent pEvent) {
+    public void setSituation(final OperationalSituation pSituation) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
-      this.fEvent = pEvent;
+      this.fSituation = pSituation;
     }
     
     @Override
     public String patternName() {
-      return "jase20.queryC_D";
+      return "jase20.a2";
     }
     
     @Override
     public List<String> parameterNames() {
-      return QueryC_D.Match.parameterNames;
+      return A2.Match.parameterNames;
     }
     
     @Override
     public Object[] toArray() {
-      return new Object[]{fEvent};
+      return new Object[]{fSituation};
     }
     
     @Override
-    public QueryC_D.Match toImmutable() {
-      return isMutable() ? newMatch(fEvent) : this;
+    public A2.Match toImmutable() {
+      return isMutable() ? newMatch(fSituation) : this;
     }
     
     @Override
     public String prettyPrint() {
       StringBuilder result = new StringBuilder();
-      result.append("\"event\"=" + prettyPrintValue(fEvent));
+      result.append("\"situation\"=" + prettyPrintValue(fSituation));
       return result.toString();
     }
     
     @Override
     public int hashCode() {
-      return Objects.hash(fEvent);
+      return Objects.hash(fSituation);
     }
     
     @Override
@@ -154,9 +152,9 @@ public final class QueryC_D extends BaseGeneratedEMFQuerySpecification<QueryC_D.
       if (obj == null) {
           return false;
       }
-      if ((obj instanceof QueryC_D.Match)) {
-          QueryC_D.Match other = (QueryC_D.Match) obj;
-          return Objects.equals(fEvent, other.fEvent);
+      if ((obj instanceof A2.Match)) {
+          A2.Match other = (A2.Match) obj;
+          return Objects.equals(fSituation, other.fSituation);
       } else {
           // this should be infrequent
           if (!(obj instanceof IPatternMatch)) {
@@ -168,8 +166,8 @@ public final class QueryC_D extends BaseGeneratedEMFQuerySpecification<QueryC_D.
     }
     
     @Override
-    public QueryC_D specification() {
-      return QueryC_D.instance();
+    public A2 specification() {
+      return A2.instance();
     }
     
     /**
@@ -179,7 +177,7 @@ public final class QueryC_D extends BaseGeneratedEMFQuerySpecification<QueryC_D.
      * @return the empty match.
      * 
      */
-    public static QueryC_D.Match newEmptyMatch() {
+    public static A2.Match newEmptyMatch() {
       return new Mutable(null);
     }
     
@@ -187,29 +185,29 @@ public final class QueryC_D extends BaseGeneratedEMFQuerySpecification<QueryC_D.
      * Returns a mutable (partial) match.
      * Fields of the mutable match can be filled to create a partial match, usable as matcher input.
      * 
-     * @param pEvent the fixed value of pattern parameter event, or null if not bound.
+     * @param pSituation the fixed value of pattern parameter situation, or null if not bound.
      * @return the new, mutable (partial) match object.
      * 
      */
-    public static QueryC_D.Match newMutableMatch(final HazardousEvent pEvent) {
-      return new Mutable(pEvent);
+    public static A2.Match newMutableMatch(final OperationalSituation pSituation) {
+      return new Mutable(pSituation);
     }
     
     /**
      * Returns a new (partial) match.
      * This can be used e.g. to call the matcher with a partial match.
      * <p>The returned match will be immutable. Use {@link #newEmptyMatch()} to obtain a mutable match object.
-     * @param pEvent the fixed value of pattern parameter event, or null if not bound.
+     * @param pSituation the fixed value of pattern parameter situation, or null if not bound.
      * @return the (partial) match object.
      * 
      */
-    public static QueryC_D.Match newMatch(final HazardousEvent pEvent) {
-      return new Immutable(pEvent);
+    public static A2.Match newMatch(final OperationalSituation pSituation) {
+      return new Immutable(pSituation);
     }
     
-    private static final class Mutable extends QueryC_D.Match {
-      Mutable(final HazardousEvent pEvent) {
-        super(pEvent);
+    private static final class Mutable extends A2.Match {
+      Mutable(final OperationalSituation pSituation) {
+        super(pSituation);
       }
       
       @Override
@@ -218,9 +216,9 @@ public final class QueryC_D extends BaseGeneratedEMFQuerySpecification<QueryC_D.
       }
     }
     
-    private static final class Immutable extends QueryC_D.Match {
-      Immutable(final HazardousEvent pEvent) {
-        super(pEvent);
+    private static final class Immutable extends A2.Match {
+      Immutable(final OperationalSituation pSituation) {
+        super(pSituation);
       }
       
       @Override
@@ -231,7 +229,7 @@ public final class QueryC_D extends BaseGeneratedEMFQuerySpecification<QueryC_D.
   }
   
   /**
-   * Generated pattern matcher API of the jase20.queryC_D pattern,
+   * Generated pattern matcher API of the jase20.a2 pattern,
    * providing pattern-specific query methods.
    * 
    * <p>Use the pattern matcher on a given model via {@link #on(ViatraQueryEngine)},
@@ -241,18 +239,17 @@ public final class QueryC_D extends BaseGeneratedEMFQuerySpecification<QueryC_D.
    * 
    * <p>Original source:
    * <code><pre>
-   * pattern queryC_D(event: HazardousEvent) {
-   *   HazardousEvent.severity(event, "S3");
-   *   HazardousEvent.exposure(event, "E4");
-   *   HazardousEvent.controllability(event, "C3");
+   * pattern a2(situation: OperationalSituation) {
+   *   Hazard(hazard);
+   *   neg OperationalSituation.events.hazard(situation, hazard);
    * }
    * </pre></code>
    * 
    * @see Match
-   * @see QueryC_D
+   * @see A2
    * 
    */
-  public static class Matcher extends BaseMatcher<QueryC_D.Match> {
+  public static class Matcher extends BaseMatcher<A2.Match> {
     /**
      * Initializes the pattern matcher within an existing VIATRA Query engine.
      * If the pattern matcher is already constructed in the engine, only a light-weight reference is returned.
@@ -261,7 +258,7 @@ public final class QueryC_D extends BaseGeneratedEMFQuerySpecification<QueryC_D.
      * @throws ViatraQueryRuntimeException if an error occurs during pattern matcher creation
      * 
      */
-    public static QueryC_D.Matcher on(final ViatraQueryEngine engine) {
+    public static A2.Matcher on(final ViatraQueryEngine engine) {
       // check if matcher already exists
       Matcher matcher = engine.getExistingMatcher(querySpecification());
       if (matcher == null) {
@@ -276,13 +273,13 @@ public final class QueryC_D extends BaseGeneratedEMFQuerySpecification<QueryC_D.
      * @noreference This method is for internal matcher initialization by the framework, do not call it manually.
      * 
      */
-    public static QueryC_D.Matcher create() {
+    public static A2.Matcher create() {
       return new Matcher();
     }
     
-    private static final int POSITION_EVENT = 0;
+    private static final int POSITION_SITUATION = 0;
     
-    private static final Logger LOGGER = ViatraQueryLoggingUtil.getLogger(QueryC_D.Matcher.class);
+    private static final Logger LOGGER = ViatraQueryLoggingUtil.getLogger(A2.Matcher.class);
     
     /**
      * Initializes the pattern matcher within an existing VIATRA Query engine.
@@ -298,12 +295,12 @@ public final class QueryC_D extends BaseGeneratedEMFQuerySpecification<QueryC_D.
     
     /**
      * Returns the set of all matches of the pattern that conform to the given fixed values of some parameters.
-     * @param pEvent the fixed value of pattern parameter event, or null if not bound.
+     * @param pSituation the fixed value of pattern parameter situation, or null if not bound.
      * @return matches represented as a Match object.
      * 
      */
-    public Collection<QueryC_D.Match> getAllMatches(final HazardousEvent pEvent) {
-      return rawStreamAllMatches(new Object[]{pEvent}).collect(Collectors.toSet());
+    public Collection<A2.Match> getAllMatches(final OperationalSituation pSituation) {
+      return rawStreamAllMatches(new Object[]{pSituation}).collect(Collectors.toSet());
     }
     
     /**
@@ -312,101 +309,101 @@ public final class QueryC_D extends BaseGeneratedEMFQuerySpecification<QueryC_D.
      * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
      * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
      * In such cases, either rely on {@link #getAllMatches()} or collect the results of the stream in end-user code.
-     * @param pEvent the fixed value of pattern parameter event, or null if not bound.
+     * @param pSituation the fixed value of pattern parameter situation, or null if not bound.
      * @return a stream of matches represented as a Match object.
      * 
      */
-    public Stream<QueryC_D.Match> streamAllMatches(final HazardousEvent pEvent) {
-      return rawStreamAllMatches(new Object[]{pEvent});
+    public Stream<A2.Match> streamAllMatches(final OperationalSituation pSituation) {
+      return rawStreamAllMatches(new Object[]{pSituation});
     }
     
     /**
      * Returns an arbitrarily chosen match of the pattern that conforms to the given fixed values of some parameters.
      * Neither determinism nor randomness of selection is guaranteed.
-     * @param pEvent the fixed value of pattern parameter event, or null if not bound.
+     * @param pSituation the fixed value of pattern parameter situation, or null if not bound.
      * @return a match represented as a Match object, or null if no match is found.
      * 
      */
-    public Optional<QueryC_D.Match> getOneArbitraryMatch(final HazardousEvent pEvent) {
-      return rawGetOneArbitraryMatch(new Object[]{pEvent});
+    public Optional<A2.Match> getOneArbitraryMatch(final OperationalSituation pSituation) {
+      return rawGetOneArbitraryMatch(new Object[]{pSituation});
     }
     
     /**
      * Indicates whether the given combination of specified pattern parameters constitute a valid pattern match,
      * under any possible substitution of the unspecified parameters (if any).
-     * @param pEvent the fixed value of pattern parameter event, or null if not bound.
+     * @param pSituation the fixed value of pattern parameter situation, or null if not bound.
      * @return true if the input is a valid (partial) match of the pattern.
      * 
      */
-    public boolean hasMatch(final HazardousEvent pEvent) {
-      return rawHasMatch(new Object[]{pEvent});
+    public boolean hasMatch(final OperationalSituation pSituation) {
+      return rawHasMatch(new Object[]{pSituation});
     }
     
     /**
      * Returns the number of all matches of the pattern that conform to the given fixed values of some parameters.
-     * @param pEvent the fixed value of pattern parameter event, or null if not bound.
+     * @param pSituation the fixed value of pattern parameter situation, or null if not bound.
      * @return the number of pattern matches found.
      * 
      */
-    public int countMatches(final HazardousEvent pEvent) {
-      return rawCountMatches(new Object[]{pEvent});
+    public int countMatches(final OperationalSituation pSituation) {
+      return rawCountMatches(new Object[]{pSituation});
     }
     
     /**
      * Executes the given processor on an arbitrarily chosen match of the pattern that conforms to the given fixed values of some parameters.
      * Neither determinism nor randomness of selection is guaranteed.
-     * @param pEvent the fixed value of pattern parameter event, or null if not bound.
+     * @param pSituation the fixed value of pattern parameter situation, or null if not bound.
      * @param processor the action that will process the selected match.
      * @return true if the pattern has at least one match with the given parameter values, false if the processor was not invoked
      * 
      */
-    public boolean forOneArbitraryMatch(final HazardousEvent pEvent, final Consumer<? super QueryC_D.Match> processor) {
-      return rawForOneArbitraryMatch(new Object[]{pEvent}, processor);
+    public boolean forOneArbitraryMatch(final OperationalSituation pSituation, final Consumer<? super A2.Match> processor) {
+      return rawForOneArbitraryMatch(new Object[]{pSituation}, processor);
     }
     
     /**
      * Returns a new (partial) match.
      * This can be used e.g. to call the matcher with a partial match.
      * <p>The returned match will be immutable. Use {@link #newEmptyMatch()} to obtain a mutable match object.
-     * @param pEvent the fixed value of pattern parameter event, or null if not bound.
+     * @param pSituation the fixed value of pattern parameter situation, or null if not bound.
      * @return the (partial) match object.
      * 
      */
-    public QueryC_D.Match newMatch(final HazardousEvent pEvent) {
-      return QueryC_D.Match.newMatch(pEvent);
+    public A2.Match newMatch(final OperationalSituation pSituation) {
+      return A2.Match.newMatch(pSituation);
     }
     
     /**
-     * Retrieve the set of values that occur in matches for event.
+     * Retrieve the set of values that occur in matches for situation.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    protected Stream<HazardousEvent> rawStreamAllValuesOfevent(final Object[] parameters) {
-      return rawStreamAllValues(POSITION_EVENT, parameters).map(HazardousEvent.class::cast);
+    protected Stream<OperationalSituation> rawStreamAllValuesOfsituation(final Object[] parameters) {
+      return rawStreamAllValues(POSITION_SITUATION, parameters).map(OperationalSituation.class::cast);
     }
     
     /**
-     * Retrieve the set of values that occur in matches for event.
+     * Retrieve the set of values that occur in matches for situation.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<HazardousEvent> getAllValuesOfevent() {
-      return rawStreamAllValuesOfevent(emptyArray()).collect(Collectors.toSet());
+    public Set<OperationalSituation> getAllValuesOfsituation() {
+      return rawStreamAllValuesOfsituation(emptyArray()).collect(Collectors.toSet());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for event.
+     * Retrieve the set of values that occur in matches for situation.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Stream<HazardousEvent> streamAllValuesOfevent() {
-      return rawStreamAllValuesOfevent(emptyArray());
+    public Stream<OperationalSituation> streamAllValuesOfsituation() {
+      return rawStreamAllValuesOfsituation(emptyArray());
     }
     
     @Override
-    protected QueryC_D.Match tupleToMatch(final Tuple t) {
+    protected A2.Match tupleToMatch(final Tuple t) {
       try {
-          return QueryC_D.Match.newMatch((HazardousEvent) t.get(POSITION_EVENT));
+          return A2.Match.newMatch((OperationalSituation) t.get(POSITION_SITUATION));
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in tuple not properly typed!",e);
           return null;
@@ -414,9 +411,9 @@ public final class QueryC_D extends BaseGeneratedEMFQuerySpecification<QueryC_D.
     }
     
     @Override
-    protected QueryC_D.Match arrayToMatch(final Object[] match) {
+    protected A2.Match arrayToMatch(final Object[] match) {
       try {
-          return QueryC_D.Match.newMatch((HazardousEvent) match[POSITION_EVENT]);
+          return A2.Match.newMatch((OperationalSituation) match[POSITION_SITUATION]);
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in array not properly typed!",e);
           return null;
@@ -424,9 +421,9 @@ public final class QueryC_D extends BaseGeneratedEMFQuerySpecification<QueryC_D.
     }
     
     @Override
-    protected QueryC_D.Match arrayToMatchMutable(final Object[] match) {
+    protected A2.Match arrayToMatchMutable(final Object[] match) {
       try {
-          return QueryC_D.Match.newMutableMatch((HazardousEvent) match[POSITION_EVENT]);
+          return A2.Match.newMutableMatch((OperationalSituation) match[POSITION_SITUATION]);
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in array not properly typed!",e);
           return null;
@@ -438,12 +435,12 @@ public final class QueryC_D extends BaseGeneratedEMFQuerySpecification<QueryC_D.
      * @throws ViatraQueryRuntimeException if the pattern definition could not be loaded
      * 
      */
-    public static IQuerySpecification<QueryC_D.Matcher> querySpecification() {
-      return QueryC_D.instance();
+    public static IQuerySpecification<A2.Matcher> querySpecification() {
+      return A2.instance();
     }
   }
   
-  private QueryC_D() {
+  private A2() {
     super(GeneratedPQuery.INSTANCE);
   }
   
@@ -452,7 +449,7 @@ public final class QueryC_D extends BaseGeneratedEMFQuerySpecification<QueryC_D.
    * @throws ViatraQueryRuntimeException if the pattern definition could not be loaded
    * 
    */
-  public static QueryC_D instance() {
+  public static A2 instance() {
     try{
         return LazyHolder.INSTANCE;
     } catch (ExceptionInInitializerError err) {
@@ -461,35 +458,35 @@ public final class QueryC_D extends BaseGeneratedEMFQuerySpecification<QueryC_D.
   }
   
   @Override
-  protected QueryC_D.Matcher instantiate(final ViatraQueryEngine engine) {
-    return QueryC_D.Matcher.on(engine);
+  protected A2.Matcher instantiate(final ViatraQueryEngine engine) {
+    return A2.Matcher.on(engine);
   }
   
   @Override
-  public QueryC_D.Matcher instantiate() {
-    return QueryC_D.Matcher.create();
+  public A2.Matcher instantiate() {
+    return A2.Matcher.create();
   }
   
   @Override
-  public QueryC_D.Match newEmptyMatch() {
-    return QueryC_D.Match.newEmptyMatch();
+  public A2.Match newEmptyMatch() {
+    return A2.Match.newEmptyMatch();
   }
   
   @Override
-  public QueryC_D.Match newMatch(final Object... parameters) {
-    return QueryC_D.Match.newMatch((edu.toronto.cs.se.mmint.jase20.iso26262.hara.HazardousEvent) parameters[0]);
+  public A2.Match newMatch(final Object... parameters) {
+    return A2.Match.newMatch((edu.toronto.cs.se.mmint.jase20.iso26262.hara.OperationalSituation) parameters[0]);
   }
   
   /**
-   * Inner class allowing the singleton instance of {@link QueryC_D} to be created 
+   * Inner class allowing the singleton instance of {@link A2} to be created 
    *     <b>not</b> at the class load time of the outer class, 
-   *     but rather at the first call to {@link QueryC_D#instance()}.
+   *     but rather at the first call to {@link A2#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 
    */
   private static class LazyHolder {
-    private static final QueryC_D INSTANCE = new QueryC_D();
+    private static final A2 INSTANCE = new A2();
     
     /**
      * Statically initializes the query specification <b>after</b> the field {@link #INSTANCE} is assigned.
@@ -507,11 +504,54 @@ public final class QueryC_D extends BaseGeneratedEMFQuerySpecification<QueryC_D.
   }
   
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
-    private static final QueryC_D.GeneratedPQuery INSTANCE = new GeneratedPQuery();
+    private static final A2.GeneratedPQuery INSTANCE = new GeneratedPQuery();
     
-    private final PParameter parameter_event = new PParameter("event", "edu.toronto.cs.se.mmint.jase20.iso26262.hara.HazardousEvent", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("edu.toronto.cs.se.mmint.jase20.iso26262.hara", "HazardousEvent")), PParameterDirection.INOUT);
+    private final PParameter parameter_situation = new PParameter("situation", "edu.toronto.cs.se.mmint.jase20.iso26262.hara.OperationalSituation", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("edu.toronto.cs.se.mmint.jase20.iso26262.hara", "OperationalSituation")), PParameterDirection.INOUT);
     
-    private final List<PParameter> parameters = Arrays.asList(parameter_event);
+    private final List<PParameter> parameters = Arrays.asList(parameter_situation);
+    
+    private class Embedded_1_OperationalSituation_events_hazard extends BaseGeneratedEMFPQuery {
+      private final PParameter parameter_p0 = new PParameter("p0", "edu.toronto.cs.se.mmint.jase20.iso26262.hara.OperationalSituation", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("edu.toronto.cs.se.mmint.jase20.iso26262.hara", "OperationalSituation")), PParameterDirection.INOUT);
+      
+      private final PParameter parameter_p1 = new PParameter("p1", "edu.toronto.cs.se.mmint.jase20.iso26262.hara.Hazard", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("edu.toronto.cs.se.mmint.jase20.iso26262.hara", "Hazard")), PParameterDirection.INOUT);
+      
+      private final List<PParameter> embeddedParameters = Arrays.asList(parameter_p0, parameter_p1);
+      
+      public Embedded_1_OperationalSituation_events_hazard() {
+        super(PVisibility.EMBEDDED);
+      }
+      
+      @Override
+      public String getFullyQualifiedName() {
+        return GeneratedPQuery.this.getFullyQualifiedName() + "$Embedded_1_OperationalSituation_events_hazard";
+      }
+      
+      @Override
+      public List<PParameter> getParameters() {
+        return embeddedParameters;
+      }
+      
+      @Override
+      public Set<PBody> doGetContainedBodies() {
+        PBody body = new PBody(this);
+        PVariable var_p0 = body.getOrCreateVariableByName("p0");
+        PVariable var_p1 = body.getOrCreateVariableByName("p1");
+        body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
+           new ExportedParameter(body, var_p0, parameter_p0),
+           new ExportedParameter(body, var_p1, parameter_p1)
+        ));
+        //  OperationalSituation.events.hazard(situation, hazard)
+        new TypeConstraint(body, Tuples.flatTupleOf(var_p0), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("edu.toronto.cs.se.mmint.jase20.iso26262.hara", "OperationalSituation")));
+        PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
+        new TypeConstraint(body, Tuples.flatTupleOf(var_p0, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("edu.toronto.cs.se.mmint.jase20.iso26262.hara", "OperationalSituation", "events")));
+        new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("edu.toronto.cs.se.mmint.jase20.iso26262.hara", "HazardousEvent")));
+        PVariable var__virtual_1_ = body.getOrCreateVariableByName(".virtual{1}");
+        new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_, var__virtual_1_), new EStructuralFeatureInstancesKey(getFeatureLiteral("edu.toronto.cs.se.mmint.jase20.iso26262.hara", "HazardousEvent", "hazard")));
+        new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_1_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("edu.toronto.cs.se.mmint.jase20.iso26262.hara", "Hazard")));
+        new Equality(body, var__virtual_1_, var_p1);
+        return Collections.singleton(body);
+      }
+    }
     
     private GeneratedPQuery() {
       super(PVisibility.PUBLIC);
@@ -519,12 +559,12 @@ public final class QueryC_D extends BaseGeneratedEMFQuerySpecification<QueryC_D.
     
     @Override
     public String getFullyQualifiedName() {
-      return "jase20.queryC_D";
+      return "jase20.a2";
     }
     
     @Override
     public List<String> getParameterNames() {
-      return Arrays.asList("event");
+      return Arrays.asList("situation");
     }
     
     @Override
@@ -538,35 +578,16 @@ public final class QueryC_D extends BaseGeneratedEMFQuerySpecification<QueryC_D.
       Set<PBody> bodies = new LinkedHashSet<>();
       {
           PBody body = new PBody(this);
-          PVariable var_event = body.getOrCreateVariableByName("event");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_event), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("edu.toronto.cs.se.mmint.jase20.iso26262.hara", "HazardousEvent")));
+          PVariable var_situation = body.getOrCreateVariableByName("situation");
+          PVariable var_hazard = body.getOrCreateVariableByName("hazard");
+          new TypeConstraint(body, Tuples.flatTupleOf(var_situation), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("edu.toronto.cs.se.mmint.jase20.iso26262.hara", "OperationalSituation")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
-             new ExportedParameter(body, var_event, parameter_event)
+             new ExportedParameter(body, var_situation, parameter_situation)
           ));
-          //   HazardousEvent.severity(event, "S3")
-          PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
-          new ConstantValue(body, var__virtual_0_, "S3");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_event), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("edu.toronto.cs.se.mmint.jase20.iso26262.hara", "HazardousEvent")));
-          PVariable var__virtual_1_ = body.getOrCreateVariableByName(".virtual{1}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_event, var__virtual_1_), new EStructuralFeatureInstancesKey(getFeatureLiteral("edu.toronto.cs.se.mmint.jase20.iso26262.hara", "HazardousEvent", "severity")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_1_), new EDataTypeInSlotsKey((EDataType)getClassifierLiteral("http://www.eclipse.org/emf/2002/Ecore", "EString")));
-          new Equality(body, var__virtual_1_, var__virtual_0_);
-          //   HazardousEvent.exposure(event, "E4")
-          PVariable var__virtual_2_ = body.getOrCreateVariableByName(".virtual{2}");
-          new ConstantValue(body, var__virtual_2_, "E4");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_event), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("edu.toronto.cs.se.mmint.jase20.iso26262.hara", "HazardousEvent")));
-          PVariable var__virtual_3_ = body.getOrCreateVariableByName(".virtual{3}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_event, var__virtual_3_), new EStructuralFeatureInstancesKey(getFeatureLiteral("edu.toronto.cs.se.mmint.jase20.iso26262.hara", "HazardousEvent", "exposure")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_3_), new EDataTypeInSlotsKey((EDataType)getClassifierLiteral("http://www.eclipse.org/emf/2002/Ecore", "EString")));
-          new Equality(body, var__virtual_3_, var__virtual_2_);
-          //   HazardousEvent.controllability(event, "C3")
-          PVariable var__virtual_4_ = body.getOrCreateVariableByName(".virtual{4}");
-          new ConstantValue(body, var__virtual_4_, "C3");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_event), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("edu.toronto.cs.se.mmint.jase20.iso26262.hara", "HazardousEvent")));
-          PVariable var__virtual_5_ = body.getOrCreateVariableByName(".virtual{5}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_event, var__virtual_5_), new EStructuralFeatureInstancesKey(getFeatureLiteral("edu.toronto.cs.se.mmint.jase20.iso26262.hara", "HazardousEvent", "controllability")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_5_), new EDataTypeInSlotsKey((EDataType)getClassifierLiteral("http://www.eclipse.org/emf/2002/Ecore", "EString")));
-          new Equality(body, var__virtual_5_, var__virtual_4_);
+          //   Hazard(hazard)
+          new TypeConstraint(body, Tuples.flatTupleOf(var_hazard), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("edu.toronto.cs.se.mmint.jase20.iso26262.hara", "Hazard")));
+          //   neg OperationalSituation.events.hazard(situation, hazard)
+          new NegativePatternCall(body, Tuples.flatTupleOf(var_situation, var_hazard), new A2.GeneratedPQuery.Embedded_1_OperationalSituation_events_hazard());
           bodies.add(body);
       }
       return bodies;

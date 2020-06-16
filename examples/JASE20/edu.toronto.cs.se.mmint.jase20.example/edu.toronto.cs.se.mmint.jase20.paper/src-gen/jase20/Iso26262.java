@@ -3,16 +3,18 @@
  */
 package jase20;
 
+import jase20.A1;
+import jase20.A2;
 import jase20.B;
 import jase20.C;
+import jase20.C_rulesASILA;
+import jase20.C_rulesASILB;
+import jase20.C_rulesASILC;
+import jase20.C_rulesASILD;
+import jase20.C_rulesASILQM;
 import jase20.D;
 import jase20.E;
-import jase20.E_asil;
-import jase20.QueryC_A;
-import jase20.QueryC_B;
-import jase20.QueryC_C;
-import jase20.QueryC_D;
-import jase20.QueryC_QM;
+import jase20.E_eventASIL;
 import org.eclipse.viatra.query.runtime.api.ViatraQueryEngine;
 import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedPatternGroup;
 
@@ -24,15 +26,17 @@ import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedPatternGroup;
  * in order to achieve better performance than one-by-one on-demand matcher initialization.
  * 
  * <p> From package jase20, the group contains the definition of the following patterns: <ul>
+ * <li>a1</li>
+ * <li>a2</li>
  * <li>b</li>
- * <li>queryC_QM</li>
- * <li>queryC_A</li>
- * <li>queryC_B</li>
- * <li>queryC_C</li>
- * <li>queryC_D</li>
+ * <li>c_rulesASILQM</li>
+ * <li>c_rulesASILA</li>
+ * <li>c_rulesASILB</li>
+ * <li>c_rulesASILC</li>
+ * <li>c_rulesASILD</li>
  * <li>c</li>
  * <li>d</li>
- * <li>e_asil</li>
+ * <li>e_eventASIL</li>
  * <li>e</li>
  * </ul>
  * 
@@ -58,16 +62,34 @@ public final class Iso26262 extends BaseGeneratedPatternGroup {
   private static Iso26262 INSTANCE;
   
   private Iso26262() {
+    querySpecifications.add(A1.instance());
+    querySpecifications.add(A2.instance());
     querySpecifications.add(B.instance());
-    querySpecifications.add(QueryC_QM.instance());
-    querySpecifications.add(QueryC_A.instance());
-    querySpecifications.add(QueryC_B.instance());
-    querySpecifications.add(QueryC_C.instance());
-    querySpecifications.add(QueryC_D.instance());
+    querySpecifications.add(C_rulesASILQM.instance());
+    querySpecifications.add(C_rulesASILA.instance());
+    querySpecifications.add(C_rulesASILB.instance());
+    querySpecifications.add(C_rulesASILC.instance());
+    querySpecifications.add(C_rulesASILD.instance());
     querySpecifications.add(C.instance());
     querySpecifications.add(D.instance());
-    querySpecifications.add(E_asil.instance());
+    querySpecifications.add(E_eventASIL.instance());
     querySpecifications.add(E.instance());
+  }
+  
+  public A1 getA1() {
+    return A1.instance();
+  }
+  
+  public A1.Matcher getA1(final ViatraQueryEngine engine) {
+    return A1.Matcher.on(engine);
+  }
+  
+  public A2 getA2() {
+    return A2.instance();
+  }
+  
+  public A2.Matcher getA2(final ViatraQueryEngine engine) {
+    return A2.Matcher.on(engine);
   }
   
   public B getB() {
@@ -78,44 +100,44 @@ public final class Iso26262 extends BaseGeneratedPatternGroup {
     return B.Matcher.on(engine);
   }
   
-  public QueryC_QM getQueryC_QM() {
-    return QueryC_QM.instance();
+  public C_rulesASILQM getC_rulesASILQM() {
+    return C_rulesASILQM.instance();
   }
   
-  public QueryC_QM.Matcher getQueryC_QM(final ViatraQueryEngine engine) {
-    return QueryC_QM.Matcher.on(engine);
+  public C_rulesASILQM.Matcher getC_rulesASILQM(final ViatraQueryEngine engine) {
+    return C_rulesASILQM.Matcher.on(engine);
   }
   
-  public QueryC_A getQueryC_A() {
-    return QueryC_A.instance();
+  public C_rulesASILA getC_rulesASILA() {
+    return C_rulesASILA.instance();
   }
   
-  public QueryC_A.Matcher getQueryC_A(final ViatraQueryEngine engine) {
-    return QueryC_A.Matcher.on(engine);
+  public C_rulesASILA.Matcher getC_rulesASILA(final ViatraQueryEngine engine) {
+    return C_rulesASILA.Matcher.on(engine);
   }
   
-  public QueryC_B getQueryC_B() {
-    return QueryC_B.instance();
+  public C_rulesASILB getC_rulesASILB() {
+    return C_rulesASILB.instance();
   }
   
-  public QueryC_B.Matcher getQueryC_B(final ViatraQueryEngine engine) {
-    return QueryC_B.Matcher.on(engine);
+  public C_rulesASILB.Matcher getC_rulesASILB(final ViatraQueryEngine engine) {
+    return C_rulesASILB.Matcher.on(engine);
   }
   
-  public QueryC_C getQueryC_C() {
-    return QueryC_C.instance();
+  public C_rulesASILC getC_rulesASILC() {
+    return C_rulesASILC.instance();
   }
   
-  public QueryC_C.Matcher getQueryC_C(final ViatraQueryEngine engine) {
-    return QueryC_C.Matcher.on(engine);
+  public C_rulesASILC.Matcher getC_rulesASILC(final ViatraQueryEngine engine) {
+    return C_rulesASILC.Matcher.on(engine);
   }
   
-  public QueryC_D getQueryC_D() {
-    return QueryC_D.instance();
+  public C_rulesASILD getC_rulesASILD() {
+    return C_rulesASILD.instance();
   }
   
-  public QueryC_D.Matcher getQueryC_D(final ViatraQueryEngine engine) {
-    return QueryC_D.Matcher.on(engine);
+  public C_rulesASILD.Matcher getC_rulesASILD(final ViatraQueryEngine engine) {
+    return C_rulesASILD.Matcher.on(engine);
   }
   
   public C getC() {
@@ -134,12 +156,12 @@ public final class Iso26262 extends BaseGeneratedPatternGroup {
     return D.Matcher.on(engine);
   }
   
-  public E_asil getE_asil() {
-    return E_asil.instance();
+  public E_eventASIL getE_eventASIL() {
+    return E_eventASIL.instance();
   }
   
-  public E_asil.Matcher getE_asil(final ViatraQueryEngine engine) {
-    return E_asil.Matcher.on(engine);
+  public E_eventASIL.Matcher getE_eventASIL(final ViatraQueryEngine engine) {
+    return E_eventASIL.Matcher.on(engine);
   }
   
   public E getE() {

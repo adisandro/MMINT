@@ -46,7 +46,7 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 
  * <p>Original source:
  *         <code><pre>
- *         pattern queryC_A(event: HazardousEvent) {
+ *         pattern c_rulesASILA(event: HazardousEvent) {
  *           HazardousEvent.severity(event, "S1");
  *           HazardousEvent.exposure(event, "E4");
  *           HazardousEvent.controllability(event, "C2");
@@ -62,9 +62,9 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 
  */
 @SuppressWarnings("all")
-public final class QueryC_A extends BaseGeneratedEMFQuerySpecification<QueryC_A.Matcher> {
+public final class C_rulesASILA extends BaseGeneratedEMFQuerySpecification<C_rulesASILA.Matcher> {
   /**
-   * Pattern-specific match representation of the jase20.queryC_A pattern,
+   * Pattern-specific match representation of the jase20.c_rulesASILA pattern,
    * to be used in conjunction with {@link Matcher}.
    * 
    * <p>Class fields correspond to parameters of the pattern. Fields with value null are considered unassigned.
@@ -121,12 +121,12 @@ public final class QueryC_A extends BaseGeneratedEMFQuerySpecification<QueryC_A.
     
     @Override
     public String patternName() {
-      return "jase20.queryC_A";
+      return "jase20.c_rulesASILA";
     }
     
     @Override
     public List<String> parameterNames() {
-      return QueryC_A.Match.parameterNames;
+      return C_rulesASILA.Match.parameterNames;
     }
     
     @Override
@@ -135,7 +135,7 @@ public final class QueryC_A extends BaseGeneratedEMFQuerySpecification<QueryC_A.
     }
     
     @Override
-    public QueryC_A.Match toImmutable() {
+    public C_rulesASILA.Match toImmutable() {
       return isMutable() ? newMatch(fEvent) : this;
     }
     
@@ -158,8 +158,8 @@ public final class QueryC_A extends BaseGeneratedEMFQuerySpecification<QueryC_A.
       if (obj == null) {
           return false;
       }
-      if ((obj instanceof QueryC_A.Match)) {
-          QueryC_A.Match other = (QueryC_A.Match) obj;
+      if ((obj instanceof C_rulesASILA.Match)) {
+          C_rulesASILA.Match other = (C_rulesASILA.Match) obj;
           return Objects.equals(fEvent, other.fEvent);
       } else {
           // this should be infrequent
@@ -172,8 +172,8 @@ public final class QueryC_A extends BaseGeneratedEMFQuerySpecification<QueryC_A.
     }
     
     @Override
-    public QueryC_A specification() {
-      return QueryC_A.instance();
+    public C_rulesASILA specification() {
+      return C_rulesASILA.instance();
     }
     
     /**
@@ -183,7 +183,7 @@ public final class QueryC_A extends BaseGeneratedEMFQuerySpecification<QueryC_A.
      * @return the empty match.
      * 
      */
-    public static QueryC_A.Match newEmptyMatch() {
+    public static C_rulesASILA.Match newEmptyMatch() {
       return new Mutable(null);
     }
     
@@ -195,7 +195,7 @@ public final class QueryC_A extends BaseGeneratedEMFQuerySpecification<QueryC_A.
      * @return the new, mutable (partial) match object.
      * 
      */
-    public static QueryC_A.Match newMutableMatch(final HazardousEvent pEvent) {
+    public static C_rulesASILA.Match newMutableMatch(final HazardousEvent pEvent) {
       return new Mutable(pEvent);
     }
     
@@ -207,11 +207,11 @@ public final class QueryC_A extends BaseGeneratedEMFQuerySpecification<QueryC_A.
      * @return the (partial) match object.
      * 
      */
-    public static QueryC_A.Match newMatch(final HazardousEvent pEvent) {
+    public static C_rulesASILA.Match newMatch(final HazardousEvent pEvent) {
       return new Immutable(pEvent);
     }
     
-    private static final class Mutable extends QueryC_A.Match {
+    private static final class Mutable extends C_rulesASILA.Match {
       Mutable(final HazardousEvent pEvent) {
         super(pEvent);
       }
@@ -222,7 +222,7 @@ public final class QueryC_A extends BaseGeneratedEMFQuerySpecification<QueryC_A.
       }
     }
     
-    private static final class Immutable extends QueryC_A.Match {
+    private static final class Immutable extends C_rulesASILA.Match {
       Immutable(final HazardousEvent pEvent) {
         super(pEvent);
       }
@@ -235,7 +235,7 @@ public final class QueryC_A extends BaseGeneratedEMFQuerySpecification<QueryC_A.
   }
   
   /**
-   * Generated pattern matcher API of the jase20.queryC_A pattern,
+   * Generated pattern matcher API of the jase20.c_rulesASILA pattern,
    * providing pattern-specific query methods.
    * 
    * <p>Use the pattern matcher on a given model via {@link #on(ViatraQueryEngine)},
@@ -245,7 +245,7 @@ public final class QueryC_A extends BaseGeneratedEMFQuerySpecification<QueryC_A.
    * 
    * <p>Original source:
    * <code><pre>
-   * pattern queryC_A(event: HazardousEvent) {
+   * pattern c_rulesASILA(event: HazardousEvent) {
    *   HazardousEvent.severity(event, "S1");
    *   HazardousEvent.exposure(event, "E4");
    *   HazardousEvent.controllability(event, "C2");
@@ -257,10 +257,10 @@ public final class QueryC_A extends BaseGeneratedEMFQuerySpecification<QueryC_A.
    * </pre></code>
    * 
    * @see Match
-   * @see QueryC_A
+   * @see C_rulesASILA
    * 
    */
-  public static class Matcher extends BaseMatcher<QueryC_A.Match> {
+  public static class Matcher extends BaseMatcher<C_rulesASILA.Match> {
     /**
      * Initializes the pattern matcher within an existing VIATRA Query engine.
      * If the pattern matcher is already constructed in the engine, only a light-weight reference is returned.
@@ -269,7 +269,7 @@ public final class QueryC_A extends BaseGeneratedEMFQuerySpecification<QueryC_A.
      * @throws ViatraQueryRuntimeException if an error occurs during pattern matcher creation
      * 
      */
-    public static QueryC_A.Matcher on(final ViatraQueryEngine engine) {
+    public static C_rulesASILA.Matcher on(final ViatraQueryEngine engine) {
       // check if matcher already exists
       Matcher matcher = engine.getExistingMatcher(querySpecification());
       if (matcher == null) {
@@ -284,13 +284,13 @@ public final class QueryC_A extends BaseGeneratedEMFQuerySpecification<QueryC_A.
      * @noreference This method is for internal matcher initialization by the framework, do not call it manually.
      * 
      */
-    public static QueryC_A.Matcher create() {
+    public static C_rulesASILA.Matcher create() {
       return new Matcher();
     }
     
     private static final int POSITION_EVENT = 0;
     
-    private static final Logger LOGGER = ViatraQueryLoggingUtil.getLogger(QueryC_A.Matcher.class);
+    private static final Logger LOGGER = ViatraQueryLoggingUtil.getLogger(C_rulesASILA.Matcher.class);
     
     /**
      * Initializes the pattern matcher within an existing VIATRA Query engine.
@@ -310,7 +310,7 @@ public final class QueryC_A extends BaseGeneratedEMFQuerySpecification<QueryC_A.
      * @return matches represented as a Match object.
      * 
      */
-    public Collection<QueryC_A.Match> getAllMatches(final HazardousEvent pEvent) {
+    public Collection<C_rulesASILA.Match> getAllMatches(final HazardousEvent pEvent) {
       return rawStreamAllMatches(new Object[]{pEvent}).collect(Collectors.toSet());
     }
     
@@ -324,7 +324,7 @@ public final class QueryC_A extends BaseGeneratedEMFQuerySpecification<QueryC_A.
      * @return a stream of matches represented as a Match object.
      * 
      */
-    public Stream<QueryC_A.Match> streamAllMatches(final HazardousEvent pEvent) {
+    public Stream<C_rulesASILA.Match> streamAllMatches(final HazardousEvent pEvent) {
       return rawStreamAllMatches(new Object[]{pEvent});
     }
     
@@ -335,7 +335,7 @@ public final class QueryC_A extends BaseGeneratedEMFQuerySpecification<QueryC_A.
      * @return a match represented as a Match object, or null if no match is found.
      * 
      */
-    public Optional<QueryC_A.Match> getOneArbitraryMatch(final HazardousEvent pEvent) {
+    public Optional<C_rulesASILA.Match> getOneArbitraryMatch(final HazardousEvent pEvent) {
       return rawGetOneArbitraryMatch(new Object[]{pEvent});
     }
     
@@ -368,7 +368,7 @@ public final class QueryC_A extends BaseGeneratedEMFQuerySpecification<QueryC_A.
      * @return true if the pattern has at least one match with the given parameter values, false if the processor was not invoked
      * 
      */
-    public boolean forOneArbitraryMatch(final HazardousEvent pEvent, final Consumer<? super QueryC_A.Match> processor) {
+    public boolean forOneArbitraryMatch(final HazardousEvent pEvent, final Consumer<? super C_rulesASILA.Match> processor) {
       return rawForOneArbitraryMatch(new Object[]{pEvent}, processor);
     }
     
@@ -380,8 +380,8 @@ public final class QueryC_A extends BaseGeneratedEMFQuerySpecification<QueryC_A.
      * @return the (partial) match object.
      * 
      */
-    public QueryC_A.Match newMatch(final HazardousEvent pEvent) {
-      return QueryC_A.Match.newMatch(pEvent);
+    public C_rulesASILA.Match newMatch(final HazardousEvent pEvent) {
+      return C_rulesASILA.Match.newMatch(pEvent);
     }
     
     /**
@@ -412,9 +412,9 @@ public final class QueryC_A extends BaseGeneratedEMFQuerySpecification<QueryC_A.
     }
     
     @Override
-    protected QueryC_A.Match tupleToMatch(final Tuple t) {
+    protected C_rulesASILA.Match tupleToMatch(final Tuple t) {
       try {
-          return QueryC_A.Match.newMatch((HazardousEvent) t.get(POSITION_EVENT));
+          return C_rulesASILA.Match.newMatch((HazardousEvent) t.get(POSITION_EVENT));
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in tuple not properly typed!",e);
           return null;
@@ -422,9 +422,9 @@ public final class QueryC_A extends BaseGeneratedEMFQuerySpecification<QueryC_A.
     }
     
     @Override
-    protected QueryC_A.Match arrayToMatch(final Object[] match) {
+    protected C_rulesASILA.Match arrayToMatch(final Object[] match) {
       try {
-          return QueryC_A.Match.newMatch((HazardousEvent) match[POSITION_EVENT]);
+          return C_rulesASILA.Match.newMatch((HazardousEvent) match[POSITION_EVENT]);
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in array not properly typed!",e);
           return null;
@@ -432,9 +432,9 @@ public final class QueryC_A extends BaseGeneratedEMFQuerySpecification<QueryC_A.
     }
     
     @Override
-    protected QueryC_A.Match arrayToMatchMutable(final Object[] match) {
+    protected C_rulesASILA.Match arrayToMatchMutable(final Object[] match) {
       try {
-          return QueryC_A.Match.newMutableMatch((HazardousEvent) match[POSITION_EVENT]);
+          return C_rulesASILA.Match.newMutableMatch((HazardousEvent) match[POSITION_EVENT]);
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in array not properly typed!",e);
           return null;
@@ -446,12 +446,12 @@ public final class QueryC_A extends BaseGeneratedEMFQuerySpecification<QueryC_A.
      * @throws ViatraQueryRuntimeException if the pattern definition could not be loaded
      * 
      */
-    public static IQuerySpecification<QueryC_A.Matcher> querySpecification() {
-      return QueryC_A.instance();
+    public static IQuerySpecification<C_rulesASILA.Matcher> querySpecification() {
+      return C_rulesASILA.instance();
     }
   }
   
-  private QueryC_A() {
+  private C_rulesASILA() {
     super(GeneratedPQuery.INSTANCE);
   }
   
@@ -460,7 +460,7 @@ public final class QueryC_A extends BaseGeneratedEMFQuerySpecification<QueryC_A.
    * @throws ViatraQueryRuntimeException if the pattern definition could not be loaded
    * 
    */
-  public static QueryC_A instance() {
+  public static C_rulesASILA instance() {
     try{
         return LazyHolder.INSTANCE;
     } catch (ExceptionInInitializerError err) {
@@ -469,35 +469,35 @@ public final class QueryC_A extends BaseGeneratedEMFQuerySpecification<QueryC_A.
   }
   
   @Override
-  protected QueryC_A.Matcher instantiate(final ViatraQueryEngine engine) {
-    return QueryC_A.Matcher.on(engine);
+  protected C_rulesASILA.Matcher instantiate(final ViatraQueryEngine engine) {
+    return C_rulesASILA.Matcher.on(engine);
   }
   
   @Override
-  public QueryC_A.Matcher instantiate() {
-    return QueryC_A.Matcher.create();
+  public C_rulesASILA.Matcher instantiate() {
+    return C_rulesASILA.Matcher.create();
   }
   
   @Override
-  public QueryC_A.Match newEmptyMatch() {
-    return QueryC_A.Match.newEmptyMatch();
+  public C_rulesASILA.Match newEmptyMatch() {
+    return C_rulesASILA.Match.newEmptyMatch();
   }
   
   @Override
-  public QueryC_A.Match newMatch(final Object... parameters) {
-    return QueryC_A.Match.newMatch((edu.toronto.cs.se.mmint.jase20.iso26262.hara.HazardousEvent) parameters[0]);
+  public C_rulesASILA.Match newMatch(final Object... parameters) {
+    return C_rulesASILA.Match.newMatch((edu.toronto.cs.se.mmint.jase20.iso26262.hara.HazardousEvent) parameters[0]);
   }
   
   /**
-   * Inner class allowing the singleton instance of {@link QueryC_A} to be created 
+   * Inner class allowing the singleton instance of {@link C_rulesASILA} to be created 
    *     <b>not</b> at the class load time of the outer class, 
-   *     but rather at the first call to {@link QueryC_A#instance()}.
+   *     but rather at the first call to {@link C_rulesASILA#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 
    */
   private static class LazyHolder {
-    private static final QueryC_A INSTANCE = new QueryC_A();
+    private static final C_rulesASILA INSTANCE = new C_rulesASILA();
     
     /**
      * Statically initializes the query specification <b>after</b> the field {@link #INSTANCE} is assigned.
@@ -515,7 +515,7 @@ public final class QueryC_A extends BaseGeneratedEMFQuerySpecification<QueryC_A.
   }
   
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
-    private static final QueryC_A.GeneratedPQuery INSTANCE = new GeneratedPQuery();
+    private static final C_rulesASILA.GeneratedPQuery INSTANCE = new GeneratedPQuery();
     
     private final PParameter parameter_event = new PParameter("event", "edu.toronto.cs.se.mmint.jase20.iso26262.hara.HazardousEvent", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("edu.toronto.cs.se.mmint.jase20.iso26262.hara", "HazardousEvent")), PParameterDirection.INOUT);
     
@@ -527,7 +527,7 @@ public final class QueryC_A extends BaseGeneratedEMFQuerySpecification<QueryC_A.
     
     @Override
     public String getFullyQualifiedName() {
-      return "jase20.queryC_A";
+      return "jase20.c_rulesASILA";
     }
     
     @Override

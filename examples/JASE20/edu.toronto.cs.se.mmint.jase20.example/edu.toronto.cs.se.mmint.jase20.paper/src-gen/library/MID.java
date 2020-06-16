@@ -3,7 +3,9 @@
  */
 package library;
 
+import library.AllConnectedEMFObjects;
 import library.AllConnectedModelElems;
+import library.ConnectedEMFObjects;
 import library.ConnectedModelElems;
 import org.eclipse.viatra.query.runtime.api.ViatraQueryEngine;
 import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedPatternGroup;
@@ -17,7 +19,9 @@ import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedPatternGroup;
  * 
  * <p> From package library, the group contains the definition of the following patterns: <ul>
  * <li>connectedModelElems</li>
+ * <li>connectedEMFObjects</li>
  * <li>allConnectedModelElems</li>
+ * <li>allConnectedEMFObjects</li>
  * </ul>
  * 
  * @see IQueryGroup
@@ -43,7 +47,9 @@ public final class MID extends BaseGeneratedPatternGroup {
   
   private MID() {
     querySpecifications.add(ConnectedModelElems.instance());
+    querySpecifications.add(ConnectedEMFObjects.instance());
     querySpecifications.add(AllConnectedModelElems.instance());
+    querySpecifications.add(AllConnectedEMFObjects.instance());
   }
   
   public ConnectedModelElems getConnectedModelElems() {
@@ -54,11 +60,27 @@ public final class MID extends BaseGeneratedPatternGroup {
     return ConnectedModelElems.Matcher.on(engine);
   }
   
+  public ConnectedEMFObjects getConnectedEMFObjects() {
+    return ConnectedEMFObjects.instance();
+  }
+  
+  public ConnectedEMFObjects.Matcher getConnectedEMFObjects(final ViatraQueryEngine engine) {
+    return ConnectedEMFObjects.Matcher.on(engine);
+  }
+  
   public AllConnectedModelElems getAllConnectedModelElems() {
     return AllConnectedModelElems.instance();
   }
   
   public AllConnectedModelElems.Matcher getAllConnectedModelElems(final ViatraQueryEngine engine) {
     return AllConnectedModelElems.Matcher.on(engine);
+  }
+  
+  public AllConnectedEMFObjects getAllConnectedEMFObjects() {
+    return AllConnectedEMFObjects.instance();
+  }
+  
+  public AllConnectedEMFObjects.Matcher getAllConnectedEMFObjects(final ViatraQueryEngine engine) {
+    return AllConnectedEMFObjects.Matcher.on(engine);
   }
 }

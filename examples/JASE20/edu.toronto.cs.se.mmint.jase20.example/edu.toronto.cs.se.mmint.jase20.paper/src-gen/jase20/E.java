@@ -4,7 +4,7 @@
 package jase20;
 
 import edu.toronto.cs.se.mmint.jase20.iso26262.gsn.SafetyGoal;
-import jase20.E_asil;
+import jase20.E_eventASIL;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedHashSet;
@@ -15,7 +15,6 @@ import java.util.Set;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import library.ConnectedModelElems;
 import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
@@ -37,7 +36,6 @@ import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.Aggregato
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.Equality;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.ExportedParameter;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.Inequality;
-import org.eclipse.viatra.query.runtime.matchers.psystem.basicenumerables.PositivePatternCall;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicenumerables.TypeConstraint;
 import org.eclipse.viatra.query.runtime.matchers.psystem.queries.PParameter;
 import org.eclipse.viatra.query.runtime.matchers.psystem.queries.PParameterDirection;
@@ -52,12 +50,9 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * <p>Original source:
  *         <code><pre>
  *         pattern e(goal: SafetyGoal) {
- *           ModelElement.EMFInstanceObject(goalElem, goal);
- *           find library.connectedModelElems(goalElem, eventElem);
- *           ModelElement.EMFInstanceObject(eventElem, event);
- *           eventASIL == max find e_asil(event, #asil);
  *           SafetyGoal.ASIL(goal, goalASIL);
- *           eventASIL != goalASIL;
+ *           maxASIL == max find e_eventASIL(goal, _event, #asil);
+ *           maxASIL != goalASIL;
  *         }
  * </pre></code>
  * 
@@ -250,12 +245,9 @@ public final class E extends BaseGeneratedEMFQuerySpecification<E.Matcher> {
    * <p>Original source:
    * <code><pre>
    * pattern e(goal: SafetyGoal) {
-   *   ModelElement.EMFInstanceObject(goalElem, goal);
-   *   find library.connectedModelElems(goalElem, eventElem);
-   *   ModelElement.EMFInstanceObject(eventElem, event);
-   *   eventASIL == max find e_asil(event, #asil);
    *   SafetyGoal.ASIL(goal, goalASIL);
-   *   eventASIL != goalASIL;
+   *   maxASIL == max find e_eventASIL(goal, _event, #asil);
+   *   maxASIL != goalASIL;
    * }
    * </pre></code>
    * 
@@ -550,42 +542,26 @@ public final class E extends BaseGeneratedEMFQuerySpecification<E.Matcher> {
       {
           PBody body = new PBody(this);
           PVariable var_goal = body.getOrCreateVariableByName("goal");
-          PVariable var_goalElem = body.getOrCreateVariableByName("goalElem");
-          PVariable var_eventElem = body.getOrCreateVariableByName("eventElem");
-          PVariable var_event = body.getOrCreateVariableByName("event");
-          PVariable var_eventASIL = body.getOrCreateVariableByName("eventASIL");
-          PVariable var__asil = body.getOrCreateVariableByName("#asil");
           PVariable var_goalASIL = body.getOrCreateVariableByName("goalASIL");
+          PVariable var_maxASIL = body.getOrCreateVariableByName("maxASIL");
+          PVariable var__event = body.getOrCreateVariableByName("_event");
+          PVariable var__asil = body.getOrCreateVariableByName("#asil");
           new TypeConstraint(body, Tuples.flatTupleOf(var_goal), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("edu.toronto.cs.se.mmint.jase20.iso26262.gsn", "SafetyGoal")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
              new ExportedParameter(body, var_goal, parameter_goal)
           ));
-          //   ModelElement.EMFInstanceObject(goalElem, goal)
-          new TypeConstraint(body, Tuples.flatTupleOf(var_goalElem), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://se.cs.toronto.edu/mmint/MID", "ModelElement")));
-          PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_goalElem, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://se.cs.toronto.edu/mmint/MID", "ModelElement", "EMFInstanceObject")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.eclipse.org/emf/2002/Ecore", "EObject")));
-          new Equality(body, var__virtual_0_, var_goal);
-          //   find library.connectedModelElems(goalElem, eventElem)
-          new PositivePatternCall(body, Tuples.flatTupleOf(var_goalElem, var_eventElem), ConnectedModelElems.instance().getInternalQueryRepresentation());
-          //   ModelElement.EMFInstanceObject(eventElem, event)
-          new TypeConstraint(body, Tuples.flatTupleOf(var_eventElem), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://se.cs.toronto.edu/mmint/MID", "ModelElement")));
-          PVariable var__virtual_1_ = body.getOrCreateVariableByName(".virtual{1}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_eventElem, var__virtual_1_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://se.cs.toronto.edu/mmint/MID", "ModelElement", "EMFInstanceObject")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_1_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.eclipse.org/emf/2002/Ecore", "EObject")));
-          new Equality(body, var__virtual_1_, var_event);
-          //   eventASIL == max find e_asil(event, #asil)
-          PVariable var__virtual_2_ = body.getOrCreateVariableByName(".virtual{2}");
-          new AggregatorConstraint(new max().getAggregatorLogic(String.class), body, Tuples.flatTupleOf(var_event, var__asil), E_asil.instance().getInternalQueryRepresentation(), var__virtual_2_, 1);
-          new Equality(body, var_eventASIL, var__virtual_2_);
           //   SafetyGoal.ASIL(goal, goalASIL)
           new TypeConstraint(body, Tuples.flatTupleOf(var_goal), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("edu.toronto.cs.se.mmint.jase20.iso26262.gsn", "SafetyGoal")));
-          PVariable var__virtual_3_ = body.getOrCreateVariableByName(".virtual{3}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_goal, var__virtual_3_), new EStructuralFeatureInstancesKey(getFeatureLiteral("edu.toronto.cs.se.mmint.jase20.iso26262.gsn", "SafetyGoal", "ASIL")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_3_), new EDataTypeInSlotsKey((EDataType)getClassifierLiteral("http://www.eclipse.org/emf/2002/Ecore", "EString")));
-          new Equality(body, var__virtual_3_, var_goalASIL);
-          //   eventASIL != goalASIL
-          new Inequality(body, var_eventASIL, var_goalASIL);
+          PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
+          new TypeConstraint(body, Tuples.flatTupleOf(var_goal, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("edu.toronto.cs.se.mmint.jase20.iso26262.gsn", "SafetyGoal", "ASIL")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_), new EDataTypeInSlotsKey((EDataType)getClassifierLiteral("http://www.eclipse.org/emf/2002/Ecore", "EString")));
+          new Equality(body, var__virtual_0_, var_goalASIL);
+          //   maxASIL == max find e_eventASIL(goal, _event, #asil)
+          PVariable var__virtual_1_ = body.getOrCreateVariableByName(".virtual{1}");
+          new AggregatorConstraint(new max().getAggregatorLogic(String.class), body, Tuples.flatTupleOf(var_goal, var__event, var__asil), E_eventASIL.instance().getInternalQueryRepresentation(), var__virtual_1_, 2);
+          new Equality(body, var_maxASIL, var__virtual_1_);
+          //   maxASIL != goalASIL
+          new Inequality(body, var_maxASIL, var_goalASIL);
           bodies.add(body);
       }
       return bodies;

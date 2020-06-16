@@ -1,5 +1,6 @@
 package library
 
+import "http://www.eclipse.org/emf/2002/Ecore"
 import "http://se.cs.toronto.edu/mmint/MID"
 import "http://se.cs.toronto.edu/mmint/MID/Relationship"
 
@@ -13,6 +14,14 @@ pattern connectedModelElems(modelElemSrc: ModelElement,
   Mapping.modelElemEndpoints.target(mapping, modelElemTgt);
 }
 
+pattern connectedEMFObjects(modelObjSrc: EObject,
+                            modelObjTgt: EObject) {
+  modelObjSrc != modelObjTgt;
+  ModelElement.EMFInstanceObject(modelElemSrc, modelObjSrc);
+  ModelElement.EMFInstanceObject(modelElemTgt, modelObjTgt);
+  find connectedModelElems(modelElemSrc, modelElemTgt);
+}
+
 pattern allConnectedModelElems(modelElemSrc: ModelElement,
                                modelElemTgt: ModelElement) {
   modelElemSrc != modelElemTgt;
@@ -20,4 +29,12 @@ pattern allConnectedModelElems(modelElemSrc: ModelElement,
   Model.modelElems(modelTgt, modelElemTgt);
   modelSrc != modelTgt;
   find connectedModelElems+(modelElemSrc, modelElemTgt);
+}
+
+pattern allConnectedEMFObjects(modelObjSrc: EObject,
+                               modelObjTgt: EObject) {
+  modelObjSrc != modelObjTgt;
+  ModelElement.EMFInstanceObject(modelElemSrc, modelObjSrc);
+  ModelElement.EMFInstanceObject(modelElemTgt, modelObjTgt);
+  find allConnectedModelElems(modelElemSrc, modelElemTgt);
 }

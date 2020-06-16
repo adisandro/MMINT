@@ -3,6 +3,7 @@
  */
 package jase20;
 
+import edu.toronto.cs.se.mmint.jase20.iso26262.gsn.SafetyGoal;
 import edu.toronto.cs.se.mmint.jase20.iso26262.hara.HazardousEvent;
 import java.util.Arrays;
 import java.util.Collection;
@@ -14,6 +15,7 @@ import java.util.Set;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import library.ConnectedEMFObjects;
 import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
@@ -34,6 +36,7 @@ import org.eclipse.viatra.query.runtime.matchers.psystem.PVariable;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.Equality;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.ExportedParameter;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.TypeFilterConstraint;
+import org.eclipse.viatra.query.runtime.matchers.psystem.basicenumerables.PositivePatternCall;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicenumerables.TypeConstraint;
 import org.eclipse.viatra.query.runtime.matchers.psystem.queries.PParameter;
 import org.eclipse.viatra.query.runtime.matchers.psystem.queries.PParameterDirection;
@@ -47,7 +50,10 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 
  * <p>Original source:
  *         <code><pre>
- *         pattern e_asil(event: HazardousEvent, asil: java String) {
+ *         pattern e_eventASIL(goal: SafetyGoal,
+ *                             event: HazardousEvent,
+ *                             asil: java String) {
+ *           find library.connectedEMFObjects(goal, event);
  *           HazardousEvent.ASIL(event, asil);
  *         }
  * </pre></code>
@@ -57,9 +63,9 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 
  */
 @SuppressWarnings("all")
-public final class E_asil extends BaseGeneratedEMFQuerySpecification<E_asil.Matcher> {
+public final class E_eventASIL extends BaseGeneratedEMFQuerySpecification<E_eventASIL.Matcher> {
   /**
-   * Pattern-specific match representation of the jase20.e_asil pattern,
+   * Pattern-specific match representation of the jase20.e_eventASIL pattern,
    * to be used in conjunction with {@link Matcher}.
    * 
    * <p>Class fields correspond to parameters of the pattern. Fields with value null are considered unassigned.
@@ -71,13 +77,16 @@ public final class E_asil extends BaseGeneratedEMFQuerySpecification<E_asil.Matc
    * 
    */
   public static abstract class Match extends BasePatternMatch {
+    private SafetyGoal fGoal;
+    
     private HazardousEvent fEvent;
     
     private String fAsil;
     
-    private static List<String> parameterNames = makeImmutableList("event", "asil");
+    private static List<String> parameterNames = makeImmutableList("goal", "event", "asil");
     
-    private Match(final HazardousEvent pEvent, final String pAsil) {
+    private Match(final SafetyGoal pGoal, final HazardousEvent pEvent, final String pAsil) {
+      this.fGoal = pGoal;
       this.fEvent = pEvent;
       this.fAsil = pAsil;
     }
@@ -85,6 +94,7 @@ public final class E_asil extends BaseGeneratedEMFQuerySpecification<E_asil.Matc
     @Override
     public Object get(final String parameterName) {
       switch(parameterName) {
+          case "goal": return this.fGoal;
           case "event": return this.fEvent;
           case "asil": return this.fAsil;
           default: return null;
@@ -94,10 +104,15 @@ public final class E_asil extends BaseGeneratedEMFQuerySpecification<E_asil.Matc
     @Override
     public Object get(final int index) {
       switch(index) {
-          case 0: return this.fEvent;
-          case 1: return this.fAsil;
+          case 0: return this.fGoal;
+          case 1: return this.fEvent;
+          case 2: return this.fAsil;
           default: return null;
       }
+    }
+    
+    public SafetyGoal getGoal() {
+      return this.fGoal;
     }
     
     public HazardousEvent getEvent() {
@@ -111,6 +126,10 @@ public final class E_asil extends BaseGeneratedEMFQuerySpecification<E_asil.Matc
     @Override
     public boolean set(final String parameterName, final Object newValue) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
+      if ("goal".equals(parameterName) ) {
+          this.fGoal = (SafetyGoal) newValue;
+          return true;
+      }
       if ("event".equals(parameterName) ) {
           this.fEvent = (HazardousEvent) newValue;
           return true;
@@ -120,6 +139,11 @@ public final class E_asil extends BaseGeneratedEMFQuerySpecification<E_asil.Matc
           return true;
       }
       return false;
+    }
+    
+    public void setGoal(final SafetyGoal pGoal) {
+      if (!isMutable()) throw new java.lang.UnsupportedOperationException();
+      this.fGoal = pGoal;
     }
     
     public void setEvent(final HazardousEvent pEvent) {
@@ -134,27 +158,28 @@ public final class E_asil extends BaseGeneratedEMFQuerySpecification<E_asil.Matc
     
     @Override
     public String patternName() {
-      return "jase20.e_asil";
+      return "jase20.e_eventASIL";
     }
     
     @Override
     public List<String> parameterNames() {
-      return E_asil.Match.parameterNames;
+      return E_eventASIL.Match.parameterNames;
     }
     
     @Override
     public Object[] toArray() {
-      return new Object[]{fEvent, fAsil};
+      return new Object[]{fGoal, fEvent, fAsil};
     }
     
     @Override
-    public E_asil.Match toImmutable() {
-      return isMutable() ? newMatch(fEvent, fAsil) : this;
+    public E_eventASIL.Match toImmutable() {
+      return isMutable() ? newMatch(fGoal, fEvent, fAsil) : this;
     }
     
     @Override
     public String prettyPrint() {
       StringBuilder result = new StringBuilder();
+      result.append("\"goal\"=" + prettyPrintValue(fGoal) + ", ");
       result.append("\"event\"=" + prettyPrintValue(fEvent) + ", ");
       result.append("\"asil\"=" + prettyPrintValue(fAsil));
       return result.toString();
@@ -162,7 +187,7 @@ public final class E_asil extends BaseGeneratedEMFQuerySpecification<E_asil.Matc
     
     @Override
     public int hashCode() {
-      return Objects.hash(fEvent, fAsil);
+      return Objects.hash(fGoal, fEvent, fAsil);
     }
     
     @Override
@@ -172,9 +197,9 @@ public final class E_asil extends BaseGeneratedEMFQuerySpecification<E_asil.Matc
       if (obj == null) {
           return false;
       }
-      if ((obj instanceof E_asil.Match)) {
-          E_asil.Match other = (E_asil.Match) obj;
-          return Objects.equals(fEvent, other.fEvent) && Objects.equals(fAsil, other.fAsil);
+      if ((obj instanceof E_eventASIL.Match)) {
+          E_eventASIL.Match other = (E_eventASIL.Match) obj;
+          return Objects.equals(fGoal, other.fGoal) && Objects.equals(fEvent, other.fEvent) && Objects.equals(fAsil, other.fAsil);
       } else {
           // this should be infrequent
           if (!(obj instanceof IPatternMatch)) {
@@ -186,8 +211,8 @@ public final class E_asil extends BaseGeneratedEMFQuerySpecification<E_asil.Matc
     }
     
     @Override
-    public E_asil specification() {
-      return E_asil.instance();
+    public E_eventASIL specification() {
+      return E_eventASIL.instance();
     }
     
     /**
@@ -197,39 +222,41 @@ public final class E_asil extends BaseGeneratedEMFQuerySpecification<E_asil.Matc
      * @return the empty match.
      * 
      */
-    public static E_asil.Match newEmptyMatch() {
-      return new Mutable(null, null);
+    public static E_eventASIL.Match newEmptyMatch() {
+      return new Mutable(null, null, null);
     }
     
     /**
      * Returns a mutable (partial) match.
      * Fields of the mutable match can be filled to create a partial match, usable as matcher input.
      * 
+     * @param pGoal the fixed value of pattern parameter goal, or null if not bound.
      * @param pEvent the fixed value of pattern parameter event, or null if not bound.
      * @param pAsil the fixed value of pattern parameter asil, or null if not bound.
      * @return the new, mutable (partial) match object.
      * 
      */
-    public static E_asil.Match newMutableMatch(final HazardousEvent pEvent, final String pAsil) {
-      return new Mutable(pEvent, pAsil);
+    public static E_eventASIL.Match newMutableMatch(final SafetyGoal pGoal, final HazardousEvent pEvent, final String pAsil) {
+      return new Mutable(pGoal, pEvent, pAsil);
     }
     
     /**
      * Returns a new (partial) match.
      * This can be used e.g. to call the matcher with a partial match.
      * <p>The returned match will be immutable. Use {@link #newEmptyMatch()} to obtain a mutable match object.
+     * @param pGoal the fixed value of pattern parameter goal, or null if not bound.
      * @param pEvent the fixed value of pattern parameter event, or null if not bound.
      * @param pAsil the fixed value of pattern parameter asil, or null if not bound.
      * @return the (partial) match object.
      * 
      */
-    public static E_asil.Match newMatch(final HazardousEvent pEvent, final String pAsil) {
-      return new Immutable(pEvent, pAsil);
+    public static E_eventASIL.Match newMatch(final SafetyGoal pGoal, final HazardousEvent pEvent, final String pAsil) {
+      return new Immutable(pGoal, pEvent, pAsil);
     }
     
-    private static final class Mutable extends E_asil.Match {
-      Mutable(final HazardousEvent pEvent, final String pAsil) {
-        super(pEvent, pAsil);
+    private static final class Mutable extends E_eventASIL.Match {
+      Mutable(final SafetyGoal pGoal, final HazardousEvent pEvent, final String pAsil) {
+        super(pGoal, pEvent, pAsil);
       }
       
       @Override
@@ -238,9 +265,9 @@ public final class E_asil extends BaseGeneratedEMFQuerySpecification<E_asil.Matc
       }
     }
     
-    private static final class Immutable extends E_asil.Match {
-      Immutable(final HazardousEvent pEvent, final String pAsil) {
-        super(pEvent, pAsil);
+    private static final class Immutable extends E_eventASIL.Match {
+      Immutable(final SafetyGoal pGoal, final HazardousEvent pEvent, final String pAsil) {
+        super(pGoal, pEvent, pAsil);
       }
       
       @Override
@@ -251,7 +278,7 @@ public final class E_asil extends BaseGeneratedEMFQuerySpecification<E_asil.Matc
   }
   
   /**
-   * Generated pattern matcher API of the jase20.e_asil pattern,
+   * Generated pattern matcher API of the jase20.e_eventASIL pattern,
    * providing pattern-specific query methods.
    * 
    * <p>Use the pattern matcher on a given model via {@link #on(ViatraQueryEngine)},
@@ -261,16 +288,19 @@ public final class E_asil extends BaseGeneratedEMFQuerySpecification<E_asil.Matc
    * 
    * <p>Original source:
    * <code><pre>
-   * pattern e_asil(event: HazardousEvent, asil: java String) {
+   * pattern e_eventASIL(goal: SafetyGoal,
+   *                     event: HazardousEvent,
+   *                     asil: java String) {
+   *   find library.connectedEMFObjects(goal, event);
    *   HazardousEvent.ASIL(event, asil);
    * }
    * </pre></code>
    * 
    * @see Match
-   * @see E_asil
+   * @see E_eventASIL
    * 
    */
-  public static class Matcher extends BaseMatcher<E_asil.Match> {
+  public static class Matcher extends BaseMatcher<E_eventASIL.Match> {
     /**
      * Initializes the pattern matcher within an existing VIATRA Query engine.
      * If the pattern matcher is already constructed in the engine, only a light-weight reference is returned.
@@ -279,7 +309,7 @@ public final class E_asil extends BaseGeneratedEMFQuerySpecification<E_asil.Matc
      * @throws ViatraQueryRuntimeException if an error occurs during pattern matcher creation
      * 
      */
-    public static E_asil.Matcher on(final ViatraQueryEngine engine) {
+    public static E_eventASIL.Matcher on(final ViatraQueryEngine engine) {
       // check if matcher already exists
       Matcher matcher = engine.getExistingMatcher(querySpecification());
       if (matcher == null) {
@@ -294,15 +324,17 @@ public final class E_asil extends BaseGeneratedEMFQuerySpecification<E_asil.Matc
      * @noreference This method is for internal matcher initialization by the framework, do not call it manually.
      * 
      */
-    public static E_asil.Matcher create() {
+    public static E_eventASIL.Matcher create() {
       return new Matcher();
     }
     
-    private static final int POSITION_EVENT = 0;
+    private static final int POSITION_GOAL = 0;
     
-    private static final int POSITION_ASIL = 1;
+    private static final int POSITION_EVENT = 1;
     
-    private static final Logger LOGGER = ViatraQueryLoggingUtil.getLogger(E_asil.Matcher.class);
+    private static final int POSITION_ASIL = 2;
+    
+    private static final Logger LOGGER = ViatraQueryLoggingUtil.getLogger(E_eventASIL.Matcher.class);
     
     /**
      * Initializes the pattern matcher within an existing VIATRA Query engine.
@@ -318,13 +350,14 @@ public final class E_asil extends BaseGeneratedEMFQuerySpecification<E_asil.Matc
     
     /**
      * Returns the set of all matches of the pattern that conform to the given fixed values of some parameters.
+     * @param pGoal the fixed value of pattern parameter goal, or null if not bound.
      * @param pEvent the fixed value of pattern parameter event, or null if not bound.
      * @param pAsil the fixed value of pattern parameter asil, or null if not bound.
      * @return matches represented as a Match object.
      * 
      */
-    public Collection<E_asil.Match> getAllMatches(final HazardousEvent pEvent, final String pAsil) {
-      return rawStreamAllMatches(new Object[]{pEvent, pAsil}).collect(Collectors.toSet());
+    public Collection<E_eventASIL.Match> getAllMatches(final SafetyGoal pGoal, final HazardousEvent pEvent, final String pAsil) {
+      return rawStreamAllMatches(new Object[]{pGoal, pEvent, pAsil}).collect(Collectors.toSet());
     }
     
     /**
@@ -333,74 +366,153 @@ public final class E_asil extends BaseGeneratedEMFQuerySpecification<E_asil.Matc
      * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
      * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
      * In such cases, either rely on {@link #getAllMatches()} or collect the results of the stream in end-user code.
+     * @param pGoal the fixed value of pattern parameter goal, or null if not bound.
      * @param pEvent the fixed value of pattern parameter event, or null if not bound.
      * @param pAsil the fixed value of pattern parameter asil, or null if not bound.
      * @return a stream of matches represented as a Match object.
      * 
      */
-    public Stream<E_asil.Match> streamAllMatches(final HazardousEvent pEvent, final String pAsil) {
-      return rawStreamAllMatches(new Object[]{pEvent, pAsil});
+    public Stream<E_eventASIL.Match> streamAllMatches(final SafetyGoal pGoal, final HazardousEvent pEvent, final String pAsil) {
+      return rawStreamAllMatches(new Object[]{pGoal, pEvent, pAsil});
     }
     
     /**
      * Returns an arbitrarily chosen match of the pattern that conforms to the given fixed values of some parameters.
      * Neither determinism nor randomness of selection is guaranteed.
+     * @param pGoal the fixed value of pattern parameter goal, or null if not bound.
      * @param pEvent the fixed value of pattern parameter event, or null if not bound.
      * @param pAsil the fixed value of pattern parameter asil, or null if not bound.
      * @return a match represented as a Match object, or null if no match is found.
      * 
      */
-    public Optional<E_asil.Match> getOneArbitraryMatch(final HazardousEvent pEvent, final String pAsil) {
-      return rawGetOneArbitraryMatch(new Object[]{pEvent, pAsil});
+    public Optional<E_eventASIL.Match> getOneArbitraryMatch(final SafetyGoal pGoal, final HazardousEvent pEvent, final String pAsil) {
+      return rawGetOneArbitraryMatch(new Object[]{pGoal, pEvent, pAsil});
     }
     
     /**
      * Indicates whether the given combination of specified pattern parameters constitute a valid pattern match,
      * under any possible substitution of the unspecified parameters (if any).
+     * @param pGoal the fixed value of pattern parameter goal, or null if not bound.
      * @param pEvent the fixed value of pattern parameter event, or null if not bound.
      * @param pAsil the fixed value of pattern parameter asil, or null if not bound.
      * @return true if the input is a valid (partial) match of the pattern.
      * 
      */
-    public boolean hasMatch(final HazardousEvent pEvent, final String pAsil) {
-      return rawHasMatch(new Object[]{pEvent, pAsil});
+    public boolean hasMatch(final SafetyGoal pGoal, final HazardousEvent pEvent, final String pAsil) {
+      return rawHasMatch(new Object[]{pGoal, pEvent, pAsil});
     }
     
     /**
      * Returns the number of all matches of the pattern that conform to the given fixed values of some parameters.
+     * @param pGoal the fixed value of pattern parameter goal, or null if not bound.
      * @param pEvent the fixed value of pattern parameter event, or null if not bound.
      * @param pAsil the fixed value of pattern parameter asil, or null if not bound.
      * @return the number of pattern matches found.
      * 
      */
-    public int countMatches(final HazardousEvent pEvent, final String pAsil) {
-      return rawCountMatches(new Object[]{pEvent, pAsil});
+    public int countMatches(final SafetyGoal pGoal, final HazardousEvent pEvent, final String pAsil) {
+      return rawCountMatches(new Object[]{pGoal, pEvent, pAsil});
     }
     
     /**
      * Executes the given processor on an arbitrarily chosen match of the pattern that conforms to the given fixed values of some parameters.
      * Neither determinism nor randomness of selection is guaranteed.
+     * @param pGoal the fixed value of pattern parameter goal, or null if not bound.
      * @param pEvent the fixed value of pattern parameter event, or null if not bound.
      * @param pAsil the fixed value of pattern parameter asil, or null if not bound.
      * @param processor the action that will process the selected match.
      * @return true if the pattern has at least one match with the given parameter values, false if the processor was not invoked
      * 
      */
-    public boolean forOneArbitraryMatch(final HazardousEvent pEvent, final String pAsil, final Consumer<? super E_asil.Match> processor) {
-      return rawForOneArbitraryMatch(new Object[]{pEvent, pAsil}, processor);
+    public boolean forOneArbitraryMatch(final SafetyGoal pGoal, final HazardousEvent pEvent, final String pAsil, final Consumer<? super E_eventASIL.Match> processor) {
+      return rawForOneArbitraryMatch(new Object[]{pGoal, pEvent, pAsil}, processor);
     }
     
     /**
      * Returns a new (partial) match.
      * This can be used e.g. to call the matcher with a partial match.
      * <p>The returned match will be immutable. Use {@link #newEmptyMatch()} to obtain a mutable match object.
+     * @param pGoal the fixed value of pattern parameter goal, or null if not bound.
      * @param pEvent the fixed value of pattern parameter event, or null if not bound.
      * @param pAsil the fixed value of pattern parameter asil, or null if not bound.
      * @return the (partial) match object.
      * 
      */
-    public E_asil.Match newMatch(final HazardousEvent pEvent, final String pAsil) {
-      return E_asil.Match.newMatch(pEvent, pAsil);
+    public E_eventASIL.Match newMatch(final SafetyGoal pGoal, final HazardousEvent pEvent, final String pAsil) {
+      return E_eventASIL.Match.newMatch(pGoal, pEvent, pAsil);
+    }
+    
+    /**
+     * Retrieve the set of values that occur in matches for goal.
+     * @return the Set of all values or empty set if there are no matches
+     * 
+     */
+    protected Stream<SafetyGoal> rawStreamAllValuesOfgoal(final Object[] parameters) {
+      return rawStreamAllValues(POSITION_GOAL, parameters).map(SafetyGoal.class::cast);
+    }
+    
+    /**
+     * Retrieve the set of values that occur in matches for goal.
+     * @return the Set of all values or empty set if there are no matches
+     * 
+     */
+    public Set<SafetyGoal> getAllValuesOfgoal() {
+      return rawStreamAllValuesOfgoal(emptyArray()).collect(Collectors.toSet());
+    }
+    
+    /**
+     * Retrieve the set of values that occur in matches for goal.
+     * @return the Set of all values or empty set if there are no matches
+     * 
+     */
+    public Stream<SafetyGoal> streamAllValuesOfgoal() {
+      return rawStreamAllValuesOfgoal(emptyArray());
+    }
+    
+    /**
+     * Retrieve the set of values that occur in matches for goal.
+     * </p>
+     * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
+     * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
+     * In such cases, either rely on {@link #getAllMatches()} or collect the results of the stream in end-user code.
+     *      
+     * @return the Stream of all values or empty set if there are no matches
+     * 
+     */
+    public Stream<SafetyGoal> streamAllValuesOfgoal(final E_eventASIL.Match partialMatch) {
+      return rawStreamAllValuesOfgoal(partialMatch.toArray());
+    }
+    
+    /**
+     * Retrieve the set of values that occur in matches for goal.
+     * </p>
+     * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
+     * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
+     * In such cases, either rely on {@link #getAllMatches()} or collect the results of the stream in end-user code.
+     *      
+     * @return the Stream of all values or empty set if there are no matches
+     * 
+     */
+    public Stream<SafetyGoal> streamAllValuesOfgoal(final HazardousEvent pEvent, final String pAsil) {
+      return rawStreamAllValuesOfgoal(new Object[]{null, pEvent, pAsil});
+    }
+    
+    /**
+     * Retrieve the set of values that occur in matches for goal.
+     * @return the Set of all values or empty set if there are no matches
+     * 
+     */
+    public Set<SafetyGoal> getAllValuesOfgoal(final E_eventASIL.Match partialMatch) {
+      return rawStreamAllValuesOfgoal(partialMatch.toArray()).collect(Collectors.toSet());
+    }
+    
+    /**
+     * Retrieve the set of values that occur in matches for goal.
+     * @return the Set of all values or empty set if there are no matches
+     * 
+     */
+    public Set<SafetyGoal> getAllValuesOfgoal(final HazardousEvent pEvent, final String pAsil) {
+      return rawStreamAllValuesOfgoal(new Object[]{null, pEvent, pAsil}).collect(Collectors.toSet());
     }
     
     /**
@@ -440,7 +552,7 @@ public final class E_asil extends BaseGeneratedEMFQuerySpecification<E_asil.Matc
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<HazardousEvent> streamAllValuesOfevent(final E_asil.Match partialMatch) {
+    public Stream<HazardousEvent> streamAllValuesOfevent(final E_eventASIL.Match partialMatch) {
       return rawStreamAllValuesOfevent(partialMatch.toArray());
     }
     
@@ -454,8 +566,8 @@ public final class E_asil extends BaseGeneratedEMFQuerySpecification<E_asil.Matc
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<HazardousEvent> streamAllValuesOfevent(final String pAsil) {
-      return rawStreamAllValuesOfevent(new Object[]{null, pAsil});
+    public Stream<HazardousEvent> streamAllValuesOfevent(final SafetyGoal pGoal, final String pAsil) {
+      return rawStreamAllValuesOfevent(new Object[]{pGoal, null, pAsil});
     }
     
     /**
@@ -463,7 +575,7 @@ public final class E_asil extends BaseGeneratedEMFQuerySpecification<E_asil.Matc
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<HazardousEvent> getAllValuesOfevent(final E_asil.Match partialMatch) {
+    public Set<HazardousEvent> getAllValuesOfevent(final E_eventASIL.Match partialMatch) {
       return rawStreamAllValuesOfevent(partialMatch.toArray()).collect(Collectors.toSet());
     }
     
@@ -472,8 +584,8 @@ public final class E_asil extends BaseGeneratedEMFQuerySpecification<E_asil.Matc
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<HazardousEvent> getAllValuesOfevent(final String pAsil) {
-      return rawStreamAllValuesOfevent(new Object[]{null, pAsil}).collect(Collectors.toSet());
+    public Set<HazardousEvent> getAllValuesOfevent(final SafetyGoal pGoal, final String pAsil) {
+      return rawStreamAllValuesOfevent(new Object[]{pGoal, null, pAsil}).collect(Collectors.toSet());
     }
     
     /**
@@ -513,7 +625,7 @@ public final class E_asil extends BaseGeneratedEMFQuerySpecification<E_asil.Matc
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<String> streamAllValuesOfasil(final E_asil.Match partialMatch) {
+    public Stream<String> streamAllValuesOfasil(final E_eventASIL.Match partialMatch) {
       return rawStreamAllValuesOfasil(partialMatch.toArray());
     }
     
@@ -527,8 +639,8 @@ public final class E_asil extends BaseGeneratedEMFQuerySpecification<E_asil.Matc
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<String> streamAllValuesOfasil(final HazardousEvent pEvent) {
-      return rawStreamAllValuesOfasil(new Object[]{pEvent, null});
+    public Stream<String> streamAllValuesOfasil(final SafetyGoal pGoal, final HazardousEvent pEvent) {
+      return rawStreamAllValuesOfasil(new Object[]{pGoal, pEvent, null});
     }
     
     /**
@@ -536,7 +648,7 @@ public final class E_asil extends BaseGeneratedEMFQuerySpecification<E_asil.Matc
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<String> getAllValuesOfasil(final E_asil.Match partialMatch) {
+    public Set<String> getAllValuesOfasil(final E_eventASIL.Match partialMatch) {
       return rawStreamAllValuesOfasil(partialMatch.toArray()).collect(Collectors.toSet());
     }
     
@@ -545,14 +657,14 @@ public final class E_asil extends BaseGeneratedEMFQuerySpecification<E_asil.Matc
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<String> getAllValuesOfasil(final HazardousEvent pEvent) {
-      return rawStreamAllValuesOfasil(new Object[]{pEvent, null}).collect(Collectors.toSet());
+    public Set<String> getAllValuesOfasil(final SafetyGoal pGoal, final HazardousEvent pEvent) {
+      return rawStreamAllValuesOfasil(new Object[]{pGoal, pEvent, null}).collect(Collectors.toSet());
     }
     
     @Override
-    protected E_asil.Match tupleToMatch(final Tuple t) {
+    protected E_eventASIL.Match tupleToMatch(final Tuple t) {
       try {
-          return E_asil.Match.newMatch((HazardousEvent) t.get(POSITION_EVENT), (String) t.get(POSITION_ASIL));
+          return E_eventASIL.Match.newMatch((SafetyGoal) t.get(POSITION_GOAL), (HazardousEvent) t.get(POSITION_EVENT), (String) t.get(POSITION_ASIL));
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in tuple not properly typed!",e);
           return null;
@@ -560,9 +672,9 @@ public final class E_asil extends BaseGeneratedEMFQuerySpecification<E_asil.Matc
     }
     
     @Override
-    protected E_asil.Match arrayToMatch(final Object[] match) {
+    protected E_eventASIL.Match arrayToMatch(final Object[] match) {
       try {
-          return E_asil.Match.newMatch((HazardousEvent) match[POSITION_EVENT], (String) match[POSITION_ASIL]);
+          return E_eventASIL.Match.newMatch((SafetyGoal) match[POSITION_GOAL], (HazardousEvent) match[POSITION_EVENT], (String) match[POSITION_ASIL]);
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in array not properly typed!",e);
           return null;
@@ -570,9 +682,9 @@ public final class E_asil extends BaseGeneratedEMFQuerySpecification<E_asil.Matc
     }
     
     @Override
-    protected E_asil.Match arrayToMatchMutable(final Object[] match) {
+    protected E_eventASIL.Match arrayToMatchMutable(final Object[] match) {
       try {
-          return E_asil.Match.newMutableMatch((HazardousEvent) match[POSITION_EVENT], (String) match[POSITION_ASIL]);
+          return E_eventASIL.Match.newMutableMatch((SafetyGoal) match[POSITION_GOAL], (HazardousEvent) match[POSITION_EVENT], (String) match[POSITION_ASIL]);
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in array not properly typed!",e);
           return null;
@@ -584,12 +696,12 @@ public final class E_asil extends BaseGeneratedEMFQuerySpecification<E_asil.Matc
      * @throws ViatraQueryRuntimeException if the pattern definition could not be loaded
      * 
      */
-    public static IQuerySpecification<E_asil.Matcher> querySpecification() {
-      return E_asil.instance();
+    public static IQuerySpecification<E_eventASIL.Matcher> querySpecification() {
+      return E_eventASIL.instance();
     }
   }
   
-  private E_asil() {
+  private E_eventASIL() {
     super(GeneratedPQuery.INSTANCE);
   }
   
@@ -598,7 +710,7 @@ public final class E_asil extends BaseGeneratedEMFQuerySpecification<E_asil.Matc
    * @throws ViatraQueryRuntimeException if the pattern definition could not be loaded
    * 
    */
-  public static E_asil instance() {
+  public static E_eventASIL instance() {
     try{
         return LazyHolder.INSTANCE;
     } catch (ExceptionInInitializerError err) {
@@ -607,35 +719,35 @@ public final class E_asil extends BaseGeneratedEMFQuerySpecification<E_asil.Matc
   }
   
   @Override
-  protected E_asil.Matcher instantiate(final ViatraQueryEngine engine) {
-    return E_asil.Matcher.on(engine);
+  protected E_eventASIL.Matcher instantiate(final ViatraQueryEngine engine) {
+    return E_eventASIL.Matcher.on(engine);
   }
   
   @Override
-  public E_asil.Matcher instantiate() {
-    return E_asil.Matcher.create();
+  public E_eventASIL.Matcher instantiate() {
+    return E_eventASIL.Matcher.create();
   }
   
   @Override
-  public E_asil.Match newEmptyMatch() {
-    return E_asil.Match.newEmptyMatch();
+  public E_eventASIL.Match newEmptyMatch() {
+    return E_eventASIL.Match.newEmptyMatch();
   }
   
   @Override
-  public E_asil.Match newMatch(final Object... parameters) {
-    return E_asil.Match.newMatch((edu.toronto.cs.se.mmint.jase20.iso26262.hara.HazardousEvent) parameters[0], (java.lang.String) parameters[1]);
+  public E_eventASIL.Match newMatch(final Object... parameters) {
+    return E_eventASIL.Match.newMatch((edu.toronto.cs.se.mmint.jase20.iso26262.gsn.SafetyGoal) parameters[0], (edu.toronto.cs.se.mmint.jase20.iso26262.hara.HazardousEvent) parameters[1], (java.lang.String) parameters[2]);
   }
   
   /**
-   * Inner class allowing the singleton instance of {@link E_asil} to be created 
+   * Inner class allowing the singleton instance of {@link E_eventASIL} to be created 
    *     <b>not</b> at the class load time of the outer class, 
-   *     but rather at the first call to {@link E_asil#instance()}.
+   *     but rather at the first call to {@link E_eventASIL#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 
    */
   private static class LazyHolder {
-    private static final E_asil INSTANCE = new E_asil();
+    private static final E_eventASIL INSTANCE = new E_eventASIL();
     
     /**
      * Statically initializes the query specification <b>after</b> the field {@link #INSTANCE} is assigned.
@@ -653,13 +765,15 @@ public final class E_asil extends BaseGeneratedEMFQuerySpecification<E_asil.Matc
   }
   
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
-    private static final E_asil.GeneratedPQuery INSTANCE = new GeneratedPQuery();
+    private static final E_eventASIL.GeneratedPQuery INSTANCE = new GeneratedPQuery();
+    
+    private final PParameter parameter_goal = new PParameter("goal", "edu.toronto.cs.se.mmint.jase20.iso26262.gsn.SafetyGoal", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("edu.toronto.cs.se.mmint.jase20.iso26262.gsn", "SafetyGoal")), PParameterDirection.INOUT);
     
     private final PParameter parameter_event = new PParameter("event", "edu.toronto.cs.se.mmint.jase20.iso26262.hara.HazardousEvent", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("edu.toronto.cs.se.mmint.jase20.iso26262.hara", "HazardousEvent")), PParameterDirection.INOUT);
     
     private final PParameter parameter_asil = new PParameter("asil", "java.lang.String", new JavaTransitiveInstancesKey(java.lang.String.class), PParameterDirection.INOUT);
     
-    private final List<PParameter> parameters = Arrays.asList(parameter_event, parameter_asil);
+    private final List<PParameter> parameters = Arrays.asList(parameter_goal, parameter_event, parameter_asil);
     
     private GeneratedPQuery() {
       super(PVisibility.PUBLIC);
@@ -667,12 +781,12 @@ public final class E_asil extends BaseGeneratedEMFQuerySpecification<E_asil.Matc
     
     @Override
     public String getFullyQualifiedName() {
-      return "jase20.e_asil";
+      return "jase20.e_eventASIL";
     }
     
     @Override
     public List<String> getParameterNames() {
-      return Arrays.asList("event","asil");
+      return Arrays.asList("goal","event","asil");
     }
     
     @Override
@@ -686,14 +800,19 @@ public final class E_asil extends BaseGeneratedEMFQuerySpecification<E_asil.Matc
       Set<PBody> bodies = new LinkedHashSet<>();
       {
           PBody body = new PBody(this);
+          PVariable var_goal = body.getOrCreateVariableByName("goal");
           PVariable var_event = body.getOrCreateVariableByName("event");
           PVariable var_asil = body.getOrCreateVariableByName("asil");
+          new TypeConstraint(body, Tuples.flatTupleOf(var_goal), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("edu.toronto.cs.se.mmint.jase20.iso26262.gsn", "SafetyGoal")));
           new TypeConstraint(body, Tuples.flatTupleOf(var_event), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("edu.toronto.cs.se.mmint.jase20.iso26262.hara", "HazardousEvent")));
           new TypeFilterConstraint(body, Tuples.flatTupleOf(var_asil), new JavaTransitiveInstancesKey(java.lang.String.class));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
+             new ExportedParameter(body, var_goal, parameter_goal),
              new ExportedParameter(body, var_event, parameter_event),
              new ExportedParameter(body, var_asil, parameter_asil)
           ));
+          //   find library.connectedEMFObjects(goal, event)
+          new PositivePatternCall(body, Tuples.flatTupleOf(var_goal, var_event), ConnectedEMFObjects.instance().getInternalQueryRepresentation());
           //   HazardousEvent.ASIL(event, asil)
           new TypeConstraint(body, Tuples.flatTupleOf(var_event), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("edu.toronto.cs.se.mmint.jase20.iso26262.hara", "HazardousEvent")));
           PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
