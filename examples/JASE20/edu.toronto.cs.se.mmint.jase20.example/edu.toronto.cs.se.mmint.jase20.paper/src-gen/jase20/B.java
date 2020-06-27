@@ -27,14 +27,11 @@ import org.eclipse.viatra.query.runtime.api.impl.BasePatternMatch;
 import org.eclipse.viatra.query.runtime.emf.types.EClassTransitiveInstancesKey;
 import org.eclipse.viatra.query.runtime.emf.types.EStructuralFeatureInstancesKey;
 import org.eclipse.viatra.query.runtime.matchers.backend.QueryEvaluationHint;
-import org.eclipse.viatra.query.runtime.matchers.psystem.IExpressionEvaluator;
-import org.eclipse.viatra.query.runtime.matchers.psystem.IValueProvider;
 import org.eclipse.viatra.query.runtime.matchers.psystem.PBody;
 import org.eclipse.viatra.query.runtime.matchers.psystem.PVariable;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.Equality;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.ExportedParameter;
-import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.ExpressionEvaluation;
-import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.PatternMatchCounter;
+import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.NegativePatternCall;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicenumerables.PositivePatternCall;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicenumerables.TypeConstraint;
 import org.eclipse.viatra.query.runtime.matchers.psystem.queries.PParameter;
@@ -53,9 +50,7 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  *           HazardousEvent.situation(event, eventSituation);
  *           HazardousEvent.hazard(event, hazard);
  *           find library.connectedEMFObjects(hazard, item);
- *           numSituations == count
- *             find library.connectedEMFObjects(item, eventSituation);
- *           check(numSituations == 0);
+ *           neg find library.connectedEMFObjects(item, eventSituation);
  *         }
  * </pre></code>
  * 
@@ -251,9 +246,7 @@ public final class B extends BaseGeneratedEMFQuerySpecification<B.Matcher> {
    *   HazardousEvent.situation(event, eventSituation);
    *   HazardousEvent.hazard(event, hazard);
    *   find library.connectedEMFObjects(hazard, item);
-   *   numSituations == count
-   *     find library.connectedEMFObjects(item, eventSituation);
-   *   check(numSituations == 0);
+   *   neg find library.connectedEMFObjects(item, eventSituation);
    * }
    * </pre></code>
    * 
@@ -551,7 +544,6 @@ public final class B extends BaseGeneratedEMFQuerySpecification<B.Matcher> {
           PVariable var_eventSituation = body.getOrCreateVariableByName("eventSituation");
           PVariable var_hazard = body.getOrCreateVariableByName("hazard");
           PVariable var_item = body.getOrCreateVariableByName("item");
-          PVariable var_numSituations = body.getOrCreateVariableByName("numSituations");
           new TypeConstraint(body, Tuples.flatTupleOf(var_event), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("edu.toronto.cs.se.mmint.jase20.iso26262.hara", "HazardousEvent")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
              new ExportedParameter(body, var_event, parameter_event)
@@ -570,35 +562,11 @@ public final class B extends BaseGeneratedEMFQuerySpecification<B.Matcher> {
           new Equality(body, var__virtual_1_, var_hazard);
           //   find library.connectedEMFObjects(hazard, item)
           new PositivePatternCall(body, Tuples.flatTupleOf(var_hazard, var_item), ConnectedEMFObjects.instance().getInternalQueryRepresentation());
-          //   numSituations == count    find library.connectedEMFObjects(item, eventSituation)
-          PVariable var__virtual_2_ = body.getOrCreateVariableByName(".virtual{2}");
-          new PatternMatchCounter(body, Tuples.flatTupleOf(var_item, var_eventSituation), ConnectedEMFObjects.instance().getInternalQueryRepresentation(), var__virtual_2_);
-          new Equality(body, var_numSituations, var__virtual_2_);
-          //   check(numSituations == 0)
-          new ExpressionEvaluation(body, new IExpressionEvaluator() {
-          
-              @Override
-              public String getShortDescription() {
-                  return "Expression evaluation from pattern b";
-              }
-              
-              @Override
-              public Iterable<String> getInputParameterNames() {
-                  return Arrays.asList("numSituations");}
-          
-              @Override
-              public Object evaluateExpression(IValueProvider provider) throws Exception {
-                  Integer numSituations = (Integer) provider.getValue("numSituations");
-                  return evaluateExpression_1_1(numSituations);
-              }
-          },  null); 
+          //   neg find library.connectedEMFObjects(item, eventSituation)
+          new NegativePatternCall(body, Tuples.flatTupleOf(var_item, var_eventSituation), ConnectedEMFObjects.instance().getInternalQueryRepresentation());
           bodies.add(body);
       }
       return bodies;
     }
-  }
-  
-  private static boolean evaluateExpression_1_1(final Integer numSituations) {
-    return ((numSituations).intValue() == 0);
   }
 }

@@ -50,8 +50,7 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 
  * <p>Original source:
  *         <code><pre>
- *         pattern e_eventASIL(goal: SafetyGoal,
- *                             event: HazardousEvent,
+ *         pattern e_eventASIL(goal: SafetyGoal, event: HazardousEvent,
  *                             asil: java String) {
  *           find library.connectedEMFObjects(goal, event);
  *           HazardousEvent.ASIL(event, asil);
@@ -288,8 +287,7 @@ public final class E_eventASIL extends BaseGeneratedEMFQuerySpecification<E_even
    * 
    * <p>Original source:
    * <code><pre>
-   * pattern e_eventASIL(goal: SafetyGoal,
-   *                     event: HazardousEvent,
+   * pattern e_eventASIL(goal: SafetyGoal, event: HazardousEvent,
    *                     asil: java String) {
    *   find library.connectedEMFObjects(goal, event);
    *   HazardousEvent.ASIL(event, asil);

@@ -20,9 +20,7 @@ pattern b(event: HazardousEvent) {
   HazardousEvent.situation(event, eventSituation);
   HazardousEvent.hazard(event, hazard);
   find library.connectedEMFObjects(hazard, item);
-  numSituations == count
-    find library.connectedEMFObjects(item, eventSituation);
-  check(numSituations == 0);
+  neg find library.connectedEMFObjects(item, eventSituation);
 }
 
 pattern c_rulesASILQM(event: HazardousEvent) {
@@ -103,8 +101,7 @@ pattern d(event: HazardousEvent) {
   check(numGoals == 0);
 }
 
-pattern e_eventASIL(goal: SafetyGoal,
-                    event: HazardousEvent,
+pattern e_eventASIL(goal: SafetyGoal, event: HazardousEvent,
                     asil: java String) {
   find library.connectedEMFObjects(goal, event);
   HazardousEvent.ASIL(event, asil);
