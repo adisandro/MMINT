@@ -1,5 +1,6 @@
 package edu.toronto.cs.se.mmint.viatra.mid
 
+import "http://www.eclipse.org/emf/2002/Ecore"
 import "http://se.cs.toronto.edu/mmint/MID"
 import "http://se.cs.toronto.edu/mmint/MID/Relationship"
 
@@ -18,6 +19,13 @@ pattern connectedModelElements(modelElemSrc: ModelElement, modelElemTgt: ModelEl
   Mapping.modelElemEndpoints.target(mapping, modelElemTgt);
 }
 
+pattern connectedEMFObjects(modelObjSrc: EObject, modelObjTgt: EObject) {
+  modelObjSrc != modelObjTgt;
+  ModelElement.EMFInstanceObject(modelElemSrc, modelObjSrc);
+  ModelElement.EMFInstanceObject(modelElemTgt, modelObjTgt);
+  find connectedModelElements(modelElemSrc, modelElemTgt);
+}
+
 pattern allConnectedModels(modelSrc: Model, modelTgt: Model) {
   modelSrc != modelTgt;
   find connectedModels+(modelSrc, modelTgt);
@@ -29,4 +37,11 @@ pattern allConnectedModelElements(modelElemSrc: ModelElement, modelElemTgt: Mode
   Model.modelElems(modelTgt, modelElemTgt);
   modelSrc != modelTgt;
   find connectedModelElements+(modelElemSrc, modelElemTgt);
+}
+
+pattern allConnectedEMFObjects(modelObjSrc: EObject, modelObjTgt: EObject) {
+  modelObjSrc != modelObjTgt;
+  ModelElement.EMFInstanceObject(modelElemSrc, modelObjSrc);
+  ModelElement.EMFInstanceObject(modelElemTgt, modelObjTgt);
+  find allConnectedModelElements(modelElemSrc, modelElemTgt);
 }
