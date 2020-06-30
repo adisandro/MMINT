@@ -51,7 +51,8 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  *         <code><pre>
  *         pattern highlyConnectedModelElems(modelElem: ModelElement,
  *                                           connections: java Integer) {
- *           connections == count find library.connectedModelElems(modelElem, _);
+ *           connections == count
+ *             find library.connectedModelElems(modelElem, _);
  *           check(connections {@literal >} 5);
  *         }
  * </pre></code>
@@ -267,7 +268,8 @@ public final class HighlyConnectedModelElems extends BaseGeneratedEMFQuerySpecif
    * <code><pre>
    * pattern highlyConnectedModelElems(modelElem: ModelElement,
    *                                   connections: java Integer) {
-   *   connections == count find library.connectedModelElems(modelElem, _);
+   *   connections == count
+   *     find library.connectedModelElems(modelElem, _);
    *   check(connections {@literal >} 5);
    * }
    * </pre></code>
@@ -701,7 +703,7 @@ public final class HighlyConnectedModelElems extends BaseGeneratedEMFQuerySpecif
              new ExportedParameter(body, var_modelElem, parameter_modelElem),
              new ExportedParameter(body, var_connections, parameter_connections)
           ));
-          //   connections == count find library.connectedModelElems(modelElem, _)
+          //   connections == count    find library.connectedModelElems(modelElem, _)
           PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
           new PatternMatchCounter(body, Tuples.flatTupleOf(var_modelElem, var___0_), ConnectedModelElems.instance().getInternalQueryRepresentation(), var__virtual_0_);
           new Equality(body, var_connections, var__virtual_0_);

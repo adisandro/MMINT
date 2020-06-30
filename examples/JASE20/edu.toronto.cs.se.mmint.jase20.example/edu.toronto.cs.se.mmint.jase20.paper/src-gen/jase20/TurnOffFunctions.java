@@ -46,7 +46,8 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 
  * <p>Original source:
  *         <code><pre>
- *         pattern turnOffFunctions(class: Class, operation: Operation) {
+ *         pattern turnOffFunctions(class: Class,
+ *                                  operation: Operation) {
  *           Class.ownedOperations(class, operation);
  *           Operation.name(operation, "TurnOff()");
  *         }
@@ -261,7 +262,8 @@ public final class TurnOffFunctions extends BaseGeneratedEMFQuerySpecification<T
    * 
    * <p>Original source:
    * <code><pre>
-   * pattern turnOffFunctions(class: Class, operation: Operation) {
+   * pattern turnOffFunctions(class: Class,
+   *                          operation: Operation) {
    *   Class.ownedOperations(class, operation);
    *   Operation.name(operation, "TurnOff()");
    * }

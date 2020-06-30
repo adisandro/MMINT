@@ -10,7 +10,8 @@ pattern alarmClasses(class: Class) {
   check(className.toLowerCase().contains("alarm"));
 }
 
-pattern turnOffFunctions(class: Class, operation: Operation) {
+pattern turnOffFunctions(class: Class,
+                         operation: Operation) {
   Class.ownedOperations(class, operation);
   Operation.name(operation, "TurnOff()");
 }
@@ -24,6 +25,7 @@ pattern asilBConnectedModelElems(goal: Goal,
 
 pattern highlyConnectedModelElems(modelElem: ModelElement,
                                   connections: java Integer) {
-  connections == count find library.connectedModelElems(modelElem, _);
+  connections == count
+    find library.connectedModelElems(modelElem, _);
   check(connections > 5);
 }
