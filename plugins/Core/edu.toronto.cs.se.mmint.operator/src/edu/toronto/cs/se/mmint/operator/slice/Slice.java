@@ -203,6 +203,16 @@ public class Slice extends OperatorImpl {
   }
 
   /**
+   * Utility function for inheritors.
+   */
+  protected void add(@Nullable EObject candidateObj, SliceInfo info, HashMap<EObject, SliceInfo> results,
+                     Map<EObject, SliceInfo> exclusions) {
+    if (candidateObj != null && !exclusions.containsKey(candidateObj)) {
+      results.merge(candidateObj, info, this.typesOrder);
+    }
+  }
+
+  /**
    * Gets model objects sliced by applying the rules to a single model object.
    *
    * @param modelObj
