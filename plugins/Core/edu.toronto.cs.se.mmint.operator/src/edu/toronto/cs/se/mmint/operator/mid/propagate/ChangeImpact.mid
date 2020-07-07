@@ -23,9 +23,10 @@
     <outputs uri="" name="mappedMids0" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_Map/mappedMids" dynamic="true" lowerBound="1" upperBound="1" target="//@models.6"/>
     <generics uri="" name="ModelRelPropagation" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_Map/MAPPER" dynamic="true" lowerBound="1" upperBound="1" metatargetUri="http://se.cs.toronto.edu/mmint/Operator_ModelRelPropagation"/>
   </operators>
-  <operators uri="" name="MIDRelCompact" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_MIDRelCompact" dynamic="true">
-    <inputs uri="" name="midRel" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_MIDRelCompact/midRel" dynamic="true" lowerBound="1" upperBound="1" target="//@models.6"/>
-    <outputs uri="" name="compacted" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_MIDRelCompact/compacted" dynamic="true" lowerBound="1" upperBound="1" target="//@models.7"/>
+  <operators uri="" name="Reduce" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_Reduce" dynamic="true">
+    <inputs uri="" name="mid" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_Reduce/mid" dynamic="true" lowerBound="1" upperBound="1" target="//@models.6"/>
+    <outputs uri="" name="reducedMid" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_Reduce/reducedMid" dynamic="true" lowerBound="1" upperBound="1" target="//@models.7"/>
+    <generics uri="" name="ModelRelMerge" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_Reduce/ACCUMULATOR" dynamic="true" lowerBound="1" upperBound="1" metatargetUri="http://se.cs.toronto.edu/mmint/Operator_ModelRelMerge"/>
   </operators>
   <operators uri="" name="Slice" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_MIDSlice" dynamic="true">
     <inputs uri="" name="mid" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_MIDSlice/mid" dynamic="true" lowerBound="1" upperBound="1" target="//@models.2"/>
@@ -46,7 +47,7 @@
   <extendibleTable key="tracedSlice" value="//@models.6"/>
   <extendibleTable key="temp1" value="//@models.4"/>
   <extendibleTable key="safetyCriterion" value="//@models.7"/>
-  <extendibleTable key="safetySlice" value="//@models.9"/>
   <extendibleTable key="temp2" value="//@models.8"/>
+  <extendibleTable key="safetySlice" value="//@models.9"/>
   <extendibleTable key="safetyAnnotated" value="//@models.10"/>
 </mid:MID>

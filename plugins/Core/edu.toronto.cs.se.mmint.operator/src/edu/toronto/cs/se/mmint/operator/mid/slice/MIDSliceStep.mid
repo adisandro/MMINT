@@ -27,9 +27,10 @@
     <inputs uri="" name="mids1" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_Union/mids" dynamic="true" lowerBound="1" upperBound="1" target="//@models.4"/>
     <outputs uri="" name="unionMid" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_Union/unionMid" dynamic="true" lowerBound="1" upperBound="1" target="//@models.5"/>
   </operators>
-  <operators uri="" name="MIDRelCompact" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_MIDRelCompact" dynamic="true">
-    <inputs uri="" name="midRel" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_MIDRelCompact/midRel" dynamic="true" lowerBound="1" upperBound="1" target="//@models.5"/>
-    <outputs uri="" name="compacted" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_MIDRelCompact/compacted" dynamic="true" lowerBound="1" upperBound="1" target="//@models.6"/>
+  <operators uri="" name="Reduce" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_Reduce" dynamic="true">
+    <inputs uri="" name="mid" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_Reduce/mid" dynamic="true" lowerBound="1" upperBound="1" target="//@models.5"/>
+    <outputs uri="" name="reducedMid" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_Reduce/reducedMid" dynamic="true" lowerBound="1" upperBound="1" target="//@models.6"/>
+    <generics uri="" name="ModelRelMerge" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_Reduce/ACCUMULATOR" dynamic="true" lowerBound="1" upperBound="1" metatargetUri="http://se.cs.toronto.edu/mmint/Operator_ModelRelMerge"/>
   </operators>
   <extendibleTable key="criterion" value="//@models.1"/>
   <extendibleTable key="mid" value="//@models.0"/>

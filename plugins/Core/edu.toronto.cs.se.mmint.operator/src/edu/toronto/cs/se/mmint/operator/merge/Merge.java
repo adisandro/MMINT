@@ -21,7 +21,6 @@ import java.util.Set;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
@@ -32,14 +31,12 @@ import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MMINTConstants;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorConstraint;
-import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
-import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
@@ -59,7 +56,7 @@ public class Merge extends OperatorImpl {
 	private final static @NonNull String OUT_MODELREL2 = "trace2";
 	// constants
 	private static final @NonNull String MERGED_MODELOBJECT_ATTRIBUTE = "name";
-	private static final @NonNull String MERGE_SEPARATOR = "⨝";
+	private static final @NonNull String MERGE_SEPARATOR = "+";
 
     private static class Input {
 
@@ -100,8 +97,8 @@ public class Merge extends OperatorImpl {
 
 			Input input = new Input(inputsByName);
 			Model mergedModel = outputsByName.get(Merge.OUT_MODEL);
-			ModelRel traceRel1 = (ModelRel) outputsByName.get(Merge.OUT_MODELREL1);
-			ModelRel traceRel2 = (ModelRel) outputsByName.get(Merge.OUT_MODELREL2);
+			var traceRel1 = (ModelRel) outputsByName.get(Merge.OUT_MODELREL1);
+			var traceRel2 = (ModelRel) outputsByName.get(Merge.OUT_MODELREL2);
 			Map<ModelRel, List<Model>> validOutputs = new HashMap<>();
 			List<Model> endpointModels1 = new ArrayList<>();
 			endpointModels1.add(input.model1);
@@ -138,9 +135,9 @@ public class Merge extends OperatorImpl {
 			@NonNull ModelRel traceRel1, @NonNull ModelRel traceRel2) throws MMINTException {
 
 		// create merged root
-		EObject rootModelObj1 = model1.getEMFInstanceRoot();
-		EFactory mergedModelFactory = rootModelObj1.eClass().getEPackage().getEFactoryInstance();
-		EObject rootMergedModelObj = mergedModelFactory.create(rootModelObj1.eClass());
+		var rootModelObj1 = model1.getEMFInstanceRoot();
+		var mergedModelFactory = rootModelObj1.eClass().getEPackage().getEFactoryInstance();
+		var rootMergedModelObj = mergedModelFactory.create(rootModelObj1.eClass());
 		Map<String, ModelElement> matchModelElems1 = new HashMap<>();
 		for (ModelElementReference modelElemRef1 : overlapRel.getModelEndpointRefs().get(0).getModelElemRefs()) {
 			ModelElementReference modelElemRef2 = this.getConnected(modelElemRef1).stream().findFirst().get();
@@ -153,12 +150,12 @@ public class Merge extends OperatorImpl {
 
 		// copy elements from model1
 		for (EObject modelObj1 : rootModelObj1.eContents()) {
-			EObject mergedModelObj = EcoreUtil.copy(modelObj1);
+			var mergedModelObj = EcoreUtil.copy(modelObj1);
 			allModelObjs.put(modelObj1, mergedModelObj);
 			String modelElemUri1 = MIDRegistry.getModelElementUri(modelObj1);
 			if (matchModelElems1.keySet().contains(modelElemUri1)) {
 				ModelElement modelElem2 = matchModelElems1.get(modelElemUri1);
-				EObject modelObj2 = modelElem2.getEMFInstanceObject();
+				var modelObj2 = modelElem2.getEMFInstanceObject();
 				mergedModelObjs.put(
 					modelElem2.getUri().substring(0, modelElem2.getUri().indexOf(MMINTConstants.ROLE_SEPARATOR)),
 					mergedModelObj);
@@ -184,23 +181,23 @@ public class Merge extends OperatorImpl {
 			traceModelElemRefs1.add(traceRel1.getModelEndpointRefs().get(0).createModelElementInstanceAndReference(
 				modelObj1,
 				null));
-			String newModelElemUri = mergedModel.getUri() + MIDRegistry.getModelElementUri(mergedModelObj);
-			EMFInfo eInfo = MIDRegistry.getModelElementEMFInfo(mergedModelObj, MIDLevel.INSTANCES);
-			String newModelElemName = MIDRegistry.getModelElementName(eInfo, mergedModelObj, MIDLevel.INSTANCES);
+			var newModelElemUri = mergedModel.getUri() + MIDRegistry.getModelElementUri(mergedModelObj);
+			var eInfo = MIDRegistry.getModelElementEMFInfo(mergedModelObj, MIDLevel.INSTANCES);
+			var newModelElemName = MIDRegistry.getModelElementName(eInfo, mergedModelObj, MIDLevel.INSTANCES);
 			traceModelElemRefs1.add( // merged model element is not serialized yet
 				MIDTypeHierarchy.getRootModelElementType().createInstanceAndReference(
 					newModelElemUri,
 					newModelElemName,
 					eInfo,
 					traceRel1.getModelEndpointRefs().get(1)));
-			MappingReference newMappingRef = MIDTypeHierarchy.getRootMappingType()
+			var newMappingRef = MIDTypeHierarchy.getRootMappingType()
 			    .createInstanceAndReferenceAndEndpointsAndReferences(true, traceModelElemRefs1);
             newMappingRef.getObject().setName(
                 FileUtils.getModelObjectFeature(mergedModelObj, Merge.MERGED_MODELOBJECT_ATTRIBUTE).toString());
 		}
 
 		// copy elements from model2
-		EObject rootModelObj2 = model2.getEMFInstanceRoot();
+		var rootModelObj2 = model2.getEMFInstanceRoot();
 		for (EObject modelObj2 : rootModelObj2.eContents()) {
 			EObject mergedModelObj;
 			String modelElemUri2 = MIDRegistry.getModelElementUri(modelObj2);
@@ -220,16 +217,16 @@ public class Merge extends OperatorImpl {
 			traceModelElemRefs2.add(traceRel2.getModelEndpointRefs().get(0).createModelElementInstanceAndReference(
 				modelObj2,
 				null));
-			String newModelElemUri = mergedModel.getUri() + MIDRegistry.getModelElementUri(mergedModelObj);
-			EMFInfo eInfo = MIDRegistry.getModelElementEMFInfo(mergedModelObj, MIDLevel.INSTANCES);
-			String newModelElemName = MIDRegistry.getModelElementName(eInfo, mergedModelObj, MIDLevel.INSTANCES);
+			var newModelElemUri = mergedModel.getUri() + MIDRegistry.getModelElementUri(mergedModelObj);
+			var eInfo = MIDRegistry.getModelElementEMFInfo(mergedModelObj, MIDLevel.INSTANCES);
+			var newModelElemName = MIDRegistry.getModelElementName(eInfo, mergedModelObj, MIDLevel.INSTANCES);
 			traceModelElemRefs2.add( // merged model element is not serialized yet
 				MIDTypeHierarchy.getRootModelElementType().createInstanceAndReference(
 					newModelElemUri,
 					newModelElemName,
 					eInfo,
 					traceRel2.getModelEndpointRefs().get(1)));
-			MappingReference newMappingRef = MIDTypeHierarchy.getRootMappingType()
+			var newMappingRef = MIDTypeHierarchy.getRootMappingType()
 			    .createInstanceAndReferenceAndEndpointsAndReferences(true, traceModelElemRefs2);
 			newMappingRef.getObject().setName(
                 FileUtils.getModelObjectFeature(mergedModelObj, Merge.MERGED_MODELOBJECT_ATTRIBUTE).toString());
@@ -279,14 +276,14 @@ public class Merge extends OperatorImpl {
 			MIDRegistry.getModelUri(mergedModelMID),
 			input.model1.getName() + Merge.MERGE_SEPARATOR + input.model2.getName() + MMINTConstants.MODEL_FILEEXTENSION_SEPARATOR
 					+ input.model1.getFileExtension());
-		Model mergedModel = input.model1.getMetatype().createInstance(null, mergedModelPath, mergedModelMID);
-		BinaryModelRel traceRel1 = MIDTypeHierarchy.getRootModelRelType().createBinaryInstanceAndEndpoints(
+		var mergedModel = input.model1.getMetatype().createInstance(null, mergedModelPath, mergedModelMID);
+		var traceRel1 = MIDTypeHierarchy.getRootModelRelType().createBinaryInstanceAndEndpoints(
 			null,
 			Merge.OUT_MODELREL1,
 			input.model1,
 			mergedModel,
 			outputMIDsByName.get(Merge.OUT_MODELREL1));
-		BinaryModelRel traceRel2 = MIDTypeHierarchy.getRootModelRelType().createBinaryInstanceAndEndpoints(
+		var traceRel2 = MIDTypeHierarchy.getRootModelRelType().createBinaryInstanceAndEndpoints(
 			null,
 			Merge.OUT_MODELREL2,
 			input.model2,

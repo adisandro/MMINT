@@ -14,6 +14,7 @@ package edu.toronto.cs.se.mmint.operator.mid;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -63,10 +64,8 @@ public class Reduce extends NestingOperatorImpl {
   private final static @NonNull String MODELRELMERGE_OPERATORTYPE_URI = "http://se.cs.toronto.edu/mmint/Operator_ModelRelMerge";
 
   public static class OperatorConstraint implements IJavaOperatorConstraint {
-
     @Override
     public boolean isAllowedGeneric(@NonNull GenericEndpoint genericTypeEndpoint, @NonNull GenericElement genericType, @NonNull List<OperatorInput> inputs) {
-
       final var FILTER_URI = "http://se.cs.toronto.edu/mmint/Operator_Filter";
       final var FILTERNOT_URI = "http://se.cs.toronto.edu/mmint/Operator_FilterNot";
       final var MAP_URI = "http://se.cs.toronto.edu/mmint/Operator_Map";
@@ -77,8 +76,26 @@ public class Reduce extends NestingOperatorImpl {
       ) {
         return false;
       }
-
       return true;
+    }
+
+    @Override
+    public Map<ModelRel, List<Model>> getAllowedOutputModelRelEndpoints(Map<String, GenericElement> genericsByName,
+                                                                        Map<String, Model> inputsByName,
+                                                                        Map<String, Model> outputsByName) {
+      final var MODELREL_ID = "http://se.cs.toronto.edu/mmint/ModelRel";
+      final var MIDREL_ID = "http://se.cs.toronto.edu/mmint/MIDRel";
+      var inputMIDModel = inputsByName.get(Reduce.IN_MID);
+      var accumulatorOperatorType = (Operator) genericsByName.get(Reduce.GENERIC_OPERATORTYPE);
+      // if input is a MIDRel and accumulator creates model rels only, then output is a MIDRel too
+      if (MIDTypeHierarchy.instanceOf(inputMIDModel, MIDREL_ID, false) &&
+          accumulatorOperatorType.getOutputs().stream()
+            .map(ModelEndpoint::getTargetUri)
+            .allMatch(id -> id.equals(MODELREL_ID) || MIDTypeHierarchy.isSubtypeOf(id, MODELREL_ID))) {
+        var reducedMIDModel = outputsByName.get(Reduce.OUT_MID);
+        reducedMIDModel.setMetatypeUri(MIDREL_ID);
+      }
+      return Map.of();
     }
   }
 
@@ -112,13 +129,13 @@ public class Reduce extends NestingOperatorImpl {
     var reducedMID = (MID) inputMIDModel.getEMFInstanceRoot();
     var initialModels = new ArrayList<>(reducedMID.getModels());
     var nestedMIDPath = super.getNestedMIDPath();
-    var compositionOperatorType = MIDTypeRegistry.<Operator>getType(Reduce.MODELRELCOMPOSITION_OPERATORTYPE_URI);
+    var composeOperatorType = MIDTypeRegistry.<Operator>getType(Reduce.MODELRELCOMPOSITION_OPERATORTYPE_URI);
     var mergeOperatorType = MIDTypeRegistry.<Operator>getType(Reduce.MODELRELMERGE_OPERATORTYPE_URI);
     // reduce loop
     EList<OperatorInput> accumulatorInputs = null;
     Map<String, Model> accumulatorOutputsByName = null;
-    var accumulatorOutputModels = new HashSet<Model>();
-    var intermediateModelsAndRels = new HashSet<Model>();
+    var accumulatorOutputModels = new LinkedHashSet<Model>(); // reproducible order
+    var intermediateModelsAndRels = new LinkedHashSet<Model>(); // reproducible order
     var polyAccumulators = ECollections.newBasicEList(accumulatorOperatorType);
     if (Boolean.parseBoolean(MMINT.getPreference(
                                MMINTConstants.PREFERENCE_MENU_POLYMORPHISM_MULTIPLEDISPATCH_ENABLED))) {
@@ -134,10 +151,9 @@ public class Reduce extends NestingOperatorImpl {
         break;
       }
       if (polyAccumulators.size() > 1) { // polymorphic multiple dispatch
-        var accumulatorInputModels = ECollections.toEList(
-                                       accumulatorInputs.stream()
-                                                        .map(OperatorInput::getModel)
-                                                        .collect(Collectors.toList()));
+        var accumulatorInputModels = ECollections.toEList(accumulatorInputs.stream()
+          .map(OperatorInput::getModel)
+          .collect(Collectors.toList()));
         var polyIter = MIDTypeHierarchy.getInverseTypeHierarchyIterator(polyAccumulators);
         while (polyIter.hasNext()) { // start from the most specialized operator backwards
           var polyAccumulator = polyIter.next();
@@ -170,9 +186,10 @@ public class Reduce extends NestingOperatorImpl {
           intermediateModelsAndRels.stream()
             .filter(modelRel -> modelRel instanceof ModelRel)
             .map(modelRel -> (ModelRel) modelRel))
-          .collect(Collectors.toSet());
-        Set<ModelRel> connectedModelRels = this.getConnectedModelRels(reducedMID, accumulatorInputModels, modelRelBlacklist);
-        // run the ACCUMULATOR operator
+            .collect(Collectors.toSet());
+        var connectedModelRels = this.getConnectedModelRels(reducedMID, accumulatorInputModels, modelRelBlacklist);
+
+        // pass 1: run the ACCUMULATOR operator
         var accumulatorOutputMIDsByName = MIDOperatorIOUtils.createSameOutputMIDsByName(accumulator, reducedMID);
         var accumulatorGenerics = accumulator.selectAllowedGenerics(accumulatorInputs);
         var workingPath = getWorkingPath();
@@ -182,61 +199,65 @@ public class Reduce extends NestingOperatorImpl {
         if (this.timeOverheadEnabled) {
           this.timeOverhead += System.nanoTime() - this.timeCheckpoint;
         }
-        var accumulatorOperator = accumulator.startInstance(
-          accumulatorInputs,
-          null,
-          accumulatorGenerics,
-          accumulatorOutputMIDsByName,
-          (nestedMIDPath != null) ? reducedMID : null);
+        var accumulatorOperator = accumulator.startInstance(accumulatorInputs, null, accumulatorGenerics,
+                                                            accumulatorOutputMIDsByName,
+                                                            (nestedMIDPath != null) ? reducedMID : null);
         if (this.timeOverheadEnabled) {
           this.timeCheckpoint = System.nanoTime();
         }
         accumulatorOperator.setName(accumulatorOperator.getName() + i);
         accumulatorOutputsByName = accumulatorOperator.getOutputsByName();
-        accumulatorOutputModels.addAll(
-          accumulatorOutputsByName.values().stream()
-            .filter(model -> !(model instanceof ModelRel))
-            .collect(Collectors.toSet()));
-        // for each model rel in the output that is connected with the input models, do the composition
-        Map<String, MID> compositionOutputMIDsByName = MIDOperatorIOUtils
-            .createSameOutputMIDsByName(compositionOperatorType, reducedMID);
-        List<ModelRel> compositeModelRels = new ArrayList<>();
-        for (ModelRel connectedModelRel : connectedModelRels) {
-          for (Model accumulatorOutputModelRel : accumulatorOutputsByName.values()) {
+        accumulatorOutputModels.addAll(accumulatorOutputsByName.values());
+
+        // pass 2: compose each model rel in the output that is connected with the input models
+        var composeOutputMIDsByName = MIDOperatorIOUtils.createSameOutputMIDsByName(composeOperatorType,
+                                                                                        reducedMID);
+        var composedModelRels = new HashSet<ModelRel>();
+        var compositeModelRels = new ArrayList<ModelRel>();
+        for (var connectedModelRel : connectedModelRels) {
+          for (var accumulatorOutputModelRel : accumulatorOutputsByName.values()) {
             if (!(accumulatorOutputModelRel instanceof ModelRel)) {
               continue;
             }
             try {
-              var compositionInputs = compositionOperatorType.checkAllowedInputs(
+              var composeInputs = composeOperatorType.checkAllowedInputs(
                 ECollections.newBasicEList(connectedModelRel, accumulatorOutputModelRel));
-              if (compositionInputs == null) {
+              if (composeInputs == null) {
                 continue;
               }
-              var compositionOperator = compositionOperatorType.startInstance(
-                compositionInputs,
-                null,
-                ECollections.emptyEList(),
-                compositionOutputMIDsByName,
-                (nestedMIDPath != null) ? reducedMID : null);
+              var composeOperator = composeOperatorType.startInstance(composeInputs, null, ECollections.emptyEList(),
+                                                                      composeOutputMIDsByName,
+                                                                      (nestedMIDPath != null) ? reducedMID : null);
               if (nestedMIDPath != null) {
-                compositionOperator.setName(compositionOperator.getName() + i);
+                composeOperator.setName(composeOperator.getName() + i);
               }
-              var compositionOutputsByName = compositionOperator.getOutputsByName();
-              compositeModelRels.add((ModelRel) compositionOutputsByName.get(
-                compositionOperatorType.getOutputs().get(0).getName()));
+              composedModelRels.add(connectedModelRel);
+              var composeOutputsByName = composeOperator.getOutputsByName();
+              compositeModelRels.add((ModelRel) composeOutputsByName.get(
+                composeOperatorType.getOutputs().get(0).getName()));
             }
             catch (Exception e) {
-              MMINTException.print(
-                IStatus.WARNING,
-                "Operator " + compositionOperatorType + " execution error, skipping it",
-                e);
+              MMINTException.print(IStatus.WARNING, "Operator " + composeOperatorType + " execution error, skipping it",
+                                   e);
             }
           }
         }
-        // merge model rels that have been composed and share the same model endpoints
-        Map<String, MID> mergeOutputMIDsByName = MIDOperatorIOUtils
-            .createSameOutputMIDsByName(mergeOperatorType, reducedMID);
-        Set<ModelRel> mergedModelRels = new HashSet<>();
+        // exclude connected model rels that were composed
+        if (nestedMIDPath != null) {
+          intermediateModelsAndRels.addAll(composedModelRels);
+        }
+        else {
+          for (var composedModelRel : composedModelRels) {
+            try {
+              composedModelRel.deleteInstance();
+            }
+            catch (MMINTException e) {}
+          }
+        }
+
+        // pass 3: merge model rels that have been composed and share the same model endpoints
+        var mergeOutputMIDsByName = MIDOperatorIOUtils.createSameOutputMIDsByName(mergeOperatorType, reducedMID);
+        var mergedModelRels = new HashSet<ModelRel>();
         for (var j = 0; j < compositeModelRels.size(); j++) {
           var compositeModelRel1 = compositeModelRels.get(j);
           for (var k = j+1; k < compositeModelRels.size(); k++) {
@@ -247,12 +268,9 @@ public class Reduce extends NestingOperatorImpl {
               if (mergeInputs == null) {
                 continue;
               }
-              var mergeOperator = mergeOperatorType.startInstance(
-                mergeInputs,
-                null,
-                ECollections.emptyEList(),
-                mergeOutputMIDsByName,
-                (nestedMIDPath != null) ? reducedMID : null);
+              var mergeOperator = mergeOperatorType.startInstance(mergeInputs, null, ECollections.emptyEList(),
+                                                                  mergeOutputMIDsByName,
+                                                                  (nestedMIDPath != null) ? reducedMID : null);
               if (nestedMIDPath != null) {
                 mergeOperator.setName(mergeOperator.getName() + i);
               }
@@ -260,43 +278,40 @@ public class Reduce extends NestingOperatorImpl {
               mergedModelRels.add(compositeModelRel2);
             }
             catch (Exception e) {
-              MMINTException.print(
-                IStatus.WARNING,
-                "Operator " + mergeOperatorType + " execution error, skipping it",
-                e);
+              MMINTException.print(IStatus.WARNING, "Operator " + mergeOperatorType + " execution error, skipping it",
+                                   e);
             }
           }
         }
+        // exclude composed model rels that were merged
         if (nestedMIDPath != null) {
-          // exclude composed model rels that were merged
           intermediateModelsAndRels.addAll(mergedModelRels);
         }
         else {
-          // delete composed model rels that were merged
-          for (ModelRel mergedModelRel : mergedModelRels) {
-            try { mergedModelRel.deleteInstance(); } catch (MMINTException e) {}
+          for (var mergedModelRel : mergedModelRels) {
+            try {
+              mergedModelRel.deleteInstance();
+            }
+            catch (MMINTException e) {}
           }
         }
       }
+
+      // pass 4: clean up to prevent endless loops, even in case of failure
       catch (Exception e) {
-        MMINTException.print(
-          IStatus.WARNING,
-          "Operator " + accumulator + " execution error, skipping it",
-          e);
+        MMINTException.print(IStatus.WARNING, "Operator " + accumulator + " execution error, skipping it", e);
       }
-      finally { // even in case of failure, some actions must be taken to prevent endless loops
+      //TODO MMINT[REDUCE] This code does not work well with MIDRels, which have shortcuts to models in other MIDs
+      finally {
         if (nestedMIDPath != null) {
           // exclude accumulator inputs
           intermediateModelsAndRels.addAll(accumulatorInputModels);
           intermediateModelsAndRels.addAll(accumulatorInputModelRels);
-          // exclude connected model rels, composed included (don't bother creating a blacklist, it's a set)
-          intermediateModelsAndRels.addAll(
-            this.getConnectedModelRels(reducedMID, accumulatorInputModels, new HashSet<>()));
         }
         else {
           // delete accumulator input models
           // (connected binary model rels are deleted as a side effect, composed included)
-          for (Model accumulatorInputModel : accumulatorInputModels) {
+          for (var accumulatorInputModel : accumulatorInputModels) {
             try {
               if (accumulatorOutputModels.contains(accumulatorInputModel)) { // intermediate artifact
                 accumulatorInputModel.deleteInstanceAndFile();
@@ -309,7 +324,7 @@ public class Reduce extends NestingOperatorImpl {
             catch (MMINTException e) {}
           }
           // delete accumulator input nary model rels
-          for (ModelRel accumulatorInputModelRel : accumulatorInputModelRels) {
+          for (var accumulatorInputModelRel : accumulatorInputModelRels) {
             if (accumulatorInputModelRel instanceof BinaryModelRel) {
               continue;
             }
@@ -321,38 +336,38 @@ public class Reduce extends NestingOperatorImpl {
     }
     if (nestedMIDPath != null) {
       super.inMemoryNestedMID = reducedMID;
-            //TODO MMINT[NESTED] Transform input/output into shortcuts first
+      //TODO MMINT[NESTED] Transform input/output into shortcuts before serializing it
       super.writeNestedInstanceMID();
       var reducedModels = accumulatorOutputModels.stream()
-          .filter(outputModel -> !intermediateModelsAndRels.contains(outputModel))
-          .collect(Collectors.toSet());
+        .filter(outputModel -> !intermediateModelsAndRels.contains(outputModel))
+        .collect(Collectors.toCollection(LinkedHashSet::new)); // reproducible order
       var intermediateModelRels = intermediateModelsAndRels.stream()
-                .filter(modelRel -> modelRel instanceof ModelRel)
-                .map(modelRel -> (ModelRel) modelRel)
-                .collect(Collectors.toSet());
+        .filter(modelRel -> modelRel instanceof ModelRel)
+        .map(modelRel -> (ModelRel) modelRel)
+        .collect(Collectors.toCollection(LinkedHashSet::new)); // reproducible order
       reducedModels.addAll(this.getConnectedModelRels(reducedMID, reducedModels, intermediateModelRels));
       reducedMID = MIDFactory.eINSTANCE.createMID();
       reducedMID.setLevel(MIDLevel.INSTANCES);
       //TODO MMINT[REDUCE] How to handle initial rels that are composed/merged? 1) need to be tracked 2) may need to become unary if endpoints are reduced
-            for (Model initialModel : initialModels) {
-                if (initialModel instanceof ModelRel || intermediateModelsAndRels.contains(initialModel)) {
-                    continue;
-                }
-                initialModel.getMetatype().importInstanceAndEditor(initialModel.getUri(), reducedMID);
-            }
-            for (Model initialModelRel : initialModels) {
-                if (!(initialModelRel instanceof ModelRel) || intermediateModelsAndRels.contains(initialModelRel)) {
-                    continue;
-                }
-                ((ModelRel) initialModelRel).getMetatype().copyInstance(initialModelRel, initialModelRel.getName(), reducedMID);
-            }
-      for (Model reducedModel : reducedModels) {
+      for (var initialModel : initialModels) {
+        if (initialModel instanceof ModelRel || intermediateModelsAndRels.contains(initialModel)) {
+          continue;
+        }
+        initialModel.getMetatype().importInstanceAndEditor(initialModel.getUri(), reducedMID);
+      }
+      for (var initialModelRel : initialModels) {
+        if (!(initialModelRel instanceof ModelRel) || intermediateModelsAndRels.contains(initialModelRel)) {
+          continue;
+        }
+        ((ModelRel) initialModelRel).getMetatype().copyInstance(initialModelRel, initialModelRel.getName(), reducedMID);
+      }
+      for (var reducedModel : reducedModels) {
         if (reducedModel instanceof ModelRel) {
           continue;
         }
         reducedModel.getMetatype().importInstanceAndEditor(reducedModel.getUri(), reducedMID);
       }
-      for (Model reducedModelRel : reducedModels) {
+      for (var reducedModelRel : reducedModels) {
         if (!(reducedModelRel instanceof ModelRel)) {
           continue;
         }
@@ -385,19 +400,17 @@ public class Reduce extends NestingOperatorImpl {
     if (openEditors) {
       MMINT.setPreference(MMINTConstants.PREFERENCE_MENU_OPENMODELEDITORS_ENABLED, "false");
     }
-    MID reducedMID = this.reduce(inputMIDModel, accumulatorOperatorType);
+    var reducedMID = this.reduce(inputMIDModel, accumulatorOperatorType);
     if (openEditors) {
       MMINT.setPreference(MMINTConstants.PREFERENCE_MENU_OPENMODELEDITORS_ENABLED, "true");
     }
 
     // output
     String reducedMIDModelPath = FileUtils.getUniquePath(
-      FileUtils.addFileNameSuffixInPath(inputMIDModel.getUri(), Reduce.REDUCED_MID_SUFFIX),
-      true,
-      false);
+      FileUtils.addFileNameSuffixInPath(inputMIDModel.getUri(), Reduce.REDUCED_MID_SUFFIX), true, false);
     var reducedMIDModel = MIDTypeRegistry.getMIDModelType().createInstanceAndEditor(
       reducedMID, reducedMIDModelPath, instanceMID);
-    Map<String, Model> outputsByName = new HashMap<>();
+    var outputsByName = new HashMap<String, Model>();
     outputsByName.put(Reduce.OUT_MID, reducedMIDModel);
     if (this.timeOverheadEnabled) {
       this.timeOverhead += System.nanoTime() - this.timeCheckpoint;

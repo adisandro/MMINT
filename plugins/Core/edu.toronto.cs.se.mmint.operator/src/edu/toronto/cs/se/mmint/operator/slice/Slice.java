@@ -90,7 +90,8 @@ public class Slice extends OperatorImpl {
 
     @Override
     public Map<ModelRel, List<Model>> getAllowedOutputModelRelEndpoints(Map<String, GenericElement> genericsByName,
-                                                                        Map<String, Model> inputsByName, Map<String, Model> outputsByName) {
+                                                                        Map<String, Model> inputsByName,
+                                                                        Map<String, Model> outputsByName) {
       var input = new Input(inputsByName);
       var sliceRel = (ModelRel) outputsByName.get(Output.OUT_MODELREL);
       return Map.of(sliceRel, List.of(input.model));
