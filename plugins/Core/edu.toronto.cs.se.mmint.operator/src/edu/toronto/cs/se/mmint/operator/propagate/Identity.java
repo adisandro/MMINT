@@ -32,7 +32,7 @@ public class Identity extends OperatorImpl {
   private final static @NonNull String OUT_MODEL = "sameModel";
 
   @Override
-  public void createWorkflowInstanceOutputs(Operator newOperator, Map<String, Model> inputsByName, MID workflowMID)
+  public void createWorkflowInstanceOutputs(Operator newOperator, Map<String, GenericElement> genericsByName, Map<String, Model> inputsByName, MID workflowMID)
                                             throws MMINTException {
     MMINTException.mustBeType(this);
 

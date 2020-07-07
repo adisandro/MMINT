@@ -11,9 +11,7 @@
  */
 package edu.toronto.cs.se.mmint.operator.mid;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -23,6 +21,7 @@ import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorConstraint;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDFactory;
@@ -39,100 +38,130 @@ import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
 public class Union extends OperatorImpl {
 
-	// input-output
-	private final static @NonNull String IN_MIDS = "mids";
-	private final static @NonNull String OUT_MID = "unionMid";
+  private Input input;
+  private Output output;
 	// constants
 	private final static @NonNull String UNION_SEPARATOR = "+";
 
-	private @NonNull MID union(@NonNull List<Model> inputMIDModels) throws MMINTException, IOException {
+  private static class Input {
+    private final static String IN_MIDS = "mids";
+    private List<Model> midModels;
 
-		MID unionMID = MIDFactory.eINSTANCE.createMID();
-		unionMID.setLevel(MIDLevel.INSTANCES);
+    public Input(Map<String, Model> inputsByName) {
+      this.midModels = MIDOperatorIOUtils.getVarargs(inputsByName, Input.IN_MIDS);
+    }
+  }
+
+  private static class Output {
+    private final static String OUT_MID = "unionMid";
+    private final static String UNION_SEPARATOR = "+";
+    private MID instanceMID;
+    private MID unionMID;
+    private Model unionMIDModel;
+
+    public Output(Input input, Map<String, MID> outputMIDsByName) throws MMINTException {
+      this.instanceMID = outputMIDsByName.get(Output.OUT_MID);
+      this.unionMID = MIDFactory.eINSTANCE.createMID();
+      this.unionMID.setLevel(MIDLevel.INSTANCES);
+    }
+
+    public Map<String, Model> packed() {
+      return Map.of(Output.OUT_MID, this.unionMIDModel);
+    }
+  }
+
+  public static class Constraint implements IJavaOperatorConstraint {
+    @Override
+    public Map<ModelRel, List<Model>> getAllowedOutputModelRelEndpoints(Map<String, GenericElement> genericsByName,
+                                                                        Map<String, Model> inputsByName, Map<String, Model> outputsByName) {
+      final var MIDREL_ID = "http://se.cs.toronto.edu/mmint/MIDRel";
+      var input = new Input(inputsByName);
+      if (input.midModels.stream().allMatch(m -> m.getMetatypeUri().equals(MIDREL_ID))) {
+        var unionMIDModel = outputsByName.get(Output.OUT_MID);
+        unionMIDModel.setMetatypeUri(MIDREL_ID);
+      }
+      return Map.of();
+    }
+  }
+
+  private void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws MMINTException {
+    this.input = new Input(inputsByName);
+    this.output = new Output(this.input, outputMIDsByName);
+  }
+
+  private void createModelShortcuts(MID unionMID, Model unionMIDModel) throws Exception {
+
+    String unionMIDDiagramPath = null;
+    Diagram unionMIDDiagramRoot = null;
+    MIDDiagramViewProvider gmfViewProvider = null;
+    Model midModelType = null;
+    String midDiagramPluginId = null;
+    for (ModelRel rel : unionMID.getModelRels()) {
+      for (ModelEndpoint modelEndpoint : rel.getModelEndpoints()) {
+        if (unionMID.getExtendibleElement(modelEndpoint.getTargetUri()) != null) {
+          continue;
+        }
+        // create a model shortcut
+        if (unionMIDDiagramPath == null) {
+          unionMIDDiagramPath = MIDRegistry.getModelDiagram(unionMIDModel).getUri();
+          unionMIDDiagramRoot = (Diagram) FileUtils.readModelFile(unionMIDDiagramPath, null, true);
+          gmfViewProvider = new MIDDiagramViewProvider();
+          midModelType = MIDTypeRegistry.getMIDModelType();
+          midDiagramPluginId = MIDTypeRegistry.getTypeBundle(MIDTypeRegistry.getMIDDiagramType().getUri()).getSymbolicName();
+        }
+        GMFUtils.createGMFNodeShortcut(
+          modelEndpoint.getTarget(),
+          unionMIDDiagramRoot,
+          midDiagramPluginId,
+          midModelType.getName(),
+          gmfViewProvider);
+        unionMID.getExtendibleTable().put(modelEndpoint.getTargetUri(), modelEndpoint.getTarget());
+      }
+    }
+    if (unionMIDDiagramPath != null) { // store the gmf diagram
+      FileUtils.writeModelFile(unionMIDDiagramRoot, unionMIDDiagramPath, true);
+    }
+  }
+
+	private void union() throws Exception {
+
 		// models only at first pass
-		List<MID> inputMIDs = new ArrayList<>();
-		for (Model inputMIDModel : inputMIDModels) {
-			MID inputMID = (MID) inputMIDModel.getEMFInstanceRoot();
+		var inputMIDs = new ArrayList<MID>();
+		for (var inputMIDModel : this.input.midModels) {
+			var inputMID = (MID) inputMIDModel.getEMFInstanceRoot();
 			inputMIDs.add(inputMID); // avoids to read the files again later
-			for (Model model : inputMID.getModels()) {
-				if (model instanceof ModelRel || unionMID.getExtendibleElement(model.getUri()) != null) {
+			for (var model : inputMID.getModels()) {
+				if (model instanceof ModelRel || this.output.unionMID.getExtendibleElement(model.getUri()) != null) {
 					continue;
 				}
-				model.getMetatype().createInstanceAndEditor(null, model.getUri(), unionMID);
+				model.getMetatype().createInstanceAndEditor(null, model.getUri(), this.output.unionMID);
 			}
 		}
 		// model rels at second pass
-		for (MID inputMID : inputMIDs) {
+		for (var inputMID : inputMIDs) {
 			for (ModelRel rel : inputMID.getModelRels()) {
-				rel.getMetatype().copyInstance(rel, rel.getName(), unionMID);
+				rel.getMetatype().copyInstance(rel, rel.getName(), this.output.unionMID);
 			}
 		}
-
-		return unionMID;
-	}
-
-	private void createModelShortcuts(MID unionMID, Model unionMIDModel) throws Exception {
-
-		String unionMIDDiagramPath = null;
-		Diagram unionMIDDiagramRoot = null;
-		MIDDiagramViewProvider gmfViewProvider = null;
-		Model midModelType = null;
-		String midDiagramPluginId = null;
-		for (ModelRel rel : unionMID.getModelRels()) {
-			for (ModelEndpoint modelEndpoint : rel.getModelEndpoints()) {
-				if (unionMID.getExtendibleElement(modelEndpoint.getTargetUri()) != null) {
-					continue;
-				}
-				// create a model shortcut
-				if (unionMIDDiagramPath == null) {
-					unionMIDDiagramPath = MIDRegistry.getModelDiagram(unionMIDModel).getUri();
-					unionMIDDiagramRoot = (Diagram) FileUtils.readModelFile(unionMIDDiagramPath, null, true);
-					gmfViewProvider = new MIDDiagramViewProvider();
-					midModelType = MIDTypeRegistry.getMIDModelType();
-					midDiagramPluginId = MIDTypeRegistry.getTypeBundle(MIDTypeRegistry.getMIDDiagramType().getUri()).getSymbolicName();
-				}
-				GMFUtils.createGMFNodeShortcut(
-					modelEndpoint.getTarget(),
-					unionMIDDiagramRoot,
-					midDiagramPluginId,
-					midModelType.getName(),
-					gmfViewProvider);
-				unionMID.getExtendibleTable().put(modelEndpoint.getTargetUri(), modelEndpoint.getTarget());
-			}
-		}
-		if (unionMIDDiagramPath != null) { // store the gmf diagram
-			FileUtils.writeModelFile(unionMIDDiagramRoot, unionMIDDiagramPath, true);
-		}
+    // output
+    var unionMIDModelName = this.input.midModels.stream()
+      .map(Model::getName)
+      .collect(Collectors.joining(Union.UNION_SEPARATOR));
+    String unionMIDModelPath = FileUtils.replaceFileNameInPath(
+      MIDRegistry.getModelUri(this.output.instanceMID),
+      unionMIDModelName);
+    this.output.unionMIDModel = MIDTypeRegistry.getMIDModelType().createInstanceAndEditor(this.output.unionMID,
+                                                                                          unionMIDModelPath,
+                                                                                          this.output.instanceMID);
+    createModelShortcuts(this.output.unionMID, this.output.unionMIDModel);
 	}
 
 	@Override
-	public Map<String, Model> run(
-			Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
-			Map<String, MID> outputMIDsByName) throws Exception {
-
-		// input
-		List<Model> inputMIDModels = MIDOperatorIOUtils.getVarargs(inputsByName, Union.IN_MIDS);
-		MID instanceMID = outputMIDsByName.get(Union.OUT_MID);
-
-		// create union of input mids
-		MID unionMID = this.union(inputMIDModels);
-
-		// output
-		String unionMIDModelName = inputMIDModels.stream()
-			.map(Model::getName)
-			.collect(Collectors.joining(Union.UNION_SEPARATOR));
-		String unionMIDModelPath = FileUtils.replaceFileNameInPath(
-			MIDRegistry.getModelUri(instanceMID),
-			unionMIDModelName);
-		Model unionMIDModel = MIDTypeRegistry.getMIDModelType().createInstanceAndEditor(
-			unionMID,
-			unionMIDModelPath,
-			instanceMID);
-		this.createModelShortcuts(unionMID, unionMIDModel);
-		Map<String, Model> outputsByName = new HashMap<>();
-		outputsByName.put(Union.OUT_MID, unionMIDModel);
-
-		return outputsByName;
+	public Map<String, Model> run(Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
+			                          Map<String, MID> outputMIDsByName) throws Exception {
+	  init(inputsByName, outputMIDsByName);
+		union();
+		return this.output.packed();
 	}
 
 }

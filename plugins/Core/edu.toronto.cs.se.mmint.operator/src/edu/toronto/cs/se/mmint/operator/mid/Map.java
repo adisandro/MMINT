@@ -94,8 +94,8 @@ public class Map extends NestingOperatorImpl {
   }
 
   @Override
-  public void createWorkflowInstanceOutputs(Operator newOperator, java.util.Map<String, Model> inputsByName,
-                                            MID workflowMID) throws MMINTException {
+  public void createWorkflowInstanceOutputs(Operator newOperator, java.util.Map<String, GenericElement> genericsByName,
+                                            java.util.Map<String, Model> inputsByName, MID workflowMID) throws MMINTException {
 
     // create the vararg mapped mids
     var mapperOperatorType = (Operator) newOperator.getGenerics().get(0).getTarget();

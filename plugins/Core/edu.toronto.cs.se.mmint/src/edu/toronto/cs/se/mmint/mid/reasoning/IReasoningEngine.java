@@ -43,7 +43,7 @@ public interface IReasoningEngine {
 		return true;
 	}
 
-	public default Map<ModelRel, List<Model>> getOperatorOutputConstraints(ExtendibleElementConstraint constraint, Map<String, Model> inputsByName, Map<String, Model> outputsByName) {
+	public default Map<ModelRel, List<Model>> getOperatorOutputConstraints(ExtendibleElementConstraint constraint, Map<String, GenericElement> genericsByName, Map<String, Model> inputsByName, Map<String, Model> outputsByName) {
 
 		return new HashMap<>();
 	}

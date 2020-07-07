@@ -11,6 +11,8 @@
  */
 package edu.toronto.cs.se.mmint.mid.operator;
 
+import java.util.Map;
+
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
@@ -3496,11 +3498,11 @@ public interface OperatorPackage extends EPackage {
     EOperation getOperator__DeleteWorkflowInstance();
 
     /**
-   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#createWorkflowInstanceOutputs(edu.toronto.cs.se.mmint.mid.operator.Operator, java.util.Map, edu.toronto.cs.se.mmint.mid.MID) <em>Create Workflow Instance Outputs</em>}' operation.
+   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#createWorkflowInstanceOutputs(edu.toronto.cs.se.mmint.mid.operator.Operator, Map, java.util.Map, edu.toronto.cs.se.mmint.mid.MID) <em>Create Workflow Instance Outputs</em>}' operation.
    * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
    * @return the meta object for the '<em>Create Workflow Instance Outputs</em>' operation.
-   * @see edu.toronto.cs.se.mmint.mid.operator.Operator#createWorkflowInstanceOutputs(edu.toronto.cs.se.mmint.mid.operator.Operator, java.util.Map, edu.toronto.cs.se.mmint.mid.MID)
+   * @see edu.toronto.cs.se.mmint.mid.operator.Operator#createWorkflowInstanceOutputs(edu.toronto.cs.se.mmint.mid.operator.Operator, Map, java.util.Map, edu.toronto.cs.se.mmint.mid.MID)
    * @generated
    */
     EOperation getOperator__CreateWorkflowInstanceOutputs__Operator_Map_MID();

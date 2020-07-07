@@ -179,6 +179,7 @@ public interface Operator extends GenericElement {
    * @model kind="operation" required="true"
    * @generated
    */
+    @Override
     Operator getMetatype();
 
     /**
@@ -191,6 +192,7 @@ public interface Operator extends GenericElement {
    * @model kind="operation"
    * @generated
    */
+    @Override
     Operator getSupertype();
 
     /**
@@ -199,6 +201,7 @@ public interface Operator extends GenericElement {
    * @model kind="operation"
    * @generated
    */
+    @Override
     MID getMIDContainer();
 
     /**
@@ -464,6 +467,8 @@ public interface Operator extends GenericElement {
      *
      * @param newOperator
      *            The new instance of this operator type in a workflow.
+     * @param genericsByName
+     *            The generics, identified by their formal name.
      * @param inputsByName
      *            The input model instances, identified by their formal parameter name.
      * @param workflowMID
@@ -474,7 +479,7 @@ public interface Operator extends GenericElement {
    * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newOperatorRequired="true" inputsByNameRequired="true" workflowMIDRequired="true"
    * @generated
    */
-    void createWorkflowInstanceOutputs(Operator newOperator, Map<String, Model> inputsByName, MID workflowMID) throws MMINTException;
+    void createWorkflowInstanceOutputs(Operator newOperator, Map<String, GenericElement> genericsByName, Map<String, Model> inputsByName, MID workflowMID) throws MMINTException;
 
     /**
    * <!-- begin-user-doc --> Creates an instance of this operator type in a workflow, connects it to its inputs and

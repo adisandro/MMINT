@@ -63,7 +63,7 @@ public class HenshinTransformation extends OperatorImpl {
     public static class Constraint implements IJavaOperatorConstraint {
 
         @Override
-        public @NonNull Map<ModelRel, List<Model>> getAllowedOutputModelRelEndpoints(@NonNull Map<String, Model> inputsByName, @NonNull Map<String, Model> outputsByName) {
+        public @NonNull Map<ModelRel, List<Model>> getAllowedOutputModelRelEndpoints(Map<String, GenericElement> genericsByName, @NonNull Map<String, Model> inputsByName, @NonNull Map<String, Model> outputsByName) {
 
             Input input = new Input(inputsByName);
             Model transformedModel = outputsByName.get(OUT_MODEL);

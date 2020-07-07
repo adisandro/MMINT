@@ -139,7 +139,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
    * @generated
    * @ordered
    */
-  protected String workingPath = WORKING_PATH_EDEFAULT;
+  protected String workingPath = OperatorImpl.WORKING_PATH_EDEFAULT;
 
     /**
    * The default value of the '{@link #getExecutionTime() <em>Execution Time</em>}' attribute.
@@ -159,7 +159,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
    * @generated
    * @ordered
    */
-    protected long executionTime = EXECUTION_TIME_EDEFAULT;
+    protected long executionTime = OperatorImpl.EXECUTION_TIME_EDEFAULT;
 
     /**
    * The default value of the '{@link #isCommutative() <em>Commutative</em>}' attribute.
@@ -179,7 +179,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
    * @generated
    * @ordered
    */
-    protected boolean commutative = COMMUTATIVE_EDEFAULT;
+    protected boolean commutative = OperatorImpl.COMMUTATIVE_EDEFAULT;
 
     /**
      * <!-- begin-user-doc -->
@@ -207,10 +207,10 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
    */
     @Override
     public EList<ModelEndpoint> getInputs() {
-    if (inputs == null) {
-      inputs = new EObjectContainmentEList<ModelEndpoint>(ModelEndpoint.class, this, OperatorPackage.OPERATOR__INPUTS);
+    if (this.inputs == null) {
+      this.inputs = new EObjectContainmentEList<>(ModelEndpoint.class, this, OperatorPackage.OPERATOR__INPUTS);
     }
-    return inputs;
+    return this.inputs;
   }
 
     /**
@@ -220,10 +220,10 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
    */
     @Override
     public EList<ModelEndpoint> getOutputs() {
-    if (outputs == null) {
-      outputs = new EObjectContainmentEList<ModelEndpoint>(ModelEndpoint.class, this, OperatorPackage.OPERATOR__OUTPUTS);
+    if (this.outputs == null) {
+      this.outputs = new EObjectContainmentEList<>(ModelEndpoint.class, this, OperatorPackage.OPERATOR__OUTPUTS);
     }
-    return outputs;
+    return this.outputs;
   }
 
     /**
@@ -233,10 +233,10 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
    */
     @Override
     public EList<GenericEndpoint> getGenerics() {
-    if (generics == null) {
-      generics = new EObjectContainmentEList<GenericEndpoint>(GenericEndpoint.class, this, OperatorPackage.OPERATOR__GENERICS);
+    if (this.generics == null) {
+      this.generics = new EObjectContainmentEList<>(GenericEndpoint.class, this, OperatorPackage.OPERATOR__GENERICS);
     }
-    return generics;
+    return this.generics;
   }
 
     /**
@@ -246,7 +246,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
    */
     @Override
     public String getWorkingPath() {
-    return workingPath;
+    return this.workingPath;
   }
 
     /**
@@ -256,10 +256,10 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
    */
     @Override
     public void setWorkingPath(String newWorkingPath) {
-    String oldWorkingPath = workingPath;
-    workingPath = newWorkingPath;
+    var oldWorkingPath = this.workingPath;
+    this.workingPath = newWorkingPath;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.OPERATOR__WORKING_PATH, oldWorkingPath, workingPath));
+      eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.OPERATOR__WORKING_PATH, oldWorkingPath, this.workingPath));
   }
 
     /**
@@ -269,7 +269,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
    */
     @Override
     public long getExecutionTime() {
-    return executionTime;
+    return this.executionTime;
   }
 
     /**
@@ -279,10 +279,10 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
    */
     @Override
     public void setExecutionTime(long newExecutionTime) {
-    long oldExecutionTime = executionTime;
-    executionTime = newExecutionTime;
+    var oldExecutionTime = this.executionTime;
+    this.executionTime = newExecutionTime;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.OPERATOR__EXECUTION_TIME, oldExecutionTime, executionTime));
+      eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.OPERATOR__EXECUTION_TIME, oldExecutionTime, this.executionTime));
   }
 
     /**
@@ -292,7 +292,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
    */
     @Override
     public boolean isCommutative() {
-    return commutative;
+    return this.commutative;
   }
 
     /**
@@ -302,10 +302,10 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
    */
     @Override
     public void setCommutative(boolean newCommutative) {
-    boolean oldCommutative = commutative;
-    commutative = newCommutative;
+    var oldCommutative = this.commutative;
+    this.commutative = newCommutative;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.OPERATOR__COMMUTATIVE, oldCommutative, commutative));
+      eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.OPERATOR__COMMUTATIVE, oldCommutative, this.commutative));
   }
 
     /**
@@ -402,13 +402,13 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
         getGenerics().clear();
         return;
       case OperatorPackage.OPERATOR__WORKING_PATH:
-        setWorkingPath(WORKING_PATH_EDEFAULT);
+        setWorkingPath(OperatorImpl.WORKING_PATH_EDEFAULT);
         return;
       case OperatorPackage.OPERATOR__EXECUTION_TIME:
-        setExecutionTime(EXECUTION_TIME_EDEFAULT);
+        setExecutionTime(OperatorImpl.EXECUTION_TIME_EDEFAULT);
         return;
       case OperatorPackage.OPERATOR__COMMUTATIVE:
-        setCommutative(COMMUTATIVE_EDEFAULT);
+        setCommutative(OperatorImpl.COMMUTATIVE_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -423,17 +423,17 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
     public boolean eIsSet(int featureID) {
     switch (featureID) {
       case OperatorPackage.OPERATOR__INPUTS:
-        return inputs != null && !inputs.isEmpty();
+        return this.inputs != null && !this.inputs.isEmpty();
       case OperatorPackage.OPERATOR__OUTPUTS:
-        return outputs != null && !outputs.isEmpty();
+        return this.outputs != null && !this.outputs.isEmpty();
       case OperatorPackage.OPERATOR__GENERICS:
-        return generics != null && !generics.isEmpty();
+        return this.generics != null && !this.generics.isEmpty();
       case OperatorPackage.OPERATOR__WORKING_PATH:
-        return WORKING_PATH_EDEFAULT == null ? workingPath != null : !WORKING_PATH_EDEFAULT.equals(workingPath);
+        return OperatorImpl.WORKING_PATH_EDEFAULT == null ? this.workingPath != null : !OperatorImpl.WORKING_PATH_EDEFAULT.equals(this.workingPath);
       case OperatorPackage.OPERATOR__EXECUTION_TIME:
-        return executionTime != EXECUTION_TIME_EDEFAULT;
+        return this.executionTime != OperatorImpl.EXECUTION_TIME_EDEFAULT;
       case OperatorPackage.OPERATOR__COMMUTATIVE:
-        return commutative != COMMUTATIVE_EDEFAULT;
+        return this.commutative != OperatorImpl.COMMUTATIVE_EDEFAULT;
     }
     return super.eIsSet(featureID);
   }
@@ -606,7 +606,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
         }
       case OperatorPackage.OPERATOR___CREATE_WORKFLOW_INSTANCE_OUTPUTS__OPERATOR_MAP_MID:
         try {
-          createWorkflowInstanceOutputs((Operator)arguments.get(0), (Map<String, Model>)arguments.get(1), (MID)arguments.get(2));
+          createWorkflowInstanceOutputs((Operator)arguments.get(0), null, (Map<String, Model>)arguments.get(1), (MID)arguments.get(2));
           return null;
         }
         catch (Throwable throwable) {
@@ -642,11 +642,11 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (workingPath: ");
-    result.append(workingPath);
+    result.append(this.workingPath);
     result.append(", executionTime: ");
-    result.append(executionTime);
+    result.append(this.executionTime);
     result.append(", commutative: ");
-    result.append(commutative);
+    result.append(this.commutative);
     result.append(')');
     return result.toString();
   }
@@ -657,7 +657,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
     @Override
     public String toString() {
 
-        String label = (this.getName() == null) ? "" : this.getName();
+        var label = (this.getName() == null) ? "" : this.getName();
         if (!this.getGenerics().isEmpty()) {
             label +=
                 "<" +
@@ -677,7 +677,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
    */
     @Override
     public Operator getMetatype() {
-    ExtendibleElement metatype = super.getMetatype();
+    var metatype = super.getMetatype();
     return (metatype == null) ? null : (Operator) metatype;
   }
 
@@ -688,7 +688,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
    */
     @Override
     public Operator getSupertype() {
-    ExtendibleElement supertype = super.getSupertype();
+    var supertype = super.getSupertype();
     return (supertype == null) ? null : (Operator) supertype;
   }
 
@@ -710,11 +710,11 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 
         MMINTException.mustBeType(this);
 
-        String signature = this.toString() + "(";
+        var signature = this.toString() + "(";
         if (inputs == null) {
             List<String> params = new ArrayList<>();
             for (ModelEndpoint formalParameter : this.getInputs()) {
-                String formal = formalParameter.getTarget().getName() + " ";
+                var formal = formalParameter.getTarget().getName() + " ";
                 if (formalParameter.getUpperBound() > 1) {
                     formal += "*";
                 }
@@ -728,14 +728,14 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
             //TODO MMINT[OPERATOR] Add coercion support
             Map<String, List<String>> varargs = new LinkedHashMap<>();
             for (OperatorInput input : inputs) {
-                ModelEndpoint formalParameter = input.getModelTypeEndpoint();
-                Model actualParameter = input.getModel();
-                String formal = formalParameter.getTarget().getName() + " ";
+                var formalParameter = input.getModelTypeEndpoint();
+                var actualParameter = input.getModel();
+                var formal = formalParameter.getTarget().getName() + " ";
                 if (formalParameter.getUpperBound() > 1) {
                     formal += "*";
                 }
                 formal += formalParameter.getName();
-                List<String> vararg = varargs.get(formal);
+                var vararg = varargs.get(formal);
                 if (vararg == null) {
                     vararg = new ArrayList<>();
                     varargs.put(formal, vararg);
@@ -744,7 +744,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
             }
             List<String> params = new ArrayList<>();
             for (Entry<String, List<String>> vararg : varargs.entrySet()) {
-                String actual = (vararg.getValue().size() > 1) ? vararg.getValue().toString() :
+                var actual = (vararg.getValue().size() > 1) ? vararg.getValue().toString() :
                                                                  vararg.getValue().get(0);
                 params.add(vararg.getKey() + "=" + actual);
             }
@@ -777,10 +777,10 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
             return;
         }
 
-        MID typeMID = this.getMIDContainer();
+        var typeMID = this.getMIDContainer();
         super.addSubtype(newOperatorType, this, null, newOperatorTypeName);
         try {
-            String workflowMIDPath = implementationPath;
+            var workflowMIDPath = implementationPath;
             MID workflowMID;
             String newWorkflowMIDPath;
             if (FileUtils.isFileOrDirectoryInState(workflowMIDPath)) { // just recreating this subtype at startup
@@ -803,9 +803,9 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
             // identify inputs and outputs, then create endpoints for the operator type
             Map<Model, String> inoutWorkflowModels = MIDRegistry.getInputOutputWorkflowModels(workflowMID);
             for (Entry<Model, String> inoutWorkflowModel : inoutWorkflowModels.entrySet()) {
-                Model workflowModel = inoutWorkflowModel.getKey();
-                ModelEndpoint newModelTypeEndpoint = MIDFactory.eINSTANCE.createModelEndpoint();
-                Model modelType = typeMID.getExtendibleElement(workflowModel.getMetatypeUri());
+                var workflowModel = inoutWorkflowModel.getKey();
+                var newModelTypeEndpoint = MIDFactory.eINSTANCE.createModelEndpoint();
+                var modelType = typeMID.<Model>getExtendibleElement(workflowModel.getMetatypeUri());
                 MIDTypeFactory.addType(newModelTypeEndpoint, null, newOperatorType.getUri() + MMINTConstants.URI_SEPARATOR + workflowModel.getUri(), workflowModel.getName(), typeMID);
                 newModelTypeEndpoint.setDynamic(true);
                 MIDTypeFactory.addModelTypeEndpoint(newModelTypeEndpoint, modelType, newOperatorType, inoutWorkflowModel.getValue());
@@ -825,8 +825,8 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 
         MMINTException.mustBeType(this);
 
-        Operator newOperatorType = (implementationUri.endsWith(".java")) ?
-            super.createThisEClass() :
+        var newOperatorType = (implementationUri.endsWith(".java")) ?
+            super.<Operator>createThisEClass() :
             OperatorFactory.eINSTANCE.createWorkflowOperator();
         this.addSubtype(newOperatorType, newOperatorTypeName, implementationUri);
 
@@ -841,7 +841,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 
         MMINTException.mustBeType(this);
 
-        MID typeMID = this.getMIDContainer();
+        var typeMID = this.getMIDContainer();
         // delete the "thing"
         this.getInputs().forEach(modelTypeEndpoint -> super.delete(modelTypeEndpoint.getUri(), typeMID));
         this.getOutputs().forEach(modelTypeEndpoint -> super.delete(modelTypeEndpoint.getUri(), typeMID));
@@ -862,7 +862,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 
         MMINTException.mustBeType(this);
 
-        String operatorClassRelativePath = this.getClass().getName().replace(".", File.separator) + ".java";
+        var operatorClassRelativePath = this.getClass().getName().replace(".", File.separator) + ".java";
         String operatorImplPath = MIDTypeRegistry.getFileBundlePath(this, operatorClassRelativePath);
         FileUtils.openEclipseEditor(operatorImplPath, null, false);
     }
@@ -892,14 +892,14 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
         // init structures for cartesian product
         var cartIndexes = new int[getInputs().size()];
         var cartInputs = new ArrayList<Map<Integer, OperatorInput>>(getInputs().size());
-        for (int i = 0; i < cartIndexes.length; i++) {
+        for (var i = 0; i < cartIndexes.length; i++) {
             cartIndexes[i] = 0;
             cartInputs.add(new HashMap<>());
         }
         while (true) {
             // find next valid inputs
             var nextInputs = ECollections.<OperatorInput>newBasicEList();
-            for (int i = 0; i < cartIndexes.length; i++) {
+            for (var i = 0; i < cartIndexes.length; i++) {
                 var cartIndex = cartIndexes[i];
                 var cartEndpointInputs = cartInputs.get(i);
                 var input = cartEndpointInputs.get(cartIndex);
@@ -931,7 +931,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
             }
             if (nextInputs.size() == getInputs().size()) { // tentative valid inputs
                 var inputsByName = getInputsByName(nextInputs);
-                boolean valid = false;
+                var valid = false;
                 try {
                     valid = MIDConstraintChecker.checkOperatorInputConstraint(getClosestTypeConstraint(), inputsByName);
                 }
@@ -957,7 +957,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
                 }
             }
             // advance indexes for cartesian product
-            int i = 0;
+            var i = 0;
             while (true) {
                 cartIndexes[i] += 1;
                 var inputMID = (i < inputMIDs.size()) ? inputMIDs.get(i) : inputMIDs.get(inputMIDs.size()-1);
@@ -986,11 +986,11 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
      */
     private @Nullable OperatorInput checkAllowedInput(@NonNull ModelEndpoint inputModelTypeEndpoint, @NonNull Model inputModel) {
 
-        List<ConversionOperator> conversions = MIDTypeHierarchy.instanceOf(inputModel, inputModelTypeEndpoint.getTargetUri());
+        var conversions = MIDTypeHierarchy.instanceOf(inputModel, inputModelTypeEndpoint.getTargetUri());
         if (conversions == null) {
             return null;
         }
-        OperatorInput input = OperatorFactory.eINSTANCE.createOperatorInput();
+        var input = OperatorFactory.eINSTANCE.createOperatorInput();
         input.setModel(inputModel);
         input.setModelTypeEndpoint(inputModelTypeEndpoint);
         input.getConversions().addAll(conversions);
@@ -1035,7 +1035,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 
         // check actual parameters
         EList<OperatorInput> inputs = new BasicEList<>();
-        int i = 0;
+        var i = 0;
         for (ModelEndpoint inputModelTypeEndpoint : this.getInputs()) {
             // check 1: not enough actual parameters, excluding optional ones (lower bound == 0)
             if (i >= inputModels.size() && inputModelTypeEndpoint.getLowerBound() > 0) {
@@ -1059,7 +1059,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
             return null;
         }
         // check 4: operator-specific constraints other than types (e.g. 2 model rels as input connected by same model)
-        Map<String, Model> inputsByName = this.getInputsByName(inputs);
+        var inputsByName = this.getInputsByName(inputs);
         if (!MIDConstraintChecker.checkOperatorInputConstraint(this.getClosestTypeConstraint(), inputsByName)) {
             //TODO MMINT[OPERATOR] Can there be conflicts since conversions are not run?
             return null;
@@ -1176,8 +1176,8 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 
         EList<OperatorGeneric> generics = new BasicEList<>();
         for (GenericEndpoint genericSuperTypeEndpoint : this.getGenerics()) {
-            GenericElement genericType = MIDDialogs.selectGenericTypeToCreate(genericSuperTypeEndpoint, inputs);
-            OperatorGeneric generic = OperatorFactory.eINSTANCE.createOperatorGeneric();
+            var genericType = MIDDialogs.selectGenericTypeToCreate(genericSuperTypeEndpoint, inputs);
+            var generic = OperatorFactory.eINSTANCE.createOperatorGeneric();
             generic.setGenericSuperTypeEndpoint(genericSuperTypeEndpoint);
             generic.setGeneric(genericType);
             generics.add(generic);
@@ -1196,7 +1196,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
      */
     private String getPropertiesUri(@NonNull String suffix) {
 
-        String workingPath = this.getWorkingPath();
+        var workingPath = this.getWorkingPath();
         if (workingPath == null) {
             IFile instanceMIDFile = MMINT.getActiveInstanceMIDFile();
             if (instanceMIDFile == null) { // can happen when an operator is invoked from a model editor
@@ -1204,7 +1204,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
             }
             workingPath = instanceMIDFile.getParent().getFullPath().toString();
         }
-        String propertiesUri = FileUtils.prependWorkspacePath(workingPath) + File.separator + this.getName() + suffix +
+        var propertiesUri = FileUtils.prependWorkspacePath(workingPath) + File.separator + this.getName() + suffix +
                                MIDOperatorIOUtils.PROPERTIES_SUFFIX;
 
         return propertiesUri;
@@ -1216,7 +1216,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
     @Override
     public Properties getInputProperties() {
 
-        String propertiesUri =  this.getPropertiesUri(MIDOperatorIOUtils.INPUT_PROPERTIES_SUFFIX);
+        var propertiesUri =  this.getPropertiesUri(MIDOperatorIOUtils.INPUT_PROPERTIES_SUFFIX);
         Properties inputProperties = new Properties();
         try {
             inputProperties.load(new FileInputStream(propertiesUri));
@@ -1258,9 +1258,9 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
      */
     private String addInputByName(@NonNull OperatorInput input, @NonNull Map<String, Model> inputsByName) {
 
-        String inputName = input.getModelTypeEndpoint().getName();
+        var inputName = input.getModelTypeEndpoint().getName();
         if (input.getModelTypeEndpoint().getUpperBound() == -1) {
-            int i = 0;
+            var i = 0;
             while (inputsByName.get(inputName + i) != null) {
                 i++;
             }
@@ -1306,16 +1306,16 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
      */
     private Map<String, Model> createInstanceInputs(@NonNull Operator newOperator, @NonNull List<OperatorInput> inputs) throws Exception {
 
-        boolean coerced = false;
+        var coerced = false;
         Map<String, Model> inputsByName = new HashMap<>();
         for (OperatorInput input : inputs) {
-            ModelEndpoint modelTypeEndpoint = input.getModelTypeEndpoint();
-            ModelEndpoint modelEndpoint = modelTypeEndpoint.createInstance(
+            var modelTypeEndpoint = input.getModelTypeEndpoint();
+            var modelEndpoint = modelTypeEndpoint.createInstance(
                 input.getModel(),
                 newOperator,
                 OperatorPackage.eINSTANCE.getOperator_Inputs().getName()
             );
-            String inputName = this.addInputByName(input, inputsByName);
+            var inputName = this.addInputByName(input, inputsByName);
             if (modelTypeEndpoint.getUpperBound() == -1) {
                 modelEndpoint.setName(inputName);
             }
@@ -1323,10 +1323,10 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
                 continue;
             }
             coerced = true;
-            Model convertedInputModel = input.getModel();
+            var convertedInputModel = input.getModel();
             for (ConversionOperator conversion : input.getConversions()) {
                 //TODO MMINT[WORKFLOW] Implement this as a simplified workflow?
-                Properties inputProperties = conversion.getInputProperties();
+                var inputProperties = conversion.getInputProperties();
                 conversion.readInputProperties(inputProperties);
                 Map<String, Model> conversionInputsByName = new HashMap<>();
                 conversionInputsByName.put(conversion.getInputs().get(0).getName(), convertedInputModel);
@@ -1360,8 +1360,8 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 
         Map<String, GenericElement> genericsByName = new HashMap<>();
         for (OperatorGeneric generic : generics) {
-            GenericEndpoint genericSuperTypeEndpoint = generic.getGenericSuperTypeEndpoint();
-            GenericElement genericType = generic.getGeneric();
+            var genericSuperTypeEndpoint = generic.getGenericSuperTypeEndpoint();
+            var genericType = generic.getGeneric();
             genericSuperTypeEndpoint.createInstance(genericType, newOperator);
             genericsByName.put(genericSuperTypeEndpoint.getName(), genericType);
         }
@@ -1395,8 +1395,8 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
                 outputModels = new ArrayList<>();
                 outputModels.add(outputsByName.get(outputModelTypeEndpoint.getName()));
             }
-            for (int i = 0; i < outputModels.size(); i++) {
-                ModelEndpoint outputModelEndpoint = outputModelTypeEndpoint.createInstance(
+            for (var i = 0; i < outputModels.size(); i++) {
+                var outputModelEndpoint = outputModelTypeEndpoint.createInstance(
                     outputModels.get(i),
                     newOperator,
                     OperatorPackage.eINSTANCE.getOperator_Outputs().getName()
@@ -1420,17 +1420,17 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
         if (!Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_OPERATORS_ENABLED))) {
             instanceMID = null;
         }
-        Operator newOperator = this.createInstance(instanceMID);
+        var newOperator = this.createInstance(instanceMID);
         // generics, inputs and conversions
-        Map<String, GenericElement> genericsByName = this.createInstanceGenerics(newOperator, generics);
-        Map<String, Model> inputsByName = this.createInstanceInputs(newOperator, inputs);
+        var genericsByName = this.createInstanceGenerics(newOperator, generics);
+        var inputsByName = this.createInstanceInputs(newOperator, inputs);
         // run operator
         if (inputProperties == null) {
             inputProperties = newOperator.getInputProperties();
         }
         newOperator.readInputProperties(inputProperties);
-        long startTime = System.nanoTime();
-        Map<String, Model> outputsByName = newOperator.run(inputsByName, genericsByName, outputMIDsByName);
+        var startTime = System.nanoTime();
+        var outputsByName = newOperator.run(inputsByName, genericsByName, outputMIDsByName);
         newOperator.setExecutionTime(System.nanoTime()-startTime);
         // outputs
         this.createInstanceOutputs(newOperator, inputsByName, outputsByName);
@@ -1478,7 +1478,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 
         MMINTException.mustBeType(this);
 
-        Operator newOperator = OperatorFactory.eINSTANCE.createOperator();
+        var newOperator = OperatorFactory.eINSTANCE.createOperator();
         this.addInstance(newOperator, MIDLevel.WORKFLOWS, workflowMID);
 
         return newOperator;
@@ -1494,7 +1494,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 
         this.deleteInstance(this.getMIDContainer());
         for (ModelEndpoint outputModelEndpoint : this.getOutputs()) {
-            Model outputModel = outputModelEndpoint.getTarget();
+            var outputModel = outputModelEndpoint.getTarget();
             if (outputModel.getMIDContainer() == null) { // already deleted
                 continue;
             }
@@ -1518,13 +1518,13 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 
         Map<String, Model> inputsByName = new HashMap<>();
         for (OperatorInput input : inputs) {
-            ModelEndpoint modelTypeEndpoint = input.getModelTypeEndpoint();
-            ModelEndpoint modelEndpoint = modelTypeEndpoint.createWorkflowInstance(
+            var modelTypeEndpoint = input.getModelTypeEndpoint();
+            var modelEndpoint = modelTypeEndpoint.createWorkflowInstance(
                 input.getModel(),
                 newOperator,
                 OperatorPackage.eINSTANCE.getOperator_Inputs().getName()
             );
-            String inputName = this.addInputByName(input, inputsByName);
+            var inputName = this.addInputByName(input, inputsByName);
             if (modelTypeEndpoint.getUpperBound() == -1) {
                 modelEndpoint.setName(inputName);
             }
@@ -1549,8 +1549,8 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 
         Map<String, GenericElement> genericsByName = new HashMap<>();
         for (OperatorGeneric generic : generics) {
-            GenericEndpoint genericSuperTypeEndpoint = generic.getGenericSuperTypeEndpoint();
-            GenericElement genericType = generic.getGeneric();
+            var genericSuperTypeEndpoint = generic.getGenericSuperTypeEndpoint();
+            var genericType = generic.getGeneric();
             genericSuperTypeEndpoint.createWorkflowInstance(genericType, newOperator);
             genericsByName.put(genericSuperTypeEndpoint.getName(), genericType);
         }
@@ -1562,7 +1562,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
      * @generated NOT
      */
     @Override
-    public void createWorkflowInstanceOutputs(Operator newOperator, Map<String, Model> inputsByName, MID workflowMID) throws MMINTException {
+    public void createWorkflowInstanceOutputs(Operator newOperator, Map<String, GenericElement> genericsByName, Map<String, Model> inputsByName, MID workflowMID) throws MMINTException {
 
         MMINTException.mustBeType(this);
         if (this.getOutputs().stream().anyMatch(outputModelTypeEndpoint -> outputModelTypeEndpoint.getUpperBound() == -1)) {
@@ -1579,17 +1579,17 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
         Map<String, Model> outputsByName = new HashMap<>();
         for (ModelEndpoint outputModelTypeEndpoint : this.getOutputs()) {
             //TODO MMINT[OPERATOR] workflowID can be null, so outputModelId should be generated differently
-            String outputModelId = MIDRegistry.getNextWorkflowID(workflowMID);
-            Model outputModel = outputModelTypeEndpoint.getTarget().createWorkflowInstance(outputModelId, workflowMID);
-            ModelEndpoint outputModelEndpoint = outputModelTypeEndpoint.createWorkflowInstance(
+            var outputModelId = MIDRegistry.getNextWorkflowID(workflowMID);
+            var outputModel = outputModelTypeEndpoint.getTarget().createWorkflowInstance(outputModelId, workflowMID);
+            var outputModelEndpoint = outputModelTypeEndpoint.createWorkflowInstance(
                 outputModel,
                 newOperator,
                 OperatorPackage.eINSTANCE.getOperator_Outputs().getName());
             outputsByName.put(outputModelEndpoint.getName(), outputModel);
         }
-        Map<ModelRel, List<Model>> validOutputs = MIDConstraintChecker.getOperatorOutputConstraints(this.getClosestTypeConstraint(), inputsByName, outputsByName);
+        Map<ModelRel, List<Model>> validOutputs = MIDConstraintChecker.getOperatorOutputConstraints(this.getClosestTypeConstraint(), genericsByName, inputsByName, outputsByName);
         for (Entry<ModelRel, List<Model>> validOutput : validOutputs.entrySet()) {
-            ModelRel outputModelRel = validOutput.getKey();
+            var outputModelRel = validOutput.getKey();
             for (Model endpointModel : validOutput.getValue()) {
                 String modelTypeEndpointUri = MIDConstraintChecker.getAllowedModelEndpoints(outputModelRel, null, endpointModel).get(0);
                 ModelEndpoint modelTypeEndpoint = MIDTypeRegistry.getType(modelTypeEndpointUri);
@@ -1606,12 +1606,12 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 
         MMINTException.mustBeType(this);
 
-        Operator newOperator = this.createWorkflowInstance(workflowMID);
+        var newOperator = this.createWorkflowInstance(workflowMID);
         // generics and inputs
-        this.createWorkflowInstanceGenerics(newOperator, generics);
-        Map<String, Model> inputsByName = this.createWorkflowInstanceInputs(newOperator, inputs);
+        var genericsByName = this.createWorkflowInstanceGenerics(newOperator, generics);
+        var inputsByName = this.createWorkflowInstanceInputs(newOperator, inputs);
         // outputs
-        this.createWorkflowInstanceOutputs(newOperator, inputsByName, workflowMID);
+        this.createWorkflowInstanceOutputs(newOperator, genericsByName, inputsByName, workflowMID);
 
         return newOperator;
     }

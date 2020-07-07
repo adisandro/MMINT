@@ -96,7 +96,7 @@ public class Merge extends OperatorImpl {
 		}
 
 		@Override
-		public Map<ModelRel, List<Model>> getAllowedOutputModelRelEndpoints(Map<String, Model> inputsByName, Map<String, Model> outputsByName) {
+		public Map<ModelRel, List<Model>> getAllowedOutputModelRelEndpoints(Map<String, GenericElement> genericsByName, Map<String, Model> inputsByName, Map<String, Model> outputsByName) {
 
 			Input input = new Input(inputsByName);
 			Model mergedModel = outputsByName.get(Merge.OUT_MODEL);

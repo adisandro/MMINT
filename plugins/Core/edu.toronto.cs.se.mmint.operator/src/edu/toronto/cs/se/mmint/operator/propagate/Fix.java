@@ -22,7 +22,6 @@ import java.util.stream.Stream;
 
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.compare.Comparison;
 import org.eclipse.emf.compare.EMFCompare;
 import org.eclipse.emf.compare.scope.DefaultComparisonScope;
 import org.eclipse.emf.compare.scope.IComparisonScope;
@@ -71,8 +70,8 @@ public class Fix extends NestingOperatorImpl {
         public boolean isAllowedGeneric(@NonNull GenericEndpoint genericTypeEndpoint,
                                         @NonNull GenericElement genericType, @NonNull List<OperatorInput> inputs) {
 
-            final String FIX_URI = "http://se.cs.toronto.edu/modelepedia/Operator_Fix";
-            Operator fixerOperatorType = (Operator) genericType;
+            final var FIX_URI = "http://se.cs.toronto.edu/modelepedia/Operator_Fix";
+            var fixerOperatorType = (Operator) genericType;
             // no nesting
             if (fixerOperatorType.getUri().equals(FIX_URI)) {
                 return false;
@@ -97,7 +96,7 @@ public class Fix extends NestingOperatorImpl {
                     .getPreference(MMINTConstants.PREFERENCE_MENU_POLYMORPHISM_RUNTIMETYPING_ENABLED);
                 MMINT.setPreference(MMINTConstants.PREFERENCE_MENU_POLYMORPHISM_RUNTIMETYPING_ENABLED, "false");
             }
-            EList<Model> inputModels = ECollections.asEList(
+            var inputModels = ECollections.asEList(
                 inputs.stream()
                       .map(OperatorInput::getModel)
                       .collect(Collectors.toList()));
@@ -121,17 +120,17 @@ public class Fix extends NestingOperatorImpl {
     }
 
     @Override
-    public void createWorkflowInstanceOutputs(Operator newOperator, Map<String, Model> inputsByName, MID workflowMID)
+    public void createWorkflowInstanceOutputs(Operator newOperator, Map<String, GenericElement> genericsByName, Map<String, Model> inputsByName, MID workflowMID)
                 throws MMINTException {
 
         // create the vararg fixed models
         Map<String, Model> outputsByName = new HashMap<>();
-        Operator fixerOperatorType = (Operator) newOperator.getGenerics().get(0).getTarget();
-        for (int i = 0; i < fixerOperatorType.getOutputs().size(); i++) {
-            ModelEndpoint outputModelTypeEndpoint = fixerOperatorType.getOutputs().get(i);
-            String outputModelId = MIDRegistry.getNextWorkflowID(workflowMID);
-            Model outputModel = outputModelTypeEndpoint.getTarget().createWorkflowInstance(outputModelId, workflowMID);
-            ModelEndpoint outputModelEndpoint = this.getOutputs().get(0).createWorkflowInstance(
+        var fixerOperatorType = (Operator) newOperator.getGenerics().get(0).getTarget();
+        for (var i = 0; i < fixerOperatorType.getOutputs().size(); i++) {
+            var outputModelTypeEndpoint = fixerOperatorType.getOutputs().get(i);
+            var outputModelId = MIDRegistry.getNextWorkflowID(workflowMID);
+            var outputModel = outputModelTypeEndpoint.getTarget().createWorkflowInstance(outputModelId, workflowMID);
+            var outputModelEndpoint = this.getOutputs().get(0).createWorkflowInstance(
                 outputModel,
                 newOperator,
                 OperatorPackage.eINSTANCE.getOperator_Outputs().getName());
@@ -141,11 +140,12 @@ public class Fix extends NestingOperatorImpl {
         // use the fixer operator constraints in case of output model rels
         List<Model> inputModels = MIDOperatorIOUtils.getVarargs(inputsByName, this.getInputs().get(0).getName());
         inputsByName.clear();
-        for (int i = 0; i < fixerOperatorType.getInputs().size(); i++) {
+        for (var i = 0; i < fixerOperatorType.getInputs().size(); i++) {
             inputsByName.put(fixerOperatorType.getInputs().get(i).getName(), inputModels.get(i));
         }
         Map<ModelRel, List<Model>> validOutputs = MIDConstraintChecker
-            .getOperatorOutputConstraints(fixerOperatorType.getClosestTypeConstraint(), inputsByName, outputsByName);
+            .getOperatorOutputConstraints(fixerOperatorType.getClosestTypeConstraint(), genericsByName, inputsByName,
+                                          outputsByName);
         for (Entry<ModelRel, List<Model>> validOutput : validOutputs.entrySet()) {
             ModelRel outputModelRel = validOutput.getKey();
             for (Model endpointModel : validOutput.getValue()) {
@@ -164,7 +164,7 @@ public class Fix extends NestingOperatorImpl {
         ResourceSet tgtResourceSet = new ResourceSetImpl();
         FileUtils.getEMFResource(model2.getUri(), tgtResourceSet, true);
         IComparisonScope scope = new DefaultComparisonScope(srcResourceSet, tgtResourceSet, null);
-        Comparison comparison = EMFCompare.builder().build().compare(scope);
+        var comparison = EMFCompare.builder().build().compare(scope);
 
         return comparison.getDifferences().isEmpty();
     }
@@ -173,7 +173,7 @@ public class Fix extends NestingOperatorImpl {
 
         Map<String, Integer> endpointRefsMap = new HashMap<>();
         for (ExtendibleElementEndpointReference endpointRef : endpointRefs) {
-            String endpointTargetUri = endpointRef.getTargetUri();
+            var endpointTargetUri = endpointRef.getTargetUri();
             Integer numEndpoints = endpointRefsMap.putIfAbsent(endpointTargetUri, new Integer(1));
             if (numEndpoints != null) {
                 endpointRefsMap.put(endpointTargetUri, new Integer(numEndpoints + 1));
@@ -219,9 +219,9 @@ public class Fix extends NestingOperatorImpl {
         // check model elements
         for (ModelEndpointReference modelEndpointRef1 : modelRel1.getModelEndpointRefs()) {
             Set<String> modelElemUris1 = this.getModelElemUris(modelEndpointRef1.getModelElemRefs());
-            List<ModelEndpointReference> modelEndpointRefs2 = MIDRegistry.getEndpointReferences(
+            var modelEndpointRefs2 = MIDRegistry.getEndpointReferences(
                 modelEndpointRef1.getTargetUri(), modelRel2.getModelEndpointRefs());
-            boolean modelElemEquals = false;
+            var modelElemEquals = false;
             for (ModelEndpointReference modelEndpointRef2 : modelEndpointRefs2) {
                 Set<String> modelElemUris2 = this.getModelElemUris(modelEndpointRef2.getModelElemRefs());
                 if (modelElemUris1.equals(modelElemUris2)) {
@@ -247,7 +247,7 @@ public class Fix extends NestingOperatorImpl {
     private boolean areFixed(@NonNull List<Model> inModels, @NonNull List<Model> outModels) throws Exception {
 
         Model midModelType = MIDTypeRegistry.getMIDModelType();
-        for (int i = 0; i < inModels.size(); i++) {
+        for (var i = 0; i < inModels.size(); i++) {
             Model inModel = inModels.get(i), outModel = outModels.get(i);
             if (MIDTypeHierarchy.instanceOf(inModel, midModelType.getUri(), false)) { // the model is a MID, recursion
                 MID inMID = (MID) inModel.getEMFInstanceRoot(), outMID = (MID) outModel.getEMFInstanceRoot();
@@ -280,16 +280,16 @@ public class Fix extends NestingOperatorImpl {
                                      @NonNull Map<String, MID> outputMIDsByFixerOutputs) throws Exception {
 
         // prepare nested MID
-        MID fixingMID = super.getNestedInstanceMID();
+        var fixingMID = super.getNestedInstanceMID();
         if (fixingMID != null) {
             createNestedInstanceMIDModelShortcuts(new HashSet<>(models));
         }
 
         // fixer loop
         EList<Model> inModels;
-        EList<Model> outModels = ECollections.asEList(models);
+        var outModels = ECollections.asEList(models);
         Operator fixerOperator;
-        int i = 0;
+        var i = 0;
         do {
             inModels = outModels;
             EList<OperatorInput> fixerInputs = fixerOperatorType.checkAllowedInputs(inModels);
@@ -308,7 +308,7 @@ public class Fix extends NestingOperatorImpl {
         Map<Model, Model> fixedToOutModels = super.replaceNestedModelsWithShortcuts(fixerOperator,
                                                                                     outputMIDsByFixerOutputs);
         for (Entry<Model, Model> fixedToOut : fixedToOutModels.entrySet()) {
-            int j = outModels.indexOf(fixedToOut.getKey());
+            var j = outModels.indexOf(fixedToOut.getKey());
             if (j != -1) {
                 outModels.set(j, fixedToOut.getValue());
             }
@@ -328,7 +328,7 @@ public class Fix extends NestingOperatorImpl {
 
         // input
         List<Model> models = MIDOperatorIOUtils.getVarargs(inputsByName, Fix.IN_MODELS);
-        Operator fixerOperatorType = (Operator) genericsByName.get(Fix.GENERIC_OPERATORTYPE);
+        var fixerOperatorType = (Operator) genericsByName.get(Fix.GENERIC_OPERATORTYPE);
         Map<String, MID> outputMIDsByFixerOutputs = MIDOperatorIOUtils.getVarargOutputMIDsByOtherName(
             outputMIDsByName,
             Fix.OUT_MODELS,

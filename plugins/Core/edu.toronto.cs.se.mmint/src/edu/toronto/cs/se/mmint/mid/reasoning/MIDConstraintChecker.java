@@ -14,7 +14,6 @@ package edu.toronto.cs.se.mmint.mid.reasoning;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -33,7 +32,6 @@ import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
-import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
@@ -63,8 +61,8 @@ public class MIDConstraintChecker {
 
 	public static boolean isAllowedModelType(ModelRel modelRelType) {
 
-		MID typeMID = modelRelType.getMIDContainer();
-		List<ModelRel> modelRelSubtypes = MIDTypeHierarchy.getSubtypes(modelRelType, typeMID);
+		var typeMID = modelRelType.getMIDContainer();
+		var modelRelSubtypes = MIDTypeHierarchy.getSubtypes(modelRelType, typeMID);
 
 		return (modelRelSubtypes.isEmpty()) ? true : false;
 	}
@@ -75,20 +73,20 @@ public class MIDConstraintChecker {
 			return true;
 		}
 
-		ModelRel modelRelTypeSuper = (ModelRel) modelRelType.getSupertype();
+		var modelRelTypeSuper = (ModelRel) modelRelType.getSupertype();
 		// checks that the new model type is the same of the super model rel type or is overriding it
 		if (!MIDTypeHierarchy.isRootType(modelRelTypeSuper)) {
-			MID typeMID = modelRelType.getMIDContainer();
+			var typeMID = modelRelType.getMIDContainer();
 			if (newSrcModelType != null) {
-				String srcUri = modelRelTypeSuper.getModelEndpoints().get(0).getTargetUri();
-				String newSrcUri = newSrcModelType.getUri();
+				var srcUri = modelRelTypeSuper.getModelEndpoints().get(0).getTargetUri();
+				var newSrcUri = newSrcModelType.getUri();
 				if (!newSrcUri.equals(srcUri) && !MIDTypeHierarchy.isSubtypeOf(newSrcUri, srcUri, typeMID)) {
 					return false;
 				}
 			}
 			if (newTgtModelType != null) {
-				String tgtUri = modelRelTypeSuper.getModelEndpoints().get(1).getTargetUri();
-				String newTgtUri = newTgtModelType.getUri();
+				var tgtUri = modelRelTypeSuper.getModelEndpoints().get(1).getTargetUri();
+				var newTgtUri = newTgtModelType.getUri();
 				if (!newTgtUri.equals(tgtUri) && !MIDTypeHierarchy.isSubtypeOf(newTgtUri, tgtUri, typeMID)) {
 					return false;
 				}
@@ -104,20 +102,20 @@ public class MIDConstraintChecker {
 			return true;
 		}
 
-		Mapping mappingTypeSuper = mappingTypeRef.getObject().getSupertype();
+		var mappingTypeSuper = mappingTypeRef.getObject().getSupertype();
 		// checks that the new model element type is the same of the super link type or is overriding it
 		if (!MIDTypeHierarchy.isRootType(mappingTypeSuper)) {
-			MID typeMID = mappingTypeRef.getMIDContainer();
+			var typeMID = mappingTypeRef.getMIDContainer();
 			if (newSrcModelElemTypeRef != null) {
-				String srcUri = mappingTypeSuper.getModelElemEndpoints().get(0).getTargetUri();
-				String newSrcUri = newSrcModelElemTypeRef.getUri();
+				var srcUri = mappingTypeSuper.getModelElemEndpoints().get(0).getTargetUri();
+				var newSrcUri = newSrcModelElemTypeRef.getUri();
 				if (!newSrcUri.equals(srcUri) && !MIDTypeHierarchy.isSubtypeOf(newSrcUri, srcUri, typeMID)) {
 					return false;
 				}
 			}
 			if (newTgtModelElemTypeRef != null) {
-				String tgtUri = mappingTypeSuper.getModelElemEndpoints().get(1).getTargetUri();
-				String newTgtUri = newTgtModelElemTypeRef.getUri();
+				var tgtUri = mappingTypeSuper.getModelElemEndpoints().get(1).getTargetUri();
+				var newTgtUri = newTgtModelElemTypeRef.getUri();
 				if (!newTgtUri.equals(tgtUri) && !MIDTypeHierarchy.isSubtypeOf(newTgtUri, tgtUri, typeMID)) {
 					return false;
 				}
@@ -350,7 +348,7 @@ public class MIDConstraintChecker {
 
 		HashMap<String, Integer> cardinalityTable = new HashMap<>();
 		for (ModelElementEndpointReference modelElemEndpointRef : mapping.getModelElemEndpointRefs()) {
-			boolean isAllowed = false;
+			var isAllowed = false;
 			//TODO MMINT[INTROSPECTION] order of visit might affect the result, should be from the most specific to the less
 			for (ModelElementEndpointReference modelElemTypeEndpointRef : newMappingType.getModelElemEndpointRefs()) {
 				if (isAllowed = isAllowedModelElementEndpointReference(modelElemTypeEndpointRef, modelElemEndpointRef.getModelElemRef(), cardinalityTable)) {
@@ -407,12 +405,12 @@ public class MIDConstraintChecker {
 				if (modelObjEInfo.getRelatedClassName() == null) { // root
 					return true;
 				}
-				boolean isAllowed = true; // default is to allow if no containment model element type is present
+				var isAllowed = true; // default is to allow if no containment model element type is present
 				for (ModelElementReference modelElemTypeRef : modelTypeEndpointRef.getModelElemRefs()) {
 					if (modelElemTypeRef.getUri().equals(modelElemType.getUri())) { // same model element type under test
 						continue;
 					}
-					EMFInfo modelElemTypeContainmentEInfo = modelElemTypeRef.getObject().getEInfo();
+					var modelElemTypeContainmentEInfo = modelElemTypeRef.getObject().getEInfo();
 					if ( // not the right containment model element type
 						modelElemTypeContainmentEInfo.getFeatureName() == null ||
 						modelElemTypeContainmentEInfo.isAttribute() ||
@@ -455,14 +453,14 @@ public class MIDConstraintChecker {
 
 	public static ModelElement getAllowedModelElementType(ModelEndpointReference modelEndpointRef, EObject modelObj) {
 
-		ModelRel modelRelType = ((ModelRel) modelEndpointRef.eContainer()).getMetatype();
-		ModelEndpointReference modelTypeEndpointRef = MIDRegistry.getReference(modelEndpointRef.getObject().getMetatypeUri(), modelRelType.getModelEndpointRefs());
+		var modelRelType = ((ModelRel) modelEndpointRef.eContainer()).getMetatype();
+		var modelTypeEndpointRef = MIDRegistry.getReference(modelEndpointRef.getObject().getMetatypeUri(), modelRelType.getModelEndpointRefs());
     // shortcut for empty model rel types that just constrain types of endpoints
 		if (modelTypeEndpointRef.getModelElemRefs().isEmpty()) {
 		    return MIDTypeHierarchy.getRootModelElementType();
 		}
 		// search for an allowed model element type
-		Iterator<ModelElementReference> modelElemTypeRefIter = MIDTypeHierarchy.getInverseTypeRefHierarchyIterator(modelTypeEndpointRef.getModelElemRefs());
+		var modelElemTypeRefIter = MIDTypeHierarchy.getInverseTypeRefHierarchyIterator(modelTypeEndpointRef.getModelElemRefs());
 		while (modelElemTypeRefIter.hasNext()) {
 			ModelElementReference modelElemTypeRef = modelElemTypeRefIter.next();
 			if (isAllowedModelElement(modelTypeEndpointRef, modelObj, modelElemTypeRef.getObject())) {
@@ -476,7 +474,7 @@ public class MIDConstraintChecker {
 
 	public static Mapping getAllowedMappingType(Mapping mapping) {
 
-		ModelRel modelRelType = ((ModelRel) mapping.eContainer()).getMetatype();
+		var modelRelType = ((ModelRel) mapping.eContainer()).getMetatype();
 mappingTypes:
 		for (Mapping mappingType : modelRelType.getMappings()) {
 			HashSet<String> allowedModelElemTypes = new HashSet<>();
@@ -576,7 +574,7 @@ mappingTypes:
 		return reasoner.checkOperatorInputConstraint(constraint, inputsByName);
 	}
 
-	public static Map<ModelRel, List<Model>> getOperatorOutputConstraints(@Nullable ExtendibleElementConstraint constraint, Map<String, Model> inputsByName, Map<String, Model> outputsByName) {
+	public static Map<ModelRel, List<Model>> getOperatorOutputConstraints(@Nullable ExtendibleElementConstraint constraint, Map<String, GenericElement> genericsByName, Map<String, Model> inputsByName, Map<String, Model> outputsByName) {
 
 		if (constraint == null || constraint.getImplementation() == null || constraint.getImplementation().equals("")) {
 			return new HashMap<>();
@@ -590,7 +588,7 @@ mappingTypes:
 			return new HashMap<>();
 		}
 
-		return reasoner.getOperatorOutputConstraints(constraint, inputsByName, outputsByName);
+		return reasoner.getOperatorOutputConstraints(constraint, genericsByName, inputsByName, outputsByName);
 	}
 
 	public static boolean checkModelConstraintConsistency(ExtendibleElement type, String constraintLanguage, String constraintImplementation) {

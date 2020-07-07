@@ -1291,6 +1291,12 @@
       <eOperations name="deleteWorkflowInstance" eExceptions="#//MMINTException"/>
       <eOperations name="createWorkflowInstanceOutputs" eExceptions="#//MMINTException">
         <eParameters name="newOperator" lowerBound="1" eType="#//operator/Operator"/>
+        <eParameters name="genericsByName" lowerBound="1">
+          <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+            <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+            <eTypeArguments eClassifier="#//GenericElement"/>
+          </eGenericType>
+        </eParameters>
         <eParameters name="inputsByName" lowerBound="1">
           <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
             <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

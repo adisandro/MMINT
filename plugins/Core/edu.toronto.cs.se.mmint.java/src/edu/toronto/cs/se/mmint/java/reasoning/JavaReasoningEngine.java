@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -17,8 +17,9 @@ import java.util.Map;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jdt.annotation.NonNull;
-import edu.toronto.cs.se.mmint.MMINTException;
+
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
@@ -44,12 +45,12 @@ public class JavaReasoningEngine implements IReasoningEngine {
 	@Override
 	public boolean checkModelConstraint(@NonNull Model model, @NonNull ExtendibleElementConstraint constraint, @NonNull MIDLevel constraintLevel) {
 
-		String javaClassName = constraint.getImplementation();
-		String modelTypeUri = (constraintLevel == MIDLevel.INSTANCES) ?
+		var javaClassName = constraint.getImplementation();
+		var modelTypeUri = (constraintLevel == MIDLevel.INSTANCES) ?
 			((Model) constraint.eContainer()).getMetatypeUri() :
 			((Model) constraint.eContainer()).getUri();
 		try {
-			IJavaModelConstraint javaConstraint = (IJavaModelConstraint) this.getJavaConstraint(
+			var javaConstraint = (IJavaModelConstraint) this.getJavaConstraint(
 				javaClassName,
 				modelTypeUri);
 			return javaConstraint.validate(model);
@@ -62,9 +63,9 @@ public class JavaReasoningEngine implements IReasoningEngine {
 
 	private @NonNull IJavaOperatorConstraint getOperatorConstraint(@NonNull ExtendibleElementConstraint constraint) throws Exception {
 
-		String javaClassName = constraint.getImplementation();
-		String operatorTypeUri = ((Operator) constraint.eContainer()).getUri();
-		IJavaOperatorConstraint javaConstraint = (IJavaOperatorConstraint) this.getJavaConstraint(
+		var javaClassName = constraint.getImplementation();
+		var operatorTypeUri = ((Operator) constraint.eContainer()).getUri();
+		var javaConstraint = (IJavaOperatorConstraint) this.getJavaConstraint(
 			javaClassName,
 			operatorTypeUri);
 
@@ -98,11 +99,11 @@ public class JavaReasoningEngine implements IReasoningEngine {
 	}
 
 	@Override
-	public Map<ModelRel, List<Model>> getOperatorOutputConstraints(@NonNull ExtendibleElementConstraint constraint, @NonNull Map<String, Model> inputsByName, @NonNull Map<String, Model> outputsByName) {
+	public Map<ModelRel, List<Model>> getOperatorOutputConstraints(@NonNull ExtendibleElementConstraint constraint, @NonNull Map<String, GenericElement> genericsByName, @NonNull Map<String, Model> inputsByName, @NonNull Map<String, Model> outputsByName) {
 
 		try {
 			IJavaOperatorConstraint javaConstraint = this.getOperatorConstraint(constraint);
-			return javaConstraint.getAllowedOutputModelRelEndpoints(inputsByName, outputsByName);
+			return javaConstraint.getAllowedOutputModelRelEndpoints(genericsByName, inputsByName, outputsByName);
 		}
 		catch (Exception e) {
 			MMINTException.print(IStatus.WARNING, "Java operator output constraint error, returning empty map: " + constraint.getImplementation(), e);
