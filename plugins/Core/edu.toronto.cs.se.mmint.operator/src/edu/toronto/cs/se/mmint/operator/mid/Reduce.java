@@ -67,10 +67,10 @@ public class Reduce extends NestingOperatorImpl {
     @Override
     public boolean isAllowedGeneric(@NonNull GenericEndpoint genericTypeEndpoint, @NonNull GenericElement genericType, @NonNull List<OperatorInput> inputs) {
 
-      final String FILTER_URI = "http://se.cs.toronto.edu/mmint/Operator_Filter";
-      final String FILTERNOT_URI = "http://se.cs.toronto.edu/mmint/Operator_FilterNot";
-      final String MAP_URI = "http://se.cs.toronto.edu/mmint/Operator_Map";
-      final String REDUCE_URI = "http://se.cs.toronto.edu/mmint/Operator_Reduce";
+      final var FILTER_URI = "http://se.cs.toronto.edu/mmint/Operator_Filter";
+      final var FILTERNOT_URI = "http://se.cs.toronto.edu/mmint/Operator_FilterNot";
+      final var MAP_URI = "http://se.cs.toronto.edu/mmint/Operator_Map";
+      final var REDUCE_URI = "http://se.cs.toronto.edu/mmint/Operator_Reduce";
       if (
         genericType.getUri().equals(FILTER_URI) || genericType.getUri().equals(FILTERNOT_URI) ||
         genericType.getUri().equals(MAP_URI) || genericType.getUri().equals(REDUCE_URI)
@@ -85,19 +85,19 @@ public class Reduce extends NestingOperatorImpl {
   @Override
   public void readInputProperties(Properties inputProps) throws MMINTException {
     this.timeOverheadEnabled = MIDOperatorIOUtils.getOptionalBoolProperty(
-                                 inputProps, PROP_OUT_TIMEOVERHEAD+MIDOperatorIOUtils.PROP_OUTENABLED_SUFFIX, false);
+                                 inputProps, Reduce.PROP_OUT_TIMEOVERHEAD+MIDOperatorIOUtils.PROP_OUTENABLED_SUFFIX, false);
   }
 
   public void writeOutputProperties() throws Exception {
     var outProps = new Properties();
-    outProps.setProperty(PROP_OUT_TIMEOVERHEAD, String.valueOf(this.timeOverhead));
+    outProps.setProperty(Reduce.PROP_OUT_TIMEOVERHEAD, String.valueOf(this.timeOverhead));
     MIDOperatorIOUtils.writeOutputProperties(this, outProps);
   }
 
   private @NonNull Set<ModelRel> getConnectedModelRels(@NonNull MID instanceMID, @NonNull Set<Model> models, @NonNull Set<ModelRel> modelRelBlacklist) {
 
     //TODO MMINT[OO] This is expensive, need a direct way to reach model rels from models
-    Set<ModelRel> connectedModelRels = instanceMID.getModelRels().stream()
+    var connectedModelRels = instanceMID.getModelRels().stream()
       .filter(modelRel -> !modelRelBlacklist.contains(modelRel))
       .filter(modelRel -> modelRel.getModelEndpoints().stream()
         .anyMatch(modelEndpoint -> models.contains(modelEndpoint.getTarget())))
@@ -109,11 +109,11 @@ public class Reduce extends NestingOperatorImpl {
   private @NonNull MID reduce(@NonNull Model inputMIDModel, @NonNull Operator accumulatorOperatorType)
       throws Exception {
 
-    MID reducedMID = (MID) inputMIDModel.getEMFInstanceRoot();
+    var reducedMID = (MID) inputMIDModel.getEMFInstanceRoot();
     List<Model> initialModels = new ArrayList<>(reducedMID.getModels());
-    String nestedMIDPath = super.getNestedMIDPath();
-    Operator compositionOperatorType = MIDTypeRegistry.getType(MODELRELCOMPOSITION_OPERATORTYPE_URI);
-    Operator mergeOperatorType = MIDTypeRegistry.getType(MODELRELMERGE_OPERATORTYPE_URI);
+    var nestedMIDPath = super.getNestedMIDPath();
+    Operator compositionOperatorType = MIDTypeRegistry.getType(Reduce.MODELRELCOMPOSITION_OPERATORTYPE_URI);
+    Operator mergeOperatorType = MIDTypeRegistry.getType(Reduce.MODELRELMERGE_OPERATORTYPE_URI);
     // reduce loop
     EList<OperatorInput> accumulatorInputs = null;
     Map<String, Model> accumulatorOutputsByName = null;
@@ -124,7 +124,7 @@ public class Reduce extends NestingOperatorImpl {
                                MMINTConstants.PREFERENCE_MENU_POLYMORPHISM_MULTIPLEDISPATCH_ENABLED))) {
       polyAccumulators.addAll(MIDTypeHierarchy.getSubtypes(accumulatorOperatorType));
     }
-    int i = 0;
+    var i = 0;
     while (true) {
       var inputMIDs = ECollections.newBasicEList(reducedMID);
       var inputModelBlacklists = ECollections.<Set<Model>>newBasicEList(intermediateModelsAndRels);
@@ -153,7 +153,7 @@ public class Reduce extends NestingOperatorImpl {
       try {
         // get all model inputs, including the ones attached to model rel inputs
         for (OperatorInput accumulatorInput : accumulatorInputs) {
-          Model accumulatorInputModel = accumulatorInput.getModel();
+          var accumulatorInputModel = accumulatorInput.getModel();
           if (accumulatorInputModel instanceof ModelRel) {
             accumulatorInputModels.addAll(((ModelRel) accumulatorInputModel).getModelEndpoints().stream()
               .map(ModelEndpoint::getTarget)
@@ -165,7 +165,7 @@ public class Reduce extends NestingOperatorImpl {
           }
         }
         // get all model rels attached to input models that are not inputs themselves or intermediate artifacts
-        Set<ModelRel> modelRelBlacklist = Stream.concat(
+        var modelRelBlacklist = Stream.concat(
           accumulatorInputModelRels.stream(),
           intermediateModelsAndRels.stream()
             .filter(modelRel -> modelRel instanceof ModelRel)
@@ -207,12 +207,12 @@ public class Reduce extends NestingOperatorImpl {
               continue;
             }
             try {
-              EList<OperatorInput> compositionInputs = compositionOperatorType.checkAllowedInputs(
+              var compositionInputs = compositionOperatorType.checkAllowedInputs(
                 ECollections.newBasicEList(connectedModelRel, accumulatorOutputModelRel));
               if (compositionInputs == null) {
                 continue;
               }
-              Operator compositionOperator = compositionOperatorType.startInstance(
+              var compositionOperator = compositionOperatorType.startInstance(
                 compositionInputs,
                 null,
                 ECollections.emptyEList(),
@@ -221,7 +221,7 @@ public class Reduce extends NestingOperatorImpl {
               if (nestedMIDPath != null) {
                 compositionOperator.setName(compositionOperator.getName() + i);
               }
-              Map<String, Model> compositionOutputsByName = compositionOperator.getOutputsByName();
+              var compositionOutputsByName = compositionOperator.getOutputsByName();
               compositeModelRels.add((ModelRel) compositionOutputsByName.get(
                 compositionOperatorType.getOutputs().get(0).getName()));
             }
@@ -237,17 +237,17 @@ public class Reduce extends NestingOperatorImpl {
         Map<String, MID> mergeOutputMIDsByName = MIDOperatorIOUtils
             .createSameOutputMIDsByName(mergeOperatorType, reducedMID);
         Set<ModelRel> mergedModelRels = new HashSet<>();
-        for (int j = 0; j < compositeModelRels.size(); j++) {
-          ModelRel compositeModelRel1 = compositeModelRels.get(j);
-          for (int k = j+1; k < compositeModelRels.size(); k++) {
-            ModelRel compositeModelRel2 = compositeModelRels.get(k);
+        for (var j = 0; j < compositeModelRels.size(); j++) {
+          var compositeModelRel1 = compositeModelRels.get(j);
+          for (var k = j+1; k < compositeModelRels.size(); k++) {
+            var compositeModelRel2 = compositeModelRels.get(k);
             try {
-              EList<OperatorInput> mergeInputs = mergeOperatorType.checkAllowedInputs(
+              var mergeInputs = mergeOperatorType.checkAllowedInputs(
                 ECollections.newBasicEList(compositeModelRel1, compositeModelRel2));
               if (mergeInputs == null) {
                 continue;
               }
-              Operator mergeOperator = mergeOperatorType.startInstance(
+              var mergeOperator = mergeOperatorType.startInstance(
                 mergeInputs,
                 null,
                 ECollections.emptyEList(),
@@ -323,10 +323,10 @@ public class Reduce extends NestingOperatorImpl {
       super.inMemoryNestedMID = reducedMID;
             //TODO MMINT[NESTED] Transform input/output into shortcuts first
       super.writeNestedInstanceMID();
-      Set<Model> reducedModels = accumulatorOutputModels.stream()
+      var reducedModels = accumulatorOutputModels.stream()
           .filter(outputModel -> !intermediateModelsAndRels.contains(outputModel))
           .collect(Collectors.toSet());
-      Set<ModelRel> intermediateModelRels = intermediateModelsAndRels.stream()
+      var intermediateModelRels = intermediateModelsAndRels.stream()
                 .filter(modelRel -> modelRel instanceof ModelRel)
                 .map(modelRel -> (ModelRel) modelRel)
                 .collect(Collectors.toSet());
@@ -359,6 +359,9 @@ public class Reduce extends NestingOperatorImpl {
         ((ModelRel) reducedModelRel).getMetatype().copyInstance(reducedModelRel, reducedModelRel.getName(), reducedMID);
       }
     }
+    // reset input mid's cached EMF fields, or they will point to the reduced ones
+    inputMIDModel.setEMFInstanceResource(null);
+    inputMIDModel.setEMFInstanceRoot(null);
 
     return reducedMID;
   }
@@ -372,12 +375,12 @@ public class Reduce extends NestingOperatorImpl {
       this.timeCheckpoint = System.nanoTime();
     }
     // input
-    Model inputMIDModel = inputsByName.get(IN_MID);
-    Operator accumulatorOperatorType = (Operator) genericsByName.get(GENERIC_OPERATORTYPE);
-    MID instanceMID = outputMIDsByName.get(OUT_MID);
+    var inputMIDModel = inputsByName.get(Reduce.IN_MID);
+    var accumulatorOperatorType = (Operator) genericsByName.get(Reduce.GENERIC_OPERATORTYPE);
+    var instanceMID = outputMIDsByName.get(Reduce.OUT_MID);
 
     // loop until reduction is no longer possible, reducing one input at a time
-    boolean openEditors = Boolean.parseBoolean(
+    var openEditors = Boolean.parseBoolean(
       MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_OPENMODELEDITORS_ENABLED));
     if (openEditors) {
       MMINT.setPreference(MMINTConstants.PREFERENCE_MENU_OPENMODELEDITORS_ENABLED, "false");
@@ -389,13 +392,13 @@ public class Reduce extends NestingOperatorImpl {
 
     // output
     String reducedMIDModelPath = FileUtils.getUniquePath(
-      FileUtils.addFileNameSuffixInPath(inputMIDModel.getUri(), REDUCED_MID_SUFFIX),
+      FileUtils.addFileNameSuffixInPath(inputMIDModel.getUri(), Reduce.REDUCED_MID_SUFFIX),
       true,
       false);
-    Model reducedMIDModel = MIDTypeRegistry.getMIDModelType().createInstanceAndEditor(
+    var reducedMIDModel = MIDTypeRegistry.getMIDModelType().createInstanceAndEditor(
       reducedMID, reducedMIDModelPath, instanceMID);
     Map<String, Model> outputsByName = new HashMap<>();
-    outputsByName.put(OUT_MID, reducedMIDModel);
+    outputsByName.put(Reduce.OUT_MID, reducedMIDModel);
     if (this.timeOverheadEnabled) {
       this.timeOverhead += System.nanoTime() - this.timeCheckpoint;
       writeOutputProperties();

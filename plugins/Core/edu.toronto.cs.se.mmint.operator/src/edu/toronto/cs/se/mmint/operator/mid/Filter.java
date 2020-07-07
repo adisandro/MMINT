@@ -13,7 +13,6 @@ package edu.toronto.cs.se.mmint.operator.mid;
 
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -59,8 +58,8 @@ public class Filter extends OperatorImpl {
     private boolean isUnaryRelFilter;
 
     public Input(Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName) {
-      this.midModel = inputsByName.get(IN_MID);
-      this.filterType = (Model) genericsByName.get(GENERIC_MODELTYPE);
+      this.midModel = inputsByName.get(Input.IN_MID);
+      this.filterType = (Model) genericsByName.get(Input.GENERIC_MODELTYPE);
       this.isRelFilter = this.filterType instanceof ModelRel;
       this.isUnaryRelFilter =
         this.isRelFilter &&
@@ -81,12 +80,12 @@ public class Filter extends OperatorImpl {
     private MID mid;
 
     public Output(@NonNull Map<String, MID> outputMIDsByName) {
-      this.mid = outputMIDsByName.get(OUT_MID);
+      this.mid = outputMIDsByName.get(Output.OUT_MID);
     }
 
     public @NonNull Map<String, Model> packed() {
       Map<String, Model> outputsByName = new HashMap<>();
-      outputsByName.put(OUT_MID, this.filteredMIDModel);
+      outputsByName.put(Output.OUT_MID, this.filteredMIDModel);
       return outputsByName;
     }
   }
@@ -96,11 +95,11 @@ public class Filter extends OperatorImpl {
     public boolean isAllowedGeneric(GenericEndpoint genericTypeEndpoint, GenericElement genericType,
                                     List<OperatorInput> inputs) {
 
-      final String FILTER_URI = "http://se.cs.toronto.edu/mmint/Operator_Filter";
-      final String FILTERNOT_URI = "http://se.cs.toronto.edu/mmint/Operator_FilterNot";
-      final String MAP_URI = "http://se.cs.toronto.edu/mmint/Operator_Map";
-      final String REDUCE_URI = "http://se.cs.toronto.edu/mmint/Operator_Reduce";
-      String genericTypeUri = genericType.getUri();
+      final var FILTER_URI = "http://se.cs.toronto.edu/mmint/Operator_Filter";
+      final var FILTERNOT_URI = "http://se.cs.toronto.edu/mmint/Operator_FilterNot";
+      final var MAP_URI = "http://se.cs.toronto.edu/mmint/Operator_Map";
+      final var REDUCE_URI = "http://se.cs.toronto.edu/mmint/Operator_Reduce";
+      var genericTypeUri = genericType.getUri();
       if (
         genericTypeUri.equals(FILTER_URI) || genericTypeUri.equals(FILTERNOT_URI) ||
         genericTypeUri.equals(MAP_URI) || genericTypeUri.equals(REDUCE_URI)
@@ -115,7 +114,7 @@ public class Filter extends OperatorImpl {
   @Override
   public void readInputProperties(Properties inputProps) throws MMINTException {
     this.timeOverheadEnabled = MIDOperatorIOUtils.getOptionalBoolProperty(
-                                 inputProps, PROP_OUT_TIMEOVERHEAD+MIDOperatorIOUtils.PROP_OUTENABLED_SUFFIX, false);
+                                 inputProps, Filter.PROP_OUT_TIMEOVERHEAD+MIDOperatorIOUtils.PROP_OUTENABLED_SUFFIX, false);
   }
 
   private void init(@NonNull Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
@@ -129,16 +128,16 @@ public class Filter extends OperatorImpl {
 
   public void writeOutputProperties() throws Exception {
     var outProps = new Properties();
-    outProps.setProperty(PROP_OUT_TIMEOVERHEAD, String.valueOf(this.timeOverhead));
+    outProps.setProperty(Filter.PROP_OUT_TIMEOVERHEAD, String.valueOf(this.timeOverhead));
     MIDOperatorIOUtils.writeOutputProperties(this, outProps);
   }
 
   protected boolean isFiltered(@NonNull Model model) {
 
-    Iterator<Model> polyIter = MIDTypeHierarchy.getInverseTypeHierarchyIterator(this.input.polyFilterTypes);
+    var polyIter = MIDTypeHierarchy.getInverseTypeHierarchyIterator(this.input.polyFilterTypes);
     while (polyIter.hasNext()) { // start from the most specialized filter backwards
-      Model polyFilterType = polyIter.next();
-      String filterTypeUri = (this.input.isUnaryRelFilter) ?
+      var polyFilterType = polyIter.next();
+      var filterTypeUri = (this.input.isUnaryRelFilter) ?
       ((ModelRel) polyFilterType).getModelEndpointRefs().get(0).getTargetUri() :
       polyFilterType.getUri();
       if (!MIDTypeHierarchy.instanceOf(model, filterTypeUri, false)) {
@@ -158,11 +157,11 @@ public class Filter extends OperatorImpl {
   // filter mid models based on property attached to type
   protected void filter() throws Exception {
 
-    MID filteredMID = (MID) this.input.midModel.getEMFInstanceRoot();
+    var filteredMID = (MID) this.input.midModel.getEMFInstanceRoot();
     Set<Model> modelsToDelete = new HashSet<>();
     for (Model model : filteredMID.getModels()) {
       // check constraint only if types are: Model and Model, Model and unary ModelRel, ModelRel and ModelRel
-      boolean isRel = model instanceof ModelRel;
+      var isRel = model instanceof ModelRel;
       if (
         (!isRel && this.input.isRelFilter && !this.input.isUnaryRelFilter) ||
         (isRel && this.input.isRelFilter && this.input.isUnaryRelFilter) ||
@@ -187,6 +186,9 @@ public class Filter extends OperatorImpl {
       FileUtils.addFileNameSuffixInPath(this.input.midModel.getUri(), Output.FILTERED_MID_SUFFIX), true, false);
     this.output.filteredMIDModel = MIDTypeRegistry.getMIDModelType()
       .createInstanceAndEditor(filteredMID, filteredMIDModelPath, this.output.mid);
+    // reset input mid's cached EMF fields, or they will point to the filtered ones
+    this.input.midModel.setEMFInstanceResource(null);
+    this.input.midModel.setEMFInstanceRoot(null);
   }
 
   @Override
