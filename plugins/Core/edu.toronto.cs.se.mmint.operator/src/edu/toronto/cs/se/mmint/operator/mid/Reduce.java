@@ -110,10 +110,10 @@ public class Reduce extends NestingOperatorImpl {
       throws Exception {
 
     var reducedMID = (MID) inputMIDModel.getEMFInstanceRoot();
-    List<Model> initialModels = new ArrayList<>(reducedMID.getModels());
+    var initialModels = new ArrayList<>(reducedMID.getModels());
     var nestedMIDPath = super.getNestedMIDPath();
-    Operator compositionOperatorType = MIDTypeRegistry.getType(Reduce.MODELRELCOMPOSITION_OPERATORTYPE_URI);
-    Operator mergeOperatorType = MIDTypeRegistry.getType(Reduce.MODELRELMERGE_OPERATORTYPE_URI);
+    var compositionOperatorType = MIDTypeRegistry.<Operator>getType(Reduce.MODELRELCOMPOSITION_OPERATORTYPE_URI);
+    var mergeOperatorType = MIDTypeRegistry.<Operator>getType(Reduce.MODELRELMERGE_OPERATORTYPE_URI);
     // reduce loop
     EList<OperatorInput> accumulatorInputs = null;
     Map<String, Model> accumulatorOutputsByName = null;
