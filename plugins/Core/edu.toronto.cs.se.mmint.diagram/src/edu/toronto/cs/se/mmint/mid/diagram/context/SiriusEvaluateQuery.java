@@ -21,7 +21,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.sirius.business.api.action.AbstractExternalJavaAction;
 import org.eclipse.sirius.viewpoint.DSemanticDecorator;
-import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 
 import edu.toronto.cs.se.mmint.MMINTException;
@@ -61,7 +60,7 @@ public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
         prettyPrint(result);
       printResults.add(printResult);
     }
-    Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+    var shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
     MessageDialog.openInformation(shell, "Query Results", String.join("\n", printResults));
   }
 

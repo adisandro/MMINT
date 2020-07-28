@@ -35,5 +35,13 @@
          </type>
       </editorType>
    </extension>
-   
+
+   <extension
+         point="org.eclipse.sirius.externalJavaAction">
+      <javaActions
+            actionClass="edu.toronto.cs.se.modelepedia.safetycase.design.context.DomainDecomposition"
+            id="edu.toronto.cs.se.modelepedia.safetycase.design.context.DomainDecomposition">
+      </javaActions>
+   </extension>
+
 </plugin>

@@ -323,6 +323,8 @@
           <ownedTools xsi:type="tool_1:PopupMenu" name="MMINT">
             <menuItemDescription xsi:type="tool_1:ExternalJavaAction" name="EvaluateQuery" label="Evaluate Query" id="edu.toronto.cs.se.mmint.mid.diagram.context.SiriusEvaluateQuery"/>
             <menuItemDescription xsi:type="tool_1:ExternalJavaActionCall" name="EvaluateQueryCall" action="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@toolSections.1/@ownedTools[name='MMINT']/@menuItemDescription.0"/>
+            <menuItemDescription xsi:type="tool_1:ExternalJavaAction" name="DomainDecomposition" label="Domain Decomposition" id="edu.toronto.cs.se.modelepedia.safetycase.design.context.DomainDecomposition"/>
+            <menuItemDescription xsi:type="tool_1:ExternalJavaActionCall" name="DomainDecompositionCall" action="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@toolSections.1/@ownedTools[name='MMINT']/@menuItemDescription.2"/>
           </ownedTools>
         </toolSections>
       </defaultLayer>
