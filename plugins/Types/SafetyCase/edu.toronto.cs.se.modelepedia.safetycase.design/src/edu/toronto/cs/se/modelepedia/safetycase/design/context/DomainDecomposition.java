@@ -52,15 +52,41 @@ public class DomainDecomposition extends AbstractExternalJavaAction {
         var gsnRootModelObj = (SafetyCase) this.decomposed.eContainer();
         var strDomains = MIDDialogs.getStringInput("Domain Decomposition", "Insert the number of domains", null);
         var numDomains = Integer.parseInt(strDomains);
+        var factory = SafetyCaseFactory.eINSTANCE;
+        // domain decomposition strategy
+        var strategy = factory.createBasicStrategy();
+        strategy.setId("S-" + this.decomposed.getId());
+        strategy.setDescription(this.decomposed.getDescription());
+        gsnRootModelObj.getStrategies().add(strategy);
+        var support = factory.createSupportedBy();
+        support.setSource(this.decomposed);
+        support.setTarget(strategy);
+        // justification
+        var justification = factory.createJustification();
+        justification.setId("J-" + this.decomposed.getId());
+        justification.setDescription(this.decomposed.getDescription());
+        gsnRootModelObj.getJustifications().add(justification);
+        var context = factory.createInContextOf();
+        context.setContextOf(this.decomposed);
+        context.setContext(justification);
+        // domain subgoals
         for (var i = 0; i < numDomains; i++) {
-          var subgoal = SafetyCaseFactory.eINSTANCE.createBasicGoal();
-          var support = SafetyCaseFactory.eINSTANCE.createSupportedBy();
-          subgoal.setDescription(this.decomposed.getDescription());
+          var subgoal = factory.createBasicGoal();
           subgoal.setId(this.decomposed.getId() + "-" + i);
-          subgoal.getSupports().add(support);
-          this.decomposed.getSupportedBy().add(support);
+          subgoal.setDescription(this.decomposed.getDescription());
           gsnRootModelObj.getGoals().add(subgoal);
+          support = factory.createSupportedBy();
+          support.setSource(strategy);
+          support.setTarget(subgoal);
         }
+        // completeness goal
+        var completeness = factory.createBasicGoal();
+        completeness.setId(this.decomposed.getId() + "-C");
+        completeness.setDescription(this.decomposed.getDescription());
+        gsnRootModelObj.getGoals().add(completeness);
+        support = factory.createSupportedBy();
+        support.setSource(strategy);
+        support.setTarget(completeness);
       }
       catch (MIDDialogCancellation e) {
         // do nothing
