@@ -1,14 +1,13 @@
 /**
- * Copyright (c) 2012-2020 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
- * Rick Salay, Nick Fung.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
+ * Copyright (c) 2012-2020 Alessio Di Sandro, Marsha Chechik, Nick Fung.
+ * All rights reserved. This program and the accompanying materials are made available under the terms
+ * of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors:
- *    Alessio Di Sandro - Implementation.
- *    Nick Fung - Implementation.
+ *   Alessio Di Sandro - Implementation
+ *   Nick Fung - Implementation.
+ * 
  */
 package edu.toronto.cs.se.modelepedia.safetycase;
 
@@ -28,29 +27,25 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.Supporter#getSupports <em>Supports</em>}</li>
  * </ul>
  *
- * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getSupporter()
+ * @see edu.toronto.cs.se.modelepedia.safetycase.GSNPackage#getSupporter()
  * @model abstract="true"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='GoalRoot'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot GoalRoot='self.supports.source -&gt; isEmpty() implies self.oclIsTypeOf(BasicGoal)'"
  * @generated
  */
 public interface Supporter extends EObject {
-	/**
-	 * Returns the value of the '<em><b>Supports</b></em>' reference list.
-	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.safetycase.SupportedBy}.
-	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.safetycase.SupportedBy#getTarget <em>Target</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Supports</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Supports</em>' reference list.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getSupporter_Supports()
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.SupportedBy#getTarget
-	 * @model opposite="target"
-	 * @generated
-	 */
-	EList<SupportedBy> getSupports();
+  /**
+   * Returns the value of the '<em><b>Supports</b></em>' reference list.
+   * The list contents are of type {@link edu.toronto.cs.se.modelepedia.safetycase.SupportedBy}.
+   * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.safetycase.SupportedBy#getTarget <em>Target</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Supports</em>' reference list.
+   * @see edu.toronto.cs.se.modelepedia.safetycase.GSNPackage#getSupporter_Supports()
+   * @see edu.toronto.cs.se.modelepedia.safetycase.SupportedBy#getTarget
+   * @model opposite="target"
+   * @generated
+   */
+  EList<SupportedBy> getSupports();
 
 } // Supporter

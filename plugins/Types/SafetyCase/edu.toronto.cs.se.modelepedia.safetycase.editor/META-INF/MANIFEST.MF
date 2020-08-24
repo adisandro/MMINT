@@ -5,7 +5,7 @@ Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.safetycase.editor;singleton:=
 Automatic-Module-Name: edu.toronto.cs.se.modelepedia.safetycase.editor
 Bundle-Version: 2.6.99.qualifier
 Bundle-ClassPath: .
-Bundle-Activator: edu.toronto.cs.se.modelepedia.safetycase.presentation.SafetyCaseEditorPlugin$Implementation
+Bundle-Activator: edu.toronto.cs.se.modelepedia.safetycase.presentation.GSNEditorPlugin$Implementation
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-14

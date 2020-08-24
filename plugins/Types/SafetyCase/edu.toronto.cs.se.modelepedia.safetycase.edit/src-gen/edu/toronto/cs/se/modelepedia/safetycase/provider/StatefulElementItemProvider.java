@@ -1,19 +1,18 @@
 /**
- * Copyright (c) 2012-2020 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
- * Rick Salay, Nick Fung.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
+ * Copyright (c) 2012-2020 Alessio Di Sandro, Marsha Chechik, Nick Fung.
+ * All rights reserved. This program and the accompanying materials are made available under the terms
+ * of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors:
- *    Alessio Di Sandro - Implementation.
- *    Nick Fung - Implementation.
+ *   Alessio Di Sandro - Implementation
+ *   Nick Fung - Implementation.
+ * 
  */
 package edu.toronto.cs.se.modelepedia.safetycase.provider;
 
 
-import edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage;
+import edu.toronto.cs.se.modelepedia.safetycase.GSNPackage;
 import edu.toronto.cs.se.modelepedia.safetycase.StatefulElement;
 import edu.toronto.cs.se.modelepedia.safetycase.ValidityValue;
 
@@ -43,117 +42,117 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * @generated
  */
 public class StatefulElementItemProvider 
-	extends ItemProviderAdapter
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
-	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public StatefulElementItemProvider(AdapterFactory adapterFactory) {
-		super(adapterFactory);
-	}
+  extends ItemProviderAdapter
+  implements
+    IEditingDomainItemProvider,
+    IStructuredItemContentProvider,
+    ITreeItemContentProvider,
+    IItemLabelProvider,
+    IItemPropertySource {
+  /**
+   * This constructs an instance from a factory and a notifier.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public StatefulElementItemProvider(AdapterFactory adapterFactory) {
+    super(adapterFactory);
+  }
 
-	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
-			super.getPropertyDescriptors(object);
+  /**
+   * This returns the property descriptors for the adapted class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
+    if (itemPropertyDescriptors == null) {
+      super.getPropertyDescriptors(object);
 
-			addStateValidityPropertyDescriptor(object);
-		}
-		return itemPropertyDescriptors;
-	}
+      addStateValidityPropertyDescriptor(object);
+    }
+    return itemPropertyDescriptors;
+  }
 
-	/**
-	 * This adds a property descriptor for the State Validity feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addStateValidityPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_StatefulElement_stateValidity_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_StatefulElement_stateValidity_feature", "_UI_StatefulElement_type"),
-				 SafetyCasePackage.Literals.STATEFUL_ELEMENT__STATE_VALIDITY,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
+  /**
+   * This adds a property descriptor for the State Validity feature.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected void addStateValidityPropertyDescriptor(Object object) {
+    itemPropertyDescriptors.add
+      (createItemPropertyDescriptor
+        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+         getResourceLocator(),
+         getString("_UI_StatefulElement_stateValidity_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_StatefulElement_stateValidity_feature", "_UI_StatefulElement_type"),
+         GSNPackage.Literals.STATEFUL_ELEMENT__STATE_VALIDITY,
+         true,
+         false,
+         false,
+         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+         null,
+         null));
+  }
 
-	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String getText(Object object) {
-		ValidityValue labelValue = ((StatefulElement)object).getStateValidity();
-		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ?
-			getString("_UI_StatefulElement_type") :
-			getString("_UI_StatefulElement_type") + " " + label;
-	}
-	
+  /**
+   * This returns the label text for the adapted class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String getText(Object object) {
+    ValidityValue labelValue = ((StatefulElement)object).getStateValidity();
+    String label = labelValue == null ? null : labelValue.toString();
+    return label == null || label.length() == 0 ?
+      getString("_UI_StatefulElement_type") :
+      getString("_UI_StatefulElement_type") + " " + label;
+  }
 
-	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void notifyChanged(Notification notification) {
-		updateChildren(notification);
 
-		switch (notification.getFeatureID(StatefulElement.class)) {
-			case SafetyCasePackage.STATEFUL_ELEMENT__STATE_VALIDITY:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-		}
-		super.notifyChanged(notification);
-	}
+  /**
+   * This handles model notifications by calling {@link #updateChildren} to update any cached
+   * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void notifyChanged(Notification notification) {
+    updateChildren(notification);
 
-	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
-		super.collectNewChildDescriptors(newChildDescriptors, object);
-	}
+    switch (notification.getFeatureID(StatefulElement.class)) {
+      case GSNPackage.STATEFUL_ELEMENT__STATE_VALIDITY:
+        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+        return;
+    }
+    super.notifyChanged(notification);
+  }
 
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return SafetyCaseEditPlugin.INSTANCE;
-	}
+  /**
+   * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+   * that can be created under this object.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+    super.collectNewChildDescriptors(newChildDescriptors, object);
+  }
+
+  /**
+   * Return the resource locator for this item provider's resources.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public ResourceLocator getResourceLocator() {
+    return GSNEditPlugin.INSTANCE;
+  }
 
 }

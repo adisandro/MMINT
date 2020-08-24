@@ -1,14 +1,12 @@
 /**
- * Copyright (c) 2012-2020 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
- * Rick Salay, Nick Fung.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
+ * Copyright (c) 2012-2020 Alessio Di Sandro, Marsha Chechik.
+ * All rights reserved. This program and the accompanying materials are made available under the terms
+ * of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Alessio Di Sandro - Implementation.
- *  Nick Fung - Implementation.
+ *   Alessio Di Sandro - Implementation
+ *   Nick Fung - Implementation.
  */
 package edu.toronto.cs.se.modelepedia.safetycase.operator;
 
@@ -28,10 +26,10 @@ import edu.toronto.cs.se.mmint.operator.slice.Slice.SliceType;
 import edu.toronto.cs.se.modelepedia.safetycase.ASILDecompositionStrategy;
 import edu.toronto.cs.se.modelepedia.safetycase.ASILfulElement;
 import edu.toronto.cs.se.modelepedia.safetycase.ArgumentElement;
+import edu.toronto.cs.se.modelepedia.safetycase.GSNFactory;
 import edu.toronto.cs.se.modelepedia.safetycase.Goal;
 import edu.toronto.cs.se.modelepedia.safetycase.ImpactType;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCase;
-import edu.toronto.cs.se.modelepedia.safetycase.SafetyCaseFactory;
 import edu.toronto.cs.se.modelepedia.safetycase.SupportConnector;
 import edu.toronto.cs.se.modelepedia.safetycase.Supportable;
 import edu.toronto.cs.se.modelepedia.safetycase.SupportedBy;
@@ -40,7 +38,7 @@ import edu.toronto.cs.se.modelepedia.safetycase.operator.GSNSlice.GSNSliceType;
 public class GSNAnnotateSlice extends AnnotateSlice {
 
   private void annotateModelElem(ArgumentElement gsnModelObj, @Nullable String cause, String annotationId) {
-    var annotation = SafetyCaseFactory.eINSTANCE.createImpactAnnotation();
+    var annotation = GSNFactory.eINSTANCE.createImpactAnnotation();
     annotation.setSource(cause);
     var impactType = switch (annotationId) {
       case SliceType.DEL, SliceType.REVISE -> ImpactType.REVISE;
@@ -92,7 +90,7 @@ public class GSNAnnotateSlice extends AnnotateSlice {
         continue;
       }
       if (((ArgumentElement) gsnModelObj).getStatus() == null) {
-        var annotation = SafetyCaseFactory.eINSTANCE.createImpactAnnotation();
+        var annotation = GSNFactory.eINSTANCE.createImpactAnnotation();
         annotation.setType(ImpactType.REUSE);
         annotation.setSource("Not applicable");
         ((ArgumentElement) gsnModelObj).setStatus(annotation);
@@ -105,7 +103,7 @@ public class GSNAnnotateSlice extends AnnotateSlice {
       // ASIL can be reused.
       if (gsnModelObj instanceof ASILfulElement) {
         if (((ASILfulElement) gsnModelObj).getAsil() != null) {
-          var annotation = SafetyCaseFactory.eINSTANCE.createImpactAnnotation();
+          var annotation = GSNFactory.eINSTANCE.createImpactAnnotation();
           annotation.setType(ImpactType.REUSE);
           annotation.setSource("Not applicable.");
           ((ASILfulElement) gsnModelObj).getAsil().setStatus(annotation);
@@ -136,7 +134,7 @@ public class GSNAnnotateSlice extends AnnotateSlice {
               supportableNext.clear();
             }
             // Check if any parent is an ASIL decomposition strategy.
-            boolean supportsAsilDecomp = false;
+            var supportsAsilDecomp = false;
             for (Supportable curElem: supportableAll) {
               if  (curElem instanceof ASILDecompositionStrategy) {
                 supportsAsilDecomp = true;

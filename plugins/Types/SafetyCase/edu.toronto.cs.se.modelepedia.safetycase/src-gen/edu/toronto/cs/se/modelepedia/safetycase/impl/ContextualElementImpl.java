@@ -1,20 +1,19 @@
 /**
- * Copyright (c) 2012-2020 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
- * Rick Salay, Nick Fung.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
+ * Copyright (c) 2012-2020 Alessio Di Sandro, Marsha Chechik, Nick Fung.
+ * All rights reserved. This program and the accompanying materials are made available under the terms
+ * of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors:
- *    Alessio Di Sandro - Implementation.
- *    Nick Fung - Implementation.
+ *   Alessio Di Sandro - Implementation
+ *   Nick Fung - Implementation.
+ * 
  */
 package edu.toronto.cs.se.modelepedia.safetycase.impl;
 
 import edu.toronto.cs.se.modelepedia.safetycase.ContextualElement;
+import edu.toronto.cs.se.modelepedia.safetycase.GSNPackage;
 import edu.toronto.cs.se.modelepedia.safetycase.InContextOf;
-import edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage;
 
 import java.util.Collection;
 
@@ -42,135 +41,135 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * @generated
  */
 public abstract class ContextualElementImpl extends ArgumentElementImpl implements ContextualElement {
-	/**
-	 * The cached value of the '{@link #getContextOf() <em>Context Of</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getContextOf()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<InContextOf> contextOf;
+  /**
+   * The cached value of the '{@link #getContextOf() <em>Context Of</em>}' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getContextOf()
+   * @generated
+   * @ordered
+   */
+  protected EList<InContextOf> contextOf;
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ContextualElementImpl() {
-		super();
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected ContextualElementImpl() {
+    super();
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return SafetyCasePackage.Literals.CONTEXTUAL_ELEMENT;
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  protected EClass eStaticClass() {
+    return GSNPackage.Literals.CONTEXTUAL_ELEMENT;
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<InContextOf> getContextOf() {
-		if (contextOf == null) {
-			contextOf = new EObjectWithInverseResolvingEList<InContextOf>(InContextOf.class, this, SafetyCasePackage.CONTEXTUAL_ELEMENT__CONTEXT_OF, SafetyCasePackage.IN_CONTEXT_OF__CONTEXT);
-		}
-		return contextOf;
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EList<InContextOf> getContextOf() {
+    if (contextOf == null) {
+      contextOf = new EObjectWithInverseResolvingEList<InContextOf>(InContextOf.class, this, GSNPackage.CONTEXTUAL_ELEMENT__CONTEXT_OF, GSNPackage.IN_CONTEXT_OF__CONTEXT);
+    }
+    return contextOf;
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SafetyCasePackage.CONTEXTUAL_ELEMENT__CONTEXT_OF:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getContextOf()).basicAdd(otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @SuppressWarnings("unchecked")
+  @Override
+  public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    switch (featureID) {
+      case GSNPackage.CONTEXTUAL_ELEMENT__CONTEXT_OF:
+        return ((InternalEList<InternalEObject>)(InternalEList<?>)getContextOf()).basicAdd(otherEnd, msgs);
+    }
+    return super.eInverseAdd(otherEnd, featureID, msgs);
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SafetyCasePackage.CONTEXTUAL_ELEMENT__CONTEXT_OF:
-				return ((InternalEList<?>)getContextOf()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    switch (featureID) {
+      case GSNPackage.CONTEXTUAL_ELEMENT__CONTEXT_OF:
+        return ((InternalEList<?>)getContextOf()).basicRemove(otherEnd, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case SafetyCasePackage.CONTEXTUAL_ELEMENT__CONTEXT_OF:
-				return getContextOf();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Object eGet(int featureID, boolean resolve, boolean coreType) {
+    switch (featureID) {
+      case GSNPackage.CONTEXTUAL_ELEMENT__CONTEXT_OF:
+        return getContextOf();
+    }
+    return super.eGet(featureID, resolve, coreType);
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case SafetyCasePackage.CONTEXTUAL_ELEMENT__CONTEXT_OF:
-				getContextOf().clear();
-				getContextOf().addAll((Collection<? extends InContextOf>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @SuppressWarnings("unchecked")
+  @Override
+  public void eSet(int featureID, Object newValue) {
+    switch (featureID) {
+      case GSNPackage.CONTEXTUAL_ELEMENT__CONTEXT_OF:
+        getContextOf().clear();
+        getContextOf().addAll((Collection<? extends InContextOf>)newValue);
+        return;
+    }
+    super.eSet(featureID, newValue);
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
-			case SafetyCasePackage.CONTEXTUAL_ELEMENT__CONTEXT_OF:
-				getContextOf().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void eUnset(int featureID) {
+    switch (featureID) {
+      case GSNPackage.CONTEXTUAL_ELEMENT__CONTEXT_OF:
+        getContextOf().clear();
+        return;
+    }
+    super.eUnset(featureID);
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case SafetyCasePackage.CONTEXTUAL_ELEMENT__CONTEXT_OF:
-				return contextOf != null && !contextOf.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public boolean eIsSet(int featureID) {
+    switch (featureID) {
+      case GSNPackage.CONTEXTUAL_ELEMENT__CONTEXT_OF:
+        return contextOf != null && !contextOf.isEmpty();
+    }
+    return super.eIsSet(featureID);
+  }
 
 } //ContextualElementImpl

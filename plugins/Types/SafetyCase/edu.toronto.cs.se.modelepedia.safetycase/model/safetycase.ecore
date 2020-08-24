@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    name="safetycase" nsURI="http://se.cs.toronto.edu/modelepedia/GSN" nsPrefix="safetycase">
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="safetycase" nsURI="http://se.cs.toronto.edu/modelepedia/GSN"
+    nsPrefix="safetycase">
   <eAnnotations source="http://www.eclipse.org/OCL/Import">
     <details key="ecore" value="http://www.eclipse.org/emf/2002/Ecore"/>
   </eAnnotations>
@@ -16,13 +17,20 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
       <details key="SingleRoot" value="Supporter.allInstances() -> &#xA;&#x9;&#x9;&#x9;select(d | d.supports.source -> isEmpty()) -> size() = 1"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="goals" upperBound="-1" eType="#//Goal" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="strategies" upperBound="-1" eType="#//Strategy" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="solutions" upperBound="-1" eType="#//Solution" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="contexts" upperBound="-1" eType="#//Context" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="justifications" upperBound="-1" eType="#//Justification" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="assumptions" upperBound="-1" eType="#//Assumption" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="connectors" upperBound="-1" eType="#//SupportConnector" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="goals" upperBound="-1"
+        eType="#//Goal" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="strategies" upperBound="-1"
+        eType="#//Strategy" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="solutions" upperBound="-1"
+        eType="#//Solution" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contexts" upperBound="-1"
+        eType="#//Context" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="justifications" upperBound="-1"
+        eType="#//Justification" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="assumptions" upperBound="-1"
+        eType="#//Assumption" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="connectors" upperBound="-1"
+        eType="#//SupportConnector" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ArgumentElement" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -32,17 +40,21 @@
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="contentValidity" eType="#//ValidityValue"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="status" eType="#//ImpactAnnotation" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="status" eType="#//ImpactAnnotation"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StatefulElement" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="stateValidity" eType="#//ValidityValue"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ASILfulElement" abstract="true">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="asil" eType="#//ASIL" containment="true" eOpposite="#//ASIL/target"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="asil" eType="#//ASIL" containment="true"
+        eOpposite="#//ASIL/target"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CoreElement" abstract="true" eSuperTypes="#//ArgumentElement #//Supporter"/>
-  <eClassifiers xsi:type="ecore:EClass" name="DecomposableCoreElement" abstract="true" eSuperTypes="#//Supportable #//CoreElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="inContextOf" upperBound="-1" eType="#//InContextOf" containment="true" eOpposite="#//InContextOf/contextOf"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DecomposableCoreElement" abstract="true"
+      eSuperTypes="#//Supportable #//CoreElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="inContextOf" upperBound="-1"
+        eType="#//InContextOf" containment="true" eOpposite="#//InContextOf/contextOf"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ContextualElement" abstract="true" eSuperTypes="#//ArgumentElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
@@ -52,15 +64,20 @@
       <details key="ContextualElementSupporter" value="self.oclAsType(DecomposableCoreElement).oclIsInvalid()"/>
       <details key="ContextualElementContext" value="self.oclAsType(DecomposableCoreElement).oclIsInvalid()"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="contextOf" lowerBound="1" upperBound="-1" eType="#//InContextOf" eOpposite="#//InContextOf/context"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contextOf" lowerBound="1"
+        upperBound="-1" eType="#//InContextOf" eOpposite="#//InContextOf/context"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SupportedBy">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1" eType="#//Supportable" eOpposite="#//Supportable/supportedBy"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1" eType="#//Supporter" eOpposite="#//Supporter/supports"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
+        eType="#//Supportable" eOpposite="#//Supportable/supportedBy"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
+        eType="#//Supporter" eOpposite="#//Supporter/supports"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InContextOf">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="context" lowerBound="1" eType="#//ContextualElement" eOpposite="#//ContextualElement/contextOf"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="contextOf" lowerBound="1" eType="#//DecomposableCoreElement" eOpposite="#//DecomposableCoreElement/inContextOf"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="context" lowerBound="1"
+        eType="#//ContextualElement" eOpposite="#//ContextualElement/contextOf"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contextOf" lowerBound="1"
+        eType="#//DecomposableCoreElement" eOpposite="#//DecomposableCoreElement/inContextOf"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Goal" abstract="true" eSuperTypes="#//DecomposableCoreElement #//StatefulElement #//ASILfulElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
@@ -74,6 +91,10 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BasicGoal" eSuperTypes="#//Goal"/>
   <eClassifiers xsi:type="ecore:EClass" name="IndependenceGoal" eSuperTypes="#//Goal"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DomainGoal" eSuperTypes="#//Goal">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="domain" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Strategy" abstract="true" eSuperTypes="#//DecomposableCoreElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="constraints" value="StrategySupporter StrategyContext"/>
@@ -108,8 +129,10 @@
   <eClassifiers xsi:type="ecore:EClass" name="Assumption" eSuperTypes="#//ContextualElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="ASIL">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="#//ASILLevel"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1" eType="#//ASILfulElement" eOpposite="#//ASILfulElement/asil"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="status" eType="#//ImpactAnnotation" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
+        eType="#//ASILfulElement" eOpposite="#//ASILfulElement/asil"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="status" eType="#//ImpactAnnotation"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="ASILLevel">
     <eLiterals name="D" literal="D"/>
@@ -141,8 +164,8 @@
       <details key="SupportCycle" value="self.supportedBy.target -> closure(p | if p.oclIsKindOf(Supportable) then &#xA;&#x9;&#x9;&#x9;p.oclAsType(Supportable).supportedBy.target else &#xA;&#x9;&#x9;&#x9;p.oclAsSet() endif) -> excludes(self)"/>
       <details key="NonSupportableLeaves" value="self.supportedBy.target -> size() > 0 and self.supportedBy.target -> excludes(null)"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="supportedBy" lowerBound="1" upperBound="-1" eType="#//SupportedBy" containment="true"
-        eOpposite="#//SupportedBy/source"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="supportedBy" lowerBound="1"
+        upperBound="-1" eType="#//SupportedBy" containment="true" eOpposite="#//SupportedBy/source"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Supporter" abstract="true">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
@@ -151,14 +174,15 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
       <details key="GoalRoot" value="self.supports.source -> isEmpty() implies self.oclIsTypeOf(BasicGoal)"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="supports" upperBound="-1" eType="#//SupportedBy" eOpposite="#//SupportedBy/target"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="supports" upperBound="-1"
+        eType="#//SupportedBy" eOpposite="#//SupportedBy/target"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SupportConnector" abstract="true" eSuperTypes="#//Supportable"/>
   <eClassifiers xsi:type="ecore:EClass" name="AndSupporter" eSuperTypes="#//SupportConnector"/>
   <eClassifiers xsi:type="ecore:EClass" name="OrSupporter" eSuperTypes="#//SupportConnector"/>
   <eClassifiers xsi:type="ecore:EClass" name="XorSupporter" eSuperTypes="#//SupportConnector"/>
   <eClassifiers xsi:type="ecore:EClass" name="MofNSupporter" eSuperTypes="#//SupportConnector">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="target" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"
-        defaultValueLiteral="1"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="target" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong" defaultValueLiteral="1"/>
   </eClassifiers>
 </ecore:EPackage>
