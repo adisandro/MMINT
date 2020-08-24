@@ -34,12 +34,14 @@
   <build>
     <pluginManagement>
       <plugins>
+        <!-- Acceleo maven configuration to compile .emtl files -->
         <plugin>
           <groupId>org.eclipse.acceleo</groupId>
           <artifactId>org.eclipse.acceleo.maven</artifactId>
           <version>${acceleo-version}</version>
           <executions>
             <execution>
+              <?m2e ignore?>
               <id>acceleo-compile</id>
               <phase>compile</phase>
               <goals>

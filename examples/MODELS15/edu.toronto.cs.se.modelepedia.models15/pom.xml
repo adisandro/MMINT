@@ -15,6 +15,7 @@
         <artifactId>org.eclipse.acceleo.maven</artifactId>
         <executions>
           <execution>
+            <id>acceleo-compile</id>
             <phase>compile</phase>
             <goals>
               <goal>acceleo-compile</goal>
