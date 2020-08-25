@@ -28,7 +28,7 @@
             modelTypeUri="http://se.cs.toronto.edu/modelepedia/GSN"
             id="edu.toronto.cs.se.modelepedia.safetycase.design"
             isDiagram="true"
-            wizardId="edu.toronto.cs.se.modelepedia.safetycase.presentation.SafetyCaseModelWizardID">
+            wizardId="edu.toronto.cs.se.modelepedia.safetycase.presentation.GSNModelWizardID">
          <type
                name="GSN Representation"
                uri="http://se.cs.toronto.edu/modelepedia/Representation_GSN">
