@@ -23,7 +23,11 @@ import edu.toronto.cs.se.modelepedia.safetycase.Context;
 import edu.toronto.cs.se.modelepedia.safetycase.ContextualElement;
 import edu.toronto.cs.se.modelepedia.safetycase.CoreElement;
 import edu.toronto.cs.se.modelepedia.safetycase.DecomposableCoreElement;
+import edu.toronto.cs.se.modelepedia.safetycase.Domain;
+import edu.toronto.cs.se.modelepedia.safetycase.DomainElement;
 import edu.toronto.cs.se.modelepedia.safetycase.DomainGoal;
+import edu.toronto.cs.se.modelepedia.safetycase.DomainStrategy;
+import edu.toronto.cs.se.modelepedia.safetycase.EnumDomain;
 import edu.toronto.cs.se.modelepedia.safetycase.GSNFactory;
 import edu.toronto.cs.se.modelepedia.safetycase.GSNPackage;
 import edu.toronto.cs.se.modelepedia.safetycase.Goal;
@@ -31,9 +35,11 @@ import edu.toronto.cs.se.modelepedia.safetycase.ImpactAnnotation;
 import edu.toronto.cs.se.modelepedia.safetycase.ImpactType;
 import edu.toronto.cs.se.modelepedia.safetycase.InContextOf;
 import edu.toronto.cs.se.modelepedia.safetycase.IndependenceGoal;
+import edu.toronto.cs.se.modelepedia.safetycase.IntDomain;
 import edu.toronto.cs.se.modelepedia.safetycase.Justification;
 import edu.toronto.cs.se.modelepedia.safetycase.MofNSupporter;
 import edu.toronto.cs.se.modelepedia.safetycase.OrSupporter;
+import edu.toronto.cs.se.modelepedia.safetycase.RealDomain;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCase;
 import edu.toronto.cs.se.modelepedia.safetycase.Solution;
 import edu.toronto.cs.se.modelepedia.safetycase.StatefulElement;
@@ -43,6 +49,7 @@ import edu.toronto.cs.se.modelepedia.safetycase.Supportable;
 import edu.toronto.cs.se.modelepedia.safetycase.SupportedBy;
 import edu.toronto.cs.se.modelepedia.safetycase.Supporter;
 import edu.toronto.cs.se.modelepedia.safetycase.ValidityValue;
+import edu.toronto.cs.se.modelepedia.safetycase.ValueDomain;
 import edu.toronto.cs.se.modelepedia.safetycase.XorSupporter;
 
 import edu.toronto.cs.se.modelepedia.safetycase.util.GSNValidator;
@@ -265,6 +272,55 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
    * @generated
    */
   private EClass mofNSupporterEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass domainEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass intDomainEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass realDomainEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass enumDomainEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass valueDomainEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass domainElementEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass domainStrategyEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -684,16 +740,6 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
    * @generated
    */
   @Override
-  public EAttribute getDomainGoal_Domain() {
-    return (EAttribute)domainGoalEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EClass getStrategy() {
     return strategyEClass;
   }
@@ -934,6 +980,146 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
    * @generated
    */
   @Override
+  public EClass getDomain() {
+    return domainEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getIntDomain() {
+    return intDomainEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getIntDomain_LowerBound() {
+    return (EAttribute)intDomainEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getIntDomain_UpperBound() {
+    return (EAttribute)intDomainEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getRealDomain() {
+    return realDomainEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getRealDomain_LowerBound() {
+    return (EAttribute)realDomainEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getRealDomain_UpperBound() {
+    return (EAttribute)realDomainEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getEnumDomain() {
+    return enumDomainEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getEnumDomain_Values() {
+    return (EAttribute)enumDomainEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getValueDomain() {
+    return valueDomainEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getValueDomain_Value() {
+    return (EAttribute)valueDomainEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getDomainElement() {
+    return domainElementEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getDomainElement_Domain() {
+    return (EReference)domainElementEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getDomainStrategy() {
+    return domainStrategyEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EEnum getASILLevel() {
     return asilLevelEEnum;
   }
@@ -1030,9 +1216,6 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
 
     independenceGoalEClass = createEClass(INDEPENDENCE_GOAL);
 
-    domainGoalEClass = createEClass(DOMAIN_GOAL);
-    createEAttribute(domainGoalEClass, DOMAIN_GOAL__DOMAIN);
-
     strategyEClass = createEClass(STRATEGY);
 
     basicStrategyEClass = createEClass(BASIC_STRATEGY);
@@ -1072,6 +1255,29 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
 
     mofNSupporterEClass = createEClass(MOF_NSUPPORTER);
     createEAttribute(mofNSupporterEClass, MOF_NSUPPORTER__TARGET);
+
+    domainEClass = createEClass(DOMAIN);
+
+    intDomainEClass = createEClass(INT_DOMAIN);
+    createEAttribute(intDomainEClass, INT_DOMAIN__LOWER_BOUND);
+    createEAttribute(intDomainEClass, INT_DOMAIN__UPPER_BOUND);
+
+    realDomainEClass = createEClass(REAL_DOMAIN);
+    createEAttribute(realDomainEClass, REAL_DOMAIN__LOWER_BOUND);
+    createEAttribute(realDomainEClass, REAL_DOMAIN__UPPER_BOUND);
+
+    enumDomainEClass = createEClass(ENUM_DOMAIN);
+    createEAttribute(enumDomainEClass, ENUM_DOMAIN__VALUES);
+
+    valueDomainEClass = createEClass(VALUE_DOMAIN);
+    createEAttribute(valueDomainEClass, VALUE_DOMAIN__VALUE);
+
+    domainElementEClass = createEClass(DOMAIN_ELEMENT);
+    createEReference(domainElementEClass, DOMAIN_ELEMENT__DOMAIN);
+
+    domainStrategyEClass = createEClass(DOMAIN_STRATEGY);
+
+    domainGoalEClass = createEClass(DOMAIN_GOAL);
 
     // Create enums
     asilLevelEEnum = createEEnum(ASIL_LEVEL);
@@ -1117,7 +1323,6 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     goalEClass.getESuperTypes().add(this.getASILfulElement());
     basicGoalEClass.getESuperTypes().add(this.getGoal());
     independenceGoalEClass.getESuperTypes().add(this.getGoal());
-    domainGoalEClass.getESuperTypes().add(this.getGoal());
     strategyEClass.getESuperTypes().add(this.getDecomposableCoreElement());
     basicStrategyEClass.getESuperTypes().add(this.getStrategy());
     asilDecompositionStrategyEClass.getESuperTypes().add(this.getStrategy());
@@ -1132,6 +1337,14 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     orSupporterEClass.getESuperTypes().add(this.getSupportConnector());
     xorSupporterEClass.getESuperTypes().add(this.getSupportConnector());
     mofNSupporterEClass.getESuperTypes().add(this.getSupportConnector());
+    intDomainEClass.getESuperTypes().add(this.getDomain());
+    realDomainEClass.getESuperTypes().add(this.getDomain());
+    enumDomainEClass.getESuperTypes().add(this.getDomain());
+    valueDomainEClass.getESuperTypes().add(this.getDomain());
+    domainStrategyEClass.getESuperTypes().add(this.getStrategy());
+    domainStrategyEClass.getESuperTypes().add(this.getDomainElement());
+    domainGoalEClass.getESuperTypes().add(this.getGoal());
+    domainGoalEClass.getESuperTypes().add(this.getDomainElement());
 
     // Initialize classes, features, and operations; add parameters
     initEClass(safetyCaseEClass, SafetyCase.class, "SafetyCase", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1177,9 +1390,6 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
 
     initEClass(independenceGoalEClass, IndependenceGoal.class, "IndependenceGoal", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(domainGoalEClass, DomainGoal.class, "DomainGoal", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getDomainGoal_Domain(), ecorePackage.getEString(), "domain", null, 1, 1, DomainGoal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
     initEClass(strategyEClass, Strategy.class, "Strategy", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(basicStrategyEClass, BasicStrategy.class, "BasicStrategy", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1219,6 +1429,29 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
 
     initEClass(mofNSupporterEClass, MofNSupporter.class, "MofNSupporter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getMofNSupporter_Target(), ecorePackage.getELong(), "target", "1", 1, 1, MofNSupporter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(domainEClass, Domain.class, "Domain", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(intDomainEClass, IntDomain.class, "IntDomain", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getIntDomain_LowerBound(), ecorePackage.getEInt(), "lowerBound", null, 1, 1, IntDomain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getIntDomain_UpperBound(), ecorePackage.getEInt(), "upperBound", null, 1, 1, IntDomain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(realDomainEClass, RealDomain.class, "RealDomain", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getRealDomain_LowerBound(), ecorePackage.getEDouble(), "lowerBound", null, 1, 1, RealDomain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getRealDomain_UpperBound(), ecorePackage.getEDouble(), "upperBound", null, 1, 1, RealDomain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(enumDomainEClass, EnumDomain.class, "EnumDomain", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getEnumDomain_Values(), ecorePackage.getEString(), "values", null, 2, -1, EnumDomain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(valueDomainEClass, ValueDomain.class, "ValueDomain", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getValueDomain_Value(), ecorePackage.getEString(), "value", null, 1, 1, ValueDomain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(domainElementEClass, DomainElement.class, "DomainElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getDomainElement_Domain(), this.getDomain(), null, "domain", null, 1, 1, DomainElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(domainStrategyEClass, DomainStrategy.class, "DomainStrategy", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(domainGoalEClass, DomainGoal.class, "DomainGoal", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     // Initialize enums and add enum literals
     initEEnum(asilLevelEEnum, ASILLevel.class, "ASILLevel");

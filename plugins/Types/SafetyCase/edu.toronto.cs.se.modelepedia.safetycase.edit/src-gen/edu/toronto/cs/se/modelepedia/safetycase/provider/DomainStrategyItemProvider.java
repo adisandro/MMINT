@@ -12,7 +12,7 @@
 package edu.toronto.cs.se.modelepedia.safetycase.provider;
 
 
-import edu.toronto.cs.se.modelepedia.safetycase.DomainGoal;
+import edu.toronto.cs.se.modelepedia.safetycase.DomainStrategy;
 import edu.toronto.cs.se.modelepedia.safetycase.GSNFactory;
 import edu.toronto.cs.se.modelepedia.safetycase.GSNPackage;
 
@@ -23,25 +23,24 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
+
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.DomainGoal} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.DomainStrategy} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class DomainGoalItemProvider extends GoalItemProvider {
+public class DomainStrategyItemProvider extends StrategyItemProvider {
   /**
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  public DomainGoalItemProvider(AdapterFactory adapterFactory) {
+  public DomainStrategyItemProvider(AdapterFactory adapterFactory) {
     super(adapterFactory);
   }
 
@@ -91,14 +90,14 @@ public class DomainGoalItemProvider extends GoalItemProvider {
   }
 
   /**
-   * This returns DomainGoal.gif.
+   * This returns DomainStrategy.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
   @Override
   public Object getImage(Object object) {
-    return overlayImage(object, getResourceLocator().getImage("full/obj16/DomainGoal"));
+    return overlayImage(object, getResourceLocator().getImage("full/obj16/DomainStrategy"));
   }
 
   /**
@@ -109,10 +108,10 @@ public class DomainGoalItemProvider extends GoalItemProvider {
    */
   @Override
   public String getText(Object object) {
-    String label = ((DomainGoal)object).getId();
+    String label = ((DomainStrategy)object).getId();
     return label == null || label.length() == 0 ?
-      getString("_UI_DomainGoal_type") :
-      getString("_UI_DomainGoal_type") + " " + label;
+      getString("_UI_DomainStrategy_type") :
+      getString("_UI_DomainStrategy_type") + " " + label;
   }
 
 
@@ -127,8 +126,8 @@ public class DomainGoalItemProvider extends GoalItemProvider {
   public void notifyChanged(Notification notification) {
     updateChildren(notification);
 
-    switch (notification.getFeatureID(DomainGoal.class)) {
-      case GSNPackage.DOMAIN_GOAL__DOMAIN:
+    switch (notification.getFeatureID(DomainStrategy.class)) {
+      case GSNPackage.DOMAIN_STRATEGY__DOMAIN:
         fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
         return;
     }

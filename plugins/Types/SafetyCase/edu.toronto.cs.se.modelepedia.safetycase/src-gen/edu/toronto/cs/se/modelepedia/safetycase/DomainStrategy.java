@@ -14,14 +14,13 @@ package edu.toronto.cs.se.modelepedia.safetycase;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Domain Goal</b></em>'.
+ * A representation of the model object '<em><b>Domain Strategy</b></em>'.
  * <!-- end-user-doc -->
  *
  *
- * @see edu.toronto.cs.se.modelepedia.safetycase.GSNPackage#getDomainGoal()
+ * @see edu.toronto.cs.se.modelepedia.safetycase.GSNPackage#getDomainStrategy()
  * @model
  * @generated
  */
-public interface DomainGoal extends Goal, DomainElement {
-
-} // DomainGoal
+public interface DomainStrategy extends Strategy, DomainElement {
+} // DomainStrategy

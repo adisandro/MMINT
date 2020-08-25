@@ -1,9 +1,7 @@
 package edu.toronto.cs.se.modelepedia.safetycase.design.context;
 
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
@@ -17,14 +15,19 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.modelepedia.safetycase.ArgumentElement;
+import edu.toronto.cs.se.modelepedia.safetycase.BasicGoal;
 import edu.toronto.cs.se.modelepedia.safetycase.ContextualElement;
 import edu.toronto.cs.se.modelepedia.safetycase.DecomposableCoreElement;
+import edu.toronto.cs.se.modelepedia.safetycase.Domain;
 import edu.toronto.cs.se.modelepedia.safetycase.DomainGoal;
+import edu.toronto.cs.se.modelepedia.safetycase.DomainStrategy;
+import edu.toronto.cs.se.modelepedia.safetycase.EnumDomain;
 import edu.toronto.cs.se.modelepedia.safetycase.GSNFactory;
 import edu.toronto.cs.se.modelepedia.safetycase.Goal;
+import edu.toronto.cs.se.modelepedia.safetycase.IntDomain;
 import edu.toronto.cs.se.modelepedia.safetycase.Justification;
+import edu.toronto.cs.se.modelepedia.safetycase.RealDomain;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCase;
-import edu.toronto.cs.se.modelepedia.safetycase.Strategy;
 import edu.toronto.cs.se.modelepedia.safetycase.Supportable;
 import edu.toronto.cs.se.modelepedia.safetycase.Supporter;
 
@@ -79,21 +82,33 @@ public class DomainDecomposition extends AbstractExternalJavaAction {
       context.setContext(contextual);
     }
 
-    private Strategy createStrategy(Supportable supportable, String id, String description) {
-      var strategy = this.factory.createBasicStrategy();
+    private DomainStrategy createDomainStrategy(Supportable supportable, String id, String description, Domain domain) {
+      var strategy = this.factory.createDomainStrategy();
       addArgumentElement(strategy, id, description);
       addSupporter(supportable, strategy);
+      strategy.setDomain(domain);
       this.gsnRootModelObj.getStrategies().add(strategy);
 
       return strategy;
     }
 
-    private DomainGoal createDomainGoal(Supportable supportable, String id, String description, String domain) {
-      var goal = this.factory.createDomainGoal();
+    private void addGoal(Goal goal, Supportable supportable, String id, String description) {
       addArgumentElement(goal, id, description);
       addSupporter(supportable, goal);
-      goal.setDomain(domain);
       this.gsnRootModelObj.getGoals().add(goal);
+    }
+
+    private BasicGoal createCompletenessGoal(Supportable supportable, String id, String description) {
+      var goal = this.factory.createBasicGoal();
+      addGoal(goal, supportable, id, description);
+
+      return goal;
+    }
+
+    private DomainGoal createDomainGoal(Supportable supportable, String id, String description, Domain domain) {
+      var goal = this.factory.createDomainGoal();
+      addGoal(goal, supportable, id, description);
+      goal.setDomain(domain);
 
       return goal;
     }
@@ -107,28 +122,35 @@ public class DomainDecomposition extends AbstractExternalJavaAction {
       return justification;
     }
 
-    private void parseNumericDomain(String domain) throws MMINTException {
-      /* range a_b:
-       *  1) a < b
-       *  2) two tokens only, separated by _
-       *  3) parsable number tokens, stripped of spaces
-       */
-    }
-
-    private Set<String> parseEnumDomain(String domain) throws MMINTException {
-      var entries = domain.split(",");
-      if (entries.length == 1) {
-        throw new MMINTException("Bad enumeration domain format");
+    private Domain parseDomainString(String domainStr) throws MMINTException {
+      Domain domain;
+      if (domainStr.contains("_")) {
+        /* range a_b:
+         *  1) a < b
+         *  2) two tokens only, separated by _
+         *  3) parsable number tokens, stripped of spaces
+         */
+        domain = this.factory.createIntDomain();
       }
-      var enumDomain = new HashSet<String>();
-      for (var entry : entries) {
-        if (entry.isBlank()) {
-          continue;
+      else if (domainStr.contains(",")) {
+        var entries = domainStr.split(",");
+        if (entries.length == 1) {
+          throw new MMINTException("Bad enumeration domain format");
         }
-        enumDomain.add(entry.strip());
+        domain = this.factory.createEnumDomain();
+        var enumValues = ((EnumDomain) domain).getValues();
+        for (var entry : entries) {
+          if (entry.isBlank()) {
+            continue;
+          }
+          enumValues.add(entry.strip());
+        }
+      }
+      else {
+        throw new MMINTException("Bad domain format");
       }
 
-      return enumDomain;
+      return domain;
     }
 
     private boolean checkDomainDecomposition() {
@@ -156,30 +178,28 @@ public class DomainDecomposition extends AbstractExternalJavaAction {
         var title = "Domain Decomposition";
         var example = "(e.g. integer range -40_50; real range 35.5_40.5; enumeration a,b,c)";
         var message = "Insert the domain, using '_' for ranges and ',' for enumerations\n" + example;
-        var domain = MIDDialogs.getStringInput(title, message, null).strip();
+        var domainStr = MIDDialogs.getStringInput(title, message, null).strip();
         int numDomains;
-        if (domain.contains("_")) {
+        var domain = parseDomainString(domainStr);
+        if (domain instanceof IntDomain || domain instanceof RealDomain) {
           message = "Insert the number of domains";
           numDomains = Integer.parseInt(MIDDialogs.getStringInput(title, message, null));
         }
-        else if (domain.contains(",")) {
-          var enumDomain = parseEnumDomain(domain);
-          numDomains = enumDomain.size();
-        }
         else {
-          throw new MMINTException("Bad domain format");
+          numDomains = ((EnumDomain) domain).getValues().size();
         }
         // domain decomposition strategy + justification + domain subgoals + completeness goal
         var description = this.decomposed.getDescription();
         var id = this.decomposed.getId();
-        var strategy = createStrategy(this.decomposed, "S-" + id, "Decomposition over domain " + domain);
-        createJustification("J-" + id, "Every scenario has a corresponding value in the domain " + domain);
+        var strategy = createDomainStrategy(this.decomposed, "S-" + id, "Decomposition over domain " + domainStr, domain);
+        createJustification("J-" + id, "Every scenario has a corresponding value in the domain " + domainStr);
         for (var i = 0; i < numDomains; i++) {
           message = "Insert the sub-domain #" + (i+1);
-          var subDomain = MIDDialogs.getStringInput(title, message, null).strip();
+          var subDomainStr = MIDDialogs.getStringInput(title, message, null).strip();
+          var subDomain = parseDomainString(subDomainStr);
           createDomainGoal(strategy, id + "-" + i, description, subDomain);
         }
-        createDomainGoal(strategy, id + "-C", description, domain);
+        createCompletenessGoal(strategy, id + "-C", description);
         if (!checkDomainDecomposition()) {
           throw new MMINTException("Invalid domain");
         }

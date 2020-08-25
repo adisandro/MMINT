@@ -71,7 +71,6 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
       case GSNPackage.IN_CONTEXT_OF: return createInContextOf();
       case GSNPackage.BASIC_GOAL: return createBasicGoal();
       case GSNPackage.INDEPENDENCE_GOAL: return createIndependenceGoal();
-      case GSNPackage.DOMAIN_GOAL: return createDomainGoal();
       case GSNPackage.BASIC_STRATEGY: return createBasicStrategy();
       case GSNPackage.ASIL_DECOMPOSITION_STRATEGY: return createASILDecompositionStrategy();
       case GSNPackage.SOLUTION: return createSolution();
@@ -84,6 +83,12 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
       case GSNPackage.OR_SUPPORTER: return createOrSupporter();
       case GSNPackage.XOR_SUPPORTER: return createXorSupporter();
       case GSNPackage.MOF_NSUPPORTER: return createMofNSupporter();
+      case GSNPackage.INT_DOMAIN: return createIntDomain();
+      case GSNPackage.REAL_DOMAIN: return createRealDomain();
+      case GSNPackage.ENUM_DOMAIN: return createEnumDomain();
+      case GSNPackage.VALUE_DOMAIN: return createValueDomain();
+      case GSNPackage.DOMAIN_STRATEGY: return createDomainStrategy();
+      case GSNPackage.DOMAIN_GOAL: return createDomainGoal();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -323,6 +328,61 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
   public MofNSupporter createMofNSupporter() {
     MofNSupporterImpl mofNSupporter = new MofNSupporterImpl();
     return mofNSupporter;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public IntDomain createIntDomain() {
+    IntDomainImpl intDomain = new IntDomainImpl();
+    return intDomain;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public RealDomain createRealDomain() {
+    RealDomainImpl realDomain = new RealDomainImpl();
+    return realDomain;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EnumDomain createEnumDomain() {
+    EnumDomainImpl enumDomain = new EnumDomainImpl();
+    return enumDomain;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public ValueDomain createValueDomain() {
+    ValueDomainImpl valueDomain = new ValueDomainImpl();
+    return valueDomain;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public DomainStrategy createDomainStrategy() {
+    DomainStrategyImpl domainStrategy = new DomainStrategyImpl();
+    return domainStrategy;
   }
 
   /**

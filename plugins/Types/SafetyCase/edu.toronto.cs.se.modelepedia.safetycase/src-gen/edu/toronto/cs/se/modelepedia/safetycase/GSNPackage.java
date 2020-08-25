@@ -378,7 +378,7 @@ public interface GSNPackage extends EPackage {
    * @see edu.toronto.cs.se.modelepedia.safetycase.impl.GSNPackageImpl#getSupporter()
    * @generated
    */
-  int SUPPORTER = 23;
+  int SUPPORTER = 22;
 
   /**
    * The feature id for the '<em><b>Supports</b></em>' reference list.
@@ -415,7 +415,7 @@ public interface GSNPackage extends EPackage {
    * @see edu.toronto.cs.se.modelepedia.safetycase.impl.GSNPackageImpl#getSupportable()
    * @generated
    */
-  int SUPPORTABLE = 22;
+  int SUPPORTABLE = 21;
 
   /**
    * The feature id for the '<em><b>Supports</b></em>' reference list.
@@ -1044,115 +1044,7 @@ public interface GSNPackage extends EPackage {
    * @see edu.toronto.cs.se.modelepedia.safetycase.impl.GSNPackageImpl#getDomainGoal()
    * @generated
    */
-  int DOMAIN_GOAL = 12;
-
-  /**
-   * The feature id for the '<em><b>Supports</b></em>' reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DOMAIN_GOAL__SUPPORTS = GOAL__SUPPORTS;
-
-  /**
-   * The feature id for the '<em><b>Supported By</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DOMAIN_GOAL__SUPPORTED_BY = GOAL__SUPPORTED_BY;
-
-  /**
-   * The feature id for the '<em><b>Id</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DOMAIN_GOAL__ID = GOAL__ID;
-
-  /**
-   * The feature id for the '<em><b>Description</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DOMAIN_GOAL__DESCRIPTION = GOAL__DESCRIPTION;
-
-  /**
-   * The feature id for the '<em><b>Content Validity</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DOMAIN_GOAL__CONTENT_VALIDITY = GOAL__CONTENT_VALIDITY;
-
-  /**
-   * The feature id for the '<em><b>Status</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DOMAIN_GOAL__STATUS = GOAL__STATUS;
-
-  /**
-   * The feature id for the '<em><b>In Context Of</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DOMAIN_GOAL__IN_CONTEXT_OF = GOAL__IN_CONTEXT_OF;
-
-  /**
-   * The feature id for the '<em><b>State Validity</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DOMAIN_GOAL__STATE_VALIDITY = GOAL__STATE_VALIDITY;
-
-  /**
-   * The feature id for the '<em><b>Asil</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DOMAIN_GOAL__ASIL = GOAL__ASIL;
-
-  /**
-   * The feature id for the '<em><b>Domain</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DOMAIN_GOAL__DOMAIN = GOAL_FEATURE_COUNT + 0;
-
-  /**
-   * The number of structural features of the '<em>Domain Goal</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DOMAIN_GOAL_FEATURE_COUNT = GOAL_FEATURE_COUNT + 1;
-
-  /**
-   * The number of operations of the '<em>Domain Goal</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DOMAIN_GOAL_OPERATION_COUNT = GOAL_OPERATION_COUNT + 0;
+  int DOMAIN_GOAL = 35;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.StrategyImpl <em>Strategy</em>}' class.
@@ -1162,7 +1054,7 @@ public interface GSNPackage extends EPackage {
    * @see edu.toronto.cs.se.modelepedia.safetycase.impl.GSNPackageImpl#getStrategy()
    * @generated
    */
-  int STRATEGY = 13;
+  int STRATEGY = 12;
 
   /**
    * The feature id for the '<em><b>Supports</b></em>' reference list.
@@ -1253,7 +1145,7 @@ public interface GSNPackage extends EPackage {
    * @see edu.toronto.cs.se.modelepedia.safetycase.impl.GSNPackageImpl#getBasicStrategy()
    * @generated
    */
-  int BASIC_STRATEGY = 14;
+  int BASIC_STRATEGY = 13;
 
   /**
    * The feature id for the '<em><b>Supports</b></em>' reference list.
@@ -1344,7 +1236,7 @@ public interface GSNPackage extends EPackage {
    * @see edu.toronto.cs.se.modelepedia.safetycase.impl.GSNPackageImpl#getASILDecompositionStrategy()
    * @generated
    */
-  int ASIL_DECOMPOSITION_STRATEGY = 15;
+  int ASIL_DECOMPOSITION_STRATEGY = 14;
 
   /**
    * The feature id for the '<em><b>Supports</b></em>' reference list.
@@ -1435,7 +1327,7 @@ public interface GSNPackage extends EPackage {
    * @see edu.toronto.cs.se.modelepedia.safetycase.impl.GSNPackageImpl#getSolution()
    * @generated
    */
-  int SOLUTION = 16;
+  int SOLUTION = 15;
 
   /**
    * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -1517,7 +1409,7 @@ public interface GSNPackage extends EPackage {
    * @see edu.toronto.cs.se.modelepedia.safetycase.impl.GSNPackageImpl#getContext()
    * @generated
    */
-  int CONTEXT = 17;
+  int CONTEXT = 16;
 
   /**
    * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -1590,7 +1482,7 @@ public interface GSNPackage extends EPackage {
    * @see edu.toronto.cs.se.modelepedia.safetycase.impl.GSNPackageImpl#getJustification()
    * @generated
    */
-  int JUSTIFICATION = 18;
+  int JUSTIFICATION = 17;
 
   /**
    * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -1663,7 +1555,7 @@ public interface GSNPackage extends EPackage {
    * @see edu.toronto.cs.se.modelepedia.safetycase.impl.GSNPackageImpl#getAssumption()
    * @generated
    */
-  int ASSUMPTION = 19;
+  int ASSUMPTION = 18;
 
   /**
    * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -1736,7 +1628,7 @@ public interface GSNPackage extends EPackage {
    * @see edu.toronto.cs.se.modelepedia.safetycase.impl.GSNPackageImpl#getASIL()
    * @generated
    */
-  int ASIL = 20;
+  int ASIL = 19;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1791,7 +1683,7 @@ public interface GSNPackage extends EPackage {
    * @see edu.toronto.cs.se.modelepedia.safetycase.impl.GSNPackageImpl#getImpactAnnotation()
    * @generated
    */
-  int IMPACT_ANNOTATION = 21;
+  int IMPACT_ANNOTATION = 20;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -1837,7 +1729,7 @@ public interface GSNPackage extends EPackage {
    * @see edu.toronto.cs.se.modelepedia.safetycase.impl.GSNPackageImpl#getSupportConnector()
    * @generated
    */
-  int SUPPORT_CONNECTOR = 24;
+  int SUPPORT_CONNECTOR = 23;
 
   /**
    * The feature id for the '<em><b>Supports</b></em>' reference list.
@@ -1883,7 +1775,7 @@ public interface GSNPackage extends EPackage {
    * @see edu.toronto.cs.se.modelepedia.safetycase.impl.GSNPackageImpl#getAndSupporter()
    * @generated
    */
-  int AND_SUPPORTER = 25;
+  int AND_SUPPORTER = 24;
 
   /**
    * The feature id for the '<em><b>Supports</b></em>' reference list.
@@ -1929,7 +1821,7 @@ public interface GSNPackage extends EPackage {
    * @see edu.toronto.cs.se.modelepedia.safetycase.impl.GSNPackageImpl#getOrSupporter()
    * @generated
    */
-  int OR_SUPPORTER = 26;
+  int OR_SUPPORTER = 25;
 
   /**
    * The feature id for the '<em><b>Supports</b></em>' reference list.
@@ -1975,7 +1867,7 @@ public interface GSNPackage extends EPackage {
    * @see edu.toronto.cs.se.modelepedia.safetycase.impl.GSNPackageImpl#getXorSupporter()
    * @generated
    */
-  int XOR_SUPPORTER = 27;
+  int XOR_SUPPORTER = 26;
 
   /**
    * The feature id for the '<em><b>Supports</b></em>' reference list.
@@ -2021,7 +1913,7 @@ public interface GSNPackage extends EPackage {
    * @see edu.toronto.cs.se.modelepedia.safetycase.impl.GSNPackageImpl#getMofNSupporter()
    * @generated
    */
-  int MOF_NSUPPORTER = 28;
+  int MOF_NSUPPORTER = 27;
 
   /**
    * The feature id for the '<em><b>Supports</b></em>' reference list.
@@ -2069,6 +1961,445 @@ public interface GSNPackage extends EPackage {
   int MOF_NSUPPORTER_OPERATION_COUNT = SUPPORT_CONNECTOR_OPERATION_COUNT + 0;
 
   /**
+   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.DomainImpl <em>Domain</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.toronto.cs.se.modelepedia.safetycase.impl.DomainImpl
+   * @see edu.toronto.cs.se.modelepedia.safetycase.impl.GSNPackageImpl#getDomain()
+   * @generated
+   */
+  int DOMAIN = 28;
+
+  /**
+   * The number of structural features of the '<em>Domain</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DOMAIN_FEATURE_COUNT = 0;
+
+  /**
+   * The number of operations of the '<em>Domain</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DOMAIN_OPERATION_COUNT = 0;
+
+  /**
+   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.IntDomainImpl <em>Int Domain</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.toronto.cs.se.modelepedia.safetycase.impl.IntDomainImpl
+   * @see edu.toronto.cs.se.modelepedia.safetycase.impl.GSNPackageImpl#getIntDomain()
+   * @generated
+   */
+  int INT_DOMAIN = 29;
+
+  /**
+   * The feature id for the '<em><b>Lower Bound</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INT_DOMAIN__LOWER_BOUND = DOMAIN_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Upper Bound</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INT_DOMAIN__UPPER_BOUND = DOMAIN_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Int Domain</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INT_DOMAIN_FEATURE_COUNT = DOMAIN_FEATURE_COUNT + 2;
+
+  /**
+   * The number of operations of the '<em>Int Domain</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INT_DOMAIN_OPERATION_COUNT = DOMAIN_OPERATION_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.RealDomainImpl <em>Real Domain</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.toronto.cs.se.modelepedia.safetycase.impl.RealDomainImpl
+   * @see edu.toronto.cs.se.modelepedia.safetycase.impl.GSNPackageImpl#getRealDomain()
+   * @generated
+   */
+  int REAL_DOMAIN = 30;
+
+  /**
+   * The feature id for the '<em><b>Lower Bound</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int REAL_DOMAIN__LOWER_BOUND = DOMAIN_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Upper Bound</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int REAL_DOMAIN__UPPER_BOUND = DOMAIN_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Real Domain</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int REAL_DOMAIN_FEATURE_COUNT = DOMAIN_FEATURE_COUNT + 2;
+
+  /**
+   * The number of operations of the '<em>Real Domain</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int REAL_DOMAIN_OPERATION_COUNT = DOMAIN_OPERATION_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.EnumDomainImpl <em>Enum Domain</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.toronto.cs.se.modelepedia.safetycase.impl.EnumDomainImpl
+   * @see edu.toronto.cs.se.modelepedia.safetycase.impl.GSNPackageImpl#getEnumDomain()
+   * @generated
+   */
+  int ENUM_DOMAIN = 31;
+
+  /**
+   * The feature id for the '<em><b>Values</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ENUM_DOMAIN__VALUES = DOMAIN_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Enum Domain</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ENUM_DOMAIN_FEATURE_COUNT = DOMAIN_FEATURE_COUNT + 1;
+
+  /**
+   * The number of operations of the '<em>Enum Domain</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ENUM_DOMAIN_OPERATION_COUNT = DOMAIN_OPERATION_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.ValueDomainImpl <em>Value Domain</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.toronto.cs.se.modelepedia.safetycase.impl.ValueDomainImpl
+   * @see edu.toronto.cs.se.modelepedia.safetycase.impl.GSNPackageImpl#getValueDomain()
+   * @generated
+   */
+  int VALUE_DOMAIN = 32;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int VALUE_DOMAIN__VALUE = DOMAIN_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Value Domain</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int VALUE_DOMAIN_FEATURE_COUNT = DOMAIN_FEATURE_COUNT + 1;
+
+  /**
+   * The number of operations of the '<em>Value Domain</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int VALUE_DOMAIN_OPERATION_COUNT = DOMAIN_OPERATION_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.DomainElementImpl <em>Domain Element</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.toronto.cs.se.modelepedia.safetycase.impl.DomainElementImpl
+   * @see edu.toronto.cs.se.modelepedia.safetycase.impl.GSNPackageImpl#getDomainElement()
+   * @generated
+   */
+  int DOMAIN_ELEMENT = 33;
+
+  /**
+   * The feature id for the '<em><b>Domain</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DOMAIN_ELEMENT__DOMAIN = 0;
+
+  /**
+   * The number of structural features of the '<em>Domain Element</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DOMAIN_ELEMENT_FEATURE_COUNT = 1;
+
+  /**
+   * The number of operations of the '<em>Domain Element</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DOMAIN_ELEMENT_OPERATION_COUNT = 0;
+
+  /**
+   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.DomainStrategyImpl <em>Domain Strategy</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.toronto.cs.se.modelepedia.safetycase.impl.DomainStrategyImpl
+   * @see edu.toronto.cs.se.modelepedia.safetycase.impl.GSNPackageImpl#getDomainStrategy()
+   * @generated
+   */
+  int DOMAIN_STRATEGY = 34;
+
+  /**
+   * The feature id for the '<em><b>Supports</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DOMAIN_STRATEGY__SUPPORTS = STRATEGY__SUPPORTS;
+
+  /**
+   * The feature id for the '<em><b>Supported By</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DOMAIN_STRATEGY__SUPPORTED_BY = STRATEGY__SUPPORTED_BY;
+
+  /**
+   * The feature id for the '<em><b>Id</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DOMAIN_STRATEGY__ID = STRATEGY__ID;
+
+  /**
+   * The feature id for the '<em><b>Description</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DOMAIN_STRATEGY__DESCRIPTION = STRATEGY__DESCRIPTION;
+
+  /**
+   * The feature id for the '<em><b>Content Validity</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DOMAIN_STRATEGY__CONTENT_VALIDITY = STRATEGY__CONTENT_VALIDITY;
+
+  /**
+   * The feature id for the '<em><b>Status</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DOMAIN_STRATEGY__STATUS = STRATEGY__STATUS;
+
+  /**
+   * The feature id for the '<em><b>In Context Of</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DOMAIN_STRATEGY__IN_CONTEXT_OF = STRATEGY__IN_CONTEXT_OF;
+
+  /**
+   * The feature id for the '<em><b>Domain</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DOMAIN_STRATEGY__DOMAIN = STRATEGY_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Domain Strategy</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DOMAIN_STRATEGY_FEATURE_COUNT = STRATEGY_FEATURE_COUNT + 1;
+
+  /**
+   * The number of operations of the '<em>Domain Strategy</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DOMAIN_STRATEGY_OPERATION_COUNT = STRATEGY_OPERATION_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Supports</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DOMAIN_GOAL__SUPPORTS = GOAL__SUPPORTS;
+
+  /**
+   * The feature id for the '<em><b>Supported By</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DOMAIN_GOAL__SUPPORTED_BY = GOAL__SUPPORTED_BY;
+
+  /**
+   * The feature id for the '<em><b>Id</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DOMAIN_GOAL__ID = GOAL__ID;
+
+  /**
+   * The feature id for the '<em><b>Description</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DOMAIN_GOAL__DESCRIPTION = GOAL__DESCRIPTION;
+
+  /**
+   * The feature id for the '<em><b>Content Validity</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DOMAIN_GOAL__CONTENT_VALIDITY = GOAL__CONTENT_VALIDITY;
+
+  /**
+   * The feature id for the '<em><b>Status</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DOMAIN_GOAL__STATUS = GOAL__STATUS;
+
+  /**
+   * The feature id for the '<em><b>In Context Of</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DOMAIN_GOAL__IN_CONTEXT_OF = GOAL__IN_CONTEXT_OF;
+
+  /**
+   * The feature id for the '<em><b>State Validity</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DOMAIN_GOAL__STATE_VALIDITY = GOAL__STATE_VALIDITY;
+
+  /**
+   * The feature id for the '<em><b>Asil</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DOMAIN_GOAL__ASIL = GOAL__ASIL;
+
+  /**
+   * The feature id for the '<em><b>Domain</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DOMAIN_GOAL__DOMAIN = GOAL_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Domain Goal</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DOMAIN_GOAL_FEATURE_COUNT = GOAL_FEATURE_COUNT + 1;
+
+  /**
+   * The number of operations of the '<em>Domain Goal</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DOMAIN_GOAL_OPERATION_COUNT = GOAL_OPERATION_COUNT + 0;
+
+  /**
    * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.safetycase.ASILLevel <em>ASIL Level</em>}' enum.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2076,7 +2407,7 @@ public interface GSNPackage extends EPackage {
    * @see edu.toronto.cs.se.modelepedia.safetycase.impl.GSNPackageImpl#getASILLevel()
    * @generated
    */
-  int ASIL_LEVEL = 29;
+  int ASIL_LEVEL = 36;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.safetycase.ValidityValue <em>Validity Value</em>}' enum.
@@ -2086,7 +2417,7 @@ public interface GSNPackage extends EPackage {
    * @see edu.toronto.cs.se.modelepedia.safetycase.impl.GSNPackageImpl#getValidityValue()
    * @generated
    */
-  int VALIDITY_VALUE = 30;
+  int VALIDITY_VALUE = 37;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.safetycase.ImpactType <em>Impact Type</em>}' enum.
@@ -2096,7 +2427,7 @@ public interface GSNPackage extends EPackage {
    * @see edu.toronto.cs.se.modelepedia.safetycase.impl.GSNPackageImpl#getImpactType()
    * @generated
    */
-  int IMPACT_TYPE = 31;
+  int IMPACT_TYPE = 38;
 
 
   /**
@@ -2439,17 +2770,6 @@ public interface GSNPackage extends EPackage {
   EClass getDomainGoal();
 
   /**
-   * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.safetycase.DomainGoal#getDomain <em>Domain</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Domain</em>'.
-   * @see edu.toronto.cs.se.modelepedia.safetycase.DomainGoal#getDomain()
-   * @see #getDomainGoal()
-   * @generated
-   */
-  EAttribute getDomainGoal_Domain();
-
-  /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.safetycase.Strategy <em>Strategy</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2696,6 +3016,153 @@ public interface GSNPackage extends EPackage {
    * @generated
    */
   EAttribute getMofNSupporter_Target();
+
+  /**
+   * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.safetycase.Domain <em>Domain</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Domain</em>'.
+   * @see edu.toronto.cs.se.modelepedia.safetycase.Domain
+   * @generated
+   */
+  EClass getDomain();
+
+  /**
+   * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.safetycase.IntDomain <em>Int Domain</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Int Domain</em>'.
+   * @see edu.toronto.cs.se.modelepedia.safetycase.IntDomain
+   * @generated
+   */
+  EClass getIntDomain();
+
+  /**
+   * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.safetycase.IntDomain#getLowerBound <em>Lower Bound</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Lower Bound</em>'.
+   * @see edu.toronto.cs.se.modelepedia.safetycase.IntDomain#getLowerBound()
+   * @see #getIntDomain()
+   * @generated
+   */
+  EAttribute getIntDomain_LowerBound();
+
+  /**
+   * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.safetycase.IntDomain#getUpperBound <em>Upper Bound</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Upper Bound</em>'.
+   * @see edu.toronto.cs.se.modelepedia.safetycase.IntDomain#getUpperBound()
+   * @see #getIntDomain()
+   * @generated
+   */
+  EAttribute getIntDomain_UpperBound();
+
+  /**
+   * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.safetycase.RealDomain <em>Real Domain</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Real Domain</em>'.
+   * @see edu.toronto.cs.se.modelepedia.safetycase.RealDomain
+   * @generated
+   */
+  EClass getRealDomain();
+
+  /**
+   * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.safetycase.RealDomain#getLowerBound <em>Lower Bound</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Lower Bound</em>'.
+   * @see edu.toronto.cs.se.modelepedia.safetycase.RealDomain#getLowerBound()
+   * @see #getRealDomain()
+   * @generated
+   */
+  EAttribute getRealDomain_LowerBound();
+
+  /**
+   * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.safetycase.RealDomain#getUpperBound <em>Upper Bound</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Upper Bound</em>'.
+   * @see edu.toronto.cs.se.modelepedia.safetycase.RealDomain#getUpperBound()
+   * @see #getRealDomain()
+   * @generated
+   */
+  EAttribute getRealDomain_UpperBound();
+
+  /**
+   * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.safetycase.EnumDomain <em>Enum Domain</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Enum Domain</em>'.
+   * @see edu.toronto.cs.se.modelepedia.safetycase.EnumDomain
+   * @generated
+   */
+  EClass getEnumDomain();
+
+  /**
+   * Returns the meta object for the attribute list '{@link edu.toronto.cs.se.modelepedia.safetycase.EnumDomain#getValues <em>Values</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute list '<em>Values</em>'.
+   * @see edu.toronto.cs.se.modelepedia.safetycase.EnumDomain#getValues()
+   * @see #getEnumDomain()
+   * @generated
+   */
+  EAttribute getEnumDomain_Values();
+
+  /**
+   * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.safetycase.ValueDomain <em>Value Domain</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Value Domain</em>'.
+   * @see edu.toronto.cs.se.modelepedia.safetycase.ValueDomain
+   * @generated
+   */
+  EClass getValueDomain();
+
+  /**
+   * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.safetycase.ValueDomain#getValue <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Value</em>'.
+   * @see edu.toronto.cs.se.modelepedia.safetycase.ValueDomain#getValue()
+   * @see #getValueDomain()
+   * @generated
+   */
+  EAttribute getValueDomain_Value();
+
+  /**
+   * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.safetycase.DomainElement <em>Domain Element</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Domain Element</em>'.
+   * @see edu.toronto.cs.se.modelepedia.safetycase.DomainElement
+   * @generated
+   */
+  EClass getDomainElement();
+
+  /**
+   * Returns the meta object for the containment reference '{@link edu.toronto.cs.se.modelepedia.safetycase.DomainElement#getDomain <em>Domain</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Domain</em>'.
+   * @see edu.toronto.cs.se.modelepedia.safetycase.DomainElement#getDomain()
+   * @see #getDomainElement()
+   * @generated
+   */
+  EReference getDomainElement_Domain();
+
+  /**
+   * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.safetycase.DomainStrategy <em>Domain Strategy</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Domain Strategy</em>'.
+   * @see edu.toronto.cs.se.modelepedia.safetycase.DomainStrategy
+   * @generated
+   */
+  EClass getDomainStrategy();
 
   /**
    * Returns the meta object for enum '{@link edu.toronto.cs.se.modelepedia.safetycase.ASILLevel <em>ASIL Level</em>}'.
@@ -3033,14 +3500,6 @@ public interface GSNPackage extends EPackage {
     EClass DOMAIN_GOAL = eINSTANCE.getDomainGoal();
 
     /**
-     * The meta object literal for the '<em><b>Domain</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute DOMAIN_GOAL__DOMAIN = eINSTANCE.getDomainGoal_Domain();
-
-    /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.StrategyImpl <em>Strategy</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -3263,6 +3722,132 @@ public interface GSNPackage extends EPackage {
      * @generated
      */
     EAttribute MOF_NSUPPORTER__TARGET = eINSTANCE.getMofNSupporter_Target();
+
+    /**
+     * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.DomainImpl <em>Domain</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.toronto.cs.se.modelepedia.safetycase.impl.DomainImpl
+     * @see edu.toronto.cs.se.modelepedia.safetycase.impl.GSNPackageImpl#getDomain()
+     * @generated
+     */
+    EClass DOMAIN = eINSTANCE.getDomain();
+
+    /**
+     * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.IntDomainImpl <em>Int Domain</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.toronto.cs.se.modelepedia.safetycase.impl.IntDomainImpl
+     * @see edu.toronto.cs.se.modelepedia.safetycase.impl.GSNPackageImpl#getIntDomain()
+     * @generated
+     */
+    EClass INT_DOMAIN = eINSTANCE.getIntDomain();
+
+    /**
+     * The meta object literal for the '<em><b>Lower Bound</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute INT_DOMAIN__LOWER_BOUND = eINSTANCE.getIntDomain_LowerBound();
+
+    /**
+     * The meta object literal for the '<em><b>Upper Bound</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute INT_DOMAIN__UPPER_BOUND = eINSTANCE.getIntDomain_UpperBound();
+
+    /**
+     * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.RealDomainImpl <em>Real Domain</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.toronto.cs.se.modelepedia.safetycase.impl.RealDomainImpl
+     * @see edu.toronto.cs.se.modelepedia.safetycase.impl.GSNPackageImpl#getRealDomain()
+     * @generated
+     */
+    EClass REAL_DOMAIN = eINSTANCE.getRealDomain();
+
+    /**
+     * The meta object literal for the '<em><b>Lower Bound</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute REAL_DOMAIN__LOWER_BOUND = eINSTANCE.getRealDomain_LowerBound();
+
+    /**
+     * The meta object literal for the '<em><b>Upper Bound</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute REAL_DOMAIN__UPPER_BOUND = eINSTANCE.getRealDomain_UpperBound();
+
+    /**
+     * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.EnumDomainImpl <em>Enum Domain</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.toronto.cs.se.modelepedia.safetycase.impl.EnumDomainImpl
+     * @see edu.toronto.cs.se.modelepedia.safetycase.impl.GSNPackageImpl#getEnumDomain()
+     * @generated
+     */
+    EClass ENUM_DOMAIN = eINSTANCE.getEnumDomain();
+
+    /**
+     * The meta object literal for the '<em><b>Values</b></em>' attribute list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ENUM_DOMAIN__VALUES = eINSTANCE.getEnumDomain_Values();
+
+    /**
+     * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.ValueDomainImpl <em>Value Domain</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.toronto.cs.se.modelepedia.safetycase.impl.ValueDomainImpl
+     * @see edu.toronto.cs.se.modelepedia.safetycase.impl.GSNPackageImpl#getValueDomain()
+     * @generated
+     */
+    EClass VALUE_DOMAIN = eINSTANCE.getValueDomain();
+
+    /**
+     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute VALUE_DOMAIN__VALUE = eINSTANCE.getValueDomain_Value();
+
+    /**
+     * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.DomainElementImpl <em>Domain Element</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.toronto.cs.se.modelepedia.safetycase.impl.DomainElementImpl
+     * @see edu.toronto.cs.se.modelepedia.safetycase.impl.GSNPackageImpl#getDomainElement()
+     * @generated
+     */
+    EClass DOMAIN_ELEMENT = eINSTANCE.getDomainElement();
+
+    /**
+     * The meta object literal for the '<em><b>Domain</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference DOMAIN_ELEMENT__DOMAIN = eINSTANCE.getDomainElement_Domain();
+
+    /**
+     * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.DomainStrategyImpl <em>Domain Strategy</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.toronto.cs.se.modelepedia.safetycase.impl.DomainStrategyImpl
+     * @see edu.toronto.cs.se.modelepedia.safetycase.impl.GSNPackageImpl#getDomainStrategy()
+     * @generated
+     */
+    EClass DOMAIN_STRATEGY = eINSTANCE.getDomainStrategy();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.safetycase.ASILLevel <em>ASIL Level</em>}' enum.

@@ -119,8 +119,6 @@ public class GSNValidator extends EObjectValidator {
         return validateBasicGoal((BasicGoal)value, diagnostics, context);
       case GSNPackage.INDEPENDENCE_GOAL:
         return validateIndependenceGoal((IndependenceGoal)value, diagnostics, context);
-      case GSNPackage.DOMAIN_GOAL:
-        return validateDomainGoal((DomainGoal)value, diagnostics, context);
       case GSNPackage.STRATEGY:
         return validateStrategy((Strategy)value, diagnostics, context);
       case GSNPackage.BASIC_STRATEGY:
@@ -153,6 +151,22 @@ public class GSNValidator extends EObjectValidator {
         return validateXorSupporter((XorSupporter)value, diagnostics, context);
       case GSNPackage.MOF_NSUPPORTER:
         return validateMofNSupporter((MofNSupporter)value, diagnostics, context);
+      case GSNPackage.DOMAIN:
+        return validateDomain((Domain)value, diagnostics, context);
+      case GSNPackage.INT_DOMAIN:
+        return validateIntDomain((IntDomain)value, diagnostics, context);
+      case GSNPackage.REAL_DOMAIN:
+        return validateRealDomain((RealDomain)value, diagnostics, context);
+      case GSNPackage.ENUM_DOMAIN:
+        return validateEnumDomain((EnumDomain)value, diagnostics, context);
+      case GSNPackage.VALUE_DOMAIN:
+        return validateValueDomain((ValueDomain)value, diagnostics, context);
+      case GSNPackage.DOMAIN_ELEMENT:
+        return validateDomainElement((DomainElement)value, diagnostics, context);
+      case GSNPackage.DOMAIN_STRATEGY:
+        return validateDomainStrategy((DomainStrategy)value, diagnostics, context);
+      case GSNPackage.DOMAIN_GOAL:
+        return validateDomainGoal((DomainGoal)value, diagnostics, context);
       case GSNPackage.ASIL_LEVEL:
         return validateASILLevel((ASILLevel)value, diagnostics, context);
       case GSNPackage.VALIDITY_VALUE:
@@ -1180,6 +1194,83 @@ public class GSNValidator extends EObjectValidator {
     if (result || diagnostics != null) result &= validateSupporter_GoalRoot(mofNSupporter, diagnostics, context);
     if (result || diagnostics != null) result &= validateSupportable_SupportCycle(mofNSupporter, diagnostics, context);
     if (result || diagnostics != null) result &= validateSupportable_NonSupportableLeaves(mofNSupporter, diagnostics, context);
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public boolean validateDomain(Domain domain, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    return validate_EveryDefaultConstraint(domain, diagnostics, context);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public boolean validateIntDomain(IntDomain intDomain, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    return validate_EveryDefaultConstraint(intDomain, diagnostics, context);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public boolean validateRealDomain(RealDomain realDomain, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    return validate_EveryDefaultConstraint(realDomain, diagnostics, context);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public boolean validateEnumDomain(EnumDomain enumDomain, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    return validate_EveryDefaultConstraint(enumDomain, diagnostics, context);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public boolean validateValueDomain(ValueDomain valueDomain, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    return validate_EveryDefaultConstraint(valueDomain, diagnostics, context);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public boolean validateDomainElement(DomainElement domainElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    return validate_EveryDefaultConstraint(domainElement, diagnostics, context);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public boolean validateDomainStrategy(DomainStrategy domainStrategy, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    if (!validate_NoCircularContainment(domainStrategy, diagnostics, context)) return false;
+    boolean result = validate_EveryMultiplicityConforms(domainStrategy, diagnostics, context);
+    if (result || diagnostics != null) result &= validate_EveryDataValueConforms(domainStrategy, diagnostics, context);
+    if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(domainStrategy, diagnostics, context);
+    if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(domainStrategy, diagnostics, context);
+    if (result || diagnostics != null) result &= validate_EveryProxyResolves(domainStrategy, diagnostics, context);
+    if (result || diagnostics != null) result &= validate_UniqueID(domainStrategy, diagnostics, context);
+    if (result || diagnostics != null) result &= validate_EveryKeyUnique(domainStrategy, diagnostics, context);
+    if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(domainStrategy, diagnostics, context);
+    if (result || diagnostics != null) result &= validateSupporter_GoalRoot(domainStrategy, diagnostics, context);
+    if (result || diagnostics != null) result &= validateSupportable_SupportCycle(domainStrategy, diagnostics, context);
+    if (result || diagnostics != null) result &= validateSupportable_NonSupportableLeaves(domainStrategy, diagnostics, context);
+    if (result || diagnostics != null) result &= validateStrategy_StrategySupporter(domainStrategy, diagnostics, context);
+    if (result || diagnostics != null) result &= validateStrategy_StrategyContext(domainStrategy, diagnostics, context);
     return result;
   }
 

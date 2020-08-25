@@ -495,6 +495,121 @@ public class GSNItemProviderAdapterFactory extends GSNAdapterFactory implements 
   }
 
   /**
+   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.IntDomain} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected IntDomainItemProvider intDomainItemProvider;
+
+  /**
+   * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.IntDomain}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createIntDomainAdapter() {
+    if (intDomainItemProvider == null) {
+      intDomainItemProvider = new IntDomainItemProvider(this);
+    }
+
+    return intDomainItemProvider;
+  }
+
+  /**
+   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.RealDomain} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected RealDomainItemProvider realDomainItemProvider;
+
+  /**
+   * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.RealDomain}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createRealDomainAdapter() {
+    if (realDomainItemProvider == null) {
+      realDomainItemProvider = new RealDomainItemProvider(this);
+    }
+
+    return realDomainItemProvider;
+  }
+
+  /**
+   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.EnumDomain} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected EnumDomainItemProvider enumDomainItemProvider;
+
+  /**
+   * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.EnumDomain}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createEnumDomainAdapter() {
+    if (enumDomainItemProvider == null) {
+      enumDomainItemProvider = new EnumDomainItemProvider(this);
+    }
+
+    return enumDomainItemProvider;
+  }
+
+  /**
+   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.ValueDomain} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected ValueDomainItemProvider valueDomainItemProvider;
+
+  /**
+   * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.ValueDomain}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createValueDomainAdapter() {
+    if (valueDomainItemProvider == null) {
+      valueDomainItemProvider = new ValueDomainItemProvider(this);
+    }
+
+    return valueDomainItemProvider;
+  }
+
+  /**
+   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.DomainStrategy} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected DomainStrategyItemProvider domainStrategyItemProvider;
+
+  /**
+   * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.DomainStrategy}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createDomainStrategyAdapter() {
+    if (domainStrategyItemProvider == null) {
+      domainStrategyItemProvider = new DomainStrategyItemProvider(this);
+    }
+
+    return domainStrategyItemProvider;
+  }
+
+  /**
    * This returns the root adapter factory that contains this factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -604,7 +719,6 @@ public class GSNItemProviderAdapterFactory extends GSNAdapterFactory implements 
     if (inContextOfItemProvider != null) inContextOfItemProvider.dispose();
     if (basicGoalItemProvider != null) basicGoalItemProvider.dispose();
     if (independenceGoalItemProvider != null) independenceGoalItemProvider.dispose();
-    if (domainGoalItemProvider != null) domainGoalItemProvider.dispose();
     if (basicStrategyItemProvider != null) basicStrategyItemProvider.dispose();
     if (asilDecompositionStrategyItemProvider != null) asilDecompositionStrategyItemProvider.dispose();
     if (solutionItemProvider != null) solutionItemProvider.dispose();
@@ -617,6 +731,12 @@ public class GSNItemProviderAdapterFactory extends GSNAdapterFactory implements 
     if (orSupporterItemProvider != null) orSupporterItemProvider.dispose();
     if (xorSupporterItemProvider != null) xorSupporterItemProvider.dispose();
     if (mofNSupporterItemProvider != null) mofNSupporterItemProvider.dispose();
+    if (intDomainItemProvider != null) intDomainItemProvider.dispose();
+    if (realDomainItemProvider != null) realDomainItemProvider.dispose();
+    if (enumDomainItemProvider != null) enumDomainItemProvider.dispose();
+    if (valueDomainItemProvider != null) valueDomainItemProvider.dispose();
+    if (domainStrategyItemProvider != null) domainStrategyItemProvider.dispose();
+    if (domainGoalItemProvider != null) domainGoalItemProvider.dispose();
   }
 
 }

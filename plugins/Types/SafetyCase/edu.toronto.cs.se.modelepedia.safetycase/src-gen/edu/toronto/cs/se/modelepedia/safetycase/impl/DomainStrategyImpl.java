@@ -13,31 +13,31 @@ package edu.toronto.cs.se.modelepedia.safetycase.impl;
 
 import edu.toronto.cs.se.modelepedia.safetycase.Domain;
 import edu.toronto.cs.se.modelepedia.safetycase.DomainElement;
-import edu.toronto.cs.se.modelepedia.safetycase.DomainGoal;
+import edu.toronto.cs.se.modelepedia.safetycase.DomainStrategy;
 import edu.toronto.cs.se.modelepedia.safetycase.GSNPackage;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Domain Goal</b></em>'.
+ * An implementation of the model object '<em><b>Domain Strategy</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.DomainGoalImpl#getDomain <em>Domain</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.DomainStrategyImpl#getDomain <em>Domain</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class DomainGoalImpl extends GoalImpl implements DomainGoal {
+public class DomainStrategyImpl extends StrategyImpl implements DomainStrategy {
   /**
    * The cached value of the '{@link #getDomain() <em>Domain</em>}' containment reference.
    * <!-- begin-user-doc -->
@@ -53,7 +53,7 @@ public class DomainGoalImpl extends GoalImpl implements DomainGoal {
    * <!-- end-user-doc -->
    * @generated
    */
-  protected DomainGoalImpl() {
+  protected DomainStrategyImpl() {
     super();
   }
 
@@ -64,7 +64,7 @@ public class DomainGoalImpl extends GoalImpl implements DomainGoal {
    */
   @Override
   protected EClass eStaticClass() {
-    return GSNPackage.Literals.DOMAIN_GOAL;
+    return GSNPackage.Literals.DOMAIN_STRATEGY;
   }
 
   /**
@@ -86,7 +86,7 @@ public class DomainGoalImpl extends GoalImpl implements DomainGoal {
     Domain oldDomain = domain;
     domain = newDomain;
     if (eNotificationRequired()) {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GSNPackage.DOMAIN_GOAL__DOMAIN, oldDomain, newDomain);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GSNPackage.DOMAIN_STRATEGY__DOMAIN, oldDomain, newDomain);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -102,14 +102,14 @@ public class DomainGoalImpl extends GoalImpl implements DomainGoal {
     if (newDomain != domain) {
       NotificationChain msgs = null;
       if (domain != null)
-        msgs = ((InternalEObject)domain).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GSNPackage.DOMAIN_GOAL__DOMAIN, null, msgs);
+        msgs = ((InternalEObject)domain).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GSNPackage.DOMAIN_STRATEGY__DOMAIN, null, msgs);
       if (newDomain != null)
-        msgs = ((InternalEObject)newDomain).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GSNPackage.DOMAIN_GOAL__DOMAIN, null, msgs);
+        msgs = ((InternalEObject)newDomain).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GSNPackage.DOMAIN_STRATEGY__DOMAIN, null, msgs);
       msgs = basicSetDomain(newDomain, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.DOMAIN_GOAL__DOMAIN, newDomain, newDomain));
+      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.DOMAIN_STRATEGY__DOMAIN, newDomain, newDomain));
   }
 
   /**
@@ -120,7 +120,7 @@ public class DomainGoalImpl extends GoalImpl implements DomainGoal {
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
-      case GSNPackage.DOMAIN_GOAL__DOMAIN:
+      case GSNPackage.DOMAIN_STRATEGY__DOMAIN:
         return basicSetDomain(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -134,7 +134,7 @@ public class DomainGoalImpl extends GoalImpl implements DomainGoal {
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
-      case GSNPackage.DOMAIN_GOAL__DOMAIN:
+      case GSNPackage.DOMAIN_STRATEGY__DOMAIN:
         return getDomain();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -148,7 +148,7 @@ public class DomainGoalImpl extends GoalImpl implements DomainGoal {
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
-      case GSNPackage.DOMAIN_GOAL__DOMAIN:
+      case GSNPackage.DOMAIN_STRATEGY__DOMAIN:
         setDomain((Domain)newValue);
         return;
     }
@@ -163,7 +163,7 @@ public class DomainGoalImpl extends GoalImpl implements DomainGoal {
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
-      case GSNPackage.DOMAIN_GOAL__DOMAIN:
+      case GSNPackage.DOMAIN_STRATEGY__DOMAIN:
         setDomain((Domain)null);
         return;
     }
@@ -178,7 +178,7 @@ public class DomainGoalImpl extends GoalImpl implements DomainGoal {
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
-      case GSNPackage.DOMAIN_GOAL__DOMAIN:
+      case GSNPackage.DOMAIN_STRATEGY__DOMAIN:
         return domain != null;
     }
     return super.eIsSet(featureID);
@@ -193,7 +193,7 @@ public class DomainGoalImpl extends GoalImpl implements DomainGoal {
   public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
     if (baseClass == DomainElement.class) {
       switch (derivedFeatureID) {
-        case GSNPackage.DOMAIN_GOAL__DOMAIN: return GSNPackage.DOMAIN_ELEMENT__DOMAIN;
+        case GSNPackage.DOMAIN_STRATEGY__DOMAIN: return GSNPackage.DOMAIN_ELEMENT__DOMAIN;
         default: return -1;
       }
     }
@@ -209,11 +209,11 @@ public class DomainGoalImpl extends GoalImpl implements DomainGoal {
   public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
     if (baseClass == DomainElement.class) {
       switch (baseFeatureID) {
-        case GSNPackage.DOMAIN_ELEMENT__DOMAIN: return GSNPackage.DOMAIN_GOAL__DOMAIN;
+        case GSNPackage.DOMAIN_ELEMENT__DOMAIN: return GSNPackage.DOMAIN_STRATEGY__DOMAIN;
         default: return -1;
       }
     }
     return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
   }
 
-} //DomainGoalImpl
+} //DomainStrategyImpl

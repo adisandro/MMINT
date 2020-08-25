@@ -67,9 +67,6 @@
     <genClasses ecoreClass="safetycase.ecore#//Goal"/>
     <genClasses ecoreClass="safetycase.ecore#//BasicGoal"/>
     <genClasses ecoreClass="safetycase.ecore#//IndependenceGoal"/>
-    <genClasses ecoreClass="safetycase.ecore#//DomainGoal">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute safetycase.ecore#//DomainGoal/domain"/>
-    </genClasses>
     <genClasses ecoreClass="safetycase.ecore#//Strategy"/>
     <genClasses ecoreClass="safetycase.ecore#//BasicStrategy"/>
     <genClasses ecoreClass="safetycase.ecore#//ASILDecompositionStrategy"/>
@@ -99,5 +96,25 @@
     <genClasses ecoreClass="safetycase.ecore#//MofNSupporter">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute safetycase.ecore#//MofNSupporter/target"/>
     </genClasses>
+    <genClasses image="false" ecoreClass="safetycase.ecore#//Domain"/>
+    <genClasses ecoreClass="safetycase.ecore#//IntDomain">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute safetycase.ecore#//IntDomain/lowerBound"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute safetycase.ecore#//IntDomain/upperBound"/>
+    </genClasses>
+    <genClasses ecoreClass="safetycase.ecore#//RealDomain">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute safetycase.ecore#//RealDomain/lowerBound"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute safetycase.ecore#//RealDomain/upperBound"/>
+    </genClasses>
+    <genClasses ecoreClass="safetycase.ecore#//EnumDomain">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute safetycase.ecore#//EnumDomain/values"/>
+    </genClasses>
+    <genClasses ecoreClass="safetycase.ecore#//ValueDomain">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute safetycase.ecore#//ValueDomain/value"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="safetycase.ecore#//DomainElement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference safetycase.ecore#//DomainElement/domain"/>
+    </genClasses>
+    <genClasses ecoreClass="safetycase.ecore#//DomainStrategy"/>
+    <genClasses ecoreClass="safetycase.ecore#//DomainGoal"/>
   </genPackages>
 </genmodel:GenModel>

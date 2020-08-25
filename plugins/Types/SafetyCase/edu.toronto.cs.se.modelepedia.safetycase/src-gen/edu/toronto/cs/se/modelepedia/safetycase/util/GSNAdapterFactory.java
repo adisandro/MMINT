@@ -125,10 +125,6 @@ public class GSNAdapterFactory extends AdapterFactoryImpl {
         return createIndependenceGoalAdapter();
       }
       @Override
-      public Adapter caseDomainGoal(DomainGoal object) {
-        return createDomainGoalAdapter();
-      }
-      @Override
       public Adapter caseStrategy(Strategy object) {
         return createStrategyAdapter();
       }
@@ -191,6 +187,38 @@ public class GSNAdapterFactory extends AdapterFactoryImpl {
       @Override
       public Adapter caseMofNSupporter(MofNSupporter object) {
         return createMofNSupporterAdapter();
+      }
+      @Override
+      public Adapter caseDomain(Domain object) {
+        return createDomainAdapter();
+      }
+      @Override
+      public Adapter caseIntDomain(IntDomain object) {
+        return createIntDomainAdapter();
+      }
+      @Override
+      public Adapter caseRealDomain(RealDomain object) {
+        return createRealDomainAdapter();
+      }
+      @Override
+      public Adapter caseEnumDomain(EnumDomain object) {
+        return createEnumDomainAdapter();
+      }
+      @Override
+      public Adapter caseValueDomain(ValueDomain object) {
+        return createValueDomainAdapter();
+      }
+      @Override
+      public Adapter caseDomainElement(DomainElement object) {
+        return createDomainElementAdapter();
+      }
+      @Override
+      public Adapter caseDomainStrategy(DomainStrategy object) {
+        return createDomainStrategyAdapter();
+      }
+      @Override
+      public Adapter caseDomainGoal(DomainGoal object) {
+        return createDomainGoalAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object) {
@@ -615,6 +643,104 @@ public class GSNAdapterFactory extends AdapterFactoryImpl {
    * @generated
    */
   public Adapter createMofNSupporterAdapter() {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.safetycase.Domain <em>Domain</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.toronto.cs.se.modelepedia.safetycase.Domain
+   * @generated
+   */
+  public Adapter createDomainAdapter() {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.safetycase.IntDomain <em>Int Domain</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.toronto.cs.se.modelepedia.safetycase.IntDomain
+   * @generated
+   */
+  public Adapter createIntDomainAdapter() {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.safetycase.RealDomain <em>Real Domain</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.toronto.cs.se.modelepedia.safetycase.RealDomain
+   * @generated
+   */
+  public Adapter createRealDomainAdapter() {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.safetycase.EnumDomain <em>Enum Domain</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.toronto.cs.se.modelepedia.safetycase.EnumDomain
+   * @generated
+   */
+  public Adapter createEnumDomainAdapter() {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.safetycase.ValueDomain <em>Value Domain</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.toronto.cs.se.modelepedia.safetycase.ValueDomain
+   * @generated
+   */
+  public Adapter createValueDomainAdapter() {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.safetycase.DomainElement <em>Domain Element</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.toronto.cs.se.modelepedia.safetycase.DomainElement
+   * @generated
+   */
+  public Adapter createDomainElementAdapter() {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.safetycase.DomainStrategy <em>Domain Strategy</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.toronto.cs.se.modelepedia.safetycase.DomainStrategy
+   * @generated
+   */
+  public Adapter createDomainStrategyAdapter() {
     return null;
   }
 

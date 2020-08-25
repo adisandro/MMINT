@@ -11,17 +11,17 @@
  */
 package edu.toronto.cs.se.modelepedia.safetycase;
 
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Domain Goal</b></em>'.
+ * A representation of the model object '<em><b>Domain</b></em>'.
  * <!-- end-user-doc -->
  *
  *
- * @see edu.toronto.cs.se.modelepedia.safetycase.GSNPackage#getDomainGoal()
- * @model
+ * @see edu.toronto.cs.se.modelepedia.safetycase.GSNPackage#getDomain()
+ * @model abstract="true"
  * @generated
  */
-public interface DomainGoal extends Goal, DomainElement {
-
-} // DomainGoal
+public interface Domain extends EObject {
+} // Domain

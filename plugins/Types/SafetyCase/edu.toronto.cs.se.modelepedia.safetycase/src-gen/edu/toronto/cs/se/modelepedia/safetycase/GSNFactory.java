@@ -193,6 +193,51 @@ public interface GSNFactory extends EFactory {
   MofNSupporter createMofNSupporter();
 
   /**
+   * Returns a new object of class '<em>Int Domain</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Int Domain</em>'.
+   * @generated
+   */
+  IntDomain createIntDomain();
+
+  /**
+   * Returns a new object of class '<em>Real Domain</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Real Domain</em>'.
+   * @generated
+   */
+  RealDomain createRealDomain();
+
+  /**
+   * Returns a new object of class '<em>Enum Domain</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Enum Domain</em>'.
+   * @generated
+   */
+  EnumDomain createEnumDomain();
+
+  /**
+   * Returns a new object of class '<em>Value Domain</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Value Domain</em>'.
+   * @generated
+   */
+  ValueDomain createValueDomain();
+
+  /**
+   * Returns a new object of class '<em>Domain Strategy</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Domain Strategy</em>'.
+   * @generated
+   */
+  DomainStrategy createDomainStrategy();
+
+  /**
    * Returns the package supported by this factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

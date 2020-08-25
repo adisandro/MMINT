@@ -177,20 +177,6 @@ public class GSNSwitch<T> extends Switch<T> {
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case GSNPackage.DOMAIN_GOAL: {
-        DomainGoal domainGoal = (DomainGoal)theEObject;
-        T result = caseDomainGoal(domainGoal);
-        if (result == null) result = caseGoal(domainGoal);
-        if (result == null) result = caseDecomposableCoreElement(domainGoal);
-        if (result == null) result = caseStatefulElement(domainGoal);
-        if (result == null) result = caseASILfulElement(domainGoal);
-        if (result == null) result = caseSupportable(domainGoal);
-        if (result == null) result = caseCoreElement(domainGoal);
-        if (result == null) result = caseSupporter(domainGoal);
-        if (result == null) result = caseArgumentElement(domainGoal);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
       case GSNPackage.STRATEGY: {
         Strategy strategy = (Strategy)theEObject;
         T result = caseStrategy(strategy);
@@ -326,6 +312,74 @@ public class GSNSwitch<T> extends Switch<T> {
         if (result == null) result = caseSupportConnector(mofNSupporter);
         if (result == null) result = caseSupportable(mofNSupporter);
         if (result == null) result = caseSupporter(mofNSupporter);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case GSNPackage.DOMAIN: {
+        Domain domain = (Domain)theEObject;
+        T result = caseDomain(domain);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case GSNPackage.INT_DOMAIN: {
+        IntDomain intDomain = (IntDomain)theEObject;
+        T result = caseIntDomain(intDomain);
+        if (result == null) result = caseDomain(intDomain);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case GSNPackage.REAL_DOMAIN: {
+        RealDomain realDomain = (RealDomain)theEObject;
+        T result = caseRealDomain(realDomain);
+        if (result == null) result = caseDomain(realDomain);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case GSNPackage.ENUM_DOMAIN: {
+        EnumDomain enumDomain = (EnumDomain)theEObject;
+        T result = caseEnumDomain(enumDomain);
+        if (result == null) result = caseDomain(enumDomain);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case GSNPackage.VALUE_DOMAIN: {
+        ValueDomain valueDomain = (ValueDomain)theEObject;
+        T result = caseValueDomain(valueDomain);
+        if (result == null) result = caseDomain(valueDomain);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case GSNPackage.DOMAIN_ELEMENT: {
+        DomainElement domainElement = (DomainElement)theEObject;
+        T result = caseDomainElement(domainElement);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case GSNPackage.DOMAIN_STRATEGY: {
+        DomainStrategy domainStrategy = (DomainStrategy)theEObject;
+        T result = caseDomainStrategy(domainStrategy);
+        if (result == null) result = caseStrategy(domainStrategy);
+        if (result == null) result = caseDomainElement(domainStrategy);
+        if (result == null) result = caseDecomposableCoreElement(domainStrategy);
+        if (result == null) result = caseSupportable(domainStrategy);
+        if (result == null) result = caseCoreElement(domainStrategy);
+        if (result == null) result = caseSupporter(domainStrategy);
+        if (result == null) result = caseArgumentElement(domainStrategy);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case GSNPackage.DOMAIN_GOAL: {
+        DomainGoal domainGoal = (DomainGoal)theEObject;
+        T result = caseDomainGoal(domainGoal);
+        if (result == null) result = caseGoal(domainGoal);
+        if (result == null) result = caseDomainElement(domainGoal);
+        if (result == null) result = caseDecomposableCoreElement(domainGoal);
+        if (result == null) result = caseStatefulElement(domainGoal);
+        if (result == null) result = caseASILfulElement(domainGoal);
+        if (result == null) result = caseSupportable(domainGoal);
+        if (result == null) result = caseCoreElement(domainGoal);
+        if (result == null) result = caseSupporter(domainGoal);
+        if (result == null) result = caseArgumentElement(domainGoal);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -765,6 +819,111 @@ public class GSNSwitch<T> extends Switch<T> {
    * @generated
    */
   public T caseMofNSupporter(MofNSupporter object) {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Domain</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Domain</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseDomain(Domain object) {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Int Domain</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Int Domain</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseIntDomain(IntDomain object) {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Real Domain</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Real Domain</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseRealDomain(RealDomain object) {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Enum Domain</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Enum Domain</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseEnumDomain(EnumDomain object) {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Value Domain</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Value Domain</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseValueDomain(ValueDomain object) {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Domain Element</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Domain Element</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseDomainElement(DomainElement object) {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Domain Strategy</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Domain Strategy</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseDomainStrategy(DomainStrategy object) {
     return null;
   }
 
