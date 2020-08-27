@@ -2,8 +2,11 @@ package edu.toronto.cs.se.modelepedia.safetycase.design.context;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
@@ -32,8 +35,10 @@ import edu.toronto.cs.se.modelepedia.safetycase.RealDomain;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCase;
 import edu.toronto.cs.se.modelepedia.safetycase.Strategy;
 import edu.toronto.cs.se.modelepedia.safetycase.Supportable;
+import edu.toronto.cs.se.modelepedia.safetycase.SupportedBy;
 import edu.toronto.cs.se.modelepedia.safetycase.Supporter;
 import edu.toronto.cs.se.modelepedia.safetycase.ValueDomain;
+import edu.toronto.cs.se.modelepedia.safetycase.impl.DomainImpl;
 
 public class DomainDecomposition extends AbstractExternalJavaAction {
 
@@ -128,71 +133,123 @@ public class DomainDecomposition extends AbstractExternalJavaAction {
       return justification;
     }
 
-    private Domain parseDomainInput(String domainInput) throws Exception {
-      if (domainInput.isBlank()) {
-        throw new MMINTException("Empty domain");
-      }
+    private boolean checkDomainDecomposition(DomainStrategy strategy) {
+      var domain = strategy.getDomain();
+      var subDomains = strategy.getSupportedBy().stream()
+        .map(SupportedBy::getTarget)
+        .filter(g -> g instanceof DomainGoal)
+        .map(g -> ((DomainGoal) g).getDomain())
+        .collect(Collectors.toSet());
 
-      Domain domain;
-      domainInput = domainInput.strip();
-      if (domainInput.contains("_")) {
-        var entries = domainInput.split("_");
-        if (entries.length != 2) {
-          throw new MMINTException("Bad numeric domain format");
-        }
-        try {
-          var lower = Integer.parseInt(entries[0].strip());
-          var upper = Integer.parseInt(entries[1].strip());
-          if (upper <= lower) {
-            throw new MMINTException("Upper bound must be > lower bound");
+      if (domain instanceof IntDomain) {
+        var subBounds = new ArrayList<Integer>();
+        var subValues = new ArrayList<Integer>();
+        for (var subDomain : subDomains) {
+          try {
+            if (subDomain instanceof IntDomain) {
+              subBounds.add(((IntDomain) subDomain).getLowerBound());
+              subBounds.add(((IntDomain) subDomain).getUpperBound());
+            }
+            else if (subDomain instanceof EnumDomain) {
+              for (var value : ((EnumDomain) subDomain).getValues()) {
+                subValues.add(Integer.valueOf(value));
+              }
+            }
+            else { // ValueDomain
+              var value = ((ValueDomain) subDomain).getValue();
+              subValues.add(Integer.valueOf(value));
+            }
           }
-          domain = this.factory.createIntDomain();
-          ((IntDomain) domain).setLowerBound(lower);
-          ((IntDomain) domain).setUpperBound(upper);
-        }
-        catch (NumberFormatException e) {
-          var lower = Double.parseDouble(entries[0].strip());
-          var upper = Double.parseDouble(entries[1].strip());
-          if (upper <= lower) {
-            throw new MMINTException("Upper bound must be > lower bound");
+          catch (NumberFormatException e) {
+            // not an integer value
+            return false;
           }
-          domain = this.factory.createRealDomain();
-          ((RealDomain) domain).setLowerBound(lower);
-          ((RealDomain) domain).setUpperBound(upper);
         }
+        Collections.sort(subBounds);
+        Collections.sort(subValues);
+//        var i = 0;
+//        var j = 0;
+//        var doneBounds = (i == subBounds.size());
+//        var doneValues = (j == subValues.size());
+//        var subLowerBound = Math.min(subBounds.get(0), subValues.get(0));
+//        if (subBounds.get(0) != ((IntDomain) domain).getLowerBound() ||
+//            subBounds.get(subBounds.size()-1) != ((IntDomain) domain).getUpperBound()) {
+//          // bad domain bounds
+//          return false;
+//        }
+//        for (var i = 1; i < subBounds.size()-2; i+=2) {
+//          var a = subBounds.get(i);
+//          var b = subBounds.get(i+1);
+//          if (a != b && (a+1) != b) {
+//            // domain hole
+//            return false;
+//          }
+//        }
+        return true;
       }
-      else if (domainInput.contains(",")) {
-        var entries = domainInput.split(",");
-        if (entries.length == 1) {
-          throw new MMINTException("Bad enumeration domain format");
-        }
-        domain = this.factory.createEnumDomain();
-        var enumValues = ((EnumDomain) domain).getValues();
-        for (var entry : entries) {
-          if (entry.isBlank()) {
-            continue;
+      else if (domain instanceof RealDomain) {
+        var subBounds = new ArrayList<Double>();
+        for (var subDomain : subDomains) {
+          // only real sub-ranges are meaningful
+          if (subDomain instanceof IntDomain || subDomain instanceof EnumDomain || subDomain instanceof ValueDomain) {
+            return false;
           }
-          enumValues.add(entry.strip());
+          else { // RealDomain
+            subBounds.add(((RealDomain) subDomain).getLowerBound());
+            subBounds.add(((RealDomain) subDomain).getUpperBound());
+          }
         }
+        Collections.sort(subBounds);
+        if (subBounds.get(0) != ((RealDomain) domain).getLowerBound() ||
+            subBounds.get(subBounds.size()-1) != ((RealDomain) domain).getUpperBound()) {
+          // bad domain bounds
+          return false;
+        }
+        for (var i = 1; i < subBounds.size()-2; i+=2) {
+          var a = subBounds.get(i);
+          var b = subBounds.get(i+1);
+          if (a != b) {
+            // domain hole or overlap
+            return false;
+          }
+        }
+        return true;
       }
-      else {
-        domain = this.factory.createValueDomain();
-        ((ValueDomain) domain).setValue(domainInput.strip());
+      else if (domain instanceof EnumDomain) {
+        var enumValues = new HashSet<>(((EnumDomain) domain).getValues());
+        for (var subDomain : subDomains) {
+          if (subDomain instanceof IntDomain || subDomain instanceof RealDomain) {
+            // no sub-ranges
+            return false;
+          }
+          else if (subDomain instanceof EnumDomain) {
+            var subValues = ((EnumDomain) subDomain).getValues();
+            if (!enumValues.containsAll(subValues)) {
+              // extra sub-domains
+              return false;
+            }
+            enumValues.removeAll(subValues);
+          }
+          else { // ValueDomain
+            var subValue = ((ValueDomain) subDomain).getValue();
+            if (!enumValues.contains(subValue)) {
+              // extra sub-domain
+              return false;
+            }
+            enumValues.remove(subValue);
+          }
+        }
+        if (!enumValues.isEmpty()) {
+          // missing sub-domains
+          return false;
+        }
+        return true;
       }
-
-      return domain;
-    }
-
-    private boolean checkDomainDecomposition() {
-      /* range a_b:
-       *  order all domains, then check for absence of holes or overlap
-       *  special case: single values
-       * enumeration a,b,c:
-       *  check that all exist
-       *  special case: sub-enumerations
-       */
+      else { // ValueDomain
+        return false;
+      }
       // TODO: add manual creation tools in sirius diagram
-      return true;
+      // TODO: add check invocation from context menu
     }
 
     @Override
@@ -205,10 +262,11 @@ public class DomainDecomposition extends AbstractExternalJavaAction {
         var domainInput = MIDDialogs.getStringInput(title, message, null);
         int numDomains;
         String subExample, subMessage;
-        var domain = parseDomainInput(domainInput);
+        var domain = DomainImpl.parseDomainString(domainInput);
         if (domain instanceof IntDomain || domain instanceof RealDomain) {
           message = "Insert the number of domains";
           numDomains = Integer.parseInt(MIDDialogs.getStringInput(title, message, null));
+          // TODO separate int and real messages
           subMessage = ", using '_' for ranges.\n";
           subExample = "(e.g. integer range '-40_50'; real range '-40.0_50.0'; single integer value '10')";
         }
@@ -239,11 +297,12 @@ public class DomainDecomposition extends AbstractExternalJavaAction {
           message = "Insert the sub-domain #" + (i+1) + subMessage + subExample;
           var subDomainInput = MIDDialogs.getStringInput(title, message, null);
           subDomainInputs.add(subDomainInput);
-          var subDomain = parseDomainInput(subDomainInput);
+          var subDomain = DomainImpl.parseDomainString(subDomainInput);
           createDomainGoal(strategy, subGoalId + i, subGoalDesc + subDomainInput, subDomain);
         }
         createCompletenessGoal(strategy, compGoalId, compGoalDesc + String.join(", ", subDomainInputs));
-        if (!checkDomainDecomposition()) {
+        // check decomposition validity
+        if (!checkDomainDecomposition(strategy)) {
           throw new MMINTException("Invalid domain decomposition");
         }
         // "commit" the changes
