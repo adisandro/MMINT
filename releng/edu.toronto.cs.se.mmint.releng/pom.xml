@@ -13,7 +13,7 @@
     <repository>
   	  <id>Eclipse</id>
   	  <layout>p2</layout>
-  	  <url>http://download.eclipse.org/releases/2020-06</url>
+  	  <url>http://download.eclipse.org/releases/2020-09</url>
     </repository>
     <repository>
   	  <id>Henshin</id>
