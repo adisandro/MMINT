@@ -3,22 +3,28 @@
  * All rights reserved. This program and the accompanying materials are made available under the terms
  * of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *   Alessio Di Sandro - Implementation
  *   Nick Fung - Implementation.
- * 
+ *
  */
 package edu.toronto.cs.se.modelepedia.safetycase.impl;
 
-import edu.toronto.cs.se.modelepedia.safetycase.GSNPackage;
-import edu.toronto.cs.se.modelepedia.safetycase.IntDomain;
+import java.util.ArrayList;
+import java.util.Collections;
 
 import org.eclipse.emf.common.notify.Notification;
-
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
+import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.modelepedia.safetycase.Domain;
+import edu.toronto.cs.se.modelepedia.safetycase.EnumDomain;
+import edu.toronto.cs.se.modelepedia.safetycase.GSNPackage;
+import edu.toronto.cs.se.modelepedia.safetycase.IntDomain;
+import edu.toronto.cs.se.modelepedia.safetycase.ValueDomain;
 
 /**
  * <!-- begin-user-doc -->
@@ -53,7 +59,7 @@ public class IntDomainImpl extends DomainImpl implements IntDomain {
    * @generated
    * @ordered
    */
-  protected int lowerBound = LOWER_BOUND_EDEFAULT;
+  protected int lowerBound = IntDomainImpl.LOWER_BOUND_EDEFAULT;
 
   /**
    * The default value of the '{@link #getUpperBound() <em>Upper Bound</em>}' attribute.
@@ -73,7 +79,7 @@ public class IntDomainImpl extends DomainImpl implements IntDomain {
    * @generated
    * @ordered
    */
-  protected int upperBound = UPPER_BOUND_EDEFAULT;
+  protected int upperBound = IntDomainImpl.UPPER_BOUND_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -101,7 +107,7 @@ public class IntDomainImpl extends DomainImpl implements IntDomain {
    */
   @Override
   public int getLowerBound() {
-    return lowerBound;
+    return this.lowerBound;
   }
 
   /**
@@ -111,10 +117,10 @@ public class IntDomainImpl extends DomainImpl implements IntDomain {
    */
   @Override
   public void setLowerBound(int newLowerBound) {
-    int oldLowerBound = lowerBound;
-    lowerBound = newLowerBound;
+    var oldLowerBound = this.lowerBound;
+    this.lowerBound = newLowerBound;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.INT_DOMAIN__LOWER_BOUND, oldLowerBound, lowerBound));
+      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.INT_DOMAIN__LOWER_BOUND, oldLowerBound, this.lowerBound));
   }
 
   /**
@@ -124,7 +130,7 @@ public class IntDomainImpl extends DomainImpl implements IntDomain {
    */
   @Override
   public int getUpperBound() {
-    return upperBound;
+    return this.upperBound;
   }
 
   /**
@@ -134,10 +140,10 @@ public class IntDomainImpl extends DomainImpl implements IntDomain {
    */
   @Override
   public void setUpperBound(int newUpperBound) {
-    int oldUpperBound = upperBound;
-    upperBound = newUpperBound;
+    var oldUpperBound = this.upperBound;
+    this.upperBound = newUpperBound;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.INT_DOMAIN__UPPER_BOUND, oldUpperBound, upperBound));
+      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.INT_DOMAIN__UPPER_BOUND, oldUpperBound, this.upperBound));
   }
 
   /**
@@ -183,10 +189,10 @@ public class IntDomainImpl extends DomainImpl implements IntDomain {
   public void eUnset(int featureID) {
     switch (featureID) {
       case GSNPackage.INT_DOMAIN__LOWER_BOUND:
-        setLowerBound(LOWER_BOUND_EDEFAULT);
+        setLowerBound(IntDomainImpl.LOWER_BOUND_EDEFAULT);
         return;
       case GSNPackage.INT_DOMAIN__UPPER_BOUND:
-        setUpperBound(UPPER_BOUND_EDEFAULT);
+        setUpperBound(IntDomainImpl.UPPER_BOUND_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -201,9 +207,9 @@ public class IntDomainImpl extends DomainImpl implements IntDomain {
   public boolean eIsSet(int featureID) {
     switch (featureID) {
       case GSNPackage.INT_DOMAIN__LOWER_BOUND:
-        return lowerBound != LOWER_BOUND_EDEFAULT;
+        return this.lowerBound != IntDomainImpl.LOWER_BOUND_EDEFAULT;
       case GSNPackage.INT_DOMAIN__UPPER_BOUND:
-        return upperBound != UPPER_BOUND_EDEFAULT;
+        return this.upperBound != IntDomainImpl.UPPER_BOUND_EDEFAULT;
     }
     return super.eIsSet(featureID);
   }
@@ -217,13 +223,102 @@ public class IntDomainImpl extends DomainImpl implements IntDomain {
   public String toString() {
     if (eIsProxy()) return super.toString();
 
-    StringBuilder result = new StringBuilder(super.toString());
+    var result = new StringBuilder(super.toString());
     result.append(" (lowerBound: ");
-    result.append(lowerBound);
+    result.append(this.lowerBound);
     result.append(", upperBound: ");
-    result.append(upperBound);
+    result.append(this.upperBound);
     result.append(')');
     return result.toString();
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public void validateDecomposition(EList<Domain> subDomains) throws MMINTException {
+    var subBounds = new ArrayList<IntDomain>();
+    var subValues = new ArrayList<Integer>();
+
+    for (var subDomain : subDomains) {
+      if (subDomain instanceof IntDomain) {
+        var lower = ((IntDomain) subDomain).getLowerBound();
+        var upper = ((IntDomain) subDomain).getUpperBound();
+        if (upper <= lower) {
+          throw new MMINTException("Upper bound '" + upper + "' must be > lower bound '" + lower + "'");
+        }
+        subBounds.add((IntDomain) subDomain);
+      }
+      else if (subDomain instanceof EnumDomain) {
+        for (var value : ((EnumDomain) subDomain).getValues()) {
+          try {
+            subValues.add(Integer.valueOf(value));
+          }
+          catch (NumberFormatException e) {
+            throw new MMINTException("The sub-domain value '" + value + "' is not an integer value");
+          }
+        }
+      }
+      else { // ValueDomain
+        var value = ((ValueDomain) subDomain).getValue();
+        try {
+          subValues.add(Integer.valueOf(value));
+        }
+        catch (NumberFormatException e) {
+          throw new MMINTException("The sub-domain value '" + value + "' is not an integer value");
+        }
+      }
+    }
+    Collections.sort(subBounds, (i1, i2) -> Integer.compare(i1.getLowerBound(), i2.getLowerBound()));
+    Collections.sort(subValues);
+    var i = 0;
+    var j = 0;
+    Integer prevSubValue = null;
+    while (true) {
+      var moreBounds = (i < subBounds.size());
+      var moreValues = (j < subValues.size());
+      var isBound = false;
+      Integer subValue = null;
+      if (!moreBounds && !moreValues) {
+        break;
+      }
+      if (moreBounds) {
+        subValue = subBounds.get(i).getLowerBound();
+        isBound = true;
+      }
+      if (moreValues) {
+        var subValue2 = subValues.get(j);
+        if (subValue == null || subValue > subValue2) {
+          subValue = subValue2;
+          isBound = false;
+        }
+      }
+      if (prevSubValue == null) {
+        if (subValue != getLowerBound()) {
+          throw new MMINTException("The lowest sub-domain bound does not match the domain lower bound");
+        }
+      }
+      else {
+        if ((prevSubValue + 1) > subValue) {
+          throw new MMINTException("The sub-domain values '" + prevSubValue + "' and '" + subValue + "' overlap");
+        }
+        else if ((prevSubValue + 1) < subValue) {
+          throw new MMINTException("The sub-domain values '" + prevSubValue + "' and '" + subValue +
+                                   "' leave a domain hole");
+        }
+      }
+      if (isBound) {
+        prevSubValue = subBounds.get(i).getUpperBound();
+        i++;
+      }
+      else {
+        prevSubValue = subValue;
+        j++;
+      }
+    }
+    if (prevSubValue != getUpperBound()) {
+      throw new MMINTException("The uppermost sub-domain bound does not match the domain upper bound");
+    }
   }
 
 } //IntDomainImpl

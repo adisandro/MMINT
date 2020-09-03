@@ -22,6 +22,8 @@ import edu.toronto.cs.se.modelepedia.safetycase.GSNPackage;
 import edu.toronto.cs.se.modelepedia.safetycase.IntDomain;
 import edu.toronto.cs.se.modelepedia.safetycase.RealDomain;
 import edu.toronto.cs.se.modelepedia.safetycase.ValueDomain;
+import java.lang.reflect.InvocationTargetException;
+import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -48,6 +50,39 @@ public abstract class DomainImpl extends MinimalEObjectImpl.Container implements
   @Override
   protected EClass eStaticClass() {
     return GSNPackage.Literals.DOMAIN;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void validateDecomposition(EList<Domain> subDomains) throws MMINTException {
+    // TODO: implement this method
+    // Ensure that you remove @generated or mark it @generated NOT
+    throw new UnsupportedOperationException();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  @SuppressWarnings("unchecked")
+  public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+    switch (operationID) {
+      case GSNPackage.DOMAIN___VALIDATE_DECOMPOSITION__ELIST:
+        try {
+          validateDecomposition((EList<Domain>)arguments.get(0));
+          return null;
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+    }
+    return super.eInvoke(operationID, arguments);
   }
 
   /**

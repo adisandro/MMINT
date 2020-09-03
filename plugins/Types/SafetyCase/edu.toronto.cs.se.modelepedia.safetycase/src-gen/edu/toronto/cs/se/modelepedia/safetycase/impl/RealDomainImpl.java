@@ -3,22 +3,29 @@
  * All rights reserved. This program and the accompanying materials are made available under the terms
  * of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *   Alessio Di Sandro - Implementation
  *   Nick Fung - Implementation.
- * 
+ *
  */
 package edu.toronto.cs.se.modelepedia.safetycase.impl;
 
-import edu.toronto.cs.se.modelepedia.safetycase.GSNPackage;
-import edu.toronto.cs.se.modelepedia.safetycase.RealDomain;
+import java.util.ArrayList;
+import java.util.Collections;
 
 import org.eclipse.emf.common.notify.Notification;
-
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
+import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.modelepedia.safetycase.Domain;
+import edu.toronto.cs.se.modelepedia.safetycase.EnumDomain;
+import edu.toronto.cs.se.modelepedia.safetycase.GSNPackage;
+import edu.toronto.cs.se.modelepedia.safetycase.IntDomain;
+import edu.toronto.cs.se.modelepedia.safetycase.RealDomain;
+import edu.toronto.cs.se.modelepedia.safetycase.ValueDomain;
 
 /**
  * <!-- begin-user-doc -->
@@ -53,7 +60,7 @@ public class RealDomainImpl extends DomainImpl implements RealDomain {
    * @generated
    * @ordered
    */
-  protected double lowerBound = LOWER_BOUND_EDEFAULT;
+  protected double lowerBound = RealDomainImpl.LOWER_BOUND_EDEFAULT;
 
   /**
    * The default value of the '{@link #getUpperBound() <em>Upper Bound</em>}' attribute.
@@ -73,7 +80,7 @@ public class RealDomainImpl extends DomainImpl implements RealDomain {
    * @generated
    * @ordered
    */
-  protected double upperBound = UPPER_BOUND_EDEFAULT;
+  protected double upperBound = RealDomainImpl.UPPER_BOUND_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -101,7 +108,7 @@ public class RealDomainImpl extends DomainImpl implements RealDomain {
    */
   @Override
   public double getLowerBound() {
-    return lowerBound;
+    return this.lowerBound;
   }
 
   /**
@@ -111,10 +118,10 @@ public class RealDomainImpl extends DomainImpl implements RealDomain {
    */
   @Override
   public void setLowerBound(double newLowerBound) {
-    double oldLowerBound = lowerBound;
-    lowerBound = newLowerBound;
+    var oldLowerBound = this.lowerBound;
+    this.lowerBound = newLowerBound;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.REAL_DOMAIN__LOWER_BOUND, oldLowerBound, lowerBound));
+      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.REAL_DOMAIN__LOWER_BOUND, oldLowerBound, this.lowerBound));
   }
 
   /**
@@ -124,7 +131,7 @@ public class RealDomainImpl extends DomainImpl implements RealDomain {
    */
   @Override
   public double getUpperBound() {
-    return upperBound;
+    return this.upperBound;
   }
 
   /**
@@ -134,10 +141,10 @@ public class RealDomainImpl extends DomainImpl implements RealDomain {
    */
   @Override
   public void setUpperBound(double newUpperBound) {
-    double oldUpperBound = upperBound;
-    upperBound = newUpperBound;
+    var oldUpperBound = this.upperBound;
+    this.upperBound = newUpperBound;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.REAL_DOMAIN__UPPER_BOUND, oldUpperBound, upperBound));
+      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.REAL_DOMAIN__UPPER_BOUND, oldUpperBound, this.upperBound));
   }
 
   /**
@@ -183,10 +190,10 @@ public class RealDomainImpl extends DomainImpl implements RealDomain {
   public void eUnset(int featureID) {
     switch (featureID) {
       case GSNPackage.REAL_DOMAIN__LOWER_BOUND:
-        setLowerBound(LOWER_BOUND_EDEFAULT);
+        setLowerBound(RealDomainImpl.LOWER_BOUND_EDEFAULT);
         return;
       case GSNPackage.REAL_DOMAIN__UPPER_BOUND:
-        setUpperBound(UPPER_BOUND_EDEFAULT);
+        setUpperBound(RealDomainImpl.UPPER_BOUND_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -201,9 +208,9 @@ public class RealDomainImpl extends DomainImpl implements RealDomain {
   public boolean eIsSet(int featureID) {
     switch (featureID) {
       case GSNPackage.REAL_DOMAIN__LOWER_BOUND:
-        return lowerBound != LOWER_BOUND_EDEFAULT;
+        return this.lowerBound != RealDomainImpl.LOWER_BOUND_EDEFAULT;
       case GSNPackage.REAL_DOMAIN__UPPER_BOUND:
-        return upperBound != UPPER_BOUND_EDEFAULT;
+        return this.upperBound != RealDomainImpl.UPPER_BOUND_EDEFAULT;
     }
     return super.eIsSet(featureID);
   }
@@ -217,13 +224,51 @@ public class RealDomainImpl extends DomainImpl implements RealDomain {
   public String toString() {
     if (eIsProxy()) return super.toString();
 
-    StringBuilder result = new StringBuilder(super.toString());
+    var result = new StringBuilder(super.toString());
     result.append(" (lowerBound: ");
-    result.append(lowerBound);
+    result.append(this.lowerBound);
     result.append(", upperBound: ");
-    result.append(upperBound);
+    result.append(this.upperBound);
     result.append(')');
     return result.toString();
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public void validateDecomposition(EList<Domain> subDomains) throws MMINTException {
+    var subBounds = new ArrayList<RealDomain>();
+    for (var subDomain : subDomains) {
+      if (subDomain instanceof IntDomain || subDomain instanceof EnumDomain || subDomain instanceof ValueDomain) {
+        throw new MMINTException("A real domain can't be decomposed into integer, enum or value sub-domains");
+      }
+      else { // RealDomain
+        var lower = ((RealDomain) subDomain).getLowerBound();
+        var upper = ((RealDomain) subDomain).getUpperBound();
+        if (upper <= lower) {
+          throw new MMINTException("Upper bound '" + upper + "' must be > lower bound '" + lower + "'");
+        }
+        subBounds.add((RealDomain) subDomain);
+      }
+    }
+    Collections.sort(subBounds, (r1, r2) -> Double.compare(r1.getLowerBound(), r2.getLowerBound()));
+    if (subBounds.get(0).getLowerBound() != getLowerBound()) {
+      throw new MMINTException("The lowest sub-domain bound does not match the domain lower bound");
+    }
+    if (subBounds.get(subBounds.size()-1).getUpperBound() != getUpperBound()) {
+      throw new MMINTException("The uppermost sub-domain bound does not match the domain upper bound");
+    }
+    for (var i = 0; i < subBounds.size()-1; i++) {
+      var a = subBounds.get(i).getUpperBound();
+      var b = subBounds.get(i+1).getLowerBound();
+      if (a > b) {
+        throw new MMINTException("The sub-domain bounds '_" + a + ")' and '(" + b + "_' overlap");
+      }
+      else if (a < b) {
+        throw new MMINTException("The sub-domain bounds '_" + a + ")' and '(" + b + "_' leave a domain hole");
+      }
+    }
   }
 
 } //RealDomainImpl

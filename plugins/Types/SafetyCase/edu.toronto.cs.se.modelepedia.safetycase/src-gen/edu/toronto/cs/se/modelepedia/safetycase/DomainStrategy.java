@@ -3,13 +3,15 @@
  * All rights reserved. This program and the accompanying materials are made available under the terms
  * of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *   Alessio Di Sandro - Implementation
  *   Nick Fung - Implementation.
- * 
+ *
  */
 package edu.toronto.cs.se.modelepedia.safetycase;
+
+import edu.toronto.cs.se.mmint.MMINTException;
 
 
 /**
@@ -23,4 +25,14 @@ package edu.toronto.cs.se.modelepedia.safetycase;
  * @generated
  */
 public interface DomainStrategy extends Strategy, DomainElement {
+
+  /**
+   * <!-- begin-user-doc --> Validates the correctness of the decomposition of this strategy's domain.
+   *
+   * @throws MMINTException
+   *           If the decomposition in not correct. <!-- end-user-doc -->
+   * @model exceptions="edu.toronto.cs.se.modelepedia.safetycase.MMINTException"
+   * @generated
+   */
+  void validateDecomposition() throws MMINTException;
 } // DomainStrategy

@@ -3,22 +3,23 @@
  * All rights reserved. This program and the accompanying materials are made available under the terms
  * of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *   Alessio Di Sandro - Implementation
  *   Nick Fung - Implementation.
- * 
+ *
  */
 package edu.toronto.cs.se.modelepedia.safetycase.impl;
 
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
+import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.modelepedia.safetycase.Domain;
 import edu.toronto.cs.se.modelepedia.safetycase.GSNPackage;
 import edu.toronto.cs.se.modelepedia.safetycase.ValueDomain;
-
-import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -52,7 +53,7 @@ public class ValueDomainImpl extends DomainImpl implements ValueDomain {
    * @generated
    * @ordered
    */
-  protected String value = VALUE_EDEFAULT;
+  protected String value = ValueDomainImpl.VALUE_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -80,7 +81,7 @@ public class ValueDomainImpl extends DomainImpl implements ValueDomain {
    */
   @Override
   public String getValue() {
-    return value;
+    return this.value;
   }
 
   /**
@@ -90,10 +91,10 @@ public class ValueDomainImpl extends DomainImpl implements ValueDomain {
    */
   @Override
   public void setValue(String newValue) {
-    String oldValue = value;
-    value = newValue;
+    var oldValue = this.value;
+    this.value = newValue;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.VALUE_DOMAIN__VALUE, oldValue, value));
+      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.VALUE_DOMAIN__VALUE, oldValue, this.value));
   }
 
   /**
@@ -134,7 +135,7 @@ public class ValueDomainImpl extends DomainImpl implements ValueDomain {
   public void eUnset(int featureID) {
     switch (featureID) {
       case GSNPackage.VALUE_DOMAIN__VALUE:
-        setValue(VALUE_EDEFAULT);
+        setValue(ValueDomainImpl.VALUE_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -149,7 +150,7 @@ public class ValueDomainImpl extends DomainImpl implements ValueDomain {
   public boolean eIsSet(int featureID) {
     switch (featureID) {
       case GSNPackage.VALUE_DOMAIN__VALUE:
-        return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
+        return ValueDomainImpl.VALUE_EDEFAULT == null ? this.value != null : !ValueDomainImpl.VALUE_EDEFAULT.equals(this.value);
     }
     return super.eIsSet(featureID);
   }
@@ -163,11 +164,19 @@ public class ValueDomainImpl extends DomainImpl implements ValueDomain {
   public String toString() {
     if (eIsProxy()) return super.toString();
 
-    StringBuilder result = new StringBuilder(super.toString());
+    var result = new StringBuilder(super.toString());
     result.append(" (value: ");
-    result.append(value);
+    result.append(this.value);
     result.append(')');
     return result.toString();
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public void validateDecomposition(EList<Domain> subDomains) throws MMINTException {
+    throw new MMINTException("A value domain can't be decomposed");
   }
 
 } //ValueDomainImpl

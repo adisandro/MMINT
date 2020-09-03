@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.safetycase.impl;
 
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.modelepedia.safetycase.*;
 
 import org.eclipse.emf.ecore.EClass;
@@ -108,6 +109,8 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
         return createValidityValueFromString(eDataType, initialValue);
       case GSNPackage.IMPACT_TYPE:
         return createImpactTypeFromString(eDataType, initialValue);
+      case GSNPackage.MMINT_EXCEPTION:
+        return createMMINTExceptionFromString(eDataType, initialValue);
       default:
         throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
@@ -127,6 +130,8 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
         return convertValidityValueToString(eDataType, instanceValue);
       case GSNPackage.IMPACT_TYPE:
         return convertImpactTypeToString(eDataType, instanceValue);
+      case GSNPackage.MMINT_EXCEPTION:
+        return convertMMINTExceptionToString(eDataType, instanceValue);
       default:
         throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
@@ -443,6 +448,24 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
    */
   public String convertImpactTypeToString(EDataType eDataType, Object instanceValue) {
     return instanceValue == null ? null : instanceValue.toString();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public MMINTException createMMINTExceptionFromString(EDataType eDataType, String initialValue) {
+    return (MMINTException)super.createFromString(eDataType, initialValue);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertMMINTExceptionToString(EDataType eDataType, Object instanceValue) {
+    return super.convertToString(eDataType, instanceValue);
   }
 
   /**

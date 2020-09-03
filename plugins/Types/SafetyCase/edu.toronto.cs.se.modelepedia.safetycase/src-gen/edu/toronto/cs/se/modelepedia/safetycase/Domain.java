@@ -3,15 +3,18 @@
  * All rights reserved. This program and the accompanying materials are made available under the terms
  * of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *   Alessio Di Sandro - Implementation
  *   Nick Fung - Implementation.
- * 
+ *
  */
 package edu.toronto.cs.se.modelepedia.safetycase;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+
+import edu.toronto.cs.se.mmint.MMINTException;
 
 /**
  * <!-- begin-user-doc -->
@@ -24,4 +27,16 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface Domain extends EObject {
+
+  /**
+   * <!-- begin-user-doc --> Validates the correctness of the decomposition of this domain.
+   *
+   * @param subDomains
+   *          The sub-domains in which this domain is decomposed.
+   * @throws MMINTException
+   *           If the decomposition in not correct. <!-- end-user-doc -->
+   * @model exceptions="edu.toronto.cs.se.modelepedia.safetycase.MMINTException" subDomainsMany="true"
+   * @generated
+   */
+  void validateDecomposition(EList<Domain> subDomains) throws MMINTException;
 } // Domain

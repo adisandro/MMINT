@@ -13,7 +13,9 @@ package edu.toronto.cs.se.modelepedia.safetycase;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -1980,13 +1982,22 @@ public interface GSNPackage extends EPackage {
   int DOMAIN_FEATURE_COUNT = 0;
 
   /**
+   * The operation id for the '<em>Validate Decomposition</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DOMAIN___VALIDATE_DECOMPOSITION__ELIST = 0;
+
+  /**
    * The number of operations of the '<em>Domain</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DOMAIN_OPERATION_COUNT = 0;
+  int DOMAIN_OPERATION_COUNT = 1;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.IntDomainImpl <em>Int Domain</em>}' class.
@@ -2024,6 +2035,15 @@ public interface GSNPackage extends EPackage {
    * @ordered
    */
   int INT_DOMAIN_FEATURE_COUNT = DOMAIN_FEATURE_COUNT + 2;
+
+  /**
+   * The operation id for the '<em>Validate Decomposition</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INT_DOMAIN___VALIDATE_DECOMPOSITION__ELIST = DOMAIN___VALIDATE_DECOMPOSITION__ELIST;
 
   /**
    * The number of operations of the '<em>Int Domain</em>' class.
@@ -2072,6 +2092,15 @@ public interface GSNPackage extends EPackage {
   int REAL_DOMAIN_FEATURE_COUNT = DOMAIN_FEATURE_COUNT + 2;
 
   /**
+   * The operation id for the '<em>Validate Decomposition</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int REAL_DOMAIN___VALIDATE_DECOMPOSITION__ELIST = DOMAIN___VALIDATE_DECOMPOSITION__ELIST;
+
+  /**
    * The number of operations of the '<em>Real Domain</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2109,6 +2138,15 @@ public interface GSNPackage extends EPackage {
   int ENUM_DOMAIN_FEATURE_COUNT = DOMAIN_FEATURE_COUNT + 1;
 
   /**
+   * The operation id for the '<em>Validate Decomposition</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ENUM_DOMAIN___VALIDATE_DECOMPOSITION__ELIST = DOMAIN___VALIDATE_DECOMPOSITION__ELIST;
+
+  /**
    * The number of operations of the '<em>Enum Domain</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2144,6 +2182,15 @@ public interface GSNPackage extends EPackage {
    * @ordered
    */
   int VALUE_DOMAIN_FEATURE_COUNT = DOMAIN_FEATURE_COUNT + 1;
+
+  /**
+   * The operation id for the '<em>Validate Decomposition</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int VALUE_DOMAIN___VALIDATE_DECOMPOSITION__ELIST = DOMAIN___VALIDATE_DECOMPOSITION__ELIST;
 
   /**
    * The number of operations of the '<em>Value Domain</em>' class.
@@ -2283,13 +2330,22 @@ public interface GSNPackage extends EPackage {
   int DOMAIN_STRATEGY_FEATURE_COUNT = STRATEGY_FEATURE_COUNT + 1;
 
   /**
+   * The operation id for the '<em>Validate Decomposition</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DOMAIN_STRATEGY___VALIDATE_DECOMPOSITION = STRATEGY_OPERATION_COUNT + 0;
+
+  /**
    * The number of operations of the '<em>Domain Strategy</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DOMAIN_STRATEGY_OPERATION_COUNT = STRATEGY_OPERATION_COUNT + 0;
+  int DOMAIN_STRATEGY_OPERATION_COUNT = STRATEGY_OPERATION_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Supports</b></em>' reference list.
@@ -2428,6 +2484,17 @@ public interface GSNPackage extends EPackage {
    * @generated
    */
   int IMPACT_TYPE = 38;
+
+
+  /**
+   * The meta object id for the '<em>MMINT Exception</em>' data type.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.toronto.cs.se.mmint.MMINTException
+   * @see edu.toronto.cs.se.modelepedia.safetycase.impl.GSNPackageImpl#getMMINTException()
+   * @generated
+   */
+  int MMINT_EXCEPTION = 39;
 
 
   /**
@@ -3028,6 +3095,16 @@ public interface GSNPackage extends EPackage {
   EClass getDomain();
 
   /**
+   * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.safetycase.Domain#validateDecomposition(org.eclipse.emf.common.util.EList) <em>Validate Decomposition</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>Validate Decomposition</em>' operation.
+   * @see edu.toronto.cs.se.modelepedia.safetycase.Domain#validateDecomposition(org.eclipse.emf.common.util.EList)
+   * @generated
+   */
+  EOperation getDomain__ValidateDecomposition__EList();
+
+  /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.safetycase.IntDomain <em>Int Domain</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3165,6 +3242,16 @@ public interface GSNPackage extends EPackage {
   EClass getDomainStrategy();
 
   /**
+   * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.safetycase.DomainStrategy#validateDecomposition() <em>Validate Decomposition</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>Validate Decomposition</em>' operation.
+   * @see edu.toronto.cs.se.modelepedia.safetycase.DomainStrategy#validateDecomposition()
+   * @generated
+   */
+  EOperation getDomainStrategy__ValidateDecomposition();
+
+  /**
    * Returns the meta object for enum '{@link edu.toronto.cs.se.modelepedia.safetycase.ASILLevel <em>ASIL Level</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3193,6 +3280,17 @@ public interface GSNPackage extends EPackage {
    * @generated
    */
   EEnum getImpactType();
+
+  /**
+   * Returns the meta object for data type '{@link edu.toronto.cs.se.mmint.MMINTException <em>MMINT Exception</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for data type '<em>MMINT Exception</em>'.
+   * @see edu.toronto.cs.se.mmint.MMINTException
+   * @model instanceClass="edu.toronto.cs.se.mmint.MMINTException"
+   * @generated
+   */
+  EDataType getMMINTException();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -3734,6 +3832,14 @@ public interface GSNPackage extends EPackage {
     EClass DOMAIN = eINSTANCE.getDomain();
 
     /**
+     * The meta object literal for the '<em><b>Validate Decomposition</b></em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EOperation DOMAIN___VALIDATE_DECOMPOSITION__ELIST = eINSTANCE.getDomain__ValidateDecomposition__EList();
+
+    /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.IntDomainImpl <em>Int Domain</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -3850,6 +3956,14 @@ public interface GSNPackage extends EPackage {
     EClass DOMAIN_STRATEGY = eINSTANCE.getDomainStrategy();
 
     /**
+     * The meta object literal for the '<em><b>Validate Decomposition</b></em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EOperation DOMAIN_STRATEGY___VALIDATE_DECOMPOSITION = eINSTANCE.getDomainStrategy__ValidateDecomposition();
+
+    /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.safetycase.ASILLevel <em>ASIL Level</em>}' enum.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -3878,6 +3992,16 @@ public interface GSNPackage extends EPackage {
      * @generated
      */
     EEnum IMPACT_TYPE = eINSTANCE.getImpactType();
+
+    /**
+     * The meta object literal for the '<em>MMINT Exception</em>' data type.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.toronto.cs.se.mmint.MMINTException
+     * @see edu.toronto.cs.se.modelepedia.safetycase.impl.GSNPackageImpl#getMMINTException()
+     * @generated
+     */
+    EDataType MMINT_EXCEPTION = eINSTANCE.getMMINTException();
 
   }
 

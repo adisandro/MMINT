@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.safetycase.impl;
 
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.modelepedia.safetycase.ASILDecompositionStrategy;
 import edu.toronto.cs.se.modelepedia.safetycase.ASILLevel;
 import edu.toronto.cs.se.modelepedia.safetycase.ASILfulElement;
@@ -56,7 +57,9 @@ import edu.toronto.cs.se.modelepedia.safetycase.util.GSNValidator;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EValidator;
@@ -342,6 +345,13 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
    * @generated
    */
   private EEnum impactTypeEEnum = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EDataType mmintExceptionEDataType = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -990,6 +1000,16 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
    * @generated
    */
   @Override
+  public EOperation getDomain__ValidateDecomposition__EList() {
+    return domainEClass.getEOperations().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EClass getIntDomain() {
     return intDomainEClass;
   }
@@ -1120,6 +1140,16 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
    * @generated
    */
   @Override
+  public EOperation getDomainStrategy__ValidateDecomposition() {
+    return domainStrategyEClass.getEOperations().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EEnum getASILLevel() {
     return asilLevelEEnum;
   }
@@ -1142,6 +1172,16 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
   @Override
   public EEnum getImpactType() {
     return impactTypeEEnum;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EDataType getMMINTException() {
+    return mmintExceptionEDataType;
   }
 
   /**
@@ -1257,6 +1297,7 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     createEAttribute(mofNSupporterEClass, MOF_NSUPPORTER__TARGET);
 
     domainEClass = createEClass(DOMAIN);
+    createEOperation(domainEClass, DOMAIN___VALIDATE_DECOMPOSITION__ELIST);
 
     intDomainEClass = createEClass(INT_DOMAIN);
     createEAttribute(intDomainEClass, INT_DOMAIN__LOWER_BOUND);
@@ -1276,6 +1317,7 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     createEReference(domainElementEClass, DOMAIN_ELEMENT__DOMAIN);
 
     domainStrategyEClass = createEClass(DOMAIN_STRATEGY);
+    createEOperation(domainStrategyEClass, DOMAIN_STRATEGY___VALIDATE_DECOMPOSITION);
 
     domainGoalEClass = createEClass(DOMAIN_GOAL);
 
@@ -1283,6 +1325,9 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     asilLevelEEnum = createEEnum(ASIL_LEVEL);
     validityValueEEnum = createEEnum(VALIDITY_VALUE);
     impactTypeEEnum = createEEnum(IMPACT_TYPE);
+
+    // Create data types
+    mmintExceptionEDataType = createEDataType(MMINT_EXCEPTION);
   }
 
   /**
@@ -1432,6 +1477,10 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
 
     initEClass(domainEClass, Domain.class, "Domain", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
+    EOperation op = initEOperation(getDomain__ValidateDecomposition__EList(), null, "validateDecomposition", 0, 1, IS_UNIQUE, IS_ORDERED);
+    addEParameter(op, this.getDomain(), "subDomains", 0, -1, IS_UNIQUE, IS_ORDERED);
+    addEException(op, this.getMMINTException());
+
     initEClass(intDomainEClass, IntDomain.class, "IntDomain", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getIntDomain_LowerBound(), ecorePackage.getEInt(), "lowerBound", null, 1, 1, IntDomain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getIntDomain_UpperBound(), ecorePackage.getEInt(), "upperBound", null, 1, 1, IntDomain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1450,6 +1499,9 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     initEReference(getDomainElement_Domain(), this.getDomain(), null, "domain", null, 1, 1, DomainElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(domainStrategyEClass, DomainStrategy.class, "DomainStrategy", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    op = initEOperation(getDomainStrategy__ValidateDecomposition(), null, "validateDecomposition", 0, 1, IS_UNIQUE, IS_ORDERED);
+    addEException(op, this.getMMINTException());
 
     initEClass(domainGoalEClass, DomainGoal.class, "DomainGoal", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -1471,6 +1523,9 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     addEEnumLiteral(impactTypeEEnum, ImpactType.RECHECK_CONTENT);
     addEEnumLiteral(impactTypeEEnum, ImpactType.RECHECK_STATE);
     addEEnumLiteral(impactTypeEEnum, ImpactType.REUSE);
+
+    // Initialize data types
+    initEDataType(mmintExceptionEDataType, MMINTException.class, "MMINTException", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
     // Create resource
     createResource(eNS_URI);

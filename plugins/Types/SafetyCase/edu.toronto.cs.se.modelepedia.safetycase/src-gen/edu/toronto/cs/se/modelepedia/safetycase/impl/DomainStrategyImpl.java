@@ -3,26 +3,32 @@
  * All rights reserved. This program and the accompanying materials are made available under the terms
  * of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *   Alessio Di Sandro - Implementation
  *   Nick Fung - Implementation.
- * 
+ *
  */
 package edu.toronto.cs.se.modelepedia.safetycase.impl;
 
-import edu.toronto.cs.se.modelepedia.safetycase.Domain;
-import edu.toronto.cs.se.modelepedia.safetycase.DomainElement;
-import edu.toronto.cs.se.modelepedia.safetycase.DomainStrategy;
-import edu.toronto.cs.se.modelepedia.safetycase.GSNPackage;
+import java.lang.reflect.InvocationTargetException;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
+import org.eclipse.emf.common.util.ECollections;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
+import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.modelepedia.safetycase.Domain;
+import edu.toronto.cs.se.modelepedia.safetycase.DomainElement;
+import edu.toronto.cs.se.modelepedia.safetycase.DomainGoal;
+import edu.toronto.cs.se.modelepedia.safetycase.DomainStrategy;
+import edu.toronto.cs.se.modelepedia.safetycase.GSNPackage;
+import edu.toronto.cs.se.modelepedia.safetycase.SupportedBy;
 
 /**
  * <!-- begin-user-doc -->
@@ -74,7 +80,7 @@ public class DomainStrategyImpl extends StrategyImpl implements DomainStrategy {
    */
   @Override
   public Domain getDomain() {
-    return domain;
+    return this.domain;
   }
 
   /**
@@ -83,10 +89,10 @@ public class DomainStrategyImpl extends StrategyImpl implements DomainStrategy {
    * @generated
    */
   public NotificationChain basicSetDomain(Domain newDomain, NotificationChain msgs) {
-    Domain oldDomain = domain;
-    domain = newDomain;
+    var oldDomain = this.domain;
+    this.domain = newDomain;
     if (eNotificationRequired()) {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GSNPackage.DOMAIN_STRATEGY__DOMAIN, oldDomain, newDomain);
+      var notification = new ENotificationImpl(this, Notification.SET, GSNPackage.DOMAIN_STRATEGY__DOMAIN, oldDomain, newDomain);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -99,17 +105,34 @@ public class DomainStrategyImpl extends StrategyImpl implements DomainStrategy {
    */
   @Override
   public void setDomain(Domain newDomain) {
-    if (newDomain != domain) {
+    if (newDomain != this.domain) {
       NotificationChain msgs = null;
-      if (domain != null)
-        msgs = ((InternalEObject)domain).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GSNPackage.DOMAIN_STRATEGY__DOMAIN, null, msgs);
+      if (this.domain != null)
+        msgs = ((InternalEObject)this.domain).eInverseRemove(this, InternalEObject.EOPPOSITE_FEATURE_BASE - GSNPackage.DOMAIN_STRATEGY__DOMAIN, null, msgs);
       if (newDomain != null)
-        msgs = ((InternalEObject)newDomain).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GSNPackage.DOMAIN_STRATEGY__DOMAIN, null, msgs);
+        msgs = ((InternalEObject)newDomain).eInverseAdd(this, InternalEObject.EOPPOSITE_FEATURE_BASE - GSNPackage.DOMAIN_STRATEGY__DOMAIN, null, msgs);
       msgs = basicSetDomain(newDomain, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.DOMAIN_STRATEGY__DOMAIN, newDomain, newDomain));
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public void validateDecomposition() throws MMINTException {
+    var domain = getDomain();
+    var subDomains = getSupportedBy().stream()
+      .map(SupportedBy::getTarget)
+      .filter(g -> g instanceof DomainGoal)
+      .map(g -> ((DomainGoal) g).getDomain())
+      .collect(Collectors.toList());
+    if (subDomains.size() <= 1) {
+      throw new MMINTException("A domain must be decomposed into >1 sub-domains");
+    }
+    domain.validateDecomposition(ECollections.toEList(subDomains));
   }
 
   /**
@@ -179,7 +202,7 @@ public class DomainStrategyImpl extends StrategyImpl implements DomainStrategy {
   public boolean eIsSet(int featureID) {
     switch (featureID) {
       case GSNPackage.DOMAIN_STRATEGY__DOMAIN:
-        return domain != null;
+        return this.domain != null;
     }
     return super.eIsSet(featureID);
   }
@@ -214,6 +237,26 @@ public class DomainStrategyImpl extends StrategyImpl implements DomainStrategy {
       }
     }
     return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+    switch (operationID) {
+      case GSNPackage.DOMAIN_STRATEGY___VALIDATE_DECOMPOSITION:
+        try {
+          validateDecomposition();
+          return null;
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+    }
+    return super.eInvoke(operationID, arguments);
   }
 
 } //DomainStrategyImpl

@@ -28,6 +28,7 @@
       <genEnumLiterals ecoreEnumLiteral="safetycase.ecore#//ImpactType/RecheckState"/>
       <genEnumLiterals ecoreEnumLiteral="safetycase.ecore#//ImpactType/Reuse"/>
     </genEnums>
+    <genDataTypes ecoreDataType="safetycase.ecore#//MMINTException"/>
     <genClasses ecoreClass="safetycase.ecore#//SafetyCase">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference safetycase.ecore#//SafetyCase/goals"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference safetycase.ecore#//SafetyCase/strategies"/>
@@ -96,7 +97,11 @@
     <genClasses ecoreClass="safetycase.ecore#//MofNSupporter">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute safetycase.ecore#//MofNSupporter/target"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="safetycase.ecore#//Domain"/>
+    <genClasses image="false" ecoreClass="safetycase.ecore#//Domain">
+      <genOperations ecoreOperation="safetycase.ecore#//Domain/validateDecomposition">
+        <genParameters ecoreParameter="safetycase.ecore#//Domain/validateDecomposition/subDomains"/>
+      </genOperations>
+    </genClasses>
     <genClasses ecoreClass="safetycase.ecore#//IntDomain">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute safetycase.ecore#//IntDomain/lowerBound"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute safetycase.ecore#//IntDomain/upperBound"/>
@@ -114,7 +119,9 @@
     <genClasses image="false" ecoreClass="safetycase.ecore#//DomainElement">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference safetycase.ecore#//DomainElement/domain"/>
     </genClasses>
-    <genClasses ecoreClass="safetycase.ecore#//DomainStrategy"/>
+    <genClasses ecoreClass="safetycase.ecore#//DomainStrategy">
+      <genOperations ecoreOperation="safetycase.ecore#//DomainStrategy/validateDecomposition"/>
+    </genClasses>
     <genClasses ecoreClass="safetycase.ecore#//DomainGoal"/>
   </genPackages>
 </genmodel:GenModel>

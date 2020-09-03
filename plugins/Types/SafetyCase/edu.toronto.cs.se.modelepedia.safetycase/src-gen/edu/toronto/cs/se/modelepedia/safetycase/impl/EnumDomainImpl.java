@@ -3,24 +3,28 @@
  * All rights reserved. This program and the accompanying materials are made available under the terms
  * of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *   Alessio Di Sandro - Implementation
  *   Nick Fung - Implementation.
- * 
+ *
  */
 package edu.toronto.cs.se.modelepedia.safetycase.impl;
 
-import edu.toronto.cs.se.modelepedia.safetycase.EnumDomain;
-import edu.toronto.cs.se.modelepedia.safetycase.GSNPackage;
-
 import java.util.Collection;
+import java.util.HashSet;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
+
+import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.modelepedia.safetycase.Domain;
+import edu.toronto.cs.se.modelepedia.safetycase.EnumDomain;
+import edu.toronto.cs.se.modelepedia.safetycase.GSNPackage;
+import edu.toronto.cs.se.modelepedia.safetycase.IntDomain;
+import edu.toronto.cs.se.modelepedia.safetycase.RealDomain;
+import edu.toronto.cs.se.modelepedia.safetycase.ValueDomain;
 
 /**
  * <!-- begin-user-doc -->
@@ -72,10 +76,10 @@ public class EnumDomainImpl extends DomainImpl implements EnumDomain {
    */
   @Override
   public EList<String> getValues() {
-    if (values == null) {
-      values = new EDataTypeUniqueEList<String>(String.class, this, GSNPackage.ENUM_DOMAIN__VALUES);
+    if (this.values == null) {
+      this.values = new EDataTypeUniqueEList<>(String.class, this, GSNPackage.ENUM_DOMAIN__VALUES);
     }
-    return values;
+    return this.values;
   }
 
   /**
@@ -133,7 +137,7 @@ public class EnumDomainImpl extends DomainImpl implements EnumDomain {
   public boolean eIsSet(int featureID) {
     switch (featureID) {
       case GSNPackage.ENUM_DOMAIN__VALUES:
-        return values != null && !values.isEmpty();
+        return this.values != null && !this.values.isEmpty();
     }
     return super.eIsSet(featureID);
   }
@@ -147,11 +151,42 @@ public class EnumDomainImpl extends DomainImpl implements EnumDomain {
   public String toString() {
     if (eIsProxy()) return super.toString();
 
-    StringBuilder result = new StringBuilder(super.toString());
+    var result = new StringBuilder(super.toString());
     result.append(" (values: ");
-    result.append(values);
+    result.append(this.values);
     result.append(')');
     return result.toString();
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public void validateDecomposition(EList<Domain> subDomains) throws MMINTException {
+    var enumValues = new HashSet<>(getValues());
+    for (var subDomain : subDomains) {
+      if (subDomain instanceof IntDomain || subDomain instanceof RealDomain) {
+        throw new MMINTException("An enum domain can't be decomposed into integer or real sub-domains");
+      }
+      else if (subDomain instanceof EnumDomain) {
+        var subValues = ((EnumDomain) subDomain).getValues();
+        if (!enumValues.containsAll(subValues)) {
+          throw new MMINTException("One or more sub-domain values within '" + subValues +
+                                   "' are not in the domain");
+        }
+        enumValues.removeAll(subValues);
+      }
+      else { // ValueDomain
+        var subValue = ((ValueDomain) subDomain).getValue();
+        if (!enumValues.contains(subValue)) {
+          throw new MMINTException("The sub-domain value '" + subValue + "' is not in the domain");
+        }
+        enumValues.remove(subValue);
+      }
+    }
+    if (!enumValues.isEmpty()) {
+      throw new MMINTException("Sub-domains '" + enumValues + "' are missing");
+    }
   }
 
 } //EnumDomainImpl

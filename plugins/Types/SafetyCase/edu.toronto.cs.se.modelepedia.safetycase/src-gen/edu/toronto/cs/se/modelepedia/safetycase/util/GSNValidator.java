@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.safetycase.util;
 
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.modelepedia.safetycase.*;
 
 import java.util.Map;
@@ -173,6 +174,8 @@ public class GSNValidator extends EObjectValidator {
         return validateValidityValue((ValidityValue)value, diagnostics, context);
       case GSNPackage.IMPACT_TYPE:
         return validateImpactType((ImpactType)value, diagnostics, context);
+      case GSNPackage.MMINT_EXCEPTION:
+        return validateMMINTException((MMINTException)value, diagnostics, context);
       default:
         return true;
     }
@@ -1298,6 +1301,15 @@ public class GSNValidator extends EObjectValidator {
    * @generated
    */
   public boolean validateImpactType(ImpactType impactType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    return true;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public boolean validateMMINTException(MMINTException mmintException, DiagnosticChain diagnostics, Map<Object, Object> context) {
     return true;
   }
 
