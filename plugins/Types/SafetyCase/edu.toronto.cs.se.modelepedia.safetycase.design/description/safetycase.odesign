@@ -325,6 +325,8 @@
             <menuItemDescription xsi:type="tool_1:ExternalJavaActionCall" name="EvaluateQueryCall" action="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@toolSections.1/@ownedTools[name='MMINT']/@menuItemDescription.0"/>
             <menuItemDescription xsi:type="tool_1:ExternalJavaAction" name="DomainDecomposition" label="Domain Decomposition" id="edu.toronto.cs.se.modelepedia.safetycase.design.context.DomainDecomposition"/>
             <menuItemDescription xsi:type="tool_1:ExternalJavaActionCall" name="DomainDecompositionCall" action="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@toolSections.1/@ownedTools[name='MMINT']/@menuItemDescription.2"/>
+            <menuItemDescription xsi:type="tool_1:ExternalJavaAction" name="DomainDecompositionCheck" label="Domain Decomposition Check" id="edu.toronto.cs.se.modelepedia.safetycase.design.context.DomainDecompositionCheck"/>
+            <menuItemDescription xsi:type="tool_1:ExternalJavaActionCall" name="DomainDecompositionCheckCall" action="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@toolSections.1/@ownedTools[name='MMINT']/@menuItemDescription.4"/>
           </ownedTools>
         </toolSections>
       </defaultLayer>

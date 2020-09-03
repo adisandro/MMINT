@@ -44,4 +44,12 @@
       </javaActions>
    </extension>
 
+   <extension
+         point="org.eclipse.sirius.externalJavaAction">
+      <javaActions
+            actionClass="edu.toronto.cs.se.modelepedia.safetycase.design.context.DomainDecompositionCheck"
+            id="edu.toronto.cs.se.modelepedia.safetycase.design.context.DomainDecompositionCheck">
+      </javaActions>
+   </extension>
+
 </plugin>
