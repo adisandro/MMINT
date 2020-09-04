@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
@@ -137,11 +136,6 @@ public class DomainDecomposition extends AbstractExternalJavaAction {
       return justification;
     }
 
-    public void validateDomainDecomposition(Set<Domain> subDomains) throws MMINTException {
-
-    }
-
-    // TODO: add manual creation tools in sirius diagram
     @Override
     protected void doExecute() {
       try {

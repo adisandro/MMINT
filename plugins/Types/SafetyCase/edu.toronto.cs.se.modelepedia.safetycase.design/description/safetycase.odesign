@@ -173,6 +173,16 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="CreateDomainGoal" label="Create domain goal" nodeMappings="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="CreateDomainGoal" id="edu.toronto.cs.se.modelepedia.safetycase.design.tools.CreateDomainGoal"/>
+                <subModelOperations xsi:type="tool_1:ExternalJavaActionCall" name="CreateDomainGoalCall" action="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@toolSections.0/@ownedTools[name='CreateDomainGoal']/@initialOperation/@firstModelOperations/@subModelOperations.0"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
           <ownedTools xsi:type="tool:NodeCreationDescription" name="CreateBasicStrategy" label="Create basic strategy" nodeMappings="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='StrategyNode']">
             <variable name="container"/>
             <viewVariable name="containerView"/>

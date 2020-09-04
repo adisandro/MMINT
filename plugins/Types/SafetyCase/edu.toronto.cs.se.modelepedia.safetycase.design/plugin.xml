@@ -39,13 +39,13 @@
    <extension
          point="org.eclipse.sirius.externalJavaAction">
       <javaActions
+            actionClass="edu.toronto.cs.se.modelepedia.safetycase.design.tools.CreateDomainGoal"
+            id="edu.toronto.cs.se.modelepedia.safetycase.design.tools.CreateDomainGoal">
+      </javaActions>
+      <javaActions
             actionClass="edu.toronto.cs.se.modelepedia.safetycase.design.context.DomainDecomposition"
             id="edu.toronto.cs.se.modelepedia.safetycase.design.context.DomainDecomposition">
       </javaActions>
-   </extension>
-
-   <extension
-         point="org.eclipse.sirius.externalJavaAction">
       <javaActions
             actionClass="edu.toronto.cs.se.modelepedia.safetycase.design.context.DomainDecompositionCheck"
             id="edu.toronto.cs.se.modelepedia.safetycase.design.context.DomainDecompositionCheck">
