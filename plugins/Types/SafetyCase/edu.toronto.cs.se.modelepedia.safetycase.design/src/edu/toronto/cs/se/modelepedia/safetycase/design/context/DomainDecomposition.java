@@ -101,7 +101,6 @@ public class DomainDecomposition extends AbstractExternalJavaAction {
     private DomainStrategy createDomainStrategy(Supportable supportable, String id, String description, Domain domain) {
       var strategy = this.factory.createDomainStrategy();
       addArgumentElement(strategy, id, description);
-      addSupporter(supportable, strategy);
       strategy.setDomain(domain);
       this.gsnElements.add(strategy);
 
@@ -198,6 +197,7 @@ public class DomainDecomposition extends AbstractExternalJavaAction {
         // check decomposition validity
         strategy.validateDecomposition();
         // "commit" the changes
+        addSupporter(this.decomposed, strategy);
         for (var gsnElement : this.gsnElements) {
           if (gsnElement instanceof Strategy) {
             this.gsnRootModelObj.getStrategies().add((Strategy) gsnElement);
