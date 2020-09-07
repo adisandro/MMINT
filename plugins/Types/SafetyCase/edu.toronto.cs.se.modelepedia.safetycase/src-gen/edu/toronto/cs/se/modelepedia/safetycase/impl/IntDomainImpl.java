@@ -219,8 +219,7 @@ public class IntDomainImpl extends DomainImpl implements IntDomain {
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
-  public String toString() {
+  public String toStringGen() {
     if (eIsProxy()) return super.toString();
 
     var result = new StringBuilder(super.toString());
@@ -230,6 +229,14 @@ public class IntDomainImpl extends DomainImpl implements IntDomain {
     result.append(this.upperBound);
     result.append(')');
     return result.toString();
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public String toString() {
+    return getLowerBound() + "_" + getUpperBound();
   }
 
   /**

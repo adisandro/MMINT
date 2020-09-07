@@ -220,8 +220,7 @@ public class RealDomainImpl extends DomainImpl implements RealDomain {
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
-  public String toString() {
+  public String toStringGen() {
     if (eIsProxy()) return super.toString();
 
     var result = new StringBuilder(super.toString());
@@ -231,6 +230,14 @@ public class RealDomainImpl extends DomainImpl implements RealDomain {
     result.append(this.upperBound);
     result.append(')');
     return result.toString();
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public String toString() {
+    return getLowerBound() + "_" + getUpperBound();
   }
 
   /**

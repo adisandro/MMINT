@@ -160,8 +160,7 @@ public class ValueDomainImpl extends DomainImpl implements ValueDomain {
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
-  public String toString() {
+  public String toStringGen() {
     if (eIsProxy()) return super.toString();
 
     var result = new StringBuilder(super.toString());
@@ -169,6 +168,14 @@ public class ValueDomainImpl extends DomainImpl implements ValueDomain {
     result.append(this.value);
     result.append(')');
     return result.toString();
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public String toString() {
+    return getValue();
   }
 
   /**

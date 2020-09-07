@@ -147,8 +147,7 @@ public class EnumDomainImpl extends DomainImpl implements EnumDomain {
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
-  public String toString() {
+  public String toStringGen() {
     if (eIsProxy()) return super.toString();
 
     var result = new StringBuilder(super.toString());
@@ -156,6 +155,14 @@ public class EnumDomainImpl extends DomainImpl implements EnumDomain {
     result.append(this.values);
     result.append(')');
     return result.toString();
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public String toString() {
+    return String.join(",", getValues());
   }
 
   /**

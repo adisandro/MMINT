@@ -25,7 +25,7 @@ import edu.toronto.cs.se.modelepedia.safetycase.GSNPackage;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCase;
 import edu.toronto.cs.se.modelepedia.safetycase.design.DomainCommand;
 
-public class CreateDomainGoal extends AbstractExternalJavaAction {
+public class CreateDomainStrategy extends AbstractExternalJavaAction {
 
   @Override
   public boolean canExecute(Collection<? extends EObject> arg0) {
@@ -37,29 +37,28 @@ public class CreateDomainGoal extends AbstractExternalJavaAction {
     var gsnRootModelObj = (SafetyCase) arg0.iterator().next();
     var sSession = SessionManager.INSTANCE.getSession(gsnRootModelObj);
     var sDomain = sSession.getTransactionalEditingDomain();
-    sDomain.getCommandStack().execute(new CreateDomainGoalCommand(sDomain, gsnRootModelObj));
+    sDomain.getCommandStack().execute(new CreateDomainStrategyCommand(sDomain, gsnRootModelObj));
   }
 
-  private class CreateDomainGoalCommand extends DomainCommand {
+  private class CreateDomainStrategyCommand extends DomainCommand {
 
-    public CreateDomainGoalCommand(TransactionalEditingDomain domain, SafetyCase gsnRootModelObj) {
+    public CreateDomainStrategyCommand(TransactionalEditingDomain domain, SafetyCase gsnRootModelObj) {
       super(domain, gsnRootModelObj);
     }
 
     @Override
     protected void doExecute() {
       try {
-        var domain = createDomain("Create Domain Goal", "Insert the domain",
-                                  Set.of(GSNPackage.INT_DOMAIN, GSNPackage.REAL_DOMAIN, GSNPackage.ENUM_DOMAIN,
-                                         GSNPackage.VALUE_DOMAIN));
-        createDomainGoal("", "", domain);
+        var domain = createDomain("Create Domain Strategy", "Insert the domain",
+                                  Set.of(GSNPackage.INT_DOMAIN, GSNPackage.REAL_DOMAIN, GSNPackage.ENUM_DOMAIN));
+        createDomainStrategy("", "", domain);
         commitChanges();
       }
       catch (MIDDialogCancellation e) {
         // do nothing
       }
       catch (Exception e) {
-        MMINTException.print(IStatus.ERROR, "Create domain goal error", e);
+        MMINTException.print(IStatus.ERROR, "Create domain strategy error", e);
       }
     }
   }
