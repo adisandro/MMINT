@@ -337,7 +337,7 @@ public class MIDDialogs {
   public static String selectQueryFileToEvaluate() throws MIDDialogCancellation {
     var dialog = new MIDTreeSelectionDialog(new WorkbenchLabelProvider(), new BaseWorkbenchContentProvider(),
                                             ResourcesPlugin.getWorkspace().getRoot());
-    dialog.addFilter(new FileExtensionsDialogFilter(MMINT.getReasonerFileExtensions()));
+    dialog.addFilter(new FileExtensionsDialogFilter(MMINT.getReasonerNames()));
     dialog.setValidator(new FilesOnlyDialogSelectionValidator());
     String title = "Evaluate query";
     String message = "Select query file";

@@ -66,7 +66,7 @@ public class AddModifyConstraintListener extends MIDContextMenuListener {
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 			try {
-				Set<String> languages = MMINT.getReasonerFileExtensions();
+				Set<String> languages = MMINT.getReasonerNames();
 				if (languages.isEmpty()) {
 					throw new MMINTException("No language installed to express constraints");
 				}

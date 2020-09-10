@@ -837,14 +837,6 @@ Contributors:
                      tooltip="Enables dynamic dispatch of operators when executing workflows based on all their actual arguments">
                </command>
             </menu>
-            <separator
-                  name="edu.toronto.cs.se.mmint.mid.diagram.menu.separator2"
-                  visible="true">
-            </separator>
-            <dynamic
-                  class="edu.toronto.cs.se.mmint.mid.diagram.menu.MMINTLanguageReasonersMenu"
-                  id="edu.toronto.cs.se.mmint.mid.diagram.menu.ReasoningDropdown">
-            </dynamic>
          </menu>
       </menuContribution>
    </extension>

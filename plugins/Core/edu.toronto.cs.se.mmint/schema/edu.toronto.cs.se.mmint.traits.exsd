@@ -3,10 +3,10 @@
 <schema targetNamespace="edu.toronto.cs.se.mmint" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="edu.toronto.cs.se.mmint" id="edu.toronto.cs.se.mmint.reasoners" name="MMINT reasoning engines"/>
+         <meta.schema plugin="edu.toronto.cs.se.mmint" id="edu.toronto.cs.se.mmint.traits" name="MMINT reasoning traits"/>
       </appinfo>
       <documentation>
-         Allows reasoning engines to be registered with MMINT.
+         Allows reasoning traits to be registered with MMINT.
       </documentation>
    </annotation>
 
@@ -18,7 +18,7 @@
       </annotation>
       <complexType>
          <sequence>
-            <element ref="reasoner"/>
+            <element ref="trait"/>
          </sequence>
          <attribute name="point" type="string" use="required">
             <annotation>
@@ -47,24 +47,24 @@
       </complexType>
    </element>
 
-   <element name="reasoner">
+   <element name="trait">
       <annotation>
          <documentation>
-            A reasoning engine.
+            A reasoning trait.
          </documentation>
       </annotation>
       <complexType>
          <attribute name="name" type="string" use="required">
             <annotation>
                <documentation>
-                  The reasoner name.
+                  The trait name.
                </documentation>
             </annotation>
          </attribute>
-         <attribute name="class" type="string" use="required">
+         <attribute name="interface" type="string" use="required">
             <annotation>
                <documentation>
-                  The fully qualified name of a Java class that implements the reasoning engine.
+                  The fully qualified name of a Java interface that specifies the reasoning trait api.
                </documentation>
                <appinfo>
                   <meta.attribute kind="java"/>

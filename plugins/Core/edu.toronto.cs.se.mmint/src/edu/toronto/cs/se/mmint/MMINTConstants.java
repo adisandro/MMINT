@@ -28,7 +28,7 @@ public interface MMINTConstants {
 
 	public final static String URI_SEPARATOR = "/";
 	public final static String MODEL_URI_SEPARATOR = "#";
-	public final static String ECORE_MODEL_URI_SEPARATOR = MODEL_URI_SEPARATOR + URI_SEPARATOR;
+	public final static String ECORE_MODEL_URI_SEPARATOR = MMINTConstants.MODEL_URI_SEPARATOR + MMINTConstants.URI_SEPARATOR;
 	public final static String MODEL_FILENAMESUFFIX_SEPARATOR = "_";
 	public final static String MODEL_FILEEXTENSION_SEPARATOR = ".";
 	public final static String ENDPOINT_SEPARATOR = "-";
@@ -50,22 +50,22 @@ public interface MMINTConstants {
 	/** The base root uri. */
 	public final static String ROOT_URI = "http://se.cs.toronto.edu/mmint";
 	/** The uri of the root model type. */
-	public final static String ROOT_MODEL_URI = ROOT_URI + URI_SEPARATOR + Model.class.getSimpleName();
+	public final static String ROOT_MODEL_URI = MMINTConstants.ROOT_URI + MMINTConstants.URI_SEPARATOR + Model.class.getSimpleName();
 	/** The uri of the root model relationship type. */
-	public final static String ROOT_MODELREL_URI = ROOT_URI + URI_SEPARATOR + ModelRel.class.getSimpleName();
+	public final static String ROOT_MODELREL_URI = MMINTConstants.ROOT_URI + MMINTConstants.URI_SEPARATOR + ModelRel.class.getSimpleName();
 	/** The uri of the root model type endpoint. */
-	public final static String ROOT_MODELENDPOINT_URI = ROOT_MODELREL_URI + ENDPOINT_SEPARATOR + Model.class.getSimpleName() + URI_SEPARATOR + ModelEndpoint.class.getSimpleName();
+	public final static String ROOT_MODELENDPOINT_URI = MMINTConstants.ROOT_MODELREL_URI + MMINTConstants.ENDPOINT_SEPARATOR + Model.class.getSimpleName() + MMINTConstants.URI_SEPARATOR + ModelEndpoint.class.getSimpleName();
 	/** The uri of the root model element type. */
-	public final static String ROOT_MODELELEM_URI = ROOT_MODEL_URI + ECORE_MODEL_URI_SEPARATOR + URI_SEPARATOR + ModelElement.class.getSimpleName();
+	public final static String ROOT_MODELELEM_URI = MMINTConstants.ROOT_MODEL_URI + MMINTConstants.ECORE_MODEL_URI_SEPARATOR + MMINTConstants.URI_SEPARATOR + ModelElement.class.getSimpleName();
 	/** The uri of the root link type. */
-	public final static String ROOT_MAPPING_URI = ROOT_MODELREL_URI + URI_SEPARATOR + Mapping.class.getSimpleName();
+	public final static String ROOT_MAPPING_URI = MMINTConstants.ROOT_MODELREL_URI + MMINTConstants.URI_SEPARATOR + Mapping.class.getSimpleName();
 	/** The uri of the root model element type endpoint. */
 	//TODO MMINT[MISC] Migrate to use class names
-	public final static String ROOT_MODELELEMENDPOINT_URI = ROOT_MAPPING_URI + ENDPOINT_SEPARATOR + "ModelElem" + URI_SEPARATOR + "ModelElemEndpoint";
+	public final static String ROOT_MODELELEMENDPOINT_URI = MMINTConstants.ROOT_MAPPING_URI + MMINTConstants.ENDPOINT_SEPARATOR + "ModelElem" + MMINTConstants.URI_SEPARATOR + "ModelElemEndpoint";
 	/** The uri of the root operator type. */
-	public final static String ROOT_OPERATOR_URI = ROOT_URI + URI_SEPARATOR + Operator.class.getSimpleName();
+	public final static String ROOT_OPERATOR_URI = MMINTConstants.ROOT_URI + MMINTConstants.URI_SEPARATOR + Operator.class.getSimpleName();
 	/** The uri of the root editor type. */
-	public final static String ROOT_EDITOR_URI = ROOT_MODEL_URI + EDITOR_SEPARATOR + "tree";
+	public final static String ROOT_EDITOR_URI = MMINTConstants.ROOT_MODEL_URI + MMINTConstants.EDITOR_SEPARATOR + "tree";
 	/** The name of the root editor type. */
 	public final static String ROOT_EDITOR_NAME = "Ecore Reflective tree";
 	/** The id of the root editor type. */
@@ -165,24 +165,28 @@ public interface MMINTConstants {
 	public final static String REASONERS_REASONER_ATTR_NAME = "name";
 	/** The Reasoners extension point's reasoner's class attribute. */
 	public final static String REASONERS_REASONER_ATTR_CLASS = "class";
-	/** The Reasoners extension point's reasoner's file child. */
-	public final static String REASONERS_REASONER_CHILD_FILE = "file";
-	/** The Reasoners extension point's reasoner's file child's extension attribute. */
-	public final static String REASONERS_REASONER_FILE_ATTR_EXTENSION = "extension";
+
+  /** The Traits extension point's id. */
+  public final static String TRAITS_EXT_POINT = "edu.toronto.cs.se.mmint.traits";
+  /** The Traits extension point's trait child. */
+  public final static String TRAITS_CHILD_TRAIT = "reasoner";
+  /** The Traits extension point's trait's name attribute. */
+  public final static String TRAITS_TRAIT_ATTR_NAME = "name";
+  /** The Traits extension point's trait's interface attribute. */
+  public final static String TRAITS_TRAIT_ATTR_INTERFACE = "interface";
 
 	public final static String PREFERENCE_MMINT_ID = "edu.toronto.cs.se.mmint";
-	public final static String PREFERENCE_TESTS_ENABLED = PREFERENCE_MMINT_ID + ".TestsEnabled";
-	public final static String PREFERENCE_MENU_ID = PREFERENCE_MMINT_ID + ".mid.diagram.menu";
-	public final static String PREFERENCE_MENU_ICONS_ENABLED = PREFERENCE_MENU_ID + ".IconsEnabled";
-	public final static String PREFERENCE_MENU_MODELRELS_ENABLED = PREFERENCE_MENU_ID + ".ModelRelsEnabled";
-	public final static String PREFERENCE_MENU_MODELRELENDPOINTS_ENABLED = PREFERENCE_MENU_ID + ".ModelRelEndpointsEnabled";
-	public final static String PREFERENCE_MENU_OPERATORS_ENABLED = PREFERENCE_MENU_ID + ".OperatorsEnabled";
-	public final static String PREFERENCE_MENU_OPERATORENDPOINTS_ENABLED = PREFERENCE_MENU_ID + ".OperatorEndpointsEnabled";
-	public final static String PREFERENCE_MENU_OPENMODELEDITORS_ENABLED = PREFERENCE_MENU_ID + ".OpenModelEditorsEnabled";
-	public final static String PREFERENCE_MENU_DELETEMODELFILE_ENABLED = PREFERENCE_MENU_ID + ".DeleteModelFileEnabled";
-	public final static String PREFERENCE_MENU_LANGUAGE_REASONER = PREFERENCE_MENU_ID + ".Reasoner";
-	public final static String PREFERENCE_MENU_POLYMORPHISM_ID = PREFERENCE_MENU_ID + ".polymorphism";
-	public final static String PREFERENCE_MENU_POLYMORPHISM_RUNTIMETYPING_ENABLED = PREFERENCE_MENU_POLYMORPHISM_ID + ".RuntimeTypingEnabled";
-	public final static String PREFERENCE_MENU_POLYMORPHISM_MULTIPLEDISPATCH_ENABLED = PREFERENCE_MENU_POLYMORPHISM_ID + ".MultipleDispatchEnabled";
+	public final static String PREFERENCE_TESTS_ENABLED = MMINTConstants.PREFERENCE_MMINT_ID + ".TestsEnabled";
+	public final static String PREFERENCE_MENU_ID = MMINTConstants.PREFERENCE_MMINT_ID + ".mid.diagram.menu";
+	public final static String PREFERENCE_MENU_ICONS_ENABLED = MMINTConstants.PREFERENCE_MENU_ID + ".IconsEnabled";
+	public final static String PREFERENCE_MENU_MODELRELS_ENABLED = MMINTConstants.PREFERENCE_MENU_ID + ".ModelRelsEnabled";
+	public final static String PREFERENCE_MENU_MODELRELENDPOINTS_ENABLED = MMINTConstants.PREFERENCE_MENU_ID + ".ModelRelEndpointsEnabled";
+	public final static String PREFERENCE_MENU_OPERATORS_ENABLED = MMINTConstants.PREFERENCE_MENU_ID + ".OperatorsEnabled";
+	public final static String PREFERENCE_MENU_OPERATORENDPOINTS_ENABLED = MMINTConstants.PREFERENCE_MENU_ID + ".OperatorEndpointsEnabled";
+	public final static String PREFERENCE_MENU_OPENMODELEDITORS_ENABLED = MMINTConstants.PREFERENCE_MENU_ID + ".OpenModelEditorsEnabled";
+	public final static String PREFERENCE_MENU_DELETEMODELFILE_ENABLED = MMINTConstants.PREFERENCE_MENU_ID + ".DeleteModelFileEnabled";
+	public final static String PREFERENCE_MENU_POLYMORPHISM_ID = MMINTConstants.PREFERENCE_MENU_ID + ".polymorphism";
+	public final static String PREFERENCE_MENU_POLYMORPHISM_RUNTIMETYPING_ENABLED = MMINTConstants.PREFERENCE_MENU_POLYMORPHISM_ID + ".RuntimeTypingEnabled";
+	public final static String PREFERENCE_MENU_POLYMORPHISM_MULTIPLEDISPATCH_ENABLED = MMINTConstants.PREFERENCE_MENU_POLYMORPHISM_ID + ".MultipleDispatchEnabled";
 
 }

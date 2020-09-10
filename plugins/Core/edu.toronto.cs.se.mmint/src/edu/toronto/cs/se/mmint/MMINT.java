@@ -49,7 +49,6 @@ import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator;
-import edu.toronto.cs.se.mmint.mid.reasoning.IReasoningEngine;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
@@ -100,8 +99,10 @@ public class MMINT implements MMINTConstants {
 	static Map<String, Map<String, Set<List<String>>>> conversionsMID;
 	/** The table to map type uris to their bundle name. */
 	static Map<String, String> bundleTable;
-	/** The reasoners table. */
-	static Map<String, Map<String, IReasoningEngine>> reasoners;
+  /** The reasoning traits **/
+  static Map<String, Object> traits;
+	/** The reasoners. */
+	static Map<String, Object> reasoners;
 	/** The cache of runtime types. */
 	static Map<ExtendibleElement, List<? extends ExtendibleElement>> cachedRuntimeTypes;
 	/** The cached MID view provider */
@@ -219,7 +220,7 @@ public class MMINT implements MMINTConstants {
 	 */
 	public static Model createModelType(IConfigurationElement extensionConfig) throws MMINTException {
 
-		ExtensionPointType extensionType = new ExtensionPointType(extensionConfig, MMINT.multipleInheritanceTable, MMINT.typeFactory);
+		var extensionType = new ExtensionPointType(extensionConfig, MMINT.multipleInheritanceTable, MMINT.typeFactory);
 		if (extensionType.getUri() == null) {
 			throw new MMINTException("Model type " + extensionType.getName() + " must have a uri");
 		}
@@ -246,7 +247,7 @@ public class MMINT implements MMINTConstants {
 	public static ModelRel createModelRelType(IConfigurationElement extensionConfig) throws Exception {
 
 		var modelTypeConfig = extensionConfig.getChildren(MMINTConstants.MODELS_CHILD_MODELTYPE)[0];
-		ExtensionPointType modelRelExtensionType = new ExtensionPointType(modelTypeConfig, MMINT.typeFactory);
+		var modelRelExtensionType = new ExtensionPointType(modelTypeConfig, MMINT.typeFactory);
 		ExtensionPointType extensionType;
 		if (modelRelExtensionType.getUri() == null) {
 			throw new MMINTException("Model relationship type " + modelRelExtensionType.getName() + " must have a uri");
@@ -405,7 +406,7 @@ public class MMINT implements MMINTConstants {
 	 */
 	public static Editor createEditorType(IConfigurationElement extensionConfig) throws MMINTException {
 
-		ExtensionPointType extensionType = new ExtensionPointType(extensionConfig, MMINT.typeFactory);
+		var extensionType = new ExtensionPointType(extensionConfig, MMINT.typeFactory);
 		var modelTypeUri = extensionConfig.getAttribute(MMINTConstants.EDITORS_ATTR_MODELTYPEURI);
 		var editorId = extensionConfig.getAttribute(MMINTConstants.EDITORS_ATTR_ID);
 		var wizardId = extensionConfig.getAttribute(MMINTConstants.EDITORS_ATTR_WIZARDID);
@@ -439,7 +440,7 @@ public class MMINT implements MMINTConstants {
 		var paramTypeConfigs = extensionConfig.getChildren(MMINTConstants.OPERATORS_GENINOUT_CHILD_PARAMETER);
 		for (var i = 0; i < paramTypeConfigs.length; i++) {
 			var paramTypeConfig = paramTypeConfigs[i];
-			ExtensionPointType extensionType = new ExtensionPointType(paramTypeConfig, MMINT.typeFactory);
+			var extensionType = new ExtensionPointType(paramTypeConfig, MMINT.typeFactory);
 			var modelTypeEndpointSubconfig = paramTypeConfig.getChildren(MMINTConstants.CHILD_TYPEENDPOINT)[0];
 			var targetModelTypeUri = modelTypeEndpointSubconfig.getAttribute(MMINTConstants.TYPEENDPOINT_ATTR_TARGETTYPEURI);
 			Model targetModelType = MIDTypeRegistry.getType(targetModelTypeUri);
@@ -483,7 +484,7 @@ public class MMINT implements MMINTConstants {
 
 		var paramTypeConfigs = extensionConfig.getChildren(MMINTConstants.OPERATORS_GENINOUT_CHILD_PARAMETER);
 		for (IConfigurationElement paramTypeConfig : paramTypeConfigs) {
-			ExtensionPointType extensionType = new ExtensionPointType(paramTypeConfig, MMINT.typeFactory);
+			var extensionType = new ExtensionPointType(paramTypeConfig, MMINT.typeFactory);
 			var genericTypeEndpointSubconfig = paramTypeConfig.getChildren(MMINTConstants.CHILD_TYPEENDPOINT)[0];
 			var targetGenericTypeUri = genericTypeEndpointSubconfig.getAttribute(MMINTConstants.TYPEENDPOINT_ATTR_TARGETTYPEURI);
 			GenericElement targetGenericType = MIDTypeRegistry.getType(targetGenericTypeUri);
@@ -530,7 +531,7 @@ public class MMINT implements MMINTConstants {
 	 */
 	public static Operator createOperatorType(IConfigurationElement extensionConfig) throws MMINTException {
 
-		ExtensionPointType extensionType = new ExtensionPointType(extensionConfig, MMINT.typeFactory);
+		var extensionType = new ExtensionPointType(extensionConfig, MMINT.typeFactory);
 		if (extensionType.getUri() == null) {
 			throw new MMINTException("Operator type " + extensionType.getName() + " must have a uri");
 		}
@@ -738,19 +739,18 @@ public class MMINT implements MMINTConstants {
 			.forEach(dynamicOperatorType -> this.createDynamicType(dynamicOperatorType));
 	}
 
-	public static IReasoningEngine createReasoner(IConfigurationElement extensionConfig) throws CoreException {
+	public static Object createTrait(IConfigurationElement extensionConfig) throws CoreException {
+    var traitName = extensionConfig.getAttribute(MMINTConstants.TRAITS_TRAIT_ATTR_NAME);
+    var traitInterface = extensionConfig.getAttribute(MMINTConstants.TRAITS_TRAIT_ATTR_INTERFACE);
+    MMINT.traits.put(traitName, traitInterface);
+
+    return traitInterface;
+	}
+
+	public static Object createReasoner(IConfigurationElement extensionConfig) throws CoreException {
 		var reasonerName = extensionConfig.getAttribute(MMINTConstants.REASONERS_REASONER_ATTR_NAME);
-		var reasoner = (IReasoningEngine) extensionConfig.createExecutableExtension(MMINTConstants.REASONERS_REASONER_ATTR_CLASS);
-		var fileConfigs = extensionConfig.getChildren(MMINTConstants.REASONERS_REASONER_CHILD_FILE);
-		for (var fileConfig : fileConfigs) {
-			var extension = fileConfig.getAttribute(MMINTConstants.REASONERS_REASONER_FILE_ATTR_EXTENSION);
-			var fileReasoners = MMINT.reasoners.get(extension);
-			if (fileReasoners == null) {
-				fileReasoners = new HashMap<>();
-				MMINT.reasoners.put(extension, fileReasoners);
-			}
-			fileReasoners.put(reasonerName, reasoner);
-		}
+		var reasoner = extensionConfig.createExecutableExtension(MMINTConstants.REASONERS_REASONER_ATTR_CLASS);
+		MMINT.reasoners.put(reasonerName, reasoner);
 
 		return reasoner;
 	}
@@ -769,6 +769,7 @@ public class MMINT implements MMINTConstants {
 		MMINT.bundleTable = new HashMap<>();
 		MMINT.multipleInheritanceTable = new HashMap<>();
 		MMINT.typeFactory = new MIDHeavyTypeFactory();
+    MMINT.traits = new HashMap<>();
 		MMINT.reasoners = new HashMap<>();
 		MMINT.activeInstanceMIDFile = null;
 		MMINT.cachedMIDViewProvider = null;
@@ -837,7 +838,15 @@ public class MMINT implements MMINTConstants {
 		}
 		// dynamic types from last shutdown
 		this.createDynamicTypes();
-		// reasoners
+		// reasoning
+    for (var config : registry.getConfigurationElementsFor(MMINTConstants.TRAITS_EXT_POINT)) {
+      try {
+        createTrait(config);
+      }
+      catch (CoreException e) {
+        MMINTException.print(IStatus.ERROR, "Trait can't be created in " + config.getContributor().getName(), e);
+      }
+    }
 		for (var config : registry.getConfigurationElementsFor(MMINTConstants.REASONERS_EXT_POINT)) {
 			try {
 				createReasoner(config);
@@ -963,17 +972,6 @@ public class MMINT implements MMINTConstants {
 		this.initPreference(preferences, MMINTConstants.PREFERENCE_MENU_DELETEMODELFILE_ENABLED, "true", false);
 		this.initPreference(preferences, MMINTConstants.PREFERENCE_MENU_POLYMORPHISM_RUNTIMETYPING_ENABLED, "true", false);
 		this.initPreference(preferences, MMINTConstants.PREFERENCE_MENU_POLYMORPHISM_MULTIPLEDISPATCH_ENABLED, "true", false);
-		for (String languageId : MMINT.reasoners.keySet()) {
-			var reasonerName = preferences.get(MMINTConstants.PREFERENCE_MENU_LANGUAGE_REASONER + languageId, null);
-			if (reasonerName != null) {
-				var reasoner = MMINT.reasoners.get(languageId).get(reasonerName);
-				if (reasoner != null) {
-					continue;
-				}
-			}
-			reasonerName = MMINT.reasoners.get(languageId).keySet().iterator().next();
-			this.initPreference(preferences, MMINTConstants.PREFERENCE_MENU_LANGUAGE_REASONER + languageId, reasonerName, true);
-		}
 	}
 
 	/**
@@ -1017,11 +1015,11 @@ public class MMINT implements MMINTConstants {
 		}
 	}
 
-	public static Map<String, IReasoningEngine> getReasoners(String fileExtension) {
-		return MMINT.reasoners.get(fileExtension);
+	public static Object getReasoner(String reasonerName) {
+		return MMINT.reasoners.get(reasonerName);
 	}
 
-	public static Set<String> getReasonerFileExtensions() {
+	public static Set<String> getReasonerNames() {
 		return MMINT.reasoners.keySet();
 	}
 
@@ -1038,7 +1036,7 @@ public class MMINT implements MMINTConstants {
 	public static void stashActiveInstanceMIDFile() {
 
 		try {
-			IFile instanceMIDFile = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor().getEditorInput().getAdapter(IFile.class);
+			var instanceMIDFile = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor().getEditorInput().getAdapter(IFile.class);
 			MMINT.activeInstanceMIDFile = instanceMIDFile;
 		}
 		catch (Exception e) {

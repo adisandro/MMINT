@@ -494,7 +494,7 @@ mappingTypes:
 
 	public static IReasoningEngine getReasoner(String fileExtension) throws MMINTException {
 
-		var reasoners = MMINT.getReasoners(fileExtension);
+		var reasoners = MMINT.getReasoner(fileExtension);
 		if (reasoners == null || reasoners.isEmpty()) {
 			throw new MMINTException("Can't find a reasoner for language " + fileExtension);
 		}
