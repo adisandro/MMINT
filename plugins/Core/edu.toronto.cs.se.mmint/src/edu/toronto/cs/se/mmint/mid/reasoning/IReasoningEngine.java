@@ -11,41 +11,11 @@
  */
 package edu.toronto.cs.se.mmint.mid.reasoning;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import org.eclipse.jdt.annotation.Nullable;
 
-import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
-import edu.toronto.cs.se.mmint.mid.GenericElement;
-import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
-import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
-import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
 public interface IReasoningEngine {
-
-	public default boolean checkModelConstraint(Model model, ExtendibleElementConstraint constraint, MIDLevel constraintLevel) {
-
-		return true;
-	}
-
-	public default boolean checkOperatorGenericConstraint(ExtendibleElementConstraint constraint, GenericEndpoint genericTypeEndpoint, GenericElement genericType, List<OperatorInput> inputs) {
-
-		return true;
-	}
-
-	public default boolean checkOperatorInputConstraint(ExtendibleElementConstraint constraint, Map<String, Model> inputsByName) {
-
-		return true;
-	}
-
-	public default Map<ModelRel, List<Model>> getOperatorOutputConstraints(ExtendibleElementConstraint constraint, Map<String, GenericElement> genericsByName, Map<String, Model> inputsByName, Map<String, Model> outputsByName) {
-
-		return new HashMap<>();
-	}
 
 	public default boolean checkModelConstraintConsistency(Model modelType, String constraint) {
 

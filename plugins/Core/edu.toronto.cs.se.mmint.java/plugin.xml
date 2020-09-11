@@ -17,9 +17,8 @@
    <extension
          point="edu.toronto.cs.se.mmint.reasoners">
       <reasoner
-            class="edu.toronto.cs.se.mmint.java.reasoning.JavaReasoningEngine"
+            class="edu.toronto.cs.se.mmint.java.reasoning.JavaReasoner"
             name="Java">
-         <file extension="java" />
       </reasoner>
    </extension>
 

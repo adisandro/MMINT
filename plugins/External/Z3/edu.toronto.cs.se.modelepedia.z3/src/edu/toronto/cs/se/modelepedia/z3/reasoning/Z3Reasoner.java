@@ -1,14 +1,12 @@
 /**
- * Copyright (c) 2012-2020 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
- * Rick Salay, Naama Ben-David.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
+ * Copyright (c) 2012-2020 Alessio Di Sandro, Naama Ben-David, Marsha Chechik.
+ * All rights reserved. This program and the accompanying materials are made available under the terms
+ * of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
- *    Alessio Di Sandro - Implementation.
- *    Naama Ben-David - Concretization highlighting.
+ *   Alessio Di Sandro - Implementation
+ *   Naama Ben-David - Concretization highlighting.
  */
 package edu.toronto.cs.se.modelepedia.z3.reasoning;
 
@@ -31,9 +29,9 @@ import edu.toronto.cs.se.mavo.MAVOCollection;
 import edu.toronto.cs.se.mavo.MAVODecision;
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mavo.MAVORoot;
-import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmint.mavo.reasoning.IMAVOReasoningEngine;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
@@ -42,6 +40,7 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
+import edu.toronto.cs.se.mmint.mid.reasoning.IConstraintTrait;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver;
@@ -55,7 +54,7 @@ import edu.toronto.cs.se.modelepedia.z3.mavo.Z3MAVOModelParser;
 import edu.toronto.cs.se.modelepedia.z3.mavo.Z3MAVOUtils;
 
 //TODO MMINT[Z3] Support refinement and highlighting for the complex full-MAVO encoding
-public class Z3ReasoningEngine implements IMAVOReasoningEngine {
+public class Z3Reasoner implements IMAVOReasoningEngine, IConstraintTrait {
 
 	public enum MAVOCheckStrategy {
 
@@ -73,11 +72,11 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 			//TODO MMINT[Z3] Support non-mavo models (create acceleo transformation, check constraint once)
 			throw new MMINTException("Model " + model.getName() + " is not a MAVO model");
 		}
-		EcoreMAVOToSMTLIB ecore2smt = (EcoreMAVOToSMTLIB) MIDTypeRegistry.<Operator>getType(ECOREMAVOTOSMTLIB_OPERATOR_URI);
+		var ecore2smt = (EcoreMAVOToSMTLIB) MIDTypeRegistry.<Operator>getType(Z3Reasoner.ECOREMAVOTOSMTLIB_OPERATOR_URI);
 		if (ecore2smt == null) {
-			throw new MMINTException("Can't find " + ECOREMAVOTOSMTLIB_OPERATOR_URI + " operator type");
+			throw new MMINTException("Can't find " + Z3Reasoner.ECOREMAVOTOSMTLIB_OPERATOR_URI + " operator type");
 		}
-		EcoreMAVOToSMTLIB encoder = ecore2smt;
+		var encoder = ecore2smt;
 		EList<Model> inputModels = new BasicEList<>();
 		inputModels.add(model);
 		EList<OperatorInput> inputs = null;
@@ -101,30 +100,30 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 	public @NonNull MAVOTruthValue checkMAVOConstraintWithSolver(@NonNull Z3IncrementalSolver z3IncSolver, @NonNull String smtMacros, @NonNull String smtConstraint, MAVOCheckStrategy checkStrategy) {
 
 		Z3Model z3Model = z3IncSolver.checkSatAndGetModel(smtMacros + " " + Z3Utils.assertion(smtConstraint), Z3IncrementalBehavior.POP);
-		boolean constraintTruthValue = z3Model.getZ3Result().isSAT();
-		z3ConstraintModel = (constraintTruthValue) ? z3Model : null;
+		var constraintTruthValue = z3Model.getZ3Result().isSAT();
+		this.z3ConstraintModel = (constraintTruthValue) ? z3Model : null;
 		switch (checkStrategy) {
 			case SINGLE_CHECK: // skips the next check because the model has no mavo annotation
-				z3NotConstraintModel = null;
+				this.z3NotConstraintModel = null;
 				return MAVOTruthValue.toMAVOTruthValue(constraintTruthValue);
 			case SINGLE_CHECK_IF_FALSE: // skips the next check because we don't care about losing a possible MAVOTruthValue.ERROR status
 				if (!constraintTruthValue) {
-					z3NotConstraintModel = null;
+					this.z3NotConstraintModel = null;
 					return MAVOTruthValue.toMAVOTruthValue(constraintTruthValue);
 				}
 			case DOUBLE_CHECK:
 				// just continue
 		}
 		z3Model = z3IncSolver.checkSatAndGetModel(smtMacros + " " + Z3Utils.assertion(Z3Utils.not(smtConstraint)), Z3IncrementalBehavior.POP);
-		boolean notConstraintTruthValue = z3Model.getZ3Result().isSAT();
-		z3NotConstraintModel = (notConstraintTruthValue) ? z3Model : null;
+		var notConstraintTruthValue = z3Model.getZ3Result().isSAT();
+		this.z3NotConstraintModel = (notConstraintTruthValue) ? z3Model : null;
 
 		return MAVOTruthValue.toMAVOTruthValue(constraintTruthValue, notConstraintTruthValue);
 	}
 
 	public @NonNull MAVOTruthValue checkMAVOConstraint(@NonNull String smtEncoding, @NonNull String smtMacros, @NonNull String smtConstraint, MAVOCheckStrategy checkStrategy) {
 
-		Z3IncrementalSolver z3IncSolver = new Z3IncrementalSolver();
+		var z3IncSolver = new Z3IncrementalSolver();
 		z3IncSolver.firstCheckSatAndGetModel(smtEncoding);
 
 		return checkMAVOConstraintWithSolver(z3IncSolver, smtMacros, smtConstraint, checkStrategy);
@@ -141,7 +140,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 			MMINTException.print(IStatus.ERROR, "Can't generate SMTLIB encoding, evaluating to false", e);
 			return MAVOTruthValue.FALSE;
 		}
-		MAVOCheckStrategy checkStrategy = (z3ModelParser.isAnnotated()) ? MAVOCheckStrategy.DOUBLE_CHECK : MAVOCheckStrategy.SINGLE_CHECK;
+		var checkStrategy = (z3ModelParser.isAnnotated()) ? MAVOCheckStrategy.DOUBLE_CHECK : MAVOCheckStrategy.SINGLE_CHECK;
 		MAVOTruthValue constraintTruthValue = checkMAVOConstraint(z3ModelParser.getSMTLIBEncoding(), z3ModelParser.getSMTLIBMacros(), constraint.getImplementation(), checkStrategy);
 
 		// show example if: maybe, has a diagram, user accepts
@@ -164,7 +163,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 		MAVOConcretizationHighlighter highlighter;
 		try {
 			highlighter = new MAVOConcretizationHighlighter();
-			highlighter.highlightMAVOCounterExample(modelDiagram, z3ModelParser.getZ3MAVOModelObjects(z3NotConstraintModel));
+			highlighter.highlightMAVOCounterExample(modelDiagram, z3ModelParser.getZ3MAVOModelObjects(this.z3NotConstraintModel));
 		}
 		catch (Exception e) {
 			MMINTException.print(IStatus.WARNING, "Can't highlight concretization, skipping it", e);
@@ -174,7 +173,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 	}
 
 	@Override
-	public boolean checkModelConstraint(@NonNull Model model, @NonNull ExtendibleElementConstraint constraint, @NonNull MIDLevel constraintLevel) {
+	public boolean checkModelConstraint(Model model, ExtendibleElementConstraint constraint, MIDLevel constraintLevel) {
 
 		return checkMAVOModelConstraint(model, constraint, constraintLevel).toBoolean();
 	}
@@ -183,11 +182,11 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 
 		Set<String> smtConcretizations = new HashSet<>();
 		do {
-			String smtConcretization = "";
+			var smtConcretization = "";
 			Map<String, Set<String>> z3ModelObjs = z3ModelParser.getZ3MAVOModelObjects(z3Model);
 			for (MAVOElement mavoModelObj : mavoModelObjs) {
-				String formulaVar = mavoModelObj.getFormulaVariable();
-				int counterMS = 0;
+				var formulaVar = mavoModelObj.getFormulaVariable();
+				var counterMS = 0;
 				Set<String> mergedV = null;
 				for (Set<String> formulaVars : z3ModelObjs.values()) {
 					//TODO MMINT[Z3] Understand why we don't break here, is it only to increase counterMS in the S case?
@@ -233,7 +232,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 
 	public Set<String> allSAT(@NonNull String smtEncoding, @NonNull Z3MAVOModelParser z3ModelParser, @NonNull Set<MAVOElement> mavoModelObjs, @NonNull MAVORoot rootMavoModelObj) {
 
-		Z3IncrementalSolver z3IncSolver = new Z3IncrementalSolver();
+		var z3IncSolver = new Z3IncrementalSolver();
 		Z3Model z3Model = z3IncSolver.firstCheckSatAndGetModel(smtEncoding);
 		if (!z3Model.getZ3Result().isSAT()) {
 			return new HashSet<>();
@@ -246,7 +245,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 
 		try {
 			Z3MAVOModelParser z3ModelParser = generateSMTLIBEncoding(model);
-			MAVORoot rootMavoModelObj = (MAVORoot) model.getEMFInstanceRoot();
+			var rootMavoModelObj = (MAVORoot) model.getEMFInstanceRoot();
 			return allSAT(z3ModelParser.getSMTLIBEncoding(), z3ModelParser, new HashSet<>(MAVOUtils.getAnnotatedMAVOModelObjects(rootMavoModelObj).values()), rootMavoModelObj);
 		}
 		catch (Exception e) {
@@ -257,7 +256,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 
 	private void optimizeMayBackbone(@NonNull Z3MAVOModelParser z3ModelParser, @NonNull Z3Model z3Model, @NonNull Set<MAVOElement> mayModelObjs, @NonNull Set<String> baselineFormulaVars, @NonNull Map<String, MAVOTruthValue> backboneTruthValues) {
 
-		Set<String> currentFormulaVars = z3ModelParser.getZ3MAVOModelObjects(z3Model).values().stream()
+		var currentFormulaVars = z3ModelParser.getZ3MAVOModelObjects(z3Model).values().stream()
 			.flatMap(Set::stream)
 			.collect(Collectors.toSet());
 		mayModelObjs.stream()
@@ -268,7 +267,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 
 	public @NonNull Map<String, MAVOTruthValue> mayBackboneWithSolver(@NonNull Z3IncrementalSolver z3IncSolver, @Nullable Z3MAVOModelParser z3ModelParser, @Nullable Z3Model z3Model, @NonNull Set<MAVOElement> mayModelObjs) {
 
-		Set<String> baselineFormulaVars = (z3ModelParser == null) ?
+		var baselineFormulaVars = (z3ModelParser == null) ?
 			null :
 			z3ModelParser.getZ3MAVOModelObjects(z3Model).values().stream()
 				.flatMap(Set::stream)
@@ -276,7 +275,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 		Map<String, MAVOTruthValue> backboneTruthValues = new HashMap<>();
 		// for each may element, assert it and its negation
 		for (MAVOElement mayModelObj : mayModelObjs) {
-			String formulaVar = mayModelObj.getFormulaVariable();
+			var formulaVar = mayModelObj.getFormulaVariable();
 			if (backboneTruthValues.containsKey(formulaVar)) { // optimized
 				continue;
 			}
@@ -291,9 +290,9 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 			MAVOTruthValue backboneTruthValue = this.checkMAVOConstraintWithSolver(z3IncSolver, "", smtConstraint, MAVOCheckStrategy.SINGLE_CHECK_IF_FALSE);
 			backboneTruthValues.put(formulaVar, backboneTruthValue);
 			if (backboneTruthValue != MAVOTruthValue.FALSE && z3ModelParser != null) { // optimize
-				optimizeMayBackbone(z3ModelParser, z3ConstraintModel, mayModelObjs, baselineFormulaVars, backboneTruthValues);
+				optimizeMayBackbone(z3ModelParser, this.z3ConstraintModel, mayModelObjs, baselineFormulaVars, backboneTruthValues);
 				if (backboneTruthValue == MAVOTruthValue.MAYBE) {
-					optimizeMayBackbone(z3ModelParser, z3NotConstraintModel, mayModelObjs, baselineFormulaVars, backboneTruthValues);
+					optimizeMayBackbone(z3ModelParser, this.z3NotConstraintModel, mayModelObjs, baselineFormulaVars, backboneTruthValues);
 				}
 			}
 		}
@@ -303,7 +302,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 
 	public @NonNull Map<String, MAVOTruthValue> mayBackbone(@NonNull String smtEncoding, @Nullable Z3MAVOModelParser z3ModelParser, @NonNull Set<MAVOElement> mayModelObjs) {
 
-		Z3IncrementalSolver z3IncSolver = new Z3IncrementalSolver();
+		var z3IncSolver = new Z3IncrementalSolver();
 		Z3Model z3Model = z3IncSolver.firstCheckSatAndGetModel(smtEncoding);
 		if (!z3Model.getZ3Result().isSAT()) {
 			return new HashMap<>();
@@ -319,7 +318,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 			if (!z3ModelParser.isMayOnly()) {
 				throw new MMINTException("The backbone is for may models only");
 			}
-			MAVORoot rootMavoModelObj = (MAVORoot) model.getEMFInstanceRoot();
+			var rootMavoModelObj = (MAVORoot) model.getEMFInstanceRoot();
 			return mayBackbone(z3ModelParser.getSMTLIBEncoding(), z3ModelParser, new HashSet<>(MAVOUtils.getAnnotatedMAVOModelObjects(rootMavoModelObj).values()));
 		}
 		catch (Exception e) {
@@ -339,7 +338,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 			MMINTException.print(IStatus.ERROR, "Can't generate SMTLIB encoding, aborting refinement", e);
 			return null;
 		}
-		MAVOCheckStrategy checkStrategy = (z3ModelParser.isAnnotated()) ? MAVOCheckStrategy.DOUBLE_CHECK : MAVOCheckStrategy.SINGLE_CHECK;
+		var checkStrategy = (z3ModelParser.isAnnotated()) ? MAVOCheckStrategy.DOUBLE_CHECK : MAVOCheckStrategy.SINGLE_CHECK;
 		MAVOTruthValue constraintTruthValue = checkMAVOConstraint(z3ModelParser.getSMTLIBEncoding(), z3ModelParser.getSMTLIBMacros(), model.getConstraint().getImplementation(), checkStrategy);
 
 		// refine if: maybe
@@ -350,8 +349,8 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 
 		// refine
 		Diagram modelDiagram = MIDRegistry.getModelDiagram(model);
-		String smtEncoding = z3ModelParser.getSMTLIBEncoding() + Z3Utils.assertion(model.getConstraint().getImplementation());
-		MAVORefiner refiner = new MAVORefiner(this);
+		var smtEncoding = z3ModelParser.getSMTLIBEncoding() + Z3Utils.assertion(model.getConstraint().getImplementation());
+		var refiner = new MAVORefiner(this);
 		try {
 			return refiner.refine(model, modelDiagram, null, smtEncoding, z3ModelParser);
 		}
@@ -371,7 +370,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 		if (model.getConstraint() != null) {
 			smtEncoding += Z3Utils.assertion(model.getConstraint().getImplementation());
 		}
-		String smtMayLogicElem = "";
+		var smtMayLogicElem = "";
 		for (LogicElement mayLogicElem : mayLogicElems) {
 			if (mayLogicElem instanceof MAVOCollection) {
 				smtMayLogicElem = mayLogicElem.getFormulaVariable();
@@ -401,7 +400,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 
 		// refine
 		Diagram modelDiagram = MIDRegistry.getModelDiagram(model);
-		MAVORefiner refiner = new MAVORefiner(this);
+		var refiner = new MAVORefiner(this);
 		try {
 			return refiner.refine(model, modelDiagram, mayAlternative, smtEncoding, null);
 		}
@@ -425,7 +424,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 
 		// refine
 		Diagram modelDiagram = MIDRegistry.getModelDiagram(model);
-		MAVORefiner refiner = new MAVORefiner(this);
+		var refiner = new MAVORefiner(this);
 		try {
 			return refiner.refine(model, modelDiagram, null, smtEncoding, null);
 		}
@@ -447,7 +446,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 	@Override
 	public void highlightMAVODecision(@NonNull Diagram modelDiagram, @NonNull MAVODecision mavoDecision) {
 
-		MAVOConcretizationHighlighter highlighter = new MAVOConcretizationHighlighter();
+		var highlighter = new MAVOConcretizationHighlighter();
 		try {
 			highlighter.highlight(modelDiagram, mavoDecision);
 		}
@@ -459,7 +458,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 	@Override
 	public void highlightMAVOCollection(@NonNull Diagram modelDiagram, @NonNull MAVOCollection mavoCollection) {
 
-		MAVOConcretizationHighlighter highlighter = new MAVOConcretizationHighlighter();
+		var highlighter = new MAVOConcretizationHighlighter();
 		try {
 			highlighter.highlight(modelDiagram, mavoCollection);
 		}
@@ -471,7 +470,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 	@Override
 	public void highlightMAVOElement(@NonNull Diagram modelDiagram, @NonNull MAVOElement mavoModelObj) {
 
-		MAVOConcretizationHighlighter highlighter = new MAVOConcretizationHighlighter();
+		var highlighter = new MAVOConcretizationHighlighter();
 		try {
 			highlighter.highlight(modelDiagram, mavoModelObj);
 		}

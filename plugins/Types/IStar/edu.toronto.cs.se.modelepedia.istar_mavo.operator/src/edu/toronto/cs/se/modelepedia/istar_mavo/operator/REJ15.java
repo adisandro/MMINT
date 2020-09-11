@@ -28,7 +28,7 @@ import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver;
 import edu.toronto.cs.se.modelepedia.z3.Z3Model;
 import edu.toronto.cs.se.modelepedia.z3.Z3Model.Z3Result;
 import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
-import edu.toronto.cs.se.modelepedia.z3.reasoning.Z3ReasoningEngine;
+import edu.toronto.cs.se.modelepedia.z3.reasoning.Z3Reasoner;
 
 public class REJ15 extends FASE14 {
 
@@ -54,11 +54,11 @@ public class REJ15 extends FASE14 {
 	public void readInputProperties(Properties inputProperties) throws MMINTException {
 
 		super.readInputProperties(inputProperties);
-		this.timeAnalysisEnabled = MIDOperatorIOUtils.getBoolProperty(inputProperties, PROPERTY_OUT_TIMEANALYSIS+MIDOperatorIOUtils.PROP_OUTENABLED_SUFFIX);
-		this.timeRNFEnabled = MIDOperatorIOUtils.getBoolProperty(inputProperties, PROPERTY_OUT_TIMERNF+MIDOperatorIOUtils.PROP_OUTENABLED_SUFFIX);
-		this.modelConstraint = MIDOperatorIOUtils.getOptionalStringProperty(inputProperties, PROPERTY_IN_MODELCONSTRAINT, PROPERTY_IN_MODELCONSTRAINT_DEFAULT);
-		this.generateTargetsConcretization = MIDOperatorIOUtils.getOptionalBoolProperty(inputProperties, PROPERTY_IN_GENERATETARGETSCONCRETIZATION, PROPERTY_IN_GENERATETARGETSCONCRETIZATION_DEFAULT);
-		this.timeAllSATEnabled = MIDOperatorIOUtils.getBoolProperty(inputProperties, PROPERTY_OUT_TIMEALLSAT+MIDOperatorIOUtils.PROP_OUTENABLED_SUFFIX);
+		this.timeAnalysisEnabled = MIDOperatorIOUtils.getBoolProperty(inputProperties, RE13.PROPERTY_OUT_TIMEANALYSIS+MIDOperatorIOUtils.PROP_OUTENABLED_SUFFIX);
+		this.timeRNFEnabled = MIDOperatorIOUtils.getBoolProperty(inputProperties, FASE14.PROPERTY_OUT_TIMERNF+MIDOperatorIOUtils.PROP_OUTENABLED_SUFFIX);
+		this.modelConstraint = MIDOperatorIOUtils.getOptionalStringProperty(inputProperties, REJ15.PROPERTY_IN_MODELCONSTRAINT, REJ15.PROPERTY_IN_MODELCONSTRAINT_DEFAULT);
+		this.generateTargetsConcretization = MIDOperatorIOUtils.getOptionalBoolProperty(inputProperties, REJ15.PROPERTY_IN_GENERATETARGETSCONCRETIZATION, REJ15.PROPERTY_IN_GENERATETARGETSCONCRETIZATION_DEFAULT);
+		this.timeAllSATEnabled = MIDOperatorIOUtils.getBoolProperty(inputProperties, REJ15.PROPERTY_OUT_TIMEALLSAT+MIDOperatorIOUtils.PROP_OUTENABLED_SUFFIX);
 	}
 
 	@Override
@@ -79,20 +79,20 @@ public class REJ15 extends FASE14 {
 	protected void writeProperties(Properties properties) {
 
 		super.writeProperties(properties);
-		properties.setProperty(PROPERTY_OUT_TIMEALLSAT, String.valueOf(this.timeAllSAT));
-		properties.setProperty(PROPERTY_OUT_NUMSOLUTIONS, String.valueOf(this.numSolutions));
+		properties.setProperty(REJ15.PROPERTY_OUT_TIMEALLSAT, String.valueOf(this.timeAllSAT));
+		properties.setProperty(REJ15.PROPERTY_OUT_NUMSOLUTIONS, String.valueOf(this.numSolutions));
 	}
 
 	@Override
 	protected Z3Model doTargets(Z3IncrementalSolver z3IncSolver) {
 
-		long extraTime = 0;
+		var extraTime = 0L;
 		if (!this.timeAnalysisEnabled) {
-			long startTime = System.nanoTime();
+			var startTime = System.nanoTime();
 			z3IncSolver.firstCheckSatAndGetModel(this.smtEncoding);
 			extraTime = System.nanoTime() - startTime;
 		}
-		Z3Model z3Model = super.doTargets(z3IncSolver);
+		var z3Model = super.doTargets(z3IncSolver);
 		this.timeTargets += extraTime;
 
 		return z3Model;
@@ -100,11 +100,11 @@ public class REJ15 extends FASE14 {
 
 	private void doAllSAT(Z3IncrementalSolver z3IncSolver, Z3Model z3Model) {
 
-		long startTime = System.nanoTime();
+		var startTime = System.nanoTime();
 
-		Z3ReasoningEngine z3Reasoner;
+		Z3Reasoner z3Reasoner;
 		try {
-			z3Reasoner = (Z3ReasoningEngine) MAVOMIDConstraintChecker.getMAVOReasoner("smt");
+			z3Reasoner = (Z3Reasoner) MAVOMIDConstraintChecker.getMAVOReasoner("smt");
 			this.numSolutions = z3Reasoner.allSATWithSolver(z3IncSolver, this.z3ModelParser, z3Model, new HashSet<>(this.mavoModelObjs.values()), this.istar).size();
 		}
 		catch (MMINTException e) {
@@ -205,17 +205,17 @@ public class REJ15 extends FASE14 {
 			Map<String, MID> outputMIDsByName) throws Exception {
 
 		// input
-		Model istarModel = inputsByName.get(IN_MODEL);
+		var istarModel = inputsByName.get(RE13.IN_MODEL);
 		this.init();
 
 		// run
 		collectAnalysisModelObjects(istarModel);
-		Z3IncrementalSolver z3IncSolver = new Z3IncrementalSolver();
+		var z3IncSolver = new Z3IncrementalSolver();
 		if (this.timeAnalysisEnabled) {
 			doAnalysis(z3IncSolver);
 		}
 		if (this.timeTargetsEnabled) {
-			Z3Model z3Model = doTargets(z3IncSolver);
+			var z3Model = doTargets(z3IncSolver);
 			if (this.targets == Z3Result.SAT) {
 				if (this.timeRNFEnabled) {
 					doRNF(z3IncSolver, z3Model);
@@ -241,7 +241,7 @@ public class REJ15 extends FASE14 {
 		}
 
 		// output
-		Properties outputProperties = new Properties();
+		var outputProperties = new Properties();
 		writeProperties(outputProperties);
 		MIDOperatorIOUtils.writePropertiesFile(
 			outputProperties,

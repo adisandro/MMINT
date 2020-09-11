@@ -1,13 +1,11 @@
 /**
- * Copyright (c) 2012-2020 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
- * Rick Salay.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
+ * Copyright (c) 2012-2020 Alessio Di Sandro, Marsha Chechik.
+ * All rights reserved. This program and the accompanying materials are made available under the terms
+ * of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *    Alessio Di Sandro - Implementation.
+ *   Alessio Di Sandro - Implementation
  */
 package edu.toronto.cs.se.mmint.java.reasoning;
 
@@ -27,12 +25,12 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
-import edu.toronto.cs.se.mmint.mid.reasoning.IReasoningEngine;
+import edu.toronto.cs.se.mmint.mid.reasoning.IConstraintTrait;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
-public class JavaReasoningEngine implements IReasoningEngine {
+public class JavaReasoner implements IConstraintTrait {
 
-	private @NonNull Object getJavaConstraint(@NonNull String javaClassName, @NonNull String typeUri) throws Exception {
+	private Object getJavaConstraint(String javaClassName, String typeUri) throws Exception {
 
 		Object javaConstraint = MIDTypeRegistry.getTypeBundle(typeUri).
 			loadClass(javaClassName).
@@ -43,7 +41,7 @@ public class JavaReasoningEngine implements IReasoningEngine {
 	}
 
 	@Override
-	public boolean checkModelConstraint(@NonNull Model model, @NonNull ExtendibleElementConstraint constraint, @NonNull MIDLevel constraintLevel) {
+	public boolean checkModelConstraint(Model model, ExtendibleElementConstraint constraint, MIDLevel constraintLevel) {
 
 		var javaClassName = constraint.getImplementation();
 		var modelTypeUri = (constraintLevel == MIDLevel.INSTANCES) ?
@@ -61,7 +59,7 @@ public class JavaReasoningEngine implements IReasoningEngine {
 		}
 	}
 
-	private @NonNull IJavaOperatorConstraint getOperatorConstraint(@NonNull ExtendibleElementConstraint constraint) throws Exception {
+	private IJavaOperatorConstraint getOperatorConstraint(ExtendibleElementConstraint constraint) throws Exception {
 
 		var javaClassName = constraint.getImplementation();
 		var operatorTypeUri = ((Operator) constraint.eContainer()).getUri();
@@ -73,10 +71,10 @@ public class JavaReasoningEngine implements IReasoningEngine {
 	}
 
 	@Override
-	public boolean checkOperatorGenericConstraint(@NonNull ExtendibleElementConstraint constraint, @NonNull GenericEndpoint genericTypeEndpoint, @NonNull GenericElement genericType, @NonNull List<OperatorInput> inputs) {
+	public boolean checkOperatorGenericConstraint(ExtendibleElementConstraint constraint, GenericEndpoint genericTypeEndpoint, GenericElement genericType, List<OperatorInput> inputs) {
 
 		try {
-			IJavaOperatorConstraint javaConstraint = this.getOperatorConstraint(constraint);
+			var javaConstraint = this.getOperatorConstraint(constraint);
 			return javaConstraint.isAllowedGeneric(genericTypeEndpoint, genericType, inputs);
 		}
 		catch (Exception e) {
@@ -86,10 +84,10 @@ public class JavaReasoningEngine implements IReasoningEngine {
 	}
 
 	@Override
-	public boolean checkOperatorInputConstraint(@NonNull ExtendibleElementConstraint constraint, @NonNull Map<String, Model> inputsByName) {
+	public boolean checkOperatorInputConstraint(ExtendibleElementConstraint constraint, Map<String, Model> inputsByName) {
 
 		try {
-			IJavaOperatorConstraint javaConstraint = this.getOperatorConstraint(constraint);
+			var javaConstraint = this.getOperatorConstraint(constraint);
 			return javaConstraint.isAllowedInput(inputsByName);
 		}
 		catch (Exception e) {
@@ -99,10 +97,10 @@ public class JavaReasoningEngine implements IReasoningEngine {
 	}
 
 	@Override
-	public Map<ModelRel, List<Model>> getOperatorOutputConstraints(@NonNull ExtendibleElementConstraint constraint, @NonNull Map<String, GenericElement> genericsByName, @NonNull Map<String, Model> inputsByName, @NonNull Map<String, Model> outputsByName) {
+	public Map<ModelRel, List<Model>> getOperatorOutputConstraints(ExtendibleElementConstraint constraint, Map<String, GenericElement> genericsByName, Map<String, Model> inputsByName, @NonNull Map<String, Model> outputsByName) {
 
 		try {
-			IJavaOperatorConstraint javaConstraint = this.getOperatorConstraint(constraint);
+			var javaConstraint = this.getOperatorConstraint(constraint);
 			return javaConstraint.getAllowedOutputModelRelEndpoints(genericsByName, inputsByName, outputsByName);
 		}
 		catch (Exception e) {
