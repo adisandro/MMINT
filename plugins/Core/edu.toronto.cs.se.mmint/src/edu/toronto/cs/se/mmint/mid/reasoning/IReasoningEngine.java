@@ -15,7 +15,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
@@ -58,24 +57,5 @@ public interface IReasoningEngine {
 
 		return null;
 	}
-
-  /**
-   * Evaluates a query to find elements within a megamodel.
-   *
-   * @param queryFilePath
-   *          The path to the query file.
-   * @param queryName
-   *          The name of the query to be evaluated (a query file can contain multiple queries).
-   * @param context
-   *          The context where the query is executed, i.e. a megamodel, or one of its contained elements.
-   * @param queryArgs
-   *          The actual arguments to the query.
-   * @return A list of megamodel elements that match the query.
-   */
-  public default List<Object> evaluateQuery(String queryFilePath, String queryName, EObject context,
-                                            List<? extends EObject> queryArgs) {
-    //TODO MMINT[QUERY] Think about a proper return interface to receive inputs and outputs (because of unbound vars)
-    return List.of();
-  }
 
 }

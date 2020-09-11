@@ -65,6 +65,9 @@ public class MIDContextEvaluateQueryListener extends MIDContextMenuListener {
       catch (MIDDialogCancellation e) {
         return CommandResult.newCancelledCommandResult();
       }
+      catch (Exception e) {
+        return CommandResult.newErrorCommandResult(e);
+      }
     }
 
   }

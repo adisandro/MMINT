@@ -31,13 +31,11 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.model.BaseWorkbenchContentProvider;
 import org.eclipse.ui.model.WorkbenchLabelProvider;
 
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
-import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
@@ -73,7 +71,7 @@ public class MIDDialogs {
 		if (dialog.open() == Window.CANCEL) {
 			throw new MIDDialogCancellation();
 		}
-		Object selection = dialog.getFirstResult();
+		var selection = dialog.getFirstResult();
 		if (selection == null) { // dialog opened and nothing selected
 			throw new MIDDialogCancellation();
 		}
@@ -81,18 +79,17 @@ public class MIDDialogs {
 		return selection;
 	}
 
-	protected static Object openSelectionDialog(MIDTreeSelectionDialog dialog, String title, String message) throws MIDDialogCancellation {
-
+	public static Object openSelectionDialog(MIDTreeSelectionDialog dialog, String title, String message)
+	                     throws MIDDialogCancellation {
 		return openDialog(dialog, title, message);
 	}
 
-	protected static Object openSelectionDialogWithDefault(MIDTreeSelectionDialog dialog, String title, String message) throws MIDDialogCancellation {
-
-		Object selection = dialog.getUniqueResult();
+	public static Object openSelectionDialogWithDefault(MIDTreeSelectionDialog dialog, String title, String message)
+	                     throws MIDDialogCancellation {
+		var selection = dialog.getUniqueResult();
 		if (selection == null) { // more than one choice possible, open the dialog
 			selection = openDialog(dialog, title, message);
 		}
-
 		return selection;
 	}
 
@@ -106,9 +103,9 @@ public class MIDDialogs {
 	 */
 	public static Model selectModelTypeToExtend(MID typeMID) throws MIDDialogCancellation {
 
-		MIDTreeSelectionDialog dialog = MIDTypeRegistry.getModelTypeCreationDialog(typeMID);
-		String title = "Create new light model type";
-		String message = "Choose model supertype";
+		var dialog = MIDTypeRegistry.getModelTypeCreationDialog(typeMID);
+		var title = "Create new light model type";
+		var message = "Choose model supertype";
 
 		return (Model) openSelectionDialogWithDefault(dialog, title, message);
 	}
@@ -123,28 +120,28 @@ public class MIDDialogs {
 	 */
 	public static ModelRel selectModelRelTypeToExtend(MID typeMID, Model srcModelType, Model tgtModelType) throws MIDDialogCancellation {
 
-		MIDTreeSelectionDialog dialog = MIDTypeRegistry.getModelRelTypeCreationDialog(srcModelType, tgtModelType, typeMID);
-		String title = "Create new light model relationship type";
-		String message = "Choose model relationship supertype";
+		var dialog = MIDTypeRegistry.getModelRelTypeCreationDialog(srcModelType, tgtModelType, typeMID);
+		var title = "Create new light model relationship type";
+		var message = "Choose model relationship supertype";
 
 		return (ModelRel) openSelectionDialogWithDefault(dialog, title, message);
 	}
 
 	public static MappingReference selectMappingTypeReferenceToExtend(ModelRel modelRelType, ModelElementReference srcModelElemTypeRef, ModelElementReference tgtModelElemTypeRef) throws MIDDialogCancellation {
 
-		MIDTreeSelectionDialog dialog = MIDTypeRegistry.getMappingTypeReferenceCreationDialog(srcModelElemTypeRef, tgtModelElemTypeRef, modelRelType);
-		String title = "Create new light mapping type";
-		String message = "Choose mapping supertype";
+		var dialog = MIDTypeRegistry.getMappingTypeReferenceCreationDialog(srcModelElemTypeRef, tgtModelElemTypeRef, modelRelType);
+		var title = "Create new light mapping type";
+		var message = "Choose mapping supertype";
 
 		return (MappingReference) openSelectionDialogWithDefault(dialog, title, message);
 	}
 
 	public static String selectWorkflowMIDToCreateOperatorType(MID typeMID) throws MIDDialogCancellation {
 
-		MIDTreeSelectionDialog dialog = MIDTypeRegistry.getOperatorTypeCreationDialog(typeMID);
-		String title = "Create new operator type from workflow";
-		String message = "Choose Workflow MID";
-		IFile workflowMIDFile = (IFile) openSelectionDialog(dialog, title, message);
+		var dialog = MIDTypeRegistry.getOperatorTypeCreationDialog(typeMID);
+		var title = "Create new operator type from workflow";
+		var message = "Choose Workflow MID";
+		var workflowMIDFile = (IFile) openSelectionDialog(dialog, title, message);
 
 		return workflowMIDFile.getFullPath().toString();
 	}
@@ -160,10 +157,10 @@ public class MIDDialogs {
         catch (Exception e) {
             throw new MMINTException("Error opening the Workflow MID", e);
         }
-        MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(new MIDDialogLabelProvider(), contentProvider,
+        var dialog = new MIDTreeSelectionDialog(new MIDDialogLabelProvider(), contentProvider,
                                                                    typeMID);
-	    String title = "Create new operator type from workflow";
-	    String message = "Other operators exist with the same name, you can select one of them to override";
+	    var title = "Create new operator type from workflow";
+	    var message = "Other operators exist with the same name, you can select one of them to override";
 
 	    return (Operator) MIDDialogs.openSelectionDialogWithDefault(dialog, title, message);
 	}
@@ -191,14 +188,14 @@ public class MIDDialogs {
             return sAirdPath;
         }
 	    // ..or let the user choose otherwise
-        MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(new WorkbenchLabelProvider(),
+        var dialog = new MIDTreeSelectionDialog(new WorkbenchLabelProvider(),
                                                                    new BaseWorkbenchContentProvider(), dialogRoot);
         dialog.addFilter(new FileExtensionsDialogFilter(Set.of(SiriusUtil.SESSION_RESOURCE_EXTENSION)));
         dialog.setValidator(new FilesOnlyDialogSelectionValidator());
 
-        String title = "Model with Sirius Representation";
-        String message = "Select Sirius representations file";
-        IFile sAirdFile = (IFile) MIDDialogs.openSelectionDialogWithDefault(dialog, title, message);
+        var title = "Model with Sirius Representation";
+        var message = "Select Sirius representations file";
+        var sAirdFile = (IFile) MIDDialogs.openSelectionDialogWithDefault(dialog, title, message);
         sAirdPath = sAirdFile.getFullPath().toString();
 
         return sAirdPath;
@@ -216,12 +213,12 @@ public class MIDDialogs {
 	 */
 	public static Editor selectModelTypeToCreate(MID instanceMID) throws MIDDialogCancellation, MMINTException {
 
-        MIDTreeSelectionDialog dialog = MIDTypeRegistry.getMIDTreeTypeSelectionDialog(
+        var dialog = MIDTypeRegistry.getMIDTreeTypeSelectionDialog(
             new MIDDialogLabelProvider(), new NewModelDialogContentProvider());
         dialog.setValidator(new NewModelDialogSelectionValidator());
-		String title = "Create new model";
-		String message = "Choose editor to create model";
-		Editor editorType = (Editor) openSelectionDialog(dialog, title, message);
+		var title = "Create new model";
+		var message = "Choose editor to create model";
+		var editorType = (Editor) openSelectionDialog(dialog, title, message);
 		IStructuredSelection midContainer;
 		String midContainerUri = FileUtils.replaceLastSegmentInPath(
 		    instanceMID.eResource().getURI().toPlatformString(true), "");
@@ -237,7 +234,7 @@ public class MIDDialogs {
 				ResourcesPlugin.getWorkspace().getRoot().getProject(midContainerUri)
 			);
 		}
-		EditorCreationWizardDialog wizDialog = editorType.invokeInstanceWizard(midContainer);
+		var wizDialog = editorType.invokeInstanceWizard(midContainer);
 		if (wizDialog == null) {
 			throw new MIDDialogCancellation();
 		}
@@ -257,60 +254,60 @@ public class MIDDialogs {
 	 */
 	public static String selectModelToImport(boolean relOnly) throws MIDDialogCancellation {
 
-		MIDTreeSelectionDialog dialog = MIDTypeRegistry.getModelImportDialog();
-		String title = "Import model";
-		String message = "Choose model to import";
-		IFile modelFile = (IFile) openSelectionDialog(dialog, title, message);
+		var dialog = MIDTypeRegistry.getModelImportDialog();
+		var title = "Import model";
+		var message = "Choose model to import";
+		var modelFile = (IFile) openSelectionDialog(dialog, title, message);
 
 		return modelFile.getFullPath().toString();
 	}
 
 	public static ModelRel selectModelRelTypeToCreate(Model srcModel, Model tgtModel) throws MIDDialogCancellation {
 
-		MIDTreeSelectionDialog dialog = MIDTypeRegistry.getModelRelCreationDialog(srcModel, tgtModel);
-		String title = "Create new model relationship";
-		String message = "Choose model relationship type";
+		var dialog = MIDTypeRegistry.getModelRelCreationDialog(srcModel, tgtModel);
+		var title = "Create new model relationship";
+		var message = "Choose model relationship type";
 
 		return (ModelRel) openSelectionDialogWithDefault(dialog, title, message);
 	}
 
 	public static ModelEndpointReference selectModelTypeEndpointToCreate(ModelRel modelRel, List<String> modelTypeEndpointUris, String modelEndpointId) throws MIDDialogCancellation {
 
-		MIDTreeSelectionDialog dialog = MIDTypeRegistry.getModelEndpointCreationDialog(modelRel, modelTypeEndpointUris);
-		String title = "Create new model endpoint";
-		String message = "Choose " + modelEndpointId + "model type endpoint role";
+		var dialog = MIDTypeRegistry.getModelEndpointCreationDialog(modelRel, modelTypeEndpointUris);
+		var title = "Create new model endpoint";
+		var message = "Choose " + modelEndpointId + "model type endpoint role";
 
 		return (ModelEndpointReference) openSelectionDialogWithDefault(dialog, title, message);
 	}
 
 	public static Mapping selectMappingTypeToCreate(ModelRel modelRel, ModelElementReference srcModelElemRef, ModelElementReference tgtModelElemRef) throws MIDDialogCancellation {
 
-        ModelRel modelRelType = modelRel.getMetatype();
-        MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
+        var modelRelType = modelRel.getMetatype();
+        var dialog = new MIDTreeSelectionDialog(
             new MIDDialogLabelProvider(),
             new NewMappingDialogContentProvider(modelRelType, srcModelElemRef, tgtModelElemRef),
             modelRelType
         );
-		String title = "Create new mapping";
-		String message = "Choose mapping type";
+		var title = "Create new mapping";
+		var message = "Choose mapping type";
 
 		return (Mapping) openSelectionDialogWithDefault(dialog, title, message);
 	}
 
 	public static ModelElementEndpointReference selectModelElementTypeEndpointToCreate(MappingReference mappingRef, List<String> modelElemTypeEndpointUris) throws MIDDialogCancellation {
 
-		MIDTreeSelectionDialog dialog = MIDTypeRegistry.getModelElementEndpointCreationDialog(mappingRef, modelElemTypeEndpointUris);
-		String title = "Create new model endpoint";
-		String message = "Choose model type endpoint role";
+		var dialog = MIDTypeRegistry.getModelElementEndpointCreationDialog(mappingRef, modelElemTypeEndpointUris);
+		var title = "Create new model endpoint";
+		var message = "Choose model type endpoint role";
 
 		return (ModelElementEndpointReference) openSelectionDialogWithDefault(dialog, title, message);
 	}
 
 	public static GenericElement selectGenericTypeToCreate(GenericEndpoint genericSuperTypeEndpoint, EList<OperatorInput> inputs) throws MIDDialogCancellation {
 
-		MIDTreeSelectionDialog dialog = MIDTypeRegistry.getGenericTypeCreationDialog(genericSuperTypeEndpoint, inputs);
-		String title = "Run generic operator";
-		String message = "Choose type <" + genericSuperTypeEndpoint.getName() + "> of operator " +
+		var dialog = MIDTypeRegistry.getGenericTypeCreationDialog(genericSuperTypeEndpoint, inputs);
+		var title = "Run generic operator";
+		var message = "Choose type <" + genericSuperTypeEndpoint.getName() + "> of operator " +
 			((Operator) genericSuperTypeEndpoint.eContainer()).getName();
 
 		return (GenericElement) openSelectionDialogWithDefault(dialog, title, message);
@@ -318,37 +315,25 @@ public class MIDDialogs {
 
 	public static Model selectWorkflowModelTypeToCreate(MID workflowMID) throws MIDDialogCancellation, MMINTException {
 
-		MIDTreeSelectionDialog dialog = MIDTypeRegistry.getWorkflowModelCreationDialog();
-		String title = "Create new initial workflow model";
-		String message = "Choose model type";
+		var dialog = MIDTypeRegistry.getWorkflowModelCreationDialog();
+		var title = "Create new initial workflow model";
+		var message = "Choose model type";
 
 		return (Model) openSelectionDialog(dialog, title, message);
 	}
 
 	public static ModelRel selectWorkflowModelRelTypeToCreate(Model srcModel, Model tgtModel) throws MIDDialogCancellation {
 
-		MIDTreeSelectionDialog dialog = MIDTypeRegistry.getWorkflowModelRelCreationDialog(srcModel, tgtModel);
-		String title = "Create new initial workflow model relationship";
-		String message = "Choose model relationship type";
+		var dialog = MIDTypeRegistry.getWorkflowModelRelCreationDialog(srcModel, tgtModel);
+		var title = "Create new initial workflow model relationship";
+		var message = "Choose model relationship type";
 
 		return (ModelRel) openSelectionDialogWithDefault(dialog, title, message);
 	}
 
-  public static String selectQueryFileToEvaluate() throws MIDDialogCancellation {
-    var dialog = new MIDTreeSelectionDialog(new WorkbenchLabelProvider(), new BaseWorkbenchContentProvider(),
-                                            ResourcesPlugin.getWorkspace().getRoot());
-    dialog.addFilter(new FileExtensionsDialogFilter(MMINT.getReasonerNames()));
-    dialog.setValidator(new FilesOnlyDialogSelectionValidator());
-    String title = "Evaluate query";
-    String message = "Select query file";
-    IFile queryFile = (IFile) openSelectionDialog(dialog, title, message);
-
-    return queryFile.getFullPath().toString();
-  }
-
 	public static boolean getBooleanInput(String dialogTitle, String dialogMessage) {
 
-		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+		var shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 
 		return MessageDialog.openQuestion(shell, dialogTitle, dialogMessage);
 	}
@@ -367,8 +352,8 @@ public class MIDDialogs {
 	 */
 	public static String getStringInput(String dialogTitle, String dialogMessage, String dialogInitial) throws MIDDialogCancellation {
 
-		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-		InputDialog dialog = new InputDialog(shell, dialogTitle, dialogMessage, dialogInitial, null);
+		var shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+		var dialog = new InputDialog(shell, dialogTitle, dialogMessage, dialogInitial, null);
 
 		if (dialog.open() == Window.CANCEL) {
 			throw new MIDDialogCancellation();
@@ -380,7 +365,7 @@ public class MIDDialogs {
 	//TODO MMINT[MISC] merge with getStringInput()
 	public static String getBigStringInput(String dialogTitle, String dialogMessage, String dialogInitial) throws MIDDialogCancellation {
 
-		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+		var shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		InputDialog dialog = new InputDialog(shell, dialogTitle, dialogMessage, dialogInitial, null) {
 			@Override
 			protected int getInputTextStyle() {
@@ -388,7 +373,7 @@ public class MIDDialogs {
 			}
 			@Override
 			protected Control createDialogArea(Composite parent) {
-				Control res = super.createDialogArea(parent);
+				var res = super.createDialogArea(parent);
 				((GridData) this.getText().getLayoutData()).heightHint = 150;
 				((GridData) this.getText().getLayoutData()).widthHint = 700;
 				return res;
@@ -404,9 +389,9 @@ public class MIDDialogs {
 
 	public static String[] getConstraintInput(String dialogTitle, String dialogInitial) throws MIDDialogCancellation {
 
-		String text = getBigStringInput(dialogTitle, "Insert new constraint in the format \"language: constraint\"", dialogInitial);
-		String[] constraint = new String[2];
-		int separatorIndex = text.indexOf(CONSTRAINT_LANGUAGE_SEPARATOR);
+		var text = getBigStringInput(dialogTitle, "Insert new constraint in the format \"language: constraint\"", dialogInitial);
+		var constraint = new String[2];
+		var separatorIndex = text.indexOf(MIDDialogs.CONSTRAINT_LANGUAGE_SEPARATOR);
 		if (separatorIndex == -1) {
 			constraint[0] = "ocl";
 			constraint[1] = text;

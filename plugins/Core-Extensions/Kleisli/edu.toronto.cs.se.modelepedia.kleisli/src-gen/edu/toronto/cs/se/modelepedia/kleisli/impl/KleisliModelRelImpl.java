@@ -19,9 +19,7 @@ import java.util.Map;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -32,7 +30,6 @@ import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDFactory;
@@ -41,7 +38,6 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.ModelOrigin;
-import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
@@ -49,7 +45,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.impl.ModelRelImpl;
 import edu.toronto.cs.se.mmint.mid.ui.GMFUtils;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
-import edu.toronto.cs.se.mmint.ocl.reasoning.OCLReasoningEngine;
+import edu.toronto.cs.se.mmint.ocl.reasoning.OCLReasoner;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpointReference;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel;
@@ -87,7 +83,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
    * @generated
    * @ordered
    */
-	protected String extendedUri = EXTENDED_URI_EDEFAULT;
+	protected String extendedUri = KleisliModelRelImpl.EXTENDED_URI_EDEFAULT;
 
 	/**
    * <!-- begin-user-doc -->
@@ -115,7 +111,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
    */
 	@Override
     public String getExtendedUri() {
-    return extendedUri;
+    return this.extendedUri;
   }
 
 	/**
@@ -125,10 +121,10 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
    */
 	@Override
     public void setExtendedUri(String newExtendedUri) {
-    String oldExtendedUri = extendedUri;
-    extendedUri = newExtendedUri;
+    var oldExtendedUri = this.extendedUri;
+    this.extendedUri = newExtendedUri;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, KleisliPackage.KLEISLI_MODEL_REL__EXTENDED_URI, oldExtendedUri, extendedUri));
+      eNotify(new ENotificationImpl(this, Notification.SET, KleisliPackage.KLEISLI_MODEL_REL__EXTENDED_URI, oldExtendedUri, this.extendedUri));
   }
 
 	/**
@@ -169,7 +165,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 	public void eUnset(int featureID) {
     switch (featureID) {
       case KleisliPackage.KLEISLI_MODEL_REL__EXTENDED_URI:
-        setExtendedUri(EXTENDED_URI_EDEFAULT);
+        setExtendedUri(KleisliModelRelImpl.EXTENDED_URI_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -184,7 +180,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 	public boolean eIsSet(int featureID) {
     switch (featureID) {
       case KleisliPackage.KLEISLI_MODEL_REL__EXTENDED_URI:
-        return EXTENDED_URI_EDEFAULT == null ? extendedUri != null : !EXTENDED_URI_EDEFAULT.equals(extendedUri);
+        return KleisliModelRelImpl.EXTENDED_URI_EDEFAULT == null ? this.extendedUri != null : !KleisliModelRelImpl.EXTENDED_URI_EDEFAULT.equals(this.extendedUri);
     }
     return super.eIsSet(featureID);
   }
@@ -198,9 +194,9 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 	public String toString() {
     if (eIsProxy()) return super.toString();
 
-    StringBuilder result = new StringBuilder(super.toString());
+    var result = new StringBuilder(super.toString());
     result.append(" (extendedUri: ");
-    result.append(extendedUri);
+    result.append(this.extendedUri);
     result.append(')');
     return result.toString();
   }
@@ -227,7 +223,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 	protected void addSubtype(Model newModelRelType, String newModelRelTypeName, boolean isMetamodelExtension) throws MMINTException {
 
 		super.addSubtype(newModelRelType, newModelRelTypeName, false);
-		String newModelRelTypeExtendedUri = getModelRelTypeExtendedUri((KleisliModelRel) newModelRelType);
+		var newModelRelTypeExtendedUri = getModelRelTypeExtendedUri((KleisliModelRel) newModelRelType);
 		((KleisliModelRel) newModelRelType).setExtendedUri(newModelRelTypeExtendedUri);
 		if (!FileUtils.isFileOrDirectoryInState(newModelRelTypeExtendedUri)) {
 			try {
@@ -246,8 +242,8 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 	@Override
 	public ModelRel copySubtype(ModelRel origModelRelType) throws MMINTException {
 
-		ModelRel newModelRelType = super.copySubtype(origModelRelType);
-		MID typeMID = newModelRelType.getMIDContainer();
+		var newModelRelType = super.copySubtype(origModelRelType);
+		var typeMID = newModelRelType.getMIDContainer();
 		ExtendibleElementConstraint newConstraint, origConstraint;
 		ModelElement newModelElemType;
 		for (ModelEndpointReference origModelTypeEndpointRef : origModelRelType.getModelEndpointRefs()) {
@@ -293,8 +289,8 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 		ResourceSet resourceSet = new ResourceSetImpl();
 		List<Resource> resources = resourceSet.getResources();
 		for (ModelEndpointReference modelTypeEndpointRef : getModelEndpointRefs()) {
-			ModelEndpoint modelTypeEndpoint = modelTypeEndpointRef.getObject();
-			Model modelType = (modelTypeEndpoint instanceof KleisliModelEndpoint) ?
+			var modelTypeEndpoint = modelTypeEndpointRef.getObject();
+			var modelType = (modelTypeEndpoint instanceof KleisliModelEndpoint) ?
 				((KleisliModelEndpoint) modelTypeEndpoint).getExtendedTarget() :
 				modelTypeEndpoint.getTarget();
 			do {
@@ -349,8 +345,8 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 		ResourceSet resourceSet = new ResourceSetImpl();
 		List<Resource> resources = resourceSet.getResources();
 		for (ModelEndpointReference modelEndpointRef : getModelEndpointRefs()) {
-			ModelEndpoint modelEndpoint = modelEndpointRef.getObject();
-			Model model = (modelEndpoint instanceof KleisliModelEndpoint) ?
+			var modelEndpoint = modelEndpointRef.getObject();
+			var model = (modelEndpoint instanceof KleisliModelEndpoint) ?
 				((KleisliModelEndpoint) modelEndpoint).getExtendedTarget() :
 				modelEndpoint.getTarget();
 			resources.add(model.getEMFInstanceRoot().eResource());
@@ -368,22 +364,22 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 		super.openType();
 
 		Model ecoreModelType = MIDTypeRegistry.getType(EcorePackage.eNS_URI);
-		Editor ecoreEditorType = ecoreModelType.getEditors().get(0);
+		var ecoreEditorType = ecoreModelType.getEditors().get(0);
 		for (ModelEndpoint modelTypeEndpoint : getModelEndpoints()) {
 			if (!(modelTypeEndpoint instanceof KleisliModelEndpoint)) {
 				continue;
 			}
-			String kModelTypeUriRelative = ((KleisliModelEndpoint) modelTypeEndpoint).getExtendedTargetUri();
-			String kModelTypeUri = (FileUtils.isFileOrDirectoryInState(kModelTypeUriRelative)) ?
+			var kModelTypeUriRelative = ((KleisliModelEndpoint) modelTypeEndpoint).getExtendedTargetUri();
+			var kModelTypeUri = (FileUtils.isFileOrDirectoryInState(kModelTypeUriRelative)) ?
 				kModelTypeUriRelative:
 				null;
 			if (kModelTypeUri != null) { // the root KleisliModelRel has no extended metamodel to open
-				String kModelTypeDiagramUri = (FileUtils.isFileOrDirectoryInState(kModelTypeUriRelative + GMFUtils.DIAGRAM_SUFFIX)) ?
+				var kModelTypeDiagramUri = (FileUtils.isFileOrDirectoryInState(kModelTypeUriRelative + GMFUtils.DIAGRAM_SUFFIX)) ?
 					kModelTypeUriRelative + GMFUtils.DIAGRAM_SUFFIX:
 					null;
-				String kUri = (kModelTypeDiagramUri == null) ? kModelTypeUri : kModelTypeDiagramUri;
+				var kUri = (kModelTypeDiagramUri == null) ? kModelTypeUri : kModelTypeDiagramUri;
 				//TODO MMINT[ECORE] Try to open ecore diagram
-				String editorId = (kModelTypeDiagramUri == null) ? ecoreEditorType.getId() : ecoreEditorType.getId();
+				var editorId = (kModelTypeDiagramUri == null) ? ecoreEditorType.getId() : ecoreEditorType.getId();
 				try {
 					FileUtils.openEclipseEditorInState(kUri, editorId);
 				}
@@ -403,25 +399,25 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 		super.openInstance();
 
 		// extend models (doing it at every open is robust against model change)
-		OCLReasoningEngine oclReasoner = new OCLReasoningEngine();
-		KleisliReasoningEngine kReasoner = new KleisliReasoningEngine();
+		var oclReasoner = new OCLReasoner();
+		var kReasoner = new KleisliReasoningEngine();
 		for (ModelEndpoint modelEndpoint : getModelEndpoints()) {
-			ModelEndpoint modelTypeEndpoint = modelEndpoint.getMetatype();
+			var modelTypeEndpoint = modelEndpoint.getMetatype();
 			if (!(modelTypeEndpoint instanceof KleisliModelEndpoint)) {
 				continue;
 			}
-			KleisliModelEndpoint kModelTypeEndpoint = (KleisliModelEndpoint) modelTypeEndpoint;
-			KleisliModelEndpoint kModelEndpoint = (KleisliModelEndpoint) modelEndpoint;
+			var kModelTypeEndpoint = (KleisliModelEndpoint) modelTypeEndpoint;
+			var kModelEndpoint = (KleisliModelEndpoint) modelEndpoint;
 			try {
-				EPackage kModelTypePackage = kModelTypeEndpoint.getExtendedTarget().getEMFTypeRoot();
-				EFactory kModelTypeFactory = kModelTypePackage.getEFactoryInstance();
-				KleisliModelEndpointReference kModelTypeEndpointRef = (KleisliModelEndpointReference) MIDRegistry.getReference(kModelTypeEndpoint.getUri(), ((ModelRel) kModelTypeEndpoint.eContainer()).getModelEndpointRefs());
-				String modelUri = kModelEndpoint.getTargetUri();
-				String kModelUri = kModelEndpoint.getExtendedTargetUri();
-				String extendedMetamodelUri = MIDTypeRegistry.getExtendedMetamodelPath(kModelTypeEndpoint.getTarget());
+				var kModelTypePackage = kModelTypeEndpoint.getExtendedTarget().getEMFTypeRoot();
+				var kModelTypeFactory = kModelTypePackage.getEFactoryInstance();
+				var kModelTypeEndpointRef = (KleisliModelEndpointReference) MIDRegistry.getReference(kModelTypeEndpoint.getUri(), ((ModelRel) kModelTypeEndpoint.eContainer()).getModelEndpointRefs());
+				var modelUri = kModelEndpoint.getTargetUri();
+				var kModelUri = kModelEndpoint.getExtendedTargetUri();
+				var extendedMetamodelUri = MIDTypeRegistry.getExtendedMetamodelPath(kModelTypeEndpoint.getTarget());
 				if (extendedMetamodelUri != null) { // xmi model file
-					String kModelUriTemp = kModelUri + "temp";
-					String deleteText =
+					var kModelUriTemp = kModelUri + "temp";
+					var deleteText =
 						"xsi:schemaLocation=\"" +
 						kModelTypeEndpoint.getTargetUri() +
 						" file:" +
@@ -436,7 +432,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 					);
 					modelUri = kModelUriTemp;
 				}
-				String newText =
+				var newText =
 					kModelTypeEndpoint.getTargetUri() +
 					KleisliReasoningEngine.KLEISLI_MODELTYPE_URI_SUFFIX +
 					"\" xsi:schemaLocation=\"" +
@@ -452,12 +448,12 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 					newText,
 					true
 				);
-				EObject kRootModelObj = kModelEndpoint.getExtendedTarget().getEMFInstanceRoot();
+				var kRootModelObj = kModelEndpoint.getExtendedTarget().getEMFInstanceRoot();
 				Map<String, Map<String, Map<EObject, EObject>>> queryMap = new HashMap<>();
 				// first pass: EClasses
 				for (ModelElementReference kModelElemTypeRef : kModelTypeEndpointRef.getModelElemRefs()) {
-					EMFInfo kModelElemTypeEInfo = kModelElemTypeRef.getObject().getEInfo();
-					ExtendibleElementConstraint kConstraint = kModelElemTypeRef.getObject().getConstraint();
+					var kModelElemTypeEInfo = kModelElemTypeRef.getObject().getEInfo();
+					var kConstraint = kModelElemTypeRef.getObject().getConstraint();
 					if (
 						kModelElemTypeEInfo.getFeatureName() != null ||
 						kConstraint == null ||
@@ -467,13 +463,13 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 					}
 					Map<String, Map<EObject, EObject>> queryUnion = new LinkedHashMap<>();
 					queryMap.put(kModelElemTypeEInfo.getClassName(), queryUnion);
-					EClass kModelElemTypeClass = (EClass) kModelTypePackage.getEClassifier(kModelElemTypeEInfo.getClassName());
+					var kModelElemTypeClass = (EClass) kModelTypePackage.getEClassifier(kModelElemTypeEInfo.getClassName());
 					kReasoner.evaluateEClassQuery(kConstraint.getImplementation(), oclReasoner, kRootModelObj, kModelElemTypeClass, kModelTypeFactory, queryUnion);
 				}
 				// second pass: EReferences
 				for (ModelElementReference kModelElemTypeRef : kModelTypeEndpointRef.getModelElemRefs()) {
-					EMFInfo kModelElemTypeEInfo = kModelElemTypeRef.getObject().getEInfo();
-					ExtendibleElementConstraint kConstraint = kModelElemTypeRef.getObject().getConstraint();
+					var kModelElemTypeEInfo = kModelElemTypeRef.getObject().getEInfo();
+					var kConstraint = kModelElemTypeRef.getObject().getConstraint();
 					if (
 						kModelElemTypeEInfo.getFeatureName() == null ||
 						kModelElemTypeEInfo.isAttribute() ||
@@ -483,7 +479,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 					) {
 						continue;
 					}
-					Map<String, Map<EObject, EObject>> queryUnion = queryMap.get(kModelElemTypeEInfo.getRelatedClassName());
+					var queryUnion = queryMap.get(kModelElemTypeEInfo.getRelatedClassName());
 					if (queryUnion == null) {
 						continue;
 					}
@@ -491,8 +487,8 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 				}
 				// third pass: EAttributes
 				for (ModelElementReference kModelElemTypeRef : kModelTypeEndpointRef.getModelElemRefs()) {
-					EMFInfo kModelElemTypeEInfo = kModelElemTypeRef.getObject().getEInfo();
-					ExtendibleElementConstraint kConstraint = kModelElemTypeRef.getObject().getConstraint();
+					var kModelElemTypeEInfo = kModelElemTypeRef.getObject().getEInfo();
+					var kConstraint = kModelElemTypeRef.getObject().getConstraint();
 					if (
 						!kModelElemTypeEInfo.isAttribute() ||
 						kConstraint == null ||

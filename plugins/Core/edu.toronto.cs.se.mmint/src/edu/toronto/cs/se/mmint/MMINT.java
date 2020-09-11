@@ -18,6 +18,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
@@ -1015,12 +1016,25 @@ public class MMINT implements MMINTConstants {
 		}
 	}
 
-	public static Object getReasoner(String reasonerName) {
-		return MMINT.reasoners.get(reasonerName);
-	}
-
 	public static Set<String> getReasonerNames() {
 		return MMINT.reasoners.keySet();
+	}
+
+  public static Object getReasoner(String reasonerName) {
+    return MMINT.reasoners.get(reasonerName);
+  }
+
+  /**
+   * Gets all reasoners that implement a trait.
+   *
+   * @param traitClass
+   *          The trait class.
+   * @return The set of reasoners that implement the trait.
+   */
+	public static Set<Object> getReasonersForTrait(Class<?> traitClass) {
+	  return MMINT.reasoners.values().stream()
+	    .filter(r -> traitClass.isInstance(r))
+	    .collect(Collectors.toSet());
 	}
 
 	public static boolean isInitialized() {

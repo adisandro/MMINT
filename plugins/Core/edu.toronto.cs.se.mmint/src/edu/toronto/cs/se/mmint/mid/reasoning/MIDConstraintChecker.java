@@ -26,7 +26,6 @@ import org.eclipse.jdt.annotation.Nullable;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.MMINT;
-import edu.toronto.cs.se.mmint.MMINTConstants;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
@@ -47,7 +46,6 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.utils.PrimitiveEObjectWrapper;
 
@@ -130,7 +128,7 @@ public class MIDConstraintChecker {
 		List<String> modelRelTypeUris = new ArrayList<>();
 		for (ModelRel modelRelType : MIDTypeRegistry.getModelRelTypes()) {
 			boolean isAllowed = true, isAllowedSrc = false, isAllowedTgt = false;
-			HashMap<String, Integer> cardinalityTable = new HashMap<>();
+			var cardinalityTable = new HashMap<String, Integer>();
 			//TODO MMINT[INTROSPECTION] consider direction for binary?
 			if (targetSrcModel != null) {
 				for (ModelEndpointReference modelTypeEndpointRef : modelRelType.getModelEndpointRefs()) {
@@ -174,7 +172,7 @@ public class MIDConstraintChecker {
         }
 		for (MappingReference mappingTypeRef : modelRelType.getMappingRefs()) {
 			boolean isAllowed = true, isAllowedSrc = false, isAllowedTgt = false;
-			HashMap<String, Integer> cardinalityTable = new HashMap<>();
+			var cardinalityTable = new HashMap<String, Integer>();
 			//TODO MMINT[INTROSPECTION] consider direction for binary?
 			if (targetSrcModelElemRef != null) {
 				for (ModelElementEndpointReference modelElemTypeEndpointRef : mappingTypeRef.getObject().getModelElemEndpointRefs()) {
@@ -265,7 +263,7 @@ public class MIDConstraintChecker {
 
 	public static boolean areAllowedModelEndpoints(ModelRel modelRel, ModelRel newModelRelType) {
 
-		HashMap<String, Integer> cardinalityTable = new HashMap<>();
+		var cardinalityTable = new HashMap<String, Integer>();
 		for (ModelEndpoint modelEndpoint : modelRel.getModelEndpoints()) {
 			var isAllowed = false;
 			var nonOverriddenModelTypeEndpointRefs = newModelRelType.getModelEndpointRefs().stream()
@@ -346,7 +344,7 @@ public class MIDConstraintChecker {
 
 	public static boolean areAllowedModelElementEndpointReferences(Mapping mapping, Mapping newMappingType) {
 
-		HashMap<String, Integer> cardinalityTable = new HashMap<>();
+		var cardinalityTable = new HashMap<String, Integer>();
 		for (ModelElementEndpointReference modelElemEndpointRef : mapping.getModelElemEndpointRefs()) {
 			var isAllowed = false;
 			//TODO MMINT[INTROSPECTION] order of visit might affect the result, should be from the most specific to the less
@@ -462,7 +460,7 @@ public class MIDConstraintChecker {
 		// search for an allowed model element type
 		var modelElemTypeRefIter = MIDTypeHierarchy.getInverseTypeRefHierarchyIterator(modelTypeEndpointRef.getModelElemRefs());
 		while (modelElemTypeRefIter.hasNext()) {
-			ModelElementReference modelElemTypeRef = modelElemTypeRefIter.next();
+			var modelElemTypeRef = modelElemTypeRefIter.next();
 			if (isAllowedModelElement(modelTypeEndpointRef, modelObj, modelElemTypeRef.getObject())) {
 				return modelElemTypeRef.getObject();
 			}
@@ -477,7 +475,7 @@ public class MIDConstraintChecker {
 		var modelRelType = ((ModelRel) mapping.eContainer()).getMetatype();
 mappingTypes:
 		for (Mapping mappingType : modelRelType.getMappings()) {
-			HashSet<String> allowedModelElemTypes = new HashSet<>();
+			var allowedModelElemTypes = new HashSet<String>();
 			for (ModelElementEndpoint modelElemTypeEndpoint : mappingType.getModelElemEndpoints()) {
 				allowedModelElemTypes.add(modelElemTypeEndpoint.getTargetUri());
 			}
@@ -492,19 +490,20 @@ mappingTypes:
 		return null;
 	}
 
+  /** TODO
+   *  (the previous design had all apis inside MIDConstraintChecker, to hide the plugged reasoners)
+   *  (same now, but the apis are spread among traits)
+   *  - do we need an IReasoner or AReasoner superclass rather than Object? what about ITrait?
+   *    (I guess yes if there is common code to be shared)
+   *  - do we need the extension point for traits? aside from listing them, there's little value, unless
+   *    reasoners have to specify what they implement in their extension point (an instanceof should suffice)
+   */
 	public static IReasoningEngine getReasoner(String fileExtension) throws MMINTException {
-
-		var reasoners = MMINT.getReasoner(fileExtension);
-		if (reasoners == null || reasoners.isEmpty()) {
+		var reasoner = MMINT.getReasoner(fileExtension);
+		if (reasoner == null) {
 			throw new MMINTException("Can't find a reasoner for language " + fileExtension);
 		}
-		var reasonerName = MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_LANGUAGE_REASONER + fileExtension);
-		var reasoner = reasoners.get(reasonerName);
-		if (reasoner == null) {
-			throw new MMINTException("Can't find reasoner " + reasonerName);
-		}
-
-		return reasoner;
+		return (IReasoningEngine) reasoner;
 	}
 
 	/**
@@ -627,18 +626,5 @@ mappingTypes:
 		//TODO MMINT[MU-MMINT] Should copy the model constraint to the new model? option to do it or not?
 		return reasoner.refineModelByConstraint(model);
 	}
-
-  public static List<Object> evaluateQuery(String queryFilePath, String queryName, EObject context,
-                                           List<? extends EObject> queryArguments) {
-    try {
-      var reasoner = getReasoner(FileUtils.getFileExtensionFromPath(queryFilePath));
-      return reasoner.evaluateQuery(queryFilePath, queryName, context, queryArguments);
-    }
-    catch (MMINTException e) {
-      MMINTException.print(IStatus.WARNING, "Skipping query evaluation", e);
-      return List.of();
-    }
-
-  }
 
 }

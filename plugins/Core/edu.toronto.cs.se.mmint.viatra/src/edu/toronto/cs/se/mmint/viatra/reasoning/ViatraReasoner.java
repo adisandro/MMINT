@@ -15,7 +15,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.viatra.query.patternlanguage.emf.specification.SpecificationBuilder;
 import org.eclipse.viatra.query.patternlanguage.emf.vql.PatternModel;
@@ -38,7 +37,7 @@ public class ViatraReasoner implements IQueryTrait {
 
   @Override
   public List<Object> evaluateQuery(String queryFilePath, String queryName, EObject context,
-                                    List<? extends EObject> queryArgs) {
+                                    List<? extends EObject> queryArgs) throws Exception {
     AdvancedViatraQueryEngine engine = null;
     try {
       // get model representation of query file
@@ -97,11 +96,6 @@ public class ViatraReasoner implements IQueryTrait {
         matches.add(match);
       }
       return matches;
-    }
-    catch (Exception e) {
-      MMINTException.print(IStatus.ERROR,
-                           MessageFormat.format("Viatra file {0}, pattern {1} error: ", queryFilePath, queryName), e);
-      return List.of();
     }
     finally {
       if (engine != null) {

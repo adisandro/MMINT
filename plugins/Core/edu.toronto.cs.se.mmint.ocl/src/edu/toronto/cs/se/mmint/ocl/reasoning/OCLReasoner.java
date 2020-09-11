@@ -1,13 +1,11 @@
 /**
- * Copyright (c) 2012-2020 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
- * Rick Salay.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
+ * Copyright (c) 2012-2020 Alessio Di Sandro, Marsha Chechik.
+ * All rights reserved. This program and the accompanying materials are made available under the terms
+ * of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *    Alessio Di Sandro - Implementation.
+ *   Alessio Di Sandro - Implementation
  */
 package edu.toronto.cs.se.mmint.ocl.reasoning;
 
@@ -15,10 +13,10 @@ import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Stream;
 
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
@@ -35,26 +33,32 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.reasoning.IQueryTrait;
 import edu.toronto.cs.se.mmint.mid.reasoning.IReasoningEngine;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 
-public class OCLReasoningEngine implements IReasoningEngine {
+public class OCLReasoner implements IReasoningEngine, IQueryTrait {
 
   protected final static String OCL_MODELENDPOINT_VARIABLE = "$ENDPOINT_";
   protected final static char OCL_VARIABLE_SEPARATOR = '.';
 
+  @Override
+  public Set<String> getQueryFileExtensions() {
+    return Set.of("ocl");
+  }
+
   protected EObject getConstraintContext(Model model, String oclConstraint, MIDLevel constraintLevel) throws MMINTException {
 
     //TODO MMINT[CONSTRAINT] find language to express more complex contraints on model rels
-    boolean isInstancesLevel = model.isInstancesLevel();
+    var isInstancesLevel = model.isInstancesLevel();
     EObject modelObj = null;
-    if (model instanceof ModelRel && oclConstraint.startsWith(OCL_MODELENDPOINT_VARIABLE)) {
-      String modelEndpointConstraintName = oclConstraint.substring(OCL_MODELENDPOINT_VARIABLE.length(), oclConstraint.indexOf(OCL_VARIABLE_SEPARATOR));
+    if (model instanceof ModelRel && oclConstraint.startsWith(OCLReasoner.OCL_MODELENDPOINT_VARIABLE)) {
+      var modelEndpointConstraintName = oclConstraint.substring(OCLReasoner.OCL_MODELENDPOINT_VARIABLE.length(), oclConstraint.indexOf(OCLReasoner.OCL_VARIABLE_SEPARATOR));
       for (ModelEndpointReference modelEndpointRef : ((ModelRel) model).getModelEndpointRefs()) {
         //TODO MMINT[ENDPOINT] consider overridden endpoints here
-        String modelEndpointName = (isInstancesLevel && constraintLevel != MIDLevel.INSTANCES) ?
+        var modelEndpointName = (isInstancesLevel && constraintLevel != MIDLevel.INSTANCES) ?
           modelEndpointRef.getObject().getMetatype().getName() :
           modelEndpointRef.getObject().getName();
         if (modelEndpointConstraintName.equals(modelEndpointName)) {
@@ -80,11 +84,11 @@ public class OCLReasoningEngine implements IReasoningEngine {
   @Override
   public boolean checkModelConstraint(Model model, ExtendibleElementConstraint constraint, MIDLevel constraintLevel) {
 
-    String oclConstraint = constraint.getImplementation();
+    var oclConstraint = constraint.getImplementation();
     try {
-      EObject modelObj = getConstraintContext(model, oclConstraint, constraintLevel);
-      if (model instanceof ModelRel && oclConstraint.startsWith(OCL_MODELENDPOINT_VARIABLE)) {
-        oclConstraint = oclConstraint.substring(oclConstraint.indexOf(OCL_VARIABLE_SEPARATOR) + 1, oclConstraint.length());
+      var modelObj = getConstraintContext(model, oclConstraint, constraintLevel);
+      if (model instanceof ModelRel && oclConstraint.startsWith(OCLReasoner.OCL_MODELENDPOINT_VARIABLE)) {
+        oclConstraint = oclConstraint.substring(oclConstraint.indexOf(OCLReasoner.OCL_VARIABLE_SEPARATOR) + 1, oclConstraint.length());
       }
       return checkConstraint(modelObj, oclConstraint);
     }
@@ -164,7 +168,7 @@ public class OCLReasoningEngine implements IReasoningEngine {
           var allQueryArgs = new ArrayList<Object>(args);
           var obj = iter.next();
           if (obj instanceof TupleValue) {
-            for (int i = 0;; i++) {
+            for (var i = 0;; i++) {
               try {
                 allQueryArgs.add(((TupleValue) obj).getValue(i));
               }
@@ -190,11 +194,11 @@ public class OCLReasoningEngine implements IReasoningEngine {
 
   @Override
   public List<Object> evaluateQuery(String queryFilePath, String queryName, EObject context,
-                                    List<? extends EObject> queryArgs) {
-    OCL ocl = OCL.newInstance();
+                                    List<? extends EObject> queryArgs) throws Exception {
+    var ocl = OCL.newInstance();
     try {
       // get model representation of query
-      URI queryFileUri = FileUtils.createEMFUri(queryFilePath, true);
+      var queryFileUri = FileUtils.createEMFUri(queryFilePath, true);
       var queryRoot = ocl.parse(queryFileUri).getContents().get(0);
       if (!(queryRoot instanceof org.eclipse.ocl.pivot.Model)) {
         throw new MMINTException("Bad query file");
@@ -225,11 +229,6 @@ public class OCLReasoningEngine implements IReasoningEngine {
                                                       queryName, formalContext, actualContext));
       }
       return evaluateOCLExpression2(ocl, featExpression, context, queryArgs);
-    }
-    catch (Exception e) {
-      MMINTException.print(IStatus.ERROR,
-                           MessageFormat.format("OCL file {0}, def {1} error: ", queryFilePath, queryName), e);
-      return List.of();
     }
     finally {
       ocl.dispose();

@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.EObject;
 public interface IQueryTrait {
 
   /**
-   * Gets the extensions of the supported query files.
+   * Gets the file extensions of the supported query files.
    *
    * @return The query file extensions.
    */
@@ -40,8 +40,10 @@ public interface IQueryTrait {
    * @param queryArgs
    *          The actual arguments to the query.
    * @return A list of megamodel elements that match the query.
+   * @throws Exception
+   *           If there is an error evaluating the query.
    */
   List<Object> evaluateQuery(String queryFilePath, String queryName, EObject context,
-                             List<? extends EObject> queryArgs);
+                             List<? extends EObject> queryArgs) throws Exception;
 
 }

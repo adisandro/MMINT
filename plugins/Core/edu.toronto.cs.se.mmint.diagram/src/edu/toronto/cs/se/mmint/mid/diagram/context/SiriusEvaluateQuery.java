@@ -13,23 +13,34 @@ package edu.toronto.cs.se.mmint.mid.diagram.context;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.sirius.business.api.action.AbstractExternalJavaAction;
 import org.eclipse.sirius.viewpoint.DSemanticDecorator;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.model.BaseWorkbenchContentProvider;
+import org.eclipse.ui.model.WorkbenchLabelProvider;
 
+import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
-import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.reasoning.IQueryTrait;
+import edu.toronto.cs.se.mmint.mid.ui.FileExtensionsDialogFilter;
+import edu.toronto.cs.se.mmint.mid.ui.FilesOnlyDialogSelectionValidator;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
+import edu.toronto.cs.se.mmint.mid.ui.MIDTreeSelectionDialog;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
@@ -48,10 +59,32 @@ public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
     return result.toString();
   }
 
-  public static void runUI(EObject context, List<? extends ExtendibleElement> queryArgs) throws MIDDialogCancellation {
-    var queryFilePath = MIDDialogs.selectQueryFileToEvaluate();
+  private static String selectQueryFileToEvaluate(Set<String> fileExtensions) throws MIDDialogCancellation {
+    var dialog = new MIDTreeSelectionDialog(new WorkbenchLabelProvider(), new BaseWorkbenchContentProvider(),
+                                            ResourcesPlugin.getWorkspace().getRoot());
+    dialog.addFilter(new FileExtensionsDialogFilter(fileExtensions));
+    dialog.setValidator(new FilesOnlyDialogSelectionValidator());
+    var title = "Evaluate query";
+    var message = "Select query file";
+    var queryFile = (IFile) MIDDialogs.openSelectionDialog(dialog, title, message);
+
+    return queryFile.getFullPath().toString();
+  }
+
+  public static void runUI(EObject context, List<? extends ExtendibleElement> queryArgs) throws Exception {
+    var queryReasoners = MMINT.getReasonersForTrait(IQueryTrait.class);
+    if (queryReasoners.isEmpty()) {
+      throw new MMINTException("There is no reasoner that implements querying");
+    }
+    var fileExtToReasoner = new HashMap<String, IQueryTrait>();
+    for (var queryReasoner : queryReasoners) {
+      ((IQueryTrait) queryReasoner).getQueryFileExtensions()
+        .forEach(fe -> fileExtToReasoner.put(fe, (IQueryTrait) queryReasoner));
+    }
+    var queryFilePath = selectQueryFileToEvaluate(fileExtToReasoner.keySet());
+    var queryReasoner = fileExtToReasoner.get(FileUtils.getFileExtensionFromPath(queryFilePath));
     var queryName = MIDDialogs.getStringInput("Evaluate query", "Insert query name to run", null);
-    var queryResults = MIDConstraintChecker.evaluateQuery(queryFilePath, queryName, context, queryArgs);
+    var queryResults = queryReasoner.evaluateQuery(queryFilePath, queryName, context, queryArgs);
     //TODO MMINT[QUERY] Display results in a better way (ui?)
     var printResults = new ArrayList<String>();
     for (var result : queryResults) {
@@ -91,6 +124,9 @@ public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
     }
     catch (MIDDialogCancellation e) {
       // do nothing
+    }
+    catch (Exception e) {
+      MMINTException.print(IStatus.ERROR, "Query error", e);
     }
   }
 
