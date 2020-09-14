@@ -41,9 +41,11 @@ import org.osgi.framework.Bundle;
 
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
+import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTConstants;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
+import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
@@ -55,7 +57,7 @@ import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
-import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.reasoning.IConstraintTrait;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
@@ -220,7 +222,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
    */
     @Override
     public void setOrigin(ModelOrigin newOrigin) {
-    ModelOrigin oldOrigin = this.origin;
+    var oldOrigin = this.origin;
     this.origin = newOrigin == null ? ModelImpl.ORIGIN_EDEFAULT : newOrigin;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.MODEL__ORIGIN, oldOrigin, this.origin));
@@ -243,7 +245,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
    */
     @Override
     public void setFileExtension(String newFileExtension) {
-    String oldFileExtension = this.fileExtension;
+    var oldFileExtension = this.fileExtension;
     this.fileExtension = newFileExtension;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.MODEL__FILE_EXTENSION, oldFileExtension, this.fileExtension));
@@ -328,7 +330,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
    */
   @Override
   public void setEMFInstanceResource(Resource newEMFInstanceResource) {
-    Resource oldEMFInstanceResource = this.emfInstanceResource;
+    var oldEMFInstanceResource = this.emfInstanceResource;
     this.emfInstanceResource = newEMFInstanceResource;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.MODEL__EMF_INSTANCE_RESOURCE, oldEMFInstanceResource, this.emfInstanceResource));
@@ -341,7 +343,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
    */
   public EObject getEMFInstanceRootGen() {
     if (this.emfInstanceRoot != null && this.emfInstanceRoot.eIsProxy()) {
-      InternalEObject oldEMFInstanceRoot = (InternalEObject)this.emfInstanceRoot;
+      var oldEMFInstanceRoot = (InternalEObject)this.emfInstanceRoot;
       this.emfInstanceRoot = eResolveProxy(oldEMFInstanceRoot);
       if (this.emfInstanceRoot != oldEMFInstanceRoot) {
         if (eNotificationRequired())
@@ -399,7 +401,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
    */
   @Override
   public void setEMFInstanceRoot(EObject newEMFInstanceRoot) {
-    EObject oldEMFInstanceRoot = this.emfInstanceRoot;
+    var oldEMFInstanceRoot = this.emfInstanceRoot;
     this.emfInstanceRoot = newEMFInstanceRoot;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.MODEL__EMF_INSTANCE_ROOT, oldEMFInstanceRoot, this.emfInstanceRoot));
@@ -412,7 +414,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
    */
     @Override
     public Model getMetatype() {
-    ExtendibleElement metatype = super.getMetatype();
+    var metatype = super.getMetatype();
     return (metatype == null) ? null : (Model) metatype;
   }
 
@@ -423,7 +425,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
    */
     @Override
     public Model getSupertype() {
-    ExtendibleElement supertype = super.getSupertype();
+    var supertype = super.getSupertype();
     return (supertype == null) ? null : (Model) supertype;
   }
 
@@ -736,7 +738,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
     public String toString() {
     if (eIsProxy()) return super.toString();
 
-    StringBuilder result = new StringBuilder(super.toString());
+    var result = new StringBuilder(super.toString());
     result.append(" (origin: ");
     result.append(this.origin);
     result.append(", fileExtension: ");
@@ -1233,29 +1235,45 @@ public class ModelImpl extends GenericElementImpl implements Model {
         return newModel;
     }
 
-    /**
-     * @generated NOT
-     */
-    @Override
-    public boolean validateInstanceType(ExtendibleElement type) throws MMINTException {
+    public static boolean validate(Model model, @Nullable ExtendibleElementConstraint constraint) throws Exception {
+      if (constraint == null || constraint.getImplementation() == null || constraint.getImplementation().equals("")) {
+        return true;
+      }
+      var reasonerName = constraint.getLanguage();
+      var constraintReasoner = MMINT.getReasoner(reasonerName);
+      if (!(constraintReasoner instanceof IConstraintTrait)) {
+        throw new MMINTException("The " + reasonerName + " reasoner does not implement constraint checking");
+      }
+      MIDLevel constraintLevel;
+      if (!model.getUri().equals(((ExtendibleElement) constraint.eContainer()).getUri())) {
+        constraintLevel = MIDLevel.TYPES;
+      }
+      else {
+        constraintLevel = MIDLevel.INSTANCES;
+      }
 
-        MMINTException.mustBeInstance(this);
-        MMINTException.mustBeType(type);
-
-        return MIDConstraintChecker.checkModelConstraint(this, type.getConstraint());
+      return ((IConstraintTrait) constraintReasoner).checkModelConstraint(model, constraint, constraintLevel);
     }
 
     /**
      * @generated NOT
      */
     @Override
-    public boolean validateInstance() throws MMINTException {
+    public boolean validateInstanceType(ExtendibleElement type) throws Exception {
+      MMINTException.mustBeInstance(this);
+      MMINTException.mustBeType(type);
 
-        MMINTException.mustBeInstance(this);
+      return validate(this, type.getConstraint());
+    }
 
-        var validates = MIDConstraintChecker.checkModelConstraint(this, this.getConstraint());
+    /**
+     * @generated NOT
+     */
+    @Override
+    public boolean validateInstance() throws Exception {
+      MMINTException.mustBeInstance(this);
 
-        return validates && this.validateInstanceType(this.getMetatype());
+      return validate(this, getConstraint()) && validateInstanceType(this.getMetatype());
     }
 
     /**

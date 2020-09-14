@@ -124,13 +124,13 @@
     <eOperations name="getClosestTypeConstraint" eType="#//ExtendibleElementConstraint"
         eExceptions="#//MMINTException"/>
     <eOperations name="validateInstanceType" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
-        eExceptions="#//MMINTException">
+        eExceptions="#//operator/Exception">
       <eParameters name="type" lowerBound="1" eType="#//ExtendibleElement"/>
     </eOperations>
     <eOperations name="validateInstance" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
-        eExceptions="#//MMINTException"/>
+        eExceptions="#//operator/Exception"/>
     <eOperations name="validateInstanceInEditor" lowerBound="1" eType="#//IStatus"
-        eExceptions="#//MMINTException">
+        eExceptions="#//operator/Exception">
       <eParameters name="context" lowerBound="1" eType="#//IValidationContext"/>
     </eOperations>
     <eOperations name="isWorkflowsLevel" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">

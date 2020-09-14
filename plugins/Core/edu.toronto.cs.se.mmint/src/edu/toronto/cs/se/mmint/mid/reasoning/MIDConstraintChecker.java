@@ -506,39 +506,6 @@ mappingTypes:
 		return (IReasoningEngine) reasoner;
 	}
 
-	/**
-	 * Checks if a constraint is satisfied on a model.
-	 *
-	 * @param model
-	 *            The model.
-	 * @param constraint
-	 *            The constraint.
-	 * @return True if the constraint is satisfied, false otherwise.
-	 */
-	public static boolean checkModelConstraint(Model model, @Nullable ExtendibleElementConstraint constraint) {
-
-		if (constraint == null || constraint.getImplementation() == null || constraint.getImplementation().equals("")) {
-			return true;
-		}
-		IReasoningEngine reasoner;
-		try {
-			reasoner = getReasoner(constraint.getLanguage());
-		}
-		catch (MMINTException e) {
-			MMINTException.print(IStatus.WARNING, "Skipping model constraint check", e);
-			return false;
-		}
-		MIDLevel constraintLevel;
-		if (!model.getUri().equals(((ExtendibleElement) constraint.eContainer()).getUri())) {
-			constraintLevel = MIDLevel.TYPES;
-		}
-		else {
-			constraintLevel = MIDLevel.INSTANCES;
-		}
-
-		return reasoner.checkModelConstraint(model, constraint, constraintLevel);
-	}
-
 	public static boolean checkOperatorGenericConstraint(@Nullable ExtendibleElementConstraint constraint, GenericEndpoint genericTypeEndpoint, GenericElement genericType, List<OperatorInput> inputs) {
 
 		if (constraint == null || constraint.getImplementation() == null || constraint.getImplementation().equals("")) {

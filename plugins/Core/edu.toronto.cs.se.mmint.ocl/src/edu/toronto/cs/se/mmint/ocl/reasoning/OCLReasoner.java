@@ -45,11 +45,6 @@ public class OCLReasoner implements IReasoningEngine, IQueryTrait, IConstraintTr
   protected final static String OCL_MODELENDPOINT_VARIABLE = "$ENDPOINT_";
   protected final static char OCL_VARIABLE_SEPARATOR = '.';
 
-  @Override
-  public Set<String> getQueryFileExtensions() {
-    return Set.of("ocl");
-  }
-
   protected EObject getConstraintContext(Model model, String oclConstraint, MIDLevel constraintLevel) throws MMINTException {
 
     //TODO MMINT[CONSTRAINT] find language to express more complex contraints on model rels
@@ -84,19 +79,13 @@ public class OCLReasoner implements IReasoningEngine, IQueryTrait, IConstraintTr
 
   @Override
   public boolean checkModelConstraint(Model model, ExtendibleElementConstraint constraint, MIDLevel constraintLevel) {
-
     var oclConstraint = constraint.getImplementation();
-    try {
-      var modelObj = getConstraintContext(model, oclConstraint, constraintLevel);
-      if (model instanceof ModelRel && oclConstraint.startsWith(OCLReasoner.OCL_MODELENDPOINT_VARIABLE)) {
-        oclConstraint = oclConstraint.substring(oclConstraint.indexOf(OCLReasoner.OCL_VARIABLE_SEPARATOR) + 1, oclConstraint.length());
-      }
-      return checkConstraint(modelObj, oclConstraint);
+    var modelObj = getConstraintContext(model, oclConstraint, constraintLevel);
+    if (model instanceof ModelRel && oclConstraint.startsWith(OCLReasoner.OCL_MODELENDPOINT_VARIABLE)) {
+      oclConstraint = oclConstraint.substring(oclConstraint.indexOf(OCLReasoner.OCL_VARIABLE_SEPARATOR) + 1, oclConstraint.length());
     }
-    catch (MMINTException e) {
-      MMINTException.print(IStatus.ERROR, "Can't get context for OCL constraint \"" + constraint + "\" applied to model " + model + " , evaluating to false", e);
-      return false;
-    }
+
+    return checkConstraint(modelObj, oclConstraint);
   }
 
   public boolean checkConstraint(EObject modelObj, String oclConstraint) {
@@ -190,6 +179,11 @@ public class OCLReasoner implements IReasoningEngine, IQueryTrait, IConstraintTr
       }
     }
     return result;
+  }
+
+  @Override
+  public Set<String> getQueryFileExtensions() {
+    return Set.of("ocl");
   }
 
   @Override

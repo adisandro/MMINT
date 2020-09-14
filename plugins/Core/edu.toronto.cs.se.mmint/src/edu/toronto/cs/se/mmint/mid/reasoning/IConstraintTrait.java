@@ -36,7 +36,8 @@ public interface IConstraintTrait {
    *          The constraint.
    * @return True if the constraint is satisfied, false otherwise.
    */
-  boolean checkModelConstraint(Model model, ExtendibleElementConstraint constraint, MIDLevel constraintLevel);
+  boolean checkModelConstraint(Model model, ExtendibleElementConstraint constraint, MIDLevel constraintLevel)
+                              throws Exception;
 
   boolean checkOperatorGenericConstraint(ExtendibleElementConstraint constraint, GenericEndpoint genericTypeEndpoint,
                                          GenericElement genericType, List<OperatorInput> inputs);

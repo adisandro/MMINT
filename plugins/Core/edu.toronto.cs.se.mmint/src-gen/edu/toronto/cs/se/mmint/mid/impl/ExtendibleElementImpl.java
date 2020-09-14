@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -21,7 +21,6 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -30,11 +29,11 @@ import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
+import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTConstants;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
-import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.MID;
@@ -97,7 +96,7 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
    * @generated
    * @ordered
    */
-    protected String uri = URI_EDEFAULT;
+    protected String uri = ExtendibleElementImpl.URI_EDEFAULT;
 
     /**
    * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -117,7 +116,7 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
    * @generated
    * @ordered
    */
-    protected String name = NAME_EDEFAULT;
+    protected String name = ExtendibleElementImpl.NAME_EDEFAULT;
 
     /**
    * The default value of the '{@link #getLevel() <em>Level</em>}' attribute.
@@ -137,7 +136,7 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
    * @generated
    * @ordered
    */
-    protected MIDLevel level = LEVEL_EDEFAULT;
+    protected MIDLevel level = ExtendibleElementImpl.LEVEL_EDEFAULT;
 
     /**
    * The default value of the '{@link #getMetatypeUri() <em>Metatype Uri</em>}' attribute.
@@ -157,7 +156,7 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
    * @generated
    * @ordered
    */
-    protected String metatypeUri = METATYPE_URI_EDEFAULT;
+    protected String metatypeUri = ExtendibleElementImpl.METATYPE_URI_EDEFAULT;
 
     /**
    * The default value of the '{@link #isDynamic() <em>Dynamic</em>}' attribute.
@@ -177,7 +176,7 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
    * @generated
    * @ordered
    */
-    protected boolean dynamic = DYNAMIC_EDEFAULT;
+    protected boolean dynamic = ExtendibleElementImpl.DYNAMIC_EDEFAULT;
 
     /**
    * The cached value of the '{@link #getConstraint() <em>Constraint</em>}' containment reference.
@@ -215,7 +214,7 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
    */
     @Override
     public String getUri() {
-    return uri;
+    return this.uri;
   }
 
     /**
@@ -225,10 +224,10 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
    */
     @Override
     public void setUri(String newUri) {
-    String oldUri = uri;
-    uri = newUri;
+    var oldUri = this.uri;
+    this.uri = newUri;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EXTENDIBLE_ELEMENT__URI, oldUri, uri));
+      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EXTENDIBLE_ELEMENT__URI, oldUri, this.uri));
   }
 
     /**
@@ -238,15 +237,15 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
    */
     @Override
     public ExtendibleElement getSupertype() {
-    if (supertype != null && supertype.eIsProxy()) {
-      InternalEObject oldSupertype = (InternalEObject)supertype;
-      supertype = (ExtendibleElement)eResolveProxy(oldSupertype);
-      if (supertype != oldSupertype) {
+    if (this.supertype != null && this.supertype.eIsProxy()) {
+      var oldSupertype = (InternalEObject)this.supertype;
+      this.supertype = (ExtendibleElement)eResolveProxy(oldSupertype);
+      if (this.supertype != oldSupertype) {
         if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, MIDPackage.EXTENDIBLE_ELEMENT__SUPERTYPE, oldSupertype, supertype));
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, MIDPackage.EXTENDIBLE_ELEMENT__SUPERTYPE, oldSupertype, this.supertype));
       }
     }
-    return supertype;
+    return this.supertype;
   }
 
     /**
@@ -255,7 +254,7 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
    * @generated
    */
     public ExtendibleElement basicGetSupertype() {
-    return supertype;
+    return this.supertype;
   }
 
     /**
@@ -265,10 +264,10 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
    */
     @Override
     public void setSupertype(ExtendibleElement newSupertype) {
-    ExtendibleElement oldSupertype = supertype;
-    supertype = newSupertype;
+    var oldSupertype = this.supertype;
+    this.supertype = newSupertype;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EXTENDIBLE_ELEMENT__SUPERTYPE, oldSupertype, supertype));
+      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EXTENDIBLE_ELEMENT__SUPERTYPE, oldSupertype, this.supertype));
   }
 
     /**
@@ -278,7 +277,7 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
    */
     @Override
     public String getName() {
-    return name;
+    return this.name;
   }
 
     /**
@@ -288,10 +287,10 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
    */
     @Override
     public void setName(String newName) {
-    String oldName = name;
-    name = newName;
+    var oldName = this.name;
+    this.name = newName;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EXTENDIBLE_ELEMENT__NAME, oldName, name));
+      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EXTENDIBLE_ELEMENT__NAME, oldName, this.name));
   }
 
     /**
@@ -301,7 +300,7 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
    */
     @Override
     public MIDLevel getLevel() {
-    return level;
+    return this.level;
   }
 
     /**
@@ -311,10 +310,10 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
    */
     @Override
     public void setLevel(MIDLevel newLevel) {
-    MIDLevel oldLevel = level;
-    level = newLevel == null ? LEVEL_EDEFAULT : newLevel;
+    var oldLevel = this.level;
+    this.level = newLevel == null ? ExtendibleElementImpl.LEVEL_EDEFAULT : newLevel;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EXTENDIBLE_ELEMENT__LEVEL, oldLevel, level));
+      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EXTENDIBLE_ELEMENT__LEVEL, oldLevel, this.level));
   }
 
     /**
@@ -324,7 +323,7 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
    */
     @Override
     public String getMetatypeUri() {
-    return metatypeUri;
+    return this.metatypeUri;
   }
 
     /**
@@ -334,10 +333,10 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
    */
     @Override
     public void setMetatypeUri(String newMetatypeUri) {
-    String oldMetatypeUri = metatypeUri;
-    metatypeUri = newMetatypeUri;
+    var oldMetatypeUri = this.metatypeUri;
+    this.metatypeUri = newMetatypeUri;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EXTENDIBLE_ELEMENT__METATYPE_URI, oldMetatypeUri, metatypeUri));
+      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EXTENDIBLE_ELEMENT__METATYPE_URI, oldMetatypeUri, this.metatypeUri));
   }
 
     /**
@@ -347,7 +346,7 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
    */
     @Override
     public boolean isDynamic() {
-    return dynamic;
+    return this.dynamic;
   }
 
     /**
@@ -357,10 +356,10 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
    */
     @Override
     public void setDynamic(boolean newDynamic) {
-    boolean oldDynamic = dynamic;
-    dynamic = newDynamic;
+    var oldDynamic = this.dynamic;
+    this.dynamic = newDynamic;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EXTENDIBLE_ELEMENT__DYNAMIC, oldDynamic, dynamic));
+      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EXTENDIBLE_ELEMENT__DYNAMIC, oldDynamic, this.dynamic));
   }
 
     /**
@@ -370,7 +369,7 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
    */
     @Override
     public ExtendibleElementConstraint getConstraint() {
-    return constraint;
+    return this.constraint;
   }
 
     /**
@@ -379,10 +378,10 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
    * @generated
    */
     public NotificationChain basicSetConstraint(ExtendibleElementConstraint newConstraint, NotificationChain msgs) {
-    ExtendibleElementConstraint oldConstraint = constraint;
-    constraint = newConstraint;
+    var oldConstraint = this.constraint;
+    this.constraint = newConstraint;
     if (eNotificationRequired()) {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MIDPackage.EXTENDIBLE_ELEMENT__CONSTRAINT, oldConstraint, newConstraint);
+      var notification = new ENotificationImpl(this, Notification.SET, MIDPackage.EXTENDIBLE_ELEMENT__CONSTRAINT, oldConstraint, newConstraint);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -395,12 +394,12 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
    */
     @Override
     public void setConstraint(ExtendibleElementConstraint newConstraint) {
-    if (newConstraint != constraint) {
+    if (newConstraint != this.constraint) {
       NotificationChain msgs = null;
-      if (constraint != null)
-        msgs = ((InternalEObject)constraint).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MIDPackage.EXTENDIBLE_ELEMENT__CONSTRAINT, null, msgs);
+      if (this.constraint != null)
+        msgs = ((InternalEObject)this.constraint).eInverseRemove(this, InternalEObject.EOPPOSITE_FEATURE_BASE - MIDPackage.EXTENDIBLE_ELEMENT__CONSTRAINT, null, msgs);
       if (newConstraint != null)
-        msgs = ((InternalEObject)newConstraint).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MIDPackage.EXTENDIBLE_ELEMENT__CONSTRAINT, null, msgs);
+        msgs = ((InternalEObject)newConstraint).eInverseAdd(this, InternalEObject.EOPPOSITE_FEATURE_BASE - MIDPackage.EXTENDIBLE_ELEMENT__CONSTRAINT, null, msgs);
       msgs = basicSetConstraint(newConstraint, msgs);
       if (msgs != null) msgs.dispatch();
     }
@@ -494,19 +493,19 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
         setSupertype((ExtendibleElement)null);
         return;
       case MIDPackage.EXTENDIBLE_ELEMENT__URI:
-        setUri(URI_EDEFAULT);
+        setUri(ExtendibleElementImpl.URI_EDEFAULT);
         return;
       case MIDPackage.EXTENDIBLE_ELEMENT__NAME:
-        setName(NAME_EDEFAULT);
+        setName(ExtendibleElementImpl.NAME_EDEFAULT);
         return;
       case MIDPackage.EXTENDIBLE_ELEMENT__LEVEL:
-        setLevel(LEVEL_EDEFAULT);
+        setLevel(ExtendibleElementImpl.LEVEL_EDEFAULT);
         return;
       case MIDPackage.EXTENDIBLE_ELEMENT__METATYPE_URI:
-        setMetatypeUri(METATYPE_URI_EDEFAULT);
+        setMetatypeUri(ExtendibleElementImpl.METATYPE_URI_EDEFAULT);
         return;
       case MIDPackage.EXTENDIBLE_ELEMENT__DYNAMIC:
-        setDynamic(DYNAMIC_EDEFAULT);
+        setDynamic(ExtendibleElementImpl.DYNAMIC_EDEFAULT);
         return;
       case MIDPackage.EXTENDIBLE_ELEMENT__CONSTRAINT:
         setConstraint((ExtendibleElementConstraint)null);
@@ -524,19 +523,19 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
     public boolean eIsSet(int featureID) {
     switch (featureID) {
       case MIDPackage.EXTENDIBLE_ELEMENT__SUPERTYPE:
-        return supertype != null;
+        return this.supertype != null;
       case MIDPackage.EXTENDIBLE_ELEMENT__URI:
-        return URI_EDEFAULT == null ? uri != null : !URI_EDEFAULT.equals(uri);
+        return ExtendibleElementImpl.URI_EDEFAULT == null ? this.uri != null : !ExtendibleElementImpl.URI_EDEFAULT.equals(this.uri);
       case MIDPackage.EXTENDIBLE_ELEMENT__NAME:
-        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+        return ExtendibleElementImpl.NAME_EDEFAULT == null ? this.name != null : !ExtendibleElementImpl.NAME_EDEFAULT.equals(this.name);
       case MIDPackage.EXTENDIBLE_ELEMENT__LEVEL:
-        return level != LEVEL_EDEFAULT;
+        return this.level != ExtendibleElementImpl.LEVEL_EDEFAULT;
       case MIDPackage.EXTENDIBLE_ELEMENT__METATYPE_URI:
-        return METATYPE_URI_EDEFAULT == null ? metatypeUri != null : !METATYPE_URI_EDEFAULT.equals(metatypeUri);
+        return ExtendibleElementImpl.METATYPE_URI_EDEFAULT == null ? this.metatypeUri != null : !ExtendibleElementImpl.METATYPE_URI_EDEFAULT.equals(this.metatypeUri);
       case MIDPackage.EXTENDIBLE_ELEMENT__DYNAMIC:
-        return dynamic != DYNAMIC_EDEFAULT;
+        return this.dynamic != ExtendibleElementImpl.DYNAMIC_EDEFAULT;
       case MIDPackage.EXTENDIBLE_ELEMENT__CONSTRAINT:
-        return constraint != null;
+        return this.constraint != null;
     }
     return super.eIsSet(featureID);
   }
@@ -633,17 +632,17 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
     public String toStringGen() {
     if (eIsProxy()) return super.toString();
 
-    StringBuilder result = new StringBuilder(super.toString());
+    var result = new StringBuilder(super.toString());
     result.append(" (uri: ");
-    result.append(uri);
+    result.append(this.uri);
     result.append(", name: ");
-    result.append(name);
+    result.append(this.name);
     result.append(", level: ");
-    result.append(level);
+    result.append(this.level);
     result.append(", metatypeUri: ");
-    result.append(metatypeUri);
+    result.append(this.metatypeUri);
     result.append(", dynamic: ");
-    result.append(dynamic);
+    result.append(this.dynamic);
     result.append(')');
     return result.toString();
   }
@@ -654,10 +653,10 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
     @Override
     public String toString() {
 
-        String label = (this.getName() == null) ? "" : this.getName();
+        var label = (this.getName() == null) ? "" : this.getName();
         if (!this.isTypesLevel()) {
-            ExtendibleElement type = this.getMetatype();
-            String typeLabel = (type == null) ? "NOTYPE" : type.getName();
+            var type = this.getMetatype();
+            var typeLabel = (type == null) ? "NOTYPE" : type.getName();
             label += " : " + typeLabel;
         }
 
@@ -698,7 +697,7 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 
     /**
      * Searches for an EClass in a package and subpackages.
-     * 
+     *
      * @param ePackage
      *            The package where to look for the EClass.
      * @param eClassName
@@ -708,7 +707,7 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
      */
     private @Nullable EClass searchEPackages(@NonNull EPackage ePackage, @NonNull String eClassName) {
 
-        EClassifier referenceEClass = ePackage.getEClassifier(eClassName);
+        var referenceEClass = ePackage.getEClassifier(eClassName);
         if (referenceEClass != null) {
             return (EClass) referenceEClass;
         }
@@ -724,7 +723,7 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 
     /**
      * Creates a new non-binary instance of this element's EClass, to be used as either a type or an instance in a MID.
-     * 
+     *
      * @return The new non-binary instance of this element's EClass.
      * @throws MMINTException If the EClass that represents this element can't be found, when this element is binary.
      * @generated NOT
@@ -732,7 +731,7 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
     @SuppressWarnings("unchecked")
     protected <T extends ExtendibleElement> T createThisEClass() throws MMINTException {
 
-        EClass eClass = this.eClass();
+        var eClass = this.eClass();
         if (eClass.getName().startsWith("Binary")) {
             eClass = searchEPackages(this.eClass().getEPackage(), this.eClass().getName().replace("Binary", "").replace("Impl", ""));
             if (eClass == null) {
@@ -745,7 +744,7 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 
     /**
      * Creates a new binary instance of this element's EClass, to be used as either a type or an instance in a MID.
-     * 
+     *
      * @return The new binary instance of this element's EClass.
      * @throws MMINTException
      *             If the EClass that represents a binary version of this element can't be found, when this element is
@@ -755,7 +754,7 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
     @SuppressWarnings("unchecked")
     protected <T extends ExtendibleElement> T createThisBinaryEClass() throws MMINTException {
 
-        EClass binaryEClass = this.eClass();
+        var binaryEClass = this.eClass();
         if (!binaryEClass.getName().startsWith("Binary")) {
             binaryEClass = searchEPackages(this.eClass().getEPackage(), "Binary" + this.eClass().getName().replace("Impl", ""));
             if (binaryEClass == null) {
@@ -763,13 +762,13 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
             }
         }
 
-        return (T) binaryEClass.getEPackage().getEFactoryInstance().create((EClass) binaryEClass);
+        return (T) binaryEClass.getEPackage().getEFactoryInstance().create(binaryEClass);
     }
 
     /**
      * Creates a new instance of the EClass that represents a reference to this element, to be used as a reference to
      * either a type or an instance in a MID.
-     * 
+     *
      * @return The new instance of this element's reference EClass.
      * @throws MMINTException
      *             If the EClass that represents a reference to this element can't be found.
@@ -788,14 +787,14 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 
     /**
      * Gets the base uri of this type by cutting its last fragment.
-     * 
+     *
      * @return The base uri of this type.
      * @generated NOT
      */
     private String getTypeBaseUri() {
 
-        String baseUri = getUri();
-        int cut = baseUri.lastIndexOf(MMINT.URI_SEPARATOR);
+        var baseUri = getUri();
+        var cut = baseUri.lastIndexOf(MMINTConstants.URI_SEPARATOR);
         if (cut == -1) {
             cut = getUri().length();
         }
@@ -807,12 +806,13 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
     /**
      * @generated NOT
      */
+    @Override
     public String createSubtypeUri(String newTypeFragmentUri, String newTypeName) {
 
-        String baseUri = getTypeBaseUri();
-        String newTypeUri = (newTypeFragmentUri == null) ?
-            baseUri + MMINT.URI_SEPARATOR + newTypeName :
-            baseUri + MMINT.URI_SEPARATOR + newTypeFragmentUri + MMINT.URI_SEPARATOR + newTypeName;
+        var baseUri = getTypeBaseUri();
+        var newTypeUri = (newTypeFragmentUri == null) ?
+            baseUri + MMINTConstants.URI_SEPARATOR + newTypeName :
+            baseUri + MMINTConstants.URI_SEPARATOR + newTypeFragmentUri + MMINTConstants.URI_SEPARATOR + newTypeName;
 
         return newTypeUri;
     }
@@ -820,11 +820,12 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
     /**
      * @generated NOT
      */
+    @Override
     public void addTypeConstraint(String language, String implementation) throws MMINTException {
 
         MMINTException.mustBeType(this);
 
-        ExtendibleElementConstraint newTypeConstraint = MIDFactory.eINSTANCE.createExtendibleElementConstraint();
+        var newTypeConstraint = MIDFactory.eINSTANCE.createExtendibleElementConstraint();
         MIDTypeFactory.addTypeConstraint(newTypeConstraint, language, implementation, this);
     }
 
@@ -838,7 +839,7 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 
     /**
      * Filters a list of subtypes of a type to contain only direct and metamodel-compatible subtypes.
-     * 
+     *
      * @param type The type at the top of the inheritance tree.
      * @param subtypes All the subtypes of the type.
      * @return The list of filtered subtypes.
@@ -846,7 +847,7 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
      */
     private <T extends ExtendibleElement> List<T> filterSubtypes(T type, List<T> subtypes) {
 
-        List<T> filteredSubtypes = new ArrayList<T>();
+        List<T> filteredSubtypes = new ArrayList<>();
 
         // only direct subtypes
         for (T subtype : subtypes) {
@@ -861,7 +862,7 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
         }
 
         if (type instanceof Model && !(type instanceof ModelRel)) { // explore metamodel-compatible supertrees and subtrees
-            List<T> metamodelSubtypes = new ArrayList<T>();
+            List<T> metamodelSubtypes = new ArrayList<>();
             EPackage rootStaticModelTypeObj;
             try {
                 rootStaticModelTypeObj = ((Model) this).getMetatype().getEMFTypeRoot();
@@ -870,7 +871,7 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
                 MMINTException.print(IStatus.WARNING, "Can't get model root, skipping subtypes filtering", e);
                 return metamodelSubtypes;
             }
-            String metamodelUri = rootStaticModelTypeObj.getNsURI();
+            var metamodelUri = rootStaticModelTypeObj.getNsURI();
             for (T filteredSubtype : filteredSubtypes) {
                 if (
                     metamodelUri.equals(filteredSubtype.getUri()) ||
@@ -900,7 +901,7 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 
     /**
      * Adds a polymorphic runtime type for this instance.
-     * 
+     *
      * @param type The type being checked to be a valid polymorphic type.
      * @param types The list of polymorphic runtime types so far, used as return value.
      * @generated NOT
@@ -930,14 +931,14 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
                     return;
                 }
             }
-            catch (MMINTException e) {
+            catch (Exception e) {
                 return;
             }
             types.add(type);
         }
 
         // recurse for each subtype
-        List<T> subtypes = this.filterSubtypes(type, MIDTypeHierarchy.getSubtypes(type));
+        var subtypes = this.filterSubtypes(type, MIDTypeHierarchy.getSubtypes(type));
         for (T subtype : subtypes) {
             this.getRuntimeTypes(subtype, types);
         }
@@ -946,14 +947,15 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
     /**
      * @generated NOT
      */
+    @Override
     @SuppressWarnings("unchecked")
     public <T extends ExtendibleElement> EList<T> getRuntimeTypes() throws MMINTException {
 
         MMINTException.mustBeInstance(this);
 
-        List<T> cachedTypes = (List<T>) MIDTypeHierarchy.getCachedRuntimeTypes(this);
+        var cachedTypes = (List<T>) MIDTypeHierarchy.getCachedRuntimeTypes(this);
         if (cachedTypes != null) {
-            return new BasicEList<T>(cachedTypes);
+            return new BasicEList<>(cachedTypes);
         }
 
         EList<T> types = new BasicEList<>();
@@ -974,6 +976,7 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
         //TODO MMINT[OO] Shouldn't getRuntimeTypes() do something similar, climbing up rather than down?
      * @generated NOT
      */
+    @Override
     public ExtendibleElementConstraint getClosestTypeConstraint() throws MMINTException {
 
         MMINTException.mustBeType(this);
@@ -998,14 +1001,14 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
      */
     protected void addSubtype(ExtendibleElement newType, String newTypeUri, String newTypeName) throws MMINTException {
 
-        MID typeMID = this.getMIDContainer();
+        var typeMID = this.getMIDContainer();
         MIDTypeFactory.addType(newType, this, newTypeUri, newTypeName, typeMID);
         newType.setDynamic(true);
     }
 
     /**
      * Adds a subtype of this type to the Type MID.
-     * 
+     *
      * @param newType
      *            The new type to be added.
      * @param baseType
@@ -1023,13 +1026,13 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
      */
     protected void addSubtype(ExtendibleElement newType, ExtendibleElement baseType, String newTypeFragmentUri, String newTypeName) throws MMINTException {
 
-        String newTypeUri = baseType.createSubtypeUri(newTypeFragmentUri, newTypeName);
+        var newTypeUri = baseType.createSubtypeUri(newTypeFragmentUri, newTypeName);
         this.addSubtype(newType, newTypeUri, newTypeName);
     }
 
     /**
      * Adds a reference to this type to the Type MID.
-     * 
+     *
      * @param newTypeRef
      *            The new reference being added.
      * @param typeRef
@@ -1057,7 +1060,7 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 
     /**
      * Deletes an element from a MID.
-     * 
+     *
      * @param id
      *            The id of the element to delete.
      * @param mid
@@ -1072,7 +1075,7 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 
     /**
      * Deletes this element from the MID that contains it.
-     * 
+     *
      * @throws MMINTException
      *             Never thrown.
      * @generated NOT
@@ -1084,7 +1087,7 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 
     /**
      * Adds additional info to an instance of this type, without it being contained in an Instance or Workflow MID.
-     * 
+     *
      * @param newInstance
      *            The new instance.
      * @param newInstanceId
@@ -1099,11 +1102,11 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
     protected void addBasicInstance(ExtendibleElement newInstance, String newInstanceId, String newInstanceName, MIDLevel midLevel) {
 
         if (newInstanceId == null) {
-            newInstanceId = MMINT.EMPTY_ID;
+            newInstanceId = MMINTConstants.EMPTY_ID;
         }
         newInstance.setUri(newInstanceId);
         if (newInstanceName == null) {
-            newInstanceName = MMINT.EMPTY_NAME;
+            newInstanceName = MMINTConstants.EMPTY_NAME;
         }
         newInstance.setName(newInstanceName);
         newInstance.setLevel(midLevel);
@@ -1114,7 +1117,7 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 
     /**
      * Adds an instance of this type to an Instance or Workflow MID.
-     * 
+     *
      * @param newInstance
      *            The new instance to be added.
      * @param newInstanceId
@@ -1129,10 +1132,10 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
      */
     protected void addInstance(ExtendibleElement newInstance, String newInstanceId, String newInstanceName, MID instanceMID) throws MMINTException {
 
-        MIDLevel midLevel = instanceMID.getLevel();
+        var midLevel = instanceMID.getLevel();
         if (instanceMID.getExtendibleTable().containsKey(newInstanceId)) {
-            String level = midLevel.toString();
-            String midType = level.charAt(0) + level.toLowerCase().substring(1, level.length()-1);
+            var level = midLevel.toString();
+            var midType = level.charAt(0) + level.toLowerCase().substring(1, level.length()-1);
             throw new MMINTException("An instance with id " + newInstanceId + " is already present in this " + midType + " MID");
         }
         instanceMID.getExtendibleTable().put(newInstanceId, newInstance);
@@ -1142,7 +1145,7 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 
     /**
      * Adds a reference to this instance to an Instance MID.
-     * 
+     *
      * @param newInstanceRef
      *            The new reference being added.
      * @param isContainer
@@ -1165,7 +1168,8 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
     /**
      * @generated NOT
      */
-    public boolean validateInstanceType(ExtendibleElement type) throws MMINTException {
+    @Override
+    public boolean validateInstanceType(ExtendibleElement type) throws Exception {
 
         MMINTException.mustBeInstance(this);
         MMINTException.mustBeType(type);
@@ -1176,7 +1180,8 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
     /**
      * @generated NOT
      */
-    public boolean validateInstance() throws MMINTException {
+    @Override
+    public boolean validateInstance() throws Exception {
 
         return this.validateInstanceType(this.getMetatype());
     }
@@ -1184,13 +1189,14 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
     /**
      * @generated NOT
      */
-    public IStatus validateInstanceInEditor(IValidationContext context) throws MMINTException {
+    @Override
+    public IStatus validateInstanceInEditor(IValidationContext context) throws Exception {
 
         MMINTException.mustBeInstance(this);
 
-        boolean validates = this.validateInstance();
-        IStatus status = (validates) ?
-            status = context.createSuccessStatus() :
+        var validates = this.validateInstance();
+        var status = (validates) ?
+            context.createSuccessStatus() :
             context.createFailureStatus(
                 "",
                 this.getName(),
@@ -1210,12 +1216,13 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
     /**
      * @generated NOT
      */
+    @Override
     public void updateWorkflowInstanceId(String newInstanceId) throws MMINTException {
 
         MMINTException.mustBeWorkflow(this);
 
-        MID workflowMID = this.getMIDContainer();
-        String oldInstanceId = this.getUri();
+        var workflowMID = this.getMIDContainer();
+        var oldInstanceId = this.getUri();
         ((ExtendibleElementImpl) this.getMetatype()).addInstance(this, newInstanceId, this.getName(), workflowMID);
         this.delete(oldInstanceId, workflowMID);
     }
@@ -1223,6 +1230,7 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
     /**
      * @generated NOT
      */
+    @Override
     public String toMIDCustomPrintLabel() {
 
         return "";
@@ -1231,6 +1239,7 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
     /**
      * @generated NOT
      */
+    @Override
     public String toMIDCustomEditLabel() {
 
         return "";
@@ -1239,6 +1248,7 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
     /**
      * @generated NOT
      */
+    @Override
     public void updateMIDCustomLabel(String newLabel) {
 
         // do nothing

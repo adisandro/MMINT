@@ -5,17 +5,18 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.mmint.mid;
 
-import edu.toronto.cs.se.mmint.MMINTException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.validation.IValidationContext;
+
+import edu.toronto.cs.se.mmint.MMINTException;
 
 
 /**
@@ -122,7 +123,7 @@ public interface ExtendibleElement extends EObject {
 
     /**
    * <!-- begin-user-doc --> Returns the static metatype: always null for types, a type for instances and workflows.
-     * 
+     *
      * @return The static metatype. <!-- end-user-doc -->
    * @model kind="operation" required="true"
    * @generated
@@ -131,7 +132,7 @@ public interface ExtendibleElement extends EObject {
 
     /**
    * <!-- begin-user-doc --> Returns the MID container.
-     * 
+     *
      * @return The MID container, or null if this element is not contained in a MID. <!-- end-user-doc -->
    * @model kind="operation"
    * @generated
@@ -140,7 +141,7 @@ public interface ExtendibleElement extends EObject {
 
     /**
    * <!-- begin-user-doc --> Checks whether this element is at the specified MID level.
-     * 
+     *
      * @param midLevel
      *            The MID level to check against.
      * @return True if this element is at the specified MID level, false otherwise. <!-- end-user-doc -->
@@ -151,7 +152,7 @@ public interface ExtendibleElement extends EObject {
 
     /**
    * <!-- begin-user-doc --> Checks whether this is a type.
-     * 
+     *
      * @return True if this is a type, false otherwise. <!-- end-user-doc -->
    * @model kind="operation" required="true"
    * @generated
@@ -265,7 +266,7 @@ public interface ExtendibleElement extends EObject {
    * <!-- begin-user-doc --> Creates a uri for a new subtype, using this type
      * as the base (the base uri + the possible uri fragment + the name of the
      * new type).
-     * 
+     *
      * @param newTypeFragmentUri
      *            The uri fragment to be appended as part of the uri of the new
      *            type, can be null.
@@ -279,7 +280,7 @@ public interface ExtendibleElement extends EObject {
 
     /**
    * <!-- begin-user-doc --> Adds a constraint to this type.
-     * 
+     *
      * @param language
      *            The constraint language, null for an empty constraint.
      * @param implementation
@@ -291,7 +292,7 @@ public interface ExtendibleElement extends EObject {
 
     /**
    * <!-- begin-user-doc --> Checks whether this is an instance.
-     * 
+     *
      * @return True if this is an instance, false otherwise. <!-- end-user-doc -->
    * @model kind="operation" required="true"
    * @generated
@@ -300,7 +301,7 @@ public interface ExtendibleElement extends EObject {
 
     /**
    * <!-- begin-user-doc --> Gets the list of polymorphic runtime types for this instance.
-     * 
+     *
      * @return The list of runtime types.
      * @throws MMINTException
      *             If this is not an instance. <!-- end-user-doc -->
@@ -311,7 +312,7 @@ public interface ExtendibleElement extends EObject {
 
     /**
    * <!-- begin-user-doc --> Gets the closest type constraint, searching from this type included up its supertypes.
-     * 
+     *
      * @return The closest type constraint in the type inheritance, null if no constraint is found.
      * @throws MMINTException
      *             If this is not a type. <!-- end-user-doc -->
@@ -322,7 +323,7 @@ public interface ExtendibleElement extends EObject {
 
     /**
    * <!-- begin-user-doc --> Updates the id of this instance in the Workflow MID that contains it.
-     * 
+     *
      * @param newInstanceId
      *            The new id of this instance.
      * @throws MMINTException
@@ -334,46 +335,49 @@ public interface ExtendibleElement extends EObject {
     void updateWorkflowInstanceId(String newInstanceId) throws MMINTException;
 
     /**
-   * <!-- begin-user-doc --> Validates this instance against a type.
-     * 
+     * <!-- begin-user-doc --> Validates this instance against a type.
+     *
      * @param type
-     *            The type to be validated against.
+     *          The type to be validated against.
      * @return True if the validation is successful, false otherwise.
-     * @throws MMINTException
-     *             If this is not an instance, or if the type to be validated aganst is not a type.<!-- end-user-doc -->
-   * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" typeRequired="true"
-   * @generated
-   */
-    boolean validateInstanceType(ExtendibleElement type) throws MMINTException;
+     * @throws Exception
+     *           If this is not an instance, if the type to be validated aganst is not a type, or if there is an error
+     *           with the validation.<!-- end-user-doc -->
+     * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" typeRequired="true"
+     * @generated
+     */
+    boolean validateInstanceType(ExtendibleElement type) throws Exception;
 
     /**
-   * <!-- begin-user-doc --> Validates this instance against its static type.
-     * 
+     * <!-- begin-user-doc --> Validates this instance against its static type.
+     *
      * @return True if the validation is successful, false otherwise.
-     * @throws MMINTException
-     *             If this is not an instance.<!-- end-user-doc -->
-   * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
-   * @generated
-   */
-    boolean validateInstance() throws MMINTException;
+     * @throws Exception
+     *           If this is not an instance, or if there is an error with the validation.<!-- end-user-doc -->
+     * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
+     * @generated
+     */
+    boolean validateInstance() throws Exception;
 
     /**
-   * <!-- begin-user-doc --> Validates this instance against its static type within an editor that suports EMF
+     * <!-- begin-user-doc --> Validates this instance against its static type within an editor that suports EMF
      * validation.
-     * 
+     *
      * @param context
-     *            The editor context of the validation.
+     *          The editor context of the validation.
      * @return A status representing the validation result.
-     * @throws MMINTException
-     *             If this is not an instance.<!-- end-user-doc -->
-   * @model dataType="edu.toronto.cs.se.mmint.mid.IStatus" required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" contextDataType="edu.toronto.cs.se.mmint.mid.IValidationContext" contextRequired="true"
-   * @generated
-   */
-    IStatus validateInstanceInEditor(IValidationContext context) throws MMINTException;
+     * @throws Exception
+     *           If this is not an instance, or if there is an error with the validation.<!-- end-user-doc -->
+     * @model dataType="edu.toronto.cs.se.mmint.mid.IStatus" required="true"
+     *        exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
+     *        contextDataType="edu.toronto.cs.se.mmint.mid.IValidationContext" contextRequired="true"
+     * @generated
+     */
+    IStatus validateInstanceInEditor(IValidationContext context) throws Exception;
 
     /**
    * <!-- begin-user-doc --> Checks whether this is a workflow element.
-     * 
+     *
      * @return True if this is a workflow element, false otherwise. <!-- end-user-doc -->
    * @model kind="operation" required="true"
    * @generated
@@ -383,7 +387,7 @@ public interface ExtendibleElement extends EObject {
     /**
    * <!-- begin-user-doc --> Returns a string representation of this element for its MID custom label. It returns an
      * empty string by default and can be overridden.
-     * 
+     *
      * @return The string representation. <!-- end-user-doc -->
    * @model required="true"
    * @generated
@@ -393,7 +397,7 @@ public interface ExtendibleElement extends EObject {
     /**
    * <!-- begin-user-doc --> Returns a string representation of this element for its MID custom label being edited. It
      * returns an empty string by default and can be overridden.
-     * 
+     *
      * @return The string representation. <!-- end-user-doc -->
    * @model required="true"
    * @generated
@@ -403,7 +407,7 @@ public interface ExtendibleElement extends EObject {
     /**
    * <!-- begin-user-doc --> Updates this element with the string inserted in its MID custom label. It does nothing by
      * default and can be overridden.
-     * 
+     *
      * @param newLabel
      *            The string inserted in the MID custom label. <!-- end-user-doc -->
    * @model newLabelRequired="true"

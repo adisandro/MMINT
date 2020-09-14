@@ -31,10 +31,10 @@ import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorConstraint;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.impl.ModelImpl;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
-import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
@@ -155,7 +155,7 @@ public class Filter extends OperatorImpl {
       if (!MIDTypeHierarchy.instanceOf(model, filterTypeUri, false)) {
         continue;
       }
-      if (MIDConstraintChecker.checkModelConstraint(model, polyFilterType.getConstraint())) {
+      if (ModelImpl.validate(model, polyFilterType.getConstraint())) {
         return true;
       }
       else {
