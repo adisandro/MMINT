@@ -14,7 +14,6 @@ package edu.toronto.cs.se.mmint.mid.relationship.impl;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -478,7 +477,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 
         MMINTException.mustBeType(this);
 
-        BinaryModelRel newModelRelType = super.createThisBinaryEClass();
+        var newModelRelType = super.<BinaryModelRel>createThisBinaryEClass();
         this.addSubtype(newModelRelType, newModelRelTypeName, false);
 
         return newModelRelType;
@@ -490,41 +489,41 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
     @Override
     public ModelRel copySubtype(ModelRel origModelRelType) throws MMINTException {
 
-        ModelRel newModelRelType = (origModelRelType instanceof BinaryModelRel) ?
+        var newModelRelType = (origModelRelType instanceof BinaryModelRel) ?
             this.createBinarySubtype(origModelRelType.getName(), false) :
             (ModelRel) this.createSubtype(origModelRelType.getName(), false);
         newModelRelType.addTypeConstraint(origModelRelType.getConstraint().getLanguage(), origModelRelType.getConstraint().getImplementation());
 
         // model type endpoints
-        MID typeMID = newModelRelType.getMIDContainer();
+        var typeMID = newModelRelType.getMIDContainer();
         if (origModelRelType instanceof BinaryModelRel) { // this is useful only when there are 0 or 1 overridden endpoints, but doesn't hurt in case of 2
-            Model newSrcModelType = typeMID.getExtendibleElement(((BinaryModelRel) origModelRelType).getSourceModel().getUri());
+            var newSrcModelType = typeMID.<Model>getExtendibleElement(((BinaryModelRel) origModelRelType).getSourceModel().getUri());
             ((BinaryModelRel) newModelRelType).addModelType(newSrcModelType, true);
-            Model newTgtModelType = typeMID.getExtendibleElement(((BinaryModelRel) origModelRelType).getTargetModel().getUri());
+            var newTgtModelType = typeMID.<Model>getExtendibleElement(((BinaryModelRel) origModelRelType).getTargetModel().getUri());
             ((BinaryModelRel) newModelRelType).addModelType(newTgtModelType, false);
         }
-        Iterator<ModelEndpoint> origModelTypeEndpointIter = MIDTypeHierarchy.getTypeHierarchyIterator(origModelRelType.getModelEndpoints());
+        var origModelTypeEndpointIter = MIDTypeHierarchy.getTypeHierarchyIterator(origModelRelType.getModelEndpoints());
         while (origModelTypeEndpointIter.hasNext()) {
-            ModelEndpoint origModelTypeEndpoint = origModelTypeEndpointIter.next();
-            Model newModelType = typeMID.getExtendibleElement(origModelTypeEndpoint.getTargetUri());
-            ModelEndpoint modelTypeEndpoint = typeMID.getExtendibleElement(origModelTypeEndpoint.getSupertype().getUri());
-            boolean isBinarySrc = ((origModelRelType instanceof BinaryModelRel) && (((BinaryModelRel) origModelRelType).getSourceModel() == origModelTypeEndpoint.getTarget())) ?
+            var origModelTypeEndpoint = origModelTypeEndpointIter.next();
+            var newModelType = typeMID.<Model>getExtendibleElement(origModelTypeEndpoint.getTargetUri());
+            var modelTypeEndpoint = typeMID.<ModelEndpoint>getExtendibleElement(origModelTypeEndpoint.getSupertype().getUri());
+            var isBinarySrc = ((origModelRelType instanceof BinaryModelRel) && (((BinaryModelRel) origModelRelType).getSourceModel() == origModelTypeEndpoint.getTarget())) ?
                 true :
                 false;
             modelTypeEndpoint.createSubtype(origModelTypeEndpoint.getName(), newModelType, isBinarySrc, newModelRelType);
         }
         // model element types
-        Iterator<ModelEndpointReference> origModelTypeEndpointRefIter = MIDTypeHierarchy.getTypeRefHierarchyIterator(origModelRelType.getModelEndpointRefs());
+        var origModelTypeEndpointRefIter = MIDTypeHierarchy.getTypeRefHierarchyIterator(origModelRelType.getModelEndpointRefs());
         while (origModelTypeEndpointRefIter.hasNext()) {
-            ModelEndpointReference origModelTypeEndpointRef = origModelTypeEndpointRefIter.next();
-            ModelEndpointReference newModelTypeEndpointRef = MIDRegistry.getReference(origModelTypeEndpointRef, newModelRelType.getModelEndpointRefs());
-            Iterator<ModelElementReference> origModelElemTypeRefIter = MIDTypeHierarchy.getTypeRefHierarchyIterator(origModelTypeEndpointRef.getModelElemRefs());
+            var origModelTypeEndpointRef = origModelTypeEndpointRefIter.next();
+            var newModelTypeEndpointRef = MIDRegistry.getReference(origModelTypeEndpointRef, newModelRelType.getModelEndpointRefs());
+            var origModelElemTypeRefIter = MIDTypeHierarchy.getTypeRefHierarchyIterator(origModelTypeEndpointRef.getModelElemRefs());
             while (origModelElemTypeRefIter.hasNext()) {
-                ModelElementReference origModelElemTypeRef = origModelElemTypeRefIter.next();
+                var origModelElemTypeRef = origModelElemTypeRefIter.next();
                 if (!origModelElemTypeRef.isModifiable()) { // already copied by createSubtype()
                     continue;
                 }
-                ModelElement modelElemType = typeMID.getExtendibleElement(origModelElemTypeRef.getObject().getSupertype().getUri());
+                var modelElemType = typeMID.<ModelElement>getExtendibleElement(origModelElemTypeRef.getObject().getSupertype().getUri());
                 ModelEndpointReference newModelTypeEndpointRefSuper = null;
                 ModelElementReference modelElemTypeRef = null;
                 if (origModelElemTypeRef.getSupertypeRef() != null) {
@@ -535,31 +534,31 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
             }
         }
         // mapping types
-        Iterator<Mapping> origMappingTypeIter = MIDTypeHierarchy.getTypeHierarchyIterator(origModelRelType.getMappings());
+        var origMappingTypeIter = MIDTypeHierarchy.getTypeHierarchyIterator(origModelRelType.getMappings());
         while (origMappingTypeIter.hasNext()) {
-            Mapping origMappingType = origMappingTypeIter.next();
-            MappingReference origMappingTypeRef = MIDRegistry.getReference(origMappingType.getUri(), origModelRelType.getMappingRefs());
-            Mapping mappingType = typeMID.getExtendibleElement(origMappingType.getSupertype().getUri());
-            MappingReference mappingTypeRef = MIDRegistry.getReference(origMappingType.getSupertype().getUri(), newModelRelType.getMappingRefs());
-            MappingReference newMappingTypeRef = mappingType.createSubtypeAndReference(mappingTypeRef, origMappingType.getName(), (origMappingType instanceof BinaryMapping), newModelRelType);
+            var origMappingType = origMappingTypeIter.next();
+            var origMappingTypeRef = MIDRegistry.getReference(origMappingType.getUri(), origModelRelType.getMappingRefs());
+            var mappingType = typeMID.<Mapping>getExtendibleElement(origMappingType.getSupertype().getUri());
+            var mappingTypeRef = MIDRegistry.getReference(origMappingType.getSupertype().getUri(), newModelRelType.getMappingRefs());
+            var newMappingTypeRef = mappingType.createSubtypeAndReference(mappingTypeRef, origMappingType.getName(), (origMappingType instanceof BinaryMapping), newModelRelType);
             if (origMappingTypeRef instanceof BinaryMappingReference) { // this is useful only when there are 0 or 1 overridden endpoints, but doesn't hurt in case of 2
-                ModelElementReference origSrcModelElemTypeRef = ((BinaryMappingReference) origMappingTypeRef).getSourceModelElemRef();
-                ModelEndpointReference containerModelTypeEndpointRef = MIDRegistry.getReference(((ModelEndpointReference) origSrcModelElemTypeRef.eContainer()), newModelRelType.getModelEndpointRefs());
-                ModelElementReference newSrcModelElemTypeRef = MIDRegistry.getReference(origSrcModelElemTypeRef, containerModelTypeEndpointRef.getModelElemRefs());
+                var origSrcModelElemTypeRef = ((BinaryMappingReference) origMappingTypeRef).getSourceModelElemRef();
+                var containerModelTypeEndpointRef = MIDRegistry.getReference(((ModelEndpointReference) origSrcModelElemTypeRef.eContainer()), newModelRelType.getModelEndpointRefs());
+                var newSrcModelElemTypeRef = MIDRegistry.getReference(origSrcModelElemTypeRef, containerModelTypeEndpointRef.getModelElemRefs());
                 ((BinaryMappingReference) newMappingTypeRef).addModelElementTypeReference(newSrcModelElemTypeRef, true);
-                ModelElementReference origTgtModelElemTypeRef = ((BinaryMappingReference) origMappingTypeRef).getSourceModelElemRef();
+                var origTgtModelElemTypeRef = ((BinaryMappingReference) origMappingTypeRef).getSourceModelElemRef();
                 containerModelTypeEndpointRef = MIDRegistry.getReference(((ModelEndpointReference) origTgtModelElemTypeRef.eContainer()), newModelRelType.getModelEndpointRefs());
-                ModelElementReference newTgtModelElemTypeRef = MIDRegistry.getReference(origTgtModelElemTypeRef, containerModelTypeEndpointRef.getModelElemRefs());
+                var newTgtModelElemTypeRef = MIDRegistry.getReference(origTgtModelElemTypeRef, containerModelTypeEndpointRef.getModelElemRefs());
                 ((BinaryMappingReference) newMappingTypeRef).addModelElementTypeReference(newTgtModelElemTypeRef, false);
             }
-            Iterator<ModelElementEndpointReference> origModelElemTypeEndpointRefIter = MIDTypeHierarchy.getTypeRefHierarchyIterator(origMappingTypeRef.getModelElemEndpointRefs());
+            var origModelElemTypeEndpointRefIter = MIDTypeHierarchy.getTypeRefHierarchyIterator(origMappingTypeRef.getModelElemEndpointRefs());
             while (origModelElemTypeEndpointRefIter.hasNext()) {
-                ModelElementEndpointReference origModelElemTypeEndpointRef = origModelElemTypeEndpointRefIter.next();
-                ModelElementReference origModelElemTypeRef = origModelElemTypeEndpointRef.getModelElemRef();
-                ModelEndpointReference newModelTypeEndpointRef = MIDRegistry.getReference((ModelEndpointReference) origModelElemTypeRef.eContainer(), newModelRelType.getModelEndpointRefs());
-                ModelElementReference newModelElemTypeRef = MIDRegistry.getReference(origModelElemTypeRef, newModelTypeEndpointRef.getModelElemRefs());
-                ModelElementEndpoint modelElemTypeEndpoint = typeMID.getExtendibleElement(origModelElemTypeEndpointRef.getObject().getSupertype().getUri());
-                boolean isBinarySrc = ((origMappingTypeRef instanceof BinaryMappingReference) && (((BinaryMappingReference) origMappingTypeRef).getSourceModelElemRef() == origModelElemTypeEndpointRef.getModelElemRef())) ?
+                var origModelElemTypeEndpointRef = origModelElemTypeEndpointRefIter.next();
+                var origModelElemTypeRef = origModelElemTypeEndpointRef.getModelElemRef();
+                var newModelTypeEndpointRef = MIDRegistry.getReference((ModelEndpointReference) origModelElemTypeRef.eContainer(), newModelRelType.getModelEndpointRefs());
+                var newModelElemTypeRef = MIDRegistry.getReference(origModelElemTypeRef, newModelTypeEndpointRef.getModelElemRefs());
+                var modelElemTypeEndpoint = typeMID.<ModelElementEndpoint>getExtendibleElement(origModelElemTypeEndpointRef.getObject().getSupertype().getUri());
+                var isBinarySrc = ((origMappingTypeRef instanceof BinaryMappingReference) && (((BinaryMappingReference) origMappingTypeRef).getSourceModelElemRef() == origModelElemTypeEndpointRef.getModelElemRef())) ?
                     true :
                     false;
                 modelElemTypeEndpoint.createSubtypeAndReference(origModelElemTypeEndpointRef.getObject().getName(), newModelElemTypeRef, isBinarySrc, newMappingTypeRef);
@@ -581,7 +580,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 
         MMINTException.mustBeType(this);
 
-        MID typeMID = this.getMIDContainer();
+        var typeMID = this.getMIDContainer();
         // delete the "thing"
         for (ModelEndpoint modelTypeEndpoint : getModelEndpoints()) {
             super.delete(modelTypeEndpoint.getUri(), typeMID);
@@ -617,7 +616,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
         ResourceSet resourceSet = new ResourceSetImpl();
         List<Resource> resources = resourceSet.getResources();
         for (ModelEndpointReference modelTypeEndpointRef : getModelEndpointRefs()) {
-            Model modelType = modelTypeEndpointRef.getObject().getTarget();
+            var modelType = modelTypeEndpointRef.getObject().getTarget();
             do {
                 resources.add(modelType.getEMFTypeRoot().eResource());
                 modelType = modelType.getSupertype();
@@ -665,9 +664,9 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
     @Override
     protected void addInstance(@NonNull Model newModelRel, @Nullable String newModelRelId, @NonNull String newModelRelName, @NonNull ModelOrigin origin, @NonNull String fileExtension, @NonNull MIDLevel midLevel, @Nullable MID instanceMID) throws MMINTException {
 
-        boolean isFile = newModelRelId != null;
-        boolean updateMID = instanceMID != null;
-        boolean isBasic = !updateMID || !isFile;
+        var isFile = newModelRelId != null;
+        var updateMID = instanceMID != null;
+        var isBasic = !updateMID || !isFile;
 
         if (isBasic) {
             super.addBasicInstance(newModelRel, newModelRelId, newModelRelName, midLevel);
@@ -714,7 +713,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
         }
 
         //TODO MMINT[EDITOR] Add editor for modelrel too and relative api?
-        ModelRel newModelRel = super.createThisEClass();
+        var newModelRel = super.<ModelRel>createThisEClass();
         this.addInstance(
             newModelRel,
             null,
@@ -787,7 +786,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
             throw new MMINTException("Can't instanciate an abstract model relationship type");
         }
 
-        BinaryModelRel newModelRel = super.createThisBinaryEClass();
+        var newModelRel = super.<BinaryModelRel>createThisBinaryEClass();
         this.addInstance(
             newModelRel,
             null,
@@ -811,7 +810,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
             throw new MMINTException("One or both endpoint models not specified");
         }
 
-        BinaryModelRel newModelRel = this.createBinaryInstance(rootModelRelObj, newModelRelName, instanceMID);
+        var newModelRel = this.createBinaryInstance(rootModelRelObj, newModelRelName, instanceMID);
         EList<Model> endpointModels = new BasicEList<>();
         endpointModels.add(endpointSourceModel);
         endpointModels.add(endpointTargetModel);
@@ -839,31 +838,31 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
     public Model copyInstance(Model origModelRel, String newModelRelName, MID instanceMID) throws MMINTException {
 
         // create initial empty copy
-        ModelRel newModelRel = (origModelRel instanceof BinaryModelRel) ?
+        var newModelRel = (origModelRel instanceof BinaryModelRel) ?
             this.createBinaryInstance(null, newModelRelName, instanceMID) :
             (ModelRel) this.createInstance(null, newModelRelName, instanceMID);
 
         // models
         Map<String, ModelElementReference> newModelElemRefs = new HashMap<>();
         for (ModelEndpointReference origModelEndpointRef : ((ModelRel) origModelRel).getModelEndpointRefs()) {
-            Model newModel = instanceMID.getExtendibleElement(origModelEndpointRef.getTargetUri());
+            var newModel = instanceMID.<Model>getExtendibleElement(origModelEndpointRef.getTargetUri());
             if (newModel == null) { // the endpoint model is in another MID, just use the original
                 newModel = origModelEndpointRef.getObject().getTarget();
             }
-            ModelEndpointReference newModelEndpointRef = origModelEndpointRef.getObject().getMetatype().createInstance(newModel, newModelRel);
+            var newModelEndpointRef = origModelEndpointRef.getObject().getMetatype().createInstance(newModel, newModelRel);
             // model elements
             for (ModelElementReference origModelElemRef : origModelEndpointRef.getModelElemRefs()) {
-                EObject newModelObj = origModelElemRef.getObject().getEMFInstanceObject();
-                ModelElementReference newModelElemRef = newModelEndpointRef.createModelElementInstanceAndReference(newModelObj, origModelElemRef.getObject().getName());
+                var newModelObj = origModelElemRef.getObject().getEMFInstanceObject();
+                var newModelElemRef = newModelEndpointRef.createModelElementInstanceAndReference(newModelObj, origModelElemRef.getObject().getName());
                 newModelElemRefs.put(newModelElemRef.getUri(), newModelElemRef);
             }
         }
         // mappings
         for (MappingReference origMappingRef : ((ModelRel) origModelRel).getMappingRefs()) {
-            MappingReference newMappingRef = origMappingRef.getObject().getMetatype().createInstanceAndReference((origMappingRef.getObject() instanceof BinaryMapping), newModelRel);
+            var newMappingRef = origMappingRef.getObject().getMetatype().createInstanceAndReference((origMappingRef.getObject() instanceof BinaryMapping), newModelRel);
             newMappingRef.getObject().setName(origMappingRef.getObject().getName());
             for (ModelElementEndpointReference origModelElemEndpointRef : origMappingRef.getModelElemEndpointRefs()) {
-                ModelElementReference newModelElemRef = newModelElemRefs.get(origModelElemEndpointRef.getTargetUri());
+                var newModelElemRef = newModelElemRefs.get(origModelElemEndpointRef.getTargetUri());
                 origModelElemEndpointRef.getObject().getMetatype().createInstanceAndReference(newModelElemRef, newMappingRef);
             }
         }
@@ -875,12 +874,12 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
      * @generated NOT
      */
     @Override
-    public boolean validateInstanceType(ExtendibleElement type) throws MMINTException {
+    public boolean validateInstanceType(ExtendibleElement type) throws Exception {
 
         MMINTException.mustBeInstance(this);
         MMINTException.mustBeType(type);
 
-        boolean validates = MIDConstraintChecker.areAllowedModelEndpoints(this, (ModelRel) type);
+        var validates = MIDConstraintChecker.areAllowedModelEndpoints(this, (ModelRel) type);
         if (!validates) {
             return false;
         }
@@ -932,7 +931,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
         ResourceSet resourceSet = new ResourceSetImpl();
         List<Resource> resources = resourceSet.getResources();
         for (ModelEndpointReference modelEndpointRef : getModelEndpointRefs()) {
-            Model model = modelEndpointRef.getObject().getTarget();
+            var model = modelEndpointRef.getObject().getTarget();
             resources.add(model.getEMFInstanceRoot().eResource());
         }
 
@@ -956,7 +955,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 
         MMINTException.mustBeType(this);
 
-        ModelRel newModelRel = super.createThisEClass();
+        var newModelRel = super.<ModelRel>createThisEClass();
         super.addInstance(
             newModelRel,
             newModelRelId,
@@ -981,10 +980,10 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
         }
 
         // create model rel
-        ModelRel newWorkflowModelRel = (ModelRel) this.createWorkflowInstance(newModelRelId, workflowMID);
+        var newWorkflowModelRel = (ModelRel) this.createWorkflowInstance(newModelRelId, workflowMID);
         // create model rel endpoints
         for (Model endpointModel : endpointModels) {
-            String modelTypeEndpointUri = MIDConstraintChecker.getAllowedModelEndpoints(newWorkflowModelRel, null, endpointModel).get(0);
+            var modelTypeEndpointUri = MIDConstraintChecker.getAllowedModelEndpoints(newWorkflowModelRel, null, endpointModel).get(0);
             ModelEndpoint modelTypeEndpoint = MIDTypeRegistry.getType(modelTypeEndpointUri);
             modelTypeEndpoint.createWorkflowInstance(endpointModel, newWorkflowModelRel);
         }
@@ -1000,7 +999,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 
         MMINTException.mustBeType(this);
 
-        BinaryModelRel newModelRel = super.createThisBinaryEClass();
+        var newModelRel = super.<BinaryModelRel>createThisBinaryEClass();
         super.addInstance(
             newModelRel,
             newModelRelId,
@@ -1022,13 +1021,13 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
         MMINTException.mustBeType(this);
 
         // create model rel
-        BinaryModelRel newModelRel = this.createWorkflowBinaryInstance(newModelRelId, workflowMID);
+        var newModelRel = this.createWorkflowBinaryInstance(newModelRelId, workflowMID);
         EList<Model> endpointModels = new BasicEList<>();
         endpointModels.add(endpointSourceModel);
         endpointModels.add(endpointTargetModel);
         // create model rel endpoints
         for (Model endpointModel : endpointModels) {
-            String modelTypeEndpointUri = MIDConstraintChecker.getAllowedModelEndpoints(newModelRel, null, endpointModel).get(0);
+            var modelTypeEndpointUri = MIDConstraintChecker.getAllowedModelEndpoints(newModelRel, null, endpointModel).get(0);
             ModelEndpoint modelTypeEndpoint = MIDTypeRegistry.getType(modelTypeEndpointUri);
             modelTypeEndpoint.createWorkflowInstance(endpointModel, newModelRel);
         }

@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.MMINTException;
@@ -25,10 +24,11 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
-import edu.toronto.cs.se.mmint.mid.reasoning.IConstraintTrait;
+import edu.toronto.cs.se.mmint.mid.reasoning.IModelConstraintTrait;
+import edu.toronto.cs.se.mmint.mid.reasoning.IOperatorConstraintTrait;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
-public class JavaReasoner implements IConstraintTrait {
+public class JavaReasoner implements IModelConstraintTrait, IOperatorConstraintTrait {
 
 	private Object getJavaConstraint(String javaClassName, String typeUri) throws Exception {
 		Object javaConstraint = MIDTypeRegistry.getTypeBundle(typeUri)
@@ -87,7 +87,10 @@ public class JavaReasoner implements IConstraintTrait {
 	}
 
 	@Override
-	public Map<ModelRel, List<Model>> getOperatorOutputConstraints(ExtendibleElementConstraint constraint, Map<String, GenericElement> genericsByName, Map<String, Model> inputsByName, @NonNull Map<String, Model> outputsByName) {
+	public Map<ModelRel, List<Model>> getOperatorOutputConstraints(ExtendibleElementConstraint constraint,
+	                                                               Map<String, GenericElement> genericsByName,
+	                                                               Map<String, Model> inputsByName,
+	                                                               Map<String, Model> outputsByName) {
 		try {
 			var javaConstraint = this.getOperatorConstraint(constraint);
 			return javaConstraint.getAllowedOutputModelRelEndpoints(genericsByName, inputsByName, outputsByName);

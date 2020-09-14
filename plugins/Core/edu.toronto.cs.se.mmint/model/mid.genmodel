@@ -614,6 +614,7 @@
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/deleteWorkflowInstance"/>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/createWorkflowInstanceOutputs">
           <genParameters ecoreParameter="mid.ecore#//operator/Operator/createWorkflowInstanceOutputs/newOperator"/>
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/createWorkflowInstanceOutputs/genericsByName"/>
           <genParameters ecoreParameter="mid.ecore#//operator/Operator/createWorkflowInstanceOutputs/inputsByName"/>
           <genParameters ecoreParameter="mid.ecore#//operator/Operator/createWorkflowInstanceOutputs/workflowMID"/>
         </genOperations>

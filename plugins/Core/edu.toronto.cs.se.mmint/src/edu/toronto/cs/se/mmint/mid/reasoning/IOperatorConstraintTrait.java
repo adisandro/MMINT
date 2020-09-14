@@ -14,30 +14,17 @@ import java.util.Map;
 
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
-import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
 /**
- * The specification of a reasoning trait to check megamodel constraints.
+ * The specification of a reasoning trait to check operator constraints.
  *
  * @author Alessio Di Sandro
  */
-public interface IConstraintTrait {
-
-  /**
-   * Checks if a constraint is satisfied on a model.
-   *
-   * @param model
-   *          The model.
-   * @param constraint
-   *          The constraint.
-   * @return True if the constraint is satisfied, false otherwise.
-   */
-  boolean checkModelConstraint(Model model, ExtendibleElementConstraint constraint, MIDLevel constraintLevel)
-                              throws Exception;
+public interface IOperatorConstraintTrait {
 
   boolean checkOperatorGenericConstraint(ExtendibleElementConstraint constraint, GenericEndpoint genericTypeEndpoint,
                                          GenericElement genericType, List<OperatorInput> inputs);
@@ -48,5 +35,4 @@ public interface IConstraintTrait {
                                                           Map<String, GenericElement> genericsByName,
                                                           Map<String, Model> inputsByName,
                                                           Map<String, Model> outputsByName);
-
 }

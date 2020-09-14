@@ -155,11 +155,16 @@ public class Filter extends OperatorImpl {
       if (!MIDTypeHierarchy.instanceOf(model, filterTypeUri, false)) {
         continue;
       }
-      if (ModelImpl.validate(model, polyFilterType.getConstraint())) {
-        return true;
+      try {
+        if (ModelImpl.validate(model, polyFilterType.getConstraint())) {
+          return true;
+        }
+        else {
+          return false;
+        }
       }
-      else {
-        return false;
+      catch (Exception e) {
+        continue;
       }
     }
 

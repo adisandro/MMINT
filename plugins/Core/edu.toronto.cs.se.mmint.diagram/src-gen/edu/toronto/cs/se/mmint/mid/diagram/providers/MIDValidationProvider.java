@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -20,7 +20,6 @@ import org.eclipse.emf.validation.model.IClientSelector;
 import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
 import org.eclipse.gmf.runtime.notation.View;
 
-import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MIDEditPart;
@@ -48,15 +47,16 @@ public class MIDValidationProvider {
 	 * @generated
 	 */
 	public static void runWithConstraints(TransactionalEditingDomain editingDomain, Runnable operation) {
-		final Runnable op = operation;
+		final var op = operation;
 		Runnable task = new Runnable() {
-			public void run() {
+			@Override
+      public void run() {
 				try {
-					constraintsActive = true;
+					MIDValidationProvider.constraintsActive = true;
 					op.run();
 				}
 				finally {
-					constraintsActive = false;
+					MIDValidationProvider.constraintsActive = false;
 				}
 			}
 		};
@@ -77,11 +77,11 @@ public class MIDValidationProvider {
 	 * @generated
 	 */
 	static boolean isInDefaultEditorContext(Object object) {
-		if (shouldConstraintsBePrivate() && !constraintsActive) {
+		if (shouldConstraintsBePrivate() && !MIDValidationProvider.constraintsActive) {
 			return false;
 		}
 		if (object instanceof View) {
-			return constraintsActive && MIDEditPart.MODEL_ID.equals(MIDVisualIDRegistry.getModelID((View) object));
+			return MIDValidationProvider.constraintsActive && MIDEditPart.MODEL_ID.equals(MIDVisualIDRegistry.getModelID((View) object));
 		}
 		return true;
 	}
@@ -94,7 +94,8 @@ public class MIDValidationProvider {
 		/**
 		 * @generated
 		 */
-		public boolean selects(Object object) {
+		@Override
+    public boolean selects(Object object) {
 			return isInDefaultEditorContext(object);
 		}
 	}
@@ -107,12 +108,13 @@ public class MIDValidationProvider {
 		/**
 		 * @generated
 		 */
-		public IStatus validate(IValidationContext ctx) {
-			Model context = (Model) ctx.getTarget();
+		@Override
+    public IStatus validate(IValidationContext ctx) {
+			var context = (Model) ctx.getTarget();
 			try {
 				return ((ExtendibleElement) ctx.getTarget()).validateInstanceInEditor(ctx);
 			}
-			catch (MMINTException e) {
+			catch (Exception e) {
 				return ctx.createFailureStatus(e.getMessage());
 			}
 		}

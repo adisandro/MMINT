@@ -57,7 +57,7 @@ import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
-import edu.toronto.cs.se.mmint.mid.reasoning.IConstraintTrait;
+import edu.toronto.cs.se.mmint.mid.reasoning.IModelConstraintTrait;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
@@ -1235,14 +1235,17 @@ public class ModelImpl extends GenericElementImpl implements Model {
         return newModel;
     }
 
+    /**
+     * @generated NOT
+     */
     public static boolean validate(Model model, @Nullable ExtendibleElementConstraint constraint) throws Exception {
       if (constraint == null || constraint.getImplementation() == null || constraint.getImplementation().equals("")) {
         return true;
       }
       var reasonerName = constraint.getLanguage();
       var constraintReasoner = MMINT.getReasoner(reasonerName);
-      if (!(constraintReasoner instanceof IConstraintTrait)) {
-        throw new MMINTException("The " + reasonerName + " reasoner does not implement constraint checking");
+      if (!(constraintReasoner instanceof IModelConstraintTrait)) {
+        throw new MMINTException("The " + reasonerName + " reasoner does not implement model constraint checking");
       }
       MIDLevel constraintLevel;
       if (!model.getUri().equals(((ExtendibleElement) constraint.eContainer()).getUri())) {
@@ -1252,7 +1255,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
         constraintLevel = MIDLevel.INSTANCES;
       }
 
-      return ((IConstraintTrait) constraintReasoner).checkModelConstraint(model, constraint, constraintLevel);
+      return ((IModelConstraintTrait) constraintReasoner).checkModelConstraint(model, constraint, constraintLevel);
     }
 
     /**

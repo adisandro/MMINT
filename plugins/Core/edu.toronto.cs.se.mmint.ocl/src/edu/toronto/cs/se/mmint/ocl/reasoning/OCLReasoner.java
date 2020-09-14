@@ -33,14 +33,14 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.reasoning.IConstraintTrait;
+import edu.toronto.cs.se.mmint.mid.reasoning.IModelConstraintTrait;
 import edu.toronto.cs.se.mmint.mid.reasoning.IQueryTrait;
 import edu.toronto.cs.se.mmint.mid.reasoning.IReasoningEngine;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 
-public class OCLReasoner implements IReasoningEngine, IQueryTrait, IConstraintTrait {
+public class OCLReasoner implements IReasoningEngine, IQueryTrait, IModelConstraintTrait {
 
   protected final static String OCL_MODELENDPOINT_VARIABLE = "$ENDPOINT_";
   protected final static char OCL_VARIABLE_SEPARATOR = '.';
@@ -77,32 +77,29 @@ public class OCLReasoner implements IReasoningEngine, IQueryTrait, IConstraintTr
     return modelObj;
   }
 
-  @Override
-  public boolean checkModelConstraint(Model model, ExtendibleElementConstraint constraint, MIDLevel constraintLevel) {
-    var oclConstraint = constraint.getImplementation();
-    var modelObj = getConstraintContext(model, oclConstraint, constraintLevel);
-    if (model instanceof ModelRel && oclConstraint.startsWith(OCLReasoner.OCL_MODELENDPOINT_VARIABLE)) {
-      oclConstraint = oclConstraint.substring(oclConstraint.indexOf(OCLReasoner.OCL_VARIABLE_SEPARATOR) + 1, oclConstraint.length());
-    }
-
-    return checkConstraint(modelObj, oclConstraint);
-  }
-
-  public boolean checkConstraint(EObject modelObj, String oclConstraint) {
+  public boolean checkConstraint(EObject modelObj, String oclConstraint) throws Exception {
     var ocl = OCL.newInstance();
-
     try {
       var helper = ocl.createOCLHelper(modelObj.eClass());
       var expression = helper.createInvariant(oclConstraint);
       return ocl.check(modelObj, expression);
     }
-    catch (Exception e) {
-      MMINTException.print(IStatus.WARNING, "Error in OCL constraint \"" + oclConstraint + "\" applied to model object " + modelObj + ", evaluating to false", e);
-      return false;
-    }
     finally {
       ocl.dispose();
     }
+  }
+
+  @Override
+  public boolean checkModelConstraint(Model model, ExtendibleElementConstraint constraint, MIDLevel constraintLevel)
+                                     throws Exception {
+    var oclConstraint = constraint.getImplementation();
+    var modelObj = getConstraintContext(model, oclConstraint, constraintLevel);
+    if (model instanceof ModelRel && oclConstraint.startsWith(OCLReasoner.OCL_MODELENDPOINT_VARIABLE)) {
+      oclConstraint = oclConstraint.substring(oclConstraint.indexOf(OCLReasoner.OCL_VARIABLE_SEPARATOR) + 1,
+                                              oclConstraint.length());
+    }
+
+    return checkConstraint(modelObj, oclConstraint);
   }
 
   private @Nullable Object evaluateOCLExpression(OCL ocl, ExpressionInOCL expression, EObject context,

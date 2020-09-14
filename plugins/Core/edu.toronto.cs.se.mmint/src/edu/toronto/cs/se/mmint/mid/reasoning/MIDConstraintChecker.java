@@ -511,9 +511,9 @@ mappingTypes:
 		if (constraint == null || constraint.getImplementation() == null || constraint.getImplementation().equals("")) {
 			return true;
 		}
-		IReasoningEngine reasoner;
+		IOperatorConstraintTrait reasoner;
 		try {
-			reasoner = MIDConstraintChecker.getReasoner(constraint.getLanguage());
+			reasoner = (IOperatorConstraintTrait) MIDConstraintChecker.getReasoner(constraint.getLanguage());
 		}
 		catch (MMINTException e) {
 			MMINTException.print(IStatus.WARNING, "Skipping operator generic constraint check", e);
@@ -528,9 +528,9 @@ mappingTypes:
 		if (constraint == null || constraint.getImplementation() == null || constraint.getImplementation().equals("")) {
 			return true;
 		}
-		IReasoningEngine reasoner;
+		IOperatorConstraintTrait reasoner;
 		try {
-			reasoner = MIDConstraintChecker.getReasoner(constraint.getLanguage());
+			reasoner = (IOperatorConstraintTrait) MIDConstraintChecker.getReasoner(constraint.getLanguage());
 		}
 		catch (MMINTException e) {
 			MMINTException.print(IStatus.WARNING, "Skipping operator input constraint check", e);
@@ -545,9 +545,9 @@ mappingTypes:
 		if (constraint == null || constraint.getImplementation() == null || constraint.getImplementation().equals("")) {
 			return new HashMap<>();
 		}
-		IReasoningEngine reasoner;
+		IOperatorConstraintTrait reasoner;
 		try {
-			reasoner = MIDConstraintChecker.getReasoner(constraint.getLanguage());
+			reasoner = (IOperatorConstraintTrait) MIDConstraintChecker.getReasoner(constraint.getLanguage());
 		}
 		catch (MMINTException e) {
 			MMINTException.print(IStatus.WARNING, "Skipping operator output constraints", e);

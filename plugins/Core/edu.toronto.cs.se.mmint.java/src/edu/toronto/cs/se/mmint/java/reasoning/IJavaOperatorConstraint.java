@@ -40,7 +40,6 @@ public interface IJavaOperatorConstraint {
 	 * @return True if the generic is allowed, false otherwise.
 	 */
 	public default boolean isAllowedGeneric(@NonNull GenericEndpoint genericTypeEndpoint, @NonNull GenericElement genericType, @NonNull List<OperatorInput> inputs) {
-
 		return true;
 	}
 
@@ -54,7 +53,6 @@ public interface IJavaOperatorConstraint {
 	 * @return True if the input models are allowed, false otherwise.
 	 */
 	public default boolean isAllowedInput(@NonNull Map<String, Model> inputsByName) {
-
 		return true;
 	}
 
@@ -76,7 +74,6 @@ public interface IJavaOperatorConstraint {
 	                                                     @NonNull Map<String, GenericElement> genericsByName,
 	                                                     @NonNull Map<String, Model> inputsByName,
 	                                                     @NonNull Map<String, Model> outputsByName) {
-
 		return new HashMap<>();
 	}
 

@@ -40,7 +40,7 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
-import edu.toronto.cs.se.mmint.mid.reasoning.IConstraintTrait;
+import edu.toronto.cs.se.mmint.mid.reasoning.IModelConstraintTrait;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver;
@@ -54,7 +54,7 @@ import edu.toronto.cs.se.modelepedia.z3.mavo.Z3MAVOModelParser;
 import edu.toronto.cs.se.modelepedia.z3.mavo.Z3MAVOUtils;
 
 //TODO MMINT[Z3] Support refinement and highlighting for the complex full-MAVO encoding
-public class Z3Reasoner implements IMAVOReasoningEngine, IConstraintTrait {
+public class Z3Reasoner implements IMAVOReasoningEngine, IModelConstraintTrait {
 
 	public enum MAVOCheckStrategy {
 
