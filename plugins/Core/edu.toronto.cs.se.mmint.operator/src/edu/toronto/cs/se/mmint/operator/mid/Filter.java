@@ -31,7 +31,6 @@ import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorConstraint;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.impl.ModelImpl;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
@@ -156,12 +155,7 @@ public class Filter extends OperatorImpl {
         continue;
       }
       try {
-        if (ModelImpl.validate(model, polyFilterType.getConstraint())) {
-          return true;
-        }
-        else {
-          return false;
-        }
+        return model.validateInstanceType(polyFilterType);
       }
       catch (Exception e) {
         continue;

@@ -22,7 +22,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 public abstract class MatchConstraint implements IJavaModelConstraint {
 
     @Override
-    public boolean validate(Model model) {
+    public boolean check(Model model) {
 
         if (((ModelRel) model).getModelEndpoints().size() < 2) {
             return false;

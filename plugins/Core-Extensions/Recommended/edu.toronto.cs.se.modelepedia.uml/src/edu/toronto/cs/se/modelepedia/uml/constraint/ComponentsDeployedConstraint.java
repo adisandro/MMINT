@@ -25,7 +25,7 @@ import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 public class ComponentsDeployedConstraint implements IJavaModelConstraint {
 
 	@Override
-	public boolean validate(Model model) {
+	public boolean check(Model model) {
 
 		BinaryModelRel deplRel = (BinaryModelRel) model;
 		org.eclipse.uml2.uml.Model srcUmlModel;

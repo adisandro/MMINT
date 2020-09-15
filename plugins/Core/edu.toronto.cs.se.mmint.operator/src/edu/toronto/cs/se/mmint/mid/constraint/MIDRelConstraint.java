@@ -21,7 +21,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 public class MIDRelConstraint implements IJavaModelConstraint {
 
   @Override
-  public boolean validate(Model model) {
+  public boolean check(Model model) {
 
     EObject modelObjRoot = model.getEMFInstanceRoot();
     if (!(modelObjRoot instanceof MID)) {

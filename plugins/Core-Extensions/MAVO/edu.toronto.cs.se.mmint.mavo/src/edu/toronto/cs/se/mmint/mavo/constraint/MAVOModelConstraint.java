@@ -18,7 +18,7 @@ import edu.toronto.cs.se.mmint.mid.Model;
 public class MAVOModelConstraint implements IJavaModelConstraint {
 
 	@Override
-	public boolean validate(Model model) {
+	public boolean check(Model model) {
 
 		if (MAVOUtils.isMAVOModel(model)) {
 			return true;

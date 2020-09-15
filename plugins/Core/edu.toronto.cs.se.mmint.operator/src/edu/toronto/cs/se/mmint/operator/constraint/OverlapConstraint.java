@@ -17,9 +17,9 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 public class OverlapConstraint extends MatchConstraint {
 
     @Override
-    public boolean validate(Model model) {
+    public boolean check(Model model) {
 
-        if (!super.validate(model)) {
+        if (!super.check(model)) {
             return false;
         }
         long extraMappings = ((ModelRel) model).getMappings().stream()

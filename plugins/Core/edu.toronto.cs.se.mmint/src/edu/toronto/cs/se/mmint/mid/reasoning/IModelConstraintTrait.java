@@ -26,10 +26,12 @@ public interface IModelConstraintTrait {
    * @param model
    *          The model.
    * @param constraint
-   *          The constraint.
+   *          The model constraint.
    * @param constraintLevel
    *          Whether it is a type or instance constraint.
    * @return True if the constraint is satisfied, false otherwise.
+   * @throws Exception
+   *           If the reasoner fails at evaluating the constraint for any reason (e.g. malformed constraint).
    */
   boolean checkModelConstraint(Model model, ExtendibleElementConstraint constraint, MIDLevel constraintLevel)
                               throws Exception;

@@ -341,9 +341,9 @@ public interface ExtendibleElement extends EObject {
      *          The type to be validated against.
      * @return True if the validation is successful, false otherwise.
      * @throws Exception
-     *           If this is not an instance, if the type to be validated aganst is not a type, or if there is an error
-     *           with the validation.<!-- end-user-doc -->
-     * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" typeRequired="true"
+     *           If this is not an instance, if the type to be validated aganst is not a type, or if there is a
+     *           validation error.<!-- end-user-doc -->
+     * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.Exception" typeRequired="true"
      * @generated
      */
     boolean validateInstanceType(ExtendibleElement type) throws Exception;
@@ -353,7 +353,7 @@ public interface ExtendibleElement extends EObject {
      *
      * @return True if the validation is successful, false otherwise.
      * @throws Exception
-     *           If this is not an instance, or if there is an error with the validation.<!-- end-user-doc -->
+     *           If this is not an instance, or if there is a validation error.<!-- end-user-doc -->
      * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
      * @generated
      */
@@ -367,9 +367,9 @@ public interface ExtendibleElement extends EObject {
      *          The editor context of the validation.
      * @return A status representing the validation result.
      * @throws Exception
-     *           If this is not an instance, or if there is an error with the validation.<!-- end-user-doc -->
+     *           If this is not an instance, or if there is a validation error.<!-- end-user-doc -->
      * @model dataType="edu.toronto.cs.se.mmint.mid.IStatus" required="true"
-     *        exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
+     *        exceptions="edu.toronto.cs.se.mmint.mid.Exception"
      *        contextDataType="edu.toronto.cs.se.mmint.mid.IValidationContext" contextRequired="true"
      * @generated
      */

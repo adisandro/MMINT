@@ -18,7 +18,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 public class ModelRelTypeTransformationConstraint implements IJavaModelConstraint {
 
 	@Override
-	public boolean validate(Model model) {
+	public boolean check(Model model) {
 
 		ModelRel modelRelType = (ModelRel) model;
 		if (modelRelType.getModelEndpointRefs().size() != 2) {

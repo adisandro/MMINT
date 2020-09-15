@@ -22,7 +22,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 public class NotMergeableConstraint implements IJavaModelConstraint {
 
   @Override
-  public boolean validate(Model model) {
+  public boolean check(Model model) {
     // A model rel is not mergeable (i.e. can't be an argument of ModelRelMerge)
     // if there are other rels with the same model endpoints, up to 2.
     if (!(model instanceof ModelRel)) {

@@ -41,7 +41,6 @@ import org.osgi.framework.Bundle;
 
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
-import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTConstants;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
@@ -1236,26 +1235,37 @@ public class ModelImpl extends GenericElementImpl implements Model {
     }
 
     /**
+     * Validates this model against a model constraint.
+     *
+     * @param constraint
+     *          The model constraint
+     * @return True if the validation is succesful, false otherwise.
+     * @throws Exception
+     *           If there is no available reasoner to check the constraint, or if the chosen reasoner throws an error.
      * @generated NOT
      */
-    public static boolean validate(Model model, @Nullable ExtendibleElementConstraint constraint) throws Exception {
-      if (constraint == null || constraint.getImplementation() == null || constraint.getImplementation().equals("")) {
+    private boolean validateConstraint(@Nullable ExtendibleElementConstraint constraint) throws Exception {
+      if (constraint == null) {
         return true;
       }
-      var reasonerName = constraint.getLanguage();
-      var constraintReasoner = MMINT.getReasoner(reasonerName);
+      var reasoner = ((ExtendibleElementConstraintImpl) constraint).getReasoner();
+      if (reasoner.isEmpty()) {
+        return true;
+      }
+      var constraintReasoner = reasoner.get();
       if (!(constraintReasoner instanceof IModelConstraintTrait)) {
-        throw new MMINTException("The " + reasonerName + " reasoner does not implement model constraint checking");
+        throw new MMINTException("The " + constraint.getLanguage() +
+                                 " reasoner does not implement model constraint checking");
       }
       MIDLevel constraintLevel;
-      if (!model.getUri().equals(((ExtendibleElement) constraint.eContainer()).getUri())) {
+      if (!getUri().equals(((ExtendibleElement) constraint.eContainer()).getUri())) {
         constraintLevel = MIDLevel.TYPES;
       }
       else {
         constraintLevel = MIDLevel.INSTANCES;
       }
 
-      return ((IModelConstraintTrait) constraintReasoner).checkModelConstraint(model, constraint, constraintLevel);
+      return ((IModelConstraintTrait) constraintReasoner).checkModelConstraint(this, constraint, constraintLevel);
     }
 
     /**
@@ -1266,7 +1276,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
       MMINTException.mustBeInstance(this);
       MMINTException.mustBeType(type);
 
-      return validate(this, type.getConstraint());
+      return validateConstraint(type.getConstraint());
     }
 
     /**
@@ -1276,7 +1286,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
     public boolean validateInstance() throws Exception {
       MMINTException.mustBeInstance(this);
 
-      return validate(this, getConstraint()) && validateInstanceType(this.getMetatype());
+      return validateConstraint(getConstraint()) && validateInstanceType(this.getMetatype());
     }
 
     /**

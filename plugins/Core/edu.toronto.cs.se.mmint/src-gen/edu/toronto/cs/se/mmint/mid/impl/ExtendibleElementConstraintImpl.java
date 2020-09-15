@@ -5,17 +5,21 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.mmint.mid.impl;
+
+import java.util.Optional;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import edu.toronto.cs.se.mmint.MMINT;
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 
@@ -52,7 +56,7 @@ public class ExtendibleElementConstraintImpl extends MinimalEObjectImpl.Containe
    * @generated
    * @ordered
    */
-    protected String implementation = IMPLEMENTATION_EDEFAULT;
+    protected String implementation = ExtendibleElementConstraintImpl.IMPLEMENTATION_EDEFAULT;
 
     /**
    * The default value of the '{@link #getLanguage() <em>Language</em>}' attribute.
@@ -72,7 +76,7 @@ public class ExtendibleElementConstraintImpl extends MinimalEObjectImpl.Containe
    * @generated
    * @ordered
    */
-    protected String language = LANGUAGE_EDEFAULT;
+    protected String language = ExtendibleElementConstraintImpl.LANGUAGE_EDEFAULT;
 
     /**
    * <!-- begin-user-doc -->
@@ -100,7 +104,7 @@ public class ExtendibleElementConstraintImpl extends MinimalEObjectImpl.Containe
    */
     @Override
     public String getImplementation() {
-    return implementation;
+    return this.implementation;
   }
 
     /**
@@ -110,10 +114,10 @@ public class ExtendibleElementConstraintImpl extends MinimalEObjectImpl.Containe
    */
     @Override
     public void setImplementation(String newImplementation) {
-    String oldImplementation = implementation;
-    implementation = newImplementation;
+    var oldImplementation = this.implementation;
+    this.implementation = newImplementation;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__IMPLEMENTATION, oldImplementation, implementation));
+      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__IMPLEMENTATION, oldImplementation, this.implementation));
   }
 
     /**
@@ -123,7 +127,7 @@ public class ExtendibleElementConstraintImpl extends MinimalEObjectImpl.Containe
    */
     @Override
     public String getLanguage() {
-    return language;
+    return this.language;
   }
 
     /**
@@ -133,10 +137,10 @@ public class ExtendibleElementConstraintImpl extends MinimalEObjectImpl.Containe
    */
     @Override
     public void setLanguage(String newLanguage) {
-    String oldLanguage = language;
-    language = newLanguage;
+    var oldLanguage = this.language;
+    this.language = newLanguage;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__LANGUAGE, oldLanguage, language));
+      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__LANGUAGE, oldLanguage, this.language));
   }
 
     /**
@@ -182,10 +186,10 @@ public class ExtendibleElementConstraintImpl extends MinimalEObjectImpl.Containe
     public void eUnset(int featureID) {
     switch (featureID) {
       case MIDPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__IMPLEMENTATION:
-        setImplementation(IMPLEMENTATION_EDEFAULT);
+        setImplementation(ExtendibleElementConstraintImpl.IMPLEMENTATION_EDEFAULT);
         return;
       case MIDPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__LANGUAGE:
-        setLanguage(LANGUAGE_EDEFAULT);
+        setLanguage(ExtendibleElementConstraintImpl.LANGUAGE_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -200,9 +204,9 @@ public class ExtendibleElementConstraintImpl extends MinimalEObjectImpl.Containe
     public boolean eIsSet(int featureID) {
     switch (featureID) {
       case MIDPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__IMPLEMENTATION:
-        return IMPLEMENTATION_EDEFAULT == null ? implementation != null : !IMPLEMENTATION_EDEFAULT.equals(implementation);
+        return ExtendibleElementConstraintImpl.IMPLEMENTATION_EDEFAULT == null ? this.implementation != null : !ExtendibleElementConstraintImpl.IMPLEMENTATION_EDEFAULT.equals(this.implementation);
       case MIDPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__LANGUAGE:
-        return LANGUAGE_EDEFAULT == null ? language != null : !LANGUAGE_EDEFAULT.equals(language);
+        return ExtendibleElementConstraintImpl.LANGUAGE_EDEFAULT == null ? this.language != null : !ExtendibleElementConstraintImpl.LANGUAGE_EDEFAULT.equals(this.language);
     }
     return super.eIsSet(featureID);
   }
@@ -216,13 +220,29 @@ public class ExtendibleElementConstraintImpl extends MinimalEObjectImpl.Containe
     public String toString() {
     if (eIsProxy()) return super.toString();
 
-    StringBuilder result = new StringBuilder(super.toString());
+    var result = new StringBuilder(super.toString());
     result.append(" (implementation: ");
-    result.append(implementation);
+    result.append(this.implementation);
     result.append(", language: ");
-    result.append(language);
+    result.append(this.language);
     result.append(')');
     return result.toString();
+  }
+
+  /**
+   * @generated NOT
+   */
+  public Optional<Object> getReasoner() throws MMINTException {
+    if (getImplementation() == null || getImplementation().equals("")) {
+      return Optional.empty();
+    }
+    var reasonerName = getLanguage();
+    var reasoner = MMINT.getReasoner(reasonerName);
+    if (reasoner == null) {
+      throw new MMINTException("The " + reasonerName + " reasoner is not installed");
+    }
+
+    return Optional.of(reasoner);
   }
 
 } //ExtendibleElementConstraintImpl

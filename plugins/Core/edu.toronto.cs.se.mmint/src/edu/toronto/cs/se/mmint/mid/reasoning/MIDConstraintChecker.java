@@ -491,12 +491,10 @@ mappingTypes:
 	}
 
   /** TODO
-   *  (the previous design had all apis inside MIDConstraintChecker, to hide the plugged reasoners)
-   *  (same now, but the apis are spread among traits)
-   *  - do we need an IReasoner or AReasoner superclass rather than Object? what about ITrait?
-   *    (I guess yes if there is common code to be shared)
-   *  - do we need the extension point for traits? aside from listing them, there's little value, unless
-   *    reasoners have to specify what they implement in their extension point (an instanceof should suffice)
+   *  1) Finish refactoring operator constraints (including a method in ExtElemConstraint to check for nulls and fetch the reasoner)
+   *  2) Address remaining apis in IReasoningEngine and get rid of it together with the methods below (remove consistency, review refinement)
+   *  3) Address mavo and kleisli reasoner apis too.
+   *  X) AbstractReasoner as superclass + change all methods to not return simply Object? (id in ext point + abstract getName in class + getReasoner utility)
    */
 	public static IReasoningEngine getReasoner(String fileExtension) throws MMINTException {
 		var reasoner = MMINT.getReasoner(fileExtension);

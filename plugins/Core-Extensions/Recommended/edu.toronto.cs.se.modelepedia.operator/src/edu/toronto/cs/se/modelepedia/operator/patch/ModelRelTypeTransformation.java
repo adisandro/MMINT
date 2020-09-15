@@ -69,7 +69,7 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 
 			ModelRel modelRelType = (ModelRel) genericType;
 			// check 1: satisfies transformation constraint
-			if (!(new ModelRelTypeTransformationConstraint().validate(modelRelType))) {
+			if (!(new ModelRelTypeTransformationConstraint().check(modelRelType))) {
 				return false;
 			}
 			Model srcModel = inputs.get(0).getModel();

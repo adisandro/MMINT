@@ -28,6 +28,15 @@ import edu.toronto.cs.se.mmint.mid.reasoning.IModelConstraintTrait;
 import edu.toronto.cs.se.mmint.mid.reasoning.IOperatorConstraintTrait;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
+/**
+ * A reasoner implementation to check model and operator constraints written in Java.
+ *
+ * A model constraint class should extend the {@link edu.toronto.cs.se.mmint.java.reasoning.IJavaModelConstraint}
+ * interface, while an operator constraint class should extend the
+ * {@link edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorConstraint} interface.
+ *
+ * @author Alessio Di Sandro
+ */
 public class JavaReasoner implements IModelConstraintTrait, IOperatorConstraintTrait {
 
 	private Object getJavaConstraint(String javaClassName, String typeUri) throws Exception {
@@ -46,7 +55,7 @@ public class JavaReasoner implements IModelConstraintTrait, IOperatorConstraintT
 			((Model) constraint.eContainer()).getUri();
 		var javaConstraint = (IJavaModelConstraint) this.getJavaConstraint(javaClassName, modelTypeUri);
 
-		return javaConstraint.validate(model);
+		return javaConstraint.check(model);
 	}
 
 	private IJavaOperatorConstraint getOperatorConstraint(ExtendibleElementConstraint constraint) throws Exception {

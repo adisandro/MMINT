@@ -26,7 +26,7 @@ public abstract class UMLModelConstraint implements IJavaModelConstraint {
 	protected static final String UML_COMPONENTDIAGRAM_TYPE = "PapyrusUMLComponentDiagram";
 	protected static final String UML_DEPLOYMENTDIAGRAM_TYPE = "PapyrusUMLDeploymentDiagram";
 
-	protected boolean validate(Model model, String modelTypeName) {
+	protected boolean check(Model model, String modelTypeName) {
 
 		String notationFileUri = FileUtils.replaceFileExtensionInPath(model.getUri(), NOTATION_FILEEXTENSION);
 		try {
