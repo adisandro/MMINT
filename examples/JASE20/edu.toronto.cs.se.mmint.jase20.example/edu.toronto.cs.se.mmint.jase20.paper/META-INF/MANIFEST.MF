@@ -19,7 +19,7 @@ Require-Bundle: org.eclipse.emf.ecore,
  edu.toronto.cs.se.modelepedia.safetycase,
  edu.toronto.cs.se.modelepedia.sequencediagram,
  edu.toronto.cs.se.modelepedia.statemachine
-Bundle-RequiredExecutionEnvironment: JavaSE-14
+Bundle-RequiredExecutionEnvironment: JavaSE-15
 Automatic-Module-Name: edu.toronto.cs.se.mmint.jase20.paper
 Import-Package: org.apache.log4j
 Bundle-ActivationPolicy: lazy
