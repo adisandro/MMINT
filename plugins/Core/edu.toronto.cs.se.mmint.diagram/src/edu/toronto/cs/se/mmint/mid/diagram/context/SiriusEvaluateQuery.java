@@ -72,14 +72,13 @@ public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
   }
 
   public static void runUI(EObject context, List<? extends ExtendibleElement> queryArgs) throws Exception {
-    var queryReasoners = MMINT.getReasonersForTrait(IQueryTrait.class);
-    if (queryReasoners.isEmpty()) {
-      throw new MMINTException("There is no reasoner that implements querying");
+    var reasoners = MMINT.getReasonersForTrait(IQueryTrait.class);
+    if (reasoners.isEmpty()) {
+      throw new MMINTException("There are no reasoners installed that implement querying");
     }
     var fileExtToReasoner = new HashMap<String, IQueryTrait>();
-    for (var queryReasoner : queryReasoners) {
-      ((IQueryTrait) queryReasoner).getQueryFileExtensions()
-        .forEach(fe -> fileExtToReasoner.put(fe, (IQueryTrait) queryReasoner));
+    for (var reasoner : reasoners) {
+      reasoner.getQueryFileExtensions().forEach(fe -> fileExtToReasoner.put(fe, reasoner));
     }
     var queryFilePath = selectQueryFileToEvaluate(fileExtToReasoner.keySet());
     var queryReasoner = fileExtToReasoner.get(FileUtils.getFileExtensionFromPath(queryFilePath));

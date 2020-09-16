@@ -57,6 +57,7 @@ import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.reasoning.IModelConstraintTrait;
+import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
@@ -1241,22 +1242,10 @@ public class ModelImpl extends GenericElementImpl implements Model {
      *          The model constraint
      * @return True if the validation is succesful, false otherwise.
      * @throws Exception
-     *           If there is no available reasoner to check the constraint, or if the chosen reasoner throws an error.
+     *           If there is no installed reasoner to check the constraint, or if the chosen reasoner throws an error.
      * @generated NOT
      */
     private boolean validateConstraint(@Nullable ExtendibleElementConstraint constraint) throws Exception {
-      if (constraint == null) {
-        return true;
-      }
-      var reasoner = ((ExtendibleElementConstraintImpl) constraint).getReasoner();
-      if (reasoner.isEmpty()) {
-        return true;
-      }
-      var constraintReasoner = reasoner.get();
-      if (!(constraintReasoner instanceof IModelConstraintTrait)) {
-        throw new MMINTException("The " + constraint.getLanguage() +
-                                 " reasoner does not implement model constraint checking");
-      }
       MIDLevel constraintLevel;
       if (!getUri().equals(((ExtendibleElement) constraint.eContainer()).getUri())) {
         constraintLevel = MIDLevel.TYPES;
@@ -1264,8 +1253,9 @@ public class ModelImpl extends GenericElementImpl implements Model {
       else {
         constraintLevel = MIDLevel.INSTANCES;
       }
-
-      return ((IModelConstraintTrait) constraintReasoner).checkModelConstraint(this, constraint, constraintLevel);
+      var reasoner = MIDConstraintChecker.getReasoner(constraint, IModelConstraintTrait.class,
+                                                      "model constraint checking");
+      return reasoner.isEmpty() || reasoner.get().checkModelConstraint(this, constraint, constraintLevel);
     }
 
     /**

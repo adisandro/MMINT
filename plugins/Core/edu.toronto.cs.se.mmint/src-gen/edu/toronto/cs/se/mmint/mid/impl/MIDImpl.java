@@ -5,23 +5,12 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.mmint.mid.impl;
 
-import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
-import edu.toronto.cs.se.mmint.mid.MID;
-import edu.toronto.cs.se.mmint.mid.MIDLevel;
-import edu.toronto.cs.se.mmint.mid.MIDPackage;
-import edu.toronto.cs.se.mmint.mid.Model;
-
-import edu.toronto.cs.se.mmint.mid.editor.Editor;
-
-import edu.toronto.cs.se.mmint.mid.operator.Operator;
-
-import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
@@ -30,19 +19,25 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EcoreEMap;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+
+import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
+import edu.toronto.cs.se.mmint.mid.MID;
+import edu.toronto.cs.se.mmint.mid.MIDLevel;
+import edu.toronto.cs.se.mmint.mid.MIDPackage;
+import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.editor.Editor;
+import edu.toronto.cs.se.mmint.mid.operator.Operator;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
 /**
  * <!-- begin-user-doc -->
@@ -120,7 +115,7 @@ public class MIDImpl extends MinimalEObjectImpl.Container implements MID {
    * @generated
    * @ordered
    */
-    protected MIDLevel level = LEVEL_EDEFAULT;
+    protected MIDLevel level = MIDImpl.LEVEL_EDEFAULT;
 
     /**
    * <!-- begin-user-doc -->
@@ -148,10 +143,10 @@ public class MIDImpl extends MinimalEObjectImpl.Container implements MID {
    */
     @Override
     public EList<Model> getModels() {
-    if (models == null) {
-      models = new EObjectContainmentEList<Model>(Model.class, this, MIDPackage.MID__MODELS);
+    if (this.models == null) {
+      this.models = new EObjectContainmentEList<>(Model.class, this, MIDPackage.MID__MODELS);
     }
-    return models;
+    return this.models;
   }
 
     /**
@@ -161,10 +156,10 @@ public class MIDImpl extends MinimalEObjectImpl.Container implements MID {
    */
     @Override
     public EList<Editor> getEditors() {
-    if (editors == null) {
-      editors = new EObjectContainmentEList<Editor>(Editor.class, this, MIDPackage.MID__EDITORS);
+    if (this.editors == null) {
+      this.editors = new EObjectContainmentEList<>(Editor.class, this, MIDPackage.MID__EDITORS);
     }
-    return editors;
+    return this.editors;
   }
 
     /**
@@ -174,10 +169,10 @@ public class MIDImpl extends MinimalEObjectImpl.Container implements MID {
    */
     @Override
     public EList<Operator> getOperators() {
-    if (operators == null) {
-      operators = new EObjectContainmentEList<Operator>(Operator.class, this, MIDPackage.MID__OPERATORS);
+    if (this.operators == null) {
+      this.operators = new EObjectContainmentEList<>(Operator.class, this, MIDPackage.MID__OPERATORS);
     }
-    return operators;
+    return this.operators;
   }
 
     /**
@@ -187,10 +182,10 @@ public class MIDImpl extends MinimalEObjectImpl.Container implements MID {
    */
     @Override
     public EMap<String, ExtendibleElement> getExtendibleTable() {
-    if (extendibleTable == null) {
-      extendibleTable = new EcoreEMap<String,ExtendibleElement>(MIDPackage.Literals.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP, EStringToExtendibleElementMapImpl.class, this, MIDPackage.MID__EXTENDIBLE_TABLE);
+    if (this.extendibleTable == null) {
+      this.extendibleTable = new EcoreEMap<>(MIDPackage.Literals.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP, EStringToExtendibleElementMapImpl.class, this, MIDPackage.MID__EXTENDIBLE_TABLE);
     }
-    return extendibleTable;
+    return this.extendibleTable;
   }
 
     /**
@@ -200,7 +195,7 @@ public class MIDImpl extends MinimalEObjectImpl.Container implements MID {
    */
     @Override
     public MIDLevel getLevel() {
-    return level;
+    return this.level;
   }
 
     /**
@@ -210,10 +205,10 @@ public class MIDImpl extends MinimalEObjectImpl.Container implements MID {
    */
     @Override
     public void setLevel(MIDLevel newLevel) {
-    MIDLevel oldLevel = level;
-    level = newLevel == null ? LEVEL_EDEFAULT : newLevel;
+    var oldLevel = this.level;
+    this.level = newLevel == null ? MIDImpl.LEVEL_EDEFAULT : newLevel;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.MID__LEVEL, oldLevel, level));
+      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.MID__LEVEL, oldLevel, this.level));
   }
 
     /**
@@ -249,10 +244,11 @@ public class MIDImpl extends MinimalEObjectImpl.Container implements MID {
     /**
      * @generated NOT
      */
+    @Override
     @SuppressWarnings("unchecked")
     public <T extends ExtendibleElement> @Nullable T getExtendibleElement(@NonNull String uri) {
 
-        ExtendibleElement element = this.getExtendibleTable().get(uri);
+        var element = this.getExtendibleTable().get(uri);
         if (element == null) {
             return null;
         }
@@ -261,6 +257,7 @@ public class MIDImpl extends MinimalEObjectImpl.Container implements MID {
             return (T) element;
         }
         catch (ClassCastException e) {
+            //TODO MMINT[OO] Wrong! Wrong! Wrong! (won't ever catch because of type erasure)
             return null;
         }
     }
@@ -376,7 +373,7 @@ public class MIDImpl extends MinimalEObjectImpl.Container implements MID {
         getExtendibleTable().clear();
         return;
       case MIDPackage.MID__LEVEL:
-        setLevel(LEVEL_EDEFAULT);
+        setLevel(MIDImpl.LEVEL_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -391,15 +388,15 @@ public class MIDImpl extends MinimalEObjectImpl.Container implements MID {
     public boolean eIsSet(int featureID) {
     switch (featureID) {
       case MIDPackage.MID__MODELS:
-        return models != null && !models.isEmpty();
+        return this.models != null && !this.models.isEmpty();
       case MIDPackage.MID__EDITORS:
-        return editors != null && !editors.isEmpty();
+        return this.editors != null && !this.editors.isEmpty();
       case MIDPackage.MID__OPERATORS:
-        return operators != null && !operators.isEmpty();
+        return this.operators != null && !this.operators.isEmpty();
       case MIDPackage.MID__EXTENDIBLE_TABLE:
-        return extendibleTable != null && !extendibleTable.isEmpty();
+        return this.extendibleTable != null && !this.extendibleTable.isEmpty();
       case MIDPackage.MID__LEVEL:
-        return level != LEVEL_EDEFAULT;
+        return this.level != MIDImpl.LEVEL_EDEFAULT;
     }
     return super.eIsSet(featureID);
   }
@@ -435,9 +432,9 @@ public class MIDImpl extends MinimalEObjectImpl.Container implements MID {
     public String toString() {
     if (eIsProxy()) return super.toString();
 
-    StringBuilder result = new StringBuilder(super.toString());
+    var result = new StringBuilder(super.toString());
     result.append(" (level: ");
-    result.append(level);
+    result.append(this.level);
     result.append(')');
     return result.toString();
   }

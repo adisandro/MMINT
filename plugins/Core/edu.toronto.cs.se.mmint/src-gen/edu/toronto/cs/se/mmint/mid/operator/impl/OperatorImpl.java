@@ -63,6 +63,7 @@ import edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator;
+import edu.toronto.cs.se.mmint.mid.reasoning.IOperatorConstraintTrait;
 import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.ui.GMFUtils;
@@ -640,7 +641,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
     public String toStringGen() {
     if (eIsProxy()) return super.toString();
 
-    StringBuilder result = new StringBuilder(super.toString());
+    var result = new StringBuilder(super.toString());
     result.append(" (workingPath: ");
     result.append(this.workingPath);
     result.append(", executionTime: ");
@@ -1059,7 +1060,15 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
             return null;
         }
         // check 4: operator-specific constraints other than types (e.g. 2 model rels as input connected by same model)
-        var inputsByName = this.getInputsByName(inputs);
+        var inputsByName = getInputsByName(inputs);
+        var constraint = getClosestTypeConstraint();
+        var reasoner = MIDConstraintChecker.getReasoner(constraint, IOperatorConstraintTrait.class,
+                                                        "operator constraint checking");
+//        if (reasoner.isPresent() &&
+//            !reasoner.get().checkOperatorInputConstraint(constraint, inputsByName)) {
+//          //TODO MMINT[OPERATOR] Can there be conflicts since conversions are not run?
+//          return null;
+//        }
         if (!MIDConstraintChecker.checkOperatorInputConstraint(this.getClosestTypeConstraint(), inputsByName)) {
             //TODO MMINT[OPERATOR] Can there be conflicts since conversions are not run?
             return null;
@@ -1217,7 +1226,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
     public Properties getInputProperties() {
 
         var propertiesUri =  this.getPropertiesUri(MIDOperatorIOUtils.INPUT_PROPERTIES_SUFFIX);
-        Properties inputProperties = new Properties();
+        var inputProperties = new Properties();
         try {
             inputProperties.load(new FileInputStream(propertiesUri));
         }
@@ -1587,11 +1596,11 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
                 OperatorPackage.eINSTANCE.getOperator_Outputs().getName());
             outputsByName.put(outputModelEndpoint.getName(), outputModel);
         }
-        Map<ModelRel, List<Model>> validOutputs = MIDConstraintChecker.getOperatorOutputConstraints(this.getClosestTypeConstraint(), genericsByName, inputsByName, outputsByName);
+        var validOutputs = MIDConstraintChecker.getOperatorOutputConstraints(this.getClosestTypeConstraint(), genericsByName, inputsByName, outputsByName);
         for (Entry<ModelRel, List<Model>> validOutput : validOutputs.entrySet()) {
             var outputModelRel = validOutput.getKey();
             for (Model endpointModel : validOutput.getValue()) {
-                String modelTypeEndpointUri = MIDConstraintChecker.getAllowedModelEndpoints(outputModelRel, null, endpointModel).get(0);
+                var modelTypeEndpointUri = MIDConstraintChecker.getAllowedModelEndpoints(outputModelRel, null, endpointModel).get(0);
                 ModelEndpoint modelTypeEndpoint = MIDTypeRegistry.getType(modelTypeEndpointUri);
                 modelTypeEndpoint.createWorkflowInstance(endpointModel, outputModelRel);
             }

@@ -11,15 +11,11 @@
  */
 package edu.toronto.cs.se.mmint.mid.impl;
 
-import java.util.Optional;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import edu.toronto.cs.se.mmint.MMINT;
-import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 
@@ -227,22 +223,6 @@ public class ExtendibleElementConstraintImpl extends MinimalEObjectImpl.Containe
     result.append(this.language);
     result.append(')');
     return result.toString();
-  }
-
-  /**
-   * @generated NOT
-   */
-  public Optional<Object> getReasoner() throws MMINTException {
-    if (getImplementation() == null || getImplementation().equals("")) {
-      return Optional.empty();
-    }
-    var reasonerName = getLanguage();
-    var reasoner = MMINT.getReasoner(reasonerName);
-    if (reasoner == null) {
-      throw new MMINTException("The " + reasonerName + " reasoner is not installed");
-    }
-
-    return Optional.of(reasoner);
   }
 
 } //ExtendibleElementConstraintImpl

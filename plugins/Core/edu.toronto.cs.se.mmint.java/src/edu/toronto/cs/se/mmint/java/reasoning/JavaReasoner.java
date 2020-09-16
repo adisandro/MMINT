@@ -9,14 +9,10 @@
  */
 package edu.toronto.cs.se.mmint.java.reasoning;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.core.runtime.IStatus;
-
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
-import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
@@ -69,46 +65,29 @@ public class JavaReasoner implements IModelConstraintTrait, IOperatorConstraintT
 	@Override
 	public boolean checkOperatorGenericConstraint(ExtendibleElementConstraint constraint,
 	                                              GenericEndpoint genericTypeEndpoint,
-	                                              GenericElement genericType, List<OperatorInput> inputs) {
-		try {
-			var javaConstraint = this.getOperatorConstraint(constraint);
-			return javaConstraint.isAllowedGeneric(genericTypeEndpoint, genericType, inputs);
-		}
-		catch (Exception e) {
-			MMINTException.print(IStatus.WARNING, "Java operator generic constraint error, evaluating to false: "
-		                       + constraint.getImplementation(), e);
-			return false;
-		}
+	                                              GenericElement genericType, List<OperatorInput> inputs)
+	                                             throws Exception {
+		var javaConstraint = this.getOperatorConstraint(constraint);
+
+		return javaConstraint.isAllowedGeneric(genericTypeEndpoint, genericType, inputs);
 	}
 
 	@Override
-	public boolean checkOperatorInputConstraint(ExtendibleElementConstraint constraint, Map<String, Model> inputsByName) {
-
-		try {
+	public boolean checkOperatorInputConstraint(ExtendibleElementConstraint constraint, Map<String, Model> inputsByName)
+	                                           throws Exception {
 			var javaConstraint = this.getOperatorConstraint(constraint);
+
 			return javaConstraint.isAllowedInput(inputsByName);
-		}
-		catch (Exception e) {
-			MMINTException.print(IStatus.WARNING, "Java operator input constraint error, evaluating to false: " +
-		                       constraint.getImplementation(), e);
-			return false;
-		}
 	}
 
 	@Override
 	public Map<ModelRel, List<Model>> getOperatorOutputConstraints(ExtendibleElementConstraint constraint,
 	                                                               Map<String, GenericElement> genericsByName,
 	                                                               Map<String, Model> inputsByName,
-	                                                               Map<String, Model> outputsByName) {
-		try {
+	                                                               Map<String, Model> outputsByName) throws Exception {
 			var javaConstraint = this.getOperatorConstraint(constraint);
+
 			return javaConstraint.getAllowedOutputModelRelEndpoints(genericsByName, inputsByName, outputsByName);
-		}
-		catch (Exception e) {
-			MMINTException.print(IStatus.WARNING, "Java operator output constraint error, returning empty map: "
-		                       + constraint.getImplementation(), e);
-			return new HashMap<>();
-		}
 	}
 
 }

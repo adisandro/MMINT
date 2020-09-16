@@ -12,20 +12,16 @@
 package edu.toronto.cs.se.mmint;
 
 import java.io.File;
-import java.net.URL;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.jar.JarFile;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import java.util.zip.ZipEntry;
 
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.FileLocator;
@@ -52,11 +48,10 @@ import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator;
+import edu.toronto.cs.se.mmint.mid.reasoning.IOperatorConstraintTrait;
 import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
-import edu.toronto.cs.se.mmint.mid.relationship.BinaryMapping;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
-import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
@@ -190,7 +185,7 @@ public class MIDTypeRegistry {
 	 */
 	public static MIDTreeSelectionDialog getModelTypeCreationDialog(MID typeMID) {
 
-		MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
+		var dialog = new MIDTreeSelectionDialog(
 			new MIDDialogLabelProvider(),
 			new NewModelTypeDialogContentProvider(),
 			typeMID
@@ -221,8 +216,8 @@ public class MIDTypeRegistry {
 		List<String> modelRelTypeUris = null;
 
 		if (newSrcModelType != null && newTgtModelType != null) {
-			String newSrcUri = newSrcModelType.getUri();
-			String newTgtUri = newTgtModelType.getUri();
+			var newSrcUri = newSrcModelType.getUri();
+			var newTgtUri = newTgtModelType.getUri();
 			modelRelTypeUris = new ArrayList<>();
 
 			for (ModelRel modelRelType : typeMID.getModelRels()) {
@@ -234,8 +229,8 @@ public class MIDTypeRegistry {
 				if (!(modelRelType instanceof BinaryModelRel)) {
 					continue;
 				}
-				String srcUri = modelRelType.getModelEndpoints().get(0).getTargetUri();
-				String tgtUri = modelRelType.getModelEndpoints().get(1).getTargetUri();
+				var srcUri = modelRelType.getModelEndpoints().get(0).getTargetUri();
+				var tgtUri = modelRelType.getModelEndpoints().get(1).getTargetUri();
 				// new model rel type with same endpoints or overriding one or two endpoints
 				if (
 					(newSrcUri.equals(srcUri) && newTgtUri.equals(tgtUri)) ||
@@ -248,7 +243,7 @@ public class MIDTypeRegistry {
 			}
 		}
 
-		MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
+		var dialog = new MIDTreeSelectionDialog(
 			new MIDDialogLabelProvider(),
 			new NewModelRelTypeDialogContentProvider(modelRelTypeUris),
 			typeMID
@@ -278,9 +273,9 @@ public class MIDTypeRegistry {
 		List<String> mappingTypeUris = null;
 
 		if (newSrcModelElemTypeRef != null && newTgtModelElemTypeRef != null) {
-			MID typeMID = modelRelType.getMIDContainer();
-			String newSrcUri = newSrcModelElemTypeRef.getUri();
-			String newTgtUri = newTgtModelElemTypeRef.getUri();
+			var typeMID = modelRelType.getMIDContainer();
+			var newSrcUri = newSrcModelElemTypeRef.getUri();
+			var newTgtUri = newTgtModelElemTypeRef.getUri();
 			mappingTypeUris = new ArrayList<>();
 
 			for (MappingReference mappingTypeRef : modelRelType.getMappingRefs()) {
@@ -288,9 +283,9 @@ public class MIDTypeRegistry {
 				if (!(mappingTypeRef instanceof BinaryMappingReference)) {
 					continue;
 				}
-				BinaryMapping mappingType = ((BinaryMappingReference) mappingTypeRef).getObject();
-				String srcUri = mappingType.getModelElemEndpoints().get(0).getTargetUri();
-				String tgtUri = mappingType.getModelElemEndpoints().get(1).getTargetUri();
+				var mappingType = ((BinaryMappingReference) mappingTypeRef).getObject();
+				var srcUri = mappingType.getModelElemEndpoints().get(0).getTargetUri();
+				var tgtUri = mappingType.getModelElemEndpoints().get(1).getTargetUri();
 				// new link type with same endpoints or overriding one or two endpoints
 				if (
 					(newSrcUri.equals(srcUri) && newTgtUri.equals(tgtUri)) ||
@@ -303,7 +298,7 @@ public class MIDTypeRegistry {
 			}
 		}
 
-		MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
+		var dialog = new MIDTreeSelectionDialog(
 			new MIDDialogLabelProvider(),
 			new NewMappingTypeReferenceDialogContentProvider(modelRelType, mappingTypeUris),
 			modelRelType
@@ -314,7 +309,7 @@ public class MIDTypeRegistry {
 
 	public static MIDTreeSelectionDialog getOperatorTypeCreationDialog(MID typeMID) {
 
-		MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
+		var dialog = new MIDTreeSelectionDialog(
 			new WorkbenchLabelProvider(),
 			new BaseWorkbenchContentProvider(),
 			ResourcesPlugin.getWorkspace().getRoot()
@@ -328,27 +323,40 @@ public class MIDTypeRegistry {
 
 	public static MIDTreeSelectionDialog getGenericTypeCreationDialog(GenericEndpoint genericSuperTypeEndpoint, EList<OperatorInput> inputs) {
 
-		Operator operatorType = (Operator) genericSuperTypeEndpoint.eContainer();
-		MID typeMID = operatorType.getMIDContainer();
-		GenericElement genericSuperType = genericSuperTypeEndpoint.getTarget();
-		List<GenericElement> genericTypes = MIDTypeHierarchy.getGenericSubtypes(genericSuperType);
+		var operatorType = (Operator) genericSuperTypeEndpoint.eContainer();
+		var typeMID = operatorType.getMIDContainer();
+		var genericSuperType = genericSuperTypeEndpoint.getTarget();
+		var genericTypes = MIDTypeHierarchy.getGenericSubtypes(genericSuperType);
 		genericTypes.add(0, genericSuperType);
-		Set<GenericElement> filteredGenericTypes = new HashSet<>();
-		for (GenericElement genericType : genericTypes) {
-		    if (genericType.getUri().equals(MMINTConstants.ROOT_URI + MMINTConstants.URI_SEPARATOR +
-		                                    WorkflowOperator.class.getSimpleName())) {
-		        continue;
-		    }
+		var filteredGenericTypes = new HashSet<GenericElement>();
+		for (var genericType : genericTypes) {
+	    if (genericType.getUri().equals(MMINTConstants.ROOT_URI + MMINTConstants.URI_SEPARATOR +
+	                                    WorkflowOperator.class.getSimpleName())) {
+        continue;
+	    }
 			try {
-				if (MIDConstraintChecker.checkOperatorGenericConstraint(operatorType.getClosestTypeConstraint(), genericSuperTypeEndpoint, genericType, inputs)) {
-					//TODO MMINT[GENERICS] Can we check that the generic type is consistent with the input, or is it always done by the operator itself?
-					filteredGenericTypes.add(genericType);
-				}
+			  var constraint = operatorType.getClosestTypeConstraint();
+	      var reasoner = MIDConstraintChecker.getReasoner(constraint, IOperatorConstraintTrait.class,
+	                                                      "operator constraint checking");
+//	      var ok = reasoner.map(r -> {
+//          try {
+//            return r.checkOperatorGenericConstraint(constraint, genericSuperTypeEndpoint, genericType, inputs);
+//          }
+//          catch (Exception e) {
+//            return false;
+//          }
+//        }).orElse(true);
+	      if (reasoner.isEmpty() ||
+	          reasoner.get().checkOperatorGenericConstraint(constraint, genericSuperTypeEndpoint, genericType, inputs)) {
+          filteredGenericTypes.add(genericType);
+	      }
 			}
-			catch (MMINTException e) {}
+			catch (Exception e) {
+			  // continue
+			}
 		}
 
-		MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
+		var dialog = new MIDTreeSelectionDialog(
 			new MIDDialogLabelProvider(),
 			new NewGenericTypeDialogContentProvider(filteredGenericTypes),
 			typeMID
@@ -371,7 +379,7 @@ public class MIDTypeRegistry {
 	 */
 	public static MIDTreeSelectionDialog getModelImportDialog() {
 
-		MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
+		var dialog = new MIDTreeSelectionDialog(
 			new WorkbenchLabelProvider(),
 			new BaseWorkbenchContentProvider(),
 			ResourcesPlugin.getWorkspace().getRoot()
@@ -398,7 +406,7 @@ public class MIDTypeRegistry {
 	 */
 	public static MIDTreeSelectionDialog getModelRelCreationDialog(Model targetSrcModel, Model targetTgtModel) {
 
-		MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
+		var dialog = new MIDTreeSelectionDialog(
 			new MIDDialogLabelProvider(),
 			new NewModelRelDialogContentProvider(MIDConstraintChecker.getAllowedModelRelTypes(targetSrcModel, targetTgtModel)),
 			MMINT.cachedTypeMID
@@ -421,7 +429,7 @@ public class MIDTypeRegistry {
 	 */
 	public static MIDTreeSelectionDialog getModelEndpointCreationDialog(ModelRel modelRel, List<String> modelTypeEndpointUris) {
 
-		MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
+		var dialog = new MIDTreeSelectionDialog(
 			new MIDDialogLabelProvider(),
 			new NewModelEndpointDialogContentProvider(modelTypeEndpointUris),
 			modelRel.getMetatype()
@@ -444,8 +452,8 @@ public class MIDTypeRegistry {
 	 */
 	public static MIDTreeSelectionDialog getModelElementEndpointCreationDialog(MappingReference mappingRef, List<String> modelElemTypeEndpointUris) {
 
-		Mapping mappingType = mappingRef.getObject().getMetatype();
-		MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
+		var mappingType = mappingRef.getObject().getMetatype();
+		var dialog = new MIDTreeSelectionDialog(
 			new MIDDialogLabelProvider(),
 			new NewModelElementEndpointReferenceDialogContentProvider(modelElemTypeEndpointUris),
 			mappingType
@@ -456,7 +464,7 @@ public class MIDTypeRegistry {
 
 	public static MIDTreeSelectionDialog getWorkflowModelCreationDialog() {
 
-		MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
+		var dialog = new MIDTreeSelectionDialog(
 			new MIDDialogLabelProvider(),
 			new NewWorkflowModelDialogContentProvider(MMINT.cachedTypeMID),
 			MMINT.cachedTypeMID
@@ -480,7 +488,7 @@ public class MIDTypeRegistry {
 	public static @Nullable Bundle getTypeBundle(@NonNull String typeUri) {
 
 		Bundle bundle = null;
-		String bundleName = MMINT.bundleTable.get(typeUri);
+		var bundleName = MMINT.bundleTable.get(typeUri);
 		if (bundleName != null) {
 			return Platform.getBundle(bundleName);
 		}
@@ -491,19 +499,19 @@ public class MIDTypeRegistry {
 	public static @NonNull String getFileBundlePath(@NonNull ExtendibleElement typeInBundle,
 	                                                @NonNull String relativeFilePath) throws Exception {
 
-        String bundlePath = typeInBundle.getClass().getProtectionDomain().getCodeSource().getLocation().getFile();
+        var bundlePath = typeInBundle.getClass().getProtectionDomain().getCodeSource().getLocation().getFile();
         String fileName = FileUtils.getLastSegmentFromPath(relativeFilePath);
         String filePath;
         if (bundlePath.endsWith("jar")) { // binary installation
-            int separator = bundlePath.lastIndexOf("_");
+            var separator = bundlePath.lastIndexOf("_");
             bundlePath = bundlePath.substring(0, separator) + ".source" + bundlePath.substring(separator);
             if (!FileUtils.isFile(bundlePath, false)) {
                 throw new MMINTException("Can't find the source file for " + fileName +
                                          " (did you install mmint.sdk?)");
             }
-            JarFile bundleJar = new JarFile(new File(bundlePath));
-            ZipEntry bundleJarEntry = bundleJar.getEntry(relativeFilePath);
-            Path tmpFilePath = Paths.get(System.getProperty("java.io.tmpdir") + File.separator + fileName);
+            var bundleJar = new JarFile(new File(bundlePath));
+            var bundleJarEntry = bundleJar.getEntry(relativeFilePath);
+            var tmpFilePath = Paths.get(System.getProperty("java.io.tmpdir") + File.separator + fileName);
             Files.copy(bundleJar.getInputStream(bundleJarEntry), tmpFilePath, StandardCopyOption.REPLACE_EXISTING);
             filePath = tmpFilePath.toString();
             bundleJar.close();
@@ -513,7 +521,7 @@ public class MIDTypeRegistry {
             if (bundle == null) {
                 throw new MMINTException("Can't find the bundle for " + typeInBundle.getName());
             }
-            Enumeration<URL> bundleEntries = bundle.findEntries("/", fileName, true);
+            var bundleEntries = bundle.findEntries("/", fileName, true);
             if (bundleEntries == null || !bundleEntries.hasMoreElements()) {
                 throw new MMINTException("Can't find the source file for " + fileName);
             }
@@ -539,7 +547,7 @@ public class MIDTypeRegistry {
 		if (!modelType.isDynamic()) {
 			return null;
 		}
-		String metamodelUri = modelType.getName() + MMINTConstants.MODEL_FILEEXTENSION_SEPARATOR + EcorePackage.eNAME;
+		var metamodelUri = modelType.getName() + MMINTConstants.MODEL_FILEEXTENSION_SEPARATOR + EcorePackage.eNAME;
 
 		return (FileUtils.isFileOrDirectoryInState(metamodelUri)) ?
 			FileUtils.prependStatePath(metamodelUri) :

@@ -1031,9 +1031,11 @@ public class MMINT implements MMINTConstants {
    *          The trait class.
    * @return The set of reasoners that implement the trait.
    */
-	public static Set<Object> getReasonersForTrait(Class<?> traitClass) {
+	@SuppressWarnings("unchecked")
+  public static <T> Set<? extends T> getReasonersForTrait(Class<T> traitClass) {
 	  return MMINT.reasoners.values().stream()
 	    .filter(r -> traitClass.isInstance(r))
+	    .map(r -> (T) r)
 	    .collect(Collectors.toSet());
 	}
 

@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.eclipse.core.runtime.IStatus;
@@ -35,8 +36,6 @@ import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
-import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
@@ -496,29 +495,30 @@ mappingTypes:
    *  3) Address mavo and kleisli reasoner apis too.
    *  X) AbstractReasoner as superclass + change all methods to not return simply Object? (id in ext point + abstract getName in class + getReasoner utility)
    */
-	public static IReasoningEngine getReasoner(String fileExtension) throws MMINTException {
+  @SuppressWarnings("unchecked")
+  public static <T> Optional<? extends T> getReasoner(@Nullable ExtendibleElementConstraint constraint,
+                                                      Class<T> traitClass, String traitDesc) throws MMINTException {
+    if (constraint == null || constraint.getImplementation() == null || constraint.getImplementation().equals("")) {
+      return Optional.empty();
+    }
+    var reasonerName = constraint.getLanguage();
+    var reasoner = MMINT.getReasoner(reasonerName);
+    if (reasoner == null) {
+      throw new MMINTException("The " + reasonerName + " reasoner is not installed");
+    }
+    if (!traitClass.isInstance(reasoner)) {
+      throw new MMINTException("The " + reasonerName + " reasoner does not implement " + traitDesc);
+    }
+
+    return Optional.of((T) reasoner);
+  }
+
+  public static IReasoningEngine getReasoner(String fileExtension) throws MMINTException {
 		var reasoner = MMINT.getReasoner(fileExtension);
 		if (reasoner == null) {
 			throw new MMINTException("Can't find a reasoner for language " + fileExtension);
 		}
 		return (IReasoningEngine) reasoner;
-	}
-
-	public static boolean checkOperatorGenericConstraint(@Nullable ExtendibleElementConstraint constraint, GenericEndpoint genericTypeEndpoint, GenericElement genericType, List<OperatorInput> inputs) {
-
-		if (constraint == null || constraint.getImplementation() == null || constraint.getImplementation().equals("")) {
-			return true;
-		}
-		IOperatorConstraintTrait reasoner;
-		try {
-			reasoner = (IOperatorConstraintTrait) MIDConstraintChecker.getReasoner(constraint.getLanguage());
-		}
-		catch (MMINTException e) {
-			MMINTException.print(IStatus.WARNING, "Skipping operator generic constraint check", e);
-			return false;
-		}
-
-		return reasoner.checkOperatorGenericConstraint(constraint, genericTypeEndpoint, genericType, inputs);
 	}
 
 	public static boolean checkOperatorInputConstraint(@Nullable ExtendibleElementConstraint constraint, Map<String, Model> inputsByName) {
@@ -529,13 +529,12 @@ mappingTypes:
 		IOperatorConstraintTrait reasoner;
 		try {
 			reasoner = (IOperatorConstraintTrait) MIDConstraintChecker.getReasoner(constraint.getLanguage());
+	    return reasoner.checkOperatorInputConstraint(constraint, inputsByName);
 		}
-		catch (MMINTException e) {
+		catch (Exception e) {
 			MMINTException.print(IStatus.WARNING, "Skipping operator input constraint check", e);
 			return false;
 		}
-
-		return reasoner.checkOperatorInputConstraint(constraint, inputsByName);
 	}
 
 	public static Map<ModelRel, List<Model>> getOperatorOutputConstraints(@Nullable ExtendibleElementConstraint constraint, Map<String, GenericElement> genericsByName, Map<String, Model> inputsByName, Map<String, Model> outputsByName) {
@@ -546,13 +545,12 @@ mappingTypes:
 		IOperatorConstraintTrait reasoner;
 		try {
 			reasoner = (IOperatorConstraintTrait) MIDConstraintChecker.getReasoner(constraint.getLanguage());
+	    return reasoner.getOperatorOutputConstraints(constraint, genericsByName, inputsByName, outputsByName);
 		}
-		catch (MMINTException e) {
+		catch (Exception e) {
 			MMINTException.print(IStatus.WARNING, "Skipping operator output constraints", e);
 			return new HashMap<>();
 		}
-
-		return reasoner.getOperatorOutputConstraints(constraint, genericsByName, inputsByName, outputsByName);
 	}
 
 	public static boolean checkModelConstraintConsistency(ExtendibleElement type, String constraintLanguage, String constraintImplementation) {
