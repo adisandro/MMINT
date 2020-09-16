@@ -77,7 +77,7 @@
         <artifactId>target-platform-configuration</artifactId>
         <version>${tycho-version}</version>
         <configuration>
-          <executionEnvironment>JavaSE-15</executionEnvironment>
+          <executionEnvironment>JavaSE-14</executionEnvironment>
           <dependency-resolution>
             <extraRequirements>
               <requirement>
