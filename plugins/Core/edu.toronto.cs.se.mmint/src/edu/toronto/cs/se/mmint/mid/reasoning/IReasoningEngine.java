@@ -17,11 +17,6 @@ import edu.toronto.cs.se.mmint.mid.Model;
 
 public interface IReasoningEngine {
 
-	public default boolean checkModelConstraintConsistency(Model modelType, String constraint) {
-
-		return true;
-	}
-
 	//TODO MMINT[REFINE] Is this really for all models? == Can I refine a model based on a false property, to make it true?
 	public default @Nullable Model refineModelByConstraint(Model model) {
 

@@ -29,7 +29,6 @@ import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
-import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
@@ -519,23 +518,6 @@ mappingTypes:
 			throw new MMINTException("Can't find a reasoner for language " + fileExtension);
 		}
 		return (IReasoningEngine) reasoner;
-	}
-
-	public static boolean checkModelConstraintConsistency(ExtendibleElement type, String constraintLanguage, String constraintImplementation) {
-
-		if (!(type instanceof Model) || constraintImplementation.equals("")) {
-			return true;
-		}
-		IReasoningEngine reasoner;
-		try {
-			reasoner = MIDConstraintChecker.getReasoner(constraintLanguage);
-		}
-		catch (MMINTException e) {
-			MMINTException.print(IStatus.WARNING, "Skipping constraint consistency check", e);
-			return true;
-		}
-
-		return reasoner.checkModelConstraintConsistency((Model) type, constraintImplementation);
 	}
 
 	//TODO MMINT[REFINE] Should really throw an exception with errors instead of returning null

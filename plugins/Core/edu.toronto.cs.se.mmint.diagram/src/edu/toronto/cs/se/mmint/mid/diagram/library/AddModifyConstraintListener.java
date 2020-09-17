@@ -5,14 +5,13 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.mmint.mid.diagram.library;
 
 import java.util.List;
-import java.util.Set;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
@@ -28,11 +27,9 @@ import org.eclipse.swt.events.SelectionEvent;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
-import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.MIDFactory;
-import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
-import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 
 public class AddModifyConstraintListener extends MIDContextMenuListener {
 
@@ -48,8 +45,8 @@ public class AddModifyConstraintListener extends MIDContextMenuListener {
 	public void widgetSelected(SelectionEvent e) {
 
 		AbstractTransactionalCommand command = new AddModifyConstraintCommand(
-			TransactionUtil.getEditingDomain(element),
-			menuLabel,
+			TransactionUtil.getEditingDomain(this.element),
+			this.menuLabel,
 			MIDDiagramUtils.getActiveInstanceMIDFiles()
 		);
 		runListenerCommand(command);
@@ -66,26 +63,21 @@ public class AddModifyConstraintListener extends MIDContextMenuListener {
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 			try {
-				Set<String> languages = MMINT.getReasonerNames();
+				var languages = MMINT.getReasonerNames();
 				if (languages.isEmpty()) {
 					throw new MMINTException("No language installed to express constraints");
 				}
-				ExtendibleElementConstraint constraint = element.getConstraint();
+				var constraint = AddModifyConstraintListener.this.element.getConstraint();
 				if (constraint == null) {
 					constraint = MIDFactory.eINSTANCE.createExtendibleElementConstraint();
 					constraint.setLanguage(languages.iterator().next());
 					constraint.setImplementation("");
 				}
-				String[] newConstraint = MIDDialogs.getConstraintInput(menuLabel, constraint.getLanguage() + MIDDialogs.CONSTRAINT_LANGUAGE_SEPARATOR + "\n" + constraint.getImplementation());
-				if (!element.isInstancesLevel()) {
-					if (!MIDConstraintChecker.checkModelConstraintConsistency(element, newConstraint[0], newConstraint[1])) {
-						throw new MMINTException("The combined constraint (this type + supertypes) is inconsistent");
-					}
-				}
+				var newConstraint = MIDDialogs.getConstraintInput(AddModifyConstraintListener.this.menuLabel, constraint.getLanguage() + MIDDialogs.CONSTRAINT_LANGUAGE_SEPARATOR + "\n" + constraint.getImplementation());
 				constraint.setLanguage(newConstraint[0]);
 				constraint.setImplementation(newConstraint[1]);
-				if (element.getConstraint() == null) {
-					element.setConstraint(constraint);
+				if (AddModifyConstraintListener.this.element.getConstraint() == null) {
+					AddModifyConstraintListener.this.element.setConstraint(constraint);
 				}
 
 				return CommandResult.newOKCommandResult(constraint);
