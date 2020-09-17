@@ -31,7 +31,6 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
-import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
@@ -249,7 +248,7 @@ public class MIDConstraintChecker {
 	      // skip overridden endpoint
 		    continue;
 		  }
-			if (isAllowedModelEndpoint(modelTypeEndpointRef, targetModel, cardinalityTable)) {
+			if (MIDConstraintChecker.isAllowedModelEndpoint(modelTypeEndpointRef, targetModel, cardinalityTable)) {
 				if (modelTypeEndpointUris == null) {
 					modelTypeEndpointUris = new ArrayList<>();
 				}
@@ -271,7 +270,7 @@ public class MIDConstraintChecker {
 			  .collect(Collectors.toList());
       //TODO MMINT[INTROSPECTION] order of visit might affect the result, should be from the most specific to the less
 			for (ModelEndpointReference modelTypeEndpointRef : nonOverriddenModelTypeEndpointRefs) {
-				if (isAllowed = isAllowedModelEndpoint(modelTypeEndpointRef, modelEndpoint.getTarget(), cardinalityTable)) {
+				if (isAllowed = MIDConstraintChecker.isAllowedModelEndpoint(modelTypeEndpointRef, modelEndpoint.getTarget(), cardinalityTable)) {
 					MIDRegistry.addEndpointCardinality(modelTypeEndpointRef.getUri(), cardinalityTable);
 					break;
 				}
@@ -330,7 +329,7 @@ public class MIDConstraintChecker {
         // skip overridden endpoint
         continue;
       }
-			if (isAllowedModelElementEndpointReference(modelElemTypeEndpointRef, targetModelElemRef, cardinalityTable)) {
+			if (MIDConstraintChecker.isAllowedModelElementEndpointReference(modelElemTypeEndpointRef, targetModelElemRef, cardinalityTable)) {
 				if (modelElemTypeEndpointUris == null) {
 					modelElemTypeEndpointUris = new ArrayList<>();
 				}
@@ -348,7 +347,7 @@ public class MIDConstraintChecker {
 			var isAllowed = false;
 			//TODO MMINT[INTROSPECTION] order of visit might affect the result, should be from the most specific to the less
 			for (ModelElementEndpointReference modelElemTypeEndpointRef : newMappingType.getModelElemEndpointRefs()) {
-				if (isAllowed = isAllowedModelElementEndpointReference(modelElemTypeEndpointRef, modelElemEndpointRef.getModelElemRef(), cardinalityTable)) {
+				if (isAllowed = MIDConstraintChecker.isAllowedModelElementEndpointReference(modelElemTypeEndpointRef, modelElemEndpointRef.getModelElemRef(), cardinalityTable)) {
 					MIDRegistry.addEndpointCardinality(modelElemTypeEndpointRef.getUri(), cardinalityTable);
 					break;
 				}
@@ -388,7 +387,7 @@ public class MIDConstraintChecker {
 			if (
 				modelElemTypeEInfo.isAttribute() &&
 				modelObjEInfo.getFeatureName().equals(modelElemTypeEInfo.getFeatureName()) &&
-				instanceofEMFClass(((PrimitiveEObjectWrapper) modelObj).getOwner(), modelElemTypeEInfo.getClassName())
+				MIDConstraintChecker.instanceofEMFClass(((PrimitiveEObjectWrapper) modelObj).getOwner(), modelElemTypeEInfo.getClassName())
 			) {
 				return true;
 			}
@@ -397,7 +396,7 @@ public class MIDConstraintChecker {
 			// class compliance + containment compliance
 			if (
 				modelElemTypeEInfo.getFeatureName() == null &&
-				instanceofEMFClass(modelObj, modelElemTypeEInfo.getClassName())
+				MIDConstraintChecker.instanceofEMFClass(modelObj, modelElemTypeEInfo.getClassName())
 			) {
 				if (modelObjEInfo.getRelatedClassName() == null) { // root
 					return true;
@@ -411,13 +410,13 @@ public class MIDConstraintChecker {
 					if ( // not the right containment model element type
 						modelElemTypeContainmentEInfo.getFeatureName() == null ||
 						modelElemTypeContainmentEInfo.isAttribute() ||
-						!instanceofEMFClass(modelObj, modelElemTypeContainmentEInfo.getRelatedClassName())
+						!MIDConstraintChecker.instanceofEMFClass(modelObj, modelElemTypeContainmentEInfo.getRelatedClassName())
 					) {
 						continue;
 					}
 					if (
 						modelElemTypeContainmentEInfo.getFeatureName().equals(modelObjEInfo.getFeatureName()) &&
-						instanceofEMFClass(modelObj.eContainer(), modelElemTypeContainmentEInfo.getClassName())
+						MIDConstraintChecker.instanceofEMFClass(modelObj.eContainer(), modelElemTypeContainmentEInfo.getClassName())
 					) {
 						isAllowed = true;
 						break;
@@ -460,7 +459,7 @@ public class MIDConstraintChecker {
 		var modelElemTypeRefIter = MIDTypeHierarchy.getInverseTypeRefHierarchyIterator(modelTypeEndpointRef.getModelElemRefs());
 		while (modelElemTypeRefIter.hasNext()) {
 			var modelElemTypeRef = modelElemTypeRefIter.next();
-			if (isAllowedModelElement(modelTypeEndpointRef, modelObj, modelElemTypeRef.getObject())) {
+			if (MIDConstraintChecker.isAllowedModelElement(modelTypeEndpointRef, modelObj, modelElemTypeRef.getObject())) {
 				return modelElemTypeRef.getObject();
 			}
 		}
@@ -490,7 +489,7 @@ mappingTypes:
 	}
 
   /** TODO
-   *  1) Finish refactoring operator constraints (including a method in ExtElemConstraint to check for nulls and fetch the reasoner)
+   *  1) Finish refactoring operator constraints
    *  2) Address remaining apis in IReasoningEngine and get rid of it together with the methods below (remove consistency, review refinement)
    *  3) Address mavo and kleisli reasoner apis too.
    *  X) AbstractReasoner as superclass + change all methods to not return simply Object? (id in ext point + abstract getName in class + getReasoner utility)
@@ -498,6 +497,7 @@ mappingTypes:
   @SuppressWarnings("unchecked")
   public static <T> Optional<? extends T> getReasoner(@Nullable ExtendibleElementConstraint constraint,
                                                       Class<T> traitClass, String traitDesc) throws MMINTException {
+    //TODO MMINT[CONSTRAINT] Guarantee that constraint is not nullable and move this to ExtendibleElementConstraint
     if (constraint == null || constraint.getImplementation() == null || constraint.getImplementation().equals("")) {
       return Optional.empty();
     }
@@ -521,38 +521,6 @@ mappingTypes:
 		return (IReasoningEngine) reasoner;
 	}
 
-	public static boolean checkOperatorInputConstraint(@Nullable ExtendibleElementConstraint constraint, Map<String, Model> inputsByName) {
-
-		if (constraint == null || constraint.getImplementation() == null || constraint.getImplementation().equals("")) {
-			return true;
-		}
-		IOperatorConstraintTrait reasoner;
-		try {
-			reasoner = (IOperatorConstraintTrait) MIDConstraintChecker.getReasoner(constraint.getLanguage());
-	    return reasoner.checkOperatorInputConstraint(constraint, inputsByName);
-		}
-		catch (Exception e) {
-			MMINTException.print(IStatus.WARNING, "Skipping operator input constraint check", e);
-			return false;
-		}
-	}
-
-	public static Map<ModelRel, List<Model>> getOperatorOutputConstraints(@Nullable ExtendibleElementConstraint constraint, Map<String, GenericElement> genericsByName, Map<String, Model> inputsByName, Map<String, Model> outputsByName) {
-
-		if (constraint == null || constraint.getImplementation() == null || constraint.getImplementation().equals("")) {
-			return new HashMap<>();
-		}
-		IOperatorConstraintTrait reasoner;
-		try {
-			reasoner = (IOperatorConstraintTrait) MIDConstraintChecker.getReasoner(constraint.getLanguage());
-	    return reasoner.getOperatorOutputConstraints(constraint, genericsByName, inputsByName, outputsByName);
-		}
-		catch (Exception e) {
-			MMINTException.print(IStatus.WARNING, "Skipping operator output constraints", e);
-			return new HashMap<>();
-		}
-	}
-
 	public static boolean checkModelConstraintConsistency(ExtendibleElement type, String constraintLanguage, String constraintImplementation) {
 
 		if (!(type instanceof Model) || constraintImplementation.equals("")) {
@@ -560,7 +528,7 @@ mappingTypes:
 		}
 		IReasoningEngine reasoner;
 		try {
-			reasoner = getReasoner(constraintLanguage);
+			reasoner = MIDConstraintChecker.getReasoner(constraintLanguage);
 		}
 		catch (MMINTException e) {
 			MMINTException.print(IStatus.WARNING, "Skipping constraint consistency check", e);
@@ -579,7 +547,7 @@ mappingTypes:
 
 		IReasoningEngine reasoner;
 		try {
-			reasoner = getReasoner(model.getConstraint().getLanguage());
+			reasoner = MIDConstraintChecker.getReasoner(model.getConstraint().getLanguage());
 		}
 		catch (MMINTException e) {
 			MMINTException.print(IStatus.WARNING, "Skipping constraint-based refinement", e);

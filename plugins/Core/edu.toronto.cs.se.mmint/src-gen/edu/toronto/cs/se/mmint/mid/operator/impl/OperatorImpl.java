@@ -934,10 +934,15 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
                 var inputsByName = getInputsByName(nextInputs);
                 var valid = false;
                 try {
-                    valid = MIDConstraintChecker.checkOperatorInputConstraint(getClosestTypeConstraint(), inputsByName);
+                  var constraint = getClosestTypeConstraint();
+                  var reasoner = MIDConstraintChecker.getReasoner(constraint, IOperatorConstraintTrait.class,
+                                                                  "operator constraint checking");
+                  if (reasoner.isEmpty() || reasoner.get().checkOperatorInputConstraint(constraint, inputsByName)) {
+                    valid = true;
+                  }
                 }
-                catch (MMINTException e) {
-                    // can't happen
+                catch (Exception e) {
+                  // valid is already false;
                 }
                 if (valid) {
                     if (isCommutative()) {
@@ -1061,17 +1066,18 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
         }
         // check 4: operator-specific constraints other than types (e.g. 2 model rels as input connected by same model)
         var inputsByName = getInputsByName(inputs);
-        var constraint = getClosestTypeConstraint();
-        var reasoner = MIDConstraintChecker.getReasoner(constraint, IOperatorConstraintTrait.class,
-                                                        "operator constraint checking");
-//        if (reasoner.isPresent() &&
-//            !reasoner.get().checkOperatorInputConstraint(constraint, inputsByName)) {
-//          //TODO MMINT[OPERATOR] Can there be conflicts since conversions are not run?
-//          return null;
-//        }
-        if (!MIDConstraintChecker.checkOperatorInputConstraint(this.getClosestTypeConstraint(), inputsByName)) {
+        try {
+          var constraint = getClosestTypeConstraint();
+          var reasoner = MIDConstraintChecker.getReasoner(constraint, IOperatorConstraintTrait.class,
+                                                          "operator constraint checking");
+          if (reasoner.isPresent() &&
+              !reasoner.get().checkOperatorInputConstraint(constraint, inputsByName)) {
             //TODO MMINT[OPERATOR] Can there be conflicts since conversions are not run?
             return null;
+          }
+        }
+        catch (Exception e) {
+          return null;
         }
 
         return inputs;
@@ -1596,14 +1602,24 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
                 OperatorPackage.eINSTANCE.getOperator_Outputs().getName());
             outputsByName.put(outputModelEndpoint.getName(), outputModel);
         }
-        var validOutputs = MIDConstraintChecker.getOperatorOutputConstraints(this.getClosestTypeConstraint(), genericsByName, inputsByName, outputsByName);
-        for (Entry<ModelRel, List<Model>> validOutput : validOutputs.entrySet()) {
-            var outputModelRel = validOutput.getKey();
-            for (Model endpointModel : validOutput.getValue()) {
-                var modelTypeEndpointUri = MIDConstraintChecker.getAllowedModelEndpoints(outputModelRel, null, endpointModel).get(0);
-                ModelEndpoint modelTypeEndpoint = MIDTypeRegistry.getType(modelTypeEndpointUri);
-                modelTypeEndpoint.createWorkflowInstance(endpointModel, outputModelRel);
+        try {
+          var constraint = getClosestTypeConstraint();
+          var reasoner = MIDConstraintChecker.getReasoner(constraint, IOperatorConstraintTrait.class,
+                                                          "operator constraint checking");
+          if (reasoner.isPresent()) {
+            var validOutputs = reasoner.get().getOperatorOutputConstraints(constraint, genericsByName, inputsByName, outputsByName);
+            for (Entry<ModelRel, List<Model>> validOutput : validOutputs.entrySet()) {
+                var outputModelRel = validOutput.getKey();
+                for (Model endpointModel : validOutput.getValue()) {
+                    var modelTypeEndpointUri = MIDConstraintChecker.getAllowedModelEndpoints(outputModelRel, null, endpointModel).get(0);
+                    ModelEndpoint modelTypeEndpoint = MIDTypeRegistry.getType(modelTypeEndpointUri);
+                    modelTypeEndpoint.createWorkflowInstance(endpointModel, outputModelRel);
+                }
             }
+          }
+        }
+        catch (Exception e) {
+          // ignore output constraints
         }
     }
 

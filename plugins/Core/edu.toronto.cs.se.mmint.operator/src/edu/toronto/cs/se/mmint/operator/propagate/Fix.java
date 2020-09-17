@@ -45,6 +45,7 @@ import edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmint.mid.operator.impl.NestingOperatorImpl;
+import edu.toronto.cs.se.mmint.mid.reasoning.IOperatorConstraintTrait;
 import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
@@ -124,7 +125,7 @@ public class Fix extends NestingOperatorImpl {
                 throws MMINTException {
 
         // create the vararg fixed models
-        Map<String, Model> outputsByName = new HashMap<>();
+        var outputsByName = new HashMap<String, Model>();
         var fixerOperatorType = (Operator) newOperator.getGenerics().get(0).getTarget();
         for (var i = 0; i < fixerOperatorType.getOutputs().size(); i++) {
             var outputModelTypeEndpoint = fixerOperatorType.getOutputs().get(i);
@@ -138,22 +139,31 @@ public class Fix extends NestingOperatorImpl {
             outputsByName.put(outputModelTypeEndpoint.getName(), outputModel);
         }
         // use the fixer operator constraints in case of output model rels
-        List<Model> inputModels = MIDOperatorIOUtils.getVarargs(inputsByName, this.getInputs().get(0).getName());
+        var inputModels = MIDOperatorIOUtils.getVarargs(inputsByName, this.getInputs().get(0).getName());
         inputsByName.clear();
         for (var i = 0; i < fixerOperatorType.getInputs().size(); i++) {
             inputsByName.put(fixerOperatorType.getInputs().get(i).getName(), inputModels.get(i));
         }
-        Map<ModelRel, List<Model>> validOutputs = MIDConstraintChecker
-            .getOperatorOutputConstraints(fixerOperatorType.getClosestTypeConstraint(), genericsByName, inputsByName,
-                                          outputsByName);
-        for (Entry<ModelRel, List<Model>> validOutput : validOutputs.entrySet()) {
-            ModelRel outputModelRel = validOutput.getKey();
-            for (Model endpointModel : validOutput.getValue()) {
-                String modelTypeEndpointUri = MIDConstraintChecker.getAllowedModelEndpoints(outputModelRel, null,
-                                                                                            endpointModel).get(0);
-                ModelEndpoint modelTypeEndpoint = MIDTypeRegistry.getType(modelTypeEndpointUri);
-                modelTypeEndpoint.createWorkflowInstance(endpointModel, outputModelRel);
+        try {
+          var constraint = fixerOperatorType.getClosestTypeConstraint();
+          var reasoner = MIDConstraintChecker.getReasoner(constraint, IOperatorConstraintTrait.class,
+                                                          "operator constraint checking");
+          if (reasoner.isPresent()) {
+            var validOutputs = reasoner.get().getOperatorOutputConstraints(constraint, genericsByName, inputsByName,
+                                                                           outputsByName);
+            for (var validOutput : validOutputs.entrySet()) {
+                var outputModelRel = validOutput.getKey();
+                for (var endpointModel : validOutput.getValue()) {
+                    var modelTypeEndpointUri = MIDConstraintChecker.getAllowedModelEndpoints(outputModelRel, null,
+                                                                                             endpointModel).get(0);
+                    var modelTypeEndpoint = MIDTypeRegistry.<ModelEndpoint>getType(modelTypeEndpointUri);
+                    modelTypeEndpoint.createWorkflowInstance(endpointModel, outputModelRel);
+                }
             }
+          }
+        }
+        catch (Exception e) {
+          // ignore output constraints
         }
     }
 

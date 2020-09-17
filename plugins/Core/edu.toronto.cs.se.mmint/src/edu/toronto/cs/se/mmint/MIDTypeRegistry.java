@@ -120,8 +120,8 @@ public class MIDTypeRegistry {
 	public static List<GenericElement> getGenericTypes() {
 
 		List<GenericElement> genericTypes = new ArrayList<>();
-		genericTypes.addAll(getModelTypes());
-		genericTypes.addAll(getOperatorTypes());
+		genericTypes.addAll(MIDTypeRegistry.getModelTypes());
+		genericTypes.addAll(MIDTypeRegistry.getOperatorTypes());
 
 		return genericTypes;
 	}
@@ -153,8 +153,8 @@ public class MIDTypeRegistry {
 	 */
 	public static Set<String> getModelTypeFileExtensions() {
 
-	  var modelStream = getModelTypes().stream().map(Model::getFileExtension);
-	  var editorStream = getEditorTypes().stream()
+	  var modelStream = MIDTypeRegistry.getModelTypes().stream().map(Model::getFileExtension);
+	  var editorStream = MIDTypeRegistry.getEditorTypes().stream()
 	    .filter(e -> !(e instanceof Diagram))
 	    .flatMap(e -> e.getFileExtensions().stream());
 		return Stream.concat(modelStream, editorStream).collect(Collectors.toSet());
@@ -338,14 +338,6 @@ public class MIDTypeRegistry {
 			  var constraint = operatorType.getClosestTypeConstraint();
 	      var reasoner = MIDConstraintChecker.getReasoner(constraint, IOperatorConstraintTrait.class,
 	                                                      "operator constraint checking");
-//	      var ok = reasoner.map(r -> {
-//          try {
-//            return r.checkOperatorGenericConstraint(constraint, genericSuperTypeEndpoint, genericType, inputs);
-//          }
-//          catch (Exception e) {
-//            return false;
-//          }
-//        }).orElse(true);
 	      if (reasoner.isEmpty() ||
 	          reasoner.get().checkOperatorGenericConstraint(constraint, genericSuperTypeEndpoint, genericType, inputs)) {
           filteredGenericTypes.add(genericType);
