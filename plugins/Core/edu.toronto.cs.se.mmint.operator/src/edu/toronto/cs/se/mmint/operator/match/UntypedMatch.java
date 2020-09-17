@@ -77,7 +77,7 @@ public class UntypedMatch extends OperatorImpl {
     public static class Constraint implements IJavaOperatorConstraint {
 
         @Override
-        public boolean isAllowedInput(@NonNull Map<String, Model> inputsByName) {
+        public boolean checkInputs(@NonNull Map<String, Model> inputsByName) {
 
             try {
                 new Input(inputsByName);
@@ -89,7 +89,7 @@ public class UntypedMatch extends OperatorImpl {
         }
 
         @Override
-        public @NonNull Map<ModelRel, List<Model>> getAllowedOutputModelRelEndpoints(Map<String, GenericElement> genericsByName, @NonNull Map<String, Model> inputsByName, @NonNull Map<String, Model> outputsByName) {
+        public @NonNull Map<ModelRel, List<Model>> getOutputModelRelEndpoints(Map<String, GenericElement> genericsByName, @NonNull Map<String, Model> inputsByName, @NonNull Map<String, Model> outputsByName) {
 
             Input input = new Input(inputsByName);
             ModelRel matchRel = (ModelRel) outputsByName.get(OUT_MODELREL);

@@ -69,7 +69,7 @@ public class JavaReasoner implements IModelConstraintTrait, IOperatorConstraintT
 	                                             throws Exception {
 		var javaConstraint = this.getOperatorConstraint(constraint);
 
-		return javaConstraint.isAllowedGeneric(genericTypeEndpoint, genericType, inputs);
+		return javaConstraint.checkGeneric(genericTypeEndpoint, genericType, inputs);
 	}
 
 	@Override
@@ -77,7 +77,7 @@ public class JavaReasoner implements IModelConstraintTrait, IOperatorConstraintT
 	                                           throws Exception {
 			var javaConstraint = this.getOperatorConstraint(constraint);
 
-			return javaConstraint.isAllowedInput(inputsByName);
+			return javaConstraint.checkInputs(inputsByName);
 	}
 
 	@Override
@@ -87,7 +87,7 @@ public class JavaReasoner implements IModelConstraintTrait, IOperatorConstraintT
 	                                                               Map<String, Model> outputsByName) throws Exception {
 			var javaConstraint = this.getOperatorConstraint(constraint);
 
-			return javaConstraint.getAllowedOutputModelRelEndpoints(genericsByName, inputsByName, outputsByName);
+			return javaConstraint.getOutputModelRelEndpoints(genericsByName, inputsByName, outputsByName);
 	}
 
 }

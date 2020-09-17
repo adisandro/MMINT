@@ -9,7 +9,6 @@
  */
 package edu.toronto.cs.se.mmint.java.reasoning;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -27,26 +26,48 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 public interface IJavaOperatorConstraint {
 
   /**
-   * Checks this operator constraint.
+   * Checks if this operator constraint allows a generic type.
+   *
    * @param genericTypeEndpoint
+   *          The generic type endpoint.
    * @param genericType
+   *          The generic type.
    * @param inputs
+   *          The list of inputs.
    * @return True if the generic type is allowed, false otherwise.
    */
-	default boolean isAllowedGeneric(GenericEndpoint genericTypeEndpoint, GenericElement genericType,
-	                                 List<OperatorInput> inputs) {
+	default boolean checkGeneric(GenericEndpoint genericTypeEndpoint, GenericElement genericType,
+	                             List<OperatorInput> inputs) {
 		return true;
 	}
 
-	default boolean isAllowedInput(Map<String, Model> inputsByName) {
+  /**
+   * Checks if this operator constraint allows a set of inputs.
+   *
+   * @param inputsByName
+   *          The input model instances, identified by their formal parameter name.
+   * @return True if the input models are allowed, false otherwise.
+   */
+	default boolean checkInputs(Map<String, Model> inputsByName) {
 		return true;
 	}
 
-	//TODO MMINT[CONSTRAINT] Create a default method that just matches parameter names, which is what usually happens
-	default Map<ModelRel, List<Model>> getAllowedOutputModelRelEndpoints(Map<String, GenericElement> genericsByName,
-	                                                                     Map<String, Model> inputsByName,
-	                                                                     Map<String, Model> outputsByName) {
-		return new HashMap<>();
+  /**
+   * Gets the models that are constrained to be the endpoints of each output model relationships of an operator.
+   *
+   * @param genericsByName
+   *          The generics, identified by their formal name.
+   * @param inputsByName
+   *          The input model instances, identified by their formal parameter name or workflow variable name.
+   * @param outputsByName
+   *          The output model instances, identified by their formal parameter name or workflow id.
+   * @return A map of output model relationships and their endpoint models.
+   */
+	default Map<ModelRel, List<Model>> getOutputModelRelEndpoints(Map<String, GenericElement> genericsByName,
+	                                                              Map<String, Model> inputsByName,
+	                                                              Map<String, Model> outputsByName) {
+	  //TODO MMINT[CONSTRAINT] Create a default method that just matches parameter names, which is what usually happens
+		return Map.of();
 	}
 
 }

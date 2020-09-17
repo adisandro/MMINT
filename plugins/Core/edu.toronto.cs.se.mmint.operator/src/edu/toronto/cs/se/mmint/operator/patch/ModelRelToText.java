@@ -60,7 +60,7 @@ public class ModelRelToText extends AcceleoOperator {
     public static class Constraint implements IJavaOperatorConstraint {
 
         @Override
-        public boolean isAllowedInput(Map<String, Model> inputsByName) {
+        public boolean checkInputs(Map<String, Model> inputsByName) {
 
             try {
                 new Input(inputsByName);

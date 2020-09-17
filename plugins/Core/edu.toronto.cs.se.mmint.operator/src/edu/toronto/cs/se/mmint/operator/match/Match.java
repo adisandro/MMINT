@@ -35,9 +35,9 @@ public class Match extends UntypedMatch {
     public static class Constraint extends UntypedMatch.Constraint {
 
         @Override
-        public boolean isAllowedInput(@NonNull Map<String, Model> inputsByName) {
+        public boolean checkInputs(@NonNull Map<String, Model> inputsByName) {
 
-            boolean isAllowed = super.isAllowedInput(inputsByName);
+            boolean isAllowed = super.checkInputs(inputsByName);
             if (!isAllowed) {
                 return false;
             }

@@ -65,7 +65,7 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 	public static class OperatorConstraint implements IJavaOperatorConstraint {
 
 		@Override
-		public boolean isAllowedGeneric(GenericEndpoint genericTypeEndpoint, GenericElement genericType, List<OperatorInput> inputs) {
+		public boolean checkGeneric(GenericEndpoint genericTypeEndpoint, GenericElement genericType, List<OperatorInput> inputs) {
 
 			ModelRel modelRelType = (ModelRel) genericType;
 			// check 1: satisfies transformation constraint

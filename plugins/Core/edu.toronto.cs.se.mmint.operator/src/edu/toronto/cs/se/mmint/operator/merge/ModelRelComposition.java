@@ -100,7 +100,7 @@ public class ModelRelComposition extends OperatorImpl {
     public static class Constraint implements IJavaOperatorConstraint {
 
         @Override
-        public boolean isAllowedInput(Map<String, Model> inputsByName) {
+        public boolean checkInputs(Map<String, Model> inputsByName) {
 
             try {
                 new Input(inputsByName);
@@ -112,7 +112,7 @@ public class ModelRelComposition extends OperatorImpl {
         }
 
         @Override
-        public Map<ModelRel, List<Model>> getAllowedOutputModelRelEndpoints(Map<String, GenericElement> genericsByName, Map<String, Model> inputsByName, Map<String, Model> outputsByName) {
+        public Map<ModelRel, List<Model>> getOutputModelRelEndpoints(Map<String, GenericElement> genericsByName, Map<String, Model> inputsByName, Map<String, Model> outputsByName) {
 
             Input input = new Input(inputsByName);
             ModelRel composedRel = (ModelRel) outputsByName.get(OUT_MODELREL);

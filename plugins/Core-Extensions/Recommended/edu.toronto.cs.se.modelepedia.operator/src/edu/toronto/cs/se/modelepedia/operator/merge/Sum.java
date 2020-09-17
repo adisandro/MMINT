@@ -40,7 +40,7 @@ public class Sum extends OperatorImpl {
 	public static class OperatorConstraint implements IJavaOperatorConstraint {
 
 		@Override
-		public boolean isAllowedInput(Map<String, Model> inputsByName) {
+		public boolean checkInputs(Map<String, Model> inputsByName) {
 
 			String intModelPath1 = inputsByName.get(IN_INT1).getUri();
 			String intModelPath2 = inputsByName.get(IN_INT2).getUri();

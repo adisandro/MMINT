@@ -75,14 +75,14 @@ public class ChangePropagation extends OperatorImpl {
 	public static class OperatorConstraint implements IJavaOperatorConstraint {
 
 		@Override
-		public boolean isAllowedInput(Map<String, Model> inputsByName) {
+		public boolean checkInputs(Map<String, Model> inputsByName) {
 
 			//TODO MMINT[OPERATOR] Check that refinement and trace share a model, and that all models involved are mavo models
 			return true;
 		}
 
 		@Override
-		public Map<ModelRel, List<Model>> getAllowedOutputModelRelEndpoints(Map<String, GenericElement> genericsByName, Map<String, Model> inputsByName, Map<String, Model> outputsByName) {
+		public Map<ModelRel, List<Model>> getOutputModelRelEndpoints(Map<String, GenericElement> genericsByName, Map<String, Model> inputsByName, Map<String, Model> outputsByName) {
 
 			//TODO MMINT[CONSTRAINT] Implement
 			return new HashMap<>();

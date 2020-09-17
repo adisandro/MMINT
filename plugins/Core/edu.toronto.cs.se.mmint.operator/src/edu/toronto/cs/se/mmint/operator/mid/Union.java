@@ -72,7 +72,7 @@ public class Union extends OperatorImpl {
 
   public static class Constraint implements IJavaOperatorConstraint {
     @Override
-    public Map<ModelRel, List<Model>> getAllowedOutputModelRelEndpoints(Map<String, GenericElement> genericsByName,
+    public Map<ModelRel, List<Model>> getOutputModelRelEndpoints(Map<String, GenericElement> genericsByName,
                                                                         Map<String, Model> inputsByName, Map<String, Model> outputsByName) {
       final var MIDREL_ID = "http://se.cs.toronto.edu/mmint/MIDRel";
       var input = new Input(inputsByName);

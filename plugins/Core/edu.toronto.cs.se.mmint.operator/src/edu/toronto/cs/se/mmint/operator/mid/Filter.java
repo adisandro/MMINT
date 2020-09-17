@@ -91,7 +91,7 @@ public class Filter extends OperatorImpl {
 
   public static class Constraint implements IJavaOperatorConstraint {
     @Override
-    public boolean isAllowedGeneric(GenericEndpoint genericTypeEndpoint, GenericElement genericType,
+    public boolean checkGeneric(GenericEndpoint genericTypeEndpoint, GenericElement genericType,
                                     List<OperatorInput> inputs) {
       final var FILTER_URI = "http://se.cs.toronto.edu/mmint/Operator_Filter";
       final var FILTERNOT_URI = "http://se.cs.toronto.edu/mmint/Operator_FilterNot";
@@ -109,7 +109,7 @@ public class Filter extends OperatorImpl {
     }
 
     @Override
-    public Map<ModelRel, List<Model>> getAllowedOutputModelRelEndpoints(Map<String, GenericElement> genericsByName,
+    public Map<ModelRel, List<Model>> getOutputModelRelEndpoints(Map<String, GenericElement> genericsByName,
                                                                         Map<String, Model> inputsByName,
                                                                         Map<String, Model> outputsByName) {
       final var MIDREL_ID = "http://se.cs.toronto.edu/mmint/MIDRel";

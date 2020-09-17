@@ -19,7 +19,7 @@ import edu.toronto.cs.se.mmint.mid.Model;
 public interface IJavaModelConstraint {
 
   /**
-   * Checks this model constraint.
+   * Checks if this model constraint is satisfied.
    *
    * @param model
    *          The model to check against.

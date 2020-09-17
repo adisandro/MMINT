@@ -66,7 +66,7 @@ public class Map extends NestingOperatorImpl {
   public static class OperatorConstraint implements IJavaOperatorConstraint {
 
     @Override
-    public boolean isAllowedGeneric(@NonNull GenericEndpoint genericTypeEndpoint, @NonNull GenericElement genericType, @NonNull List<OperatorInput> inputs) {
+    public boolean checkGeneric(@NonNull GenericEndpoint genericTypeEndpoint, @NonNull GenericElement genericType, @NonNull List<OperatorInput> inputs) {
 
       final String FILTER_URI = "http://se.cs.toronto.edu/mmint/Operator_Filter";
       final String FILTERNOT_URI = "http://se.cs.toronto.edu/mmint/Operator_FilterNot";

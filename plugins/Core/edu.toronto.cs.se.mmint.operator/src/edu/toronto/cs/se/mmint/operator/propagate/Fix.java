@@ -68,7 +68,7 @@ public class Fix extends NestingOperatorImpl {
     public static class Constraint implements IJavaOperatorConstraint {
 
         @Override
-        public boolean isAllowedGeneric(@NonNull GenericEndpoint genericTypeEndpoint,
+        public boolean checkGeneric(@NonNull GenericEndpoint genericTypeEndpoint,
                                         @NonNull GenericElement genericType, @NonNull List<OperatorInput> inputs) {
 
             final var FIX_URI = "http://se.cs.toronto.edu/modelepedia/Operator_Fix";

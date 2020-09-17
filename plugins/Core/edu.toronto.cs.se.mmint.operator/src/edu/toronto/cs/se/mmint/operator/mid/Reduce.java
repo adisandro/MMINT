@@ -65,7 +65,7 @@ public class Reduce extends NestingOperatorImpl {
 
   public static class OperatorConstraint implements IJavaOperatorConstraint {
     @Override
-    public boolean isAllowedGeneric(@NonNull GenericEndpoint genericTypeEndpoint, @NonNull GenericElement genericType, @NonNull List<OperatorInput> inputs) {
+    public boolean checkGeneric(@NonNull GenericEndpoint genericTypeEndpoint, @NonNull GenericElement genericType, @NonNull List<OperatorInput> inputs) {
       final var FILTER_URI = "http://se.cs.toronto.edu/mmint/Operator_Filter";
       final var FILTERNOT_URI = "http://se.cs.toronto.edu/mmint/Operator_FilterNot";
       final var MAP_URI = "http://se.cs.toronto.edu/mmint/Operator_Map";
@@ -80,7 +80,7 @@ public class Reduce extends NestingOperatorImpl {
     }
 
     @Override
-    public Map<ModelRel, List<Model>> getAllowedOutputModelRelEndpoints(Map<String, GenericElement> genericsByName,
+    public Map<ModelRel, List<Model>> getOutputModelRelEndpoints(Map<String, GenericElement> genericsByName,
                                                                         Map<String, Model> inputsByName,
                                                                         Map<String, Model> outputsByName) {
       final var MODELREL_ID = "http://se.cs.toronto.edu/mmint/ModelRel";
