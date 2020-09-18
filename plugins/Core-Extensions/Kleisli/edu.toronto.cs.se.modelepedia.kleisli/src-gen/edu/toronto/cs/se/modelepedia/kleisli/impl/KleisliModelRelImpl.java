@@ -50,7 +50,7 @@ import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpointReference;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliPackage;
-import edu.toronto.cs.se.modelepedia.kleisli.reasoning.KleisliReasoningEngine;
+import edu.toronto.cs.se.modelepedia.kleisli.reasoning.KleisliReasoner;
 
 /**
  * <!-- begin-user-doc -->
@@ -400,7 +400,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 
 		// extend models (doing it at every open is robust against model change)
 		var oclReasoner = new OCLReasoner();
-		var kReasoner = new KleisliReasoningEngine();
+		var kReasoner = new KleisliReasoner();
 		for (ModelEndpoint modelEndpoint : getModelEndpoints()) {
 			var modelTypeEndpoint = modelEndpoint.getMetatype();
 			if (!(modelTypeEndpoint instanceof KleisliModelEndpoint)) {
@@ -434,10 +434,10 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 				}
 				var newText =
 					kModelTypeEndpoint.getTargetUri() +
-					KleisliReasoningEngine.KLEISLI_MODELTYPE_URI_SUFFIX +
+					KleisliReasoner.KLEISLI_MODELTYPE_URI_SUFFIX +
 					"\" xsi:schemaLocation=\"" +
 					kModelTypeEndpoint.getTargetUri() +
-					KleisliReasoningEngine.KLEISLI_MODELTYPE_URI_SUFFIX +
+					KleisliReasoner.KLEISLI_MODELTYPE_URI_SUFFIX +
 					" file:" +
 					FileUtils.prependStatePath(kModelTypeEndpoint.getExtendedTargetUri()) +
 					"\"";

@@ -5,12 +5,12 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  *    Naama Ben-David - Implementation.
  */
-package edu.toronto.cs.se.mmint.mid.diagram.context;
+package edu.toronto.cs.se.mmint.mavo.diagram.context;
 
 import java.util.List;
 
@@ -24,16 +24,19 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.swt.events.SelectionEvent;
 
+import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.mavo.reasoning.IMAVOTrait;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
-import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 
-public class MIDContextRefineByConstraintListener extends MIDContextMenuListener {
+public class MAVOContextRefineByConstraintListener extends MIDContextMenuListener {
 
 	private Model model;
 
-	public MIDContextRefineByConstraintListener(String menuLabel, Model model) {
+	public MAVOContextRefineByConstraintListener(String menuLabel, Model model) {
 
 		super(menuLabel);
 		this.model = model;
@@ -43,8 +46,8 @@ public class MIDContextRefineByConstraintListener extends MIDContextMenuListener
 	public void widgetSelected(SelectionEvent e) {
 
 		AbstractTransactionalCommand command = new MIDContextRefineByConstraintCommand(
-			TransactionUtil.getEditingDomain(model),
-			menuLabel,
+			TransactionUtil.getEditingDomain(this.model),
+			this.menuLabel,
 			MIDDiagramUtils.getActiveInstanceMIDFiles()
 		);
 		runListenerCommand(command);
@@ -60,9 +63,17 @@ public class MIDContextRefineByConstraintListener extends MIDContextMenuListener
 		@Override
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-			MIDConstraintChecker.refineModelByConstraint(model);
-
-			return CommandResult.newOKCommandResult();
+		  try {
+        var reasoner = MIDDialogs.selectReasoner(IMAVOTrait.class, "mavo refinement");
+        reasoner.refineModelByConstraint(MAVOContextRefineByConstraintListener.this.model);
+        return CommandResult.newOKCommandResult();
+      }
+		  catch (MIDDialogCancellation e) {
+		    return CommandResult.newCancelledCommandResult();
+		  }
+      catch (MMINTException e) {
+        return CommandResult.newErrorCommandResult(e);
+      }
 		}
 
 	}

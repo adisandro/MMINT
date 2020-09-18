@@ -487,12 +487,6 @@ mappingTypes:
 		return null;
 	}
 
-  /** TODO
-   *  1) Finish refactoring operator constraints
-   *  2) Address remaining apis in IReasoningEngine and get rid of it together with the methods below (remove consistency, review refinement)
-   *  3) Address mavo and kleisli reasoner apis too.
-   *  X) AbstractReasoner as superclass + change all methods to not return simply Object? (id in ext point + abstract getName in class + getReasoner utility)
-   */
   @SuppressWarnings("unchecked")
   public static <T> Optional<? extends T> getReasoner(@Nullable ExtendibleElementConstraint constraint,
                                                       Class<T> traitClass, String traitDesc) throws MMINTException {
@@ -511,33 +505,5 @@ mappingTypes:
 
     return Optional.of((T) reasoner);
   }
-
-  public static IReasoningEngine getReasoner(String fileExtension) throws MMINTException {
-		var reasoner = MMINT.getReasoner(fileExtension);
-		if (reasoner == null) {
-			throw new MMINTException("Can't find a reasoner for language " + fileExtension);
-		}
-		return (IReasoningEngine) reasoner;
-	}
-
-	//TODO MMINT[REFINE] Should really throw an exception with errors instead of returning null
-	public static @Nullable Model refineModelByConstraint(Model model) {
-
-		if (model.getConstraint() == null) {
-			return null;
-		}
-
-		IReasoningEngine reasoner;
-		try {
-			reasoner = MIDConstraintChecker.getReasoner(model.getConstraint().getLanguage());
-		}
-		catch (MMINTException e) {
-			MMINTException.print(IStatus.WARNING, "Skipping constraint-based refinement", e);
-			return null;
-		}
-
-		//TODO MMINT[MU-MMINT] Should copy the model constraint to the new model? option to do it or not?
-		return reasoner.refineModelByConstraint(model);
-	}
 
 }

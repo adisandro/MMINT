@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Naama Ben-David - Initial implementation.
  *    Alessio Di Sandro - Refactoring and fixes.
@@ -32,12 +32,14 @@ import edu.toronto.cs.se.mavo.MAVOCollection;
 import edu.toronto.cs.se.mavo.MAVODecision;
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.mavo.constraint.MAVOMIDConstraintChecker;
+import edu.toronto.cs.se.mmint.mavo.reasoning.IMAVOTrait;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
 public class MAVODiagramOutlineContextHighlightListener extends MIDContextMenuListener {
@@ -48,44 +50,44 @@ public class MAVODiagramOutlineContextHighlightListener extends MIDContextMenuLi
 	public MAVODiagramOutlineContextHighlightListener(@NonNull String menuLabel, @NonNull MAVODecision mavoDecision) {
 
 		super(menuLabel);
-		mavoElemToHighlight = mavoDecision;
-		model = null;
+		this.mavoElemToHighlight = mavoDecision;
+		this.model = null;
 	}
 
 	public MAVODiagramOutlineContextHighlightListener(@NonNull String menuLabel, @NonNull MAVOCollection mavoCollection) {
 
 		super(menuLabel);
-		mavoElemToHighlight = mavoCollection;
-		model = null;
+		this.mavoElemToHighlight = mavoCollection;
+		this.model = null;
 	}
 
 	public MAVODiagramOutlineContextHighlightListener(@NonNull String menuLabel, @NonNull MAVOElement mavoModelObj) {
 
 		super(menuLabel);
-		mavoElemToHighlight = mavoModelObj;
-		model = null;
+		this.mavoElemToHighlight = mavoModelObj;
+		this.model = null;
 	}
 
 	@Override
 	public void widgetSelected(SelectionEvent e) {
 
-		String modelUri = MIDRegistry.getModelUri(mavoElemToHighlight);
+		String modelUri = MIDRegistry.getModelUri(this.mavoElemToHighlight);
 		Map<MID, List<IFile>> instanceMIDs = MIDDiagramUtils.getInstanceMIDsInWorkspace();
 		for (MID instanceMID : instanceMIDs.keySet()) {
-			model = instanceMID.getExtendibleElement(modelUri);
-			if (model != null) {
+			this.model = instanceMID.getExtendibleElement(modelUri);
+			if (this.model != null) {
 				break;
 			}
 		}
-		if (model == null) {
+		if (this.model == null) {
 			MMINTException.print(IStatus.ERROR, "The instance MID that contains this model must be open for the highlighting to work", null);
 			return;
 		}
 
 		AbstractTransactionalCommand command;
 		command = new MAVODiagramOutlineContextHighlightCommand(
-			TransactionUtil.getEditingDomain(mavoElemToHighlight),
-			menuLabel,
+			TransactionUtil.getEditingDomain(this.mavoElemToHighlight),
+			this.menuLabel,
 			MIDDiagramUtils.getActiveInstanceMIDFiles()
 		);
 		runListenerCommand(command);
@@ -101,18 +103,26 @@ public class MAVODiagramOutlineContextHighlightListener extends MIDContextMenuLi
 		@Override
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-			Diagram modelDiagram = MIDRegistry.getModelDiagram(model);
-			if (mavoElemToHighlight instanceof MAVODecision) {
-				MAVOMIDConstraintChecker.highlightMAVODecision(modelDiagram, (MAVODecision) mavoElemToHighlight);
-			}
-			else if (mavoElemToHighlight instanceof MAVOCollection) {
-				MAVOMIDConstraintChecker.highlightMAVOCollection(modelDiagram, (MAVOCollection) mavoElemToHighlight);
-			}
-			else if (mavoElemToHighlight instanceof MAVOElement) {
-				MAVOMIDConstraintChecker.highlightMAVOElement(modelDiagram, (MAVOElement) mavoElemToHighlight);
-			}
-
-			return CommandResult.newOKCommandResult();
+      try {
+        var reasoner = MIDDialogs.selectReasoner(IMAVOTrait.class, "mavo highlighting");
+        Diagram modelDiagram = MIDRegistry.getModelDiagram(MAVODiagramOutlineContextHighlightListener.this.model);
+        if (MAVODiagramOutlineContextHighlightListener.this.mavoElemToHighlight instanceof MAVODecision) {
+          reasoner.highlightMAVODecision(modelDiagram, (MAVODecision) MAVODiagramOutlineContextHighlightListener.this.mavoElemToHighlight);
+        }
+        else if (MAVODiagramOutlineContextHighlightListener.this.mavoElemToHighlight instanceof MAVOCollection) {
+          reasoner.highlightMAVOCollection(modelDiagram, (MAVOCollection) MAVODiagramOutlineContextHighlightListener.this.mavoElemToHighlight);
+        }
+        else if (MAVODiagramOutlineContextHighlightListener.this.mavoElemToHighlight instanceof MAVOElement) {
+          reasoner.highlightMAVOElement(modelDiagram, (MAVOElement) MAVODiagramOutlineContextHighlightListener.this.mavoElemToHighlight);
+        }
+        return CommandResult.newOKCommandResult();
+      }
+      catch (MIDDialogCancellation e) {
+        return CommandResult.newCancelledCommandResult();
+      }
+      catch (MMINTException e) {
+        return CommandResult.newErrorCommandResult(e);
+      }
 		}
 
 	}

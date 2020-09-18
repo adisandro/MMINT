@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -13,7 +13,6 @@ package edu.toronto.cs.se.mmint.mavo.reasoning;
 
 import java.util.List;
 
-import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mavo.MAVOCollection;
@@ -23,9 +22,9 @@ import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
-import edu.toronto.cs.se.mmint.mid.reasoning.IReasoningEngine;
 
-public interface IMAVOReasoningEngine extends IReasoningEngine {
+//TODO MMINT[MAVO] All the apis should really throw an exception with errors instead of returning null
+public interface IMAVOTrait {
 
 	public enum MAVOTruthValue {
 
@@ -33,7 +32,6 @@ public interface IMAVOReasoningEngine extends IReasoningEngine {
 		TRUE, FALSE, MAYBE, ERROR;
 
 		public boolean toBoolean() {
-
 			switch (this) {
 				case TRUE:
 				case MAYBE:
@@ -46,12 +44,10 @@ public interface IMAVOReasoningEngine extends IReasoningEngine {
 		}
 
 		public static MAVOTruthValue toMAVOTruthValue(boolean truthValue) {
-
 			return (truthValue) ? TRUE : FALSE;
 		}
 
-		public static @NonNull MAVOTruthValue toMAVOTruthValue(boolean constraintTruthValue, boolean notConstraintTruthValue) {
-	
+		public static MAVOTruthValue toMAVOTruthValue(boolean constraintTruthValue, boolean notConstraintTruthValue) {
 			if (constraintTruthValue == true && notConstraintTruthValue == false) {
 				return TRUE;
 			}
@@ -65,18 +61,21 @@ public interface IMAVOReasoningEngine extends IReasoningEngine {
 		}
 	}
 
-	public @NonNull MAVOTruthValue checkMAVOModelConstraint(@NonNull Model model, ExtendibleElementConstraint constraint, @NonNull MIDLevel constraintLevel);
+	//TODO MMINT[MAVO] Can this be extended to normal models, i.e. based on a false property make it satisfied?
+  //TODO MMINT[MAVO] Should copy the model constraint to the new model? option to do it or not?
+  @Nullable Model refineModelByConstraint(Model model);
 
-	public @Nullable Model refineModelByMayAlternative(@NonNull Model model, @NonNull MAVOCollection mayAlternative);
+	MAVOTruthValue checkMAVOModelConstraint(Model model, ExtendibleElementConstraint constraint, MIDLevel constraintLevel);
 
-	public @Nullable Model refineModelByVarDomain(@NonNull Model model, @NonNull MAVOCollection varDomain, @NonNull MAVOElement mergedModelObj, @NonNull List<MAVOElement> varModelObjs);
+	@Nullable Model refineModelByMayAlternative(Model model, MAVOCollection mayAlternative);
 
-	public @Nullable Model refineModelByMayModelObjects(@NonNull Model model, @NonNull List<MAVOElement> mayModelObjs);
+	@Nullable Model refineModelByVarDomain(Model model, MAVOCollection varDomain, MAVOElement mergedModelObj, List<MAVOElement> varModelObjs);
 
-	public void highlightMAVODecision(@NonNull Diagram modelDiagram, @NonNull MAVODecision mavoDecision);
+	@Nullable Model refineModelByMayModelObjects(Model model, List<MAVOElement> mayModelObjs);
 
-	public void highlightMAVOCollection(@NonNull Diagram modelDiagram, @NonNull MAVOCollection mavoCollection);
+	void highlightMAVODecision(Diagram modelDiagram, MAVODecision mavoDecision);
 
-	public void highlightMAVOElement(@NonNull Diagram modelDiagram, @NonNull MAVOElement mavoModelObj);
+	void highlightMAVOCollection(Diagram modelDiagram, MAVOCollection mavoCollection);
 
+	void highlightMAVOElement(Diagram modelDiagram, MAVOElement mavoModelObj);
 }

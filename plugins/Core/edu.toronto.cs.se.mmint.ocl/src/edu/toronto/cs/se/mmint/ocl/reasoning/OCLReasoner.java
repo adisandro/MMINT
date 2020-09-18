@@ -35,12 +35,11 @@ import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.reasoning.IModelConstraintTrait;
 import edu.toronto.cs.se.mmint.mid.reasoning.IQueryTrait;
-import edu.toronto.cs.se.mmint.mid.reasoning.IReasoningEngine;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 
-public class OCLReasoner implements IReasoningEngine, IQueryTrait, IModelConstraintTrait {
+public class OCLReasoner implements IQueryTrait, IModelConstraintTrait {
 
   protected final static String OCL_MODELENDPOINT_VARIABLE = "$ENDPOINT_";
   protected final static char OCL_VARIABLE_SEPARATOR = '.';

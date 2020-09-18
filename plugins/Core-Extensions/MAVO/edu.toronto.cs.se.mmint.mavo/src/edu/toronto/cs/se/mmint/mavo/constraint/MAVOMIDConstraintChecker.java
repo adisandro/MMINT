@@ -11,31 +11,35 @@
  */
 package edu.toronto.cs.se.mmint.mavo.constraint;
 
-import java.util.List;
-
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 
-import edu.toronto.cs.se.mavo.MAVOCollection;
-import edu.toronto.cs.se.mavo.MAVODecision;
-import edu.toronto.cs.se.mavo.MAVOElement;
+import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.mavo.reasoning.IMAVOReasoningEngine;
-import edu.toronto.cs.se.mmint.mavo.reasoning.IMAVOReasoningEngine.MAVOTruthValue;
+import edu.toronto.cs.se.mmint.mavo.reasoning.IMAVOTrait;
+import edu.toronto.cs.se.mmint.mavo.reasoning.IMAVOTrait.MAVOTruthValue;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.editor.Diagram;
-import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
 
 public class MAVOMIDConstraintChecker {
 
-	public static @NonNull IMAVOReasoningEngine getMAVOReasoner(@NonNull String constraintLanguage) throws MMINTException {
+  /** TODO
+   *  1) Finish refactoring operator constraints
+   *  2) Address remaining apis in IReasoningEngine and get rid of it together with the methods below (remove consistency, review refinement)
+   *  3) Address mavo and kleisli reasoner apis too.
+   *  X) AbstractReasoner as superclass + change all methods to not return simply Object? (id in ext point + abstract getName in class + getReasoner utility)
+   */
+	public static @NonNull IMAVOTrait getMAVOReasoner(@NonNull String constraintLanguage) throws MMINTException {
 
 		//TODO MMINT[MAVO] Register reasoners as mavo reasoner
-		return (IMAVOReasoningEngine) MIDConstraintChecker.getReasoner(constraintLanguage);
+    var reasoner = MMINT.getReasoner(constraintLanguage);
+    if (reasoner == null) {
+      throw new MMINTException("Can't find a reasoner for language " + constraintLanguage);
+    }
+    return (IMAVOTrait) reasoner;
 	}
 
 	public static @NonNull MAVOTruthValue checkMAVOModelConstraint(@NonNull Model model, @Nullable ExtendibleElementConstraint constraint) {
@@ -43,9 +47,9 @@ public class MAVOMIDConstraintChecker {
 		if (constraint == null || constraint.getImplementation() == null || constraint.getImplementation().equals("")) {
 			return MAVOTruthValue.TRUE;
 		}
-		IMAVOReasoningEngine reasoner;
+		IMAVOTrait reasoner;
 		try {
-			reasoner = getMAVOReasoner(constraint.getLanguage());
+			reasoner = MAVOMIDConstraintChecker.getMAVOReasoner(constraint.getLanguage());
 		}
 		catch (MMINTException e) {
 			MMINTException.print(IStatus.WARNING, "Skipping MAVO constraint check", e);
@@ -61,92 +65,4 @@ public class MAVOMIDConstraintChecker {
 
 		return reasoner.checkMAVOModelConstraint(model, constraint, constraintLevel);
 	}
-
-	//TODO MMINT[REFINE] Should really throw an exception with errors instead of returning null
-	public static @Nullable Model refineModelByMayAlternative(@NonNull Model model, @NonNull MAVOCollection mayAlternative) {
-
-		IMAVOReasoningEngine reasoner;
-		try {
-			reasoner = MAVOMIDConstraintChecker.getMAVOReasoner("smt");
-		}
-		catch (MMINTException e) {
-			MMINTException.print(IStatus.WARNING, "Skipping refinement based on may alternative", e);
-			return null;
-		}
-
-		return reasoner.refineModelByMayAlternative(model, mayAlternative);
-	}
-
-	//TODO MMINT[REFINE] Should really throw an exception with errors instead of returning null
-	public static @Nullable Model refineModelByVarDomain(@NonNull Model model, @NonNull MAVOCollection varDomain, @NonNull MAVOElement mergedModelObj, @NonNull List<MAVOElement> varModelObjs) {
-
-		IMAVOReasoningEngine reasoner;
-		try {
-			reasoner = MAVOMIDConstraintChecker.getMAVOReasoner("smt");
-		}
-		catch (MMINTException e) {
-			MMINTException.print(IStatus.WARNING, "Skipping refinement based on var domain", e);
-			return null;
-		}
-
-		return reasoner.refineModelByVarDomain(model, varDomain, mergedModelObj, varModelObjs);
-	}
-
-	//TODO MMINT[REFINE] Should really throw an exception with errors instead of returning null
-	public static @Nullable Model refineModelByMayModelObjects(@NonNull Model model, @NonNull List<MAVOElement> mayModelObjs) {
-
-		IMAVOReasoningEngine reasoner;
-		try {
-			reasoner = MAVOMIDConstraintChecker.getMAVOReasoner("smt");
-		}
-		catch (MMINTException e) {
-			MMINTException.print(IStatus.WARNING, "Skipping refinement based on may model object", e);
-			return null;
-		}
-
-		return reasoner.refineModelByMayModelObjects(model, mayModelObjs);
-	}
-
-	public static void highlightMAVODecision(@NonNull Diagram modelDiagram, @NonNull MAVODecision mavoDecision) {
-
-		IMAVOReasoningEngine reasoner;
-		try {
-			reasoner = MAVOMIDConstraintChecker.getMAVOReasoner("smt");
-		}
-		catch (MMINTException e) {
-			MMINTException.print(IStatus.WARNING, "Skipping MAVO decision highlighting", e);
-			return;
-		}
-
-		reasoner.highlightMAVODecision(modelDiagram, mavoDecision);
-	}
-
-	public static void highlightMAVOCollection(@NonNull Diagram modelDiagram, @NonNull MAVOCollection mavoCollection) {
-
-		IMAVOReasoningEngine reasoner;
-		try {
-			reasoner = MAVOMIDConstraintChecker.getMAVOReasoner("smt");
-		}
-		catch (MMINTException e) {
-			MMINTException.print(IStatus.WARNING, "Skipping MAVO collection highlighting", e);
-			return;
-		}
-
-		reasoner.highlightMAVOCollection(modelDiagram, mavoCollection);
-	}
-
-	public static void highlightMAVOElement(@NonNull Diagram modelDiagram, @NonNull MAVOElement mavoModelObj) {
-
-		IMAVOReasoningEngine reasoner;
-		try {
-			reasoner = MAVOMIDConstraintChecker.getMAVOReasoner("smt");
-		}
-		catch (MMINTException e) {
-			MMINTException.print(IStatus.WARNING, "Skipping MAVO element highlighting", e);
-			return;
-		}
-
-		reasoner.highlightMAVOElement(modelDiagram, mavoModelObj);
-	}
-
 }

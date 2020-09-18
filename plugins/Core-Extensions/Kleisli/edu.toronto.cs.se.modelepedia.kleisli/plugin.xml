@@ -122,9 +122,8 @@
    <extension
          point="edu.toronto.cs.se.mmint.reasoners">
       <reasoner
-            class="edu.toronto.cs.se.modelepedia.kleisli.reasoning.KleisliReasoningEngine"
-            name="Kleisli Query Language">
-         <file extension="kleisli" />
+            class="edu.toronto.cs.se.modelepedia.kleisli.reasoning.KleisliReasoner"
+            name="Kleisli">
       </reasoner>
    </extension>
 

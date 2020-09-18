@@ -27,7 +27,7 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.diagram.library.AddModifyConstraintListener;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
-import edu.toronto.cs.se.modelepedia.kleisli.reasoning.KleisliReasoningEngine;
+import edu.toronto.cs.se.modelepedia.kleisli.reasoning.KleisliReasoner;
 
 public class KleisliAddModifyQueryListener extends AddModifyConstraintListener {
 
@@ -59,8 +59,8 @@ public class KleisliAddModifyQueryListener extends AddModifyConstraintListener {
 
 			CommandResult result = super.doExecuteWithResult(monitor, info);
 			if (result.getStatus().getSeverity() == IStatus.OK) {
-				if (!element.getConstraint().getLanguage().equals(KleisliReasoningEngine.LANGUAGE_ID)) {
-					MMINTException.print(IStatus.ERROR, "The query language is not " + KleisliReasoningEngine.LANGUAGE_ID, null);
+				if (!element.getConstraint().getLanguage().equals(KleisliReasoner.LANGUAGE_ID)) {
+					MMINTException.print(IStatus.ERROR, "The query language is not " + KleisliReasoner.LANGUAGE_ID, null);
 					result = CommandResult.newErrorCommandResult("No kleisli query added");
 				}
 			}

@@ -25,12 +25,11 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
-import edu.toronto.cs.se.mmint.mid.reasoning.IReasoningEngine;
 import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.ocl.reasoning.OCLReasoner;
 
-public class KleisliReasoningEngine implements IReasoningEngine {
+public class KleisliReasoner {
 
 	public static final String KLEISLI_MODELTYPE_URI_SUFFIX = "_Kleisli";
 	public static final String LANGUAGE_ID = "kleisli";
@@ -47,10 +46,10 @@ public class KleisliReasoningEngine implements IReasoningEngine {
 
 	public void evaluateEClassQuery(String kQuery, OCLReasoner oclReasoner, EObject kRootModelObj, EClass kModelElemTypeClass, EFactory kModelTypeFactory, Map<String, Map<EObject, EObject>> queryUnion) {
 
-		for (String kQueryRow : kQuery.split(KleisliReasoningEngine.ROW_SEPARATOR)) {
-			var kQueryAssignment = kQueryRow.split(KleisliReasoningEngine.UNION_ASSIGNMENT);
+		for (String kQueryRow : kQuery.split(KleisliReasoner.ROW_SEPARATOR)) {
+			var kQueryAssignment = kQueryRow.split(KleisliReasoner.UNION_ASSIGNMENT);
 			var oclQuery = kQueryAssignment[1].trim();
-			var unionName = kQueryAssignment[0].substring(kQueryAssignment[0].indexOf(KleisliReasoningEngine.UNION_KEYWORD)+KleisliReasoningEngine.UNION_KEYWORD.length(), kQueryAssignment[0].length()).trim();
+			var unionName = kQueryAssignment[0].substring(kQueryAssignment[0].indexOf(KleisliReasoner.UNION_KEYWORD)+KleisliReasoner.UNION_KEYWORD.length(), kQueryAssignment[0].length()).trim();
 			Map<EObject, EObject> queryRow = new LinkedHashMap<>();
 			queryUnion.put(unionName, queryRow);
 			Object queryObjs = oclReasoner.evaluateQuery(oclQuery, kRootModelObj);
@@ -76,21 +75,21 @@ public class KleisliReasoningEngine implements IReasoningEngine {
 
 		//TODO MMINT[KLEISLI] what happens when the source or target of the derived ereference is not derived (it's not in queryMap)
 		//TODO MMINT[KLEISLI] what happens when ereference is not derived but the target is? (source can't be)
-		var kQueryRows = kQuery.split(KleisliReasoningEngine.ROW_SEPARATOR);
+		var kQueryRows = kQuery.split(KleisliReasoner.ROW_SEPARATOR);
 		var i = 0;
 		for (Map<EObject, EObject> queryRow : queryUnion.values()) {
-			var oclQuery = kQueryRows[i].replace(KleisliReasoningEngine.ORIGIN_KEYWORD, KleisliReasoningEngine.OCL_SELF);
+			var oclQuery = kQueryRows[i].replace(KleisliReasoner.ORIGIN_KEYWORD, KleisliReasoner.OCL_SELF);
 			String mapIndex = null, unionIndex = null;
-			if (oclQuery.equals(KleisliReasoningEngine.QUERY_NULL)) {
+			if (oclQuery.equals(KleisliReasoner.QUERY_NULL)) {
 				continue;
 			}
-			if (oclQuery.startsWith(KleisliReasoningEngine.QUERY_MAP_VARIABLE)) {
-				var s1 = oclQuery.indexOf(KleisliReasoningEngine.QUERY_MAP_VARIABLE_SEPARATOR1);
-				var s2 = oclQuery.indexOf(KleisliReasoningEngine.QUERY_MAP_VARIABLE_SEPARATOR2, s1 + KleisliReasoningEngine.QUERY_MAP_VARIABLE_SEPARATOR1.length());
-				var s3 = oclQuery.lastIndexOf(KleisliReasoningEngine.QUERY_MAP_VARIABLE_SEPARATOR3);
+			if (oclQuery.startsWith(KleisliReasoner.QUERY_MAP_VARIABLE)) {
+				var s1 = oclQuery.indexOf(KleisliReasoner.QUERY_MAP_VARIABLE_SEPARATOR1);
+				var s2 = oclQuery.indexOf(KleisliReasoner.QUERY_MAP_VARIABLE_SEPARATOR2, s1 + KleisliReasoner.QUERY_MAP_VARIABLE_SEPARATOR1.length());
+				var s3 = oclQuery.lastIndexOf(KleisliReasoner.QUERY_MAP_VARIABLE_SEPARATOR3);
 				mapIndex = oclQuery.substring(0, s1);
-				unionIndex = oclQuery.substring(s1 + KleisliReasoningEngine.QUERY_MAP_VARIABLE_SEPARATOR1.length(), s2);
-				oclQuery = oclQuery.substring(s2 + KleisliReasoningEngine.QUERY_MAP_VARIABLE_SEPARATOR2.length(), s3);
+				unionIndex = oclQuery.substring(s1 + KleisliReasoner.QUERY_MAP_VARIABLE_SEPARATOR1.length(), s2);
+				oclQuery = oclQuery.substring(s2 + KleisliReasoner.QUERY_MAP_VARIABLE_SEPARATOR2.length(), s3);
 			}
 			for (Entry<EObject, EObject> queryRowEntry : queryRow.entrySet()) {
 				EObject modelObj = queryRowEntry.getKey(), kModelObj = queryRowEntry.getValue();

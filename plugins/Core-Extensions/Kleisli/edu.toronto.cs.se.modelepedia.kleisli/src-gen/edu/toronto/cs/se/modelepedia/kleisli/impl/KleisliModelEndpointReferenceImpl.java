@@ -23,7 +23,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.impl.ModelEndpointReferenceImpl;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpointReference;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliPackage;
-import edu.toronto.cs.se.modelepedia.kleisli.reasoning.KleisliReasoningEngine;
+import edu.toronto.cs.se.modelepedia.kleisli.reasoning.KleisliReasoner;
 
 /**
  * <!-- begin-user-doc -->
@@ -116,7 +116,7 @@ public class KleisliModelEndpointReferenceImpl extends ModelEndpointReferenceImp
 		MMINTException.mustBeType(this);
 
 		MID typeMID = this.getMIDContainer();
-		String modelTypeUri = MIDRegistry.getModelUri(metamodelObj).replace(KleisliReasoningEngine.KLEISLI_MODELTYPE_URI_SUFFIX, ""); // remove uri suffix
+		String modelTypeUri = MIDRegistry.getModelUri(metamodelObj).replace(KleisliReasoner.KLEISLI_MODELTYPE_URI_SUFFIX, ""); // remove uri suffix
 		String modelElemTypeUri = MIDRegistry.getModelElementUri(metamodelObj);
 		if (
 			!modelTypeUri.equals(getTargetUri()) && // different model type
