@@ -104,7 +104,7 @@ public class MAVODiagramOutlineContextHighlightListener extends MIDContextMenuLi
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
       try {
-        var reasoner = MIDDialogs.selectReasoner(IMAVOTrait.class, "mavo highlighting");
+        var reasoner = MIDDialogs.selectReasoner(IMAVOTrait.class, "MAVO highlighting");
         Diagram modelDiagram = MIDRegistry.getModelDiagram(MAVODiagramOutlineContextHighlightListener.this.model);
         if (MAVODiagramOutlineContextHighlightListener.this.mavoElemToHighlight instanceof MAVODecision) {
           reasoner.highlightMAVODecision(modelDiagram, (MAVODecision) MAVODiagramOutlineContextHighlightListener.this.mavoElemToHighlight);

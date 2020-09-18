@@ -18,8 +18,8 @@ import java.util.Properties;
 
 import org.eclipse.core.runtime.IStatus;
 
+import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.mavo.constraint.MAVOMIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
@@ -102,16 +102,12 @@ public class REJ15 extends FASE14 {
 
 		var startTime = System.nanoTime();
 
-		Z3Reasoner z3Reasoner;
-		try {
-			z3Reasoner = (Z3Reasoner) MAVOMIDConstraintChecker.getMAVOReasoner("smt");
-			this.numSolutions = z3Reasoner.allSATWithSolver(z3IncSolver, this.z3ModelParser, z3Model, new HashSet<>(this.mavoModelObjs.values()), this.istar).size();
+		var z3Reasoner = (Z3Reasoner) MMINT.getReasoner("Z3");
+		if (z3Reasoner == null) {
+      MMINTException.print(IStatus.WARNING, "Skipping allSAT", null);
+      return;
 		}
-		catch (MMINTException e) {
-			MMINTException.print(IStatus.WARNING, "Skipping allSAT", e);
-			return;
-		}
-
+    this.numSolutions = z3Reasoner.allSATWithSolver(z3IncSolver, this.z3ModelParser, z3Model, new HashSet<>(this.mavoModelObjs.values()), this.istar).size();
 		this.timeAllSAT = System.nanoTime() - startTime;
 	}
 

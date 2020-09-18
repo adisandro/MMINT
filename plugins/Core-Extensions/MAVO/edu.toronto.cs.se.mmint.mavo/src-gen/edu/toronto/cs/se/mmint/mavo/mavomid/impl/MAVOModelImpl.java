@@ -5,24 +5,11 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.mmint.mavo.mavomid.impl;
-
-import edu.toronto.cs.se.mavo.MAVODecision;
-import edu.toronto.cs.se.mavo.MAVOPackage;
-import edu.toronto.cs.se.mavo.MAVORoot;
-import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.mavo.constraint.MAVOMIDConstraintChecker;
-import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
-import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOMIDPackage;
-import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModel;
-import edu.toronto.cs.se.mmint.mavo.reasoning.IMAVOTrait.MAVOTruthValue;
-import edu.toronto.cs.se.mmint.mid.MID;
-import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.impl.ModelImpl;
 
 import java.io.IOException;
 import java.util.Collection;
@@ -39,6 +26,21 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.emf.validation.model.ConstraintStatus;
+
+import edu.toronto.cs.se.mavo.MAVODecision;
+import edu.toronto.cs.se.mavo.MAVOPackage;
+import edu.toronto.cs.se.mavo.MAVORoot;
+import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
+import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOMIDPackage;
+import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModel;
+import edu.toronto.cs.se.mmint.mavo.reasoning.IMAVOTrait;
+import edu.toronto.cs.se.mmint.mavo.reasoning.IMAVOTrait.MAVOTruthValue;
+import edu.toronto.cs.se.mmint.mid.MID;
+import edu.toronto.cs.se.mmint.mid.MIDLevel;
+import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.impl.ModelImpl;
+import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
 
 /**
  * <!-- begin-user-doc -->
@@ -72,7 +74,7 @@ public class MAVOModelImpl extends ModelImpl implements MAVOModel {
    * @generated
    * @ordered
    */
-	protected boolean inc = INC_EDEFAULT;
+	protected boolean inc = MAVOModelImpl.INC_EDEFAULT;
 	/**
    * The cached value of the '{@link #getDecisions() <em>Decisions</em>}' containment reference list.
    * <!-- begin-user-doc -->
@@ -108,7 +110,7 @@ public class MAVOModelImpl extends ModelImpl implements MAVOModel {
    */
 	@Override
   public boolean isInc() {
-    return inc;
+    return this.inc;
   }
 
 	/**
@@ -118,10 +120,10 @@ public class MAVOModelImpl extends ModelImpl implements MAVOModel {
    */
 	@Override
   public void setInc(boolean newInc) {
-    boolean oldInc = inc;
-    inc = newInc;
+    var oldInc = this.inc;
+    this.inc = newInc;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MAVOMIDPackage.MAVO_MODEL__INC, oldInc, inc));
+      eNotify(new ENotificationImpl(this, Notification.SET, MAVOMIDPackage.MAVO_MODEL__INC, oldInc, this.inc));
   }
 
 	/**
@@ -131,10 +133,10 @@ public class MAVOModelImpl extends ModelImpl implements MAVOModel {
    */
 	@Override
   public EList<MAVODecision> getDecisions() {
-    if (decisions == null) {
-      decisions = new EObjectContainmentEList<MAVODecision>(MAVODecision.class, this, MAVOMIDPackage.MAVO_MODEL__DECISIONS);
+    if (this.decisions == null) {
+      this.decisions = new EObjectContainmentEList<>(MAVODecision.class, this, MAVOMIDPackage.MAVO_MODEL__DECISIONS);
     }
-    return decisions;
+    return this.decisions;
   }
 
 	/**
@@ -196,7 +198,7 @@ public class MAVOModelImpl extends ModelImpl implements MAVOModel {
 	public void eUnset(int featureID) {
     switch (featureID) {
       case MAVOMIDPackage.MAVO_MODEL__INC:
-        setInc(INC_EDEFAULT);
+        setInc(MAVOModelImpl.INC_EDEFAULT);
         return;
       case MAVOMIDPackage.MAVO_MODEL__DECISIONS:
         getDecisions().clear();
@@ -214,9 +216,9 @@ public class MAVOModelImpl extends ModelImpl implements MAVOModel {
 	public boolean eIsSet(int featureID) {
     switch (featureID) {
       case MAVOMIDPackage.MAVO_MODEL__INC:
-        return inc != INC_EDEFAULT;
+        return this.inc != MAVOModelImpl.INC_EDEFAULT;
       case MAVOMIDPackage.MAVO_MODEL__DECISIONS:
-        return decisions != null && !decisions.isEmpty();
+        return this.decisions != null && !this.decisions.isEmpty();
     }
     return super.eIsSet(featureID);
   }
@@ -266,7 +268,7 @@ public class MAVOModelImpl extends ModelImpl implements MAVOModel {
 
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (inc: ");
-    result.append(inc);
+    result.append(this.inc);
     result.append(')');
     return result.toString();
   }
@@ -277,7 +279,7 @@ public class MAVOModelImpl extends ModelImpl implements MAVOModel {
 	@Override
 	public Model createInstance(EObject rootModelObj, String newModelPath, MID instanceMID) throws MMINTException, IOException {
 
-		MAVOModel newMAVOModel = (MAVOModel) super.createInstance(rootModelObj, newModelPath, instanceMID);
+		var newMAVOModel = (MAVOModel) super.createInstance(rootModelObj, newModelPath, instanceMID);
 		if (rootModelObj != null) {
 			MAVOUtils.initializeMAVOModel(rootModelObj, newMAVOModel);
 		}
@@ -288,9 +290,10 @@ public class MAVOModelImpl extends ModelImpl implements MAVOModel {
 	/**
 	 * @generated NOT
 	 */
-	public Model importInstance(String modelPath, MID instanceMID) throws MMINTException {
+	@Override
+  public Model importInstance(String modelPath, MID instanceMID) throws MMINTException {
 
-		MAVOModel newMAVOModel = (MAVOModel) super.importInstance(modelPath, instanceMID);
+		var newMAVOModel = (MAVOModel) super.importInstance(modelPath, instanceMID);
 		MAVOUtils.initializeMAVOModel(newMAVOModel.getEMFInstanceRoot(), newMAVOModel);
 
 		return newMAVOModel;
@@ -305,13 +308,17 @@ public class MAVOModelImpl extends ModelImpl implements MAVOModel {
 		MMINTException.mustBeInstance(this);
 
 		//TODO MMINT[MAVO] Extend this to the type level
-		MAVOTruthValue validates = MAVOMIDConstraintChecker.checkMAVOModelConstraint(this, this.getConstraint());
+		var constraint = getConstraint();
+		var reasoner = MIDConstraintChecker.getReasoner(constraint, IMAVOTrait.class, "MAVO model checking");
+		var validates = reasoner
+		  .map(r -> r.checkMAVOModelConstraint(this, constraint, MIDLevel.INSTANCES))
+		  .orElse(MAVOTruthValue.TRUE);
 		IStatus status;
 		if (validates == MAVOTruthValue.TRUE) {
 			status = context.createSuccessStatus();
 		}
 		else {
-			ConstraintStatus failureStatus = (ConstraintStatus) context.createFailureStatus(
+			var failureStatus = (ConstraintStatus) context.createFailureStatus(
 				"",
 				this.getName(),
 				this.getMetatype().getName());
@@ -330,7 +337,8 @@ public class MAVOModelImpl extends ModelImpl implements MAVOModel {
 	/**
 	 * @generated NOT
 	 */
-	public String toMIDCustomPrintLabel() {
+	@Override
+  public String toMIDCustomPrintLabel() {
 
 		return MAVOUtils.getMAVORootLabel(this, true);
 	}
@@ -338,7 +346,8 @@ public class MAVOModelImpl extends ModelImpl implements MAVOModel {
 	/**
 	 * @generated NOT
 	 */
-	public String toMIDCustomEditLabel() {
+	@Override
+  public String toMIDCustomEditLabel() {
 
 		return MAVOUtils.getMAVORootLabel(this, false);
 	}
@@ -346,7 +355,8 @@ public class MAVOModelImpl extends ModelImpl implements MAVOModel {
 	/**
 	 * @generated NOT
 	 */
-	public void updateMIDCustomLabel(String newLabel) {
+	@Override
+  public void updateMIDCustomLabel(String newLabel) {
 
 		MAVOUtils.setMAVORootLabel(this, newLabel);
 	}

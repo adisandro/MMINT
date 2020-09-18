@@ -22,7 +22,7 @@ import org.junit.Test;
 
 import edu.toronto.cs.se.mavo.MAVORoot;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
-import edu.toronto.cs.se.mmint.mavo.constraint.MAVOMIDConstraintChecker;
+import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
@@ -46,7 +46,7 @@ public class Z3Test extends MMINTTest {
 		var testBundle = Platform.getBundle(MMINTTest.TESTS_BUNDLE_NAME);
 		MID instanceMID = createInstanceMID();
 		Model model = addInputModel(instanceMID, testBundle, "model/z3", "ecore.classdiagram_mavo");
-		var z3Reasoner = (Z3Reasoner) MAVOMIDConstraintChecker.getMAVOReasoner("smt");
+    var z3Reasoner = (Z3Reasoner) MMINT.getReasoner("Z3");
 		var ecore2smt = (EcoreMAVOToSMTLIB) MIDTypeRegistry.<Operator>getType(Z3Reasoner.ECOREMAVOTOSMTLIB_OPERATOR_URI);
 		EList<Model> inputModels = new BasicEList<>();
 		inputModels.add(model);
