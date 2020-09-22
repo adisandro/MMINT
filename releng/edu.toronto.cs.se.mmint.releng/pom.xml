@@ -149,6 +149,7 @@
   	<module>../../plugins/Core-Extensions/MAVO/edu.toronto.cs.se.mmint.mavo.edit</module>
   	<module>../../plugins/Core-Extensions/MAVO/edu.toronto.cs.se.modelepedia.mavo.operator</module>
   	<module>../../plugins/Core-Extensions/MAVO/edu.toronto.cs.se.modelepedia.mavo.uml</module>
+    <module>../../plugins/External/Lean/edu.toronto.cs.se.mmint.lean</module>
   	<module>../../plugins/External/Z3/edu.toronto.cs.se.modelepedia.z3</module>
   	<module>../../plugins/External/Z3/edu.toronto.cs.se.modelepedia.z3.operator</module>
   	<module>../../plugins/Types/ClassDiagram/edu.toronto.cs.se.modelepedia.classdiagram</module>
