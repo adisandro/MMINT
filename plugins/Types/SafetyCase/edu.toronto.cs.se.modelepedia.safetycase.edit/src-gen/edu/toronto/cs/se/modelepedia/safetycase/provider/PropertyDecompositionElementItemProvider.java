@@ -12,9 +12,8 @@
 package edu.toronto.cs.se.modelepedia.safetycase.provider;
 
 
-import edu.toronto.cs.se.modelepedia.safetycase.DomainGoal;
-import edu.toronto.cs.se.modelepedia.safetycase.GSNFactory;
 import edu.toronto.cs.se.modelepedia.safetycase.GSNPackage;
+import edu.toronto.cs.se.modelepedia.safetycase.PropertyDecompositionElement;
 
 import java.util.Collection;
 import java.util.List;
@@ -22,26 +21,40 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
-import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
+import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
+import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.IItemPropertySource;
+import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
+import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.DomainGoal} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.PropertyDecompositionElement} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class DomainGoalItemProvider extends GoalItemProvider {
+public class PropertyDecompositionElementItemProvider 
+  extends ItemProviderAdapter
+  implements
+    IEditingDomainItemProvider,
+    IStructuredItemContentProvider,
+    ITreeItemContentProvider,
+    IItemLabelProvider,
+    IItemPropertySource {
   /**
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  public DomainGoalItemProvider(AdapterFactory adapterFactory) {
+  public PropertyDecompositionElementItemProvider(AdapterFactory adapterFactory) {
     super(adapterFactory);
   }
 
@@ -56,49 +69,42 @@ public class DomainGoalItemProvider extends GoalItemProvider {
     if (itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
+      addPropertyPropertyDescriptor(object);
     }
     return itemPropertyDescriptors;
   }
 
   /**
-   * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-   * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-   * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+   * This adds a property descriptor for the Property feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
-  public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-    if (childrenFeatures == null) {
-      super.getChildrenFeatures(object);
-      childrenFeatures.add(GSNPackage.Literals.DOMAIN_DECOMPOSITION_ELEMENT__DOMAIN);
-    }
-    return childrenFeatures;
+  protected void addPropertyPropertyDescriptor(Object object) {
+    itemPropertyDescriptors.add
+      (createItemPropertyDescriptor
+        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+         getResourceLocator(),
+         getString("_UI_PropertyDecompositionElement_property_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_PropertyDecompositionElement_property_feature", "_UI_PropertyDecompositionElement_type"),
+         GSNPackage.Literals.PROPERTY_DECOMPOSITION_ELEMENT__PROPERTY,
+         true,
+         false,
+         false,
+         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+         null,
+         null));
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  protected EStructuralFeature getChildFeature(Object object, Object child) {
-    // Check the type of the specified child object and return the proper feature to use for
-    // adding (see {@link AddCommand}) it as a child.
-
-    return super.getChildFeature(object, child);
-  }
-
-  /**
-   * This returns DomainGoal.gif.
+   * This returns PropertyDecompositionElement.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
   @Override
   public Object getImage(Object object) {
-    return overlayImage(object, getResourceLocator().getImage("full/obj16/DomainGoal"));
+    return overlayImage(object, getResourceLocator().getImage("full/obj16/PropertyDecompositionElement"));
   }
 
   /**
@@ -109,10 +115,10 @@ public class DomainGoalItemProvider extends GoalItemProvider {
    */
   @Override
   public String getText(Object object) {
-    String label = ((DomainGoal)object).getId();
+    String label = ((PropertyDecompositionElement)object).getProperty();
     return label == null || label.length() == 0 ?
-      getString("_UI_DomainGoal_type") :
-      getString("_UI_DomainGoal_type") + " " + label;
+      getString("_UI_PropertyDecompositionElement_type") :
+      getString("_UI_PropertyDecompositionElement_type") + " " + label;
   }
 
 
@@ -127,9 +133,9 @@ public class DomainGoalItemProvider extends GoalItemProvider {
   public void notifyChanged(Notification notification) {
     updateChildren(notification);
 
-    switch (notification.getFeatureID(DomainGoal.class)) {
-      case GSNPackage.DOMAIN_GOAL__DOMAIN:
-        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+    switch (notification.getFeatureID(PropertyDecompositionElement.class)) {
+      case GSNPackage.PROPERTY_DECOMPOSITION_ELEMENT__PROPERTY:
+        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
         return;
     }
     super.notifyChanged(notification);
@@ -145,26 +151,17 @@ public class DomainGoalItemProvider extends GoalItemProvider {
   @Override
   protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
     super.collectNewChildDescriptors(newChildDescriptors, object);
+  }
 
-    newChildDescriptors.add
-      (createChildParameter
-        (GSNPackage.Literals.DOMAIN_DECOMPOSITION_ELEMENT__DOMAIN,
-         GSNFactory.eINSTANCE.createIntDomain()));
-
-    newChildDescriptors.add
-      (createChildParameter
-        (GSNPackage.Literals.DOMAIN_DECOMPOSITION_ELEMENT__DOMAIN,
-         GSNFactory.eINSTANCE.createRealDomain()));
-
-    newChildDescriptors.add
-      (createChildParameter
-        (GSNPackage.Literals.DOMAIN_DECOMPOSITION_ELEMENT__DOMAIN,
-         GSNFactory.eINSTANCE.createEnumDomain()));
-
-    newChildDescriptors.add
-      (createChildParameter
-        (GSNPackage.Literals.DOMAIN_DECOMPOSITION_ELEMENT__DOMAIN,
-         GSNFactory.eINSTANCE.createValueDomain()));
+  /**
+   * Return the resource locator for this item provider's resources.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public ResourceLocator getResourceLocator() {
+    return GSNEditPlugin.INSTANCE;
   }
 
 }

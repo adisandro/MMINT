@@ -5,7 +5,7 @@
     editorDirectory="/edu.toronto.cs.se.modelepedia.safetycase.editor/src-gen" modelPluginID="edu.toronto.cs.se.modelepedia.safetycase"
     modelName="GSN" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     testsDirectory="/edu.toronto.cs.se.modelepedia.safetycase.tests/src-gen" importerID="org.eclipse.emf.importer.ecore"
-    complianceLevel="14.0" copyrightFields="false" editPluginID="edu.toronto.cs.se.modelepedia.safetycase.edit"
+    complianceLevel="15.0" copyrightFields="false" editPluginID="edu.toronto.cs.se.modelepedia.safetycase.edit"
     editorPluginID="edu.toronto.cs.se.modelepedia.safetycase.editor" language="" operationReflection="true">
   <foreignModel>safetycase.ecore</foreignModel>
   <genPackages prefix="GSN" basePackage="edu.toronto.cs.se.modelepedia" disposableProviderFactory="true"
@@ -97,6 +97,9 @@
     <genClasses ecoreClass="safetycase.ecore#//MofNSupporter">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute safetycase.ecore#//MofNSupporter/target"/>
     </genClasses>
+    <genClasses image="false" ecoreClass="safetycase.ecore#//DecompositionStrategy">
+      <genOperations ecoreOperation="safetycase.ecore#//DecompositionStrategy/validate"/>
+    </genClasses>
     <genClasses image="false" ecoreClass="safetycase.ecore#//Domain">
       <genOperations ecoreOperation="safetycase.ecore#//Domain/validateDecomposition">
         <genParameters ecoreParameter="safetycase.ecore#//Domain/validateDecomposition/subDomains"/>
@@ -116,12 +119,15 @@
     <genClasses ecoreClass="safetycase.ecore#//ValueDomain">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute safetycase.ecore#//ValueDomain/value"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="safetycase.ecore#//DomainElement">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference safetycase.ecore#//DomainElement/domain"/>
+    <genClasses image="false" ecoreClass="safetycase.ecore#//DomainDecompositionElement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference safetycase.ecore#//DomainDecompositionElement/domain"/>
     </genClasses>
-    <genClasses ecoreClass="safetycase.ecore#//DomainStrategy">
-      <genOperations ecoreOperation="safetycase.ecore#//DomainStrategy/validateDecomposition"/>
-    </genClasses>
+    <genClasses ecoreClass="safetycase.ecore#//DomainDecompositionStrategy"/>
     <genClasses ecoreClass="safetycase.ecore#//DomainGoal"/>
+    <genClasses ecoreClass="safetycase.ecore#//PropertyDecompositionElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute safetycase.ecore#//PropertyDecompositionElement/property"/>
+    </genClasses>
+    <genClasses ecoreClass="safetycase.ecore#//PropertyDecompositionStrategy"/>
+    <genClasses ecoreClass="safetycase.ecore#//PropertyGoal"/>
   </genPackages>
 </genmodel:GenModel>

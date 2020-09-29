@@ -12,7 +12,7 @@
 package edu.toronto.cs.se.modelepedia.safetycase.impl;
 
 import edu.toronto.cs.se.modelepedia.safetycase.Domain;
-import edu.toronto.cs.se.modelepedia.safetycase.DomainElement;
+import edu.toronto.cs.se.modelepedia.safetycase.DomainDecompositionElement;
 import edu.toronto.cs.se.modelepedia.safetycase.GSNPackage;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -32,12 +32,12 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.DomainElementImpl#getDomain <em>Domain</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.DomainDecompositionElementImpl#getDomain <em>Domain</em>}</li>
  * </ul>
  *
  * @generated
  */
-public abstract class DomainElementImpl extends MinimalEObjectImpl.Container implements DomainElement {
+public abstract class DomainDecompositionElementImpl extends MinimalEObjectImpl.Container implements DomainDecompositionElement {
   /**
    * The cached value of the '{@link #getDomain() <em>Domain</em>}' containment reference.
    * <!-- begin-user-doc -->
@@ -53,7 +53,7 @@ public abstract class DomainElementImpl extends MinimalEObjectImpl.Container imp
    * <!-- end-user-doc -->
    * @generated
    */
-  protected DomainElementImpl() {
+  protected DomainDecompositionElementImpl() {
     super();
   }
 
@@ -64,7 +64,7 @@ public abstract class DomainElementImpl extends MinimalEObjectImpl.Container imp
    */
   @Override
   protected EClass eStaticClass() {
-    return GSNPackage.Literals.DOMAIN_ELEMENT;
+    return GSNPackage.Literals.DOMAIN_DECOMPOSITION_ELEMENT;
   }
 
   /**
@@ -86,7 +86,7 @@ public abstract class DomainElementImpl extends MinimalEObjectImpl.Container imp
     Domain oldDomain = domain;
     domain = newDomain;
     if (eNotificationRequired()) {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GSNPackage.DOMAIN_ELEMENT__DOMAIN, oldDomain, newDomain);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GSNPackage.DOMAIN_DECOMPOSITION_ELEMENT__DOMAIN, oldDomain, newDomain);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -102,14 +102,14 @@ public abstract class DomainElementImpl extends MinimalEObjectImpl.Container imp
     if (newDomain != domain) {
       NotificationChain msgs = null;
       if (domain != null)
-        msgs = ((InternalEObject)domain).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GSNPackage.DOMAIN_ELEMENT__DOMAIN, null, msgs);
+        msgs = ((InternalEObject)domain).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GSNPackage.DOMAIN_DECOMPOSITION_ELEMENT__DOMAIN, null, msgs);
       if (newDomain != null)
-        msgs = ((InternalEObject)newDomain).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GSNPackage.DOMAIN_ELEMENT__DOMAIN, null, msgs);
+        msgs = ((InternalEObject)newDomain).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GSNPackage.DOMAIN_DECOMPOSITION_ELEMENT__DOMAIN, null, msgs);
       msgs = basicSetDomain(newDomain, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.DOMAIN_ELEMENT__DOMAIN, newDomain, newDomain));
+      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.DOMAIN_DECOMPOSITION_ELEMENT__DOMAIN, newDomain, newDomain));
   }
 
   /**
@@ -120,7 +120,7 @@ public abstract class DomainElementImpl extends MinimalEObjectImpl.Container imp
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
-      case GSNPackage.DOMAIN_ELEMENT__DOMAIN:
+      case GSNPackage.DOMAIN_DECOMPOSITION_ELEMENT__DOMAIN:
         return basicSetDomain(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -134,7 +134,7 @@ public abstract class DomainElementImpl extends MinimalEObjectImpl.Container imp
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
-      case GSNPackage.DOMAIN_ELEMENT__DOMAIN:
+      case GSNPackage.DOMAIN_DECOMPOSITION_ELEMENT__DOMAIN:
         return getDomain();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -148,7 +148,7 @@ public abstract class DomainElementImpl extends MinimalEObjectImpl.Container imp
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
-      case GSNPackage.DOMAIN_ELEMENT__DOMAIN:
+      case GSNPackage.DOMAIN_DECOMPOSITION_ELEMENT__DOMAIN:
         setDomain((Domain)newValue);
         return;
     }
@@ -163,7 +163,7 @@ public abstract class DomainElementImpl extends MinimalEObjectImpl.Container imp
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
-      case GSNPackage.DOMAIN_ELEMENT__DOMAIN:
+      case GSNPackage.DOMAIN_DECOMPOSITION_ELEMENT__DOMAIN:
         setDomain((Domain)null);
         return;
     }
@@ -178,7 +178,7 @@ public abstract class DomainElementImpl extends MinimalEObjectImpl.Container imp
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
-      case GSNPackage.DOMAIN_ELEMENT__DOMAIN:
+      case GSNPackage.DOMAIN_DECOMPOSITION_ELEMENT__DOMAIN:
         return domain != null;
     }
     return super.eIsSet(featureID);

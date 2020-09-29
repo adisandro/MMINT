@@ -60,7 +60,7 @@ public class RealDomainImpl extends DomainImpl implements RealDomain {
    * @generated
    * @ordered
    */
-  protected double lowerBound = RealDomainImpl.LOWER_BOUND_EDEFAULT;
+  protected double lowerBound = LOWER_BOUND_EDEFAULT;
 
   /**
    * The default value of the '{@link #getUpperBound() <em>Upper Bound</em>}' attribute.
@@ -80,7 +80,7 @@ public class RealDomainImpl extends DomainImpl implements RealDomain {
    * @generated
    * @ordered
    */
-  protected double upperBound = RealDomainImpl.UPPER_BOUND_EDEFAULT;
+  protected double upperBound = UPPER_BOUND_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -108,7 +108,7 @@ public class RealDomainImpl extends DomainImpl implements RealDomain {
    */
   @Override
   public double getLowerBound() {
-    return this.lowerBound;
+    return lowerBound;
   }
 
   /**
@@ -118,10 +118,10 @@ public class RealDomainImpl extends DomainImpl implements RealDomain {
    */
   @Override
   public void setLowerBound(double newLowerBound) {
-    var oldLowerBound = this.lowerBound;
-    this.lowerBound = newLowerBound;
+    double oldLowerBound = lowerBound;
+    lowerBound = newLowerBound;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.REAL_DOMAIN__LOWER_BOUND, oldLowerBound, this.lowerBound));
+      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.REAL_DOMAIN__LOWER_BOUND, oldLowerBound, lowerBound));
   }
 
   /**
@@ -131,7 +131,7 @@ public class RealDomainImpl extends DomainImpl implements RealDomain {
    */
   @Override
   public double getUpperBound() {
-    return this.upperBound;
+    return upperBound;
   }
 
   /**
@@ -141,10 +141,10 @@ public class RealDomainImpl extends DomainImpl implements RealDomain {
    */
   @Override
   public void setUpperBound(double newUpperBound) {
-    var oldUpperBound = this.upperBound;
-    this.upperBound = newUpperBound;
+    double oldUpperBound = upperBound;
+    upperBound = newUpperBound;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.REAL_DOMAIN__UPPER_BOUND, oldUpperBound, this.upperBound));
+      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.REAL_DOMAIN__UPPER_BOUND, oldUpperBound, upperBound));
   }
 
   /**
@@ -190,10 +190,10 @@ public class RealDomainImpl extends DomainImpl implements RealDomain {
   public void eUnset(int featureID) {
     switch (featureID) {
       case GSNPackage.REAL_DOMAIN__LOWER_BOUND:
-        setLowerBound(RealDomainImpl.LOWER_BOUND_EDEFAULT);
+        setLowerBound(LOWER_BOUND_EDEFAULT);
         return;
       case GSNPackage.REAL_DOMAIN__UPPER_BOUND:
-        setUpperBound(RealDomainImpl.UPPER_BOUND_EDEFAULT);
+        setUpperBound(UPPER_BOUND_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -208,9 +208,9 @@ public class RealDomainImpl extends DomainImpl implements RealDomain {
   public boolean eIsSet(int featureID) {
     switch (featureID) {
       case GSNPackage.REAL_DOMAIN__LOWER_BOUND:
-        return this.lowerBound != RealDomainImpl.LOWER_BOUND_EDEFAULT;
+        return lowerBound != LOWER_BOUND_EDEFAULT;
       case GSNPackage.REAL_DOMAIN__UPPER_BOUND:
-        return this.upperBound != RealDomainImpl.UPPER_BOUND_EDEFAULT;
+        return upperBound != UPPER_BOUND_EDEFAULT;
     }
     return super.eIsSet(featureID);
   }
@@ -223,11 +223,11 @@ public class RealDomainImpl extends DomainImpl implements RealDomain {
   public String toStringGen() {
     if (eIsProxy()) return super.toString();
 
-    var result = new StringBuilder(super.toString());
+    StringBuilder result = new StringBuilder(super.toString());
     result.append(" (lowerBound: ");
-    result.append(this.lowerBound);
+    result.append(lowerBound);
     result.append(", upperBound: ");
-    result.append(this.upperBound);
+    result.append(upperBound);
     result.append(')');
     return result.toString();
   }

@@ -11,8 +11,6 @@
  */
 package edu.toronto.cs.se.modelepedia.safetycase;
 
-import edu.toronto.cs.se.mmint.MMINTException;
-
 
 /**
  * <!-- begin-user-doc -->
@@ -20,19 +18,9 @@ import edu.toronto.cs.se.mmint.MMINTException;
  * <!-- end-user-doc -->
  *
  *
- * @see edu.toronto.cs.se.modelepedia.safetycase.GSNPackage#getDomainStrategy()
+ * @see edu.toronto.cs.se.modelepedia.safetycase.GSNPackage#getDomainDecompositionStrategy()
  * @model
  * @generated
  */
-public interface DomainStrategy extends Strategy, DomainElement {
-
-  /**
-   * <!-- begin-user-doc --> Validates the correctness of the decomposition of this strategy's domain.
-   *
-   * @throws MMINTException
-   *           If the decomposition in not correct. <!-- end-user-doc -->
-   * @model exceptions="edu.toronto.cs.se.modelepedia.safetycase.MMINTException"
-   * @generated
-   */
-  void validateDecomposition() throws MMINTException;
+public interface DomainDecompositionStrategy extends DecompositionStrategy, DomainDecompositionElement {
 } // DomainStrategy

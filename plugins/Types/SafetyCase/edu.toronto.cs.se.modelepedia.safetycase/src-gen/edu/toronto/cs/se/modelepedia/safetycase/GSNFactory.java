@@ -85,6 +85,33 @@ public interface GSNFactory extends EFactory {
   DomainGoal createDomainGoal();
 
   /**
+   * Returns a new object of class '<em>Property Decomposition Element</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Property Decomposition Element</em>'.
+   * @generated
+   */
+  PropertyDecompositionElement createPropertyDecompositionElement();
+
+  /**
+   * Returns a new object of class '<em>Property Decomposition Strategy</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Property Decomposition Strategy</em>'.
+   * @generated
+   */
+  PropertyDecompositionStrategy createPropertyDecompositionStrategy();
+
+  /**
+   * Returns a new object of class '<em>Property Goal</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Property Goal</em>'.
+   * @generated
+   */
+  PropertyGoal createPropertyGoal();
+
+  /**
    * Returns a new object of class '<em>Basic Strategy</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -229,13 +256,13 @@ public interface GSNFactory extends EFactory {
   ValueDomain createValueDomain();
 
   /**
-   * Returns a new object of class '<em>Domain Strategy</em>'.
+   * Returns a new object of class '<em>Domain Decomposition Strategy</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Domain Strategy</em>'.
+   * @return a new object of class '<em>Domain Decomposition Strategy</em>'.
    * @generated
    */
-  DomainStrategy createDomainStrategy();
+  DomainDecompositionStrategy createDomainDecompositionStrategy();
 
   /**
    * Returns the package supported by this factory.

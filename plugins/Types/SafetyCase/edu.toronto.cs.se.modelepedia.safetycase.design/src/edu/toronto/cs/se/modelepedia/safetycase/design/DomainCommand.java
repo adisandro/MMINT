@@ -23,8 +23,8 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.modelepedia.safetycase.ArgumentElement;
 import edu.toronto.cs.se.modelepedia.safetycase.Domain;
+import edu.toronto.cs.se.modelepedia.safetycase.DomainDecompositionStrategy;
 import edu.toronto.cs.se.modelepedia.safetycase.DomainGoal;
-import edu.toronto.cs.se.modelepedia.safetycase.DomainStrategy;
 import edu.toronto.cs.se.modelepedia.safetycase.EnumDomain;
 import edu.toronto.cs.se.modelepedia.safetycase.GSNFactory;
 import edu.toronto.cs.se.modelepedia.safetycase.GSNPackage;
@@ -75,8 +75,8 @@ public abstract class DomainCommand extends RecordingCommand {
     return goal;
   }
 
-  protected DomainStrategy createDomainStrategy(String id, String description, Domain domain) {
-    var strategy = this.factory.createDomainStrategy();
+  protected DomainDecompositionStrategy createDomainStrategy(String id, String description, Domain domain) {
+    var strategy = this.factory.createDomainDecompositionStrategy();
     addArgumentElement(strategy, id, description);
     strategy.setDomain(domain);
     this.gsnElements.add(strategy);

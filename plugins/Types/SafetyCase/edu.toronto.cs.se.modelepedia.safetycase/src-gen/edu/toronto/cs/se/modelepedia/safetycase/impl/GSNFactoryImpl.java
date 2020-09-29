@@ -88,8 +88,11 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
       case GSNPackage.REAL_DOMAIN: return createRealDomain();
       case GSNPackage.ENUM_DOMAIN: return createEnumDomain();
       case GSNPackage.VALUE_DOMAIN: return createValueDomain();
-      case GSNPackage.DOMAIN_STRATEGY: return createDomainStrategy();
+      case GSNPackage.DOMAIN_DECOMPOSITION_STRATEGY: return createDomainDecompositionStrategy();
       case GSNPackage.DOMAIN_GOAL: return createDomainGoal();
+      case GSNPackage.PROPERTY_DECOMPOSITION_ELEMENT: return createPropertyDecompositionElement();
+      case GSNPackage.PROPERTY_DECOMPOSITION_STRATEGY: return createPropertyDecompositionStrategy();
+      case GSNPackage.PROPERTY_GOAL: return createPropertyGoal();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -201,6 +204,39 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
   public DomainGoal createDomainGoal() {
     DomainGoalImpl domainGoal = new DomainGoalImpl();
     return domainGoal;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public PropertyDecompositionElement createPropertyDecompositionElement() {
+    PropertyDecompositionElementImpl propertyDecompositionElement = new PropertyDecompositionElementImpl();
+    return propertyDecompositionElement;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public PropertyDecompositionStrategy createPropertyDecompositionStrategy() {
+    PropertyDecompositionStrategyImpl propertyDecompositionStrategy = new PropertyDecompositionStrategyImpl();
+    return propertyDecompositionStrategy;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public PropertyGoal createPropertyGoal() {
+    PropertyGoalImpl propertyGoal = new PropertyGoalImpl();
+    return propertyGoal;
   }
 
   /**
@@ -385,9 +421,9 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
    * @generated
    */
   @Override
-  public DomainStrategy createDomainStrategy() {
-    DomainStrategyImpl domainStrategy = new DomainStrategyImpl();
-    return domainStrategy;
+  public DomainDecompositionStrategy createDomainDecompositionStrategy() {
+    DomainDecompositionStrategyImpl domainDecompositionStrategy = new DomainDecompositionStrategyImpl();
+    return domainDecompositionStrategy;
   }
 
   /**

@@ -152,6 +152,8 @@ public class GSNValidator extends EObjectValidator {
         return validateXorSupporter((XorSupporter)value, diagnostics, context);
       case GSNPackage.MOF_NSUPPORTER:
         return validateMofNSupporter((MofNSupporter)value, diagnostics, context);
+      case GSNPackage.DECOMPOSITION_STRATEGY:
+        return validateDecompositionStrategy((DecompositionStrategy)value, diagnostics, context);
       case GSNPackage.DOMAIN:
         return validateDomain((Domain)value, diagnostics, context);
       case GSNPackage.INT_DOMAIN:
@@ -162,12 +164,18 @@ public class GSNValidator extends EObjectValidator {
         return validateEnumDomain((EnumDomain)value, diagnostics, context);
       case GSNPackage.VALUE_DOMAIN:
         return validateValueDomain((ValueDomain)value, diagnostics, context);
-      case GSNPackage.DOMAIN_ELEMENT:
-        return validateDomainElement((DomainElement)value, diagnostics, context);
-      case GSNPackage.DOMAIN_STRATEGY:
-        return validateDomainStrategy((DomainStrategy)value, diagnostics, context);
+      case GSNPackage.DOMAIN_DECOMPOSITION_ELEMENT:
+        return validateDomainDecompositionElement((DomainDecompositionElement)value, diagnostics, context);
+      case GSNPackage.DOMAIN_DECOMPOSITION_STRATEGY:
+        return validateDomainDecompositionStrategy((DomainDecompositionStrategy)value, diagnostics, context);
       case GSNPackage.DOMAIN_GOAL:
         return validateDomainGoal((DomainGoal)value, diagnostics, context);
+      case GSNPackage.PROPERTY_DECOMPOSITION_ELEMENT:
+        return validatePropertyDecompositionElement((PropertyDecompositionElement)value, diagnostics, context);
+      case GSNPackage.PROPERTY_DECOMPOSITION_STRATEGY:
+        return validatePropertyDecompositionStrategy((PropertyDecompositionStrategy)value, diagnostics, context);
+      case GSNPackage.PROPERTY_GOAL:
+        return validatePropertyGoal((PropertyGoal)value, diagnostics, context);
       case GSNPackage.ASIL_LEVEL:
         return validateASILLevel((ASILLevel)value, diagnostics, context);
       case GSNPackage.VALIDITY_VALUE:
@@ -577,6 +585,62 @@ public class GSNValidator extends EObjectValidator {
     if (result || diagnostics != null) result &= validateGoal_GoalSupporter(domainGoal, diagnostics, context);
     if (result || diagnostics != null) result &= validateGoal_GoalContext(domainGoal, diagnostics, context);
     if (result || diagnostics != null) result &= validateGoal_ASILInheritance(domainGoal, diagnostics, context);
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public boolean validatePropertyDecompositionElement(PropertyDecompositionElement propertyDecompositionElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    return validate_EveryDefaultConstraint(propertyDecompositionElement, diagnostics, context);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public boolean validatePropertyDecompositionStrategy(PropertyDecompositionStrategy propertyDecompositionStrategy, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    if (!validate_NoCircularContainment(propertyDecompositionStrategy, diagnostics, context)) return false;
+    boolean result = validate_EveryMultiplicityConforms(propertyDecompositionStrategy, diagnostics, context);
+    if (result || diagnostics != null) result &= validate_EveryDataValueConforms(propertyDecompositionStrategy, diagnostics, context);
+    if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(propertyDecompositionStrategy, diagnostics, context);
+    if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(propertyDecompositionStrategy, diagnostics, context);
+    if (result || diagnostics != null) result &= validate_EveryProxyResolves(propertyDecompositionStrategy, diagnostics, context);
+    if (result || diagnostics != null) result &= validate_UniqueID(propertyDecompositionStrategy, diagnostics, context);
+    if (result || diagnostics != null) result &= validate_EveryKeyUnique(propertyDecompositionStrategy, diagnostics, context);
+    if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(propertyDecompositionStrategy, diagnostics, context);
+    if (result || diagnostics != null) result &= validateSupporter_GoalRoot(propertyDecompositionStrategy, diagnostics, context);
+    if (result || diagnostics != null) result &= validateSupportable_SupportCycle(propertyDecompositionStrategy, diagnostics, context);
+    if (result || diagnostics != null) result &= validateSupportable_NonSupportableLeaves(propertyDecompositionStrategy, diagnostics, context);
+    if (result || diagnostics != null) result &= validateStrategy_StrategySupporter(propertyDecompositionStrategy, diagnostics, context);
+    if (result || diagnostics != null) result &= validateStrategy_StrategyContext(propertyDecompositionStrategy, diagnostics, context);
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public boolean validatePropertyGoal(PropertyGoal propertyGoal, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    if (!validate_NoCircularContainment(propertyGoal, diagnostics, context)) return false;
+    boolean result = validate_EveryMultiplicityConforms(propertyGoal, diagnostics, context);
+    if (result || diagnostics != null) result &= validate_EveryDataValueConforms(propertyGoal, diagnostics, context);
+    if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(propertyGoal, diagnostics, context);
+    if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(propertyGoal, diagnostics, context);
+    if (result || diagnostics != null) result &= validate_EveryProxyResolves(propertyGoal, diagnostics, context);
+    if (result || diagnostics != null) result &= validate_UniqueID(propertyGoal, diagnostics, context);
+    if (result || diagnostics != null) result &= validate_EveryKeyUnique(propertyGoal, diagnostics, context);
+    if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(propertyGoal, diagnostics, context);
+    if (result || diagnostics != null) result &= validateSupporter_GoalRoot(propertyGoal, diagnostics, context);
+    if (result || diagnostics != null) result &= validateSupportable_SupportCycle(propertyGoal, diagnostics, context);
+    if (result || diagnostics != null) result &= validateSupportable_NonSupportableLeaves(propertyGoal, diagnostics, context);
+    if (result || diagnostics != null) result &= validateGoal_GoalSupporter(propertyGoal, diagnostics, context);
+    if (result || diagnostics != null) result &= validateGoal_GoalContext(propertyGoal, diagnostics, context);
+    if (result || diagnostics != null) result &= validateGoal_ASILInheritance(propertyGoal, diagnostics, context);
     return result;
   }
 
@@ -1205,6 +1269,29 @@ public class GSNValidator extends EObjectValidator {
    * <!-- end-user-doc -->
    * @generated
    */
+  public boolean validateDecompositionStrategy(DecompositionStrategy decompositionStrategy, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    if (!validate_NoCircularContainment(decompositionStrategy, diagnostics, context)) return false;
+    boolean result = validate_EveryMultiplicityConforms(decompositionStrategy, diagnostics, context);
+    if (result || diagnostics != null) result &= validate_EveryDataValueConforms(decompositionStrategy, diagnostics, context);
+    if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(decompositionStrategy, diagnostics, context);
+    if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(decompositionStrategy, diagnostics, context);
+    if (result || diagnostics != null) result &= validate_EveryProxyResolves(decompositionStrategy, diagnostics, context);
+    if (result || diagnostics != null) result &= validate_UniqueID(decompositionStrategy, diagnostics, context);
+    if (result || diagnostics != null) result &= validate_EveryKeyUnique(decompositionStrategy, diagnostics, context);
+    if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(decompositionStrategy, diagnostics, context);
+    if (result || diagnostics != null) result &= validateSupporter_GoalRoot(decompositionStrategy, diagnostics, context);
+    if (result || diagnostics != null) result &= validateSupportable_SupportCycle(decompositionStrategy, diagnostics, context);
+    if (result || diagnostics != null) result &= validateSupportable_NonSupportableLeaves(decompositionStrategy, diagnostics, context);
+    if (result || diagnostics != null) result &= validateStrategy_StrategySupporter(decompositionStrategy, diagnostics, context);
+    if (result || diagnostics != null) result &= validateStrategy_StrategyContext(decompositionStrategy, diagnostics, context);
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public boolean validateDomain(Domain domain, DiagnosticChain diagnostics, Map<Object, Object> context) {
     return validate_EveryDefaultConstraint(domain, diagnostics, context);
   }
@@ -1250,8 +1337,8 @@ public class GSNValidator extends EObjectValidator {
    * <!-- end-user-doc -->
    * @generated
    */
-  public boolean validateDomainElement(DomainElement domainElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    return validate_EveryDefaultConstraint(domainElement, diagnostics, context);
+  public boolean validateDomainDecompositionElement(DomainDecompositionElement domainDecompositionElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    return validate_EveryDefaultConstraint(domainDecompositionElement, diagnostics, context);
   }
 
   /**
@@ -1259,21 +1346,21 @@ public class GSNValidator extends EObjectValidator {
    * <!-- end-user-doc -->
    * @generated
    */
-  public boolean validateDomainStrategy(DomainStrategy domainStrategy, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    if (!validate_NoCircularContainment(domainStrategy, diagnostics, context)) return false;
-    boolean result = validate_EveryMultiplicityConforms(domainStrategy, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryDataValueConforms(domainStrategy, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(domainStrategy, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(domainStrategy, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryProxyResolves(domainStrategy, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_UniqueID(domainStrategy, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryKeyUnique(domainStrategy, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(domainStrategy, diagnostics, context);
-    if (result || diagnostics != null) result &= validateSupporter_GoalRoot(domainStrategy, diagnostics, context);
-    if (result || diagnostics != null) result &= validateSupportable_SupportCycle(domainStrategy, diagnostics, context);
-    if (result || diagnostics != null) result &= validateSupportable_NonSupportableLeaves(domainStrategy, diagnostics, context);
-    if (result || diagnostics != null) result &= validateStrategy_StrategySupporter(domainStrategy, diagnostics, context);
-    if (result || diagnostics != null) result &= validateStrategy_StrategyContext(domainStrategy, diagnostics, context);
+  public boolean validateDomainDecompositionStrategy(DomainDecompositionStrategy domainDecompositionStrategy, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    if (!validate_NoCircularContainment(domainDecompositionStrategy, diagnostics, context)) return false;
+    boolean result = validate_EveryMultiplicityConforms(domainDecompositionStrategy, diagnostics, context);
+    if (result || diagnostics != null) result &= validate_EveryDataValueConforms(domainDecompositionStrategy, diagnostics, context);
+    if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(domainDecompositionStrategy, diagnostics, context);
+    if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(domainDecompositionStrategy, diagnostics, context);
+    if (result || diagnostics != null) result &= validate_EveryProxyResolves(domainDecompositionStrategy, diagnostics, context);
+    if (result || diagnostics != null) result &= validate_UniqueID(domainDecompositionStrategy, diagnostics, context);
+    if (result || diagnostics != null) result &= validate_EveryKeyUnique(domainDecompositionStrategy, diagnostics, context);
+    if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(domainDecompositionStrategy, diagnostics, context);
+    if (result || diagnostics != null) result &= validateSupporter_GoalRoot(domainDecompositionStrategy, diagnostics, context);
+    if (result || diagnostics != null) result &= validateSupportable_SupportCycle(domainDecompositionStrategy, diagnostics, context);
+    if (result || diagnostics != null) result &= validateSupportable_NonSupportableLeaves(domainDecompositionStrategy, diagnostics, context);
+    if (result || diagnostics != null) result &= validateStrategy_StrategySupporter(domainDecompositionStrategy, diagnostics, context);
+    if (result || diagnostics != null) result &= validateStrategy_StrategyContext(domainDecompositionStrategy, diagnostics, context);
     return result;
   }
 

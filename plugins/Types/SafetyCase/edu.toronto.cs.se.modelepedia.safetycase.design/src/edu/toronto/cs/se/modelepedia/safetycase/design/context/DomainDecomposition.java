@@ -138,7 +138,7 @@ public class DomainDecomposition extends AbstractExternalJavaAction {
         var goal = createCompletenessGoal(compGoalId, compGoalDesc + String.join(", ", subDomains));
         addSupporter(strategy, goal);
         // check decomposition validity
-        strategy.validateDecomposition();
+        strategy.validate();
         // "commit" the changes
         addSupporter(this.decomposed, strategy);
         commitChanges();

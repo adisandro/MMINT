@@ -25,7 +25,7 @@ import edu.toronto.cs.se.modelepedia.safetycase.GSNPackage;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCase;
 import edu.toronto.cs.se.modelepedia.safetycase.design.DomainCommand;
 
-public class CreateDomainStrategy extends AbstractExternalJavaAction {
+public class CreateDomainDecompositionStrategy extends AbstractExternalJavaAction {
 
   @Override
   public boolean canExecute(Collection<? extends EObject> arg0) {
@@ -49,7 +49,7 @@ public class CreateDomainStrategy extends AbstractExternalJavaAction {
     @Override
     protected void doExecute() {
       try {
-        var domain = createDomain("Create Domain Strategy", "Insert the domain",
+        var domain = createDomain("Create Domain Decomposition Strategy", "Insert the domain",
                                   Set.of(GSNPackage.INT_DOMAIN, GSNPackage.REAL_DOMAIN, GSNPackage.ENUM_DOMAIN));
         createDomainStrategy("", "", domain);
         commitChanges();
@@ -58,7 +58,7 @@ public class CreateDomainStrategy extends AbstractExternalJavaAction {
         // do nothing
       }
       catch (Exception e) {
-        MMINTException.print(IStatus.ERROR, "Create domain strategy error", e);
+        MMINTException.print(IStatus.ERROR, "Create domain decomposition strategy error", e);
       }
     }
   }

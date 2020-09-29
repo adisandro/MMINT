@@ -3,64 +3,64 @@
  * All rights reserved. This program and the accompanying materials are made available under the terms
  * of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
  *   Alessio Di Sandro - Implementation
  *   Nick Fung - Implementation.
- *
+ * 
  */
 package edu.toronto.cs.se.modelepedia.safetycase.impl;
 
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.modelepedia.safetycase.Domain;
 import edu.toronto.cs.se.modelepedia.safetycase.GSNPackage;
-import edu.toronto.cs.se.modelepedia.safetycase.ValueDomain;
+import edu.toronto.cs.se.modelepedia.safetycase.PropertyDecompositionElement;
+
+import org.eclipse.emf.common.notify.Notification;
+
+import org.eclipse.emf.ecore.EClass;
+
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Value Domain</b></em>'.
+ * An implementation of the model object '<em><b>Property Decomposition Element</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.ValueDomainImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.PropertyDecompositionElementImpl#getProperty <em>Property</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ValueDomainImpl extends DomainImpl implements ValueDomain {
+public class PropertyDecompositionElementImpl extends MinimalEObjectImpl.Container implements PropertyDecompositionElement {
   /**
-   * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
+   * The default value of the '{@link #getProperty() <em>Property</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getValue()
+   * @see #getProperty()
    * @generated
    * @ordered
    */
-  protected static final String VALUE_EDEFAULT = null;
+  protected static final String PROPERTY_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
+   * The cached value of the '{@link #getProperty() <em>Property</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getValue()
+   * @see #getProperty()
    * @generated
    * @ordered
    */
-  protected String value = VALUE_EDEFAULT;
+  protected String property = PROPERTY_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected ValueDomainImpl() {
+  protected PropertyDecompositionElementImpl() {
     super();
   }
 
@@ -71,7 +71,7 @@ public class ValueDomainImpl extends DomainImpl implements ValueDomain {
    */
   @Override
   protected EClass eStaticClass() {
-    return GSNPackage.Literals.VALUE_DOMAIN;
+    return GSNPackage.Literals.PROPERTY_DECOMPOSITION_ELEMENT;
   }
 
   /**
@@ -80,8 +80,8 @@ public class ValueDomainImpl extends DomainImpl implements ValueDomain {
    * @generated
    */
   @Override
-  public String getValue() {
-    return value;
+  public String getProperty() {
+    return property;
   }
 
   /**
@@ -90,11 +90,11 @@ public class ValueDomainImpl extends DomainImpl implements ValueDomain {
    * @generated
    */
   @Override
-  public void setValue(String newValue) {
-    String oldValue = value;
-    value = newValue;
+  public void setProperty(String newProperty) {
+    String oldProperty = property;
+    property = newProperty;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.VALUE_DOMAIN__VALUE, oldValue, value));
+      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.PROPERTY_DECOMPOSITION_ELEMENT__PROPERTY, oldProperty, property));
   }
 
   /**
@@ -105,8 +105,8 @@ public class ValueDomainImpl extends DomainImpl implements ValueDomain {
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
-      case GSNPackage.VALUE_DOMAIN__VALUE:
-        return getValue();
+      case GSNPackage.PROPERTY_DECOMPOSITION_ELEMENT__PROPERTY:
+        return getProperty();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -119,8 +119,8 @@ public class ValueDomainImpl extends DomainImpl implements ValueDomain {
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
-      case GSNPackage.VALUE_DOMAIN__VALUE:
-        setValue((String)newValue);
+      case GSNPackage.PROPERTY_DECOMPOSITION_ELEMENT__PROPERTY:
+        setProperty((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -134,8 +134,8 @@ public class ValueDomainImpl extends DomainImpl implements ValueDomain {
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
-      case GSNPackage.VALUE_DOMAIN__VALUE:
-        setValue(VALUE_EDEFAULT);
+      case GSNPackage.PROPERTY_DECOMPOSITION_ELEMENT__PROPERTY:
+        setProperty(PROPERTY_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -149,8 +149,8 @@ public class ValueDomainImpl extends DomainImpl implements ValueDomain {
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
-      case GSNPackage.VALUE_DOMAIN__VALUE:
-        return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
+      case GSNPackage.PROPERTY_DECOMPOSITION_ELEMENT__PROPERTY:
+        return PROPERTY_EDEFAULT == null ? property != null : !PROPERTY_EDEFAULT.equals(property);
     }
     return super.eIsSet(featureID);
   }
@@ -160,30 +160,15 @@ public class ValueDomainImpl extends DomainImpl implements ValueDomain {
    * <!-- end-user-doc -->
    * @generated
    */
-  public String toStringGen() {
+  @Override
+  public String toString() {
     if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (value: ");
-    result.append(value);
+    result.append(" (property: ");
+    result.append(property);
     result.append(')');
     return result.toString();
   }
 
-  /**
-   * @generated NOT
-   */
-  @Override
-  public String toString() {
-    return getValue();
-  }
-
-  /**
-   * @generated NOT
-   */
-  @Override
-  public void validateDecomposition(EList<Domain> subDomains) throws MMINTException {
-    throw new MMINTException("A value domain can't be decomposed");
-  }
-
-} //ValueDomainImpl
+} //PropertyDecompositionElementImpl

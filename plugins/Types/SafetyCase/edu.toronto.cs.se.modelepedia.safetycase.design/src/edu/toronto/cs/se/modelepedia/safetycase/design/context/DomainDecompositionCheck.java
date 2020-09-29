@@ -19,7 +19,7 @@ import org.eclipse.sirius.viewpoint.DSemanticDecorator;
 import org.eclipse.ui.PlatformUI;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.modelepedia.safetycase.DomainStrategy;
+import edu.toronto.cs.se.modelepedia.safetycase.DomainDecompositionStrategy;
 
 public class DomainDecompositionCheck extends AbstractExternalJavaAction {
 
@@ -29,7 +29,7 @@ public class DomainDecompositionCheck extends AbstractExternalJavaAction {
       return false;
     }
     var modelObj = ((DSemanticDecorator) arg0.iterator().next()).getTarget();
-    if (modelObj instanceof DomainStrategy) {
+    if (modelObj instanceof DomainDecompositionStrategy) {
       return true;
     }
     return false;
@@ -37,11 +37,11 @@ public class DomainDecompositionCheck extends AbstractExternalJavaAction {
 
   @Override
   public void execute(Collection<? extends EObject> arg0, Map<String, Object> arg1) {
-    var strategy = (DomainStrategy) ((DSemanticDecorator) arg0.iterator().next()).getTarget();
+    var strategy = (DomainDecompositionStrategy) ((DSemanticDecorator) arg0.iterator().next()).getTarget();
     var shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
     var title = "Domain Decomposition Check";
     try {
-      strategy.validateDecomposition();
+      strategy.validate();
       MessageDialog.openInformation(shell, title, "The domain decomposition is correct");
     }
     catch (MMINTException e) {

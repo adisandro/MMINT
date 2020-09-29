@@ -11,22 +11,20 @@
  */
 package edu.toronto.cs.se.modelepedia.safetycase.impl;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.ECollections;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.modelepedia.safetycase.Domain;
-import edu.toronto.cs.se.modelepedia.safetycase.DomainElement;
+import edu.toronto.cs.se.modelepedia.safetycase.DomainDecompositionElement;
+import edu.toronto.cs.se.modelepedia.safetycase.DomainDecompositionStrategy;
 import edu.toronto.cs.se.modelepedia.safetycase.DomainGoal;
-import edu.toronto.cs.se.modelepedia.safetycase.DomainStrategy;
 import edu.toronto.cs.se.modelepedia.safetycase.GSNPackage;
 import edu.toronto.cs.se.modelepedia.safetycase.SupportedBy;
 
@@ -38,12 +36,12 @@ import edu.toronto.cs.se.modelepedia.safetycase.SupportedBy;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.DomainStrategyImpl#getDomain <em>Domain</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.DomainDecompositionStrategyImpl#getDomain <em>Domain</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class DomainStrategyImpl extends StrategyImpl implements DomainStrategy {
+public class DomainDecompositionStrategyImpl extends DecompositionStrategyImpl implements DomainDecompositionStrategy {
   /**
    * The cached value of the '{@link #getDomain() <em>Domain</em>}' containment reference.
    * <!-- begin-user-doc -->
@@ -59,7 +57,7 @@ public class DomainStrategyImpl extends StrategyImpl implements DomainStrategy {
    * <!-- end-user-doc -->
    * @generated
    */
-  protected DomainStrategyImpl() {
+  protected DomainDecompositionStrategyImpl() {
     super();
   }
 
@@ -70,7 +68,7 @@ public class DomainStrategyImpl extends StrategyImpl implements DomainStrategy {
    */
   @Override
   protected EClass eStaticClass() {
-    return GSNPackage.Literals.DOMAIN_STRATEGY;
+    return GSNPackage.Literals.DOMAIN_DECOMPOSITION_STRATEGY;
   }
 
   /**
@@ -92,7 +90,7 @@ public class DomainStrategyImpl extends StrategyImpl implements DomainStrategy {
     var oldDomain = this.domain;
     this.domain = newDomain;
     if (eNotificationRequired()) {
-      var notification = new ENotificationImpl(this, Notification.SET, GSNPackage.DOMAIN_STRATEGY__DOMAIN, oldDomain, newDomain);
+      var notification = new ENotificationImpl(this, Notification.SET, GSNPackage.DOMAIN_DECOMPOSITION_STRATEGY__DOMAIN, oldDomain, newDomain);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -108,21 +106,21 @@ public class DomainStrategyImpl extends StrategyImpl implements DomainStrategy {
     if (newDomain != this.domain) {
       NotificationChain msgs = null;
       if (this.domain != null)
-        msgs = ((InternalEObject)this.domain).eInverseRemove(this, InternalEObject.EOPPOSITE_FEATURE_BASE - GSNPackage.DOMAIN_STRATEGY__DOMAIN, null, msgs);
+        msgs = ((InternalEObject)this.domain).eInverseRemove(this, InternalEObject.EOPPOSITE_FEATURE_BASE - GSNPackage.DOMAIN_DECOMPOSITION_STRATEGY__DOMAIN, null, msgs);
       if (newDomain != null)
-        msgs = ((InternalEObject)newDomain).eInverseAdd(this, InternalEObject.EOPPOSITE_FEATURE_BASE - GSNPackage.DOMAIN_STRATEGY__DOMAIN, null, msgs);
+        msgs = ((InternalEObject)newDomain).eInverseAdd(this, InternalEObject.EOPPOSITE_FEATURE_BASE - GSNPackage.DOMAIN_DECOMPOSITION_STRATEGY__DOMAIN, null, msgs);
       msgs = basicSetDomain(newDomain, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.DOMAIN_STRATEGY__DOMAIN, newDomain, newDomain));
+      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.DOMAIN_DECOMPOSITION_STRATEGY__DOMAIN, newDomain, newDomain));
   }
 
   /**
    * @generated NOT
    */
   @Override
-  public void validateDecomposition() throws MMINTException {
+  public void validate() throws MMINTException {
     var domain = getDomain();
     var subDomains = getSupportedBy().stream()
       .map(SupportedBy::getTarget)
@@ -143,7 +141,7 @@ public class DomainStrategyImpl extends StrategyImpl implements DomainStrategy {
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
-      case GSNPackage.DOMAIN_STRATEGY__DOMAIN:
+      case GSNPackage.DOMAIN_DECOMPOSITION_STRATEGY__DOMAIN:
         return basicSetDomain(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -157,7 +155,7 @@ public class DomainStrategyImpl extends StrategyImpl implements DomainStrategy {
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
-      case GSNPackage.DOMAIN_STRATEGY__DOMAIN:
+      case GSNPackage.DOMAIN_DECOMPOSITION_STRATEGY__DOMAIN:
         return getDomain();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -171,7 +169,7 @@ public class DomainStrategyImpl extends StrategyImpl implements DomainStrategy {
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
-      case GSNPackage.DOMAIN_STRATEGY__DOMAIN:
+      case GSNPackage.DOMAIN_DECOMPOSITION_STRATEGY__DOMAIN:
         setDomain((Domain)newValue);
         return;
     }
@@ -186,7 +184,7 @@ public class DomainStrategyImpl extends StrategyImpl implements DomainStrategy {
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
-      case GSNPackage.DOMAIN_STRATEGY__DOMAIN:
+      case GSNPackage.DOMAIN_DECOMPOSITION_STRATEGY__DOMAIN:
         setDomain((Domain)null);
         return;
     }
@@ -201,7 +199,7 @@ public class DomainStrategyImpl extends StrategyImpl implements DomainStrategy {
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
-      case GSNPackage.DOMAIN_STRATEGY__DOMAIN:
+      case GSNPackage.DOMAIN_DECOMPOSITION_STRATEGY__DOMAIN:
         return this.domain != null;
     }
     return super.eIsSet(featureID);
@@ -214,9 +212,9 @@ public class DomainStrategyImpl extends StrategyImpl implements DomainStrategy {
    */
   @Override
   public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-    if (baseClass == DomainElement.class) {
+    if (baseClass == DomainDecompositionElement.class) {
       switch (derivedFeatureID) {
-        case GSNPackage.DOMAIN_STRATEGY__DOMAIN: return GSNPackage.DOMAIN_ELEMENT__DOMAIN;
+        case GSNPackage.DOMAIN_DECOMPOSITION_STRATEGY__DOMAIN: return GSNPackage.DOMAIN_DECOMPOSITION_ELEMENT__DOMAIN;
         default: return -1;
       }
     }
@@ -230,33 +228,13 @@ public class DomainStrategyImpl extends StrategyImpl implements DomainStrategy {
    */
   @Override
   public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-    if (baseClass == DomainElement.class) {
+    if (baseClass == DomainDecompositionElement.class) {
       switch (baseFeatureID) {
-        case GSNPackage.DOMAIN_ELEMENT__DOMAIN: return GSNPackage.DOMAIN_STRATEGY__DOMAIN;
+        case GSNPackage.DOMAIN_DECOMPOSITION_ELEMENT__DOMAIN: return GSNPackage.DOMAIN_DECOMPOSITION_STRATEGY__DOMAIN;
         default: return -1;
       }
     }
     return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-    switch (operationID) {
-      case GSNPackage.DOMAIN_STRATEGY___VALIDATE_DECOMPOSITION:
-        try {
-          validateDecomposition();
-          return null;
-        }
-        catch (Throwable throwable) {
-          throw new InvocationTargetException(throwable);
-        }
-    }
-    return super.eInvoke(operationID, arguments);
   }
 
 } //DomainStrategyImpl

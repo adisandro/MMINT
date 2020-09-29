@@ -183,6 +183,15 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="CreatePropertyGoal" label="Create property goal" nodeMappings="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="safetycase.PropertyGoal" referenceName="goals"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
           <ownedTools xsi:type="tool:NodeCreationDescription" name="CreateBasicStrategy" label="Create basic strategy" nodeMappings="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='StrategyNode']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
@@ -201,13 +210,22 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:NodeCreationDescription" name="CreateDomainStrategy" label="Create domain strategy" nodeMappings="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='StrategyNode']">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="CreateDomainDecompositionStrategy" label="Create domain decomposition strategy" nodeMappings="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='StrategyNode']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
-                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="CreateDomainStrategy" id="edu.toronto.cs.se.modelepedia.safetycase.design.tools.CreateDomainStrategy"/>
-                <subModelOperations xsi:type="tool_1:ExternalJavaActionCall" name="CreateDomainStrategyCall" action="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@toolSections.0/@ownedTools[name='CreateDomainStrategy']/@initialOperation/@firstModelOperations/@subModelOperations.0"/>
+                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="CreateDomainDecompositionStrategy" id="edu.toronto.cs.se.modelepedia.safetycase.design.tools.CreateDomainDecopositionStrategy"/>
+                <subModelOperations xsi:type="tool_1:ExternalJavaActionCall" name="CreateDomainDecompositionStrategyCall" action="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@toolSections.0/@ownedTools[name='CreateDomainDecompositionStrategy']/@initialOperation/@firstModelOperations/@subModelOperations.0"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="CreatePropertyDecompositionStrategy" label="Create property decomposition strategy" nodeMappings="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='StrategyNode']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="safetycase.PropertyDecompositionStrategy" referenceName="strategies"/>
               </firstModelOperations>
             </initialOperation>
           </ownedTools>

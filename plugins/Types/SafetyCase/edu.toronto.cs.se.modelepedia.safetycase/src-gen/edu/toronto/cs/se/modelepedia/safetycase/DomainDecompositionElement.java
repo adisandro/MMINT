@@ -22,28 +22,28 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.DomainElement#getDomain <em>Domain</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.DomainDecompositionElement#getDomain <em>Domain</em>}</li>
  * </ul>
  *
- * @see edu.toronto.cs.se.modelepedia.safetycase.GSNPackage#getDomainElement()
+ * @see edu.toronto.cs.se.modelepedia.safetycase.GSNPackage#getDomainDecompositionElement()
  * @model abstract="true"
  * @generated
  */
-public interface DomainElement extends EObject {
+public interface DomainDecompositionElement extends EObject {
   /**
    * Returns the value of the '<em><b>Domain</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Domain</em>' containment reference.
    * @see #setDomain(Domain)
-   * @see edu.toronto.cs.se.modelepedia.safetycase.GSNPackage#getDomainElement_Domain()
+   * @see edu.toronto.cs.se.modelepedia.safetycase.GSNPackage#getDomainDecompositionElement_Domain()
    * @model containment="true" required="true"
    * @generated
    */
   Domain getDomain();
 
   /**
-   * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.safetycase.DomainElement#getDomain <em>Domain</em>}' containment reference.
+   * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.safetycase.DomainDecompositionElement#getDomain <em>Domain</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Domain</em>' containment reference.

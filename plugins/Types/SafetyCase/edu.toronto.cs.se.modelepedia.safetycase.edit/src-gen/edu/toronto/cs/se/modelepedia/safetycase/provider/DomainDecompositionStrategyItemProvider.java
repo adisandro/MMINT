@@ -12,7 +12,7 @@
 package edu.toronto.cs.se.modelepedia.safetycase.provider;
 
 
-import edu.toronto.cs.se.modelepedia.safetycase.DomainElement;
+import edu.toronto.cs.se.modelepedia.safetycase.DomainDecompositionStrategy;
 import edu.toronto.cs.se.modelepedia.safetycase.GSNFactory;
 import edu.toronto.cs.se.modelepedia.safetycase.GSNPackage;
 
@@ -22,40 +22,25 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
-import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
 
-import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.IItemPropertySource;
-import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
-import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.DomainElement} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.DomainDecompositionStrategy} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class DomainElementItemProvider 
-  extends ItemProviderAdapter
-  implements
-    IEditingDomainItemProvider,
-    IStructuredItemContentProvider,
-    ITreeItemContentProvider,
-    IItemLabelProvider,
-    IItemPropertySource {
+public class DomainDecompositionStrategyItemProvider extends DecompositionStrategyItemProvider {
   /**
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  public DomainElementItemProvider(AdapterFactory adapterFactory) {
+  public DomainDecompositionStrategyItemProvider(AdapterFactory adapterFactory) {
     super(adapterFactory);
   }
 
@@ -86,7 +71,7 @@ public class DomainElementItemProvider
   public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
     if (childrenFeatures == null) {
       super.getChildrenFeatures(object);
-      childrenFeatures.add(GSNPackage.Literals.DOMAIN_ELEMENT__DOMAIN);
+      childrenFeatures.add(GSNPackage.Literals.DOMAIN_DECOMPOSITION_ELEMENT__DOMAIN);
     }
     return childrenFeatures;
   }
@@ -105,6 +90,17 @@ public class DomainElementItemProvider
   }
 
   /**
+   * This returns DomainDecompositionStrategy.gif.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Object getImage(Object object) {
+    return overlayImage(object, getResourceLocator().getImage("full/obj16/DomainDecompositionStrategy"));
+  }
+
+  /**
    * This returns the label text for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -112,7 +108,10 @@ public class DomainElementItemProvider
    */
   @Override
   public String getText(Object object) {
-    return getString("_UI_DomainElement_type");
+    String label = ((DomainDecompositionStrategy)object).getId();
+    return label == null || label.length() == 0 ?
+      getString("_UI_DomainDecompositionStrategy_type") :
+      getString("_UI_DomainDecompositionStrategy_type") + " " + label;
   }
 
 
@@ -127,8 +126,8 @@ public class DomainElementItemProvider
   public void notifyChanged(Notification notification) {
     updateChildren(notification);
 
-    switch (notification.getFeatureID(DomainElement.class)) {
-      case GSNPackage.DOMAIN_ELEMENT__DOMAIN:
+    switch (notification.getFeatureID(DomainDecompositionStrategy.class)) {
+      case GSNPackage.DOMAIN_DECOMPOSITION_STRATEGY__DOMAIN:
         fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
         return;
     }
@@ -148,34 +147,23 @@ public class DomainElementItemProvider
 
     newChildDescriptors.add
       (createChildParameter
-        (GSNPackage.Literals.DOMAIN_ELEMENT__DOMAIN,
+        (GSNPackage.Literals.DOMAIN_DECOMPOSITION_ELEMENT__DOMAIN,
          GSNFactory.eINSTANCE.createIntDomain()));
 
     newChildDescriptors.add
       (createChildParameter
-        (GSNPackage.Literals.DOMAIN_ELEMENT__DOMAIN,
+        (GSNPackage.Literals.DOMAIN_DECOMPOSITION_ELEMENT__DOMAIN,
          GSNFactory.eINSTANCE.createRealDomain()));
 
     newChildDescriptors.add
       (createChildParameter
-        (GSNPackage.Literals.DOMAIN_ELEMENT__DOMAIN,
+        (GSNPackage.Literals.DOMAIN_DECOMPOSITION_ELEMENT__DOMAIN,
          GSNFactory.eINSTANCE.createEnumDomain()));
 
     newChildDescriptors.add
       (createChildParameter
-        (GSNPackage.Literals.DOMAIN_ELEMENT__DOMAIN,
+        (GSNPackage.Literals.DOMAIN_DECOMPOSITION_ELEMENT__DOMAIN,
          GSNFactory.eINSTANCE.createValueDomain()));
-  }
-
-  /**
-   * Return the resource locator for this item provider's resources.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public ResourceLocator getResourceLocator() {
-    return GSNEditPlugin.INSTANCE;
   }
 
 }

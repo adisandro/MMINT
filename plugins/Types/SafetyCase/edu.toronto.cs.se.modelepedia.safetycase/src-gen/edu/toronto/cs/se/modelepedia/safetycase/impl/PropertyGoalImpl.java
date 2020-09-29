@@ -11,49 +11,56 @@
  */
 package edu.toronto.cs.se.modelepedia.safetycase.impl;
 
-import edu.toronto.cs.se.modelepedia.safetycase.Domain;
-import edu.toronto.cs.se.modelepedia.safetycase.DomainDecompositionElement;
-import edu.toronto.cs.se.modelepedia.safetycase.DomainGoal;
 import edu.toronto.cs.se.modelepedia.safetycase.GSNPackage;
+import edu.toronto.cs.se.modelepedia.safetycase.PropertyDecompositionElement;
+import edu.toronto.cs.se.modelepedia.safetycase.PropertyGoal;
 
 import org.eclipse.emf.common.notify.Notification;
 
-import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 
-import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Domain Goal</b></em>'.
+ * An implementation of the model object '<em><b>Property Goal</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.DomainGoalImpl#getDomain <em>Domain</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.PropertyGoalImpl#getProperty <em>Property</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class DomainGoalImpl extends GoalImpl implements DomainGoal {
+public class PropertyGoalImpl extends GoalImpl implements PropertyGoal {
   /**
-   * The cached value of the '{@link #getDomain() <em>Domain</em>}' containment reference.
+   * The default value of the '{@link #getProperty() <em>Property</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getDomain()
+   * @see #getProperty()
    * @generated
    * @ordered
    */
-  protected Domain domain;
+  protected static final String PROPERTY_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getProperty() <em>Property</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getProperty()
+   * @generated
+   * @ordered
+   */
+  protected String property = PROPERTY_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected DomainGoalImpl() {
+  protected PropertyGoalImpl() {
     super();
   }
 
@@ -64,7 +71,7 @@ public class DomainGoalImpl extends GoalImpl implements DomainGoal {
    */
   @Override
   protected EClass eStaticClass() {
-    return GSNPackage.Literals.DOMAIN_GOAL;
+    return GSNPackage.Literals.PROPERTY_GOAL;
   }
 
   /**
@@ -73,23 +80,8 @@ public class DomainGoalImpl extends GoalImpl implements DomainGoal {
    * @generated
    */
   @Override
-  public Domain getDomain() {
-    return domain;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetDomain(Domain newDomain, NotificationChain msgs) {
-    Domain oldDomain = domain;
-    domain = newDomain;
-    if (eNotificationRequired()) {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GSNPackage.DOMAIN_GOAL__DOMAIN, oldDomain, newDomain);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
+  public String getProperty() {
+    return property;
   }
 
   /**
@@ -98,32 +90,11 @@ public class DomainGoalImpl extends GoalImpl implements DomainGoal {
    * @generated
    */
   @Override
-  public void setDomain(Domain newDomain) {
-    if (newDomain != domain) {
-      NotificationChain msgs = null;
-      if (domain != null)
-        msgs = ((InternalEObject)domain).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GSNPackage.DOMAIN_GOAL__DOMAIN, null, msgs);
-      if (newDomain != null)
-        msgs = ((InternalEObject)newDomain).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GSNPackage.DOMAIN_GOAL__DOMAIN, null, msgs);
-      msgs = basicSetDomain(newDomain, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.DOMAIN_GOAL__DOMAIN, newDomain, newDomain));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-    switch (featureID) {
-      case GSNPackage.DOMAIN_GOAL__DOMAIN:
-        return basicSetDomain(null, msgs);
-    }
-    return super.eInverseRemove(otherEnd, featureID, msgs);
+  public void setProperty(String newProperty) {
+    String oldProperty = property;
+    property = newProperty;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.PROPERTY_GOAL__PROPERTY, oldProperty, property));
   }
 
   /**
@@ -134,8 +105,8 @@ public class DomainGoalImpl extends GoalImpl implements DomainGoal {
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
-      case GSNPackage.DOMAIN_GOAL__DOMAIN:
-        return getDomain();
+      case GSNPackage.PROPERTY_GOAL__PROPERTY:
+        return getProperty();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -148,8 +119,8 @@ public class DomainGoalImpl extends GoalImpl implements DomainGoal {
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
-      case GSNPackage.DOMAIN_GOAL__DOMAIN:
-        setDomain((Domain)newValue);
+      case GSNPackage.PROPERTY_GOAL__PROPERTY:
+        setProperty((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -163,8 +134,8 @@ public class DomainGoalImpl extends GoalImpl implements DomainGoal {
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
-      case GSNPackage.DOMAIN_GOAL__DOMAIN:
-        setDomain((Domain)null);
+      case GSNPackage.PROPERTY_GOAL__PROPERTY:
+        setProperty(PROPERTY_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -178,8 +149,8 @@ public class DomainGoalImpl extends GoalImpl implements DomainGoal {
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
-      case GSNPackage.DOMAIN_GOAL__DOMAIN:
-        return domain != null;
+      case GSNPackage.PROPERTY_GOAL__PROPERTY:
+        return PROPERTY_EDEFAULT == null ? property != null : !PROPERTY_EDEFAULT.equals(property);
     }
     return super.eIsSet(featureID);
   }
@@ -191,9 +162,9 @@ public class DomainGoalImpl extends GoalImpl implements DomainGoal {
    */
   @Override
   public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-    if (baseClass == DomainDecompositionElement.class) {
+    if (baseClass == PropertyDecompositionElement.class) {
       switch (derivedFeatureID) {
-        case GSNPackage.DOMAIN_GOAL__DOMAIN: return GSNPackage.DOMAIN_DECOMPOSITION_ELEMENT__DOMAIN;
+        case GSNPackage.PROPERTY_GOAL__PROPERTY: return GSNPackage.PROPERTY_DECOMPOSITION_ELEMENT__PROPERTY;
         default: return -1;
       }
     }
@@ -207,13 +178,29 @@ public class DomainGoalImpl extends GoalImpl implements DomainGoal {
    */
   @Override
   public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-    if (baseClass == DomainDecompositionElement.class) {
+    if (baseClass == PropertyDecompositionElement.class) {
       switch (baseFeatureID) {
-        case GSNPackage.DOMAIN_DECOMPOSITION_ELEMENT__DOMAIN: return GSNPackage.DOMAIN_GOAL__DOMAIN;
+        case GSNPackage.PROPERTY_DECOMPOSITION_ELEMENT__PROPERTY: return GSNPackage.PROPERTY_GOAL__PROPERTY;
         default: return -1;
       }
     }
     return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
   }
 
-} //DomainGoalImpl
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString() {
+    if (eIsProxy()) return super.toString();
+
+    StringBuilder result = new StringBuilder(super.toString());
+    result.append(" (property: ");
+    result.append(property);
+    result.append(')');
+    return result.toString();
+  }
+
+} //PropertyGoalImpl

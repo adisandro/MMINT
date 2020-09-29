@@ -1046,7 +1046,7 @@ public interface GSNPackage extends EPackage {
    * @see edu.toronto.cs.se.modelepedia.safetycase.impl.GSNPackageImpl#getDomainGoal()
    * @generated
    */
-  int DOMAIN_GOAL = 35;
+  int DOMAIN_GOAL = 36;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.StrategyImpl <em>Strategy</em>}' class.
@@ -1963,6 +1963,106 @@ public interface GSNPackage extends EPackage {
   int MOF_NSUPPORTER_OPERATION_COUNT = SUPPORT_CONNECTOR_OPERATION_COUNT + 0;
 
   /**
+   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.DecompositionStrategyImpl <em>Decomposition Strategy</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.toronto.cs.se.modelepedia.safetycase.impl.DecompositionStrategyImpl
+   * @see edu.toronto.cs.se.modelepedia.safetycase.impl.GSNPackageImpl#getDecompositionStrategy()
+   * @generated
+   */
+  int DECOMPOSITION_STRATEGY = 28;
+
+  /**
+   * The feature id for the '<em><b>Supports</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DECOMPOSITION_STRATEGY__SUPPORTS = STRATEGY__SUPPORTS;
+
+  /**
+   * The feature id for the '<em><b>Supported By</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DECOMPOSITION_STRATEGY__SUPPORTED_BY = STRATEGY__SUPPORTED_BY;
+
+  /**
+   * The feature id for the '<em><b>Id</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DECOMPOSITION_STRATEGY__ID = STRATEGY__ID;
+
+  /**
+   * The feature id for the '<em><b>Description</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DECOMPOSITION_STRATEGY__DESCRIPTION = STRATEGY__DESCRIPTION;
+
+  /**
+   * The feature id for the '<em><b>Content Validity</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DECOMPOSITION_STRATEGY__CONTENT_VALIDITY = STRATEGY__CONTENT_VALIDITY;
+
+  /**
+   * The feature id for the '<em><b>Status</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DECOMPOSITION_STRATEGY__STATUS = STRATEGY__STATUS;
+
+  /**
+   * The feature id for the '<em><b>In Context Of</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DECOMPOSITION_STRATEGY__IN_CONTEXT_OF = STRATEGY__IN_CONTEXT_OF;
+
+  /**
+   * The number of structural features of the '<em>Decomposition Strategy</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DECOMPOSITION_STRATEGY_FEATURE_COUNT = STRATEGY_FEATURE_COUNT + 0;
+
+  /**
+   * The operation id for the '<em>Validate</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DECOMPOSITION_STRATEGY___VALIDATE = STRATEGY_OPERATION_COUNT + 0;
+
+  /**
+   * The number of operations of the '<em>Decomposition Strategy</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DECOMPOSITION_STRATEGY_OPERATION_COUNT = STRATEGY_OPERATION_COUNT + 1;
+
+  /**
    * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.DomainImpl <em>Domain</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1970,7 +2070,7 @@ public interface GSNPackage extends EPackage {
    * @see edu.toronto.cs.se.modelepedia.safetycase.impl.GSNPackageImpl#getDomain()
    * @generated
    */
-  int DOMAIN = 28;
+  int DOMAIN = 29;
 
   /**
    * The number of structural features of the '<em>Domain</em>' class.
@@ -2007,7 +2107,7 @@ public interface GSNPackage extends EPackage {
    * @see edu.toronto.cs.se.modelepedia.safetycase.impl.GSNPackageImpl#getIntDomain()
    * @generated
    */
-  int INT_DOMAIN = 29;
+  int INT_DOMAIN = 30;
 
   /**
    * The feature id for the '<em><b>Lower Bound</b></em>' attribute.
@@ -2062,7 +2162,7 @@ public interface GSNPackage extends EPackage {
    * @see edu.toronto.cs.se.modelepedia.safetycase.impl.GSNPackageImpl#getRealDomain()
    * @generated
    */
-  int REAL_DOMAIN = 30;
+  int REAL_DOMAIN = 31;
 
   /**
    * The feature id for the '<em><b>Lower Bound</b></em>' attribute.
@@ -2117,7 +2217,7 @@ public interface GSNPackage extends EPackage {
    * @see edu.toronto.cs.se.modelepedia.safetycase.impl.GSNPackageImpl#getEnumDomain()
    * @generated
    */
-  int ENUM_DOMAIN = 31;
+  int ENUM_DOMAIN = 32;
 
   /**
    * The feature id for the '<em><b>Values</b></em>' attribute list.
@@ -2163,7 +2263,7 @@ public interface GSNPackage extends EPackage {
    * @see edu.toronto.cs.se.modelepedia.safetycase.impl.GSNPackageImpl#getValueDomain()
    * @generated
    */
-  int VALUE_DOMAIN = 32;
+  int VALUE_DOMAIN = 33;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -2202,14 +2302,14 @@ public interface GSNPackage extends EPackage {
   int VALUE_DOMAIN_OPERATION_COUNT = DOMAIN_OPERATION_COUNT + 0;
 
   /**
-   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.DomainElementImpl <em>Domain Element</em>}' class.
+   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.DomainDecompositionElementImpl <em>Domain Decomposition Element</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see edu.toronto.cs.se.modelepedia.safetycase.impl.DomainElementImpl
-   * @see edu.toronto.cs.se.modelepedia.safetycase.impl.GSNPackageImpl#getDomainElement()
+   * @see edu.toronto.cs.se.modelepedia.safetycase.impl.DomainDecompositionElementImpl
+   * @see edu.toronto.cs.se.modelepedia.safetycase.impl.GSNPackageImpl#getDomainDecompositionElement()
    * @generated
    */
-  int DOMAIN_ELEMENT = 33;
+  int DOMAIN_DECOMPOSITION_ELEMENT = 34;
 
   /**
    * The feature id for the '<em><b>Domain</b></em>' containment reference.
@@ -2218,35 +2318,35 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DOMAIN_ELEMENT__DOMAIN = 0;
+  int DOMAIN_DECOMPOSITION_ELEMENT__DOMAIN = 0;
 
   /**
-   * The number of structural features of the '<em>Domain Element</em>' class.
+   * The number of structural features of the '<em>Domain Decomposition Element</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DOMAIN_ELEMENT_FEATURE_COUNT = 1;
+  int DOMAIN_DECOMPOSITION_ELEMENT_FEATURE_COUNT = 1;
 
   /**
-   * The number of operations of the '<em>Domain Element</em>' class.
+   * The number of operations of the '<em>Domain Decomposition Element</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DOMAIN_ELEMENT_OPERATION_COUNT = 0;
+  int DOMAIN_DECOMPOSITION_ELEMENT_OPERATION_COUNT = 0;
 
   /**
-   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.DomainStrategyImpl <em>Domain Strategy</em>}' class.
+   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.DomainDecompositionStrategyImpl <em>Domain Decomposition Strategy</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see edu.toronto.cs.se.modelepedia.safetycase.impl.DomainStrategyImpl
-   * @see edu.toronto.cs.se.modelepedia.safetycase.impl.GSNPackageImpl#getDomainStrategy()
+   * @see edu.toronto.cs.se.modelepedia.safetycase.impl.DomainDecompositionStrategyImpl
+   * @see edu.toronto.cs.se.modelepedia.safetycase.impl.GSNPackageImpl#getDomainDecompositionStrategy()
    * @generated
    */
-  int DOMAIN_STRATEGY = 34;
+  int DOMAIN_DECOMPOSITION_STRATEGY = 35;
 
   /**
    * The feature id for the '<em><b>Supports</b></em>' reference list.
@@ -2255,7 +2355,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DOMAIN_STRATEGY__SUPPORTS = STRATEGY__SUPPORTS;
+  int DOMAIN_DECOMPOSITION_STRATEGY__SUPPORTS = DECOMPOSITION_STRATEGY__SUPPORTS;
 
   /**
    * The feature id for the '<em><b>Supported By</b></em>' containment reference list.
@@ -2264,7 +2364,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DOMAIN_STRATEGY__SUPPORTED_BY = STRATEGY__SUPPORTED_BY;
+  int DOMAIN_DECOMPOSITION_STRATEGY__SUPPORTED_BY = DECOMPOSITION_STRATEGY__SUPPORTED_BY;
 
   /**
    * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -2273,7 +2373,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DOMAIN_STRATEGY__ID = STRATEGY__ID;
+  int DOMAIN_DECOMPOSITION_STRATEGY__ID = DECOMPOSITION_STRATEGY__ID;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -2282,7 +2382,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DOMAIN_STRATEGY__DESCRIPTION = STRATEGY__DESCRIPTION;
+  int DOMAIN_DECOMPOSITION_STRATEGY__DESCRIPTION = DECOMPOSITION_STRATEGY__DESCRIPTION;
 
   /**
    * The feature id for the '<em><b>Content Validity</b></em>' attribute.
@@ -2291,7 +2391,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DOMAIN_STRATEGY__CONTENT_VALIDITY = STRATEGY__CONTENT_VALIDITY;
+  int DOMAIN_DECOMPOSITION_STRATEGY__CONTENT_VALIDITY = DECOMPOSITION_STRATEGY__CONTENT_VALIDITY;
 
   /**
    * The feature id for the '<em><b>Status</b></em>' containment reference.
@@ -2300,7 +2400,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DOMAIN_STRATEGY__STATUS = STRATEGY__STATUS;
+  int DOMAIN_DECOMPOSITION_STRATEGY__STATUS = DECOMPOSITION_STRATEGY__STATUS;
 
   /**
    * The feature id for the '<em><b>In Context Of</b></em>' containment reference list.
@@ -2309,7 +2409,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DOMAIN_STRATEGY__IN_CONTEXT_OF = STRATEGY__IN_CONTEXT_OF;
+  int DOMAIN_DECOMPOSITION_STRATEGY__IN_CONTEXT_OF = DECOMPOSITION_STRATEGY__IN_CONTEXT_OF;
 
   /**
    * The feature id for the '<em><b>Domain</b></em>' containment reference.
@@ -2318,34 +2418,34 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DOMAIN_STRATEGY__DOMAIN = STRATEGY_FEATURE_COUNT + 0;
+  int DOMAIN_DECOMPOSITION_STRATEGY__DOMAIN = DECOMPOSITION_STRATEGY_FEATURE_COUNT + 0;
 
   /**
-   * The number of structural features of the '<em>Domain Strategy</em>' class.
+   * The number of structural features of the '<em>Domain Decomposition Strategy</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DOMAIN_STRATEGY_FEATURE_COUNT = STRATEGY_FEATURE_COUNT + 1;
+  int DOMAIN_DECOMPOSITION_STRATEGY_FEATURE_COUNT = DECOMPOSITION_STRATEGY_FEATURE_COUNT + 1;
 
   /**
-   * The operation id for the '<em>Validate Decomposition</em>' operation.
+   * The operation id for the '<em>Validate</em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DOMAIN_STRATEGY___VALIDATE_DECOMPOSITION = STRATEGY_OPERATION_COUNT + 0;
+  int DOMAIN_DECOMPOSITION_STRATEGY___VALIDATE = DECOMPOSITION_STRATEGY___VALIDATE;
 
   /**
-   * The number of operations of the '<em>Domain Strategy</em>' class.
+   * The number of operations of the '<em>Domain Decomposition Strategy</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DOMAIN_STRATEGY_OPERATION_COUNT = STRATEGY_OPERATION_COUNT + 1;
+  int DOMAIN_DECOMPOSITION_STRATEGY_OPERATION_COUNT = DECOMPOSITION_STRATEGY_OPERATION_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Supports</b></em>' reference list.
@@ -2456,6 +2556,270 @@ public interface GSNPackage extends EPackage {
   int DOMAIN_GOAL_OPERATION_COUNT = GOAL_OPERATION_COUNT + 0;
 
   /**
+   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.PropertyDecompositionElementImpl <em>Property Decomposition Element</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.toronto.cs.se.modelepedia.safetycase.impl.PropertyDecompositionElementImpl
+   * @see edu.toronto.cs.se.modelepedia.safetycase.impl.GSNPackageImpl#getPropertyDecompositionElement()
+   * @generated
+   */
+  int PROPERTY_DECOMPOSITION_ELEMENT = 37;
+
+  /**
+   * The feature id for the '<em><b>Property</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_DECOMPOSITION_ELEMENT__PROPERTY = 0;
+
+  /**
+   * The number of structural features of the '<em>Property Decomposition Element</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_DECOMPOSITION_ELEMENT_FEATURE_COUNT = 1;
+
+  /**
+   * The number of operations of the '<em>Property Decomposition Element</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_DECOMPOSITION_ELEMENT_OPERATION_COUNT = 0;
+
+  /**
+   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.PropertyDecompositionStrategyImpl <em>Property Decomposition Strategy</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.toronto.cs.se.modelepedia.safetycase.impl.PropertyDecompositionStrategyImpl
+   * @see edu.toronto.cs.se.modelepedia.safetycase.impl.GSNPackageImpl#getPropertyDecompositionStrategy()
+   * @generated
+   */
+  int PROPERTY_DECOMPOSITION_STRATEGY = 38;
+
+  /**
+   * The feature id for the '<em><b>Supports</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_DECOMPOSITION_STRATEGY__SUPPORTS = DECOMPOSITION_STRATEGY__SUPPORTS;
+
+  /**
+   * The feature id for the '<em><b>Supported By</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_DECOMPOSITION_STRATEGY__SUPPORTED_BY = DECOMPOSITION_STRATEGY__SUPPORTED_BY;
+
+  /**
+   * The feature id for the '<em><b>Id</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_DECOMPOSITION_STRATEGY__ID = DECOMPOSITION_STRATEGY__ID;
+
+  /**
+   * The feature id for the '<em><b>Description</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_DECOMPOSITION_STRATEGY__DESCRIPTION = DECOMPOSITION_STRATEGY__DESCRIPTION;
+
+  /**
+   * The feature id for the '<em><b>Content Validity</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_DECOMPOSITION_STRATEGY__CONTENT_VALIDITY = DECOMPOSITION_STRATEGY__CONTENT_VALIDITY;
+
+  /**
+   * The feature id for the '<em><b>Status</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_DECOMPOSITION_STRATEGY__STATUS = DECOMPOSITION_STRATEGY__STATUS;
+
+  /**
+   * The feature id for the '<em><b>In Context Of</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_DECOMPOSITION_STRATEGY__IN_CONTEXT_OF = DECOMPOSITION_STRATEGY__IN_CONTEXT_OF;
+
+  /**
+   * The feature id for the '<em><b>Property</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_DECOMPOSITION_STRATEGY__PROPERTY = DECOMPOSITION_STRATEGY_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Property Decomposition Strategy</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_DECOMPOSITION_STRATEGY_FEATURE_COUNT = DECOMPOSITION_STRATEGY_FEATURE_COUNT + 1;
+
+  /**
+   * The operation id for the '<em>Validate</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_DECOMPOSITION_STRATEGY___VALIDATE = DECOMPOSITION_STRATEGY___VALIDATE;
+
+  /**
+   * The number of operations of the '<em>Property Decomposition Strategy</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_DECOMPOSITION_STRATEGY_OPERATION_COUNT = DECOMPOSITION_STRATEGY_OPERATION_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.PropertyGoalImpl <em>Property Goal</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.toronto.cs.se.modelepedia.safetycase.impl.PropertyGoalImpl
+   * @see edu.toronto.cs.se.modelepedia.safetycase.impl.GSNPackageImpl#getPropertyGoal()
+   * @generated
+   */
+  int PROPERTY_GOAL = 39;
+
+  /**
+   * The feature id for the '<em><b>Supports</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_GOAL__SUPPORTS = GOAL__SUPPORTS;
+
+  /**
+   * The feature id for the '<em><b>Supported By</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_GOAL__SUPPORTED_BY = GOAL__SUPPORTED_BY;
+
+  /**
+   * The feature id for the '<em><b>Id</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_GOAL__ID = GOAL__ID;
+
+  /**
+   * The feature id for the '<em><b>Description</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_GOAL__DESCRIPTION = GOAL__DESCRIPTION;
+
+  /**
+   * The feature id for the '<em><b>Content Validity</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_GOAL__CONTENT_VALIDITY = GOAL__CONTENT_VALIDITY;
+
+  /**
+   * The feature id for the '<em><b>Status</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_GOAL__STATUS = GOAL__STATUS;
+
+  /**
+   * The feature id for the '<em><b>In Context Of</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_GOAL__IN_CONTEXT_OF = GOAL__IN_CONTEXT_OF;
+
+  /**
+   * The feature id for the '<em><b>State Validity</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_GOAL__STATE_VALIDITY = GOAL__STATE_VALIDITY;
+
+  /**
+   * The feature id for the '<em><b>Asil</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_GOAL__ASIL = GOAL__ASIL;
+
+  /**
+   * The feature id for the '<em><b>Property</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_GOAL__PROPERTY = GOAL_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Property Goal</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_GOAL_FEATURE_COUNT = GOAL_FEATURE_COUNT + 1;
+
+  /**
+   * The number of operations of the '<em>Property Goal</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_GOAL_OPERATION_COUNT = GOAL_OPERATION_COUNT + 0;
+
+  /**
    * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.safetycase.ASILLevel <em>ASIL Level</em>}' enum.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2463,7 +2827,7 @@ public interface GSNPackage extends EPackage {
    * @see edu.toronto.cs.se.modelepedia.safetycase.impl.GSNPackageImpl#getASILLevel()
    * @generated
    */
-  int ASIL_LEVEL = 36;
+  int ASIL_LEVEL = 40;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.safetycase.ValidityValue <em>Validity Value</em>}' enum.
@@ -2473,7 +2837,7 @@ public interface GSNPackage extends EPackage {
    * @see edu.toronto.cs.se.modelepedia.safetycase.impl.GSNPackageImpl#getValidityValue()
    * @generated
    */
-  int VALIDITY_VALUE = 37;
+  int VALIDITY_VALUE = 41;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.safetycase.ImpactType <em>Impact Type</em>}' enum.
@@ -2483,7 +2847,7 @@ public interface GSNPackage extends EPackage {
    * @see edu.toronto.cs.se.modelepedia.safetycase.impl.GSNPackageImpl#getImpactType()
    * @generated
    */
-  int IMPACT_TYPE = 38;
+  int IMPACT_TYPE = 42;
 
 
   /**
@@ -2494,7 +2858,7 @@ public interface GSNPackage extends EPackage {
    * @see edu.toronto.cs.se.modelepedia.safetycase.impl.GSNPackageImpl#getMMINTException()
    * @generated
    */
-  int MMINT_EXCEPTION = 39;
+  int MMINT_EXCEPTION = 43;
 
 
   /**
@@ -2837,6 +3201,47 @@ public interface GSNPackage extends EPackage {
   EClass getDomainGoal();
 
   /**
+   * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.safetycase.PropertyDecompositionElement <em>Property Decomposition Element</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Property Decomposition Element</em>'.
+   * @see edu.toronto.cs.se.modelepedia.safetycase.PropertyDecompositionElement
+   * @generated
+   */
+  EClass getPropertyDecompositionElement();
+
+  /**
+   * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.safetycase.PropertyDecompositionElement#getProperty <em>Property</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Property</em>'.
+   * @see edu.toronto.cs.se.modelepedia.safetycase.PropertyDecompositionElement#getProperty()
+   * @see #getPropertyDecompositionElement()
+   * @generated
+   */
+  EAttribute getPropertyDecompositionElement_Property();
+
+  /**
+   * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.safetycase.PropertyDecompositionStrategy <em>Property Decomposition Strategy</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Property Decomposition Strategy</em>'.
+   * @see edu.toronto.cs.se.modelepedia.safetycase.PropertyDecompositionStrategy
+   * @generated
+   */
+  EClass getPropertyDecompositionStrategy();
+
+  /**
+   * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.safetycase.PropertyGoal <em>Property Goal</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Property Goal</em>'.
+   * @see edu.toronto.cs.se.modelepedia.safetycase.PropertyGoal
+   * @generated
+   */
+  EClass getPropertyGoal();
+
+  /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.safetycase.Strategy <em>Strategy</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3085,6 +3490,26 @@ public interface GSNPackage extends EPackage {
   EAttribute getMofNSupporter_Target();
 
   /**
+   * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.safetycase.DecompositionStrategy <em>Decomposition Strategy</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Decomposition Strategy</em>'.
+   * @see edu.toronto.cs.se.modelepedia.safetycase.DecompositionStrategy
+   * @generated
+   */
+  EClass getDecompositionStrategy();
+
+  /**
+   * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.safetycase.DecompositionStrategy#validate() <em>Validate</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>Validate</em>' operation.
+   * @see edu.toronto.cs.se.modelepedia.safetycase.DecompositionStrategy#validate()
+   * @generated
+   */
+  EOperation getDecompositionStrategy__Validate();
+
+  /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.safetycase.Domain <em>Domain</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3211,45 +3636,35 @@ public interface GSNPackage extends EPackage {
   EAttribute getValueDomain_Value();
 
   /**
-   * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.safetycase.DomainElement <em>Domain Element</em>}'.
+   * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.safetycase.DomainDecompositionElement <em>Domain Decomposition Element</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Domain Element</em>'.
-   * @see edu.toronto.cs.se.modelepedia.safetycase.DomainElement
+   * @return the meta object for class '<em>Domain Decomposition Element</em>'.
+   * @see edu.toronto.cs.se.modelepedia.safetycase.DomainDecompositionElement
    * @generated
    */
-  EClass getDomainElement();
+  EClass getDomainDecompositionElement();
 
   /**
-   * Returns the meta object for the containment reference '{@link edu.toronto.cs.se.modelepedia.safetycase.DomainElement#getDomain <em>Domain</em>}'.
+   * Returns the meta object for the containment reference '{@link edu.toronto.cs.se.modelepedia.safetycase.DomainDecompositionElement#getDomain <em>Domain</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the containment reference '<em>Domain</em>'.
-   * @see edu.toronto.cs.se.modelepedia.safetycase.DomainElement#getDomain()
-   * @see #getDomainElement()
+   * @see edu.toronto.cs.se.modelepedia.safetycase.DomainDecompositionElement#getDomain()
+   * @see #getDomainDecompositionElement()
    * @generated
    */
-  EReference getDomainElement_Domain();
+  EReference getDomainDecompositionElement_Domain();
 
   /**
-   * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.safetycase.DomainStrategy <em>Domain Strategy</em>}'.
+   * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.safetycase.DomainDecompositionStrategy <em>Domain Decomposition Strategy</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Domain Strategy</em>'.
-   * @see edu.toronto.cs.se.modelepedia.safetycase.DomainStrategy
+   * @return the meta object for class '<em>Domain Decomposition Strategy</em>'.
+   * @see edu.toronto.cs.se.modelepedia.safetycase.DomainDecompositionStrategy
    * @generated
    */
-  EClass getDomainStrategy();
-
-  /**
-   * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.safetycase.DomainStrategy#validateDecomposition() <em>Validate Decomposition</em>}' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the '<em>Validate Decomposition</em>' operation.
-   * @see edu.toronto.cs.se.modelepedia.safetycase.DomainStrategy#validateDecomposition()
-   * @generated
-   */
-  EOperation getDomainStrategy__ValidateDecomposition();
+  EClass getDomainDecompositionStrategy();
 
   /**
    * Returns the meta object for enum '{@link edu.toronto.cs.se.modelepedia.safetycase.ASILLevel <em>ASIL Level</em>}'.
@@ -3598,6 +4013,44 @@ public interface GSNPackage extends EPackage {
     EClass DOMAIN_GOAL = eINSTANCE.getDomainGoal();
 
     /**
+     * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.PropertyDecompositionElementImpl <em>Property Decomposition Element</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.toronto.cs.se.modelepedia.safetycase.impl.PropertyDecompositionElementImpl
+     * @see edu.toronto.cs.se.modelepedia.safetycase.impl.GSNPackageImpl#getPropertyDecompositionElement()
+     * @generated
+     */
+    EClass PROPERTY_DECOMPOSITION_ELEMENT = eINSTANCE.getPropertyDecompositionElement();
+
+    /**
+     * The meta object literal for the '<em><b>Property</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute PROPERTY_DECOMPOSITION_ELEMENT__PROPERTY = eINSTANCE.getPropertyDecompositionElement_Property();
+
+    /**
+     * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.PropertyDecompositionStrategyImpl <em>Property Decomposition Strategy</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.toronto.cs.se.modelepedia.safetycase.impl.PropertyDecompositionStrategyImpl
+     * @see edu.toronto.cs.se.modelepedia.safetycase.impl.GSNPackageImpl#getPropertyDecompositionStrategy()
+     * @generated
+     */
+    EClass PROPERTY_DECOMPOSITION_STRATEGY = eINSTANCE.getPropertyDecompositionStrategy();
+
+    /**
+     * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.PropertyGoalImpl <em>Property Goal</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.toronto.cs.se.modelepedia.safetycase.impl.PropertyGoalImpl
+     * @see edu.toronto.cs.se.modelepedia.safetycase.impl.GSNPackageImpl#getPropertyGoal()
+     * @generated
+     */
+    EClass PROPERTY_GOAL = eINSTANCE.getPropertyGoal();
+
+    /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.StrategyImpl <em>Strategy</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -3822,6 +4275,24 @@ public interface GSNPackage extends EPackage {
     EAttribute MOF_NSUPPORTER__TARGET = eINSTANCE.getMofNSupporter_Target();
 
     /**
+     * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.DecompositionStrategyImpl <em>Decomposition Strategy</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.toronto.cs.se.modelepedia.safetycase.impl.DecompositionStrategyImpl
+     * @see edu.toronto.cs.se.modelepedia.safetycase.impl.GSNPackageImpl#getDecompositionStrategy()
+     * @generated
+     */
+    EClass DECOMPOSITION_STRATEGY = eINSTANCE.getDecompositionStrategy();
+
+    /**
+     * The meta object literal for the '<em><b>Validate</b></em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EOperation DECOMPOSITION_STRATEGY___VALIDATE = eINSTANCE.getDecompositionStrategy__Validate();
+
+    /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.DomainImpl <em>Domain</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -3928,14 +4399,14 @@ public interface GSNPackage extends EPackage {
     EAttribute VALUE_DOMAIN__VALUE = eINSTANCE.getValueDomain_Value();
 
     /**
-     * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.DomainElementImpl <em>Domain Element</em>}' class.
+     * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.DomainDecompositionElementImpl <em>Domain Decomposition Element</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see edu.toronto.cs.se.modelepedia.safetycase.impl.DomainElementImpl
-     * @see edu.toronto.cs.se.modelepedia.safetycase.impl.GSNPackageImpl#getDomainElement()
+     * @see edu.toronto.cs.se.modelepedia.safetycase.impl.DomainDecompositionElementImpl
+     * @see edu.toronto.cs.se.modelepedia.safetycase.impl.GSNPackageImpl#getDomainDecompositionElement()
      * @generated
      */
-    EClass DOMAIN_ELEMENT = eINSTANCE.getDomainElement();
+    EClass DOMAIN_DECOMPOSITION_ELEMENT = eINSTANCE.getDomainDecompositionElement();
 
     /**
      * The meta object literal for the '<em><b>Domain</b></em>' containment reference feature.
@@ -3943,25 +4414,17 @@ public interface GSNPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference DOMAIN_ELEMENT__DOMAIN = eINSTANCE.getDomainElement_Domain();
+    EReference DOMAIN_DECOMPOSITION_ELEMENT__DOMAIN = eINSTANCE.getDomainDecompositionElement_Domain();
 
     /**
-     * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.DomainStrategyImpl <em>Domain Strategy</em>}' class.
+     * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.DomainDecompositionStrategyImpl <em>Domain Decomposition Strategy</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see edu.toronto.cs.se.modelepedia.safetycase.impl.DomainStrategyImpl
-     * @see edu.toronto.cs.se.modelepedia.safetycase.impl.GSNPackageImpl#getDomainStrategy()
+     * @see edu.toronto.cs.se.modelepedia.safetycase.impl.DomainDecompositionStrategyImpl
+     * @see edu.toronto.cs.se.modelepedia.safetycase.impl.GSNPackageImpl#getDomainDecompositionStrategy()
      * @generated
      */
-    EClass DOMAIN_STRATEGY = eINSTANCE.getDomainStrategy();
-
-    /**
-     * The meta object literal for the '<em><b>Validate Decomposition</b></em>' operation.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EOperation DOMAIN_STRATEGY___VALIDATE_DECOMPOSITION = eINSTANCE.getDomainStrategy__ValidateDecomposition();
+    EClass DOMAIN_DECOMPOSITION_STRATEGY = eINSTANCE.getDomainDecompositionStrategy();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.safetycase.ASILLevel <em>ASIL Level</em>}' enum.

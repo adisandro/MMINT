@@ -219,6 +219,75 @@ public class GSNItemProviderAdapterFactory extends GSNAdapterFactory implements 
   }
 
   /**
+   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.PropertyDecompositionElement} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected PropertyDecompositionElementItemProvider propertyDecompositionElementItemProvider;
+
+  /**
+   * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.PropertyDecompositionElement}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createPropertyDecompositionElementAdapter() {
+    if (propertyDecompositionElementItemProvider == null) {
+      propertyDecompositionElementItemProvider = new PropertyDecompositionElementItemProvider(this);
+    }
+
+    return propertyDecompositionElementItemProvider;
+  }
+
+  /**
+   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.PropertyDecompositionStrategy} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected PropertyDecompositionStrategyItemProvider propertyDecompositionStrategyItemProvider;
+
+  /**
+   * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.PropertyDecompositionStrategy}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createPropertyDecompositionStrategyAdapter() {
+    if (propertyDecompositionStrategyItemProvider == null) {
+      propertyDecompositionStrategyItemProvider = new PropertyDecompositionStrategyItemProvider(this);
+    }
+
+    return propertyDecompositionStrategyItemProvider;
+  }
+
+  /**
+   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.PropertyGoal} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected PropertyGoalItemProvider propertyGoalItemProvider;
+
+  /**
+   * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.PropertyGoal}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createPropertyGoalAdapter() {
+    if (propertyGoalItemProvider == null) {
+      propertyGoalItemProvider = new PropertyGoalItemProvider(this);
+    }
+
+    return propertyGoalItemProvider;
+  }
+
+  /**
    * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.BasicStrategy} instances.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -587,26 +656,26 @@ public class GSNItemProviderAdapterFactory extends GSNAdapterFactory implements 
   }
 
   /**
-   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.DomainStrategy} instances.
+   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.DomainDecompositionStrategy} instances.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected DomainStrategyItemProvider domainStrategyItemProvider;
+  protected DomainDecompositionStrategyItemProvider domainDecompositionStrategyItemProvider;
 
   /**
-   * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.DomainStrategy}.
+   * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.DomainDecompositionStrategy}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
   @Override
-  public Adapter createDomainStrategyAdapter() {
-    if (domainStrategyItemProvider == null) {
-      domainStrategyItemProvider = new DomainStrategyItemProvider(this);
+  public Adapter createDomainDecompositionStrategyAdapter() {
+    if (domainDecompositionStrategyItemProvider == null) {
+      domainDecompositionStrategyItemProvider = new DomainDecompositionStrategyItemProvider(this);
     }
 
-    return domainStrategyItemProvider;
+    return domainDecompositionStrategyItemProvider;
   }
 
   /**
@@ -735,8 +804,11 @@ public class GSNItemProviderAdapterFactory extends GSNAdapterFactory implements 
     if (realDomainItemProvider != null) realDomainItemProvider.dispose();
     if (enumDomainItemProvider != null) enumDomainItemProvider.dispose();
     if (valueDomainItemProvider != null) valueDomainItemProvider.dispose();
-    if (domainStrategyItemProvider != null) domainStrategyItemProvider.dispose();
+    if (domainDecompositionStrategyItemProvider != null) domainDecompositionStrategyItemProvider.dispose();
     if (domainGoalItemProvider != null) domainGoalItemProvider.dispose();
+    if (propertyDecompositionElementItemProvider != null) propertyDecompositionElementItemProvider.dispose();
+    if (propertyDecompositionStrategyItemProvider != null) propertyDecompositionStrategyItemProvider.dispose();
+    if (propertyGoalItemProvider != null) propertyGoalItemProvider.dispose();
   }
 
 }

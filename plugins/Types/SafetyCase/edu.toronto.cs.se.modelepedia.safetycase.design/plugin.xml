@@ -43,8 +43,8 @@
             id="edu.toronto.cs.se.modelepedia.safetycase.design.tools.CreateDomainGoal">
       </javaActions>
       <javaActions
-            actionClass="edu.toronto.cs.se.modelepedia.safetycase.design.tools.CreateDomainStrategy"
-            id="edu.toronto.cs.se.modelepedia.safetycase.design.tools.CreateDomainStrategy">
+            actionClass="edu.toronto.cs.se.modelepedia.safetycase.design.tools.CreateDomainDecompositionStrategy"
+            id="edu.toronto.cs.se.modelepedia.safetycase.design.tools.CreateDomainDecompositionStrategy">
       </javaActions>
       <javaActions
             actionClass="edu.toronto.cs.se.modelepedia.safetycase.design.context.DomainDecomposition"

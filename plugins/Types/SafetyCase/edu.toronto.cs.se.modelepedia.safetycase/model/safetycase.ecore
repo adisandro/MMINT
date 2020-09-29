@@ -181,6 +181,10 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="target" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong" defaultValueLiteral="1"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DecompositionStrategy" abstract="true"
+      eSuperTypes="#//Strategy">
+    <eOperations name="validate" eExceptions="#//MMINTException"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Domain" abstract="true">
     <eOperations name="validateDecomposition" eExceptions="#//MMINTException">
       <eParameters name="subDomains" upperBound="-1" eType="#//Domain"/>
@@ -205,13 +209,17 @@
   <eClassifiers xsi:type="ecore:EClass" name="ValueDomain" eSuperTypes="#//Domain">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DomainElement" abstract="true">
+  <eClassifiers xsi:type="ecore:EClass" name="DomainDecompositionElement" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EReference" name="domain" lowerBound="1"
         eType="#//Domain" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DomainStrategy" eSuperTypes="#//Strategy #//DomainElement">
-    <eOperations name="validateDecomposition" eExceptions="#//MMINTException"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DomainDecompositionStrategy" eSuperTypes="#//DecompositionStrategy #//DomainDecompositionElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DomainGoal" eSuperTypes="#//Goal #//DomainDecompositionElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PropertyDecompositionElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="property" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DomainGoal" eSuperTypes="#//Goal #//DomainElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PropertyDecompositionStrategy" eSuperTypes="#//DecompositionStrategy #//PropertyDecompositionElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PropertyGoal" eSuperTypes="#//Goal #//PropertyDecompositionElement"/>
   <eClassifiers xsi:type="ecore:EDataType" name="MMINTException" instanceClassName="edu.toronto.cs.se.mmint.MMINTException"/>
 </ecore:EPackage>

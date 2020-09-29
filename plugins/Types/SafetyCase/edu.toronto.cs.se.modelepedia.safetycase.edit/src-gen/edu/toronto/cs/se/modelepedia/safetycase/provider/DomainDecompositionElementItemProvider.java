@@ -12,9 +12,9 @@
 package edu.toronto.cs.se.modelepedia.safetycase.provider;
 
 
+import edu.toronto.cs.se.modelepedia.safetycase.DomainDecompositionElement;
 import edu.toronto.cs.se.modelepedia.safetycase.GSNFactory;
 import edu.toronto.cs.se.modelepedia.safetycase.GSNPackage;
-import edu.toronto.cs.se.modelepedia.safetycase.SafetyCase;
 
 import java.util.Collection;
 import java.util.List;
@@ -36,12 +36,12 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.SafetyCase} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.DomainDecompositionElement} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class SafetyCaseItemProvider 
+public class DomainDecompositionElementItemProvider 
   extends ItemProviderAdapter
   implements
     IEditingDomainItemProvider,
@@ -55,7 +55,7 @@ public class SafetyCaseItemProvider
    * <!-- end-user-doc -->
    * @generated
    */
-  public SafetyCaseItemProvider(AdapterFactory adapterFactory) {
+  public DomainDecompositionElementItemProvider(AdapterFactory adapterFactory) {
     super(adapterFactory);
   }
 
@@ -86,13 +86,7 @@ public class SafetyCaseItemProvider
   public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
     if (childrenFeatures == null) {
       super.getChildrenFeatures(object);
-      childrenFeatures.add(GSNPackage.Literals.SAFETY_CASE__GOALS);
-      childrenFeatures.add(GSNPackage.Literals.SAFETY_CASE__STRATEGIES);
-      childrenFeatures.add(GSNPackage.Literals.SAFETY_CASE__SOLUTIONS);
-      childrenFeatures.add(GSNPackage.Literals.SAFETY_CASE__CONTEXTS);
-      childrenFeatures.add(GSNPackage.Literals.SAFETY_CASE__JUSTIFICATIONS);
-      childrenFeatures.add(GSNPackage.Literals.SAFETY_CASE__ASSUMPTIONS);
-      childrenFeatures.add(GSNPackage.Literals.SAFETY_CASE__CONNECTORS);
+      childrenFeatures.add(GSNPackage.Literals.DOMAIN_DECOMPOSITION_ELEMENT__DOMAIN);
     }
     return childrenFeatures;
   }
@@ -111,17 +105,6 @@ public class SafetyCaseItemProvider
   }
 
   /**
-   * This returns SafetyCase.gif.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Object getImage(Object object) {
-    return overlayImage(object, getResourceLocator().getImage("full/obj16/SafetyCase"));
-  }
-
-  /**
    * This returns the label text for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -129,7 +112,7 @@ public class SafetyCaseItemProvider
    */
   @Override
   public String getText(Object object) {
-    return getString("_UI_SafetyCase_type");
+    return getString("_UI_DomainDecompositionElement_type");
   }
 
 
@@ -144,14 +127,8 @@ public class SafetyCaseItemProvider
   public void notifyChanged(Notification notification) {
     updateChildren(notification);
 
-    switch (notification.getFeatureID(SafetyCase.class)) {
-      case GSNPackage.SAFETY_CASE__GOALS:
-      case GSNPackage.SAFETY_CASE__STRATEGIES:
-      case GSNPackage.SAFETY_CASE__SOLUTIONS:
-      case GSNPackage.SAFETY_CASE__CONTEXTS:
-      case GSNPackage.SAFETY_CASE__JUSTIFICATIONS:
-      case GSNPackage.SAFETY_CASE__ASSUMPTIONS:
-      case GSNPackage.SAFETY_CASE__CONNECTORS:
+    switch (notification.getFeatureID(DomainDecompositionElement.class)) {
+      case GSNPackage.DOMAIN_DECOMPOSITION_ELEMENT__DOMAIN:
         fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
         return;
     }
@@ -171,83 +148,23 @@ public class SafetyCaseItemProvider
 
     newChildDescriptors.add
       (createChildParameter
-        (GSNPackage.Literals.SAFETY_CASE__GOALS,
-         GSNFactory.eINSTANCE.createBasicGoal()));
+        (GSNPackage.Literals.DOMAIN_DECOMPOSITION_ELEMENT__DOMAIN,
+         GSNFactory.eINSTANCE.createIntDomain()));
 
     newChildDescriptors.add
       (createChildParameter
-        (GSNPackage.Literals.SAFETY_CASE__GOALS,
-         GSNFactory.eINSTANCE.createIndependenceGoal()));
+        (GSNPackage.Literals.DOMAIN_DECOMPOSITION_ELEMENT__DOMAIN,
+         GSNFactory.eINSTANCE.createRealDomain()));
 
     newChildDescriptors.add
       (createChildParameter
-        (GSNPackage.Literals.SAFETY_CASE__GOALS,
-         GSNFactory.eINSTANCE.createDomainGoal()));
+        (GSNPackage.Literals.DOMAIN_DECOMPOSITION_ELEMENT__DOMAIN,
+         GSNFactory.eINSTANCE.createEnumDomain()));
 
     newChildDescriptors.add
       (createChildParameter
-        (GSNPackage.Literals.SAFETY_CASE__GOALS,
-         GSNFactory.eINSTANCE.createPropertyGoal()));
-
-    newChildDescriptors.add
-      (createChildParameter
-        (GSNPackage.Literals.SAFETY_CASE__STRATEGIES,
-         GSNFactory.eINSTANCE.createBasicStrategy()));
-
-    newChildDescriptors.add
-      (createChildParameter
-        (GSNPackage.Literals.SAFETY_CASE__STRATEGIES,
-         GSNFactory.eINSTANCE.createASILDecompositionStrategy()));
-
-    newChildDescriptors.add
-      (createChildParameter
-        (GSNPackage.Literals.SAFETY_CASE__STRATEGIES,
-         GSNFactory.eINSTANCE.createDomainDecompositionStrategy()));
-
-    newChildDescriptors.add
-      (createChildParameter
-        (GSNPackage.Literals.SAFETY_CASE__STRATEGIES,
-         GSNFactory.eINSTANCE.createPropertyDecompositionStrategy()));
-
-    newChildDescriptors.add
-      (createChildParameter
-        (GSNPackage.Literals.SAFETY_CASE__SOLUTIONS,
-         GSNFactory.eINSTANCE.createSolution()));
-
-    newChildDescriptors.add
-      (createChildParameter
-        (GSNPackage.Literals.SAFETY_CASE__CONTEXTS,
-         GSNFactory.eINSTANCE.createContext()));
-
-    newChildDescriptors.add
-      (createChildParameter
-        (GSNPackage.Literals.SAFETY_CASE__JUSTIFICATIONS,
-         GSNFactory.eINSTANCE.createJustification()));
-
-    newChildDescriptors.add
-      (createChildParameter
-        (GSNPackage.Literals.SAFETY_CASE__ASSUMPTIONS,
-         GSNFactory.eINSTANCE.createAssumption()));
-
-    newChildDescriptors.add
-      (createChildParameter
-        (GSNPackage.Literals.SAFETY_CASE__CONNECTORS,
-         GSNFactory.eINSTANCE.createAndSupporter()));
-
-    newChildDescriptors.add
-      (createChildParameter
-        (GSNPackage.Literals.SAFETY_CASE__CONNECTORS,
-         GSNFactory.eINSTANCE.createOrSupporter()));
-
-    newChildDescriptors.add
-      (createChildParameter
-        (GSNPackage.Literals.SAFETY_CASE__CONNECTORS,
-         GSNFactory.eINSTANCE.createXorSupporter()));
-
-    newChildDescriptors.add
-      (createChildParameter
-        (GSNPackage.Literals.SAFETY_CASE__CONNECTORS,
-         GSNFactory.eINSTANCE.createMofNSupporter()));
+        (GSNPackage.Literals.DOMAIN_DECOMPOSITION_ELEMENT__DOMAIN,
+         GSNFactory.eINSTANCE.createValueDomain()));
   }
 
   /**

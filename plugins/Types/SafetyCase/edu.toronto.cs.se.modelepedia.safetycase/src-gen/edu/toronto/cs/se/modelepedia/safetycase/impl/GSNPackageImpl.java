@@ -24,10 +24,11 @@ import edu.toronto.cs.se.modelepedia.safetycase.Context;
 import edu.toronto.cs.se.modelepedia.safetycase.ContextualElement;
 import edu.toronto.cs.se.modelepedia.safetycase.CoreElement;
 import edu.toronto.cs.se.modelepedia.safetycase.DecomposableCoreElement;
+import edu.toronto.cs.se.modelepedia.safetycase.DecompositionStrategy;
 import edu.toronto.cs.se.modelepedia.safetycase.Domain;
-import edu.toronto.cs.se.modelepedia.safetycase.DomainElement;
+import edu.toronto.cs.se.modelepedia.safetycase.DomainDecompositionElement;
 import edu.toronto.cs.se.modelepedia.safetycase.DomainGoal;
-import edu.toronto.cs.se.modelepedia.safetycase.DomainStrategy;
+import edu.toronto.cs.se.modelepedia.safetycase.DomainDecompositionStrategy;
 import edu.toronto.cs.se.modelepedia.safetycase.EnumDomain;
 import edu.toronto.cs.se.modelepedia.safetycase.GSNFactory;
 import edu.toronto.cs.se.modelepedia.safetycase.GSNPackage;
@@ -40,6 +41,9 @@ import edu.toronto.cs.se.modelepedia.safetycase.IntDomain;
 import edu.toronto.cs.se.modelepedia.safetycase.Justification;
 import edu.toronto.cs.se.modelepedia.safetycase.MofNSupporter;
 import edu.toronto.cs.se.modelepedia.safetycase.OrSupporter;
+import edu.toronto.cs.se.modelepedia.safetycase.PropertyDecompositionElement;
+import edu.toronto.cs.se.modelepedia.safetycase.PropertyDecompositionStrategy;
+import edu.toronto.cs.se.modelepedia.safetycase.PropertyGoal;
 import edu.toronto.cs.se.modelepedia.safetycase.RealDomain;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCase;
 import edu.toronto.cs.se.modelepedia.safetycase.Solution;
@@ -169,6 +173,27 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass propertyDecompositionElementEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass propertyDecompositionStrategyEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass propertyGoalEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass strategyEClass = null;
 
   /**
@@ -281,6 +306,13 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass decompositionStrategyEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass domainEClass = null;
 
   /**
@@ -316,14 +348,14 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass domainElementEClass = null;
+  private EClass domainDecompositionElementEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass domainStrategyEClass = null;
+  private EClass domainDecompositionStrategyEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -750,6 +782,46 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
    * @generated
    */
   @Override
+  public EClass getPropertyDecompositionElement() {
+    return propertyDecompositionElementEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getPropertyDecompositionElement_Property() {
+    return (EAttribute)propertyDecompositionElementEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getPropertyDecompositionStrategy() {
+    return propertyDecompositionStrategyEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getPropertyGoal() {
+    return propertyGoalEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EClass getStrategy() {
     return strategyEClass;
   }
@@ -990,6 +1062,26 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
    * @generated
    */
   @Override
+  public EClass getDecompositionStrategy() {
+    return decompositionStrategyEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EOperation getDecompositionStrategy__Validate() {
+    return decompositionStrategyEClass.getEOperations().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EClass getDomain() {
     return domainEClass;
   }
@@ -1110,8 +1202,8 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
    * @generated
    */
   @Override
-  public EClass getDomainElement() {
-    return domainElementEClass;
+  public EClass getDomainDecompositionElement() {
+    return domainDecompositionElementEClass;
   }
 
   /**
@@ -1120,8 +1212,8 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
    * @generated
    */
   @Override
-  public EReference getDomainElement_Domain() {
-    return (EReference)domainElementEClass.getEStructuralFeatures().get(0);
+  public EReference getDomainDecompositionElement_Domain() {
+    return (EReference)domainDecompositionElementEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1130,18 +1222,8 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
    * @generated
    */
   @Override
-  public EClass getDomainStrategy() {
-    return domainStrategyEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EOperation getDomainStrategy__ValidateDecomposition() {
-    return domainStrategyEClass.getEOperations().get(0);
+  public EClass getDomainDecompositionStrategy() {
+    return domainDecompositionStrategyEClass;
   }
 
   /**
@@ -1296,6 +1378,9 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     mofNSupporterEClass = createEClass(MOF_NSUPPORTER);
     createEAttribute(mofNSupporterEClass, MOF_NSUPPORTER__TARGET);
 
+    decompositionStrategyEClass = createEClass(DECOMPOSITION_STRATEGY);
+    createEOperation(decompositionStrategyEClass, DECOMPOSITION_STRATEGY___VALIDATE);
+
     domainEClass = createEClass(DOMAIN);
     createEOperation(domainEClass, DOMAIN___VALIDATE_DECOMPOSITION__ELIST);
 
@@ -1313,13 +1398,19 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     valueDomainEClass = createEClass(VALUE_DOMAIN);
     createEAttribute(valueDomainEClass, VALUE_DOMAIN__VALUE);
 
-    domainElementEClass = createEClass(DOMAIN_ELEMENT);
-    createEReference(domainElementEClass, DOMAIN_ELEMENT__DOMAIN);
+    domainDecompositionElementEClass = createEClass(DOMAIN_DECOMPOSITION_ELEMENT);
+    createEReference(domainDecompositionElementEClass, DOMAIN_DECOMPOSITION_ELEMENT__DOMAIN);
 
-    domainStrategyEClass = createEClass(DOMAIN_STRATEGY);
-    createEOperation(domainStrategyEClass, DOMAIN_STRATEGY___VALIDATE_DECOMPOSITION);
+    domainDecompositionStrategyEClass = createEClass(DOMAIN_DECOMPOSITION_STRATEGY);
 
     domainGoalEClass = createEClass(DOMAIN_GOAL);
+
+    propertyDecompositionElementEClass = createEClass(PROPERTY_DECOMPOSITION_ELEMENT);
+    createEAttribute(propertyDecompositionElementEClass, PROPERTY_DECOMPOSITION_ELEMENT__PROPERTY);
+
+    propertyDecompositionStrategyEClass = createEClass(PROPERTY_DECOMPOSITION_STRATEGY);
+
+    propertyGoalEClass = createEClass(PROPERTY_GOAL);
 
     // Create enums
     asilLevelEEnum = createEEnum(ASIL_LEVEL);
@@ -1382,14 +1473,19 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     orSupporterEClass.getESuperTypes().add(this.getSupportConnector());
     xorSupporterEClass.getESuperTypes().add(this.getSupportConnector());
     mofNSupporterEClass.getESuperTypes().add(this.getSupportConnector());
+    decompositionStrategyEClass.getESuperTypes().add(this.getStrategy());
     intDomainEClass.getESuperTypes().add(this.getDomain());
     realDomainEClass.getESuperTypes().add(this.getDomain());
     enumDomainEClass.getESuperTypes().add(this.getDomain());
     valueDomainEClass.getESuperTypes().add(this.getDomain());
-    domainStrategyEClass.getESuperTypes().add(this.getStrategy());
-    domainStrategyEClass.getESuperTypes().add(this.getDomainElement());
+    domainDecompositionStrategyEClass.getESuperTypes().add(this.getDecompositionStrategy());
+    domainDecompositionStrategyEClass.getESuperTypes().add(this.getDomainDecompositionElement());
     domainGoalEClass.getESuperTypes().add(this.getGoal());
-    domainGoalEClass.getESuperTypes().add(this.getDomainElement());
+    domainGoalEClass.getESuperTypes().add(this.getDomainDecompositionElement());
+    propertyDecompositionStrategyEClass.getESuperTypes().add(this.getDecompositionStrategy());
+    propertyDecompositionStrategyEClass.getESuperTypes().add(this.getPropertyDecompositionElement());
+    propertyGoalEClass.getESuperTypes().add(this.getGoal());
+    propertyGoalEClass.getESuperTypes().add(this.getPropertyDecompositionElement());
 
     // Initialize classes, features, and operations; add parameters
     initEClass(safetyCaseEClass, SafetyCase.class, "SafetyCase", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1475,9 +1571,14 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     initEClass(mofNSupporterEClass, MofNSupporter.class, "MofNSupporter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getMofNSupporter_Target(), ecorePackage.getELong(), "target", "1", 1, 1, MofNSupporter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+    initEClass(decompositionStrategyEClass, DecompositionStrategy.class, "DecompositionStrategy", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    EOperation op = initEOperation(getDecompositionStrategy__Validate(), null, "validate", 0, 1, IS_UNIQUE, IS_ORDERED);
+    addEException(op, this.getMMINTException());
+
     initEClass(domainEClass, Domain.class, "Domain", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-    EOperation op = initEOperation(getDomain__ValidateDecomposition__EList(), null, "validateDecomposition", 0, 1, IS_UNIQUE, IS_ORDERED);
+    op = initEOperation(getDomain__ValidateDecomposition__EList(), null, "validateDecomposition", 0, 1, IS_UNIQUE, IS_ORDERED);
     addEParameter(op, this.getDomain(), "subDomains", 0, -1, IS_UNIQUE, IS_ORDERED);
     addEException(op, this.getMMINTException());
 
@@ -1495,15 +1596,19 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     initEClass(valueDomainEClass, ValueDomain.class, "ValueDomain", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getValueDomain_Value(), ecorePackage.getEString(), "value", null, 1, 1, ValueDomain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(domainElementEClass, DomainElement.class, "DomainElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getDomainElement_Domain(), this.getDomain(), null, "domain", null, 1, 1, DomainElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(domainDecompositionElementEClass, DomainDecompositionElement.class, "DomainDecompositionElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getDomainDecompositionElement_Domain(), this.getDomain(), null, "domain", null, 1, 1, DomainDecompositionElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(domainStrategyEClass, DomainStrategy.class, "DomainStrategy", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-    op = initEOperation(getDomainStrategy__ValidateDecomposition(), null, "validateDecomposition", 0, 1, IS_UNIQUE, IS_ORDERED);
-    addEException(op, this.getMMINTException());
+    initEClass(domainDecompositionStrategyEClass, DomainDecompositionStrategy.class, "DomainDecompositionStrategy", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(domainGoalEClass, DomainGoal.class, "DomainGoal", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(propertyDecompositionElementEClass, PropertyDecompositionElement.class, "PropertyDecompositionElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getPropertyDecompositionElement_Property(), ecorePackage.getEString(), "property", null, 1, 1, PropertyDecompositionElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(propertyDecompositionStrategyEClass, PropertyDecompositionStrategy.class, "PropertyDecompositionStrategy", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(propertyGoalEClass, PropertyGoal.class, "PropertyGoal", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     // Initialize enums and add enum literals
     initEEnum(asilLevelEEnum, ASILLevel.class, "ASILLevel");
