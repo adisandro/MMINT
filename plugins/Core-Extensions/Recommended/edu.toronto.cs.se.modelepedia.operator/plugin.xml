@@ -87,7 +87,7 @@
          </type>
          <constraint
                implementation="edu.toronto.cs.se.modelepedia.operator.patch.ModelRelTypeTransformation$OperatorConstraint"
-               language="java">
+               language="Java">
          </constraint>
          <generics>
             <parameter>
@@ -140,7 +140,7 @@
          </type>
          <constraint
                implementation="edu.toronto.cs.se.modelepedia.operator.merge.Sum$OperatorConstraint"
-               language="java">
+               language="Java">
          </constraint>
          <inputs>
             <parameter>

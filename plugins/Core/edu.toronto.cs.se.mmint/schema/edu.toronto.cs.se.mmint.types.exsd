@@ -54,29 +54,17 @@
          </documentation>
       </annotation>
       <complexType>
-         <attribute name="language" use="required">
+         <attribute name="language" type="string" use="required">
             <annotation>
                <documentation>
-                  The constraint language (ocl | java | smt | vql).
+                  The constraint language.
                </documentation>
             </annotation>
-            <simpleType>
-               <restriction base="string">
-                  <enumeration value="ocl">
-                  </enumeration>
-                  <enumeration value="java">
-                  </enumeration>
-                  <enumeration value="smt">
-                  </enumeration>
-                  <enumeration value="vql">
-                  </enumeration>
-               </restriction>
-            </simpleType>
          </attribute>
          <attribute name="implementation" type="string" use="required">
             <annotation>
                <documentation>
-                  The constraint implementation (an OCL constraint, the fully qualified name of a JAVA class, or an SMTLIB assertion).
+                  The constraint implementation using the format of the chosen language.
                </documentation>
             </annotation>
          </attribute>

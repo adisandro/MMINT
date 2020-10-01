@@ -33,7 +33,7 @@
          </type>
          <constraint
                implementation="edu.toronto.cs.se.mmint.mid.constraint.MIDRelConstraint"
-               language="java">
+               language="Java">
          </constraint>
       </modelType>
    </extension>
@@ -91,7 +91,7 @@
             </type>
             <constraint
                   implementation="edu.toronto.cs.se.mmint.operator.constraint.OverlapConstraint"
-                  language="java">
+                  language="Java">
             </constraint>
          </modelType>
          <modelTypeEndpoint>
@@ -150,7 +150,7 @@
             </type>
             <constraint
                   implementation="edu.toronto.cs.se.mmint.operator.constraint.Overlap2Constraint"
-                  language="java">
+                  language="Java">
             </constraint>
          </modelType>
          <modelTypeEndpoint>
@@ -206,7 +206,7 @@
          </type>
          <constraint
                implementation="edu.toronto.cs.se.mmint.operator.match.UntypedMatch$Constraint"
-               language="java">
+               language="Java">
          </constraint>
          <inputs>
             <parameter>
@@ -252,7 +252,7 @@
          </type>
          <constraint
                implementation="edu.toronto.cs.se.mmint.operator.match.Match$Constraint"
-               language="java">
+               language="Java">
          </constraint>
          <inputs>
             <parameter>
@@ -298,7 +298,7 @@
          </type>
          <constraint
                implementation="edu.toronto.cs.se.mmint.operator.merge.ModelRelComposition$Constraint"
-               language="java">
+               language="Java">
          </constraint>
          <inputs>
             <parameter>
@@ -341,7 +341,7 @@
          </type>
          <constraint
                implementation="edu.toronto.cs.se.mmint.operator.merge.ModelRelMerge$Constraint"
-               language="java">
+               language="Java">
          </constraint>
          <inputs>
             <parameter>
@@ -384,7 +384,7 @@
          </type>
          <constraint
                implementation="edu.toronto.cs.se.mmint.operator.merge.Merge$Constraint"
-               language="java">
+               language="Java">
          </constraint>
          <inputs>
             <parameter>
@@ -439,7 +439,7 @@
          </type>
          <constraint
                implementation="edu.toronto.cs.se.mmint.operator.propagate.ModelRelPropagation$Constraint"
-               language="java">
+               language="Java">
          </constraint>
          <inputs>
             <parameter>
@@ -554,7 +554,7 @@
          </type>
          <constraint
                implementation="edu.toronto.cs.se.mmint.operator.propagate.Fix$Constraint"
-               language="java">
+               language="Java">
          </constraint>
          <generics>
             <parameter>
@@ -601,7 +601,7 @@
          </type>
          <constraint
                implementation="edu.toronto.cs.se.mmint.operator.mid.Map$OperatorConstraint"
-               language="java">
+               language="Java">
          </constraint>
          <generics>
             <parameter>
@@ -648,7 +648,7 @@
          </type>
          <constraint
                implementation="edu.toronto.cs.se.mmint.operator.mid.Reduce$OperatorConstraint"
-               language="java">
+               language="Java">
          </constraint>
          <generics>
             <parameter>
@@ -693,7 +693,7 @@
          </type>
          <constraint
                implementation="edu.toronto.cs.se.mmint.operator.mid.Union$Constraint"
-               language="java">
+               language="Java">
          </constraint>
          <inputs>
             <parameter>
@@ -729,7 +729,7 @@
          </type>
          <constraint
                implementation="edu.toronto.cs.se.mmint.operator.mid.Filter$Constraint"
-               language="java">
+               language="Java">
          </constraint>
          <generics>
             <parameter>
@@ -774,7 +774,7 @@
          </type>
          <constraint
                implementation="edu.toronto.cs.se.mmint.operator.mid.Filter$Constraint"
-               language="java">
+               language="Java">
          </constraint>
          <generics>
             <parameter>
@@ -1094,7 +1094,7 @@
          </type>
          <constraint
                implementation="edu.toronto.cs.se.mmint.operator.patch.ModelRelToText$Constraint"
-               language="java">
+               language="Java">
          </constraint>
          <inputs>
             <parameter>
@@ -1280,7 +1280,7 @@
          </type>
          <constraint
                implementation="edu.toronto.cs.se.mmint.operator.slice.Slice$Constraint"
-               language="java">
+               language="Java">
          </constraint>
          <inputs>
             <parameter>
@@ -1317,7 +1317,7 @@
          </type>
          <constraint
                implementation="edu.toronto.cs.se.mmint.operator.slice.AnnotateSlice$Constraint"
-               language="java">
+               language="Java">
          </constraint>
          <inputs>
             <parameter>

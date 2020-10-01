@@ -33,7 +33,7 @@
          </type>
          <constraint
                implementation="Attribute.allInstances()-&gt;exists(attribute | attribute.public)"
-               language="ocl">
+               language="OCL">
          </constraint>
       </modelType>
    </extension>
@@ -56,7 +56,7 @@
          </type>
          <constraint
                implementation="not Attribute.allInstances()-&gt;exists(attribute | attribute.public)"
-               language="ocl">
+               language="OCL">
          </constraint>
       </modelType>
    </extension>

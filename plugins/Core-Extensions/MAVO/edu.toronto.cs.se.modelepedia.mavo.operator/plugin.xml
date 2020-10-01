@@ -25,7 +25,7 @@
          </type>
          <constraint
                implementation="edu.toronto.cs.se.modelepedia.mavo.operator.slice.ChangeImpact$OperatorConstraint"
-               language="java">
+               language="Java">
          </constraint>
          <inputs>
             <parameter>
@@ -68,7 +68,7 @@
          </type>
          <constraint
                implementation="edu.toronto.cs.se.modelepedia.mavo.operator.propagate.ChangePropagation$OperatorConstraint"
-               language="java">
+               language="Java">
          </constraint>
          <inputs>
             <parameter>

@@ -88,7 +88,7 @@
          </type>
          <constraint
                implementation="edu.toronto.cs.se.modelepedia.uml.constraint.UMLClassDiagramModelConstraint"
-               language="java">
+               language="Java">
          </constraint>
       </modelType>
    </extension>
@@ -142,7 +142,7 @@
          </type>
          <constraint
                implementation="edu.toronto.cs.se.modelepedia.uml.constraint.UMLComponentDiagramModelConstraint"
-               language="java">
+               language="Java">
          </constraint>
       </modelType>
    </extension>
@@ -196,7 +196,7 @@
          </type>
          <constraint
                implementation="edu.toronto.cs.se.modelepedia.uml.constraint.UMLDeploymentDiagramModelConstraint"
-               language="java">
+               language="Java">
          </constraint>
       </modelType>
    </extension>

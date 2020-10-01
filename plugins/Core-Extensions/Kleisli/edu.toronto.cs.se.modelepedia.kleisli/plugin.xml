@@ -35,7 +35,7 @@
             </type>
             <constraint
                   implementation="edu.toronto.cs.se.modelepedia.kleisli.constraint.KleisliModelRelTypeConstraint"
-                  language="java">
+                  language="Java">
             </constraint>
          </modelType>
          <modelTypeEndpoint>
