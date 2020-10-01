@@ -73,6 +73,7 @@ public class ViatraReasoner implements IQueryTrait {
             continue;
           }
           var rootModelObj = FileUtils.readModelFile(model.getUri(), resourceSet, true);
+          model.eSetDeliver(false); // we are not making a real model change, bypass the need for a write transaction
           model.setEMFInstanceRoot(rootModelObj);
           model.setEMFInstanceResource(rootModelObj.eResource());
         }

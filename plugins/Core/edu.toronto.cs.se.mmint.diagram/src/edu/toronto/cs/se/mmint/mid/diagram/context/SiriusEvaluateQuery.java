@@ -32,7 +32,6 @@ import org.eclipse.ui.model.WorkbenchLabelProvider;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
 import edu.toronto.cs.se.mmint.mid.reasoning.IQueryTrait;
@@ -71,7 +70,7 @@ public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
     return queryFile.getFullPath().toString();
   }
 
-  public static void runUI(EObject context, List<? extends ExtendibleElement> queryArgs) throws Exception {
+  public static void runUI(EObject context, List<? extends EObject> queryArgs) throws Exception {
     var reasoners = MMINT.getReasonersForTrait(IQueryTrait.class);
     if (reasoners.isEmpty()) {
       throw new MMINTException("There are no reasoners installed that implement querying");
@@ -103,6 +102,11 @@ public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
 
   @Override
   public void execute(Collection<? extends EObject> arg0, Map<String, Object> arg1) {
+    /** TODO Two problems
+     *  1) The main one, how to return something actionable from queries
+     *  2) I should probably remove the filtering by model element, or queries can't run unless there is one dropped
+     *     somewhere in a model rel. But if I do it, query args are not found because they're from Sirius' own editing domain.
+     */
     try {
       var modelObjs = arg0.stream()
         .map(obj -> ((DSemanticDecorator) obj).getTarget())
@@ -111,7 +115,8 @@ public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
       var instanceMID = MIDDiagramUtils.getInstanceMIDsInWorkspace().keySet().stream()
         .filter(mid -> mid.getExtendibleElement(modelPath) != null)
         .findFirst()
-        .orElseThrow(() -> new MIDDialogCancellation());
+        //TODO MMINT[QUERY] orElse the context should simply be the sirius model
+        .orElseThrow(() -> new MMINTException("The MID editor containing this model must be among the open tabs"));
       var model = instanceMID.<Model>getExtendibleElement(modelPath);
       var modelElems = model.getModelElems().stream()
         .collect(Collectors.toMap(e -> MIDRegistry.getModelObjectUri(e), e -> e));
@@ -120,9 +125,6 @@ public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
         .filter(elem -> elem != null)
         .collect(Collectors.toList());
       runUI(instanceMID, queryArgs);
-    }
-    catch (MIDDialogCancellation e) {
-      // do nothing
     }
     catch (Exception e) {
       MMINTException.print(IStatus.ERROR, "Query error", e);
