@@ -1,53 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mid:MID xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mid="http://se.cs.toronto.edu/mmint/MID" level="WORKFLOWS">
-  <models uri="system" name="system" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/MID" dynamic="true" origin="CREATED" fileExtension="mid"/>
-  <models uri="trace" name="trace" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/MIDRel" dynamic="true" origin="CREATED" fileExtension="mid"/>
-  <models uri="safety" name="safety" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/MID" dynamic="true" origin="CREATED" fileExtension="mid"/>
+  <models uri="mid" name="mid" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/MID" dynamic="true" origin="CREATED" fileExtension="mid"/>
   <models uri="criterion" name="criterion" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/MIDRel" dynamic="true" origin="CREATED" fileExtension="mid"/>
-  <models uri="temp1" name="temp1" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/MID" dynamic="true" origin="CREATED" fileExtension="mid"/>
-  <models uri="systemSlice" name="systemSlice" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/MIDRel" dynamic="true" origin="CREATED" fileExtension="mid"/>
-  <models uri="tracedSlice" name="tracedSlice" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/MIDRel" dynamic="true" origin="CREATED" fileExtension="mid"/>
-  <models uri="safetyCriterion" name="safetyCriterion" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/MIDRel" dynamic="true" origin="CREATED" fileExtension="mid"/>
-  <models uri="temp2" name="temp2" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/MID" dynamic="true" origin="CREATED" fileExtension="mid"/>
-  <models uri="safetySlice" name="safetySlice" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/MIDRel" dynamic="true" origin="CREATED" fileExtension="mid"/>
-  <models uri="safetyAnnotated" name="safetyAnnotated" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/MID" dynamic="true" origin="CREATED" fileExtension="mid"/>
+  <models uri="temp" name="temp" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/MID" dynamic="true" origin="CREATED" fileExtension="mid"/>
+  <models uri="sliced" name="sliced" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/MIDRel" dynamic="true" origin="CREATED" fileExtension="mid"/>
+  <models uri="annotated" name="annotated" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/MID" dynamic="true" origin="CREATED" fileExtension="mid"/>
   <operators uri="" name="Slice" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_MIDSlice" dynamic="true">
     <inputs uri="" name="mid" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_MIDSlice/mid" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0"/>
-    <inputs uri="" name="criterion" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_MIDSlice-MIDRel/criterion" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3"/>
-    <outputs uri="" name="sameMID" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_MIDSlice/sameMID" dynamic="true" lowerBound="1" upperBound="1" target="//@models.4"/>
-    <outputs uri="" name="slice" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_MIDSlice-MIDRel/slice" dynamic="true" lowerBound="1" upperBound="1" target="//@models.5"/>
+    <inputs uri="" name="criterion" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_MIDSlice-MIDRel/criterion" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1"/>
+    <outputs uri="" name="sameMID" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_MIDSlice/sameMID" dynamic="true" lowerBound="1" upperBound="1" target="//@models.2"/>
+    <outputs uri="" name="slice" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_MIDSlice-MIDRel/slice" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3"/>
   </operators>
   <operators uri="" name="Map" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_Map" dynamic="true">
-    <inputs uri="" name="mids0" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_Map/mids" dynamic="true" lowerBound="1" upperBound="1" target="//@models.5"/>
-    <inputs uri="" name="mids1" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_Map/mids" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1"/>
-    <outputs uri="" name="mappedMids0" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_Map/mappedMids" dynamic="true" lowerBound="1" upperBound="1" target="//@models.6"/>
-    <generics uri="" name="ModelRelPropagation" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_Map/MAPPER" dynamic="true" lowerBound="1" upperBound="1" metatargetUri="http://se.cs.toronto.edu/mmint/Operator_ModelRelPropagation"/>
-  </operators>
-  <operators uri="" name="Reduce" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_Reduce" dynamic="true">
-    <inputs uri="" name="mid" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_Reduce/mid" dynamic="true" lowerBound="1" upperBound="1" target="//@models.6"/>
-    <outputs uri="" name="reducedMid" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_Reduce/reducedMid" dynamic="true" lowerBound="1" upperBound="1" target="//@models.7"/>
-    <generics uri="" name="ModelRelMerge" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_Reduce/ACCUMULATOR" dynamic="true" lowerBound="1" upperBound="1" metatargetUri="http://se.cs.toronto.edu/mmint/Operator_ModelRelMerge"/>
-  </operators>
-  <operators uri="" name="Slice" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_MIDSlice" dynamic="true">
-    <inputs uri="" name="mid" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_MIDSlice/mid" dynamic="true" lowerBound="1" upperBound="1" target="//@models.2"/>
-    <inputs uri="" name="criterion" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_MIDSlice-MIDRel/criterion" dynamic="true" lowerBound="1" upperBound="1" target="//@models.7"/>
-    <outputs uri="" name="sameMID" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_MIDSlice/sameMID" dynamic="true" lowerBound="1" upperBound="1" target="//@models.8"/>
-    <outputs uri="" name="slice" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_MIDSlice-MIDRel/slice" dynamic="true" lowerBound="1" upperBound="1" target="//@models.9"/>
-  </operators>
-  <operators uri="" name="Map" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_Map" dynamic="true">
-    <inputs uri="" name="mids0" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_Map/mids" dynamic="true" lowerBound="1" upperBound="1" target="//@models.9"/>
-    <outputs uri="" name="mappedMids0" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_Map/mappedMids" dynamic="true" lowerBound="1" upperBound="1" target="//@models.10"/>
+    <inputs uri="" name="mids0" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_Map/mids" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3"/>
+    <outputs uri="" name="mappedMids0" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_Map/mappedMids" dynamic="true" lowerBound="1" upperBound="1" target="//@models.4"/>
     <generics uri="" name="AnnotateSlice" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_Map/MAPPER" dynamic="true" lowerBound="1" upperBound="1" metatargetUri="http://se.cs.toronto.edu/mmint/Operator_AnnotateSlice"/>
   </operators>
-  <extendibleTable key="system" value="//@models.0"/>
-  <extendibleTable key="trace" value="//@models.1"/>
-  <extendibleTable key="safety" value="//@models.2"/>
-  <extendibleTable key="criterion" value="//@models.3"/>
-  <extendibleTable key="systemSlice" value="//@models.5"/>
-  <extendibleTable key="tracedSlice" value="//@models.6"/>
-  <extendibleTable key="temp1" value="//@models.4"/>
-  <extendibleTable key="safetyCriterion" value="//@models.7"/>
-  <extendibleTable key="temp2" value="//@models.8"/>
-  <extendibleTable key="safetySlice" value="//@models.9"/>
-  <extendibleTable key="safetyAnnotated" value="//@models.10"/>
+  <extendibleTable key="criterion" value="//@models.1"/>
+  <extendibleTable key="mid" value="//@models.0"/>
+  <extendibleTable key="sliced" value="//@models.3"/>
+  <extendibleTable key="annotated" value="//@models.4"/>
+  <extendibleTable key="temp" value="//@models.2"/>
 </mid:MID>

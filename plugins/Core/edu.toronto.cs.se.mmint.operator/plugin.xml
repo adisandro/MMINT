@@ -1355,26 +1355,8 @@
          <inputs>
             <parameter>
                <type
-                     name="system"
-                     uri="http://se.cs.toronto.edu/mmint/Operator_ChangeImpact-MID/system">
-               </type>
-             <typeEndpoint
-                   targetTypeUri="http://se.cs.toronto.edu/mmint/MID">
-             </typeEndpoint>
-            </parameter>
-            <parameter>
-               <type
-                     name="trace"
-                     uri="http://se.cs.toronto.edu/mmint/Operator_ChangeImpact-MID/trace">
-               </type>
-             <typeEndpoint
-                   targetTypeUri="http://se.cs.toronto.edu/mmint/MIDRel">
-             </typeEndpoint>
-            </parameter>
-            <parameter>
-               <type
-                     name="safety"
-                     uri="http://se.cs.toronto.edu/mmint/Operator_ChangeImpact-MID/safety">
+                     name="mid"
+                     uri="http://se.cs.toronto.edu/mmint/Operator_ChangeImpact-MID/mid">
                </type>
              <typeEndpoint
                    targetTypeUri="http://se.cs.toronto.edu/mmint/MID">
@@ -1393,8 +1375,8 @@
          <outputs>
             <parameter>
                <type
-                     name="safetyAnnotated"
-                     uri="http://se.cs.toronto.edu/mmint/Operator_ChangeImpact-MID/safetyAnnotated">
+                     name="annotated"
+                     uri="http://se.cs.toronto.edu/mmint/Operator_ChangeImpact-MID/annotated">
                </type>
              <typeEndpoint
                    targetTypeUri="http://se.cs.toronto.edu/mmint/MID">
