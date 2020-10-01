@@ -14,7 +14,7 @@ package edu.toronto.cs.se.mmint.operator.mid.propagate;
 import edu.toronto.cs.se.mmint.mid.operator.impl.WorkflowOperatorImpl;
 
 /**
- * Defaults to using SafetyChangeImpact.mid as the implementation.
+ * Defaults to using ChangeImpact.mid as the implementation.
  * TODO MMINT[IMPACT]:
  * - Add rules for propagation: e.g. mapping of slice types, using the rel direction to filter unwanted propagation
  * - Should EAttributes be sliceable/annotateable?
