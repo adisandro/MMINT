@@ -102,10 +102,12 @@ public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
 
   @Override
   public void execute(Collection<? extends EObject> arg0, Map<String, Object> arg1) {
-    /** TODO Two problems
-     *  1) The main one, how to return something actionable from queries
-     *  2) I should probably remove the filtering by model element, or queries can't run unless there is one dropped
-     *     somewhere in a model rel. But if I do it, query args are not found because they're from Sirius' own editing domain.
+    /** TODO PLAN:
+     *  1) Check that the output of CI_GM and the new CI_2M correspond
+     *  2) Create a single-MID version CI_1M of the CI_2M workflows
+     *  3) Check that the output of CI_1M and CI_2M correspond
+     *  4) When evaluating queries, if context is a MID, when showing results ask to store them in rels
+     *  5) Store query results in rel with query name and timestamp
      */
     try {
       var modelObjs = arg0.stream()
@@ -120,6 +122,12 @@ public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
       var model = instanceMID.<Model>getExtendibleElement(modelPath);
       var modelElems = model.getModelElems().stream()
         .collect(Collectors.toMap(e -> MIDRegistry.getModelObjectUri(e), e -> e));
+      /**TODO MMINT[QUERY]
+       * Filtering by model elements was done to convert modelObjs into modelElems
+       * (no longer necessary now with connectedEMFObjects library query)
+       * Except if won't work anyway: queryArgs are from the Sirius editing domain,
+       * while the instanceMID context has its own editing domain
+       */
       var queryArgs = modelObjs.stream()
         .map(obj -> modelElems.get(MIDRegistry.getModelElementUri(obj)))
         .filter(elem -> elem != null)

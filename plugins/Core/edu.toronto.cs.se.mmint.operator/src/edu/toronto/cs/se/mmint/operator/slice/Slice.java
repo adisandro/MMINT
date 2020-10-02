@@ -55,7 +55,7 @@ public class Slice extends OperatorImpl {
 
     public Input(Map<String, Model> inputsByName) {
       this.critRel = (ModelRel) inputsByName.get(Input.IN_MODELREL);
-      if (this.critRel.getModelEndpoints().size() > 1) { // critRel must be unary
+      if (this.critRel.getModelEndpoints().size() != 1) { // critRel must be unary
         throw new IllegalArgumentException();
       }
       this.model = this.critRel.getModelEndpoints().get(0).getTarget();
