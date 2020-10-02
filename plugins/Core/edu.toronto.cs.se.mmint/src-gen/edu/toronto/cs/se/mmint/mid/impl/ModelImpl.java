@@ -1240,22 +1240,18 @@ public class ModelImpl extends GenericElementImpl implements Model {
      *
      * @param constraint
      *          The model constraint
+     * @param level
+     *          Whether it is a type or an instance constraint.
      * @return True if the validation is succesful, false otherwise.
      * @throws Exception
      *           If there is no installed reasoner to check the constraint, or if the chosen reasoner throws an error.
      * @generated NOT
      */
-    private boolean validateConstraint(@Nullable ExtendibleElementConstraint constraint) throws Exception {
-      MIDLevel constraintLevel;
-      if (!getUri().equals(((ExtendibleElement) constraint.eContainer()).getUri())) {
-        constraintLevel = MIDLevel.TYPES;
-      }
-      else {
-        constraintLevel = MIDLevel.INSTANCES;
-      }
+    private boolean validateConstraint(@Nullable ExtendibleElementConstraint constraint, MIDLevel level)
+                                      throws Exception {
       var reasoner = MIDConstraintChecker.getReasoner(constraint, IModelConstraintTrait.class,
                                                       "model constraint checking");
-      return reasoner.isEmpty() || reasoner.get().checkModelConstraint(this, constraint, constraintLevel);
+      return reasoner.isEmpty() || reasoner.get().checkModelConstraint(this, constraint, level);
     }
 
     /**
@@ -1266,7 +1262,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
       MMINTException.mustBeInstance(this);
       MMINTException.mustBeType(type);
 
-      return validateConstraint(type.getConstraint());
+      return validateConstraint(type.getConstraint(), MIDLevel.TYPES);
     }
 
     /**
@@ -1276,7 +1272,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
     public boolean validateInstance() throws Exception {
       MMINTException.mustBeInstance(this);
 
-      return validateConstraint(getConstraint()) && validateInstanceType(this.getMetatype());
+      return validateConstraint(getConstraint(), MIDLevel.INSTANCES) && validateInstanceType(this.getMetatype());
     }
 
     /**
