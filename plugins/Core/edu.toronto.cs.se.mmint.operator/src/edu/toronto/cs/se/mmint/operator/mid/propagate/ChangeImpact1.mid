@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mid:MID xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mid="http://se.cs.toronto.edu/mmint/MID" level="WORKFLOWS">
+  <models uri="mid" name="mid" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/MID" dynamic="true" origin="CREATED" fileExtension="mid"/>
+  <models uri="sliced" name="sliced" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/MID" dynamic="true" origin="CREATED" fileExtension="mid"/>
+  <models uri="annotated" name="annotated" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/MID" dynamic="true" origin="CREATED" fileExtension="mid"/>
+  <operators uri="" name="Slice" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_MIDSlice1" dynamic="true">
+    <inputs uri="" name="mid" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_MIDSlice1/mid" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0"/>
+    <outputs uri="" name="sliced" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_MIDSlice1/sliced" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1"/>
+  </operators>
+  <operators uri="" name="Map" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_Map" dynamic="true">
+    <inputs uri="" name="mids0" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_Map/mids" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1"/>
+    <outputs uri="" name="mappedMids0" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_Map/mappedMids" dynamic="true" lowerBound="1" upperBound="1" target="//@models.2"/>
+    <generics uri="" name="AnnotateSlice" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_Map/MAPPER" dynamic="true" lowerBound="1" upperBound="1" metatargetUri="http://se.cs.toronto.edu/mmint/Operator_AnnotateSlice"/>
+  </operators>
+  <extendibleTable key="mid" value="//@models.0"/>
+  <extendibleTable key="sliced" value="//@models.1"/>
+  <extendibleTable key="annotated" value="//@models.2"/>
+</mid:MID>

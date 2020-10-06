@@ -103,8 +103,6 @@ public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
   @Override
   public void execute(Collection<? extends EObject> arg0, Map<String, Object> arg1) {
     /** TODO PLAN:
-     *  1) Check that the output of CI_GM and the new CI_2M correspond
-     *  2) Create a single-MID version CI_1M of the CI_2M workflows
      *  3) Check that the output of CI_1M and CI_2M correspond
      *  4) When evaluating queries, if context is a MID, when showing results ask to store them in rels
      *  5) Store query results in rel with query name and timestamp
