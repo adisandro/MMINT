@@ -60,10 +60,12 @@ public class Filter extends OperatorImpl {
       this.midModel = inputsByName.get(Input.IN_MID);
       this.filterType = (Model) genericsByName.get(Input.GENERIC_MODELTYPE);
       this.isRelFilter = this.filterType instanceof ModelRel;
+      // a unary rel filter is a special type of model filter, where the model constraint is contained in the rel type
       this.isUnaryRelFilter =
         this.isRelFilter &&
         ((ModelRel) this.filterType).getModelEndpointRefs().size() == 1 &&
-        ((ModelRel) this.filterType).getModelEndpointRefs().get(0).getObject().getUpperBound() == 1;
+        ((ModelRel) this.filterType).getModelEndpointRefs().get(0).getObject().getUpperBound() == 1 &&
+        ((ModelRel) this.filterType).getMappingRefs().size() == 0;
       this.polyFilterTypes = (Boolean.parseBoolean(
         MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_POLYMORPHISM_MULTIPLEDISPATCH_ENABLED))) ?
           ECollections.asEList(MIDTypeHierarchy.getSubtypes(this.filterType)) :
@@ -110,8 +112,8 @@ public class Filter extends OperatorImpl {
 
     @Override
     public Map<ModelRel, List<Model>> getOutputModelRelEndpoints(Map<String, GenericElement> genericsByName,
-                                                                        Map<String, Model> inputsByName,
-                                                                        Map<String, Model> outputsByName) {
+                                                                 Map<String, Model> inputsByName,
+                                                                 Map<String, Model> outputsByName) {
       final var MIDREL_ID = "http://se.cs.toronto.edu/mmint/MIDRel";
       var input = new Input(inputsByName, genericsByName);
       if (input.midModel.getMetatypeUri().equals(MIDREL_ID) && input.isRelFilter && !input.isUnaryRelFilter) {
@@ -149,8 +151,8 @@ public class Filter extends OperatorImpl {
     while (polyIter.hasNext()) { // start from the most specialized filter backwards
       var polyFilterType = polyIter.next();
       var filterTypeUri = (this.input.isUnaryRelFilter) ?
-      ((ModelRel) polyFilterType).getModelEndpointRefs().get(0).getTargetUri() :
-      polyFilterType.getUri();
+        ((ModelRel) polyFilterType).getModelEndpointRefs().get(0).getTargetUri() :
+        polyFilterType.getUri();
       if (!MIDTypeHierarchy.instanceOf(model, filterTypeUri, false)) {
         continue;
       }
@@ -185,6 +187,7 @@ public class Filter extends OperatorImpl {
       }
       modelsToDelete.add(model);
     }
+    //TODO MMINT[FILTER] Should it be more selective, keeping only models/rels connected to filtered rels/models?
     for (Model modelToDelete : modelsToDelete) {
       if (modelToDelete.getMIDContainer() == null) {
         // already deleted as side effect of another deletion e.g. model delete that triggers model rel delete
