@@ -14,7 +14,6 @@ package edu.toronto.cs.se.mmint.operator.mid;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jdt.annotation.NonNull;
@@ -54,7 +53,7 @@ public class Union extends OperatorImpl {
 
   private static class Output {
     private final static String OUT_MID = "unionMid";
-    private final static String UNION_SEPARATOR = "+";
+    private final static String UNION_NAME = "union";
     private MID instanceMID;
     private MID unionMID;
     private Model unionMIDModel;
@@ -144,12 +143,8 @@ public class Union extends OperatorImpl {
 			}
 		}
     // output
-    var unionMIDModelName = this.input.midModels.stream()
-      .map(Model::getName)
-      .collect(Collectors.joining(Union.UNION_SEPARATOR));
-    String unionMIDModelPath = FileUtils.replaceFileNameInPath(
-      MIDRegistry.getModelUri(this.output.instanceMID),
-      unionMIDModelName);
+    var unionMIDModelPath = FileUtils.getUniquePath(FileUtils.replaceFileNameInPath(
+      MIDRegistry.getModelUri(this.output.instanceMID), Output.UNION_NAME), true, false);
     this.output.unionMIDModel = MIDTypeRegistry.getMIDModelType().createInstanceAndEditor(this.output.unionMID,
                                                                                           unionMIDModelPath,
                                                                                           this.output.instanceMID);

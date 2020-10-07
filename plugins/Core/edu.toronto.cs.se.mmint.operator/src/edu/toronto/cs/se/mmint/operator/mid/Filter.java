@@ -76,7 +76,7 @@ public class Filter extends OperatorImpl {
 
   private static class Output {
     private final static @NonNull String OUT_MID = "filteredMid";
-    private final static @NonNull String FILTERED_MID_SUFFIX = "_filtered";
+    private final static @NonNull String FILTERED_MID_NAME = "filtered";
     private Model filteredMIDModel;
     private MID mid;
 
@@ -196,8 +196,8 @@ public class Filter extends OperatorImpl {
       modelToDelete.deleteInstance();
     }
 
-    String filteredMIDModelPath = FileUtils.getUniquePath(
-      FileUtils.addFileNameSuffixInPath(this.input.midModel.getUri(), Output.FILTERED_MID_SUFFIX), true, false);
+    var filteredMIDModelPath = FileUtils.getUniquePath(
+      FileUtils.replaceFileNameInPath(this.input.midModel.getUri(), Output.FILTERED_MID_NAME), true, false);
     this.output.filteredMIDModel = MIDTypeRegistry.getMIDModelType()
       .createInstanceAndEditor(filteredMID, filteredMIDModelPath, this.output.mid);
     // reset input mid's cached EMF fields, or they will point to the filtered ones

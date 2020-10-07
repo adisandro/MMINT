@@ -59,7 +59,7 @@ public class Reduce extends NestingOperatorImpl {
   private long timeOverhead;
   private long timeCheckpoint;
   // constants
-  private final static @NonNull String REDUCED_MID_SUFFIX = "_reduced";
+  private final static @NonNull String REDUCED_MID_NAME = "reduced";
   private final static @NonNull String MODELRELCOMPOSITION_OPERATORTYPE_URI = "http://se.cs.toronto.edu/mmint/Operator_ModelRelComposition";
   private final static @NonNull String MODELRELMERGE_OPERATORTYPE_URI = "http://se.cs.toronto.edu/mmint/Operator_ModelRelMerge";
 
@@ -406,8 +406,8 @@ public class Reduce extends NestingOperatorImpl {
     }
 
     // output
-    String reducedMIDModelPath = FileUtils.getUniquePath(
-      FileUtils.addFileNameSuffixInPath(inputMIDModel.getUri(), Reduce.REDUCED_MID_SUFFIX), true, false);
+    var reducedMIDModelPath = FileUtils.getUniquePath(
+      FileUtils.replaceFileNameInPath(inputMIDModel.getUri(), Reduce.REDUCED_MID_NAME), true, false);
     var reducedMIDModel = MIDTypeRegistry.getMIDModelType().createInstanceAndEditor(
       reducedMID, reducedMIDModelPath, instanceMID);
     var outputsByName = new HashMap<String, Model>();
