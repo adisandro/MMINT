@@ -22,6 +22,7 @@ import java.util.stream.Collectors;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.sirius.business.api.action.AbstractExternalJavaAction;
@@ -30,11 +31,14 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.model.BaseWorkbenchContentProvider;
 import org.eclipse.ui.model.WorkbenchLabelProvider;
 
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
 import edu.toronto.cs.se.mmint.mid.reasoning.IQueryTrait;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.ui.FileExtensionsDialogFilter;
 import edu.toronto.cs.se.mmint.mid.ui.FilesOnlyDialogSelectionValidator;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
@@ -70,6 +74,32 @@ public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
     return queryFile.getFullPath().toString();
   }
 
+  private static void storeAsRels(String queryName, List<Object> queryResults, MID instanceMID) {
+    var rels = new HashMap<String, ModelRel>();
+    for (var queryResult : queryResults) {
+      if (!(queryResult instanceof EObject)) {
+        continue;
+      }
+      var modelPath = MIDRegistry.getModelUri((EObject) queryResult);
+      var rel = rels.get(modelPath);
+      try {
+        if (rel == null) {
+          var model = instanceMID.<Model>getExtendibleElement(modelPath);
+          rel = MIDTypeHierarchy.getRootModelRelType().createInstanceAndEndpoints(null, queryName,
+                                                                                  ECollections.asEList(model),
+                                                                                  instanceMID);
+          rels.put(modelPath, rel);
+        }
+        rel.getModelEndpointRefs().get(0).createModelElementInstanceAndReference((EObject) queryResult, null);
+      }
+      catch (MMINTException e) {
+        MMINTException.print(IStatus.WARNING, "Failed to store query result " + queryResult + " for model " +
+                             modelPath, e);
+        continue;
+      }
+    }
+  }
+
   public static void runUI(EObject context, List<? extends EObject> queryArgs) throws Exception {
     var reasoners = MMINT.getReasonersForTrait(IQueryTrait.class);
     if (reasoners.isEmpty()) {
@@ -83,7 +113,6 @@ public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
     var queryReasoner = fileExtToReasoner.get(FileUtils.getFileExtensionFromPath(queryFilePath));
     var queryName = MIDDialogs.getStringInput("Evaluate query", "Insert query name to run", null);
     var queryResults = queryReasoner.evaluateQuery(queryFilePath, queryName, context, queryArgs);
-    //TODO MMINT[QUERY] Display results in a better way (ui?)
     var printResults = new ArrayList<String>();
     for (var result : queryResults) {
       var printResult = (result instanceof Collection) ?
@@ -92,7 +121,18 @@ public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
       printResults.add(printResult);
     }
     var shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-    MessageDialog.openInformation(shell, "Query Results", String.join("\n", printResults));
+    var title = "Query Results";
+    var message = String.join("\n", printResults);
+    if (context instanceof MID) {
+      message += "\n\nDo you want to store the results as model relationships for future use?";
+      var store = MessageDialog.openQuestion(shell, title, message);
+      if (store) {
+        storeAsRels(queryName, queryResults, (MID) context);
+      }
+    }
+    else {
+      MessageDialog.openInformation(shell, title, message);
+    }
   }
 
   @Override
@@ -102,10 +142,6 @@ public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
 
   @Override
   public void execute(Collection<? extends EObject> arg0, Map<String, Object> arg1) {
-    /** TODO PLAN:
-     *  4) When evaluating queries, if context is a MID, when showing results ask to store them in rels
-     *  5) Store query results in rel with query name and timestamp
-     */
     try {
       var modelObjs = arg0.stream()
         .map(obj -> ((DSemanticDecorator) obj).getTarget())
@@ -122,7 +158,7 @@ public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
       /**TODO MMINT[QUERY]
        * Filtering by model elements was done to convert modelObjs into modelElems
        * (no longer necessary now with connectedEMFObjects library query)
-       * Except if won't work anyway: queryArgs are from the Sirius editing domain,
+       * Except it won't work anyway: queryArgs are from the Sirius editing domain,
        * while the instanceMID context has its own editing domain
        */
       var queryArgs = modelObjs.stream()
