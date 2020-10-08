@@ -77,6 +77,7 @@ public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
   private static void storeAsRels(String queryName, List<Object> queryResults, MID instanceMID) {
     var rels = new HashMap<String, ModelRel>();
     for (var queryResult : queryResults) {
+      //TODO MMINT[QUERY] Handle tuples/collections as results
       if (!(queryResult instanceof EObject)) {
         continue;
       }
@@ -85,7 +86,10 @@ public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
       try {
         if (rel == null) {
           var model = instanceMID.<Model>getExtendibleElement(modelPath);
-          rel = MIDTypeHierarchy.getRootModelRelType().createInstanceAndEndpoints(null, queryName,
+          if (model == null) {
+            continue;
+          }
+          rel = MIDTypeHierarchy.getRootModelRelType().createInstanceAndEndpoints(null, "query_" + queryName,
                                                                                   ECollections.asEList(model),
                                                                                   instanceMID);
           rels.put(modelPath, rel);

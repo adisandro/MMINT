@@ -27,7 +27,6 @@ import org.eclipse.emf.compare.scope.DefaultComparisonScope;
 import org.eclipse.emf.compare.scope.IComparisonScope;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
@@ -59,17 +58,15 @@ import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 public class Fix extends NestingOperatorImpl {
 
     // input-output
-    private final static @NonNull String IN_MODELS = "models";
-    private final static @NonNull String OUT_MODELS = "fixedModels";
-    private final static @NonNull String GENERIC_OPERATORTYPE = "FIXER";
-    // constants
-    private final static @NonNull String FIXED_MODEL_SUFFIX = "_fixed";
+    private final static String IN_MODELS = "models";
+    private final static String OUT_MODELS = "fixedModels";
+    private final static String GENERIC_OPERATORTYPE = "FIXER";
 
     public static class Constraint implements IJavaOperatorConstraint {
 
         @Override
-        public boolean checkGeneric(@NonNull GenericEndpoint genericTypeEndpoint,
-                                        @NonNull GenericElement genericType, @NonNull List<OperatorInput> inputs) {
+        public boolean checkGeneric(GenericEndpoint genericTypeEndpoint, GenericElement genericType,
+                                    List<OperatorInput> inputs) {
 
             final var FIX_URI = "http://se.cs.toronto.edu/modelepedia/Operator_Fix";
             var fixerOperatorType = (Operator) genericType;
@@ -184,9 +181,9 @@ public class Fix extends NestingOperatorImpl {
         Map<String, Integer> endpointRefsMap = new HashMap<>();
         for (ExtendibleElementEndpointReference endpointRef : endpointRefs) {
             var endpointTargetUri = endpointRef.getTargetUri();
-            Integer numEndpoints = endpointRefsMap.putIfAbsent(endpointTargetUri, new Integer(1));
+            Integer numEndpoints = endpointRefsMap.putIfAbsent(endpointTargetUri, 1);
             if (numEndpoints != null) {
-                endpointRefsMap.put(endpointTargetUri, new Integer(numEndpoints + 1));
+                endpointRefsMap.put(endpointTargetUri, numEndpoints + 1);
             }
         }
 
@@ -205,9 +202,9 @@ public class Fix extends NestingOperatorImpl {
         Map<Map<String, Integer>, Integer> mappingRefsMap = new HashMap<>();
         for (MappingReference mappingRef : mappingRefs) {
             Map<String, Integer> endpointRefsMap = this.getEndpointRefsMap(mappingRef.getModelElemEndpointRefs());
-            Integer numMappings = mappingRefsMap.putIfAbsent(endpointRefsMap, new Integer(1));
+            Integer numMappings = mappingRefsMap.putIfAbsent(endpointRefsMap, 1);
             if (numMappings != null) {
-                mappingRefsMap.put(endpointRefsMap, new Integer(numMappings + 1));
+                mappingRefsMap.put(endpointRefsMap, numMappings + 1);
             }
         }
 
@@ -254,7 +251,7 @@ public class Fix extends NestingOperatorImpl {
         return true;
     }
 
-    private boolean areFixed(@NonNull List<Model> inModels, @NonNull List<Model> outModels) throws Exception {
+    private boolean areFixed(List<Model> inModels, List<Model> outModels) throws Exception {
 
         Model midModelType = MIDTypeRegistry.getMIDModelType();
         for (var i = 0; i < inModels.size(); i++) {
@@ -287,8 +284,8 @@ public class Fix extends NestingOperatorImpl {
         return true;
     }
 
-    private @NonNull List<Model> fix(@NonNull List<Model> models, @NonNull Operator fixerOperatorType,
-                                     @NonNull Map<String, MID> outputMIDsByFixerOutputs) throws Exception {
+    private List<Model> fix(List<Model> models, Operator fixerOperatorType, Map<String, MID> outputMIDsByFixerOutputs)
+                           throws Exception {
 
         // prepare nested MID
         var fixingMID = super.getNestedInstanceMID();
@@ -335,8 +332,7 @@ public class Fix extends NestingOperatorImpl {
 
     @Override
     public Map<String, Model> run(Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
-            Map<String, MID> outputMIDsByName) throws Exception {
-
+                                  Map<String, MID> outputMIDsByName) throws Exception {
         // input
         List<Model> models = MIDOperatorIOUtils.getVarargs(inputsByName, Fix.IN_MODELS);
         var fixerOperatorType = (Operator) genericsByName.get(Fix.GENERIC_OPERATORTYPE);

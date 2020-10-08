@@ -16,7 +16,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.MMINTException;
@@ -36,11 +35,8 @@ import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
 public class Union extends OperatorImpl {
-
   private Input input;
   private Output output;
-	// constants
-	private final static @NonNull String UNION_SEPARATOR = "+";
 
   private static class Input {
     private final static String IN_MIDS = "mids";
