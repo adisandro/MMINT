@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<mid:MID xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editor="http://se.cs.toronto.edu/mmint/MID/Editor" xmlns:mid="http://se.cs.toronto.edu/mmint/MID">
-  <models uri="/MODELS15/scenarios/x.mid" name="x" metatypeUri="http://se.cs.toronto.edu/mmint/MID" dynamic="true" fileExtension="mid" editors="//@editors.0"/>
-  <editors xsi:type="editor:Diagram" uri="/MODELS15/scenarios/x.middiag" name="MID diagram for model /MODELS15/scenarios/x.mid" metatypeUri="http://se.cs.toronto.edu/mmint/MID_diagram" dynamic="true" modelUri="/MODELS15/scenarios/x.mid" id="edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorID" wizardId="edu.toronto.cs.se.mmint.mid.diagram.part.MIDCreationWizardID">
-    <fileExtensions>middiag</fileExtensions>
-  </editors>
-  <extendibleTable key="/MODELS15/scenarios/x.mid" value="//@models.0"/>
-</mid:MID>

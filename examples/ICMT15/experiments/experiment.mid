@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<mid:MID xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mid="http://se.cs.toronto.edu/mmint/MID">
-  <models uri="/ICMT15/experiments/gm.xmi" name="gm" metatypeUri="http://se.cs.toronto.edu/mmint/Model" dynamic="true" fileExtension="xmi" editors="//@editors.0"/>
-  <editors uri="/ICMT15/experiments/gm.xmi" name="Ecore Reflective tree for model /ICMT15/experiments/gm.xmi" metatypeUri="http://se.cs.toronto.edu/mmint/Model_tree" dynamic="true" modelUri="/ICMT15/experiments/gm.xmi" id="org.eclipse.emf.ecore.presentation.ReflectiveEditorID">
-    <fileExtensions>xmi</fileExtensions>
-  </editors>
-  <extendibleTable key="/ICMT15/experiments/gm.xmi" value="//@models.0"/>
-</mid:MID>

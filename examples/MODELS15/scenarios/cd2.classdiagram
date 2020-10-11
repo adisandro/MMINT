@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<classdiagram:ClassDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:classdiagram="http://se.cs.toronto.edu/modelepedia/ClassDiagram">
-  <classes name="C">
-    <ownedAttributes name="c" public="true"/>
-  </classes>
-  <classes name="D">
-    <ownedAttributes name="d" public="true"/>
-  </classes>
-</classdiagram:ClassDiagram>

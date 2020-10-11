@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:statemachine="http://se.cs.toronto.edu/modelepedia/StateMachine" xmi:id="_DGjlkA-wEeWKnOyxwhe5qw" type="StateMachine" name="ACC.statemachinediag" measurementUnit="Pixel">
-  <styles xmi:type="notation:DiagramStyle" xmi:id="_DGjlkQ-wEeWKnOyxwhe5qw"/>
-  <element xmi:type="statemachine:StateMachine" href="ACC.statemachine#/"/>
-</notation:Diagram>

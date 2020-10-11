@@ -1,7 +1,0 @@
-KLEISLI:
-_QTable.classes->get(origin)
-_QTable.classes->get(origin.parent)
-_QTable.classes->get(origin.oclContainer())
-_QTable.associations->get(origin)
-_QTable.associations->get(origin)
-_QTable.classes->get(origin.target)
