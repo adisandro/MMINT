@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<istar_mavo:IStar xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:istar_mavo="http://se.cs.toronto.edu/modelepedia/IStar_MAVO">
+  <actors name="Inflo User">
+    <intentions xsi:type="istar_mavo:SoftGoal" name="Make Models Trustworthy" linksAsTgt="//@actors.0/@intentions.2/@linksAsSrc.0 //@actors.0/@intentions.3/@linksAsSrc.0"/>
+    <intentions xsi:type="istar_mavo:Goal" dependenciesAsDepender="//@dependums.1/@dependerLinks.0" name="Use Inflo" linksAsTgt="//@actors.0/@intentions.4/@linksAsSrc.0 //@actors.0/@intentions.5/@linksAsSrc.0 //@actors.0/@intentions.6/@linksAsSrc.0"/>
+    <intentions xsi:type="istar_mavo:SoftGoal" var="true" name="Validate Model" linksAsTgt="//@actors.0/@intentions.6/@linksAsSrc.1">
+      <linksAsSrc xsi:type="istar_mavo:Contribution" var="true" tgt="//@actors.0/@intentions.0" type="HELP"/>
+    </intentions>
+    <intentions xsi:type="istar_mavo:SoftGoal" var="true" name="Get Feedback" linksAsTgt="//@actors.0/@intentions.7/@linksAsSrc.0 //@actors.0/@intentions.6/@linksAsSrc.2">
+      <linksAsSrc xsi:type="istar_mavo:Contribution" var="true" tgt="//@actors.0/@intentions.0" type="HELP"/>
+    </intentions>
+    <intentions xsi:type="istar_mavo:Task" name="Browsing" linksAsTgt="//@actors.0/@intentions.8/@linksAsSrc.0">
+      <linksAsSrc xsi:type="istar_mavo:MeansEnd" tgt="//@actors.0/@intentions.1"/>
+    </intentions>
+    <intentions xsi:type="istar_mavo:Task" dependenciesAsDependee="//@dependums.4/@dependeeLinks.0" name="Create Graph" linksAsTgt="//@actors.0/@intentions.9/@linksAsSrc.0">
+      <linksAsSrc xsi:type="istar_mavo:MeansEnd" tgt="//@actors.0/@intentions.1"/>
+    </intentions>
+    <intentions xsi:type="istar_mavo:Task" name="Use Discussions" linksAsTgt="//@actors.0/@intentions.10/@linksAsSrc.0">
+      <linksAsSrc xsi:type="istar_mavo:MeansEnd" tgt="//@actors.0/@intentions.1"/>
+      <linksAsSrc xsi:type="istar_mavo:Contribution" tgt="//@actors.0/@intentions.2" type="SOMEPLUS"/>
+      <linksAsSrc xsi:type="istar_mavo:Contribution" may="true" tgt="//@actors.0/@intentions.3" type="HELP"/>
+    </intentions>
+    <intentions xsi:type="istar_mavo:Goal" dependenciesAsDepender="//@dependums.0/@dependerLinks.0" name="Inflo Be Moderated">
+      <linksAsSrc xsi:type="istar_mavo:Contribution" tgt="//@actors.0/@intentions.3" type="HURT"/>
+    </intentions>
+    <intentions xsi:type="istar_mavo:Task" name="Make Views" fullySatisfied="true">
+      <linksAsSrc xsi:type="istar_mavo:Decomposition" tgt="//@actors.0/@intentions.4"/>
+    </intentions>
+    <intentions xsi:type="istar_mavo:Task" dependenciesAsDepender="//@dependums.3/@dependerLinks.0" name="Add Source In Description">
+      <linksAsSrc xsi:type="istar_mavo:Decomposition" tgt="//@actors.0/@intentions.5"/>
+    </intentions>
+    <intentions xsi:type="istar_mavo:Task" may="true" var="true" dependenciesAsDependee="//@dependums.4/@dependeeLinks.1" name="Create Discussions" fullySatisfied="true">
+      <linksAsSrc xsi:type="istar_mavo:Decomposition" may="true" var="true" tgt="//@actors.0/@intentions.6"/>
+    </intentions>
+  </actors>
+  <actors name="Inflo Manager Editors">
+    <intentions xsi:type="istar_mavo:Task" dependenciesAsDependee="//@dependums.0/@dependeeLinks.1" name="Extensive Moderation" linksAsTgt="//@actors.1/@intentions.1/@linksAsSrc.0">
+      <linksAsSrc xsi:type="istar_mavo:MeansEnd" may="true" tgt="//@actors.1/@intentions.2"/>
+    </intentions>
+    <intentions xsi:type="istar_mavo:Task" dependenciesAsDepender="//@dependums.2/@dependerLinks.0" name="Use Automated Reputation System">
+      <linksAsSrc xsi:type="istar_mavo:Decomposition" may="true" tgt="//@actors.1/@intentions.0"/>
+      <linksAsSrc xsi:type="istar_mavo:MeansEnd" may="true" tgt="//@actors.1/@intentions.2"/>
+      <linksAsSrc xsi:type="istar_mavo:Decomposition" may="true" tgt="//@actors.1/@intentions.3"/>
+    </intentions>
+    <intentions xsi:type="istar_mavo:Goal" dependenciesAsDependee="//@dependums.0/@dependeeLinks.0" name="Moderate Inflo" linksAsTgt="//@actors.1/@intentions.0/@linksAsSrc.0 //@actors.1/@intentions.1/@linksAsSrc.1 //@actors.1/@intentions.3/@linksAsSrc.0"/>
+    <intentions xsi:type="istar_mavo:Task" may="true" var="true" name="Less Extensive Moderation" linksAsTgt="//@actors.1/@intentions.1/@linksAsSrc.2">
+      <linksAsSrc xsi:type="istar_mavo:MeansEnd" may="true" var="true" tgt="//@actors.1/@intentions.2"/>
+    </intentions>
+  </actors>
+  <actors set="true" dependenciesAsDependee="//@dependums.3/@dependeeLinks.0" name="Source"/>
+  <actors name="Automated Reputation System">
+    <intentions xsi:type="istar_mavo:Task" dependenciesAsDependee="//@dependums.2/@dependeeLinks.0" name="Provide Reputations" fullySatisfied="true"/>
+    <intentions xsi:type="istar_mavo:Task" may="true" dependenciesAsDependee="//@dependums.0/@dependeeLinks.2" name="Moderation ARS" fullySatisfied="true"/>
+  </actors>
+  <actors name="Inflo">
+    <intentions xsi:type="istar_mavo:Goal" dependenciesAsDepender="//@dependums.0/@dependerLinks.1" name="Allow Moderation" linksAsTgt="//@actors.4/@intentions.6/@linksAsSrc.0"/>
+    <intentions xsi:type="istar_mavo:Task" dependenciesAsDepender="//@dependums.4/@dependerLinks.0" name="Track Authorship">
+      <linksAsSrc xsi:type="istar_mavo:Decomposition" tgt="//@actors.4/@intentions.5"/>
+    </intentions>
+    <intentions xsi:type="istar_mavo:Task" name="Display Graphs" fullySatisfied="true">
+      <linksAsSrc xsi:type="istar_mavo:Decomposition" tgt="//@actors.4/@intentions.5"/>
+    </intentions>
+    <intentions xsi:type="istar_mavo:Task" name="Track Revisions" fullySatisfied="true">
+      <linksAsSrc xsi:type="istar_mavo:Decomposition" tgt="//@actors.4/@intentions.5"/>
+    </intentions>
+    <intentions xsi:type="istar_mavo:Task" name="Create Graphs" fullySatisfied="true">
+      <linksAsSrc xsi:type="istar_mavo:Decomposition" tgt="//@actors.4/@intentions.5"/>
+    </intentions>
+    <intentions xsi:type="istar_mavo:Task" dependenciesAsDependee="//@dependums.1/@dependeeLinks.0" name="Be Inflo" linksAsTgt="//@actors.4/@intentions.1/@linksAsSrc.0 //@actors.4/@intentions.2/@linksAsSrc.0 //@actors.4/@intentions.3/@linksAsSrc.0 //@actors.4/@intentions.4/@linksAsSrc.0"/>
+    <intentions xsi:type="istar_mavo:Task" may="true" set="true" name="Moderation Tasks" fullySatisfied="true">
+      <linksAsSrc xsi:type="istar_mavo:MeansEnd" may="true" set="true" tgt="//@actors.4/@intentions.0"/>
+    </intentions>
+  </actors>
+  <dependums xsi:type="istar_mavo:Resource" name="Moderation">
+    <dependerLinks depender="//@actors.0/@intentions.7"/>
+    <dependerLinks depender="//@actors.4/@intentions.0"/>
+    <dependeeLinks may="true" dependee="//@actors.1/@intentions.2"/>
+    <dependeeLinks may="true" dependee="//@actors.1/@intentions.0"/>
+    <dependeeLinks may="true" dependee="//@actors.3/@intentions.1"/>
+  </dependums>
+  <dependums xsi:type="istar_mavo:Resource" name="Graphing">
+    <dependerLinks depender="//@actors.0/@intentions.1"/>
+    <dependeeLinks dependee="//@actors.4/@intentions.5"/>
+  </dependums>
+  <dependums xsi:type="istar_mavo:Resource" name="Reputation Values">
+    <dependerLinks depender="//@actors.1/@intentions.1"/>
+    <dependeeLinks dependee="//@actors.3/@intentions.0"/>
+  </dependums>
+  <dependums xsi:type="istar_mavo:Resource" set="true" name="Info" fullySatisfied="true">
+    <dependerLinks set="true" depender="//@actors.0/@intentions.9"/>
+    <dependeeLinks set="true" dependee="//@actors.2"/>
+  </dependums>
+  <dependums xsi:type="istar_mavo:Resource" may="true" name="Authorship">
+    <dependerLinks may="true" depender="//@actors.4/@intentions.1"/>
+    <dependeeLinks may="true" dependee="//@actors.0/@intentions.5"/>
+    <dependeeLinks may="true" dependee="//@actors.0/@intentions.10"/>
+  </dependums>
+</istar_mavo:IStar>

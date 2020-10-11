@@ -1,0 +1,63 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Fri, Nov 11, 2011 - 10:26 AM  -->
+<feature_model name="Jogo de Tiros">
+<meta>
+<data name="description">Teste </data>
+<data name="creator">Danilo Novelino</data>
+<data name="address"></data>
+<data name="email">danilocarlos16@gmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">UPE</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Jogo de Tiro(_r)
+	:m Tema Visual(_r_1)
+		:m Padrao(_r_1_2)
+	:m Efeito Musical(_r_3)
+		:m Musica Fundo(_r_3_4)
+		:m Barulho Tiro(_r_3_5)
+	:m Armas(_r_6)
+		:g (_r_6_7) [1,1] 
+			: Laser(_r_6_7_8)
+			: Projetil(_r_6_7_9)
+			: Misseis(_r_6_7_10)
+	:m Movimento Principal(_r_11)
+		:g (_r_11_12) [1,1] 
+			: Direita(_r_11_12_13)
+			: Esquerda(_r_11_12_14)
+	:m Frases(_r_15)
+	:o Desafio(_r_16)
+	:o Configuracao(_r_17)
+		:g (_r_17_18) [1,1] 
+			: Vidas(_r_17_18_19)
+				:m Quantidade(_r_17_18_19_21)
+			: Audio(_r_17_18_20)
+				:m Volume(_r_17_18_20_22)
+	:o Obstaculo(_r_23)
+		:g (_r_23_24) [1,1] 
+			: Base(_r_23_24_25)
+			: Parede(_r_23_24_26)
+	:m Inimigo(_r_27)
+		:g (_r_27_28) [1,1] 
+			: Aves(_r_27_28_29)
+			: Aliens(_r_27_28_30)
+			: Monstros(_r_27_28_31)
+			: Nave(_r_27_28_32)
+	:m Movimento Inimigo(_r_33)
+		:m Leste(_r_33_34)
+		:m Oeste(_r_33_36)
+		:m Norte(_r_33_37)
+		:m Sul(_r_33_38)
+	:m Pontuacao(_r_39)
+	:m Finalizacao(_r_40)
+		:g (_r_40_41) [1,*] 
+			: Ausencia Vidas(_r_40_41_42)
+			: Tempo Esgotado(_r_40_41_43)
+</feature_tree>
+<constraints>
+constraint_1:_r or _r_1 or _r_1_2 or _r_3 or _r_3_4 or _r_3_5 or _r_6 or _r_6_7_8 or _r_6_7_9 or _r_6_7_10 or _r_11 or _r_11_12_13 or _r_11_12_14 or _r_15 or _r_16 or _r_17 or _r_17_18_19 or _r_17_18_20 or _r_17_18_19_21 or _r_17_18_20_22 or _r_23 or _r_23_24_25 or _r_23_24_26 or _r_27 or _r_27_28_29 or _r_27_28_30 or _r_27_28_31 or _r_27_28_32 or _r_33 or _r_33_34 or _r_33_36 or _r_33_37 or _r_33_38 or _r_39 or _r_40 or _r_40_41_42 or _r_40_41_43
+</constraints>
+</feature_model>

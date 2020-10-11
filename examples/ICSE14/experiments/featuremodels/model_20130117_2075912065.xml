@@ -1,0 +1,40 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Fri, Jan 18, 2013 - 11:32 AM  -->
+<feature_model name="Analisis">
+<meta>
+<data name="description">Disciplina de Analisis</data>
+<data name="creator">PAblo</data>
+<data name="address"></data>
+<data name="email">phruiz@unimayor.edu.co</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">Unimayor</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Analisis(_r)
+	:o Realizar un esquema de la Arquitectura(_r_1)
+		:g (_r_1_7) [1,1] 
+			: Realizar un Bosquejo de la Arquitectura(_r_1_7_8)
+			: Crear una Arquitectura de Prueba(_r_1_7_9)
+	:g (_r_10) [1,1] 
+		: Definir una Arquitectura Candidata(_r_10_11)
+			:g (_r_10_11_27) [1,1] 
+				: Refinar la Arquitectura(_r_10_11_27_28)
+				: Refinar la Arquitectura II(_r_10_11_27_29)
+			:m Analisis del Comportamiento(_r_10_11_30)
+		: Analizar la Arquitectura(_r_10_12)
+		: Analisis de la Arquitectura(_r_10_13)
+	:m Analizar un Caso de Uso(_r_14)
+	:m Analizar una Clase(_r_15)
+	:m Analizar un paquete(_r_16)
+</feature_tree>
+<constraints>
+constraint_18:_r_14 or ~_r_10_11_30
+constraint_19:_r_14 or ~_r_15
+constraint_10:_r_1_7_8 or ~_r_10_12
+constraint_11:_r_1_7_9 or ~_r_10_13
+constraint_14:_r_16 or ~_r_10_11_27_29
+</constraints>
+</feature_model>

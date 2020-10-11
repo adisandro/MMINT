@@ -1,0 +1,45 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Thu, Aug 8, 2013 - 10:05 PM  -->
+<feature_model name="Tiendas_pos">
+<meta>
+<data name="description">Tiendas Pos</data>
+<data name="creator">Felipe Solano</data>
+<data name="address"></data>
+<data name="email">felipemjs@gmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">SAE</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Tiendas_pos(_r)
+	:m Productos(_r_4)
+		:g (_r_4_10) [1,1] 
+			: Maneja_listas(_r_4_10_11)
+			: Digitado(_r_4_10_12)
+		:o Lote(_r_4_14)
+		:o Unidad_producto(_r_4_15)
+			:g (_r_4_15_17) [1,1] 
+				: Logitud(_r_4_15_17_18)
+				: Peso(_r_4_15_17_20)
+				: Unidad(_r_4_15_17_21)
+				: Capacidad(_r_4_15_17_22)
+				: Volumen(_r_4_15_17_23)
+		:o Marca(_r_4_16)
+		:o Estructura_grupo(_r_4_24)
+		:o Procedencia(_r_4_25)
+		:o Opcional(_r_4_27)
+	:o Clientes(_r_28)
+		:g (_r_28_29) [1,1] 
+			: Detal(_r_28_29_30)
+			: Mayorista(_r_28_29_31)
+			: Institucional(_r_28_29_32)
+	:m Tpo_Empresa(_r_33)
+		:g (_r_33_34) [1,1] 
+			: Simplificada(_r_33_34_35)
+			: Comun(_r_33_34_36)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

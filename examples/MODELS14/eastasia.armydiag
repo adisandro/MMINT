@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:army="http://se.cs.toronto.edu/modelepedia/Army" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmi:id="_9O65AKvbEeO-lIn4nMqR2w" type="Army" name="eastasia.armydiag" measurementUnit="Pixel">
+  <children xmi:type="notation:Shape" xmi:id="_9o104KvbEeO-lIn4nMqR2w" type="2001" fontName="Cantarell">
+    <children xmi:type="notation:DecorationNode" xmi:id="_9o2b8KvbEeO-lIn4nMqR2w" type="5001"/>
+    <element xmi:type="army:Unit" href="eastasia.army#//@units.0"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_9o104avbEeO-lIn4nMqR2w" x="276" y="48" width="49" height="49"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_-mnrwKvbEeO-lIn4nMqR2w" type="2001" fontName="Cantarell">
+    <children xmi:type="notation:DecorationNode" xmi:id="_-moS0KvbEeO-lIn4nMqR2w" type="5001"/>
+    <element xmi:type="army:Unit" href="eastasia.army#//@units.1"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_-mnrwavbEeO-lIn4nMqR2w" x="276" y="108" width="49" height="49"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="__S7YIKvbEeO-lIn4nMqR2w" type="2001" fontName="Cantarell">
+    <children xmi:type="notation:DecorationNode" xmi:id="__S7_MKvbEeO-lIn4nMqR2w" type="5001"/>
+    <element xmi:type="army:Unit" href="eastasia.army#//@units.2"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="__S7YIavbEeO-lIn4nMqR2w" x="276" y="168" width="49" height="49"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_9O65AavbEeO-lIn4nMqR2w"/>
+  <element xmi:type="army:Army" href="eastasia.army#/"/>
+</notation:Diagram>

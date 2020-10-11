@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel"
+    copyrightText="Copyright (c) 2012-2020 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,&#xA;Rick Salay.&#xA;All rights reserved. This program and the accompanying materials&#xA;are made available under the terms of the Eclipse Public License v1.0&#xA;which accompanies this distribution, and is available at&#xA;http://www.eclipse.org/legal/epl-v10.html&#xA;&#xA;Contributors:&#xA;   Alessio Di Sandro - Implementation."
+    modelDirectory="/edu.toronto.cs.se.mmint.mavo/src-gen" editDirectory="/edu.toronto.cs.se.mmint.mavo.edit/src-gen"
+    editorDirectory="/edu.toronto.cs.se.mmint.mavo.editor/src-gen" modelPluginID="edu.toronto.cs.se.mmint.mavo"
+    modelName="MAVOMID" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    usedGenPackages="../../edu.toronto.cs.se.mavo/model/mavo.genmodel#//mavo ../../edu.toronto.cs.se.mmint/model/mid.genmodel#//mid"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>mavomid.ecore</foreignModel>
+  <genPackages prefix="MAVOMID" basePackage="edu.toronto.cs.se.mmint.mavo" disposableProviderFactory="true"
+      childCreationExtenders="true" ecorePackage="mavomid.ecore#/">
+    <genClasses ecoreClass="mavomid.ecore#//MAVOModel">
+      <genOperations ecoreOperation="mavomid.ecore#//MAVOModel/createInstance">
+        <genParameters ecoreParameter="mavomid.ecore#//MAVOModel/createInstance/rootModelObj"/>
+        <genParameters ecoreParameter="mavomid.ecore#//MAVOModel/createInstance/newModelPath"/>
+        <genParameters ecoreParameter="mavomid.ecore#//MAVOModel/createInstance/instanceMID"/>
+      </genOperations>
+      <genOperations ecoreOperation="mavomid.ecore#//MAVOModel/importInstance">
+        <genParameters ecoreParameter="mavomid.ecore#//MAVOModel/importInstance/modelPath"/>
+        <genParameters ecoreParameter="mavomid.ecore#//MAVOModel/importInstance/instanceMID"/>
+      </genOperations>
+      <genOperations ecoreOperation="mavomid.ecore#//MAVOModel/validateInstanceInEditor">
+        <genParameters ecoreParameter="mavomid.ecore#//MAVOModel/validateInstanceInEditor/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="mavomid.ecore#//MAVOModel/toMIDCustomPrintLabel"/>
+      <genOperations ecoreOperation="mavomid.ecore#//MAVOModel/toMIDCustomEditLabel"/>
+      <genOperations ecoreOperation="mavomid.ecore#//MAVOModel/updateMIDCustomLabel">
+        <genParameters ecoreParameter="mavomid.ecore#//MAVOModel/updateMIDCustomLabel/newLabel"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="mavomid.ecore#//MAVOModelElement">
+      <genOperations ecoreOperation="mavomid.ecore#//MAVOModelElement/toMIDCustomPrintLabel"/>
+      <genOperations ecoreOperation="mavomid.ecore#//MAVOModelElement/toMIDCustomEditLabel"/>
+      <genOperations ecoreOperation="mavomid.ecore#//MAVOModelElement/updateMIDCustomLabel">
+        <genParameters ecoreParameter="mavomid.ecore#//MAVOModelElement/updateMIDCustomLabel/newLabel"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="mavomid.ecore#//MAVOModelRel">
+      <genOperations ecoreOperation="mavomid.ecore#//MAVOModelRel/copyInstance">
+        <genParameters ecoreParameter="mavomid.ecore#//MAVOModelRel/copyInstance/origModel"/>
+        <genParameters ecoreParameter="mavomid.ecore#//MAVOModelRel/copyInstance/newModelName"/>
+        <genParameters ecoreParameter="mavomid.ecore#//MAVOModelRel/copyInstance/instanceMID"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="mavomid.ecore#//BinaryMAVOModelRel"/>
+    <genClasses ecoreClass="mavomid.ecore#//MAVOModelEndpoint">
+      <genOperations ecoreOperation="mavomid.ecore#//MAVOModelEndpoint/getTarget"
+          body="ExtendibleElement target = super.getTarget();&#xA;return (target == null) ? null : (MAVOModel) target;"/>
+    </genClasses>
+    <genClasses ecoreClass="mavomid.ecore#//MAVOMapping">
+      <genOperations ecoreOperation="mavomid.ecore#//MAVOMapping/toMIDCustomPrintLabel"/>
+      <genOperations ecoreOperation="mavomid.ecore#//MAVOMapping/toMIDCustomEditLabel"/>
+      <genOperations ecoreOperation="mavomid.ecore#//MAVOMapping/updateMIDCustomLabel">
+        <genParameters ecoreParameter="mavomid.ecore#//MAVOMapping/updateMIDCustomLabel/newLabel"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="mavomid.ecore#//BinaryMAVOMapping"/>
+    <genClasses ecoreClass="mavomid.ecore#//MAVOModelElementReference">
+      <genOperations ecoreOperation="mavomid.ecore#//MAVOModelElementReference/getObject"
+          body="ExtendibleElement object = super.getObject();&#xA;return (object == null) ? null : (MAVOModelElement) object;"/>
+    </genClasses>
+    <genClasses ecoreClass="mavomid.ecore#//MAVOModelEndpointReference">
+      <genOperations ecoreOperation="mavomid.ecore#//MAVOModelEndpointReference/getObject"
+          body="ExtendibleElement object = super.getObject();&#xA;return (object == null) ? null : (MAVOModelEndpoint) object;"/>
+      <genOperations ecoreOperation="mavomid.ecore#//MAVOModelEndpointReference/createModelElementInstanceAndReference">
+        <genParameters ecoreParameter="mavomid.ecore#//MAVOModelEndpointReference/createModelElementInstanceAndReference/modelObj"/>
+        <genParameters ecoreParameter="mavomid.ecore#//MAVOModelEndpointReference/createModelElementInstanceAndReference/newModelElemName"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="mavomid.ecore#//MAVOMappingReference">
+      <genOperations ecoreOperation="mavomid.ecore#//MAVOMappingReference/getObject"
+          body="ExtendibleElement object = super.getObject();&#xA;return (object == null) ? null : (MAVOMapping) object;"/>
+    </genClasses>
+    <genClasses ecoreClass="mavomid.ecore#//BinaryMAVOMappingReference">
+      <genOperations ecoreOperation="mavomid.ecore#//BinaryMAVOMappingReference/getObject"
+          body="ExtendibleElement object = super.getObject();&#xA;return (object == null) ? null : (BinaryMAVOMapping) object;"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

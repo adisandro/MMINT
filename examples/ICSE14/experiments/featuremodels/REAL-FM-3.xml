@@ -1,0 +1,74 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Mon, Aug 6, 2012 - 9:36 AM  -->
+<feature_model name="Web_Portal">
+<meta>
+<data name="description">This feature model describes the configurations of a web portal product line</data>
+<data name="creator">Marcilio Mendonca</data>
+<data name="address">200 University Ave. West, Waterloo, ON, Canada</data>
+<data name="email">marcilio dot mendonca at gmail dot com</data>
+<data name="phone">+1-519-883-7198</data>
+<data name="website">http://gsd.uwaterloo.ca/</data>
+<data name="organization">University of Waterloo</data>
+<data name="department">School of Computer Science</data>
+<data name="date"></data>
+<data name="reference">Marcilio Mendonca, Thiago Bartolomei, and Donald Cowan. Decision-making coordination in collaborative product con?guration. In 23rd Annual ACM Symposium on Applied Computing. ACM, March 2008.</data>
+</meta>
+<feature_tree>
+:r Web Portal(web_portal)
+	:o Additional Services(add_services)
+		:o Site Statistics(site_stats)
+			:m Basic(basic)
+			:o Advanced(advanced)
+		:o Site Search(site_search)
+			:o Images(images)
+			:o Text(text)
+				:m HTML(html)
+				:o Dynamic(dynamic)
+		:o Ad Server(ad_server)
+			:m Reports(reports)
+			:o Pop-ups(popups)
+			:m Banners(banners)
+				:m Image(ban_img)
+				:o Flash(ban_flash)
+			:o Keyword Support(keyword)
+	:m Web Server(web_server)
+		:o Logging(logging)
+			:g (_id_0) [1,1] 
+				: DB(db)
+				: File(file)
+		:o Protocols(protocol)
+			:g (_id_1) [1,*] 
+				: NTTP(nttp)
+				: FTP(ftp)
+				: HTTPS(https)
+		:m Content(cont)
+			:m Static(static)
+			:o Active(active)
+				:g (_id_2) [1,*] 
+					: ASP(asp)
+					: PHP(php)
+					: JSP(jsp)
+					: CGI(cgi)
+	:o Persistence(persistence)
+		:g (_id_3) [1,1] 
+			: XML(xml)
+			: Database(database)
+	:o Security(ri)
+		:g (_id_4) [1,*] 
+			: Data Storage(data_storage)
+			: Data Transfer(data_transfer)
+			: User Authentication(user_auth)
+	:o Performance(performance)
+		:g (_id_5) [1,1] 
+			: Ms(ms)
+			: Sec(sec)
+			: Min(min)
+</feature_tree>
+<constraints>
+C4:~data_transfer or https
+C3:~db or database
+C6:~https or ~ms
+C5:~file or ftp
+C1:~keyword or text
+C2:~dynamic or active
+</constraints>
+</feature_model>

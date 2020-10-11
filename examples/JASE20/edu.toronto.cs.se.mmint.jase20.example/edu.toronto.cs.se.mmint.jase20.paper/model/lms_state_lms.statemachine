@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<statemachine:StateMachine xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:statemachine="http://se.cs.toronto.edu/modelepedia/StateMachine">
+  <states xsi:type="statemachine:InitialState" transitionsAsSource="//@transitions.0"/>
+  <states xsi:type="statemachine:State" name="Active" transitionsAsSource="//@transitions.4 //@transitions.6 //@transitions.7 //@transitions.8" transitionsAsTarget="//@transitions.0 //@transitions.1 //@transitions.2 //@transitions.9 //@transitions.10"/>
+  <states xsi:type="statemachine:State" name="System Alert" transitionsAsSource="//@transitions.2 //@transitions.3 //@transitions.5" transitionsAsTarget="//@transitions.4"/>
+  <states xsi:type="statemachine:State" name="Inactive" transitionsAsSource="//@transitions.9 //@transitions.10" transitionsAsTarget="//@transitions.5 //@transitions.6 //@transitions.7 //@transitions.8"/>
+  <states xsi:type="statemachine:State" name="LKS taking control of the vehicle" transitionsAsSource="//@transitions.1" transitionsAsTarget="//@transitions.3"/>
+  <transitions action="system turned on" trigger="Speed > minSpeed" source="//@states.0" target="//@states.1"/>
+  <transitions action="vehicle returned to desired lane" source="//@states.4" target="//@states.1"/>
+  <transitions action="human measures taken for lane departure" source="//@states.2" target="//@states.1"/>
+  <transitions action="vehicle straying out of desired lane" source="//@states.2" target="//@states.4"/>
+  <transitions action="SupervisoryControlSystem WarningIndicatorOn()" trigger="LMS isActive == true" source="//@states.1" target="//@states.2"/>
+  <transitions action="LMS Subsystem TurnOff()" source="//@states.2" target="//@states.3"/>
+  <transitions action="intentional lane departure" trigger="LMS IsActive == false" source="//@states.1" target="//@states.3"/>
+  <transitions action="ambiguous lane markings" trigger="LMS CheckStatus == false" source="//@states.1" target="//@states.3"/>
+  <transitions action="driver disables system" trigger="LMS IsActive == false" source="//@states.1" target="//@states.3"/>
+  <transitions action="return to a normal driving scenario" trigger="LMS IsActive == true" source="//@states.3" target="//@states.1"/>
+  <transitions action="LMS Subsystem TurnOn()" trigger="LMS IsActive == true" source="//@states.3" target="//@states.1"/>
+</statemachine:StateMachine>

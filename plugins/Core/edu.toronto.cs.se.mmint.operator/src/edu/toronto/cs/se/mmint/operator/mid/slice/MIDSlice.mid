@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mid:MID xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mid="http://se.cs.toronto.edu/mmint/MID" level="WORKFLOWS">
+  <models uri="mid" name="mid" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/MID" dynamic="true" origin="CREATED" fileExtension="mid"/>
+  <models uri="criterion" name="criterion" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/MIDRel" dynamic="true" origin="CREATED" fileExtension="mid"/>
+  <models uri="sameMID" name="sameMID" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/MID" dynamic="true" origin="CREATED" fileExtension="xmi"/>
+  <models uri="slice" name="slice" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/MIDRel" dynamic="true" origin="CREATED" fileExtension="mid"/>
+  <operators uri="" name="Fix" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_Fix" dynamic="true">
+    <inputs uri="" name="models0" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_Fix/models" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0"/>
+    <inputs uri="" name="models1" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_Fix/models" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1"/>
+    <outputs uri="" name="fixedModels0" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_Fix/fixedModels" dynamic="true" lowerBound="1" upperBound="1" target="//@models.2"/>
+    <outputs uri="" name="fixedModels1" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_Fix/fixedModels" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3"/>
+    <generics uri="" name="MIDSliceStep" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_Fix/FIXER" dynamic="true" lowerBound="1" upperBound="1" metatargetUri="http://se.cs.toronto.edu/mmint/Operator_MIDSliceStep"/>
+  </operators>
+  <extendibleTable key="criterion" value="//@models.1"/>
+  <extendibleTable key="slice" value="//@models.3"/>
+  <extendibleTable key="mid" value="//@models.0"/>
+  <extendibleTable key="sameMID" value="//@models.2"/>
+</mid:MID>

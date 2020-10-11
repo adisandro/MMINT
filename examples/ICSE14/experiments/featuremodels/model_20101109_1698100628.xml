@@ -1,0 +1,37 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Tue, Nov 9, 2010 - 11:27 PM  -->
+<feature_model name="Coff Feature Model">
+<meta>
+<data name="description">Feature model for the Coff framework</data>
+<data name="creator">Társis Wanderley Toledo</data>
+<data name="address"></data>
+<data name="email">tarsiswt@gmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">UFAL</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Coff(_r)
+	:m Armazenamento(_r_6)
+		:g (_r_6_12) [1,*] 
+			: Externo(_r_6_12_13)
+			: Interno(_r_6_12_14)
+		:g (_r_6_16) [1,*] 
+			: Graos(_r_6_16_17)
+			: Po(_r_6_16_18)
+			: Saches(_r_6_16_19)
+		:o Armazenamento de condimentos(_r_6_20)
+	:m Escoamento(_r_9)
+		:g (_r_9_21) [1,*] 
+			: Por input(_r_9_21_22)
+			: Valor-predefinido(_r_9_21_23)
+	:o Preparo(_r_10)
+		:o Controle de temperatura(_r_10_15)
+	:o User input(_r_11)
+	:o Persistencia(_r_24)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

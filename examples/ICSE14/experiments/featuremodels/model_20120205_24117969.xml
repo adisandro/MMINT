@@ -1,0 +1,60 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Fri, Jun 15, 2012 - 3:06 PM  -->
+<feature_model name="Applications">
+<meta>
+<data name="description">About features the SPL</data>
+<data name="creator">Dora Adriana Merino Schettino, Wan Chen Lee</data>
+<data name="address">Avenida de los Censos no. 1240</data>
+<data name="email">adyz_1587@hotmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">Instituto Tecnológico de Orizaba</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Applications functionality(_r)
+	:o Tool bar(_r_35)
+		:m Choose pincel(_r_35_36)
+			:m Color(_r_35_36_37)
+				:m Device(_r_35_36_37_38)
+					:o Calibrate work space(_r_35_36_37_38_32)
+		:m Use eraser(_r_35_39)
+			:m Device(_r_35_39_40)
+		:o Use siccors(_r_35_41)
+			:m Device(_r_35_41_42)
+				:o Calibrate work space(_r_35_41_42_33)
+	:o Task asignation(_r_43)
+		:o Request rating(_r_43_44)
+			:m Device(_r_43_44_45)
+				:o Calibrate work space(_r_43_44_45_34)
+		:m Import exercise(_r_43_46)
+			:m Do exercise(_r_43_46_47)
+				:o Score exercise(_r_43_46_47_48)
+					:m Device(_r_43_46_47_48_49)
+						:o Calibrate work space(_r_43_46_47_48_49_35)
+	:g (_r_55) [1,*] 
+		: Import image(_r_55_56)
+			:o View image(_r_55_56_58)
+				:m Device(_r_55_56_58_59)
+					:o Calibrate work space(_r_55_56_58_59_60)
+			:g (_r_55_56_61) [1,*] 
+				: Manipulated image(_r_55_56_61_62)
+					:m Zoom in(_r_55_56_61_62_63)
+						:m Device(_r_55_56_61_62_63_66)
+							:o Calibrate work space(_r_55_56_61_62_63_66_70)
+					:m Zoom out(_r_55_56_61_62_64)
+						:m Device(_r_55_56_61_62_64_69)
+							:o Calibrate work space(_r_55_56_61_62_64_69_72)
+					:o Rotate image(_r_55_56_61_62_65)
+						:m Device(_r_55_56_61_62_65_68)
+						:o Calibrate work space(_r_55_56_61_62_65_71)
+</feature_tree>
+<constraints>
+constraint_8:_r_35_39_40 or _r_35_39 or _r_35
+constraint_9:_r_35_41_42 or _r_35_41 or _r_35
+constraint_10:_r_43_44_45 or _r_43_44 or _r_43
+constraint_11:_r_43_46_47_48_49 or _r_43_46_47_48 or _r_43_46_47 or _r_43_46 or _r_43
+constraint_7:_r_35_36_37_38 or _r_35_36_37 or _r_35_36 or _r_35
+</constraints>
+</feature_model>

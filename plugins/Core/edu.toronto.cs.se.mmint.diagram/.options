@@ -1,0 +1,7 @@
+# Tracing options for the edu.toronto.cs.se.mmint.diagram plug-in
+
+# Common issues
+edu.toronto.cs.se.mmint.diagram/debug=false
+
+# Visual IDs
+edu.toronto.cs.se.mmint.diagram/debug/visualID=false

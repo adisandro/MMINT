@@ -1,0 +1,41 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Mon, Jul 18, 2011 - 8:22 PM  -->
+<feature_model name="Scheduler">
+<meta>
+<data name="description">Scheduler</data>
+<data name="creator">Talita</data>
+<data name="address"></data>
+<data name="email">talitalopes@gmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">UFRJ</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r agenda(_r)
+	:m Nome(_r_1)
+	:m Endereco(_r_2)
+		:m Logradouro(_r_2_6)
+		:m Numero(_r_2_7)
+		:o Complemento(_r_2_8)
+		:m Bairro(_r_2_9)
+		:m Cidade(_r_2_10)
+		:m Estado(_r_2_11)
+		:m CEP(_r_2_12)
+	:m Preco(_r_3)
+	:m Classificacao_etaria(_r_4)
+	:m Contato(_r_5)
+		:g (_r_5_20) [1,*] 
+			: Telefone(_r_5_20_21)
+			: Website(_r_5_20_22)
+			: Twitter(_r_5_20_23)
+			: Facebook(_r_5_20_25)
+	:m Tipo(_r_27)
+	:g (_r_28) [1,1] 
+		: Fixo(_r_28_29)
+		: Variavel(_r_28_30)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

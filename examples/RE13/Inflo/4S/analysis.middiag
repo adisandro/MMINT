@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mavomid="http://se.cs.toronto.edu/mmint/MAVOMID" xmlns:mid="http://se.cs.toronto.edu/mmint/MID" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmi:id="_4upK8HreEeKvbK2mG0FePA" type="MID" measurementUnit="Pixel">
+  <children xmi:type="notation:Node" xmi:id="_UxNC4AnpEeaCnpoxqLbJgg" type="2002">
+    <children xmi:type="notation:DecorationNode" xmi:id="_UxNC5QnpEeaCnpoxqLbJgg" type="5003"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_UxNC5gnpEeaCnpoxqLbJgg" type="5004"/>
+    <styles xmi:type="notation:DescriptionStyle" xmi:id="_UxNC4QnpEeaCnpoxqLbJgg"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_UxNC4gnpEeaCnpoxqLbJgg" fontName="Cantarell" fontHeight="12"/>
+    <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_UxNC4wnpEeaCnpoxqLbJgg" hint="Mid"/>
+    <element xmi:type="mavomid:MAVOModel" href="analysis.mid#//@models.0"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_UxNC5AnpEeaCnpoxqLbJgg" y="12"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_4upK8XreEeKvbK2mG0FePA"/>
+  <element xmi:type="mid:MID" href="analysis.mid#/"/>
+</notation:Diagram>

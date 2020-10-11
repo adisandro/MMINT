@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+
+<!--
+ Copyright (c) 2012-2020 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ Rick Salay.
+ All rights reserved. This program and the accompanying materials
+ are made available under the terms of the Eclipse Public License v1.0
+ which accompanies this distribution, and is available at
+ http://www.eclipse.org/legal/epl-v10.html
+ 
+ Contributors:
+    Alessio Di Sandro - Implementation.
+-->
+
+<plugin>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.models">
+      <modelType>
+         <type
+               name="UML"
+               uri="http://www.eclipse.org/uml2/5.0.0/UML">
+         </type>
+      </modelType>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.editors">
+      <editorType
+            modelTypeUri="http://www.eclipse.org/uml2/5.0.0/UML"
+            id="org.eclipse.uml2.uml.editor.presentation.UMLEditorID"
+            isDiagram="false"
+            wizardId="org.eclipse.uml2.uml.editor.presentation.UMLModelWizardID">
+         <type
+               name="UML tree"
+               uri="http://www.eclipse.org/uml2/5.0.0/UML_tree">
+         </type>
+      </editorType>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.editors">
+      <editorType
+            id="org.eclipse.papyrus.infra.core.papyrusEditor"
+            isDiagram="true"
+            modelTypeUri="http://www.eclipse.org/uml2/5.0.0/UML"
+            wizardDialogClass="edu.toronto.cs.se.modelepedia.uml.ui.UMLDiagramCreationWizardDialog"
+            wizardId="org.eclipse.papyrus.uml.diagram.wizards.createmodel">
+         <type
+               name="UML diagram"
+               uri="http://www.eclipse.org/uml2/5.0.0/UML_diagram">
+         </type>
+      </editorType>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://www.eclipse.org/uml2/5.0.0/UMLClassDiagram"
+            class="org.eclipse.uml2.uml.UMLPackage"/>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.models">
+      <modelType>
+         <type
+               name="UMLClassDiagram"
+               uri="http://www.eclipse.org/uml2/5.0.0/UMLClassDiagram"
+               isAbstract="true">
+            <superType
+                  uri="http://www.eclipse.org/uml2/5.0.0/UML">
+            </superType>
+         </type>
+         <constraint
+               implementation="edu.toronto.cs.se.modelepedia.uml.constraint.UMLClassDiagramModelConstraint"
+               language="java">
+         </constraint>
+      </modelType>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.editors">
+      <editorType
+            modelTypeUri="http://www.eclipse.org/uml2/5.0.0/UMLClassDiagram"
+            id="org.eclipse.uml2.uml.editor.presentation.UMLEditorID"
+            isDiagram="false"
+            wizardId="org.eclipse.uml2.uml.editor.presentation.UMLModelWizardID">
+         <type
+               name="UMLClassDiagram tree"
+               uri="http://www.eclipse.org/uml2/5.0.0/UMLClassDiagram_tree">
+         </type>
+      </editorType>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.editors">
+      <editorType
+            id="org.eclipse.papyrus.infra.core.papyrusEditor"
+            isDiagram="true"
+            modelTypeUri="http://www.eclipse.org/uml2/5.0.0/UMLClassDiagram"
+            wizardDialogClass="edu.toronto.cs.se.modelepedia.uml.ui.UMLDiagramCreationWizardDialog"
+            wizardId="org.eclipse.papyrus.uml.diagram.wizards.createmodel">
+         <type
+               name="UML diagram"
+               uri="http://www.eclipse.org/uml2/5.0.0/UMLClassDiagram_diagram">
+         </type>
+      </editorType>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://www.eclipse.org/uml2/5.0.0/UMLComponentDiagram"
+            class="org.eclipse.uml2.uml.UMLPackage"/>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.models">
+      <modelType>
+         <type
+               name="UMLComponentDiagram"
+               uri="http://www.eclipse.org/uml2/5.0.0/UMLComponentDiagram"
+               isAbstract="true">
+            <superType
+                  uri="http://www.eclipse.org/uml2/5.0.0/UML">
+            </superType>
+         </type>
+         <constraint
+               implementation="edu.toronto.cs.se.modelepedia.uml.constraint.UMLComponentDiagramModelConstraint"
+               language="java">
+         </constraint>
+      </modelType>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.editors">
+      <editorType
+            modelTypeUri="http://www.eclipse.org/uml2/5.0.0/UMLComponentDiagram"
+            id="org.eclipse.uml2.uml.editor.presentation.UMLEditorID"
+            isDiagram="false"
+            wizardId="org.eclipse.uml2.uml.editor.presentation.UMLModelWizardID">
+         <type
+               name="UMLComponentDiagram tree"
+               uri="http://www.eclipse.org/uml2/5.0.0/UMLComponentDiagram_tree">
+         </type>
+      </editorType>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.editors">
+      <editorType
+            id="org.eclipse.papyrus.infra.core.papyrusEditor"
+            isDiagram="true"
+            modelTypeUri="http://www.eclipse.org/uml2/5.0.0/UMLComponentDiagram"
+            wizardDialogClass="edu.toronto.cs.se.modelepedia.uml.ui.UMLDiagramCreationWizardDialog"
+            wizardId="org.eclipse.papyrus.uml.diagram.wizards.createmodel">
+         <type
+               name="UML diagram"
+               uri="http://www.eclipse.org/uml2/5.0.0/UMLComponentDiagram_diagram">
+         </type>
+      </editorType>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://www.eclipse.org/uml2/5.0.0/UMLDeploymentDiagram"
+            class="org.eclipse.uml2.uml.UMLPackage"/>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.models">
+      <modelType>
+         <type
+               name="UMLDeploymentDiagram"
+               uri="http://www.eclipse.org/uml2/5.0.0/UMLDeploymentDiagram"
+               isAbstract="true">
+            <superType
+                  uri="http://www.eclipse.org/uml2/5.0.0/UML">
+            </superType>
+         </type>
+         <constraint
+               implementation="edu.toronto.cs.se.modelepedia.uml.constraint.UMLDeploymentDiagramModelConstraint"
+               language="java">
+         </constraint>
+      </modelType>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.editors">
+      <editorType
+            modelTypeUri="http://www.eclipse.org/uml2/5.0.0/UMLDeploymentDiagram"
+            id="org.eclipse.uml2.uml.editor.presentation.UMLEditorID"
+            isDiagram="false"
+            wizardId="org.eclipse.uml2.uml.editor.presentation.UMLModelWizardID">
+         <type
+               name="UMLDeploymentDiagram tree"
+               uri="http://www.eclipse.org/uml2/5.0.0/UMLDeploymentDiagram_tree">
+         </type>
+      </editorType>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.editors">
+      <editorType
+            id="org.eclipse.papyrus.infra.core.papyrusEditor"
+            isDiagram="true"
+            modelTypeUri="http://www.eclipse.org/uml2/5.0.0/UMLDeploymentDiagram"
+            wizardDialogClass="edu.toronto.cs.se.modelepedia.uml.ui.UMLDiagramCreationWizardDialog"
+            wizardId="org.eclipse.papyrus.uml.diagram.wizards.createmodel">
+         <type
+               name="UML diagram"
+               uri="http://www.eclipse.org/uml2/5.0.0/UMLDeploymentDiagram_diagram">
+         </type>
+      </editorType>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel"
+            class="edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage"/>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.relationships">
+      <relationshipType>
+         <modelType>
+            <type
+                  name="UMLComponentDeploymentRel"
+                  uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel">
+            </type>
+         </modelType>
+         <binaryType
+               sourceTypeUri="http://www.eclipse.org/uml2/5.0.0/UMLComponentDiagram"
+               targetTypeUri="http://www.eclipse.org/uml2/5.0.0/UMLDeploymentDiagram">
+         </binaryType>
+         <modelTypeEndpoint>
+            <type
+                  name="UMLComponentEndpoint"
+                  uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel-UMLComponentDiagram/UMLComponentEndpoint">
+            </type>
+            <typeEndpoint
+                  targetTypeUri="http://www.eclipse.org/uml2/5.0.0/UMLComponentDiagram">
+            </typeEndpoint>
+            <modelElemType>
+                <type
+                     name="Usage"
+                     uri="http://www.eclipse.org/uml2/5.0.0/UMLComponentDiagram#//Usage">
+                </type>
+            </modelElemType>
+            <modelElemType>
+                <type
+                     name="Component"
+                     uri="http://www.eclipse.org/uml2/5.0.0/UMLComponentDiagram#//Component">
+                </type>
+            </modelElemType>
+         </modelTypeEndpoint>
+         <modelTypeEndpoint>
+            <type
+                  name="UMLDeploymentEndpoint"
+                  uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel-UMLDeploymentDiagram/UMLDeploymentEndpoint">
+            </type>
+            <typeEndpoint
+                  targetTypeUri="http://www.eclipse.org/uml2/5.0.0/UMLDeploymentDiagram">
+            </typeEndpoint>
+            <modelElemType>
+                <type
+                     name="Node"
+                     uri="http://www.eclipse.org/uml2/5.0.0/UMLDeploymentDiagram#//Node">
+                </type>
+            </modelElemType>
+            <modelElemType>
+                <type
+                     name="Device"
+                     uri="http://www.eclipse.org/uml2/5.0.0/UMLDeploymentDiagram#//Device">
+                   <superType
+                         uri="http://www.eclipse.org/uml2/5.0.0/UMLDeploymentDiagram#//Node">
+                   </superType>
+                </type>
+            </modelElemType>
+         </modelTypeEndpoint>
+         <mappingType>
+            <type
+                  name="ComponentDeviceLink"
+                  uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/ComponentDeviceLink">
+            </type>
+            <binaryType
+                  sourceTypeUri="http://www.eclipse.org/uml2/5.0.0/UMLComponentDiagram#//Component"
+                  targetTypeUri="http://www.eclipse.org/uml2/5.0.0/UMLDeploymentDiagram#//Device">
+            </binaryType>
+            <modelElemTypeEndpoint>
+               <type
+                     name="ComponentEndpoint"
+                     uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/ComponentDeviceLink-Component/ComponentEndpoint">
+               </type>
+               <typeEndpoint
+                     lowerBound="0"
+                     upperBound="-1"
+                     targetTypeUri="http://www.eclipse.org/uml2/5.0.0/UMLComponentDiagram#//Component">
+               </typeEndpoint>
+            </modelElemTypeEndpoint>
+            <modelElemTypeEndpoint>
+               <type
+                     name="DeviceEndpoint"
+                     uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/ComponentDeviceLink-Device/DeviceEndpoint">
+               </type>
+               <typeEndpoint
+                     targetTypeUri="http://www.eclipse.org/uml2/5.0.0/UMLDeploymentDiagram#//Device">
+               </typeEndpoint>
+            </modelElemTypeEndpoint>
+         </mappingType>
+         <mappingType>
+            <type
+                  name="UsageNodeLink"
+                  uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/UsageNodeLink">
+            </type>
+            <binaryType
+                  sourceTypeUri="http://www.eclipse.org/uml2/5.0.0/UMLComponentDiagram#//Usage"
+                  targetTypeUri="http://www.eclipse.org/uml2/5.0.0/UMLDeploymentDiagram#//Node">
+            </binaryType>
+            <modelElemTypeEndpoint>
+               <type
+                     name="UsageEndpoint"
+                     uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/UsageNodeLink-Usage/UsageEndpoint">
+               </type>
+               <typeEndpoint
+                     lowerBound="0"
+                     upperBound="-1"
+                     targetTypeUri="http://www.eclipse.org/uml2/5.0.0/UMLComponentDiagram#//Usage">
+               </typeEndpoint>
+            </modelElemTypeEndpoint>
+            <modelElemTypeEndpoint>
+               <type
+                     name="NodeEndpoint"
+                     uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/UsageNodeLink-Node/NodeEndpoint">
+               </type>
+               <typeEndpoint
+                     lowerBound="0"
+                     targetTypeUri="http://www.eclipse.org/uml2/5.0.0/UMLDeploymentDiagram#//Node">
+               </typeEndpoint>
+            </modelElemTypeEndpoint>
+         </mappingType>
+      </relationshipType>
+   </extension>
+
+</plugin>

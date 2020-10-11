@@ -1,0 +1,41 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Sun, Jan 15, 2012 - 12:41 AM  -->
+<feature_model name="ISPW-6">
+<meta>
+<data name="description">ISPW-6</data>
+<data name="creator">Julio Ariel Hurtado</data>
+<data name="address"></data>
+<data name="email">jhurtado@dcc.uchile.cl</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">Unicauca</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Develop Change and Test Unit(_r)
+	:m Schedule and Assign Tasks(_r_3)
+		:g (_r_3_13) [1,1] 
+			: Basic Scheduling(_r_3_13_14)
+			: Dynamic Scheduling(_r_3_13_15)
+	:m Modify Design(_r_5)
+	:m Review Design(_r_6)
+		:g (_r_6_16) [1,*] 
+			: Design Inspection(_r_6_16_17)
+			: Design Pair Review(_r_6_16_18)
+	:m Modify Code(_r_7)
+	:m Modify Test Plans(_r_9)
+	:m Modify Unit Test Package(_r_10)
+	:m Test Unit(_r_11)
+	:m Monitor Progress(_r_12)
+		:o Schedule Revision(_r_12_19)
+		:o Resource Availability Analysis(_r_12_22)
+		:m Project Status Review(_r_12_24)
+		:m Rescheduling of tasks(_r_12_25)
+	:o Integration Testing(_r_18)
+</feature_tree>
+<constraints>
+constraint_1:~_r_3_13_15 or _r_12_19
+constraint_2:_r_3_13_15 or ~_r_12_19
+</constraints>
+</feature_model>

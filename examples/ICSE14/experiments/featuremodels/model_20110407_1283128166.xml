@@ -1,0 +1,83 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Thu, Apr 7, 2011 - 12:43 PM  -->
+<feature_model name="Video Player">
+<meta>
+<data name="description">Video Player - disciplina TAES</data>
+<data name="creator">nll rpgl</data>
+<data name="address"></data>
+<data name="email">nll@cin.ufpe.br</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">cin ufpe</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Video Player(_r)
+	:m Exibicao(_r_1)
+		:o Streaming(_r_1_3)
+			:m Protocolo(_r_1_3_5)
+				:g (_r_1_3_5_6) [1,*] 
+					: HTTP(_r_1_3_5_6_7)
+					: UDP(_r_1_3_5_6_8)
+					: Arquivo(_r_1_3_5_6_9)
+		:o Legenda(_r_1_4)
+			:m Fonte(_r_1_4_10)
+				:g (_r_1_4_10_11) [1,*] 
+					: Arial(_r_1_4_10_11_12)
+					: Courier(_r_1_4_10_11_13)
+			:m Formato(_r_1_4_14)
+				:g (_r_1_4_14_15) [1,*] 
+					: STR(_r_1_4_14_15_16)
+					: SUB(_r_1_4_14_15_18)
+	:m Controle(_r_2)
+		:o Tempo(_r_2_20)
+			:o Next(_r_2_20_24)
+			:o Seek(_r_2_20_25)
+			:o Slow(_r_2_20_26)
+			:o Fast(_r_2_20_27)
+		:o Execucao(_r_2_21)
+			:g (_r_2_21_28) [1,*] 
+				: Play(_r_2_21_28_29)
+				: Pause(_r_2_21_28_30)
+				: Stop(_r_2_21_28_31)
+			:o Playlist(_r_2_21_32)
+			:o Selecionar Capitulo(_r_2_21_33)
+		:o Remoto(_r_2_22)
+		:o Mouse Gestures(_r_2_23)
+	:m Configuracao(_r_19)
+		:m Controle de Imagem(_r_19_50)
+			:g (_r_19_50_52) [1,*] 
+				: Cor(_r_19_50_52_53)
+				: Iluminacao(_r_19_50_52_54)
+		:m Skin(_r_19_55)
+			:m Aplicar padrao(_r_19_55_56)
+			:o Baixar(_r_19_55_57)
+			:o Escolher(_r_19_55_59)
+		:o Preferencias do usuario(_r_19_60)
+			:m Plugins(_r_19_60_62)
+				:g (_r_19_60_62_63) [1,*] 
+					: Adicionar(_r_19_60_62_63_64)
+					: Remover(_r_19_60_62_63_65)
+	:m Formato(_r_34)
+		:m Container(_r_34_35)
+			:g (_r_34_35_37) [1,*] 
+				: AVI(_r_34_35_37_38)
+				: FLV(_r_34_35_37_39)
+				: VOB(_r_34_35_37_40)
+		:m Decode(_r_34_36)
+			:g (_r_34_36_41) [1,*] 
+				: MP4(_r_34_36_41_42)
+				: WMV(_r_34_36_41_43)
+	:o Banco de Midia(_r_44)
+		:g (_r_44_45) [1,*] 
+			: Search(_r_44_45_46)
+			: Classificacao(_r_44_45_47)
+	:o E-Shopping(_r_48)
+		:m Compra de midia(_r_48_49)
+</feature_tree>
+<constraints>
+constraint_2:_r_44 or ~_r_48_49
+constraint_3:_r_2_21_32 or ~_r_2_21_33
+</constraints>
+</feature_model>

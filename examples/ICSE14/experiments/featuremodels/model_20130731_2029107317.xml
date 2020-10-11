@@ -1,0 +1,116 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Wed, Jul 31, 2013 - 6:27 AM  -->
+<feature_model name="PhotoSahring">
+<meta>
+<data name="description">Feature model for Photo Sharing Domain</data>
+<data name="creator">Fahed Abdu</data>
+<data name="address"></data>
+<data name="email">fahedabdu@gmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">haifa university</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Photo Sharing(_r)
+	:m Tech(_r_1)
+		:m Payment method(_r_1_5)
+			:g (_r_1_5_24) [1,1] 
+				: License(_r_1_5_24_25)
+					:g (_r_1_5_24_25_26) [1,1] 
+						: By Period(_r_1_5_24_25_26_27)
+						: Monthly(_r_1_5_24_25_26_28)
+						: Annual(_r_1_5_24_25_26_30)
+				: Free(_r_1_5_24_31)
+				: Type of user(_r_1_5_24_32)
+					:g (_r_1_5_24_32_33) [1,1] 
+						: Regular(_r_1_5_24_32_33_34)
+						: Premium(_r_1_5_24_32_33_35)
+		:m App Type(_r_1_6)
+			:g (_r_1_6_20) [1,*] 
+				: Desktop App(_r_1_6_20_21)
+				: WEB App(_r_1_6_20_22)
+				: Mobile App(_r_1_6_20_23)
+		:m Host Storage(_r_1_7)
+			:g (_r_1_7_8) [1,*] 
+				: Cloud(_r_1_7_8_9)
+				: Social Network(_r_1_7_8_13)
+				: Local Folder(_r_1_7_8_14)
+				: Server(_r_1_7_8_15)
+	:m View(_r_2)
+		:o Zoom(_r_2_36)
+			:g (_r_2_36_40) [1,1] 
+				: Zoom In(_r_2_36_40_41)
+				: Zoom Out(_r_2_36_40_42)
+		:m Main Disolay(_r_2_37)
+			:g (_r_2_37_51) [1,*] 
+				: Scrol Bar(_r_2_37_51_52)
+				: Slide Show(_r_2_37_51_53)
+				: Feed(_r_2_37_51_54)
+					:g (_r_2_37_51_54_55) [1,*] 
+						: Grid(_r_2_37_51_54_55_56)
+						: List(_r_2_37_51_54_55_57)
+		:o Edit(_r_2_38)
+			:g (_r_2_38_58) [1,*] 
+				: Filters(_r_2_38_58_59)
+				: Auto Correct(_r_2_38_58_60)
+				: Resize-Crop(_r_2_38_58_61)
+		:o Discover(_r_2_39)
+			:g (_r_2_39_62) [1,*] 
+				: Hash Tag(_r_2_39_62_63)
+				: By Popularity(_r_2_39_62_64)
+				: Free Search(_r_2_39_62_65)
+	:m Share(_r_3)
+		:m Privacy(_r_3_43)
+			:g (_r_3_43_113) [1,*] 
+				: Custom(_r_3_43_113_114)
+				: Public(_r_3_43_113_115)
+				: Private(_r_3_43_113_116)
+		:m Actions(_r_3_44)
+			:m Upload(_r_3_44_66)
+				:g (_r_3_44_66_81) [1,*] 
+					: File(_r_3_44_66_81_82)
+					: Folder(_r_3_44_66_81_83)
+					: Instant Capture(_r_3_44_66_81_84)
+			:o Download(_r_3_44_68)
+				:g (_r_3_44_68_72) [1,*] 
+					: Selected Photos(_r_3_44_68_72_73)
+					: Package(_r_3_44_68_72_74)
+						:g (_r_3_44_68_72_74_75) [1,*] 
+							: Album(_r_3_44_68_72_74_75_76)
+							: Set(_r_3_44_68_72_74_75_77)
+							: Slide Show(_r_3_44_68_72_74_75_78)
+		:o Socialze(_r_3_45)
+			:g (_r_3_45_85) [1,*] 
+				: Comment(_r_3_45_85_86)
+				: Like(_r_3_45_85_87)
+				: Tag(_r_3_45_85_88)
+					:g (_r_3_45_85_88_95) [1,*] 
+						: User(_r_3_45_85_88_95_96)
+							:g (_r_3_45_85_88_95_96_99) [1,*] 
+								: User Tag(_r_3_45_85_88_95_96_99_100)
+								: Face Recognition(_r_3_45_85_88_95_96_99_102)
+						: Category(_r_3_45_85_88_95_103)
+							:g (_r_3_45_85_88_95_103_108) [1,*] 
+								: Drop List(_r_3_45_85_88_95_103_108_109)
+								: Hash Tag(_r_3_45_85_88_95_103_108_110)
+		:m Share Method(_r_3_46)
+			:g (_r_3_46_69) [1,*] 
+				: Social Network(_r_3_46_69_70)
+				: email(_r_3_46_69_71)
+	:m Organize(_r_4)
+		:m User Organization(_r_4_49)
+			:g (_r_4_49_117) [1,*] 
+				: Albums(_r_4_49_117_118)
+				: Scattered(_r_4_49_117_119)
+				: Time Stamped(_r_4_49_117_120)
+		:m App Organization(_r_4_50)
+			:g (_r_4_50_121) [1,1] 
+				: By Ranking(_r_4_50_121_122)
+				: By Time Stamp(_r_4_50_121_123)
+				: By Editor(_r_4_50_121_124)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

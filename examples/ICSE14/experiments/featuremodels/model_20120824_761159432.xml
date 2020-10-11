@@ -1,0 +1,52 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Fri, Aug 24, 2012 - 8:18 AM  -->
+<feature_model name="sftcam">
+<meta>
+<data name="description">sftcam</data>
+<data name="creator">peet</data>
+<data name="address"></data>
+<data name="email">a@a.a</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">tmt</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r sftcam(_r)
+	:m Camera(_r_1)
+		:g (_r_1_8) [1,1] 
+			: Firewire(_r_1_8_9)
+			: GigE(_r_1_8_10)
+	:m Lens(_r_2)
+		:g (_r_2_15) [1,1] 
+			: 16mm(_r_2_15_16)
+			: 35mm(_r_2_15_17)
+			: 75mm(_r_2_15_18)
+	:m Trigger(_r_3)
+		:g (_r_3_11) [1,1] 
+			: Piezzo(_r_3_11_12)
+			: Radar(_r_3_11_13)
+			: Laser(_r_3_11_14)
+	:m SBC(_r_4)
+	:m PSU(_r_5)
+	:o Firewire Interface card(_r_6)
+	:o Ethernet switch(_r_7)
+	:o Flasher unit(_r_19)
+		:g (_r_19_20) [1,1] 
+			: Wired(_r_19_20_21)
+			: Wireless(_r_19_20_22)
+	:o 3G(_r_23)
+	:m Display(_r_24)
+		:g (_r_24_25) [1,1] 
+			: Tablet(_r_24_25_26)
+			: VGA(_r_24_25_27)
+</feature_tree>
+<constraints>
+constraint_1:_r_6 or ~_r_1_8_9
+constraint_4:~_r_3_11_14 or _r_2_15_18
+constraint_5:_r_7 or _r_1_8_10 or _r_24_25_26
+constraint_2:~_r_3_11_12 or _r_2_15_16
+constraint_3:~_r_3_11_13 or _r_2_15_17
+</constraints>
+</feature_model>

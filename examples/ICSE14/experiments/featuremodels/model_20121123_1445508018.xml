@@ -1,0 +1,38 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Fri, Nov 23, 2012 - 8:56 AM  -->
+<feature_model name="MobileMedia7">
+<meta>
+<data name="description">Media Mobie System</data>
+<data name="creator">Luciano Moreira</data>
+<data name="address">St. José Campos Alvim, 54-Saint Jose-Barbacena-Mg-Brazil</data>
+<data name="email">lgmoor@hotmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">IFSEMG</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r MobileMedia7(_r)
+	:m MediaSelection(_r_16)
+		:o Video(_r_16_43)
+		:o Photo(_r_16_45)
+		:o Music(_r_16_48)
+	:m MediaManagement(_r_17)
+		:m Favourites(_r_17_31)
+			:m SetFavourites(_r_17_31_34)
+			:m ViewFavourites(_r_17_31_35)
+		:o CopyMedia(_r_17_32)
+		:o SmsTransfer(_r_17_33)
+			:m ReceivePhoto(_r_17_33_36)
+			:m SendPhoto(_r_17_33_37)
+	:m ScreenSize(_r_18)
+		:g (_r_18_19) [1,*] 
+			: Screen1(_r_18_19_20)
+			: Screen2(_r_18_19_29)
+</feature_tree>
+<constraints>
+constraint_2:_r_17_32 or _r_17_33
+constraint_3:_r_18_19_20 or _r_16_45
+</constraints>
+</feature_model>

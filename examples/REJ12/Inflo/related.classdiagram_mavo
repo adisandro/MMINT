@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classdiagram_mavo:ClassDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:classdiagram_mavo="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO">
+  <classes name="Inflo User" dependenciesAsDependee="//@dependencies.1" dependenciesAsDepender="//@dependencies.0 //@dependencies.3 //@dependencies.4 //@dependencies.2">
+    <ownedAttributes name="name"/>
+    <ownedAttributes name="email"/>
+    <ownedOperations name="Browsing()" public="true"/>
+    <ownedOperations name="MakeViews()" public="true"/>
+    <ownedOperations name="CreateGraph()" public="true"/>
+    <ownedOperations name="UseDiscussions()" public="true"/>
+    <ownedOperations may="true" var="true" name="CreateDiscussions()" public="true"/>
+  </classes>
+  <classes set="true" name="Source" dependenciesAsDependee="//@dependencies.0"/>
+  <classes name="Inflo Manager/Editors" dependenciesAsDependee="//@dependencies.3 //@dependencies.5" dependenciesAsDepender="//@dependencies.7">
+    <ownedAttributes name="name"/>
+    <ownedAttributes name="email"/>
+    <ownedOperations name="ExtensiveModeration()" public="true"/>
+    <ownedOperations name="UseAutomatedReputationSystem()" public="true"/>
+    <ownedOperations may="true" var="true" name="LessExtensiveModeration()" public="true"/>
+  </classes>
+  <classes name="Inflo" dependenciesAsDependee="//@dependencies.2" dependenciesAsDepender="//@dependencies.1 //@dependencies.5 //@dependencies.6">
+    <ownedOperations name="TrackAuthorship()" public="true"/>
+    <ownedOperations name="DisplayGraphs()" public="true"/>
+    <ownedOperations name="TrackRevisions()" public="true"/>
+    <ownedOperations name="CreateGraphs()" public="true"/>
+    <ownedOperations may="true" set="true" name="ModerationTasks()" public="true"/>
+  </classes>
+  <classes name="Automated Reputation System" dependenciesAsDependee="//@dependencies.4 //@dependencies.6 //@dependencies.7">
+    <ownedOperations name="ProvideReputations()" public="true"/>
+    <ownedOperations may="true" name="Moderation()" public="true"/>
+  </classes>
+  <classes set="true" name="Info"/>
+  <classes may="true" name="Authorship"/>
+  <classes name="Graphing"/>
+  <classes name="Moderation"/>
+  <classes name="Reputation Values"/>
+  <dependencies set="true" dependee="//@classes.1" depender="//@classes.0"/>
+  <dependencies may="true" dependee="//@classes.0" depender="//@classes.3"/>
+  <dependencies dependee="//@classes.3" depender="//@classes.0"/>
+  <dependencies may="true" dependee="//@classes.2" depender="//@classes.0"/>
+  <dependencies may="true" dependee="//@classes.4" depender="//@classes.0"/>
+  <dependencies may="true" dependee="//@classes.2" depender="//@classes.3"/>
+  <dependencies may="true" dependee="//@classes.4" depender="//@classes.3"/>
+  <dependencies dependee="//@classes.4" depender="//@classes.2"/>
+</classdiagram_mavo:ClassDiagram>

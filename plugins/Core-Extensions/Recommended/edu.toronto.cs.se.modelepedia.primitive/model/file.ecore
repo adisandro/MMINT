@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="file" nsURI="http://se.cs.toronto.edu/modelepedia/File" nsPrefix="file">
+  <eClassifiers xsi:type="ecore:EClass" name="FileModel" eSuperTypes="../../edu.toronto.cs.se.mmint/model/mid.ecore#//Model">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="File version, represents a model to be opened with the system editor. {@inheritDoc}"/>
+    </eAnnotations>
+    <eOperations name="openInstance" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmint/model/mid.ecore#//operator/Exception"/>
+  </eClassifiers>
+</ecore:EPackage>

@@ -1,0 +1,37 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Fri, Nov 23, 2012 - 8:49 AM  -->
+<feature_model name="MobileMedia_Lenita">
+<meta>
+<data name="description">modelo de característica</data>
+<data name="creator">Lenita Ambrosio</data>
+<data name="address"></data>
+<data name="email">lenita.ambrosio@gmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">UFJF</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r MobileMedia(_r)
+	:m MediaSelection(_r_1)
+		:m Photo(_r_1_21)
+		:m Music(_r_1_22)
+		:o Video(_r_1_23)
+	:m MediaManagement(_r_2)
+		:o CopyMedia(_r_2_9)
+		:o SMSTranfer(_r_2_10)
+			:m ReceivePhto(_r_2_10_14)
+			:m SendPhoto(_r_2_10_15)
+		:m Favourites(_r_2_11)
+			:m SetFavourites(_r_2_11_12)
+			:m ViewFavourites(_r_2_11_13)
+	:m ScrrenSize(_r_3)
+		:g (_r_3_16) [1,1] 
+			: Screen1(_r_3_16_17)
+</feature_tree>
+<constraints>
+constraint_1:_r_2_9 or ~_r_2_10
+constraint_2:_r_3_16_17 or ~_r_1_21
+</constraints>
+</feature_model>

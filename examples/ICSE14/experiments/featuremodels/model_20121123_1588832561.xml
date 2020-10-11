@@ -1,0 +1,38 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Fri, Nov 23, 2012 - 8:58 AM  -->
+<feature_model name="modelo mobilemedia">
+<meta>
+<data name="description">modelo exemplo do programa de gerenciamento de midias</data>
+<data name="creator">claudio lelis</data>
+<data name="address"></data>
+<data name="email">claudioaugusto.lelis@gmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">UFJF</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r MobileMedia(_r)
+	:m Media Selection(_r_1)
+		:m Photo(_r_1_18)
+		:m music(_r_1_19)
+		:o Video(_r_1_20)
+	:m media management(_r_6)
+		:m Favourites(_r_6_7)
+			:m Set Favourites(_r_6_7_17)
+			:m View Favourites(_r_6_7_18)
+		:o Copy media(_r_6_8)
+		:o SMS Transfer(_r_6_9)
+			:m Receive Photo(_r_6_9_15)
+			:m Send Photo(_r_6_9_16)
+	:m screen size(_r_10)
+		:g (_r_10_11) [1,1] 
+			: Screen1(_r_10_11_12)
+			: Screen2(_r_10_11_13)
+</feature_tree>
+<constraints>
+constraint_2:_r_6_8 or _r_6_9
+constraint_3:_r_10_11_12 or _r_1_18
+</constraints>
+</feature_model>

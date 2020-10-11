@@ -1,0 +1,164 @@
+-- @nsURI UML=http://www.eclipse.org/uml2/5.0.0/UML
+-- @nsURI ClassDiagram_MAVO=http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO
+
+module UMLToClassDiagramMAVO_M2M;
+create OUT : ClassDiagram_MAVO from IN : UML;
+
+helper def : stringClass : ClassDiagram_MAVO!Class = OclUndefined;
+helper def : booleanClass : ClassDiagram_MAVO!Class = OclUndefined;
+
+entrypoint rule PrimitiveTypes() {
+	to
+		string : ClassDiagram_MAVO!Class (
+			name <- 'String',
+			formulaId <- ' true '
+		),
+		boolean : ClassDiagram_MAVO!Class (
+			name <- 'Boolean',
+			formulaId <- ' true '
+		)
+	do {
+		thisModule.stringClass <- string;
+		thisModule.booleanClass <- boolean;
+	}
+}
+
+rule Model2ClassDiagram {
+	from
+		model : UML!Model
+	to
+		cd : ClassDiagram_MAVO!ClassDiagram (
+			classes <-
+				Sequence{thisModule.stringClass, thisModule.booleanClass}->
+				union(UML!Class.allInstancesFrom('IN')->
+					reject(behavior | behavior.oclIsKindOf(UML!Behavior))->
+					collect(class | thisModule.Class2Class(class))
+				)->
+				union(UML!DataType.allInstancesFrom('IN')->
+					collect(datatype | thisModule.DataType2Class(datatype))
+				),
+			associations <-
+				UML!Association.allInstancesFrom('IN')->
+					collect(association | thisModule.Association2Association(association))
+		)
+}
+
+unique lazy rule DataType2Class {
+	from
+		datatype : UML!DataType
+	to
+		class : ClassDiagram_MAVO!Class (
+			name <- datatype.name,
+			formulaId <- ' true '
+		)
+}
+
+unique lazy rule Class2Class {
+	from
+		umlClass : UML!Class (
+			not umlClass.oclIsKindOf(UML!Behavior)
+		)
+	to
+		cdClass : ClassDiagram_MAVO!Class (
+			name <- umlClass.name,
+			formulaId <- thisModule.getFormulaId(umlClass.name),
+			superclass <- umlClass.generalization->collect(generalization | thisModule.Generalization2SuperclassReference(generalization)),
+			ownedAttributes <- umlClass.ownedAttribute->collect(property | thisModule.Property2Attribute(property)),
+			ownedOperations <- umlClass.ownedOperation->collect(operation | thisModule.Operation2Operation(operation))
+		)
+}
+
+lazy rule Generalization2SuperclassReference {
+	from
+		generalization : UML!Generalization
+	to
+		superclassRef : ClassDiagram_MAVO!SuperclassReference (
+			formulaId <- ' true ',
+			target <- thisModule.Class2Class(generalization.general)
+		)
+}
+
+lazy rule Property2Attribute {
+	from
+		property : UML!Property
+	to
+		attribute : ClassDiagram_MAVO!Attribute (
+			name <- thisModule.getPropertyName(property),
+			formulaId <- thisModule.getFormulaId(property.name),
+			type <- thisModule.getType(property.type),
+			public <- thisModule.isPublic(property.visibility)
+		)
+}
+
+lazy rule Operation2Operation {
+	from
+		umlOperation : UML!Operation
+	to
+		cdOperation : ClassDiagram_MAVO!Operation (
+			name <- umlOperation.name,
+			formulaId <- thisModule.getFormulaId(umlOperation.name),
+			type <- thisModule.getType(umlOperation.type),
+			public <- thisModule.isPublic(umlOperation.visibility)
+		)
+}
+
+lazy rule Association2Association {
+	from
+		umlAssociation : UML!Association
+	to
+		cdAssociation : ClassDiagram_MAVO!Association (
+			name <- thisModule.getAssociationName(umlAssociation),
+			formulaId <- thisModule.getFormulaId(umlAssociation.name),
+			source <- thisModule.getType(umlAssociation.memberEnd->at(1).type),
+			target <- thisModule.getType(umlAssociation.memberEnd->at(2).type)
+		)
+}
+
+helper def : isPublic(visibility : UML!VisibilityKind) : Boolean =
+	if visibility = #public then
+		true
+	else
+		false
+	endif;
+
+helper def : getFormulaId(name : String) : String =
+	if (not name->oclIsUndefined() and name->startsWith('<<optional:')) then
+		name.substring(name->indexOf('<<optional:')+12, name->indexOf('>>'))->trim()
+	else
+		' true '
+	endif;
+
+helper def : getType(type : UML!Type) : ClassDiagram_MAVO!Class =
+	if type->oclIsUndefined() then
+		OclUndefined
+	else
+		if type->oclIsKindOf(UML!DataType) then
+			if type.name = 'String' then
+				thisModule.stringClass
+			else if type.name = 'Boolean' then
+				thisModule.booleanClass
+			else
+				thisModule.DataType2Class(type)
+			endif endif
+		else
+			thisModule.Class2Class(type)
+		endif
+	endif;
+
+helper def : getPropertyName(property : UML!Property) : String =
+	if property.name->oclIsUndefined() or property.name = '' then
+		if property.type->oclIsUndefined() then
+			''
+		else
+			property.type.name
+		endif
+	else
+		property.name
+	endif;
+
+helper def : getAssociationName(association : UML!Association) : String =
+	if association.name->oclIsUndefined() or association.name = '' then
+		'A_'->concat(thisModule.getPropertyName(association.memberEnd->at(1)))->concat('_')->concat(thisModule.getPropertyName(association.memberEnd->at(2)))
+	else
+		association.name
+	endif;

@@ -1,0 +1,53 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Mon, Apr 23, 2012 - 8:48 AM  -->
+<feature_model name="Lucas - pnp">
+<meta>
+<data name="description">pnp</data>
+<data name="creator">Lucas Gomes</data>
+<data name="address"></data>
+<data name="email">lucas.insane2@gmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">ufmg</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Game(_r)
+	:o Dado(_r_9)
+	:m Carta Projeto(_r_10)
+	:m Correcao de Bugs(_r_14)
+	:m Agente(_r_17)
+		:g (_r_17_19) [1,1] 
+			: Engenheiro de Software(_r_17_19_20)
+			: Programador(_r_17_19_21)
+	:o Tabuleiro(_r_18)
+	:m Codigo(_r_22)
+		:g (_r_22_23) [1,*] 
+			: Com Bug(_r_22_23_24)
+			: Sem Bug(_r_22_23_25)
+	:m Carta(_r_26)
+		:g (_r_26_27) [1,*] 
+			: Conceito(_r_26_27_28)
+			: Problema(_r_26_27_29)
+	:o Artefatos(_r_30)
+		:g (_r_30_31) [1,*] 
+			: Requisitos(_r_30_31_32)
+			: Design(_r_30_31_33)
+			: Codigo(_r_30_31_34)
+			: Ajuda(_r_30_31_35)
+			: Rastros(_r_30_31_36)
+	:m Integracao(_r_37)
+	:m Inspecao(_r_38)
+	:m Jogo(_r_25)
+		:g (_r_25_26) [1,1] 
+			: PNP(_r_25_26_27)
+			: Simules(_r_25_26_28)
+</feature_tree>
+<constraints>
+constraint_1:~_r_17_19_20 or ~_r_17_19_21
+constraint_6:~_r_30_31_35 or ~_r_30_31_36 or _r_25_26_28
+constraint_5:~_r_25_26_27 or ~_r_25_26_28
+constraint_3:_r_17 or ~_r_22
+</constraints>
+</feature_model>

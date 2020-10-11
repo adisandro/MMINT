@@ -1,0 +1,66 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Tue, Dec 20, 2011 - 12:01 PM  -->
+<feature_model name="DS Sample">
+<meta>
+<data name="description">DS Sample</data>
+<data name="creator">TD</data>
+<data name="address"></data>
+<data name="email">tobiasd123@gmx.de</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">none</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r DS(_r)
+	:m GB(_r_1)
+		:g (_r_1_6) [1,1] 
+			: 6(_r_1_6_7)
+			: 7(_r_1_6_8)
+			: 8(_r_1_6_9)
+			: FQ(_r_1_6_22)
+			: 6A(_r_1_6_23)
+			: 8H(_r_1_6_44)
+	:m SWP(_r_11)
+		:g (_r_11_12) [1,1] 
+			: A(_r_11_12_13)
+			: C(_r_11_12_15)
+			: B(_r_11_12_53)
+	:m Cus(_r_16)
+		:g (_r_16_17) [1,1] 
+			: A(_r_16_17_18)
+			: B(_r_16_17_19)
+			: C(_r_16_17_20)
+			: D(_r_16_17_21)
+			: E(_r_16_17_24)
+			: F(_r_16_17_25)
+			: G(_r_16_17_26)
+			: H(_r_16_17_27)
+			: I(_r_16_17_45)
+			: J(_r_16_17_46)
+			: K(_r_16_17_47)
+			: L(_r_16_17_48)
+			: M(_r_16_17_49)
+			: N(_r_16_17_50)
+			: O(_r_16_17_51)
+			: P(_r_16_17_52)
+	:m CMP(_r_28)
+		:g (_r_28_29) [1,1] 
+			: A(_r_28_29_30)
+			: B(_r_28_29_31)
+			: C(_r_28_29_32)
+	:m SFS(_r_33)
+		:g (_r_33_34) [1,1] 
+			: A(_r_33_34_35)
+			: B(_r_33_34_36)
+			: C(_r_33_34_37)
+			: D(_r_33_34_38)
+	:m SC(_r_39)
+		:g (_r_39_41) [1,1] 
+			: A(_r_39_41_42)
+			: B(_r_39_41_43)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

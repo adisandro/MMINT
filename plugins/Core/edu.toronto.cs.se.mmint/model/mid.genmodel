@@ -1,0 +1,685 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="Copyright (c) 2012-2020 Alessio Di Sandro, Marsha Chechik, Rick Salay.&#xA;All rights reserved. This program and the accompanying materials are made available under the terms&#xA;of the Eclipse Public License v1.0 which accompanies this distribution, and is available at&#xA;http://www.eclipse.org/legal/epl-v10.html&#xA;&#xA;Contributors:&#xA;   Alessio Di Sandro - Implementation"
+    modelDirectory="/edu.toronto.cs.se.mmint/src-gen" editDirectory="/edu.toronto.cs.se.mmint.edit/src-gen"
+    editorDirectory="/edu.toronto.cs.se.mmint.editor/src-gen" modelPluginID="edu.toronto.cs.se.mmint"
+    modelName="MID" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="14.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>mid.ecore</foreignModel>
+  <genPackages prefix="MID" basePackage="edu.toronto.cs.se.mmint" disposableProviderFactory="true"
+      extensibleProviderFactory="true" ecorePackage="mid.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="mid.ecore#//MIDLevel">
+      <genEnumLiterals ecoreEnumLiteral="mid.ecore#//MIDLevel/INSTANCES"/>
+      <genEnumLiterals ecoreEnumLiteral="mid.ecore#//MIDLevel/TYPES"/>
+      <genEnumLiterals ecoreEnumLiteral="mid.ecore#//MIDLevel/WORKFLOWS"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="mid.ecore#//ModelOrigin">
+      <genEnumLiterals ecoreEnumLiteral="mid.ecore#//ModelOrigin/IMPORTED"/>
+      <genEnumLiterals ecoreEnumLiteral="mid.ecore#//ModelOrigin/CREATED"/>
+    </genEnums>
+    <genDataTypes ecoreDataType="mid.ecore#//MMINTException"/>
+    <genDataTypes ecoreDataType="mid.ecore#//IOException"/>
+    <genDataTypes ecoreDataType="mid.ecore#//IStatus"/>
+    <genDataTypes ecoreDataType="mid.ecore#//IValidationContext"/>
+    <genClasses ecoreClass="mid.ecore#//MID">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//MID/models"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//MID/editors"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//MID/operators"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//MID/extendibleTable"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//MID/level"/>
+      <genOperations ecoreOperation="mid.ecore#//MID/isTypesLevel" body="return this.getLevel() == MIDLevel.TYPES;"/>
+      <genOperations ecoreOperation="mid.ecore#//MID/isInstancesLevel" body="return this.getLevel() == MIDLevel.INSTANCES;"/>
+      <genOperations ecoreOperation="mid.ecore#//MID/isWorkflowsLevel" body="return this.getLevel() == MIDLevel.WORKFLOWS;"/>
+      <genOperations ecoreOperation="mid.ecore#//MID/getExtendibleElement">
+        <genParameters ecoreParameter="mid.ecore#//MID/getExtendibleElement/uri"/>
+        <genTypeParameters ecoreTypeParameter="mid.ecore#//MID/getExtendibleElement/T"/>
+      </genOperations>
+      <genOperations ecoreOperation="mid.ecore#//MID/getModelRels" body="EList&lt;ModelRel> modelRels = new BasicEList&lt;>();&#xA;for (Model model : this.getModels()) {&#xA;&#x9;if (model instanceof ModelRel) {&#xA;&#x9;&#x9;modelRels.add((ModelRel) model);&#xA;&#x9;}&#xA;}&#xA;return modelRels;"/>
+    </genClasses>
+    <genClasses ecoreClass="mid.ecore#//EStringToExtendibleElementMap">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//EStringToExtendibleElementMap/key"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mid.ecore#//EStringToExtendibleElementMap/value"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="mid.ecore#//ExtendibleElement">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mid.ecore#//ExtendibleElement/supertype"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ExtendibleElement/uri"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ExtendibleElement/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ExtendibleElement/level"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ExtendibleElement/metatypeUri"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ExtendibleElement/dynamic"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//ExtendibleElement/constraint"/>
+      <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/getMetatype" body="return MIDTypeRegistry.getType(getMetatypeUri());"/>
+      <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/getMIDContainer"
+          body="return null;"/>
+      <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/isLevel" body="return this.getLevel() == midLevel;">
+        <genParameters ecoreParameter="mid.ecore#//ExtendibleElement/isLevel/midLevel"/>
+      </genOperations>
+      <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/isTypesLevel" body="return this.isLevel(MIDLevel.TYPES);"/>
+      <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/createSubtypeUri">
+        <genParameters ecoreParameter="mid.ecore#//ExtendibleElement/createSubtypeUri/newTypeFragmentUri"/>
+        <genParameters ecoreParameter="mid.ecore#//ExtendibleElement/createSubtypeUri/newTypeName"/>
+      </genOperations>
+      <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/addTypeConstraint">
+        <genParameters ecoreParameter="mid.ecore#//ExtendibleElement/addTypeConstraint/language"/>
+        <genParameters ecoreParameter="mid.ecore#//ExtendibleElement/addTypeConstraint/implementation"/>
+      </genOperations>
+      <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/isInstancesLevel"
+          body="return this.isLevel(MIDLevel.INSTANCES);"/>
+      <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/getRuntimeTypes">
+        <genTypeParameters ecoreTypeParameter="mid.ecore#//ExtendibleElement/getRuntimeTypes/T"/>
+      </genOperations>
+      <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/getClosestTypeConstraint"/>
+      <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/validateInstanceType">
+        <genParameters ecoreParameter="mid.ecore#//ExtendibleElement/validateInstanceType/type"/>
+      </genOperations>
+      <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/validateInstance"/>
+      <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/validateInstanceInEditor">
+        <genParameters ecoreParameter="mid.ecore#//ExtendibleElement/validateInstanceInEditor/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/isWorkflowsLevel"
+          body="return this.isLevel(MIDLevel.WORKFLOWS);"/>
+      <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/updateWorkflowInstanceId">
+        <genParameters ecoreParameter="mid.ecore#//ExtendibleElement/updateWorkflowInstanceId/newInstanceId"/>
+      </genOperations>
+      <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/toMIDCustomPrintLabel"/>
+      <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/toMIDCustomEditLabel"/>
+      <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/updateMIDCustomLabel">
+        <genParameters ecoreParameter="mid.ecore#//ExtendibleElement/updateMIDCustomLabel/newLabel"/>
+      </genOperations>
+    </genClasses>
+    <genClasses image="false" ecoreClass="mid.ecore#//ExtendibleElementEndpoint">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ExtendibleElementEndpoint/lowerBound"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ExtendibleElementEndpoint/upperBound"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mid.ecore#//ExtendibleElementEndpoint/target"/>
+      <genOperations ecoreOperation="mid.ecore#//ExtendibleElementEndpoint/getMetatype"
+          body="ExtendibleElement metatype = super.getMetatype();&#xA;return (metatype == null) ? null : (ExtendibleElementEndpoint) metatype;"/>
+      <genOperations ecoreOperation="mid.ecore#//ExtendibleElementEndpoint/getSupertype"
+          body="ExtendibleElement supertype = super.getSupertype();&#xA;return (supertype == null) ? null : (ExtendibleElementEndpoint) supertype;"/>
+      <genOperations ecoreOperation="mid.ecore#//ExtendibleElementEndpoint/getTargetUri"
+          body="ExtendibleElement target = this.getTarget();&#xA;return (target == null) ? null : target.getUri();"/>
+    </genClasses>
+    <genClasses ecoreClass="mid.ecore#//Model">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//Model/origin"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//Model/fileExtension"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mid.ecore#//Model/editors"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//Model/modelElems"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mid.ecore#//Model/conversionOperators"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//Model/EMFInstanceResource"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference mid.ecore#//Model/EMFInstanceRoot"/>
+      <genOperations ecoreOperation="mid.ecore#//Model/getMetatype" body="ExtendibleElement metatype = super.getMetatype();&#xA;return (metatype == null) ? null : (Model) metatype;"/>
+      <genOperations ecoreOperation="mid.ecore#//Model/getSupertype" body="ExtendibleElement supertype = super.getSupertype();&#xA;return (supertype == null) ? null : (Model) supertype;"/>
+      <genOperations ecoreOperation="mid.ecore#//Model/getMIDContainer" body="return (MID) this.eContainer();"/>
+      <genOperations ecoreOperation="mid.ecore#//Model/createSubtype">
+        <genParameters ecoreParameter="mid.ecore#//Model/createSubtype/newModelTypeName"/>
+        <genParameters ecoreParameter="mid.ecore#//Model/createSubtype/isMetamodelExtension"/>
+      </genOperations>
+      <genOperations ecoreOperation="mid.ecore#//Model/deleteType"/>
+      <genOperations ecoreOperation="mid.ecore#//Model/getEMFTypeRoot"/>
+      <genOperations ecoreOperation="mid.ecore#//Model/openType"/>
+      <genOperations ecoreOperation="mid.ecore#//Model/createInstance">
+        <genParameters ecoreParameter="mid.ecore#//Model/createInstance/rootModelObj"/>
+        <genParameters ecoreParameter="mid.ecore#//Model/createInstance/newModelPath"/>
+        <genParameters ecoreParameter="mid.ecore#//Model/createInstance/instanceMID"/>
+      </genOperations>
+      <genOperations ecoreOperation="mid.ecore#//Model/createInstanceEditor">
+        <genParameters ecoreParameter="mid.ecore#//Model/createInstanceEditor/createEditorFile"/>
+      </genOperations>
+      <genOperations ecoreOperation="mid.ecore#//Model/createInstanceAndEditor">
+        <genParameters ecoreParameter="mid.ecore#//Model/createInstanceAndEditor/rootModelObj"/>
+        <genParameters ecoreParameter="mid.ecore#//Model/createInstanceAndEditor/newModelPath"/>
+        <genParameters ecoreParameter="mid.ecore#//Model/createInstanceAndEditor/instanceMID"/>
+      </genOperations>
+      <genOperations ecoreOperation="mid.ecore#//Model/importInstance">
+        <genParameters ecoreParameter="mid.ecore#//Model/importInstance/modelPath"/>
+        <genParameters ecoreParameter="mid.ecore#//Model/importInstance/instanceMID"/>
+      </genOperations>
+      <genOperations ecoreOperation="mid.ecore#//Model/importInstanceAndEditor">
+        <genParameters ecoreParameter="mid.ecore#//Model/importInstanceAndEditor/modelPath"/>
+        <genParameters ecoreParameter="mid.ecore#//Model/importInstanceAndEditor/instanceMID"/>
+      </genOperations>
+      <genOperations ecoreOperation="mid.ecore#//Model/copyInstance">
+        <genParameters ecoreParameter="mid.ecore#//Model/copyInstance/origModel"/>
+        <genParameters ecoreParameter="mid.ecore#//Model/copyInstance/newModelName"/>
+        <genParameters ecoreParameter="mid.ecore#//Model/copyInstance/instanceMID"/>
+      </genOperations>
+      <genOperations ecoreOperation="mid.ecore#//Model/copyInstanceAndEditor">
+        <genParameters ecoreParameter="mid.ecore#//Model/copyInstanceAndEditor/origModel"/>
+        <genParameters ecoreParameter="mid.ecore#//Model/copyInstanceAndEditor/newModelName"/>
+        <genParameters ecoreParameter="mid.ecore#//Model/copyInstanceAndEditor/copyDiagram"/>
+        <genParameters ecoreParameter="mid.ecore#//Model/copyInstanceAndEditor/instanceMID"/>
+      </genOperations>
+      <genOperations ecoreOperation="mid.ecore#//Model/deleteInstance"/>
+      <genOperations ecoreOperation="mid.ecore#//Model/deleteInstanceAndFile"/>
+      <genOperations ecoreOperation="mid.ecore#//Model/openInstance"/>
+      <genOperations ecoreOperation="mid.ecore#//Model/createWorkflowInstance">
+        <genParameters ecoreParameter="mid.ecore#//Model/createWorkflowInstance/newModelId"/>
+        <genParameters ecoreParameter="mid.ecore#//Model/createWorkflowInstance/workflowMID"/>
+      </genOperations>
+      <genOperations ecoreOperation="mid.ecore#//Model/deleteWorkflowInstance"/>
+    </genClasses>
+    <genClasses ecoreClass="mid.ecore#//ExtendibleElementConstraint">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ExtendibleElementConstraint/implementation"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ExtendibleElementConstraint/language"/>
+    </genClasses>
+    <genClasses ecoreClass="mid.ecore#//ModelElement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//ModelElement/eInfo"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference mid.ecore#//ModelElement/EMFInstanceObject"/>
+      <genOperations ecoreOperation="mid.ecore#//ModelElement/getMetatype" body="ExtendibleElement metatype = super.getMetatype();&#xA;return (metatype == null) ? null : (ModelElement) metatype;"/>
+      <genOperations ecoreOperation="mid.ecore#//ModelElement/getSupertype" body="ExtendibleElement supertype = super.getSupertype();&#xA;return (supertype == null) ? null : (ModelElement) supertype;"/>
+      <genOperations ecoreOperation="mid.ecore#//ModelElement/getMIDContainer" body="return (MID) this.eContainer().eContainer();"/>
+      <genOperations ecoreOperation="mid.ecore#//ModelElement/createTypeReference">
+        <genParameters ecoreParameter="mid.ecore#//ModelElement/createTypeReference/modelElemTypeRef"/>
+        <genParameters ecoreParameter="mid.ecore#//ModelElement/createTypeReference/isModifiable"/>
+        <genParameters ecoreParameter="mid.ecore#//ModelElement/createTypeReference/containerModelTypeEndpointRef"/>
+      </genOperations>
+      <genOperations ecoreOperation="mid.ecore#//ModelElement/createSubtypeAndReference">
+        <genParameters ecoreParameter="mid.ecore#//ModelElement/createSubtypeAndReference/modelElemTypeRef"/>
+        <genParameters ecoreParameter="mid.ecore#//ModelElement/createSubtypeAndReference/newModelElemTypeUri"/>
+        <genParameters ecoreParameter="mid.ecore#//ModelElement/createSubtypeAndReference/newModelElemTypeName"/>
+        <genParameters ecoreParameter="mid.ecore#//ModelElement/createSubtypeAndReference/eInfo"/>
+        <genParameters ecoreParameter="mid.ecore#//ModelElement/createSubtypeAndReference/containerModelTypeEndpointRef"/>
+      </genOperations>
+      <genOperations ecoreOperation="mid.ecore#//ModelElement/deleteType"/>
+      <genOperations ecoreOperation="mid.ecore#//ModelElement/getEMFTypeObject"/>
+      <genOperations ecoreOperation="mid.ecore#//ModelElement/createInstanceReference">
+        <genParameters ecoreParameter="mid.ecore#//ModelElement/createInstanceReference/containerModelEndpointRef"/>
+      </genOperations>
+      <genOperations ecoreOperation="mid.ecore#//ModelElement/createInstanceAndReference">
+        <genParameters ecoreParameter="mid.ecore#//ModelElement/createInstanceAndReference/newModelElemUri"/>
+        <genParameters ecoreParameter="mid.ecore#//ModelElement/createInstanceAndReference/newModelElemName"/>
+        <genParameters ecoreParameter="mid.ecore#//ModelElement/createInstanceAndReference/eInfo"/>
+        <genParameters ecoreParameter="mid.ecore#//ModelElement/createInstanceAndReference/containerModelEndpointRef"/>
+      </genOperations>
+      <genOperations ecoreOperation="mid.ecore#//ModelElement/deleteInstance"/>
+    </genClasses>
+    <genClasses ecoreClass="mid.ecore#//ModelEndpoint">
+      <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/getMetatype" body="ExtendibleElementEndpoint metatype = super.getMetatype();&#xA;return (metatype == null) ? null : (ModelEndpoint) metatype;"/>
+      <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/getSupertype" body="ExtendibleElementEndpoint supertype = super.getSupertype();&#xA;return (supertype == null) ? null : (ModelEndpoint) supertype;"/>
+      <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/getMIDContainer" body="return (MID) this.eContainer().eContainer();"/>
+      <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/getTarget" body="ExtendibleElement target = super.getTarget();&#xA;return (target == null) ? null : (Model) target;"/>
+      <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/createTypeReference">
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createTypeReference/isModifiable"/>
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createTypeReference/containerModelRelType"/>
+      </genOperations>
+      <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/createSubtype">
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createSubtype/newModelTypeEndpointName"/>
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createSubtype/targetModelType"/>
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createSubtype/isBinarySrc"/>
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createSubtype/containerModelRelType"/>
+      </genOperations>
+      <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/replaceSubtype">
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/replaceSubtype/oldModelTypeEndpoint"/>
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/replaceSubtype/newModelTypeEndpointName"/>
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/replaceSubtype/targetModelType"/>
+      </genOperations>
+      <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/deleteType">
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/deleteType/isFullDelete"/>
+      </genOperations>
+      <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/createInstanceReference">
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createInstanceReference/containerModelRel"/>
+      </genOperations>
+      <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/createInstance">
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createInstance/targetModel"/>
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createInstance/containerModelRel"/>
+      </genOperations>
+      <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/createInstance.1">
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createInstance.1/targetModel"/>
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createInstance.1/containerOperator"/>
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createInstance.1/containerFeatureName"/>
+      </genOperations>
+      <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/replaceInstance">
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/replaceInstance/oldModelEndpoint"/>
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/replaceInstance/targetModel"/>
+      </genOperations>
+      <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/deleteInstance">
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/deleteInstance/isFullDelete"/>
+      </genOperations>
+      <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/createWorkflowInstance">
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createWorkflowInstance/targetModel"/>
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createWorkflowInstance/containerModelRel"/>
+      </genOperations>
+      <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/createWorkflowInstance.1">
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createWorkflowInstance.1/targetModel"/>
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createWorkflowInstance.1/containerOperator"/>
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createWorkflowInstance.1/containerFeatureName"/>
+      </genOperations>
+      <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/replaceWorkflowInstance">
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/replaceWorkflowInstance/oldModelEndpoint"/>
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/replaceWorkflowInstance/targetModel"/>
+      </genOperations>
+      <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/deleteWorkflowInstance"/>
+    </genClasses>
+    <genClasses ecoreClass="mid.ecore#//EMFInfo">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//EMFInfo/className"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//EMFInfo/featureName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//EMFInfo/attribute"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//EMFInfo/relatedClassName"/>
+      <genOperations ecoreOperation="mid.ecore#//EMFInfo/toTypeString"/>
+      <genOperations ecoreOperation="mid.ecore#//EMFInfo/toInstanceString"/>
+    </genClasses>
+    <genClasses ecoreClass="mid.ecore#//GenericElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//GenericElement/abstract"/>
+    </genClasses>
+    <nestedGenPackages prefix="Relationship" basePackage="edu.toronto.cs.se.mmint.mid"
+        disposableProviderFactory="true" ecorePackage="mid.ecore#//relationship">
+      <genClasses ecoreClass="mid.ecore#//relationship/ModelRel">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//relationship/ModelRel/modelEndpoints"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//relationship/ModelRel/mappings"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//relationship/ModelRel/modelEndpointRefs"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//relationship/ModelRel/mappingRefs"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/getMetatype"
+            body="ExtendibleElement metatype = super.getMetatype();&#xA;return (metatype == null) ? null : (ModelRel) metatype;"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/getSupertype"
+            body="ExtendibleElement supertype = super.getSupertype();&#xA;return (supertype == null) ? null : (Model) supertype;"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/getMIDContainer"
+            body="return (MID) this.eContainer();"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/createBinarySubtype">
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createBinarySubtype/newModelRelTypeName"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createBinarySubtype/isMetamodelExtension"/>
+        </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/copySubtype">
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/copySubtype/origModelRelType"/>
+        </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/getOutlineResourceTypes"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/createInstanceAndEndpoints">
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createInstanceAndEndpoints/rootModelRelObj"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createInstanceAndEndpoints/newModelRelName"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createInstanceAndEndpoints/endpointModels"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createInstanceAndEndpoints/instanceMID"/>
+        </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/createBinaryInstance">
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createBinaryInstance/rootModelRelObj"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createBinaryInstance/newModelRelName"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createBinaryInstance/instanceMID"/>
+        </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/createBinaryInstanceAndEndpoints">
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createBinaryInstanceAndEndpoints/rootModelRelObj"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createBinaryInstanceAndEndpoints/newModelRelName"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createBinaryInstanceAndEndpoints/endpointSourceModel"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createBinaryInstanceAndEndpoints/endpointTargetModel"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createBinaryInstanceAndEndpoints/instanceMID"/>
+        </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/getOutlineResourceInstances"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/createWorkflowInstanceAndEndpoints">
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createWorkflowInstanceAndEndpoints/newModelRelId"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createWorkflowInstanceAndEndpoints/endpointModels"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createWorkflowInstanceAndEndpoints/workflowMID"/>
+        </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/createWorkflowBinaryInstance">
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createWorkflowBinaryInstance/newModelRelId"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createWorkflowBinaryInstance/workflowMID"/>
+        </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/createWorkflowBinaryInstanceAndEndpoints">
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createWorkflowBinaryInstanceAndEndpoints/newModelRelId"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createWorkflowBinaryInstanceAndEndpoints/endpointSourceModel"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createWorkflowBinaryInstanceAndEndpoints/endpointTargetModel"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createWorkflowBinaryInstanceAndEndpoints/workflowMID"/>
+        </genOperations>
+      </genClasses>
+      <genClasses ecoreClass="mid.ecore#//relationship/BinaryModelRel">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mid.ecore#//relationship/BinaryModelRel/sourceModel"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mid.ecore#//relationship/BinaryModelRel/targetModel"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/BinaryModelRel/addModelType">
+          <genParameters ecoreParameter="mid.ecore#//relationship/BinaryModelRel/addModelType/modelType"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/BinaryModelRel/addModelType/isBinarySrc"/>
+        </genOperations>
+      </genClasses>
+      <genClasses image="false" ecoreClass="mid.ecore#//relationship/ExtendibleElementReference">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mid.ecore#//relationship/ExtendibleElementReference/referencedObject"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//relationship/ExtendibleElementReference/containedObject"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mid.ecore#//relationship/ExtendibleElementReference/supertypeRef"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//relationship/ExtendibleElementReference/modifiable"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ExtendibleElementReference/getUri"
+            body="ExtendibleElement object = this.getObject();&#xA;return (object == null) ? null : object.getUri();"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ExtendibleElementReference/getObject"
+            body="return (this.getContainedObject() == null) ?&#xA;&#x9;this.getReferencedObject() :&#xA;&#x9;this.getContainedObject();"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ExtendibleElementReference/getMIDContainer"
+            body="return this.getObject().getMIDContainer();"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ExtendibleElementReference/isTypesLevel"
+            body="return this.getObject().isTypesLevel();"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ExtendibleElementReference/isInstancesLevel"
+            body="return this.getObject().isInstancesLevel();"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ExtendibleElementReference/isWorkflowsLevel"
+            body="return this.getObject().isWorkflowsLevel();"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="mid.ecore#//relationship/ExtendibleElementEndpointReference">
+        <genOperations ecoreOperation="mid.ecore#//relationship/ExtendibleElementEndpointReference/getObject"
+            body="ExtendibleElement object = super.getObject();&#xA;return (object == null) ? null : (ExtendibleElementEndpoint) object;"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ExtendibleElementEndpointReference/getSupertypeRef"
+            body="ExtendibleElementReference supertypeRef = super.getSupertypeRef();&#xA;return (supertypeRef == null) ? null : (ExtendibleElementEndpointReference) supertypeRef;"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ExtendibleElementEndpointReference/getTargetUri"
+            body="ExtendibleElementEndpoint object = this.getObject();&#xA;return (object == null) ? null : object.getTargetUri();"/>
+      </genClasses>
+      <genClasses ecoreClass="mid.ecore#//relationship/ModelEndpointReference">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//relationship/ModelEndpointReference/modelElemRefs"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelEndpointReference/getObject"
+            body="ExtendibleElementEndpoint object = super.getObject();&#xA;return (object == null) ? null : (ModelEndpoint) object;"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelEndpointReference/getSupertypeRef"
+            body="ExtendibleElementEndpointReference supertypeRef = super.getSupertypeRef();&#xA;return (supertypeRef == null) ? null : (ModelEndpointReference) supertypeRef;"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelEndpointReference/acceptModelElementType">
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelEndpointReference/acceptModelElementType/metamodelObj"/>
+        </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelEndpointReference/deleteTypeReference">
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelEndpointReference/deleteTypeReference/isFullDelete"/>
+        </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelEndpointReference/acceptModelElementInstance">
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelEndpointReference/acceptModelElementInstance/modelObj"/>
+        </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelEndpointReference/createModelElementInstanceAndReference">
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelEndpointReference/createModelElementInstanceAndReference/modelObj"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelEndpointReference/createModelElementInstanceAndReference/newModelElemName"/>
+        </genOperations>
+      </genClasses>
+      <genClasses ecoreClass="mid.ecore#//relationship/ModelElementReference">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mid.ecore#//relationship/ModelElementReference/modelElemEndpointRefs"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelElementReference/getObject"
+            body="ExtendibleElement object = super.getObject();&#xA;return (object == null) ? null : (ModelElement) object;"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelElementReference/getSupertypeRef"
+            body="ExtendibleElementReference supertypeRef = super.getSupertypeRef();&#xA;return (supertypeRef == null) ? null : (ModelElementReference) supertypeRef;"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelElementReference/deleteTypeReference"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelElementReference/deleteInstanceReference"/>
+      </genClasses>
+      <genClasses ecoreClass="mid.ecore#//relationship/Mapping">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//relationship/Mapping/modelElemEndpoints"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mid.ecore#//relationship/Mapping/modelElemEndpointRefs"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/Mapping/getMetatype"
+            body="ExtendibleElement metatype = super.getMetatype();&#xA;return (metatype == null) ? null : (Mapping) metatype;"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/Mapping/getSupertype"
+            body="ExtendibleElement supertype = super.getSupertype();&#xA;return (supertype == null) ? null : (Mapping) supertype;"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/Mapping/getMIDContainer"
+            body="return (MID) this.eContainer().eContainer();"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/Mapping/createTypeReference">
+          <genParameters ecoreParameter="mid.ecore#//relationship/Mapping/createTypeReference/mappingTypeRef"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/Mapping/createTypeReference/isModifiable"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/Mapping/createTypeReference/containerModelRelType"/>
+        </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//relationship/Mapping/createSubtypeAndReference">
+          <genParameters ecoreParameter="mid.ecore#//relationship/Mapping/createSubtypeAndReference/mappingTypeRef"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/Mapping/createSubtypeAndReference/newMappingTypeName"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/Mapping/createSubtypeAndReference/isBinary"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/Mapping/createSubtypeAndReference/containerModelRelType"/>
+        </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//relationship/Mapping/deleteType"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/Mapping/createInstanceReference">
+          <genParameters ecoreParameter="mid.ecore#//relationship/Mapping/createInstanceReference/containerModelRel"/>
+        </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//relationship/Mapping/createInstanceAndReference">
+          <genParameters ecoreParameter="mid.ecore#//relationship/Mapping/createInstanceAndReference/isBinary"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/Mapping/createInstanceAndReference/containerModelRel"/>
+        </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//relationship/Mapping/createInstanceAndReferenceAndEndpointsAndReferences">
+          <genParameters ecoreParameter="mid.ecore#//relationship/Mapping/createInstanceAndReferenceAndEndpointsAndReferences/isBinary"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/Mapping/createInstanceAndReferenceAndEndpointsAndReferences/targetModelElemRefs"/>
+        </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//relationship/Mapping/deleteInstance"/>
+      </genClasses>
+      <genClasses ecoreClass="mid.ecore#//relationship/BinaryMapping"/>
+      <genClasses ecoreClass="mid.ecore#//relationship/ModelElementEndpoint">
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelElementEndpoint/getMetatype"
+            body="ExtendibleElementEndpoint metatype = super.getMetatype();&#xA;return (metatype == null) ? null : (ModelElementEndpoint) metatype;"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelElementEndpoint/getSupertype"
+            body="ExtendibleElementEndpoint supertype = super.getSupertype();&#xA;return (supertype == null) ? null : (ModelElementEndpoint) supertype;"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelElementEndpoint/getMIDContainer"
+            body="return (MID) this.eContainer().eContainer().eContainer();"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelElementEndpoint/getTarget"
+            body="ExtendibleElement target = super.getTarget();&#xA;return (target == null) ? null : (ModelElement) target;"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelElementEndpoint/createTypeReference">
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelElementEndpoint/createTypeReference/modelElemTypeEndpointRef"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelElementEndpoint/createTypeReference/targetModelElemTypeRef"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelElementEndpoint/createTypeReference/isModifiable"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelElementEndpoint/createTypeReference/isBinarySrc"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelElementEndpoint/createTypeReference/containerMappingTypeRef"/>
+        </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelElementEndpoint/createSubtypeAndReference">
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelElementEndpoint/createSubtypeAndReference/newModelElemTypeEndpointName"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelElementEndpoint/createSubtypeAndReference/targetModelElemTypeRef"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelElementEndpoint/createSubtypeAndReference/isBinarySrc"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelElementEndpoint/createSubtypeAndReference/containerMappingTypeRef"/>
+        </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelElementEndpoint/replaceSubtypeAndReference">
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelElementEndpoint/replaceSubtypeAndReference/oldModelElemTypeEndpointRef"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelElementEndpoint/replaceSubtypeAndReference/newModelElemTypeEndpointName"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelElementEndpoint/replaceSubtypeAndReference/targetModelElemTypeRef"/>
+        </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelElementEndpoint/deleteType">
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelElementEndpoint/deleteType/isFullDelete"/>
+        </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelElementEndpoint/createInstanceReference">
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelElementEndpoint/createInstanceReference/targetModelElemRef"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelElementEndpoint/createInstanceReference/containerMappingRef"/>
+        </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelElementEndpoint/createInstanceAndReference">
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelElementEndpoint/createInstanceAndReference/targetModelElemRef"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelElementEndpoint/createInstanceAndReference/containerMappingRef"/>
+        </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelElementEndpoint/replaceInstanceAndReference">
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelElementEndpoint/replaceInstanceAndReference/oldModelElemEndpointRef"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelElementEndpoint/replaceInstanceAndReference/targetModelElemRef"/>
+        </genOperations>
+      </genClasses>
+      <genClasses ecoreClass="mid.ecore#//relationship/MappingReference">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//relationship/MappingReference/modelElemEndpointRefs"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/MappingReference/getObject"
+            body="ExtendibleElement object = super.getObject();&#xA;return (object == null) ? null : (Mapping) object;"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/MappingReference/getSupertypeRef"
+            body="ExtendibleElementReference supertypeRef = super.getSupertypeRef();&#xA;return (supertypeRef == null) ? null : (MappingReference) supertypeRef;"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/MappingReference/deleteTypeReference"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/MappingReference/deleteTypeAndReference"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/MappingReference/deleteInstanceReference"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/MappingReference/deleteInstanceAndReference"/>
+      </genClasses>
+      <genClasses ecoreClass="mid.ecore#//relationship/BinaryMappingReference">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mid.ecore#//relationship/BinaryMappingReference/sourceModelElemRef"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mid.ecore#//relationship/BinaryMappingReference/targetModelElemRef"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/BinaryMappingReference/getObject"
+            body="ExtendibleElement object = super.getObject();&#xA;return (object == null) ? null : (BinaryMapping) object;"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/BinaryMappingReference/addModelElementTypeReference">
+          <genParameters ecoreParameter="mid.ecore#//relationship/BinaryMappingReference/addModelElementTypeReference/modelElemTypeRef"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/BinaryMappingReference/addModelElementTypeReference/isBinarySrc"/>
+        </genOperations>
+      </genClasses>
+      <genClasses ecoreClass="mid.ecore#//relationship/ModelElementEndpointReference">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mid.ecore#//relationship/ModelElementEndpointReference/modelElemRef"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelElementEndpointReference/getObject"
+            body="ExtendibleElementEndpoint object = super.getObject();&#xA;return (object == null) ? null : (ModelElementEndpoint) object;"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelElementEndpointReference/getSupertypeRef"
+            body="ExtendibleElementEndpointReference supertypeRef = super.getSupertypeRef();&#xA;return (supertypeRef == null) ? null : (ModelElementEndpointReference) supertypeRef;"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelElementEndpointReference/deleteTypeReference">
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelElementEndpointReference/deleteTypeReference/isFullDelete"/>
+        </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelElementEndpointReference/deleteTypeAndReference">
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelElementEndpointReference/deleteTypeAndReference/isFullDelete"/>
+        </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelElementEndpointReference/deleteInstanceAndReference">
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelElementEndpointReference/deleteInstanceAndReference/isFullDelete"/>
+        </genOperations>
+      </genClasses>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Editor" basePackage="edu.toronto.cs.se.mmint.mid" disposableProviderFactory="true"
+        ecorePackage="mid.ecore#//editor">
+      <genDataTypes ecoreDataType="mid.ecore#//editor/IStructuredSelection"/>
+      <genDataTypes ecoreDataType="mid.ecore#//editor/EditorCreationWizardDialog"/>
+      <genClasses ecoreClass="mid.ecore#//editor/Editor">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//editor/Editor/modelUri"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//editor/Editor/id"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//editor/Editor/wizardId"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//editor/Editor/fileExtensions"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//editor/Editor/wizardDialogClass"/>
+        <genOperations ecoreOperation="mid.ecore#//editor/Editor/getMetatype" body="ExtendibleElement metatype = super.getMetatype();&#xA;return (metatype == null) ? null : (Editor) metatype;"/>
+        <genOperations ecoreOperation="mid.ecore#//editor/Editor/getSupertype" body="ExtendibleElement supertype = super.getSupertype();&#xA;return (supertype == null) ? null : (Editor) supertype;"/>
+        <genOperations ecoreOperation="mid.ecore#//editor/Editor/getMIDContainer"
+            body="return (MID) this.eContainer();"/>
+        <genOperations ecoreOperation="mid.ecore#//editor/Editor/createSubtype">
+          <genParameters ecoreParameter="mid.ecore#//editor/Editor/createSubtype/newEditorTypeFragmentUri"/>
+          <genParameters ecoreParameter="mid.ecore#//editor/Editor/createSubtype/newEditorTypeName"/>
+          <genParameters ecoreParameter="mid.ecore#//editor/Editor/createSubtype/modelTypeUri"/>
+          <genParameters ecoreParameter="mid.ecore#//editor/Editor/createSubtype/editorId"/>
+          <genParameters ecoreParameter="mid.ecore#//editor/Editor/createSubtype/wizardId"/>
+          <genParameters ecoreParameter="mid.ecore#//editor/Editor/createSubtype/wizardDialogClassName"/>
+        </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//editor/Editor/deleteType"/>
+        <genOperations ecoreOperation="mid.ecore#//editor/Editor/createInstance">
+          <genParameters ecoreParameter="mid.ecore#//editor/Editor/createInstance/modelPath"/>
+          <genParameters ecoreParameter="mid.ecore#//editor/Editor/createInstance/createEditorFile"/>
+          <genParameters ecoreParameter="mid.ecore#//editor/Editor/createInstance/instanceMID"/>
+        </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//editor/Editor/invokeInstanceWizard">
+          <genParameters ecoreParameter="mid.ecore#//editor/Editor/invokeInstanceWizard/initialSelection"/>
+        </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//editor/Editor/deleteInstance"/>
+      </genClasses>
+      <genClasses ecoreClass="mid.ecore#//editor/Diagram"/>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Operator" basePackage="edu.toronto.cs.se.mmint.mid"
+        disposableProviderFactory="true" ecorePackage="mid.ecore#//operator">
+      <genDataTypes ecoreDataType="mid.ecore#//operator/Random"/>
+      <genDataTypes ecoreDataType="mid.ecore#//operator/Exception"/>
+      <genDataTypes ecoreDataType="mid.ecore#//operator/Properties"/>
+      <genDataTypes ecoreDataType="mid.ecore#//operator/Set">
+        <genTypeParameters ecoreTypeParameter="mid.ecore#//operator/Set/E"/>
+      </genDataTypes>
+      <genClasses ecoreClass="mid.ecore#//operator/Operator">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//operator/Operator/inputs"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//operator/Operator/outputs"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mid.ecore#//operator/Operator/generics"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//operator/Operator/workingPath"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//operator/Operator/executionTime"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//operator/Operator/commutative"/>
+        <genOperations ecoreOperation="mid.ecore#//operator/Operator/getMetatype"
+            body="ExtendibleElement metatype = super.getMetatype();&#xA;return (metatype == null) ? null : (Operator) metatype;"/>
+        <genOperations ecoreOperation="mid.ecore#//operator/Operator/getSupertype"
+            body="ExtendibleElement supertype = super.getSupertype();&#xA;return (supertype == null) ? null : (Operator) supertype;"/>
+        <genOperations ecoreOperation="mid.ecore#//operator/Operator/getMIDContainer"
+            body="return (MID) this.eContainer();"/>
+        <genOperations ecoreOperation="mid.ecore#//operator/Operator/getTypeSignature">
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/getTypeSignature/inputs"/>
+        </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//operator/Operator/createSubtype">
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/createSubtype/newOperatorTypeName"/>
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/createSubtype/implementationPath"/>
+        </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//operator/Operator/deleteType"/>
+        <genOperations ecoreOperation="mid.ecore#//operator/Operator/openType"/>
+        <genOperations ecoreOperation="mid.ecore#//operator/Operator/findAllowedInputs">
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/findAllowedInputs/inputMIDs"/>
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/findAllowedInputs/inputModelBlacklists"/>
+        </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//operator/Operator/findFirstAllowedInput">
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/findFirstAllowedInput/inputMIDs"/>
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/findFirstAllowedInput/inputModelBlacklists"/>
+        </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//operator/Operator/checkAllowedInputs">
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/checkAllowedInputs/inputModels"/>
+        </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//operator/Operator/getOutputsByName"/>
+        <genOperations ecoreOperation="mid.ecore#//operator/Operator/getOutputModels"/>
+        <genOperations ecoreOperation="mid.ecore#//operator/Operator/createInstance">
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/createInstance/instanceMID"/>
+        </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//operator/Operator/deleteInstance"/>
+        <genOperations ecoreOperation="mid.ecore#//operator/Operator/selectAllowedGenerics">
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/selectAllowedGenerics/inputs"/>
+        </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//operator/Operator/getInputProperties"/>
+        <genOperations ecoreOperation="mid.ecore#//operator/Operator/readInputProperties">
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/readInputProperties/inputProperties"/>
+        </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//operator/Operator/run">
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/run/inputsByName"/>
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/run/genericsByName"/>
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/run/outputMIDsByName"/>
+        </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//operator/Operator/startInstance">
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/startInstance/inputs"/>
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/startInstance/inputProperties"/>
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/startInstance/generics"/>
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/startInstance/outputMIDsByName"/>
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/startInstance/instanceMID"/>
+        </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//operator/Operator/openInstance"/>
+        <genOperations ecoreOperation="mid.ecore#//operator/Operator/createWorkflowInstance">
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/createWorkflowInstance/workflowMID"/>
+        </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//operator/Operator/deleteWorkflowInstance"/>
+        <genOperations ecoreOperation="mid.ecore#//operator/Operator/createWorkflowInstanceOutputs">
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/createWorkflowInstanceOutputs/newOperator"/>
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/createWorkflowInstanceOutputs/inputsByName"/>
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/createWorkflowInstanceOutputs/workflowMID"/>
+        </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//operator/Operator/startWorkflowInstance">
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/startWorkflowInstance/inputs"/>
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/startWorkflowInstance/generics"/>
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/startWorkflowInstance/workflowMID"/>
+        </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//operator/Operator/openWorkflowInstance"/>
+      </genClasses>
+      <genClasses ecoreClass="mid.ecore#//operator/ConversionOperator">
+        <genOperations ecoreOperation="mid.ecore#//operator/ConversionOperator/deleteType"/>
+        <genOperations ecoreOperation="mid.ecore#//operator/ConversionOperator/cleanup"/>
+      </genClasses>
+      <genClasses ecoreClass="mid.ecore#//operator/RandomOperator">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//operator/RandomOperator/state"/>
+      </genClasses>
+      <genClasses ecoreClass="mid.ecore#//operator/NestingOperator">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//operator/NestingOperator/nestedMIDPath"/>
+        <genOperations ecoreOperation="mid.ecore#//operator/NestingOperator/getNestedInstanceMID"/>
+        <genOperations ecoreOperation="mid.ecore#//operator/NestingOperator/startNestedInstance">
+          <genParameters ecoreParameter="mid.ecore#//operator/NestingOperator/startNestedInstance/nestedOperatorType"/>
+          <genParameters ecoreParameter="mid.ecore#//operator/NestingOperator/startNestedInstance/inputs"/>
+          <genParameters ecoreParameter="mid.ecore#//operator/NestingOperator/startNestedInstance/inputProperties"/>
+          <genParameters ecoreParameter="mid.ecore#//operator/NestingOperator/startNestedInstance/generics"/>
+          <genParameters ecoreParameter="mid.ecore#//operator/NestingOperator/startNestedInstance/outputMIDsByName"/>
+        </genOperations>
+      </genClasses>
+      <genClasses ecoreClass="mid.ecore#//operator/WorkflowOperator">
+        <genOperations ecoreOperation="mid.ecore#//operator/WorkflowOperator/getNestedWorkflowMID"/>
+      </genClasses>
+      <genClasses ecoreClass="mid.ecore#//operator/GenericEndpoint">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//operator/GenericEndpoint/metatargetUri"/>
+        <genOperations ecoreOperation="mid.ecore#//operator/GenericEndpoint/getSupertype"
+            body="ExtendibleElementEndpoint supertype = super.getSupertype();&#xA;return (supertype == null) ? null : (GenericEndpoint) supertype;"/>
+        <genOperations ecoreOperation="mid.ecore#//operator/GenericEndpoint/getTarget"
+            body="GenericElement target = MIDTypeRegistry.getType(getMetatargetUri());&#xA;return target;"/>
+        <genOperations ecoreOperation="mid.ecore#//operator/GenericEndpoint/setTarget"
+            body="setMetatargetUri(newTarget.getUri());">
+          <genParameters ecoreParameter="mid.ecore#//operator/GenericEndpoint/setTarget/newTarget"/>
+        </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//operator/GenericEndpoint/getMetatype"
+            body="ExtendibleElementEndpoint metatype = super.getMetatype();&#xA;return (metatype == null) ? null : (GenericEndpoint) metatype;"/>
+        <genOperations ecoreOperation="mid.ecore#//operator/GenericEndpoint/createInstance">
+          <genParameters ecoreParameter="mid.ecore#//operator/GenericEndpoint/createInstance/targetGeneric"/>
+          <genParameters ecoreParameter="mid.ecore#//operator/GenericEndpoint/createInstance/containerOperator"/>
+        </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//operator/GenericEndpoint/createWorkflowInstance">
+          <genParameters ecoreParameter="mid.ecore#//operator/GenericEndpoint/createWorkflowInstance/targetGeneric"/>
+          <genParameters ecoreParameter="mid.ecore#//operator/GenericEndpoint/createWorkflowInstance/containerOperator"/>
+        </genOperations>
+      </genClasses>
+      <genClasses ecoreClass="mid.ecore#//operator/OperatorInput">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mid.ecore#//operator/OperatorInput/model"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mid.ecore#//operator/OperatorInput/conversions"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mid.ecore#//operator/OperatorInput/modelTypeEndpoint"/>
+      </genClasses>
+      <genClasses ecoreClass="mid.ecore#//operator/OperatorGeneric">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mid.ecore#//operator/OperatorGeneric/generic"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mid.ecore#//operator/OperatorGeneric/genericSuperTypeEndpoint"/>
+      </genClasses>
+    </nestedGenPackages>
+  </genPackages>
+</genmodel:GenModel>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ Copyright (c) 2012-2020 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ Rick Salay.
+ All rights reserved. This program and the accompanying materials
+ are made available under the terms of the Eclipse Public License v1.0
+ which accompanies this distribution, and is available at
+ http://www.eclipse.org/legal/epl-v10.html
+ 
+ Contributors:
+    Alessio Di Sandro - Implementation.
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated necsis14_databaseschema -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="edu.toronto.cs.se.modelepedia.necsis14_databaseschema.presentation.NECSIS14_DatabaseSchemaModelWizardID"
+            name="%_UI_NECSIS14_DatabaseSchemaModelWizard_label"
+            class="edu.toronto.cs.se.modelepedia.necsis14_databaseschema.presentation.NECSIS14_DatabaseSchemaModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/NECSIS14_DatabaseSchemaModelFile.gif">
+         <description>%_UI_NECSIS14_DatabaseSchemaModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated necsis14_databaseschema -->
+      <editor
+            id="edu.toronto.cs.se.modelepedia.necsis14_databaseschema.presentation.NECSIS14_DatabaseSchemaEditorID"
+            name="%_UI_NECSIS14_DatabaseSchemaEditor_label"
+            icon="icons/full/obj16/NECSIS14_DatabaseSchemaModelFile.gif"
+            extensions="necsis14_databaseschema"
+            class="edu.toronto.cs.se.modelepedia.necsis14_databaseschema.presentation.NECSIS14_DatabaseSchemaEditor"
+            contributorClass="edu.toronto.cs.se.modelepedia.necsis14_databaseschema.presentation.NECSIS14_DatabaseSchemaActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.editors">
+      <editorType
+            modelTypeUri="http://se.cs.toronto.edu/modelepedia/NECSIS14_DatabaseSchema"
+            id="edu.toronto.cs.se.modelepedia.necsis14_databaseschema.presentation.NECSIS14_DatabaseSchemaEditorID"
+            isDiagram="false"
+            wizardId="edu.toronto.cs.se.modelepedia.necsis14_databaseschema.presentation.NECSIS14_DatabaseSchemaModelWizardID">
+         <type
+               name="NECSIS14_DatabaseSchema tree"
+               uri="http://se.cs.toronto.edu/modelepedia/Tree_NECSIS14_DatabaseSchema">
+         </type>
+      </editorType>
+   </extension>
+
+</plugin>

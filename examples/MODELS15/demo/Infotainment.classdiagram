@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classdiagram:ClassDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:classdiagram="http://se.cs.toronto.edu/modelepedia/ClassDiagram">
+  <classes name="Infotainment_Controller" associationsAsSource="//@associations.0">
+    <ownedAttributes name="Volume:int"/>
+  </classes>
+  <classes name="Infotainment_Adapter" associationsAsTarget="//@associations.0"/>
+  <associations name="has" source="//@classes.0" target="//@classes.1"/>
+</classdiagram:ClassDiagram>

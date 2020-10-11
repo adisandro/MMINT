@@ -1,0 +1,63 @@
+--------
+GenModel
+--------
+
+Copyright Text ->
+
+Copyright (c) 2012-2020 Alessio Di Sandro, Marsha Chechik.
+All rights reserved. This program and the accompanying materials are made available under the terms
+of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
+http://www.eclipse.org/legal/epl-v10.html
+
+Contributors:
+  Alessio Di Sandro - Implementation
+
+All>Model Name -> use a nice version here (uppercase initials), ideally this would be the model type name or the name of a collection of model types
+X>Directory -> modify to src-gen
+Model>Operation Reflection -> true
+
+	Ecore Package
+	-------------
+	
+	All>Base Package -> edu.toronto.cs.se.mmint
+	All>Prefix -> use the model type name
+	Edit>Child Creation Extenders/Extensible Provider Factory -> true for extension/base
+
+------
+GMFGen
+------
+
+	Gen Editor
+	----------
+	
+	Copyrigth Text -> same as GenModel
+	Diagram File Extension -> shorten _diagram to diag
+	Editor Plug-in Directory -> modify to src-gen
+	
+		Gen Diagram
+		-----------
+		
+		Contains Shortcuts To -> use ecore package name
+		Live Validation UI Feedback -> true
+		Shortcuts Provided For - > same as Contains Shortcuts To
+		Validation Decorators -> true
+		Validation Enabled -> true
+		
+			Metamodel Type
+			--------------
+			
+			Display Name -> use the model type name
+		
+		Gen Plugin
+		----------
+		
+		Provider -> Software Engineering Group, University of Toronto
+		Version -> use some version
+		
+		Gen Expression Provider Container (if any)
+		---------------------------------
+		
+			Gen Java Expression Container (if any)
+			-----------------------------
+			
+				Inject Expression Body -> true

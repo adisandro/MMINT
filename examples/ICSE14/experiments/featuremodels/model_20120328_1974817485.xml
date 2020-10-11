@@ -1,0 +1,34 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Wed, Mar 28, 2012 - 10:04 AM  -->
+<feature_model name="Veículo">
+<meta>
+<data name="description">SPL</data>
+<data name="creator">Thieres</data>
+<data name="address"></data>
+<data name="email">thieresnard@yahoo.com.br</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">UFMG</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Carro(_r)
+	:m Chassi(_r_1)
+		:g (_r_1_15) [1,1] 
+			: 2 portas(_r_1_15_16)
+			: 4 portas(_r_1_15_17)
+	:m Motor(_r_2)
+		:g (_r_2_3) [1,1] 
+			: 1_0(_r_2_3_4)
+			: 1_4(_r_2_3_7)
+			: 1_6(_r_2_3_8)
+			: 1_8(_r_2_3_9)
+			: 2_0(_r_2_3_10)
+	:o Freios ABS(_r_11)
+	:o Teto Solar(_r_13)
+	:o Air Bag(_r_14)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

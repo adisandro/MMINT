@@ -1,0 +1,50 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Sat, Aug 10, 2013 - 12:51 PM  -->
+<feature_model name="Mobile Phone">
+<meta>
+<data name="description">Nothing</data>
+<data name="creator">AE</data>
+<data name="address"></data>
+<data name="email">alireza_ensan@yahoo.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">UNB</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Mobile Phone(_r)
+	:m Utilit Functions(_r_1)
+		:m Calls(_r_1_2)
+			:g (_r_1_2_7) [1,*] 
+				: Voice(_r_1_2_7_8)
+				: Data(_r_1_2_7_9)
+		:m Messaging(_r_1_3)
+			:g (_r_1_3_10) [1,*] 
+				: SMS(_r_1_3_10_11)
+				: EMS(_r_1_3_10_12)
+				: MMS(_r_1_3_10_13)
+		:o Games(_r_1_4)
+		:m Alarm clock(_r_1_5)
+		:m Ringing Tones(_r_1_6)
+	:m Setting(_r_14)
+		:o Java Support(_r_14_15)
+		:m OS(_r_14_16)
+			:g (_r_14_16_17) [1,1] 
+				: Symbian(_r_14_16_17_18)
+				: WinCE(_r_14_16_17_19)
+	:o Media(_r_20)
+		:o Camera(_r_20_21)
+		:o MP3(_r_20_22)
+		:o MP4(_r_20_23)
+	:o Connectivity(_r_24)
+		:g (_r_24_25) [1,*] 
+			: Bluetooth(_r_24_25_26)
+			: USB(_r_24_25_27)
+			: WifI(_r_24_25_28)
+</feature_tree>
+<constraints>
+constraint_4:~_r_1_4 or _r_14_15
+constraint_5:~_r_20_22 or ~_r_20_23
+</constraints>
+</feature_model>

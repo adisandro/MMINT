@@ -1,0 +1,42 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Wed, May 18, 2011 - 5:23 PM  -->
+<feature_model name="Venza">
+<meta>
+<data name="description">Toyota Venza</data>
+<data name="creator">Dave Ford</data>
+<data name="address"></data>
+<data name="email">dford@smart-soft.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">Toyota</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Venza(_r)
+	:m Engine(_r_4)
+		:g (_r_4_5) [1,1] 
+			: V6(_r_4_5_6)
+			: L4(_r_4_5_7)
+	:m Drive(_r_11)
+		:g (_r_11_12) [1,1] 
+			: TWD(_r_11_12_13)
+			: AWD(_r_11_12_14)
+	:m Transmission(_r_15)
+		:m AT6(_r_15_18)
+	:m Wheels(_r_19)
+		:g (_r_19_20) [1,1] 
+			: W19(_r_19_20_21)
+			: W20(_r_19_20_24)
+	:m Exhaust(_r_25)
+		:g (_r_25_26) [1,1] 
+			: SingleExhaust(_r_25_26_27)
+			: DualExhaust(_r_25_26_28)
+</feature_tree>
+<constraints>
+constraint_8:~_r_4_5_7 or _r_25_26_27
+constraint_7:~_r_4_5_6 or _r_25_26_28
+constraint_5:~_r_4_5_6 or _r_19_20_24
+constraint_2:~_r_4_5_7 or _r_19_20_21
+</constraints>
+</feature_model>

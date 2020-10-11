@@ -1,0 +1,54 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Thu, Feb 3, 2011 - 5:21 PM  -->
+<feature_model name="GreenHouse_Control_and_Monitoring">
+<meta>
+<data name="description">First version of GreenHouse product line</data>
+<data name="creator">Ana Fabiola Anzures </data>
+<data name="address"></data>
+<data name="email">iscanzures@gmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">ITO/CIMAT (Mexico)</data>
+<data name="department"></data>
+<data name="date">August, 2010 </data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r GreenHouse(_r)
+	:m Control(_r_1)
+		:m Mode(_r_1_3)
+			:o Day(_r_1_3_4)
+			:o Night(_r_1_3_5)
+		:m Temperature(_r_1_7)
+		:m On-Off Water(_r_1_8)
+		:m On-Off Light(_r_1_9)
+		:m Alarms(_r_1_10)
+			:m Alarm No water(_r_1_10_12)
+			:m Alarm No lights(_r_1_10_13)
+			:o Others Alarms(_r_1_10_14)
+		:m Platform(_r_1_22)
+			:o PC(_r_1_22_23)
+			:o Web(_r_1_22_25)
+			:o Mobile(_r_1_22_26)
+		:m UI(_r_1_27)
+			:o Console(_r_1_27_28)
+			:o Graphic(_r_1_27_29)
+				:o PC Interface(_r_1_27_29_30)
+				:o Web Interface(_r_1_27_29_31)
+				:o Mobile Interface(_r_1_27_29_32)
+	:m Monitoring(_r_2)
+		:m Log(_r_2_33)
+		:m Notification(_r_2_34)
+			:o e-mail(_r_2_34_35)
+			:o SMS(_r_2_34_36)
+			:o Call phone(_r_2_34_37)
+		:m Generate Reports(_r_2_38)
+			:m Consumer Report(_r_2_38_41)
+			:o Production Report(_r_2_38_42)
+</feature_tree>
+<constraints>
+constraint_4:~_r_1_22_25 or _r_1_27_29_31
+constraint_5:~_r_1_22_26 or _r_1_27_29_32
+constraint_2:~_r_1_27_28 or ~_r_1_27_29
+constraint_3:~_r_1_22_23 or _r_1_27_29_30
+</constraints>
+</feature_model>

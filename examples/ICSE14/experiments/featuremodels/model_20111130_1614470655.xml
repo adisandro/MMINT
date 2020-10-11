@@ -1,0 +1,107 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Wed, Nov 30, 2011 - 10:54 AM  -->
+<feature_model name="J2EE web architecture">
+<meta>
+<data name="description">A feature model for web architectures</data>
+<data name="creator">Reinout Korbee</data>
+<data name="address"></data>
+<data name="email">reinout.korbee@gmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">Self employed</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Core(_r)
+	:m Persistence(_r_1)
+		:o Transactions(_r_1_9)
+			:o Distributed transactions(_r_1_9_99)
+		:o Lookup tables(_r_1_16)
+			:g (_r_1_16_100) [1,1] 
+				: New data(_r_1_16_100_101)
+				: Existing data(_r_1_16_100_102)
+					:o Data conversion(_r_1_16_100_102_103)
+		:m Relational database(_r_1_41)
+			:g (_r_1_41_46) [1,*] 
+				: Existing data schema(_r_1_41_46_47)
+				: New data schema(_r_1_41_46_48)
+			:g (_r_1_41_49) [1,*] 
+				: Customer provided RDBMS(_r_1_41_49_50)
+				: Self provided RDBMS(_r_1_41_49_51)
+					:m HSQLDB(_r_1_41_49_51_61)
+		:m Hibernate(_r_1_104)
+	:m Page flows(_r_2)
+		:m Spring Web Flow(_r_2_62)
+	:m Presentation(_r_3)
+		:g (_r_3_26) [1,1] 
+			: Existing design(_r_3_26_27)
+			: New design(_r_3_26_28)
+				:m Third party web designer(_r_3_26_28_63)
+		:m AJAX(_r_3_94)
+			:g (_r_3_94_95) [1,*] 
+				: JQuery(_r_3_94_95_96)
+				: YQL(_r_3_94_95_97)
+		:m Google Web Toolkit(_r_3_98)
+	:m Business logic(_r_4)
+		:o Business rules(_r_4_19)
+			:m Drools rules engine(_r_4_19_36)
+		:o Custom logic(_r_4_20)
+	:m Data model(_r_5)
+		:o Automatic transformations between layers(_r_5_24)
+			:m JSON representation(_r_5_24_33)
+				:m JSON to Java conversions(_r_5_24_33_64)
+					:m json-lib(_r_5_24_33_64_65)
+			:m JPA beans(_r_5_24_34)
+			:m Naked Objects pattern(_r_5_24_35)
+		:o Manual transformations between layers(_r_5_25)
+	:o Messaging(_r_6)
+		:g (_r_6_67) [1,*] 
+			: Existing messaging system(_r_6_67_68)
+			: New messaging system(_r_6_67_69)
+				:m Apache MQ(_r_6_67_69_71)
+		:m JMS(_r_6_70)
+	:o Email(_r_7)
+		:o Bulk email(_r_7_15)
+	:o Security(_r_8)
+		:m Identity management(_r_8_57)
+			:g (_r_8_57_58) [1,1] 
+				: Existing(_r_8_57_58_59)
+				: New(_r_8_57_58_60)
+		:o Data security(_r_8_85)
+		:o Transaction security(_r_8_86)
+	:o Data processing(_r_11)
+		:o XML(_r_11_12)
+			:g (_r_11_12_72) [1,1] 
+				: SAX Parser(_r_11_12_72_73)
+				: DOM Parser(_r_11_12_72_74)
+		:o Text(_r_11_13)
+		:o Relational data(_r_11_14)
+		:o Bulk processing(_r_11_52)
+			:m Spring batch(_r_11_52_75)
+	:o Integration with existing systems(_r_29)
+		:g (_r_29_30) [1,1] 
+			: Open system(_r_29_30_31)
+			: Closed system(_r_29_30_32)
+	:o Hosting(_r_37)
+		:g (_r_37_38) [1,1] 
+			: Internal hosting at customer(_r_37_38_39)
+			: External hosting at hosting provider(_r_37_38_40)
+				:m Tomcat(_r_37_38_40_76)
+	:o User sessions(_r_53)
+	:o High availability(_r_54)
+		:m Load balancing(_r_54_77)
+		:m Clustering(_r_54_78)
+		:o Session replication(_r_54_79)
+	:o Performance critical(_r_55)
+		:m Performance testing(_r_55_80)
+	:o Business continuity(_r_56)
+		:g (_r_56_81) [1,1] 
+			: Legal requirement(_r_56_81_82)
+			: Business requirement(_r_56_81_83)
+	:o Online payments(_r_84)
+	:m Spring framework(_r_87)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

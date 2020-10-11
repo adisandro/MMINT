@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="classdiagram_mavo" nsURI="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO"
+    nsPrefix="classdiagram_mavo">
+  <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+    <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+  </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="ClassDiagram" eSuperTypes="../../edu.toronto.cs.se.mavo/model/mavo.ecore#//MAVORoot">
+    <eAnnotations source="gmf.diagram"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="classes" upperBound="-1"
+        eType="#//Class" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dependencies" upperBound="-1"
+        eType="#//Dependency" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="associations" upperBound="-1"
+        eType="#//Association" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Class" eSuperTypes="#//NamedElement">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="name"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedAttributes" upperBound="-1"
+        eType="#//Attribute" containment="true" eOpposite="#//Attribute/owner">
+      <eAnnotations source="gmf.compartment">
+        <details key="layout" value="list"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedOperations" upperBound="-1"
+        eType="#//Operation" containment="true" eOpposite="#//Operation/owner">
+      <eAnnotations source="gmf.compartment">
+        <details key="layout" value="list"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dependenciesAsDependee"
+        upperBound="-1" eType="#//Dependency" eOpposite="#//Dependency/dependee"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dependenciesAsDepender"
+        upperBound="-1" eType="#//Dependency" eOpposite="#//Dependency/depender"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nestedIn" upperBound="-1"
+        eType="#//NestedInReference" containment="true" eOpposite="#//NestedInReference/source"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nested" upperBound="-1"
+        eType="#//NestedInReference" eOpposite="#//NestedInReference/target"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="superclass" upperBound="-1"
+        eType="#//SuperclassReference" containment="true" eOpposite="#//SuperclassReference/source"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subclasses" upperBound="-1"
+        eType="#//SuperclassReference" eOpposite="#//SuperclassReference/target"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="associationsAsSource" upperBound="-1"
+        eType="#//Association" eOpposite="#//Association/source"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="associationsAsTarget" upperBound="-1"
+        eType="#//Association" eOpposite="#//Association/target"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Attribute" eSuperTypes="#//TypedElement">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="name"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="owner" lowerBound="1" eType="#//Class"
+        eOpposite="#//Class/ownedAttributes"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NamedElement" abstract="true" eSuperTypes="../../edu.toronto.cs.se.mavo/model/mavo.ecore#//MAVOElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Operation" eSuperTypes="#//TypedElement">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="name"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="owner" lowerBound="1" eType="#//Class"
+        eOpposite="#//Class/ownedOperations"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Dependency" eSuperTypes="../../edu.toronto.cs.se.mavo/model/mavo.ecore#//MAVOElement">
+    <eAnnotations source="gmf.link">
+      <details key="source" value="dependee"/>
+      <details key="target" value="depender"/>
+      <details key="target.decoration" value="arrow"/>
+      <details key="style" value="dash"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="derivation" value="if depender.oclIsUndefined() or dependee.oclIsUndefined() then '' else depender.name.concat(' 2 ').concat(dependee.name) endif"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dependee" lowerBound="1"
+        eType="#//Class" eOpposite="#//Class/dependenciesAsDependee"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="depender" lowerBound="1"
+        eType="#//Class" eOpposite="#//Class/dependenciesAsDepender"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TypedElement" abstract="true" eSuperTypes="#//NamedElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="public" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="#//Class"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Association" eSuperTypes="#//NamedElement">
+    <eAnnotations source="gmf.link">
+      <details key="label" value="name"/>
+      <details key="label.icon" value="true"/>
+      <details key="source" value="source"/>
+      <details key="target" value="target"/>
+      <details key="target.decoration" value="arrow"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
+        eType="#//Class" eOpposite="#//Class/associationsAsSource"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
+        eType="#//Class" eOpposite="#//Class/associationsAsTarget"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NestedInReference" eSuperTypes="../../edu.toronto.cs.se.mavo/model/mavo.ecore#//MAVOReference">
+    <eAnnotations source="gmf.link">
+      <details key="target.decoration" value="square"/>
+      <details key="source" value="source"/>
+      <details key="target" value="target"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
+        eType="#//Class" eOpposite="#//Class/nestedIn"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
+        eType="#//Class" eOpposite="#//Class/nested"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SuperclassReference" eSuperTypes="../../edu.toronto.cs.se.mavo/model/mavo.ecore#//MAVOReference">
+    <eAnnotations source="gmf.link">
+      <details key="target.decoration" value="closedarrow"/>
+      <details key="source" value="source"/>
+      <details key="target" value="target"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
+        eType="#//Class" eOpposite="#//Class/superclass"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
+        eType="#//Class" eOpposite="#//Class/subclasses"/>
+  </eClassifiers>
+</ecore:EPackage>

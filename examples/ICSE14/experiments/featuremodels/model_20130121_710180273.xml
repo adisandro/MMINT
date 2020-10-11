@@ -1,0 +1,33 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Mon, Jan 21, 2013 - 4:51 PM  -->
+<feature_model name="Disenio">
+<meta>
+<data name="description">Disenio</data>
+<data name="creator">Pablo</data>
+<data name="address"></data>
+<data name="email">phruiz@unimayor.edu.co</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">Unimayor</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Disenio(_r)
+	:m Disenio de la Arquitectura(_r_1)
+	:g (_r_19) [1,1] 
+		: Disenio de Componentes(_r_19_23)
+			:m Disenio de Componentes(_r_19_23_26)
+			:o Disenio de Bases de Datos(_r_19_23_27)
+		: Disenio de Componentes II(_r_19_33)
+			:m Disenio de Casos de Uso(_r_19_33_34)
+			:m Disenio de Clases(_r_19_33_35)
+			:m Disenio de Subsistema(_r_19_33_36)
+		: Adicional (_r_19_37)
+</feature_tree>
+<constraints>
+constraint_1:_r_1 or ~_r_19_33_34
+constraint_2:_r_1 or ~_r_19_33_36
+constraint_3:_r_19_33_34 or ~_r_19_33_35
+</constraints>
+</feature_model>

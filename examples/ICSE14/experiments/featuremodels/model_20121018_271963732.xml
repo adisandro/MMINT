@@ -1,0 +1,38 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Thu, Oct 18, 2012 - 9:30 AM  -->
+<feature_model name="MobileMedia_BrunoMartins">
+<meta>
+<data name="description">Medição e Qualidade MobileMedia</data>
+<data name="creator">Bruno Martins</data>
+<data name="address"></data>
+<data name="email">brunomartins559@gmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">UFMG</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Mobile Media(_r)
+	:m Media Selection(_r_1)
+		:g (_r_1_4) [1,*] 
+			: Photo(_r_1_4_5)
+			: Music(_r_1_4_6)
+			: Video(_r_1_4_7)
+	:m Media Management(_r_2)
+		:o Favourites(_r_2_10)
+			:m Set Favourites(_r_2_10_13)
+			:m View Favourites(_r_2_10_16)
+		:m Copy Media(_r_2_11)
+		:o SMS Transfer(_r_2_12)
+			:o Receive Photo(_r_2_12_17)
+			:o Send Photo(_r_2_12_18)
+	:m Screen Size(_r_3)
+		:g (_r_3_19) [1,1] 
+			: Screen1(_r_3_19_20)
+			: Screen2(_r_3_19_23)
+</feature_tree>
+<constraints>
+constraint_1:_r
+</constraints>
+</feature_model>

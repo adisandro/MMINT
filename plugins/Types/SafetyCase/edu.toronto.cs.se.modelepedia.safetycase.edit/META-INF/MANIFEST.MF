@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.safetycase.edit;singleton:=true
+Automatic-Module-Name: edu.toronto.cs.se.modelepedia.safetycase.edit
+Bundle-Version: 2.6.0
+Bundle-ClassPath: .
+Bundle-Activator: edu.toronto.cs.se.modelepedia.safetycase.provider.SafetyCaseEditPlugin$Implementation
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: JavaSE-14
+Export-Package: edu.toronto.cs.se.modelepedia.safetycase.provider
+Require-Bundle: org.eclipse.core.runtime,
+ edu.toronto.cs.se.modelepedia.safetycase,
+ org.eclipse.emf.edit
+Bundle-ActivationPolicy: lazy

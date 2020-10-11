@@ -1,0 +1,51 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Mon, Oct 31, 2011 - 7:44 PM  -->
+<feature_model name="Carros">
+<meta>
+<data name="description">Carros comuns no Brasil</data>
+<data name="creator">Alberto</data>
+<data name="address"></data>
+<data name="email">albertocn@yahoo.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">UFS</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Carro(_r)
+	:m Motor(_r_3)
+		:g (_r_3_4) [1,1] 
+			: 1_0(_r_3_4_5)
+			: 1_4(_r_3_4_6)
+			: 1_6(_r_3_4_7)
+			: 1_8(_r_3_4_8)
+			: 2_0(_r_3_4_9)
+	:m Rodas(_r_12)
+		:g (_r_12_13) [1,1] 
+			: aro 14(_r_12_13_14)
+			: aro 15(_r_12_13_15)
+			: aro 16(_r_12_13_16)
+	:o Som(_r_17)
+		:g (_r_17_18) [1,1] 
+			: Sony(_r_17_18_19)
+			: Pioneer(_r_17_18_20)
+			: Bravox(_r_17_18_21)
+	:o Ar-Condicionado(_r_22)
+		:g (_r_22_23) [1,1] 
+			: analogico(_r_22_23_24)
+			: digital(_r_22_23_25)
+	:o Vidros eletricos(_r_26)
+		:g (_r_26_27) [1,1] 
+			: dianteiros(_r_26_27_28)
+			: dianteiros e traseiros(_r_26_27_30)
+	:m Retrovisores(_r_31)
+		:g (_r_31_32) [1,1] 
+			: manuais(_r_31_32_33)
+			: eletricos(_r_31_32_34)
+			: eletricos rebatimento automatico(_r_31_32_35)
+</feature_tree>
+<constraints>
+constraint_1:_r_3_4_5 or _r_3_4_6 or _r_3_4_7 or _r_3_4_8 or _r_3_4_9 or _r_3 or _r_12_13_14 or _r_12_13_15 or _r_12_13_16 or _r_12 or _r_17_18_19 or _r_17_18_20 or _r_17_18_21 or _r_17 or _r_22_23_24 or _r_22_23_25 or _r_22 or _r_26_27_28 or _r_26_27_30 or _r_26 or _r_31_32_33 or _r_31_32_34 or _r_31_32_35 or _r_31 or _r
+</constraints>
+</feature_model>

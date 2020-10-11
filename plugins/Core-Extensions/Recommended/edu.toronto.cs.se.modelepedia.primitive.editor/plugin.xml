@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ Copyright (c) 2012-2020 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ Rick Salay.
+ All rights reserved. This program and the accompanying materials
+ are made available under the terms of the Eclipse Public License v1.0
+ which accompanies this distribution, and is available at
+ http://www.eclipse.org/legal/epl-v10.html
+ 
+ Contributors:
+    Alessio Di Sandro - Implementation.
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated primitive -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="edu.toronto.cs.se.modelepedia.primitive.int_.presentation.IntModelWizardID"
+            name="%_UI_IntModelWizard_label"
+            class="edu.toronto.cs.se.modelepedia.primitive.int_.presentation.IntModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/IntModelFile.gif">
+         <description>%_UI_IntModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated primitive -->
+      <editor
+            id="edu.toronto.cs.se.modelepedia.primitive.int_.presentation.IntEditorID"
+            name="%_UI_IntEditor_label"
+            icon="icons/full/obj16/IntModelFile.gif"
+            extensions="int"
+            class="edu.toronto.cs.se.modelepedia.primitive.int_.presentation.IntEditor"
+            contributorClass="edu.toronto.cs.se.modelepedia.primitive.int_.presentation.IntActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated primitive -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="edu.toronto.cs.se.modelepedia.primitive.string.presentation.StringModelWizardID"
+            name="%_UI_StringModelWizard_label"
+            class="edu.toronto.cs.se.modelepedia.primitive.string.presentation.StringModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/StringModelFile.gif">
+         <description>%_UI_StringModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated primitive -->
+      <editor
+            id="edu.toronto.cs.se.modelepedia.primitive.string.presentation.StringEditorID"
+            name="%_UI_StringEditor_label"
+            icon="icons/full/obj16/StringModelFile.gif"
+            extensions="string"
+            class="edu.toronto.cs.se.modelepedia.primitive.string.presentation.StringEditor"
+            contributorClass="edu.toronto.cs.se.modelepedia.primitive.string.presentation.StringActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated primitive -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="edu.toronto.cs.se.modelepedia.primitive.boolean_.presentation.BooleanModelWizardID"
+            name="%_UI_BooleanModelWizard_label"
+            class="edu.toronto.cs.se.modelepedia.primitive.boolean_.presentation.BooleanModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/BooleanModelFile.gif">
+         <description>%_UI_BooleanModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated primitive -->
+      <editor
+            id="edu.toronto.cs.se.modelepedia.primitive.boolean_.presentation.BooleanEditorID"
+            name="%_UI_BooleanEditor_label"
+            icon="icons/full/obj16/BooleanModelFile.gif"
+            extensions="boolean"
+            class="edu.toronto.cs.se.modelepedia.primitive.boolean_.presentation.BooleanEditor"
+            contributorClass="edu.toronto.cs.se.modelepedia.primitive.boolean_.presentation.BooleanActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.editors">
+      <editorType
+            modelTypeUri="http://se.cs.toronto.edu/modelepedia/Int"
+            id="edu.toronto.cs.se.modelepedia.primitive.int_.presentation.IntEditorID"
+            isDiagram="false"
+            wizardId="edu.toronto.cs.se.modelepedia.primitive.int_.presentation.IntModelWizardID">
+         <type
+               name="Int tree"
+               uri="http://se.cs.toronto.edu/modelepedia/Int_tree">
+         </type>
+      </editorType>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.editors">
+      <editorType
+            modelTypeUri="http://se.cs.toronto.edu/modelepedia/String"
+            id="edu.toronto.cs.se.modelepedia.primitive.string.presentation.StringEditorID"
+            isDiagram="false"
+            wizardId="edu.toronto.cs.se.modelepedia.primitive.string.presentation.StringModelWizardID">
+         <type
+               name="String tree"
+               uri="http://se.cs.toronto.edu/modelepedia/String_tree">
+         </type>
+      </editorType>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.editors">
+      <editorType
+            modelTypeUri="http://se.cs.toronto.edu/modelepedia/Boolean"
+            id="edu.toronto.cs.se.modelepedia.primitive.boolean_.presentation.BooleanEditorID"
+            isDiagram="false"
+            wizardId="edu.toronto.cs.se.modelepedia.primitive.boolean_.presentation.BooleanModelWizardID">
+         <type
+               name="Boolean tree"
+               uri="http://se.cs.toronto.edu/modelepedia/Boolean_tree">
+         </type>
+      </editorType>
+   </extension>
+
+</plugin>

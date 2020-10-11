@@ -1,0 +1,40 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Tue, Jan 22, 2013 - 11:52 AM  -->
+<feature_model name="Implementacion">
+<meta>
+<data name="description">Implementacion</data>
+<data name="creator">Pablo</data>
+<data name="address"></data>
+<data name="email">phruiz@unimayor.edu.co</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">Unimayor</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Implementacion(_r)
+	:g (_r_1) [1,1] 
+		: Implementacion de Arquitectura(_r_1_2)
+		: Estructurar el modelo de Implementacion(_r_1_3)
+	:o Plan de integracion(_r_4)
+		:g (_r_4_5) [1,1] 
+			: Integrar Sistemas(_r_4_5_6)
+			: Plan de Integracion(_r_4_5_7)
+	:g (_r_8) [1,1] 
+		: Implementacion de Componentes(_r_8_9)
+		: TDD(_r_8_10)
+		: Implementacion de Componentes II(_r_8_12)
+			:o Integrar cada Subsistema(_r_8_12_13)
+			:m Integrar el sistema (_r_8_12_14)
+</feature_tree>
+<constraints>
+constraint_1:_r_1_2 or ~_r_4_5_6
+constraint_10:_r_4 or ~_r_8_10
+constraint_11:_r_4_5_7 or ~_r_8_9
+constraint_13:_r_8_12_13 or ~_r_8_12_14
+constraint_4:_r_1_2 or ~_r_8_9
+constraint_2:_r_1_2 or ~_r_4_5_7
+constraint_3:_r_1_2 or ~_r_8_10
+</constraints>
+</feature_model>

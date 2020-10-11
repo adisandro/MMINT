@@ -1,0 +1,33 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Fri, Aug 31, 2012 - 7:45 AM  -->
+<feature_model name="NCV_Simulation">
+<meta>
+<data name="description">Feature Model for NCV Model Simulations</data>
+<data name="creator">Ismail Uzun</data>
+<data name="address"></data>
+<data name="email">ismailuzun@gmx.net</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">Universidade Nova de Lisboa</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r NCV(_r)
+	:m Model(_r_1)
+		:m Cardiovascular Plant(_r_1_3)
+			:m Connection(_r_1_3_11)
+				:g (_r_1_3_11_14) [1,*] 
+					: Resistance(_r_1_3_11_14_15)
+					: Pressure Source(_r_1_3_11_14_16)
+		:o Feedback Mechanism(_r_1_5)
+			:m Block(_r_1_5_11)
+	:o Simulation(_r_2)
+		:m Total Time(_r_2_6)
+		:m Time Interval(_r_2_8)
+		:o Initial Values(_r_2_9)
+		:m Chart(_r_2_10)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

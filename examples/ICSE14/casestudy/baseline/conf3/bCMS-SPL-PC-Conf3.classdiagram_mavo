@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<classdiagram_mavo:ClassDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:classdiagram_mavo="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO">
+  <classes formulaVariable=" true " name="String"/>
+  <classes formulaVariable=" true " name="Boolean"/>
+  <classes formulaVariable=" true " name="XXX_FSC System" associationsAsSource="//@associations.5 //@associations.42" associationsAsTarget="//@associations.16 //@associations.23 //@associations.44">
+    <ownedAttributes formulaVariable=" true " name="TimeoutLog" type="//@classes.23"/>
+    <ownedAttributes formulaVariable=" true " name="XXX_FS coordinator2" type="//@classes.36"/>
+    <ownedAttributes formulaVariable=" true " name="routeAgreement" type="//@classes.1"/>
+    <ownedAttributes formulaVariable=" true " name="closeAgreement" type="//@classes.1"/>
+    <ownedAttributes formulaVariable=" true " name="RoutePlan1" type="//@classes.11"/>
+    <ownedAttributes formulaVariable=" true " name="bCrash System1" type="//@classes.4"/>
+    <ownedAttributes formulaVariable=" true " name=""/>
+    <ownedAttributes formulaVariable=" true " name="bCrash System1" type="//@classes.4"/>
+    <ownedOperations formulaVariable=" true " name="policeCarDispatched" public="true"/>
+    <ownedOperations formulaVariable=" true " name="policeCarArrived" public="true"/>
+    <ownedOperations formulaVariable=" true " name="fireTruckObjectiveCompleteFScoordinator" public="true"/>
+    <ownedOperations formulaVariable=" true " name="crisisCompletePSC" public="true"/>
+    <ownedOperations formulaVariable=" true " name="reqComPSC" public="true"/>
+    <ownedOperations formulaVariable=" true " name="authPSC" public="true"/>
+    <ownedOperations formulaVariable=" true " name="callPScoordinator" public="true"/>
+    <ownedOperations formulaVariable=" true " name="sendFScoordinatorCredentials" public="true"/>
+    <ownedOperations formulaVariable=" true " name="sendFSCrisisDetails" public="true"/>
+    <ownedOperations formulaVariable=" true " name="crisisDetailsPSC" public="true"/>
+    <ownedOperations formulaVariable=" true " name="deployFireTrucks" public="true"/>
+    <ownedOperations formulaVariable=" true " name="agreeFireTrucksRoute" public="true"/>
+    <ownedOperations formulaVariable=" true " name="disagreeFireTrucksRoute" public="true"/>
+    <ownedOperations formulaVariable=" true " name="fireTruckDispatchedFScoordinator" public="true"/>
+    <ownedOperations formulaVariable=" true " name="fireTruckArrivedFScoordinator" public="true"/>
+    <ownedOperations formulaVariable=" true " name="policeCarObjectiveCompleted" public="true"/>
+    <ownedOperations formulaVariable=" true " name="fireTruckBackFScoordinator" public="true"/>
+    <ownedOperations formulaVariable=" true " name="policeCarBack" public="true"/>
+    <ownedOperations formulaVariable=" true " name="closeCrisisFScoordinator" public="true"/>
+    <ownedOperations formulaVariable=" true " name="closeCrisisPS" public="true"/>
+    <ownedOperations formulaVariable="**_r_1_54_55_59" name="&lt;&lt;optional:**_r_1_54_55_59>>pwdBasedAuthenticatePSC" public="true"/>
+    <ownedOperations formulaVariable="**_r_1_54_55_64" name="&lt;&lt;optional:**_r_1_54_55_64>>kerbBasedAuthenticatePSC" public="true"/>
+  </classes>
+  <classes formulaVariable=" true " name="PoliceOfficer1" associationsAsSource="//@associations.2" associationsAsTarget="//@associations.17 //@associations.28">
+    <ownedAttributes formulaVariable=" true " name="Victim" type="//@classes.41"/>
+    <ownedAttributes formulaVariable=" true " name="Witness" type="//@classes.32"/>
+    <ownedAttributes formulaVariable=" true " name="XXX_PS coordinator" type="//@classes.10"/>
+  </classes>
+  <classes formulaVariable=" true " name="bCrash System1" associationsAsSource="//@associations.39" associationsAsTarget="//@associations.1 //@associations.3 //@associations.5 //@associations.8 //@associations.12 //@associations.24 //@associations.26 //@associations.30 //@associations.33 //@associations.38 //@associations.42 //@associations.43">
+    <ownedAttributes formulaVariable=" true " name="Goverment&#xA;Agency" type="//@classes.22"/>
+    <ownedAttributes formulaVariable=" true " name="Communication&#xD;&#xA;Infrastructure" type="//@classes.24"/>
+    <ownedAttributes formulaVariable=" true " name="Crisis1" type="//@classes.38"/>
+    <ownedAttributes formulaVariable=" true " name="XXX_PSC System3" type="//@classes.42"/>
+    <ownedAttributes formulaVariable=" true " name="XXX_FSC System" type="//@classes.2"/>
+    <ownedAttributes formulaVariable=" true " name="Crisis&#xA;" type="//@classes.33"/>
+    <ownedAttributes formulaVariable=" true " name="XXX_PSC System3" type="//@classes.42"/>
+    <ownedAttributes formulaVariable=" true " name="XXX_FSC System" type="//@classes.2"/>
+    <ownedAttributes formulaVariable=" true " name="PSC system1" type="//@classes.18"/>
+    <ownedAttributes formulaVariable=" true " name="FSC system2" type="//@classes.7"/>
+    <ownedAttributes formulaVariable=" true " name=""/>
+    <ownedAttributes formulaVariable=" true " name="PSC system&#xD;&#xA;2" type="//@classes.20"/>
+    <ownedAttributes formulaVariable=" true " name="FSC system&#xD;&#xA;3" type="//@classes.15"/>
+    <ownedAttributes formulaVariable=" true " name="&lt;&lt;optional>>Dispatch service1" type="//@classes.8"/>
+  </classes>
+  <classes formulaVariable=" true " name="Route&#xD;&#xA;PoliceCar1" associationsAsSource="//@associations.40">
+    <ownedAttributes formulaVariable=" true " name="XXX_Police Car 3" type="//@classes.28"/>
+    <superclass formulaVariable=" true " target="//@classes.11"/>
+  </classes>
+  <classes formulaVariable=" true " name="FS coordinator&#xD;&#xA;1" associationsAsTarget="//@associations.6">
+    <ownedAttributes formulaVariable=" true " name="FSC system2" type="//@classes.7"/>
+    <ownedOperations formulaVariable=" true " name="-&lt;&lt;optional>> callFireTruck"/>
+  </classes>
+  <classes formulaVariable=" true " name="FSC system2" associationsAsSource="//@associations.6 //@associations.33">
+    <ownedAttributes formulaVariable=" true " name="bCrash System1" type="//@classes.4"/>
+    <ownedAttributes formulaVariable=" true " name="FS coordinator&#xD;&#xA;1" type="//@classes.6"/>
+    <ownedAttributes formulaVariable=" true " name=""/>
+    <ownedOperations formulaVariable=" true " name="-&lt;&lt;optional>>sendMsgFireTruck"/>
+    <ownedOperations formulaVariable=" true " name="-&lt;&lt;optional>> receiveFireTruckData"/>
+  </classes>
+  <classes formulaVariable=" true " name="&lt;&lt;optional>>Dispatch service1" subclasses="//@classes.19/@superclass.0 //@classes.30/@superclass.0" associationsAsSource="//@associations.7 //@associations.9 //@associations.26 //@associations.35 //@associations.37" associationsAsTarget="//@associations.25">
+    <ownedAttributes formulaVariable=" true " name="Police car&#xD;&#xA;2" type="//@classes.27"/>
+    <ownedAttributes formulaVariable=" true " name="Fire truck&#xD;&#xA;1" type="//@classes.16"/>
+    <ownedAttributes formulaVariable=" true " name="Citizen vehicle&#xA;" type="//@classes.25"/>
+    <ownedAttributes formulaVariable=" true " name="bCrash System1" type="//@classes.4"/>
+    <ownedAttributes formulaVariable=" true " name="PSC system&#xD;&#xA;2" type="//@classes.20"/>
+    <ownedAttributes formulaVariable=" true " name="FSC system&#xD;&#xA;3" type="//@classes.15"/>
+    <ownedOperations formulaVariable=" true " name="&lt;&lt;optional>> dispatchPSCRequesttoPoliceCar" public="true"/>
+    <ownedOperations formulaVariable=" true " name="&lt;&lt;optional>> dispatchFSCReques" public="true"/>
+    <ownedOperations formulaVariable=" true " name="&lt;&lt;optional>> dispatchPSCRequesttoCitVehicle" public="true"/>
+    <ownedOperations formulaVariable=" true " name="&lt;&lt;optional>> ForwardPoliceCarRepor" public="true"/>
+    <ownedOperations formulaVariable=" true " name="&lt;&lt;optional>> forwardFireTruckReport" public="true"/>
+    <ownedOperations formulaVariable=" true " name="&lt;&lt;optional>> forwardCitVehicleReport" public="true"/>
+  </classes>
+  <classes formulaVariable=" true " name="Communication&#xD;&#xA;Compromiser1" associationsAsTarget="//@associations.21">
+    <ownedAttributes formulaVariable=" true " name="Communication&#xD;&#xA;Infrastructure" type="//@classes.24"/>
+    <ownedOperations formulaVariable=" true " name="setCom" public="true"/>
+  </classes>
+  <classes formulaVariable=" true " name="XXX_PS coordinator" associationsAsSource="//@associations.31" associationsAsTarget="//@associations.2 //@associations.14 //@associations.19">
+    <ownedAttributes formulaVariable=" true " name="XXX_Police Car 3" type="//@classes.28"/>
+    <ownedAttributes formulaVariable=" true " name="PoliceOfficer1" type="//@classes.3"/>
+    <ownedAttributes formulaVariable=" true " name="TimeoutLog" type="//@classes.23"/>
+    <ownedAttributes formulaVariable=" true " name="XXX_PSC System3" type="//@classes.42"/>
+    <ownedAttributes formulaVariable=" true " name=""/>
+    <ownedOperations formulaVariable=" true " name="receiveFScoordinatorCall" public="true"/>
+    <ownedOperations formulaVariable=" true " name="receiveFScoordinatorCredentials" public="true"/>
+    <ownedOperations formulaVariable=" true " name="receiveFScrisisDetails" public="true"/>
+    <ownedOperations formulaVariable=" true " name="receiveDeployFireTrucks" public="true"/>
+    <ownedOperations formulaVariable=" true " name="receiveFScoordinatorRouteAgreement" public="true"/>
+    <ownedOperations formulaVariable=" true " name="receiveFScoordinatorRouteDisagreement" public="true"/>
+    <ownedOperations formulaVariable=" true " name="receiveTruckDeliveredToCrisis" public="true"/>
+    <ownedOperations formulaVariable=" true " name="receiveFireTruckDispatched" public="true"/>
+    <ownedOperations formulaVariable=" true " name="receiveFireTruckArrived" public="true"/>
+    <ownedOperations formulaVariable=" true " name="receiveFireTruckObjectiveCompleted" public="true"/>
+    <ownedOperations formulaVariable=" true " name="receiveFireTruckBack" public="true"/>
+    <ownedOperations formulaVariable=" true " name="receiveCloseCrisisFS" public="true"/>
+    <ownedOperations formulaVariable=" true " name="&lt;&lt;optional>> callPoliceCar"/>
+    <ownedOperations formulaVariable=" true " name="&lt;&lt;optional>> callCitizenVehicle"/>
+    <ownedOperations formulaVariable=" true " name="&lt;&lt;optional>> receivereRootFireTrucks"/>
+  </classes>
+  <classes formulaVariable=" true " name="RoutePlan1" subclasses="//@classes.12/@superclass.0 //@classes.5/@superclass.0" associationsAsSource="//@associations.11 //@associations.16">
+    <ownedAttributes formulaVariable=" true " name="ETA"/>
+    <ownedAttributes formulaVariable=" true " name="information"/>
+    <ownedAttributes formulaVariable=" true " name="XXX_PSC System3" type="//@classes.42"/>
+    <ownedAttributes formulaVariable=" true " name="XXX_FSC System" type="//@classes.2"/>
+  </classes>
+  <classes formulaVariable=" true " name="Route&#xD;&#xA;FireTruck1" associationsAsTarget="//@associations.36">
+    <ownedAttributes formulaVariable=" true " name="XXX_FireTruck" type="//@classes.34"/>
+    <superclass formulaVariable=" true " target="//@classes.11"/>
+  </classes>
+  <classes formulaVariable=" true " name="PS coordinator&#xD;&#xA;2" associationsAsTarget="//@associations.20 //@associations.41">
+    <ownedAttributes formulaVariable=" true " name="XXX_PSC System3" type="//@classes.42"/>
+    <ownedAttributes formulaVariable=" true " name="PSC system1" type="//@classes.18"/>
+    <ownedOperations formulaVariable=" true " name="&lt;&lt;optional>> callPoliceCar"/>
+    <ownedOperations formulaVariable=" true " name="&lt;&lt;optional>> callCitizenVehicle"/>
+  </classes>
+  <classes formulaVariable=" true " name="Fireman1" associationsAsSource="//@associations.10" associationsAsTarget="//@associations.0 //@associations.32">
+    <ownedAttributes formulaVariable=" true " name="Witness" type="//@classes.32"/>
+    <ownedAttributes formulaVariable=" true " name="XXX_FS coordinator2" type="//@classes.36"/>
+  </classes>
+  <classes formulaVariable=" true " name="FSC system&#xD;&#xA;3" subclasses="//@classes.37/@superclass.0" associationsAsSource="//@associations.38" associationsAsTarget="//@associations.34 //@associations.35">
+    <ownedAttributes formulaVariable=" true " name="bCrash System1" type="//@classes.4"/>
+    <ownedAttributes formulaVariable=" true " name="FS coordinator&#xD;&#xA;&#xD;&#xA;3" type="//@classes.39"/>
+    <ownedAttributes formulaVariable=" true " name="&lt;&lt;optional>>Dispatch service1" type="//@classes.8"/>
+    <ownedOperations formulaVariable=" true " name="-&lt;&lt;optional>> requestFireTruckData"/>
+    <ownedOperations formulaVariable=" true " name="&lt;&lt;optional>> receiveFireTruckData"/>
+  </classes>
+  <classes formulaVariable=" true " name="Fire truck&#xD;&#xA;1" subclasses="//@classes.29/@superclass.0" associationsAsTarget="//@associations.37">
+    <ownedAttributes formulaVariable=" true " name="&lt;&lt;optional>>Dispatch service1" type="//@classes.8"/>
+    <ownedOperations formulaVariable=" true " name="&lt;&lt;optional>> receiveFSCReques"/>
+    <ownedOperations formulaVariable=" true " name="&lt;&lt;optional>> reporttoFSC"/>
+  </classes>
+  <classes formulaVariable=" true " name="Police Car&#xD;&#xA;" associationsAsTarget="//@associations.22">
+    <ownedAttributes formulaVariable=" true " name="Crisis&#xA;" type="//@classes.33"/>
+  </classes>
+  <classes formulaVariable=" true " name="PSC system1" associationsAsSource="//@associations.24 //@associations.41">
+    <ownedAttributes formulaVariable=" true " name="PS coordinator&#xD;&#xA;2" type="//@classes.13"/>
+    <ownedAttributes formulaVariable=" true " name="bCrash System1" type="//@classes.4"/>
+    <ownedAttributes formulaVariable=" true " name=""/>
+    <ownedOperations formulaVariable=" true " name="&lt;&lt;optional>> sendMsgPoliceCar"/>
+    <ownedOperations formulaVariable=" true " name="-&lt;&lt;optional>> receivePcarData()"/>
+    <ownedOperations formulaVariable=" true " name="-&lt;&lt;optional>> sendMsgCitizenVehicle"/>
+    <ownedOperations formulaVariable=" true " name="-&lt;&lt;optional>> receiveCitizenVehicleData"/>
+  </classes>
+  <classes formulaVariable=" true " name="&lt;&lt;optional>> Dispatch service&#xD;&#xA;SOAP">
+    <ownedOperations formulaVariable=" true " name="&lt;&lt;optional>> SOAPdispatchPSCRequesttoPoliceCar" public="true"/>
+    <ownedOperations formulaVariable=" true " name="&lt;&lt;optional>> SOAPdispatchFSCReques" public="true"/>
+    <ownedOperations formulaVariable=" true " name="&lt;&lt;optional>> SOAPdispatchPSCRequesttoCitVehicle" public="true"/>
+    <ownedOperations formulaVariable=" true " name="&lt;&lt;optional>> SOAPForwardPoliceCarRepor" public="true"/>
+    <ownedOperations formulaVariable=" true " name="&lt;&lt;optional>> SOAPforwardFireTruckReport" public="true"/>
+    <ownedOperations formulaVariable=" true " name="&lt;&lt;optional>> SOAPforwardCitVehicleReport" public="true"/>
+    <superclass formulaVariable=" true " target="//@classes.8"/>
+  </classes>
+  <classes formulaVariable=" true " name="PSC system&#xD;&#xA;2" subclasses="//@classes.26/@superclass.0" associationsAsSource="//@associations.30 //@associations.45" associationsAsTarget="//@associations.7">
+    <ownedAttributes formulaVariable=" true " name="bCrash System1" type="//@classes.4"/>
+    <ownedAttributes formulaVariable=" true " name="PS coordinator&#xA;&#xA;" type="//@classes.40"/>
+    <ownedAttributes formulaVariable=" true " name="&lt;&lt;optional>>Dispatch service1" type="//@classes.8"/>
+    <ownedOperations formulaVariable=" true " name="&lt;&lt;optional>> requestPoliceCarData"/>
+    <ownedOperations formulaVariable=" true " name="&lt;&lt;optional>> receivePcarData"/>
+    <ownedOperations formulaVariable=" true " name="&lt;&lt;optional>> requestCitizenVehicleData"/>
+    <ownedOperations formulaVariable=" true " name="&lt;&lt;optional>> receiveCitizenVehicleData"/>
+  </classes>
+  <classes formulaVariable=" true " name="Fire Truck&#xD;&#xA;2" associationsAsTarget="//@associations.29">
+    <ownedAttributes formulaVariable=" true " name="Crisis&#xA;" type="//@classes.33"/>
+  </classes>
+  <classes formulaVariable=" true " name="Goverment&#xA;Agency" associationsAsTarget="//@associations.39">
+    <ownedAttributes formulaVariable=" true " name="bCrash System1" type="//@classes.4"/>
+  </classes>
+  <classes formulaVariable=" true " name="TimeoutLog" associationsAsSource="//@associations.4 //@associations.14 //@associations.27 //@associations.44">
+    <ownedAttributes formulaVariable=" true " name="reason" type="//@classes.0"/>
+    <ownedAttributes formulaVariable=" true " name="submissionTime"/>
+    <ownedAttributes formulaVariable=" true " name="ocurrenceTime"/>
+    <ownedAttributes formulaVariable=" true " name="XXX_PS coordinator" type="//@classes.10"/>
+    <ownedAttributes formulaVariable=" true " name="XXX_FS coordinator2" type="//@classes.36"/>
+    <ownedAttributes formulaVariable=" true " name="XXX_FSC System" type="//@classes.2"/>
+    <ownedAttributes formulaVariable=" true " name="XXX_PSC System3" type="//@classes.42"/>
+  </classes>
+  <classes formulaVariable=" true " name="Communication&#xD;&#xA;Infrastructure" associationsAsSource="//@associations.21 //@associations.43">
+    <ownedAttributes formulaVariable=" true " name="Communication&#xD;&#xA;Compromiser1" type="//@classes.9"/>
+    <ownedAttributes formulaVariable=" true " name="bCrash System1" type="//@classes.4"/>
+  </classes>
+  <classes formulaVariable=" true " name="Citizen vehicle&#xA;" subclasses="//@classes.31/@superclass.0" associationsAsSource="//@associations.25">
+    <ownedAttributes formulaVariable=" true " name="&lt;&lt;optional>>Dispatch service1" type="//@classes.8"/>
+    <ownedOperations formulaVariable=" true " name="&lt;&lt;optional>> receivePSCRequest" public="true"/>
+    <ownedOperations formulaVariable=" true " name="&lt;&lt;optional>> reportData" public="true"/>
+  </classes>
+  <classes formulaVariable="**_r_2_17_18" name="&lt;&lt;optional:**_r_2_17_18>>PSC system SOAP">
+    <ownedOperations formulaVariable=" true " name="&lt;optional>> SOAPrequestPoliceCarData" public="true"/>
+    <ownedOperations formulaVariable=" true " name="&lt;&lt;optional>> SOAPreceivePcarData" public="true"/>
+    <ownedOperations formulaVariable=" true " name="&lt;&lt;optional>> SOAPrequestCitizenVehicleData" public="true"/>
+    <ownedOperations formulaVariable=" true " name="&lt;&lt;optional>> SOAPreceiveCitizenVehicleData" public="true"/>
+    <superclass formulaVariable=" true " target="//@classes.20"/>
+  </classes>
+  <classes formulaVariable=" true " name="Police car&#xD;&#xA;2" subclasses="//@classes.35/@superclass.0" associationsAsTarget="//@associations.9">
+    <ownedAttributes formulaVariable=" true " name="&lt;&lt;optional>>Dispatch service1" type="//@classes.8"/>
+    <ownedOperations formulaVariable=" true " name="&lt;&lt;optional>> reporttoPSC"/>
+    <ownedOperations formulaVariable=" true " name="&lt;&lt;optional>> receivePSCRequest"/>
+  </classes>
+  <classes formulaVariable=" true " name="XXX_Police Car 3" associationsAsSource="//@associations.19" associationsAsTarget="//@associations.18 //@associations.40">
+    <ownedAttributes formulaVariable=" true " name="position" type="//@classes.44"/>
+    <ownedAttributes formulaVariable=" true " name="Route&#xD;&#xA;PoliceCar1" type="//@classes.5"/>
+    <ownedAttributes formulaVariable=" true " name="Crisis1" type="//@classes.38"/>
+    <ownedAttributes formulaVariable=" true " name="XXX_PS coordinator" type="//@classes.10"/>
+    <ownedAttributes formulaVariable=" true " name=""/>
+    <ownedOperations formulaVariable=" true " name="&lt;&lt;optional>> reporttoPSC"/>
+    <ownedOperations formulaVariable=" true " name="&lt;&lt;optional>> receivePSCRequest"/>
+  </classes>
+  <classes formulaVariable="**_r_2_17_18" name="&lt;&lt;optional:**_r_2_17_18>>Fire truck SOAP">
+    <ownedOperations formulaVariable=" true " name="&lt;&lt;optional>> SOAPreceiveFSCReques" public="true"/>
+    <ownedOperations formulaVariable=" true " name="&lt;&lt;optional>> SOAPreporttoFSC" public="true"/>
+    <superclass formulaVariable=" true " target="//@classes.16"/>
+  </classes>
+  <classes formulaVariable=" true " name="&lt;&lt;optional>> Dispatch service&#xD;&#xA;SSL">
+    <ownedOperations formulaVariable=" true " name="&lt;&lt;optional>> SSLdispatchPSCRequesttoPoliceCar" public="true"/>
+    <ownedOperations formulaVariable=" true " name="&lt;&lt;optional>> SSLdispatchFSCReques" public="true"/>
+    <ownedOperations formulaVariable=" true " name="&lt;&lt;optional>> SSLdispatchPSCRequesttoCitVehicle" public="true"/>
+    <ownedOperations formulaVariable=" true " name="&lt;&lt;optional>> SSLForwardPoliceCarRepor" public="true"/>
+    <ownedOperations formulaVariable=" true " name="&lt;&lt;optional>> SSLforwardFireTruckReport" public="true"/>
+    <ownedOperations formulaVariable=" true " name="&lt;&lt;optional>>SSLforwardCitVehicleReport" public="true"/>
+    <superclass formulaVariable=" true " target="//@classes.8"/>
+  </classes>
+  <classes formulaVariable="**_r_2_17_18" name="&lt;&lt;optional:**_r_2_17_18>>Citizen vehicle SOAP">
+    <ownedOperations formulaVariable=" true " name="&lt;&lt;optional>> SSLreceivePSCRequest" public="true"/>
+    <ownedOperations formulaVariable=" true " name="&lt;&lt;optional>> SSLreportData" public="true"/>
+    <superclass formulaVariable=" true " target="//@classes.25"/>
+  </classes>
+  <classes formulaVariable=" true " name="Witness" associationsAsSource="//@associations.0 //@associations.17">
+    <ownedAttributes formulaVariable=" true " name="PoliceOfficer1" type="//@classes.3"/>
+    <ownedAttributes formulaVariable=" true " name="Fireman1" type="//@classes.14"/>
+  </classes>
+  <classes formulaVariable=" true " name="Crisis&#xA;" associationsAsSource="//@associations.8 //@associations.22 //@associations.29">
+    <ownedAttributes formulaVariable=" true " name="location"/>
+    <ownedAttributes formulaVariable=" true " name="startTime" public="true"/>
+    <ownedAttributes formulaVariable=" true " name="endTime" public="true"/>
+    <ownedAttributes formulaVariable=" true " name="description"/>
+    <ownedAttributes formulaVariable="_r_2_20_21_23" name="&lt;&lt;optional: _r_2_20_21_23>>isActive" type="//@classes.1"/>
+    <ownedAttributes formulaVariable=" true " name="bCrash System1" type="//@classes.4"/>
+    <ownedAttributes formulaVariable=" true " name="Police Car&#xD;&#xA;" type="//@classes.17"/>
+    <ownedAttributes formulaVariable=" true " name="Fire Truck&#xD;&#xA;2" type="//@classes.21"/>
+  </classes>
+  <classes formulaVariable=" true " name="XXX_FireTruck" associationsAsSource="//@associations.15 //@associations.36" associationsAsTarget="//@associations.13">
+    <ownedAttributes formulaVariable=" true " name="position" type="//@classes.44"/>
+    <ownedAttributes formulaVariable=" true " name="Route&#xD;&#xA;FireTruck1" type="//@classes.12"/>
+    <ownedAttributes formulaVariable=" true " name="Crisis1" type="//@classes.38"/>
+    <ownedAttributes formulaVariable=" true " name="XXX_FS coordinator2" type="//@classes.36"/>
+    <ownedAttributes formulaVariable=" true " name=""/>
+    <ownedOperations formulaVariable=" true " name="&lt;&lt;optional>> receiveFSCRequest"/>
+  </classes>
+  <classes formulaVariable="**_r_2_17_18" name="&lt;&lt;optional:**_r_2_17_18>>Police car SOAP">
+    <ownedOperations formulaVariable=" true " name="&lt;&lt;optional>> SOAPreporttoPSC" public="true"/>
+    <ownedOperations formulaVariable=" true " name="&lt;&lt;optional>> SOAPreceivePSCRequest" public="true"/>
+    <superclass formulaVariable=" true " target="//@classes.27"/>
+  </classes>
+  <classes formulaVariable=" true " name="XXX_FS coordinator2" associationsAsSource="//@associations.23" associationsAsTarget="//@associations.4 //@associations.10 //@associations.15">
+    <ownedAttributes formulaVariable=" true " name="XXX_FireTruck" type="//@classes.34"/>
+    <ownedAttributes formulaVariable=" true " name="Fireman1" type="//@classes.14"/>
+    <ownedAttributes formulaVariable=" true " name="TimeoutLog" type="//@classes.23"/>
+    <ownedAttributes formulaVariable=" true " name="XXX_FSC System" type="//@classes.2"/>
+    <ownedOperations formulaVariable=" true " name="receivePScoordinatorCall" public="true"/>
+    <ownedOperations formulaVariable=" true " name="receivePScoordinatorCredentials" public="true"/>
+    <ownedOperations formulaVariable=" true " name="receivePScrisisDetails" public="true"/>
+    <ownedOperations formulaVariable=" true " name="receiveFireTrucksRouteProposal" public="true"/>
+    <ownedOperations formulaVariable=" true " name="receivePoliceCarDispatched" public="true"/>
+    <ownedOperations formulaVariable=" true " name="receivePoliceCarArrived" public="true"/>
+    <ownedOperations formulaVariable=" true " name="receivePoliceCarObjectiveCompleted" public="true"/>
+    <ownedOperations formulaVariable=" true " name="receivePoliceCarBack" public="true"/>
+    <ownedOperations formulaVariable=" true " name="receiveCloseCrisisPS" public="true"/>
+    <ownedOperations formulaVariable=" true " name="&lt;&lt;optional>> callFireTruck"/>
+    <ownedOperations formulaVariable=" true " name="&lt;&lt;optional>> receivereRootPloceCars" public="true"/>
+  </classes>
+  <classes formulaVariable="**_r_2_17_18" name="&lt;&lt;optional:**_r_2_17_18>>FSC system SOAP">
+    <ownedOperations formulaVariable=" true " name="&lt;&lt;optional>> SOAPrequestFireTruckData" public="true"/>
+    <ownedOperations formulaVariable=" true " name="&lt;&lt;optional>> SOAPreceiveFireTruckData" public="true"/>
+    <superclass formulaVariable=" true " target="//@classes.15"/>
+  </classes>
+  <classes formulaVariable=" true " name="Crisis1" associationsAsSource="//@associations.3 //@associations.13 //@associations.18">
+    <ownedAttributes formulaVariable=" true " name="id"/>
+    <ownedAttributes formulaVariable=" true " name="location"/>
+    <ownedAttributes formulaVariable=" true " name="startTime"/>
+    <ownedAttributes formulaVariable=" true " name="endTime"/>
+    <ownedAttributes formulaVariable=" true " name="status"/>
+    <ownedAttributes formulaVariable=" true " name="description"/>
+    <ownedAttributes formulaVariable=" true " name="bCrash System1" type="//@classes.4"/>
+    <ownedAttributes formulaVariable=" true " name="XXX_Police Car 3" type="//@classes.28"/>
+    <ownedAttributes formulaVariable=" true " name="XXX_FireTruck" type="//@classes.34"/>
+  </classes>
+  <classes formulaVariable=" true " name="FS coordinator&#xD;&#xA;&#xD;&#xA;3" associationsAsSource="//@associations.34">
+    <ownedAttributes formulaVariable=" true " name="FSC system&#xD;&#xA;3" type="//@classes.15"/>
+    <ownedOperations formulaVariable=" true " name="&lt;&lt;optional>> callFireTruc"/>
+  </classes>
+  <classes formulaVariable=" true " name="PS coordinator&#xA;&#xA;" associationsAsTarget="//@associations.45">
+    <ownedAttributes formulaVariable=" true " name="PSC system&#xD;&#xA;2" type="//@classes.20"/>
+    <ownedOperations formulaVariable=" true " name="-&lt;&lt;optional>> callPoliceCa"/>
+    <ownedOperations formulaVariable=" true " name="&lt;&lt;optional>> callCitizenVehicle"/>
+  </classes>
+  <classes formulaVariable=" true " name="Victim" associationsAsSource="//@associations.28 //@associations.32">
+    <ownedAttributes formulaVariable=" true " name="PoliceOfficer1" type="//@classes.3"/>
+    <ownedAttributes formulaVariable=" true " name="Fireman1" type="//@classes.14"/>
+  </classes>
+  <classes formulaVariable=" true " name="XXX_PSC System3" associationsAsSource="//@associations.1 //@associations.12 //@associations.20" associationsAsTarget="//@associations.11 //@associations.27 //@associations.31">
+    <ownedAttributes formulaVariable=" true " name="TimeoutLog" type="//@classes.23"/>
+    <ownedAttributes formulaVariable=" true " name="XXX_PS coordinator" type="//@classes.10"/>
+    <ownedAttributes formulaVariable=" true " name="routeAgreement" type="//@classes.1"/>
+    <ownedAttributes formulaVariable=" true " name="closeAgreement" type="//@classes.1"/>
+    <ownedAttributes formulaVariable=" true " name="RoutePlan1" type="//@classes.11"/>
+    <ownedAttributes formulaVariable=" true " name="bCrash System1" type="//@classes.4"/>
+    <ownedAttributes formulaVariable=" true " name="bCrash System1" type="//@classes.4"/>
+    <ownedAttributes formulaVariable=" true " name="PS coordinator&#xD;&#xA;2" type="//@classes.13"/>
+    <ownedOperations formulaVariable=" true " name="fireTruckDispatched" public="true"/>
+    <ownedOperations formulaVariable=" true " name="fireTruckArrived" public="true"/>
+    <ownedOperations formulaVariable=" true " name="policeCarObjectiveCompletedPScoordinator" public="true"/>
+    <ownedOperations formulaVariable=" true " name="crisisCompleteFSC" public="true"/>
+    <ownedOperations formulaVariable=" true " name="reqComFSC" public="true"/>
+    <ownedOperations formulaVariable=" true " name="callFScoordinator" public="true"/>
+    <ownedOperations formulaVariable=" true " name="authFSC" public="true"/>
+    <ownedOperations formulaVariable=" true " name="sendPScoordinatorCredentials" public="true"/>
+    <ownedOperations formulaVariable=" true " name="sendPSCrisisDetails" public="true"/>
+    <ownedOperations formulaVariable=" true " name="crisisDetailsFSC" public="true"/>
+    <ownedOperations formulaVariable=" true " name="proposeFireTrucksRoute" public="true"/>
+    <ownedOperations formulaVariable=" true " name="disagreementFSC" public="true"/>
+    <ownedOperations formulaVariable=" true " name="policeCarDispatchedPScoordinator" public="true"/>
+    <ownedOperations formulaVariable=" true " name="policeCarArrivedPScoordinator" public="true"/>
+    <ownedOperations formulaVariable=" true " name="fireTruckObjectiveCompleted" public="true"/>
+    <ownedOperations formulaVariable=" true " name="policeCarBackPScoordinator" public="true"/>
+    <ownedOperations formulaVariable=" true " name="fireTruckBack" public="true"/>
+    <ownedOperations formulaVariable=" true " name="closeCrisisPScoordinator" public="true"/>
+    <ownedOperations formulaVariable=" true " name="closeCrisisFS" public="true"/>
+    <ownedOperations formulaVariable=" true " name="&lt;&lt;optional>> requestPoliceCarData"/>
+    <ownedOperations formulaVariable=" true " name="&lt;&lt;optional>> receivePcarData"/>
+    <ownedOperations formulaVariable=" true " name="&lt;&lt;optional>> reRootFireTrucks"/>
+    <ownedOperations formulaVariable=" true " name="&lt;&lt;optional>> reRootPoliceCarsPScoordinator"/>
+    <ownedOperations formulaVariable="**_r_1_54_55_59" name="&lt;&lt;optional:**_r_1_54_55_59>>pwdBasedAuthenticatePSC" public="true"/>
+    <ownedOperations formulaVariable="**_r_1_54_55_64" name="&lt;&lt;optional:**_r_1_54_55_64>>kerbBasedAuthenticatePSC" public="true"/>
+  </classes>
+  <classes formulaVariable=" true " name="Citizen vehicle">
+    <ownedAttributes formulaVariable=" true " name=""/>
+    <ownedOperations formulaVariable=" true " name="&lt;&lt;optional>> receivePSCRequest"/>
+    <ownedOperations formulaVariable=" true " name="&lt;&lt;optional>> reportData"/>
+  </classes>
+  <classes formulaVariable=" true " name="Position"/>
+  <associations formulaVariable=" true " name="interact" source="//@classes.32" target="//@classes.14"/>
+  <associations formulaVariable=" true " name="A_XXX_PSC System3_bCrash System1" source="//@classes.42" target="//@classes.4"/>
+  <associations formulaVariable=" true " name="interact" source="//@classes.3" target="//@classes.10"/>
+  <associations formulaVariable=" true " name="handle" source="//@classes.38" target="//@classes.4"/>
+  <associations formulaVariable=" true " name="report" source="//@classes.23" target="//@classes.36"/>
+  <associations formulaVariable=" true " name="A_XXX_FSC System_bCrash System1" source="//@classes.2" target="//@classes.4"/>
+  <associations formulaVariable=" true " name="interact" source="//@classes.7" target="//@classes.6"/>
+  <associations formulaVariable=" true " name="call" source="//@classes.8" target="//@classes.20"/>
+  <associations formulaVariable=" true " name="handle" source="//@classes.33" target="//@classes.4"/>
+  <associations formulaVariable=" true " name="communicate" source="//@classes.8" target="//@classes.27"/>
+  <associations formulaVariable=" true " name="interact" source="//@classes.14" target="//@classes.36"/>
+  <associations formulaVariable=" true " name="develop" source="//@classes.11" target="//@classes.42"/>
+  <associations formulaVariable=" true " name="A_XXX_PSC System3_bCrash System1" source="//@classes.42" target="//@classes.4"/>
+  <associations formulaVariable=" true " name="allocate" source="//@classes.38" target="//@classes.34"/>
+  <associations formulaVariable=" true " name="report" source="//@classes.23" target="//@classes.10"/>
+  <associations formulaVariable="**_r_2_9_10_11" name="&lt;&lt;optional:**_r_2_9_10_11>>manage" source="//@classes.34" target="//@classes.36"/>
+  <associations formulaVariable=" true " name="receive" source="//@classes.11" target="//@classes.2"/>
+  <associations formulaVariable=" true " name="interact" source="//@classes.32" target="//@classes.3"/>
+  <associations formulaVariable=" true " name="allocate" source="//@classes.38" target="//@classes.28"/>
+  <associations formulaVariable="**_r_2_9_10_11" name="&lt;&lt;optional:**_r_2_9_10_11>>manage" source="//@classes.28" target="//@classes.10"/>
+  <associations formulaVariable=" true " name="interact" source="//@classes.42" target="//@classes.13"/>
+  <associations formulaVariable=" true " name="access" source="//@classes.24" target="//@classes.9"/>
+  <associations formulaVariable=" true " name="allocate" source="//@classes.33" target="//@classes.17"/>
+  <associations formulaVariable=" true " name="interact" source="//@classes.36" target="//@classes.2"/>
+  <associations formulaVariable=" true " name="A_PSC system1_bCrash System1" source="//@classes.18" target="//@classes.4"/>
+  <associations formulaVariable=" true " name="communicate" source="//@classes.25" target="//@classes.8"/>
+  <associations formulaVariable=" true " name="A_&lt;&lt;optional>>Dispatch service1_bCrash System1" source="//@classes.8" target="//@classes.4"/>
+  <associations formulaVariable=" true " name="register" source="//@classes.23" target="//@classes.42"/>
+  <associations formulaVariable=" true " name="interact" source="//@classes.41" target="//@classes.3"/>
+  <associations formulaVariable=" true " name="allocate" source="//@classes.33" target="//@classes.21"/>
+  <associations formulaVariable=" true " name="A_PSC system&#xD;&#xA;2_bCrash System1" source="//@classes.20" target="//@classes.4"/>
+  <associations formulaVariable=" true " name="interact" source="//@classes.10" target="//@classes.42"/>
+  <associations formulaVariable=" true " name="interact" source="//@classes.41" target="//@classes.14"/>
+  <associations formulaVariable=" true " name="A_FSC system2_bCrash System1" source="//@classes.7" target="//@classes.4"/>
+  <associations formulaVariable=" true " name="interact" source="//@classes.39" target="//@classes.15"/>
+  <associations formulaVariable=" true " name="call" source="//@classes.8" target="//@classes.15"/>
+  <associations formulaVariable=" true " name="follow" source="//@classes.34" target="//@classes.12"/>
+  <associations formulaVariable=" true " name="communicate" source="//@classes.8" target="//@classes.16"/>
+  <associations formulaVariable=" true " name="A_FSC system&#xD;&#xA;3_bCrash System1" source="//@classes.15" target="//@classes.4"/>
+  <associations formulaVariable=" true " name="regulate" source="//@classes.4" target="//@classes.22"/>
+  <associations formulaVariable=" true " name="follow" source="//@classes.5" target="//@classes.28"/>
+  <associations formulaVariable=" true " name="interact" source="//@classes.18" target="//@classes.13"/>
+  <associations formulaVariable=" true " name="A_XXX_FSC System_bCrash System1" source="//@classes.2" target="//@classes.4"/>
+  <associations formulaVariable=" true " name="use" source="//@classes.24" target="//@classes.4"/>
+  <associations formulaVariable=" true " name="register" source="//@classes.23" target="//@classes.2"/>
+  <associations formulaVariable=" true " name="interact" source="//@classes.20" target="//@classes.40"/>
+</classdiagram_mavo:ClassDiagram>

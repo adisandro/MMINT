@@ -1,0 +1,53 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Wed, Jan 11, 2012 - 6:14 PM  -->
+<feature_model name="PLeTs">
+<meta>
+<data name="description">MBT Product Line</data>
+<data name="creator">Rodrigues, Elder</data>
+<data name="address"></data>
+<data name="email">eldermr@gmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">PUCRS</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r PLeTs(_r)
+	:m Parser(_r_1)
+		:g (_r_1_5) [1,1] 
+			: UML(_r_1_5_6)
+				:g (_r_1_5_6_9) [1,*] 
+					: UC-AD(_r_1_5_6_9_10)
+			: Txt(_r_1_5_8)
+	:m Test Case Generator(_r_2)
+		:o Sequence Generator(_r_2_16)
+			:g (_r_2_16_21) [1,1] 
+				: FSM(_r_2_16_21_22)
+					:g (_r_2_16_21_22_24) [1,1] 
+						: UIO(_r_2_16_21_22_24_25)
+						: HSI(_r_2_16_21_22_24_26)
+				: PN(_r_2_16_21_23)
+		:m Abstract Test Case Generator(_r_2_17)
+			:g (_r_2_17_27) [1,1] 
+				: Performance Test(_r_2_17_27_28)
+				: Functional Test(_r_2_17_27_29)
+	:o Script Generator(_r_3)
+		:g (_r_3_30) [1,1] 
+			: Load Runner(_r_3_30_31)
+			: Visual Studio(_r_3_30_32)
+	:m Execution(_r_4)
+		:m Program Interface(_r_4_35)
+			:g (_r_4_35_36) [1,1] 
+				: GUI(_r_4_35_36_37)
+				: Command Line(_r_4_35_36_38)
+	:o Product Parametrization(_r_40)
+		:g (_r_40_41) [1,1] 
+			: Visual Studio(_r_40_41_42)
+			: Load Runner(_r_40_41_43)
+</feature_tree>
+<constraints>
+constraint_1:~_r_3_30_31 or _r_40_41_43
+constraint_2:~_r_3_30_32 or _r_40_41_42
+</constraints>
+</feature_model>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<henshin:Module xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:henshin="http://www.eclipse.org/emf/2011/Henshin" xmi:id="_RWb2APRkEeSAxIbxRy0SeQ">
+  <imports href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#/"/>
+  <units xsi:type="henshin:Rule" xmi:id="_jCdL0PRkEeSAxIbxRy0SeQ" name="addGetter">
+    <parameters xmi:id="_l9_v4PRkEeSAxIbxRy0SeQ" name="attributeName">
+      <type xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </parameters>
+    <lhs xmi:id="_jDsh8PRkEeSAxIbxRy0SeQ" name="Lhs">
+      <nodes xmi:id="_noh_EPRkEeSAxIbxRy0SeQ" outgoing="_v5BOkPRkEeSAxIbxRy0SeQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
+      </nodes>
+      <nodes xmi:id="_o2MsEPRkEeSAxIbxRy0SeQ" incoming="_v5BOkPRkEeSAxIbxRy0SeQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
+        <attributes xmi:id="_p3ei4PRkEeSAxIbxRy0SeQ" value="attributeName">
+          <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
+        </attributes>
+        <attributes xmi:id="_rBCzAPRkEeSAxIbxRy0SeQ" value="true">
+          <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/public"/>
+        </attributes>
+      </nodes>
+      <edges xmi:id="_v5BOkPRkEeSAxIbxRy0SeQ" source="_noh_EPRkEeSAxIbxRy0SeQ" target="_o2MsEPRkEeSAxIbxRy0SeQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/ownedAttributes"/>
+      </edges>
+      <formula xsi:type="henshin:Not" xmi:id="_757bsPRkEeSAxIbxRy0SeQ">
+        <child xsi:type="henshin:NestedCondition" xmi:id="_757bsfRkEeSAxIbxRy0SeQ">
+          <conclusion xmi:id="_757bsvRkEeSAxIbxRy0SeQ">
+            <nodes xmi:id="_758CwPRkEeSAxIbxRy0SeQ" outgoing="_758p0PRkEeSAxIbxRy0SeQ _66U_4PRkEeSAxIbxRy0SeQ">
+              <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
+            </nodes>
+            <nodes xmi:id="_758CwvRkEeSAxIbxRy0SeQ" incoming="_758p0PRkEeSAxIbxRy0SeQ">
+              <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
+              <attributes xmi:id="_758Cw_RkEeSAxIbxRy0SeQ" value="attributeName">
+                <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
+              </attributes>
+              <attributes xmi:id="_758CxPRkEeSAxIbxRy0SeQ" value="true">
+                <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/public"/>
+              </attributes>
+            </nodes>
+            <nodes xmi:id="_6XyTgPRkEeSAxIbxRy0SeQ" incoming="_66U_4PRkEeSAxIbxRy0SeQ">
+              <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
+              <attributes xmi:id="_-Dz5UPRkEeSAxIbxRy0SeQ" value="attributeName">
+                <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
+              </attributes>
+              <attributes xmi:id="_-moSgPRkEeSAxIbxRy0SeQ" value="true">
+                <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/public"/>
+              </attributes>
+            </nodes>
+            <edges xmi:id="_758p0PRkEeSAxIbxRy0SeQ" source="_758CwPRkEeSAxIbxRy0SeQ" target="_758CwvRkEeSAxIbxRy0SeQ">
+              <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/ownedAttributes"/>
+            </edges>
+            <edges xmi:id="_66U_4PRkEeSAxIbxRy0SeQ" source="_758CwPRkEeSAxIbxRy0SeQ" target="_6XyTgPRkEeSAxIbxRy0SeQ">
+              <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/ownedOperations"/>
+            </edges>
+          </conclusion>
+          <mappings xmi:id="_758CwfRkEeSAxIbxRy0SeQ" origin="_noh_EPRkEeSAxIbxRy0SeQ" image="_758CwPRkEeSAxIbxRy0SeQ"/>
+          <mappings xmi:id="_758CxfRkEeSAxIbxRy0SeQ" origin="_o2MsEPRkEeSAxIbxRy0SeQ" image="_758CwvRkEeSAxIbxRy0SeQ"/>
+        </child>
+      </formula>
+    </lhs>
+    <rhs xmi:id="_jDsh8fRkEeSAxIbxRy0SeQ" name="Rhs">
+      <nodes xmi:id="_nojNMPRkEeSAxIbxRy0SeQ" outgoing="_v5BOkfRkEeSAxIbxRy0SeQ _ww__cPRkEeSAxIbxRy0SeQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
+      </nodes>
+      <nodes xmi:id="_o2MsEfRkEeSAxIbxRy0SeQ" incoming="_v5BOkfRkEeSAxIbxRy0SeQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
+        <attributes xmi:id="_p3fJ8PRkEeSAxIbxRy0SeQ" value="attributeName">
+          <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
+        </attributes>
+        <attributes xmi:id="_rBCzAfRkEeSAxIbxRy0SeQ" value="false">
+          <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/public"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_ulxeAPRkEeSAxIbxRy0SeQ" incoming="_ww__cPRkEeSAxIbxRy0SeQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
+        <attributes xmi:id="_x5iU0PRkEeSAxIbxRy0SeQ" value="attributeName">
+          <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
+        </attributes>
+        <attributes xmi:id="_yeeN4PRkEeSAxIbxRy0SeQ" value="true">
+          <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/public"/>
+        </attributes>
+      </nodes>
+      <edges xmi:id="_v5BOkfRkEeSAxIbxRy0SeQ" source="_nojNMPRkEeSAxIbxRy0SeQ" target="_o2MsEfRkEeSAxIbxRy0SeQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/ownedAttributes"/>
+      </edges>
+      <edges xmi:id="_ww__cPRkEeSAxIbxRy0SeQ" source="_nojNMPRkEeSAxIbxRy0SeQ" target="_ulxeAPRkEeSAxIbxRy0SeQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/ownedOperations"/>
+      </edges>
+    </rhs>
+    <mappings xmi:id="_nojNMfRkEeSAxIbxRy0SeQ" origin="_noh_EPRkEeSAxIbxRy0SeQ" image="_nojNMPRkEeSAxIbxRy0SeQ"/>
+    <mappings xmi:id="_o2NTIPRkEeSAxIbxRy0SeQ" origin="_o2MsEPRkEeSAxIbxRy0SeQ" image="_o2MsEfRkEeSAxIbxRy0SeQ"/>
+  </units>
+  <units xsi:type="henshin:LoopUnit" xmi:id="_KpCUcPRlEeSAxIbxRy0SeQ" name="addGetters" subUnit="_jCdL0PRkEeSAxIbxRy0SeQ"/>
+</henshin:Module>

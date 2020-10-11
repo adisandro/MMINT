@@ -1,0 +1,46 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Fri, Jan 18, 2013 - 11:08 AM  -->
+<feature_model name="Disciplina">
+<meta>
+<data name="description">Disciplina de Requisitos</data>
+<data name="creator">Pablo</data>
+<data name="address"></data>
+<data name="email">phruiz@unicauca.edu.co</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">unicauca</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Requisitos(_r)
+	:o Analizar el Problema(_r_1)
+		:g (_r_1_4) [1,1] 
+			: Definir la vision(_r_1_4_5)
+			: Analizar el Problema(_r_1_4_6)
+	:o Encontrar Actores y Casos de Uso(_r_7)
+		:g (_r_7_10) [1,1] 
+			: Encontrar Actores y Casos de Uso(_r_7_10_11)
+			: Entender las necesidades de los stakeholders(_r_7_10_12)
+	:o Priorizar Casos de Uso(_r_14)
+		:g (_r_14_15) [1,1] 
+			: Priorizar  Caso de Uso(_r_14_15_16)
+			: Gestionar el alcance del sistema(_r_14_15_17)
+	:o Detallar Casos de uso(_r_18)
+		:g (_r_18_19) [1,1] 
+			: Detallar Casos de Uso(_r_18_19_20)
+			: Refinar la definicion del sistema(_r_18_19_21)
+	:o Detallar Escenarios de Casos de Uso(_r_22)
+	:m Prototipar la Interfaz(_r_23)
+	:m Estructura el Modelo de Casos de Uso(_r_24)
+</feature_tree>
+<constraints>
+constraint_10:_r_7_10_12 or ~_r_14_15_17
+constraint_9:_r_1 or ~_r_7_10_12
+constraint_6:_r_22 or ~_r_23
+constraint_7:_r_23 or ~_r_24
+constraint_4:_r_7_10_12 or ~_r_14
+constraint_5:~_r_18_19_21 or _r_22
+constraint_3:_r_14_15_17 or ~_r_18
+</constraints>
+</feature_model>

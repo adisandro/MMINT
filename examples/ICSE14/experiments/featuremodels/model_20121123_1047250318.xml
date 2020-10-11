@@ -1,0 +1,38 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Fri, Nov 23, 2012 - 8:31 AM  -->
+<feature_model name="modelo celular">
+<meta>
+<data name="description">gerenciamento de imagem</data>
+<data name="creator">caio</data>
+<data name="address"></data>
+<data name="email">c410jf@gmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">UFJF</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r mobilemedia(_r)
+	:o media selection(_r_1)
+		:m photo(_r_1_19)
+		:m music(_r_1_20)
+		:o video(_r_1_21)
+	:m screen size(_r_2)
+		:g (_r_2_8) [1,1] 
+			: screen1(_r_2_8_9)
+			: screen2(_r_2_8_10)
+	:m media management(_r_7)
+		:m favourites(_r_7_12)
+			:m set favorites(_r_7_12_15)
+			:m view favorites(_r_7_12_16)
+		:o copy media(_r_7_13)
+		:o sms transfer(_r_7_14)
+			:m recive photo(_r_7_14_17)
+			:m send photo(_r_7_14_18)
+</feature_tree>
+<constraints>
+constraint_4:~_r_2_8_9 or _r_1_19
+constraint_3:_r_7_13 or ~_r_7_14
+</constraints>
+</feature_model>

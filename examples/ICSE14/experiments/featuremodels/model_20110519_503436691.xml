@@ -1,0 +1,33 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Thu, May 19, 2011 - 4:43 AM  -->
+<feature_model name="MyFeatureModel">
+<meta>
+<data name="description">it is the first fm</data>
+<data name="creator">Kharrazi</data>
+<data name="address"></data>
+<data name="email">kharrazi@hotmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">my organization</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r RootFeature(_r)
+	:m Feature-1(_r_1)
+		:g (_r_1_3) [1,*] 
+			: Feature-4(_r_1_3_4)
+			: Feature-5(_r_1_3_5)
+			: Feature-6(_r_1_3_6)
+	:o Feature-2(_r_2)
+		:g (_r_2_7) [1,1] 
+			: Feature-8(_r_2_7_8)
+				:m Feature-10(_r_2_7_8_10)
+					:g (_r_2_7_8_10_11) [1,*] 
+						: Feature-12(_r_2_7_8_10_11_12)
+						: Feature-13(_r_2_7_8_10_11_13)
+			: Feature-9(_r_2_7_9)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

@@ -1,0 +1,33 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Mon, Oct 15, 2012 - 8:19 AM  -->
+<feature_model name="Bicis_Feature_Model">
+<meta>
+<data name="description">Modelo de test para bicicletas</data>
+<data name="creator">Aitor Agirre</data>
+<data name="address"></data>
+<data name="email">aagirre@ikerlan.es</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">IKERLAN</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Bicicletas(_r)
+	:m Material_cuadro(_r_1)
+		:g (_r_1_4) [1,1] 
+			: Carbono(_r_1_4_5)
+			: Aluminio(_r_1_4_8)
+	:m Color(_r_2)
+		:g (_r_2_9) [1,1] 
+			: Blanco(_r_2_9_10)
+			: Negro(_r_2_9_11)
+	:m Grupo(_r_3)
+		:g (_r_3_12) [1,1] 
+			: Shimano(_r_3_12_13)
+			: Campagnolo(_r_3_12_14)
+</feature_tree>
+<constraints>
+constraint_2:_r_1_4_5 or ~_r_3_12_13
+</constraints>
+</feature_model>

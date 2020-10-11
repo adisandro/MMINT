@@ -1,0 +1,33 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Thu, Nov 4, 2010 - 5:24 PM  -->
+<feature_model name="Asghar">
+<meta>
+<data name="description">Asghariiiiii</data>
+<data name="creator">Asgharpoor</data>
+<data name="address"></data>
+<data name="email">mehdi.noorian@gmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">unb</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r E-Shop(_r)
+	:m Order Prepration(_r_1)
+	:m Shipment(_r_2)
+		:g (_r_2_9) [1,1] 
+			: Physical Shipmnet(_r_2_9_10)
+				:g (_r_2_9_10_12) [1,*] 
+					: DHL(_r_2_9_10_12_13)
+					: Canada Post(_r_2_9_10_12_14)
+					: American Express(_r_2_9_10_12_15)
+			: E-Shipment(_r_2_9_11)
+	:o Customer Verification(_r_3)
+		:g (_r_3_4) [1,*] 
+			: Check Return customer(_r_3_4_5)
+			: Check credit Rate(_r_3_4_6)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

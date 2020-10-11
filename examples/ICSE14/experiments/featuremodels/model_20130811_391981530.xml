@@ -1,0 +1,78 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Mon, Aug 12, 2013 - 2:17 AM  -->
+<feature_model name="Facturación Servicios Publicos">
+<meta>
+<data name="description">Software para liquidación de productos de servicios públicos en Colombia</data>
+<data name="creator">Clase: Seminario de Variabilidad Productos Software</data>
+<data name="address"></data>
+<data name="email">agomez@enertotalesp.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">Universidad ICESI</data>
+<data name="department">MGIT</data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Facturacion_Serv_Publicos(_r)
+	:m Tipo_de_Servicio(_r_2)
+		:g (_r_2_3) [1,*] 
+			: Energia(_r_2_3_4)
+			: Agua(_r_2_3_5)
+			: Alcantarillado(_r_2_3_6)
+			: Aseo(_r_2_3_8)
+			: Gas(_r_2_3_9)
+			: Alumbrado_Publico(_r_2_3_10)
+	:m Registro Consumo(_r_12)
+		:g (_r_12_13) [1,*] 
+			: Automatico(_r_12_13_14)
+			: Manual(_r_12_13_15)
+			: Prepago(_r_12_13_16)
+	:m Liquidacion(_r_17)
+		:g (_r_17_18) [1,*] 
+			: Manual(_r_17_18_28)
+				:g (_r_17_18_28_50) [1,1] 
+					: Generar Doc Factura(_r_17_18_28_50_51)
+					: Cargos Pendientes(_r_17_18_28_50_52)
+			: Automatica(_r_17_18_30)
+				:g (_r_17_18_30_31) [1,*] 
+					: Individual(_r_17_18_30_31_32)
+						:m Ind_Saldos(_r_17_18_30_31_32_34)
+						:m Ind_Consumos(_r_17_18_30_31_32_35)
+						:o Ind_Servicios(_r_17_18_30_31_32_36)
+						:o Ind_Cargos Externos(_r_17_18_30_31_32_37)
+					: Masiva(_r_17_18_30_31_33)
+						:m Mas_Saldos(_r_17_18_30_31_33_38)
+						:m Mas_Consumos(_r_17_18_30_31_33_39)
+						:o Mas_Servicios(_r_17_18_30_31_33_40)
+						:o Mas_Cargos Externos(_r_17_18_30_31_33_41)
+	:m Gestion Tarifaria(_r_42)
+		:g (_r_42_69) [1,*] 
+			: Impuestos(_r_42_69_70)
+			: Consumos Horarios(_r_42_69_71)
+			: Consumos Sencillos(_r_42_69_72)
+			: Otros Cobros(_r_42_69_73)
+	:o Emision factura(_r_53)
+		:g (_r_53_56) [1,*] 
+			: Regulatoria(_r_53_56_57)
+			: Digital - Individual Portal Web(_r_53_56_59)
+				:o Ticket(_r_53_56_59_62)
+				:o Copia Fiel(_r_53_56_59_63)
+				:o Estado Cuenta(_r_53_56_59_64)
+	:o Analisis Consumos(_r_65)
+		:o An_cons_sencillos(_r_65_66)
+		:o An_cons_Horarios(_r_65_67)
+</feature_tree>
+<constraints>
+constraint_1:~_r_2_3_4 or _r_2_3_10
+constraint_18:~_r_17_18_30 or _r_42_69_70
+constraint_10:~_r_17_18_30_31_32_36 or _r_17_18_28_50_52
+constraint_11:~_r_17_18_30_31_32_37 or _r_17_18_28_50_52
+constraint_12:~_r_17_18_30_31_33_40 or _r_17_18_28_50_52
+constraint_13:~_r_17_18_30_31_33_41 or _r_17_18_28_50_52
+constraint_14:_r_53_56_57 or ~_r_53_56_59_63
+constraint_15:_r_12_13_14 or ~_r_65_67
+constraint_2:~_r_2_3_5 or _r_2_3_6
+constraint_16:_r_12_13_15 or ~_r_65_66
+constraint_3:~_r_12_13_16 or _r_17_18_30_31_32
+</constraints>
+</feature_model>

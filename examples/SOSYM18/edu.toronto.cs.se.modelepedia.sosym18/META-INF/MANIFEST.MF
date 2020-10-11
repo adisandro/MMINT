@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.sosym18;singleton:=true
+Bundle-Version: 2.6.0
+Automatic-Module-Name: edu.toronto.cs.se.modelepedia.sosym18
+Bundle-RequiredExecutionEnvironment: JavaSE-14
+Bundle-Vendor: %providerName
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.jdt.annotation;resolution:=optional,
+ org.eclipse.core.runtime,
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.validation,
+ edu.toronto.cs.se.mmint

@@ -1,0 +1,34 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Thu, Nov 11, 2010 - 5:58 AM  -->
+<feature_model name="Eshop-ufrj">
+<meta>
+<data name="description">Eshop-ufrj</data>
+<data name="creator">Tocy</data>
+<data name="address"></data>
+<data name="email">toacy@cos</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">UFRJ</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r eshop(_r)
+	:m catalogue(_r_1)
+	:m payment(_r_2)
+		:g (_r_2_5) [1,*] 
+			: transfer(_r_2_5_6)
+			: cc(_r_2_5_7)
+	:m security(_r_3)
+		:g (_r_3_8) [1,1] 
+			: high(_r_3_8_9)
+			: standard(_r_3_8_10)
+	:o search(_r_4)
+		:g (_r_4_11) [1,*] 
+			: google(_r_4_11_12)
+			: bing(_r_4_11_13)
+			: yahoo(_r_4_11_14)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

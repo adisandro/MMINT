@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mavomid="http://se.cs.toronto.edu/mmint/MAVOMID" xmlns:mid="http://se.cs.toronto.edu/mmint/MID" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmi:id="_8IXz8C0kEeOXwaBpNHH2uA" type="MID" name="analysis.middiag" measurementUnit="Pixel">
+  <children xmi:type="notation:Node" xmi:id="_9OyCYC0kEeOXwaBpNHH2uA" type="2002">
+    <children xmi:type="notation:DecorationNode" xmi:id="_9OypcC0kEeOXwaBpNHH2uA" type="5003"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_9OypcS0kEeOXwaBpNHH2uA" type="5004"/>
+    <styles xmi:type="notation:DescriptionStyle" xmi:id="_9OyCYS0kEeOXwaBpNHH2uA"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_9OyCYi0kEeOXwaBpNHH2uA" fontName="Cantarell" fontHeight="10"/>
+    <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_9OyCYy0kEeOXwaBpNHH2uA" hint="Mid"/>
+    <element xmi:type="mavomid:MAVOModel" href="analysis.mid#//@models.0"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_9OyCZC0kEeOXwaBpNHH2uA" x="36" y="36"/>
+  </children>
+  <children xmi:type="notation:Node" xmi:id="_-T0X0C0kEeOXwaBpNHH2uA" type="2002">
+    <children xmi:type="notation:DecorationNode" xmi:id="_-T0X1S0kEeOXwaBpNHH2uA" type="5003"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_-T0X1i0kEeOXwaBpNHH2uA" type="5004"/>
+    <styles xmi:type="notation:DescriptionStyle" xmi:id="_-T0X0S0kEeOXwaBpNHH2uA"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_-T0X0i0kEeOXwaBpNHH2uA" fontName="Cantarell" fontHeight="10"/>
+    <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_-T0X0y0kEeOXwaBpNHH2uA" hint="Mid"/>
+    <element xmi:type="mavomid:MAVOModel" href="analysis.mid#//@models.1"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_-T0X1C0kEeOXwaBpNHH2uA" x="252" y="39"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_8IXz8S0kEeOXwaBpNHH2uA"/>
+  <element xmi:type="mid:MID" href="analysis.mid#/"/>
+</notation:Diagram>

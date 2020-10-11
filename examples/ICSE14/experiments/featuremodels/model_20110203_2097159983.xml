@@ -1,0 +1,38 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Thu, Feb 3, 2011 - 9:06 AM  -->
+<feature_model name="IDE4OCL">
+<meta>
+<data name="description">OCL tools reference and comparison model</data>
+<data name="creator">Joanna Chimiak-Opoka</data>
+<data name="address"></data>
+<data name="email">joanna.opoka@uibk.ac.at</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">University of Innsbruck</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r IDE4OCL(_r)
+	:m autocompletion(_r_1)
+	:m basic editing(_r_2)
+	:m syntax highlighting(_r_3)
+	:m debbuging(_r_4)
+	:m language and model support(_r_5)
+		:m OCL compliance(_r_5_8)
+			:g (_r_5_8_15) [1,*] 
+				: syntax compliance(_r_5_8_15_16)
+				: XMI compliance(_r_5_8_15_17)
+				: evaluation compliance(_r_5_8_15_18)
+			:o standarisation support(_r_5_8_20)
+		:o syntax and sementics extensions(_r_5_9)
+		:o modularisation(_r_5_11)
+		:o OCL and model perspective(_r_5_12)
+		:o variability(_r_5_13)
+		:o hybrid OCL - MOF view(_r_5_14)
+	:o user friendly support(_r_6)
+	:m architetural support(_r_7)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

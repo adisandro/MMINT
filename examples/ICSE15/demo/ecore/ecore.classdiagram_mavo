@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classdiagram_mavo:ClassDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:classdiagram_mavo="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO" xmlns:mavo="http://se.cs.toronto.edu/MAVO">
+  <decisions xsi:type="mavo:MayDecision" formulaVariable="Decision1" description="Does ekey exist?">
+    <alternatives formulaVariable="Y1" description="Yes" mavoElements="//@classes.1/@ownedAttributes.0"/>
+    <alternatives formulaVariable="N1" description="No"/>
+  </decisions>
+  <decisions xsi:type="mavo:MayDecision" formulaVariable="Decision2" description="Does EStringToStringMapEntry.value exist?">
+    <alternatives formulaVariable="Y2" description="Yes" mavoElements="//@classes.1/@ownedAttributes.1"/>
+    <alternatives formulaVariable="N2" description="No"/>
+  </decisions>
+  <decisions xsi:type="mavo:MayDecision" formulaVariable="Decision3" description="Does nsURI exist?">
+    <alternatives formulaVariable="Y3" description="Yes" mavoElements="//@classes.7/@ownedAttributes.0"/>
+    <alternatives formulaVariable="N3" description="No"/>
+  </decisions>
+  <decisions xsi:type="mavo:MayDecision" formulaVariable="Decision4" description="Does eFactoryInstance exist?">
+    <alternatives formulaVariable="Y4" description="Yes" mavoElements="//@associations.16"/>
+    <alternatives formulaVariable="N4" description="No"/>
+  </decisions>
+  <decisions xsi:type="mavo:MayDecision" formulaVariable="Decision5" description="Does eSuperPackage exist?">
+    <alternatives formulaVariable="Y5" description="Yes" mavoElements="//@associations.4"/>
+    <alternatives formulaVariable="N5" description="No"/>
+  </decisions>
+  <decisions xsi:type="mavo:MayDecision" formulaVariable="Decision6" description="Does EEnumLiteral.value exist?">
+    <alternatives formulaVariable="Y6" description="Yes" mavoElements="//@classes.8/@ownedAttributes.0"/>
+    <alternatives formulaVariable="N6" description="No"/>
+  </decisions>
+  <decisions xsi:type="mavo:MayDecision" formulaVariable="Decision7" description="Does instance exist?">
+    <alternatives formulaVariable="Y7" description="Yes" mavoElements="//@classes.8/@ownedAttributes.1"/>
+    <alternatives formulaVariable="N7" description="No"/>
+  </decisions>
+  <decisions xsi:type="mavo:MayDecision" formulaVariable="Decision8" description="Does EParameter exist?">
+    <alternatives formulaVariable="Y8" description="Yes" mavoElements="//@classes.10 //@associations.5 //@classes.10/@superclass.0"/>
+    <alternatives formulaVariable="N8" description="No"/>
+  </decisions>
+  <decisions xsi:type="mavo:MayDecision" formulaVariable="Decision9" description="Does eSuperTypes exist?">
+    <alternatives formulaVariable="Y9" description="Yes" mavoElements="//@associations.9"/>
+    <alternatives formulaVariable="N9" description="No"/>
+  </decisions>
+  <decisions xsi:type="mavo:MayDecision" formulaVariable="Decision10" description="Does containment exist?">
+    <alternatives formulaVariable="Y10" description="Yes" mavoElements="//@classes.15/@ownedAttributes.0"/>
+    <alternatives formulaVariable="N10" description="No"/>
+  </decisions>
+  <decisions xsi:type="mavo:MayDecision" formulaVariable="Decision11" description="Does container exist?">
+    <alternatives formulaVariable="Y11" description="Yes" mavoElements="//@classes.15/@ownedAttributes.1"/>
+    <alternatives formulaVariable="N11" description="No"/>
+  </decisions>
+  <decisions xsi:type="mavo:MayDecision" formulaVariable="Decision12" description="Does resolveProxies exist?">
+    <alternatives formulaVariable="Y12" description="Yes" mavoElements="//@classes.15/@ownedAttributes.2"/>
+    <alternatives formulaVariable="N12" description="No"/>
+  </decisions>
+  <decisions xsi:type="mavo:MayDecision" formulaVariable="Decision13" description="Does eOpposite exist?">
+    <alternatives formulaVariable="Y13" description="Yes" mavoElements="//@associations.13"/>
+    <alternatives formulaVariable="N13" description="No"/>
+  </decisions>
+  <classes formulaVariable="EModelElement" name="EModelElement" subclasses="//@classes.2/@superclass.0 //@classes.3/@superclass.0 //@classes.4/@superclass.0" associationsAsTarget="//@associations.1"/>
+  <classes formulaVariable="EStringToStringMapEntry" name="EStringToStringMapEntry" associationsAsTarget="//@associations.0">
+    <ownedAttributes formulaVariable="ekey" may="true" collections="//@decisions.0/@alternatives.0" name="ekey" type="//@classes.17"/>
+    <ownedAttributes formulaVariable="value-EStringToStringMapEntry" may="true" collections="//@decisions.1/@alternatives.0" name="value" type="//@classes.17"/>
+  </classes>
+  <classes formulaVariable="EAnnotation" name="EAnnotation" associationsAsSource="//@associations.0 //@associations.1">
+    <ownedAttributes formulaVariable="source" name="source" type="//@classes.17"/>
+    <superclass formulaVariable="supEAnnotation" target="//@classes.0"/>
+  </classes>
+  <classes formulaVariable="ENamedElement" name="ENamedElement" subclasses="//@classes.5/@superclass.0 //@classes.6/@superclass.0 //@classes.7/@superclass.0 //@classes.8/@superclass.0">
+    <ownedAttributes formulaVariable="name" name="name" type="//@classes.17"/>
+    <superclass formulaVariable="supENamedElement" target="//@classes.0"/>
+  </classes>
+  <classes formulaVariable="EFactory" name="EFactory" associationsAsTarget="//@associations.16">
+    <superclass formulaVariable="supEFactory" target="//@classes.0"/>
+  </classes>
+  <classes formulaVariable="ETypedElement" name="ETypedElement" subclasses="//@classes.9/@superclass.0 //@classes.10/@superclass.0 //@classes.14/@superclass.0" associationsAsSource="//@associations.2">
+    <ownedAttributes formulaVariable="ordered" name="ordered" type="//@classes.18"/>
+    <ownedAttributes formulaVariable="unique" name="unique" type="//@classes.18"/>
+    <ownedAttributes formulaVariable="lowerBound" name="lowerBound" type="//@classes.19"/>
+    <ownedAttributes formulaVariable="upperBound" name="upperBound" type="//@classes.19"/>
+    <ownedAttributes formulaVariable="many" name="many" type="//@classes.18"/>
+    <ownedAttributes formulaVariable="required" name="required" type="//@classes.18"/>
+    <superclass formulaVariable="supETypedElement" target="//@classes.3"/>
+  </classes>
+  <classes formulaVariable="EClassifier" name="EClassifier" subclasses="//@classes.11/@superclass.0 //@classes.12/@superclass.0" associationsAsTarget="//@associations.2 //@associations.3 //@associations.6">
+    <ownedAttributes formulaVariable="instanceClassName" name="instanceClassName" type="//@classes.17"/>
+    <ownedAttributes formulaVariable="instanceClass" name="InstanceClass" type="//@classes.17"/>
+    <ownedAttributes formulaVariable="defaultValue-EClassifier" name="defaultValue" type="//@classes.17"/>
+    <superclass formulaVariable="supEClassifier" target="//@classes.3"/>
+  </classes>
+  <classes formulaVariable="EPackage" name="EPackage" associationsAsSource="//@associations.3 //@associations.4 //@associations.16" associationsAsTarget="//@associations.4">
+    <ownedAttributes formulaVariable="nsURI" may="true" collections="//@decisions.2/@alternatives.0" name="nsURI" type="//@classes.17"/>
+    <ownedAttributes formulaVariable="nsPrefix" name="nsPrefix" type="//@classes.17"/>
+    <superclass formulaVariable="supEPackage" target="//@classes.3"/>
+  </classes>
+  <classes formulaVariable="EEnumLiteral" name="EEnumLiteral" associationsAsTarget="//@associations.10">
+    <ownedAttributes formulaVariable="value-EEnumLiteral" may="true" collections="//@decisions.5/@alternatives.0" name="value" type="//@classes.19"/>
+    <ownedAttributes formulaVariable="instance" may="true" collections="//@decisions.6/@alternatives.0" name="instance" type="//@classes.17"/>
+    <ownedAttributes formulaVariable="literal" name="literal" type="//@classes.17"/>
+    <superclass formulaVariable="supEEnumLiteral" target="//@classes.3"/>
+  </classes>
+  <classes formulaVariable="EOperation" name="EOperation" associationsAsSource="//@associations.5 //@associations.6 //@associations.7" associationsAsTarget="//@associations.8">
+    <superclass formulaVariable="supEOperation" target="//@classes.5"/>
+  </classes>
+  <classes formulaVariable="EParameter" may="true" collections="//@decisions.7/@alternatives.0" name="EParameter" associationsAsTarget="//@associations.5">
+    <superclass formulaVariable="supEParameter" may="true" collections="//@decisions.7/@alternatives.0" target="//@classes.5"/>
+  </classes>
+  <classes formulaVariable="EClass" name="EClass" associationsAsSource="//@associations.8 //@associations.9 //@associations.11 //@associations.17 //@associations.18" associationsAsTarget="//@associations.7 //@associations.9 //@associations.12">
+    <ownedAttributes formulaVariable="abstract" name="abstract" type="//@classes.18"/>
+    <ownedAttributes formulaVariable="interface" name="interface" type="//@classes.18"/>
+    <superclass formulaVariable="supEClass" target="//@classes.6"/>
+  </classes>
+  <classes formulaVariable="EDataType" name="EDataType" subclasses="//@classes.13/@superclass.0" associationsAsTarget="//@associations.15">
+    <ownedAttributes formulaVariable="serializable" name="serializable" type="//@classes.18"/>
+    <superclass formulaVariable="supEDataType" target="//@classes.6"/>
+  </classes>
+  <classes formulaVariable="EEnum" name="EEnum" associationsAsSource="//@associations.10">
+    <superclass formulaVariable="supEEnum" target="//@classes.12"/>
+  </classes>
+  <classes formulaVariable="EStructuralFeature" name="EStructuralFeature" subclasses="//@classes.15/@superclass.0 //@classes.16/@superclass.0" associationsAsTarget="//@associations.11">
+    <ownedAttributes formulaVariable="changeable" name="changeable" type="//@classes.18"/>
+    <ownedAttributes formulaVariable="volatile" name="volatile" type="//@classes.18"/>
+    <ownedAttributes formulaVariable="transient" name="transient" type="//@classes.18"/>
+    <ownedAttributes formulaVariable="defaultValueLiteral" name="defaultValueLiteral" type="//@classes.17"/>
+    <ownedAttributes formulaVariable="defaultValue-EStructuralFeature" name="defaultValue" type="//@classes.17"/>
+    <ownedAttributes formulaVariable="unsettable" name="unsettable" type="//@classes.18"/>
+    <ownedAttributes formulaVariable="derived" name="derived" type="//@classes.18"/>
+    <superclass formulaVariable="supEStructuralFeature" target="//@classes.5"/>
+  </classes>
+  <classes formulaVariable="EReference" name="EReference" associationsAsSource="//@associations.12 //@associations.13 //@associations.14" associationsAsTarget="//@associations.13 //@associations.17">
+    <ownedAttributes formulaVariable="containment" may="true" collections="//@decisions.9/@alternatives.0" name="containment" type="//@classes.18"/>
+    <ownedAttributes formulaVariable="container" may="true" collections="//@decisions.10/@alternatives.0" name="container" type="//@classes.18"/>
+    <ownedAttributes formulaVariable="resolveProxies" may="true" collections="//@decisions.11/@alternatives.0" name="resolveProxies" type="//@classes.18"/>
+    <superclass formulaVariable="supEReference" target="//@classes.14"/>
+  </classes>
+  <classes formulaVariable="EAttribute" name="EAttribute" associationsAsSource="//@associations.15" associationsAsTarget="//@associations.14 //@associations.18">
+    <ownedAttributes formulaVariable="ID" name="ID" type="//@classes.18"/>
+    <superclass formulaVariable="supEAttribute" target="//@classes.14"/>
+  </classes>
+  <classes formulaVariable="EString" name="EString"/>
+  <classes formulaVariable="EBoolean" name="EBoolean"/>
+  <classes formulaVariable="EInt" name="EInt"/>
+  <associations formulaVariable="details" name="details" source="//@classes.2" target="//@classes.1"/>
+  <associations formulaVariable="eModelElement" name="eModelElement" source="//@classes.2" target="//@classes.0"/>
+  <associations formulaVariable="eType" name="eType" source="//@classes.5" target="//@classes.6"/>
+  <associations formulaVariable="eClassifiers" name="eClassifiers" source="//@classes.7" target="//@classes.6"/>
+  <associations formulaVariable="eSuperPackage" may="true" collections="//@decisions.4/@alternatives.0" name="eSuperPackage" source="//@classes.7" target="//@classes.7"/>
+  <associations formulaVariable="eParameters" may="true" collections="//@decisions.7/@alternatives.0" name="eParameters" source="//@classes.9" target="//@classes.10"/>
+  <associations formulaVariable="eExceptions" name="eExceptions" source="//@classes.9" target="//@classes.6"/>
+  <associations formulaVariable="eContainingClass" name="eContainingClass" source="//@classes.9" target="//@classes.11"/>
+  <associations formulaVariable="eOperations" name="eOperations" source="//@classes.11" target="//@classes.9"/>
+  <associations formulaVariable="eSuperTypes" may="true" collections="//@decisions.8/@alternatives.0" name="eSuperTypes" source="//@classes.11" target="//@classes.11"/>
+  <associations formulaVariable="eLiterals" name="eLiterals" source="//@classes.13" target="//@classes.8"/>
+  <associations formulaVariable="eStructuralFeatures" name="eStructuralFeatures" source="//@classes.11" target="//@classes.14"/>
+  <associations formulaVariable="eReferenceType" name="eReferenceType" source="//@classes.15" target="//@classes.11"/>
+  <associations formulaVariable="eOpposite" may="true" collections="//@decisions.12/@alternatives.0" name="eOpposite" source="//@classes.15" target="//@classes.15"/>
+  <associations formulaVariable="eKeys" name="eKeys" source="//@classes.15" target="//@classes.16"/>
+  <associations formulaVariable="eAttributeType" name="eAttributeType" source="//@classes.16" target="//@classes.12"/>
+  <associations formulaVariable="eFactoryInstance" may="true" collections="//@decisions.3/@alternatives.0" name="eFactoryInstance" source="//@classes.7" target="//@classes.4"/>
+  <associations formulaVariable="eReferences" name="eReferences" source="//@classes.11" target="//@classes.15"/>
+  <associations formulaVariable="eAttributes" name="eAttributes" source="//@classes.11" target="//@classes.16"/>
+</classdiagram_mavo:ClassDiagram>

@@ -1,0 +1,3 @@
+KLEISLI:
+union classes := classes
+union associations := associations->select(upperBound > 1 or upperBound = -1)

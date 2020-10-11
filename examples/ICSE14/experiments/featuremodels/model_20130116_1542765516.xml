@@ -1,0 +1,30 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Wed, Jan 16, 2013 - 8:55 AM  -->
+<feature_model name="abcdefg">
+<meta>
+<data name="description">abc</data>
+<data name="creator">add</data>
+<data name="address"></data>
+<data name="email">add@google.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">atim</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r a(_r)
+	:m b(_r_1)
+	:o c(_r_3)
+		:g (_r_3_4) [1,1] 
+			: e(_r_3_4_5)
+			: d(_r_3_4_6)
+	:m f(_r_7)
+	:m atom(_r_8)
+		:o atem(_r_8_10)
+	:m atam(_r_9)
+		:m atim(_r_9_11)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

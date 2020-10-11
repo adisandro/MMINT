@@ -1,0 +1,36 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Fri, Oct 19, 2012 - 6:42 PM  -->
+<feature_model name="pruebapalabras">
+<meta>
+<data name="description">primera prueba</data>
+<data name="creator">Cecilia</data>
+<data name="address"></data>
+<data name="email">cecamacho@gmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">colmayor</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r JuegoPalabras(_r)
+	:m MostrarPista(_r_1)
+		:g (_r_1_2) [1,1] 
+			: EspaciosLetras(_r_1_2_3)
+				:m Jugada(_r_1_2_3_8)
+			: Silabas(_r_1_2_4)
+			: CasiPalabra(_r_1_2_5)
+				:m opcionesOrtograficas(_r_1_2_5_7)
+	:m Nivel(_r_9)
+		:g (_r_9_10) [1,*] 
+			: TamanoPalabra(_r_9_10_11)
+			: tiempoJuego(_r_9_10_12)
+	:o Puntaje(_r_13)
+		:g (_r_13_14) [1,*] 
+			: numeroIntentos(_r_13_14_15)
+			: tiempoJuego(_r_13_14_16)
+			: tiempomuerto(_r_13_14_17)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

@@ -1,0 +1,37 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Thu, Oct 18, 2012 - 9:47 AM  -->
+<feature_model name="Henrique Gomes Nunes">
+<meta>
+<data name="description">Exercicio3</data>
+<data name="creator">Henrique Nunes</data>
+<data name="address"></data>
+<data name="email">henrique_bh@hotmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">UFMG</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Type name for root feature(_r)
+	:m Media Selection(_r_1)
+		:g (_r_1_17) [1,*] 
+			: Photo(_r_1_17_18)
+			: Music(_r_1_17_19)
+			: Video(_r_1_17_20)
+	:m Media Management(_r_2)
+		:o Favourites(_r_2_13)
+			:m Set Favourites(_r_2_13_17)
+			:m View Favourites(_r_2_13_18)
+		:o SMS Transfer(_r_2_16)
+			:o Receive Photo(_r_2_16_19)
+			:o Send Photo(_r_2_16_20)
+		:m Copy Media(_r_2_22)
+	:m Screen Size(_r_3)
+		:g (_r_3_21) [1,1] 
+			: Screen1(_r_3_21_22)
+			: Screen2(_r_3_21_23)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

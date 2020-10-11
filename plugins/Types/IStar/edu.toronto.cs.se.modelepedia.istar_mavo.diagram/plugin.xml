@@ -1,0 +1,758 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<!--
+Copyright (c) 2012-2020 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+Rick Salay.
+All rights reserved. This program and the accompanying materials
+are made available under the terms of the Eclipse Public License v1.0
+which accompanies this distribution, and is available at
+http://www.eclipse.org/legal/epl-v10.html
+
+Contributors:
+   Alessio Di Sandro - Implementation.
+-->
+<plugin>
+
+   <extension point="org.eclipse.team.core.fileTypes" id="repo-ftype">
+      <?gmfgen generated="true"?>
+      <fileTypes type="text" extension="istardiag_mavo"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser" id="resource-factory">
+      <?gmfgen generated="true"?>
+      <parser
+         type="istardiag_mavo"
+         class="org.eclipse.gmf.runtime.emf.core.resources.GMFResourceFactory">
+      </parser>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors" id="gmf-editor">
+      <?gmfgen generated="true"?>
+      <editor
+         id="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVODiagramEditorID"
+         name="%editorName"
+         icon="icons/obj16/IStar_MAVODiagramFile.gif"
+         extensions="istardiag_mavo"
+         default="true"
+         class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVODiagramEditor"
+         matchingStrategy="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOMatchingStrategy"
+         contributorClass="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVODiagramActionBarContributor">
+      </editor>
+   </extension>
+   
+   <extension point="org.eclipse.ui.contexts" id="ui-context">
+      <?gmfgen generated="true"?>
+      <context
+         description="%context.description"
+         id="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.ui.diagramContext"
+         name="%context.name"
+         parentId="org.eclipse.gmf.runtime.diagram.ui.diagramContext">
+      </context>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards" id="creation-wizard">
+      <?gmfgen generated="true"?>
+  	  <wizard
+  	     name="%newWizardName"
+  	     icon="icons/obj16/IStar_MAVODiagramFile.gif"
+  	     category="org.eclipse.ui.Examples"
+  	     class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOCreationWizard"
+  	     id="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOCreationWizardID">
+  	  	 <description>%newWizardDesc</description>  
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.popupMenus" id="init-diagram-action">
+      <?gmfgen generated="true"?>
+      <objectContribution
+            id="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.InitDiagram"
+            nameFilter="*.istar_mavo"
+            objectClass="org.eclipse.core.resources.IFile">
+         <action
+               label="%initDiagramActionLabel"
+               class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOInitDiagramFileAction"
+               menubarPath="additions"
+               enablesFor="1"
+               id="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.InitDiagramAction">
+         </action>
+      </objectContribution>
+   </extension>
+	
+   <extension point="org.eclipse.gmf.runtime.common.ui.services.action.globalActionHandlerProviders" id="global-actions">
+      <?gmfgen generated="true"?>
+      <GlobalActionHandlerProvider
+         class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramGlobalActionHandlerProvider"
+         id="IStar_MAVOPresentation">
+         <Priority name="Lowest"/>
+         <ViewId id="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVODiagramEditorID">
+            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+               <GlobalActionId actionId="delete"/>
+            </ElementType>
+            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart">
+               <GlobalActionId actionId="save"/>
+            </ElementType>
+            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+               <GlobalActionId actionId="save">
+               </GlobalActionId>
+            </ElementType>        
+         </ViewId>
+      </GlobalActionHandlerProvider>
+      <GlobalActionHandlerProvider
+         class="org.eclipse.gmf.runtime.diagram.ui.printing.render.providers.DiagramWithPrintGlobalActionHandlerProvider"
+         id="IStar_MAVOPresentationPrint">
+         <Priority name="Lowest"/>
+         <ViewId id="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVODiagramEditorID">
+            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+               <GlobalActionId actionId="print"/>
+            </ElementType>
+         </ViewId>
+      </GlobalActionHandlerProvider>
+      <GlobalActionHandlerProvider
+         class="org.eclipse.gmf.runtime.diagram.ui.providers.ide.providers.DiagramIDEGlobalActionHandlerProvider"
+         id="IStar_MAVOPresentationIDE">
+         <Priority name="Lowest"/>
+         <ViewId id="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVODiagramEditorID">
+            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+               <GlobalActionId actionId="bookmark"/>
+            </ElementType>
+         </ViewId>
+      </GlobalActionHandlerProvider>
+      <GlobalActionHandlerProvider
+            class="org.eclipse.gmf.runtime.diagram.ui.render.providers.DiagramUIRenderGlobalActionHandlerProvider"
+            id="IStar_MAVORender">
+         <Priority name="Lowest"/>
+         <ViewId id="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVODiagramEditorID">
+            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+               <GlobalActionId actionId="cut"/>
+               <GlobalActionId actionId="copy"/>
+               <GlobalActionId actionId="paste"/>
+            </ElementType>
+         </ViewId>
+      </GlobalActionHandlerProvider>
+   </extension>
+
+
+   <extension point="org.eclipse.gmf.runtime.common.ui.services.markerNavigationProviders" id="markers-navigation">
+      <?gmfgen generated="true"?>
+      <MarkerNavigationProvider class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOMarkerNavigationProvider">
+         <MarkerType name="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.diagnostic"/>
+         <Priority name="Lowest"/>
+      </MarkerNavigationProvider>
+   </extension>
+
+   <extension id="diagnostic" name="IStar_MAVO Plugin problems" point="org.eclipse.core.resources.markers">
+      <?gmfgen generated="true"?>
+      <super type="org.eclipse.core.resources.problemmarker"/>
+      <super type="org.eclipse.gmf.runtime.common.ui.services.marker"/>
+      <persistent value="true"/>
+   </extension>   
+
+   <extension id="validationDecoratorProvider" name="ValidationDecorations" point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders">
+      <?gmfgen generated="true"?>
+      <decoratorProvider class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOValidationDecoratorProvider">
+         <Priority name="Lowest"/>
+         <object class="org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart(org.eclipse.gmf.runtime.diagram.ui)" id="PRIMARY_VIEW"/>
+         <context decoratorTargets="PRIMARY_VIEW"/>
+      </decoratorProvider>
+   </extension>
+
+   <extension point="org.eclipse.core.runtime.preferences" id="prefs">
+      <?gmfgen generated="true"?>
+      <initializer class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.preferences.DiagramPreferenceInitializer"/>
+   </extension>
+
+   <extension point="org.eclipse.ui.preferencePages" id="prefpages">
+      <?gmfgen generated="true"?>
+      <page
+            id="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.general"
+            name="%prefpage.edu.toronto.cs.se.modelepedia.istar_mavo.diagram.general"
+            class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.preferences.DiagramGeneralPreferencePage">
+      </page>
+      <page
+            id="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.appearance"
+            name="%prefpage.edu.toronto.cs.se.modelepedia.istar_mavo.diagram.appearance"
+            category="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.general"
+            class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.preferences.DiagramAppearancePreferencePage">
+      </page>
+      <page
+            id="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.connections"
+            name="%prefpage.edu.toronto.cs.se.modelepedia.istar_mavo.diagram.connections"
+            category="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.general"
+            class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.preferences.DiagramConnectionsPreferencePage">
+      </page>
+      <page
+            id="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.printing"
+            name="%prefpage.edu.toronto.cs.se.modelepedia.istar_mavo.diagram.printing"
+            category="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.general"
+            class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.preferences.DiagramPrintingPreferencePage">
+      </page>
+      <page
+            id="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.rulersAndGrid"
+            name="%prefpage.edu.toronto.cs.se.modelepedia.istar_mavo.diagram.rulersAndGrid"
+            category="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.general"
+            class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.preferences.DiagramRulersAndGridPreferencePage">
+      </page>
+   </extension>
+
+   <extension point="org.eclipse.ui.views.properties.tabbed.propertyContributor" id="prop-contrib">
+      <?gmfgen generated="true"?>
+      <propertyContributor
+            contributorId="edu.toronto.cs.se.modelepedia.istar_mavo.diagram"
+            labelProvider="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.sheet.IStar_MAVOSheetLabelProvider">
+         <propertyCategory category="domain"/>
+         <propertyCategory category="visual"/>
+         <propertyCategory category="extra"/>
+      </propertyContributor>
+   </extension>
+
+   <extension point="org.eclipse.ui.views.properties.tabbed.propertyTabs" id="proptabs">
+      <?gmfgen generated="true"?>   
+      <propertyTabs contributorId="edu.toronto.cs.se.modelepedia.istar_mavo.diagram">
+         <propertyTab
+             category="visual"
+             id="property.tab.AppearancePropertySection"
+             label="%tab.appearance"/>
+          <propertyTab
+             category="visual"
+             id="property.tab.DiagramPropertySection"
+             label="%tab.diagram"/>
+          <propertyTab
+             category="domain"
+             id="property.tab.domain"
+             label="%tab.domain"/>
+      </propertyTabs>
+   </extension>
+
+   <extension point="org.eclipse.ui.views.properties.tabbed.propertySections" id="propsections">
+      <?gmfgen generated="true"?>   
+      <propertySections contributorId="edu.toronto.cs.se.modelepedia.istar_mavo.diagram">
+         <propertySection id="property.section.ConnectorAppearancePropertySection" 
+            filter="org.eclipse.gmf.runtime.diagram.ui.properties.filters.ConnectionEditPartPropertySectionFilter" 
+            class="org.eclipse.gmf.runtime.diagram.ui.properties.sections.appearance.ConnectionAppearancePropertySection" 
+            tab="property.tab.AppearancePropertySection">
+         </propertySection>
+         <propertySection id="property.section.ShapeColorAndFontPropertySection" 
+            filter="org.eclipse.gmf.runtime.diagram.ui.properties.filters.ShapeEditPartPropertySectionFilter" 
+            class="org.eclipse.gmf.runtime.diagram.ui.properties.sections.appearance.ShapeColorsAndFontsPropertySection" 
+            tab="property.tab.AppearancePropertySection">
+         </propertySection> 
+         <propertySection id="property.section.DiagramColorsAndFontsPropertySection" 
+            filter="org.eclipse.gmf.runtime.diagram.ui.properties.filters.DiagramEditPartPropertySectionFilter" 
+            class="org.eclipse.gmf.runtime.diagram.ui.properties.sections.appearance.DiagramColorsAndFontsPropertySection" 
+            tab="property.tab.AppearancePropertySection">
+         </propertySection>     
+         <propertySection id="property.section.RulerGridPropertySection" 
+            filter="org.eclipse.gmf.runtime.diagram.ui.properties.filters.DiagramEditPartPropertySectionFilter" 
+            class="org.eclipse.gmf.runtime.diagram.ui.properties.sections.grid.RulerGridPropertySection" 
+            tab="property.tab.DiagramPropertySection">
+         </propertySection>     
+         <propertySection
+            id="property.section.domain" 
+            tab="property.tab.domain"
+            class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.sheet.IStar_MAVOPropertySection">
+            <input type="org.eclipse.gmf.runtime.notation.View"/>
+            <input type="org.eclipse.gef.EditPart"/>
+            <input type="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.navigator.IStar_MAVOAbstractNavigatorItem"/>
+         </propertySection>
+      </propertySections>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.diagram.core.viewProviders" id="view-provider">
+      <?gmfgen generated="true"?>
+      <viewProvider class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOViewProvider">
+         <Priority name="Lowest"/>
+         <object id="referencing-diagrams" class="org.eclipse.gmf.runtime.notation.Diagram">
+            <method name="getType()" value="istar_mavo"/>
+         </object>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" containerViews="referencing-diagrams"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="IStar_MAVO"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2001,2002,2003,2004,2005,3001,3002,3003,3004"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4001,4002,4003,4004,4005"/>
+      </viewProvider>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders" id="ep-provider">
+      <?gmfgen generated="true"?>
+      <editpartProvider class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOEditPartProvider">
+         <Priority name="Lowest"/>
+         <object class="org.eclipse.gmf.runtime.notation.Diagram" id="generated-diagram">
+            <method name="getType()" value="IStar_MAVO"/>
+         </object>
+         <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
+            <method name="getType()" value="2001,2002,2003,2004,2005,3001,3002,3003,3004"/>
+         </object>
+         <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
+            <method name="getType()" value="4001,4002,4003,4004,4005"/>
+         </object>
+         <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
+            <method name="getType()" value="5001,5002,5003,5004,5005,5006,5007,5008,5017,5018,5009,5010,5011,5012,5013,5014,5015,5016"/>
+         </object>
+         <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
+            <method name="getType()" value="7001"/>
+         </object>
+         <context views="generated-diagram,generated-nodes,generated-links,generated-labels,generated-compartments"/>
+      </editpartProvider>
+   </extension>
+
+   
+   <extension point="org.eclipse.gmf.runtime.emf.ui.modelingAssistantProviders" id="modelassist-provider">
+      <?gmfgen generated="true"?>
+      <modelingAssistantProvider class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.assistants.IStar_MAVOModelingAssistantProviderOfIStarEditPart">
+         <Priority name="Lowest"/>
+         <object class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.IStarEditPart" id="IStar_1000"/>
+         <context elements="IStar_1000"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.assistants.IStar_MAVOModelingAssistantProviderOfSoftGoalEditPart">
+         <Priority name="Lowest"/>
+         <object class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.SoftGoalEditPart" id="SoftGoal_2001"/>
+         <context elements="SoftGoal_2001"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.assistants.IStar_MAVOModelingAssistantProviderOfTaskEditPart">
+         <Priority name="Lowest"/>
+         <object class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.TaskEditPart" id="Task_2002"/>
+         <context elements="Task_2002"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.assistants.IStar_MAVOModelingAssistantProviderOfResourceEditPart">
+         <Priority name="Lowest"/>
+         <object class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.ResourceEditPart" id="Resource_2003"/>
+         <context elements="Resource_2003"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.assistants.IStar_MAVOModelingAssistantProviderOfGoalEditPart">
+         <Priority name="Lowest"/>
+         <object class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.GoalEditPart" id="Goal_2004"/>
+         <context elements="Goal_2004"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.assistants.IStar_MAVOModelingAssistantProviderOfActorEditPart">
+         <Priority name="Lowest"/>
+         <object class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.ActorEditPart" id="Actor_2005"/>
+         <context elements="Actor_2005"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.assistants.IStar_MAVOModelingAssistantProviderOfSoftGoal2EditPart">
+         <Priority name="Lowest"/>
+         <object class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.SoftGoal2EditPart" id="SoftGoal_3001"/>
+         <context elements="SoftGoal_3001"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.assistants.IStar_MAVOModelingAssistantProviderOfTask2EditPart">
+         <Priority name="Lowest"/>
+         <object class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.Task2EditPart" id="Task_3002"/>
+         <context elements="Task_3002"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.assistants.IStar_MAVOModelingAssistantProviderOfResource2EditPart">
+         <Priority name="Lowest"/>
+         <object class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.Resource2EditPart" id="Resource_3003"/>
+         <context elements="Resource_3003"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.assistants.IStar_MAVOModelingAssistantProviderOfGoal2EditPart">
+         <Priority name="Lowest"/>
+         <object class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.Goal2EditPart" id="Goal_3004"/>
+         <context elements="Goal_3004"/>
+      </modelingAssistantProvider>
+      
+   </extension>
+
+
+   <extension point="org.eclipse.gmf.runtime.common.ui.services.iconProviders" id="icon-provider">
+      <?gmfgen generated="true"?>
+      <IconProvider class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOIconProvider">
+         <Priority name="Low"/>
+      </IconProvider>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.common.ui.services.parserProviders" id="parser-provider">
+      <?gmfgen generated="true"?>
+      <ParserProvider class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOParserProvider">
+         <Priority name="Lowest"/>
+      </ParserProvider>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders" id="decorator-provider">
+      <?gmfgen generated="true"?>
+      <decoratorProvider class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOShortcutsDecoratorProvider">
+         <Priority name="Lowest"/>
+         <object class="org.eclipse.gmf.runtime.notation.Node(org.eclipse.gmf.runtime.notation)" id="generated-top-nodes">
+            <method name="getType()" value="2001,2002,2003,2004,2005"/>
+         </object>
+         <context decoratorTargets="generated-top-nodes"/>
+      </decoratorProvider>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes" id="element-types">
+      <?gmfgen generated="true"?>
+      <metamodel nsURI="http://se.cs.toronto.edu/modelepedia/IStar_MAVO">
+         <metamodelType
+               id="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.IStar_1000"
+               name="%metatype.name.IStar_1000"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="IStar"
+               edithelper="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.helpers.IStarEditHelper">
+            <param name="semanticHint" value="1000"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://se.cs.toronto.edu/modelepedia/IStar_MAVO">
+         <metamodelType
+               id="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.SoftGoal_2001"
+               name="%metatype.name.SoftGoal_2001"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="SoftGoal"
+               edithelper="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.helpers.SoftGoalEditHelper">
+            <param name="semanticHint" value="2001"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://se.cs.toronto.edu/modelepedia/IStar_MAVO">
+         <metamodelType
+               id="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.Task_2002"
+               name="%metatype.name.Task_2002"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Task"
+               edithelper="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.helpers.TaskEditHelper">
+            <param name="semanticHint" value="2002"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://se.cs.toronto.edu/modelepedia/IStar_MAVO">
+         <metamodelType
+               id="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.Resource_2003"
+               name="%metatype.name.Resource_2003"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Resource"
+               edithelper="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.helpers.ResourceEditHelper">
+            <param name="semanticHint" value="2003"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://se.cs.toronto.edu/modelepedia/IStar_MAVO">
+         <metamodelType
+               id="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.Goal_2004"
+               name="%metatype.name.Goal_2004"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Goal"
+               edithelper="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.helpers.GoalEditHelper">
+            <param name="semanticHint" value="2004"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://se.cs.toronto.edu/modelepedia/IStar_MAVO">
+         <metamodelType
+               id="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.Actor_2005"
+               name="%metatype.name.Actor_2005"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Actor"
+               edithelper="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.helpers.ActorEditHelper">
+            <param name="semanticHint" value="2005"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://se.cs.toronto.edu/modelepedia/IStar_MAVO">
+         <specializationType
+               id="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.SoftGoal_3001"
+               name="%metatype.name.SoftGoal_3001"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.SoftGoal_2001"/>
+            <param name="semanticHint" value="3001"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://se.cs.toronto.edu/modelepedia/IStar_MAVO">
+         <specializationType
+               id="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.Task_3002"
+               name="%metatype.name.Task_3002"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.Task_2002"/>
+            <param name="semanticHint" value="3002"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://se.cs.toronto.edu/modelepedia/IStar_MAVO">
+         <specializationType
+               id="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.Resource_3003"
+               name="%metatype.name.Resource_3003"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.Resource_2003"/>
+            <param name="semanticHint" value="3003"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://se.cs.toronto.edu/modelepedia/IStar_MAVO">
+         <specializationType
+               id="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.Goal_3004"
+               name="%metatype.name.Goal_3004"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.Goal_2004"/>
+            <param name="semanticHint" value="3004"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://se.cs.toronto.edu/modelepedia/IStar_MAVO">
+         <metamodelType
+               id="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.MeansEnd_4001"
+               name="%metatype.name.MeansEnd_4001"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="MeansEnd"
+               edithelper="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.helpers.MeansEndEditHelper">
+            <param name="semanticHint" value="4001"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://se.cs.toronto.edu/modelepedia/IStar_MAVO">
+         <metamodelType
+               id="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.Decomposition_4002"
+               name="%metatype.name.Decomposition_4002"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Decomposition"
+               edithelper="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.helpers.DecompositionEditHelper">
+            <param name="semanticHint" value="4002"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://se.cs.toronto.edu/modelepedia/IStar_MAVO">
+         <metamodelType
+               id="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.Contribution_4003"
+               name="%metatype.name.Contribution_4003"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Contribution"
+               edithelper="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.helpers.ContributionEditHelper">
+            <param name="semanticHint" value="4003"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://se.cs.toronto.edu/modelepedia/IStar_MAVO">
+         <metamodelType
+               id="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.DependerLink_4004"
+               name="%metatype.name.DependerLink_4004"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="DependerLink"
+               edithelper="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.helpers.DependerLinkEditHelper">
+            <param name="semanticHint" value="4004"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://se.cs.toronto.edu/modelepedia/IStar_MAVO">
+         <metamodelType
+               id="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.DependeeLink_4005"
+               name="%metatype.name.DependeeLink_4005"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="DependeeLink"
+               edithelper="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.helpers.DependeeLinkEditHelper">
+            <param name="semanticHint" value="4005"/>
+         </metamodelType>
+      </metamodel>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings" id="element-types-bindings">
+      <?gmfgen generated="true"?>
+      <clientContext id="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.TypeContext">
+         <enablement>
+            <test
+               property="org.eclipse.gmf.runtime.emf.core.editingDomain"
+               value="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.EditingDomain"/>
+         </enablement>
+      </clientContext> 
+      <binding context="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.TypeContext">
+         <elementType ref="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.IStar_1000"/>
+         <elementType ref="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.SoftGoal_2001"/>
+         <elementType ref="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.Task_2002"/>
+         <elementType ref="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.Resource_2003"/>
+         <elementType ref="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.Goal_2004"/>
+         <elementType ref="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.Actor_2005"/>
+         <elementType ref="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.SoftGoal_3001"/>
+         <elementType ref="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.Task_3002"/>
+         <elementType ref="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.Resource_3003"/>
+         <elementType ref="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.Goal_3004"/>
+         <elementType ref="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.MeansEnd_4001"/>
+         <elementType ref="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.Decomposition_4002"/>
+         <elementType ref="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.Contribution_4003"/>
+         <elementType ref="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.DependerLink_4004"/>
+         <elementType ref="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.DependeeLink_4005"/>
+         <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
+      </binding>
+   </extension>
+	   <extension point="org.eclipse.core.expressions.propertyTesters" id="navigator-proptest.isURIEditorInput">
+      <?gmfgen generated="true"?>
+       <propertyTester
+           id="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.URIEditorInputPropertyTester"
+           type="org.eclipse.emf.common.ui.URIEditorInput"
+           namespace="edu.toronto.cs.se.modelepedia.istar_mavo.diagram"
+           properties="isURIEditorInput"
+           class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOUriEditorInputTester">
+       </propertyTester>
+   </extension>
+
+	   <extension point="org.eclipse.core.expressions.propertyTesters" id="navigator-proptest.isShortcut">
+      <?gmfgen generated="true"?>
+       <propertyTester
+           id="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.ShortcutPropertyTester"
+           type="org.eclipse.gmf.runtime.notation.View"
+           namespace="edu.toronto.cs.se.modelepedia.istar_mavo.diagram"
+           properties="isShortcut"
+           class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOShortcutPropertyTester">
+       </propertyTester>
+   </extension>
+
+	   <extension point="org.eclipse.ui.navigator.viewer" id="navigator-viewbinding">
+      <?gmfgen generated="true"?>
+      <viewerContentBinding viewerId="org.eclipse.ui.navigator.ProjectExplorer">
+         <includes>
+            <contentExtension pattern="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.resourceContent"/>
+			<contentExtension pattern="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.domainResourceContent"/>
+            <contentExtension pattern="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.navigatorLinkHelper"/>
+         </includes>
+      </viewerContentBinding>
+      <viewerActionBinding viewerId="org.eclipse.ui.navigator.ProjectExplorer">
+         <includes>
+            <actionExtension pattern="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.navigatorActionProvider"/>
+         </includes>
+      </viewerActionBinding>
+   </extension>
+
+   <extension point="org.eclipse.ui.navigator.navigatorContent" id="navigator-content">
+      <?gmfgen generated="true"?>
+      <navigatorContent
+            id="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.resourceContent" 
+            name="%navigatorContentName" 
+            priority="normal" 
+            contentProvider="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.navigator.IStar_MAVONavigatorContentProvider" 
+            labelProvider="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.navigator.IStar_MAVONavigatorLabelProvider"
+            icon="icons/obj16/IStar_MAVODiagramFile.gif"
+            activeByDefault="true">
+         <triggerPoints>
+            <or>
+	           <and>
+    	          <instanceof value="org.eclipse.core.resources.IFile"/>
+        	      <test property="org.eclipse.core.resources.extension" value="istardiag_mavo"/>
+               </and>
+               <instanceof value="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.navigator.IStar_MAVOAbstractNavigatorItem"/>
+           	   <adapt type="org.eclipse.gmf.runtime.notation.View">
+           	      <test property="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.isShortcut"/>
+           	   </adapt>
+            </or>
+         </triggerPoints>
+         <possibleChildren>
+            <or>
+         	   <instanceof value="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.navigator.IStar_MAVOAbstractNavigatorItem"/>
+           	   <adapt type="org.eclipse.gmf.runtime.notation.View">
+           	      <test property="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.isShortcut"/>
+           	   </adapt>
+            </or>
+         </possibleChildren>
+         <commonSorter 
+               id="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.navigatorSorter" 
+               class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.navigator.IStar_MAVONavigatorSorter">
+            <parentExpression>
+               <or>
+	              <and>
+    	             <instanceof value="org.eclipse.core.resources.IFile"/>
+        	         <test property="org.eclipse.core.resources.extension" value="istardiag_mavo"/>
+                  </and>
+                  <instanceof value="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.navigator.IStar_MAVOAbstractNavigatorItem"/>
+               </or>
+            </parentExpression>
+         </commonSorter>
+      </navigatorContent>
+      <navigatorContent
+            id="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.domainResourceContent" 
+            name="%domainNavigatorContentName" 
+            priority="normal" 
+            contentProvider="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.navigator.IStar_MAVODomainNavigatorContentProvider" 
+            labelProvider="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.navigator.IStar_MAVODomainNavigatorLabelProvider"
+            icon="icons/obj16/IStar_MAVODiagramFile.gif"
+            activeByDefault="true">
+         <triggerPoints>
+            <or>
+	           <and>
+    	          <instanceof value="org.eclipse.core.resources.IFile"/>
+        	      <test property="org.eclipse.core.resources.extension" value="istar_mavo"/>
+               </and>
+               <instanceof value="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.navigator.IStar_MAVODomainNavigatorItem"/>
+            </or>
+         </triggerPoints>
+         <possibleChildren>
+            <instanceof value="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.navigator.IStar_MAVODomainNavigatorItem"/>
+         </possibleChildren>
+      </navigatorContent>
+      <actionProvider
+            id="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.navigatorActionProvider"
+            class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.navigator.IStar_MAVONavigatorActionProvider">
+         <enablement>
+            <or>
+               <instanceof value="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.navigator.IStar_MAVOAbstractNavigatorItem"/>
+           	   <adapt type="org.eclipse.gmf.runtime.notation.View">
+           	      <test property="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.isShortcut"/>
+           	   </adapt>
+            </or>
+         </enablement>
+      </actionProvider>
+   </extension>
+   
+	   <extension point="org.eclipse.ui.navigator.linkHelper" id="navigator-linkhelper">
+      <?gmfgen generated="true"?>
+      <linkHelper
+            id="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.navigatorLinkHelper"
+            class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.navigator.IStar_MAVONavigatorLinkHelper">
+         <editorInputEnablement>
+            <and>
+               <instanceof value="org.eclipse.emf.common.ui.URIEditorInput"/>
+               <test property="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.isURIEditorInput"/>
+            </and>
+         </editorInputEnablement>
+         <selectionEnablement>
+            <instanceof value="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.navigator.IStar_MAVOAbstractNavigatorItem"/>
+         </selectionEnablement>
+      </linkHelper>
+   </extension>
+   <extension point="org.eclipse.ui.commands" id="update-cmd">
+      <?gmfgen generated="true"?>
+      <command
+         categoryId="org.eclipse.ui.category.edit"
+         defaultHandler="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVODiagramUpdateCommand"
+         description="%update.diagram.description"
+         id="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.updateDiagram"
+         name="%update.diagram.name"/>
+   </extension>
+   
+   <extension point="org.eclipse.ui.bindings" id="update-cmd-binding">
+      <?gmfgen generated="true"?>
+      <key 
+         commandId="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.updateDiagram"
+         contextId="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.ui.diagramContext"
+         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+         sequence="F5"/>
+   </extension>
+
+   <extension point="org.eclipse.ui.menus" id="context-menus">
+      <?gmfgen generated="true"?>
+      <!-- menuContribution locationURI="menu:org.eclipse.ui.main.menu?after=">
+      </menuContribution>
+      <menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar?after=">
+      </menuContribution -->
+      <menuContribution locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu">
+         <command commandId="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.LoadResourceAction">
+            <visibleWhen>
+               <and>
+                  <with variable="activePartId"><equals value="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVODiagramEditorID"/></with>
+                  <with variable="selection"><iterate ifEmpty="false"> 
+                     <instanceof value="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.IStarEditPart"/>
+                  </iterate></with>
+               </and>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+   </extension>
+
+   <extension point="org.eclipse.ui.commands" id="menu-commands">
+      <?gmfgen generated="true"?>
+      <category id="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVODiagramEditorID" name="%cmdcategory.name" description="%cmdcategory.desc"/>
+      <command id="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.LoadResourceAction"
+         name="Load Resource"
+         categoryId="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVODiagramEditorID"
+         defaultHandler="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.LoadResourceAction"/>
+   </extension>
+
+   <extension point="org.eclipse.ui.handlers" id="menu-handlers">
+      <?gmfgen generated="true"?>
+   </extension>
+
+   <!-- optionally, specify keybindings -->
+
+   <extension
+         point="edu.toronto.cs.se.mmint.editors">
+      <editorType
+            modelTypeUri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO"
+            id="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVODiagramEditorID"
+            isDiagram="true"
+            wizardId="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOCreationWizardID">
+         <type
+               name="IStar_MAVO diagram"
+               uri="http://se.cs.toronto.edu/modelepedia/Diagram_IStar_MAVO">
+         </type>
+      </editorType>
+   </extension>
+
+</plugin>

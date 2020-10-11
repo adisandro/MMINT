@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="ASCII"?>
+<gmfgraph:Canvas xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gmfgraph="http://www.eclipse.org/gmf/2006/GraphicalDefinition" name="statemachine_mavo">
+    <figures name="Default">
+      <figures xsi:type="gmfgraph:PolylineDecoration" name="TransitionFigureTargetDecoration"/>
+      <descriptors name="StateFigure">
+        <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="StateFigure">
+          <border xsi:type="gmfgraph:MarginBorder">
+            <insets top="5" left="5" bottom="5" right="5"/>
+          </border>
+          <children xsi:type="gmfgraph:Label" name="MAVOStateLabelFigure">
+            <maximumSize dx="10000" dy="50"/>
+          </children>
+          <children xsi:type="gmfgraph:Label" name="StateLabelFigure" text="State">
+            <maximumSize dx="10000" dy="50"/>
+          </children>
+          <children xsi:type="gmfgraph:Rectangle" name="StateInternalActionsCompartmentFigure" outline="false"/>
+        </actualFigure>
+        <accessors accessor="getFigureStateLabelFigure" figure="/0/@figures.0/@descriptors.0/@actualFigure/@children.1"/>
+        <accessors accessor="getStateInternalActionsCompartmentFigure" figure="/0/@figures.0/@descriptors.0/@actualFigure/@children.2"/>
+        <accessors accessor="getFigureMAVOStateLabelFigure" figure="/0/@figures.0/@descriptors.0/@actualFigure/@children.0"/>
+      </descriptors>
+      <descriptors name="InitialStateFigure">
+        <actualFigure xsi:type="gmfgraph:Ellipse" name="InitialStateFigure">
+          <backgroundColor xsi:type="gmfgraph:RGBColor"/>
+          <preferredSize dx="20" dy="20"/>
+          <border xsi:type="gmfgraph:MarginBorder">
+            <insets top="5" left="5" bottom="5" right="5"/>
+          </border>
+        </actualFigure>
+      </descriptors>
+      <descriptors name="FinalStateFigure">
+        <actualFigure xsi:type="gmfgraph:Rectangle" name="FinalStateFigure">
+          <backgroundColor xsi:type="gmfgraph:RGBColor"/>
+          <preferredSize dx="20" dy="20"/>
+          <border xsi:type="gmfgraph:MarginBorder">
+            <insets top="5" left="5" bottom="5" right="5"/>
+          </border>
+        </actualFigure>
+      </descriptors>
+      <descriptors name="StateActionFigure">
+        <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="StateActionFigure">
+          <border xsi:type="gmfgraph:MarginBorder">
+            <insets top="5" left="5" bottom="5" right="5"/>
+          </border>
+          <children xsi:type="gmfgraph:Label" name="MAVOStateActionLabelFigure">
+            <maximumSize dx="10000" dy="50"/>
+          </children>
+          <children xsi:type="gmfgraph:Label" name="StateActionLabelFigure" text="StateAction"/>
+        </actualFigure>
+        <accessors accessor="getFigureStateActionLabelFigure" figure="/0/@figures.0/@descriptors.3/@actualFigure/@children.1"/>
+        <accessors accessor="getFigureMAVOStateActionLabelFigure" figure="/0/@figures.0/@descriptors.3/@actualFigure/@children.0"/>
+      </descriptors>
+      <descriptors name="TransitionFigure">
+        <actualFigure xsi:type="gmfgraph:PolylineConnection" name="TransitionFigure" targetDecoration="/0/@figures.0/@figures.0">
+          <children xsi:type="gmfgraph:Label" name="MAVOTransitionLabelFigure">
+            <maximumSize dx="10000" dy="50"/>
+          </children>
+        </actualFigure>
+        <accessors accessor="getFigureMAVOTransitionLabelFigure" figure="/0/@figures.0/@descriptors.4/@actualFigure/@children.0"/>
+      </descriptors>
+      <descriptors name="TransitionLabelFigure">
+        <actualFigure xsi:type="gmfgraph:Label" name="TransitionLabelLabel" text="Transition"/>
+      </descriptors>
+    </figures>
+    <nodes name="State" figure="StateFigure"/>
+    <nodes name="InitialState" figure="InitialStateFigure">
+      <facets xsi:type="gmfgraph:DefaultSizeFacet">
+        <defaultSize dx="20" dy="20"/>
+      </facets>
+    </nodes>
+    <nodes name="FinalState" figure="FinalStateFigure">
+      <facets xsi:type="gmfgraph:DefaultSizeFacet">
+        <defaultSize dx="20" dy="20"/>
+      </facets>
+    </nodes>
+    <nodes name="StateAction" figure="StateActionFigure"/>
+    <connections name="Transition" figure="TransitionFigure"/>
+    <compartments name="StateInternalActionsCompartment" figure="StateFigure" collapsible="true" accessor="/0/@figures.0/@descriptors.0/@accessors.1"/>
+    <labels name="StateLabel" figure="StateFigure" elementIcon="false" accessor="/0/@figures.0/@descriptors.0/@accessors.0"/>
+    <labels name="StateActionLabel" figure="StateActionFigure" elementIcon="false" accessor="/0/@figures.0/@descriptors.3/@accessors.0"/>
+    <labels name="TransitionLabel" figure="TransitionLabelFigure" elementIcon="false"/>
+    <labels name="MAVOStateLabel" figure="StateFigure" accessor="/0/@figures.0/@descriptors.0/@accessors.2"/>
+    <labels name="MAVOTransitionLabel" figure="TransitionFigure" accessor="/0/@figures.0/@descriptors.4/@accessors.0"/>
+    <labels name="MAVOStateActionLabel" figure="StateActionFigure" accessor="/0/@figures.0/@descriptors.3/@accessors.1"/>
+</gmfgraph:Canvas>

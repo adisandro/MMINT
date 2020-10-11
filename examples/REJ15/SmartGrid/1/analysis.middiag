@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mavomid="http://se.cs.toronto.edu/mmint/MAVOMID" xmlns:mid="http://se.cs.toronto.edu/mmint/MID" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmi:id="_-BHWMAeJEeSIg5CbPubViQ" type="MID" name="analysis.middiag" measurementUnit="Pixel">
+  <children xmi:type="notation:Node" xmi:id="_AW4TsAeKEeSIg5CbPubViQ" type="2001">
+    <children xmi:type="notation:DecorationNode" xmi:id="_AW46wAeKEeSIg5CbPubViQ" type="5001"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_AW46wQeKEeSIg5CbPubViQ" type="5002"/>
+    <styles xmi:type="notation:DescriptionStyle" xmi:id="_AW4TsQeKEeSIg5CbPubViQ"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_AW4TsgeKEeSIg5CbPubViQ" fontName="Cantarell" fontHeight="10"/>
+    <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_AW4TsweKEeSIg5CbPubViQ" hint="Mid"/>
+    <element xmi:type="mavomid:MAVOModel" href="analysis.mid#//@models.0"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_AW4TtAeKEeSIg5CbPubViQ" x="384" y="84"/>
+  </children>
+  <children xmi:type="notation:Node" xmi:id="_Lo71sAhZEeSv5sQZ08r9CA" type="2001">
+    <children xmi:type="notation:DecorationNode" xmi:id="_Lo8cwAhZEeSv5sQZ08r9CA" type="5001"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_Lo8cwQhZEeSv5sQZ08r9CA" type="5002"/>
+    <styles xmi:type="notation:DescriptionStyle" xmi:id="_Lo71sQhZEeSv5sQZ08r9CA"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_Lo71sghZEeSv5sQZ08r9CA" fontName="Cantarell" fontHeight="10"/>
+    <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_Lo71swhZEeSv5sQZ08r9CA" hint="Mid"/>
+    <element xmi:type="mavomid:MAVOModel" href="analysis.mid#//@models.1"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Lo71tAhZEeSv5sQZ08r9CA" x="96" y="84"/>
+  </children>
+  <children xmi:type="notation:Node" xmi:id="_Un_qQAk8EeSTQZq9HYZYKA" type="2001">
+    <children xmi:type="notation:DecorationNode" xmi:id="_Un_qRQk8EeSTQZq9HYZYKA" type="5001"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_Un_qRgk8EeSTQZq9HYZYKA" type="5002"/>
+    <styles xmi:type="notation:DescriptionStyle" xmi:id="_Un_qQQk8EeSTQZq9HYZYKA"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_Un_qQgk8EeSTQZq9HYZYKA" fontName="Cantarell" fontHeight="10"/>
+    <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_Un_qQwk8EeSTQZq9HYZYKA" hint="Mid"/>
+    <element xmi:type="mavomid:MAVOModel" href="analysis.mid#//@models.2"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Un_qRAk8EeSTQZq9HYZYKA" x="387" y="218"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_-BHWMQeJEeSIg5CbPubViQ"/>
+  <element xmi:type="mid:MID" href="analysis.mid#/"/>
+</notation:Diagram>

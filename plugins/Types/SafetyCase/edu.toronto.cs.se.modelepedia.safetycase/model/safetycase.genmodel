@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="Copyright (c) 2012-2020 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,&#xA;Rick Salay, Nick Fung.&#xA;All rights reserved. This program and the accompanying materials&#xA;are made available under the terms of the Eclipse Public License v1.0&#xA;which accompanies this distribution, and is available at&#xA;http://www.eclipse.org/legal/epl-v10.html&#xA;&#xA;Contributors:&#xA;   Alessio Di Sandro - Implementation.&#xA;   Nick Fung - Implementation."
+    modelDirectory="/edu.toronto.cs.se.modelepedia.safetycase/src-gen" editDirectory="/edu.toronto.cs.se.modelepedia.safetycase.edit/src-gen"
+    editorDirectory="/edu.toronto.cs.se.modelepedia.safetycase.editor/src-gen" modelPluginID="edu.toronto.cs.se.modelepedia.safetycase"
+    modelName="SafetyCase" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    testsDirectory="/edu.toronto.cs.se.modelepedia.safetycase.tests/src-gen" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="8.0" copyrightFields="false" editPluginID="edu.toronto.cs.se.modelepedia.safetycase.edit"
+    editorPluginID="edu.toronto.cs.se.modelepedia.safetycase.editor" language="" operationReflection="true">
+  <foreignModel>safetycase.ecore</foreignModel>
+  <genPackages prefix="SafetyCase" basePackage="edu.toronto.cs.se.modelepedia" disposableProviderFactory="true"
+      ecorePackage="safetycase.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="safetycase.ecore#//ASILLevel">
+      <genEnumLiterals ecoreEnumLiteral="safetycase.ecore#//ASILLevel/D"/>
+      <genEnumLiterals ecoreEnumLiteral="safetycase.ecore#//ASILLevel/C"/>
+      <genEnumLiterals ecoreEnumLiteral="safetycase.ecore#//ASILLevel/B"/>
+      <genEnumLiterals ecoreEnumLiteral="safetycase.ecore#//ASILLevel/A"/>
+      <genEnumLiterals ecoreEnumLiteral="safetycase.ecore#//ASILLevel/QM"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="safetycase.ecore#//ValidityValue">
+      <genEnumLiterals ecoreEnumLiteral="safetycase.ecore#//ValidityValue/Invalid"/>
+      <genEnumLiterals ecoreEnumLiteral="safetycase.ecore#//ValidityValue/Valid"/>
+      <genEnumLiterals ecoreEnumLiteral="safetycase.ecore#//ValidityValue/Undetermined"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="safetycase.ecore#//ImpactType">
+      <genEnumLiterals ecoreEnumLiteral="safetycase.ecore#//ImpactType/Revise"/>
+      <genEnumLiterals ecoreEnumLiteral="safetycase.ecore#//ImpactType/RecheckContent"/>
+      <genEnumLiterals ecoreEnumLiteral="safetycase.ecore#//ImpactType/RecheckState"/>
+      <genEnumLiterals ecoreEnumLiteral="safetycase.ecore#//ImpactType/Reuse"/>
+    </genEnums>
+    <genClasses ecoreClass="safetycase.ecore#//SafetyCase">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference safetycase.ecore#//SafetyCase/goals"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference safetycase.ecore#//SafetyCase/strategies"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference safetycase.ecore#//SafetyCase/solutions"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference safetycase.ecore#//SafetyCase/contexts"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference safetycase.ecore#//SafetyCase/justifications"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference safetycase.ecore#//SafetyCase/assumptions"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference safetycase.ecore#//SafetyCase/connectors"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="safetycase.ecore#//ArgumentElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute safetycase.ecore#//ArgumentElement/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute safetycase.ecore#//ArgumentElement/description"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute safetycase.ecore#//ArgumentElement/contentValidity"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EReference safetycase.ecore#//ArgumentElement/status"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="safetycase.ecore#//StatefulElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute safetycase.ecore#//StatefulElement/stateValidity"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="safetycase.ecore#//ASILfulElement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference safetycase.ecore#//ASILfulElement/asil"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="safetycase.ecore#//CoreElement"/>
+    <genClasses image="false" ecoreClass="safetycase.ecore#//DecomposableCoreElement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference safetycase.ecore#//DecomposableCoreElement/inContextOf"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="safetycase.ecore#//ContextualElement">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference safetycase.ecore#//ContextualElement/contextOf"/>
+    </genClasses>
+    <genClasses ecoreClass="safetycase.ecore#//SupportedBy">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference safetycase.ecore#//SupportedBy/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference safetycase.ecore#//SupportedBy/target"/>
+    </genClasses>
+    <genClasses ecoreClass="safetycase.ecore#//InContextOf">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference safetycase.ecore#//InContextOf/context"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference safetycase.ecore#//InContextOf/contextOf"/>
+    </genClasses>
+    <genClasses ecoreClass="safetycase.ecore#//Goal"/>
+    <genClasses ecoreClass="safetycase.ecore#//BasicGoal"/>
+    <genClasses ecoreClass="safetycase.ecore#//IndependenceGoal"/>
+    <genClasses ecoreClass="safetycase.ecore#//Strategy"/>
+    <genClasses ecoreClass="safetycase.ecore#//BasicStrategy"/>
+    <genClasses ecoreClass="safetycase.ecore#//ASILDecompositionStrategy"/>
+    <genClasses ecoreClass="safetycase.ecore#//Solution"/>
+    <genClasses ecoreClass="safetycase.ecore#//Context"/>
+    <genClasses ecoreClass="safetycase.ecore#//Justification"/>
+    <genClasses ecoreClass="safetycase.ecore#//Assumption"/>
+    <genClasses ecoreClass="safetycase.ecore#//ASIL">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute safetycase.ecore#//ASIL/value"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference safetycase.ecore#//ASIL/target"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference safetycase.ecore#//ASIL/status"/>
+    </genClasses>
+    <genClasses ecoreClass="safetycase.ecore#//ImpactAnnotation">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute safetycase.ecore#//ImpactAnnotation/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute safetycase.ecore#//ImpactAnnotation/source"/>
+    </genClasses>
+    <genClasses ecoreClass="safetycase.ecore#//Supportable">
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference safetycase.ecore#//Supportable/supportedBy"/>
+    </genClasses>
+    <genClasses ecoreClass="safetycase.ecore#//Supporter">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference safetycase.ecore#//Supporter/supports"/>
+    </genClasses>
+    <genClasses ecoreClass="safetycase.ecore#//SupportConnector"/>
+    <genClasses ecoreClass="safetycase.ecore#//AndSupporter"/>
+    <genClasses ecoreClass="safetycase.ecore#//OrSupporter"/>
+    <genClasses ecoreClass="safetycase.ecore#//XorSupporter"/>
+    <genClasses ecoreClass="safetycase.ecore#//MofNSupporter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute safetycase.ecore#//MofNSupporter/target"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

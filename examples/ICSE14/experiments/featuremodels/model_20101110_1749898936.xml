@@ -1,0 +1,49 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Thu, Feb 9, 2012 - 11:36 AM  -->
+<feature_model name="FIRE-ALARM">
+<meta>
+<data name="description">FIRE-ALARM SYSTEMA</data>
+<data name="creator">COMPONENTS SOLUTIONS</data>
+<data name="address"></data>
+<data name="email">im.sanchez281@uniandes.edu.co, ed.guevara44@uniandes.edu.co</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">UNIANDES</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r FIRE-ALARM SYSTEM(_r)
+	:m Devices(_r_67)
+		:m Input(_r_67_40)
+			:g (_r_67_40_45) [1,1] 
+				: AdvanceI(_r_67_40_45_46)
+					:g (_r_67_40_45_46_48) [1,*] 
+						: Ultra-sensitivelaser(_r_67_40_45_46_48_49)
+						: Laser smoke(_r_67_40_45_46_48_50)
+				: ConventionalI(_r_67_40_45_47)
+					:g (_r_67_40_45_47_51) [1,*] 
+						: Temperature(_r_67_40_45_47_51_52)
+						: Smoke sensor(_r_67_40_45_47_51_53)
+		:m Output(_r_67_42)
+			:g (_r_67_42_54) [1,1] 
+				: AdvanceO(_r_67_42_54_55)
+					:g (_r_67_42_54_55_57) [1,*] 
+						: Automatic alert(_r_67_42_54_55_57_58)
+						: High-speed stinguisher system(_r_67_42_54_55_57_62)
+				: ConventionalO(_r_67_42_54_56)
+					:g (_r_67_42_54_56_59) [1,*] 
+						: Alarm bell(_r_67_42_54_56_59_60)
+						: Alarm texts on display(_r_67_42_54_56_59_61)
+	:m Configuration(_r_92)
+		:g (_r_92_93) [1,1] 
+			: Low-end systems(_r_92_93_94)
+			: High-end systems(_r_92_93_95)
+</feature_tree>
+<constraints>
+constraint_9:~_r_92_93_94 or _r_67_40_45_47
+constraint_10:~_r_92_93_94 or _r_67_42_54_56
+constraint_14:~_r_92_93_95 or _r_67_40_45_46
+constraint_15:~_r_92_93_95 or _r_67_42_54_55
+</constraints>
+</feature_model>

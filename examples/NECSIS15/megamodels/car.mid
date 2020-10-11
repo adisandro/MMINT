@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mid:MID xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editor="http://se.cs.toronto.edu/mmint/MID/Editor" xmlns:mid="http://se.cs.toronto.edu/mmint/MID" xmlns:relationship="http://se.cs.toronto.edu/mmint/MID/Relationship">
+  <models uri="/NECSIS15/megamodels/ACC.classdiagram" name="ACC" metatypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram" dynamic="true" fileExtension="classdiagram" editors="//@editors.0"/>
+  <models uri="/NECSIS15/megamodels/Engine.classdiagram" name="Engine" metatypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram" dynamic="true" fileExtension="classdiagram" editors="//@editors.1"/>
+  <models uri="/NECSIS15/megamodels/Infotainment.classdiagram" name="Infotainment" metatypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram" dynamic="true" fileExtension="classdiagram" editors="//@editors.2"/>
+  <models uri="/NECSIS15/megamodels/PowerWindow.classdiagram" name="PowerWindow" metatypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram" dynamic="true" fileExtension="classdiagram" editors="//@editors.3"/>
+  <models uri="/NECSIS15/megamodels/ACC.statemachine" name="ACC" metatypeUri="http://se.cs.toronto.edu/modelepedia/StateMachine" dynamic="true" origin="CREATED" fileExtension="statemachine" editors="//@editors.4"/>
+  <models uri="/NECSIS15/megamodels/Engine.statemachine" name="Engine" metatypeUri="http://se.cs.toronto.edu/modelepedia/StateMachine" dynamic="true" origin="CREATED" fileExtension="statemachine" editors="//@editors.5"/>
+  <models uri="/NECSIS15/megamodels/Infotainment.statemachine" name="Infotainment" metatypeUri="http://se.cs.toronto.edu/modelepedia/StateMachine" dynamic="true" origin="CREATED" fileExtension="statemachine" editors="//@editors.6"/>
+  <models uri="/NECSIS15/megamodels/PowerWindow.statemachine" name="PowerWindow" metatypeUri="http://se.cs.toronto.edu/modelepedia/StateMachine" dynamic="true" origin="CREATED" fileExtension="statemachine" editors="//@editors.7"/>
+  <models xsi:type="relationship:BinaryModelRel" uri="" name="exec" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel" dynamic="true" origin="CREATED" fileExtension="" sourceModel="//@models.0" targetModel="//@models.4">
+    <modelEndpoints uri="" name="ACC" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0"/>
+    <modelEndpoints uri="" name="ACC" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.4"/>
+    <modelEndpointRefs referencedObject="//@models.8/@modelEndpoints.0" modifiable="true"/>
+    <modelEndpointRefs referencedObject="//@models.8/@modelEndpoints.1" modifiable="true"/>
+  </models>
+  <models xsi:type="relationship:BinaryModelRel" uri="" name="exec" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel" dynamic="true" origin="CREATED" fileExtension="" sourceModel="//@models.1" targetModel="//@models.5">
+    <modelEndpoints uri="" name="Engine" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1"/>
+    <modelEndpoints uri="" name="Engine" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.5"/>
+    <modelEndpointRefs referencedObject="//@models.9/@modelEndpoints.0" modifiable="true"/>
+    <modelEndpointRefs referencedObject="//@models.9/@modelEndpoints.1" modifiable="true"/>
+  </models>
+  <models xsi:type="relationship:BinaryModelRel" uri="" name="exec" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel" dynamic="true" origin="CREATED" fileExtension="" sourceModel="//@models.2" targetModel="//@models.6">
+    <modelEndpoints uri="" name="Infotainment" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.2"/>
+    <modelEndpoints uri="" name="Infotainment" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.6"/>
+    <modelEndpointRefs referencedObject="//@models.10/@modelEndpoints.0" modifiable="true"/>
+    <modelEndpointRefs referencedObject="//@models.10/@modelEndpoints.1" modifiable="true"/>
+  </models>
+  <models xsi:type="relationship:BinaryModelRel" uri="" name="exec" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel" dynamic="true" origin="CREATED" fileExtension="" sourceModel="//@models.3" targetModel="//@models.7">
+    <modelEndpoints uri="" name="PowerWindow" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3"/>
+    <modelEndpoints uri="" name="PowerWindow" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.7"/>
+    <modelEndpointRefs referencedObject="//@models.11/@modelEndpoints.0" modifiable="true"/>
+    <modelEndpointRefs referencedObject="//@models.11/@modelEndpoints.1" modifiable="true"/>
+  </models>
+  <models uri="/NECSIS15/megamodels/Architecture.uml" name="Architecture" metatypeUri="http://www.eclipse.org/uml2/5.0.0/UMLDeploymentDiagram" dynamic="true" origin="CREATED" fileExtension="uml" editors="//@editors.8"/>
+  <models xsi:type="relationship:BinaryModelRel" uri="" name="depl" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel" dynamic="true" origin="CREATED" fileExtension="" sourceModel="//@models.4" targetModel="//@models.12">
+    <modelEndpoints uri="" name="ACC" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.4"/>
+    <modelEndpoints uri="" name="Architecture" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.12"/>
+    <modelEndpointRefs referencedObject="//@models.13/@modelEndpoints.0" modifiable="true"/>
+    <modelEndpointRefs referencedObject="//@models.13/@modelEndpoints.1" modifiable="true"/>
+  </models>
+  <models xsi:type="relationship:BinaryModelRel" uri="" name="depl" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel" dynamic="true" origin="CREATED" fileExtension="" sourceModel="//@models.5" targetModel="//@models.12">
+    <modelEndpoints uri="" name="Engine" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.5"/>
+    <modelEndpoints uri="" name="Architecture" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.12"/>
+    <modelEndpointRefs referencedObject="//@models.14/@modelEndpoints.0" modifiable="true"/>
+    <modelEndpointRefs referencedObject="//@models.14/@modelEndpoints.1" modifiable="true"/>
+  </models>
+  <models xsi:type="relationship:BinaryModelRel" uri="" name="depl" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel" dynamic="true" origin="CREATED" fileExtension="" sourceModel="//@models.6" targetModel="//@models.12">
+    <modelEndpoints uri="" name="Infotainment" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.6"/>
+    <modelEndpoints uri="" name="Architecture" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.12"/>
+    <modelEndpointRefs referencedObject="//@models.15/@modelEndpoints.0" modifiable="true"/>
+    <modelEndpointRefs referencedObject="//@models.15/@modelEndpoints.1" modifiable="true"/>
+  </models>
+  <models xsi:type="relationship:BinaryModelRel" uri="" name="depl" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel" dynamic="true" origin="CREATED" fileExtension="" sourceModel="//@models.7" targetModel="//@models.12">
+    <modelEndpoints uri="" name="PowerWindow" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.7"/>
+    <modelEndpoints uri="" name="Architecture" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.12"/>
+    <modelEndpointRefs referencedObject="//@models.16/@modelEndpoints.0" modifiable="true"/>
+    <modelEndpointRefs referencedObject="//@models.16/@modelEndpoints.1" modifiable="true"/>
+  </models>
+  <editors xsi:type="editor:Diagram" uri="/NECSIS15/megamodels/ACC.classdiagramdiag" name="ClassDiagram diagram for model /NECSIS15/megamodels/ACC.classdiagram" metatypeUri="http://se.cs.toronto.edu/modelepedia/Diagram_ClassDiagram" dynamic="true" modelUri="/NECSIS15/megamodels/ACC.classdiagram" id="edu.toronto.cs.se.modelepedia.classdiagram.diagram.part.ClassDiagramDiagramEditorID" wizardId="edu.toronto.cs.se.modelepedia.classdiagram.diagram.part.ClassDiagramCreationWizardID">
+    <fileExtensions>classdiagramdiag</fileExtensions>
+  </editors>
+  <editors xsi:type="editor:Diagram" uri="/NECSIS15/megamodels/Engine.classdiagramdiag" name="ClassDiagram diagram for model /NECSIS15/megamodels/Engine.classdiagram" metatypeUri="http://se.cs.toronto.edu/modelepedia/Diagram_ClassDiagram" dynamic="true" modelUri="/NECSIS15/megamodels/Engine.classdiagram" id="edu.toronto.cs.se.modelepedia.classdiagram.diagram.part.ClassDiagramDiagramEditorID" wizardId="edu.toronto.cs.se.modelepedia.classdiagram.diagram.part.ClassDiagramCreationWizardID">
+    <fileExtensions>classdiagramdiag</fileExtensions>
+  </editors>
+  <editors xsi:type="editor:Diagram" uri="/NECSIS15/megamodels/Infotainment.classdiagramdiag" name="ClassDiagram diagram for model /NECSIS15/megamodels/Infotainment.classdiagram" metatypeUri="http://se.cs.toronto.edu/modelepedia/Diagram_ClassDiagram" dynamic="true" modelUri="/NECSIS15/megamodels/Infotainment.classdiagram" id="edu.toronto.cs.se.modelepedia.classdiagram.diagram.part.ClassDiagramDiagramEditorID" wizardId="edu.toronto.cs.se.modelepedia.classdiagram.diagram.part.ClassDiagramCreationWizardID">
+    <fileExtensions>classdiagramdiag</fileExtensions>
+  </editors>
+  <editors xsi:type="editor:Diagram" uri="/NECSIS15/megamodels/PowerWindow.classdiagramdiag" name="ClassDiagram diagram for model /NECSIS15/megamodels/PowerWindow.classdiagram" metatypeUri="http://se.cs.toronto.edu/modelepedia/Diagram_ClassDiagram" dynamic="true" modelUri="/NECSIS15/megamodels/PowerWindow.classdiagram" id="edu.toronto.cs.se.modelepedia.classdiagram.diagram.part.ClassDiagramDiagramEditorID" wizardId="edu.toronto.cs.se.modelepedia.classdiagram.diagram.part.ClassDiagramCreationWizardID">
+    <fileExtensions>classdiagramdiag</fileExtensions>
+  </editors>
+  <editors xsi:type="editor:Diagram" uri="/NECSIS15/megamodels/ACC.statemachinediag" name="StateMachine diagram for model /NECSIS15/megamodels/ACC.statemachine" metatypeUri="http://se.cs.toronto.edu/modelepedia/Diagram_StateMachine" dynamic="true" modelUri="/NECSIS15/megamodels/ACC.statemachine" id="edu.toronto.cs.se.modelepedia.statemachine.diagram.part.StateMachineDiagramEditorID" wizardId="edu.toronto.cs.se.modelepedia.statemachine.diagram.part.StateMachineCreationWizardID">
+    <fileExtensions>statemachinediag</fileExtensions>
+  </editors>
+  <editors xsi:type="editor:Diagram" uri="/NECSIS15/megamodels/Engine.statemachinediag" name="StateMachine diagram for model /NECSIS15/megamodels/Engine.statemachine" metatypeUri="http://se.cs.toronto.edu/modelepedia/Diagram_StateMachine" dynamic="true" modelUri="/NECSIS15/megamodels/Engine.statemachine" id="edu.toronto.cs.se.modelepedia.statemachine.diagram.part.StateMachineDiagramEditorID" wizardId="edu.toronto.cs.se.modelepedia.statemachine.diagram.part.StateMachineCreationWizardID">
+    <fileExtensions>statemachinediag</fileExtensions>
+  </editors>
+  <editors xsi:type="editor:Diagram" uri="/NECSIS15/megamodels/Infotainment.statemachinediag" name="StateMachine diagram for model /NECSIS15/megamodels/Infotainment.statemachine" metatypeUri="http://se.cs.toronto.edu/modelepedia/Diagram_StateMachine" dynamic="true" modelUri="/NECSIS15/megamodels/Infotainment.statemachine" id="edu.toronto.cs.se.modelepedia.statemachine.diagram.part.StateMachineDiagramEditorID" wizardId="edu.toronto.cs.se.modelepedia.statemachine.diagram.part.StateMachineCreationWizardID">
+    <fileExtensions>statemachinediag</fileExtensions>
+  </editors>
+  <editors xsi:type="editor:Diagram" uri="/NECSIS15/megamodels/PowerWindow.statemachinediag" name="StateMachine diagram for model /NECSIS15/megamodels/PowerWindow.statemachine" metatypeUri="http://se.cs.toronto.edu/modelepedia/Diagram_StateMachine" dynamic="true" modelUri="/NECSIS15/megamodels/PowerWindow.statemachine" id="edu.toronto.cs.se.modelepedia.statemachine.diagram.part.StateMachineDiagramEditorID" wizardId="edu.toronto.cs.se.modelepedia.statemachine.diagram.part.StateMachineCreationWizardID">
+    <fileExtensions>statemachinediag</fileExtensions>
+  </editors>
+  <editors xsi:type="editor:Diagram" uri="/NECSIS15/megamodels/Architecture.di" name="UML diagram for model /NECSIS15/megamodels/Architecture.uml" metatypeUri="http://www.eclipse.org/uml2/5.0.0/UML_diagram" dynamic="true" modelUri="/NECSIS15/megamodels/Architecture.uml" id="org.eclipse.papyrus.infra.core.papyrusEditor" wizardId="org.eclipse.papyrus.uml.diagram.wizards.createmodel">
+    <fileExtensions>di</fileExtensions>
+  </editors>
+  <extendibleTable key="/NECSIS15/megamodels/ACC.classdiagram" value="//@models.0"/>
+  <extendibleTable key="/NECSIS15/megamodels/Engine.classdiagram" value="//@models.1"/>
+  <extendibleTable key="/NECSIS15/megamodels/Infotainment.classdiagram" value="//@models.2"/>
+  <extendibleTable key="/NECSIS15/megamodels/PowerWindow.classdiagram" value="//@models.3"/>
+  <extendibleTable key="/NECSIS15/megamodels/ACC.statemachine" value="//@models.4"/>
+  <extendibleTable key="/NECSIS15/megamodels/Engine.statemachine" value="//@models.5"/>
+  <extendibleTable key="/NECSIS15/megamodels/Infotainment.statemachine" value="//@models.6"/>
+  <extendibleTable key="/NECSIS15/megamodels/PowerWindow.statemachine" value="//@models.7"/>
+  <extendibleTable key="/NECSIS15/megamodels/Architecture.uml" value="//@models.12"/>
+</mid:MID>

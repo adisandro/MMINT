@@ -1,0 +1,98 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Sun, Apr 8, 2012 - 5:58 PM  -->
+<feature_model name="DATABASE_TOOLS">
+<meta>
+<data name="description">FM_Exercise</data>
+<data name="creator">Eduardo Nóbrega</data>
+<data name="address"></data>
+<data name="email">eggn@cin.ufpe.br</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">CIN/UFPE</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r database_tools(_r)
+	:o Create_and_Alter_wizard(_r_2)
+		:o Database(_r_2_69)
+		:o Table(_r_2_70)
+		:o Procedure(_r_2_71)
+		:o Trigger(_r_2_72)
+	:o Browse(_r_4)
+		:o Database(_r_4_73)
+		:o Table(_r_4_74)
+		:o Procedure(_r_4_75)
+		:o Trigger(_r_4_76)
+	:o Auto_Completion(_r_5)
+	:o Syntax_colored(_r_6)
+	:o Multi_server_support(_r_7)
+	:o User_manager(_r_10)
+	:o Plugin(_r_11)
+	:o Compare(_r_12)
+	:o Import(_r_13)
+		:g (_r_13_36) [1,*] 
+			: SQL script(_r_13_36_37)
+			: Excel multi-sheet(_r_13_36_38)
+			: XML(_r_13_36_39)
+			: XSD(_r_13_36_40)
+			: CSV(_r_13_36_41)
+			: HTML(_r_13_36_42)
+			: JPG(_r_13_36_43)
+			: PNG(_r_13_36_44)
+	:o Debugger(_r_16)
+		:g (_r_16_47) [1,*] 
+			: Oracle(_r_16_47_48)
+			: MySQL(_r_16_47_49)
+			: Sybase(_r_16_47_50)
+			: MS SQL Server(_r_16_47_51)
+			: IBM DB2(_r_16_47_52)
+	:o Source_Control(_r_17)
+		:g (_r_17_53) [1,*] 
+			: SVN(_r_17_53_54)
+			: CVS(_r_17_53_56)
+			: Microsoft Visual SourceSafe(_r_17_53_57)
+			: Merant PVCS(_r_17_53_58)
+			:  MKS Source Integrity(_r_17_53_59)
+			:  ClearCase(_r_17_53_60)
+			: StarTeam(_r_17_53_61)
+			:  TFS(_r_17_53_62)
+			: VSS(_r_17_53_63)
+	:o Export(_r_19)
+		:g (_r_19_25) [1,*] 
+			: CSV(_r_19_25_26)
+			: SQL Script(_r_19_25_27)
+			: Excel(_r_19_25_28)
+			: XML(_r_19_25_29)
+			: Bulk SQL Script(_r_19_25_30)
+			: ODS(_r_19_25_31)
+			: TXT(_r_19_25_32)
+			: DBF(_r_19_25_33)
+	:m OS(_r_64)
+		:g (_r_64_65) [1,*] 
+			: Windows(_r_64_65_66)
+			: Linux(_r_64_65_67)
+			: Mac OS X(_r_64_65_68)
+	:m Programming_Language(_r_77)
+		:g (_r_77_80) [1,1] 
+			: C SHARP(_r_77_80_81)
+			: Java(_r_77_80_82)
+			: C PLUS PLUS(_r_77_80_83)
+			: PHP(_r_77_80_84)
+			: JavaScript(_r_77_80_85)
+			: Object Pascal(_r_77_80_86)
+	:m Database(_r_87)
+		:g (_r_87_88) [1,*] 
+			: Oracle(_r_87_88_89)
+			: MySQL(_r_87_88_90)
+			: Postgre SQL(_r_87_88_91)
+			: SQL Server(_r_87_88_92)
+			: ODBC(_r_87_88_93)
+			: JDBC(_r_87_88_94)
+			: SQLight(_r_87_88_95)
+</feature_tree>
+<constraints>
+constraint_4:_r_64_65_66 or ~_r_77_80_81
+constraint_3:~_r_77_80_81 or ~_r_77_80_82 or ~_r_77_80_83 or ~_r_77_80_84 or ~_r_77_80_86
+</constraints>
+</feature_model>

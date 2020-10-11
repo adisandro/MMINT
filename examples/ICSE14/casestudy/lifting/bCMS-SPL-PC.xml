@@ -1,0 +1,54 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Fri, Sep 6, 2013 - 12:21 PM  -->
+<feature_model name="bCMS system">
+<meta>
+<data name="description">describes a small distributed car crisis management system</data>
+<data name="creator">Istoan Paul</data>
+<data name="address"></data>
+<data name="email">istoanp@yahoo.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">University of Luxembourg</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r bCMS system(_r)
+	:m Non-functional(_r_1)
+		:m Data communication confidentiality(_r_1_50)
+			:g (_r_1_50_51) [1,1] 
+				: Encrypted(_r_1_50_51_52)
+				: Not encrypted(_r_1_50_51_53)
+		:o Authentication(_r_1_54)
+			:g (_r_1_54_55) [1,*] 
+				: Password based(_r_1_54_55_56)
+				: Certificate based(_r_1_54_55_57)
+				: Biometric based(_r_1_54_55_58)
+				: One time password(_r_1_54_55_59)
+				: Challenge-response(_r_1_54_55_60)
+					:g (_r_1_54_55_60_61) [1,1] 
+						: Symmetric encryption(_r_1_54_55_60_61_62)
+						: Mutual authorization(_r_1_54_55_60_61_63)
+						: Kerberos(_r_1_54_55_60_61_64)
+	:m Functional(_r_2)
+		:o Vehicles management(_r_2_9)
+			:g (_r_2_9_10) [1,1] 
+				: No send and receive messages(_r_2_9_10_11)
+				: Other(_r_2_9_10_12)
+					:o PSC send and receive messages(_r_2_9_10_12_13)
+					:o FSC send and receive  messages(_r_2_9_10_12_14)
+					:o PSC and FSC send messages(_r_2_9_10_12_15)
+					:o PSC receive messages(_r_2_9_10_12_16)
+		:o Vehicle management communication protocol(_r_2_17)
+			:o SOAP(_r_2_17_18)
+			:o SSL(_r_2_17_19)
+		:m Crisis multplicity(_r_2_20)
+			:g (_r_2_20_21) [1,1] 
+				: Single(_r_2_20_21_22)
+				: Multiple(_r_2_20_21_23)
+</feature_tree>
+<constraints>
+constraint_2:_r_2_9_10_12_13 or ~_r_2_9_10_12_15
+constraint_3:_r_2_9_10_12_14 or ~_r_2_9_10_12_15
+</constraints>
+</feature_model>

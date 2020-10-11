@@ -1,0 +1,30 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Wed, Oct 17, 2012 - 2:24 PM  -->
+<feature_model name="MobileMedia">
+<meta>
+<data name="description">My feature model</data>
+<data name="creator">Eduardo</data>
+<data name="address"></data>
+<data name="email">ese.dcc@gmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">UFMG</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r MobileMedia-Eduardo(_r)
+	:m Screen(_r_1)
+		:g (_r_1_5) [1,1] 
+			: Screen1(_r_1_5_6)
+			: Screen2(_r_1_5_7)
+			: Screen3(_r_1_5_8)
+	:m Album(_r_2)
+	:o Sorting(_r_3)
+	:o Favorites(_r_4)
+		:o SetFavorites(_r_4_9)
+		:o ViewFavorites(_r_4_10)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

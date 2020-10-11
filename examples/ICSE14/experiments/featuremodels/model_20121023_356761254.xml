@@ -1,0 +1,33 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Tue, Oct 23, 2012 - 11:57 PM  -->
+<feature_model name="aaaaaa">
+<meta>
+<data name="description">ffffgg</data>
+<data name="creator">nnnn</data>
+<data name="address"></data>
+<data name="email">advasquez78@gmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">lkkooi</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r HITORIA CLINICA(_r)
+	:m DATOS PERSONALES(_r_2)
+	:o Feature-4(_r_4)
+	:o Feature-5(_r_5)
+	:g (_r_6) [1,*] 
+		: Feature-7(_r_6_7)
+	:m Feature-8(_r_8)
+	:o Feature-9(_r_9)
+	:o Feature-10(_r_10)
+	:m Feature-11(_r_11)
+	:m Feature-12(_r_12)
+	:o Feature-13(_r_13)
+	:m Feature-14(_r_14)
+</feature_tree>
+<constraints>
+constraint_5:_r or _r_2 or _r_4 or _r_5 or _r_6_7 or _r_8 or _r_9 or _r_10 or _r_11 or _r_12 or _r_13 or _r_14
+</constraints>
+</feature_model>

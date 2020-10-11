@@ -1,0 +1,41 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Fri, Jun 8, 2012 - 1:07 PM  -->
+<feature_model name="Software Engineering Course">
+<meta>
+<data name="description">SE-Course</data>
+<data name="creator">Cecilia Bastarrica</data>
+<data name="address"></data>
+<data name="email">cecilia@dcc.uchile.cl</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">DCC-UChile</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r RE-CC51A(_r)
+	:o Exploration(_r_1)
+	:m User Requirements Specification and Validation(_r_2)
+	:m Software Requirement Specification and Validation(_r_3)
+		:m Software Requirement Specification(_r_3_4)
+		:o Operational Prototyping(_r_3_5)
+		:m Software Requirement Validation(_r_3_6)
+			:g (_r_3_6_7) [1,1] 
+				: Prototype Based Validation(_r_3_6_7_8)
+				: Internal Validation(_r_3_6_7_9)
+	:m Roles(_r_10)
+		:m Analyst(_r_10_11)
+		:m Designer(_r_10_12)
+		:m Programmer(_r_10_22)
+	:m WorkProducts(_r_14)
+		:m User Requirements Specification(_r_14_16)
+		:m Software Requirements Specification(_r_14_17)
+		:m Log(_r_14_19)
+		:o Operational Prototype(_r_14_21)
+</feature_tree>
+<constraints>
+constraint_1:_r_3_5 or ~_r_3_6_7_8
+constraint_2:~_r_3_6_7_8 or _r_14_21
+constraint_3:_r_3_6_7_8 or ~_r_14_21
+</constraints>
+</feature_model>

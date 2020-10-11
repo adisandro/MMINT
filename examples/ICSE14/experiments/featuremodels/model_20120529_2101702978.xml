@@ -1,0 +1,82 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Fri, Jun 28, 2013 - 5:12 PM  -->
+<feature_model name="Smartphone-SPL">
+<meta>
+<data name="description">SPl for Smartphones</data>
+<data name="creator">JBSP</data>
+<data name="address"></data>
+<data name="email">ju1988lia-splot@yahoo.de</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">FH</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Smartphone-SPL(_r)
+	:m Base-OS(_r_1)
+		:g (_r_1_11) [1,1] 
+			: Android(_r_1_11_12)
+			: WindowsPhone(_r_1_11_13)
+			: BlackBerry OS(_r_1_11_40)
+	:m InstalledApps(_r_2)
+		:g (_r_2_3) [1,*] 
+			: Email(_r_2_3_4)
+			: Browser(_r_2_3_5)
+			: Calendar(_r_2_3_6)
+			: AppStore(_r_2_3_7)
+			: AlarmClock(_r_2_3_8)
+			: Calculator(_r_2_3_9)
+			: Camera(_r_2_3_10)
+	:m Device-Drivers(_r_17)
+		:g (_r_17_18) [1,*] 
+			: Bluetooth(_r_17_18_19)
+			: WLAN(_r_17_18_21)
+			: GPS(_r_17_18_22)
+			: Acceleration-Sensor(_r_17_18_23)
+			: Light-Sensor(_r_17_18_24)
+			: Position-Sensor(_r_17_18_25)
+			: Camera(_r_17_18_26)
+		:m Base-Device-Driver-Package(_r_17_20)
+			:g (_r_17_20_27) [1,1] 
+				: HTC-Package(_r_17_20_27_28)
+				: Samsung-Package(_r_17_20_27_35)
+				: LG-Package(_r_17_20_27_36)
+				: Motorola-Package(_r_17_20_27_37)
+				: Sony-Package(_r_17_20_27_38)
+				: Blackberry-Package(_r_17_20_27_41)
+	:m Manufacturer(_r_29)
+		:g (_r_29_30) [1,1] 
+			: HTC(_r_29_30_31)
+			: Samsung(_r_29_30_32)
+			: LG(_r_29_30_33)
+			: Motorola(_r_29_30_34)
+			: Sony(_r_29_30_39)
+			: Blackberry(_r_29_30_42)
+</feature_tree>
+<constraints>
+constraint_1:~_r_17_20_27_38 or _r_29_30_39
+constraint_18:_r_1_11_12 or _r_1_11_13 or ~_r_29_30_32
+constraint_19:_r_1_11_12 or _r_1_11_13 or ~_r_29_30_33
+constraint_22:~_r_2_3_10 or _r_17_18_26
+constraint_8:~_r_29_30_33 or _r_17_20_27_36
+constraint_9:_r_29_30_32 or ~_r_17_20_27_35
+constraint_10:~_r_29_30_32 or _r_17_20_27_35
+constraint_20:_r_1_11_12 or ~_r_29_30_39
+constraint_6:~_r_29_30_34 or _r_17_20_27_37
+constraint_11:_r_17_20_27_41 or ~_r_29_30_42
+constraint_21:_r_2_3_10 or ~_r_17_18_26
+constraint_7:_r_29_30_33 or ~_r_17_20_27_36
+constraint_12:_r_1_11_40 or ~_r_29_30_42
+constraint_26:_r_2_3_7 or ~_r_1_11_13
+constraint_4:~_r_17_20_27_28 or _r_29_30_31
+constraint_13:~_r_17_20_27_41 or _r_29_30_42
+constraint_27:_r_2_3_7 or ~_r_1_11_40
+constraint_14:~_r_1_11_40 or _r_29_30_42
+constraint_5:_r_29_30_34 or ~_r_17_20_27_37
+constraint_2:_r_17_20_27_38 or ~_r_29_30_39
+constraint_25:_r_2_3_7 or ~_r_1_11_12
+constraint_16:_r_1_11_12 or _r_1_11_13 or ~_r_29_30_31
+constraint_3:_r_17_20_27_28 or ~_r_29_30_31
+</constraints>
+</feature_model>

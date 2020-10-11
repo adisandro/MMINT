@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<istar_mavo:IStar xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:istar_mavo="http://se.cs.toronto.edu/modelepedia/IStar_MAVO">
+  <actors name="Meeting Initiator">
+    <intentions xsi:type="istar_mavo:Goal" name="Meeting Be Scheduled MI" linksAsTgt="//@actors.0/@intentions.1/@linksAsSrc.0 //@actors.0/@intentions.2/@linksAsSrc.0">
+      <linksAsSrc xsi:type="istar_mavo:Decomposition" tgt="//@actors.0/@intentions.3"/>
+    </intentions>
+    <intentions xsi:type="istar_mavo:Task" name="Ways To Organize Meeting" fullySatisfied="true">
+      <linksAsSrc xsi:type="istar_mavo:MeansEnd" tgt="//@actors.0/@intentions.0"/>
+      <linksAsSrc xsi:type="istar_mavo:Contribution" tgt="//@actors.0/@intentions.4" type="UNKNOWN"/>
+      <linksAsSrc xsi:type="istar_mavo:Contribution" tgt="//@actors.0/@intentions.5" type="UNKNOWN"/>
+    </intentions>
+    <intentions xsi:type="istar_mavo:Task" dependenciesAsDepender="//@dependums.1/@dependerLinks.0" name="Let Scheduler Schedule Meeting">
+      <linksAsSrc xsi:type="istar_mavo:MeansEnd" tgt="//@actors.0/@intentions.0"/>
+      <linksAsSrc xsi:type="istar_mavo:Contribution" tgt="//@actors.0/@intentions.4" type="HELP"/>
+      <linksAsSrc xsi:type="istar_mavo:Contribution" tgt="//@actors.0/@intentions.5" type="HELP"/>
+    </intentions>
+    <intentions xsi:type="istar_mavo:Task" dependenciesAsDepender="//@dependums.0/@dependerLinks.0" name="Organize Meeting" linksAsTgt="//@actors.0/@intentions.4/@linksAsSrc.0 //@actors.0/@intentions.0/@linksAsSrc.0 //@actors.0/@intentions.5/@linksAsSrc.0"/>
+    <intentions xsi:type="istar_mavo:SoftGoal" name="Quick" linksAsTgt="//@actors.0/@intentions.1/@linksAsSrc.1 //@actors.0/@intentions.2/@linksAsSrc.1">
+      <linksAsSrc xsi:type="istar_mavo:Decomposition" tgt="//@actors.0/@intentions.3"/>
+    </intentions>
+    <intentions xsi:type="istar_mavo:SoftGoal" name="Low Effort MI" linksAsTgt="//@actors.0/@intentions.1/@linksAsSrc.2 //@actors.0/@intentions.2/@linksAsSrc.2">
+      <linksAsSrc xsi:type="istar_mavo:Decomposition" tgt="//@actors.0/@intentions.3"/>
+    </intentions>
+  </actors>
+  <actors name="Meeting Scheduler">
+    <intentions xsi:type="istar_mavo:Task" dependenciesAsDepender="//@dependums.2/@dependerLinks.0" dependenciesAsDependee="//@dependums.1/@dependeeLinks.0" name="Schedule Meeting"/>
+  </actors>
+  <actors name="Meeting Participant">
+    <intentions xsi:type="istar_mavo:Task" dependenciesAsDependee="//@dependums.0/@dependeeLinks.0" name="Participate In Meeting" linksAsTgt="//@actors.2/@intentions.1/@linksAsSrc.0 //@actors.2/@intentions.2/@linksAsSrc.0 //@actors.2/@intentions.3/@linksAsSrc.0 //@actors.2/@intentions.4/@linksAsSrc.0 //@actors.2/@intentions.7/@linksAsSrc.0"/>
+    <intentions xsi:type="istar_mavo:Task" name="Attend Meeting" fullySatisfied="true">
+      <linksAsSrc xsi:type="istar_mavo:Decomposition" tgt="//@actors.2/@intentions.0"/>
+    </intentions>
+    <intentions xsi:type="istar_mavo:Task" may="true" dependenciesAsDependee="//@dependums.2/@dependeeLinks.0" name="Provide Details" linksAsTgt="//@actors.2/@intentions.6/@linksAsSrc.0">
+      <linksAsSrc xsi:type="istar_mavo:Decomposition" may="true" tgt="//@actors.2/@intentions.0"/>
+    </intentions>
+    <intentions xsi:type="istar_mavo:Goal" var="true" name="Agreeable Meeting Date" fullySatisfied="true">
+      <linksAsSrc xsi:type="istar_mavo:Decomposition" var="true" tgt="//@actors.2/@intentions.0"/>
+    </intentions>
+    <intentions xsi:type="istar_mavo:Goal" may="true" var="true" name="Convenient Meeting Date" linksAsTgt="//@actors.2/@intentions.5/@linksAsSrc.0">
+      <linksAsSrc xsi:type="istar_mavo:Decomposition" may="true" var="true" tgt="//@actors.2/@intentions.0"/>
+    </intentions>
+    <intentions xsi:type="istar_mavo:Task" may="true" name="Decide Convenient Dates" fullyDenied="true">
+      <linksAsSrc xsi:type="istar_mavo:MeansEnd" may="true" tgt="//@actors.2/@intentions.4"/>
+    </intentions>
+    <intentions xsi:type="istar_mavo:SoftGoal" name="Low Effort MP" fullySatisfied="true">
+      <linksAsSrc xsi:type="istar_mavo:Decomposition" may="true" tgt="//@actors.2/@intentions.2"/>
+    </intentions>
+    <intentions xsi:type="istar_mavo:Task" may="true" name="Use Profiles" fullyDenied="true">
+      <linksAsSrc xsi:type="istar_mavo:Decomposition" may="true" tgt="//@actors.2/@intentions.0"/>
+    </intentions>
+  </actors>
+  <actors var="true" name="Date Determiner">
+    <intentions xsi:type="istar_mavo:Task" name="Determine Meeting Date" fullySatisfied="true"/>
+  </actors>
+  <dependums xsi:type="istar_mavo:Goal" may="true" name="Dependencies">
+    <dependerLinks may="true" depender="//@actors.0/@intentions.3"/>
+    <dependeeLinks may="true" dependee="//@actors.2/@intentions.0"/>
+  </dependums>
+  <dependums xsi:type="istar_mavo:Goal" name="Meeting Be Scheduled">
+    <dependerLinks depender="//@actors.0/@intentions.2"/>
+    <dependeeLinks dependee="//@actors.1/@intentions.0"/>
+  </dependums>
+  <dependums xsi:type="istar_mavo:Resource" name="Details">
+    <dependerLinks depender="//@actors.1/@intentions.0"/>
+    <dependeeLinks may="true" dependee="//@actors.2/@intentions.2"/>
+  </dependums>
+</istar_mavo:IStar>

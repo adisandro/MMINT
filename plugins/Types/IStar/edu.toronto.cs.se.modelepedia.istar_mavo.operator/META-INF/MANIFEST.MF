@@ -1,0 +1,23 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.istar_mavo.operator;singleton:=true
+Bundle-Version: 2.6.0
+Bundle-Vendor: %providerName
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.acceleo.engine,
+ org.eclipse.core.resources,
+ org.eclipse.emf.validation,
+ org.eclipse.jdt.annotation;resolution:=optional,
+ edu.toronto.cs.se.mavo,
+ edu.toronto.cs.se.mmint,
+ edu.toronto.cs.se.mmint.mavo,
+ edu.toronto.cs.se.modelepedia.istar_mavo,
+ edu.toronto.cs.se.modelepedia.libz3java,
+ edu.toronto.cs.se.modelepedia.z3
+Bundle-RequiredExecutionEnvironment: JavaSE-14
+Bundle-ActivationPolicy: lazy
+Eclipse-LazyStart: true
+Export-Package: edu.toronto.cs.se.modelepedia.istar_mavo.operator
+Bundle-ClassPath: .
+

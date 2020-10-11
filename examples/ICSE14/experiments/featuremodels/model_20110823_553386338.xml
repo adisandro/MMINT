@@ -1,0 +1,40 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Wed, Aug 24, 2011 - 1:37 PM  -->
+<feature_model name="Diagrama de Experimento">
+<meta>
+<data name="description">Arbol de características</data>
+<data name="creator">Edison Espinosa</data>
+<data name="address"></data>
+<data name="email">edison_eg@yahoo.es</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">ESPE</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Experimento(_r)
+	:m Tecnica(_r_1)
+		:m TEstatica(_r_1_4)
+			:m ReCodigo(_r_1_4_6)
+				:m AbSucesivas(_r_1_4_6_22)
+		:m TDinamica(_r_1_5)
+			:m Tfuncionales(_r_1_5_7)
+				:m ParClaEqui(_r_1_5_7_9)
+				:o AnaVaLi(_r_1_5_7_10)
+			:m Testructurales(_r_1_5_8)
+				:o CobDec(_r_1_5_8_11)
+				:o CobSent(_r_1_5_8_12)
+	:m Programa(_r_2)
+		:m Cmdline(_r_2_13)
+		:m Ntree(_r_2_14)
+		:m Namtable(_r_2_15)
+		:o Trade(_r_2_16)
+	:m Falta(_r_3)
+		:o 9Faltas(_r_3_17)
+		:o 7Faltas(_r_3_18)
+		:o 6Faltas(_r_3_19)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

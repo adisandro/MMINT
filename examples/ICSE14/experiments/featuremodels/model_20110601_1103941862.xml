@@ -1,0 +1,34 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Wed, Jun 1, 2011 - 5:44 AM  -->
+<feature_model name="Text Editor">
+<meta>
+<data name="description">A Text editor</data>
+<data name="creator">Peter Z</data>
+<data name="address"></data>
+<data name="email">p_zeller@cs.uni-kl.de</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">uni kl</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Text Editor(_r)
+	:m Text Editing(_r_1)
+		:o Code Editing(_r_1_2)
+			:o Syntax Highlighting(_r_1_2_3)
+				:g (_r_1_2_3_4) [1,1] 
+					: Java(_r_1_2_3_4_5)
+					: Python(_r_1_2_3_4_6)
+					: Haskell(_r_1_2_3_4_7)
+		:o RTF Editing(_r_1_8)
+	:m File Operations(_r_9)
+		:m Load(_r_9_10)
+		:m Save(_r_9_11)
+		:o Print(_r_9_12)
+</feature_tree>
+<constraints>
+constraint_1:~_r_1_2 or ~_r_1_8
+constraint_3:~_r_1_8 or _r_9_12
+</constraints>
+</feature_model>

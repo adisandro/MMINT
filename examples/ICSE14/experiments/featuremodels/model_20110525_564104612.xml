@@ -1,0 +1,54 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Wed, May 25, 2011 - 8:52 AM  -->
+<feature_model name="body comfort system">
+<meta>
+<data name="description">body comfort system for vehicles</data>
+<data name="creator">Sebastian Oster</data>
+<data name="address"></data>
+<data name="email">oster@es.tu-darmstadt.de</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">TU-Darmstadt</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r body comfort system(_r)
+	:m human machine interface(_r_1)
+		:o status LED(_r_1_2)
+			:g (_r_1_2_5) [1,*] 
+				: LED central locking system(_r_1_2_5_6)
+				: LED power window(_r_1_2_5_7)
+				: LED heat exterior mirror(_r_1_2_5_8)
+				: LED exterior mirror(_r_1_2_5_9)
+				: LED alarm system(_r_1_2_5_10)
+				: LED finger protection(_r_1_2_5_11)
+	:o security(_r_12)
+		:o central locking system(_r_12_13)
+			:o automatic locking(_r_12_13_15)
+		:o remote control key(_r_12_14)
+			:o control alarm system(_r_12_14_16)
+			:o adjust exterior mirror(_r_12_14_17)
+			:o safety function(_r_12_14_18)
+			:o control automatic power window(_r_12_14_19)
+		:o alarm system(_r_12_20)
+			:o interior monitoring(_r_12_20_21)
+	:m door system(_r_22)
+		:m power window(_r_22_23)
+			:g (_r_22_23_24) [1,1] 
+				: manual power window(_r_22_23_24_25)
+				: automatic power window(_r_22_23_24_26)
+			:m finger protection(_r_22_23_27)
+		:m exterior mirror(_r_22_28)
+			:m electric(_r_22_28_29)
+			:o heatable(_r_22_28_30)
+</feature_tree>
+<constraints>
+constraint_1:~_r_1_2_5_6 or _r_12_13
+constraint_6:~_r_12_14_19 or ~_r_22_23_24_25
+constraint_4:_r_12_13 or ~_r_12_14
+constraint_5:~_r_12_14_16 or _r_12_20
+constraint_2:~_r_1_2_5_8 or _r_22_28_30
+constraint_3:~_r_1_2_5_10 or _r_12_20
+</constraints>
+</feature_model>

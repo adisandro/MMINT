@@ -1,0 +1,38 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Thu, Oct 18, 2012 - 9:57 AM  -->
+<feature_model name="MobileMedia_BrunoAquino">
+<meta>
+<data name="description">Exercicio</data>
+<data name="creator">BrunoAquino</data>
+<data name="address"></data>
+<data name="email">bruno_aquino@hotmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">UFMG</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Mobile Media(_r)
+	:m Media Selection(_r_1)
+		:g (_r_1_3) [1,*] 
+			: Photo(_r_1_3_4)
+			: Music(_r_1_3_13)
+			: Video(_r_1_3_14)
+	:m Screen Size(_r_2)
+		:g (_r_2_15) [1,1] 
+			: Screen1(_r_2_15_16)
+			: Screen2(_r_2_15_17)
+			: Screen3(_r_2_15_18)
+	:m Media Management(_r_11)
+		:o Favourites(_r_11_19)
+			:m SetFavourites(_r_11_19_22)
+			:m ViewFavourites(_r_11_19_23)
+		:o CopyMedia(_r_11_20)
+		:o SMSTransfer(_r_11_21)
+			:o ReceivePhoto(_r_11_21_24)
+			:o SendPhoto(_r_11_21_25)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

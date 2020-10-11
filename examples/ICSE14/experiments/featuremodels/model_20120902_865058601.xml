@@ -1,0 +1,43 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Sun, Sep 2, 2012 - 10:45 PM  -->
+<feature_model name="Agencia de Propaganda">
+<meta>
+<data name="description">Agencia</data>
+<data name="creator">Roberto Rocha</data>
+<data name="address"></data>
+<data name="email">rsrocha (no domínio usp.br)</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">USP</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Agencia de Propaganda(_r)
+	:m Midia(_r_1)
+		:g (_r_1_2) [1,*] 
+			: Impressa(_r_1_2_3)
+			: Eletronica(_r_1_2_4)
+			: Digital(_r_1_2_5)
+	:m Marketing Promocional(_r_6)
+		:g (_r_6_7) [1,*] 
+			: Distribuicao e Apresentacao do Produto ou Servico(_r_6_7_8)
+			: Ofertas Monetarias(_r_6_7_9)
+			: Ofertas Nao-Monetarias(_r_6_7_10)
+			: Eventos Promocionais(_r_6_7_11)
+	:o Suporte a Outros Parceiros Comerciais(_r_12)
+		:m Seguranca(_r_12_13)
+			:g (_r_12_13_14) [1,*] 
+				: Com controle(_r_12_13_14_15)
+				: Sem controle(_r_12_13_14_16)
+		:m Disponibilidade(_r_12_17)
+			:g (_r_12_17_20) [1,*] 
+				: Com controle(_r_12_17_20_21)
+				: Sem controle(_r_12_17_20_22)
+		:m Tempo-de-Espera(_r_12_18)
+		:m Tempo-de-Resposta(_r_12_19)
+</feature_tree>
+<constraints>
+constraint_2:_r_12_13_14_15 or _r_12_13_14_16
+</constraints>
+</feature_model>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mavomid="http://se.cs.toronto.edu/mmint/MAVOMID" xmlns:mid="http://se.cs.toronto.edu/mmint/MID" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmi:id="_atiH0KYMEeKwZONKBvD2FQ" type="MID" name="analysis.middiag" measurementUnit="Pixel">
+  <children xmi:type="notation:Node" xmi:id="_cFc9AKYMEeKwZONKBvD2FQ" type="2002">
+    <children xmi:type="notation:DecorationNode" xmi:id="_cFdkEKYMEeKwZONKBvD2FQ" type="5003"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_cFdkEaYMEeKwZONKBvD2FQ" type="5004"/>
+    <styles xmi:type="notation:DescriptionStyle" xmi:id="_cFc9AaYMEeKwZONKBvD2FQ"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_cFc9AqYMEeKwZONKBvD2FQ" fontName="Ubuntu"/>
+    <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_cFc9A6YMEeKwZONKBvD2FQ" hint="Mid"/>
+    <element xmi:type="mavomid:MAVOModel" href="analysis.mid#//@models.0"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_cFc9BKYMEeKwZONKBvD2FQ" x="24" y="25"/>
+  </children>
+  <children xmi:type="notation:Node" xmi:id="_7w6CIKYMEeKwZONKBvD2FQ" type="2002">
+    <children xmi:type="notation:DecorationNode" xmi:id="_7w6pNKYMEeKwZONKBvD2FQ" type="5003"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_7w6pNaYMEeKwZONKBvD2FQ" type="5004"/>
+    <styles xmi:type="notation:DescriptionStyle" xmi:id="_7w6pMKYMEeKwZONKBvD2FQ"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_7w6pMaYMEeKwZONKBvD2FQ" fontName="Ubuntu"/>
+    <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_7w6pMqYMEeKwZONKBvD2FQ" hint="Mid"/>
+    <element xmi:type="mavomid:MAVOModel" href="analysis.mid#//@models.1"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_7w6pM6YMEeKwZONKBvD2FQ" x="233" y="29"/>
+  </children>
+  <children xmi:type="notation:Node" xmi:id="_EXTqcKbBEeKNiORbt5t_Uw" type="2002">
+    <children xmi:type="notation:DecorationNode" xmi:id="_EXURgKbBEeKNiORbt5t_Uw" type="5003"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_EXURgabBEeKNiORbt5t_Uw" type="5004"/>
+    <styles xmi:type="notation:DescriptionStyle" xmi:id="_EXTqcabBEeKNiORbt5t_Uw"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_EXTqcqbBEeKNiORbt5t_Uw" fontName="Ubuntu"/>
+    <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_EXTqc6bBEeKNiORbt5t_Uw" hint="Mid"/>
+    <element xmi:type="mavomid:MAVOModel" href="analysis.mid#//@models.2"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_EXTqdKbBEeKNiORbt5t_Uw" x="433" y="30"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_atiH0aYMEeKwZONKBvD2FQ"/>
+  <element xmi:type="mid:MID" href="analysis.mid#/"/>
+</notation:Diagram>

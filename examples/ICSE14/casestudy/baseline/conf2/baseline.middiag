@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mavomid="http://se.cs.toronto.edu/mmint/MAVOMID" xmlns:mid="http://se.cs.toronto.edu/mmint/MID" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmi:id="_gon_UBsSEeOrAMSJAcRL7w" type="MID" name="baseline.middiag" measurementUnit="Pixel">
+  <children xmi:type="notation:Node" xmi:id="_iW1NkBsSEeOrAMSJAcRL7w" type="2002">
+    <children xmi:type="notation:DecorationNode" xmi:id="_iW10pBsSEeOrAMSJAcRL7w" type="5003"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_iW10pRsSEeOrAMSJAcRL7w" type="5004"/>
+    <styles xmi:type="notation:DescriptionStyle" xmi:id="_iW10oBsSEeOrAMSJAcRL7w"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_iW10oRsSEeOrAMSJAcRL7w" fontName="Cantarell" fontHeight="10"/>
+    <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_iW10ohsSEeOrAMSJAcRL7w" hint="Mid"/>
+    <element xmi:type="mid:Model" href="baseline.mid#//@models.0"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_iW10oxsSEeOrAMSJAcRL7w" x="98" y="46"/>
+  </children>
+  <children xmi:type="notation:Node" xmi:id="_jHdZQBsSEeOrAMSJAcRL7w" type="2001">
+    <children xmi:type="notation:DecorationNode" xmi:id="_jHeAUBsSEeOrAMSJAcRL7w" type="5001"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_jHeAURsSEeOrAMSJAcRL7w" type="5002"/>
+    <styles xmi:type="notation:DescriptionStyle" xmi:id="_jHdZQRsSEeOrAMSJAcRL7w"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_jHdZQhsSEeOrAMSJAcRL7w" fontName="Cantarell" fontHeight="10"/>
+    <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_jHdZQxsSEeOrAMSJAcRL7w" hint="Mid"/>
+    <element xmi:type="mavomid:MAVOModel" href="baseline.mid#//@models.1"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jHdZRBsSEeOrAMSJAcRL7w" x="96" y="252"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_gon_URsSEeOrAMSJAcRL7w"/>
+  <element xmi:type="mid:MID" href="baseline.mid#/"/>
+</notation:Diagram>

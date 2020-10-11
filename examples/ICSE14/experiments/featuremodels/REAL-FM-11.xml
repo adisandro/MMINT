@@ -1,0 +1,96 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Thu, May 19, 2011 - 7:47 AM  -->
+<feature_model name="HIS">
+<meta>
+<data name="description">This model describes the features of a possible home integration system.</data>
+<data name="creator">Kyo Kang</data>
+<data name="address"></data>
+<data name="email">imran@dcs.gla.ac.uk</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">University of Glasgow, UK</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference">Kyo Kang, Jaejoon Lee, and Patrick Donohoe. Feature-oriented product line engineering. Software, IEEE, 19(4):58?65, Jul/Aug 2002.</data>
+</meta>
+<feature_tree>
+:r his(_id_0)
+	:m services(_id_1)
+		:m security(_id_2)
+		:m intrusion(_id_3)
+			:m detection(_id_4)
+				:m motion(_id_5)
+					:m monitoring_detecting(_id_6)
+						:g (_id_7) [1,1] 
+							: discrete_value(_id_8)
+							: continuous_value(_id_9)
+			:m action(_id_10)
+				:m door_operation(_id_11)
+				:m alarm(_id_12)
+				:o message(message)
+					:o data(_id_13)
+					:m voice(_id_14)
+		:m fire(_id_15)
+			:m detection(_id_16)
+				:m smoke(_id_17)
+					:m monitoring_detecting(_id_18)
+						:g (_id_19) [1,1] 
+							: discrete_value(_id_20)
+							: continuous_value(_id_21)
+			:m action(_id_22)
+				:m water(water)
+				:o gas(_id_23)
+		:o flood(flood)
+			:m detection(_id_24)
+				:m moisture(_id_25)
+					:m monitoring_detecting(_id_26)
+						:g (_id_27) [1,1] 
+							: discrete_value(_id_28)
+							: continuous_value(_id_29)
+			:m action(_id_30)
+				:m water_main(_id_31)
+				:o pumping(pumping)
+	:m administration(_id_32)
+		:m hmi(_id_33)
+			:g (_id_34) [1,1] 
+				: standard(_id_35)
+				: advanced(_id_36)
+	:o communication(communication)
+		:m telephone(_id_37)
+		:o internet(_id_38)
+			:m connection(_id_39)
+				:g (_id_40) [1,1] 
+					: tcp(_id_41)
+					: udp(_id_42)
+	:m detection_devices(_id_43)
+		:m motion_sensor(_id_44)
+		:m skoke_sensor(_id_45)
+		:o moisture_sensor(moisture_sensor)
+	:m action_devices(_id_46)
+		:m sprinkler(sprinkler)
+		:o sump_pump(sump_pump)
+	:m monitor_control(_id_47)
+		:m direct(_id_48)
+		:m scheduled(_id_49)
+			:m periodic(_id_50)
+			:m one_time(_id_51)
+		:m responding_strategy(_id_52)
+			:o sequential(_id_53)
+			:m priority(_id_54)
+		:m event_based(_id_55)
+	:m quality_attributes(_id_56)
+		:m usability(_id_57)
+		:m scalability(_id_58)
+		:m reliability(_id_59)
+			:m redundancy_control(_id_60)
+				:g (_id_61) [1,1] 
+					: active(_id_62)
+					: standby(_id_63)
+		:m safety(_id_64)
+</feature_tree>
+<constraints>
+c1:~water or sprinkler
+c2:~pumping or sump_pump
+c4:~message or communication
+c3:~flood or moisture_sensor
+</constraints>
+</feature_model>

@@ -1,0 +1,39 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Wed, May 29, 2013 - 5:25 PM  -->
+<feature_model name="MobileMedia_Diego">
+<meta>
+<data name="description">MobileMedia_Diego</data>
+<data name="creator">Diego</data>
+<data name="address"></data>
+<data name="email">diego.l.albuquerque@gmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">Diego</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r MobileMedia(_r)
+	:m MediaSelection(_r_26)
+		:g (_r_26_32) [1,*] 
+			: Music(_r_26_32_35)
+			: Video(_r_26_32_36)
+			: Photo(_r_26_32_50)
+	:m ScreenSize(_r_27)
+		:g (_r_27_37) [1,1] 
+			: Screen1(_r_27_37_38)
+			: Screen2(_r_27_37_39)
+	:m MediaManagement(_r_41)
+		:m Favourites(_r_41_42)
+			:m SetFavourites(_r_41_42_45)
+			:m ViewFavourites(_r_41_42_46)
+		:o CopyMedia(_r_41_43)
+		:o SMSTransfer(_r_41_44)
+			:o ReceivePhoto(_r_41_44_47)
+			:o SendPhoto(_r_41_44_48)
+</feature_tree>
+<constraints>
+constraint_2:~_r_41_43 or _r_41_44
+constraint_3:~_r_27_37_38 or _r_26_32_50
+</constraints>
+</feature_model>

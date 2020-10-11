@@ -1,0 +1,168 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Wed, Jan 4, 2012 - 9:58 AM  -->
+<feature_model name="Billing">
+<meta>
+<data name="description">Billing</data>
+<data name="creator">Priya</data>
+<data name="address"></data>
+<data name="email">priya1.g@tcs.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">TCS</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Billing(_r)
+	:m Billing Period(_r_1)
+		:o Monthly(_r_1_2)
+		:o Quaterly(_r_1_4)
+		:o One-Time(_r_1_5)
+		:o 15 Days(_r_1_19)
+	:m Invoice Generation(_r_6)
+		:o Billing Process(_r_6_7)
+		:o Manually(_r_6_8)
+	:m Payment Mode(_r_9)
+		:o Credit card(_r_9_10)
+		:o Debit card(_r_9_11)
+		:o Debit From Bank Account(_r_9_12)
+		:o Cheque(_r_9_13)
+		:o Draft(_r_9_14)
+	:m Roles(_r_20)
+		:o Administrator(_r_20_21)
+			:o Create Item(_r_20_21_34)
+			:o Edit Item(_r_20_21_36)
+			:o Create Customer(_r_20_21_37)
+			:o Edit Customer(_r_20_21_38)
+			:o Delete Customer(_r_20_21_39)
+			:m Create Company(_r_20_21_84)
+			:o Invoice Generation(_r_20_21_85)
+			:o Create Item Types(_r_20_21_86)
+			:o Edit Item Types(_r_20_21_87)
+			:o Enable Currency(_r_20_21_88)
+			:o Create Order Period(_r_20_21_89)
+			:o Create Promotions(_r_20_21_90)
+			:o Search Customer(_r_20_21_91)
+			:o Invoice Numbering(_r_20_21_93)
+			:o Reports(_r_20_21_94)
+		:o Customer(_r_20_22)
+			:o Edit Customer Details(_r_20_22_40)
+			:o Make Payment(_r_20_22_41)
+			:o Sub accounts(_r_20_22_43)
+			:o Place Order(_r_20_22_61)
+			:o Edit Order(_r_20_22_92)
+	:m Items(_r_28)
+		:m Item Type(_r_28_29)
+			:g (_r_28_29_30) [1,1] 
+				: Items(_r_28_29_30_31)
+				: Tax(_r_28_29_30_32)
+				: Penalty(_r_28_29_30_33)
+	:m Invoice Delivery Method(_r_44)
+		:o Email(_r_44_45)
+		:o paper(_r_44_46)
+		:o Email and paper(_r_44_47)
+	:m Balance Type(_r_48)
+		:o None(_r_48_49)
+		:o Credit Limit(_r_48_50)
+		:o Per-Paid Balance(_r_48_51)
+	:o Subscription(_r_57)
+		:o Monthly(_r_57_58)
+		:o Quaterly(_r_57_59)
+		:o Yearly(_r_57_60)
+	:m Test Cases(_r_49)
+		:g (_r_49_50) [1,*] 
+			: Testcase 1(_r_49_50_51)
+			: Testcase 2(_r_49_50_52)
+			: Testcase 3(_r_49_50_53)
+			: Testcase 4(_r_49_50_54)
+			: Testcase 5(_r_49_50_55)
+			: Testcase 6(_r_49_50_56)
+			: Testcase 7(_r_49_50_57)
+			: Testcase 8(_r_49_50_58)
+			: Testcase 9(_r_49_50_59)
+			: Testcase 10(_r_49_50_60)
+			: Testcase 11(_r_49_50_61)
+			: Testcase 12(_r_49_50_62)
+			: Testcase 13(_r_49_50_63)
+			: Testcase 14(_r_49_50_64)
+			: Testcase 15(_r_49_50_65)
+			: Testcase 16(_r_49_50_66)
+			: Testcase 17(_r_49_50_67)
+			: Testcase 18(_r_49_50_68)
+			: Testcase 19(_r_49_50_69)
+			: Testcase 20(_r_49_50_70)
+			: Testcase 21(_r_49_50_71)
+			: Testcase 22(_r_49_50_72)
+			: Testcase 23(_r_49_50_73)
+			: Testcase 24(_r_49_50_74)
+			: Testcase 25(_r_49_50_75)
+			: Testcase 26(_r_49_50_76)
+			: Testcase 27(_r_49_50_77)
+			: Testcase 28(_r_49_50_78)
+	:m Billing Type(_r_79)
+		:o Postpaid(_r_79_80)
+		:o Prepaid(_r_79_81)
+	:o Promotions(_r_83)
+</feature_tree>
+<constraints>
+constraint_86:~_r_49_50_66 or _r_20_21_85
+constraint_87:~_r_49_50_67 or _r_20_21_85
+constraint_88:~_r_6 or _r_49_50_68
+constraint_89:~_r_6 or _r_49_50_69
+constraint_43:~_r_57 or _r_20_22_61
+constraint_42:~_r_20_22_61 or _r_83
+constraint_106:~_r_9_13 or _r_49_50_72
+constraint_45:~_r_20_22 or _r_48
+constraint_105:~_r_9_13 or _r_49_50_71
+constraint_44:~_r_6 or _r_44
+constraint_104:~_r_9_13 or _r_49_50_70
+constraint_47:~_r_20_22 or _r_20_21_38
+constraint_46:~_r_20_22 or _r_20_21_37
+constraint_103:~_r_9_13 or _r_49_50_68
+constraint_49:~_r_9 or _r_20_22_41
+constraint_102:~_r_28_29 or _r_20_21_87
+constraint_48:~_r_20_22 or _r_20_21_39
+constraint_101:~_r_28_29 or _r_20_21_86
+constraint_100:~_r_49_50_78 or _r_20_21_94
+constraint_90:~_r_20_22_41 or _r_49_50_70
+constraint_92:~_r_20_22_41 or _r_49_50_72
+constraint_91:~_r_20_22_41 or _r_49_50_71
+constraint_94:~_r_49_50_74 or _r_20_21_93
+constraint_93:~_r_49_50_73 or _r_20_21_93
+constraint_96:~_r_49_50_76 or _r_20_21_85
+constraint_95:~_r_49_50_75 or _r_20_21_85
+constraint_77:~_r_20_22_61 or _r_28
+constraint_78:~_r_20_22_61 or _r_49_50_62
+constraint_75:~_r_49_50_61 or _r_20_21_91
+constraint_76:~_r_20_22 or _r_20_21_91
+constraint_79:~_r_49_50_63 or _r_20_22_92
+constraint_36:~_r_28 or _r_20_21_36
+constraint_40:~_r_1 or _r_20_22_61
+constraint_41:~_r_20_22_61 or _r_79
+constraint_81:~_r_49_50_65 or _r_20_22_92
+constraint_80:~_r_49_50_64 or _r_20_22_92
+constraint_85:~_r_83 or _r_20_22_92
+constraint_84:~_r_79 or _r_20_22_92
+constraint_83:~_r_57 or _r_20_22_92
+constraint_25:~_r_28 or _r_20_21_34
+constraint_82:~_r_1 or _r_20_22_92
+constraint_69:~_r_49_50_56 or _r_20_21_89
+constraint_68:~_r_1 or _r_20_21_89
+constraint_65:~_r_49_50_53 or _r_20_21_86
+constraint_64:~_r_20 or _r_49_50_52
+constraint_67:~_r_49_50_55 or _r_20_21_88
+constraint_66:~_r_20_21_34 or _r_49_50_54
+constraint_71:~_r_83 or _r_20_21_90
+constraint_72:~_r_20_21_37 or _r_49_50_58
+constraint_73:~_r_20_21_37 or _r_49_50_59
+constraint_74:~_r_20_21_38 or _r_49_50_60
+constraint_70:~_r_49_50_57 or _r_20_21_90
+constraint_99:~_r_49_50_77 or _r_20_21_94
+constraint_97:~_r_20_22_41 or _r_49_50_76
+constraint_98:~_r_20_22_61 or _r_49_50_76
+constraint_62:~_r_20_22_61 or _r_79
+constraint_63:~_r_20_21_37 or _r_49_50_51
+constraint_60:~_r_6 or _r_20_21_85
+constraint_61:~_r_20_22 or _r_57
+</constraints>
+</feature_model>

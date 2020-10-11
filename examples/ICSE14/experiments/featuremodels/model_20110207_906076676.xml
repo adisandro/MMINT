@@ -1,0 +1,34 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Mon, Feb 7, 2011 - 12:30 PM  -->
+<feature_model name="Dummy Car">
+<meta>
+<data name="description">Dummy car feature model. Features from http://www.autopartslocator.com</data>
+<data name="creator">Eduardo Cruz</data>
+<data name="address"></data>
+<data name="email">eduardo.cruz@rise.com.br</data>
+<data name="phone"></data>
+<data name="website">http://www.rise.com.br</data>
+<data name="organization">RiSE</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Car(_r)
+	:m Engine(_r_1)
+		:g (_r_1_4) [1,1] 
+			: 2006  Mazda 5  Gas Engine(_r_1_4_5)
+			: 1992  Toyota Camry  Gas Engine(_r_1_4_6)
+			: 2004  Lexus RX330  Gas Engine(_r_1_4_7)
+	:m Breaks(_r_2)
+	:m Wheels(_r_3)
+	:m Transmission(_r_8)
+		:g (_r_8_9) [1,1] 
+			: 2006  Hummer H3  Transfer Case(_r_8_9_10)
+			: 2000  Cadillac Escalade  Transfer Case(_r_8_9_11)
+			: 2009  Lincoln MKS  Transfer Case(_r_8_9_12)
+	:g (_r_13) [1,1] 
+		: Bumpers(_r_13_14)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

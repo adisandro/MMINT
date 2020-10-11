@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ Copyright (c) 2012-2020 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ Rick Salay.
+ All rights reserved. This program and the accompanying materials
+ are made available under the terms of the Eclipse Public License v1.0
+ which accompanies this distribution, and is available at
+ http://www.eclipse.org/legal/epl-v10.html
+ 
+ Contributors:
+    Alessio Di Sandro - Implementation.
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated models15_java -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="edu.toronto.cs.se.modelepedia.models15_java.presentation.MODELS15_JavaModelWizardID"
+            name="%_UI_MODELS15_JavaModelWizard_label"
+            class="edu.toronto.cs.se.modelepedia.models15_java.presentation.MODELS15_JavaModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/MODELS15_JavaModelFile.gif">
+         <description>%_UI_MODELS15_JavaModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated models15_java -->
+      <editor
+            id="edu.toronto.cs.se.modelepedia.models15_java.presentation.MODELS15_JavaEditorID"
+            name="%_UI_MODELS15_JavaEditor_label"
+            icon="icons/full/obj16/MODELS15_JavaModelFile.gif"
+            extensions="models15_java"
+            class="edu.toronto.cs.se.modelepedia.models15_java.presentation.MODELS15_JavaEditor"
+            contributorClass="edu.toronto.cs.se.modelepedia.models15_java.presentation.MODELS15_JavaActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.editors">
+      <editorType
+            modelTypeUri="http://se.cs.toronto.edu/modelepedia/MODELS15_Java"
+            id="edu.toronto.cs.se.modelepedia.models15_java.presentation.MODELS15_JavaEditorID"
+            isDiagram="false"
+            wizardId="edu.toronto.cs.se.modelepedia.models15_java.presentation.MODELS15_JavaModelWizardID">
+         <type
+               name="MODELS15_Java tree"
+               uri="http://se.cs.toronto.edu/modelepedia/Tree_MODELS15_Java">
+         </type>
+      </editorType>
+   </extension>
+
+</plugin>

@@ -1,0 +1,34 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Wed, Aug 1, 2012 - 5:27 PM  -->
+<feature_model name="a">
+<meta>
+<data name="description">asd</data>
+<data name="creator">asdas</data>
+<data name="address"></data>
+<data name="email">asdas</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">asdasd</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r aaaa(_r)
+	:m Feature-1(_r_1)
+		:o x(_r_1_2)
+	:g (_r_3) [1,*] 
+		: Feature-4(_r_3_4)
+		: Feature-5(_r_3_5)
+		: Feature-6(_r_3_6)
+	:g (_r_7) [1,1] 
+		: Feature-8(_r_7_8)
+		: Feature-9(_r_7_9)
+			:m Feature-10(_r_7_9_10)
+				:g (_r_7_9_10_12) [1,*] 
+					: Feature-13(_r_7_9_10_12_13)
+						:m Feature-14(_r_7_9_10_12_13_14)
+			:o Feature-11(_r_7_9_11)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

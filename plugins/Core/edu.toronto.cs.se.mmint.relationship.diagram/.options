@@ -1,0 +1,7 @@
+# Tracing options for the edu.toronto.cs.se.mmint.relationship.diagram plug-in
+
+# Common issues
+edu.toronto.cs.se.mmint.relationship.diagram/debug=false
+
+# Visual IDs
+edu.toronto.cs.se.mmint.relationship.diagram/debug/visualID=false

@@ -1,0 +1,41 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Fri, May 10, 2013 - 5:06 PM  -->
+<feature_model name="dfffffffffff">
+<meta>
+<data name="description">ffffffffff</data>
+<data name="creator">fffffffff</data>
+<data name="address"></data>
+<data name="email">fffffffff</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">ffffffffff</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Mobile(_r)
+	:m motorola(_r_1)
+	:m HTC(_r_2)
+		:g (_r_2_7) [1,*] 
+			: HTC1(_r_2_7_8)
+				:g (_r_2_7_8_13) [1,1] 
+					: htc11(_r_2_7_8_13_14)
+					: htc12(_r_2_7_8_13_15)
+					: htc13(_r_2_7_8_13_16)
+			: HTC2(_r_2_7_12)
+	:m samsung(_r_3)
+		:g (_r_3_21) [1,1] 
+			: sam11(_r_3_21_22)
+			: sam12(_r_3_21_23)
+			: Mobile(_r_3_21_24)
+	:o sony(_r_4)
+	:o Apple(_r_5)
+	:m BlackBerry(_r_6)
+	:g (_r_17) [1,1] 
+		: bk11(_r_17_18)
+		: bk12(_r_17_19)
+		: bk13(_r_17_20)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

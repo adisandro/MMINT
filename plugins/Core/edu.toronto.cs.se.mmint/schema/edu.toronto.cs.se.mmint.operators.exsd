@@ -1,0 +1,161 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="edu.toronto.cs.se.mmint" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appinfo>
+         <meta.schema plugin="edu.toronto.cs.se.mmint" id="edu.toronto.cs.se.mmint.operators" name="MMINT operator types"/>
+      </appinfo>
+      <documentation>
+         Allows operator types to be registered with MMINT.
+      </documentation>
+   </annotation>
+
+   <include schemaLocation="edu.toronto.cs.se.mmint.types.exsd"/>
+
+   <include schemaLocation="edu.toronto.cs.se.mmint.endpoints.exsd"/>
+
+   <element name="extension">
+      <annotation>
+         <appinfo>
+            <meta.element />
+         </appinfo>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="operatorType"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute translatable="true"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="operatorType">
+      <annotation>
+         <documentation>
+            An operator type.
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="type"/>
+            <element ref="constraint" minOccurs="0" maxOccurs="1"/>
+            <element ref="inputs" minOccurs="0" maxOccurs="1"/>
+            <element ref="outputs" minOccurs="0" maxOccurs="1"/>
+            <element ref="generics" minOccurs="0" maxOccurs="1"/>
+         </sequence>
+      </complexType>
+   </element>
+
+   <element name="inputs">
+      <annotation>
+         <documentation>
+            The inputs of the operator type.
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="parameter" minOccurs="0" maxOccurs="unbounded"/>
+         </sequence>
+      </complexType>
+   </element>
+
+   <element name="outputs">
+      <annotation>
+         <documentation>
+            The outputs of the operator type.
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="parameter" minOccurs="0" maxOccurs="unbounded"/>
+         </sequence>
+      </complexType>
+   </element>
+
+   <element name="generics">
+      <annotation>
+         <documentation>
+            The generics of the operator type.
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="parameter" minOccurs="0" maxOccurs="unbounded"/>
+         </sequence>
+      </complexType>
+   </element>
+
+   <element name="parameter">
+      <annotation>
+         <documentation>
+            An input or output parameter of the operator.
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="type"/>
+            <element ref="typeEndpoint"/>
+         </sequence>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="since"/>
+      </appinfo>
+      <documentation>
+         [Enter the first release in which this extension point appears.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="examples"/>
+      </appinfo>
+      <documentation>
+         [Enter extension point usage example here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="apiinfo"/>
+      </appinfo>
+      <documentation>
+         [Enter API information here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="implementation"/>
+      </appinfo>
+      <documentation>
+         [Enter information about supplied implementation of this extension point.]
+      </documentation>
+   </annotation>
+
+
+</schema>

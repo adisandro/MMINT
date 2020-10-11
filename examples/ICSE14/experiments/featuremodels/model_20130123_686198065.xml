@@ -1,0 +1,61 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Tue, Jan 29, 2013 - 3:32 PM  -->
+<feature_model name="WebCollaboration">
+<meta>
+<data name="description">web collboration</data>
+<data name="creator">Andrey Kornienko</data>
+<data name="address"></data>
+<data name="email">kornienko.andrey@gmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">Carleton</data>
+<data name="department">SCE</data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r WebCollabApp(_r)
+	:m Session(_r_22)
+		:o Audio_VOIP(_r_22_23)
+			:o Configurable Quality(_r_22_23_51)
+			:o MuteUnmute(_r_22_23_52)
+		:o Video(_r_22_24)
+			:o Configurable Quality(_r_22_24_53)
+			:o Camera Resolution(_r_22_24_54)
+		:o Public Chat(_r_22_29)
+			:o Searching(_r_22_29_55)
+		:m Participants List(_r_22_30)
+			:o Participants Permissions(_r_22_30_56)
+			:o Participant Roles(_r_22_30_57)
+			:o Evict Unwanted Participants(_r_22_30_58)
+			:m Participant(_r_22_30_66)
+		:o Presentation(_r_22_31)
+			:m Viewing Slides(_r_22_31_74)
+			:m Uploading Slides(_r_22_31_76)
+			:o Annotation Capabilities(_r_22_31_77)
+		:o Whiteboard(_r_22_32)
+			:g (_r_22_32_67) [1,*] 
+				: Drawing Tools(_r_22_32_67_68)
+				: Typing(_r_22_32_67_69)
+				: View Uploaded Files(_r_22_32_67_70)
+				: Export as an image(_r_22_32_67_71)
+				: Multiple Pages(_r_22_32_67_73)
+		:o Screen Sharing(_r_22_33)
+			:g (_r_22_33_61) [1,*] 
+				: Full Screen(_r_22_33_61_62)
+				: Area(_r_22_33_61_63)
+				: Application(_r_22_33_61_64)
+				: Remote Control(_r_22_33_61_65)
+		:o File Depot(_r_22_34)
+			:m Uploading Files(_r_22_34_78)
+			:m Downloading Files(_r_22_34_79)
+			:o Sharing Files(_r_22_34_80)
+		:o Raise Hand(_r_22_35)
+		:o Polls and Votes(_r_22_37)
+			:m Configure Questions(_r_22_37_81)
+			:m View Results(_r_22_37_82)
+		:o Public Meeting Notes(_r_22_39)
+	:o Archive(_r_36)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

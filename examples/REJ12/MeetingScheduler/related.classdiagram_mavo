@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classdiagram_mavo:ClassDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:classdiagram_mavo="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO" inc="true">
+  <classes name="MeetingInitiator" dependenciesAsDepender="//@dependencies.1 //@dependencies.0">
+    <ownedAttributes name="name"/>
+    <ownedAttributes name="department"/>
+    <ownedOperations set="true" name="WaysToOrganizeMeeting()" public="true"/>
+    <ownedOperations name="UseSchedulerToOrganizeMeeting()" public="true"/>
+    <ownedOperations name="OrganizeMeeting()" public="true"/>
+  </classes>
+  <classes name="RoomDB" dependenciesAsDependee="//@dependencies.3">
+    <ownedOperations name="FindRoom()" public="true"/>
+    <ownedOperations name="GetRoomAttributes()" public="true"/>
+  </classes>
+  <classes name="Calendar" dependenciesAsDependee="//@dependencies.4 //@dependencies.5">
+    <ownedOperations name="FindAvailableDates()" public="true"/>
+  </classes>
+  <classes name="MeetingScheduler" dependenciesAsDependee="//@dependencies.1" dependenciesAsDepender="//@dependencies.2 //@dependencies.3 //@dependencies.4 //@dependencies.6">
+    <ownedOperations name="ScheduleMeeting()" public="true"/>
+  </classes>
+  <classes name="MeetingParticipant" dependenciesAsDependee="//@dependencies.0 //@dependencies.2">
+    <ownedAttributes name="name"/>
+    <ownedAttributes name="department"/>
+    <ownedOperations name="ParticipateInMeeting()" public="true"/>
+    <ownedOperations name="AttendMeeting()" public="true"/>
+    <ownedOperations may="true" set="true" name="ProvideDetails()" public="true"/>
+    <ownedOperations may="true" name="DecideConvenientDates()" public="true"/>
+  </classes>
+  <classes var="true" name="DateDeterminer" dependenciesAsDepender="//@dependencies.5">
+    <ownedOperations name="DetermineMeetingDate()" public="true"/>
+    <ownedOperations name="CheckDateInCalendar()" public="true"/>
+  </classes>
+  <classes set="true" name="Details" dependenciesAsDependee="//@dependencies.6"/>
+  <dependencies may="true" dependee="//@classes.4" depender="//@classes.0"/>
+  <dependencies dependee="//@classes.3" depender="//@classes.0"/>
+  <dependencies dependee="//@classes.4" depender="//@classes.3"/>
+  <dependencies dependee="//@classes.1" depender="//@classes.3"/>
+  <dependencies dependee="//@classes.2" depender="//@classes.3"/>
+  <dependencies dependee="//@classes.2" depender="//@classes.5"/>
+  <dependencies dependee="//@classes.6" depender="//@classes.3"/>
+</classdiagram_mavo:ClassDiagram>

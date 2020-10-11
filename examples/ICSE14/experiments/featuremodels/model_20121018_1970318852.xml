@@ -1,0 +1,37 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Thu, Oct 18, 2012 - 9:30 AM  -->
+<feature_model name="MobileMedia_VitorSales">
+<meta>
+<data name="description">Aula prática sobre splot</data>
+<data name="creator">Vitor Sales</data>
+<data name="address"></data>
+<data name="email">vitormsales@gmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">UFMG</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Mobile Media(_r)
+	:m Media Selection(_r_1)
+		:g (_r_1_4) [1,*] 
+			: Photo(_r_1_4_5)
+			: Music(_r_1_4_6)
+			: Video(_r_1_4_7)
+	:m Media Management(_r_2)
+		:o Favourites(_r_2_12)
+			:m Set Favourites(_r_2_12_15)
+			:m View Favourite(_r_2_12_16)
+		:m Copy Media(_r_2_13)
+		:o SMS Transfer(_r_2_14)
+			:o Receive Photo(_r_2_14_17)
+			:o Send Photo(_r_2_14_18)
+	:m Screen Size(_r_3)
+		:g (_r_3_8) [1,1] 
+			: Screen1(_r_3_8_9)
+			: Screen2(_r_3_8_10)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

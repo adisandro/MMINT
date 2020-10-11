@@ -1,0 +1,40 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Wed, Mar 28, 2012 - 10:11 AM  -->
+<feature_model name="Editor de imagem">
+<meta>
+<data name="description">Um editor de imagens</data>
+<data name="creator">Milanez</data>
+<data name="address"></data>
+<data name="email">reuso.software@gmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">Nenhuma</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Editor de imagem(_r)
+	:m Editor de imagens(_r_1)
+		:m Editor basico(_r_1_22)
+		:o Filtros(_r_1_24)
+	:o Gerenciador de imagens(_r_11)
+		:m Gerencia no computador local(_r_11_13)
+		:o Pastas em rede(_r_11_14)
+		:o Caracteristicas(_r_11_16)
+		:g (_r_11_17) [1,*] 
+			: Marcadores(_r_11_17_18)
+			: Indice por nome(_r_11_17_19)
+			: Descricao(_r_11_17_20)
+	:m Sistema operacional(_r_25)
+	:g (_r_28) [1,1] 
+		: Windows(_r_28_29)
+		: Linux(_r_28_32)
+		: Mac(_r_28_33)
+	:m Outros(_r_34)
+		:o Estatisticas de cores e pixeis(_r_34_36)
+		:o Integracao com Windows Explorer(_r_34_37)
+</feature_tree>
+<constraints>
+constraint_3:_r_28_29 or ~_r_34_37
+</constraints>
+</feature_model>

@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Example
+Bundle-SymbolicName: edu.toronto.cs.se.mmint.jase20.example;singleton:=true
+Bundle-Version: 2.6.0
+Automatic-Module-Name: edu.toronto.cs.se.mmint.jase20.example
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.emf.common.ui,
+ edu.toronto.cs.se.mmint.jase20
+Bundle-RequiredExecutionEnvironment: JavaSE-14

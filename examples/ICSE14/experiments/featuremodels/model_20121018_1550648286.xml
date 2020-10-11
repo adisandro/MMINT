@@ -1,0 +1,37 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Thu, Oct 18, 2012 - 9:40 AM  -->
+<feature_model name="MobileMedia_Marcelo">
+<meta>
+<data name="description">exemplo de aula</data>
+<data name="creator">Marcelo</data>
+<data name="address"></data>
+<data name="email">celobrant@ufmg.br</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">UFMG</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r MobileMedia(_r)
+	:m MediaSelection(_r_1)
+		:g (_r_1_2) [1,*] 
+			: Photo(_r_1_2_3)
+			: Music(_r_1_2_4)
+			: Video(_r_1_2_5)
+	:m MediaManagement(_r_6)
+		:o Favourites(_r_6_8)
+			:m SetFavourites(_r_6_8_11)
+			:m ViewFavourites(_r_6_8_12)
+		:m CopyMedia(_r_6_9)
+		:o SMS Transfer(_r_6_10)
+			:o ReceivePhoto(_r_6_10_13)
+			:o SendPhoto(_r_6_10_14)
+	:m ScreenSize(_r_7)
+		:g (_r_7_15) [1,1] 
+			: Screen 1(_r_7_15_16)
+			: Screen 2(_r_7_15_17)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

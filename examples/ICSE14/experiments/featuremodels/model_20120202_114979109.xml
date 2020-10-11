@@ -1,0 +1,51 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Thu, Feb 2, 2012 - 11:44 AM  -->
+<feature_model name="TrialADC">
+<meta>
+<data name="description">TrialADC</data>
+<data name="creator">Rui Abrantes</data>
+<data name="address"></data>
+<data name="email">rsabrantes@gmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">Home</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Pipeline ADC(_r)
+	:m CoreADC(_r_1)
+		:m DigitalCalibration(_r_1_7)
+	:m OperationLimits(_r_2)
+		:m Resolution(_r_2_8)
+			:g (_r_2_8_11) [1,1] 
+				: Res12b(_r_2_8_11_12)
+				: Res10b(_r_2_8_11_13)
+		:m SamplingRate(_r_2_9)
+			:g (_r_2_9_14) [1,1] 
+				: SampRate250Msps(_r_2_9_14_15)
+				: SampRate125Msps(_r_2_9_14_17)
+				: SampRate100Msps(_r_2_9_14_18)
+	:o InputStage(_r_4)
+		:g (_r_4_19) [1,1] 
+			: PingPong(_r_4_19_20)
+			: IntermediateInterface(_r_4_19_21)
+			: SampleHold(_r_4_19_22)
+	:m NChannels(_r_5)
+		:g (_r_5_22) [1,1] 
+			: SingleChannel(_r_5_22_23)
+			: DualChannel(_r_5_22_24)
+	:m Technology(_r_6)
+		:g (_r_6_25) [1,1] 
+			: TSMC65LP(_r_6_25_26)
+			: TSMC40LP(_r_6_25_27)
+			: SMIC40LL(_r_6_25_32)
+</feature_tree>
+<constraints>
+constraint_8:~_r_2_9_14_15 or ~_r_4_19_20
+constraint_6:~_r_2_9_14_17 or ~_r_4_19_22
+constraint_7:_r_2_9_14_15 or ~_r_4_19_21
+constraint_5:~_r_2_8_11_13 or ~_r_2_9_14_18
+constraint_2:~_r_4_19_20 or _r_5_22_24
+</constraints>
+</feature_model>

@@ -1,0 +1,53 @@
+// Adds labels for MAVO annotations
+operation addMAVOLabels() {
+	var allMAVOElems = EClass.all.select(c | c.eAllSupertypes.exists(s | s.name = 'MAVOElement' or s.name = 'MAVOReference') and c.name <> "MAVOReference");
+
+	for (elem in allMAVOElems) {
+		// modify gmfgraph
+		var figureDescriptor = GmfGraph!FigureDescriptor.all.selectOne(fd | fd.name = elem.name.concat('Figure'));
+		if (figureDescriptor.isDefined()) {
+			var figure = figureDescriptor.getActualFigure;
+			if (figure.isDefined()) {
+				var newLabel = new GmfGraph!Label;
+				newLabel.name = 'MAVO'.concat(elem.name).concat("LabelFigure");
+				var dim = new GmfGraph!Dimension;
+				dim.dx = 10000;
+				dim.dy = 50;
+				newLabel.maximumSize = dim;
+				figure.children.add(0, newLabel);
+
+				var newChildAccess = new GmfGraph!ChildAccess;
+				newChildAccess.accessor = 'getFigure'.concat(newLabel.name);
+				newChildAccess.figure = newLabel;
+
+				figureDescriptor.accessors.add(newChildAccess);
+
+				var newDiagLabel = new GmfGraph!DiagramLabel;
+				newDiagLabel.name = 'MAVO'.concat(elem.name.concat('Label'));
+				newDiagLabel.figure = figureDescriptor;
+				newDiagLabel.accessor = newChildAccess;
+
+				GmfGraph!Canvas.all.first.labels.add(newDiagLabel);
+
+				var oldDiagLabel = GmfGraph!DiagramLabel.all.selectOne(dl | dl.name = elem.name.concat('Label'));
+				if (oldDiagLabel.isDefined()) {
+					newDiagLabel.elementIcon = oldDiagLabel.elementIcon;
+					oldDiagLabel.elementIcon = false;
+				}
+				else {
+					newDiagLabel.elementIcon = true;
+				}
+
+				// modify gmfmap
+				var mapping = GmfMap!MappingEntry.all.selectOne(l | l.getDomainMetaElement = elem);
+				if (mapping.isDefined()) {
+					var newLabelMapping = new GmfMap!LabelMapping;
+					newLabelMapping.diagramLabel = newDiagLabel;
+
+					mapping.labelMappings.add(newLabelMapping);
+					
+				}
+			}
+		}
+	}
+}

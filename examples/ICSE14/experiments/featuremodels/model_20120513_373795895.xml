@@ -1,0 +1,35 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Sun, May 13, 2012 - 3:57 AM  -->
+<feature_model name="Car demo">
+<meta>
+<data name="description">Car model</data>
+<data name="creator">Deja</data>
+<data name="address"></data>
+<data name="email">ilke_bg@yahoo.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">CO</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Automobil(_r)
+	:m Transmisija(_r_1)
+		:g (_r_1_2) [1,1] 
+			: Automatska(_r_1_2_3)
+			: Manuelna(_r_1_2_4)
+	:m Motor(_r_5)
+		:g (_r_5_6) [1,*] 
+			: Elektricni(_r_5_6_7)
+			: Benzin(_r_5_6_8)
+	:m Broj vrata(_r_9)
+	:m Oprema(_r_10)
+		:o AirBag(_r_10_11)
+		:o Grejaci sedista(_r_10_12)
+		:o EPS(_r_10_13)
+		:m Klima(_r_10_14)
+		:m ABS(_r_10_15)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

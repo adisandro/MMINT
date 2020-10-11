@@ -1,0 +1,38 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Tue, Jan 22, 2013 - 4:44 PM  -->
+<feature_model name="Buzzard Radio play DB">
+<meta>
+<data name="description">learning... non-ITAR, non-real</data>
+<data name="creator">Linn</data>
+<data name="address"></data>
+<data name="email">clinn@harris.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">Nt Amusements</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Buzzard Radios(_r)
+	:g (_r_1) [1,*] 
+		: Car(_r_1_2)
+			:g (_r_1_2_4) [1,*] 
+				: HugeFormfactor(_r_1_2_4_5)
+				: MediumFormfactor(_r_1_2_4_6)
+	:m Znx operating system(_r_7)
+	:g (_r_8) [1,*] 
+		: SCA Framework(_r_8_9)
+		: LCA Framework(_r_8_10)
+	:g (_r_13) [1,*] 
+		: Green paint(_r_13_14)
+		: Grey paint(_r_13_15)
+		: Black paint(_r_13_16)
+	:o HQ waveform(_r_17)
+	:o QL waveform(_r_18)
+	:m VULOS waveform(_r_19)
+	:o Satcom waveform(_r_20)
+</feature_tree>
+<constraints>
+constraint_2:_r_1_2_4_5 or _r_8_9
+</constraints>
+</feature_model>

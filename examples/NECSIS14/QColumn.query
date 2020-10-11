@@ -1,0 +1,7 @@
+KLEISLI:
+union classes := classes
+union subclasses := classes->select(not parent.oclIsUndefined())
+union attributes := classes->collect(attributes)
+union multiAssociations1 := associations->select(upperBound > 1 or upperBound = -1)
+union multiAssociations2 := associations->select(upperBound > 1 or upperBound = -1)
+union singleAssociations := associations->select(upperBound = 1)

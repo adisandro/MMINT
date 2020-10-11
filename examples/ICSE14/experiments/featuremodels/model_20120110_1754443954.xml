@@ -1,0 +1,33 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Tue, Jan 10, 2012 - 11:21 AM  -->
+<feature_model name="Mobile Phone GF">
+<meta>
+<data name="description">Mobile Smart Phone</data>
+<data name="creator">Guillermo Fuentes</data>
+<data name="address"></data>
+<data name="email">alu@ull.es</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">Avantic</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Mobile Phone GF(_r)
+	:m Calls(_r_1)
+	:o GPS(_r_2)
+	:m Screen(_r_3)
+		:g (_r_3_5) [1,1] 
+			: Basic(_r_3_5_6)
+			: Colour(_r_3_5_9)
+			: High Resolution(_r_3_5_12)
+	:o Media(_r_4)
+		:g (_r_4_13) [1,*] 
+			: Camera(_r_4_13_14)
+			: MP3(_r_4_13_15)
+</feature_tree>
+<constraints>
+constraint_2:~_r_2 or ~_r_3_5_6
+constraint_3:_r_3_5_12 or _r_4_13_14
+</constraints>
+</feature_model>

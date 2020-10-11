@@ -1,0 +1,32 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Fri, Mar 1, 2013 - 4:22 AM  -->
+<feature_model name="Simple e-shop">
+<meta>
+<data name="description">family of e-shop stores, adapted from Wikipedia</data>
+<data name="creator">Hartmut Lackner</data>
+<data name="address"></data>
+<data name="email">hartmut.lackner@fokus.fraunhofer.de</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">Fraunhofer FOKUS</data>
+<data name="department"></data>
+<data name="date">Dec. 2012</data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r eShop(_r)
+	:m catalogue(_r_1)
+	:m payment(_r_2)
+		:g (_r_2_5) [1,*] 
+			: bank trasnsfer(_r_2_5_6)
+			: credit card(_r_2_5_7)
+			: e-coins(_r_2_5_11)
+	:m security(_r_3)
+		:g (_r_3_8) [1,1] 
+			: high(_r_3_8_9)
+			: standard(_r_3_8_10)
+	:o search(_r_4)
+</feature_tree>
+<constraints>
+constraint_1:~_r_2_5_7 or _r_3_8_9
+</constraints>
+</feature_model>

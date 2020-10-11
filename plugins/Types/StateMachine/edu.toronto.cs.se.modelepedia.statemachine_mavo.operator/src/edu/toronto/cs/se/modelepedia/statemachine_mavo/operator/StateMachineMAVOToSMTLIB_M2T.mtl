@@ -1,0 +1,92 @@
+[comment encoding = UTF-8 /]
+[module StateMachineMAVOToSMTLIB_M2T('http://www.eclipse.org/emf/2002/Ecore', 'http://se.cs.toronto.edu/MAVO', 'http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO')/]
+[import edu::toronto::cs::se::modelepedia::z3::mavo::EcoreMAVOToSMTLIBUtils_M2T /]
+
+[template private encodeReachability(sm : StateMachine)]
+;Reachability
+(define-fun reachable1 ((s Int) (t Int)) Bool
+	(and
+		(node s) (node t) (= (nodeType s) STATE) (= (nodeType t) STATE)
+		(exists ((s2t Int)) (and
+			(edge s2t) (= (edgeType s2t) TRANSITION)
+			(= (src s2t) s)
+			(= (tgt s2t) t)
+		))
+	)
+)
+	[for (c : Integer | Sequence{2..sm.states->size()-1})]
+(define-fun reachable[c/] ((s Int) (t Int)) Bool
+	(and
+		(node s) (node t) (= (nodeType s) STATE) (= (nodeType t) STATE)
+		(exists ((n Int)) (and
+			(node n) (= (nodeType n) STATE)
+			(reachable1 s n)
+			(reachable[c-1/] n t)
+		))
+	)
+)
+	[/for]
+(define-fun reachable ((s Int) (t Int)) Bool
+	(and
+		(node s) (node t) (= (nodeType s) STATE) (= (nodeType t) STATE)
+		(or
+	[for (c : Integer | Sequence{1..sm.states->size()-1})]
+			(reachable[c/] s t)
+	[/for]
+		)
+	)
+)
+[/template]
+
+[template private encodeProgress(sm : StateMachine)]
+;Progress
+(define-fun reachableWithEdge ((s Int) (t Int) (e Int)) Bool
+	(and
+		(node s) (node t) (edge e) (= (nodeType s) STATE) (= (nodeType t) STATE) (= (edgeType e) TRANSITION)
+		(or
+			(= (src e) s)
+			(reachable s (src e))
+		)
+		(or
+			(= (tgt e) t)
+			(reachable (tgt e) t)
+		)
+	)
+)
+(define-fun progress ((i Int) (p Int)) Bool
+	(ite
+		(and
+			(node i) (edge p) (= (nodeType i) STATE) (= (edgeType p) TRANSITION)
+			(exists ((n Int)) (and
+				(node n) (= (nodeType n) STATE)
+				(reachable i n)
+				(reachable n n)
+				(not (reachableWithEdge n n p))
+			))
+		)
+		false
+		true
+	)
+)
+[/template]
+
+[template private encodeAnalysis(sm : StateMachine)]
+[';Macros'/]
+[encodeReachability(sm)/]
+[encodeProgress(sm)/]
+[';End Macros'/]
+[/template]
+
+[template public encodeStateMachineMAVO(sm : StateMachine, modelName : String, mayOnly : Boolean)]
+	[comment @main/]
+	[file (modelName + '.smt2', false, 'UTF-8')]
+		[if (mayOnly)]
+[encodeModelMayOnly(sm)/]
+[encodeMAVOConstraintsMayOnly(sm)/]
+[encodeAnalysis(sm)/]
+		[else]
+[encodeModel(sm)/]
+[encodeMAVOConstraints(sm)/]
+		[/if]
+	[/file]
+[/template]

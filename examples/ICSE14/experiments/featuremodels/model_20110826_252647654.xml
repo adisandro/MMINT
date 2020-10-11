@@ -1,0 +1,43 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Fri, Aug 26, 2011 - 1:57 PM  -->
+<feature_model name="Linea de Experimentos">
+<meta>
+<data name="description">Generear linea de productos en experimentación</data>
+<data name="creator">Edison Espinosa</data>
+<data name="address"></data>
+<data name="email">edison_eg@yahoo.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">ESPE</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Experimento(_r)
+	:m Planteamineto(_r_1)
+		:m Factores(_r_1_3)
+			:m Tecnicas(_r_1_3_4)
+				:m TecnicaEstatica(_r_1_3_4_5)
+					:m LecturaCodigo(_r_1_3_4_5_7)
+						:m AbstraccionesSucesivas(_r_1_3_4_5_7_14)
+				:m TecnicaDinamica(_r_1_3_4_6)
+					:m PruebasFuncionales(_r_1_3_4_6_8)
+						:m ParticionesClasesEquivalencia(_r_1_3_4_6_8_9)
+						:m AnalisisValoresLimite(_r_1_3_4_6_8_10)
+				:m PruebasEstructurales(_r_1_3_4_11)
+					:m CoberturaDecision(_r_1_3_4_11_12)
+					:m CoberturaSentencia(_r_1_3_4_11_13)
+			:m Programas(_r_1_3_15)
+				:m ntree(_r_1_3_15_16)
+				:m cmdline(_r_1_3_15_17)
+				:m namtbl(_r_1_3_15_18)
+				:o Trade(_r_1_3_15_19)
+			:m Falta(_r_1_3_20)
+				:o 9 Faltas(_r_1_3_20_21)
+				:o 7 Faltas(_r_1_3_20_22)
+				:o 6 Faltas(_r_1_3_20_23)
+	:m Disenio(_r_2)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

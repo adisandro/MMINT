@@ -1,0 +1,34 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Sun, Mar 6, 2011 - 4:39 PM  -->
+<feature_model name="MiniTV">
+<meta>
+<data name="description">MiniTV's Features</data>
+<data name="creator">GS, NZ</data>
+<data name="address"></data>
+<data name="email">flaca_90@hotmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">ITESM</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r MiniTV(_r)
+	:m OS(_r_1)
+		:m Windows 7(_r_1_2)
+		:m Windows Vista(_r_1_3)
+		:o Windows XP(_r_1_4)
+	:m Configuration(_r_7)
+	:g (_r_8) [1,*] 
+		: Mini Modus(_r_8_9)
+		: Show original Layout(_r_8_12)
+		: Sort external Stations(_r_8_13)
+		: Adjust picturesize to screen(_r_8_14)
+		: Time for stop playing(_r_8_17)
+	:m Stations(_r_18)
+		:o Internal(_r_18_19)
+		:o External(_r_18_20)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

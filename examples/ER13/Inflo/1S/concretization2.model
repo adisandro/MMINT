@@ -1,0 +1,1539 @@
+sat
+(model 
+  ;; universe for ActorConcretization:
+  ;;   ActorConcretization!val!3 ActorConcretization!val!0 ActorConcretization!val!4 ActorConcretization!val!1 ActorConcretization!val!2 
+  ;; -----------
+  ;; definitions for universe elements:
+  (declare-fun ActorConcretization!val!3 () ActorConcretization)
+  (declare-fun ActorConcretization!val!0 () ActorConcretization)
+  (declare-fun ActorConcretization!val!4 () ActorConcretization)
+  (declare-fun ActorConcretization!val!1 () ActorConcretization)
+  (declare-fun ActorConcretization!val!2 () ActorConcretization)
+  ;; cardinality constraint:
+  (forall ((x ActorConcretization))
+          (or (= x ActorConcretization!val!3)
+              (= x ActorConcretization!val!0)
+              (= x ActorConcretization!val!4)
+              (= x ActorConcretization!val!1)
+              (= x ActorConcretization!val!2)))
+  ;; -----------
+  ;; universe for IntentionConcretization:
+  ;;   IntentionConcretization!val!16 IntentionConcretization!val!10 IntentionConcretization!val!7 IntentionConcretization!val!11 IntentionConcretization!val!20 IntentionConcretization!val!24 IntentionConcretization!val!22 IntentionConcretization!val!21 IntentionConcretization!val!6 IntentionConcretization!val!0 IntentionConcretization!val!8 IntentionConcretization!val!9 IntentionConcretization!val!5 IntentionConcretization!val!19 IntentionConcretization!val!15 IntentionConcretization!val!2 IntentionConcretization!val!12 IntentionConcretization!val!17 IntentionConcretization!val!14 IntentionConcretization!val!1 IntentionConcretization!val!13 IntentionConcretization!val!18 IntentionConcretization!val!3 IntentionConcretization!val!4 IntentionConcretization!val!23 
+  ;; -----------
+  ;; definitions for universe elements:
+  (declare-fun IntentionConcretization!val!16 () IntentionConcretization)
+  (declare-fun IntentionConcretization!val!10 () IntentionConcretization)
+  (declare-fun IntentionConcretization!val!7 () IntentionConcretization)
+  (declare-fun IntentionConcretization!val!11 () IntentionConcretization)
+  (declare-fun IntentionConcretization!val!20 () IntentionConcretization)
+  (declare-fun IntentionConcretization!val!24 () IntentionConcretization)
+  (declare-fun IntentionConcretization!val!22 () IntentionConcretization)
+  (declare-fun IntentionConcretization!val!21 () IntentionConcretization)
+  (declare-fun IntentionConcretization!val!6 () IntentionConcretization)
+  (declare-fun IntentionConcretization!val!0 () IntentionConcretization)
+  (declare-fun IntentionConcretization!val!8 () IntentionConcretization)
+  (declare-fun IntentionConcretization!val!9 () IntentionConcretization)
+  (declare-fun IntentionConcretization!val!5 () IntentionConcretization)
+  (declare-fun IntentionConcretization!val!19 () IntentionConcretization)
+  (declare-fun IntentionConcretization!val!15 () IntentionConcretization)
+  (declare-fun IntentionConcretization!val!2 () IntentionConcretization)
+  (declare-fun IntentionConcretization!val!12 () IntentionConcretization)
+  (declare-fun IntentionConcretization!val!17 () IntentionConcretization)
+  (declare-fun IntentionConcretization!val!14 () IntentionConcretization)
+  (declare-fun IntentionConcretization!val!1 () IntentionConcretization)
+  (declare-fun IntentionConcretization!val!13 () IntentionConcretization)
+  (declare-fun IntentionConcretization!val!18 () IntentionConcretization)
+  (declare-fun IntentionConcretization!val!3 () IntentionConcretization)
+  (declare-fun IntentionConcretization!val!4 () IntentionConcretization)
+  (declare-fun IntentionConcretization!val!23 () IntentionConcretization)
+  ;; cardinality constraint:
+  (forall ((x IntentionConcretization))
+          (or (= x IntentionConcretization!val!16)
+              (= x IntentionConcretization!val!10)
+              (= x IntentionConcretization!val!7)
+              (= x IntentionConcretization!val!11)
+              (= x IntentionConcretization!val!20)
+              (= x IntentionConcretization!val!24)
+              (= x IntentionConcretization!val!22)
+              (= x IntentionConcretization!val!21)
+              (= x IntentionConcretization!val!6)
+              (= x IntentionConcretization!val!0)
+              (= x IntentionConcretization!val!8)
+              (= x IntentionConcretization!val!9)
+              (= x IntentionConcretization!val!5)
+              (= x IntentionConcretization!val!19)
+              (= x IntentionConcretization!val!15)
+              (= x IntentionConcretization!val!2)
+              (= x IntentionConcretization!val!12)
+              (= x IntentionConcretization!val!17)
+              (= x IntentionConcretization!val!14)
+              (= x IntentionConcretization!val!1)
+              (= x IntentionConcretization!val!13)
+              (= x IntentionConcretization!val!18)
+              (= x IntentionConcretization!val!3)
+              (= x IntentionConcretization!val!4)
+              (= x IntentionConcretization!val!23)))
+  ;; -----------
+  ;; universe for ContributionConcretization:
+  ;;   ContributionConcretization!val!7 ContributionConcretization!val!6 ContributionConcretization!val!5 ContributionConcretization!val!1 ContributionConcretization!val!4 ContributionConcretization!val!2 ContributionConcretization!val!0 ContributionConcretization!val!3 ContributionConcretization!val!8 
+  ;; -----------
+  ;; definitions for universe elements:
+  (declare-fun ContributionConcretization!val!7 () ContributionConcretization)
+  (declare-fun ContributionConcretization!val!6 () ContributionConcretization)
+  (declare-fun ContributionConcretization!val!5 () ContributionConcretization)
+  (declare-fun ContributionConcretization!val!1 () ContributionConcretization)
+  (declare-fun ContributionConcretization!val!4 () ContributionConcretization)
+  (declare-fun ContributionConcretization!val!2 () ContributionConcretization)
+  (declare-fun ContributionConcretization!val!0 () ContributionConcretization)
+  (declare-fun ContributionConcretization!val!3 () ContributionConcretization)
+  (declare-fun ContributionConcretization!val!8 () ContributionConcretization)
+  ;; cardinality constraint:
+  (forall ((x ContributionConcretization))
+          (or (= x ContributionConcretization!val!7)
+              (= x ContributionConcretization!val!6)
+              (= x ContributionConcretization!val!5)
+              (= x ContributionConcretization!val!1)
+              (= x ContributionConcretization!val!4)
+              (= x ContributionConcretization!val!2)
+              (= x ContributionConcretization!val!0)
+              (= x ContributionConcretization!val!3)
+              (= x ContributionConcretization!val!8)))
+  ;; -----------
+  ;; universe for MeansEndConcretization:
+  ;;   MeansEndConcretization!val!1 MeansEndConcretization!val!0 MeansEndConcretization!val!2 MeansEndConcretization!val!3 
+  ;; -----------
+  ;; definitions for universe elements:
+  (declare-fun MeansEndConcretization!val!1 () MeansEndConcretization)
+  (declare-fun MeansEndConcretization!val!0 () MeansEndConcretization)
+  (declare-fun MeansEndConcretization!val!2 () MeansEndConcretization)
+  (declare-fun MeansEndConcretization!val!3 () MeansEndConcretization)
+  ;; cardinality constraint:
+  (forall ((x MeansEndConcretization))
+          (or (= x MeansEndConcretization!val!1)
+              (= x MeansEndConcretization!val!0)
+              (= x MeansEndConcretization!val!2)
+              (= x MeansEndConcretization!val!3)))
+  ;; -----------
+  ;; universe for DecompositionConcretization:
+  ;;   DecompositionConcretization!val!3 DecompositionConcretization!val!5 DecompositionConcretization!val!1 DecompositionConcretization!val!2 DecompositionConcretization!val!7 DecompositionConcretization!val!0 DecompositionConcretization!val!4 DecompositionConcretization!val!6 
+  ;; -----------
+  ;; definitions for universe elements:
+  (declare-fun DecompositionConcretization!val!3 () DecompositionConcretization)
+  (declare-fun DecompositionConcretization!val!5 () DecompositionConcretization)
+  (declare-fun DecompositionConcretization!val!1 () DecompositionConcretization)
+  (declare-fun DecompositionConcretization!val!2 () DecompositionConcretization)
+  (declare-fun DecompositionConcretization!val!7 () DecompositionConcretization)
+  (declare-fun DecompositionConcretization!val!0 () DecompositionConcretization)
+  (declare-fun DecompositionConcretization!val!4 () DecompositionConcretization)
+  (declare-fun DecompositionConcretization!val!6 () DecompositionConcretization)
+  ;; cardinality constraint:
+  (forall ((x DecompositionConcretization))
+          (or (= x DecompositionConcretization!val!3)
+              (= x DecompositionConcretization!val!5)
+              (= x DecompositionConcretization!val!1)
+              (= x DecompositionConcretization!val!2)
+              (= x DecompositionConcretization!val!7)
+              (= x DecompositionConcretization!val!0)
+              (= x DecompositionConcretization!val!4)
+              (= x DecompositionConcretization!val!6)))
+  ;; -----------
+  ;; universe for SoftGoalConcretization:
+  ;;   SoftGoalConcretization!val!5 SoftGoalConcretization!val!0 SoftGoalConcretization!val!1 SoftGoalConcretization!val!3 SoftGoalConcretization!val!4 SoftGoalConcretization!val!2 
+  ;; -----------
+  ;; definitions for universe elements:
+  (declare-fun SoftGoalConcretization!val!5 () SoftGoalConcretization)
+  (declare-fun SoftGoalConcretization!val!0 () SoftGoalConcretization)
+  (declare-fun SoftGoalConcretization!val!1 () SoftGoalConcretization)
+  (declare-fun SoftGoalConcretization!val!3 () SoftGoalConcretization)
+  (declare-fun SoftGoalConcretization!val!4 () SoftGoalConcretization)
+  (declare-fun SoftGoalConcretization!val!2 () SoftGoalConcretization)
+  ;; cardinality constraint:
+  (forall ((x SoftGoalConcretization))
+          (or (= x SoftGoalConcretization!val!5)
+              (= x SoftGoalConcretization!val!0)
+              (= x SoftGoalConcretization!val!1)
+              (= x SoftGoalConcretization!val!3)
+              (= x SoftGoalConcretization!val!4)
+              (= x SoftGoalConcretization!val!2)))
+  ;; -----------
+  ;; universe for GoalConcretization:
+  ;;   GoalConcretization!val!2 GoalConcretization!val!0 GoalConcretization!val!1 GoalConcretization!val!3 
+  ;; -----------
+  ;; definitions for universe elements:
+  (declare-fun GoalConcretization!val!2 () GoalConcretization)
+  (declare-fun GoalConcretization!val!0 () GoalConcretization)
+  (declare-fun GoalConcretization!val!1 () GoalConcretization)
+  (declare-fun GoalConcretization!val!3 () GoalConcretization)
+  ;; cardinality constraint:
+  (forall ((x GoalConcretization))
+          (or (= x GoalConcretization!val!2)
+              (= x GoalConcretization!val!0)
+              (= x GoalConcretization!val!1)
+              (= x GoalConcretization!val!3)))
+  ;; -----------
+  ;; universe for TaskConcretization:
+  ;;   TaskConcretization!val!12 TaskConcretization!val!1 TaskConcretization!val!5 TaskConcretization!val!13 TaskConcretization!val!2 TaskConcretization!val!8 TaskConcretization!val!10 TaskConcretization!val!14 TaskConcretization!val!0 TaskConcretization!val!9 TaskConcretization!val!6 TaskConcretization!val!7 TaskConcretization!val!15 TaskConcretization!val!3 TaskConcretization!val!4 TaskConcretization!val!11 
+  ;; -----------
+  ;; definitions for universe elements:
+  (declare-fun TaskConcretization!val!12 () TaskConcretization)
+  (declare-fun TaskConcretization!val!1 () TaskConcretization)
+  (declare-fun TaskConcretization!val!5 () TaskConcretization)
+  (declare-fun TaskConcretization!val!13 () TaskConcretization)
+  (declare-fun TaskConcretization!val!2 () TaskConcretization)
+  (declare-fun TaskConcretization!val!8 () TaskConcretization)
+  (declare-fun TaskConcretization!val!10 () TaskConcretization)
+  (declare-fun TaskConcretization!val!14 () TaskConcretization)
+  (declare-fun TaskConcretization!val!0 () TaskConcretization)
+  (declare-fun TaskConcretization!val!9 () TaskConcretization)
+  (declare-fun TaskConcretization!val!6 () TaskConcretization)
+  (declare-fun TaskConcretization!val!7 () TaskConcretization)
+  (declare-fun TaskConcretization!val!15 () TaskConcretization)
+  (declare-fun TaskConcretization!val!3 () TaskConcretization)
+  (declare-fun TaskConcretization!val!4 () TaskConcretization)
+  (declare-fun TaskConcretization!val!11 () TaskConcretization)
+  ;; cardinality constraint:
+  (forall ((x TaskConcretization))
+          (or (= x TaskConcretization!val!12)
+              (= x TaskConcretization!val!1)
+              (= x TaskConcretization!val!5)
+              (= x TaskConcretization!val!13)
+              (= x TaskConcretization!val!2)
+              (= x TaskConcretization!val!8)
+              (= x TaskConcretization!val!10)
+              (= x TaskConcretization!val!14)
+              (= x TaskConcretization!val!0)
+              (= x TaskConcretization!val!9)
+              (= x TaskConcretization!val!6)
+              (= x TaskConcretization!val!7)
+              (= x TaskConcretization!val!15)
+              (= x TaskConcretization!val!3)
+              (= x TaskConcretization!val!4)
+              (= x TaskConcretization!val!11)))
+  ;; -----------
+  ;; universe for ResourceConcretization:
+  ;;   ResourceConcretization!val!2 ResourceConcretization!val!1 ResourceConcretization!val!4 ResourceConcretization!val!0 ResourceConcretization!val!3 
+  ;; -----------
+  ;; definitions for universe elements:
+  (declare-fun ResourceConcretization!val!2 () ResourceConcretization)
+  (declare-fun ResourceConcretization!val!1 () ResourceConcretization)
+  (declare-fun ResourceConcretization!val!4 () ResourceConcretization)
+  (declare-fun ResourceConcretization!val!0 () ResourceConcretization)
+  (declare-fun ResourceConcretization!val!3 () ResourceConcretization)
+  ;; cardinality constraint:
+  (forall ((x ResourceConcretization))
+          (or (= x ResourceConcretization!val!2)
+              (= x ResourceConcretization!val!1)
+              (= x ResourceConcretization!val!4)
+              (= x ResourceConcretization!val!0)
+              (= x ResourceConcretization!val!3)))
+  ;; -----------
+  ;; universe for DependerLinkConcretization:
+  ;;   DependerLinkConcretization!val!1 DependerLinkConcretization!val!6 DependerLinkConcretization!val!3 DependerLinkConcretization!val!0 DependerLinkConcretization!val!4 DependerLinkConcretization!val!2 DependerLinkConcretization!val!5 
+  ;; -----------
+  ;; definitions for universe elements:
+  (declare-fun DependerLinkConcretization!val!1 () DependerLinkConcretization)
+  (declare-fun DependerLinkConcretization!val!6 () DependerLinkConcretization)
+  (declare-fun DependerLinkConcretization!val!3 () DependerLinkConcretization)
+  (declare-fun DependerLinkConcretization!val!0 () DependerLinkConcretization)
+  (declare-fun DependerLinkConcretization!val!4 () DependerLinkConcretization)
+  (declare-fun DependerLinkConcretization!val!2 () DependerLinkConcretization)
+  (declare-fun DependerLinkConcretization!val!5 () DependerLinkConcretization)
+  ;; cardinality constraint:
+  (forall ((x DependerLinkConcretization))
+          (or (= x DependerLinkConcretization!val!1)
+              (= x DependerLinkConcretization!val!6)
+              (= x DependerLinkConcretization!val!3)
+              (= x DependerLinkConcretization!val!0)
+              (= x DependerLinkConcretization!val!4)
+              (= x DependerLinkConcretization!val!2)
+              (= x DependerLinkConcretization!val!5)))
+  ;; -----------
+  ;; universe for DependeeLinkConcretization:
+  ;;   DependeeLinkConcretization!val!0 DependeeLinkConcretization!val!2 DependeeLinkConcretization!val!3 DependeeLinkConcretization!val!1 
+  ;; -----------
+  ;; definitions for universe elements:
+  (declare-fun DependeeLinkConcretization!val!0 () DependeeLinkConcretization)
+  (declare-fun DependeeLinkConcretization!val!2 () DependeeLinkConcretization)
+  (declare-fun DependeeLinkConcretization!val!3 () DependeeLinkConcretization)
+  (declare-fun DependeeLinkConcretization!val!1 () DependeeLinkConcretization)
+  ;; cardinality constraint:
+  (forall ((x DependeeLinkConcretization))
+          (or (= x DependeeLinkConcretization!val!0)
+              (= x DependeeLinkConcretization!val!2)
+              (= x DependeeLinkConcretization!val!3)
+              (= x DependeeLinkConcretization!val!1)))
+  ;; -----------
+  (define-fun c!17 () TaskConcretization
+    TaskConcretization!val!6)
+  (define-fun c!72 () ContributionConcretization
+    ContributionConcretization!val!5)
+  (define-fun c!38 () IntentionConcretization
+    IntentionConcretization!val!3)
+  (define-fun c!10 () TaskConcretization
+    TaskConcretization!val!1)
+  (define-fun c!34 () SoftGoalConcretization
+    SoftGoalConcretization!val!5)
+  (define-fun c!32 () ResourceConcretization
+    ResourceConcretization!val!2)
+  (define-fun c!59 () IntentionConcretization
+    IntentionConcretization!val!24)
+  (define-fun c!77 () DecompositionConcretization
+    DecompositionConcretization!val!2)
+  (define-fun c!81 () DependerLinkConcretization
+    DependerLinkConcretization!val!1)
+  (define-fun c!16 () TaskConcretization
+    TaskConcretization!val!5)
+  (define-fun c!49 () IntentionConcretization
+    IntentionConcretization!val!14)
+  (define-fun c!78 () DependerLinkConcretization
+    DependerLinkConcretization!val!4)
+  (define-fun c!61 () ContributionConcretization
+    ContributionConcretization!val!6)
+  (define-fun c!58 () IntentionConcretization
+    IntentionConcretization!val!23)
+  (define-fun c!50 () IntentionConcretization
+    IntentionConcretization!val!15)
+  (define-fun c!52 () IntentionConcretization
+    IntentionConcretization!val!17)
+  (define-fun c!57 () IntentionConcretization
+    IntentionConcretization!val!22)
+  (define-fun c!60 () ContributionConcretization
+    ContributionConcretization!val!0)
+  (define-fun ENDPOINT_GOAL () Int
+    2)
+  (define-fun c!7 () SoftGoalConcretization
+    SoftGoalConcretization!val!1)
+  (define-fun c!23 () GoalConcretization
+    GoalConcretization!val!3)
+  (define-fun c!62 () MeansEndConcretization
+    MeansEndConcretization!val!0)
+  (define-fun c!54 () IntentionConcretization
+    IntentionConcretization!val!19)
+  (define-fun c!9 () TaskConcretization
+    TaskConcretization!val!0)
+  (define-fun c!85 () DependeeLinkConcretization
+    DependeeLinkConcretization!val!2)
+  (define-fun c!70 () ContributionConcretization
+    ContributionConcretization!val!3)
+  (define-fun c!47 () IntentionConcretization
+    IntentionConcretization!val!12)
+  (define-fun c!71 () ContributionConcretization
+    ContributionConcretization!val!4)
+  (define-fun c!86 () DependeeLinkConcretization
+    DependeeLinkConcretization!val!0)
+  (define-fun CONTRIBUTION_HELP () Int
+    12)
+  (define-fun c!21 () SoftGoalConcretization
+    SoftGoalConcretization!val!4)
+  (define-fun c!67 () ContributionConcretization
+    ContributionConcretization!val!2)
+  (define-fun c!46 () IntentionConcretization
+    IntentionConcretization!val!11)
+  (define-fun CONTRIBUTION_SOMEPLUS () Int
+    13)
+  (define-fun c!27 () TaskConcretization
+    TaskConcretization!val!11)
+  (define-fun c!63 () MeansEndConcretization
+    MeansEndConcretization!val!1)
+  (define-fun c!15 () SoftGoalConcretization
+    SoftGoalConcretization!val!1)
+  (define-fun c!84 () DependeeLinkConcretization
+    DependeeLinkConcretization!val!1)
+  (define-fun c!14 () TaskConcretization
+    TaskConcretization!val!4)
+  (define-fun c!42 () IntentionConcretization
+    IntentionConcretization!val!7)
+  (define-fun ENDPOINT_RESOURCE () Int
+    4)
+  (define-fun c!75 () DecompositionConcretization
+    DecompositionConcretization!val!0)
+  (define-fun c!13 () TaskConcretization
+    TaskConcretization!val!3)
+  (define-fun c!25 () TaskConcretization
+    TaskConcretization!val!9)
+  (define-fun c!55 () IntentionConcretization
+    IntentionConcretization!val!20)
+  (define-fun c!31 () ResourceConcretization
+    ResourceConcretization!val!1)
+  (define-fun c!12 () GoalConcretization
+    GoalConcretization!val!1)
+  (define-fun c!30 () ResourceConcretization
+    ResourceConcretization!val!0)
+  (define-fun c!11 () TaskConcretization
+    TaskConcretization!val!2)
+  (define-fun c!44 () IntentionConcretization
+    IntentionConcretization!val!9)
+  (define-fun c!26 () TaskConcretization
+    TaskConcretization!val!10)
+  (define-fun ENDPOINT_TASK () Int
+    1)
+  (define-fun c!65 () ContributionConcretization
+    ContributionConcretization!val!1)
+  (define-fun c!29 () TaskConcretization
+    TaskConcretization!val!13)
+  (define-fun c!3 () ActorConcretization
+    ActorConcretization!val!3)
+  (define-fun c!76 () DecompositionConcretization
+    DecompositionConcretization!val!1)
+  (define-fun c!36 () IntentionConcretization
+    IntentionConcretization!val!1)
+  (define-fun CONTRIBUTION_HURT () Int
+    15)
+  (define-fun CONTRIBUTION_MAKE () Int
+    11)
+  (define-fun c!4 () ActorConcretization
+    ActorConcretization!val!4)
+  (define-fun c!39 () IntentionConcretization
+    IntentionConcretization!val!4)
+  (define-fun c!56 () IntentionConcretization
+    IntentionConcretization!val!21)
+  (define-fun c!33 () ResourceConcretization
+    ResourceConcretization!val!3)
+  (define-fun c!51 () IntentionConcretization
+    IntentionConcretization!val!16)
+  (define-fun c!19 () TaskConcretization
+    TaskConcretization!val!14)
+  (define-fun c!18 () GoalConcretization
+    GoalConcretization!val!2)
+  (define-fun c!48 () IntentionConcretization
+    IntentionConcretization!val!13)
+  (define-fun c!28 () TaskConcretization
+    TaskConcretization!val!12)
+  (define-fun c!64 () MeansEndConcretization
+    MeansEndConcretization!val!2)
+  (define-fun c!35 () IntentionConcretization
+    IntentionConcretization!val!0)
+  (define-fun c!82 () DependerLinkConcretization
+    DependerLinkConcretization!val!0)
+  (define-fun CONTRIBUTION_BREAK () Int
+    14)
+  (define-fun c!22 () TaskConcretization
+    TaskConcretization!val!7)
+  (define-fun c!83 () DependerLinkConcretization
+    DependerLinkConcretization!val!6)
+  (define-fun c!68 () DecompositionConcretization
+    DecompositionConcretization!val!4)
+  (define-fun CONTRIBUTION_UNKNOWN () Int
+    17)
+  (define-fun c!80 () DependerLinkConcretization
+    DependerLinkConcretization!val!3)
+  (define-fun c!40 () IntentionConcretization
+    IntentionConcretization!val!5)
+  (define-fun c!73 () ContributionConcretization
+    ContributionConcretization!val!7)
+  (define-fun CONTRIBUTION_SOMEMINUS () Int
+    16)
+  (define-fun c!5 () SoftGoalConcretization
+    SoftGoalConcretization!val!0)
+  (define-fun c!69 () DecompositionConcretization
+    DecompositionConcretization!val!5)
+  (define-fun c!74 () DecompositionConcretization
+    DecompositionConcretization!val!7)
+  (define-fun c!0 () ActorConcretization
+    ActorConcretization!val!1)
+  (define-fun c!2 () ActorConcretization
+    ActorConcretization!val!0)
+  (define-fun c!53 () IntentionConcretization
+    IntentionConcretization!val!18)
+  (define-fun ENDPOINT_SOFTGOAL () Int
+    3)
+  (define-fun c!41 () IntentionConcretization
+    IntentionConcretization!val!6)
+  (define-fun c!24 () TaskConcretization
+    TaskConcretization!val!8)
+  (define-fun c!8 () SoftGoalConcretization
+    SoftGoalConcretization!val!2)
+  (define-fun c!66 () ContributionConcretization
+    ContributionConcretization!val!8)
+  (define-fun c!37 () IntentionConcretization
+    IntentionConcretization!val!2)
+  (define-fun c!6 () GoalConcretization
+    GoalConcretization!val!0)
+  (define-fun c!79 () DependerLinkConcretization
+    DependerLinkConcretization!val!5)
+  (define-fun c!20 () SoftGoalConcretization
+    SoftGoalConcretization!val!3)
+  (define-fun c!1 () ActorConcretization
+    ActorConcretization!val!2)
+  (define-fun c!45 () IntentionConcretization
+    IntentionConcretization!val!10)
+  (define-fun c!43 () IntentionConcretization
+    IntentionConcretization!val!8)
+  (define-fun fd ((x!1 DependeeLinkConcretization)) Bool
+    false)
+  (define-fun dc1!108 ((x!1 GoalConcretization)) DependeeLinkConcretization
+    DependeeLinkConcretization!val!0)
+  (define-fun k!256 ((x!1 MeansEndConcretization)) MeansEndConcretization
+    (ite (= x!1 MeansEndConcretization!val!3) MeansEndConcretization!val!3
+    (ite (= x!1 MeansEndConcretization!val!2) MeansEndConcretization!val!2
+    (ite (= x!1 MeansEndConcretization!val!1) MeansEndConcretization!val!1
+      MeansEndConcretization!val!0))))
+  (define-fun k!251 ((x!1 TaskConcretization)) TaskConcretization
+    (ite (= x!1 TaskConcretization!val!12) TaskConcretization!val!12
+    (ite (= x!1 TaskConcretization!val!14) TaskConcretization!val!14
+    (ite (= x!1 TaskConcretization!val!1) TaskConcretization!val!1
+    (ite (= x!1 TaskConcretization!val!2) TaskConcretization!val!2
+    (ite (= x!1 TaskConcretization!val!10) TaskConcretization!val!10
+    (ite (= x!1 TaskConcretization!val!3) TaskConcretization!val!3
+    (ite (= x!1 TaskConcretization!val!8) TaskConcretization!val!8
+    (ite (= x!1 TaskConcretization!val!11) TaskConcretization!val!11
+    (ite (= x!1 TaskConcretization!val!5) TaskConcretization!val!5
+    (ite (= x!1 TaskConcretization!val!4) TaskConcretization!val!4
+    (ite (= x!1 TaskConcretization!val!9) TaskConcretization!val!9
+    (ite (= x!1 TaskConcretization!val!13) TaskConcretization!val!13
+    (ite (= x!1 TaskConcretization!val!0) TaskConcretization!val!0
+    (ite (= x!1 TaskConcretization!val!7) TaskConcretization!val!7
+    (ite (= x!1 TaskConcretization!val!15) TaskConcretization!val!15
+      TaskConcretization!val!6))))))))))))))))
+  (define-fun inited!261 ((x!1 TaskConcretization)) Bool
+    (ite (= x!1 TaskConcretization!val!3) true
+    (ite (= x!1 TaskConcretization!val!7) true
+    (ite (= x!1 TaskConcretization!val!9) true
+    (ite (= x!1 TaskConcretization!val!10) true
+    (ite (= x!1 TaskConcretization!val!11) true
+    (ite (= x!1 TaskConcretization!val!13) true
+    (ite (= x!1 TaskConcretization!val!15) true
+      false))))))))
+  (define-fun inited ((x!1 TaskConcretization)) Bool
+    (inited!261 (k!251 x!1)))
+  (define-fun k!260 ((x!1 DependeeLinkConcretization)) DependeeLinkConcretization
+    (ite (= x!1 DependeeLinkConcretization!val!0)
+      DependeeLinkConcretization!val!0
+    (ite (= x!1 DependeeLinkConcretization!val!2)
+      DependeeLinkConcretization!val!2
+    (ite (= x!1 DependeeLinkConcretization!val!3)
+      DependeeLinkConcretization!val!3
+      DependeeLinkConcretization!val!1))))
+  (define-fun tgt!262 ((x!1 DependeeLinkConcretization)) TaskConcretization
+    (ite (= x!1 DependeeLinkConcretization!val!1) TaskConcretization!val!12
+    (ite (= x!1 DependeeLinkConcretization!val!3) TaskConcretization!val!1
+      TaskConcretization!val!7)))
+  (define-fun tgt ((x!1 DependeeLinkConcretization)) TaskConcretization
+    (tgt!262 (k!260 x!1)))
+  (define-fun tgt ((x!1 DependeeLinkConcretization)) SoftGoalConcretization
+    SoftGoalConcretization!val!3)
+  (define-fun fs!263 ((x!1 GoalConcretization)) Bool
+    (ite (= x!1 GoalConcretization!val!1) false
+    (ite (= x!1 GoalConcretization!val!3) false
+      true)))
+  (define-fun k!252 ((x!1 GoalConcretization)) GoalConcretization
+    (ite (= x!1 GoalConcretization!val!0) GoalConcretization!val!0
+    (ite (= x!1 GoalConcretization!val!2) GoalConcretization!val!2
+    (ite (= x!1 GoalConcretization!val!3) GoalConcretization!val!3
+      GoalConcretization!val!1))))
+  (define-fun fs ((x!1 GoalConcretization)) Bool
+    (fs!263 (k!252 x!1)))
+  (define-fun dc2!159 ((x!1 SoftGoalConcretization)) DependeeLinkConcretization
+    DependeeLinkConcretization!val!0)
+  (define-fun tgt ((x!1 DependeeLinkConcretization)) GoalConcretization
+    GoalConcretization!val!2)
+  (define-fun tgt ((x!1 DependeeLinkConcretization)) ResourceConcretization
+    ResourceConcretization!val!2)
+  (define-fun n!294 ((x!1 ResourceConcretization)) Bool
+    (ite (= x!1 ResourceConcretization!val!0) true
+      false))
+  (define-fun dc1!143 ((x!1 TaskConcretization)) DependerLinkConcretization
+    DependerLinkConcretization!val!1)
+  (define-fun k!253 ((x!1 SoftGoalConcretization)) SoftGoalConcretization
+    (ite (= x!1 SoftGoalConcretization!val!1) SoftGoalConcretization!val!1
+    (ite (= x!1 SoftGoalConcretization!val!2) SoftGoalConcretization!val!2
+    (ite (= x!1 SoftGoalConcretization!val!0) SoftGoalConcretization!val!0
+    (ite (= x!1 SoftGoalConcretization!val!4) SoftGoalConcretization!val!4
+    (ite (= x!1 SoftGoalConcretization!val!3) SoftGoalConcretization!val!3
+      SoftGoalConcretization!val!5))))))
+  (define-fun n!264 ((x!1 SoftGoalConcretization)) Bool
+    (ite (= x!1 SoftGoalConcretization!val!1) true
+    (ite (= x!1 SoftGoalConcretization!val!3) true
+    (ite (= x!1 SoftGoalConcretization!val!5) true
+      false))))
+  (define-fun n ((x!1 SoftGoalConcretization)) Bool
+    (n!264 (k!253 x!1)))
+  (define-fun dc1!101 ((x!1 GoalConcretization)) DependerLinkConcretization
+    DependerLinkConcretization!val!1)
+  (define-fun ps!265 ((x!1 SoftGoalConcretization)) Bool
+    (ite (= x!1 SoftGoalConcretization!val!1) false
+    (ite (= x!1 SoftGoalConcretization!val!3) false
+    (ite (= x!1 SoftGoalConcretization!val!5) false
+      true))))
+  (define-fun ps ((x!1 SoftGoalConcretization)) Bool
+    (ps!265 (k!253 x!1)))
+  (define-fun tgtEndpoint!266 ((x!1 IntentionConcretization)) Int
+    (ite (= x!1 IntentionConcretization!val!0) 3
+    (ite (= x!1 IntentionConcretization!val!1) 2
+    (ite (= x!1 IntentionConcretization!val!2) 3
+    (ite (= x!1 IntentionConcretization!val!3) 3
+    (ite (= x!1 IntentionConcretization!val!7) 2
+    (ite (= x!1 IntentionConcretization!val!10) 3
+    (ite (= x!1 IntentionConcretization!val!13) 2
+    (ite (= x!1 IntentionConcretization!val!15) 3
+    (ite (= x!1 IntentionConcretization!val!16) 3
+    (ite (= x!1 IntentionConcretization!val!18) 2
+      1)))))))))))
+  (define-fun k!255 ((x!1 IntentionConcretization)) IntentionConcretization
+    (ite (= x!1 IntentionConcretization!val!3) IntentionConcretization!val!3
+    (ite (= x!1 IntentionConcretization!val!21) IntentionConcretization!val!21
+    (ite (= x!1 IntentionConcretization!val!23) IntentionConcretization!val!23
+    (ite (= x!1 IntentionConcretization!val!4) IntentionConcretization!val!4
+    (ite (= x!1 IntentionConcretization!val!15) IntentionConcretization!val!15
+    (ite (= x!1 IntentionConcretization!val!17) IntentionConcretization!val!17
+    (ite (= x!1 IntentionConcretization!val!16) IntentionConcretization!val!16
+    (ite (= x!1 IntentionConcretization!val!18) IntentionConcretization!val!18
+    (ite (= x!1 IntentionConcretization!val!22) IntentionConcretization!val!22
+    (ite (= x!1 IntentionConcretization!val!9) IntentionConcretization!val!9
+    (ite (= x!1 IntentionConcretization!val!5) IntentionConcretization!val!5
+    (ite (= x!1 IntentionConcretization!val!7) IntentionConcretization!val!7
+    (ite (= x!1 IntentionConcretization!val!6) IntentionConcretization!val!6
+    (ite (= x!1 IntentionConcretization!val!24) IntentionConcretization!val!24
+    (ite (= x!1 IntentionConcretization!val!13) IntentionConcretization!val!13
+    (ite (= x!1 IntentionConcretization!val!19) IntentionConcretization!val!19
+    (ite (= x!1 IntentionConcretization!val!20) IntentionConcretization!val!20
+    (ite (= x!1 IntentionConcretization!val!0) IntentionConcretization!val!0
+    (ite (= x!1 IntentionConcretization!val!2) IntentionConcretization!val!2
+    (ite (= x!1 IntentionConcretization!val!11) IntentionConcretization!val!11
+    (ite (= x!1 IntentionConcretization!val!14) IntentionConcretization!val!14
+    (ite (= x!1 IntentionConcretization!val!12) IntentionConcretization!val!12
+    (ite (= x!1 IntentionConcretization!val!8) IntentionConcretization!val!8
+    (ite (= x!1 IntentionConcretization!val!10) IntentionConcretization!val!10
+      IntentionConcretization!val!1)))))))))))))))))))))))))
+  (define-fun tgtEndpoint ((x!1 IntentionConcretization)) Int
+    (tgtEndpoint!266 (k!255 x!1)))
+  (define-fun edge!267 ((x!1 Decomposition) (x!2 DecompositionConcretization)) Bool
+    (ite (and (= x!1 DisplayGraphs2BeInflo)
+              (= x!2 DecompositionConcretization!val!0))
+      true
+    (ite (and (= x!1 TrackRevisions2BeInflo)
+              (= x!2 DecompositionConcretization!val!1))
+      true
+    (ite (and (= x!1 CreateGraphs2BeInflo)
+              (= x!2 DecompositionConcretization!val!2))
+      true
+    (ite (and (= x!1 UseAutomatedReputationSystem2LessExtensiveModeration)
+              (= x!2 DecompositionConcretization!val!3))
+      true
+    (ite (and (= x!1 TrackAuthorship2BeInflo)
+              (= x!2 DecompositionConcretization!val!7))
+      true
+    (ite (and (= x!1 MakeViews2Browsing)
+              (= x!2 DecompositionConcretization!val!4))
+      true
+    (ite (and (= x!1 AddSourceInDescription2CreateGraph)
+              (= x!2 DecompositionConcretization!val!5))
+      true
+    (ite (and (= x!1 CreateDiscussions2UseDiscussions)
+              (= x!2 DecompositionConcretization!val!6))
+      true
+      false)))))))))
+  (define-fun k!257 ((x!1 DecompositionConcretization)) DecompositionConcretization
+    (ite (= x!1 DecompositionConcretization!val!6)
+      DecompositionConcretization!val!6
+    (ite (= x!1 DecompositionConcretization!val!3)
+      DecompositionConcretization!val!3
+    (ite (= x!1 DecompositionConcretization!val!2)
+      DecompositionConcretization!val!2
+    (ite (= x!1 DecompositionConcretization!val!5)
+      DecompositionConcretization!val!5
+    (ite (= x!1 DecompositionConcretization!val!7)
+      DecompositionConcretization!val!7
+    (ite (= x!1 DecompositionConcretization!val!1)
+      DecompositionConcretization!val!1
+    (ite (= x!1 DecompositionConcretization!val!0)
+      DecompositionConcretization!val!0
+      DecompositionConcretization!val!4))))))))
+  (define-fun edge ((x!1 Decomposition) (x!2 DecompositionConcretization)) Bool
+    (edge!267 x!1 (k!257 x!2)))
+  (define-fun pd ((x!1 SoftGoalConcretization)) Bool
+    false)
+  (define-fun un ((x!1 MeansEndConcretization)) Bool
+    false)
+  (define-fun n!268 ((x!1 GoalConcretization)) Bool
+    (ite (= x!1 GoalConcretization!val!1) true
+    (ite (= x!1 GoalConcretization!val!3) true
+      false)))
+  (define-fun n ((x!1 GoalConcretization)) Bool
+    (n!268 (k!252 x!1)))
+  (define-fun ps ((x!1 GoalConcretization)) Bool
+    false)
+  (define-fun fd ((x!1 SoftGoalConcretization)) Bool
+    false)
+  (define-fun pd ((x!1 GoalConcretization)) Bool
+    false)
+  (define-fun cc3!169 ((x!1 SoftGoalConcretization)) ContributionConcretization
+    ContributionConcretization!val!7)
+  (define-fun fs ((x!1 ContributionConcretization)) Bool
+    false)
+  (define-fun node!285 ((x!1 SoftGoal) (x!2 SoftGoalConcretization)) Bool
+    (ite (and (= x!1 MakeModelsTrustworthy)
+              (= x!2 SoftGoalConcretization!val!0))
+      true
+    (ite (and (= x!1 ValidateModel) (= x!2 SoftGoalConcretization!val!1)) true
+    (ite (and (= x!1 GetFeedback) (= x!2 SoftGoalConcretization!val!2)) true
+    (ite (and (= x!1 IntegrityOfModelsIME) (= x!2 SoftGoalConcretization!val!3))
+      true
+    (ite (and (= x!1 MinimizeModeratorEffort)
+              (= x!2 SoftGoalConcretization!val!4))
+      true
+    (ite (and (= x!1 IntegrityOfModels) (= x!2 SoftGoalConcretization!val!5))
+      true
+    (ite (and (= x!1 IntegrityOfModelsIU) (= x!2 SoftGoalConcretization!val!1))
+      true
+      false))))))))
+  (define-fun fd ((x!1 GoalConcretization)) Bool
+    false)
+  (define-fun src!269 ((x!1 MeansEndConcretization)) TaskConcretization
+    (ite (= x!1 MeansEndConcretization!val!1) TaskConcretization!val!1
+    (ite (= x!1 MeansEndConcretization!val!2) TaskConcretization!val!2
+    (ite (= x!1 MeansEndConcretization!val!3) TaskConcretization!val!6
+      TaskConcretization!val!0))))
+  (define-fun src ((x!1 MeansEndConcretization)) TaskConcretization
+    (src!269 (k!256 x!1)))
+  (define-fun tgt!270 ((x!1 IntentionConcretization)) SoftGoalConcretization
+    (ite (= x!1 IntentionConcretization!val!0) SoftGoalConcretization!val!0
+    (ite (= x!1 IntentionConcretization!val!3) SoftGoalConcretization!val!2
+    (ite (= x!1 IntentionConcretization!val!15) SoftGoalConcretization!val!3
+    (ite (= x!1 IntentionConcretization!val!16) SoftGoalConcretization!val!4
+      SoftGoalConcretization!val!1)))))
+  (define-fun tgt ((x!1 IntentionConcretization)) SoftGoalConcretization
+    (tgt!270 (k!255 x!1)))
+  (define-fun tgt!271 ((x!1 IntentionConcretization)) GoalConcretization
+    (ite (= x!1 IntentionConcretization!val!7) GoalConcretization!val!1
+    (ite (= x!1 IntentionConcretization!val!13) GoalConcretization!val!2
+    (ite (= x!1 IntentionConcretization!val!18) GoalConcretization!val!3
+      GoalConcretization!val!0))))
+  (define-fun tgt ((x!1 IntentionConcretization)) GoalConcretization
+    (tgt!271 (k!255 x!1)))
+  (define-fun tgt!272 ((x!1 IntentionConcretization)) TaskConcretization
+    (ite (= x!1 IntentionConcretization!val!5) TaskConcretization!val!1
+    (ite (= x!1 IntentionConcretization!val!6) TaskConcretization!val!2
+    (ite (= x!1 IntentionConcretization!val!8) TaskConcretization!val!3
+    (ite (= x!1 IntentionConcretization!val!9) TaskConcretization!val!4
+    (ite (= x!1 IntentionConcretization!val!11) TaskConcretization!val!5
+    (ite (= x!1 IntentionConcretization!val!12) TaskConcretization!val!6
+    (ite (= x!1 IntentionConcretization!val!14) TaskConcretization!val!14
+    (ite (= x!1 IntentionConcretization!val!17) TaskConcretization!val!7
+    (ite (= x!1 IntentionConcretization!val!19) TaskConcretization!val!8
+    (ite (= x!1 IntentionConcretization!val!20) TaskConcretization!val!9
+    (ite (= x!1 IntentionConcretization!val!21) TaskConcretization!val!10
+    (ite (= x!1 IntentionConcretization!val!22) TaskConcretization!val!11
+    (ite (= x!1 IntentionConcretization!val!23) TaskConcretization!val!12
+    (ite (= x!1 IntentionConcretization!val!24) TaskConcretization!val!13
+      TaskConcretization!val!0)))))))))))))))
+  (define-fun tgt ((x!1 IntentionConcretization)) TaskConcretization
+    (tgt!272 (k!255 x!1)))
+  (define-fun unSrcEndpoint ((x!1 ContributionConcretization)) Bool
+    false)
+  (define-fun dc1!128 ((x!1 TaskConcretization)) DecompositionConcretization
+    DecompositionConcretization!val!3)
+  (define-fun cc1!146 ((x!1 SoftGoalConcretization)) ContributionConcretization
+    ContributionConcretization!val!7)
+  (define-fun dc1!132 ((x!1 TaskConcretization)) DecompositionConcretization
+    DecompositionConcretization!val!3)
+  (define-fun dc1!89 ((x!1 GoalConcretization)) DependeeLinkConcretization
+    DependeeLinkConcretization!val!0)
+  (define-fun dc3!135 ((x!1 TaskConcretization)) DependerLinkConcretization
+    DependerLinkConcretization!val!1)
+  (define-fun k!250 ((x!1 ActorConcretization)) ActorConcretization
+    (ite (= x!1 ActorConcretization!val!2) ActorConcretization!val!2
+    (ite (= x!1 ActorConcretization!val!3) ActorConcretization!val!3
+    (ite (= x!1 ActorConcretization!val!4) ActorConcretization!val!4
+    (ite (= x!1 ActorConcretization!val!0) ActorConcretization!val!0
+      ActorConcretization!val!1)))))
+  (define-fun fs!308 ((x!1 DependerLinkConcretization)) Bool
+    (ite (= x!1 DependerLinkConcretization!val!5) false
+    (ite (= x!1 DependerLinkConcretization!val!6) false
+    (ite (= x!1 DependerLinkConcretization!val!4) false
+      true))))
+  (define-fun un ((x!1 DecompositionConcretization)) Bool
+    false)
+  (define-fun k!258 ((x!1 ContributionConcretization)) ContributionConcretization
+    (ite (= x!1 ContributionConcretization!val!8)
+      ContributionConcretization!val!8
+    (ite (= x!1 ContributionConcretization!val!7)
+      ContributionConcretization!val!7
+    (ite (= x!1 ContributionConcretization!val!6)
+      ContributionConcretization!val!6
+    (ite (= x!1 ContributionConcretization!val!4)
+      ContributionConcretization!val!4
+    (ite (= x!1 ContributionConcretization!val!0)
+      ContributionConcretization!val!0
+    (ite (= x!1 ContributionConcretization!val!2)
+      ContributionConcretization!val!2
+    (ite (= x!1 ContributionConcretization!val!1)
+      ContributionConcretization!val!1
+    (ite (= x!1 ContributionConcretization!val!3)
+      ContributionConcretization!val!3
+      ContributionConcretization!val!5)))))))))
+  (define-fun n!273 ((x!1 ContributionConcretization)) Bool
+    (ite (= x!1 ContributionConcretization!val!1) false
+    (ite (= x!1 ContributionConcretization!val!6) false
+    (ite (= x!1 ContributionConcretization!val!7) false
+    (ite (= x!1 ContributionConcretization!val!8) false
+      true)))))
+  (define-fun n ((x!1 ContributionConcretization)) Bool
+    (n!273 (k!258 x!1)))
+  (define-fun ps!274 ((x!1 ContributionConcretization)) Bool
+    (ite (= x!1 ContributionConcretization!val!6) true
+    (ite (= x!1 ContributionConcretization!val!7) true
+    (ite (= x!1 ContributionConcretization!val!8) true
+    (ite (= x!1 ContributionConcretization!val!1) true
+      false)))))
+  (define-fun ps ((x!1 ContributionConcretization)) Bool
+    (ps!274 (k!258 x!1)))
+  (define-fun dc1!107 ((x!1 GoalConcretization)) DependerLinkConcretization
+    DependerLinkConcretization!val!1)
+  (define-fun k!254 ((x!1 ResourceConcretization)) ResourceConcretization
+    (ite (= x!1 ResourceConcretization!val!0) ResourceConcretization!val!0
+    (ite (= x!1 ResourceConcretization!val!2) ResourceConcretization!val!2
+    (ite (= x!1 ResourceConcretization!val!3) ResourceConcretization!val!3
+    (ite (= x!1 ResourceConcretization!val!4) ResourceConcretization!val!4
+      ResourceConcretization!val!1)))))
+  (define-fun type!282 ((x!1 ContributionConcretization)) Int
+    (ite (= x!1 ContributionConcretization!val!1) 13
+    (ite (= x!1 ContributionConcretization!val!2) 15
+    (ite (= x!1 ContributionConcretization!val!5) 15
+      12))))
+  (define-fun pd ((x!1 ContributionConcretization)) Bool
+    false)
+  (define-fun cc4!175!283 ((x!1 SoftGoalConcretization)) ContributionConcretization
+    (ite (= x!1 SoftGoalConcretization!val!4) ContributionConcretization!val!7
+    (ite (= x!1 SoftGoalConcretization!val!2) ContributionConcretization!val!8
+      ContributionConcretization!val!6)))
+  (define-fun mec2!115 ((x!1 GoalConcretization)) MeansEndConcretization
+    MeansEndConcretization!val!1)
+  (define-fun node!300 ((x!1 Goal) (x!2 GoalConcretization)) Bool
+    (ite (and (= x!1 UseInflo) (= x!2 GoalConcretization!val!0)) true
+    (ite (and (= x!1 InfloBeModerated) (= x!2 GoalConcretization!val!1)) true
+    (ite (and (= x!1 ModerateInflo) (= x!2 GoalConcretization!val!2)) true
+    (ite (and (= x!1 AllowModeration) (= x!2 GoalConcretization!val!3)) true
+      false)))))
+  (define-fun srcEndpoint!279 ((x!1 DependerLinkConcretization)) Int
+    (ite (= x!1 DependerLinkConcretization!val!3) 2
+    (ite (= x!1 DependerLinkConcretization!val!4) 2
+    (ite (= x!1 DependerLinkConcretization!val!5) 2
+    (ite (= x!1 DependerLinkConcretization!val!6) 3
+      1)))))
+  (define-fun dc2!139!316 ((x!1 TaskConcretization)) DependerLinkConcretization
+    (ite (= x!1 TaskConcretization!val!6) DependerLinkConcretization!val!1
+    (ite (= x!1 TaskConcretization!val!8) DependerLinkConcretization!val!2
+      DependerLinkConcretization!val!0)))
+  (define-fun un ((x!1 ResourceConcretization)) Bool
+    false)
+  (define-fun fd ((x!1 ContributionConcretization)) Bool
+    false)
+  (define-fun fsSrcEndpoint!277 ((x!1 ContributionConcretization)) Bool
+    (ite (= x!1 ContributionConcretization!val!1) true
+    (ite (= x!1 ContributionConcretization!val!7) true
+    (ite (= x!1 ContributionConcretization!val!8) true
+      false))))
+  (define-fun fsSrcEndpoint ((x!1 ContributionConcretization)) Bool
+    (fsSrcEndpoint!277 (k!258 x!1)))
+  (define-fun dc3!145 ((x!1 TaskConcretization)) DependerLinkConcretization
+    DependerLinkConcretization!val!1)
+  (define-fun src!275 ((x!1 DecompositionConcretization)) TaskConcretization
+    (ite (= x!1 DecompositionConcretization!val!1) TaskConcretization!val!10
+    (ite (= x!1 DecompositionConcretization!val!2) TaskConcretization!val!11
+    (ite (= x!1 DecompositionConcretization!val!3) TaskConcretization!val!6
+    (ite (= x!1 DecompositionConcretization!val!7) TaskConcretization!val!8
+    (ite (= x!1 DecompositionConcretization!val!5) TaskConcretization!val!4
+    (ite (= x!1 DecompositionConcretization!val!4) TaskConcretization!val!3
+    (ite (= x!1 DecompositionConcretization!val!6) TaskConcretization!val!15
+      TaskConcretization!val!9))))))))
+  (define-fun src ((x!1 DecompositionConcretization)) TaskConcretization
+    (src!275 (k!257 x!1)))
+  (define-fun src ((x!1 DecompositionConcretization)) GoalConcretization
+    GoalConcretization!val!2)
+  (define-fun tgt!276 ((x!1 ContributionConcretization)) SoftGoalConcretization
+    (ite (= x!1 ContributionConcretization!val!1) SoftGoalConcretization!val!1
+    (ite (= x!1 ContributionConcretization!val!2) SoftGoalConcretization!val!2
+    (ite (= x!1 ContributionConcretization!val!4) SoftGoalConcretization!val!3
+    (ite (= x!1 ContributionConcretization!val!5) SoftGoalConcretization!val!4
+    (ite (= x!1 ContributionConcretization!val!7) SoftGoalConcretization!val!4
+    (ite (= x!1 ContributionConcretization!val!8) SoftGoalConcretization!val!2
+      SoftGoalConcretization!val!0)))))))
+  (define-fun tgt ((x!1 ContributionConcretization)) SoftGoalConcretization
+    (tgt!276 (k!258 x!1)))
+  (define-fun src ((x!1 DecompositionConcretization)) SoftGoalConcretization
+    SoftGoalConcretization!val!5)
+  (define-fun dc1!157 ((x!1 SoftGoalConcretization)) DependeeLinkConcretization
+    DependeeLinkConcretization!val!0)
+  (define-fun dc!161 ((x!1 SoftGoalConcretization)) DependerLinkConcretization
+    DependerLinkConcretization!val!1)
+  (define-fun src ((x!1 DecompositionConcretization)) ResourceConcretization
+    ResourceConcretization!val!2)
+  (define-fun dc3!141 ((x!1 TaskConcretization)) DependerLinkConcretization
+    DependerLinkConcretization!val!1)
+  (define-fun srcEndpoint!281 ((x!1 DependeeLinkConcretization)) Int
+    (ite (= x!1 DependeeLinkConcretization!val!0) 3
+      4))
+  (define-fun dc1!98!278 ((x!1 GoalConcretization)) DependerLinkConcretization
+    (ite (= x!1 GoalConcretization!val!3) DependerLinkConcretization!val!5
+      DependerLinkConcretization!val!4))
+  (define-fun dc1!98 ((x!1 GoalConcretization)) DependerLinkConcretization
+    (dc1!98!278 (k!252 x!1)))
+  (define-fun edge!297 ((x!1 DependerLink) (x!2 DependerLinkConcretization)) Bool
+    (ite (and (= x!1 AddSourceInDescription2Info)
+              (= x!2 DependerLinkConcretization!val!0))
+      true
+    (ite (and (= x!1 TrackAuthorship2Authorship)
+              (= x!2 DependerLinkConcretization!val!2))
+      true
+    (ite (and (= x!1 UseAutomatedReputationSystem2ReputationValues)
+              (= x!2 DependerLinkConcretization!val!1))
+      true
+    (ite (and (= x!1 AllowModeration2Moderation)
+              (= x!2 DependerLinkConcretization!val!5))
+      true
+    (ite (and (= x!1 IntegrityOfModelsIU2IntegrityOfModels)
+              (= x!2 DependerLinkConcretization!val!6))
+      true
+    (ite (and (= x!1 UseInflo2Graphing)
+              (= x!2 DependerLinkConcretization!val!3))
+      true
+    (ite (and (= x!1 InfloBeModerated2Moderation)
+              (= x!2 DependerLinkConcretization!val!4))
+      true
+      false))))))))
+  (define-fun fdSrcEndpoint ((x!1 ContributionConcretization)) Bool
+    false)
+  (define-fun mec2!103 ((x!1 GoalConcretization)) MeansEndConcretization
+    MeansEndConcretization!val!1)
+  (define-fun dc2!130 ((x!1 TaskConcretization)) DecompositionConcretization
+    DecompositionConcretization!val!3)
+  (define-fun k!259 ((x!1 DependerLinkConcretization)) DependerLinkConcretization
+    (ite (= x!1 DependerLinkConcretization!val!5)
+      DependerLinkConcretization!val!5
+    (ite (= x!1 DependerLinkConcretization!val!1)
+      DependerLinkConcretization!val!1
+    (ite (= x!1 DependerLinkConcretization!val!2)
+      DependerLinkConcretization!val!2
+    (ite (= x!1 DependerLinkConcretization!val!3)
+      DependerLinkConcretization!val!3
+    (ite (= x!1 DependerLinkConcretization!val!4)
+      DependerLinkConcretization!val!4
+    (ite (= x!1 DependerLinkConcretization!val!0)
+      DependerLinkConcretization!val!0
+      DependerLinkConcretization!val!6)))))))
+  (define-fun srcEndpoint ((x!1 DependerLinkConcretization)) Int
+    (srcEndpoint!279 (k!259 x!1)))
+  (define-fun cc2!166 ((x!1 SoftGoalConcretization)) ContributionConcretization
+    ContributionConcretization!val!7)
+  (define-fun fs!311 ((x!1 DependeeLinkConcretization)) Bool
+    (ite (= x!1 DependeeLinkConcretization!val!0) false
+      true))
+  (define-fun dc2!123 ((x!1 GoalConcretization)) DependeeLinkConcretization
+    DependeeLinkConcretization!val!0)
+  (define-fun mec!87 ((x!1 GoalConcretization)) MeansEndConcretization
+    MeansEndConcretization!val!3)
+  (define-fun cc2!150 ((x!1 SoftGoalConcretization)) ContributionConcretization
+    ContributionConcretization!val!7)
+  (define-fun co ((x!1 MeansEndConcretization)) Bool
+    false)
+  (define-fun edge!280 ((x!1 Contribution) (x!2 ContributionConcretization)) Bool
+    (ite (and (= x!1 ValidateModel2MakeModelsTrustworthy)
+              (= x!2 ContributionConcretization!val!0))
+      true
+    (ite (and (= x!1 UseDiscussions2ValidateModel)
+              (= x!2 ContributionConcretization!val!1))
+      true
+    (ite (and (= x!1 InfloBeModerated2GetFeedback)
+              (= x!2 ContributionConcretization!val!2))
+      true
+    (ite (and (= x!1 IntegrityOfModelsIU2MakeModelsTrustworthy)
+              (= x!2 ContributionConcretization!val!3))
+      true
+    (ite (and (= x!1 ExtensiveModeration2IntegrityOfModelsIME)
+              (= x!2 ContributionConcretization!val!4))
+      true
+    (ite (and (= x!1 ExtensiveModeration2MinimizeModeratorEffort)
+              (= x!2 ContributionConcretization!val!5))
+      true
+    (ite (and (= x!1 GetFeedback2MakeModelsTrustworthy)
+              (= x!2 ContributionConcretization!val!6))
+      true
+    (ite (and (= x!1 UseAutomatedReputationSystem2MinimizeModeratorEffort)
+              (= x!2 ContributionConcretization!val!7))
+      true
+    (ite (and (= x!1 UseDiscussions2GetFeedback)
+              (= x!2 ContributionConcretization!val!8))
+      true
+      false))))))))))
+  (define-fun edge ((x!1 Contribution) (x!2 ContributionConcretization)) Bool
+    (edge!280 x!1 (k!258 x!2)))
+  (define-fun inited ((x!1 SoftGoalConcretization)) Bool
+    false)
+  (define-fun srcEndpoint ((x!1 DependeeLinkConcretization)) Int
+    (srcEndpoint!281 (k!260 x!1)))
+  (define-fun dc1!178 ((x!1 SoftGoalConcretization)) DependeeLinkConcretization
+    DependeeLinkConcretization!val!0)
+  (define-fun dc2!105 ((x!1 GoalConcretization)) DependeeLinkConcretization
+    DependeeLinkConcretization!val!0)
+  (define-fun cc1!155 ((x!1 SoftGoalConcretization)) ContributionConcretization
+    ContributionConcretization!val!7)
+  (define-fun tgt!295 ((x!1 DecompositionConcretization)) TaskConcretization
+    (ite (= x!1 DecompositionConcretization!val!4) TaskConcretization!val!0
+    (ite (= x!1 DecompositionConcretization!val!5) TaskConcretization!val!1
+    (ite (= x!1 DecompositionConcretization!val!6) TaskConcretization!val!2
+    (ite (= x!1 DecompositionConcretization!val!3) TaskConcretization!val!14
+      TaskConcretization!val!12)))))
+  (define-fun inited ((x!1 GoalConcretization)) Bool
+    false)
+  (define-fun dc2!186 ((x!1 ResourceConcretization)) DependeeLinkConcretization
+    DependeeLinkConcretization!val!0)
+  (define-fun dc!90 ((x!1 GoalConcretization)) DependerLinkConcretization
+    DependerLinkConcretization!val!5)
+  (define-fun dc2!144 ((x!1 TaskConcretization)) DecompositionConcretization
+    DecompositionConcretization!val!3)
+  (define-fun co ((x!1 DecompositionConcretization)) Bool
+    false)
+  (define-fun dc!162 ((x!1 SoftGoalConcretization)) DependeeLinkConcretization
+    DependeeLinkConcretization!val!0)
+  (define-fun dc1!177 ((x!1 SoftGoalConcretization)) DependerLinkConcretization
+    DependerLinkConcretization!val!1)
+  (define-fun dc1!151 ((x!1 SoftGoalConcretization)) DependeeLinkConcretization
+    DependeeLinkConcretization!val!0)
+  (define-fun dc1!183 ((x!1 ResourceConcretization)) DependeeLinkConcretization
+    DependeeLinkConcretization!val!0)
+  (define-fun fs!291 ((x!1 ResourceConcretization)) Bool
+    (ite (= x!1 ResourceConcretization!val!0) false
+      true))
+  (define-fun cc2!148 ((x!1 SoftGoalConcretization)) ContributionConcretization
+    ContributionConcretization!val!7)
+  (define-fun co ((x!1 ResourceConcretization)) Bool
+    false)
+  (define-fun dc1!114 ((x!1 GoalConcretization)) DependeeLinkConcretization
+    DependeeLinkConcretization!val!0)
+  (define-fun tgt!315 ((x!1 DependerLinkConcretization)) ResourceConcretization
+    (ite (= x!1 DependerLinkConcretization!val!0) ResourceConcretization!val!3
+    (ite (= x!1 DependerLinkConcretization!val!2) ResourceConcretization!val!4
+    (ite (= x!1 DependerLinkConcretization!val!1) ResourceConcretization!val!2
+    (ite (= x!1 DependerLinkConcretization!val!3) ResourceConcretization!val!1
+      ResourceConcretization!val!0)))))
+  (define-fun dc!179 ((x!1 SoftGoalConcretization)) DependerLinkConcretization
+    DependerLinkConcretization!val!6)
+  (define-fun un ((x!1 TaskConcretization)) Bool
+    false)
+  (define-fun dc!125 ((x!1 TaskConcretization)) DependerLinkConcretization
+    DependerLinkConcretization!val!1)
+  (define-fun dc!95 ((x!1 GoalConcretization)) DependerLinkConcretization
+    DependerLinkConcretization!val!1)
+  (define-fun type ((x!1 ContributionConcretization)) Int
+    (type!282 (k!258 x!1)))
+  (define-fun edge!317 ((x!1 DependeeLink) (x!2 DependeeLinkConcretization)) Bool
+    (ite (and (= x!1 IntegrityOfModels2IntegrityOfModelsIME)
+              (= x!2 DependeeLinkConcretization!val!0))
+      true
+    (ite (and (= x!1 Graphing2BeInflo) (= x!2 DependeeLinkConcretization!val!1))
+      true
+    (ite (and (= x!1 ReputationValues2ProvideReputations)
+              (= x!2 DependeeLinkConcretization!val!2))
+      true
+    (ite (and (= x!1 Authorship2CreateGraph)
+              (= x!2 DependeeLinkConcretization!val!3))
+      true
+      false)))))
+  (define-fun node!289 ((x!1 Resource) (x!2 ResourceConcretization)) Bool
+    (ite (and (= x!1 Moderation) (= x!2 ResourceConcretization!val!0)) true
+    (ite (and (= x!1 Graphing) (= x!2 ResourceConcretization!val!1)) true
+    (ite (and (= x!1 ReputationValues) (= x!2 ResourceConcretization!val!2))
+      true
+    (ite (and (= x!1 Info) (= x!2 ResourceConcretization!val!3)) true
+    (ite (and (= x!1 Authorship) (= x!2 ResourceConcretization!val!4)) true
+      false))))))
+  (define-fun dc2!176 ((x!1 SoftGoalConcretization)) DependeeLinkConcretization
+    DependeeLinkConcretization!val!0)
+  (define-fun fs ((x!1 MeansEndConcretization)) Bool
+    true)
+  (define-fun cc2!172 ((x!1 SoftGoalConcretization)) ContributionConcretization
+    ContributionConcretization!val!7)
+  (define-fun cc4!175 ((x!1 SoftGoalConcretization)) ContributionConcretization
+    (cc4!175!283 (k!253 x!1)))
+  (define-fun node ((x!1 SoftGoal) (x!2 SoftGoalConcretization)) Bool
+    (node!285 x!1 (k!253 x!2)))
+  (define-fun srcEndpoint!284 ((x!1 ContributionConcretization)) Int
+    (ite (= x!1 ContributionConcretization!val!0) 3
+    (ite (= x!1 ContributionConcretization!val!2) 2
+    (ite (= x!1 ContributionConcretization!val!3) 3
+    (ite (= x!1 ContributionConcretization!val!6) 3
+      1)))))
+  (define-fun srcEndpoint ((x!1 ContributionConcretization)) Int
+    (srcEndpoint!284 (k!258 x!1)))
+  (define-fun pdSrcEndpoint ((x!1 ContributionConcretization)) Bool
+    false)
+  (define-fun mec2!109 ((x!1 GoalConcretization)) MeansEndConcretization
+    MeansEndConcretization!val!1)
+  (define-fun dc!188!286 ((x!1 ResourceConcretization)) DependeeLinkConcretization
+    (ite (= x!1 ResourceConcretization!val!2) DependeeLinkConcretization!val!2
+    (ite (= x!1 ResourceConcretization!val!4) DependeeLinkConcretization!val!3
+      DependeeLinkConcretization!val!1)))
+  (define-fun dc!188 ((x!1 ResourceConcretization)) DependeeLinkConcretization
+    (dc!188!286 (k!254 x!1)))
+  (define-fun mec1!112 ((x!1 GoalConcretization)) MeansEndConcretization
+    MeansEndConcretization!val!1)
+  (define-fun n ((x!1 MeansEndConcretization)) Bool
+    false)
+  (define-fun mec2!121 ((x!1 GoalConcretization)) MeansEndConcretization
+    MeansEndConcretization!val!1)
+  (define-fun ps ((x!1 MeansEndConcretization)) Bool
+    false)
+  (define-fun cc1!163 ((x!1 SoftGoalConcretization)) ContributionConcretization
+    ContributionConcretization!val!7)
+  (define-fun edge!287 ((x!1 Intention) (x!2 IntentionConcretization)) Bool
+    (ite (and (= x!1 InfloUser2MakeModelsTrustworthy)
+              (= x!2 IntentionConcretization!val!0))
+      true
+    (ite (and (= x!1 InfloUser2UseInflo) (= x!2 IntentionConcretization!val!1))
+      true
+    (ite (and (= x!1 InfloUser2ValidateModel)
+              (= x!2 IntentionConcretization!val!2))
+      true
+    (ite (and (= x!1 InfloUser2GetFeedback)
+              (= x!2 IntentionConcretization!val!3))
+      true
+    (ite (and (= x!1 InfloUser2Browsing) (= x!2 IntentionConcretization!val!4))
+      true
+    (ite (and (= x!1 InfloUser2CreateGraph)
+              (= x!2 IntentionConcretization!val!5))
+      true
+    (ite (and (= x!1 InfloUser2UseDiscussions)
+              (= x!2 IntentionConcretization!val!6))
+      true
+    (ite (and (= x!1 InfloUser2InfloBeModerated)
+              (= x!2 IntentionConcretization!val!7))
+      true
+    (ite (and (= x!1 InfloUser2MakeViews) (= x!2 IntentionConcretization!val!8))
+      true
+    (ite (and (= x!1 InfloUser2AddSourceInDescription)
+              (= x!2 IntentionConcretization!val!9))
+      true
+    (ite (and (= x!1 InfloUser2IntegrityOfModelsIU)
+              (= x!2 IntentionConcretization!val!10))
+      true
+    (ite (and (= x!1 InfloManagerEditors2ExtensiveModeration)
+              (= x!2 IntentionConcretization!val!11))
+      true
+    (ite (and (= x!1 InfloManagerEditors2UseAutomatedReputationSystem)
+              (= x!2 IntentionConcretization!val!12))
+      true
+    (ite (and (= x!1 InfloManagerEditors2ModerateInflo)
+              (= x!2 IntentionConcretization!val!13))
+      true
+    (ite (and (= x!1 InfloManagerEditors2LessExtensiveModeration)
+              (= x!2 IntentionConcretization!val!14))
+      true
+    (ite (and (= x!1 InfloManagerEditors2IntegrityOfModelsIME)
+              (= x!2 IntentionConcretization!val!15))
+      true
+    (ite (and (= x!1 InfloManagerEditors2MinimizeModeratorEffort)
+              (= x!2 IntentionConcretization!val!16))
+      true
+    (ite (and (= x!1 AutomatedReputationSystem2ProvideReputations)
+              (= x!2 IntentionConcretization!val!17))
+      true
+    (ite (and (= x!1 Inflo2AllowModeration)
+              (= x!2 IntentionConcretization!val!18))
+      true
+    (ite (and (= x!1 Inflo2TrackAuthorship)
+              (= x!2 IntentionConcretization!val!19))
+      true
+    (ite (and (= x!1 Inflo2DisplayGraphs)
+              (= x!2 IntentionConcretization!val!20))
+      true
+    (ite (and (= x!1 Inflo2TrackRevisions)
+              (= x!2 IntentionConcretization!val!21))
+      true
+    (ite (and (= x!1 Inflo2CreateGraphs) (= x!2 IntentionConcretization!val!22))
+      true
+    (ite (and (= x!1 Inflo2BeInflo) (= x!2 IntentionConcretization!val!23)) true
+    (ite (and (= x!1 Inflo2ModerationTasks)
+              (= x!2 IntentionConcretization!val!24))
+      true
+      false))))))))))))))))))))))))))
+  (define-fun edge ((x!1 Intention) (x!2 IntentionConcretization)) Bool
+    (edge!287 x!1 (k!255 x!2)))
+  (define-fun pd ((x!1 MeansEndConcretization)) Bool
+    false)
+  (define-fun dc1!190 ((x!1 ResourceConcretization)) DependeeLinkConcretization
+    DependeeLinkConcretization!val!0)
+  (define-fun node!288 ((x!1 Task) (x!2 TaskConcretization)) Bool
+    (ite (and (= x!1 Browsing) (= x!2 TaskConcretization!val!0)) true
+    (ite (and (= x!1 CreateGraph) (= x!2 TaskConcretization!val!1)) true
+    (ite (and (= x!1 UseDiscussions) (= x!2 TaskConcretization!val!2)) true
+    (ite (and (= x!1 MakeViews) (= x!2 TaskConcretization!val!3)) true
+    (ite (and (= x!1 AddSourceInDescription) (= x!2 TaskConcretization!val!4))
+      true
+    (ite (and (= x!1 ExtensiveModeration) (= x!2 TaskConcretization!val!5)) true
+    (ite (and (= x!1 UseAutomatedReputationSystem)
+              (= x!2 TaskConcretization!val!6))
+      true
+    (ite (and (= x!1 ProvideReputations) (= x!2 TaskConcretization!val!7)) true
+    (ite (and (= x!1 TrackAuthorship) (= x!2 TaskConcretization!val!8)) true
+    (ite (and (= x!1 DisplayGraphs) (= x!2 TaskConcretization!val!9)) true
+    (ite (and (= x!1 TrackRevisions) (= x!2 TaskConcretization!val!10)) true
+    (ite (and (= x!1 CreateGraphs) (= x!2 TaskConcretization!val!11)) true
+    (ite (and (= x!1 BeInflo) (= x!2 TaskConcretization!val!12)) true
+    (ite (and (= x!1 ModerationTasks) (= x!2 TaskConcretization!val!13)) true
+    (ite (and (= x!1 LessExtensiveModeration) (= x!2 TaskConcretization!val!14))
+      true
+    (ite (and (= x!1 CreateDiscussions) (= x!2 TaskConcretization!val!15)) true
+      false)))))))))))))))))
+  (define-fun node ((x!1 Task) (x!2 TaskConcretization)) Bool
+    (node!288 x!1 (k!251 x!2)))
+  (define-fun dc!122 ((x!1 GoalConcretization)) DependerLinkConcretization
+    DependerLinkConcretization!val!1)
+  (define-fun fs ((x!1 SoftGoalConcretization)) Bool
+    false)
+  (define-fun fs!301 ((x!1 TaskConcretization)) Bool
+    (ite (= x!1 TaskConcretization!val!5) false
+      true))
+  (define-fun fs ((x!1 TaskConcretization)) Bool
+    (fs!301 (k!251 x!1)))
+  (define-fun fs ((x!1 ResourceConcretization)) Bool
+    (fs!291 (k!254 x!1)))
+  (define-fun srcEndpoint ((x!1 DecompositionConcretization)) Int
+    1)
+  (define-fun fs ((x!1 DecompositionConcretization)) Bool
+    (ite (= x!1 DecompositionConcretization!val!3) true
+    (ite (= x!1 DecompositionConcretization!val!0) true
+    (ite (= x!1 DecompositionConcretization!val!1) true
+    (ite (= x!1 DecompositionConcretization!val!2) true
+    (ite (= x!1 DecompositionConcretization!val!7) true
+    (ite (= x!1 DecompositionConcretization!val!4) true
+    (ite (= x!1 DecompositionConcretization!val!5) true
+    (ite (= x!1 DecompositionConcretization!val!6) true
+      (let ((a!1 (ite (= (srcEndpoint x!1) 2)
+                      (fs ((as src GoalConcretization) x!1))
+                      (ite (= (srcEndpoint x!1) 3)
+                           (fs ((as src SoftGoalConcretization) x!1))
+                           (fs ((as src ResourceConcretization) x!1))))))
+        (ite (= (srcEndpoint x!1) 1) (fs ((as src TaskConcretization) x!1)) a!1)))))))))))
+  (define-fun dc1!88 ((x!1 GoalConcretization)) DependerLinkConcretization
+    DependerLinkConcretization!val!3)
+  (define-fun node ((x!1 Resource) (x!2 ResourceConcretization)) Bool
+    (node!289 x!1 (k!254 x!2)))
+  (define-fun dc!124 ((x!1 TaskConcretization)) DecompositionConcretization
+    DecompositionConcretization!val!3)
+  (define-fun dc2!154 ((x!1 SoftGoalConcretization)) DependeeLinkConcretization
+    DependeeLinkConcretization!val!0)
+  (define-fun fd ((x!1 MeansEndConcretization)) Bool
+    false)
+  (define-fun dc!158 ((x!1 SoftGoalConcretization)) DependerLinkConcretization
+    DependerLinkConcretization!val!1)
+  (define-fun dc1!113 ((x!1 GoalConcretization)) DependerLinkConcretization
+    DependerLinkConcretization!val!1)
+  (define-fun dc!152 ((x!1 SoftGoalConcretization)) DependerLinkConcretization
+    DependerLinkConcretization!val!1)
+  (define-fun un ((x!1 DependerLinkConcretization)) Bool
+    false)
+  (define-fun cc1!167 ((x!1 SoftGoalConcretization)) ContributionConcretization
+    ContributionConcretization!val!7)
+  (define-fun tgt!290 ((x!1 MeansEndConcretization)) GoalConcretization
+    (ite (= x!1 MeansEndConcretization!val!3) GoalConcretization!val!2
+      GoalConcretization!val!0))
+  (define-fun tgt ((x!1 MeansEndConcretization)) GoalConcretization
+    (tgt!290 (k!256 x!1)))
+  (define-fun src!298 ((x!1 IntentionConcretization)) ActorConcretization
+    (ite (= x!1 IntentionConcretization!val!11) ActorConcretization!val!2
+    (ite (= x!1 IntentionConcretization!val!12) ActorConcretization!val!2
+    (ite (= x!1 IntentionConcretization!val!13) ActorConcretization!val!2
+    (ite (= x!1 IntentionConcretization!val!14) ActorConcretization!val!2
+    (ite (= x!1 IntentionConcretization!val!15) ActorConcretization!val!2
+    (ite (= x!1 IntentionConcretization!val!16) ActorConcretization!val!2
+    (ite (= x!1 IntentionConcretization!val!17) ActorConcretization!val!3
+    (ite (= x!1 IntentionConcretization!val!18) ActorConcretization!val!4
+    (ite (= x!1 IntentionConcretization!val!19) ActorConcretization!val!4
+    (ite (= x!1 IntentionConcretization!val!20) ActorConcretization!val!4
+    (ite (= x!1 IntentionConcretization!val!21) ActorConcretization!val!4
+    (ite (= x!1 IntentionConcretization!val!22) ActorConcretization!val!4
+    (ite (= x!1 IntentionConcretization!val!23) ActorConcretization!val!4
+    (ite (= x!1 IntentionConcretization!val!24) ActorConcretization!val!4
+      ActorConcretization!val!1)))))))))))))))
+  (define-fun tgtEndpoint!313 ((x!1 DependeeLinkConcretization)) Int
+    (ite (= x!1 DependeeLinkConcretization!val!0) 3
+      1))
+  (define-fun dc!173 ((x!1 SoftGoalConcretization)) DependerLinkConcretization
+    DependerLinkConcretization!val!1)
+  (define-fun dc1!149 ((x!1 SoftGoalConcretization)) DependerLinkConcretization
+    DependerLinkConcretization!val!1)
+  (define-fun dc1!126 ((x!1 TaskConcretization)) DecompositionConcretization
+    DecompositionConcretization!val!3)
+  (define-fun n ((x!1 DecompositionConcretization)) Bool
+    false)
+  (define-fun ps ((x!1 DecompositionConcretization)) Bool
+    false)
+  (define-fun mec!100 ((x!1 GoalConcretization)) MeansEndConcretization
+    MeansEndConcretization!val!3)
+  (define-fun dc1!119 ((x!1 GoalConcretization)) DependerLinkConcretization
+    DependerLinkConcretization!val!1)
+  (define-fun pd ((x!1 DecompositionConcretization)) Bool
+    false)
+  (define-fun dc2!184 ((x!1 ResourceConcretization)) DependeeLinkConcretization
+    DependeeLinkConcretization!val!0)
+  (define-fun dc1!99 ((x!1 GoalConcretization)) DependeeLinkConcretization
+    DependeeLinkConcretization!val!0)
+  (define-fun src!293 ((x!1 DependerLinkConcretization)) TaskConcretization
+    (ite (= x!1 DependerLinkConcretization!val!1) TaskConcretization!val!6
+    (ite (= x!1 DependerLinkConcretization!val!2) TaskConcretization!val!8
+      TaskConcretization!val!4)))
+  (define-fun src ((x!1 DependerLinkConcretization)) TaskConcretization
+    (src!293 (k!259 x!1)))
+  (define-fun src!292 ((x!1 DependerLinkConcretization)) GoalConcretization
+    (ite (= x!1 DependerLinkConcretization!val!4) GoalConcretization!val!1
+    (ite (= x!1 DependerLinkConcretization!val!5) GoalConcretization!val!3
+      GoalConcretization!val!0)))
+  (define-fun src ((x!1 DependerLinkConcretization)) GoalConcretization
+    (src!292 (k!259 x!1)))
+  (define-fun src ((x!1 DependerLinkConcretization)) SoftGoalConcretization
+    SoftGoalConcretization!val!1)
+  (define-fun dc!192 ((x!1 TaskConcretization)) DecompositionConcretization
+    DecompositionConcretization!val!3)
+  (define-fun un ((x!1 DependeeLinkConcretization)) Bool
+    false)
+  (define-fun co ((x!1 TaskConcretization)) Bool
+    false)
+  (define-fun fd ((x!1 DecompositionConcretization)) Bool
+    false)
+  (define-fun n ((x!1 ResourceConcretization)) Bool
+    (n!294 (k!254 x!1)))
+  (define-fun ps ((x!1 ResourceConcretization)) Bool
+    false)
+  (define-fun mec1!97 ((x!1 GoalConcretization)) MeansEndConcretization
+    MeansEndConcretization!val!1)
+  (define-fun tgt ((x!1 DecompositionConcretization)) TaskConcretization
+    (tgt!295 (k!257 x!1)))
+  (define-fun pd ((x!1 ResourceConcretization)) Bool
+    false)
+  (define-fun cc1!153 ((x!1 SoftGoalConcretization)) ContributionConcretization
+    ContributionConcretization!val!7)
+  (define-fun src!296 ((x!1 DependeeLinkConcretization)) ResourceConcretization
+    (ite (= x!1 DependeeLinkConcretization!val!1) ResourceConcretization!val!1
+    (ite (= x!1 DependeeLinkConcretization!val!2) ResourceConcretization!val!2
+    (ite (= x!1 DependeeLinkConcretization!val!3) ResourceConcretization!val!4
+      ResourceConcretization!val!0))))
+  (define-fun src ((x!1 DependeeLinkConcretization)) ResourceConcretization
+    (src!296 (k!260 x!1)))
+  (define-fun src ((x!1 DependeeLinkConcretization)) SoftGoalConcretization
+    SoftGoalConcretization!val!5)
+  (define-fun dc!104 ((x!1 GoalConcretization)) DependerLinkConcretization
+    DependerLinkConcretization!val!1)
+  (define-fun fd ((x!1 ResourceConcretization)) Bool
+    false)
+  (define-fun dc1!171 ((x!1 SoftGoalConcretization)) DependeeLinkConcretization
+    DependeeLinkConcretization!val!0)
+  (define-fun dc2!96 ((x!1 GoalConcretization)) DependeeLinkConcretization
+    DependeeLinkConcretization!val!0)
+  (define-fun dc!116 ((x!1 GoalConcretization)) DependerLinkConcretization
+    DependerLinkConcretization!val!1)
+  (define-fun src ((x!1 DependeeLinkConcretization)) GoalConcretization
+    GoalConcretization!val!2)
+  (define-fun un ((x!1 SoftGoalConcretization)) Bool
+    false)
+  (define-fun src!303 ((x!1 ContributionConcretization)) TaskConcretization
+    (ite (= x!1 ContributionConcretization!val!1) TaskConcretization!val!2
+    (ite (= x!1 ContributionConcretization!val!7) TaskConcretization!val!6
+    (ite (= x!1 ContributionConcretization!val!8) TaskConcretization!val!2
+      TaskConcretization!val!5))))
+  (define-fun psSrcEndpoint!299 ((x!1 ContributionConcretization)) Bool
+    (ite (= x!1 ContributionConcretization!val!6) true
+      false))
+  (define-fun dc1!94 ((x!1 GoalConcretization)) DependeeLinkConcretization
+    DependeeLinkConcretization!val!0)
+  (define-fun un ((x!1 GoalConcretization)) Bool
+    false)
+  (define-fun dc1!187 ((x!1 ResourceConcretization)) DependeeLinkConcretization
+    DependeeLinkConcretization!val!0)
+  (define-fun dc1!165 ((x!1 SoftGoalConcretization)) DependeeLinkConcretization
+    DependeeLinkConcretization!val!0)
+  (define-fun dc2!140 ((x!1 TaskConcretization)) DecompositionConcretization
+    DecompositionConcretization!val!3)
+  (define-fun cc2!174 ((x!1 SoftGoalConcretization)) ContributionConcretization
+    ContributionConcretization!val!7)
+  (define-fun edge!307 ((x!1 MeansEnd) (x!2 MeansEndConcretization)) Bool
+    (ite (and (= x!1 Browsing2UseInflo) (= x!2 MeansEndConcretization!val!0))
+      true
+    (ite (and (= x!1 CreateGraph2UseInflo) (= x!2 MeansEndConcretization!val!1))
+      true
+    (ite (and (= x!1 UseDiscussions2UseInflo)
+              (= x!2 MeansEndConcretization!val!2))
+      true
+    (ite (and (= x!1 UseAutomatedReputationSystem2ModerateInflo)
+              (= x!2 MeansEndConcretization!val!3))
+      true
+      false)))))
+  (define-fun edge ((x!1 DependerLink) (x!2 DependerLinkConcretization)) Bool
+    (edge!297 x!1 (k!259 x!2)))
+  (define-fun src!302 ((x!1 ContributionConcretization)) SoftGoalConcretization
+    (ite (= x!1 ContributionConcretization!val!6) SoftGoalConcretization!val!2
+      SoftGoalConcretization!val!1))
+  (define-fun dc1!127 ((x!1 TaskConcretization)) DependerLinkConcretization
+    DependerLinkConcretization!val!1)
+  (define-fun co ((x!1 DependerLinkConcretization)) Bool
+    false)
+  (define-fun src ((x!1 IntentionConcretization)) ActorConcretization
+    (src!298 (k!255 x!1)))
+  (define-fun dc1!185 ((x!1 ResourceConcretization)) DependeeLinkConcretization
+    DependeeLinkConcretization!val!0)
+  (define-fun dc1!137 ((x!1 TaskConcretization)) DependerLinkConcretization
+    DependerLinkConcretization!val!1)
+  (define-fun dc1!142 ((x!1 TaskConcretization)) DecompositionConcretization
+    DecompositionConcretization!val!3)
+  (define-fun dc2!111 ((x!1 GoalConcretization)) DependeeLinkConcretization
+    DependeeLinkConcretization!val!0)
+  (define-fun dc2!102 ((x!1 GoalConcretization)) DependeeLinkConcretization
+    DependeeLinkConcretization!val!0)
+  (define-fun node ((x!1 Goal) (x!2 GoalConcretization)) Bool
+    (node!300 x!1 (k!252 x!2)))
+  (define-fun psSrcEndpoint ((x!1 ContributionConcretization)) Bool
+    (psSrcEndpoint!299 (k!258 x!1)))
+  (define-fun un ((x!1 ContributionConcretization)) Bool
+    false)
+  (define-fun dc1!129 ((x!1 TaskConcretization)) DependerLinkConcretization
+    DependerLinkConcretization!val!1)
+  (define-fun co ((x!1 DependeeLinkConcretization)) Bool
+    false)
+  (define-fun cc3!147 ((x!1 SoftGoalConcretization)) ContributionConcretization
+    ContributionConcretization!val!7)
+  (define-fun dc1!120 ((x!1 GoalConcretization)) DependeeLinkConcretization
+    DependeeLinkConcretization!val!0)
+  (define-fun dc2!191 ((x!1 ResourceConcretization)) DependeeLinkConcretization
+    DependeeLinkConcretization!val!0)
+  (define-fun src ((x!1 ContributionConcretization)) SoftGoalConcretization
+    (src!302 (k!258 x!1)))
+  (define-fun src ((x!1 ContributionConcretization)) TaskConcretization
+    (src!303 (k!258 x!1)))
+  (define-fun src ((x!1 ContributionConcretization)) GoalConcretization
+    GoalConcretization!val!1)
+  (define-fun n!304 ((x!1 TaskConcretization)) Bool
+    (ite (= x!1 TaskConcretization!val!5) true
+      false))
+  (define-fun n ((x!1 TaskConcretization)) Bool
+    (n!304 (k!251 x!1)))
+  (define-fun src ((x!1 ContributionConcretization)) ResourceConcretization
+    ResourceConcretization!val!2)
+  (define-fun ps ((x!1 TaskConcretization)) Bool
+    false)
+  (define-fun pd ((x!1 TaskConcretization)) Bool
+    false)
+  (define-fun inited!305 ((x!1 ResourceConcretization)) Bool
+    (ite (= x!1 ResourceConcretization!val!3) true
+      false))
+  (define-fun inited ((x!1 ResourceConcretization)) Bool
+    (inited!305 (k!254 x!1)))
+  (define-fun cc5!170 ((x!1 SoftGoalConcretization)) ContributionConcretization
+    ContributionConcretization!val!7)
+  (define-fun fd ((x!1 TaskConcretization)) Bool
+    false)
+  (define-fun dc1!168 ((x!1 SoftGoalConcretization)) DependerLinkConcretization
+    DependerLinkConcretization!val!1)
+  (define-fun co ((x!1 SoftGoalConcretization)) Bool
+    false)
+  (define-fun dc!193 ((x!1 ResourceConcretization)) DependeeLinkConcretization
+    DependeeLinkConcretization!val!0)
+  (define-fun dc1!133 ((x!1 TaskConcretization)) DependerLinkConcretization
+    DependerLinkConcretization!val!1)
+  (define-fun dc2!117 ((x!1 GoalConcretization)) DependeeLinkConcretization
+    DependeeLinkConcretization!val!0)
+  (define-fun dc1!164 ((x!1 SoftGoalConcretization)) DependerLinkConcretization
+    DependerLinkConcretization!val!1)
+  (define-fun node!306 ((x!1 Actor) (x!2 ActorConcretization)) Bool
+    (ite (and (= x!1 Source) (= x!2 ActorConcretization!val!0)) true
+    (ite (and (= x!1 InfloUser) (= x!2 ActorConcretization!val!1)) true
+    (ite (and (= x!1 InfloManagerEditors) (= x!2 ActorConcretization!val!2))
+      true
+    (ite (and (= x!1 AutomatedReputationSystem)
+              (= x!2 ActorConcretization!val!3))
+      true
+    (ite (and (= x!1 Inflo) (= x!2 ActorConcretization!val!4)) true
+      false))))))
+  (define-fun node ((x!1 Actor) (x!2 ActorConcretization)) Bool
+    (node!306 x!1 (k!250 x!2)))
+  (define-fun dc!110 ((x!1 GoalConcretization)) DependerLinkConcretization
+    DependerLinkConcretization!val!1)
+  (define-fun dc2!180 ((x!1 SoftGoalConcretization)) DependeeLinkConcretization
+    DependeeLinkConcretization!val!0)
+  (define-fun n!314 ((x!1 DependeeLinkConcretization)) Bool
+    (ite (= x!1 DependeeLinkConcretization!val!0) true
+      false))
+  (define-fun co ((x!1 GoalConcretization)) Bool
+    false)
+  (define-fun edge ((x!1 MeansEnd) (x!2 MeansEndConcretization)) Bool
+    (edge!307 x!1 (k!256 x!2)))
+  (define-fun dc1!136 ((x!1 TaskConcretization)) DecompositionConcretization
+    DecompositionConcretization!val!3)
+  (define-fun fs ((x!1 DependerLinkConcretization)) Bool
+    (fs!308 (k!259 x!1)))
+  (define-fun mec1!92 ((x!1 GoalConcretization)) MeansEndConcretization
+    MeansEndConcretization!val!1)
+  (define-fun dc1!182 ((x!1 ResourceConcretization)) DependeeLinkConcretization
+    DependeeLinkConcretization!val!0)
+  (define-fun n!310 ((x!1 DependerLinkConcretization)) Bool
+    (ite (= x!1 DependerLinkConcretization!val!4) true
+    (ite (= x!1 DependerLinkConcretization!val!5) true
+    (ite (= x!1 DependerLinkConcretization!val!6) true
+      false))))
+  (define-fun dc1!93 ((x!1 GoalConcretization)) DependerLinkConcretization
+    DependerLinkConcretization!val!1)
+  (define-fun tgtEndpoint!309 ((x!1 DependerLinkConcretization)) Int
+    (ite (= x!1 DependerLinkConcretization!val!6) 3
+      4))
+  (define-fun tgtEndpoint ((x!1 DependerLinkConcretization)) Int
+    (tgtEndpoint!309 (k!259 x!1)))
+  (define-fun dc1!156 ((x!1 SoftGoalConcretization)) DependerLinkConcretization
+    DependerLinkConcretization!val!1)
+  (define-fun dc2!134 ((x!1 TaskConcretization)) DecompositionConcretization
+    DecompositionConcretization!val!3)
+  (define-fun coSrcEndpoint ((x!1 ContributionConcretization)) Bool
+    false)
+  (define-fun mec1!118 ((x!1 GoalConcretization)) MeansEndConcretization
+    MeansEndConcretization!val!1)
+  (define-fun n ((x!1 DependerLinkConcretization)) Bool
+    (n!310 (k!259 x!1)))
+  (define-fun fs ((x!1 DependeeLinkConcretization)) Bool
+    (fs!311 (k!260 x!1)))
+  (define-fun ps ((x!1 DependerLinkConcretization)) Bool
+    false)
+  (define-fun mec1!106 ((x!1 GoalConcretization)) MeansEndConcretization
+    MeansEndConcretization!val!1)
+  (define-fun co ((x!1 ContributionConcretization)) Bool
+    false)
+  (define-fun dc2!91 ((x!1 GoalConcretization)) DependeeLinkConcretization
+    DependeeLinkConcretization!val!0)
+  (define-fun pd ((x!1 DependerLinkConcretization)) Bool
+    false)
+  (define-fun dc1!138!312 ((x!1 TaskConcretization)) DecompositionConcretization
+    (ite (= x!1 TaskConcretization!val!1) DecompositionConcretization!val!5
+    (ite (= x!1 TaskConcretization!val!2) DecompositionConcretization!val!6
+    (ite (= x!1 TaskConcretization!val!14) DecompositionConcretization!val!3
+    (ite (= x!1 TaskConcretization!val!12) DecompositionConcretization!val!7
+      DecompositionConcretization!val!4)))))
+  (define-fun dc1!138 ((x!1 TaskConcretization)) DecompositionConcretization
+    (dc1!138!312 (k!251 x!1)))
+  (define-fun tgtEndpoint ((x!1 DependeeLinkConcretization)) Int
+    (tgtEndpoint!313 (k!260 x!1)))
+  (define-fun cc1!160 ((x!1 SoftGoalConcretization)) ContributionConcretization
+    ContributionConcretization!val!7)
+  (define-fun fd ((x!1 DependerLinkConcretization)) Bool
+    false)
+  (define-fun dc2!189 ((x!1 ResourceConcretization)) DependeeLinkConcretization
+    DependeeLinkConcretization!val!0)
+  (define-fun n ((x!1 DependeeLinkConcretization)) Bool
+    (n!314 (k!260 x!1)))
+  (define-fun tgt ((x!1 DependerLinkConcretization)) GoalConcretization
+    GoalConcretization!val!2)
+  (define-fun ps ((x!1 DependeeLinkConcretization)) Bool
+    false)
+  (define-fun tgt ((x!1 DependerLinkConcretization)) ResourceConcretization
+    (tgt!315 (k!259 x!1)))
+  (define-fun dc2!139 ((x!1 TaskConcretization)) DependerLinkConcretization
+    (dc2!139!316 (k!251 x!1)))
+  (define-fun tgt ((x!1 DependerLinkConcretization)) SoftGoalConcretization
+    SoftGoalConcretization!val!5)
+  (define-fun pd ((x!1 DependeeLinkConcretization)) Bool
+    false)
+  (define-fun dc!181 ((x!1 ResourceConcretization)) DependeeLinkConcretization
+    DependeeLinkConcretization!val!0)
+  (define-fun tgt ((x!1 DependerLinkConcretization)) TaskConcretization
+    TaskConcretization!val!12)
+  (define-fun edge ((x!1 DependeeLink) (x!2 DependeeLinkConcretization)) Bool
+    (edge!317 x!1 (k!260 x!2)))
+  (define-fun dc3!131 ((x!1 TaskConcretization)) DependerLinkConcretization
+    DependerLinkConcretization!val!1)
+)

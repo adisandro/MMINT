@@ -1,0 +1,41 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Tue, Jan 25, 2011 - 5:29 AM  -->
+<feature_model name="Car Software System">
+<meta>
+<data name="description">Simple model of a car's software productline</data>
+<data name="creator">Chr Wol</data>
+<data name="address"></data>
+<data name="email">meull@madkfjadfjkajfd.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">TU KL</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Car SW(_r)
+	:m Basic Car(_r_1)
+		:m Motor Ctrl(_r_1_2)
+		:m Light Ctrl(_r_1_3)
+		:m Heating Ctrl(_r_1_4)
+		:o Speed and Distance Ctrl(_r_1_5)
+	:g (_r_6) [1,*] 
+		: Comfort SW(_r_6_7)
+			:m Windowlifter(_r_6_7_10)
+			:o Rainsensor(_r_6_7_12)
+		: Communication SW(_r_6_8)
+			:m Mobile Communication(_r_6_8_13)
+				:g (_r_6_8_13_14) [1,*] 
+					: GSM(_r_6_8_13_14_15)
+					: UMTS(_r_6_8_13_14_16)
+			:o Weather Info(_r_6_8_17)
+		: Infotainment SW(_r_6_9)
+			:g (_r_6_9_18) [1,1] 
+				: Small Display(_r_6_9_18_19)
+				: Huge Display(_r_6_9_18_20)
+			:m Radio(_r_6_9_21)
+</feature_tree>
+<constraints>
+constraint_2:~_r_6_8_13 or _r_6_8_17
+</constraints>
+</feature_model>

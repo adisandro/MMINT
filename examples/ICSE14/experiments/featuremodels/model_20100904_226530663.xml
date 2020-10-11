@@ -1,0 +1,62 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Sun, Sep 5, 2010 - 1:57 PM  -->
+<feature_model name="Smart Home v2">
+<meta>
+<data name="description">Home automation</data>
+<data name="creator">Mauricio Alferez et al</data>
+<data name="address"></data>
+<data name="email">mauricio.alferez@di.fct.unl.pt, alferez.mauricio@gmail.com</data>
+<data name="phone"></data>
+<data name="website">http://citi.di.fct.unl.pt/member/member.php?id=80</data>
+<data name="organization">Universidade Nova de Lisboa - AMPLE Project</data>
+<data name="department">CITI- Center of Informatics and Information Technology</data>
+<data name="date">2010</data>
+<data name="reference">www.ample-project.net  deliverables: 1.3, 1.4, 2.2,</data>
+</meta>
+<feature_tree>
+:r Smart Home(_r)
+	:m Heating Management(_r_1)
+		:m Manual Heating(_r_1_11)
+		:o Smart Heating(_r_1_12)
+	:m Windows Management(_r_2)
+		:m Manual Windows(_r_2_13)
+		:o Electronic Windows(_r_2_14)
+	:m Light Management(_r_3)
+		:m Manual Light(_r_3_15)
+		:o Smart Light(_r_3_16)
+		:o Pre-defined Values(_r_3_17)
+	:m GUI(_r_4)
+		:m Touch Screen(_r_4_19)
+		:o Internet(_r_4_20)
+	:o Presence Simulator(_r_5)
+		:g (_r_5_24) [1,*] 
+			: Light Simulation(_r_5_24_25)
+			: Blind Simulation(_r_5_24_26)
+			: Music Simulation(_r_5_24_27)
+	:m Fire Control(_r_6)
+		:m First Aid Group(_r_6_28)
+			:g (_r_6_28_29) [1,*] 
+				: Fire Department(_r_6_28_29_30)
+				: Other Group(_r_6_28_29_31)
+			:o Fire Sprinklers(_r_6_28_32)
+	:o Irrigation Sprinklers(_r_7)
+		:m Simple Control(_r_7_34)
+		:o Smart Sprinklers(_r_7_35)
+	:m Alarm(_r_8)
+		:g (_r_8_36) [1,*] 
+			: Siren(_r_8_36_37)
+			: Bell(_r_8_36_38)
+			: Lights(_r_8_36_39)
+	:m Security(_r_35)
+		:m Authentication Device(_r_35_36)
+			:g (_r_35_36_40) [1,*] 
+				: Keypad(_r_35_36_40_41)
+				: Retina Scanner(_r_35_36_40_42)
+				: FingerPrintReader(_r_35_36_40_43)
+		:o Intrusion Detection Device(_r_35_44)
+			:g (_r_35_44_48) [1,*] 
+				: Glassbreak Sensors(_r_35_44_48_49)
+				: Cameras(_r_35_44_48_50)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

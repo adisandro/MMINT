@@ -1,0 +1,39 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Fri, Nov 23, 2012 - 9:05 AM  -->
+<feature_model name="mobile media">
+<meta>
+<data name="description">celular</data>
+<data name="creator">victor</data>
+<data name="address"></data>
+<data name="email">victorhugo.kta@hotmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">ifet</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r mobile media(_r)
+	:m media selection(_r_1)
+		:g (_r_1_4) [1,*] 
+			: photo(_r_1_4_5)
+			: music(_r_1_4_6)
+			: video(_r_1_4_7)
+	:m media management(_r_8)
+		:o favourites(_r_8_9)
+			:m set favourites(_r_8_9_17)
+			:m view favourites(_r_8_9_18)
+		:o copy media(_r_8_10)
+		:o SMS tranferes(_r_8_11)
+			:m receive photo(_r_8_11_19)
+			:m send photo(_r_8_11_20)
+	:m screen size(_r_12)
+		:g (_r_12_13) [1,1] 
+			: screen1(_r_12_13_14)
+			: screen2(_r_12_13_15)
+</feature_tree>
+<constraints>
+constraint_1:_r_8_10 or _r_8_11
+constraint_2:_r_1_4_5 or _r_12_13_14
+</constraints>
+</feature_model>

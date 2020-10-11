@@ -1,0 +1,35 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Thu, Dec 13, 2012 - 8:32 AM  -->
+<feature_model name="PhysEval">
+<meta>
+<data name="description">Linha de Produtos de Avaliacao Fisica</data>
+<data name="creator">Marcio R. Rosemberg</data>
+<data name="address"></data>
+<data name="email">rosembergmg@yahoo.com.br</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">PUC-Rio</data>
+<data name="department">Depto. de Informatica</data>
+<data name="date">23/10/2012</data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r PhysEval(_r)
+	:m Cadastro de Alunos(_r_5)
+	:m Anamnese(_r_6)
+	:m Agente Gerador(_r_12)
+	:m Configuracao(_r_14)
+	:o Agente Notificador(_r_21)
+	:g (_r_22) [1,*] 
+		: Completo(_r_22_23)
+		: Qualitativo(_r_22_24)
+			:m Qol(_r_22_24_26)
+		: Quantitativo(_r_22_25)
+			:m Compoiscao Corporal(_r_22_25_27)
+			:o Perimetria(_r_22_25_28)
+			:o Ergometria(_r_22_25_29)
+			:o Teste Postural(_r_22_25_30)
+</feature_tree>
+<constraints>
+constraint_3:~_r_22_23 or ~_r_22_24 or ~_r_22_25
+</constraints>
+</feature_model>

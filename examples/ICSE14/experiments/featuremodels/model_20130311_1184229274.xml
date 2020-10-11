@@ -1,0 +1,33 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Thu, May 2, 2013 - 6:05 PM  -->
+<feature_model name="Basic Car">
+<meta>
+<data name="description">A modification of [Czarnecki and Eisenecker 1999]'s car</data>
+<data name="creator">farah</data>
+<data name="address">adresse@</data>
+<data name="email">adresse@email.com</data>
+<data name="phone">0660000000</data>
+<data name="website">http://Site-perso.fr</data>
+<data name="organization">Université Paris 1</data>
+<data name="department">Informatique</data>
+<data name="date">02-Mai-2013</data>
+<data name="reference">Components and Generative Programming, ESEC/FSE'99</data>
+</meta>
+<feature_tree>
+:r BasicCar(_r)
+	:m Transmission(_r_1)
+		:g (_r_1_4) [1,1] 
+			: Manual(_r_1_4_5)
+			: Automatic(_r_1_4_6)
+	:m Car body(_r_2)
+	:o Air conditioning(_r_3)
+	:m Engine(_r_7)
+		:g (_r_7_8) [1,*] 
+			: Electric(_r_7_8_9)
+			: Gasoline(_r_7_8_10)
+	:o GPS(_r_11)
+</feature_tree>
+<constraints>
+constraint_1:_r_7
+constraint_2:_r_7_8_9
+</constraints>
+</feature_model>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classdiagram_mavo:ClassDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:classdiagram_mavo="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO">
+  <classes name="Solver" nested="//@classes.1/@nestedIn.0"/>
+  <classes name="SolverException">
+    <ownedAttributes may="true" name="effect" public="true" type="//@classes.2"/>
+    <nestedIn may="true" target="//@classes.0"/>
+  </classes>
+  <classes name="String"/>
+</classdiagram_mavo:ClassDiagram>

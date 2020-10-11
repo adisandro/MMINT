@@ -1,0 +1,31 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Thu, Oct 20, 2011 - 12:54 PM  -->
+<feature_model name="ETRobocon">
+<meta>
+<data name="description">ETRobocon</data>
+<data name="creator">Tsuneo Nakanishi</data>
+<data name="address"></data>
+<data name="email">tsuneo.nakanishi@gmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">Kyushu University</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Line Trace Car(_r)
+	:m Running a Course(_r_1)
+		:g (_r_1_2) [1,*] 
+			: 2009 Inner Course(_r_1_2_3)
+			: 2009 Outer Course(_r_1_2_4)
+			: 2010 Inner Course(_r_1_2_5)
+			: 2010 Outer Course(_r_1_2_6)
+	:m Running a Section(_r_7)
+		:m Running a Normal Section(_r_7_8)
+		:o Running a Slope Section(_r_7_9)
+		:o Running a Twin Loop Section(_r_7_10)
+		:o Running a Seesaw Section(_r_7_11)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

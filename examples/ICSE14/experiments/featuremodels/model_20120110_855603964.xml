@@ -1,0 +1,33 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Tue, Jan 10, 2012 - 8:03 AM  -->
+<feature_model name="Example Product Line Course Using SPLOT">
+<meta>
+<data name="description">Simple Mobile Educational Phone</data>
+<data name="creator">JCL</data>
+<data name="address"></data>
+<data name="email">charlievil@gmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">ULL</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Mobile Phone(_r)
+	:m Calls(_r_1)
+	:o GPS(_r_2)
+	:m Screen(_r_3)
+		:g (_r_3_14) [1,1] 
+			: Basic(_r_3_14_15)
+			: Colour(_r_3_14_17)
+			: HighResolution(_r_3_14_18)
+	:o Media(_r_7)
+		:g (_r_7_20) [1,*] 
+			: Camera(_r_7_20_21)
+			: MP3(_r_7_20_22)
+</feature_tree>
+<constraints>
+constraint_1:~_r_2 or ~_r_3_14_15
+constraint_2:_r_3_14_18 or ~_r_7_20_21
+</constraints>
+</feature_model>

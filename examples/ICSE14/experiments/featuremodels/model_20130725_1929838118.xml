@@ -1,0 +1,74 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Fri, Jul 26, 2013 - 12:17 AM  -->
+<feature_model name="Poliza">
+<meta>
+<data name="description">POlizas de seguros</data>
+<data name="creator">Lucas, Jose, Diego</data>
+<data name="address"></data>
+<data name="email">diego3458@yahoo.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">eafit</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Poliza(_r)
+	:m Tomador(_r_1)
+		:g (_r_1_2) [1,1] 
+			: Empresa(_r_1_2_3)
+				:g (_r_1_2_3_7) [1,1] 
+					: Pyme(_r_1_2_3_7_8)
+					: GrandesGrupos(_r_1_2_3_7_9)
+			: Persona(_r_1_2_6)
+	:g (_r_10) [1,*] 
+		: RiesgoPersona(_r_10_11)
+		: RiesgoCosa(_r_10_12)
+			:g (_r_10_12_13) [1,1] 
+				: Automovil(_r_10_12_13_14)
+				: Inmueble(_r_10_12_13_15)
+				: Maquinaria(_r_10_12_13_16)
+	:g (_r_17) [1,1] 
+		: Salud(_r_17_18)
+			:g (_r_17_18_22) [1,1] 
+				: Clasica(_r_17_18_22_23)
+				: Global(_r_17_18_22_24)
+		: Vida(_r_17_19)
+			:g (_r_17_19_27) [1,1] 
+				: Individual(_r_17_19_27_28)
+					:m Vida(_r_17_19_27_28_32)
+					:o ITP(_r_17_19_27_28_33)
+					:o EFG(_r_17_19_27_28_34)
+					:o Ex(_r_17_19_27_28_35)
+				: Grupo(_r_17_19_27_29)
+					:m Vida(_r_17_19_27_29_36)
+					:o EG(_r_17_19_27_29_37)
+					:o GEN(_r_17_19_27_29_38)
+					:o IPP(_r_17_19_27_29_40)
+				: Accidentes(_r_17_19_27_30)
+					:m MAC(_r_17_19_27_30_41)
+					:m MAH(_r_17_19_27_30_42)
+					:o IVA(_r_17_19_27_30_43)
+					:o IVH(_r_17_19_27_30_44)
+				: Exequias(_r_17_19_27_31)
+					:m GEX1(_r_17_19_27_31_45)
+					:o GEX2(_r_17_19_27_31_46)
+					:o GEX3(_r_17_19_27_31_47)
+		: Generales(_r_17_20)
+			:g (_r_17_20_48) [1,1] 
+				: Incendio(_r_17_20_48_49)
+				: Sustraccion(_r_17_20_48_50)
+				: Transporte(_r_17_20_48_51)
+		: Autos(_r_17_21)
+			:g (_r_17_21_52) [1,1] 
+				: Clasico(_r_17_21_52_53)
+				: Global(_r_17_21_52_54)
+</feature_tree>
+<constraints>
+constraint_1:_r_10_11 or _r_10_12
+constraint_6:_r_10_12 or _r_17_18
+constraint_7:_r_10_12 or _r_17_19
+constraint_4:_r_10_11 or _r_17_21
+constraint_5:_r_10_11 or _r_17_20
+</constraints>
+</feature_model>

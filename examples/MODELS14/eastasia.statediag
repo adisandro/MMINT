@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:state="http://se.cs.toronto.edu/modelepedia/State" xmi:id="_ale_0KvbEeO-lIn4nMqR2w" type="State" name="eastasia.statediag" measurementUnit="Pixel">
+  <children xmi:type="notation:Shape" xmi:id="_bjdD8KvbEeO-lIn4nMqR2w" type="2001" fontName="Cantarell">
+    <children xmi:type="notation:DecorationNode" xmi:id="_bjdrAKvbEeO-lIn4nMqR2w" type="5002"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_bjdrAavbEeO-lIn4nMqR2w" type="7001">
+      <children xmi:type="notation:Shape" xmi:id="_de4O0KvbEeO-lIn4nMqR2w" type="3001" fontName="Cantarell">
+        <children xmi:type="notation:DecorationNode" xmi:id="_de414KvbEeO-lIn4nMqR2w" type="5001"/>
+        <element xmi:type="state:City" href="eastasia.state#//@regions.0/@cities.0"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_de4O0avbEeO-lIn4nMqR2w"/>
+      </children>
+      <children xmi:type="notation:Shape" xmi:id="_pqnL4KvbEeO-lIn4nMqR2w" type="3001" fontName="Cantarell">
+        <children xmi:type="notation:DecorationNode" xmi:id="_pqnL4qvbEeO-lIn4nMqR2w" type="5001"/>
+        <element xmi:type="state:City" href="eastasia.state#//@regions.0/@cities.1"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_pqnL4avbEeO-lIn4nMqR2w"/>
+      </children>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_bjdrAqvbEeO-lIn4nMqR2w"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_bjdrA6vbEeO-lIn4nMqR2w"/>
+    </children>
+    <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_bjdD8avbEeO-lIn4nMqR2w"/>
+    <element xmi:type="state:Region" href="eastasia.state#//@regions.0"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_bjdD8qvbEeO-lIn4nMqR2w" x="156" y="60" width="109" height="121"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_eRhzwKvbEeO-lIn4nMqR2w" type="2001" fontName="Cantarell">
+    <children xmi:type="notation:DecorationNode" xmi:id="_eRia0KvbEeO-lIn4nMqR2w" type="5002"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_eRia0avbEeO-lIn4nMqR2w" type="7001">
+      <children xmi:type="notation:Shape" xmi:id="_fCIKQKvbEeO-lIn4nMqR2w" type="3001" fontName="Cantarell">
+        <children xmi:type="notation:DecorationNode" xmi:id="_fCIxUKvbEeO-lIn4nMqR2w" type="5001"/>
+        <element xmi:type="state:City" href="eastasia.state#//@regions.1/@cities.0"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_fCIKQavbEeO-lIn4nMqR2w"/>
+      </children>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_eRia0qvbEeO-lIn4nMqR2w"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_eRia06vbEeO-lIn4nMqR2w"/>
+    </children>
+    <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_eRhzwavbEeO-lIn4nMqR2w"/>
+    <element xmi:type="state:Region" href="eastasia.state#//@regions.1"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_eRhzwqvbEeO-lIn4nMqR2w" x="156" y="192" width="109" height="85"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_ale_0avbEeO-lIn4nMqR2w"/>
+  <element xmi:type="state:State" href="eastasia.state#/"/>
+</notation:Diagram>

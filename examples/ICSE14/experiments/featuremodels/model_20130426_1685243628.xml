@@ -1,0 +1,40 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Fri, Apr 26, 2013 - 11:49 AM  -->
+<feature_model name="Test Collaboration System">
+<meta>
+<data name="description">just a test</data>
+<data name="creator">VA</data>
+<data name="address"></data>
+<data name="email">vasco.amaral@gmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">FCT/UNL</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Collaboration System(_r)
+	:o Access Management(_r_1)
+	:o Security(_r_2)
+		:g (_r_2_6) [1,*] 
+			: authentication(_r_2_6_7)
+			: encryption(_r_2_6_8)
+	:o Asynchronous Conferencing(_r_3)
+		:g (_r_3_9) [1,*] 
+			: Forum(_r_3_9_10)
+			: Micro Blogging(_r_3_9_11)
+	:o Synchronous Conferencing(_r_4)
+		:o video(_r_4_12)
+		:g (_r_4_13) [1,*] 
+			: telephone(_r_4_13_14)
+			: voip(_r_4_13_15)
+		:o data(_r_4_16)
+	:o Document Repository(_r_5)
+		:g (_r_5_17) [1,1] 
+			: vnc(_r_5_17_18)
+			: x11(_r_5_17_19)
+</feature_tree>
+<constraints>
+constraint_1:_r_1 or _r_2_6_7
+</constraints>
+</feature_model>

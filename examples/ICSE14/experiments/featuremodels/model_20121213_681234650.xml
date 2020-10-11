@@ -1,0 +1,54 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Thu, Dec 13, 2012 - 8:35 AM  -->
+<feature_model name="SEPFeatureModel">
+<meta>
+<data name="description">CombinedfeaturesModel</data>
+<data name="creator">Lekshmi</data>
+<data name="address"></data>
+<data name="email">santhanalekshmi@gmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">Student</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r SEProject(_r)
+	:m TreeEditor(_r_1)
+		:m ViewTree(_r_1_2)
+		:o EditTree(_r_1_3)
+	:o ModelValidator(_r_4)
+		:o CorrectiveAction(_r_4_5)
+		:o InvokeandIdentifyViolation(_r_4_6)
+	:o ModelSynthesizer(_r_7)
+		:m GenerateFramework(_r_7_8)
+			:m GenerateAnalysisLevel(_r_7_8_10)
+			:m GenerateDesignLevel(_r_7_8_11)
+		:m GenerateElement(_r_7_9)
+			:m Combine(_r_7_9_12)
+			:m Explode(_r_7_9_13)
+		:o MoveElement(_r_7_14)
+		:o ApplyPattern(_r_7_16)
+	:o EAXMLExchange(_r_17)
+		:m Export(_r_17_18)
+			:o EntireModel(_r_17_18_20)
+			:o SpecificPackage(_r_17_18_21)
+		:o Import(_r_17_19)
+			:o NewModel(_r_17_19_22)
+			:o Merge(_r_17_19_23)
+	:o SimulinkExchange(_r_25)
+		:g (_r_25_26) [1,1] 
+			: EATOPtoSimulink(_r_25_26_27)
+		:g (_r_25_28) [1,1] 
+			: SimulinktoEATOP(_r_25_28_29)
+				:m SimulinkAdd(_r_25_28_29_30)
+				:o SimulinkMerge(_r_25_28_29_31)
+				:o ValidateafterImport(_r_25_28_29_32)
+	:o PapyrusExchange(_r_33)
+		:o PapyrusImport(_r_33_34)
+		:o PapyrusExport(_r_33_35)
+	:o Analysis(_r_36)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

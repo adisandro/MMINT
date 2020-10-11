@@ -1,0 +1,62 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Mon, Aug 12, 2013 - 5:18 PM  -->
+<feature_model name="Sastm">
+<meta>
+<data name="description">SistemaDeAPoyoUsuariosTransporteMasivo</data>
+<data name="creator">AngelaMiguelFabianManuelJose</data>
+<data name="address"></data>
+<data name="email">josemoncada87@gmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">MGIT</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Sastm(_r)
+	:m Interfaz(_r_1)
+		:g (_r_1_2) [1,*] 
+			: Web(_r_1_2_3)
+			: Movil(_r_1_2_4)
+				:g (_r_1_2_4_5) [1,*] 
+					: Android(_r_1_2_4_5_6)
+					: Windows(_r_1_2_4_5_7)
+					: Ios(_r_1_2_4_5_8)
+	:m Planeacion(_r_9)
+		:m Recorrido(_r_9_12)
+		:o Despacho(_r_9_13)
+	:m Infraestructura(_r_14)
+		:o SitiosInteres(_r_14_15)
+		:o PuntoRecarga(_r_14_16)
+		:o InformacionUnidadMovil(_r_14_17)
+			:g (_r_14_17_18) [1,*] 
+				: Ocupacion(_r_14_17_18_19)
+				: Ubicacion(_r_14_17_18_20)
+				: Velocidad(_r_14_17_18_21)
+	:m ServiciosApoyo(_r_22)
+		:g (_r_22_23) [1,*] 
+			: PlaneadorRuta(_r_22_23_24)
+				:o Contexto(_r_22_23_24_27)
+				:g (_r_22_23_24_28) [1,*] 
+					: ConsultarPlaneacion(_r_22_23_24_28_29)
+					: ConsultarRutaDeAaB(_r_22_23_24_28_30)
+					: ConsultarRutaMultipleDestino(_r_22_23_24_28_31)
+			: ConsultarPuntoRecarga(_r_22_23_25)
+				:g (_r_22_23_25_32) [1,*] 
+					: ConsultarTodos(_r_22_23_25_32_33)
+					: ConsultarCercanos(_r_22_23_25_32_34)
+			: ConsultarEstadoRuta(_r_22_23_26)
+				:g (_r_22_23_26_35) [1,*] 
+					: ConsultarTiempo(_r_22_23_26_35_36)
+					: ConsultarDistancia(_r_22_23_26_35_37)
+					: ConsultarOcupacion(_r_22_23_26_35_38)
+</feature_tree>
+<constraints>
+constraint_1:_r_9_13 or ~_r_22_23_24_28_29
+constraint_8:_r_14_17_18_19 or ~_r_22_23_26_35_38
+constraint_6:_r_14_17_18_21 or ~_r_22_23_26_35_36
+constraint_7:_r_14_17_18_20 or ~_r_22_23_26_35_37
+constraint_5:_r_14_17_18_20 or ~_r_22_23_26_35_36
+constraint_2:_r_14_16 or ~_r_22_23_25
+</constraints>
+</feature_model>

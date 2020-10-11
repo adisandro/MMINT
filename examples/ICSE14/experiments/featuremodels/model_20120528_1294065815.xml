@@ -1,0 +1,34 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Mon, May 28, 2012 - 5:55 AM  -->
+<feature_model name="Homepage based on wiki">
+<meta>
+<data name="description">Just testing</data>
+<data name="creator">Viliam Simko</data>
+<data name="address"></data>
+<data name="email">simko@d3s.mff.cuni.cz</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">Charled University Prague</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Some Homepage(_r)
+	:m Wiki Platform(_r_1)
+		:m Platform Core(_r_1_2)
+			:o Support for HTTPS(_r_1_2_14)
+		:o Localization(_r_1_3)
+			:g (_r_1_3_5) [1,1] 
+				: Localization per whole page(_r_1_3_5_6)
+				: Localization embedded into text(_r_1_3_5_7)
+			:g (_r_1_3_11) [1,*] 
+				: Translated admin interface(_r_1_3_11_12)
+				: Translated user interface(_r_1_3_11_13)
+			:m Langauge selector in GUI(_r_1_3_15)
+	:m Design(_r_16)
+		:o Logo visible on every page(_r_16_17)
+		:m Logo links to the homepage(_r_16_18)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

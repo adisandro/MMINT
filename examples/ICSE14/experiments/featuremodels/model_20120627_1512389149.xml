@@ -1,0 +1,35 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Wed, Jun 27, 2012 - 11:47 AM  -->
+<feature_model name="Test">
+<meta>
+<data name="description">A test</data>
+<data name="creator">Rob</data>
+<data name="address"></data>
+<data name="email">r@r.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">Test</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r PTVL(_r)
+	:m Trans(_r_1)
+	:m Series(_r_2)
+		:g (_r_2_4) [1,1] 
+			: 10(_r_2_4_5)
+			: 20(_r_2_4_6)
+	:o Ice(_r_3)
+		:g (_r_3_14) [1,1] 
+			: Pack 1(_r_3_14_15)
+			: Pack 2(_r_3_14_16)
+	:m Trim(_r_7)
+		:g (_r_7_8) [1,1] 
+			: Cloth(_r_7_8_9)
+			: Leather(_r_7_8_10)
+</feature_tree>
+<constraints>
+constraint_4:~_r_2_4_6 or _r_7_8_10
+constraint_5:~_r_2_4_6 or _r_3_14_16
+</constraints>
+</feature_model>

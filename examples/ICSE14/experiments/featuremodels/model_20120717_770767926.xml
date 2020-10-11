@@ -1,0 +1,32 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Tue, Jul 17, 2012 - 6:48 PM  -->
+<feature_model name="UPL">
+<meta>
+<data name="description">Unified Process Line</data>
+<data name="creator">Pablo Ruiz</data>
+<data name="address"></data>
+<data name="email">phruiz@unicauca.edu.co</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">Universidad del Cauca</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r UPL(_r)
+	:m Disciplines(_r_1)
+		:m Implementation(_r_1_3)
+		:o Analysis and Design(_r_1_4)
+		:o Solution(_r_1_9)
+			:g (_r_1_9_10) [1,1] 
+				: Analysis and Design(_r_1_9_10_11)
+					:g (_r_1_9_10_11_13) [1,*] 
+						: Analysis(_r_1_9_10_11_13_14)
+						: Design(_r_1_9_10_11_13_15)
+						: Architecture(_r_1_9_10_11_13_17)
+				: Architecture Based Analysis and Design(_r_1_9_10_12)
+	:m Phases(_r_2)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

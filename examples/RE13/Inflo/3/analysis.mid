@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mid:MID xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mavomid="http://se.cs.toronto.edu/mmint/MAVOMID" xmlns:mid="http://se.cs.toronto.edu/mmint/MID">
+  <models xsi:type="mavomid:MAVOModel" uri="/RE13/Inflo/3/certain.istar_mavo" name="certain" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO" dynamic="true" fileExtension="istar_mavo" editors="//@editors.0"/>
+  <models xsi:type="mavomid:MAVOModel" uri="/RE13/Inflo/3/uncertain.istar_mavo" name="uncertain" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO" dynamic="true" fileExtension="istar_mavo" editors="//@editors.1"/>
+  <editors uri="/RE13/Inflo/3/certain.istar_mavo" name="IStar_MAVO tree for model /RE13/Inflo/3/certain.istar_mavo" metatypeUri="http://se.cs.toronto.edu/modelepedia/Tree_IStar_MAVO" dynamic="true" modelUri="/RE13/Inflo/3/certain.istar_mavo" id="edu.toronto.cs.se.modelepedia.istar_mavo.presentation.IStar_MAVOEditorID" wizardId="edu.toronto.cs.se.modelepedia.istar_mavo.presentation.IStar_MAVOModelWizardID"/>
+  <editors uri="/RE13/Inflo/3/uncertain.istar_mavo" name="IStar_MAVO tree for model /RE13/Inflo/3/uncertain.istar_mavo" metatypeUri="http://se.cs.toronto.edu/modelepedia/Tree_IStar_MAVO" dynamic="true" modelUri="/RE13/Inflo/3/uncertain.istar_mavo" id="edu.toronto.cs.se.modelepedia.istar_mavo.presentation.IStar_MAVOEditorID" wizardId="edu.toronto.cs.se.modelepedia.istar_mavo.presentation.IStar_MAVOModelWizardID"/>
+  <extendibleTable key="/RE13/Inflo/3/certain.istar_mavo" value="//@models.0"/>
+  <extendibleTable key="/RE13/Inflo/3/uncertain.istar_mavo" value="//@models.1"/>
+</mid:MID>

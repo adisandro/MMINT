@@ -1,0 +1,130 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Tue, May 31, 2011 - 7:29 PM  -->
+<feature_model name="OW2-FraSCAti-1.4">
+<meta>
+<data name="description">OW2 FraSCAti release 1.4 open source software</data>
+<data name="creator">Philippe Merle</data>
+<data name="address">Parc scientifique de la Haute-Borne40, avenue Halley - Bât A - Park Plaza59650 Villeneuve d'Ascq - France</data>
+<data name="email">Philippe dot Merle at inria dot fr</data>
+<data name="phone"></data>
+<data name="website">http://frascati.ow2.org</data>
+<data name="organization">INRIA</data>
+<data name="department">ADAM EPI</data>
+<data name="date">May 27, 2011</data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r FraSCAti(_r0)
+	:o Explorer(_r1)
+	:m ScaParser(_r2)
+		:m Metamodels(_r3)
+			:o MM_Native(_r4)
+			:o MM_FraSCAti(_r5)
+			:o MM_Tuscany(_r6)
+			:o MM_UPnP(_r7)
+			:m MM_SCA(_r8)
+	:o RemoteManagement(_r9)
+	:o Fscript(_r10)
+	:o BindingFactory(_r11)
+	:m ComponentFactory(_r12)
+		:m MembraneFactories(_r13)
+			:o MF_Julia(_r14)
+			:o MF_OSGi(_r15)
+			:m MF_Tinfi(_r16)
+		:o MembraneGeneration(_r17)
+			:o JavaCompilers(_r18)
+				:g (_id_0) [1,1] 
+					: JDT(_r19)
+					: JDK6(_r20)
+			:m MembraneGenerators(_r21)
+				:o MG_Tinfi(_r22)
+				:o MG_OSGi(_r23)
+	:o JMX(_r24)
+	:m AssemblyFactory(_r25)
+		:m PropertyTypes(_r26)
+			:o Property_JAXB(_r27)
+			:m Property_Java(_r28)
+			:m Property_XSD(_r29)
+		:m Interfaces(_r30)
+			:o Interface_Native(_r31)
+			:o Interface_WSDL(_r32)
+			:m Interface_Java(_r33)
+		:m Bindings(_r34)
+			:o Binding_WS(_r35)
+			:o Binding_UPnP(_r36)
+			:o Binding_JSON_RPC(_r37)
+			:o Binding_REST(_r38)
+			:m Binding_SCA(_r39)
+			:o Binding_JavaRMI(_r40)
+			:o Binding_HTTP(_r41)
+			:o Binding_JNA(_r42)
+			:o Binding_JMS(_r43)
+		:m Implementations(_r44)
+			:o Implementation_Script(_r45)
+				:o JRuby(_r46)
+				:o BeanShell(_r47)
+				:o Jython(_r48)
+				:o Groovy(_r49)
+				:o JavaScript(_r50)
+				:o Xquery(_r51)
+				:o FScript(_r45_63)
+			:o Implementation_Fractal(_r52)
+			:o Implementation_Resource(_r53)
+			:o Implementation_OSGi(_r54)
+				:g (_id_1) [1,1] 
+					: Apache_Felix(_r55)
+					: Knopflerfish(_r56)
+					: Equinox(_r57)
+			:m Implementation_Composite(_r58)
+			:o Implementation_BPEL(_r59)
+			:o Implementation_Spring(_r60)
+			:m Implementation_Java(_r61)
+</feature_tree>
+<constraints>
+C8:~_r37 or _r5
+C7:~_r59 or _r32
+C9:~_r10 or _r25
+C4:~_r40 or _r5
+C29:~_r35 or _r8
+C3:~_r40 or _r11
+C6:~_r39 or _r8
+C27:~_r1 or _r11
+C5:~_r36 or _r7
+C28:~_r9 or _r25
+C25:~_r38 or _r11
+C26:~_r58 or _r8
+constraint_45:~_r1 or _r52
+C23:~_r41 or _r6
+constraint_44:_r10 or ~_r45_63
+C24:~_r45 or _r5
+C21:~_r60 or _r8
+constraint_46:~_r10 or _r52
+C22:~_r15 or _r23
+C20:~_r61 or _r8
+C0:~_r1 or _r25
+C1:~_r54 or _r5
+C2:~_r9 or _r38
+C16:~_r35 or _r11
+C17:~_r25 or _r12
+C18:~_r42 or _r4
+C19:~_r38 or _r5
+C38:~_r32 or _r8
+C39:~_r15 or _r54
+C34:~_r24 or _r25
+C35:~_r23 or _r15
+C10:~_r9 or _r10
+C36:~_r25 or _r2
+C11:~_r54 or _r15
+C37:~_r43 or _r11
+C12:~_r43 or _r8
+C30:~_r53 or _r6
+C13:~_r37 or _r11
+C31:~_r10 or _r11
+C14:~_r59 or _r8
+C32:~_r54 or _r23
+C15:~_r33 or _r8
+C33:~_r36 or _r11
+C40:~_r31 or _r4
+C42:~_r52 or _r5
+C41:~_r23 or _r54
+</constraints>
+</feature_model>

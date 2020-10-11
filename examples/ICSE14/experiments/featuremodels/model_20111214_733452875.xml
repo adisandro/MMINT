@@ -1,0 +1,34 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Wed, Feb 15, 2012 - 4:09 PM  -->
+<feature_model name="iNavBasic">
+<meta>
+<data name="description">Casus opdracht 2</data>
+<data name="creator">Sander Bloem</data>
+<data name="address"></data>
+<data name="email">adg.bloem@studie.ou.nl</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">Open Universiteit</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r iNavBasic(_r)
+	:m EnterDestination(_r_1)
+		:m TouchScreen(_r_1_7)
+	:m ComputeRoute(_r_2)
+		:o Shortest(_r_2_8)
+		:o Fastest(_r_2_9)
+	:m DisplayRoute(_r_3)
+		:m LCD(_r_3_10)
+	:m NetworkConnection(_r_4)
+		:m Wired(_r_4_11)
+			:m USB(_r_4_11_12)
+	:m ManageMaps(_r_5)
+		:m Via_USB(_r_5_13)
+	:m LocateCurrentPos(_r_6)
+		:m GPS(_r_6_14)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

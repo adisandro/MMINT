@@ -1,0 +1,38 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Wed, May 8, 2013 - 3:22 PM  -->
+<feature_model name="notebook">
+<meta>
+<data name="description">estructura notebook</data>
+<data name="creator">ciro</data>
+<data name="address"></data>
+<data name="email">bobe16@hotmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">null</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r notebook(_r)
+	:m teclado(_r_1)
+		:g (_r_1_10) [1,1] 
+			: normal(_r_1_10_11)
+			: iluminado(_r_1_10_14)
+	:m touchpad(_r_2)
+		:o multitouch(_r_2_19)
+	:m screen(_r_3)
+		:g (_r_3_20) [1,1] 
+			: lcd(_r_3_20_21)
+			: led(_r_3_20_22)
+	:m comunicaciones(_r_4)
+		:m wifi(_r_4_23)
+		:o bluetooth(_r_4_24)
+		:o infrarrojo(_r_4_27)
+	:m puertos usb(_r_28)
+		:g (_r_28_29) [1,*] 
+			: usb 20(_r_28_29_30)
+			: usb 30(_r_28_29_31)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

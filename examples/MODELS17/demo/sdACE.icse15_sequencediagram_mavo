@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<icse15_sequencediagram_mavo:SequenceDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:icse15_sequencediagram_mavo="http://se.cs.toronto.edu/modelepedia/ICSE15_SequenceDiagram_MAVO">
+  <lifelines name="A"/>
+  <lifelines name="C"/>
+  <lifelines name="E"/>
+</icse15_sequencediagram_mavo:SequenceDiagram>

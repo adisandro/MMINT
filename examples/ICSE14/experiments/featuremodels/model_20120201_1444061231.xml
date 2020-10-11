@@ -1,0 +1,78 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Wed, Feb 1, 2012 - 12:08 PM  -->
+<feature_model name="tablets">
+<meta>
+<data name="description">Modelo de características de tablets</data>
+<data name="creator">Lenita</data>
+<data name="address"></data>
+<data name="email">a@a.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">ULL</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r tablets(_r)
+	:m Pantalla(_r_12)
+		:m tamano(_r_12_13)
+			:g (_r_12_13_15) [1,1] 
+				: 5 pulgadas(_r_12_13_15_16)
+				: 7 pulgadas(_r_12_13_15_19)
+				: 8 pulgadas(_r_12_13_15_20)
+		:m resolucion(_r_12_14)
+			:g (_r_12_14_21) [1,1] 
+				: 800x480(_r_12_14_21_22)
+				: 800x600(_r_12_14_21_25)
+				: 1024x768(_r_12_14_21_26)
+		:m formato(_r_12_27)
+			:g (_r_12_27_28) [1,1] 
+				: 16-9(_r_12_27_28_29)
+				: 4-3(_r_12_27_28_30)
+		:m tecnologia tactil(_r_12_31)
+			:g (_r_12_31_32) [1,1] 
+				: resistiva(_r_12_31_32_33)
+				: capacitiva(_r_12_31_32_34)
+				: capacitiva multitactil 5 puntos(_r_12_31_32_35)
+	:m Procesador(_r_36)
+		:m tipo(_r_36_37)
+			:g (_r_36_37_38) [1,1] 
+				: ARM9(_r_36_37_38_39)
+				: A8(_r_36_37_38_40)
+		:m velocidad(_r_36_41)
+			:g (_r_36_41_42) [1,1] 
+				: 600MHz(_r_36_41_42_43)
+				: 1Gb(_r_36_41_42_44)
+				: 1_2Gb(_r_36_41_42_45)
+	:m Memoria(_r_47)
+		:m Interna(_r_47_48)
+			:g (_r_47_48_49) [1,1] 
+				: 4G(_r_47_48_49_50)
+				: 8G(_r_47_48_49_52)
+		:o Externa(_r_47_53)
+			:g (_r_47_53_54) [1,1] 
+				: 4G(_r_47_53_54_55)
+				: 8G(_r_47_53_54_56)
+	:o Media(_r_57)
+		:g (_r_57_58) [1,*] 
+			: Camara(_r_57_58_59)
+				:g (_r_57_58_59_60) [1,*] 
+					: frontal(_r_57_58_59_60_61)
+					: trasera(_r_57_58_59_60_62)
+			: Salida HDMI(_r_57_58_63)
+			: Wifi(_r_57_58_64)
+</feature_tree>
+<constraints>
+constraint_1:~_r_12_14_21_22 or _r_12_27_28_29
+constraint_8:~_r_36_41_42_43 or ~_r_57_58_63
+constraint_9:~_r_36_37_38_39 or ~_r_57_58_63
+constraint_11:_r_47_53_54_56 or ~_r_57_58_59_60_62
+constraint_6:~_r_36_37_38_39 or _r_36_41_42_43
+constraint_12:_r_12_14_21_26 or ~_r_57_58_59_60_62
+constraint_7:~_r_12_27_28_30 or ~_r_36_41_42_43
+constraint_4:~_r_12_13_15_20 or _r_12_31_32_35
+constraint_5:_r_12_13_15_20 or ~_r_12_31_32_35
+constraint_2:_r_12_14_21_22 or ~_r_12_27_28_29
+constraint_3:~_r_12_14_21_22 or ~_r_12_27_28_30
+</constraints>
+</feature_model>

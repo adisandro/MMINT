@@ -1,0 +1,15 @@
+[comment encoding = UTF-8 /]
+[module Java2File_M2T('http://se.cs.toronto.edu/modelepedia/MODELS15_Java')/]
+
+[template public Java2File(javaPackage : Package, javaFileName : String)]
+	[comment @main /]
+	[file (javaFileName + '.java', false, 'UTF-8')]
+package edu.toronto.cs.se.modelepedia;
+
+		[for (javaClass : Class | javaPackage.classes)]
+public class [javaClass.name/] {
+
+}
+		[/for]
+	[/file]
+[/template]
