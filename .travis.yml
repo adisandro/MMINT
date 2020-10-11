@@ -1,0 +1,26 @@
+dist: bionic
+language: java
+jdk:
+ - openjdk14
+env:
+ global:
+  - secure: "mmDudBj142B2HpNJLPZxR+R0a5OcHQjLER1wglKjp2d3f+kIRmW6SPvGSpMLD5rFi1GgEEFZdWOK62bWu53XKARC14f0bQPHhEQPF+LTG/yw0jsZRSQTocwsuapNZiavtrFk0P5hFElRvngPy/nO12oXNdgfWCjGV2lbxIFvg65ZRywQ0pqYyeEz63Mc5uTweFvwenMLNnLlEPiJnL762DKTOliN+BucuRZP68rbUPChwvPmMZFn6cIhjLnKgR6wNnPAFa10oXP/xPBnfPBtmFZTPYiNEjOttIpy29yL0WP8Y5PoSpEOAxuquHGIxQu1JD7GfuktBarPykn0tiS3HuJoPxcrTu7ljkbqUCx4k0wiFPzJJtTkS9N6TsJmf4RpRu9As5TCQ6rEfLrpAT9HobtF/GzIf8b0MZP3VrO40IKUm1cc4gOfd2wOxn7Ys2ymLjtJ6ubF1BcDsKXVguxdltdkKAgcVXA2PVSwuLkigC1fCZ0kUkR93oH3vWJmFTBvpcmhWnDEygDlqCTt3hssHyXidWJfm9EG1O341D9u/homMThdWC7YL+IaJdVYguhxYOcwokZw7hnrD1oHQpUs5lfQ6ZWsGN4GuRHyIZuEXczcgTklQR53dUpoIsJelIyNT1mAIdI1BULcbN/m9a9xPyNj9JSzpSmYz4+ujfsHYoc="
+
+cache:
+ directories:
+  - $HOME/.m2
+script:
+ - echo "MAVEN_OPTS='-Xmx2g'" > ~/.mavenrc
+ - mvn -T 1C -f releng/edu.toronto.cs.se.modelepedia.libz3java.releng/pom.xml clean install
+ - mvn -T 1C -f releng/edu.toronto.cs.se.mmint.releng/pom.xml clean install
+after_success:
+ - >
+   test $TRAVIS_PULL_REQUEST = false &&
+   git clone https://github.com/adisandro/adisandro.github.io.git &&
+   cd adisandro.github.io &&
+   rm -rf mmint/${TRAVIS_BRANCH/master/release} &&
+   mv $TRAVIS_BUILD_DIR/releng/edu.toronto.cs.se.mmint.install/target/repository mmint/${TRAVIS_BRANCH/master/release} &&
+   git add . &&
+   git reset --soft HEAD~1 &&
+   git commit --author="Alessio Di Sandro <alessio.disandro@gmail.com>" -m "mmint: Update builds" &&
+   git push -f -q https://adisandro:$GITHUB_API_KEY@github.com/adisandro/adisandro.github.io.git master &> /dev/null
