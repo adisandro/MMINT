@@ -6,7 +6,7 @@ Bundle-Version: 2.6.99.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-15
+Bundle-RequiredExecutionEnvironment: JavaSE-14
 Export-Package: edu.toronto.cs.se.modelepedia.graph_mavo,
  edu.toronto.cs.se.modelepedia.graph_mavo.impl,
  edu.toronto.cs.se.modelepedia.graph_mavo.util

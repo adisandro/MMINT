@@ -7,7 +7,7 @@ Bundle-Version: 2.6.99.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-15
+Bundle-RequiredExecutionEnvironment: JavaSE-14
 Export-Package: edu.toronto.cs.se.modelepedia.safetycase,
  edu.toronto.cs.se.modelepedia.safetycase.impl,
  edu.toronto.cs.se.modelepedia.safetycase.util
