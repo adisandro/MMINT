@@ -36,7 +36,7 @@
             id="edu.toronto.cs.se.modelepedia.safetycase.presentation.GSNEditorID"
             name="%_UI_GSNEditor_label"
             icon="icons/full/obj16/GSNModelFile.gif"
-            extensions="safetycase"
+            extensions="gsn"
             class="edu.toronto.cs.se.modelepedia.safetycase.presentation.GSNEditor"
             contributorClass="edu.toronto.cs.se.modelepedia.safetycase.presentation.GSNActionBarContributor">
       </editor>
