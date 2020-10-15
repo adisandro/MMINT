@@ -22,4 +22,4 @@ after_success:
    git add . &&
    git reset --soft HEAD~1 &&
    git commit --author="Ella Chang <ellachang1002@outlook.com>" -m "mmint: Update builds" &&
-   git push -f -q https://adisandro:$ENVVAR@github.com/ellachang/ellachang.github.io.git/MMINT master &> /dev/null
+   git push -f -q https://ellachang:$ENVVAR@github.com/ellachang/ellachang.github.io.git/MMINT master &> /dev/null
