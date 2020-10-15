@@ -45,7 +45,7 @@ public class DomainDecompositionCheck extends AbstractExternalJavaAction {
       MessageDialog.openInformation(shell, title, "The domain decomposition is correct");
     }
     catch (MMINTException e) {
-      MessageDialog.openError(shell, title, "The domain decomposition is incorrect: " + e.getMessage());
+      MessageDialog.openError(shell, title, "The domain decomposition is incorrect:\n" + e.getMessage());
     }
   }
 

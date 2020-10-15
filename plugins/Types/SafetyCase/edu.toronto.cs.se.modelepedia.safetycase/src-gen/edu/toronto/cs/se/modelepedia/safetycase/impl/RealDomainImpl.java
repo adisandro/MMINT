@@ -270,10 +270,10 @@ public class RealDomainImpl extends DomainImpl implements RealDomain {
       var a = subBounds.get(i).getUpperBound();
       var b = subBounds.get(i+1).getLowerBound();
       if (a > b) {
-        throw new MMINTException("The sub-domain bounds '_" + a + ")' and '(" + b + "_' overlap");
+        throw new MMINTException("There is overlap between sub-domain bounds '_" + a + ")' and '(" + b + "_'");
       }
       else if (a < b) {
-        throw new MMINTException("The sub-domain bounds '_" + a + ")' and '(" + b + "_' leave a domain hole");
+        throw new MMINTException("There is a hole between sub-domain bounds '_" + a + ")' and '(" + b + "_'");
       }
     }
   }

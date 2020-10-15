@@ -307,11 +307,12 @@ public class IntDomainImpl extends DomainImpl implements IntDomain {
       }
       else {
         if ((prevSubValue + 1) > subValue) {
-          throw new MMINTException("The sub-domain values '" + prevSubValue + "' and '" + subValue + "' overlap");
+          throw new MMINTException("There is overlap between sub-domain values '" + prevSubValue + "' and '" +
+                                   subValue + "'");
         }
         else if ((prevSubValue + 1) < subValue) {
-          throw new MMINTException("The sub-domain values '" + prevSubValue + "' and '" + subValue +
-                                   "' leave a domain hole");
+          throw new MMINTException("There is a hole between sub-domain values '" + prevSubValue + "' and '" + subValue +
+                                   "'");
         }
       }
       if (isBound) {
