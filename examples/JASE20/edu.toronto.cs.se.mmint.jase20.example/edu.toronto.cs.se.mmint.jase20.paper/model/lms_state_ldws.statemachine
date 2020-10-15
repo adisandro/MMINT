@@ -3,7 +3,7 @@
   <states xsi:type="statemachine:State" name="LDWS Active" transitionsAsSource="//@transitions.1" transitionsAsTarget="//@transitions.0 //@transitions.2"/>
   <states xsi:type="statemachine:State" name="LDWS Inactive" transitionsAsSource="//@transitions.2" transitionsAsTarget="//@transitions.1"/>
   <states xsi:type="statemachine:InitialState" transitionsAsSource="//@transitions.0"/>
-  <transitions trigger="Speed > 5 MPH" action="Vehicle On" source="//@states.2" target="//@states.0"/>
-  <transitions trigger="LDWS CheckConditions() == false" action="LDWS TurnOff()" source="//@states.0" target="//@states.1"/>
-  <transitions trigger="LDWS CheckConditions() == true" action="LDWS TurnOn()" source="//@states.1" target="//@states.0"/>
+  <transitions action="Vehicle On" trigger="Speed > 5 MPH" source="//@states.2" target="//@states.0"/>
+  <transitions action="LDWS TurnOff()" trigger="LDWS CheckConditions() == false" source="//@states.0" target="//@states.1"/>
+  <transitions action="LDWS TurnOn()" trigger="LDWS CheckConditions() == true" source="//@states.1" target="//@states.0"/>
 </statemachine:StateMachine>

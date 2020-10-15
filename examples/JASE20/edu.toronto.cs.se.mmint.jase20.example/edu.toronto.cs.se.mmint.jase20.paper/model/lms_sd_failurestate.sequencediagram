@@ -41,15 +41,15 @@
       <activationBoxes messagesAsSource="//@messages.9" messagesAsTarget="//@messages.8 //@messages.10"/>
     </lifeline>
   </objects>
-  <messages source="//@objects.1/@lifeline/@activationBoxes.0" target="//@objects.2/@lifeline/@activationBoxes.0" content="CheckStatus()" successor="//@messages.1"/>
-  <messages type="Return" source="//@objects.2/@lifeline/@activationBoxes.0" target="//@objects.1/@lifeline/@activationBoxes.0" content="false" predecessor="//@messages.0" successor="//@messages.2"/>
-  <messages source="//@objects.1/@lifeline/@activationBoxes.0" target="//@objects.1/@lifeline/@activationBoxes.0" content="OkLightOff()" predecessor="//@messages.1" successor="//@messages.3"/>
-  <messages source="//@objects.1/@lifeline/@activationBoxes.0" target="//@objects.1/@lifeline/@activationBoxes.0" content="WarningIndicatorOn()" predecessor="//@messages.2" successor="//@messages.4"/>
-  <messages source="//@objects.1/@lifeline/@activationBoxes.0" target="//@objects.3/@lifeline/@activationBoxes.0" content="TurnOff()" predecessor="//@messages.3" successor="//@messages.5"/>
-  <messages source="//@objects.1/@lifeline/@activationBoxes.0" target="//@objects.4/@lifeline/@activationBoxes.0" content="TurnOff()" predecessor="//@messages.4" successor="//@messages.6"/>
-  <messages source="//@objects.1/@lifeline/@activationBoxes.0" target="//@objects.5/@lifeline/@activationBoxes.0" content="TurnOff()" predecessor="//@messages.5" successor="//@messages.7"/>
-  <messages source="//@objects.1/@lifeline/@activationBoxes.0" target="//@objects.6/@lifeline/@activationBoxes.0" content="Activate()" predecessor="//@messages.6" successor="//@messages.8"/>
-  <messages source="//@objects.0/@lifeline/@activationBoxes.0" target="//@objects.7/@lifeline/@activationBoxes.0" content="DeactivateAlarm()" predecessor="//@messages.7" successor="//@messages.9"/>
-  <messages source="//@objects.7/@lifeline/@activationBoxes.0" target="//@objects.6/@lifeline/@activationBoxes.1" content="Deactivate()" predecessor="//@messages.8" successor="//@messages.10"/>
+  <messages content="CheckStatus()" source="//@objects.1/@lifeline/@activationBoxes.0" target="//@objects.2/@lifeline/@activationBoxes.0" successor="//@messages.1"/>
+  <messages content="false" type="Return" source="//@objects.2/@lifeline/@activationBoxes.0" target="//@objects.1/@lifeline/@activationBoxes.0" predecessor="//@messages.0" successor="//@messages.2"/>
+  <messages content="OkLightOff()" source="//@objects.1/@lifeline/@activationBoxes.0" target="//@objects.1/@lifeline/@activationBoxes.0" predecessor="//@messages.1" successor="//@messages.3"/>
+  <messages content="WarningIndicatorOn()" source="//@objects.1/@lifeline/@activationBoxes.0" target="//@objects.1/@lifeline/@activationBoxes.0" predecessor="//@messages.2" successor="//@messages.4"/>
+  <messages content="TurnOff()" source="//@objects.1/@lifeline/@activationBoxes.0" target="//@objects.3/@lifeline/@activationBoxes.0" predecessor="//@messages.3" successor="//@messages.5"/>
+  <messages content="TurnOff()" source="//@objects.1/@lifeline/@activationBoxes.0" target="//@objects.4/@lifeline/@activationBoxes.0" predecessor="//@messages.4" successor="//@messages.6"/>
+  <messages content="TurnOff()" source="//@objects.1/@lifeline/@activationBoxes.0" target="//@objects.5/@lifeline/@activationBoxes.0" predecessor="//@messages.5" successor="//@messages.7"/>
+  <messages content="Activate()" source="//@objects.1/@lifeline/@activationBoxes.0" target="//@objects.6/@lifeline/@activationBoxes.0" predecessor="//@messages.6" successor="//@messages.8"/>
+  <messages content="DeactivateAlarm()" source="//@objects.0/@lifeline/@activationBoxes.0" target="//@objects.7/@lifeline/@activationBoxes.0" predecessor="//@messages.7" successor="//@messages.9"/>
+  <messages content="Deactivate()" source="//@objects.7/@lifeline/@activationBoxes.0" target="//@objects.6/@lifeline/@activationBoxes.1" predecessor="//@messages.8" successor="//@messages.10"/>
   <messages type="Return" source="//@objects.6/@lifeline/@activationBoxes.1" target="//@objects.7/@lifeline/@activationBoxes.0" predecessor="//@messages.9"/>
 </sequencediagram:SequenceDiagram>

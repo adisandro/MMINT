@@ -11,36 +11,36 @@
   </objects>
   <objects xsi:type="sequencediagram:Component" type="LaneKeepingSystem">
     <lifeline>
-      <activationBoxes messagesAsTarget="//@messages.0 //@messages.2" messagesAsSource="//@messages.1 //@messages.3"/>
+      <activationBoxes messagesAsSource="//@messages.1 //@messages.3" messagesAsTarget="//@messages.0 //@messages.2"/>
     </lifeline>
   </objects>
   <objects xsi:type="sequencediagram:Component" type="LaneCenteringSystem">
     <lifeline>
-      <activationBoxes messagesAsTarget="//@messages.4 //@messages.6" messagesAsSource="//@messages.5 //@messages.7"/>
+      <activationBoxes messagesAsSource="//@messages.5 //@messages.7" messagesAsTarget="//@messages.4 //@messages.6"/>
     </lifeline>
   </objects>
   <objects xsi:type="sequencediagram:Component" type="LaneDepartureWarningSystem">
     <lifeline>
-      <activationBoxes messagesAsTarget="//@messages.8 //@messages.10" messagesAsSource="//@messages.9 //@messages.11"/>
+      <activationBoxes messagesAsSource="//@messages.9 //@messages.11" messagesAsTarget="//@messages.8 //@messages.10"/>
     </lifeline>
   </objects>
   <objects xsi:type="sequencediagram:Component" type="PathPredictionSystem">
     <lifeline>
-      <activationBoxes messagesAsTarget="//@messages.12" messagesAsSource="//@messages.13"/>
+      <activationBoxes messagesAsSource="//@messages.13" messagesAsTarget="//@messages.12"/>
     </lifeline>
   </objects>
-  <messages source="//@objects.0/@lifeline/@activationBoxes.0/@activationBoxes.0" target="//@objects.1/@lifeline/@activationBoxes.0" content="CheckStatus()" successor="//@messages.1"/>
+  <messages content="CheckStatus()" source="//@objects.0/@lifeline/@activationBoxes.0/@activationBoxes.0" target="//@objects.1/@lifeline/@activationBoxes.0" successor="//@messages.1"/>
   <messages type="Return" source="//@objects.1/@lifeline/@activationBoxes.0" target="//@objects.0/@lifeline/@activationBoxes.0/@activationBoxes.0" predecessor="//@messages.0" successor="//@messages.2"/>
-  <messages source="//@objects.0/@lifeline/@activationBoxes.0/@activationBoxes.0" target="//@objects.1/@lifeline/@activationBoxes.0" content="GetConditions()" predecessor="//@messages.1" successor="//@messages.3"/>
+  <messages content="GetConditions()" source="//@objects.0/@lifeline/@activationBoxes.0/@activationBoxes.0" target="//@objects.1/@lifeline/@activationBoxes.0" predecessor="//@messages.1" successor="//@messages.3"/>
   <messages type="Return" source="//@objects.1/@lifeline/@activationBoxes.0" target="//@objects.0/@lifeline/@activationBoxes.0/@activationBoxes.0" predecessor="//@messages.2" successor="//@messages.4"/>
-  <messages source="//@objects.0/@lifeline/@activationBoxes.0/@activationBoxes.1" target="//@objects.2/@lifeline/@activationBoxes.0" content="CheckStatus()" predecessor="//@messages.3" successor="//@messages.5"/>
+  <messages content="CheckStatus()" source="//@objects.0/@lifeline/@activationBoxes.0/@activationBoxes.1" target="//@objects.2/@lifeline/@activationBoxes.0" predecessor="//@messages.3" successor="//@messages.5"/>
   <messages type="Return" source="//@objects.2/@lifeline/@activationBoxes.0" target="//@objects.0/@lifeline/@activationBoxes.0/@activationBoxes.1" predecessor="//@messages.4" successor="//@messages.6"/>
-  <messages source="//@objects.0/@lifeline/@activationBoxes.0/@activationBoxes.1" target="//@objects.2/@lifeline/@activationBoxes.0" content="GetConditions()" predecessor="//@messages.5" successor="//@messages.7"/>
+  <messages content="GetConditions()" source="//@objects.0/@lifeline/@activationBoxes.0/@activationBoxes.1" target="//@objects.2/@lifeline/@activationBoxes.0" predecessor="//@messages.5" successor="//@messages.7"/>
   <messages type="Return" source="//@objects.2/@lifeline/@activationBoxes.0" target="//@objects.0/@lifeline/@activationBoxes.0/@activationBoxes.1" predecessor="//@messages.6" successor="//@messages.8"/>
-  <messages source="//@objects.0/@lifeline/@activationBoxes.0/@activationBoxes.2" target="//@objects.3/@lifeline/@activationBoxes.0" content="CheckStatus()" predecessor="//@messages.7" successor="//@messages.9"/>
+  <messages content="CheckStatus()" source="//@objects.0/@lifeline/@activationBoxes.0/@activationBoxes.2" target="//@objects.3/@lifeline/@activationBoxes.0" predecessor="//@messages.7" successor="//@messages.9"/>
   <messages type="Return" source="//@objects.3/@lifeline/@activationBoxes.0" target="//@objects.0/@lifeline/@activationBoxes.0/@activationBoxes.2" predecessor="//@messages.8" successor="//@messages.10"/>
-  <messages source="//@objects.0/@lifeline/@activationBoxes.0/@activationBoxes.2" target="//@objects.3/@lifeline/@activationBoxes.0" content="GetConditions()" predecessor="//@messages.9" successor="//@messages.11"/>
+  <messages content="GetConditions()" source="//@objects.0/@lifeline/@activationBoxes.0/@activationBoxes.2" target="//@objects.3/@lifeline/@activationBoxes.0" predecessor="//@messages.9" successor="//@messages.11"/>
   <messages type="Return" source="//@objects.3/@lifeline/@activationBoxes.0" target="//@objects.0/@lifeline/@activationBoxes.0/@activationBoxes.2" predecessor="//@messages.10" successor="//@messages.12"/>
-  <messages source="//@objects.0/@lifeline/@activationBoxes.0" target="//@objects.4/@lifeline/@activationBoxes.0" content="GetCurrentPath(currentSpeed, currentSteeringAngle, ..." predecessor="//@messages.11" successor="//@messages.13"/>
-  <messages type="Return" source="//@objects.4/@lifeline/@activationBoxes.0" target="//@objects.0/@lifeline/@activationBoxes.0" content="0" predecessor="//@messages.12"/>
+  <messages content="GetCurrentPath(currentSpeed, currentSteeringAngle, ..." source="//@objects.0/@lifeline/@activationBoxes.0" target="//@objects.4/@lifeline/@activationBoxes.0" predecessor="//@messages.11" successor="//@messages.13"/>
+  <messages content="0" type="Return" source="//@objects.4/@lifeline/@activationBoxes.0" target="//@objects.0/@lifeline/@activationBoxes.0" predecessor="//@messages.12"/>
 </sequencediagram:SequenceDiagram>
