@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mid="http://se.cs.toronto.edu/mmint/MID" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" xmi:id="_zE5acA9BEeu-C89ZJw2wkw" type="MID" name="demo.middiag" measurementUnit="Pixel">
+  <children xmi:type="notation:Node" xmi:id="_1FpxQA9BEeu-C89ZJw2wkw" type="2002">
+    <children xmi:type="notation:DecorationNode" xmi:id="_1FpxRQ9BEeu-C89ZJw2wkw" type="5003"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_1FpxRg9BEeu-C89ZJw2wkw" type="5004"/>
+    <styles xmi:type="notation:DescriptionStyle" xmi:id="_1FpxQQ9BEeu-C89ZJw2wkw"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_1FpxQg9BEeu-C89ZJw2wkw" fontName="Cantarell" fontHeight="10"/>
+    <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_1FpxQw9BEeu-C89ZJw2wkw" hint="Mid"/>
+    <element xmi:type="mid:Model" href="demo.mid#//@models.0"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_1FpxRA9BEeu-C89ZJw2wkw" x="335" y="130"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_zE5acQ9BEeu-C89ZJw2wkw"/>
+  <element xmi:type="mid:MID" href="demo.mid#/"/>
+</notation:Diagram>

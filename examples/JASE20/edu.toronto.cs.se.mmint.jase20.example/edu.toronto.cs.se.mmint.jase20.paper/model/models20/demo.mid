@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mid:MID xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editor="http://se.cs.toronto.edu/mmint/MID/Editor" xmlns:mid="http://se.cs.toronto.edu/mmint/MID">
+  <models uri="/edu.toronto.cs.se.mmint.jase20.paper/model/lms.mid" name="lms" metatypeUri="http://se.cs.toronto.edu/mmint/MID" dynamic="true" fileExtension="mid" editors="//@editors.0"/>
+  <editors xsi:type="editor:Diagram" uri="/edu.toronto.cs.se.mmint.jase20.paper/model/lms.middiag" name="MID diagram for model /edu.toronto.cs.se.mmint.jase20.paper/model/lms.mid" metatypeUri="http://se.cs.toronto.edu/mmint/MID_diagram" dynamic="true" modelUri="/edu.toronto.cs.se.mmint.jase20.paper/model/lms.mid" id="edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorID" wizardId="edu.toronto.cs.se.mmint.mid.diagram.part.MIDCreationWizardID">
+    <fileExtensions>middiag</fileExtensions>
+  </editors>
+  <extendibleTable key="/edu.toronto.cs.se.mmint.jase20.paper/model/lms.mid" value="//@models.0"/>
+</mid:MID>
