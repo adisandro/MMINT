@@ -134,6 +134,7 @@ public class AnnotateSlice extends OperatorImpl {
     }
     var fileModelType = MIDTypeRegistry.<Model>getType(AnnotateSlice.MODEL_TYPE_ID);
     this.output.annotatedModel = fileModelType.createInstance(null, filePath, this.output.mid);
+    this.output.annotatedModel.setName(this.input.model.getName()); // may be different from file name
   }
 
   @Override
