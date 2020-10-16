@@ -129,7 +129,8 @@ public class Union extends OperatorImpl {
 				if (model instanceof ModelRel || this.output.unionMID.getExtendibleElement(model.getUri()) != null) {
 					continue;
 				}
-				model.getMetatype().createInstanceAndEditor(null, model.getUri(), this.output.unionMID);
+				var unionModel = model.getMetatype().createInstanceAndEditor(null, model.getUri(), this.output.unionMID);
+				unionModel.setName(model.getName());
 			}
 		}
 		// model rels at second pass
