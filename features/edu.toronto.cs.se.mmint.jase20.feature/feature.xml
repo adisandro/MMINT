@@ -24,7 +24,7 @@
    </requires>
 
    <plugin
-         id="edu.toronto.cs.se.mmint.jase20.example"
+         id="edu.toronto.cs.se.mmint.example.lms"
          download-size="0"
          install-size="0"
          version="0.0.0"

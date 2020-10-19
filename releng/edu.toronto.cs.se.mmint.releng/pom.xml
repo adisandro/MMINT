@@ -197,7 +197,7 @@
   	<module>../../examples/MODELS15/edu.toronto.cs.se.modelepedia.models15_java.edit</module>
   	<module>../../examples/MODELS15/edu.toronto.cs.se.modelepedia.models15_java.editor</module>
     <module>../../examples/JASE20/edu.toronto.cs.se.mmint.jase20</module>
-    <module>../../examples/JASE20/edu.toronto.cs.se.mmint.jase20.example</module>
+    <module>../../examples/LMS/edu.toronto.cs.se.mmint.example.lms</module>
   	<module>../../features/edu.toronto.cs.se.mmint.feature</module>
   	<module>../../features/edu.toronto.cs.se.mmint.sdk.feature</module>
     <module>../../features/edu.toronto.cs.se.mminta.feature</module>

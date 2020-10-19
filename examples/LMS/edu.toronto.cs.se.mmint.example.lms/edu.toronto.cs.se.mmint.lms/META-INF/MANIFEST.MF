@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
-Bundle-SymbolicName: edu.toronto.cs.se.mmint.jase20.paper;singleton:=true
+Bundle-SymbolicName: edu.toronto.cs.se.mmint.lms;singleton:=true
 Bundle-Version: 2.6.99.qualifier
 Bundle-Vendor: %providerName
 Export-Package: jase20,
@@ -20,6 +20,6 @@ Require-Bundle: org.eclipse.emf.ecore,
  edu.toronto.cs.se.modelepedia.sequencediagram,
  edu.toronto.cs.se.modelepedia.statemachine
 Bundle-RequiredExecutionEnvironment: JavaSE-14
-Automatic-Module-Name: edu.toronto.cs.se.mmint.jase20.paper
+Automatic-Module-Name: edu.toronto.cs.se.mmint.lms
 Import-Package: org.apache.log4j
 Bundle-ActivationPolicy: lazy
