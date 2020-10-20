@@ -1,0 +1,85 @@
+import 'http://se.cs.toronto.edu/mmint/MID'
+import 'http://se.cs.toronto.edu/modelepedia/ClassDiagram'
+import 'http://se.cs.toronto.edu/modelepedia/GSN'
+
+context mid::ModelElement
+
+def: connectedModelElems : OrderedSet(ModelElement) =
+  let mid = self.oclContainer().oclContainer().oclAsType(MID) in
+  let rels = mid.models->select(oclIsTypeOf(relationship::ModelRel))
+                       ->collect(oclAsType(relationship::ModelRel)) in
+  let modelElems = rels->collect(mappings)
+                       ->collect(modelElemEndpoints)
+                       ->collect(target.oclAsType(ModelElement))
+                       ->asOrderedSet() in
+  modelElems->select(modelElemTgt |
+    self <> modelElemTgt and
+    rels->exists(rel |
+      rel.mappings->exists(mapping |
+        mapping.modelElemEndpoints->collect(target)
+                                  ->includesAll(Set{self, modelElemTgt}))))
+
+context mid::MID
+
+def: connectedModelElems1 : Set(Tuple(src : ModelElement,
+                                      tgt : ModelElement)) =
+  let modelElems = ModelElement.allInstances() in
+  modelElems->collect(e | Set{e}->product(connectedModelElems2(e)))->asSet()
+
+def: connectedModelElems2(modelElemSrc : ModelElement) : Set(ModelElement) =
+  modelElemSrc.connectedModelElems->asSet()
+
+def: connectedModelElems3(modelElemSrc : ModelElement,
+                          modelElemTgt : ModelElement) : Boolean =
+  connectedModelElems2(modelElemSrc)->includes(modelElemTgt)
+
+def: allConnectedModelElems1 : Set(Tuple(src : ModelElement,
+                                         tgt : ModelElement)) =
+  let modelElems = ModelElement.allInstances() in
+  modelElems->collect(e | Set{e}->product(allConnectedModelElems2(e)))->asSet()
+
+def: allConnectedModelElems2(modelElemSrc : ModelElement) : Set(ModelElement) =
+  modelElemSrc->closure(connectedModelElems)->excluding(modelElemSrc)
+
+def: allConnectedModelElems3(modelElemSrc : ModelElement,
+                             modelElemTgt : ModelElement) : Boolean =
+  allConnectedModelElems2(modelElemSrc)->includes(modelElemTgt)
+
+def: asilBConnectedModelElems : Set(Tuple(goal : safetycase::Goal, elem : ModelElement)) =
+  let safetyCases = Model.allInstances()
+                         ->collect(EMFInstanceRoot)
+                         ->select(oclIsTypeOf(safetycase::SafetyCase))
+                         ->collect(oclAsType(safetycase::SafetyCase)) in
+  let goals = safetyCases->collect(goals)
+                         ->select(not asil.oclIsUndefined())
+                         ->select(asil.value = safetycase::ASILLevel::B) in
+  let modelElems = ModelElement.allInstances() in
+  goals->collect(g | Set{g}->product(
+         let goalElem = modelElems->any(e | e.EMFInstanceObject = g) in
+         if goalElem.oclIsUndefined() then Set{} else connectedModelElems2(goalElem) endif))
+       ->asSet()
+
+def: highlyConnectedModelElems : Set(Tuple(elem : ModelElement, conn : Integer)) =
+  let modelElems = ModelElement.allInstances() in
+  modelElems->select(e | connectedModelElems2(e)->size() > 5)
+            ->collect(he | Tuple{elem=he, conn=connectedModelElems2(he)->size()})
+            ->asSet()
+
+def: alarmClasses : Set(classdiagram::Class) =
+  let classDiagrams = Model.allInstances()
+                           ->collect(EMFInstanceRoot)
+                           ->select(oclIsTypeOf(classdiagram::ClassDiagram))
+                           ->collect(oclAsType(classdiagram::ClassDiagram)) in
+  classDiagrams->collect(classes)
+               ->select(e | e.name.toLower().matches('.*alarm.*'))
+               ->asSet()
+
+def: turnOffFunctions : Set(Tuple(class : classdiagram::Class, oper : classdiagram::Operation)) =
+  let classDiagrams = Model.allInstances()
+                           ->collect(EMFInstanceRoot)
+                           ->select(oclIsTypeOf(classdiagram::ClassDiagram))
+                           ->collect(oclAsType(classdiagram::ClassDiagram)) in
+  classDiagrams->collect(classes)
+               ->select(ownedOperations->exists(name = 'TurnOff()'))
+               ->collect(ct | Tuple{class=ct, oper=ct.ownedOperations->any(name = 'TurnOff()')})
+               ->asSet()
