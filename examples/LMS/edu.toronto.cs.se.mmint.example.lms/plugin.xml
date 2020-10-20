@@ -14,25 +14,25 @@
 <plugin>
 
    <extension point="org.eclipse.ui.newWizards">
-      <category id="edu.toronto.cs.se.mmint.examples"
+      <category id="edu.toronto.cs.se.mmint.example"
             name="MMINT Examples"
             parentCategory="org.eclipse.ui.Examples"/>
-      <wizard id="edu.toronto.cs.se.mmint.jase20"
-            category="org.eclipse.ui.Examples/edu.toronto.cs.se.mmint.examples"
+      <wizard id="edu.toronto.cs.se.mmint.example.lms"
+            category="org.eclipse.ui.Examples/edu.toronto.cs.se.mmint.example"
             class="org.eclipse.emf.common.ui.wizard.ExampleInstallerWizard"
             project="true"
             name="LMS">
-         <description>Creates a project containing the Lane Management System example</description>
+         <description>Creates a project containing the Lane Management System example artifacts</description>
       </wizard>
    </extension>
 
    <extension point="org.eclipse.emf.common.ui.examples">
-      <example id="edu.toronto.cs.se.mmint.jase20.paper"
-            wizardID="edu.toronto.cs.se.mmint.jase20">
-         <projectDescriptor name="edu.toronto.cs.se.mmint.lms"
-               contentURI="edu.toronto.cs.se.mmint.lms/"
-               description="Creates a project containing the Lane Management System example"/>
-         <fileToOpen location="edu.toronto.cs.se.mmint.lms/README.md"/>
+      <example id="edu.toronto.cs.se.mmint.example.lms"
+            wizardID="edu.toronto.cs.se.mmint.example.lms">
+         <projectDescriptor name="LMS"
+               contentURI="LMS/"
+               description="Creates a project containing the Lane Management System example artifacts"/>
+         <fileToOpen location="LMS/README.md"/>
       </example>
    </extension>
 
