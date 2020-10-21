@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mid:MID xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editor="http://se.cs.toronto.edu/mmint/MID/Editor" xmlns:mid="http://se.cs.toronto.edu/mmint/MID">
-  <models uri="/LMS/model/models20/evolve.mid" name="evolve" metatypeUri="http://se.cs.toronto.edu/mmint/MID" dynamic="true" fileExtension="mid" editors="//@editors.0"/>
-  <editors xsi:type="editor:Diagram" uri="/LMS/model/models20/evolve.middiag" name="MID diagram for model /LMS/model/models20/evolve.mid" metatypeUri="http://se.cs.toronto.edu/mmint/MID_diagram" dynamic="true" modelUri="/LMS/model/models20/evolve.mid" id="edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorID" wizardId="edu.toronto.cs.se.mmint.mid.diagram.part.MIDCreationWizardID">
+  <models uri="/MODELS20/model/evolve.mid" name="evolve" metatypeUri="http://se.cs.toronto.edu/mmint/MID" dynamic="true" fileExtension="mid" editors="//@editors.0"/>
+  <editors xsi:type="editor:Diagram" uri="/MODELS20/model/evolve.middiag" name="MID diagram for model /MODELS20/model/evolve.mid" metatypeUri="http://se.cs.toronto.edu/mmint/MID_diagram" dynamic="true" modelUri="/MODELS20/model/evolve.mid" id="edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorID" wizardId="edu.toronto.cs.se.mmint.mid.diagram.part.MIDCreationWizardID">
     <fileExtensions>middiag</fileExtensions>
   </editors>
-  <extendibleTable key="/LMS/model/models20/evolve.mid" value="//@models.0"/>
+  <extendibleTable key="/MODELS20/model/evolve.mid" value="//@models.0"/>
 </mid:MID>
