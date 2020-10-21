@@ -22,7 +22,7 @@
             class="org.eclipse.emf.common.ui.wizard.ExampleInstallerWizard"
             project="true"
             name="MASE19">
-         <description>Creates a project containing the MASE19 example artifacts</description>
+         <description>Creates a project containing the artifacts from the MASE@MODELS19 paper</description>
       </wizard>
    </extension>
 
@@ -31,7 +31,7 @@
             wizardID="edu.toronto.cs.se.mmint.example.mase19">
          <projectDescriptor name="MASE19"
                contentURI="MASE19/"
-               description="Creates a project containing the MASE19 example artifacts"/>
+               description="Creates a project containing the artifacts from the MASE@MODELS19 paper"/>
          <fileToOpen location="MASE19/README.md"/>
       </example>
    </extension>

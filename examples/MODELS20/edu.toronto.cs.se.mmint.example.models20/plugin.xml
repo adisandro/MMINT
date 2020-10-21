@@ -22,7 +22,7 @@
             class="org.eclipse.emf.common.ui.wizard.ExampleInstallerWizard"
             project="true"
             name="MODELS20">
-         <description>Creates a project containing the MODELS20 example artifacts</description>
+         <description>Creates a project containing the artifacts from the MODELS20 paper</description>
       </wizard>
    </extension>
 
@@ -31,7 +31,7 @@
             wizardID="edu.toronto.cs.se.mmint.example.models20">
          <projectDescriptor name="MODELS20"
                contentURI="MODELS20/"
-               description="Creates a project containing the MODELS20 example artifacts"/>
+               description="Creates a project containing the artifacts from the MODELS20 paper"/>
          <fileToOpen location="MODELS20/README.md"/>
       </example>
    </extension>

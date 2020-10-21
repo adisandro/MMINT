@@ -221,6 +221,8 @@
     <module>../../features/edu.toronto.cs.se.modelepedia.icse15.feature</module>
     <module>../../features/edu.toronto.cs.se.modelepedia.sosym18.feature</module>
     <module>../../features/edu.toronto.cs.se.mmint.example.jase20.feature</module>
+    <module>../../features/edu.toronto.cs.se.mmint.example.mase19.feature</module>
+    <module>../../features/edu.toronto.cs.se.mmint.example.models20.feature</module>
   	<module>../../tests/edu.toronto.cs.se.modelepedia.tests</module>
   	<module>../edu.toronto.cs.se.mmint.install</module>
   </modules>

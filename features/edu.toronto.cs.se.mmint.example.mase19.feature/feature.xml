@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="edu.toronto.cs.se.mmint.example.mase19.feature"
+      label="MASE19"
+      version="2.6.99.qualifier"
+      provider-name="Software Engineering Group, University of Toronto">
+
+   <description url="https://doi.org/10.1109/MODELS-C.2019.00008">
+      MMINT support for the MASE@MODELS19 paper.
+   </description>
+
+   <copyright>
+      Copyright (c) 2012-2020 Alessio Di Sandro, Marsha Chechik, Rick Salay, Sahar Kokaly. All rights reserved.
+   </copyright>
+
+   <license url="http://www.eclipse.org/legal/epl-v10.html">
+      This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+   </license>
+
+   <includes
+         id="edu.toronto.cs.se.mminta.feature"
+         version="0.0.0"/>
+
+   <requires>
+      <import plugin="org.eclipse.emf.common.ui"/>
+   </requires>
+
+   <plugin
+         id="edu.toronto.cs.se.mmint.example.lms"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="edu.toronto.cs.se.mmint.example.mase19"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>
