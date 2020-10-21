@@ -3,7 +3,7 @@
  */
 package jase20;
 
-import edu.toronto.cs.se.mmint.jase20.iso26262.gsn.SafetyGoal;
+import edu.toronto.cs.se.mmint.example.jase20.iso26262.gsn.SafetyGoal;
 import jase20.E_eventASIL;
 import java.util.Arrays;
 import java.util.Collection;
@@ -480,7 +480,7 @@ public final class E extends BaseGeneratedEMFQuerySpecification<E.Matcher> {
   
   @Override
   public E.Match newMatch(final Object... parameters) {
-    return E.Match.newMatch((edu.toronto.cs.se.mmint.jase20.iso26262.gsn.SafetyGoal) parameters[0]);
+    return E.Match.newMatch((edu.toronto.cs.se.mmint.example.jase20.iso26262.gsn.SafetyGoal) parameters[0]);
   }
   
   /**
@@ -512,7 +512,7 @@ public final class E extends BaseGeneratedEMFQuerySpecification<E.Matcher> {
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private static final E.GeneratedPQuery INSTANCE = new GeneratedPQuery();
     
-    private final PParameter parameter_goal = new PParameter("goal", "edu.toronto.cs.se.mmint.jase20.iso26262.gsn.SafetyGoal", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("edu.toronto.cs.se.mmint.jase20.iso26262.gsn", "SafetyGoal")), PParameterDirection.INOUT);
+    private final PParameter parameter_goal = new PParameter("goal", "edu.toronto.cs.se.mmint.example.jase20.iso26262.gsn.SafetyGoal", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("edu.toronto.cs.se.mmint.example.jase20.iso26262.gsn", "SafetyGoal")), PParameterDirection.INOUT);
     
     private final List<PParameter> parameters = Arrays.asList(parameter_goal);
     
@@ -546,14 +546,14 @@ public final class E extends BaseGeneratedEMFQuerySpecification<E.Matcher> {
           PVariable var_maxASIL = body.getOrCreateVariableByName("maxASIL");
           PVariable var__event = body.getOrCreateVariableByName("_event");
           PVariable var__asil = body.getOrCreateVariableByName("#asil");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_goal), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("edu.toronto.cs.se.mmint.jase20.iso26262.gsn", "SafetyGoal")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_goal), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("edu.toronto.cs.se.mmint.example.jase20.iso26262.gsn", "SafetyGoal")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
              new ExportedParameter(body, var_goal, parameter_goal)
           ));
           //   SafetyGoal.ASIL(goal, goalASIL)
-          new TypeConstraint(body, Tuples.flatTupleOf(var_goal), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("edu.toronto.cs.se.mmint.jase20.iso26262.gsn", "SafetyGoal")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_goal), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("edu.toronto.cs.se.mmint.example.jase20.iso26262.gsn", "SafetyGoal")));
           PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_goal, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("edu.toronto.cs.se.mmint.jase20.iso26262.gsn", "SafetyGoal", "ASIL")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_goal, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("edu.toronto.cs.se.mmint.example.jase20.iso26262.gsn", "SafetyGoal", "ASIL")));
           new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_), new EDataTypeInSlotsKey((EDataType)getClassifierLiteral("http://www.eclipse.org/emf/2002/Ecore", "EString")));
           new Equality(body, var__virtual_0_, var_goalASIL);
           //   maxASIL == max find e_eventASIL(goal, _event, #asil)

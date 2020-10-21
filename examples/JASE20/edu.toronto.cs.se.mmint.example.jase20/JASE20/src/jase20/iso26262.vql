@@ -2,9 +2,9 @@ package jase20
 
 import "http://se.cs.toronto.edu/mmint/MID"
 import "http://se.cs.toronto.edu/mmint/MID/Relationship"
-import "edu.toronto.cs.se.mmint.jase20.iso26262.gsn"
-import "edu.toronto.cs.se.mmint.jase20.iso26262.hara"
-import "edu.toronto.cs.se.mmint.jase20.iso26262.sysml"
+import "edu.toronto.cs.se.mmint.example.jase20.iso26262.gsn"
+import "edu.toronto.cs.se.mmint.example.jase20.iso26262.hara"
+import "edu.toronto.cs.se.mmint.example.jase20.iso26262.sysml"
 
 pattern a1(hazard: Hazard) {
   OperationalSituation(situation);

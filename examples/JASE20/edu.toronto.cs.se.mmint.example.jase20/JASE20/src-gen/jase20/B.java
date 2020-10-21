@@ -3,7 +3,7 @@
  */
 package jase20;
 
-import edu.toronto.cs.se.mmint.jase20.iso26262.hara.HazardousEvent;
+import edu.toronto.cs.se.mmint.example.jase20.iso26262.hara.HazardousEvent;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedHashSet;
@@ -479,7 +479,7 @@ public final class B extends BaseGeneratedEMFQuerySpecification<B.Matcher> {
   
   @Override
   public B.Match newMatch(final Object... parameters) {
-    return B.Match.newMatch((edu.toronto.cs.se.mmint.jase20.iso26262.hara.HazardousEvent) parameters[0]);
+    return B.Match.newMatch((edu.toronto.cs.se.mmint.example.jase20.iso26262.hara.HazardousEvent) parameters[0]);
   }
   
   /**
@@ -511,7 +511,7 @@ public final class B extends BaseGeneratedEMFQuerySpecification<B.Matcher> {
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private static final B.GeneratedPQuery INSTANCE = new GeneratedPQuery();
     
-    private final PParameter parameter_event = new PParameter("event", "edu.toronto.cs.se.mmint.jase20.iso26262.hara.HazardousEvent", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("edu.toronto.cs.se.mmint.jase20.iso26262.hara", "HazardousEvent")), PParameterDirection.INOUT);
+    private final PParameter parameter_event = new PParameter("event", "edu.toronto.cs.se.mmint.example.jase20.iso26262.hara.HazardousEvent", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("edu.toronto.cs.se.mmint.example.jase20.iso26262.hara", "HazardousEvent")), PParameterDirection.INOUT);
     
     private final List<PParameter> parameters = Arrays.asList(parameter_event);
     
@@ -544,21 +544,21 @@ public final class B extends BaseGeneratedEMFQuerySpecification<B.Matcher> {
           PVariable var_eventSituation = body.getOrCreateVariableByName("eventSituation");
           PVariable var_hazard = body.getOrCreateVariableByName("hazard");
           PVariable var_item = body.getOrCreateVariableByName("item");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_event), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("edu.toronto.cs.se.mmint.jase20.iso26262.hara", "HazardousEvent")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_event), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("edu.toronto.cs.se.mmint.example.jase20.iso26262.hara", "HazardousEvent")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
              new ExportedParameter(body, var_event, parameter_event)
           ));
           //   HazardousEvent.situation(event, eventSituation)
-          new TypeConstraint(body, Tuples.flatTupleOf(var_event), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("edu.toronto.cs.se.mmint.jase20.iso26262.hara", "HazardousEvent")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_event), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("edu.toronto.cs.se.mmint.example.jase20.iso26262.hara", "HazardousEvent")));
           PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_event, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("edu.toronto.cs.se.mmint.jase20.iso26262.hara", "HazardousEvent", "situation")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("edu.toronto.cs.se.mmint.jase20.iso26262.hara", "OperationalSituation")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_event, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("edu.toronto.cs.se.mmint.example.jase20.iso26262.hara", "HazardousEvent", "situation")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("edu.toronto.cs.se.mmint.example.jase20.iso26262.hara", "OperationalSituation")));
           new Equality(body, var__virtual_0_, var_eventSituation);
           //   HazardousEvent.hazard(event, hazard)
-          new TypeConstraint(body, Tuples.flatTupleOf(var_event), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("edu.toronto.cs.se.mmint.jase20.iso26262.hara", "HazardousEvent")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_event), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("edu.toronto.cs.se.mmint.example.jase20.iso26262.hara", "HazardousEvent")));
           PVariable var__virtual_1_ = body.getOrCreateVariableByName(".virtual{1}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_event, var__virtual_1_), new EStructuralFeatureInstancesKey(getFeatureLiteral("edu.toronto.cs.se.mmint.jase20.iso26262.hara", "HazardousEvent", "hazard")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_1_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("edu.toronto.cs.se.mmint.jase20.iso26262.hara", "Hazard")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_event, var__virtual_1_), new EStructuralFeatureInstancesKey(getFeatureLiteral("edu.toronto.cs.se.mmint.example.jase20.iso26262.hara", "HazardousEvent", "hazard")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_1_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("edu.toronto.cs.se.mmint.example.jase20.iso26262.hara", "Hazard")));
           new Equality(body, var__virtual_1_, var_hazard);
           //   find library.connectedEMFObjects(hazard, item)
           new PositivePatternCall(body, Tuples.flatTupleOf(var_hazard, var_item), ConnectedEMFObjects.instance().getInternalQueryRepresentation());

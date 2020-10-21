@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="hara" nsURI="edu.toronto.cs.se.mmint.example.jase20.iso26262.hara"
+    nsPrefix="hara">
+  <eClassifiers xsi:type="ecore:EClass" name="HARARoot">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="hazards" upperBound="-1"
+        eType="#//Hazard" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="situations" upperBound="-1"
+        eType="#//OperationalSituation" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="events" upperBound="-1"
+        eType="#//HazardousEvent" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Hazard">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="events" upperBound="-1"
+        eType="#//HazardousEvent" eOpposite="#//HazardousEvent/hazard"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OperationalSituation">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="events" upperBound="-1"
+        eType="#//HazardousEvent" eOpposite="#//HazardousEvent/situation"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="HazardousEvent">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="hazard" lowerBound="1"
+        eType="#//Hazard" eOpposite="#//Hazard/events"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="situation" lowerBound="1"
+        eType="#//OperationalSituation" eOpposite="#//OperationalSituation/events"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="severity" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="exposure" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="controllability" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ASIL" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+</ecore:EPackage>

@@ -3,8 +3,8 @@
  */
 package jase20;
 
-import edu.toronto.cs.se.mmint.jase20.iso26262.gsn.SafetyGoal;
-import edu.toronto.cs.se.mmint.jase20.iso26262.hara.HazardousEvent;
+import edu.toronto.cs.se.mmint.example.jase20.iso26262.gsn.SafetyGoal;
+import edu.toronto.cs.se.mmint.example.jase20.iso26262.hara.HazardousEvent;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedHashSet;
@@ -733,7 +733,7 @@ public final class E_eventASIL extends BaseGeneratedEMFQuerySpecification<E_even
   
   @Override
   public E_eventASIL.Match newMatch(final Object... parameters) {
-    return E_eventASIL.Match.newMatch((edu.toronto.cs.se.mmint.jase20.iso26262.gsn.SafetyGoal) parameters[0], (edu.toronto.cs.se.mmint.jase20.iso26262.hara.HazardousEvent) parameters[1], (java.lang.String) parameters[2]);
+    return E_eventASIL.Match.newMatch((edu.toronto.cs.se.mmint.example.jase20.iso26262.gsn.SafetyGoal) parameters[0], (edu.toronto.cs.se.mmint.example.jase20.iso26262.hara.HazardousEvent) parameters[1], (java.lang.String) parameters[2]);
   }
   
   /**
@@ -765,9 +765,9 @@ public final class E_eventASIL extends BaseGeneratedEMFQuerySpecification<E_even
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private static final E_eventASIL.GeneratedPQuery INSTANCE = new GeneratedPQuery();
     
-    private final PParameter parameter_goal = new PParameter("goal", "edu.toronto.cs.se.mmint.jase20.iso26262.gsn.SafetyGoal", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("edu.toronto.cs.se.mmint.jase20.iso26262.gsn", "SafetyGoal")), PParameterDirection.INOUT);
+    private final PParameter parameter_goal = new PParameter("goal", "edu.toronto.cs.se.mmint.example.jase20.iso26262.gsn.SafetyGoal", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("edu.toronto.cs.se.mmint.example.jase20.iso26262.gsn", "SafetyGoal")), PParameterDirection.INOUT);
     
-    private final PParameter parameter_event = new PParameter("event", "edu.toronto.cs.se.mmint.jase20.iso26262.hara.HazardousEvent", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("edu.toronto.cs.se.mmint.jase20.iso26262.hara", "HazardousEvent")), PParameterDirection.INOUT);
+    private final PParameter parameter_event = new PParameter("event", "edu.toronto.cs.se.mmint.example.jase20.iso26262.hara.HazardousEvent", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("edu.toronto.cs.se.mmint.example.jase20.iso26262.hara", "HazardousEvent")), PParameterDirection.INOUT);
     
     private final PParameter parameter_asil = new PParameter("asil", "java.lang.String", new JavaTransitiveInstancesKey(java.lang.String.class), PParameterDirection.INOUT);
     
@@ -801,8 +801,8 @@ public final class E_eventASIL extends BaseGeneratedEMFQuerySpecification<E_even
           PVariable var_goal = body.getOrCreateVariableByName("goal");
           PVariable var_event = body.getOrCreateVariableByName("event");
           PVariable var_asil = body.getOrCreateVariableByName("asil");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_goal), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("edu.toronto.cs.se.mmint.jase20.iso26262.gsn", "SafetyGoal")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var_event), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("edu.toronto.cs.se.mmint.jase20.iso26262.hara", "HazardousEvent")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_goal), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("edu.toronto.cs.se.mmint.example.jase20.iso26262.gsn", "SafetyGoal")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_event), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("edu.toronto.cs.se.mmint.example.jase20.iso26262.hara", "HazardousEvent")));
           new TypeFilterConstraint(body, Tuples.flatTupleOf(var_asil), new JavaTransitiveInstancesKey(java.lang.String.class));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
              new ExportedParameter(body, var_goal, parameter_goal),
@@ -812,9 +812,9 @@ public final class E_eventASIL extends BaseGeneratedEMFQuerySpecification<E_even
           //   find library.connectedEMFObjects(goal, event)
           new PositivePatternCall(body, Tuples.flatTupleOf(var_goal, var_event), ConnectedEMFObjects.instance().getInternalQueryRepresentation());
           //   HazardousEvent.ASIL(event, asil)
-          new TypeConstraint(body, Tuples.flatTupleOf(var_event), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("edu.toronto.cs.se.mmint.jase20.iso26262.hara", "HazardousEvent")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_event), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("edu.toronto.cs.se.mmint.example.jase20.iso26262.hara", "HazardousEvent")));
           PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_event, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("edu.toronto.cs.se.mmint.jase20.iso26262.hara", "HazardousEvent", "ASIL")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_event, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("edu.toronto.cs.se.mmint.example.jase20.iso26262.hara", "HazardousEvent", "ASIL")));
           new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_), new EDataTypeInSlotsKey((EDataType)getClassifierLiteral("http://www.eclipse.org/emf/2002/Ecore", "EString")));
           new Equality(body, var__virtual_0_, var_asil);
           bodies.add(body);

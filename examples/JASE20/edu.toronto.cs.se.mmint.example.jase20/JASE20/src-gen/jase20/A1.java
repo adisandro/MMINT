@@ -3,7 +3,7 @@
  */
 package jase20;
 
-import edu.toronto.cs.se.mmint.jase20.iso26262.hara.Hazard;
+import edu.toronto.cs.se.mmint.example.jase20.iso26262.hara.Hazard;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -474,7 +474,7 @@ public final class A1 extends BaseGeneratedEMFQuerySpecification<A1.Matcher> {
   
   @Override
   public A1.Match newMatch(final Object... parameters) {
-    return A1.Match.newMatch((edu.toronto.cs.se.mmint.jase20.iso26262.hara.Hazard) parameters[0]);
+    return A1.Match.newMatch((edu.toronto.cs.se.mmint.example.jase20.iso26262.hara.Hazard) parameters[0]);
   }
   
   /**
@@ -506,14 +506,14 @@ public final class A1 extends BaseGeneratedEMFQuerySpecification<A1.Matcher> {
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private static final A1.GeneratedPQuery INSTANCE = new GeneratedPQuery();
     
-    private final PParameter parameter_hazard = new PParameter("hazard", "edu.toronto.cs.se.mmint.jase20.iso26262.hara.Hazard", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("edu.toronto.cs.se.mmint.jase20.iso26262.hara", "Hazard")), PParameterDirection.INOUT);
+    private final PParameter parameter_hazard = new PParameter("hazard", "edu.toronto.cs.se.mmint.example.jase20.iso26262.hara.Hazard", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("edu.toronto.cs.se.mmint.example.jase20.iso26262.hara", "Hazard")), PParameterDirection.INOUT);
     
     private final List<PParameter> parameters = Arrays.asList(parameter_hazard);
     
     private class Embedded_1_Hazard_events_situation extends BaseGeneratedEMFPQuery {
-      private final PParameter parameter_p0 = new PParameter("p0", "edu.toronto.cs.se.mmint.jase20.iso26262.hara.Hazard", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("edu.toronto.cs.se.mmint.jase20.iso26262.hara", "Hazard")), PParameterDirection.INOUT);
+      private final PParameter parameter_p0 = new PParameter("p0", "edu.toronto.cs.se.mmint.example.jase20.iso26262.hara.Hazard", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("edu.toronto.cs.se.mmint.example.jase20.iso26262.hara", "Hazard")), PParameterDirection.INOUT);
       
-      private final PParameter parameter_p1 = new PParameter("p1", "edu.toronto.cs.se.mmint.jase20.iso26262.hara.OperationalSituation", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("edu.toronto.cs.se.mmint.jase20.iso26262.hara", "OperationalSituation")), PParameterDirection.INOUT);
+      private final PParameter parameter_p1 = new PParameter("p1", "edu.toronto.cs.se.mmint.example.jase20.iso26262.hara.OperationalSituation", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("edu.toronto.cs.se.mmint.example.jase20.iso26262.hara", "OperationalSituation")), PParameterDirection.INOUT);
       
       private final List<PParameter> embeddedParameters = Arrays.asList(parameter_p0, parameter_p1);
       
@@ -541,13 +541,13 @@ public final class A1 extends BaseGeneratedEMFQuerySpecification<A1.Matcher> {
            new ExportedParameter(body, var_p1, parameter_p1)
         ));
         //  Hazard.events.situation(hazard, situation)
-        new TypeConstraint(body, Tuples.flatTupleOf(var_p0), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("edu.toronto.cs.se.mmint.jase20.iso26262.hara", "Hazard")));
+        new TypeConstraint(body, Tuples.flatTupleOf(var_p0), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("edu.toronto.cs.se.mmint.example.jase20.iso26262.hara", "Hazard")));
         PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
-        new TypeConstraint(body, Tuples.flatTupleOf(var_p0, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("edu.toronto.cs.se.mmint.jase20.iso26262.hara", "Hazard", "events")));
-        new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("edu.toronto.cs.se.mmint.jase20.iso26262.hara", "HazardousEvent")));
+        new TypeConstraint(body, Tuples.flatTupleOf(var_p0, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("edu.toronto.cs.se.mmint.example.jase20.iso26262.hara", "Hazard", "events")));
+        new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("edu.toronto.cs.se.mmint.example.jase20.iso26262.hara", "HazardousEvent")));
         PVariable var__virtual_1_ = body.getOrCreateVariableByName(".virtual{1}");
-        new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_, var__virtual_1_), new EStructuralFeatureInstancesKey(getFeatureLiteral("edu.toronto.cs.se.mmint.jase20.iso26262.hara", "HazardousEvent", "situation")));
-        new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_1_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("edu.toronto.cs.se.mmint.jase20.iso26262.hara", "OperationalSituation")));
+        new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_, var__virtual_1_), new EStructuralFeatureInstancesKey(getFeatureLiteral("edu.toronto.cs.se.mmint.example.jase20.iso26262.hara", "HazardousEvent", "situation")));
+        new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_1_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("edu.toronto.cs.se.mmint.example.jase20.iso26262.hara", "OperationalSituation")));
         new Equality(body, var__virtual_1_, var_p1);
         return Collections.singleton(body);
       }
@@ -580,12 +580,12 @@ public final class A1 extends BaseGeneratedEMFQuerySpecification<A1.Matcher> {
           PBody body = new PBody(this);
           PVariable var_hazard = body.getOrCreateVariableByName("hazard");
           PVariable var_situation = body.getOrCreateVariableByName("situation");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_hazard), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("edu.toronto.cs.se.mmint.jase20.iso26262.hara", "Hazard")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_hazard), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("edu.toronto.cs.se.mmint.example.jase20.iso26262.hara", "Hazard")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
              new ExportedParameter(body, var_hazard, parameter_hazard)
           ));
           //   OperationalSituation(situation)
-          new TypeConstraint(body, Tuples.flatTupleOf(var_situation), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("edu.toronto.cs.se.mmint.jase20.iso26262.hara", "OperationalSituation")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_situation), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("edu.toronto.cs.se.mmint.example.jase20.iso26262.hara", "OperationalSituation")));
           //   neg Hazard.events.situation(hazard, situation)
           new NegativePatternCall(body, Tuples.flatTupleOf(var_hazard, var_situation), new A1.GeneratedPQuery.Embedded_1_Hazard_events_situation());
           bodies.add(body);

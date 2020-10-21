@@ -7,5 +7,4 @@ Automatic-Module-Name: edu.toronto.cs.se.mmint.example.jase20
 Bundle-RequiredExecutionEnvironment: JavaSE-14
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Require-Bundle: org.eclipse.emf.common.ui,
- edu.toronto.cs.se.mmint.jase20
+Require-Bundle: org.eclipse.emf.common.ui

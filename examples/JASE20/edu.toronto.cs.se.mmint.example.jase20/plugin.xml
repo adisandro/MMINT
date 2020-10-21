@@ -22,7 +22,7 @@
             class="org.eclipse.emf.common.ui.wizard.ExampleInstallerWizard"
             project="true"
             name="JASE20">
-         <description>Creates a project containing the JASE20 example artifacts</description>
+         <description>Creates a project containing the artifacts from the JASE20 paper</description>
       </wizard>
    </extension>
 
@@ -31,7 +31,7 @@
             wizardID="edu.toronto.cs.se.mmint.example.jase20">
          <projectDescriptor name="JASE20"
                contentURI="JASE20/"
-               description="Creates a project containing the JASE20 example artifacts"/>
+               description="Creates a project containing the artifacts from the JASE20 paper"/>
          <fileToOpen location="JASE20/README.md"/>
       </example>
    </extension>
