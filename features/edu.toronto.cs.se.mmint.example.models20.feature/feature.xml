@@ -21,6 +21,18 @@
          id="edu.toronto.cs.se.mminta.feature"
          version="0.0.0"/>
 
+   <includes
+         id="edu.toronto.cs.se.modelepedia.classdiagram.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="edu.toronto.cs.se.modelepedia.sequencediagram.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="edu.toronto.cs.se.modelepedia.statemachine.feature"
+         version="0.0.0"/>
+
    <requires>
       <import plugin="org.eclipse.emf.common.ui"/>
    </requires>
