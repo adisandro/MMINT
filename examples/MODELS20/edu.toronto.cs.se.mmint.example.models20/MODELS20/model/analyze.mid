@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mid:MID xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editor="http://se.cs.toronto.edu/mmint/MID/Editor" xmlns:mid="http://se.cs.toronto.edu/mmint/MID" xmlns:relationship="http://se.cs.toronto.edu/mmint/MID/Relationship" xsi:schemaLocation="http://se.cs.toronto.edu/mmint/MID/Editor http://se.cs.toronto.edu/mmint/MID#//editor http://se.cs.toronto.edu/mmint/MID/Relationship http://se.cs.toronto.edu/mmint/MID#//relationship">
+  <models uri="/LMS/model/lms_sc.safetycase" name="lms_sc" metatypeUri="http://se.cs.toronto.edu/modelepedia/GSN" dynamic="true" fileExtension="safetycase" editors="//@editors.0">
+    <modelElems uri="/LMS/model/lms_sc.safetycase#//@goals.0_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Basic Goal G0" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="BasicGoal" featureName="goals" relatedClassName="SafetyCase"/>
+    </modelElems>
+    <modelElems uri="/LMS/model/lms_sc.safetycase#//@goals.2_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Basic Goal G2" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="BasicGoal" featureName="goals" relatedClassName="SafetyCase"/>
+    </modelElems>
+    <modelElems uri="/LMS/model/lms_sc.safetycase#//@goals.3_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Basic Goal G3" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="BasicGoal" featureName="goals" relatedClassName="SafetyCase"/>
+    </modelElems>
+    <modelElems uri="/LMS/model/lms_sc.safetycase#//@goals.5_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Basic Goal G4" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="BasicGoal" featureName="goals" relatedClassName="SafetyCase"/>
+    </modelElems>
+    <modelElems uri="/LMS/model/lms_sc.safetycase#//@goals.4_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Basic Goal G5" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="BasicGoal" featureName="goals" relatedClassName="SafetyCase"/>
+    </modelElems>
+    <modelElems uri="/LMS/model/lms_sc.safetycase#//@goals.6_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Basic Goal G22" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="BasicGoal" featureName="goals" relatedClassName="SafetyCase"/>
+    </modelElems>
+    <modelElems uri="/LMS/model/lms_sc.safetycase#//@goals.7_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Basic Goal G28" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="BasicGoal" featureName="goals" relatedClassName="SafetyCase"/>
+    </modelElems>
+    <modelElems uri="/LMS/model/lms_sc.safetycase#//@goals.8_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Basic Goal G6" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="BasicGoal" featureName="goals" relatedClassName="SafetyCase"/>
+    </modelElems>
+    <modelElems uri="/LMS/model/lms_sc.safetycase#//@goals.10_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Independence Goal G20" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="IndependenceGoal" featureName="goals" relatedClassName="SafetyCase"/>
+    </modelElems>
+    <modelElems uri="/LMS/model/lms_sc.safetycase#//@goals.11_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Basic Goal G18" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="BasicGoal" featureName="goals" relatedClassName="SafetyCase"/>
+    </modelElems>
+    <modelElems uri="/LMS/model/lms_sc.safetycase#//@goals.12_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Basic Goal G19" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="BasicGoal" featureName="goals" relatedClassName="SafetyCase"/>
+    </modelElems>
+    <modelElems uri="/LMS/model/lms_sc.safetycase#//@goals.14_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Basic Goal G8" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="BasicGoal" featureName="goals" relatedClassName="SafetyCase"/>
+    </modelElems>
+    <modelElems uri="/LMS/model/lms_sc.safetycase#//@goals.15_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Basic Goal G9" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="BasicGoal" featureName="goals" relatedClassName="SafetyCase"/>
+    </modelElems>
+    <modelElems uri="/LMS/model/lms_sc.safetycase#//@goals.16_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Basic Goal G10" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="BasicGoal" featureName="goals" relatedClassName="SafetyCase"/>
+    </modelElems>
+    <modelElems uri="/LMS/model/lms_sc.safetycase#//@goals.17_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Basic Goal G31" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="BasicGoal" featureName="goals" relatedClassName="SafetyCase"/>
+    </modelElems>
+    <modelElems uri="/LMS/model/lms_sc.safetycase#//@goals.22_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Basic Goal G11" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="BasicGoal" featureName="goals" relatedClassName="SafetyCase"/>
+    </modelElems>
+    <modelElems uri="/LMS/model/lms_sc.safetycase#//@goals.23_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Basic Goal G12" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="BasicGoal" featureName="goals" relatedClassName="SafetyCase"/>
+    </modelElems>
+    <modelElems uri="/LMS/model/lms_sc.safetycase#//@goals.24_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Basic Goal G13" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="BasicGoal" featureName="goals" relatedClassName="SafetyCase"/>
+    </modelElems>
+    <modelElems uri="/LMS/model/lms_sc.safetycase#//@solutions.5_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Solution Sn12" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Solution" featureName="solutions" relatedClassName="SafetyCase"/>
+    </modelElems>
+    <modelElems uri="/LMS/model/lms_sc.safetycase#//@solutions.6_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Solution Sn11" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Solution" featureName="solutions" relatedClassName="SafetyCase"/>
+    </modelElems>
+    <modelElems uri="/LMS/model/lms_sc.safetycase#//@solutions.17_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Solution Sn10" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Solution" featureName="solutions" relatedClassName="SafetyCase"/>
+    </modelElems>
+    <modelElems uri="/LMS/model/lms_sc.safetycase#//@solutions.15_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Solution Sn5" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Solution" featureName="solutions" relatedClassName="SafetyCase"/>
+    </modelElems>
+    <modelElems uri="/LMS/model/lms_sc.safetycase#//@solutions.16_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Solution Sn6" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Solution" featureName="solutions" relatedClassName="SafetyCase"/>
+    </modelElems>
+    <modelElems uri="/LMS/model/lms_sc.safetycase#//@solutions.9_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Solution Sn8" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Solution" featureName="solutions" relatedClassName="SafetyCase"/>
+    </modelElems>
+    <modelElems uri="/LMS/model/lms_sc.safetycase#//@solutions.8_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Solution Sn7" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Solution" featureName="solutions" relatedClassName="SafetyCase"/>
+    </modelElems>
+    <modelElems uri="/LMS/model/lms_sc.safetycase#//@solutions.10_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Solution Sn9" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Solution" featureName="solutions" relatedClassName="SafetyCase"/>
+    </modelElems>
+    <modelElems uri="/LMS/model/lms_sc.safetycase#//@solutions.19_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Solution Sn3" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Solution" featureName="solutions" relatedClassName="SafetyCase"/>
+    </modelElems>
+    <modelElems uri="/LMS/model/lms_sc.safetycase#//@goals.20_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Basic Goal G27" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="BasicGoal" featureName="goals" relatedClassName="SafetyCase"/>
+    </modelElems>
+  </models>
+  <models uri="/LMS_Medini/hls/_hCHjYFpIEeq7aqjJixaiiQ.ha" name="lms_hara" metatypeUri="http://www.ikv.de/analyze/metamodels/HazardAnalysis/1.0" dynamic="true" fileExtension="ha" editors="//@editors.1">
+    <modelElems uri="/LMS_Medini/hls/_hCHjYFpIEeq7aqjJixaiiQ.ha#_OgALsFpLEeq7aqjJixaiiQ_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Hazardous Event HE001" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="HazardousEvent" featureName="hazardElements" relatedClassName="HazardAnalysisModel"/>
+    </modelElems>
+    <modelElems uri="/LMS_Medini/hls/_hCHjYFpIEeq7aqjJixaiiQ.ha#_lVBboFpLEeq7aqjJixaiiQ_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Hazardous Event HE002_a" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="HazardousEvent" featureName="hazardElements" relatedClassName="HazardAnalysisModel"/>
+    </modelElems>
+    <modelElems uri="/LMS_Medini/hls/_hCHjYFpIEeq7aqjJixaiiQ.ha#_HOdOAGyREeqw5ZTy_v26mw_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Hazardous Event HE003_b" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="HazardousEvent" featureName="hazardElements" relatedClassName="HazardAnalysisModel"/>
+    </modelElems>
+    <modelElems uri="/LMS_Medini/hls/_hCHjYFpIEeq7aqjJixaiiQ.ha#_PIKDYHwiEeqz1_mVzD4lAg_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Hazardous Event HE003_c" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="HazardousEvent" featureName="hazardElements" relatedClassName="HazardAnalysisModel"/>
+    </modelElems>
+    <modelElems uri="/LMS_Medini/hls/_hCHjYFpIEeq7aqjJixaiiQ.ha#_Cb8qcGxTEeqw5ZTy_v26mw_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Hazardous Event HE004" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="HazardousEvent" featureName="hazardElements" relatedClassName="HazardAnalysisModel"/>
+    </modelElems>
+    <modelElems uri="/LMS_Medini/hls/_hCHjYFpIEeq7aqjJixaiiQ.ha#_g_X-QGxYEeqw5ZTy_v26mw_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Hazardous Event HE005_a" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="HazardousEvent" featureName="hazardElements" relatedClassName="HazardAnalysisModel"/>
+    </modelElems>
+    <modelElems uri="/LMS_Medini/hls/_hCHjYFpIEeq7aqjJixaiiQ.ha#_A9l3oHtdEeqa9vBqxnbGfg_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Hazardous Event HE005_b" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="HazardousEvent" featureName="hazardElements" relatedClassName="HazardAnalysisModel"/>
+    </modelElems>
+    <modelElems uri="/LMS_Medini/hls/_hCHjYFpIEeq7aqjJixaiiQ.ha#_Kv7UYHtdEeqa9vBqxnbGfg_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Hazardous Event HE005_c" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="HazardousEvent" featureName="hazardElements" relatedClassName="HazardAnalysisModel"/>
+    </modelElems>
+    <modelElems uri="/LMS_Medini/hls/_hCHjYFpIEeq7aqjJixaiiQ.ha#_XXhmsHtgEeqa9vBqxnbGfg_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Hazardous Event HE005_d" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="HazardousEvent" featureName="hazardElements" relatedClassName="HazardAnalysisModel"/>
+    </modelElems>
+    <modelElems uri="/LMS_Medini/hls/_hCHjYFpIEeq7aqjJixaiiQ.ha#_b5D4MHtgEeqa9vBqxnbGfg_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Hazardous Event HE005_e" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="HazardousEvent" featureName="hazardElements" relatedClassName="HazardAnalysisModel"/>
+    </modelElems>
+    <modelElems uri="/LMS_Medini/hls/_hCHjYFpIEeq7aqjJixaiiQ.ha#_grjW0HtgEeqa9vBqxnbGfg_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Hazardous Event HE005_f" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="HazardousEvent" featureName="hazardElements" relatedClassName="HazardAnalysisModel"/>
+    </modelElems>
+    <modelElems uri="/LMS_Medini/hls/_hCHjYFpIEeq7aqjJixaiiQ.ha#_2sY-IGx1Eeqw5ZTy_v26mw_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Hazardous Event HE007_a" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="HazardousEvent" featureName="hazardElements" relatedClassName="HazardAnalysisModel"/>
+    </modelElems>
+    <modelElems uri="/LMS_Medini/hls/_hCHjYFpIEeq7aqjJixaiiQ.ha#_bmdaYHtiEeqa9vBqxnbGfg_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Hazardous Event HE007_b" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="HazardousEvent" featureName="hazardElements" relatedClassName="HazardAnalysisModel"/>
+    </modelElems>
+    <modelElems uri="/LMS_Medini/hls/_hCHjYFpIEeq7aqjJixaiiQ.ha#_POQfgGx4Eeqw5ZTy_v26mw_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Hazardous Event HE008" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="HazardousEvent" featureName="hazardElements" relatedClassName="HazardAnalysisModel"/>
+    </modelElems>
+    <modelElems uri="/LMS_Medini/hls/_hCHjYFpIEeq7aqjJixaiiQ.ha#_7Zn5kGyGEeqw5ZTy_v26mw_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Hazardous Event HE009_a" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="HazardousEvent" featureName="hazardElements" relatedClassName="HazardAnalysisModel"/>
+    </modelElems>
+    <modelElems uri="/LMS_Medini/hls/_hCHjYFpIEeq7aqjJixaiiQ.ha#_4FVxoHtpEeqa9vBqxnbGfg_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Hazardous Event HE009_b" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="HazardousEvent" featureName="hazardElements" relatedClassName="HazardAnalysisModel"/>
+    </modelElems>
+    <modelElems uri="/LMS_Medini/hls/_hCHjYFpIEeq7aqjJixaiiQ.ha#_vmOqYGyOEeqw5ZTy_v26mw_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Hazardous Event HE011" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="HazardousEvent" featureName="hazardElements" relatedClassName="HazardAnalysisModel"/>
+    </modelElems>
+    <modelElems uri="/LMS_Medini/hls/_hCHjYFpIEeq7aqjJixaiiQ.ha#_NBhgYHtZEeqa9vBqxnbGfg_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Hazardous Event HE002_b" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="HazardousEvent" featureName="hazardElements" relatedClassName="HazardAnalysisModel"/>
+    </modelElems>
+  </models>
+  <models xsi:type="relationship:ModelRel" uri="" name="sc - hara" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel" dynamic="true" origin="CREATED" fileExtension="">
+    <modelEndpoints uri="" name="lms_sc" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0"/>
+    <modelEndpoints uri="" name="lms_hara" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1"/>
+    <mappings xsi:type="relationship:BinaryMapping" uri="" name="" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.0/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.0/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="Hazardous Event HE002_b" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping-ModelElem/ModelElemEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.17"/>
+      <modelElemEndpoints uri="" name="Basic Goal G27" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping-ModelElem/ModelElemEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.27"/>
+    </mappings>
+    <mappings xsi:type="relationship:BinaryMapping" uri="" name="" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.1/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.1/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="Hazardous Event HE001" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping-ModelElem/ModelElemEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.0"/>
+      <modelElemEndpoints uri="" name="Basic Goal G2" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping-ModelElem/ModelElemEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.1"/>
+    </mappings>
+    <mappings xsi:type="relationship:BinaryMapping" uri="" name="" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.2/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.2/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="Hazardous Event HE002_a" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping-ModelElem/ModelElemEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.1"/>
+      <modelElemEndpoints uri="" name="Basic Goal G27" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping-ModelElem/ModelElemEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.27"/>
+    </mappings>
+    <mappings xsi:type="relationship:BinaryMapping" uri="" name="" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.3/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.3/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="Hazardous Event HE003_b" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping-ModelElem/ModelElemEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.2"/>
+      <modelElemEndpoints uri="" name="Basic Goal G2" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping-ModelElem/ModelElemEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.1"/>
+    </mappings>
+    <mappings xsi:type="relationship:BinaryMapping" uri="" name="" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.4/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.4/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="Hazardous Event HE003_c" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping-ModelElem/ModelElemEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.3"/>
+      <modelElemEndpoints uri="" name="Basic Goal G2" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping-ModelElem/ModelElemEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.1"/>
+    </mappings>
+    <mappings xsi:type="relationship:BinaryMapping" uri="" name="" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.5/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.5/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="Hazardous Event HE004" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping-ModelElem/ModelElemEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.4"/>
+      <modelElemEndpoints uri="" name="Basic Goal G2" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping-ModelElem/ModelElemEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.1"/>
+    </mappings>
+    <mappings xsi:type="relationship:BinaryMapping" uri="" name="" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.6/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.6/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="Hazardous Event HE005_a" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping-ModelElem/ModelElemEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.5"/>
+      <modelElemEndpoints uri="" name="Basic Goal G2" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping-ModelElem/ModelElemEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.1"/>
+    </mappings>
+    <mappings xsi:type="relationship:BinaryMapping" uri="" name="" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.7/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.7/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="Hazardous Event HE005_b" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping-ModelElem/ModelElemEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.6"/>
+      <modelElemEndpoints uri="" name="Basic Goal G2" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping-ModelElem/ModelElemEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.1"/>
+    </mappings>
+    <mappings xsi:type="relationship:BinaryMapping" uri="" name="" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.8/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.8/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="Hazardous Event HE005_c" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping-ModelElem/ModelElemEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.7"/>
+      <modelElemEndpoints uri="" name="Basic Goal G2" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping-ModelElem/ModelElemEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.1"/>
+    </mappings>
+    <mappings xsi:type="relationship:BinaryMapping" uri="" name="" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.9/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.9/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="Hazardous Event HE005_d" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping-ModelElem/ModelElemEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.8"/>
+      <modelElemEndpoints uri="" name="Basic Goal G2" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping-ModelElem/ModelElemEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.1"/>
+    </mappings>
+    <mappings xsi:type="relationship:BinaryMapping" uri="" name="" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.10/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.10/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="Hazardous Event HE005_e" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping-ModelElem/ModelElemEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.9"/>
+      <modelElemEndpoints uri="" name="Basic Goal G2" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping-ModelElem/ModelElemEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.1"/>
+    </mappings>
+    <mappings xsi:type="relationship:BinaryMapping" uri="" name="" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.11/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.11/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="Hazardous Event HE005_f" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping-ModelElem/ModelElemEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.10"/>
+      <modelElemEndpoints uri="" name="Basic Goal G2" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping-ModelElem/ModelElemEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.1"/>
+    </mappings>
+    <mappings xsi:type="relationship:BinaryMapping" uri="" name="" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.12/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.12/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="Hazardous Event HE007_b" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping-ModelElem/ModelElemEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.12"/>
+      <modelElemEndpoints uri="" name="Basic Goal G2" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping-ModelElem/ModelElemEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.1"/>
+    </mappings>
+    <mappings xsi:type="relationship:BinaryMapping" uri="" name="" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.13/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.13/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="Hazardous Event HE008" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping-ModelElem/ModelElemEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.13"/>
+      <modelElemEndpoints uri="" name="Basic Goal G2" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping-ModelElem/ModelElemEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.1"/>
+    </mappings>
+    <mappings xsi:type="relationship:BinaryMapping" uri="" name="" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.14/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.14/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="Hazardous Event HE007_a" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping-ModelElem/ModelElemEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.11"/>
+      <modelElemEndpoints uri="" name="Basic Goal G22" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping-ModelElem/ModelElemEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.5"/>
+    </mappings>
+    <mappings xsi:type="relationship:BinaryMapping" uri="" name="" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.15/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.15/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="Hazardous Event HE009_a" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping-ModelElem/ModelElemEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.14"/>
+      <modelElemEndpoints uri="" name="Basic Goal G22" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping-ModelElem/ModelElemEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.5"/>
+    </mappings>
+    <mappings xsi:type="relationship:BinaryMapping" uri="" name="" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.16/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.16/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="Hazardous Event HE009_b" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping-ModelElem/ModelElemEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.15"/>
+      <modelElemEndpoints uri="" name="Basic Goal G2" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping-ModelElem/ModelElemEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.1"/>
+    </mappings>
+    <mappings xsi:type="relationship:BinaryMapping" uri="" name="" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.17/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.17/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="Hazardous Event HE011" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping-ModelElem/ModelElemEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.16"/>
+      <modelElemEndpoints uri="" name="Basic Goal G2" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping-ModelElem/ModelElemEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.1"/>
+    </mappings>
+    <modelEndpointRefs referencedObject="//@models.2/@modelEndpoints.0" modifiable="true">
+      <modelElemRefs referencedObject="//@models.0/@modelElems.1" modifiable="true" modelElemEndpointRefs="//@models.2/@mappingRefs.1/@modelElemEndpointRefs.1 //@models.2/@mappingRefs.3/@modelElemEndpointRefs.1 //@models.2/@mappingRefs.4/@modelElemEndpointRefs.1 //@models.2/@mappingRefs.5/@modelElemEndpointRefs.1 //@models.2/@mappingRefs.6/@modelElemEndpointRefs.1 //@models.2/@mappingRefs.7/@modelElemEndpointRefs.1 //@models.2/@mappingRefs.8/@modelElemEndpointRefs.1 //@models.2/@mappingRefs.9/@modelElemEndpointRefs.1 //@models.2/@mappingRefs.10/@modelElemEndpointRefs.1 //@models.2/@mappingRefs.11/@modelElemEndpointRefs.1 //@models.2/@mappingRefs.12/@modelElemEndpointRefs.1 //@models.2/@mappingRefs.13/@modelElemEndpointRefs.1 //@models.2/@mappingRefs.16/@modelElemEndpointRefs.1 //@models.2/@mappingRefs.17/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.0/@modelElems.5" modifiable="true" modelElemEndpointRefs="//@models.2/@mappingRefs.14/@modelElemEndpointRefs.1 //@models.2/@mappingRefs.15/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.0/@modelElems.27" modifiable="true" modelElemEndpointRefs="//@models.2/@mappingRefs.0/@modelElemEndpointRefs.1 //@models.2/@mappingRefs.2/@modelElemEndpointRefs.1"/>
+    </modelEndpointRefs>
+    <modelEndpointRefs referencedObject="//@models.2/@modelEndpoints.1" modifiable="true">
+      <modelElemRefs referencedObject="//@models.1/@modelElems.0" modifiable="true" modelElemEndpointRefs="//@models.2/@mappingRefs.1/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.1/@modelElems.1" modifiable="true" modelElemEndpointRefs="//@models.2/@mappingRefs.2/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.1/@modelElems.2" modifiable="true" modelElemEndpointRefs="//@models.2/@mappingRefs.3/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.1/@modelElems.3" modifiable="true" modelElemEndpointRefs="//@models.2/@mappingRefs.4/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.1/@modelElems.4" modifiable="true" modelElemEndpointRefs="//@models.2/@mappingRefs.5/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.1/@modelElems.5" modifiable="true" modelElemEndpointRefs="//@models.2/@mappingRefs.6/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.1/@modelElems.6" modifiable="true" modelElemEndpointRefs="//@models.2/@mappingRefs.7/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.1/@modelElems.7" modifiable="true" modelElemEndpointRefs="//@models.2/@mappingRefs.8/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.1/@modelElems.8" modifiable="true" modelElemEndpointRefs="//@models.2/@mappingRefs.9/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.1/@modelElems.9" modifiable="true" modelElemEndpointRefs="//@models.2/@mappingRefs.10/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.1/@modelElems.10" modifiable="true" modelElemEndpointRefs="//@models.2/@mappingRefs.11/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.1/@modelElems.11" modifiable="true" modelElemEndpointRefs="//@models.2/@mappingRefs.14/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.1/@modelElems.12" modifiable="true" modelElemEndpointRefs="//@models.2/@mappingRefs.12/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.1/@modelElems.13" modifiable="true" modelElemEndpointRefs="//@models.2/@mappingRefs.13/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.1/@modelElems.14" modifiable="true" modelElemEndpointRefs="//@models.2/@mappingRefs.15/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.1/@modelElems.15" modifiable="true" modelElemEndpointRefs="//@models.2/@mappingRefs.16/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.1/@modelElems.16" modifiable="true" modelElemEndpointRefs="//@models.2/@mappingRefs.17/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.1/@modelElems.17" modifiable="true" modelElemEndpointRefs="//@models.2/@mappingRefs.0/@modelElemEndpointRefs.0"/>
+    </modelEndpointRefs>
+    <mappingRefs xsi:type="relationship:BinaryMappingReference" referencedObject="//@models.2/@mappings.0" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.17" targetModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.2">
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.0/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.17"/>
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.0/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.2"/>
+    </mappingRefs>
+    <mappingRefs xsi:type="relationship:BinaryMappingReference" referencedObject="//@models.2/@mappings.1" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.0" targetModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.0">
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.1/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.0"/>
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.1/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.0"/>
+    </mappingRefs>
+    <mappingRefs xsi:type="relationship:BinaryMappingReference" referencedObject="//@models.2/@mappings.2" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.1" targetModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.2">
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.2/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.1"/>
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.2/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.2"/>
+    </mappingRefs>
+    <mappingRefs xsi:type="relationship:BinaryMappingReference" referencedObject="//@models.2/@mappings.3" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.2" targetModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.0">
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.3/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.2"/>
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.3/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.0"/>
+    </mappingRefs>
+    <mappingRefs xsi:type="relationship:BinaryMappingReference" referencedObject="//@models.2/@mappings.4" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.3" targetModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.0">
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.4/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.3"/>
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.4/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.0"/>
+    </mappingRefs>
+    <mappingRefs xsi:type="relationship:BinaryMappingReference" referencedObject="//@models.2/@mappings.5" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.4" targetModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.0">
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.5/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.4"/>
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.5/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.0"/>
+    </mappingRefs>
+    <mappingRefs xsi:type="relationship:BinaryMappingReference" referencedObject="//@models.2/@mappings.6" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.5" targetModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.0">
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.6/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.5"/>
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.6/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.0"/>
+    </mappingRefs>
+    <mappingRefs xsi:type="relationship:BinaryMappingReference" referencedObject="//@models.2/@mappings.7" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.6" targetModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.0">
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.7/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.6"/>
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.7/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.0"/>
+    </mappingRefs>
+    <mappingRefs xsi:type="relationship:BinaryMappingReference" referencedObject="//@models.2/@mappings.8" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.7" targetModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.0">
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.8/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.7"/>
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.8/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.0"/>
+    </mappingRefs>
+    <mappingRefs xsi:type="relationship:BinaryMappingReference" referencedObject="//@models.2/@mappings.9" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.8" targetModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.0">
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.9/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.8"/>
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.9/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.0"/>
+    </mappingRefs>
+    <mappingRefs xsi:type="relationship:BinaryMappingReference" referencedObject="//@models.2/@mappings.10" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.9" targetModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.0">
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.10/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.9"/>
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.10/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.0"/>
+    </mappingRefs>
+    <mappingRefs xsi:type="relationship:BinaryMappingReference" referencedObject="//@models.2/@mappings.11" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.10" targetModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.0">
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.11/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.10"/>
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.11/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.0"/>
+    </mappingRefs>
+    <mappingRefs xsi:type="relationship:BinaryMappingReference" referencedObject="//@models.2/@mappings.12" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.12" targetModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.0">
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.12/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.12"/>
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.12/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.0"/>
+    </mappingRefs>
+    <mappingRefs xsi:type="relationship:BinaryMappingReference" referencedObject="//@models.2/@mappings.13" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.13" targetModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.0">
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.13/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.13"/>
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.13/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.0"/>
+    </mappingRefs>
+    <mappingRefs xsi:type="relationship:BinaryMappingReference" referencedObject="//@models.2/@mappings.14" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.11" targetModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.1">
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.14/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.11"/>
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.14/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.1"/>
+    </mappingRefs>
+    <mappingRefs xsi:type="relationship:BinaryMappingReference" referencedObject="//@models.2/@mappings.15" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.14" targetModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.1">
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.15/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.14"/>
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.15/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.1"/>
+    </mappingRefs>
+    <mappingRefs xsi:type="relationship:BinaryMappingReference" referencedObject="//@models.2/@mappings.16" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.15" targetModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.0">
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.16/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.15"/>
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.16/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.0"/>
+    </mappingRefs>
+    <mappingRefs xsi:type="relationship:BinaryMappingReference" referencedObject="//@models.2/@mappings.17" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.16" targetModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.0">
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.17/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.16"/>
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.17/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.0"/>
+    </mappingRefs>
+  </models>
+  <models uri="/LMS_Medini/fta/_3MJZ8LJKEeqLlPHIRQFf6w.fta" name="lms_fta1" metatypeUri="http://www.ikv.de/medini/metamodels/FTA/2.0" dynamic="true" fileExtension="fta" editors="//@editors.2">
+    <modelElems uri="/LMS_Medini/fta/_3MJZ8LJKEeqLlPHIRQFf6w.fta#_3MKBALJKEeqLlPHIRQFf6w_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Event LMS system does not notify driver when it fails" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Event" featureName="events" relatedClassName="FTAModel"/>
+    </modelElems>
+  </models>
+  <models uri="/LMS_Medini/fta/_UkvvsLPMEeqLlPHIRQFf6w.fta" name="lms_fta2" metatypeUri="http://www.ikv.de/medini/metamodels/FTA/2.0" dynamic="true" fileExtension="fta" editors="//@editors.3">
+    <modelElems uri="/LMS_Medini/fta/_UkvvsLPMEeqLlPHIRQFf6w.fta#_UkvvsbPMEeqLlPHIRQFf6w_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Event LMS prevents driver overriding control of steering" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Event" featureName="events" relatedClassName="FTAModel"/>
+    </modelElems>
+  </models>
+  <models xsi:type="relationship:ModelRel" uri="" name="sc - fta1" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel" dynamic="true" origin="CREATED" fileExtension="">
+    <modelEndpoints uri="" name="lms_sc" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0"/>
+    <modelEndpoints uri="" name="lms_fta1" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3"/>
+    <mappings xsi:type="relationship:BinaryMapping" uri="" name="" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping" dynamic="true" modelElemEndpointRefs="//@models.5/@mappingRefs.0/@modelElemEndpointRefs.0 //@models.5/@mappingRefs.0/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="Event LMS system does not notify driver when it fails" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping-ModelElem/ModelElemEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.0"/>
+      <modelElemEndpoints uri="" name="Basic Goal G2" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping-ModelElem/ModelElemEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.1"/>
+    </mappings>
+    <modelEndpointRefs referencedObject="//@models.5/@modelEndpoints.0" modifiable="true">
+      <modelElemRefs referencedObject="//@models.0/@modelElems.1" modifiable="true" modelElemEndpointRefs="//@models.5/@mappingRefs.0/@modelElemEndpointRefs.1"/>
+    </modelEndpointRefs>
+    <modelEndpointRefs referencedObject="//@models.5/@modelEndpoints.1" modifiable="true">
+      <modelElemRefs referencedObject="//@models.3/@modelElems.0" modifiable="true" modelElemEndpointRefs="//@models.5/@mappingRefs.0/@modelElemEndpointRefs.0"/>
+    </modelEndpointRefs>
+    <mappingRefs xsi:type="relationship:BinaryMappingReference" referencedObject="//@models.5/@mappings.0" modifiable="true" sourceModelElemRef="//@models.5/@modelEndpointRefs.1/@modelElemRefs.0" targetModelElemRef="//@models.5/@modelEndpointRefs.0/@modelElemRefs.0">
+      <modelElemEndpointRefs referencedObject="//@models.5/@mappings.0/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.5/@modelEndpointRefs.1/@modelElemRefs.0"/>
+      <modelElemEndpointRefs referencedObject="//@models.5/@mappings.0/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.5/@modelEndpointRefs.0/@modelElemRefs.0"/>
+    </mappingRefs>
+  </models>
+  <models xsi:type="relationship:ModelRel" uri="" name="sc - fta2" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel" dynamic="true" origin="CREATED" fileExtension="">
+    <modelEndpoints uri="" name="lms_sc" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0"/>
+    <modelEndpoints uri="" name="lms_fta2" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.4"/>
+    <mappings xsi:type="relationship:BinaryMapping" uri="" name="" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping" dynamic="true" modelElemEndpointRefs="//@models.6/@mappingRefs.0/@modelElemEndpointRefs.0 //@models.6/@mappingRefs.0/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="Event LMS prevents driver overriding control of steering" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping-ModelElem/ModelElemEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.4/@modelElems.0"/>
+      <modelElemEndpoints uri="" name="Basic Goal G3" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping-ModelElem/ModelElemEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.2"/>
+    </mappings>
+    <modelEndpointRefs referencedObject="//@models.6/@modelEndpoints.0" modifiable="true">
+      <modelElemRefs referencedObject="//@models.0/@modelElems.2" modifiable="true" modelElemEndpointRefs="//@models.6/@mappingRefs.0/@modelElemEndpointRefs.1"/>
+    </modelEndpointRefs>
+    <modelEndpointRefs referencedObject="//@models.6/@modelEndpoints.1" modifiable="true">
+      <modelElemRefs referencedObject="//@models.4/@modelElems.0" modifiable="true" modelElemEndpointRefs="//@models.6/@mappingRefs.0/@modelElemEndpointRefs.0"/>
+    </modelEndpointRefs>
+    <mappingRefs xsi:type="relationship:BinaryMappingReference" referencedObject="//@models.6/@mappings.0" modifiable="true" sourceModelElemRef="//@models.6/@modelEndpointRefs.1/@modelElemRefs.0" targetModelElemRef="//@models.6/@modelEndpointRefs.0/@modelElemRefs.0">
+      <modelElemEndpointRefs referencedObject="//@models.6/@mappings.0/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.6/@modelEndpointRefs.1/@modelElemRefs.0"/>
+      <modelElemEndpointRefs referencedObject="//@models.6/@mappings.0/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.6/@modelEndpointRefs.0/@modelElemRefs.0"/>
+    </mappingRefs>
+  </models>
+  <editors xsi:type="editor:Diagram" uri="/LMS/representations.aird#_8SXUYGgvEeihGP6yb4cCyQ" name="GSN Representation for model /LMS/model/lms_sc.safetycase" metatypeUri="http://se.cs.toronto.edu/modelepedia/Representation_GSN" dynamic="true" modelUri="/LMS/model/lms_sc.safetycase" id="edu.toronto.cs.se.modelepedia.safetycase.design">
+    <fileExtensions>aird</fileExtensions>
+  </editors>
+  <editors uri="/LMS_Medini/hls/_hCHjYFpIEeq7aqjJixaiiQ.ha" name="HARA EMF Editor for model /LMS_Medini/hls/_hCHjYFpIEeq7aqjJixaiiQ.ha" metatypeUri="http://www.ikv.de/analyze/metamodels/HazardAnalysis/1.0_tree" dynamic="true" modelUri="/LMS_Medini/hls/_hCHjYFpIEeq7aqjJixaiiQ.ha" id="edu.toronto.cs.se.mmint.medini.hazard.presentation.HazardEditorID" wizardId="edu.toronto.cs.se.mmint.medini.hazard.presentation.HazardModelWizardID">
+    <fileExtensions>ha</fileExtensions>
+  </editors>
+  <editors uri="/LMS_Medini/fta/_3MJZ8LJKEeqLlPHIRQFf6w.fta" name="FTA EMF Editor for model /LMS_Medini/fta/_3MJZ8LJKEeqLlPHIRQFf6w.fta" metatypeUri="http://www.ikv.de/medini/metamodels/FTA/2.0_tree" dynamic="true" modelUri="/LMS_Medini/fta/_3MJZ8LJKEeqLlPHIRQFf6w.fta" id="edu.toronto.cs.se.mmint.medini.FTA.presentation.FTAEditorID" wizardId="edu.toronto.cs.se.mmint.medini.FTA.presentation.FTAModelWizardID">
+    <fileExtensions>fta</fileExtensions>
+  </editors>
+  <editors uri="/LMS_Medini/fta/_UkvvsLPMEeqLlPHIRQFf6w.fta" name="FTA EMF Editor for model /LMS_Medini/fta/_UkvvsLPMEeqLlPHIRQFf6w.fta" metatypeUri="http://www.ikv.de/medini/metamodels/FTA/2.0_tree" dynamic="true" modelUri="/LMS_Medini/fta/_UkvvsLPMEeqLlPHIRQFf6w.fta" id="edu.toronto.cs.se.mmint.medini.FTA.presentation.FTAEditorID" wizardId="edu.toronto.cs.se.mmint.medini.FTA.presentation.FTAModelWizardID">
+    <fileExtensions>fta</fileExtensions>
+  </editors>
+  <extendibleTable key="/LMS/model/lms_sc.safetycase" value="//@models.0"/>
+  <extendibleTable key="/LMS/model/lms_sc.safetycase#//@goals.0_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.0"/>
+  <extendibleTable key="/LMS/model/lms_sc.safetycase#//@goals.2_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.1"/>
+  <extendibleTable key="/LMS/model/lms_sc.safetycase#//@goals.3_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.2"/>
+  <extendibleTable key="/LMS/model/lms_sc.safetycase#//@goals.5_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.3"/>
+  <extendibleTable key="/LMS/model/lms_sc.safetycase#//@goals.4_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.4"/>
+  <extendibleTable key="/LMS/model/lms_sc.safetycase#//@goals.6_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.5"/>
+  <extendibleTable key="/LMS/model/lms_sc.safetycase#//@goals.7_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.6"/>
+  <extendibleTable key="/LMS/model/lms_sc.safetycase#//@goals.8_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.7"/>
+  <extendibleTable key="/LMS/model/lms_sc.safetycase#//@goals.10_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.8"/>
+  <extendibleTable key="/LMS/model/lms_sc.safetycase#//@goals.11_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.9"/>
+  <extendibleTable key="/LMS/model/lms_sc.safetycase#//@goals.12_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.10"/>
+  <extendibleTable key="/LMS/model/lms_sc.safetycase#//@goals.14_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.11"/>
+  <extendibleTable key="/LMS/model/lms_sc.safetycase#//@goals.15_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.12"/>
+  <extendibleTable key="/LMS/model/lms_sc.safetycase#//@goals.16_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.13"/>
+  <extendibleTable key="/LMS/model/lms_sc.safetycase#//@goals.17_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.14"/>
+  <extendibleTable key="/LMS/model/lms_sc.safetycase#//@goals.22_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.15"/>
+  <extendibleTable key="/LMS/model/lms_sc.safetycase#//@goals.23_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.16"/>
+  <extendibleTable key="/LMS/model/lms_sc.safetycase#//@goals.24_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.17"/>
+  <extendibleTable key="/LMS/model/lms_sc.safetycase#//@solutions.5_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.18"/>
+  <extendibleTable key="/LMS/model/lms_sc.safetycase#//@solutions.6_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.19"/>
+  <extendibleTable key="/LMS/model/lms_sc.safetycase#//@solutions.17_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.20"/>
+  <extendibleTable key="/LMS/model/lms_sc.safetycase#//@solutions.15_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.21"/>
+  <extendibleTable key="/LMS/model/lms_sc.safetycase#//@solutions.16_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.22"/>
+  <extendibleTable key="/LMS/model/lms_sc.safetycase#//@solutions.9_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.23"/>
+  <extendibleTable key="/LMS/model/lms_sc.safetycase#//@solutions.8_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.24"/>
+  <extendibleTable key="/LMS/model/lms_sc.safetycase#//@solutions.10_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.25"/>
+  <extendibleTable key="/LMS/model/lms_sc.safetycase#//@solutions.19_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.26"/>
+  <extendibleTable key="/LMS_Medini/hls/_hCHjYFpIEeq7aqjJixaiiQ.ha" value="//@models.1"/>
+  <extendibleTable key="/LMS_Medini/fta/_3MJZ8LJKEeqLlPHIRQFf6w.fta" value="//@models.3"/>
+  <extendibleTable key="/LMS_Medini/fta/_UkvvsLPMEeqLlPHIRQFf6w.fta" value="//@models.4"/>
+  <extendibleTable key="/LMS_Medini/fta/_3MJZ8LJKEeqLlPHIRQFf6w.fta#_3MKBALJKEeqLlPHIRQFf6w_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.3/@modelElems.0"/>
+  <extendibleTable key="/LMS_Medini/fta/_UkvvsLPMEeqLlPHIRQFf6w.fta#_UkvvsbPMEeqLlPHIRQFf6w_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.4/@modelElems.0"/>
+  <extendibleTable key="/LMS/model/lms_sc.safetycase#//@goals.20_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.27"/>
+  <extendibleTable key="/LMS_Medini/hls/_hCHjYFpIEeq7aqjJixaiiQ.ha#_OgALsFpLEeq7aqjJixaiiQ_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.0"/>
+  <extendibleTable key="/LMS_Medini/hls/_hCHjYFpIEeq7aqjJixaiiQ.ha#_lVBboFpLEeq7aqjJixaiiQ_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.1"/>
+  <extendibleTable key="/LMS_Medini/hls/_hCHjYFpIEeq7aqjJixaiiQ.ha#_HOdOAGyREeqw5ZTy_v26mw_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.2"/>
+  <extendibleTable key="/LMS_Medini/hls/_hCHjYFpIEeq7aqjJixaiiQ.ha#_PIKDYHwiEeqz1_mVzD4lAg_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.3"/>
+  <extendibleTable key="/LMS_Medini/hls/_hCHjYFpIEeq7aqjJixaiiQ.ha#_Cb8qcGxTEeqw5ZTy_v26mw_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.4"/>
+  <extendibleTable key="/LMS_Medini/hls/_hCHjYFpIEeq7aqjJixaiiQ.ha#_g_X-QGxYEeqw5ZTy_v26mw_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.5"/>
+  <extendibleTable key="/LMS_Medini/hls/_hCHjYFpIEeq7aqjJixaiiQ.ha#_A9l3oHtdEeqa9vBqxnbGfg_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.6"/>
+  <extendibleTable key="/LMS_Medini/hls/_hCHjYFpIEeq7aqjJixaiiQ.ha#_Kv7UYHtdEeqa9vBqxnbGfg_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.7"/>
+  <extendibleTable key="/LMS_Medini/hls/_hCHjYFpIEeq7aqjJixaiiQ.ha#_XXhmsHtgEeqa9vBqxnbGfg_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.8"/>
+  <extendibleTable key="/LMS_Medini/hls/_hCHjYFpIEeq7aqjJixaiiQ.ha#_b5D4MHtgEeqa9vBqxnbGfg_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.9"/>
+  <extendibleTable key="/LMS_Medini/hls/_hCHjYFpIEeq7aqjJixaiiQ.ha#_grjW0HtgEeqa9vBqxnbGfg_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.10"/>
+  <extendibleTable key="/LMS_Medini/hls/_hCHjYFpIEeq7aqjJixaiiQ.ha#_2sY-IGx1Eeqw5ZTy_v26mw_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.11"/>
+  <extendibleTable key="/LMS_Medini/hls/_hCHjYFpIEeq7aqjJixaiiQ.ha#_bmdaYHtiEeqa9vBqxnbGfg_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.12"/>
+  <extendibleTable key="/LMS_Medini/hls/_hCHjYFpIEeq7aqjJixaiiQ.ha#_POQfgGx4Eeqw5ZTy_v26mw_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.13"/>
+  <extendibleTable key="/LMS_Medini/hls/_hCHjYFpIEeq7aqjJixaiiQ.ha#_7Zn5kGyGEeqw5ZTy_v26mw_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.14"/>
+  <extendibleTable key="/LMS_Medini/hls/_hCHjYFpIEeq7aqjJixaiiQ.ha#_4FVxoHtpEeqa9vBqxnbGfg_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.15"/>
+  <extendibleTable key="/LMS_Medini/hls/_hCHjYFpIEeq7aqjJixaiiQ.ha#_vmOqYGyOEeqw5ZTy_v26mw_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.16"/>
+  <extendibleTable key="/LMS_Medini/hls/_hCHjYFpIEeq7aqjJixaiiQ.ha#_NBhgYHtZEeqa9vBqxnbGfg_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.17"/>
+</mid:MID>

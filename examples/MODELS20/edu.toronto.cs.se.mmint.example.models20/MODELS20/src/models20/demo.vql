@@ -1,0 +1,11 @@
+package models20
+
+import "http://se.cs.toronto.edu/mmint/MID"
+import "http://se.cs.toronto.edu/mmint/MID/Relationship"
+import "http://se.cs.toronto.edu/modelepedia/ClassDiagram"
+import "http://se.cs.toronto.edu/modelepedia/GSN"
+
+pattern alarmClasses(class: Class) {
+  Class.name(class, className);
+  check(className.toLowerCase().contains("alarm"));
+}

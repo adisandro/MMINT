@@ -1,0 +1,21 @@
+package mase19
+
+import "http://se.cs.toronto.edu/mmint/MID"
+import "http://se.cs.toronto.edu/mmint/MID/Relationship"
+import "http://se.cs.toronto.edu/modelepedia/GSN"
+
+pattern asilBConnectedModelElems(goal: Goal,
+                                 modelElem: ModelElement) {
+  Goal.asil.value(goal, ASILLevel::B);
+  Goal.id(goal, goalId);
+  ModelElement.name(goalElem, goalName);
+  check(goalName.endsWith(goalId));
+  find library.connectedModelElems(goalElem, modelElem);
+}
+
+pattern highlyConnectedModelElems(modelElem: ModelElement,
+                                  connections: java Integer) {
+  connections == count
+    find library.connectedModelElems(modelElem, _);
+  check(connections > 5);
+}

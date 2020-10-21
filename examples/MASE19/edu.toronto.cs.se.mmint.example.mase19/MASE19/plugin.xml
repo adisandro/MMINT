@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?><plugin>
+  <extension id="library.MID" point="org.eclipse.viatra.query.runtime.queryspecification">
+    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:library.MID" id="library.MID">
+      <query-specification fqn="library.connectedModelElems"/>
+      <query-specification fqn="library.allConnectedModelElems"/>
+    </group>
+  </extension>
+  <extension id="mase19.Scenarios" point="org.eclipse.viatra.query.runtime.queryspecification">
+    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:mase19.Scenarios" id="mase19.Scenarios">
+      <query-specification fqn="mase19.asilBConnectedModelElems"/>
+      <query-specification fqn="mase19.highlyConnectedModelElems"/>
+    </group>
+  </extension>
+</plugin>
