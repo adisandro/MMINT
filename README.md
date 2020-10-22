@@ -4,9 +4,7 @@
 
 **Model Management** is the management of collections of related models. It provides tools and techniques for dealing with large sets of models, defining relationships among models, manipulating models and relationships using operators (i.e., transformations). A special kind of model, generally called a **megamodel**, is used to represent such a scenario, with models as nodes and their relationships as arrows. Models and relationships are typically considered to be typed by their respective metamodels.
 
-<p align="center">
-  ![MMINT Architecture](images/architecture.png)
-</p>
+![MMINT Architecture](images/architecture.png)
 
 MMINT provides a graphical form of megamodel called a **Model Interconnection Diagram (MID)** as the interface through which to perform actions. In addition to the standard megamodel interactions already supported by existing interactive model management techniques, MMINT provides support for an additional layer, the **Type megamodel**, representing the collection of metamodels, relationships and transformations between them. The Type megamodel can be examined, modified and extended at runtime, allowing the user to have a dynamic type system and a reconfigurable workbench.
 
@@ -86,3 +84,4 @@ RE 14
 REJ Vol. 18-2
 * [Transformation of Models Containing Uncertainty](https://doi.org/10.1007/978-3-642-41533-3_41)  
 MoDELS 13
+

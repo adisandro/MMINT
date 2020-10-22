@@ -1,4 +1,10 @@
-Instructions to run experiments:
+## SoSyM Vol. 19-1 paper
+
+[Heterogeneous Megamodel Management using Collection Operators](https://doi.org/10.1007/s10270-019-00738-9)
+
+Model management techniques help tame the complexity caused by the many models used in large-scale software development; however, these techniques have focused on operators to manipulate individual models rather than entire collections of them. In this work, we begin to address this gap by adapting the widely used map, reduce and filter collection operators for collections of models represented by megamodels. Key parts of this adaptation include the special handling of relationships between models and the use of polymorphism to support heterogeneous model collections. We evaluate the complexity of our operators analytically and demonstrate their applicability on six diverse megamodel management scenarios. We describe our tool support for the approach and evaluate its scalability experimentally as well as its applicability on a practical application from the automotive domain.
+
+## Experiments instructions
 
 1. Add `https://adisandro.github.io/mmint/release` to the list of software sites in Eclipse.
 2. Install `Examples > SoSyM18`.
@@ -9,3 +15,4 @@ Instructions to run experiments:
 7. On the right, click on `New Operator Type > SOSYM18 > experiments > filter > model > samples_filter_model.mid`, give it a name and save.
 8. Modify `SOSYM18/experiments/filter/model/ExperimentIn.properties` to run the scenarios you want.
 9. Open `SOSYM18/experiments/filter/model/filter_model.middiag`, right click anywhere in the canvas, then `MMINT > Run Operator > Experiment<SETUP, SAMPLES> > name from 6 > name from 7`.
+
