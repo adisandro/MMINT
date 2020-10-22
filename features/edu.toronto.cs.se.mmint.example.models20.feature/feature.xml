@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="edu.toronto.cs.se.mmint.example.models20.feature"
-      label="MODELS20"
+      label="MoDELS20"
       version="2.6.99.qualifier"
       provider-name="Software Engineering Group, University of Toronto">
 
    <description url="">
-      MMINT support for the MODELS20 paper.
+      MMINT support for the MoDELS20 paper.
    </description>
 
    <copyright>

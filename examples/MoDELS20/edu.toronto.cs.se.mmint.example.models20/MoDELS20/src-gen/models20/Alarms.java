@@ -1,5 +1,5 @@
 /**
- * Generated from platform:/resource/MODELS20/src/models20/demo.vql
+ * Generated from platform:/resource/MoDELS20/src/models20/demo.vql
  */
 package models20;
 
@@ -47,7 +47,7 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 
  * <p>Original source:
  *         <code><pre>
- *         pattern alarmClasses(class: Class) {
+ *         pattern alarms(class: Class) {
  *           Class.name(class, className);
  *           check(className.toLowerCase().contains("alarm"));
  *         }
@@ -58,9 +58,9 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 
  */
 @SuppressWarnings("all")
-public final class AlarmClasses extends BaseGeneratedEMFQuerySpecification<AlarmClasses.Matcher> {
+public final class Alarms extends BaseGeneratedEMFQuerySpecification<Alarms.Matcher> {
   /**
-   * Pattern-specific match representation of the models20.alarmClasses pattern,
+   * Pattern-specific match representation of the models20.alarms pattern,
    * to be used in conjunction with {@link Matcher}.
    * 
    * <p>Class fields correspond to parameters of the pattern. Fields with value null are considered unassigned.
@@ -117,12 +117,12 @@ public final class AlarmClasses extends BaseGeneratedEMFQuerySpecification<Alarm
     
     @Override
     public String patternName() {
-      return "models20.alarmClasses";
+      return "models20.alarms";
     }
     
     @Override
     public List<String> parameterNames() {
-      return AlarmClasses.Match.parameterNames;
+      return Alarms.Match.parameterNames;
     }
     
     @Override
@@ -131,7 +131,7 @@ public final class AlarmClasses extends BaseGeneratedEMFQuerySpecification<Alarm
     }
     
     @Override
-    public AlarmClasses.Match toImmutable() {
+    public Alarms.Match toImmutable() {
       return isMutable() ? newMatch(fClass) : this;
     }
     
@@ -154,8 +154,8 @@ public final class AlarmClasses extends BaseGeneratedEMFQuerySpecification<Alarm
       if (obj == null) {
           return false;
       }
-      if ((obj instanceof AlarmClasses.Match)) {
-          AlarmClasses.Match other = (AlarmClasses.Match) obj;
+      if ((obj instanceof Alarms.Match)) {
+          Alarms.Match other = (Alarms.Match) obj;
           return Objects.equals(fClass, other.fClass);
       } else {
           // this should be infrequent
@@ -168,8 +168,8 @@ public final class AlarmClasses extends BaseGeneratedEMFQuerySpecification<Alarm
     }
     
     @Override
-    public AlarmClasses specification() {
-      return AlarmClasses.instance();
+    public Alarms specification() {
+      return Alarms.instance();
     }
     
     /**
@@ -179,7 +179,7 @@ public final class AlarmClasses extends BaseGeneratedEMFQuerySpecification<Alarm
      * @return the empty match.
      * 
      */
-    public static AlarmClasses.Match newEmptyMatch() {
+    public static Alarms.Match newEmptyMatch() {
       return new Mutable(null);
     }
     
@@ -191,7 +191,7 @@ public final class AlarmClasses extends BaseGeneratedEMFQuerySpecification<Alarm
      * @return the new, mutable (partial) match object.
      * 
      */
-    public static AlarmClasses.Match newMutableMatch(final edu.toronto.cs.se.modelepedia.classdiagram.Class pClass) {
+    public static Alarms.Match newMutableMatch(final edu.toronto.cs.se.modelepedia.classdiagram.Class pClass) {
       return new Mutable(pClass);
     }
     
@@ -203,11 +203,11 @@ public final class AlarmClasses extends BaseGeneratedEMFQuerySpecification<Alarm
      * @return the (partial) match object.
      * 
      */
-    public static AlarmClasses.Match newMatch(final edu.toronto.cs.se.modelepedia.classdiagram.Class pClass) {
+    public static Alarms.Match newMatch(final edu.toronto.cs.se.modelepedia.classdiagram.Class pClass) {
       return new Immutable(pClass);
     }
     
-    private static final class Mutable extends AlarmClasses.Match {
+    private static final class Mutable extends Alarms.Match {
       Mutable(final edu.toronto.cs.se.modelepedia.classdiagram.Class pClass) {
         super(pClass);
       }
@@ -218,7 +218,7 @@ public final class AlarmClasses extends BaseGeneratedEMFQuerySpecification<Alarm
       }
     }
     
-    private static final class Immutable extends AlarmClasses.Match {
+    private static final class Immutable extends Alarms.Match {
       Immutable(final edu.toronto.cs.se.modelepedia.classdiagram.Class pClass) {
         super(pClass);
       }
@@ -231,7 +231,7 @@ public final class AlarmClasses extends BaseGeneratedEMFQuerySpecification<Alarm
   }
   
   /**
-   * Generated pattern matcher API of the models20.alarmClasses pattern,
+   * Generated pattern matcher API of the models20.alarms pattern,
    * providing pattern-specific query methods.
    * 
    * <p>Use the pattern matcher on a given model via {@link #on(ViatraQueryEngine)},
@@ -241,17 +241,17 @@ public final class AlarmClasses extends BaseGeneratedEMFQuerySpecification<Alarm
    * 
    * <p>Original source:
    * <code><pre>
-   * pattern alarmClasses(class: Class) {
+   * pattern alarms(class: Class) {
    *   Class.name(class, className);
    *   check(className.toLowerCase().contains("alarm"));
    * }
    * </pre></code>
    * 
    * @see Match
-   * @see AlarmClasses
+   * @see Alarms
    * 
    */
-  public static class Matcher extends BaseMatcher<AlarmClasses.Match> {
+  public static class Matcher extends BaseMatcher<Alarms.Match> {
     /**
      * Initializes the pattern matcher within an existing VIATRA Query engine.
      * If the pattern matcher is already constructed in the engine, only a light-weight reference is returned.
@@ -260,7 +260,7 @@ public final class AlarmClasses extends BaseGeneratedEMFQuerySpecification<Alarm
      * @throws ViatraQueryRuntimeException if an error occurs during pattern matcher creation
      * 
      */
-    public static AlarmClasses.Matcher on(final ViatraQueryEngine engine) {
+    public static Alarms.Matcher on(final ViatraQueryEngine engine) {
       // check if matcher already exists
       Matcher matcher = engine.getExistingMatcher(querySpecification());
       if (matcher == null) {
@@ -275,13 +275,13 @@ public final class AlarmClasses extends BaseGeneratedEMFQuerySpecification<Alarm
      * @noreference This method is for internal matcher initialization by the framework, do not call it manually.
      * 
      */
-    public static AlarmClasses.Matcher create() {
+    public static Alarms.Matcher create() {
       return new Matcher();
     }
     
     private static final int POSITION_CLASS = 0;
     
-    private static final Logger LOGGER = ViatraQueryLoggingUtil.getLogger(AlarmClasses.Matcher.class);
+    private static final Logger LOGGER = ViatraQueryLoggingUtil.getLogger(Alarms.Matcher.class);
     
     /**
      * Initializes the pattern matcher within an existing VIATRA Query engine.
@@ -301,7 +301,7 @@ public final class AlarmClasses extends BaseGeneratedEMFQuerySpecification<Alarm
      * @return matches represented as a Match object.
      * 
      */
-    public Collection<AlarmClasses.Match> getAllMatches(final edu.toronto.cs.se.modelepedia.classdiagram.Class pClass) {
+    public Collection<Alarms.Match> getAllMatches(final edu.toronto.cs.se.modelepedia.classdiagram.Class pClass) {
       return rawStreamAllMatches(new Object[]{pClass}).collect(Collectors.toSet());
     }
     
@@ -315,7 +315,7 @@ public final class AlarmClasses extends BaseGeneratedEMFQuerySpecification<Alarm
      * @return a stream of matches represented as a Match object.
      * 
      */
-    public Stream<AlarmClasses.Match> streamAllMatches(final edu.toronto.cs.se.modelepedia.classdiagram.Class pClass) {
+    public Stream<Alarms.Match> streamAllMatches(final edu.toronto.cs.se.modelepedia.classdiagram.Class pClass) {
       return rawStreamAllMatches(new Object[]{pClass});
     }
     
@@ -326,7 +326,7 @@ public final class AlarmClasses extends BaseGeneratedEMFQuerySpecification<Alarm
      * @return a match represented as a Match object, or null if no match is found.
      * 
      */
-    public Optional<AlarmClasses.Match> getOneArbitraryMatch(final edu.toronto.cs.se.modelepedia.classdiagram.Class pClass) {
+    public Optional<Alarms.Match> getOneArbitraryMatch(final edu.toronto.cs.se.modelepedia.classdiagram.Class pClass) {
       return rawGetOneArbitraryMatch(new Object[]{pClass});
     }
     
@@ -359,7 +359,7 @@ public final class AlarmClasses extends BaseGeneratedEMFQuerySpecification<Alarm
      * @return true if the pattern has at least one match with the given parameter values, false if the processor was not invoked
      * 
      */
-    public boolean forOneArbitraryMatch(final edu.toronto.cs.se.modelepedia.classdiagram.Class pClass, final Consumer<? super AlarmClasses.Match> processor) {
+    public boolean forOneArbitraryMatch(final edu.toronto.cs.se.modelepedia.classdiagram.Class pClass, final Consumer<? super Alarms.Match> processor) {
       return rawForOneArbitraryMatch(new Object[]{pClass}, processor);
     }
     
@@ -371,8 +371,8 @@ public final class AlarmClasses extends BaseGeneratedEMFQuerySpecification<Alarm
      * @return the (partial) match object.
      * 
      */
-    public AlarmClasses.Match newMatch(final edu.toronto.cs.se.modelepedia.classdiagram.Class pClass) {
-      return AlarmClasses.Match.newMatch(pClass);
+    public Alarms.Match newMatch(final edu.toronto.cs.se.modelepedia.classdiagram.Class pClass) {
+      return Alarms.Match.newMatch(pClass);
     }
     
     /**
@@ -403,9 +403,9 @@ public final class AlarmClasses extends BaseGeneratedEMFQuerySpecification<Alarm
     }
     
     @Override
-    protected AlarmClasses.Match tupleToMatch(final Tuple t) {
+    protected Alarms.Match tupleToMatch(final Tuple t) {
       try {
-          return AlarmClasses.Match.newMatch((edu.toronto.cs.se.modelepedia.classdiagram.Class) t.get(POSITION_CLASS));
+          return Alarms.Match.newMatch((edu.toronto.cs.se.modelepedia.classdiagram.Class) t.get(POSITION_CLASS));
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in tuple not properly typed!",e);
           return null;
@@ -413,9 +413,9 @@ public final class AlarmClasses extends BaseGeneratedEMFQuerySpecification<Alarm
     }
     
     @Override
-    protected AlarmClasses.Match arrayToMatch(final Object[] match) {
+    protected Alarms.Match arrayToMatch(final Object[] match) {
       try {
-          return AlarmClasses.Match.newMatch((edu.toronto.cs.se.modelepedia.classdiagram.Class) match[POSITION_CLASS]);
+          return Alarms.Match.newMatch((edu.toronto.cs.se.modelepedia.classdiagram.Class) match[POSITION_CLASS]);
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in array not properly typed!",e);
           return null;
@@ -423,9 +423,9 @@ public final class AlarmClasses extends BaseGeneratedEMFQuerySpecification<Alarm
     }
     
     @Override
-    protected AlarmClasses.Match arrayToMatchMutable(final Object[] match) {
+    protected Alarms.Match arrayToMatchMutable(final Object[] match) {
       try {
-          return AlarmClasses.Match.newMutableMatch((edu.toronto.cs.se.modelepedia.classdiagram.Class) match[POSITION_CLASS]);
+          return Alarms.Match.newMutableMatch((edu.toronto.cs.se.modelepedia.classdiagram.Class) match[POSITION_CLASS]);
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in array not properly typed!",e);
           return null;
@@ -437,12 +437,12 @@ public final class AlarmClasses extends BaseGeneratedEMFQuerySpecification<Alarm
      * @throws ViatraQueryRuntimeException if the pattern definition could not be loaded
      * 
      */
-    public static IQuerySpecification<AlarmClasses.Matcher> querySpecification() {
-      return AlarmClasses.instance();
+    public static IQuerySpecification<Alarms.Matcher> querySpecification() {
+      return Alarms.instance();
     }
   }
   
-  private AlarmClasses() {
+  private Alarms() {
     super(GeneratedPQuery.INSTANCE);
   }
   
@@ -451,7 +451,7 @@ public final class AlarmClasses extends BaseGeneratedEMFQuerySpecification<Alarm
    * @throws ViatraQueryRuntimeException if the pattern definition could not be loaded
    * 
    */
-  public static AlarmClasses instance() {
+  public static Alarms instance() {
     try{
         return LazyHolder.INSTANCE;
     } catch (ExceptionInInitializerError err) {
@@ -460,35 +460,35 @@ public final class AlarmClasses extends BaseGeneratedEMFQuerySpecification<Alarm
   }
   
   @Override
-  protected AlarmClasses.Matcher instantiate(final ViatraQueryEngine engine) {
-    return AlarmClasses.Matcher.on(engine);
+  protected Alarms.Matcher instantiate(final ViatraQueryEngine engine) {
+    return Alarms.Matcher.on(engine);
   }
   
   @Override
-  public AlarmClasses.Matcher instantiate() {
-    return AlarmClasses.Matcher.create();
+  public Alarms.Matcher instantiate() {
+    return Alarms.Matcher.create();
   }
   
   @Override
-  public AlarmClasses.Match newEmptyMatch() {
-    return AlarmClasses.Match.newEmptyMatch();
+  public Alarms.Match newEmptyMatch() {
+    return Alarms.Match.newEmptyMatch();
   }
   
   @Override
-  public AlarmClasses.Match newMatch(final Object... parameters) {
-    return AlarmClasses.Match.newMatch((edu.toronto.cs.se.modelepedia.classdiagram.Class) parameters[0]);
+  public Alarms.Match newMatch(final Object... parameters) {
+    return Alarms.Match.newMatch((edu.toronto.cs.se.modelepedia.classdiagram.Class) parameters[0]);
   }
   
   /**
-   * Inner class allowing the singleton instance of {@link AlarmClasses} to be created 
+   * Inner class allowing the singleton instance of {@link Alarms} to be created 
    *     <b>not</b> at the class load time of the outer class, 
-   *     but rather at the first call to {@link AlarmClasses#instance()}.
+   *     but rather at the first call to {@link Alarms#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 
    */
   private static class LazyHolder {
-    private static final AlarmClasses INSTANCE = new AlarmClasses();
+    private static final Alarms INSTANCE = new Alarms();
     
     /**
      * Statically initializes the query specification <b>after</b> the field {@link #INSTANCE} is assigned.
@@ -506,7 +506,7 @@ public final class AlarmClasses extends BaseGeneratedEMFQuerySpecification<Alarm
   }
   
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
-    private static final AlarmClasses.GeneratedPQuery INSTANCE = new GeneratedPQuery();
+    private static final Alarms.GeneratedPQuery INSTANCE = new GeneratedPQuery();
     
     private final PParameter parameter_class = new PParameter("class", "edu.toronto.cs.se.modelepedia.classdiagram.Class", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://se.cs.toronto.edu/modelepedia/ClassDiagram", "Class")), PParameterDirection.INOUT);
     
@@ -518,7 +518,7 @@ public final class AlarmClasses extends BaseGeneratedEMFQuerySpecification<Alarm
     
     @Override
     public String getFullyQualifiedName() {
-      return "models20.alarmClasses";
+      return "models20.alarms";
     }
     
     @Override
@@ -554,7 +554,7 @@ public final class AlarmClasses extends BaseGeneratedEMFQuerySpecification<Alarm
           
               @Override
               public String getShortDescription() {
-                  return "Expression evaluation from pattern alarmClasses";
+                  return "Expression evaluation from pattern alarms";
               }
               
               @Override

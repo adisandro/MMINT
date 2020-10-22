@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
-Bundle-SymbolicName: MODELS20;singleton:=true
+Bundle-SymbolicName: MoDELS20;singleton:=true
 Bundle-Version: 2.6.99.qualifier
 Bundle-Vendor: %providerName
 Export-Package: library,
@@ -16,6 +16,6 @@ Require-Bundle: org.eclipse.emf.ecore,
  edu.toronto.cs.se.modelepedia.classdiagram,
  edu.toronto.cs.se.modelepedia.safetycase
 Bundle-RequiredExecutionEnvironment: JavaSE-14
-Automatic-Module-Name: MODELS20
+Automatic-Module-Name: MoDELS20
 Import-Package: org.apache.log4j
 Bundle-ActivationPolicy: lazy

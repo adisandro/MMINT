@@ -1,5 +1,5 @@
 /**
- * Generated from platform:/resource/MODELS20/src/library/MID.vql
+ * Generated from platform:/resource/MoDELS20/src/library/MID.vql
  */
 package library;
 

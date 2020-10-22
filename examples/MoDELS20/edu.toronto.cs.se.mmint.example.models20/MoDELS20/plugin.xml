@@ -9,7 +9,7 @@
   </extension>
   <extension id="models20.Demo" point="org.eclipse.viatra.query.runtime.queryspecification">
     <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:models20.Demo" id="models20.Demo">
-      <query-specification fqn="models20.alarmClasses"/>
+      <query-specification fqn="models20.alarms"/>
     </group>
   </extension>
 </plugin>

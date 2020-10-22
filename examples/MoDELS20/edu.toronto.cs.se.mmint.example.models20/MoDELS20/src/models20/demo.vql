@@ -5,7 +5,7 @@ import "http://se.cs.toronto.edu/mmint/MID/Relationship"
 import "http://se.cs.toronto.edu/modelepedia/ClassDiagram"
 import "http://se.cs.toronto.edu/modelepedia/GSN"
 
-pattern alarmClasses(class: Class) {
+pattern alarms(class: Class) {
   Class.name(class, className);
   check(className.toLowerCase().contains("alarm"));
 }

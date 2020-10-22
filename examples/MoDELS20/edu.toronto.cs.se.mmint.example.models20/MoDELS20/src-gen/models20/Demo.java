@@ -1,9 +1,9 @@
 /**
- * Generated from platform:/resource/MODELS20/src/models20/demo.vql
+ * Generated from platform:/resource/MoDELS20/src/models20/demo.vql
  */
 package models20;
 
-import models20.AlarmClasses;
+import models20.Alarms;
 import org.eclipse.viatra.query.runtime.api.ViatraQueryEngine;
 import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedPatternGroup;
 
@@ -15,7 +15,7 @@ import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedPatternGroup;
  * in order to achieve better performance than one-by-one on-demand matcher initialization.
  * 
  * <p> From package models20, the group contains the definition of the following patterns: <ul>
- * <li>alarmClasses</li>
+ * <li>alarms</li>
  * </ul>
  * 
  * @see IQueryGroup
@@ -40,14 +40,14 @@ public final class Demo extends BaseGeneratedPatternGroup {
   private static Demo INSTANCE;
   
   private Demo() {
-    querySpecifications.add(AlarmClasses.instance());
+    querySpecifications.add(Alarms.instance());
   }
   
-  public AlarmClasses getAlarmClasses() {
-    return AlarmClasses.instance();
+  public Alarms getAlarms() {
+    return Alarms.instance();
   }
   
-  public AlarmClasses.Matcher getAlarmClasses(final ViatraQueryEngine engine) {
-    return AlarmClasses.Matcher.on(engine);
+  public Alarms.Matcher getAlarms(final ViatraQueryEngine engine) {
+    return Alarms.Matcher.on(engine);
   }
 }

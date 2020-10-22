@@ -21,18 +21,18 @@
             category="org.eclipse.ui.Examples/edu.toronto.cs.se.mmint.example"
             class="org.eclipse.emf.common.ui.wizard.ExampleInstallerWizard"
             project="true"
-            name="MODELS20">
-         <description>Creates a project containing the artifacts from the MODELS20 paper</description>
+            name="MoDELS20">
+         <description>Creates a project containing the artifacts from the MoDELS20 paper</description>
       </wizard>
    </extension>
 
    <extension point="org.eclipse.emf.common.ui.examples">
       <example id="edu.toronto.cs.se.mmint.example.models20"
             wizardID="edu.toronto.cs.se.mmint.example.models20">
-         <projectDescriptor name="MODELS20"
-               contentURI="MODELS20/"
-               description="Creates a project containing the artifacts from the MODELS20 paper"/>
-         <fileToOpen location="MODELS20/README.md"/>
+         <projectDescriptor name="MoDELS20"
+               contentURI="MoDELS20/"
+               description="Creates a project containing the artifacts from the MoDELS20 paper"/>
+         <fileToOpen location="MoDELS20/README.md"/>
       </example>
    </extension>
 

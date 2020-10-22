@@ -1,5 +1,5 @@
 /**
- * Generated from platform:/resource/MODELS20/src/library/MID.vql
+ * Generated from platform:/resource/MoDELS20/src/library/MID.vql
  */
 package library;
 
@@ -13,7 +13,7 @@ import java.util.Set;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import library.ConnectedModelElems;
+import library.AllConnectedModelElems;
 import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -46,12 +46,12 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 
  * <p>Original source:
  *         <code><pre>
- *         pattern connectedEMFObjects(modelObjSrc: EObject,
- *                                     modelObjTgt: EObject) {
+ *         pattern allConnectedEMFObjects(modelObjSrc: EObject,
+ *                                        modelObjTgt: EObject) {
  *           modelObjSrc != modelObjTgt;
  *           ModelElement.EMFInstanceObject(modelElemSrc, modelObjSrc);
  *           ModelElement.EMFInstanceObject(modelElemTgt, modelObjTgt);
- *           find connectedModelElems(modelElemSrc, modelElemTgt);
+ *           find allConnectedModelElems(modelElemSrc, modelElemTgt);
  *         }
  * </pre></code>
  * 
@@ -60,9 +60,9 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 
  */
 @SuppressWarnings("all")
-public final class ConnectedEMFObjects extends BaseGeneratedEMFQuerySpecification<ConnectedEMFObjects.Matcher> {
+public final class AllConnectedEMFObjects extends BaseGeneratedEMFQuerySpecification<AllConnectedEMFObjects.Matcher> {
   /**
-   * Pattern-specific match representation of the library.connectedEMFObjects pattern,
+   * Pattern-specific match representation of the library.allConnectedEMFObjects pattern,
    * to be used in conjunction with {@link Matcher}.
    * 
    * <p>Class fields correspond to parameters of the pattern. Fields with value null are considered unassigned.
@@ -137,12 +137,12 @@ public final class ConnectedEMFObjects extends BaseGeneratedEMFQuerySpecificatio
     
     @Override
     public String patternName() {
-      return "library.connectedEMFObjects";
+      return "library.allConnectedEMFObjects";
     }
     
     @Override
     public List<String> parameterNames() {
-      return ConnectedEMFObjects.Match.parameterNames;
+      return AllConnectedEMFObjects.Match.parameterNames;
     }
     
     @Override
@@ -151,7 +151,7 @@ public final class ConnectedEMFObjects extends BaseGeneratedEMFQuerySpecificatio
     }
     
     @Override
-    public ConnectedEMFObjects.Match toImmutable() {
+    public AllConnectedEMFObjects.Match toImmutable() {
       return isMutable() ? newMatch(fModelObjSrc, fModelObjTgt) : this;
     }
     
@@ -175,8 +175,8 @@ public final class ConnectedEMFObjects extends BaseGeneratedEMFQuerySpecificatio
       if (obj == null) {
           return false;
       }
-      if ((obj instanceof ConnectedEMFObjects.Match)) {
-          ConnectedEMFObjects.Match other = (ConnectedEMFObjects.Match) obj;
+      if ((obj instanceof AllConnectedEMFObjects.Match)) {
+          AllConnectedEMFObjects.Match other = (AllConnectedEMFObjects.Match) obj;
           return Objects.equals(fModelObjSrc, other.fModelObjSrc) && Objects.equals(fModelObjTgt, other.fModelObjTgt);
       } else {
           // this should be infrequent
@@ -189,8 +189,8 @@ public final class ConnectedEMFObjects extends BaseGeneratedEMFQuerySpecificatio
     }
     
     @Override
-    public ConnectedEMFObjects specification() {
-      return ConnectedEMFObjects.instance();
+    public AllConnectedEMFObjects specification() {
+      return AllConnectedEMFObjects.instance();
     }
     
     /**
@@ -200,7 +200,7 @@ public final class ConnectedEMFObjects extends BaseGeneratedEMFQuerySpecificatio
      * @return the empty match.
      * 
      */
-    public static ConnectedEMFObjects.Match newEmptyMatch() {
+    public static AllConnectedEMFObjects.Match newEmptyMatch() {
       return new Mutable(null, null);
     }
     
@@ -213,7 +213,7 @@ public final class ConnectedEMFObjects extends BaseGeneratedEMFQuerySpecificatio
      * @return the new, mutable (partial) match object.
      * 
      */
-    public static ConnectedEMFObjects.Match newMutableMatch(final EObject pModelObjSrc, final EObject pModelObjTgt) {
+    public static AllConnectedEMFObjects.Match newMutableMatch(final EObject pModelObjSrc, final EObject pModelObjTgt) {
       return new Mutable(pModelObjSrc, pModelObjTgt);
     }
     
@@ -226,11 +226,11 @@ public final class ConnectedEMFObjects extends BaseGeneratedEMFQuerySpecificatio
      * @return the (partial) match object.
      * 
      */
-    public static ConnectedEMFObjects.Match newMatch(final EObject pModelObjSrc, final EObject pModelObjTgt) {
+    public static AllConnectedEMFObjects.Match newMatch(final EObject pModelObjSrc, final EObject pModelObjTgt) {
       return new Immutable(pModelObjSrc, pModelObjTgt);
     }
     
-    private static final class Mutable extends ConnectedEMFObjects.Match {
+    private static final class Mutable extends AllConnectedEMFObjects.Match {
       Mutable(final EObject pModelObjSrc, final EObject pModelObjTgt) {
         super(pModelObjSrc, pModelObjTgt);
       }
@@ -241,7 +241,7 @@ public final class ConnectedEMFObjects extends BaseGeneratedEMFQuerySpecificatio
       }
     }
     
-    private static final class Immutable extends ConnectedEMFObjects.Match {
+    private static final class Immutable extends AllConnectedEMFObjects.Match {
       Immutable(final EObject pModelObjSrc, final EObject pModelObjTgt) {
         super(pModelObjSrc, pModelObjTgt);
       }
@@ -254,7 +254,7 @@ public final class ConnectedEMFObjects extends BaseGeneratedEMFQuerySpecificatio
   }
   
   /**
-   * Generated pattern matcher API of the library.connectedEMFObjects pattern,
+   * Generated pattern matcher API of the library.allConnectedEMFObjects pattern,
    * providing pattern-specific query methods.
    * 
    * <p>Use the pattern matcher on a given model via {@link #on(ViatraQueryEngine)},
@@ -264,20 +264,20 @@ public final class ConnectedEMFObjects extends BaseGeneratedEMFQuerySpecificatio
    * 
    * <p>Original source:
    * <code><pre>
-   * pattern connectedEMFObjects(modelObjSrc: EObject,
-   *                             modelObjTgt: EObject) {
+   * pattern allConnectedEMFObjects(modelObjSrc: EObject,
+   *                                modelObjTgt: EObject) {
    *   modelObjSrc != modelObjTgt;
    *   ModelElement.EMFInstanceObject(modelElemSrc, modelObjSrc);
    *   ModelElement.EMFInstanceObject(modelElemTgt, modelObjTgt);
-   *   find connectedModelElems(modelElemSrc, modelElemTgt);
+   *   find allConnectedModelElems(modelElemSrc, modelElemTgt);
    * }
    * </pre></code>
    * 
    * @see Match
-   * @see ConnectedEMFObjects
+   * @see AllConnectedEMFObjects
    * 
    */
-  public static class Matcher extends BaseMatcher<ConnectedEMFObjects.Match> {
+  public static class Matcher extends BaseMatcher<AllConnectedEMFObjects.Match> {
     /**
      * Initializes the pattern matcher within an existing VIATRA Query engine.
      * If the pattern matcher is already constructed in the engine, only a light-weight reference is returned.
@@ -286,7 +286,7 @@ public final class ConnectedEMFObjects extends BaseGeneratedEMFQuerySpecificatio
      * @throws ViatraQueryRuntimeException if an error occurs during pattern matcher creation
      * 
      */
-    public static ConnectedEMFObjects.Matcher on(final ViatraQueryEngine engine) {
+    public static AllConnectedEMFObjects.Matcher on(final ViatraQueryEngine engine) {
       // check if matcher already exists
       Matcher matcher = engine.getExistingMatcher(querySpecification());
       if (matcher == null) {
@@ -301,7 +301,7 @@ public final class ConnectedEMFObjects extends BaseGeneratedEMFQuerySpecificatio
      * @noreference This method is for internal matcher initialization by the framework, do not call it manually.
      * 
      */
-    public static ConnectedEMFObjects.Matcher create() {
+    public static AllConnectedEMFObjects.Matcher create() {
       return new Matcher();
     }
     
@@ -309,7 +309,7 @@ public final class ConnectedEMFObjects extends BaseGeneratedEMFQuerySpecificatio
     
     private static final int POSITION_MODELOBJTGT = 1;
     
-    private static final Logger LOGGER = ViatraQueryLoggingUtil.getLogger(ConnectedEMFObjects.Matcher.class);
+    private static final Logger LOGGER = ViatraQueryLoggingUtil.getLogger(AllConnectedEMFObjects.Matcher.class);
     
     /**
      * Initializes the pattern matcher within an existing VIATRA Query engine.
@@ -330,7 +330,7 @@ public final class ConnectedEMFObjects extends BaseGeneratedEMFQuerySpecificatio
      * @return matches represented as a Match object.
      * 
      */
-    public Collection<ConnectedEMFObjects.Match> getAllMatches(final EObject pModelObjSrc, final EObject pModelObjTgt) {
+    public Collection<AllConnectedEMFObjects.Match> getAllMatches(final EObject pModelObjSrc, final EObject pModelObjTgt) {
       return rawStreamAllMatches(new Object[]{pModelObjSrc, pModelObjTgt}).collect(Collectors.toSet());
     }
     
@@ -345,7 +345,7 @@ public final class ConnectedEMFObjects extends BaseGeneratedEMFQuerySpecificatio
      * @return a stream of matches represented as a Match object.
      * 
      */
-    public Stream<ConnectedEMFObjects.Match> streamAllMatches(final EObject pModelObjSrc, final EObject pModelObjTgt) {
+    public Stream<AllConnectedEMFObjects.Match> streamAllMatches(final EObject pModelObjSrc, final EObject pModelObjTgt) {
       return rawStreamAllMatches(new Object[]{pModelObjSrc, pModelObjTgt});
     }
     
@@ -357,7 +357,7 @@ public final class ConnectedEMFObjects extends BaseGeneratedEMFQuerySpecificatio
      * @return a match represented as a Match object, or null if no match is found.
      * 
      */
-    public Optional<ConnectedEMFObjects.Match> getOneArbitraryMatch(final EObject pModelObjSrc, final EObject pModelObjTgt) {
+    public Optional<AllConnectedEMFObjects.Match> getOneArbitraryMatch(final EObject pModelObjSrc, final EObject pModelObjTgt) {
       return rawGetOneArbitraryMatch(new Object[]{pModelObjSrc, pModelObjTgt});
     }
     
@@ -393,7 +393,7 @@ public final class ConnectedEMFObjects extends BaseGeneratedEMFQuerySpecificatio
      * @return true if the pattern has at least one match with the given parameter values, false if the processor was not invoked
      * 
      */
-    public boolean forOneArbitraryMatch(final EObject pModelObjSrc, final EObject pModelObjTgt, final Consumer<? super ConnectedEMFObjects.Match> processor) {
+    public boolean forOneArbitraryMatch(final EObject pModelObjSrc, final EObject pModelObjTgt, final Consumer<? super AllConnectedEMFObjects.Match> processor) {
       return rawForOneArbitraryMatch(new Object[]{pModelObjSrc, pModelObjTgt}, processor);
     }
     
@@ -406,8 +406,8 @@ public final class ConnectedEMFObjects extends BaseGeneratedEMFQuerySpecificatio
      * @return the (partial) match object.
      * 
      */
-    public ConnectedEMFObjects.Match newMatch(final EObject pModelObjSrc, final EObject pModelObjTgt) {
-      return ConnectedEMFObjects.Match.newMatch(pModelObjSrc, pModelObjTgt);
+    public AllConnectedEMFObjects.Match newMatch(final EObject pModelObjSrc, final EObject pModelObjTgt) {
+      return AllConnectedEMFObjects.Match.newMatch(pModelObjSrc, pModelObjTgt);
     }
     
     /**
@@ -447,7 +447,7 @@ public final class ConnectedEMFObjects extends BaseGeneratedEMFQuerySpecificatio
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<EObject> streamAllValuesOfmodelObjSrc(final ConnectedEMFObjects.Match partialMatch) {
+    public Stream<EObject> streamAllValuesOfmodelObjSrc(final AllConnectedEMFObjects.Match partialMatch) {
       return rawStreamAllValuesOfmodelObjSrc(partialMatch.toArray());
     }
     
@@ -470,7 +470,7 @@ public final class ConnectedEMFObjects extends BaseGeneratedEMFQuerySpecificatio
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<EObject> getAllValuesOfmodelObjSrc(final ConnectedEMFObjects.Match partialMatch) {
+    public Set<EObject> getAllValuesOfmodelObjSrc(final AllConnectedEMFObjects.Match partialMatch) {
       return rawStreamAllValuesOfmodelObjSrc(partialMatch.toArray()).collect(Collectors.toSet());
     }
     
@@ -520,7 +520,7 @@ public final class ConnectedEMFObjects extends BaseGeneratedEMFQuerySpecificatio
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<EObject> streamAllValuesOfmodelObjTgt(final ConnectedEMFObjects.Match partialMatch) {
+    public Stream<EObject> streamAllValuesOfmodelObjTgt(final AllConnectedEMFObjects.Match partialMatch) {
       return rawStreamAllValuesOfmodelObjTgt(partialMatch.toArray());
     }
     
@@ -543,7 +543,7 @@ public final class ConnectedEMFObjects extends BaseGeneratedEMFQuerySpecificatio
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<EObject> getAllValuesOfmodelObjTgt(final ConnectedEMFObjects.Match partialMatch) {
+    public Set<EObject> getAllValuesOfmodelObjTgt(final AllConnectedEMFObjects.Match partialMatch) {
       return rawStreamAllValuesOfmodelObjTgt(partialMatch.toArray()).collect(Collectors.toSet());
     }
     
@@ -557,9 +557,9 @@ public final class ConnectedEMFObjects extends BaseGeneratedEMFQuerySpecificatio
     }
     
     @Override
-    protected ConnectedEMFObjects.Match tupleToMatch(final Tuple t) {
+    protected AllConnectedEMFObjects.Match tupleToMatch(final Tuple t) {
       try {
-          return ConnectedEMFObjects.Match.newMatch((EObject) t.get(POSITION_MODELOBJSRC), (EObject) t.get(POSITION_MODELOBJTGT));
+          return AllConnectedEMFObjects.Match.newMatch((EObject) t.get(POSITION_MODELOBJSRC), (EObject) t.get(POSITION_MODELOBJTGT));
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in tuple not properly typed!",e);
           return null;
@@ -567,9 +567,9 @@ public final class ConnectedEMFObjects extends BaseGeneratedEMFQuerySpecificatio
     }
     
     @Override
-    protected ConnectedEMFObjects.Match arrayToMatch(final Object[] match) {
+    protected AllConnectedEMFObjects.Match arrayToMatch(final Object[] match) {
       try {
-          return ConnectedEMFObjects.Match.newMatch((EObject) match[POSITION_MODELOBJSRC], (EObject) match[POSITION_MODELOBJTGT]);
+          return AllConnectedEMFObjects.Match.newMatch((EObject) match[POSITION_MODELOBJSRC], (EObject) match[POSITION_MODELOBJTGT]);
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in array not properly typed!",e);
           return null;
@@ -577,9 +577,9 @@ public final class ConnectedEMFObjects extends BaseGeneratedEMFQuerySpecificatio
     }
     
     @Override
-    protected ConnectedEMFObjects.Match arrayToMatchMutable(final Object[] match) {
+    protected AllConnectedEMFObjects.Match arrayToMatchMutable(final Object[] match) {
       try {
-          return ConnectedEMFObjects.Match.newMutableMatch((EObject) match[POSITION_MODELOBJSRC], (EObject) match[POSITION_MODELOBJTGT]);
+          return AllConnectedEMFObjects.Match.newMutableMatch((EObject) match[POSITION_MODELOBJSRC], (EObject) match[POSITION_MODELOBJTGT]);
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in array not properly typed!",e);
           return null;
@@ -591,12 +591,12 @@ public final class ConnectedEMFObjects extends BaseGeneratedEMFQuerySpecificatio
      * @throws ViatraQueryRuntimeException if the pattern definition could not be loaded
      * 
      */
-    public static IQuerySpecification<ConnectedEMFObjects.Matcher> querySpecification() {
-      return ConnectedEMFObjects.instance();
+    public static IQuerySpecification<AllConnectedEMFObjects.Matcher> querySpecification() {
+      return AllConnectedEMFObjects.instance();
     }
   }
   
-  private ConnectedEMFObjects() {
+  private AllConnectedEMFObjects() {
     super(GeneratedPQuery.INSTANCE);
   }
   
@@ -605,7 +605,7 @@ public final class ConnectedEMFObjects extends BaseGeneratedEMFQuerySpecificatio
    * @throws ViatraQueryRuntimeException if the pattern definition could not be loaded
    * 
    */
-  public static ConnectedEMFObjects instance() {
+  public static AllConnectedEMFObjects instance() {
     try{
         return LazyHolder.INSTANCE;
     } catch (ExceptionInInitializerError err) {
@@ -614,35 +614,35 @@ public final class ConnectedEMFObjects extends BaseGeneratedEMFQuerySpecificatio
   }
   
   @Override
-  protected ConnectedEMFObjects.Matcher instantiate(final ViatraQueryEngine engine) {
-    return ConnectedEMFObjects.Matcher.on(engine);
+  protected AllConnectedEMFObjects.Matcher instantiate(final ViatraQueryEngine engine) {
+    return AllConnectedEMFObjects.Matcher.on(engine);
   }
   
   @Override
-  public ConnectedEMFObjects.Matcher instantiate() {
-    return ConnectedEMFObjects.Matcher.create();
+  public AllConnectedEMFObjects.Matcher instantiate() {
+    return AllConnectedEMFObjects.Matcher.create();
   }
   
   @Override
-  public ConnectedEMFObjects.Match newEmptyMatch() {
-    return ConnectedEMFObjects.Match.newEmptyMatch();
+  public AllConnectedEMFObjects.Match newEmptyMatch() {
+    return AllConnectedEMFObjects.Match.newEmptyMatch();
   }
   
   @Override
-  public ConnectedEMFObjects.Match newMatch(final Object... parameters) {
-    return ConnectedEMFObjects.Match.newMatch((org.eclipse.emf.ecore.EObject) parameters[0], (org.eclipse.emf.ecore.EObject) parameters[1]);
+  public AllConnectedEMFObjects.Match newMatch(final Object... parameters) {
+    return AllConnectedEMFObjects.Match.newMatch((org.eclipse.emf.ecore.EObject) parameters[0], (org.eclipse.emf.ecore.EObject) parameters[1]);
   }
   
   /**
-   * Inner class allowing the singleton instance of {@link ConnectedEMFObjects} to be created 
+   * Inner class allowing the singleton instance of {@link AllConnectedEMFObjects} to be created 
    *     <b>not</b> at the class load time of the outer class, 
-   *     but rather at the first call to {@link ConnectedEMFObjects#instance()}.
+   *     but rather at the first call to {@link AllConnectedEMFObjects#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 
    */
   private static class LazyHolder {
-    private static final ConnectedEMFObjects INSTANCE = new ConnectedEMFObjects();
+    private static final AllConnectedEMFObjects INSTANCE = new AllConnectedEMFObjects();
     
     /**
      * Statically initializes the query specification <b>after</b> the field {@link #INSTANCE} is assigned.
@@ -660,7 +660,7 @@ public final class ConnectedEMFObjects extends BaseGeneratedEMFQuerySpecificatio
   }
   
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
-    private static final ConnectedEMFObjects.GeneratedPQuery INSTANCE = new GeneratedPQuery();
+    private static final AllConnectedEMFObjects.GeneratedPQuery INSTANCE = new GeneratedPQuery();
     
     private final PParameter parameter_modelObjSrc = new PParameter("modelObjSrc", "org.eclipse.emf.ecore.EObject", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.eclipse.org/emf/2002/Ecore", "EObject")), PParameterDirection.INOUT);
     
@@ -674,7 +674,7 @@ public final class ConnectedEMFObjects extends BaseGeneratedEMFQuerySpecificatio
     
     @Override
     public String getFullyQualifiedName() {
-      return "library.connectedEMFObjects";
+      return "library.allConnectedEMFObjects";
     }
     
     @Override
@@ -717,8 +717,8 @@ public final class ConnectedEMFObjects extends BaseGeneratedEMFQuerySpecificatio
           new TypeConstraint(body, Tuples.flatTupleOf(var_modelElemTgt, var__virtual_1_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://se.cs.toronto.edu/mmint/MID", "ModelElement", "EMFInstanceObject")));
           new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_1_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.eclipse.org/emf/2002/Ecore", "EObject")));
           new Equality(body, var__virtual_1_, var_modelObjTgt);
-          //   find connectedModelElems(modelElemSrc, modelElemTgt)
-          new PositivePatternCall(body, Tuples.flatTupleOf(var_modelElemSrc, var_modelElemTgt), ConnectedModelElems.instance().getInternalQueryRepresentation());
+          //   find allConnectedModelElems(modelElemSrc, modelElemTgt)
+          new PositivePatternCall(body, Tuples.flatTupleOf(var_modelElemSrc, var_modelElemTgt), AllConnectedModelElems.instance().getInternalQueryRepresentation());
           bodies.add(body);
       }
       return bodies;
