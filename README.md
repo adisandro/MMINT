@@ -37,18 +37,36 @@ Requirements marked with _(Required for ...)_ are optional except for the specif
 Binary packages for MMINT are automatically created at each release and will automatically install the necessary Eclipse dependencies.
 
 1. Add `https://adisandro.github.io/mmint/release` to the list of software sites in Eclipse (`Help > Install New Software > Available Software Sites`).
-2. Look under the `Modeling` category and install `MMINT`.
+2. Install `Modeling > MMINT`.
 
-You can also install `MMINT-A` (a version of MMINT that supports automotive assurance cases), a selection of pre-packaged model types, relationship types and operators under the `Modelepedia` category, or examples from various papers under the `Examples` category.
+You can also install [MMINT-A](#mmint-a) (a version of MMINT for automotive safety assurance), a selection of pre-packaged model types, relationship types and operators under the `Modelepedia` category, or examples from various papers under the `Examples` category.
 
 Binary packages for the current development version of MMINT are similarly available using the software site `https://adisandro.github.io/mmint/develop`.
 
 ### Sources
 
-Building the sources requires using Git as version control system (http://git-scm.com/). To import the sources in your Eclipse workspace, use `File > Import` and then `Projects from Git` under the `Git` category. Wait until everything is built, then right-click on any project and `Run As > Eclipse Application`.
+To import the sources in your Eclipse workspace, use `File > Import` and then `Projects from Git` under the `Git` category. Wait until everything is built, then right-click on any project and `Run As > Eclipse Application`.
 
-The projects are under the [plugins](https://github.com/adisandro/MMINT/tree/master/plugins) directory: required projects under [Core](https://github.com/adisandro/MMINT/tree/master/plugins/Core), projects that significantly extend functionality under [Core-Extensions](https://github.com/adisandro/MMINT/tree/master/plugins/Core-Extensions), optional and domain specific projects under [Types](https://github.com/adisandro/MMINT/tree/master/plugins/Types) and projects that deal with external tools under [External](https://github.com/adisandro/MMINT/tree/master/plugins/External). The [features](https://github.com/adisandro/MMINT/tree/master/features) directory contains the logical units of functionality, [tests](https://github.com/adisandro/MMINT/tree/master/tests) contains a suite for regression testing, [releng](https://github.com/adisandro/MMINT/tree/master/releng) contains the release engineering code, and [examples](https://github.com/adisandro/MMINT/tree/master/examples) contains artifacts created with MMINT for various papers.
+The projects are under the [plugins](https://github.com/adisandro/MMINT/tree/master/plugins) directory: required projects under [Core](https://github.com/adisandro/MMINT/tree/master/plugins/Core), projects that significantly extend functionality under [Core-Extensions](https://github.com/adisandro/MMINT/tree/master/plugins/Core-Extensions), optional and domain specific projects under [Types](https://github.com/adisandro/MMINT/tree/master/plugins/Types) and projects that deal with external tools under [External](https://github.com/adisandro/MMINT/tree/master/plugins/External). The [features](https://github.com/adisandro/MMINT/tree/master/features) directory contains the logical units of functionality, [tests](https://github.com/adisandro/MMINT/tree/master/tests) contains a suite for regression testing, [releng](https://github.com/adisandro/MMINT/tree/master/releng) contains the release engineering code, and [examples](https://github.com/adisandro/MMINT/tree/master/examples) contains artifacts created with MMINT for various papers and conferences.
 
+
+
+## Bundles
+
+### MMINT-A
+
+MMINT-A is an extended version of MMINT for automotive safety assurance, aimed to facilitate the creation, analysis, and evolution of safety models. MMINT-A adds the following features:
+
+* Goal Structured Notation (GSN) assurance case editor.
+* Safety goals decomposition using strategies that are provably deductive.
+* Correctness checks for safety goals decompositions.
+* Megamodel querying.
+* Change impact assessment.
+
+Follow these steps to install MMINT-A:
+
+1. Add `https://adisandro.github.io/mmint/release` to the list of software sites in Eclipse (`Help > Install New Software > Available Software Sites`).
+2. Install `Modeling > MMINT-A`.
 
 
 ## Publications

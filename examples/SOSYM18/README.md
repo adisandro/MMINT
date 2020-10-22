@@ -1,4 +1,4 @@
-## SoSyM Vol. 19-1 paper
+## SoSyM paper Vol. 19-1
 
 [Heterogeneous Megamodel Management using Collection Operators](https://doi.org/10.1007/s10270-019-00738-9)
 
@@ -6,7 +6,7 @@ Model management techniques help tame the complexity caused by the many models u
 
 ## Experiments instructions
 
-1. Add `https://adisandro.github.io/mmint/release` to the list of software sites in Eclipse.
+1. Add `https://adisandro.github.io/mmint/release` to the list of software sites in Eclipse (`Help > Install New Software > Available Software Sites`).
 2. Install `Examples > SoSyM18`.
 3. Import [this project](https://github.com/adisandro/MMINT/tree/develop/examples/SOSYM18) in your workspace from git (here's an Eclipse tutorial: https://wiki.eclipse.org/EGit/User_Guide#Starting_from_existing_Git_Repositories).
 4. Navigate to the scenario you want to run, e.g. `experiments > filter > model` (from now on, let us assume this is the scenario to run).
