@@ -16,6 +16,14 @@ import "http://se.cs.toronto.edu/mmint/MID"
 import "http://se.cs.toronto.edu/mmint/MID/Relationship"
 import "http://se.cs.toronto.edu/modelepedia/ClassDiagram"
 import "http://se.cs.toronto.edu/modelepedia/GSN"
+//import "http://www.ikv.de/analyze/metamodels/HazardAnalysis/1.0"
+//
+//pattern compliance(event: HazardousEvent) {
+//  Goal(goal);
+//  numGoals == count
+//    find library.connectedEMFObjects(event, goal);
+//  check(numGoals == 0);
+//}
 
 pattern alarms(class: Class) {
   Class.name(class, className);
