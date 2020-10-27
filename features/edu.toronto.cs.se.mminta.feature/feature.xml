@@ -1,4 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Copyright (c) 2012, 2020 Alessio Di Sandro.
+   
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License 2.0 which is available at
+    https://www.eclipse.org/legal/epl-2.0/
+   
+    SPDX-License-Identifier: EPL-2.0
+   
+    Contributors:
+        Alessio Di Sandro - Implementation
+ -->
+
 <feature
       id="edu.toronto.cs.se.mminta.feature"
       label="MMINT-A"
@@ -6,15 +19,15 @@
       provider-name="Software Engineering Group, University of Toronto">
 
    <description url="https://github.com/adisandro/MMINT">
-      MMINT-A is a version of MMINT that supports safety Assurance cases.
+      MMINT-A is a version of MMINT that supports safety Assurance Cases.
    </description>
 
    <copyright>
-      Copyright (c) 2012-2020 Alessio Di Sandro, Marsha Chechik, Nick Fung, Sahar Kokaly. All rights reserved.
+      Copyright (c) 2012, 2020 Alessio Di Sandro.
    </copyright>
 
-   <license url="http://www.eclipse.org/legal/epl-v10.html">
-      This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+   <license url="https://www.eclipse.org/legal/epl-2.0/">
+      This program and the accompanying materials are made available under the terms of the Eclipse Public License 2.0 which is available at https://www.eclipse.org/legal/epl-2.0/
    </license>
 
    <includes

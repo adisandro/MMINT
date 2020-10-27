@@ -1,4 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Copyright (c) 2012, 2020 Alessio Di Sandro.
+   
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License 2.0 which is available at
+    https://www.eclipse.org/legal/epl-2.0/
+   
+    SPDX-License-Identifier: EPL-2.0
+   
+    Contributors:
+        Alessio Di Sandro - Implementation
+ -->
+
 <feature
       id="edu.toronto.cs.se.mmint.feature"
       label="MMINT"
@@ -10,17 +23,17 @@
 of related models and describe the relationships that exist among
 them. Users can plug in their own languages (model types, relationship
 types, operators, editors) and work with them through Model Interconnection
-Diagrams. Mega-models can be used to support the development,
+Diagrams. Megamodels can be used to support the development,
 comprehension, validation, consistency, evolution and reuse of
 sets of related models.
    </description>
 
    <copyright>
-      Copyright (c) 2012-2020 Marsha Chechik, Alessio Di Sandro, Michalis Famelis, Rick Salay. All rights reserved.
+      Copyright (c) 2012, 2020 Alessio Di Sandro.
    </copyright>
 
-   <license url="http://www.eclipse.org/legal/epl-v10.html">
-      This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+   <license url="https://www.eclipse.org/legal/epl-2.0/">
+      This program and the accompanying materials are made available under the terms of the Eclipse Public License 2.0 which is available at https://www.eclipse.org/legal/epl-2.0/
    </license>
 
    <requires>
