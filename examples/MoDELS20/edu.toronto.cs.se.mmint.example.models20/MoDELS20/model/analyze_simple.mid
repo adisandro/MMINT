@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mid:MID xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editor="http://se.cs.toronto.edu/mmint/MID/Editor" xmlns:mid="http://se.cs.toronto.edu/mmint/MID" xsi:schemaLocation="http://se.cs.toronto.edu/mmint/MID/Editor http://se.cs.toronto.edu/mmint/MID#//editor">
+  <models uri="/LMS/model/lms_sc.safetycase" name="lms_sc" metatypeUri="http://se.cs.toronto.edu/modelepedia/GSN" dynamic="true" fileExtension="safetycase" editors="//@editors.0">
+    <modelElems uri="/LMS/model/lms_sc.safetycase#//@goals.0_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Basic Goal G0" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="BasicGoal" featureName="goals" relatedClassName="SafetyCase"/>
+    </modelElems>
+    <modelElems uri="/LMS/model/lms_sc.safetycase#//@goals.2_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Basic Goal G2" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="BasicGoal" featureName="goals" relatedClassName="SafetyCase"/>
+    </modelElems>
+    <modelElems uri="/LMS/model/lms_sc.safetycase#//@goals.3_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Basic Goal G3" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="BasicGoal" featureName="goals" relatedClassName="SafetyCase"/>
+    </modelElems>
+    <modelElems uri="/LMS/model/lms_sc.safetycase#//@goals.5_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Basic Goal G4" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="BasicGoal" featureName="goals" relatedClassName="SafetyCase"/>
+    </modelElems>
+    <modelElems uri="/LMS/model/lms_sc.safetycase#//@goals.4_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Basic Goal G5" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="BasicGoal" featureName="goals" relatedClassName="SafetyCase"/>
+    </modelElems>
+    <modelElems uri="/LMS/model/lms_sc.safetycase#//@goals.6_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Basic Goal G22" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="BasicGoal" featureName="goals" relatedClassName="SafetyCase"/>
+    </modelElems>
+    <modelElems uri="/LMS/model/lms_sc.safetycase#//@goals.7_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Basic Goal G28" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="BasicGoal" featureName="goals" relatedClassName="SafetyCase"/>
+    </modelElems>
+    <modelElems uri="/LMS/model/lms_sc.safetycase#//@goals.8_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Basic Goal G6" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="BasicGoal" featureName="goals" relatedClassName="SafetyCase"/>
+    </modelElems>
+    <modelElems uri="/LMS/model/lms_sc.safetycase#//@goals.10_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Independence Goal G20" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="IndependenceGoal" featureName="goals" relatedClassName="SafetyCase"/>
+    </modelElems>
+    <modelElems uri="/LMS/model/lms_sc.safetycase#//@goals.11_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Basic Goal G18" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="BasicGoal" featureName="goals" relatedClassName="SafetyCase"/>
+    </modelElems>
+    <modelElems uri="/LMS/model/lms_sc.safetycase#//@goals.12_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Basic Goal G19" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="BasicGoal" featureName="goals" relatedClassName="SafetyCase"/>
+    </modelElems>
+    <modelElems uri="/LMS/model/lms_sc.safetycase#//@goals.14_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Basic Goal G8" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="BasicGoal" featureName="goals" relatedClassName="SafetyCase"/>
+    </modelElems>
+    <modelElems uri="/LMS/model/lms_sc.safetycase#//@goals.15_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Basic Goal G9" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="BasicGoal" featureName="goals" relatedClassName="SafetyCase"/>
+    </modelElems>
+    <modelElems uri="/LMS/model/lms_sc.safetycase#//@goals.16_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Basic Goal G10" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="BasicGoal" featureName="goals" relatedClassName="SafetyCase"/>
+    </modelElems>
+    <modelElems uri="/LMS/model/lms_sc.safetycase#//@goals.17_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Basic Goal G31" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="BasicGoal" featureName="goals" relatedClassName="SafetyCase"/>
+    </modelElems>
+    <modelElems uri="/LMS/model/lms_sc.safetycase#//@goals.22_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Basic Goal G11" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="BasicGoal" featureName="goals" relatedClassName="SafetyCase"/>
+    </modelElems>
+    <modelElems uri="/LMS/model/lms_sc.safetycase#//@goals.23_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Basic Goal G12" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="BasicGoal" featureName="goals" relatedClassName="SafetyCase"/>
+    </modelElems>
+    <modelElems uri="/LMS/model/lms_sc.safetycase#//@goals.24_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Basic Goal G13" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="BasicGoal" featureName="goals" relatedClassName="SafetyCase"/>
+    </modelElems>
+    <modelElems uri="/LMS/model/lms_sc.safetycase#//@solutions.5_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Solution Sn12" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Solution" featureName="solutions" relatedClassName="SafetyCase"/>
+    </modelElems>
+    <modelElems uri="/LMS/model/lms_sc.safetycase#//@solutions.6_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Solution Sn11" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Solution" featureName="solutions" relatedClassName="SafetyCase"/>
+    </modelElems>
+    <modelElems uri="/LMS/model/lms_sc.safetycase#//@solutions.17_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Solution Sn10" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Solution" featureName="solutions" relatedClassName="SafetyCase"/>
+    </modelElems>
+    <modelElems uri="/LMS/model/lms_sc.safetycase#//@solutions.15_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Solution Sn5" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Solution" featureName="solutions" relatedClassName="SafetyCase"/>
+    </modelElems>
+    <modelElems uri="/LMS/model/lms_sc.safetycase#//@solutions.16_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Solution Sn6" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Solution" featureName="solutions" relatedClassName="SafetyCase"/>
+    </modelElems>
+    <modelElems uri="/LMS/model/lms_sc.safetycase#//@solutions.9_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Solution Sn8" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Solution" featureName="solutions" relatedClassName="SafetyCase"/>
+    </modelElems>
+    <modelElems uri="/LMS/model/lms_sc.safetycase#//@solutions.8_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Solution Sn7" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Solution" featureName="solutions" relatedClassName="SafetyCase"/>
+    </modelElems>
+    <modelElems uri="/LMS/model/lms_sc.safetycase#//@solutions.10_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Solution Sn9" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Solution" featureName="solutions" relatedClassName="SafetyCase"/>
+    </modelElems>
+    <modelElems uri="/LMS/model/lms_sc.safetycase#//@solutions.19_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Solution Sn3" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Solution" featureName="solutions" relatedClassName="SafetyCase"/>
+    </modelElems>
+    <modelElems uri="/LMS/model/lms_sc.safetycase#//@goals.20_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Basic Goal G27" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="BasicGoal" featureName="goals" relatedClassName="SafetyCase"/>
+    </modelElems>
+  </models>
+  <editors xsi:type="editor:Diagram" uri="/LMS/representations.aird#_8SXUYGgvEeihGP6yb4cCyQ" name="GSN Representation for model /LMS/model/lms_sc.safetycase" metatypeUri="http://se.cs.toronto.edu/modelepedia/Representation_GSN" dynamic="true" modelUri="/LMS/model/lms_sc.safetycase" id="edu.toronto.cs.se.modelepedia.safetycase.design">
+    <fileExtensions>aird</fileExtensions>
+  </editors>
+  <extendibleTable key="/LMS/model/lms_sc.safetycase" value="//@models.0"/>
+  <extendibleTable key="/LMS/model/lms_sc.safetycase#//@goals.0_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.0"/>
+  <extendibleTable key="/LMS/model/lms_sc.safetycase#//@goals.2_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.1"/>
+  <extendibleTable key="/LMS/model/lms_sc.safetycase#//@goals.3_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.2"/>
+  <extendibleTable key="/LMS/model/lms_sc.safetycase#//@goals.5_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.3"/>
+  <extendibleTable key="/LMS/model/lms_sc.safetycase#//@goals.4_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.4"/>
+  <extendibleTable key="/LMS/model/lms_sc.safetycase#//@goals.6_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.5"/>
+  <extendibleTable key="/LMS/model/lms_sc.safetycase#//@goals.7_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.6"/>
+  <extendibleTable key="/LMS/model/lms_sc.safetycase#//@goals.8_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.7"/>
+  <extendibleTable key="/LMS/model/lms_sc.safetycase#//@goals.10_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.8"/>
+  <extendibleTable key="/LMS/model/lms_sc.safetycase#//@goals.11_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.9"/>
+  <extendibleTable key="/LMS/model/lms_sc.safetycase#//@goals.12_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.10"/>
+  <extendibleTable key="/LMS/model/lms_sc.safetycase#//@goals.14_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.11"/>
+  <extendibleTable key="/LMS/model/lms_sc.safetycase#//@goals.15_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.12"/>
+  <extendibleTable key="/LMS/model/lms_sc.safetycase#//@goals.16_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.13"/>
+  <extendibleTable key="/LMS/model/lms_sc.safetycase#//@goals.17_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.14"/>
+  <extendibleTable key="/LMS/model/lms_sc.safetycase#//@goals.22_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.15"/>
+  <extendibleTable key="/LMS/model/lms_sc.safetycase#//@goals.23_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.16"/>
+  <extendibleTable key="/LMS/model/lms_sc.safetycase#//@goals.24_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.17"/>
+  <extendibleTable key="/LMS/model/lms_sc.safetycase#//@solutions.5_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.18"/>
+  <extendibleTable key="/LMS/model/lms_sc.safetycase#//@solutions.6_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.19"/>
+  <extendibleTable key="/LMS/model/lms_sc.safetycase#//@solutions.17_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.20"/>
+  <extendibleTable key="/LMS/model/lms_sc.safetycase#//@solutions.15_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.21"/>
+  <extendibleTable key="/LMS/model/lms_sc.safetycase#//@solutions.16_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.22"/>
+  <extendibleTable key="/LMS/model/lms_sc.safetycase#//@solutions.9_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.23"/>
+  <extendibleTable key="/LMS/model/lms_sc.safetycase#//@solutions.8_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.24"/>
+  <extendibleTable key="/LMS/model/lms_sc.safetycase#//@solutions.10_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.25"/>
+  <extendibleTable key="/LMS/model/lms_sc.safetycase#//@solutions.19_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.26"/>
+  <extendibleTable key="/LMS/model/lms_sc.safetycase#//@goals.20_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.27"/>
+</mid:MID>

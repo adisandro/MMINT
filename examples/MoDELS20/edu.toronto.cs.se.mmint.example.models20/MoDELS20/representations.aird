@@ -10,6 +10,12 @@
     <semanticResources>model/demo.middiag</semanticResources>
     <semanticResources>model/evolve.mid</semanticResources>
     <semanticResources>model/evolve.middiag</semanticResources>
+    <semanticResources>model/analyze_simple.mid</semanticResources>
+    <semanticResources>model/analyze_simple.middiag</semanticResources>
+    <semanticResources>model/demo_simple.mid</semanticResources>
+    <semanticResources>model/demo_simple.middiag</semanticResources>
+    <semanticResources>model/evolve_simple.mid</semanticResources>
+    <semanticResources>model/evolve_simple.middiag</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" uid="_0yy_wBOsEeuFuIonbRPvUg">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']"/>
     </ownedViews>

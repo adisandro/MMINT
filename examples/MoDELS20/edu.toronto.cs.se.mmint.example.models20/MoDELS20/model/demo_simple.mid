@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mid:MID xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editor="http://se.cs.toronto.edu/mmint/MID/Editor" xmlns:mid="http://se.cs.toronto.edu/mmint/MID">
+  <models uri="/MoDELS20/model/evolve_simple.mid" name="evolve" metatypeUri="http://se.cs.toronto.edu/mmint/MID" dynamic="true" fileExtension="mid" editors="//@editors.0"/>
+  <models uri="/MoDELS20/model/create.mid" name="create" metatypeUri="http://se.cs.toronto.edu/mmint/MID" dynamic="true" fileExtension="mid" editors="//@editors.1"/>
+  <models uri="/MoDELS20/model/analyze_simple.mid" name="analyze" metatypeUri="http://se.cs.toronto.edu/mmint/MID" dynamic="true" fileExtension="mid" editors="//@editors.2"/>
+  <editors xsi:type="editor:Diagram" uri="/MoDELS20/model/evolve_simple.middiag" name="MID diagram for model /MoDELS20/model/evolve_simple.mid" metatypeUri="http://se.cs.toronto.edu/mmint/MID_diagram" dynamic="true" modelUri="/MoDELS20/model/evolve_simple.mid" id="edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorID" wizardId="edu.toronto.cs.se.mmint.mid.diagram.part.MIDCreationWizardID">
+    <fileExtensions>middiag</fileExtensions>
+  </editors>
+  <editors xsi:type="editor:Diagram" uri="/MoDELS20/model/create.middiag" name="MID diagram for model /MoDELS20/model/create.mid" metatypeUri="http://se.cs.toronto.edu/mmint/MID_diagram" dynamic="true" modelUri="/MoDELS20/model/create.mid" id="edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorID" wizardId="edu.toronto.cs.se.mmint.mid.diagram.part.MIDCreationWizardID">
+    <fileExtensions>middiag</fileExtensions>
+  </editors>
+  <editors xsi:type="editor:Diagram" uri="/MoDELS20/model/analyze_simple.middiag" name="MID diagram for model /MoDELS20/model/analyze_simple.mid" metatypeUri="http://se.cs.toronto.edu/mmint/MID_diagram" dynamic="true" modelUri="/MoDELS20/model/analyze_simple.mid" id="edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorID" wizardId="edu.toronto.cs.se.mmint.mid.diagram.part.MIDCreationWizardID">
+    <fileExtensions>middiag</fileExtensions>
+  </editors>
+  <extendibleTable key="/MoDELS20/model/evolve_simple.mid" value="//@models.0"/>
+  <extendibleTable key="/MoDELS20/model/create.mid" value="//@models.1"/>
+  <extendibleTable key="/MoDELS20/model/analyze_simple.mid" value="//@models.2"/>
+</mid:MID>
