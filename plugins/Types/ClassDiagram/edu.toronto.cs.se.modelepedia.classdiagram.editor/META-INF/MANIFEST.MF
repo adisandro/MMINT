@@ -7,7 +7,7 @@ Bundle-ClassPath: .
 Bundle-Activator: edu.toronto.cs.se.modelepedia.classdiagram.presentation.ClassDiagramEditorPlugin$Implementation
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-14
+Bundle-RequiredExecutionEnvironment: JavaSE-15
 Export-Package: edu.toronto.cs.se.modelepedia.classdiagram.presentation
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources,
