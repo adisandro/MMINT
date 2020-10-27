@@ -10,8 +10,8 @@
   </properties>
   <pluginRepositories>
     <pluginRepository>
-      <id>tycho-snapshots</id>
-      <url>https://repo.eclipse.org/content/repositories/tycho-snapshots/</url>
+      <id>Tycho</id>
+      <url>https://repo.eclipse.org/content/repositories/tycho-snapshots</url>
     </pluginRepository>
   </pluginRepositories>
   <build>
