@@ -1,32 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:diagram="http://www.eclipse.org/sirius/diagram/1.1.0" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" xmlns:safetycase="http://se.cs.toronto.edu/modelepedia/GSN" xmlns:viewpoint="http://www.eclipse.org/sirius/1.1.0" xsi:schemaLocation="http://www.eclipse.org/sirius/description/1.1.0 http://www.eclipse.org/sirius/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description">
-  <viewpoint:DAnalysis uid="_UyodoBOmEeuaQt6bg8a7Fw" selectedViews="_0yy_wBOsEeuFuIonbRPvUg _0y7ioBOsEeuFuIonbRPvUg _0y_0EBOsEeuFuIonbRPvUg _0zEFgBOsEeuFuIonbRPvUg" version="14.3.1.202003261200">
-    <referencedAnalysis xmi:type="viewpoint:DAnalysis" href="platform:/resource/LMS/representations.aird#_7f880CixEeihd4XNMicbhg"/>
-    <semanticResources>model/analyze.mid</semanticResources>
-    <semanticResources>model/analyze.middiag</semanticResources>
-    <semanticResources>model/create.mid</semanticResources>
-    <semanticResources>model/create.middiag</semanticResources>
-    <semanticResources>model/demo.mid</semanticResources>
-    <semanticResources>model/demo.middiag</semanticResources>
-    <semanticResources>model/evolve.mid</semanticResources>
-    <semanticResources>model/evolve.middiag</semanticResources>
-    <semanticResources>model/analyze_simple.mid</semanticResources>
-    <semanticResources>model/analyze_simple.middiag</semanticResources>
-    <semanticResources>model/demo_simple.mid</semanticResources>
-    <semanticResources>model/demo_simple.middiag</semanticResources>
-    <semanticResources>model/evolve_simple.mid</semanticResources>
-    <semanticResources>model/evolve_simple.middiag</semanticResources>
-    <ownedViews xmi:type="viewpoint:DView" uid="_0yy_wBOsEeuFuIonbRPvUg">
-      <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']"/>
-    </ownedViews>
-    <ownedViews xmi:type="viewpoint:DView" uid="_0y7ioBOsEeuFuIonbRPvUg">
-      <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/edu.toronto.cs.se.modelepedia.safetycase.design/description/safetycase.odesign#//@ownedViewpoints[name='SafetyCaseViewpoint']"/>
-    </ownedViews>
-    <ownedViews xmi:type="viewpoint:DView" uid="_0y_0EBOsEeuFuIonbRPvUg">
-      <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/edu.toronto.cs.se.modelepedia.sequencediagram.design/description/sequencediagram.odesign#//@ownedViewpoints[name='SequenceDiagramViewpoint']"/>
-    </ownedViews>
-    <ownedViews xmi:type="viewpoint:DView" uid="_0zEFgBOsEeuFuIonbRPvUg">
-      <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/edu.toronto.cs.se.modelepedia.classdiagram.design/description/classdiagram.odesign#//@ownedViewpoints[name='ClassDiagramViewpoint']"/>
-    </ownedViews>
-  </viewpoint:DAnalysis>
-</xmi:XMI>
+<viewpoint:DAnalysis xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:viewpoint="http://www.eclipse.org/sirius/1.1.0" xsi:schemaLocation="http://www.eclipse.org/sirius/description/1.1.0 http://www.eclipse.org/sirius/1.1.0#//description" uid="_UyodoBOmEeuaQt6bg8a7Fw" selectedViews="_0yy_wBOsEeuFuIonbRPvUg _0y7ioBOsEeuFuIonbRPvUg _0y_0EBOsEeuFuIonbRPvUg _0zEFgBOsEeuFuIonbRPvUg" version="14.3.1.202003261200">
+  <referencedAnalysis xmi:type="viewpoint:DAnalysis" href="platform:/resource/LMS/representations.aird#_7f880CixEeihd4XNMicbhg"/>
+  <ownedViews xmi:type="viewpoint:DView" uid="_0yy_wBOsEeuFuIonbRPvUg">
+    <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']"/>
+  </ownedViews>
+  <ownedViews xmi:type="viewpoint:DView" uid="_0y7ioBOsEeuFuIonbRPvUg">
+    <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/edu.toronto.cs.se.modelepedia.safetycase.design/description/safetycase.odesign#//@ownedViewpoints[name='SafetyCaseViewpoint']"/>
+  </ownedViews>
+  <ownedViews xmi:type="viewpoint:DView" uid="_0y_0EBOsEeuFuIonbRPvUg">
+    <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/edu.toronto.cs.se.modelepedia.sequencediagram.design/description/sequencediagram.odesign#//@ownedViewpoints[name='SequenceDiagramViewpoint']"/>
+  </ownedViews>
+  <ownedViews xmi:type="viewpoint:DView" uid="_0zEFgBOsEeuFuIonbRPvUg">
+    <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/edu.toronto.cs.se.modelepedia.classdiagram.design/description/classdiagram.odesign#//@ownedViewpoints[name='ClassDiagramViewpoint']"/>
+  </ownedViews>
+</viewpoint:DAnalysis>
