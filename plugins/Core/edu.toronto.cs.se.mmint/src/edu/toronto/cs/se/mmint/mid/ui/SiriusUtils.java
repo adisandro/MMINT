@@ -11,16 +11,10 @@
  */
 package edu.toronto.cs.se.mmint.mid.ui;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
@@ -30,7 +24,6 @@ import org.eclipse.sirius.business.api.dialect.command.CreateRepresentationComma
 import org.eclipse.sirius.business.api.dialect.command.DeleteRepresentationCommand;
 import org.eclipse.sirius.business.api.helper.SiriusResourceHelper;
 import org.eclipse.sirius.business.api.helper.SiriusUtil;
-import org.eclipse.sirius.business.api.session.Session;
 import org.eclipse.sirius.business.api.session.SessionManager;
 import org.eclipse.sirius.tools.api.command.semantic.AddSemanticResourceCommand;
 import org.eclipse.sirius.ui.business.api.dialect.DialectUIManager;
@@ -38,8 +31,6 @@ import org.eclipse.sirius.viewpoint.DAnalysis;
 import org.eclipse.sirius.viewpoint.DRepresentation;
 import org.eclipse.sirius.viewpoint.DRepresentationDescriptor;
 import org.eclipse.sirius.viewpoint.DView;
-import org.eclipse.sirius.viewpoint.description.RepresentationDescription;
-import org.eclipse.sirius.viewpoint.description.Viewpoint;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
@@ -51,14 +42,14 @@ public class SiriusUtils {
     public final static String DEFAULT_REPRESENTATIONS_FILE = "representations" + MMINT.MODEL_FILEEXTENSION_SEPARATOR +
                                                               SiriusUtil.SESSION_RESOURCE_EXTENSION;
 
-    public static @Nullable DRepresentationDescriptor findRepresentationDescriptor(@NonNull String modelPath,
-                                                                                   @NonNull String diagramTypeUri,
-                                                                                   @NonNull String sAirdPath) {
+    public static @Nullable DRepresentationDescriptor findRepresentationDescriptor(String modelPath,
+                                                                                   String diagramTypeUri,
+                                                                                   String sAirdPath) {
 
-        Session sSession = SessionManager.INSTANCE.getSession(FileUtils.createEMFUri(sAirdPath, true),
-                                                              new NullProgressMonitor());
+        var sSession = SessionManager.INSTANCE.getSession(FileUtils.createEMFUri(sAirdPath, true),
+                                                          new NullProgressMonitor());
         String modelExt = FileUtils.getFileExtensionFromPath(modelPath);
-        DAnalysis sRoot = (DAnalysis) sSession.getSessionResource().getContents().get(0);
+        var sRoot = (DAnalysis) sSession.getSessionResource().getContents().get(0);
         for (DView sView : sRoot.getOwnedViews()) {
             if (!sView.getViewpoint().getModelFileExtension().equals(modelExt)) {
                 continue;
@@ -79,36 +70,32 @@ public class SiriusUtils {
      * Creates a new Sirius representation.
      *
      * @param modelPath
-     *            The path of the model for which we are creating the representation.
+     *          The path of the model for which to create the representation.
      * @param sAirdPath
-     *            The path of the Sirius representations file that contains the model resource.
+     *          The path of the Sirius representations file that will contain the new representation.
      * @return The created Sirius representation.
+     * @throws Exception
+     *           If the model can't be loaded.
      */
-    public static @NonNull DRepresentation createRepresentation(@NonNull String modelPath, @NonNull String sAirdPath) {
+    public static DRepresentation createRepresentation(String modelPath, String sAirdPath) throws Exception {
 
         // get the model root from the sirius session
-        Session sSession = SessionManager.INSTANCE.getSession(FileUtils.createEMFUri(sAirdPath, true),
-                                                              new NullProgressMonitor());
-        URI modelUri = FileUtils.createEMFUri(modelPath, true);
-        EObject modelRootObj = null;
-        Resource modelResource = sSession.getTransactionalEditingDomain().getResourceSet().getResource(modelUri, false);
-        if (modelResource == null) { // add the model resource to the session
-            AddSemanticResourceCommand sCmd = new AddSemanticResourceCommand(sSession, modelUri,
-                                                                             new NullProgressMonitor());
-            sSession.getTransactionalEditingDomain().getCommandStack().execute(sCmd);
-            modelResource = sSession.getTransactionalEditingDomain().getResourceSet().getResource(modelUri, false);
-        }
-        modelRootObj = modelResource.getContents().get(0);
-
+        var sSession = SessionManager.INSTANCE.getSession(FileUtils.createEMFUri(sAirdPath, true),
+                                                          new NullProgressMonitor());
+        var modelUri = FileUtils.createEMFUri(modelPath, true);
+        var sCmd = new AddSemanticResourceCommand(sSession, modelUri, new NullProgressMonitor());
+        sSession.getTransactionalEditingDomain().getCommandStack().execute(sCmd);
+        var rootModelObj = FileUtils.readModelFile(modelPath, sSession.getTransactionalEditingDomain().getResourceSet(),
+                                                   true);
         // create a new sirius representation within an emf transaction
-        Collection<RepresentationDescription> sDescs = DialectManager.INSTANCE
-            .getAvailableRepresentationDescriptions(sSession.getSelectedViewpoints(false), modelRootObj);
+        var sDescs = DialectManager.INSTANCE
+            .getAvailableRepresentationDescriptions(sSession.getSelectedViewpoints(false), rootModelObj);
         if (sDescs.isEmpty()) { // add the viewpoint to the session
             String modelExt = FileUtils.getFileExtensionFromPath(modelPath);
-            List<Viewpoint> sViewpoints = ViewpointRegistry.getInstance().getViewpoints().stream()
+            var sViewpoints = ViewpointRegistry.getInstance().getViewpoints().stream()
                 .filter(sViewpoint -> sViewpoint.getModelFileExtension().equals(modelExt))
                 .collect(Collectors.toList());
-            final EObject modelRootObj2 = modelRootObj;
+            final var modelRootObj2 = rootModelObj;
             sSession.getTransactionalEditingDomain().getCommandStack().execute(
                 new RecordingCommand(sSession.getTransactionalEditingDomain()) {
                     @Override
@@ -120,30 +107,29 @@ public class SiriusUtils {
                 }
             );
             sDescs = DialectManager.INSTANCE.getAvailableRepresentationDescriptions(
-                sSession.getSelectedViewpoints(false), modelRootObj);
+                sSession.getSelectedViewpoints(false), rootModelObj);
         }
-        CreateRepresentationCommand sCmd = new CreateRepresentationCommand(
-            sSession, sDescs.iterator().next(), modelRootObj, FileUtils.getFileNameFromPath(modelPath),
-            new NullProgressMonitor());
-        sSession.getTransactionalEditingDomain().getCommandStack().execute(sCmd);
+        var sCmd2 = new CreateRepresentationCommand(sSession, sDescs.iterator().next(), rootModelObj,
+                                                   FileUtils.getFileNameFromPath(modelPath), new NullProgressMonitor());
+        sSession.getTransactionalEditingDomain().getCommandStack().execute(sCmd2);
 
-        return sCmd.getCreatedRepresentation();
+        return sCmd2.getCreatedRepresentation();
     }
 
     public static void openRepresentation(@NonNull String sReprUri) throws Exception {
 
         String sAirdPath = MIDRegistry.getModelUri(sReprUri);
-        Session sSession = SessionManager.INSTANCE.getSession(FileUtils.createEMFUri(sAirdPath, true),
+        var sSession = SessionManager.INSTANCE.getSession(FileUtils.createEMFUri(sAirdPath, true),
                                                               new NullProgressMonitor());
-        DRepresentation sRepr = (DRepresentation) FileUtils.readModelObject(sReprUri, sSession.getSessionResource());
+        var sRepr = (DRepresentation) FileUtils.readModelObject(sReprUri, sSession.getSessionResource());
         DialectUIManager.INSTANCE.openEditor(sSession, sRepr, new NullProgressMonitor());
     }
 
     public static void deleteRepresentation(@NonNull Diagram diagram) {
 
-        String sReprUri = diagram.getUri();
+        var sReprUri = diagram.getUri();
         String sAirdPath = MIDRegistry.getModelUri(sReprUri);
-        Session sSession = SessionManager.INSTANCE.getSession(FileUtils.createEMFUri(sAirdPath, true),
+        var sSession = SessionManager.INSTANCE.getSession(FileUtils.createEMFUri(sAirdPath, true),
                                                               new NullProgressMonitor());
         DRepresentationDescriptor sReprDesc = SiriusUtils
             .findRepresentationDescriptor(diagram.getModelUri(), diagram.getMetatypeUri(), sAirdPath);

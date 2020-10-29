@@ -23,10 +23,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.window.Window;
 import org.eclipse.sirius.business.api.helper.SiriusUtil;
-import org.eclipse.sirius.viewpoint.DRepresentationDescriptor;
-import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.IWorkbenchWizard;
+import org.eclipse.sirius.viewpoint.DRepresentation;
 import org.eclipse.ui.PlatformUI;
 
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
@@ -95,8 +92,15 @@ public class DiagramImpl extends EditorImpl implements Diagram {
         String diagramUri = null;
         if (createDiagramFile) { // model created programmatically
             if (this.getFileExtensions().get(0).equals(SiriusUtil.SESSION_RESOURCE_EXTENSION)) { // Sirius
-                String sAirdPath = MIDDialogs.selectSiriusRepresentationsFileToContainModelDiagram(modelPath);
-                diagramUri = MIDRegistry.getModelElementUri(SiriusUtils.createRepresentation(modelPath, sAirdPath));
+                var sAirdPath = MIDDialogs.selectSiriusRepresentationsFileToContainModelDiagram(modelPath);
+                DRepresentation sRepr;
+                try {
+                  sRepr = SiriusUtils.createRepresentation(modelPath, sAirdPath);
+                }
+                catch (Exception e) {
+                  throw new MMINTException("Unable to load model " + modelPath, e);
+                }
+                diagramUri = MIDRegistry.getModelElementUri(sRepr);
                 if (Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.
                                                              PREFERENCE_MENU_OPENMODELEDITORS_ENABLED))) {
                     FileUtils.openEclipseEditor(diagramUri, this.getId(), true);
@@ -104,12 +108,9 @@ public class DiagramImpl extends EditorImpl implements Diagram {
             }
             else { // GMF
                 diagramUri = FileUtils.replaceFileExtensionInPath(modelPath, this.getFileExtensions().get(0));
-                IStructuredSelection modelFile = new StructuredSelection(
-                    ResourcesPlugin.getWorkspace().getRoot().getFile(
-                        new Path(modelPath)
-                    )
-                );
-                EditorCreationWizardDialog wizDialog = this.invokeInstanceWizard(modelFile);
+                var modelFile = new StructuredSelection(
+                    ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(modelPath)));
+                var wizDialog = this.invokeInstanceWizard(modelFile);
                 if (wizDialog == null) {
                     throw new MIDDialogCancellation();
                 }
@@ -120,8 +121,8 @@ public class DiagramImpl extends EditorImpl implements Diagram {
                 //TODO MMINT[SIRIUS] Delete does not work sometimes
                 //TODO MMINT[SIRIUS] Open the modeling project if not open
                 //TODO MMINT[SIRIUS] Create the representation file if it does not exist
+                var isImported = false;
                 String sAirdPath = null;
-                boolean isImported = false;
                 try {
                     sAirdPath = MIDDialogs.selectSiriusRepresentationsFileToContainModelDiagram(modelPath);
                 }
@@ -130,8 +131,8 @@ public class DiagramImpl extends EditorImpl implements Diagram {
                 }
                 finally {
                     // the currently open Eclipse editor is the key to create vs import
-                    IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-                    IEditorPart pageEditor = page.getActiveEditor();
+                    var page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+                    var pageEditor = page.getActiveEditor();
                     if (pageEditor.getEditorInput().getName().endsWith(GMFUtils.DIAGRAM_SUFFIX)) { // imported model
                         isImported = true;
                         // either continue or exit with the exception if canceled
@@ -151,8 +152,7 @@ public class DiagramImpl extends EditorImpl implements Diagram {
                     }
                 }
                 if (isImported) { // find existing sirius representation
-                    DRepresentationDescriptor sReprDesc = SiriusUtils
-                        .findRepresentationDescriptor(modelPath, this.getUri(), sAirdPath);
+                    var sReprDesc = SiriusUtils.findRepresentationDescriptor(modelPath, this.getUri(), sAirdPath);
                     if (sReprDesc == null) { // no existing sirius diagram found
                         // fallback to other editor by failing
                         throw new MMINTException("Sirius representation not found");
@@ -160,7 +160,14 @@ public class DiagramImpl extends EditorImpl implements Diagram {
                     diagramUri = MIDRegistry.getModelElementUri(sReprDesc.getRepresentation());
                 }
                 else { // create a new sirius representation
-                    diagramUri = MIDRegistry.getModelElementUri(SiriusUtils.createRepresentation(modelPath, sAirdPath));
+                    DRepresentation sRepr;
+                    try {
+                      sRepr = SiriusUtils.createRepresentation(modelPath, sAirdPath);
+                    }
+                    catch (Exception e) {
+                      throw new MMINTException("Unable to load model " + modelPath, e);
+                    }
+                    diagramUri = MIDRegistry.getModelElementUri(sRepr);
                     FileUtils.openEclipseEditor(diagramUri, this.getId(), true);
                 }
             }
@@ -173,7 +180,7 @@ public class DiagramImpl extends EditorImpl implements Diagram {
             }
         }
 
-        Diagram newDiagram = super.createThisEClass();
+        var newDiagram = super.<Diagram>createThisEClass();
         super.addInstance(newDiagram, diagramUri, modelPath, instanceMID);
 
         return newDiagram;
@@ -187,19 +194,19 @@ public class DiagramImpl extends EditorImpl implements Diagram {
 
         MMINTException.mustBeType(this);
 
-        IWorkbenchWizard wizard = super.getInstanceWizard(initialSelection);
+        var wizard = super.getInstanceWizard(initialSelection);
         EditorCreationWizardDialog wizDialog;
         if (this.getWizardDialogClass() == null) {
             if (initialSelection.getFirstElement() instanceof IFile) {
                 // create the diagram directly and do not open the wizard
-                String modelUri = ((IFile) initialSelection.getFirstElement()).getFullPath().toOSString();
+                var modelUri = ((IFile) initialSelection.getFirstElement()).getFullPath().toOSString();
                 String diagramUri = FileUtils.replaceFileExtensionInPath(modelUri, this.getFileExtensions().get(0));
                 Diagram superDiagramType = this;
                 while (superDiagramType.getSupertype() != null && superDiagramType.getSupertype() != MIDTypeHierarchy.getRootEditorType()) {
                     superDiagramType = (Diagram) superDiagramType.getSupertype();
                 }
-                String diagramKind = MIDTypeRegistry.getType(superDiagramType.getModelUri()).getName();
-                String diagramPluginId = MIDTypeRegistry.getTypeBundle(superDiagramType.getUri()).getSymbolicName();
+                var diagramKind = MIDTypeRegistry.getType(superDiagramType.getModelUri()).getName();
+                var diagramPluginId = MIDTypeRegistry.getTypeBundle(superDiagramType.getUri()).getSymbolicName();
                 try {
                     GMFUtils.createGMFDiagramAndFile(modelUri, diagramUri, diagramKind, diagramPluginId, true);
                     if (Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.
