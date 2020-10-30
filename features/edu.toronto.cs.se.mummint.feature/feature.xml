@@ -2,7 +2,7 @@
 <feature
       id="edu.toronto.cs.se.mummint.feature"
       label="MU-MMINT"
-      version="2.6.99.qualifier"
+      version="2.7.0"
       provider-name="Software Engineering Group, University of Toronto">
 
    <description url="https://github.com/adisandro/MMINT">

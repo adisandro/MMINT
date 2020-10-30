@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.kleisli;singleton:=true
 Automatic-Module-Name: edu.toronto.cs.se.modelepedia.kleisli
-Bundle-Version: 2.6.99.qualifier
+Bundle-Version: 2.7.0
 Bundle-ClassPath: .
 Bundle-RequiredExecutionEnvironment: JavaSE-14
 Export-Package: edu.toronto.cs.se.modelepedia.kleisli,
