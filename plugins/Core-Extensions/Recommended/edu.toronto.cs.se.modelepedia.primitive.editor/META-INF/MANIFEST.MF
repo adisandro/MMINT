@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.primitive.editor;singleton:=true
-Bundle-Version: 2.7.0
+Bundle-Version: 2.7.99.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: edu.toronto.cs.se.modelepedia.primitive.presentation.PrimitiveEditorPlugin$Implementation
 Bundle-Vendor: %providerName

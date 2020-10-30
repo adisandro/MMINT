@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.mmint.example.jase20;singleton:=true
-Bundle-Version: 2.7.0
+Bundle-Version: 2.7.99.qualifier
 Automatic-Module-Name: edu.toronto.cs.se.mmint.example.jase20
 Bundle-RequiredExecutionEnvironment: JavaSE-14
 Bundle-Vendor: %providerName
