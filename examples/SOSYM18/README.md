@@ -1,4 +1,4 @@
-## SoSyM paper Vol. 19-1
+## SoSyM Vol. 19-1 2020 paper
 
 [Heterogeneous Megamodel Management using Collection Operators](https://doi.org/10.1007/s10270-019-00738-9)
 
