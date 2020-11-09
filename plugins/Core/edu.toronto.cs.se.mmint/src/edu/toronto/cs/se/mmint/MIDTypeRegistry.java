@@ -494,7 +494,7 @@ public class MIDTypeRegistry {
     try (var bundleJar = new JarFile(new File(bundlePath))) {
       var bundleJarEntry = bundleJar.getEntry(relativeFilePath);
       if (bundleJarEntry == null) {
-        throw new MMINTException("Can't find the " + fileName + "file");
+        throw new MMINTException("Can't find the '" + fileName + "' file");
       }
       Files.copy(bundleJar.getInputStream(bundleJarEntry), tmpFilePath, StandardCopyOption.REPLACE_EXISTING);
     }
@@ -505,43 +505,41 @@ public class MIDTypeRegistry {
 	public static String getFileBundlePath(ExtendibleElement typeInBundle, String relativeFilePath) throws Exception {
     var bundlePath = typeInBundle.getClass().getProtectionDomain().getCodeSource().getLocation().getFile();
     var fileName = FileUtils.getLastSegmentFromPath(relativeFilePath);
-    String filePath;
     if (bundlePath.endsWith("jar")) { // binary installation
       // first attempt: find file in original jar
       try {
-        filePath = extractJarFile(bundlePath, relativeFilePath);
+        return extractJarFile(bundlePath, relativeFilePath);
       }
       catch (Exception e) {
-        // do nothing
+        // fallthrough to second attempt
       }
       // second attempt: find file in source jar
       var separator = bundlePath.lastIndexOf("_");
       var srcBundlePath = bundlePath.substring(0, separator) + ".source" + bundlePath.substring(separator);
       if (!FileUtils.isFile(srcBundlePath, false)) {
-        var errorMsg = "Can't find the " + fileName + "file";
+        var errorMsg = "Can't find the '" + fileName + "' file";
         if (fileName.endsWith("java")) {
           errorMsg += " (try installing mmint.sdk)";
         }
         throw new MMINTException(errorMsg);
       }
-      filePath = extractJarFile(srcBundlePath, relativeFilePath);
+      return extractJarFile(srcBundlePath, relativeFilePath);
     }
     else { // running from the sources
       Bundle bundle = MIDTypeRegistry.getTypeBundle(typeInBundle.getUri());
       if (bundle == null) {
-        throw new MMINTException("Can't find the bundle for " + typeInBundle.getName());
+        throw new MMINTException("Can't find the bundle for '" + typeInBundle.getName() + "'");
       }
       var bundleEntries = bundle.findEntries("/", fileName, true);
       if (bundleEntries == null || !bundleEntries.hasMoreElements()) {
-        throw new MMINTException("Can't find the source file for " + fileName);
+        throw new MMINTException("Can't find the '" + fileName + "' file");
       }
-      filePath = FileLocator.toFileURL(bundleEntries.nextElement()).getFile();
+      var filePath = FileLocator.toFileURL(bundleEntries.nextElement()).getFile();
       if (Platform.getOS().equals(Platform.OS_WIN32)) {
         filePath = filePath.substring(1); // remove leading slash
       }
+      return filePath;
     }
-
-    return filePath;
   }
 
 	/**
