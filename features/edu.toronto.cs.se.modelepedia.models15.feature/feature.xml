@@ -23,7 +23,7 @@
       <import plugin="org.eclipse.emf.validation"/>
       <import plugin="org.eclipse.acceleo.engine"/>
       <import plugin="edu.toronto.cs.se.mmint"/>
-      <import plugin="edu.toronto.cs.se.modelepedia.primitive"/>
+      <import plugin="edu.toronto.cs.se.mmint.primitive"/>
       <import plugin="edu.toronto.cs.se.modelepedia.operator"/>
       <import plugin="edu.toronto.cs.se.modelepedia.classdiagram"/>
       <import plugin="org.eclipse.emf.edit"/>

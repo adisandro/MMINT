@@ -26,11 +26,11 @@ import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
+import edu.toronto.cs.se.mmint.primitive.int_.Int;
+import edu.toronto.cs.se.mmint.primitive.int_.IntFactory;
+import edu.toronto.cs.se.mmint.primitive.int_.IntPackage;
 import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagram;
 import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage;
-import edu.toronto.cs.se.modelepedia.primitive.int_.Int;
-import edu.toronto.cs.se.modelepedia.primitive.int_.IntFactory;
-import edu.toronto.cs.se.modelepedia.primitive.int_.IntPackage;
 import edu.toronto.cs.se.modelepedia.models15_java.Package;
 
 public class CD2JavaCheck extends OperatorImpl {

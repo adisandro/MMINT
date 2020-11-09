@@ -11,7 +11,6 @@
     Contributors:
         Alessio Di Sandro - Implementation
  -->
-
 <feature
       id="edu.toronto.cs.se.mmint.feature"
       label="MMINT"
@@ -77,6 +76,7 @@ sets of related models.
       <import plugin="org.eclipse.ocl.pivot"/>
       <import plugin="org.eclipse.swt"/>
       <import plugin="org.eclipse.acceleo.engine"/>
+      <import plugin="org.eclipse.ui"/>
       <import plugin="org.apache.log4j"/>
       <import plugin="org.eclipse.xtext.xbase.lib"/>
       <import plugin="org.eclipse.viatra.query.runtime"/>
@@ -154,12 +154,35 @@ sets of related models.
          id="edu.toronto.cs.se.mmint.operator"
          download-size="0"
          install-size="0"
-         version="0.0.0"/>
+         version="0.0.0"
+         unpack="false"/>
 
    <plugin
          id="edu.toronto.cs.se.mmint.viatra"
          download-size="0"
          install-size="0"
-         version="0.0.0"/>
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="edu.toronto.cs.se.mmint.primitive"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="edu.toronto.cs.se.mmint.primitive.edit"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="edu.toronto.cs.se.mmint.primitive.editor"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
 </feature>

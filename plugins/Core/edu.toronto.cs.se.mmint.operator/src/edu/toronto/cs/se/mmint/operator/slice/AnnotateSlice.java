@@ -37,7 +37,7 @@ import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 
 public class AnnotateSlice extends OperatorImpl {
 
-  public static final String MODEL_TYPE_ID = "http://se.cs.toronto.edu/modelepedia/File";
+  public static final String MODEL_TYPE_ID = "http://se.cs.toronto.edu/mmint/File";
   protected Input input;
   protected Output output;
 

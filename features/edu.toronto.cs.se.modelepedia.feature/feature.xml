@@ -27,20 +27,15 @@ sets of related models.
       <import plugin="org.eclipse.core.runtime"/>
       <import plugin="org.eclipse.core.resources"/>
       <import plugin="org.eclipse.gmf.runtime.diagram.core"/>
+      <import plugin="edu.toronto.cs.se.mmint"/>
+      <import plugin="edu.toronto.cs.se.mmint.diagram"/>
+      <import plugin="edu.toronto.cs.se.mmint.java"/>
       <import plugin="org.eclipse.papyrus.uml.diagram.wizards"/>
       <import plugin="org.eclipse.ui"/>
       <import plugin="org.eclipse.ui.ide"/>
       <import plugin="org.eclipse.uml2.uml"/>
       <import plugin="org.eclipse.gmf.runtime.notation"/>
-      <import plugin="org.eclipse.emf.ecore"/>
-      <import plugin="org.eclipse.emf.validation"/>
-      <import plugin="org.eclipse.emf.edit"/>
-      <import plugin="org.eclipse.emf.ecore.xmi"/>
-      <import plugin="org.eclipse.emf.edit.ui"/>
-      <import plugin="edu.toronto.cs.se.mmint"/>
-      <import plugin="edu.toronto.cs.se.mmint.diagram"/>
-      <import plugin="edu.toronto.cs.se.mmint.java"/>
-      <import plugin="edu.toronto.cs.se.mmint.edit"/>
+      <import plugin="edu.toronto.cs.se.mmint.primitive"/>
    </requires>
 
    <plugin
@@ -52,27 +47,6 @@ sets of related models.
 
    <plugin
          id="edu.toronto.cs.se.modelepedia.uml"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="edu.toronto.cs.se.modelepedia.primitive"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="edu.toronto.cs.se.modelepedia.primitive.edit"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="edu.toronto.cs.se.modelepedia.primitive.editor"
          download-size="0"
          install-size="0"
          version="0.0.0"

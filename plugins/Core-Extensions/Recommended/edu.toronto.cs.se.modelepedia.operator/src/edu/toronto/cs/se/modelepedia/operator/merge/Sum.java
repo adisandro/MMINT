@@ -25,8 +25,8 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
-import edu.toronto.cs.se.modelepedia.primitive.int_.Int;
-import edu.toronto.cs.se.modelepedia.primitive.int_.IntFactory;
+import edu.toronto.cs.se.mmint.primitive.int_.Int;
+import edu.toronto.cs.se.mmint.primitive.int_.IntFactory;
 
 public class Sum extends OperatorImpl {
 

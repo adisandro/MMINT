@@ -426,7 +426,7 @@
 	                 name="check">
 	           </type>
 	           <typeEndpoint
-	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/Int">
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Int">
 	           </typeEndpoint>
             </parameter>
          </outputs>
@@ -488,7 +488,7 @@
 	                 name="file">
 	           </type>
 	           <typeEndpoint
-	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/File">
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/File">
 	           </typeEndpoint>
             </parameter>
          </outputs>

@@ -148,7 +148,7 @@
 	                 name="int1">
 	           </type>
 	           <typeEndpoint
-	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/Int">
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Int">
 	           </typeEndpoint>
             </parameter>
             <parameter>
@@ -156,7 +156,7 @@
 	                 name="int2">
 	           </type>
 	           <typeEndpoint
-	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/Int">
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Int">
 	           </typeEndpoint>
             </parameter>
          </inputs>
@@ -166,7 +166,7 @@
 	                 name="sum">
 	           </type>
 	           <typeEndpoint
-	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/Int">
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Int">
 	           </typeEndpoint>
             </parameter>
          </outputs>
