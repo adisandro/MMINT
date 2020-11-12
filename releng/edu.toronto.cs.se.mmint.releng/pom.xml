@@ -182,6 +182,7 @@
   	<module>../../plugins/Types/IStar/edu.toronto.cs.se.modelepedia.istar_mavo.edit</module>
   	<module>../../plugins/Types/IStar/edu.toronto.cs.se.modelepedia.istar_mavo.editor</module>
   	<module>../../plugins/Types/IStar/edu.toronto.cs.se.modelepedia.istar_mavo.operator</module>
+    <module>../../plugins/Types/LTS/edu.toronto.cs.se.mmint.types.lts</module>
   	<module>../../plugins/Types/RelationalDatabase/edu.toronto.cs.se.modelepedia.relationaldatabase</module>
   	<module>../../plugins/Types/RelationalDatabase/edu.toronto.cs.se.modelepedia.relationaldatabase.diagram</module>
   	<module>../../plugins/Types/RelationalDatabase/edu.toronto.cs.se.modelepedia.relationaldatabase.edit</module>

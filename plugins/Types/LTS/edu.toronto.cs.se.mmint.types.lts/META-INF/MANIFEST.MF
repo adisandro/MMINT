@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: edu.toronto.cs.se.mmint.types.lts;singleton:=true
+Bundle-Version: 2.7.99.qualifier
+Bundle-ClassPath: .
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Export-Package: edu.toronto.cs.se.mmint.types.lts,
+ edu.toronto.cs.se.mmint.types.lts.impl,
+ edu.toronto.cs.se.mmint.types.lts.util
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore,
+ edu.toronto.cs.se.mmint
+Bundle-ActivationPolicy: lazy
+Automatic-Module-Name: edu.toronto.cs.se.mmint.types.lts
+Bundle-RequiredExecutionEnvironment: JavaSE-14
