@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<!--
+    Copyright (c) 2020, 2020 Alessio Di Sandro.
+   
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License 2.0 which is available at
+    https://www.eclipse.org/legal/epl-2.0/
+   
+    SPDX-License-Identifier: EPL-2.0
+   
+    Contributors:
+        Alessio Di Sandro - Implementation
+ -->
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated lts -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="edu.toronto.cs.se.mmint.types.lts.presentation.LTSModelWizardID"
+            name="%_UI_LTSModelWizard_label"
+            class="edu.toronto.cs.se.mmint.types.lts.presentation.LTSModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/LTSModelFile.gif">
+         <description>%_UI_LTSModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated lts -->
+      <editor
+            id="edu.toronto.cs.se.mmint.types.lts.presentation.LTSEditorID"
+            name="%_UI_LTSEditor_label"
+            icon="icons/full/obj16/LTSModelFile.gif"
+            extensions="lts"
+            class="edu.toronto.cs.se.mmint.types.lts.presentation.LTSEditor"
+            contributorClass="edu.toronto.cs.se.mmint.types.lts.presentation.LTSActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.editors">
+      <editorType
+            id="edu.toronto.cs.se.mmint.types.lts.presentation.LTSEditorID"
+            modelTypeUri="edu.toronto.cs.se.mmint.types.lts"
+            wizardId="edu.toronto.cs.se.mmint.types.lts.presentation.LTSModelWizardID">
+         <type
+               name="LTS EMF Editor"
+               uri="edu.toronto.cs.se.mmint.types.lts.editor">
+         </type>
+      </editorType>
+   </extension>
+
+</plugin>
