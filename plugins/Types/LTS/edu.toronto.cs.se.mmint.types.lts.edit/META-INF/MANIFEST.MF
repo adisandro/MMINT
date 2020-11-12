@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: edu.toronto.cs.se.mmint.types.lts.edit;singleton:=true
+Automatic-Module-Name: edu.toronto.cs.se.mmint.types.lts.edit
+Bundle-Version: 2.7.99.qualifier
+Bundle-ClassPath: .
+Bundle-Activator: edu.toronto.cs.se.mmint.types.lts.provider.LTSEditPlugin$Implementation
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Export-Package: edu.toronto.cs.se.mmint.types.lts.provider
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.edit,
+ edu.toronto.cs.se.mmint.types.lts
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-14
