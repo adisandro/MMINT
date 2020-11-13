@@ -1,25 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:tool="http://www.eclipse.org/sirius/diagram/description/tool/1.1.0" xmlns:tool_1="http://www.eclipse.org/sirius/description/tool/1.1.0" name="lts" version="12.0.0.2017041100">
-  <ownedViewpoints name="LTSViewpoint" modelFileExtension="lts">
-    <ownedRepresentations xsi:type="description_1:DiagramDescription" name="LTSDiagram" domainClass="lts.LTS" enablePopupBars="true">
+  <ownedViewpoints name="LTSViewpoint" label="LTS Viewpoint" modelFileExtension="lts">
+    <ownedRepresentations xsi:type="description_1:DiagramDescription" name="LTSDiagram" label="LTS Diagram" domainClass="lts.LTS" enablePopupBars="true">
       <defaultLayer name="Default">
-        <nodeMappings name="StateNode" semanticCandidatesExpression="feature:states" domainClass="lts::State">
-          <style xsi:type="style:EllipseNodeDescription" labelSize="12" labelExpression="feature:label" labelPosition="node" resizeKind="NSEW">
+        <nodeMappings name="StateNode" preconditionExpression="aql:not self.oclIsTypeOf(lts::InitialState) and not self.oclIsTypeOf(lts::FinalState)" semanticCandidatesExpression="feature:states" domainClass="lts.State">
+          <style xsi:type="style:EllipseNodeDescription" borderSizeComputationExpression="2" labelSize="12" showIcon="false" labelExpression="feature:label" labelPosition="node" resizeKind="NSEW" horizontalDiameterComputationExpression="7" verticalDiameterComputationExpression="7">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
           </style>
         </nodeMappings>
-        <edgeMappings name="TransitionEdge" semanticCandidatesExpression="feature:transitions" sourceMapping="//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@nodeMappings[name='StateNode']" targetMapping="//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@nodeMappings[name='StateNode']" targetFinderExpression="feature:to" sourceFinderExpression="feature:from" domainClass="lts::Transition" useDomainElement="true">
+        <nodeMappings name="InitialStateNode" semanticCandidatesExpression="feature:states" domainClass="lts.InitialState">
+          <style xsi:type="style:DotDescription" labelSize="12" showIcon="false" labelExpression="feature:label" labelPosition="node" resizeKind="NSEW">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+          </style>
+        </nodeMappings>
+        <nodeMappings name="FinalStateNode" semanticCandidatesExpression="feature:states" domainClass="lts.FinalState">
+          <style xsi:type="style:DotDescription" labelSize="12" showIcon="false" labelExpression="feature:label" labelPosition="node" resizeKind="NSEW">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+          </style>
+        </nodeMappings>
+        <edgeMappings name="TransitionEdge" semanticCandidatesExpression="feature:transitions" sourceMapping="//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@nodeMappings[name='StateNode'] //@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@nodeMappings[name='InitialStateNode']" targetMapping="//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@nodeMappings[name='StateNode'] //@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@nodeMappings[name='FinalStateNode']" targetFinderExpression="feature:to" sourceFinderExpression="feature:from" domainClass="lts.Transition" useDomainElement="true">
           <style sizeComputationExpression="2">
-            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
-            <centerLabelStyleDescription labelSize="12" labelExpression="feature:label">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <centerLabelStyleDescription labelSize="12" showIcon="false" labelExpression="feature:label">
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             </centerLabelStyleDescription>
           </style>
         </edgeMappings>
-        <toolSections name="LTSTools" label="Tools">
-          <ownedTools xsi:type="tool:NodeCreationDescription" name="CreateState" label="Create State" nodeMappings="//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@nodeMappings[name='StateNode']">
+        <toolSections name="CreateTools" label="Create">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="CreateInitialState" label="Initial State" precondition="aql:container.states->filter(lts::InitialState)->isEmpty()" nodeMappings="//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@nodeMappings[name='InitialStateNode']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="lts.InitialState" referenceName="states"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="CreateState" label="State" nodeMappings="//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@nodeMappings[name='StateNode']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
@@ -28,7 +51,16 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:EdgeCreationDescription" name="CreateTransition" label="Create Transition" edgeMappings="//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="CreateFinalState" label="Final State" precondition="aql:container.states->filter(lts::FinalState)->isEmpty()" nodeMappings="//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@nodeMappings[name='FinalStateNode']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="lts.FinalState" referenceName="states"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="CreateTransition" label="Transition" edgeMappings="//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']">
             <sourceVariable name="source"/>
             <targetVariable name="target"/>
             <sourceViewVariable name="sourceView"/>
