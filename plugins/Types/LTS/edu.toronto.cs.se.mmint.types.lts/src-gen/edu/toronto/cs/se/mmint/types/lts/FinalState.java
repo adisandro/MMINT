@@ -20,7 +20,8 @@ package edu.toronto.cs.se.mmint.types.lts;
  *
  *
  * @see edu.toronto.cs.se.mmint.types.lts.LTSPackage#getFinalState()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='noOutgoing'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot noOutgoing='Tuple {\n\tmessage : String = \'A final state can\\\'t have outgoing transitions\',\n\tstatus : Boolean = \n      outgoing-&gt;size() = 0\n}.status'"
  * @generated
  */
 public interface FinalState extends State {

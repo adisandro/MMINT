@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="lts" nsURI="edu.toronto.cs.se.mmint.types.lts" nsPrefix="lts">
+  <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+    <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+  </eAnnotations>
   <eClassifiers xsi:type="ecore:EClass" name="LTS">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="oneInitial oneFinal"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="oneInitial" value="Tuple {&#xA;&#x9;message : String = 'There must be one and only one initial state',&#xA;&#x9;status : Boolean = &#xA;      states->select(oclIsKindOf(InitialState))->size() = 1&#xA;}.status"/>
+      <details key="oneFinal" value="Tuple {&#xA;&#x9;message : String = 'There must be one and only one final state',&#xA;&#x9;status : Boolean = &#xA;      states->select(oclIsKindOf(FinalState))->size() = 1&#xA;}.status"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="states" upperBound="-1"
         eType="#//State" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="transitions" upperBound="-1"
@@ -16,8 +28,22 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="outgoing" upperBound="-1"
         eType="#//Transition" eOpposite="#//Transition/from"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="InitialState" eSuperTypes="#//State"/>
-  <eClassifiers xsi:type="ecore:EClass" name="FinalState" eSuperTypes="#//State"/>
+  <eClassifiers xsi:type="ecore:EClass" name="InitialState" eSuperTypes="#//State">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="noIncoming"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="noIncoming" value="Tuple {&#xA;&#x9;message : String = 'An initial state can\'t have incoming transitions',&#xA;&#x9;status : Boolean = &#xA;      incoming->size() = 0&#xA;}.status"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FinalState" eSuperTypes="#//State">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="noOutgoing"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="noOutgoing" value="Tuple {&#xA;&#x9;message : String = 'A final state can\'t have outgoing transitions',&#xA;&#x9;status : Boolean = &#xA;      outgoing->size() = 0&#xA;}.status"/>
+    </eAnnotations>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Transition" eSuperTypes="#//LabeledElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="from" lowerBound="1" eType="#//State"
         eOpposite="#//State/outgoing"/>

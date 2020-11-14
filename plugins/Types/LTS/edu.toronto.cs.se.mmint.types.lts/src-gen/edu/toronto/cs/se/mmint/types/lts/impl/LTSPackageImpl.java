@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import edu.toronto.cs.se.mmint.types.lts.FinalState;
@@ -25,6 +26,7 @@ import edu.toronto.cs.se.mmint.types.lts.LTSPackage;
 import edu.toronto.cs.se.mmint.types.lts.LabeledElement;
 import edu.toronto.cs.se.mmint.types.lts.State;
 import edu.toronto.cs.se.mmint.types.lts.Transition;
+import edu.toronto.cs.se.mmint.types.lts.util.LTSValidator;
 
 /**
  * <!-- begin-user-doc -->
@@ -127,6 +129,16 @@ public class LTSPackageImpl extends EPackageImpl implements LTSPackage {
 
     // Initialize created meta-data
     theLTSPackage.initializePackageContents();
+
+    // Register package validator
+    EValidator.Registry.INSTANCE.put
+      (theLTSPackage,
+       new EValidator.Descriptor() {
+         @Override
+         public EValidator getEValidator() {
+           return LTSValidator.INSTANCE;
+         }
+       });
 
     // Mark meta-data to indicate it can't be changed
     theLTSPackage.freeze();
@@ -370,6 +382,77 @@ public class LTSPackageImpl extends EPackageImpl implements LTSPackage {
 
     // Create resource
     createResource(LTSPackage.eNS_URI);
+
+    // Create annotations
+    // http://www.eclipse.org/emf/2002/Ecore
+    createEcoreAnnotations();
+    // http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot
+    createPivotAnnotations();
+  }
+
+  /**
+   * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore</b>.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected void createEcoreAnnotations() {
+    var source = "http://www.eclipse.org/emf/2002/Ecore";
+    addAnnotation
+      (this,
+       source,
+       new String[] {
+         "invocationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+         "settingDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+         "validationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"
+       });
+    addAnnotation
+      (this.ltsEClass,
+       source,
+       new String[] {
+         "constraints", "oneInitial oneFinal"
+       });
+    addAnnotation
+      (this.initialStateEClass,
+       source,
+       new String[] {
+         "constraints", "noIncoming"
+       });
+    addAnnotation
+      (this.finalStateEClass,
+       source,
+       new String[] {
+         "constraints", "noOutgoing"
+       });
+  }
+
+  /**
+   * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot</b>.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected void createPivotAnnotations() {
+    var source = "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot";
+    addAnnotation
+      (this.ltsEClass,
+       source,
+       new String[] {
+         "oneInitial", "Tuple {\n\tmessage : String = \'There must be one and only one initial state\',\n\tstatus : Boolean = \n      states->select(oclIsKindOf(InitialState))->size() = 1\n}.status",
+         "oneFinal", "Tuple {\n\tmessage : String = \'There must be one and only one final state\',\n\tstatus : Boolean = \n      states->select(oclIsKindOf(FinalState))->size() = 1\n}.status"
+       });
+    addAnnotation
+      (this.initialStateEClass,
+       source,
+       new String[] {
+         "noIncoming", "Tuple {\n\tmessage : String = \'An initial state can\\\'t have incoming transitions\',\n\tstatus : Boolean = \n      incoming->size() = 0\n}.status"
+       });
+    addAnnotation
+      (this.finalStateEClass,
+       source,
+       new String[] {
+         "noOutgoing", "Tuple {\n\tmessage : String = \'A final state can\\\'t have outgoing transitions\',\n\tstatus : Boolean = \n      outgoing->size() = 0\n}.status"
+       });
   }
 
 } //LTSPackageImpl
