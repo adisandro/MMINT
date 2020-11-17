@@ -14,4 +14,37 @@
  -->
 <plugin>
 
+   <extension
+         point="edu.toronto.cs.se.mmint.operators">
+      <operatorType>
+         <type
+               name="LTSToLean"
+               uri="edu.toronto.cs.se.mmint.types.lts.operators.LTSToLean"
+               class="edu.toronto.cs.se.mmint.types.lts.operators.LTSToLean">
+         </type>
+         <inputs>
+            <parameter>
+               <type
+                     name="lts"
+                     uri="edu.toronto.cs.se.mmint.types.lts.operators.LTSToLean/lts">
+               </type>
+               <typeEndpoint
+                     targetTypeUri="edu.toronto.cs.se.mmint.types.lts">
+               </typeEndpoint>
+            </parameter>
+         </inputs>
+         <outputs>
+            <parameter>
+               <type
+                     name="lean"
+                     uri="edu.toronto.cs.se.mmint.types.lts.operators.LTSToLean/lean">
+               </type>
+               <typeEndpoint
+                     targetTypeUri="http://se.cs.toronto.edu/mmint/File">
+               </typeEndpoint>
+            </parameter>
+         </outputs>
+      </operatorType>
+   </extension>
+
 </plugin>

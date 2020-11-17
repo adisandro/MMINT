@@ -11,7 +11,7 @@
    
     Contributors:
         Alessio Di Sandro - Implementation
- -->
+-->
 <plugin>
 
    <extension point="org.eclipse.emf.ecore.generated_package">

@@ -12,7 +12,7 @@
 package edu.toronto.cs.se.mmint.operator.patch;
 
 import java.io.File;
-import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.jdt.annotation.NonNull;
@@ -21,14 +21,16 @@ import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorConstraint;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmint.mid.utils.AcceleoUtils;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
-import edu.toronto.cs.se.mmint.operator.acceleo.AcceleoOperator;
 
-public class ModelRelToText extends AcceleoOperator {
+public class ModelRelToText extends OperatorImpl {
 
     private Input input;
     private Output output;
+    private ModelRelToText_M2T textGenerator;
 
     private static class Input {
 
@@ -38,7 +40,7 @@ public class ModelRelToText extends AcceleoOperator {
 
         public Input(@NonNull Map<String, Model> inputsByName) {
 
-            this.rel = (ModelRel) inputsByName.get(IN_MODELREL);
+            this.rel = (ModelRel) inputsByName.get(Input.IN_MODELREL);
             if (this.rel.getModelEndpoints().size() == 0) {
                 // rel must have endpoints
                 throw new IllegalArgumentException();
@@ -53,7 +55,7 @@ public class ModelRelToText extends AcceleoOperator {
 
         public @NonNull Map<String, Model> packed() {
 
-            return new HashMap<>();
+            return Map.of();
         }
     }
 
@@ -72,21 +74,20 @@ public class ModelRelToText extends AcceleoOperator {
         }
     }
 
-    @Override
     protected void init(@NonNull Map<String, Model> inputsByName, @NonNull Map<String, MID> outputMIDsByName) throws Exception {
 
-        super.init(inputsByName, outputMIDsByName);
         this.input = new Input(inputsByName);
         this.output = new Output(outputMIDsByName);
-        super.folder = (new File(FileUtils.prependWorkspacePath(this.input.firstModel.getUri()))).getParentFile();
-        super.acceleoGen = new ModelRelToText_M2T(this.input.rel, this.folder, this.acceleoArgs);
+        var folder = (new File(FileUtils.prependWorkspacePath(this.input.firstModel.getUri()))).getParentFile();
+        this.textGenerator = new ModelRelToText_M2T(this.input.rel, folder, List.of());
     }
 
     @Override
     public Map<String, Model> run(Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
                                   Map<String, MID> outputMIDsByName) throws Exception {
 
-        super.run(inputsByName, genericsByName, outputMIDsByName);
+        init(inputsByName, outputMIDsByName);
+        AcceleoUtils.runAcceleo(this.textGenerator);
 
         return this.output.packed();
     }
