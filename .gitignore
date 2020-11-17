@@ -1,4 +1,10 @@
+# compilation directories
 bin/
 target/
 xtend-gen/
+
+# atl compiled files
 *.asm
+
+# acceleo compilation errors
+*.java.lost
