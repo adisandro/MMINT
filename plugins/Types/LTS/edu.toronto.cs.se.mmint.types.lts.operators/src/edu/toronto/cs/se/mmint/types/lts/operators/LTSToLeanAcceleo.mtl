@@ -1,5 +1,5 @@
 [comment encoding = UTF-8 /]
-[module ToLean('edu.toronto.cs.se.mmint.types.lts')/]
+[module LTSToLeanAcceleo('edu.toronto.cs.se.mmint.types.lts')/]
 
 [template private encode(lts : LTS)]
 inductive states
@@ -9,7 +9,7 @@ inductive states
 open states
 [/template]
 
-[template public ToLean(lts : LTS, modelName : String)]
+[template public LTSToLean(lts : LTS, modelName : String)]
   [comment @main /]
   [file (modelName + '.lean', false, 'UTF-8')]
 [encode(lts)/]

@@ -30,7 +30,7 @@ public class LTSToLean extends OperatorImpl {
 
   private Input input;
   private Output output;
-  private ToLean leanGenerator;
+  private LTSToLeanAcceleo leanGenerator;
 
   protected static class Input {
     public final static String MODEL = "lts";
@@ -54,6 +54,9 @@ public class LTSToLean extends OperatorImpl {
     }
 
     public Map<String, Model> packed() throws MMINTException, IOException {
+      if (!FileUtils.isFile(this.leanPath, true)) {
+        throw new MMINTException("Acceleo generation failed");
+      }
       var fileModelType = MIDTypeRegistry.<Model>getType(Output.MODEL_TYPE_ID);
       this.leanModel = fileModelType.createInstance(null, this.leanPath, this.mid);
 
@@ -65,7 +68,8 @@ public class LTSToLean extends OperatorImpl {
     this.input = new Input(inputsByName);
     this.output = new Output(this.input, outputMIDsByName);
     var folder = (new File(FileUtils.prependWorkspacePath(this.input.ltsModel.getUri()))).getParentFile();
-    this.leanGenerator = new ToLean(this.input.ltsModel.getEMFInstanceRoot(), folder, List.of());
+    this.leanGenerator = new LTSToLeanAcceleo(this.input.ltsModel.getEMFInstanceRoot(), folder,
+                                              List.of(this.input.ltsModel.getName()));
   }
 
   @Override
