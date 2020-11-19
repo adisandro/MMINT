@@ -1,17 +1,38 @@
 [comment encoding = UTF-8 /]
 [module LTSToLeanAcceleo('edu.toronto.cs.se.mmint.types.lts')/]
 
-[template private encode(lts : LTS)]
-inductive states
+[template private encode(lts : LTS, modelName : String)]
+import LTS
+
+inductive States
   [for (state : State | lts.states)]
 | [state.label/]
   [/for]
-open states
+open States
+inductive Actions
+  [for (transition : Transition | lts.transitions)]
+| [transition.label/]
+  [/for]
+open Actions
+def Transitions : set (States × Actions × States) :=
+{
+  [for (transition : Transition | lts.transitions)]
+  ([transition.from.label/], [transition.label/], [transition.to.label/]),
+  [/for]
+}
+
+def [modelName/] : LTS := LTS.mk States Actions Transitions
+
+instance coe1 : has_coe States (token [modelName/]) := 
+{coe := fun s, by {rw [modelName/], rw token, exact sum.inl s}}
+
+instance coe2 : has_coe Actions (token [modelName/]) := 
+{coe := fun s, by {rw [modelName/], rw token, exact sum.inr s}}
 [/template]
 
 [template public LTSToLean(lts : LTS, modelName : String)]
   [comment @main /]
   [file (modelName + '.lean', false, 'UTF-8')]
-[encode(lts)/]
+[encode(lts, modelName)/]
   [/file]
 [/template]
