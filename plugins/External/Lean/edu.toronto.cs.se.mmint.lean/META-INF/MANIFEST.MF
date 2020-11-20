@@ -7,5 +7,10 @@ Automatic-Module-Name: edu.toronto.cs.se.mmint.lean
 Bundle-RequiredExecutionEnvironment: JavaSE-14
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Require-Bundle: org.eclipse.jdt.annotation;resolution:=optional,
- edu.toronto.cs.se.mmint
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.validation,
+ org.eclipse.jdt.annotation;resolution:=optional,
+ edu.toronto.cs.se.mmint,
+ org.eclipse.acceleo.engine
+Export-Package: edu.toronto.cs.se.mmint.lean.operators

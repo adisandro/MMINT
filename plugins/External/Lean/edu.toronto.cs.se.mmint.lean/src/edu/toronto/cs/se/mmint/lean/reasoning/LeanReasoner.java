@@ -1,12 +1,15 @@
-/**
- * Copyright (c) 2012-2020 Alessio Di Sandro, Marsha Chechik.
- * All rights reserved. This program and the accompanying materials are made available under the terms
- * of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+/*******************************************************************************
+ * Copyright (c) 2020, 2020 Alessio Di Sandro.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *   Alessio Di Sandro - Implementation
- */
+ *     Alessio Di Sandro - Implementation
+ *******************************************************************************/
 package edu.toronto.cs.se.mmint.lean.reasoning;
 
 import java.io.BufferedReader;
@@ -14,6 +17,7 @@ import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
@@ -24,10 +28,15 @@ public class LeanReasoner implements IModelConstraintTrait {
   public final static String EXECUTABLE = "/path/to/lean";
   public final static String FILE = "/path/to/lean/project/temp.lean";
 
+  private String generateEncoding(Model model) throws MMINTException {
+    return "";
+  }
+
   @Override
   public boolean checkModelConstraint(Model model, ExtendibleElementConstraint constraint, MIDLevel constraintLevel)
                                      throws Exception {
-    Files.writeString(Paths.get(LeanReasoner.FILE), constraint.getImplementation());
+    var encoding = generateEncoding(model);
+    Files.writeString(Paths.get(LeanReasoner.FILE), encoding + "\n" + constraint.getImplementation());
     var builder = new ProcessBuilder(LeanReasoner.EXECUTABLE, LeanReasoner.FILE);
     var process = builder.start();
     var output = new StringBuilder();

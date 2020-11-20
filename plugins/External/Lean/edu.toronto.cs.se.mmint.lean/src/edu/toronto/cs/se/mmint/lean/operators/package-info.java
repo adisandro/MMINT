@@ -11,6 +11,6 @@
  *     Alessio Di Sandro - Implementation
  *******************************************************************************/
 @NonNullByDefault
-package edu.toronto.cs.se.mmint.lean.reasoning;
+package edu.toronto.cs.se.mmint.lean.operators;
 
 import org.eclipse.jdt.annotation.NonNullByDefault;

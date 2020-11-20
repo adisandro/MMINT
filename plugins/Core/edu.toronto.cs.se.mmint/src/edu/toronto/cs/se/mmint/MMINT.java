@@ -532,6 +532,7 @@ public class MMINT implements MMINTConstants {
 	 */
 	public static Operator createOperatorType(IConfigurationElement extensionConfig) throws MMINTException {
 
+	  //TODO MMINT[OPERATOR] Allow abstract operator to have no implementation
 		var extensionType = new ExtensionPointType(extensionConfig, MMINT.typeFactory);
 		if (extensionType.getUri() == null) {
 			throw new MMINTException("Operator type " + extensionType.getName() + " must have a uri");
