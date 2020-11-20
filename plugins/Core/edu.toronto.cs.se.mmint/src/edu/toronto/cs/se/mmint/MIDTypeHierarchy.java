@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -22,7 +22,6 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipse.emf.common.util.EList;
 
 import edu.toronto.cs.se.mmint.extensions.ExtensionPointType;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
@@ -46,16 +45,16 @@ import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 
 /**
  * Utilities to deal with the hierarchy of types.
- * 
+ *
  * @author Alessio Di Sandro
- * 
+ *
  */
 public class MIDTypeHierarchy {
 	//TODO MMINT[MISC] are type and type ref iterators really needed, or are the lists already ordered by construction?
 
 	/**
 	 * The comparator for a hierarchy of types from registered extensions.
-	 * 
+	 *
 	 * @author Alessio Di Sandro
 	 *
 	 */
@@ -70,7 +69,7 @@ public class MIDTypeHierarchy {
 
 		/**
 		 * Constructor: initializes the comparator.
-		 * 
+		 *
 		 * @param extensionUris
 		 *            The map from a uri to its supertype uri within the
 		 *            hierarchy of extensions.
@@ -94,32 +93,32 @@ public class MIDTypeHierarchy {
 		@Override
 		public int compare(IConfigurationElement extension1, IConfigurationElement extension2) {
 
-			if (childName != null) {
-				extension1 = extension1.getChildren(childName)[0];
-				extension2 = extension2.getChildren(childName)[0];
+			if (this.childName != null) {
+				extension1 = extension1.getChildren(this.childName)[0];
+				extension2 = extension2.getChildren(this.childName)[0];
 			}
 			ExtensionPointType type1 = new ExtensionPointType(extension1);
 			String uri1 = type1.getUri();
-			String tempUri1 = uri1;
-			String tempSupertypeUri1 = extensionUris.get(uri1);
-			int supertypes1 = (rootUri != null && uri1.equals(rootUri)) ? -1 : 0;
+			var tempUri1 = uri1;
+			String tempSupertypeUri1 = this.extensionUris.get(uri1);
+			var supertypes1 = (this.rootUri != null && uri1.equals(this.rootUri)) ? -1 : 0;
 			while (tempSupertypeUri1 != null) {
 				supertypes1++;
 				tempUri1 = tempSupertypeUri1;
-				tempSupertypeUri1 = extensionUris.get(tempUri1);
+				tempSupertypeUri1 = this.extensionUris.get(tempUri1);
 			}
 			ExtensionPointType type2 = new ExtensionPointType(extension2);
 			String uri2 = type2.getUri();
-			String tempUri2 = uri2;
-			String tempSupertypeUri2 = extensionUris.get(uri2);
-			int supertypes2 = (rootUri != null && uri2.equals(rootUri)) ? -1 : 0;
+			var tempUri2 = uri2;
+			String tempSupertypeUri2 = this.extensionUris.get(uri2);
+			var supertypes2 = (this.rootUri != null && uri2.equals(this.rootUri)) ? -1 : 0;
 			while (tempSupertypeUri2 != null) {
 				supertypes2++;
 				tempUri2 = tempSupertypeUri2;
-				tempSupertypeUri2 = extensionUris.get(tempUri2);
+				tempSupertypeUri2 = this.extensionUris.get(tempUri2);
 			}
 
-			int relativeOrder = supertypes1 - supertypes2;
+			var relativeOrder = supertypes1 - supertypes2;
 			if (relativeOrder == 0) {
 				relativeOrder = uri1.compareTo(uri2);
 			}
@@ -131,7 +130,7 @@ public class MIDTypeHierarchy {
 
 	/**
 	 * The comparator for a hierarchy of types.
-	 * 
+	 *
 	 * @author Alessio Di Sandro
 	 *
 	 */
@@ -139,7 +138,7 @@ public class MIDTypeHierarchy {
 
 		private List<? extends ExtendibleElement> types;
 
-		public TypeHierarchyComparator(EList<? extends ExtendibleElement> types) {
+		public TypeHierarchyComparator(List<? extends ExtendibleElement> types) {
 
 			this.types = types;
 		}
@@ -152,21 +151,21 @@ public class MIDTypeHierarchy {
 		public int compare(ExtendibleElement type1, ExtendibleElement type2) {
 
 			ExtendibleElement initialType1 = type1;
-			int supertypes1 = 0;
+			var supertypes1 = 0;
 			while (type1.getSupertype() != null) {
 				supertypes1++;
 				type1 = type1.getSupertype();
 			}
 			ExtendibleElement initialType2 = type2;
-			int supertypes2 = 0;
+			var supertypes2 = 0;
 			while (type2.getSupertype() != null) {
 				supertypes2++;
 				type2 = type2.getSupertype();
 			}
 
-			int relativeOrder = supertypes1 - supertypes2;
+			var relativeOrder = supertypes1 - supertypes2;
 			if (relativeOrder == 0) {
-				relativeOrder = types.indexOf(initialType1) - types.indexOf(initialType2);
+				relativeOrder = this.types.indexOf(initialType1) - this.types.indexOf(initialType2);
 			}
 
 			return relativeOrder;
@@ -175,7 +174,7 @@ public class MIDTypeHierarchy {
 
 	/**
 	 * The comparator for a hierarchy of references to types.
-	 * 
+	 *
 	 * @author Alessio Di Sandro
 	 *
 	 */
@@ -183,7 +182,7 @@ public class MIDTypeHierarchy {
 
 		private List<? extends ExtendibleElementReference> typeRefs;
 
-		public TypeRefHierarchyComparator(EList<? extends ExtendibleElementReference> typeRefs) {
+		public TypeRefHierarchyComparator(List<? extends ExtendibleElementReference> typeRefs) {
 
 			this.typeRefs = typeRefs;
 		}
@@ -197,22 +196,22 @@ public class MIDTypeHierarchy {
 		public int compare(ExtendibleElementReference typeRef1, ExtendibleElementReference typeRef2) {
 
 			ExtendibleElementReference initialTypeRef1 = typeRef1;
-			int supertypes1 = 0;
+			var supertypes1 = 0;
 			while (typeRef1.getSupertypeRef() != null) {
 				supertypes1++;
 				typeRef1 = typeRef1.getSupertypeRef();
 			}
 			ExtendibleElementReference initialTypeRef2 = typeRef2;
-			int supertypes2 = 0;
+			var supertypes2 = 0;
 			while (typeRef2.getSupertypeRef() != null) {
 				supertypes2++;
 				typeRef2 = typeRef2.getSupertypeRef();
 			}
 
 
-			int relativeOrder = supertypes1 - supertypes2;
+			var relativeOrder = supertypes1 - supertypes2;
 			if (relativeOrder == 0) {
-				relativeOrder = typeRefs.indexOf(initialTypeRef1) - typeRefs.indexOf(initialTypeRef2);
+				relativeOrder = this.typeRefs.indexOf(initialTypeRef1) - this.typeRefs.indexOf(initialTypeRef2);
 			}
 
 			return relativeOrder;
@@ -223,7 +222,7 @@ public class MIDTypeHierarchy {
 	 * Gets an iterator to loop an array of extensions sorted according to their
 	 * type hierarchy, starting from the one that declares a type with the least
 	 * number of supertypes.
-	 * 
+	 *
 	 * @param extensions
 	 *            The array of extensions to be looped.
 	 * @param childName
@@ -254,14 +253,14 @@ public class MIDTypeHierarchy {
 
 	/**
 	 * Gets a tree set representing the type hierarchy of an array of types.
-	 * 
+	 *
 	 * @param types
 	 *            The list of types.
 	 * @return The tree set.
 	 */
-	private static <T extends ExtendibleElement> TreeSet<T> getTypeHierarchy(EList<T> types) {
+	private static <T extends ExtendibleElement> TreeSet<T> getTypeHierarchy(List<T> types) {
 
-		TreeSet<T> hierarchy = new TreeSet<T>(
+		TreeSet<T> hierarchy = new TreeSet<>(
 			new TypeHierarchyComparator(types)
 		);
 		for (T type : types) {
@@ -274,12 +273,12 @@ public class MIDTypeHierarchy {
 	/**
 	 * Gets an iterator to loop an array of types according to their type
 	 * hierarchy, starting from the one with the least number of supertypes.
-	 * 
+	 *
 	 * @param types
 	 *            The list of types to be looped.
 	 * @return The iterator.
 	 */
-	public static <T extends ExtendibleElement> Iterator<T> getTypeHierarchyIterator(EList<T> types) {
+	public static <T extends ExtendibleElement> Iterator<T> getTypeHierarchyIterator(List<T> types) {
 
 		TreeSet<T> hierarchy = getTypeHierarchy(types);
 
@@ -289,12 +288,12 @@ public class MIDTypeHierarchy {
 	/**
 	 * Gets an iterator to loop an array of types according to their type
 	 * hierarchy, starting from the one with the most number of supertypes.
-	 * 
+	 *
 	 * @param types
 	 *            The list of types to be looped.
 	 * @return The iterator.
 	 */
-	public static <T extends ExtendibleElement> Iterator<T> getInverseTypeHierarchyIterator(EList<T> types) {
+	public static <T extends ExtendibleElement> Iterator<T> getInverseTypeHierarchyIterator(List<T> types) {
 
 		TreeSet<T> hierarchy = getTypeHierarchy(types);
 
@@ -304,14 +303,14 @@ public class MIDTypeHierarchy {
 	/**
 	 * Gets a tree set representing the type hierarchy of an array of references
 	 * to types.
-	 * 
+	 *
 	 * @param types
 	 *            The list of references to types.
 	 * @return The tree set.
 	 */
-	private static <T extends ExtendibleElementReference> TreeSet<T> getTypeRefHierarchy(EList<T> typeRefs) {
+	private static <T extends ExtendibleElementReference> TreeSet<T> getTypeRefHierarchy(List<T> typeRefs) {
 
-		TreeSet<T> hierarchy = new TreeSet<T>(
+		TreeSet<T> hierarchy = new TreeSet<>(
 			new TypeRefHierarchyComparator(typeRefs)
 		);
 		for (T typeRef : typeRefs) {
@@ -325,12 +324,12 @@ public class MIDTypeHierarchy {
 	 * Gets an iterator to loop an array of references to types according to
 	 * their type hierarchy, starting from the one with the least number of
 	 * references to supertypes.
-	 * 
+	 *
 	 * @param types
 	 *            The list of references to types to be looped.
 	 * @return The iterator.
 	 */
-	public static <T extends ExtendibleElementReference> Iterator<T> getTypeRefHierarchyIterator(EList<T> typeRefs) {
+	public static <T extends ExtendibleElementReference> Iterator<T> getTypeRefHierarchyIterator(List<T> typeRefs) {
 
 		TreeSet<T> hierarchy = getTypeRefHierarchy(typeRefs);
 
@@ -341,12 +340,12 @@ public class MIDTypeHierarchy {
 	 * Gets an iterator to loop an array of references to types according to
 	 * their type hierarchy, starting from the one with the most number of
 	 * references to supertypes.
-	 * 
+	 *
 	 * @param types
 	 *            The list of references to types to be looped.
 	 * @return The iterator.
 	 */
-	public static <T extends ExtendibleElementReference> Iterator<T> getInverseTypeRefHierarchyIterator(EList<T> typeRefs) {
+	public static <T extends ExtendibleElementReference> Iterator<T> getInverseTypeRefHierarchyIterator(List<T> typeRefs) {
 
 		TreeSet<T> hierarchy = getTypeRefHierarchy(typeRefs);
 
@@ -355,7 +354,7 @@ public class MIDTypeHierarchy {
 
 	/**
 	 * Gets the table for subtyping in the Type MID.
-	 * 
+	 *
 	 * @param typeMID
 	 *            The Type MID.
 	 * @return The table for subtyping.
@@ -370,7 +369,7 @@ public class MIDTypeHierarchy {
 	/**
 	 * Gets the table for model type conversion in the Type
 	 * MID.
-	 * 
+	 *
 	 * @param typeMID
 	 *            The Type MID.
 	 * @return The table for model type conversion.
@@ -385,15 +384,15 @@ public class MIDTypeHierarchy {
 	public static Map<Model, Set<List<ConversionOperator>>> getMultiplePathConversions(String srcModelTypeUri) {
 
 		Map<String, Set<List<String>>> srcModelTypeConversionUris = getConversionTable(MMINT.cachedTypeMID).get(srcModelTypeUri);
-		Map<Model, Set<List<ConversionOperator>>> multiplePathConversions = new HashMap<Model, Set<List<ConversionOperator>>>();
+		Map<Model, Set<List<ConversionOperator>>> multiplePathConversions = new HashMap<>();
 		for (Map.Entry<String, Set<List<String>>> srcModelTypeConversionUrisEntry : srcModelTypeConversionUris.entrySet()) {
 			if (srcModelTypeConversionUrisEntry.getValue().size() == 1) {
 				continue;
 			}
-			Set<List<ConversionOperator>> conversionPaths = new HashSet<List<ConversionOperator>>();
+			Set<List<ConversionOperator>> conversionPaths = new HashSet<>();
 			multiplePathConversions.put(MIDTypeRegistry.<Model>getType(srcModelTypeConversionUrisEntry.getKey()), conversionPaths);
 			for (List<String> conversionPathUris : srcModelTypeConversionUrisEntry.getValue()) {
-				List<ConversionOperator> conversionPath = new ArrayList<ConversionOperator>();
+				List<ConversionOperator> conversionPath = new ArrayList<>();
 				conversionPaths.add(conversionPath);
 				for (String conversionUri : conversionPathUris) {
 					conversionPath.add(MIDTypeRegistry.<ConversionOperator>getType(conversionUri));
@@ -406,7 +405,7 @@ public class MIDTypeHierarchy {
 
 	/**
 	 * Determines if a subtype-supertype relationship holds for two types.
-	 * 
+	 *
 	 * @param subtypeUri
 	 *            The uri of the subtype.
 	 * @param supertypeUri
@@ -433,7 +432,7 @@ public class MIDTypeHierarchy {
 	/**
 	 * Determines if a subtype-supertype relationship holds for two types in the
 	 * repository.
-	 * 
+	 *
 	 * @param subtypeUri
 	 *            The uri of the subtype.
 	 * @param supertypeUri
@@ -448,7 +447,7 @@ public class MIDTypeHierarchy {
 
 	/**
 	 * Determines if an element is an instance of a type (conversions included).
-	 * 
+	 *
 	 * @param element
 	 *            The element.
 	 * @param typeUri
@@ -500,7 +499,7 @@ public class MIDTypeHierarchy {
 
 	/**
 	 * Determines if an element is an instance of a type.
-	 * 
+	 *
 	 * @param element
 	 *            The element.
 	 * @param typeUri
@@ -512,7 +511,7 @@ public class MIDTypeHierarchy {
 	public static boolean instanceOf(ExtendibleElement element, String typeUri, boolean includeConversions) {
 
 		List<ConversionOperator> conversionOperatorTypes = instanceOf(element, typeUri);
-		
+
 		return (conversionOperatorTypes == null || (!includeConversions && !conversionOperatorTypes.isEmpty())) ?
 			false :
 			true;
@@ -520,7 +519,7 @@ public class MIDTypeHierarchy {
 
 	/**
 	 * Gets all the subtypes of a type.
-	 * 
+	 *
 	 * @param type
 	 *            The type.
 	 * @param typeMID
@@ -546,7 +545,7 @@ public class MIDTypeHierarchy {
 
 	/**
 	 * Gets all the direct subtypes of a type.
-	 * 
+	 *
 	 * @param type
 	 *            The type.
 	 * @param typeMID
@@ -555,7 +554,7 @@ public class MIDTypeHierarchy {
 	 */
 	public static <T extends ExtendibleElement> List<T> getDirectSubtypes(T type, MID typeMID) {
 
-		List<T> subtypes = new ArrayList<T>();
+		List<T> subtypes = new ArrayList<>();
 		Map<String, Set<String>> subtypeTable = getSubtypeTable(typeMID);
 		if (subtypeTable == null) {
 			return subtypes;
@@ -572,7 +571,7 @@ public class MIDTypeHierarchy {
 
 	/**
 	 * Gets all the subtypes of a type in the repository.
-	 * 
+	 *
 	 * @param type
 	 *            The type.
 	 * @return The list of subtypes of the type.
@@ -599,7 +598,7 @@ public class MIDTypeHierarchy {
 	/**
 	 * Gets something hacky related to the multiple inheritance of a type in the
 	 * repository.
-	 * 
+	 *
 	 * @param typeUri
 	 *            The uri of the type.
 	 * @return That something hacky.
@@ -608,7 +607,7 @@ public class MIDTypeHierarchy {
 
 		Set<String> uris = MMINT.multipleInheritanceTable.get(typeUri);
 		if (uris == null) {
-			uris = new HashSet<String>();
+			uris = new HashSet<>();
 		}
 
 		return uris;
@@ -616,85 +615,85 @@ public class MIDTypeHierarchy {
 
 	/**
 	 * Gets the uri of the root type for a certain class of types.
-	 * 
+	 *
 	 * @param type
 	 *            The type from which to understand the class of types.
 	 * @return The uri of the root type.
 	 */
 	public static String getRootTypeUri(ExtendibleElement type) {
-	
-		String rootUri = "";
+
+		var rootUri = "";
 		if (type instanceof ModelRel) {
-			rootUri = MMINT.ROOT_MODELREL_URI;
+			rootUri = MMINTConstants.ROOT_MODELREL_URI;
 		}
 		else if (type instanceof Model) {
-			rootUri = MMINT.ROOT_MODEL_URI;
+			rootUri = MMINTConstants.ROOT_MODEL_URI;
 		}
 		else if (type instanceof ModelEndpoint) {
-			rootUri = MMINT.ROOT_MODELENDPOINT_URI;
+			rootUri = MMINTConstants.ROOT_MODELENDPOINT_URI;
 		}
 		else if (type instanceof ModelElement) {
-			rootUri = MMINT.ROOT_MODELELEM_URI;
+			rootUri = MMINTConstants.ROOT_MODELELEM_URI;
 		}
 		else if (type instanceof Mapping) {
-			rootUri = MMINT.ROOT_MAPPING_URI;
+			rootUri = MMINTConstants.ROOT_MAPPING_URI;
 		}
 		else if (type instanceof ModelElementEndpoint) {
-			rootUri = MMINT.ROOT_MODELELEMENDPOINT_URI;
+			rootUri = MMINTConstants.ROOT_MODELELEMENDPOINT_URI;
 		}
 		else if (type instanceof Operator) {
-			rootUri = MMINT.ROOT_OPERATOR_URI;
+			rootUri = MMINTConstants.ROOT_OPERATOR_URI;
 		}
 		else if (type instanceof Editor) {
-			rootUri = MMINT.ROOT_EDITOR_URI;
+			rootUri = MMINTConstants.ROOT_EDITOR_URI;
 		}
-	
+
 		return rootUri;
 	}
 
 	public static Model getRootModelType() {
 
-		return MIDTypeRegistry.getType(MMINT.ROOT_MODEL_URI);
+		return MIDTypeRegistry.getType(MMINTConstants.ROOT_MODEL_URI);
 	}
 
 	public static ModelRel getRootModelRelType() {
 
-		return MIDTypeRegistry.getType(MMINT.ROOT_MODELREL_URI);
+		return MIDTypeRegistry.getType(MMINTConstants.ROOT_MODELREL_URI);
 	}
 
 	public static ModelEndpoint getRootModelTypeEndpoint() {
 
-		return MIDTypeRegistry.getType(MMINT.ROOT_MODELENDPOINT_URI);
+		return MIDTypeRegistry.getType(MMINTConstants.ROOT_MODELENDPOINT_URI);
 	}
 
 	public static ModelElement getRootModelElementType() {
 
-		return MIDTypeRegistry.getType(MMINT.ROOT_MODELELEM_URI);
+		return MIDTypeRegistry.getType(MMINTConstants.ROOT_MODELELEM_URI);
 	}
 
 	public static Mapping getRootMappingType() {
 
-		return MIDTypeRegistry.getType(MMINT.ROOT_MAPPING_URI);
+		return MIDTypeRegistry.getType(MMINTConstants.ROOT_MAPPING_URI);
 	}
 
 	public static ModelElementEndpoint getRootModelElementTypeEndpoint() {
 
-		return MIDTypeRegistry.getType(MMINT.ROOT_MODELELEMENDPOINT_URI);
+		return MIDTypeRegistry.getType(MMINTConstants.ROOT_MODELELEMENDPOINT_URI);
 	}
 
 	public static Operator getRootOperatorType() {
 
-		return MIDTypeRegistry.getType(MMINT.ROOT_OPERATOR_URI);
+		return MIDTypeRegistry.getType(MMINTConstants.ROOT_OPERATOR_URI);
 	}
 
 	public static Editor getRootEditorType() {
 
-		return MIDTypeRegistry.getType(MMINT.ROOT_EDITOR_URI);
+		return MIDTypeRegistry.getType(MMINTConstants.ROOT_EDITOR_URI);
 	}
 
 	/**
 	 * Checks if the given type is the root type for its class.
-	 * 
+	 *
 	 * @param type
 	 *            The type to be checked.
 	 * @return True if the given type is the root type, false otherwise.
@@ -707,8 +706,8 @@ public class MIDTypeHierarchy {
 	//TODO[MODELENDPOINT] returns null for non-overriding, or overridden model type endpoint (which can be the root one)
 	public static ModelEndpoint getOverriddenModelTypeEndpoint(ModelRel modelRelType, Model targetModelType) {
 
-		boolean isBinary = (modelRelType instanceof BinaryModelRel);
-		MID typeMID = modelRelType.getMIDContainer();
+		var isBinary = (modelRelType instanceof BinaryModelRel);
+		var typeMID = modelRelType.getMIDContainer();
 		modelRelType = (ModelRel) modelRelType.getSupertype();
 		while (!isRootType(modelRelType)) {
 			for (ModelEndpoint modelTypeEndpoint : modelRelType.getModelEndpoints()) {
@@ -727,14 +726,14 @@ public class MIDTypeHierarchy {
 			modelRelType = (ModelRel) modelRelType.getSupertype();
 		}
 
-		return typeMID.getExtendibleElement(MMINT.ROOT_MODELENDPOINT_URI);
+		return typeMID.getExtendibleElement(MMINTConstants.ROOT_MODELENDPOINT_URI);
 	}
 
 	public static ModelElementEndpoint getOverriddenModelElementTypeEndpoint(MappingReference mappingTypeRef, ModelElementReference targetModelElemTypeRef) {
 
-		boolean isBinary = (mappingTypeRef instanceof BinaryMappingReference);
-		MID typeMID = mappingTypeRef.getMIDContainer();
-		Mapping mappingType = mappingTypeRef.getObject().getSupertype();
+		var isBinary = (mappingTypeRef instanceof BinaryMappingReference);
+		var typeMID = mappingTypeRef.getMIDContainer();
+		var mappingType = mappingTypeRef.getObject().getSupertype();
 		while (!isRootType(mappingType)) {
 			for (ModelElementEndpoint modelElemTypeEndpoint : mappingType.getModelElemEndpoints()) {
 				if (isBinary && targetModelElemTypeRef.getUri().equals(modelElemTypeEndpoint.getTargetUri())) {
@@ -752,7 +751,7 @@ public class MIDTypeHierarchy {
 			mappingType = mappingType.getSupertype();
 		}
 
-		return typeMID.getExtendibleElement(MMINT.ROOT_MODELELEMENDPOINT_URI);
+		return typeMID.getExtendibleElement(MMINTConstants.ROOT_MODELELEMENDPOINT_URI);
 	}
 
 	public static List<? extends ExtendibleElement> getCachedRuntimeTypes(ExtendibleElement instance) {
