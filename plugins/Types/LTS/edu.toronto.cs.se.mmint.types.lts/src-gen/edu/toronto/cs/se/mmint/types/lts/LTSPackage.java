@@ -261,61 +261,6 @@ public interface LTSPackage extends EPackage {
   int INITIAL_STATE_OPERATION_COUNT = LTSPackage.STATE_OPERATION_COUNT + 0;
 
   /**
-   * The meta object id for the '{@link edu.toronto.cs.se.mmint.types.lts.impl.FinalStateImpl <em>Final State</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see edu.toronto.cs.se.mmint.types.lts.impl.FinalStateImpl
-   * @see edu.toronto.cs.se.mmint.types.lts.impl.LTSPackageImpl#getFinalState()
-   * @generated
-   */
-  int FINAL_STATE = 4;
-
-  /**
-   * The feature id for the '<em><b>Label</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int FINAL_STATE__LABEL = LTSPackage.STATE__LABEL;
-
-  /**
-   * The feature id for the '<em><b>Incoming</b></em>' reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int FINAL_STATE__INCOMING = LTSPackage.STATE__INCOMING;
-
-  /**
-   * The feature id for the '<em><b>Outgoing</b></em>' reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int FINAL_STATE__OUTGOING = LTSPackage.STATE__OUTGOING;
-
-  /**
-   * The number of structural features of the '<em>Final State</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int FINAL_STATE_FEATURE_COUNT = LTSPackage.STATE_FEATURE_COUNT + 0;
-
-  /**
-   * The number of operations of the '<em>Final State</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int FINAL_STATE_OPERATION_COUNT = LTSPackage.STATE_OPERATION_COUNT + 0;
-
-  /**
    * The meta object id for the '{@link edu.toronto.cs.se.mmint.types.lts.impl.TransitionImpl <em>Transition</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -323,7 +268,7 @@ public interface LTSPackage extends EPackage {
    * @see edu.toronto.cs.se.mmint.types.lts.impl.LTSPackageImpl#getTransition()
    * @generated
    */
-  int TRANSITION = 5;
+  int TRANSITION = 4;
 
   /**
    * The feature id for the '<em><b>Label</b></em>' attribute.
@@ -467,16 +412,6 @@ public interface LTSPackage extends EPackage {
   EClass getInitialState();
 
   /**
-   * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.types.lts.FinalState <em>Final State</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Final State</em>'.
-   * @see edu.toronto.cs.se.mmint.types.lts.FinalState
-   * @generated
-   */
-  EClass getFinalState();
-
-  /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.types.lts.Transition <em>Transition</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -610,16 +545,6 @@ public interface LTSPackage extends EPackage {
      * @generated
      */
     EClass INITIAL_STATE = LTSPackage.eINSTANCE.getInitialState();
-
-    /**
-     * The meta object literal for the '{@link edu.toronto.cs.se.mmint.types.lts.impl.FinalStateImpl <em>Final State</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see edu.toronto.cs.se.mmint.types.lts.impl.FinalStateImpl
-     * @see edu.toronto.cs.se.mmint.types.lts.impl.LTSPackageImpl#getFinalState()
-     * @generated
-     */
-    EClass FINAL_STATE = LTSPackage.eINSTANCE.getFinalState();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint.types.lts.impl.TransitionImpl <em>Transition</em>}' class.

@@ -150,29 +150,6 @@ public class LTSItemProviderAdapterFactory extends LTSAdapterFactory implements 
   }
 
   /**
-   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint.types.lts.FinalState} instances.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected FinalStateItemProvider finalStateItemProvider;
-
-  /**
-   * This creates an adapter for a {@link edu.toronto.cs.se.mmint.types.lts.FinalState}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Adapter createFinalStateAdapter() {
-    if (this.finalStateItemProvider == null) {
-      this.finalStateItemProvider = new FinalStateItemProvider(this);
-    }
-
-    return this.finalStateItemProvider;
-  }
-
-  /**
    * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint.types.lts.Transition} instances.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -303,7 +280,6 @@ public class LTSItemProviderAdapterFactory extends LTSAdapterFactory implements 
     if (this.ltsItemProvider != null) this.ltsItemProvider.dispose();
     if (this.stateItemProvider != null) this.stateItemProvider.dispose();
     if (this.initialStateItemProvider != null) this.initialStateItemProvider.dispose();
-    if (this.finalStateItemProvider != null) this.finalStateItemProvider.dispose();
     if (this.transitionItemProvider != null) this.transitionItemProvider.dispose();
   }
 

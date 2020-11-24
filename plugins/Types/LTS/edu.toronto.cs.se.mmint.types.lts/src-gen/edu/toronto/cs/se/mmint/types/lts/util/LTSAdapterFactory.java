@@ -17,7 +17,6 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 
-import edu.toronto.cs.se.mmint.types.lts.FinalState;
 import edu.toronto.cs.se.mmint.types.lts.InitialState;
 import edu.toronto.cs.se.mmint.types.lts.LTS;
 import edu.toronto.cs.se.mmint.types.lts.LTSPackage;
@@ -98,10 +97,6 @@ public class LTSAdapterFactory extends AdapterFactoryImpl {
         return createInitialStateAdapter();
       }
       @Override
-      public Adapter caseFinalState(FinalState object) {
-        return createFinalStateAdapter();
-      }
-      @Override
       public Adapter caseTransition(Transition object) {
         return createTransitionAdapter();
       }
@@ -178,20 +173,6 @@ public class LTSAdapterFactory extends AdapterFactoryImpl {
    * @generated
    */
   public Adapter createInitialStateAdapter() {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.types.lts.FinalState <em>Final State</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see edu.toronto.cs.se.mmint.types.lts.FinalState
-   * @generated
-   */
-  public Adapter createFinalStateAdapter() {
     return null;
   }
 

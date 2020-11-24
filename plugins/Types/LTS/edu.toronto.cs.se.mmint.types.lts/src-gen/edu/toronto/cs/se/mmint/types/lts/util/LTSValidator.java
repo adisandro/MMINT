@@ -10,7 +10,6 @@ import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 
-import edu.toronto.cs.se.mmint.types.lts.FinalState;
 import edu.toronto.cs.se.mmint.types.lts.InitialState;
 import edu.toronto.cs.se.mmint.types.lts.LTS;
 import edu.toronto.cs.se.mmint.types.lts.LTSPackage;
@@ -98,8 +97,6 @@ public class LTSValidator extends EObjectValidator {
         return validateState((State)value, diagnostics, context);
       case LTSPackage.INITIAL_STATE:
         return validateInitialState((InitialState)value, diagnostics, context);
-      case LTSPackage.FINAL_STATE:
-        return validateFinalState((FinalState)value, diagnostics, context);
       case LTSPackage.TRANSITION:
         return validateTransition((Transition)value, diagnostics, context);
       default:
@@ -123,7 +120,6 @@ public class LTSValidator extends EObjectValidator {
     if (result || diagnostics != null) result &= validate_EveryKeyUnique(lts, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(lts, diagnostics, context);
     if (result || diagnostics != null) result &= validateLTS_oneInitial(lts, diagnostics, context);
-    if (result || diagnostics != null) result &= validateLTS_oneFinal(lts, diagnostics, context);
     return result;
   }
 
@@ -155,39 +151,6 @@ public class LTSValidator extends EObjectValidator {
          "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
          "oneInitial",
          LTSValidator.LTS__ONE_INITIAL__EEXPRESSION,
-         Diagnostic.ERROR,
-         LTSValidator.DIAGNOSTIC_SOURCE,
-         0);
-  }
-
-  /**
-   * The cached validation expression for the oneFinal constraint of '<em>LTS</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected static final String LTS__ONE_FINAL__EEXPRESSION = "Tuple {\n" +
-    "\tmessage : String = 'There must be one and only one final state',\n" +
-    "\tstatus : Boolean = \n" +
-    "      states->select(oclIsKindOf(FinalState))->size() = 1\n" +
-    "}.status";
-
-  /**
-   * Validates the oneFinal constraint of '<em>LTS</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public boolean validateLTS_oneFinal(LTS lts, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    return
-      validate
-        (LTSPackage.Literals.LTS,
-         lts,
-         diagnostics,
-         context,
-         "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-         "oneFinal",
-         LTSValidator.LTS__ONE_FINAL__EEXPRESSION,
          Diagnostic.ERROR,
          LTSValidator.DIAGNOSTIC_SOURCE,
          0);
@@ -226,29 +189,29 @@ public class LTSValidator extends EObjectValidator {
     if (result || diagnostics != null) result &= validate_UniqueID(initialState, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryKeyUnique(initialState, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(initialState, diagnostics, context);
-    if (result || diagnostics != null) result &= validateInitialState_noIncoming(initialState, diagnostics, context);
+    if (result || diagnostics != null) result &= validateInitialState_atLeastOneOutgoing(initialState, diagnostics, context);
     return result;
   }
 
   /**
-   * The cached validation expression for the noIncoming constraint of '<em>Initial State</em>'.
+   * The cached validation expression for the atLeastOneOutgoing constraint of '<em>Initial State</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected static final String INITIAL_STATE__NO_INCOMING__EEXPRESSION = "Tuple {\n" +
-    "\tmessage : String = 'An initial state can\\'t have incoming transitions',\n" +
+  protected static final String INITIAL_STATE__AT_LEAST_ONE_OUTGOING__EEXPRESSION = "Tuple {\n" +
+    "\tmessage : String = 'There must be at least one outgoing transition from the initial state',\n" +
     "\tstatus : Boolean = \n" +
-    "      incoming->size() = 0\n" +
+    "      outgoing->size() >= 1\n" +
     "}.status";
 
   /**
-   * Validates the noIncoming constraint of '<em>Initial State</em>'.
+   * Validates the atLeastOneOutgoing constraint of '<em>Initial State</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  public boolean validateInitialState_noIncoming(InitialState initialState, DiagnosticChain diagnostics, Map<Object, Object> context) {
+  public boolean validateInitialState_atLeastOneOutgoing(InitialState initialState, DiagnosticChain diagnostics, Map<Object, Object> context) {
     return
       validate
         (LTSPackage.Literals.INITIAL_STATE,
@@ -256,60 +219,8 @@ public class LTSValidator extends EObjectValidator {
          diagnostics,
          context,
          "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-         "noIncoming",
-         LTSValidator.INITIAL_STATE__NO_INCOMING__EEXPRESSION,
-         Diagnostic.ERROR,
-         LTSValidator.DIAGNOSTIC_SOURCE,
-         0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public boolean validateFinalState(FinalState finalState, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    if (!validate_NoCircularContainment(finalState, diagnostics, context)) return false;
-    var result = validate_EveryMultiplicityConforms(finalState, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryDataValueConforms(finalState, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(finalState, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(finalState, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryProxyResolves(finalState, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_UniqueID(finalState, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryKeyUnique(finalState, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(finalState, diagnostics, context);
-    if (result || diagnostics != null) result &= validateFinalState_noOutgoing(finalState, diagnostics, context);
-    return result;
-  }
-
-  /**
-   * The cached validation expression for the noOutgoing constraint of '<em>Final State</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected static final String FINAL_STATE__NO_OUTGOING__EEXPRESSION = "Tuple {\n" +
-    "\tmessage : String = 'A final state can\\'t have outgoing transitions',\n" +
-    "\tstatus : Boolean = \n" +
-    "      outgoing->size() = 0\n" +
-    "}.status";
-
-  /**
-   * Validates the noOutgoing constraint of '<em>Final State</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public boolean validateFinalState_noOutgoing(FinalState finalState, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    return
-      validate
-        (LTSPackage.Literals.FINAL_STATE,
-         finalState,
-         diagnostics,
-         context,
-         "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-         "noOutgoing",
-         LTSValidator.FINAL_STATE__NO_OUTGOING__EEXPRESSION,
+         "atLeastOneOutgoing",
+         LTSValidator.INITIAL_STATE__AT_LEAST_ONE_OUTGOING__EEXPRESSION,
          Diagnostic.ERROR,
          LTSValidator.DIAGNOSTIC_SOURCE,
          0);

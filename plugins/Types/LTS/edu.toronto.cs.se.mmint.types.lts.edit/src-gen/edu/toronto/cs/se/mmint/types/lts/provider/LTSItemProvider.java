@@ -169,11 +169,6 @@ public class LTSItemProvider
 
     newChildDescriptors.add
       (createChildParameter
-        (LTSPackage.Literals.LTS__STATES,
-         LTSFactory.eINSTANCE.createFinalState()));
-
-    newChildDescriptors.add
-      (createChildParameter
         (LTSPackage.Literals.LTS__TRANSITIONS,
          LTSFactory.eINSTANCE.createTransition()));
   }

@@ -20,8 +20,8 @@ package edu.toronto.cs.se.mmint.types.lts;
  *
  *
  * @see edu.toronto.cs.se.mmint.types.lts.LTSPackage#getInitialState()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='noIncoming'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot noIncoming='Tuple {\n\tmessage : String = \'An initial state can\\\'t have incoming transitions\',\n\tstatus : Boolean = \n      incoming-&gt;size() = 0\n}.status'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='atLeastOneOutgoing'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot atLeastOneOutgoing='Tuple {\n\tmessage : String = \'There must be at least one outgoing transition from the initial state\',\n\tstatus : Boolean = \n      outgoing-&gt;size() &gt;= 1\n}.status'"
  * @generated
  */
 public interface InitialState extends State {

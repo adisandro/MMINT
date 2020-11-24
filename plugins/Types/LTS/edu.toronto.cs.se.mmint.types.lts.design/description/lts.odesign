@@ -3,7 +3,7 @@
   <ownedViewpoints name="LTSViewpoint" label="LTS Viewpoint" modelFileExtension="lts">
     <ownedRepresentations xsi:type="description_1:DiagramDescription" name="LTSDiagram" label="LTS Diagram" domainClass="lts.LTS" enablePopupBars="true">
       <defaultLayer name="Default">
-        <nodeMappings name="StateNode" preconditionExpression="aql:not self.oclIsTypeOf(lts::InitialState) and not self.oclIsTypeOf(lts::FinalState)" labelDirectEdit="//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@toolSections.0/@ownedTools[name='EditLabel']" semanticCandidatesExpression="feature:states" domainClass="lts.State">
+        <nodeMappings name="StateNode" preconditionExpression="aql:not self.oclIsTypeOf(lts::InitialState)" labelDirectEdit="//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@toolSections.0/@ownedTools[name='EditLabel']" semanticCandidatesExpression="feature:states" domainClass="lts.State">
           <style xsi:type="style:EllipseNodeDescription" borderSizeComputationExpression="2" labelSize="12" showIcon="false" labelExpression="feature:label" labelPosition="node" resizeKind="NSEW" horizontalDiameterComputationExpression="7" verticalDiameterComputationExpression="7">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
@@ -11,20 +11,13 @@
           </style>
         </nodeMappings>
         <nodeMappings name="InitialStateNode" labelDirectEdit="//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@toolSections.0/@ownedTools[name='EditLabel']" semanticCandidatesExpression="feature:states" domainClass="lts.InitialState">
-          <style xsi:type="style:DotDescription" labelSize="12" showIcon="false" labelExpression="feature:label" labelPosition="node" resizeKind="NSEW">
-            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
-          </style>
-        </nodeMappings>
-        <nodeMappings name="FinalStateNode" labelDirectEdit="//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@toolSections.0/@ownedTools[name='EditLabel']" semanticCandidatesExpression="feature:states" domainClass="lts.FinalState">
-          <style xsi:type="style:DotDescription" labelSize="12" showIcon="false" labelExpression="feature:label" labelPosition="node" resizeKind="NSEW">
-            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+          <style xsi:type="style:EllipseNodeDescription" borderSizeComputationExpression="2" labelSize="12" showIcon="false" labelExpression="feature:label" labelPosition="node" resizeKind="NSEW" horizontalDiameterComputationExpression="7" verticalDiameterComputationExpression="7">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
-            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
           </style>
         </nodeMappings>
-        <edgeMappings name="TransitionEdge" labelDirectEdit="//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@toolSections.0/@ownedTools[name='EditLabel']" semanticCandidatesExpression="feature:transitions" sourceMapping="//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@nodeMappings[name='StateNode'] //@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@nodeMappings[name='InitialStateNode']" targetMapping="//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@nodeMappings[name='StateNode'] //@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@nodeMappings[name='FinalStateNode']" targetFinderExpression="feature:to" sourceFinderExpression="feature:from" domainClass="lts.Transition" useDomainElement="true">
+        <edgeMappings name="TransitionEdge" labelDirectEdit="//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@toolSections.0/@ownedTools[name='EditLabel']" semanticCandidatesExpression="feature:transitions" sourceMapping="//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@nodeMappings[name='StateNode'] //@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@nodeMappings[name='InitialStateNode']" targetMapping="//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@nodeMappings[name='StateNode'] //@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@nodeMappings[name='InitialStateNode']" targetFinderExpression="feature:to" sourceFinderExpression="feature:from" domainClass="lts.Transition" useDomainElement="true">
           <style sizeComputationExpression="2">
             <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <centerLabelStyleDescription labelSize="12" showIcon="false" labelExpression="feature:label">
@@ -48,15 +41,6 @@
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
                 <subModelOperations xsi:type="tool_1:CreateInstance" typeName="lts.State" referenceName="states"/>
-              </firstModelOperations>
-            </initialOperation>
-          </ownedTools>
-          <ownedTools xsi:type="tool:NodeCreationDescription" name="CreateFinalState" label="Final State" precondition="aql:container.states->filter(lts::FinalState)->isEmpty()" nodeMappings="//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@nodeMappings[name='FinalStateNode']">
-            <variable name="container"/>
-            <viewVariable name="containerView"/>
-            <initialOperation>
-              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
-                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="lts.FinalState" referenceName="states"/>
               </firstModelOperations>
             </initialOperation>
           </ownedTools>

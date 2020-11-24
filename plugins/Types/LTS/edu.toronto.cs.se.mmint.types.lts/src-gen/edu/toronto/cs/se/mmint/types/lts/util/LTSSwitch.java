@@ -16,7 +16,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
 
-import edu.toronto.cs.se.mmint.types.lts.FinalState;
 import edu.toronto.cs.se.mmint.types.lts.InitialState;
 import edu.toronto.cs.se.mmint.types.lts.LTS;
 import edu.toronto.cs.se.mmint.types.lts.LTSPackage;
@@ -108,14 +107,6 @@ public class LTSSwitch<T> extends Switch<T> {
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case LTSPackage.FINAL_STATE: {
-        var finalState = (FinalState)theEObject;
-        var result = caseFinalState(finalState);
-        if (result == null) result = caseState(finalState);
-        if (result == null) result = caseLabeledElement(finalState);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
       case LTSPackage.TRANSITION: {
         var transition = (Transition)theEObject;
         var result = caseTransition(transition);
@@ -184,21 +175,6 @@ public class LTSSwitch<T> extends Switch<T> {
    * @generated
    */
   public T caseInitialState(InitialState object) {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Final State</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Final State</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseFinalState(FinalState object) {
     return null;
   }
 

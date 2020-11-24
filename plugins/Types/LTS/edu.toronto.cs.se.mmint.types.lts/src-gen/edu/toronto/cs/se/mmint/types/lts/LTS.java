@@ -29,8 +29,8 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see edu.toronto.cs.se.mmint.types.lts.LTSPackage#getLTS()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='oneInitial oneFinal'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot oneInitial='Tuple {\n\tmessage : String = \'There must be one and only one initial state\',\n\tstatus : Boolean = \n      states-&gt;select(oclIsKindOf(InitialState))-&gt;size() = 1\n}.status' oneFinal='Tuple {\n\tmessage : String = \'There must be one and only one final state\',\n\tstatus : Boolean = \n      states-&gt;select(oclIsKindOf(FinalState))-&gt;size() = 1\n}.status'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='oneInitial'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot oneInitial='Tuple {\n\tmessage : String = \'There must be one and only one initial state\',\n\tstatus : Boolean = \n      states-&gt;select(oclIsKindOf(InitialState))-&gt;size() = 1\n}.status'"
  * @generated
  */
 public interface LTS extends EObject {

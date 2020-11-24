@@ -18,7 +18,6 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
-import edu.toronto.cs.se.mmint.types.lts.FinalState;
 import edu.toronto.cs.se.mmint.types.lts.InitialState;
 import edu.toronto.cs.se.mmint.types.lts.LTS;
 import edu.toronto.cs.se.mmint.types.lts.LTSFactory;
@@ -73,7 +72,6 @@ public class LTSFactoryImpl extends EFactoryImpl implements LTSFactory {
       case LTSPackage.LTS: return createLTS();
       case LTSPackage.STATE: return createState();
       case LTSPackage.INITIAL_STATE: return createInitialState();
-      case LTSPackage.FINAL_STATE: return createFinalState();
       case LTSPackage.TRANSITION: return createTransition();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -111,17 +109,6 @@ public class LTSFactoryImpl extends EFactoryImpl implements LTSFactory {
   public InitialState createInitialState() {
     var initialState = new InitialStateImpl();
     return initialState;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public FinalState createFinalState() {
-    var finalState = new FinalStateImpl();
-    return finalState;
   }
 
   /**

@@ -19,7 +19,6 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
-import edu.toronto.cs.se.mmint.types.lts.FinalState;
 import edu.toronto.cs.se.mmint.types.lts.InitialState;
 import edu.toronto.cs.se.mmint.types.lts.LTSFactory;
 import edu.toronto.cs.se.mmint.types.lts.LTSPackage;
@@ -62,13 +61,6 @@ public class LTSPackageImpl extends EPackageImpl implements LTSPackage {
    * @generated
    */
   private EClass initialStateEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass finalStateEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -244,16 +236,6 @@ public class LTSPackageImpl extends EPackageImpl implements LTSPackage {
    * @generated
    */
   @Override
-  public EClass getFinalState() {
-    return this.finalStateEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EClass getTransition() {
     return this.transitionEClass;
   }
@@ -320,8 +302,6 @@ public class LTSPackageImpl extends EPackageImpl implements LTSPackage {
 
     this.initialStateEClass = createEClass(LTSPackage.INITIAL_STATE);
 
-    this.finalStateEClass = createEClass(LTSPackage.FINAL_STATE);
-
     this.transitionEClass = createEClass(LTSPackage.TRANSITION);
     createEReference(this.transitionEClass, LTSPackage.TRANSITION__FROM);
     createEReference(this.transitionEClass, LTSPackage.TRANSITION__TO);
@@ -357,7 +337,6 @@ public class LTSPackageImpl extends EPackageImpl implements LTSPackage {
     // Add supertypes to classes
     this.stateEClass.getESuperTypes().add(this.getLabeledElement());
     this.initialStateEClass.getESuperTypes().add(this.getState());
-    this.finalStateEClass.getESuperTypes().add(this.getState());
     this.transitionEClass.getESuperTypes().add(this.getLabeledElement());
 
     // Initialize classes, features, and operations; add parameters
@@ -373,8 +352,6 @@ public class LTSPackageImpl extends EPackageImpl implements LTSPackage {
     initEReference(getState_Outgoing(), this.getTransition(), this.getTransition_From(), "outgoing", null, 0, -1, State.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
 
     initEClass(this.initialStateEClass, InitialState.class, "InitialState", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
-
-    initEClass(this.finalStateEClass, FinalState.class, "FinalState", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(this.transitionEClass, Transition.class, "Transition", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
     initEReference(getTransition_From(), this.getState(), this.getState_Outgoing(), "from", null, 1, 1, Transition.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
@@ -410,19 +387,13 @@ public class LTSPackageImpl extends EPackageImpl implements LTSPackage {
       (this.ltsEClass,
        source,
        new String[] {
-         "constraints", "oneInitial oneFinal"
+         "constraints", "oneInitial"
        });
     addAnnotation
       (this.initialStateEClass,
        source,
        new String[] {
-         "constraints", "noIncoming"
-       });
-    addAnnotation
-      (this.finalStateEClass,
-       source,
-       new String[] {
-         "constraints", "noOutgoing"
+         "constraints", "atLeastOneOutgoing"
        });
   }
 
@@ -438,20 +409,13 @@ public class LTSPackageImpl extends EPackageImpl implements LTSPackage {
       (this.ltsEClass,
        source,
        new String[] {
-         "oneInitial", "Tuple {\n\tmessage : String = \'There must be one and only one initial state\',\n\tstatus : Boolean = \n      states->select(oclIsKindOf(InitialState))->size() = 1\n}.status",
-         "oneFinal", "Tuple {\n\tmessage : String = \'There must be one and only one final state\',\n\tstatus : Boolean = \n      states->select(oclIsKindOf(FinalState))->size() = 1\n}.status"
+         "oneInitial", "Tuple {\n\tmessage : String = \'There must be one and only one initial state\',\n\tstatus : Boolean = \n      states->select(oclIsKindOf(InitialState))->size() = 1\n}.status"
        });
     addAnnotation
       (this.initialStateEClass,
        source,
        new String[] {
-         "noIncoming", "Tuple {\n\tmessage : String = \'An initial state can\\\'t have incoming transitions\',\n\tstatus : Boolean = \n      incoming->size() = 0\n}.status"
-       });
-    addAnnotation
-      (this.finalStateEClass,
-       source,
-       new String[] {
-         "noOutgoing", "Tuple {\n\tmessage : String = \'A final state can\\\'t have outgoing transitions\',\n\tstatus : Boolean = \n      outgoing->size() = 0\n}.status"
+         "atLeastOneOutgoing", "Tuple {\n\tmessage : String = \'There must be at least one outgoing transition from the initial state\',\n\tstatus : Boolean = \n      outgoing->size() >= 1\n}.status"
        });
   }
 
