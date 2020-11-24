@@ -1,0 +1,22 @@
+name: Build and Deploy
+on: [push, pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout
+      - uses: actions/setup-java
+        with:
+          java-version: '15'
+      - uses: actions/cache
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}
+      - run: mvn -T 1C -f releng/edu.toronto.cs.se.modelepedia.libz3java.releng/pom.xml clean install
+      - run: mvn -T 1C -f releng/edu.toronto.cs.se.mmint.releng/pom.xml clean install
+#  deploy:
+#    runs-on: ubuntu-20.04
+#    needs: build
+#    steps:
+
