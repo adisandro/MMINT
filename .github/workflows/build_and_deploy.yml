@@ -4,19 +4,34 @@ jobs:
   build:
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@main
-      - uses: actions/setup-java@main
+      - name: Checkout MMINT repo
+        uses: actions/checkout@main
+      - name: Install Java 15
+        uses: actions/setup-java@main
         with:
           java-version: '15'
-      - uses: actions/cache@main
+      - name: Load cache of Maven dependencies
+        uses: actions/cache@main
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-${{ hashFiles('releng/edu.toronto.cs.se.mmint.releng/pom.xml') }}
           restore-keys: ${{ runner.os }}-
-      - run: mvn -T 1C -f releng/edu.toronto.cs.se.modelepedia.libz3java.releng/pom.xml clean install
-      - run: mvn -T 1C -f releng/edu.toronto.cs.se.mmint.releng/pom.xml clean install
+      - name: Build Libz3java
+        run: mvn -T 1C -f releng/edu.toronto.cs.se.modelepedia.libz3java.releng/pom.xml clean install
+      - name: Build MMINT
+        run: mvn -T 1C -f releng/edu.toronto.cs.se.mmint.releng/pom.xml clean install
+      - name: Store binary jars
+        uses: actions/upload-artifact@main
+        with:
+          name: UpdateSite
+          path: releng/edu.toronto.cs.se.mmint.install/target/repository
 #  deploy:
 #    runs-on: ubuntu-20.04
 #    needs: build
 #    steps:
+#      - name: 
+#        if: github.event_name == 'push'
+#        uses: actions/checkout@main
+#        with:
+#          repository: 'adisandro/adisandro.github.io'
 
