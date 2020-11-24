@@ -4,11 +4,11 @@ jobs:
   build:
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout
-      - uses: actions/setup-java
+      - uses: actions/checkout@main
+      - uses: actions/setup-java@main
         with:
           java-version: '15'
-      - uses: actions/cache
+      - uses: actions/cache@main
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-${{ hashFiles('**/pom.xml') }}
