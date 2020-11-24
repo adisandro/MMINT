@@ -11,8 +11,8 @@ jobs:
       - uses: actions/cache@main
         with:
           path: ~/.m2/repository
-          key: ${{ runner.os }}-${{ hashFiles('**/pom.xml') }}
-          restore-keys: ${{ runner.os }}
+          key: ${{ runner.os }}-${{ hashFiles('releng/edu.toronto.cs.se.mmint.releng/pom.xml') }}
+          restore-keys: ${{ runner.os }}-
       - run: mvn -T 1C -f releng/edu.toronto.cs.se.modelepedia.libz3java.releng/pom.xml clean install
       - run: mvn -T 1C -f releng/edu.toronto.cs.se.mmint.releng/pom.xml clean install
 #  deploy:
