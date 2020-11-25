@@ -1,11 +1,11 @@
 name: Build and Deploy
 on: [push, pull_request]
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-20.04
     steps:
 
-      - name: Checkout MMINT repo
+      - name: Checkout MMINT
         uses: actions/checkout@v2.3.4
 
       - name: Install Java 15
@@ -13,7 +13,7 @@ jobs:
         with:
           java-version: '15'
 
-      - name: Load cache of Maven dependencies
+      - name: Load Maven cache
         uses: actions/cache@v2.1.3
         with:
           path: ~/.m2/repository
@@ -26,13 +26,7 @@ jobs:
       - name: Build MMINT
         run: mvn -T 1C -f releng/edu.toronto.cs.se.mmint.releng/pom.xml clean install
 
-      - name: Store binary jars
-        uses: actions/upload-artifact@v2.2.1
-        with:
-          name: UpdateSite
-          path: releng/edu.toronto.cs.se.mmint.install/target/repository
-
-      - name: Prepare deployment
+      - name: Checkout update site
         if: github.event_name == 'push'
         uses: actions/checkout@v2.3.4
         with:
@@ -50,8 +44,10 @@ jobs:
           cd deploy
           rm -rf mmint/${BRANCH/master/release}
           mv ../releng/edu.toronto.cs.se.mmint.install/target/repository mmint/${BRANCH/master/release}
+          git config user.name "Deploy CI Bot"
+          git config user.email "deploy@github.com"
           git add .
           git reset --soft HEAD~1
-          git commit --author="Alessio Di Sandro <alessio.disandro@gmail.com>" -m "mmint: Update build"
+          git commit -m "mmint: Deploy build"
           git push -f
 
