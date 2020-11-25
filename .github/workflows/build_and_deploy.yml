@@ -47,6 +47,7 @@ jobs:
           BRANCH: ${{ github.ref }}
         run: |
           BRANCH=${BRANCH##*/}
+          cd deploy
           rm -rf mmint/${BRANCH/master/release}
           mv ../releng/edu.toronto.cs.se.mmint.install/target/repository mmint/${BRANCH/master/release}
           git add .
