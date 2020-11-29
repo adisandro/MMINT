@@ -4,29 +4,31 @@
 [template private encode(lts : LTS, modelName : String)]
 import LTS
 
-inductive States
+inductive S
   [for (state : State | lts.states)]
 | [state.label/]
   [/for]
-open States
-inductive Actions
+open S
+
+inductive A
   [for (transition : Transition | lts.transitions)]
 | [transition.label/]
   [/for]
-open Actions
-def Transitions : set (States × Actions × States) :=
+open A
+
+def TR : set (S × A × S) :=
 {
-  [for (transition : Transition | lts.transitions)]
-  ([transition.from.label/], [transition.label/], [transition.to.label/]),
+  [for (transition : Transition | lts.transitions) separator (',')]
+  ([transition.from.label/], [transition.label/], [transition.to.label/])
   [/for]
 }
 
-def [modelName/] : LTS := LTS.mk States Actions Transitions
+def [modelName/] : LTS := LTS.mk S A TR
 
-instance coe1 : has_coe States (token [modelName/]) := 
+instance coe1 : has_coe S (token [modelName/]) := 
 {coe := fun s, by {rw [modelName/], rw token, exact sum.inl s}}
 
-instance coe2 : has_coe Actions (token [modelName/]) := 
+instance coe2 : has_coe A (token [modelName/]) := 
 {coe := fun s, by {rw [modelName/], rw token, exact sum.inr s}}
 [/template]
 
