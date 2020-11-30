@@ -1,35 +1,39 @@
 [comment encoding = UTF-8 /]
 [module LTSToLeanAcceleo('edu.toronto.cs.se.mmint.types.lts')/]
 
+[template private sanitize(name : String)]
+[name.replace(' ', '_')/]
+[/template]
+
 [template private encode(lts : LTS, modelName : String)]
 import LTS
 
 inductive S
   [for (state : State | lts.states)]
-| [state.label/]
+| [sanitize(state.label)/]
   [/for]
 open S
 
 inductive A
   [for (transition : Transition | lts.transitions)]
-| [transition.label/]
+| [sanitize(transition.label)/]
   [/for]
 open A
 
 def TR : set (S × A × S) :=
 {
-  [for (transition : Transition | lts.transitions) separator (',')]
-  ([transition.from.label/], [transition.label/], [transition.to.label/])
+  [for (transition : Transition | lts.transitions)]
+  ([sanitize(transition.from.label)/], [sanitize(transition.label)/], [sanitize(transition.to.label)/])[if (i < lts.transitions->size())],[/if]
   [/for]
 }
 
-def [modelName/] : LTS := LTS.mk S A TR
+def [sanitize(modelName)/] : LTS := LTS.mk S A TR
 
-instance coe1 : has_coe S (token [modelName/]) := 
-{coe := fun s, by {rw [modelName/], rw token, exact sum.inl s}}
+instance coe1 : has_coe S (token [sanitize(modelName)/]) := 
+{coe := fun s, by {rw [sanitize(modelName)/], rw token, exact sum.inl s}}
 
-instance coe2 : has_coe A (token [modelName/]) := 
-{coe := fun s, by {rw [modelName/], rw token, exact sum.inr s}}
+instance coe2 : has_coe A (token [sanitize(modelName)/]) := 
+{coe := fun s, by {rw [sanitize(modelName)/], rw token, exact sum.inr s}}
 [/template]
 
 [template public LTSToLean(lts : LTS, modelName : String)]
