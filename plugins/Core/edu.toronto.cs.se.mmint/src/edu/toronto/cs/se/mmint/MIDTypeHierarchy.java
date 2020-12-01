@@ -22,6 +22,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.emf.common.util.EList;
 
 import edu.toronto.cs.se.mmint.extensions.ExtensionPointType;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
@@ -33,6 +34,7 @@ import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
@@ -769,5 +771,31 @@ public class MIDTypeHierarchy {
 
 		MMINT.cachedRuntimeTypes.clear();
 	}
+
+  public static Operator getPolyOperator(String operatorId, EList<Model> inputModels) throws MMINTException {
+    //TODO MMINT[JAVA16] Use records to return operator+operatorInputs
+    var baseOperator = MIDTypeRegistry.<Operator>getType(operatorId);
+    var polyOperators = getSubtypes(baseOperator);
+    polyOperators.add(0, baseOperator);
+    var polyIter = getInverseTypeHierarchyIterator(polyOperators);
+    EList<OperatorInput> operatorInputs = null;
+    Operator operator = null;
+    while (polyIter.hasNext()) { // start from the most specialized operator backwards
+      var polyOperator = polyIter.next();
+      if (polyOperator.isAbstract()) {
+        continue;
+      }
+      operatorInputs = polyOperator.checkAllowedInputs(inputModels);
+      if (operatorInputs != null) {
+        operator = polyOperator;
+        break;
+      }
+    }
+    if (operator == null) {
+      throw new MMINTException("Can't find an operator overriding " + operatorId + " for inputs " + inputModels);
+    }
+
+    return operator;
+  }
 
 }

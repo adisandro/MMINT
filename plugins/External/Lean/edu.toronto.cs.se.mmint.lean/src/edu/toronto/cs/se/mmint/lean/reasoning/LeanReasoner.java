@@ -18,16 +18,11 @@ import java.nio.file.StandardOpenOption;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.ECollections;
-import org.eclipse.emf.common.util.EList;
 
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
-import edu.toronto.cs.se.mmint.MIDTypeRegistry;
-import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.operator.Operator;
-import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.reasoning.IModelConstraintTrait;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 
@@ -38,23 +33,9 @@ public class LeanReasoner implements IModelConstraintTrait {
   public final static String FILE = "/path/to/lean/project/temp.lean";
 
   private String generateEncoding(Model model) throws Exception {
-    var abstractEncoder = MIDTypeRegistry.<Operator>getType(LeanReasoner.ENCODER_ID);
-    var polyEncoders = MIDTypeHierarchy.getSubtypes(abstractEncoder);
-    var polyIter = MIDTypeHierarchy.getInverseTypeHierarchyIterator(polyEncoders);
     var inputModels = ECollections.newBasicEList(model);
-    EList<OperatorInput> encoderInputs = null;
-    Operator encoder = null;
-    while (polyIter.hasNext()) { // start from the most specialized operator backwards
-      var polyEncoder = polyIter.next();
-      encoderInputs = polyEncoder.checkAllowedInputs(inputModels);
-      if (encoderInputs != null) {
-        encoder = polyEncoder;
-        break;
-      }
-    }
-    if (encoder == null) {
-      throw new MMINTException("No Lean encoder available");
-    }
+    var encoder = MIDTypeHierarchy.getPolyOperator(LeanReasoner.ENCODER_ID, inputModels);
+    var encoderInputs = encoder.checkAllowedInputs(inputModels); //TODO MMINT[JAVA16] Refactor using records
     var encoded = encoder.startInstance(encoderInputs, null, ECollections.emptyEList(), Map.of(), null);
 
     return encoded.getOutputModels().get(0).getUri();
@@ -80,7 +61,7 @@ public class LeanReasoner implements IModelConstraintTrait {
 //    if (result != 0) {
 //      return false;
 //    }
-//    if (output.toString().trim().equals("tt")) {
+//    if (output.toString().trim().equals("true")) {
 //      return true;
 //    }
 
