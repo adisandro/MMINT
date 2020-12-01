@@ -14,7 +14,7 @@ package edu.toronto.cs.se.mmint.types.lts.operators;
 
 import java.io.File;
 import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.util.List;
 import java.util.Map;
@@ -38,15 +38,14 @@ public class LTSToLean extends ToLean {
   protected void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws Exception {
     super.init(inputsByName, outputMIDsByName);
     // dnamic lean files generated from the input model
-    super.output.leanPaths.add(FileUtils.replaceLastSegmentInPath(this.input.model.getUri(), LTSToLean.LEAN_GEN_FILE));
-    super.output.leanPaths.add(FileUtils.replaceLastSegmentInPath(this.input.model.getUri(),
-                                                                  this.input.model.getName() + LTSToLean.LEAN_EXT));
+    super.output.leanPaths.add(getWorkingPath() + File.separator + LTSToLean.LEAN_GEN_FILE);
+    super.output.leanPaths.add(getWorkingPath() + File.separator + this.input.model.getName() + LTSToLean.LEAN_EXT);
     // static lean files from this bundle
     for (var LEAN_BUNDLE_FILE : LTSToLean.LEAN_BUNDLE_FILES) {
-      var leanPath = FileUtils.replaceLastSegmentInPath(this.input.model.getUri(), LEAN_BUNDLE_FILE);
+      var leanPath = getWorkingPath() + File.separator + LEAN_BUNDLE_FILE;
       var bundlePath = MIDTypeRegistry.getFileBundlePath(this.getMetatype(),
                                                          LTSToLean.LEAN_BUNDLE_DIR + File.separator + LEAN_BUNDLE_FILE);
-      Files.copy(Paths.get(bundlePath), Paths.get(FileUtils.prependWorkspacePath(leanPath)),
+      Files.copy(Path.of(bundlePath), Path.of(FileUtils.prependWorkspacePath(leanPath)),
                  StandardCopyOption.REPLACE_EXISTING);
       super.output.leanPaths.add(leanPath);
     }

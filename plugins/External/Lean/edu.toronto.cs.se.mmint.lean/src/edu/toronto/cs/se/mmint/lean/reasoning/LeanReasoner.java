@@ -13,7 +13,7 @@
 package edu.toronto.cs.se.mmint.lean.reasoning;
 
 import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.util.Map;
 
@@ -45,9 +45,9 @@ public class LeanReasoner implements IModelConstraintTrait {
   public boolean checkModelConstraint(Model model, ExtendibleElementConstraint constraint, MIDLevel constraintLevel)
                                      throws Exception {
     var encodingPath = generateEncoding(model);
-    Files.writeString(Paths.get(FileUtils.prependWorkspacePath(encodingPath)), constraint.getImplementation(),
+    Files.writeString(Path.of(FileUtils.prependWorkspacePath(encodingPath)), constraint.getImplementation(),
                       StandardOpenOption.APPEND);
-//    Files.writeString(Paths.get(LeanReasoner.FILE), constraint.getImplementation());
+//    Files.writeString(Path.of(LeanReasoner.FILE), constraint.getImplementation());
 //    var builder = new ProcessBuilder(LeanReasoner.EXECUTABLE, LeanReasoner.FILE);
 //    var process = builder.start();
 //    var output = new StringBuilder();
