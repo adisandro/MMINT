@@ -49,7 +49,8 @@
                   </superType>
                </type>
                <typeEndpoint
-                     targetTypeUri="http://se.cs.toronto.edu/mmint/File">
+                     targetTypeUri="http://se.cs.toronto.edu/mmint/File"
+                     upperBound="-1">
                </typeEndpoint>
             </parameter>
          </outputs>

@@ -5,7 +5,31 @@
 [name.replace(' ', '_')/]
 [/template]
 
-[template private encode(lts : LTS, modelName : String)]
+[template private encodeMain(modelName : String)]
+import Meta [modelName/] patterns sat
+open lean.parser interactive tactic S A
+
+@['['/]user_command[']'/]
+meta def Main
+(meta_info : decl_meta_info)
+(_ : parse (tk "Main")) : lean.parser unit :=
+
+do 
+   F ← read "constraint.lean" types.texpr,
+   of_tactic 
+   (do
+      STRAT ← tactic.to_expr F,
+      s ← tactic.eval_expr (strategy (path [modelName/])) STRAT,
+      let goal := `(deductive %%(reflect (path [modelName/])) %%STRAT), 
+      let tac  := solve_patterns (s.Props.length) in do
+        res ← try_tactic_on_goal tac goal, 
+        if res then do trace "true" return ()
+        else do return ()
+      )
+. Main
+[/template]
+
+[template private encodeModel(lts : LTS, modelName : String)]
 import LTS
 
 inductive S
@@ -27,18 +51,21 @@ def TR : set (S × A × S) :=
   [/for]
 }
 
-def [sanitize(modelName)/] : LTS := LTS.mk S A TR
+def [modelName/] : LTS := LTS.mk S A TR
 
-instance coe1 : has_coe S (token [sanitize(modelName)/]) := 
-{coe := fun s, by {rw [sanitize(modelName)/], rw token, exact sum.inl s}}
+instance coe1 : has_coe S (token [modelName/]) := 
+{coe := fun s, by {rw [modelName/], rw token, exact sum.inl s}}
 
-instance coe2 : has_coe A (token [sanitize(modelName)/]) := 
-{coe := fun s, by {rw [sanitize(modelName)/], rw token, exact sum.inr s}}
+instance coe2 : has_coe A (token [modelName/]) := 
+{coe := fun s, by {rw [modelName/], rw token, exact sum.inr s}}
 [/template]
 
 [template public LTSToLean(lts : LTS, modelName : String)]
   [comment @main /]
+  [file ('main.lean', false, 'UTF-8')]
+[encodeMain(sanitize(modelName))/]
+  [/file]
   [file (modelName + '.lean', false, 'UTF-8')]
-[encode(lts, modelName)/]
+[encodeModel(lts, sanitize(modelName))/]
   [/file]
 [/template]

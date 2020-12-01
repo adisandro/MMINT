@@ -55,7 +55,7 @@ public class MIDOperatorIOUtils {
 
 	private static String getPropertiesUri(Operator operator, Model anyOperatorParameter, String subdirName, boolean readonly) {
 
-		String projectUri = anyOperatorParameter.getUri().substring(0, anyOperatorParameter.getUri().lastIndexOf(IPath.SEPARATOR)+1);
+		var projectUri = anyOperatorParameter.getUri().substring(0, anyOperatorParameter.getUri().lastIndexOf(IPath.SEPARATOR)+1);
 		String propertiesUri = FileUtils.prependWorkspacePath(projectUri);
 		if (subdirName != null) {
 			File dir = new File(propertiesUri + subdirName);
@@ -71,10 +71,10 @@ public class MIDOperatorIOUtils {
 
 	public static Properties getPropertiesFile(Operator operator, Model anyOperatorParameter, String subdirName, String suffix) throws Exception {
 
-		String inputPropertiesFile =
+		var inputPropertiesFile =
 			getPropertiesUri(operator, anyOperatorParameter, subdirName, true) +
 			suffix +
-			PROPERTIES_SUFFIX;
+			MIDOperatorIOUtils.PROPERTIES_SUFFIX;
 		Properties inputProperties = new Properties();
 		inputProperties.load(new FileInputStream(inputPropertiesFile));
 
@@ -83,17 +83,17 @@ public class MIDOperatorIOUtils {
 
 	public static void writePropertiesFile(Properties outputProperties, Operator operator, Model anyOperatorParameter, String subdirName, String suffix) throws Exception {
 
-		String outputPropertiesFile =
+		var outputPropertiesFile =
 			getPropertiesUri(operator, anyOperatorParameter, subdirName, false) +
 			suffix +
-			PROPERTIES_SUFFIX;
+			MIDOperatorIOUtils.PROPERTIES_SUFFIX;
 		outputProperties.store(new FileOutputStream(outputPropertiesFile), null);
 	}
 
 	public static void writeOutputProperties(Operator operator, Properties outProps) throws Exception {
 	  var outPropsPath = Path.of(operator.getWorkingPath(),
-	                             MessageFormat.format("{0}{1}{2}", operator.getName(), OUTPUT_PROPERTIES_SUFFIX,
-	                                                  PROPERTIES_SUFFIX));
+	                             MessageFormat.format("{0}{1}{2}", operator.getName(), MIDOperatorIOUtils.OUTPUT_PROPERTIES_SUFFIX,
+	                                                  MIDOperatorIOUtils.PROPERTIES_SUFFIX));
 	  outProps.store(new FileOutputStream(FileUtils.prependWorkspacePath(outPropsPath.toString())), null);
 	}
 
@@ -101,7 +101,7 @@ public class MIDOperatorIOUtils {
 	@Deprecated
 	public static void writeTextFile(Operator operator, Model anyOperatorParameter, String subdirName, String suffix, StringBuilder fileContent) throws IOException {
 
-		String outputTextFile = getPropertiesUri(operator, anyOperatorParameter, subdirName, false) + suffix;
+		var outputTextFile = getPropertiesUri(operator, anyOperatorParameter, subdirName, false) + suffix;
 		BufferedWriter writer = null;
 		try {
 			writer = new BufferedWriter(new FileWriter(outputTextFile));
@@ -119,7 +119,7 @@ public class MIDOperatorIOUtils {
 
 	public static @NonNull String getStringProperty(@NonNull Properties properties, @NonNull String propertyName) throws MMINTException {
 
-		String property = properties.getProperty(propertyName);
+		var property = properties.getProperty(propertyName);
 		if (property == null) {
 			throw new MMINTException("Missing property " + propertyName);
 		}
@@ -139,7 +139,7 @@ public class MIDOperatorIOUtils {
 
 	public static @NonNull <E extends Enum<E>> E getEnumProperty(@NonNull Properties properties, @NonNull String propertyName, @NonNull Class<E> enumClass) throws MMINTException {
 
-		E property = Enum.valueOf(enumClass, getStringProperty(properties, propertyName));
+		var property = Enum.valueOf(enumClass, getStringProperty(properties, propertyName));
 
 		return property;
 	}
@@ -156,7 +156,7 @@ public class MIDOperatorIOUtils {
 
 	public static boolean getBoolProperty(@NonNull Properties properties, @NonNull String propertyName) throws MMINTException {
 
-		boolean property = Boolean.parseBoolean(getStringProperty(properties, propertyName));
+		var property = Boolean.parseBoolean(getStringProperty(properties, propertyName));
 
 		return property;
 	}
@@ -174,7 +174,7 @@ public class MIDOperatorIOUtils {
 
 	public static int getIntProperty(@NonNull Properties properties, @NonNull String propertyName) throws MMINTException {
 
-		int property = Integer.parseInt(getStringProperty(properties, propertyName));
+		var property = Integer.parseInt(getStringProperty(properties, propertyName));
 		if (property == -1) {
 			property = Integer.MAX_VALUE;
 		}
@@ -194,7 +194,7 @@ public class MIDOperatorIOUtils {
 
 	public static double getDoubleProperty(@NonNull Properties properties, @NonNull String propertyName) throws MMINTException {
 
-		double property = Double.parseDouble(getStringProperty(properties, propertyName));
+		var property = Double.parseDouble(getStringProperty(properties, propertyName));
 		if (property == -1) {
 			property = Double.MAX_VALUE;
 		}
@@ -214,12 +214,12 @@ public class MIDOperatorIOUtils {
 
 	public static @NonNull List<String> getStringPropertyList(@NonNull Properties properties, @NonNull String propertyName) throws MMINTException {
 
-		return List.of(getStringProperty(properties, propertyName).split(PROPERTY_SEPARATOR));
+		return List.of(getStringProperty(properties, propertyName).split(MIDOperatorIOUtils.PROPERTY_SEPARATOR));
 	}
 
 	public static @NonNull Set<String> getStringPropertySet(@NonNull Properties properties, @NonNull String propertyName) throws MMINTException {
 
-	    return Set.of(getStringProperty(properties, propertyName).split(PROPERTY_SEPARATOR));
+	    return Set.of(getStringProperty(properties, propertyName).split(MIDOperatorIOUtils.PROPERTY_SEPARATOR));
 	}
 
 	public static @NonNull List<String> getOptionalStringPropertyList(@NonNull Properties properties, @NonNull String propertyName, @NonNull List<String> defaultValue) {
@@ -245,7 +245,7 @@ public class MIDOperatorIOUtils {
 	public static @NonNull <T> List<T> getVarargs(@NonNull Map<String, T> varargsByName, @NonNull String varargName) {
 
 		List<T> varargs = new ArrayList<>();
-		int i = 0;
+		var i = 0;
 		T elem;
 		while ((elem = varargsByName.get(varargName + i)) != null) {
 			varargs.add(elem);
@@ -258,7 +258,7 @@ public class MIDOperatorIOUtils {
 	public static @NonNull Map<String, Model> setVarargs(@NonNull List<Model> models, @NonNull String varargName) {
 
 		Map<String, Model> modelsByName = new HashMap<>();
-		for (int i = 0; i < models.size(); i++) {
+		for (var i = 0; i < models.size(); i++) {
 			modelsByName.put(varargName + i, models.get(i));
 		}
 
@@ -269,15 +269,15 @@ public class MIDOperatorIOUtils {
 
 		Map<String, MID> outputMIDsByOtherName = new HashMap<>();
 		if (outputMIDsByName.containsKey(varargName)) {
-			MID outputMID = outputMIDsByName.get(varargName);
+			var outputMID = outputMIDsByName.get(varargName);
 			outputMIDsByOtherName = nameElements.stream()
-				.collect(Collectors.<ExtendibleElement, String, MID>toMap( // TODO MMINT[SCRIPTING] Fix explicit types when java9 is out
+				.collect(Collectors.toMap(
 					nameElement -> nameElement.getName(),
 					nameElement -> outputMID));
 		}
 		else {
 			List<MID> instanceMIDs = MIDOperatorIOUtils.getVarargs(outputMIDsByName, varargName);
-			for (int i = 0; i < nameElements.size(); i++) {
+			for (var i = 0; i < nameElements.size(); i++) {
 				outputMIDsByOtherName.put(nameElements.get(i).getName(), instanceMIDs.get(i));
 			}
 		}
@@ -299,7 +299,7 @@ public class MIDOperatorIOUtils {
 
 		Map<String, MID> outputMIDsByName = new HashMap<>();
 		for (ModelEndpoint outputModelTypeEndpoint : operatorType.getOutputs()) {
-			MID outputMID = assignedOutputMIDsByName.getOrDefault(outputModelTypeEndpoint.getName(), defaultOutputMID);
+			var outputMID = assignedOutputMIDsByName.getOrDefault(outputModelTypeEndpoint.getName(), defaultOutputMID);
 			outputMIDsByName.put(outputModelTypeEndpoint.getName(), outputMID);
 		}
 

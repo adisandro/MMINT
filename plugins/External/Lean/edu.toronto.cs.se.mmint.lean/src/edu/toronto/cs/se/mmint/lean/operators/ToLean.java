@@ -14,6 +14,8 @@ package edu.toronto.cs.se.mmint.lean.operators;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.acceleo.engine.service.AbstractAcceleoGenerator;
@@ -26,6 +28,7 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmint.mid.utils.AcceleoUtils;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 
 public class ToLean extends OperatorImpl {
 
@@ -44,30 +47,33 @@ public class ToLean extends OperatorImpl {
 
   protected static class Output {
     public static final String MODEL_TYPE_ID = "http://se.cs.toronto.edu/mmint/File";
-    public final static String MODEL = "encoding";
-    public String leanPath;
+    public final static String MODELS = "encoding";
     public File leanFolder;
-    public Model leanModel;
+    public List<String> leanPaths;
+    public List<Model> leanModels;
     public MID mid;
 
     public Output(Input input, Map<String, MID> outputMIDsByName) {
-      this.leanPath = FileUtils.replaceLastSegmentInPath(input.model.getUri(), input.model.getName() + ".lean");
       this.leanFolder = (new File(FileUtils.prependWorkspacePath(input.model.getUri()))).getParentFile();
-      this.mid = outputMIDsByName.get(Output.MODEL);
+      this.leanPaths = new ArrayList<>();
+      this.leanModels = new ArrayList<>();
+      this.mid = outputMIDsByName.get(Output.MODELS);
     }
 
     public Map<String, Model> packed() throws MMINTException, IOException {
-      if (!FileUtils.isFile(this.leanPath, true)) {
+      if (this.leanPaths.stream().anyMatch(path -> !FileUtils.isFile(path, true))) {
         throw new MMINTException("Acceleo generation failed");
       }
       var fileModelType = MIDTypeRegistry.<Model>getType(Output.MODEL_TYPE_ID);
-      this.leanModel = fileModelType.createInstance(null, this.leanPath, this.mid);
+      for (var i = 0; i < this.leanPaths.size(); i++) {
+        this.leanModels.add(fileModelType.createInstance(null, this.leanPaths.get(i), this.mid));
+      }
 
-      return Map.of(Output.MODEL, this.leanModel);
+      return MIDOperatorIOUtils.setVarargs(this.leanModels, Output.MODELS);
     }
   }
 
-  protected void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws IOException {
+  protected void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws Exception {
     this.input = new Input(inputsByName);
     this.output = new Output(this.input, outputMIDsByName);
   }
@@ -76,7 +82,6 @@ public class ToLean extends OperatorImpl {
   public Map<String, Model> run(Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
                                 Map<String, MID> outputMIDsByName) throws Exception {
     init(inputsByName, outputMIDsByName);
-    //TODO MMINT[LEAN] Add an acceleo interface to extend too (i.e. EObject root + String modelName)
     AcceleoUtils.runAcceleo(this.leanGenerator);
 
     return this.output.packed();
