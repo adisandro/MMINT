@@ -53,8 +53,8 @@ public class ToLean extends OperatorImpl {
     public List<Model> leanModels;
     public MID mid;
 
-    public Output(Input input, Map<String, MID> outputMIDsByName) {
-      this.leanFolder = (new File(FileUtils.prependWorkspacePath(input.model.getUri()))).getParentFile();
+    public Output(Map<String, MID> outputMIDsByName, String workingPath) {
+      this.leanFolder = new File(FileUtils.prependWorkspacePath(workingPath));
       this.leanPaths = new ArrayList<>();
       this.leanModels = new ArrayList<>();
       this.mid = outputMIDsByName.get(Output.MODELS);
@@ -75,7 +75,7 @@ public class ToLean extends OperatorImpl {
 
   protected void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws Exception {
     this.input = new Input(inputsByName);
-    this.output = new Output(this.input, outputMIDsByName);
+    this.output = new Output(outputMIDsByName, getWorkingPath());
   }
 
   @Override
