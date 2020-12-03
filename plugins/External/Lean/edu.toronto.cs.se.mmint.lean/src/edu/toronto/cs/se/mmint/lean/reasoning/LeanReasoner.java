@@ -58,15 +58,20 @@ public class LeanReasoner implements IModelConstraintTrait {
     var absWorkingPath = FileUtils.prependWorkspacePath(workingPath);
     try {
       /**TODO:
-       * - Find where is lean's mathlab library (type -P lean?)
-       * - Generate leanpkg.path
+       * - Find where is lean's mathlab library (readlink -f $(type -P lean))
        * - Check what is lean's exit value in various cases
-       * - LTSToLean should override the workflow output constraint
        */
+      // project dir
       Files.createDirectory(Path.of(absWorkingPath));
+      // constraint file
       Files.writeString(Path.of(absWorkingPath, LeanReasoner.LEAN_CONSTRAINT), constraint.getImplementation(),
                         StandardOpenOption.CREATE);
+      // package config file
+      var config = "builtin_path\npath .\n"; //TODO MMINT[JAVA15] Convert to text block;
+      Files.writeString(Path.of(absWorkingPath, LeanReasoner.LEAN_CONFIG), config, StandardOpenOption.CREATE);
+      // model encoding files
       var mainEncoding = generateEncoding(model, workingPath);
+      // run lean
       var builder = new ProcessBuilder(LeanReasoner.LEAN_EXEC, mainEncoding);
       builder.directory(new File(absWorkingPath));
       var process = builder.start();
