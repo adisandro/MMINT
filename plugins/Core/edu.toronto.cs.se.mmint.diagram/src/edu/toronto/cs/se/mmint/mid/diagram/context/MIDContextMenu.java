@@ -198,6 +198,9 @@ public class MIDContextMenu extends ContributionItem {
       List<ExecutableOperator> executableOperators = new ArrayList<>();
       for (Operator operatorType : MIDTypeRegistry.getOperatorTypes()) {
         try {
+          if (operatorType.isAbstract()) {
+            continue;
+          }
           var operatorInputs = operatorType.checkAllowedInputs(selectedModels);
           if (operatorInputs == null) {
             continue;
