@@ -55,7 +55,7 @@ public class LTSToLean extends ToLean {
     super.init(inputsByName, outputMIDsByName);
     var workingPath = getWorkingPath() + IPath.SEPARATOR;
     // dynamic lean files generated from the input model
-    super.output.leanPaths.add(workingPath + LTSToLean.LEAN_MAIN_FILE + LTSToLean.LEAN_EXT);
+    super.output.leanPaths.add(workingPath + LTSToLean.LEAN_MAIN_FILE);
     super.output.leanPaths.add(workingPath + this.input.model.getName() + LTSToLean.LEAN_EXT);
     this.leanGenerator = new LTSToLeanAcceleo(this.input.model.getEMFInstanceRoot(), this.output.leanFolder,
                                               List.of(this.input.model.getName()));

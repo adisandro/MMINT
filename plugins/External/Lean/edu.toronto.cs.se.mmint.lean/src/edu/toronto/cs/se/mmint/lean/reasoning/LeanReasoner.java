@@ -14,12 +14,14 @@ package edu.toronto.cs.se.mmint.lean.reasoning;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.util.Map;
 
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.util.ECollections;
 
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
@@ -34,7 +36,7 @@ import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 public class LeanReasoner implements IModelConstraintTrait {
 
   private final static String ENCODER_ID = "edu.toronto.cs.se.mmint.lean.operators.ToLean";
-  private final static String LEAN_DIR = "lean";
+  private final static String LEAN_DIR = "lean/";
   private final static String LEAN_CONSTRAINT = "constraint.lean";
   private final static String LEAN_CONFIG = "leanpkg.path";
   private final static String LEAN_EXEC = "lean";
@@ -53,7 +55,7 @@ public class LeanReasoner implements IModelConstraintTrait {
   @Override
   public boolean checkModelConstraint(Model model, ExtendibleElementConstraint constraint, MIDLevel constraintLevel)
                                      throws Exception {
-    var workingPath = MMINT.getActiveInstanceMIDFile().getParent().getFullPath().toString() + File.separator +
+    var workingPath = MMINT.getActiveInstanceMIDFile().getParent().getFullPath().toString() + IPath.SEPARATOR +
                       LeanReasoner.LEAN_DIR;
     var absWorkingPath = FileUtils.prependWorkspacePath(workingPath);
     try {
@@ -73,16 +75,28 @@ public class LeanReasoner implements IModelConstraintTrait {
       var mainEncoding = generateEncoding(model, workingPath);
       // run lean
       var builder = new ProcessBuilder(LeanReasoner.LEAN_EXEC, mainEncoding);
+      builder.redirectErrorStream(true);
       builder.directory(new File(absWorkingPath));
       var process = builder.start();
       var output = new StringBuilder();
+      int exitValue;
+      Thread readerThread;
       try (var reader = new BufferedReader(new InputStreamReader(process.getInputStream()))) {
-        String line;
-        while ((line = reader.readLine()) != null) {
-          output.append(line + System.lineSeparator());
-        }
+        readerThread = new Thread(() -> {
+          String line;
+          try {
+            while ((line = reader.readLine()) != null) {
+              output.append(line + System.lineSeparator());
+            }
+          }
+          catch (IOException e) {
+            // just terminate
+          }
+        });
+        readerThread.start();
+        exitValue = process.waitFor();
       }
-      var exitValue = process.waitFor();
+      readerThread.join();
       var result = output.toString().trim();
       if (exitValue != 0) {
         throw new MMINTException(result);
