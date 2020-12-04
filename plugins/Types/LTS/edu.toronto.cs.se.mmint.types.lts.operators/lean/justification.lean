@@ -1,23 +1,20 @@
-import data.set tactic LTS
-
-set_option pp.structure_instances false
+import data.set
 
 def Property (α : Type) : Type := α → Prop 
 
-  structure Claim (α : Type) :=
-  (X : set α)
-  (P : Property α)
+structure Claim (α : Type) :=
+(X : set α)
+(P : Property α)
 
-  structure strategy (α : Type) := 
-  (Clm : Claim α)
-  (Props : list (Property α))
+structure strategy (α : Type) := 
+(Clm : Claim α)
+(Props : list (Property α))
 
-  def justified {α : Type}
-  (S : strategy α) : Prop :=
-  let Xs : fin (S.Props.length) → set α := 
-  λ i, set_of ((S.Props.nth_le i.1) i.2) in
-  (⋂ i, Xs i) ⊆ {x | S.Clm.P x}
-
+def justified {α : Type}
+(S : strategy α) : Prop :=
+let Xs : fin (S.Props.length) → set α := 
+λ i, set_of ((S.Props.nth_le i.1) i.2) in
+(⋂ i, Xs i) ⊆ {x | S.Clm.P x}
 
 
 @[reducible]
@@ -54,24 +51,6 @@ end
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 def contra (α : Type)
 (S : strategy α ) : Prop := 
 ∀ x, 
@@ -99,36 +78,3 @@ end
 def negate_strat {α : Type} (Str : strategy α) : strategy α := 
 strategy.mk Str.Clm (Str.Props.map (λ P x, ¬P x))
 
-
---theorem contra_justfd {α : Type} (Str : strategy α ) : 
---contra α Str → justified (negate_strat Str) := 
---begin
---    rw [justified,contra], simp, intros H x,
---    replace H := H x, 
---    contrapose H,
---    simp at *,
---    split, exact H.2,
---    have len : (Str.Props.length) = (negate_strat Str).Props.length, by {simp},
---    intro i, apply H.1 (fin.cast len i),
---end 
-
-
-/-
-lemma double_neg_strat {α : Type} (Str : strategy α) : (negate_strat (negate_strat Str)) = Str := 
-begin 
-    rw negate_strat, dsimp,
-    have : Π {P : Property α}, (λ x, ¬ (¬ (P x))) = (λ x, P x) := by {simp},
-    simp,
-    tidy,
-    rw l2strat, cases Str,
-    simp,
-end 
-
-theorem neg_contra_justfd {α : Type} (Str : strategy α ) : 
-contra α (negate_strat Str) → justified (Str) := 
-begin
-    intros, 
-    rw ← double_neg_strat Str,
-    apply contra_justfd, assumption
-end
--/

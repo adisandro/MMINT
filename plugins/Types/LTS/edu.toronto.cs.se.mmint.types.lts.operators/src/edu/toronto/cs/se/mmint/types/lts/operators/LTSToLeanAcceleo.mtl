@@ -6,13 +6,13 @@
 [/template]
 
 [template private encodeMain(modelName : String)]
-import Meta [modelName/] patterns sat
+import LTS [modelName/]
 open lean.parser interactive tactic S A
 
 @['['/]user_command[']'/]
-meta def Main
+meta def main_lts
 (meta_info : decl_meta_info)
-(_ : parse (tk "Main")) : lean.parser unit :=
+(_ : parse (tk "main_lts")) : lean.parser unit :=
 
 do 
    F ← read "constraint.lean" types.texpr,
@@ -23,10 +23,10 @@ do
       let goal := `(deductive %%(reflect (path [modelName/])) %%STRAT), 
       let tac  := solve_patterns (s.Props.length) in do
         res ← try_tactic_on_goal tac goal, 
-        if res then do trace "true" return ()
-        else do return ()
+        if res then do trace "true" 
+        else trace "false"
       )
-. Main
+. main_lts
 [/template]
 
 [template private encodeModel(lts : LTS, modelName : String)]

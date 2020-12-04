@@ -135,3 +135,4 @@ by {intro P, refl,}
 lemma always_eventually_dual (P : formula M) (π : path M) : 
     sat (◾!P) π ↔ (¬ sat (◆P) π) := 
 by {repeat {rw sat}, tidy}
+

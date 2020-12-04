@@ -25,6 +25,7 @@ import java.util.stream.Stream;
 
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.FileLocator;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -494,7 +495,7 @@ public class MIDTypeRegistry {
     try (var bundleJar = new JarFile(new File(bundlePath))) {
       var bundleJarEntry = bundleJar.getEntry(relativeFilePath);
       if (bundleJarEntry == null) {
-        throw new MMINTException("Can't find the '" + fileName + "' file");
+        throw new MMINTException("Can't find '" + fileName + "'");
       }
       Files.copy(bundleJar.getInputStream(bundleJarEntry), tmpFilePath, StandardCopyOption.REPLACE_EXISTING);
     }
@@ -517,7 +518,7 @@ public class MIDTypeRegistry {
       var separator = bundlePath.lastIndexOf("_");
       var srcBundlePath = bundlePath.substring(0, separator) + ".source" + bundlePath.substring(separator);
       if (!FileUtils.isFile(srcBundlePath, false)) {
-        var errorMsg = "Can't find the '" + fileName + "' file";
+        var errorMsg = "Can't find '" + fileName + "'";
         if (fileName.endsWith("java")) {
           errorMsg += " (try installing mmint.sdk)";
         }
@@ -530,9 +531,12 @@ public class MIDTypeRegistry {
       if (bundle == null) {
         throw new MMINTException("Can't find the bundle for '" + typeInBundle.getName() + "'");
       }
-      var bundleEntries = bundle.findEntries("/", fileName, true);
+      var filePattern = (fileName.charAt(fileName.length()-1) == IPath.SEPARATOR) ?
+        fileName.substring(0, fileName.length()-1) : // directory
+        fileName;
+      var bundleEntries = bundle.findEntries("/", filePattern, true);
       if (bundleEntries == null || !bundleEntries.hasMoreElements()) {
-        throw new MMINTException("Can't find the '" + fileName + "' file");
+        throw new MMINTException("Can't find '" + fileName + "'");
       }
       var filePath = FileLocator.toFileURL(bundleEntries.nextElement()).getFile();
       if (Platform.getOS().equals(Platform.OS_WIN32)) {

@@ -11,25 +11,22 @@
  */
 package edu.toronto.cs.se.mmint.mid.utils;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.SimpleFileVisitor;
+import java.nio.file.StandardCopyOption;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.eclipse.core.filesystem.EFS;
-import org.eclipse.core.filesystem.IFileStore;
-import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IStatus;
@@ -37,7 +34,6 @@ import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.Resource.Diagnostic;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -45,7 +41,6 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.ide.IDE;
 
@@ -59,7 +54,7 @@ public class FileUtils {
 
 	public static @NonNull URI createEMFUri(@NonNull String uri, boolean isWorkspaceRelative) {
 
-		URI emfUri = (isWorkspaceRelative) ?
+		var emfUri = (isWorkspaceRelative) ?
 			URI.createPlatformResourceURI(uri, true) :
 			URI.createFileURI(uri);
 
@@ -68,7 +63,7 @@ public class FileUtils {
 
 	private static @NonNull String getFirstSegmentFromPath(@NonNull String path) {
 
-		int sepIndex = path.indexOf(IPath.SEPARATOR, 1);
+		var sepIndex = path.indexOf(IPath.SEPARATOR, 1);
 
 		return (sepIndex == -1) ?
 			path.substring(1) :
@@ -77,8 +72,12 @@ public class FileUtils {
 
 	private static @NonNull String getAllButLastSegmentFromPath(@NonNull String path) {
 
-		int sepIndex = path.lastIndexOf(IPath.SEPARATOR);
-		if (sepIndex == -1) { // the path has no segments
+    var end = path.length() - 1;
+    if (path.charAt(end) == IPath.SEPARATOR) { // last segment is a dir
+      end -= 1;
+    }
+		var sepIndex = path.lastIndexOf(IPath.SEPARATOR, end);
+		if (sepIndex == -1) { // the path has 1 segment only or is empty
 			return "";
 		}
 
@@ -87,8 +86,12 @@ public class FileUtils {
 
 	public static @NonNull String getLastSegmentFromPath(@NonNull String path) {
 
-		int sepIndex = path.lastIndexOf(IPath.SEPARATOR);
-		if (sepIndex == -1) { // the path has no segments
+	  var end = path.length() - 1;
+    if (path.charAt(end) == IPath.SEPARATOR) { // last segment is a dir
+      end -= 1;
+    }
+		var sepIndex = path.lastIndexOf(IPath.SEPARATOR, end);
+		if (sepIndex == -1) { // the path has 1 segment only or is empty
 			return path;
 		}
 
@@ -98,7 +101,7 @@ public class FileUtils {
 	public static @NonNull String getFileNameFromPath(@NonNull String path) {
 
 		String lastSegment = FileUtils.getLastSegmentFromPath(path);
-		int sepIndex = lastSegment.lastIndexOf(MMINTConstants.MODEL_FILEEXTENSION_SEPARATOR);
+		var sepIndex = lastSegment.lastIndexOf(MMINTConstants.MODEL_FILEEXTENSION_SEPARATOR);
 		if (sepIndex == -1) { // the last segment is already the file name
 			return lastSegment;
 		}
@@ -109,7 +112,7 @@ public class FileUtils {
 	public static @NonNull String getFileExtensionFromPath(@NonNull String path) {
 
 		String lastSegment = FileUtils.getLastSegmentFromPath(path);
-		int sepIndex = lastSegment.lastIndexOf(MMINTConstants.MODEL_FILEEXTENSION_SEPARATOR);
+		var sepIndex = lastSegment.lastIndexOf(MMINTConstants.MODEL_FILEEXTENSION_SEPARATOR);
 		if (sepIndex == -1) { // no extension
 			return "";
 		}
@@ -125,7 +128,7 @@ public class FileUtils {
 	public static @NonNull String replaceFileNameInPath(@NonNull String path, @NonNull String newFileName) {
 
 		String fileExtension = FileUtils.getFileExtensionFromPath(path);
-		String newLastSegment = fileExtension.equals("") ?
+		var newLastSegment = fileExtension.equals("") ?
 			newFileName :
 			newFileName + MMINTConstants.MODEL_FILEEXTENSION_SEPARATOR + fileExtension;
 
@@ -135,7 +138,7 @@ public class FileUtils {
 	public static @NonNull String replaceFileExtensionInPath(@NonNull String path, @NonNull String newFileExtension) {
 
 		String fileName = FileUtils.getFileNameFromPath(path);
-		String newLastSegment = fileName + MMINTConstants.MODEL_FILEEXTENSION_SEPARATOR + newFileExtension;
+		var newLastSegment = fileName + MMINTConstants.MODEL_FILEEXTENSION_SEPARATOR + newFileExtension;
 
 		return FileUtils.replaceLastSegmentInPath(path, newLastSegment);
 	}
@@ -155,7 +158,7 @@ public class FileUtils {
 		}
 
 		String fileName = FileUtils.getFileNameFromPath(basePath);
-		int i = -1;
+		var i = -1;
 		do { // append a counter to basePath until ok
 			i++;
 			uniquePath = (isDirectory) ?
@@ -170,8 +173,8 @@ public class FileUtils {
 	public static @Nullable IProject getWorkspaceProject(@NonNull String relativePath) {
 
 	    String projectName = FileUtils.getFirstSegmentFromPath(relativePath);
-        IWorkspaceRoot workspaceRoot = ResourcesPlugin.getWorkspace().getRoot();
-        IProject project = workspaceRoot.getProject(projectName);
+        var workspaceRoot = ResourcesPlugin.getWorkspace().getRoot();
+        var project = workspaceRoot.getProject(projectName);
 
         return project;
 	}
@@ -179,7 +182,7 @@ public class FileUtils {
 	public static @NonNull String prependWorkspacePath(@NonNull String relativePath) {
 
 		IProject project = FileUtils.getWorkspaceProject(relativePath);
-		String absolutePath = (project == null) ?
+		var absolutePath = (project == null) ?
 			ResourcesPlugin.getWorkspace().getRoot().getLocation().toString() + relativePath :
 			project.getLocation().toString() + relativePath.replaceFirst(IPath.SEPARATOR + project.getName(), "");
 
@@ -196,8 +199,8 @@ public class FileUtils {
 		if (isWorkspaceRelative) {
 			filePath = FileUtils.prependWorkspacePath(filePath);
 		}
-		Path path = Paths.get(filePath);
-		try (BufferedWriter writer = Files.newBufferedWriter(path, Charset.forName("UTF-8"))) {
+		var path = Paths.get(filePath);
+		try (var writer = Files.newBufferedWriter(path, Charset.forName("UTF-8"))) {
 			writer.write(textContent);
 		}
 	}
@@ -213,10 +216,10 @@ public class FileUtils {
 			origFilePath = FileUtils.prependWorkspacePath(origFilePath);
 			newFilePath = FileUtils.prependWorkspacePath(newFilePath);
 		}
-		Path origPath = Paths.get(origFilePath);
-		Path newPath = Paths.get(newFilePath);
-		try (BufferedReader oldBuffer = Files.newBufferedReader(origPath, Charset.forName("UTF-8"))) {
-			try (BufferedWriter newBuffer = Files.newBufferedWriter(newPath, Charset.forName("UTF-8"))) {
+		var origPath = Paths.get(origFilePath);
+		var newPath = Paths.get(newFilePath);
+		try (var oldBuffer = Files.newBufferedReader(origPath, Charset.forName("UTF-8"))) {
+			try (var newBuffer = Files.newBufferedWriter(newPath, Charset.forName("UTF-8"))) {
 				String oldLine;
 				while ((oldLine = oldBuffer.readLine()) != null) {
 					//System.out.println(URLDecoder.decode(origText, "UTF-8"));
@@ -242,7 +245,7 @@ public class FileUtils {
 		if (isWorkspaceRelative) {
 			filePath = FileUtils.prependWorkspacePath(filePath);
 		}
-		Path path = Paths.get(filePath);
+		var path = Paths.get(filePath);
 
 		return path;
 	}
@@ -308,8 +311,31 @@ public class FileUtils {
 		FileUtils.createDirectory(FileUtils.prependStatePath(relativeDirectoryPath), false);
 	}
 
-	public static void deleteDirectory(@NonNull String directoryPath, boolean isWorkspaceRelative) {
+  public static void copyDirectory(@NonNull String srcDirectoryPath, boolean srcWorkspaceRelative,
+                                   @NonNull String tgtDirectoryPath, boolean tgtWorkspaceRelative)
+                                  throws Exception {
+    Path srcPath = FileUtils.getPath(srcDirectoryPath, srcWorkspaceRelative);
+    Path tgtPath = FileUtils.getPath(tgtDirectoryPath, tgtWorkspaceRelative);
+    Files.walkFileTree(srcPath, new SimpleFileVisitor<Path>() {
+      @Override
+      public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) throws IOException {
+        try {
+          Files.createDirectory(tgtPath.resolve(srcPath.relativize(dir)));
+        }
+        catch (FileAlreadyExistsException e) {
+          // continue
+        }
+        return FileVisitResult.CONTINUE;
+      }
+      @Override
+      public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
+        Files.copy(file, tgtPath.resolve(srcPath.relativize(file)), StandardCopyOption.REPLACE_EXISTING);
+        return FileVisitResult.CONTINUE;
+      }
+    });
+  }
 
+	public static void deleteDirectory(@NonNull String directoryPath, boolean isWorkspaceRelative) {
 		Path path = FileUtils.getPath(directoryPath, isWorkspaceRelative);
 		try {
 			Files.walkFileTree(path, new SimpleFileVisitor<Path>() {
@@ -408,7 +434,7 @@ public class FileUtils {
 
 	public static @Nullable Object getModelObjectFeature(@NonNull EObject modelObj, @NonNull String featureName) throws MMINTException {
 
-		EStructuralFeature feature = modelObj.eClass().getEStructuralFeature(featureName);
+		var feature = modelObj.eClass().getEStructuralFeature(featureName);
 		if (feature == null) {
 			throw new MMINTException("Feature " + featureName + " not found in " + modelObj);
 		}
@@ -418,7 +444,7 @@ public class FileUtils {
 
 	public static void setModelObjectFeature(@NonNull EObject modelObj, @NonNull String featureName, @NonNull Object value) throws MMINTException {
 
-		EStructuralFeature feature = modelObj.eClass().getEStructuralFeature(featureName);
+		var feature = modelObj.eClass().getEStructuralFeature(featureName);
 		if (feature == null) {
 			throw new MMINTException("Feature " + featureName + " not found in " + modelObj);
 		}
@@ -455,9 +481,9 @@ public class FileUtils {
 		        SiriusUtils.openRepresentation(sReprUri);
 		    }
 		    else {
-    			IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+    			var activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
     			if (isWorkspaceRelative) {
-    				IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(
+    				var file = ResourcesPlugin.getWorkspace().getRoot().getFile(
     					new org.eclipse.core.runtime.Path(filePath));
     				if (editorId != null) {
     					IDE.openEditor(activePage, file, editorId);
@@ -473,13 +499,13 @@ public class FileUtils {
     						IDE.openEditor(activePage, new URIEditorInput(emfUri), editorId);
     					}
     					else {
-    						java.net.URI fileUri = new File(filePath).toURI();
+    						var fileUri = new File(filePath).toURI();
     						IDE.openEditor(activePage, fileUri, editorId, true);
     					}
     				}
     				else {
-    					java.net.URI fileUri = new File(filePath).toURI();
-    					IFileStore file = EFS.getStore(fileUri);
+    					var fileUri = new File(filePath).toURI();
+    					var file = EFS.getStore(fileUri);
     					IDE.openEditorOnFileStore(activePage, file);
     				}
     			}

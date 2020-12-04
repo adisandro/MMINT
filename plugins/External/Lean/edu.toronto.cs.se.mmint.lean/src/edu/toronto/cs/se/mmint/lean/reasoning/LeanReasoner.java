@@ -58,8 +58,8 @@ public class LeanReasoner implements IModelConstraintTrait {
     var absWorkingPath = FileUtils.prependWorkspacePath(workingPath);
     try {
       /**TODO:
-       * - Find where is lean's mathlab library (readlink -f $(type -P lean))
-       * - Check what is lean's exit value in various cases
+       * - Find where is lean's mathlab library (readlink -f $(type -P lean)) and add it to config file
+       * - Extract dir recursively from jar
        */
       // project dir
       Files.createDirectory(Path.of(absWorkingPath));
@@ -67,7 +67,7 @@ public class LeanReasoner implements IModelConstraintTrait {
       Files.writeString(Path.of(absWorkingPath, LeanReasoner.LEAN_CONSTRAINT), constraint.getImplementation(),
                         StandardOpenOption.CREATE);
       // package config file
-      var config = "builtin_path\npath .\n"; //TODO MMINT[JAVA15] Convert to text block;
+      var config = "builtin_path\npath .\npath LTS\n"; //TODO MMINT[JAVA15] Convert to text block;
       Files.writeString(Path.of(absWorkingPath, LeanReasoner.LEAN_CONFIG), config, StandardOpenOption.CREATE);
       // model encoding files
       var mainEncoding = generateEncoding(model, workingPath);
@@ -83,17 +83,12 @@ public class LeanReasoner implements IModelConstraintTrait {
         }
       }
       var exitValue = process.waitFor();
-      if (exitValue != 0) {
-        return false;
-      }
       var result = output.toString().trim();
-      if (result.equals("true")) {
-        return true;
+      if (exitValue != 0) {
+        throw new MMINTException(result);
       }
-      if (result.equals("false")) {
-        return false;
-      }
-      throw new MMINTException(result);
+
+      return Boolean.valueOf(result);
     }
     finally {
       // clean up generated dir

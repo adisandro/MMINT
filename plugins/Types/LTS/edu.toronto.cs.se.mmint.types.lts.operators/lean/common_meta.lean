@@ -1,4 +1,4 @@
-import system.io tactic justification sat
+import system.io tactic justification
 open io list lean.parser tactic interactive.types
 
 meta def read {α : Type}
@@ -41,26 +41,9 @@ do tactic.interactive.apply ``(justfd_imp_deductive _),
 return ()
 
 
-meta def switch : tactic unit := 
-do 
-    tgt ← target,
-    ctx ← local_context,
-    match tgt with
-    | `(sat (absent.globally %%tok) %%path) := do
-        absent.globally.solve tok ctx
-    | `(sat (precedes.globally %%tok1 %%tok2) %%path) := do 
-        precedes.globally.solve tok1 tok2 ctx 
-  /-  | `(sat (precedes.before %%tok1 %%tok2 %%tok3) %%path) := do 
-       precedes.before.solve tok1 tok2 tok3 ctx -/
-    | _ := trace  "Don't know what to do."
-end 
-
 meta def finish_up : tactic unit := 
 do  
    repeat (applyc ``and.intro),
     all_goals 
    (`[assumption] <|> do trace "Try adding this", target >>= trace), 
 return ()
-
-meta def solve_patterns (n : ℕ) : tactic unit := 
-initialize n >> switch >> finish_up

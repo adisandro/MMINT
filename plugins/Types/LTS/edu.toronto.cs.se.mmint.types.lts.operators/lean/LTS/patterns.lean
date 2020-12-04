@@ -1,4 +1,4 @@
-import LTS
+import LTS.defs
 
 variable {M : LTS}
 set_option pp.beta true 
