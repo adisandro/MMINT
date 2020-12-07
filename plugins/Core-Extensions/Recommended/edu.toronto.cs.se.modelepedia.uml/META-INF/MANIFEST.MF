@@ -5,7 +5,8 @@ Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.uml;singleton:=true
 Bundle-Version: 2.7.99.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-15
 Bundle-Vendor: %providerName
-Require-Bundle: org.eclipse.papyrus.uml.diagram.wizards,
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.papyrus.uml.diagram.wizards,
  org.eclipse.ui,
  org.eclipse.ui.ide,
  org.eclipse.uml2.uml,
