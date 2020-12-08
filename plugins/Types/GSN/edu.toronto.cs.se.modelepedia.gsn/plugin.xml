@@ -19,7 +19,7 @@
       <package
             uri="http://se.cs.toronto.edu/modelepedia/GSN"
             class="edu.toronto.cs.se.modelepedia.gsn.GSNPackage"
-            genModel="model/safetycase.genmodel"/>
+            genModel="model/gsn.genmodel"/>
    </extension>
 
    <extension
