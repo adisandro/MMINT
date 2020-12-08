@@ -57,14 +57,14 @@ def: allConnectedModelElems3(modelElemSrc : ModelElement,
                              modelElemTgt : ModelElement) : Boolean =
   allConnectedModelElems2(modelElemSrc)->includes(modelElemTgt)
 
-def: asilBConnectedModelElems : Set(Tuple(goal : safetycase::Goal, elem : ModelElement)) =
+def: asilBConnectedModelElems : Set(Tuple(goal : gsn::Goal, elem : ModelElement)) =
   let safetyCases = Model.allInstances()
                          ->collect(EMFInstanceRoot)
-                         ->select(oclIsTypeOf(safetycase::SafetyCase))
-                         ->collect(oclAsType(safetycase::SafetyCase)) in
+                         ->select(oclIsTypeOf(gsn::SafetyCase))
+                         ->collect(oclAsType(gsn::SafetyCase)) in
   let goals = safetyCases->collect(goals)
                          ->select(not asil.oclIsUndefined())
-                         ->select(asil.value = safetycase::ASILLevel::B) in
+                         ->select(asil.value = gsn::ASILLevel::B) in
   let modelElems = ModelElement.allInstances() in
   goals->collect(g | Set{g}->product(
          let goalElem = modelElems->any(e | e.EMFInstanceObject = g) in

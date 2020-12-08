@@ -1365,7 +1365,7 @@
       <modelElemEndpointRefs referencedObject="//@models.16/@mappings.14/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.16/@modelEndpointRefs.1/@modelElemRefs.14"/>
     </mappingRefs>
   </models>
-  <models uri="/LMS/model/lms_sc.gsn" name="lms_sc" metatypeUri="http://se.cs.toronto.edu/modelepedia/GSN" dynamic="true" fileExtension="safetycase" editors="//@editors.9">
+  <models uri="/LMS/model/lms_sc.gsn" name="lms_sc" metatypeUri="http://se.cs.toronto.edu/modelepedia/GSN" dynamic="true" fileExtension="gsn" editors="//@editors.9">
     <modelElems uri="/LMS/model/lms_sc.gsn#//@goals.0_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Basic Goal G0" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="BasicGoal" featureName="goals" relatedClassName="SafetyCase"/>
     </modelElems>

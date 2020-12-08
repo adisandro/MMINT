@@ -8,13 +8,13 @@
     <semanticResources>plugin.properties</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" uid="_KMHTUMZzEei8g8MHaENCvg">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_lMtCR-FCEeivS9pdSv_RYA" name="safetycase class diagram" repPath="#_lMtCQOFCEeivS9pdSv_RYA">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_lMtCR-FCEeivS9pdSv_RYA" name="gsn class diagram" repPath="#_lMtCQOFCEeivS9pdSv_RYA">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']"/>
         <target xmi:type="ecore:EPackage" href="model/gsn.ecore#/"/>
       </ownedRepresentationDescriptors>
     </ownedViews>
   </viewpoint:DAnalysis>
-  <diagram:DSemanticDiagram uid="_lMtCQOFCEeivS9pdSv_RYA" name="safetycase class diagram">
+  <diagram:DSemanticDiagram uid="_lMtCQOFCEeivS9pdSv_RYA" name="gsn class diagram">
     <ownedAnnotationEntries xmi:type="description:AnnotationEntry" uid="_lMtCQeFCEeivS9pdSv_RYA" source="DANNOTATION_CUSTOMIZATION_KEY">
       <data xmi:type="diagram:ComputedStyleDescriptionRegistry" uid="_lMtCQuFCEeivS9pdSv_RYA">
         <computedStyleDescriptions xmi:type="style:BundledImageDescription" xmi:id="_mnT_EeFCEeivS9pdSv_RYA" labelExpression="service:render" labelAlignment="LEFT" tooltipExpression="service:renderTooltip" sizeComputationExpression="1">

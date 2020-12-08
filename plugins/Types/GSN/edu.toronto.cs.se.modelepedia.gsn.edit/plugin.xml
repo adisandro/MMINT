@@ -15,7 +15,7 @@
 <plugin>
 
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
-      <!-- @generated safetycase -->
+      <!-- @generated gsn -->
       <factory
             uri="http://se.cs.toronto.edu/modelepedia/GSN"
             class="edu.toronto.cs.se.modelepedia.gsn.provider.GSNItemProviderAdapterFactory"

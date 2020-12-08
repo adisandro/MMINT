@@ -3,11 +3,11 @@
  * All rights reserved. This program and the accompanying materials are made available under the terms
  * of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *   Alessio Di Sandro - Implementation
  *   Nick Fung - Implementation.
- * 
+ *
  */
 package edu.toronto.cs.se.modelepedia.gsn;
 
@@ -44,7 +44,7 @@ public interface GSNPackage extends EPackage {
    * <!-- end-user-doc -->
    * @generated
    */
-  String eNAME = "safetycase";
+  String eNAME = "gsn";
 
   /**
    * The package namespace URI.
@@ -60,7 +60,7 @@ public interface GSNPackage extends EPackage {
    * <!-- end-user-doc -->
    * @generated
    */
-  String eNS_PREFIX = "safetycase";
+  String eNS_PREFIX = "gsn";
 
   /**
    * The singleton instance of the package.
@@ -316,7 +316,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CORE_ELEMENT__ID = ARGUMENT_ELEMENT__ID;
+  int CORE_ELEMENT__ID = GSNPackage.ARGUMENT_ELEMENT__ID;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -325,7 +325,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CORE_ELEMENT__DESCRIPTION = ARGUMENT_ELEMENT__DESCRIPTION;
+  int CORE_ELEMENT__DESCRIPTION = GSNPackage.ARGUMENT_ELEMENT__DESCRIPTION;
 
   /**
    * The feature id for the '<em><b>Content Validity</b></em>' attribute.
@@ -334,7 +334,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CORE_ELEMENT__CONTENT_VALIDITY = ARGUMENT_ELEMENT__CONTENT_VALIDITY;
+  int CORE_ELEMENT__CONTENT_VALIDITY = GSNPackage.ARGUMENT_ELEMENT__CONTENT_VALIDITY;
 
   /**
    * The feature id for the '<em><b>Status</b></em>' containment reference.
@@ -343,7 +343,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CORE_ELEMENT__STATUS = ARGUMENT_ELEMENT__STATUS;
+  int CORE_ELEMENT__STATUS = GSNPackage.ARGUMENT_ELEMENT__STATUS;
 
   /**
    * The feature id for the '<em><b>Supports</b></em>' reference list.
@@ -352,7 +352,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CORE_ELEMENT__SUPPORTS = ARGUMENT_ELEMENT_FEATURE_COUNT + 0;
+  int CORE_ELEMENT__SUPPORTS = GSNPackage.ARGUMENT_ELEMENT_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Core Element</em>' class.
@@ -361,7 +361,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CORE_ELEMENT_FEATURE_COUNT = ARGUMENT_ELEMENT_FEATURE_COUNT + 1;
+  int CORE_ELEMENT_FEATURE_COUNT = GSNPackage.ARGUMENT_ELEMENT_FEATURE_COUNT + 1;
 
   /**
    * The number of operations of the '<em>Core Element</em>' class.
@@ -370,7 +370,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CORE_ELEMENT_OPERATION_COUNT = ARGUMENT_ELEMENT_OPERATION_COUNT + 0;
+  int CORE_ELEMENT_OPERATION_COUNT = GSNPackage.ARGUMENT_ELEMENT_OPERATION_COUNT + 0;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.SupporterImpl <em>Supporter</em>}' class.
@@ -426,7 +426,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int SUPPORTABLE__SUPPORTS = SUPPORTER__SUPPORTS;
+  int SUPPORTABLE__SUPPORTS = GSNPackage.SUPPORTER__SUPPORTS;
 
   /**
    * The feature id for the '<em><b>Supported By</b></em>' containment reference list.
@@ -435,7 +435,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int SUPPORTABLE__SUPPORTED_BY = SUPPORTER_FEATURE_COUNT + 0;
+  int SUPPORTABLE__SUPPORTED_BY = GSNPackage.SUPPORTER_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Supportable</em>' class.
@@ -444,7 +444,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int SUPPORTABLE_FEATURE_COUNT = SUPPORTER_FEATURE_COUNT + 1;
+  int SUPPORTABLE_FEATURE_COUNT = GSNPackage.SUPPORTER_FEATURE_COUNT + 1;
 
   /**
    * The number of operations of the '<em>Supportable</em>' class.
@@ -453,7 +453,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int SUPPORTABLE_OPERATION_COUNT = SUPPORTER_OPERATION_COUNT + 0;
+  int SUPPORTABLE_OPERATION_COUNT = GSNPackage.SUPPORTER_OPERATION_COUNT + 0;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.DecomposableCoreElementImpl <em>Decomposable Core Element</em>}' class.
@@ -472,7 +472,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DECOMPOSABLE_CORE_ELEMENT__SUPPORTS = SUPPORTABLE__SUPPORTS;
+  int DECOMPOSABLE_CORE_ELEMENT__SUPPORTS = GSNPackage.SUPPORTABLE__SUPPORTS;
 
   /**
    * The feature id for the '<em><b>Supported By</b></em>' containment reference list.
@@ -481,7 +481,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DECOMPOSABLE_CORE_ELEMENT__SUPPORTED_BY = SUPPORTABLE__SUPPORTED_BY;
+  int DECOMPOSABLE_CORE_ELEMENT__SUPPORTED_BY = GSNPackage.SUPPORTABLE__SUPPORTED_BY;
 
   /**
    * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -490,7 +490,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DECOMPOSABLE_CORE_ELEMENT__ID = SUPPORTABLE_FEATURE_COUNT + 0;
+  int DECOMPOSABLE_CORE_ELEMENT__ID = GSNPackage.SUPPORTABLE_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -499,7 +499,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DECOMPOSABLE_CORE_ELEMENT__DESCRIPTION = SUPPORTABLE_FEATURE_COUNT + 1;
+  int DECOMPOSABLE_CORE_ELEMENT__DESCRIPTION = GSNPackage.SUPPORTABLE_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Content Validity</b></em>' attribute.
@@ -508,7 +508,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DECOMPOSABLE_CORE_ELEMENT__CONTENT_VALIDITY = SUPPORTABLE_FEATURE_COUNT + 2;
+  int DECOMPOSABLE_CORE_ELEMENT__CONTENT_VALIDITY = GSNPackage.SUPPORTABLE_FEATURE_COUNT + 2;
 
   /**
    * The feature id for the '<em><b>Status</b></em>' containment reference.
@@ -517,7 +517,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DECOMPOSABLE_CORE_ELEMENT__STATUS = SUPPORTABLE_FEATURE_COUNT + 3;
+  int DECOMPOSABLE_CORE_ELEMENT__STATUS = GSNPackage.SUPPORTABLE_FEATURE_COUNT + 3;
 
   /**
    * The feature id for the '<em><b>In Context Of</b></em>' containment reference list.
@@ -526,7 +526,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF = SUPPORTABLE_FEATURE_COUNT + 4;
+  int DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF = GSNPackage.SUPPORTABLE_FEATURE_COUNT + 4;
 
   /**
    * The number of structural features of the '<em>Decomposable Core Element</em>' class.
@@ -535,7 +535,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DECOMPOSABLE_CORE_ELEMENT_FEATURE_COUNT = SUPPORTABLE_FEATURE_COUNT + 5;
+  int DECOMPOSABLE_CORE_ELEMENT_FEATURE_COUNT = GSNPackage.SUPPORTABLE_FEATURE_COUNT + 5;
 
   /**
    * The number of operations of the '<em>Decomposable Core Element</em>' class.
@@ -544,7 +544,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DECOMPOSABLE_CORE_ELEMENT_OPERATION_COUNT = SUPPORTABLE_OPERATION_COUNT + 0;
+  int DECOMPOSABLE_CORE_ELEMENT_OPERATION_COUNT = GSNPackage.SUPPORTABLE_OPERATION_COUNT + 0;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.ContextualElementImpl <em>Contextual Element</em>}' class.
@@ -563,7 +563,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CONTEXTUAL_ELEMENT__ID = ARGUMENT_ELEMENT__ID;
+  int CONTEXTUAL_ELEMENT__ID = GSNPackage.ARGUMENT_ELEMENT__ID;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -572,7 +572,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CONTEXTUAL_ELEMENT__DESCRIPTION = ARGUMENT_ELEMENT__DESCRIPTION;
+  int CONTEXTUAL_ELEMENT__DESCRIPTION = GSNPackage.ARGUMENT_ELEMENT__DESCRIPTION;
 
   /**
    * The feature id for the '<em><b>Content Validity</b></em>' attribute.
@@ -581,7 +581,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CONTEXTUAL_ELEMENT__CONTENT_VALIDITY = ARGUMENT_ELEMENT__CONTENT_VALIDITY;
+  int CONTEXTUAL_ELEMENT__CONTENT_VALIDITY = GSNPackage.ARGUMENT_ELEMENT__CONTENT_VALIDITY;
 
   /**
    * The feature id for the '<em><b>Status</b></em>' containment reference.
@@ -590,7 +590,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CONTEXTUAL_ELEMENT__STATUS = ARGUMENT_ELEMENT__STATUS;
+  int CONTEXTUAL_ELEMENT__STATUS = GSNPackage.ARGUMENT_ELEMENT__STATUS;
 
   /**
    * The feature id for the '<em><b>Context Of</b></em>' reference list.
@@ -599,7 +599,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CONTEXTUAL_ELEMENT__CONTEXT_OF = ARGUMENT_ELEMENT_FEATURE_COUNT + 0;
+  int CONTEXTUAL_ELEMENT__CONTEXT_OF = GSNPackage.ARGUMENT_ELEMENT_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Contextual Element</em>' class.
@@ -608,7 +608,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CONTEXTUAL_ELEMENT_FEATURE_COUNT = ARGUMENT_ELEMENT_FEATURE_COUNT + 1;
+  int CONTEXTUAL_ELEMENT_FEATURE_COUNT = GSNPackage.ARGUMENT_ELEMENT_FEATURE_COUNT + 1;
 
   /**
    * The number of operations of the '<em>Contextual Element</em>' class.
@@ -617,7 +617,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CONTEXTUAL_ELEMENT_OPERATION_COUNT = ARGUMENT_ELEMENT_OPERATION_COUNT + 0;
+  int CONTEXTUAL_ELEMENT_OPERATION_COUNT = GSNPackage.ARGUMENT_ELEMENT_OPERATION_COUNT + 0;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.SupportedByImpl <em>Supported By</em>}' class.
@@ -728,7 +728,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GOAL__SUPPORTS = DECOMPOSABLE_CORE_ELEMENT__SUPPORTS;
+  int GOAL__SUPPORTS = GSNPackage.DECOMPOSABLE_CORE_ELEMENT__SUPPORTS;
 
   /**
    * The feature id for the '<em><b>Supported By</b></em>' containment reference list.
@@ -737,7 +737,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GOAL__SUPPORTED_BY = DECOMPOSABLE_CORE_ELEMENT__SUPPORTED_BY;
+  int GOAL__SUPPORTED_BY = GSNPackage.DECOMPOSABLE_CORE_ELEMENT__SUPPORTED_BY;
 
   /**
    * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -746,7 +746,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GOAL__ID = DECOMPOSABLE_CORE_ELEMENT__ID;
+  int GOAL__ID = GSNPackage.DECOMPOSABLE_CORE_ELEMENT__ID;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -755,7 +755,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GOAL__DESCRIPTION = DECOMPOSABLE_CORE_ELEMENT__DESCRIPTION;
+  int GOAL__DESCRIPTION = GSNPackage.DECOMPOSABLE_CORE_ELEMENT__DESCRIPTION;
 
   /**
    * The feature id for the '<em><b>Content Validity</b></em>' attribute.
@@ -764,7 +764,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GOAL__CONTENT_VALIDITY = DECOMPOSABLE_CORE_ELEMENT__CONTENT_VALIDITY;
+  int GOAL__CONTENT_VALIDITY = GSNPackage.DECOMPOSABLE_CORE_ELEMENT__CONTENT_VALIDITY;
 
   /**
    * The feature id for the '<em><b>Status</b></em>' containment reference.
@@ -773,7 +773,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GOAL__STATUS = DECOMPOSABLE_CORE_ELEMENT__STATUS;
+  int GOAL__STATUS = GSNPackage.DECOMPOSABLE_CORE_ELEMENT__STATUS;
 
   /**
    * The feature id for the '<em><b>In Context Of</b></em>' containment reference list.
@@ -782,7 +782,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GOAL__IN_CONTEXT_OF = DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF;
+  int GOAL__IN_CONTEXT_OF = GSNPackage.DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF;
 
   /**
    * The feature id for the '<em><b>State Validity</b></em>' attribute.
@@ -791,7 +791,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GOAL__STATE_VALIDITY = DECOMPOSABLE_CORE_ELEMENT_FEATURE_COUNT + 0;
+  int GOAL__STATE_VALIDITY = GSNPackage.DECOMPOSABLE_CORE_ELEMENT_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Asil</b></em>' containment reference.
@@ -800,7 +800,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GOAL__ASIL = DECOMPOSABLE_CORE_ELEMENT_FEATURE_COUNT + 1;
+  int GOAL__ASIL = GSNPackage.DECOMPOSABLE_CORE_ELEMENT_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Goal</em>' class.
@@ -809,7 +809,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GOAL_FEATURE_COUNT = DECOMPOSABLE_CORE_ELEMENT_FEATURE_COUNT + 2;
+  int GOAL_FEATURE_COUNT = GSNPackage.DECOMPOSABLE_CORE_ELEMENT_FEATURE_COUNT + 2;
 
   /**
    * The number of operations of the '<em>Goal</em>' class.
@@ -818,7 +818,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GOAL_OPERATION_COUNT = DECOMPOSABLE_CORE_ELEMENT_OPERATION_COUNT + 0;
+  int GOAL_OPERATION_COUNT = GSNPackage.DECOMPOSABLE_CORE_ELEMENT_OPERATION_COUNT + 0;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.BasicGoalImpl <em>Basic Goal</em>}' class.
@@ -837,7 +837,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int BASIC_GOAL__SUPPORTS = GOAL__SUPPORTS;
+  int BASIC_GOAL__SUPPORTS = GSNPackage.GOAL__SUPPORTS;
 
   /**
    * The feature id for the '<em><b>Supported By</b></em>' containment reference list.
@@ -846,7 +846,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int BASIC_GOAL__SUPPORTED_BY = GOAL__SUPPORTED_BY;
+  int BASIC_GOAL__SUPPORTED_BY = GSNPackage.GOAL__SUPPORTED_BY;
 
   /**
    * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -855,7 +855,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int BASIC_GOAL__ID = GOAL__ID;
+  int BASIC_GOAL__ID = GSNPackage.GOAL__ID;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -864,7 +864,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int BASIC_GOAL__DESCRIPTION = GOAL__DESCRIPTION;
+  int BASIC_GOAL__DESCRIPTION = GSNPackage.GOAL__DESCRIPTION;
 
   /**
    * The feature id for the '<em><b>Content Validity</b></em>' attribute.
@@ -873,7 +873,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int BASIC_GOAL__CONTENT_VALIDITY = GOAL__CONTENT_VALIDITY;
+  int BASIC_GOAL__CONTENT_VALIDITY = GSNPackage.GOAL__CONTENT_VALIDITY;
 
   /**
    * The feature id for the '<em><b>Status</b></em>' containment reference.
@@ -882,7 +882,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int BASIC_GOAL__STATUS = GOAL__STATUS;
+  int BASIC_GOAL__STATUS = GSNPackage.GOAL__STATUS;
 
   /**
    * The feature id for the '<em><b>In Context Of</b></em>' containment reference list.
@@ -891,7 +891,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int BASIC_GOAL__IN_CONTEXT_OF = GOAL__IN_CONTEXT_OF;
+  int BASIC_GOAL__IN_CONTEXT_OF = GSNPackage.GOAL__IN_CONTEXT_OF;
 
   /**
    * The feature id for the '<em><b>State Validity</b></em>' attribute.
@@ -900,7 +900,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int BASIC_GOAL__STATE_VALIDITY = GOAL__STATE_VALIDITY;
+  int BASIC_GOAL__STATE_VALIDITY = GSNPackage.GOAL__STATE_VALIDITY;
 
   /**
    * The feature id for the '<em><b>Asil</b></em>' containment reference.
@@ -909,7 +909,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int BASIC_GOAL__ASIL = GOAL__ASIL;
+  int BASIC_GOAL__ASIL = GSNPackage.GOAL__ASIL;
 
   /**
    * The number of structural features of the '<em>Basic Goal</em>' class.
@@ -918,7 +918,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int BASIC_GOAL_FEATURE_COUNT = GOAL_FEATURE_COUNT + 0;
+  int BASIC_GOAL_FEATURE_COUNT = GSNPackage.GOAL_FEATURE_COUNT + 0;
 
   /**
    * The number of operations of the '<em>Basic Goal</em>' class.
@@ -927,7 +927,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int BASIC_GOAL_OPERATION_COUNT = GOAL_OPERATION_COUNT + 0;
+  int BASIC_GOAL_OPERATION_COUNT = GSNPackage.GOAL_OPERATION_COUNT + 0;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.IndependenceGoalImpl <em>Independence Goal</em>}' class.
@@ -946,7 +946,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int INDEPENDENCE_GOAL__SUPPORTS = GOAL__SUPPORTS;
+  int INDEPENDENCE_GOAL__SUPPORTS = GSNPackage.GOAL__SUPPORTS;
 
   /**
    * The feature id for the '<em><b>Supported By</b></em>' containment reference list.
@@ -955,7 +955,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int INDEPENDENCE_GOAL__SUPPORTED_BY = GOAL__SUPPORTED_BY;
+  int INDEPENDENCE_GOAL__SUPPORTED_BY = GSNPackage.GOAL__SUPPORTED_BY;
 
   /**
    * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -964,7 +964,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int INDEPENDENCE_GOAL__ID = GOAL__ID;
+  int INDEPENDENCE_GOAL__ID = GSNPackage.GOAL__ID;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -973,7 +973,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int INDEPENDENCE_GOAL__DESCRIPTION = GOAL__DESCRIPTION;
+  int INDEPENDENCE_GOAL__DESCRIPTION = GSNPackage.GOAL__DESCRIPTION;
 
   /**
    * The feature id for the '<em><b>Content Validity</b></em>' attribute.
@@ -982,7 +982,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int INDEPENDENCE_GOAL__CONTENT_VALIDITY = GOAL__CONTENT_VALIDITY;
+  int INDEPENDENCE_GOAL__CONTENT_VALIDITY = GSNPackage.GOAL__CONTENT_VALIDITY;
 
   /**
    * The feature id for the '<em><b>Status</b></em>' containment reference.
@@ -991,7 +991,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int INDEPENDENCE_GOAL__STATUS = GOAL__STATUS;
+  int INDEPENDENCE_GOAL__STATUS = GSNPackage.GOAL__STATUS;
 
   /**
    * The feature id for the '<em><b>In Context Of</b></em>' containment reference list.
@@ -1000,7 +1000,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int INDEPENDENCE_GOAL__IN_CONTEXT_OF = GOAL__IN_CONTEXT_OF;
+  int INDEPENDENCE_GOAL__IN_CONTEXT_OF = GSNPackage.GOAL__IN_CONTEXT_OF;
 
   /**
    * The feature id for the '<em><b>State Validity</b></em>' attribute.
@@ -1009,7 +1009,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int INDEPENDENCE_GOAL__STATE_VALIDITY = GOAL__STATE_VALIDITY;
+  int INDEPENDENCE_GOAL__STATE_VALIDITY = GSNPackage.GOAL__STATE_VALIDITY;
 
   /**
    * The feature id for the '<em><b>Asil</b></em>' containment reference.
@@ -1018,7 +1018,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int INDEPENDENCE_GOAL__ASIL = GOAL__ASIL;
+  int INDEPENDENCE_GOAL__ASIL = GSNPackage.GOAL__ASIL;
 
   /**
    * The number of structural features of the '<em>Independence Goal</em>' class.
@@ -1027,7 +1027,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int INDEPENDENCE_GOAL_FEATURE_COUNT = GOAL_FEATURE_COUNT + 0;
+  int INDEPENDENCE_GOAL_FEATURE_COUNT = GSNPackage.GOAL_FEATURE_COUNT + 0;
 
   /**
    * The number of operations of the '<em>Independence Goal</em>' class.
@@ -1036,7 +1036,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int INDEPENDENCE_GOAL_OPERATION_COUNT = GOAL_OPERATION_COUNT + 0;
+  int INDEPENDENCE_GOAL_OPERATION_COUNT = GSNPackage.GOAL_OPERATION_COUNT + 0;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.DomainGoalImpl <em>Domain Goal</em>}' class.
@@ -1065,7 +1065,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int STRATEGY__SUPPORTS = DECOMPOSABLE_CORE_ELEMENT__SUPPORTS;
+  int STRATEGY__SUPPORTS = GSNPackage.DECOMPOSABLE_CORE_ELEMENT__SUPPORTS;
 
   /**
    * The feature id for the '<em><b>Supported By</b></em>' containment reference list.
@@ -1074,7 +1074,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int STRATEGY__SUPPORTED_BY = DECOMPOSABLE_CORE_ELEMENT__SUPPORTED_BY;
+  int STRATEGY__SUPPORTED_BY = GSNPackage.DECOMPOSABLE_CORE_ELEMENT__SUPPORTED_BY;
 
   /**
    * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -1083,7 +1083,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int STRATEGY__ID = DECOMPOSABLE_CORE_ELEMENT__ID;
+  int STRATEGY__ID = GSNPackage.DECOMPOSABLE_CORE_ELEMENT__ID;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -1092,7 +1092,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int STRATEGY__DESCRIPTION = DECOMPOSABLE_CORE_ELEMENT__DESCRIPTION;
+  int STRATEGY__DESCRIPTION = GSNPackage.DECOMPOSABLE_CORE_ELEMENT__DESCRIPTION;
 
   /**
    * The feature id for the '<em><b>Content Validity</b></em>' attribute.
@@ -1101,7 +1101,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int STRATEGY__CONTENT_VALIDITY = DECOMPOSABLE_CORE_ELEMENT__CONTENT_VALIDITY;
+  int STRATEGY__CONTENT_VALIDITY = GSNPackage.DECOMPOSABLE_CORE_ELEMENT__CONTENT_VALIDITY;
 
   /**
    * The feature id for the '<em><b>Status</b></em>' containment reference.
@@ -1110,7 +1110,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int STRATEGY__STATUS = DECOMPOSABLE_CORE_ELEMENT__STATUS;
+  int STRATEGY__STATUS = GSNPackage.DECOMPOSABLE_CORE_ELEMENT__STATUS;
 
   /**
    * The feature id for the '<em><b>In Context Of</b></em>' containment reference list.
@@ -1119,7 +1119,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int STRATEGY__IN_CONTEXT_OF = DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF;
+  int STRATEGY__IN_CONTEXT_OF = GSNPackage.DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF;
 
   /**
    * The number of structural features of the '<em>Strategy</em>' class.
@@ -1128,7 +1128,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int STRATEGY_FEATURE_COUNT = DECOMPOSABLE_CORE_ELEMENT_FEATURE_COUNT + 0;
+  int STRATEGY_FEATURE_COUNT = GSNPackage.DECOMPOSABLE_CORE_ELEMENT_FEATURE_COUNT + 0;
 
   /**
    * The number of operations of the '<em>Strategy</em>' class.
@@ -1137,7 +1137,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int STRATEGY_OPERATION_COUNT = DECOMPOSABLE_CORE_ELEMENT_OPERATION_COUNT + 0;
+  int STRATEGY_OPERATION_COUNT = GSNPackage.DECOMPOSABLE_CORE_ELEMENT_OPERATION_COUNT + 0;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.BasicStrategyImpl <em>Basic Strategy</em>}' class.
@@ -1156,7 +1156,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int BASIC_STRATEGY__SUPPORTS = STRATEGY__SUPPORTS;
+  int BASIC_STRATEGY__SUPPORTS = GSNPackage.STRATEGY__SUPPORTS;
 
   /**
    * The feature id for the '<em><b>Supported By</b></em>' containment reference list.
@@ -1165,7 +1165,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int BASIC_STRATEGY__SUPPORTED_BY = STRATEGY__SUPPORTED_BY;
+  int BASIC_STRATEGY__SUPPORTED_BY = GSNPackage.STRATEGY__SUPPORTED_BY;
 
   /**
    * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -1174,7 +1174,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int BASIC_STRATEGY__ID = STRATEGY__ID;
+  int BASIC_STRATEGY__ID = GSNPackage.STRATEGY__ID;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -1183,7 +1183,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int BASIC_STRATEGY__DESCRIPTION = STRATEGY__DESCRIPTION;
+  int BASIC_STRATEGY__DESCRIPTION = GSNPackage.STRATEGY__DESCRIPTION;
 
   /**
    * The feature id for the '<em><b>Content Validity</b></em>' attribute.
@@ -1192,7 +1192,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int BASIC_STRATEGY__CONTENT_VALIDITY = STRATEGY__CONTENT_VALIDITY;
+  int BASIC_STRATEGY__CONTENT_VALIDITY = GSNPackage.STRATEGY__CONTENT_VALIDITY;
 
   /**
    * The feature id for the '<em><b>Status</b></em>' containment reference.
@@ -1201,7 +1201,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int BASIC_STRATEGY__STATUS = STRATEGY__STATUS;
+  int BASIC_STRATEGY__STATUS = GSNPackage.STRATEGY__STATUS;
 
   /**
    * The feature id for the '<em><b>In Context Of</b></em>' containment reference list.
@@ -1210,7 +1210,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int BASIC_STRATEGY__IN_CONTEXT_OF = STRATEGY__IN_CONTEXT_OF;
+  int BASIC_STRATEGY__IN_CONTEXT_OF = GSNPackage.STRATEGY__IN_CONTEXT_OF;
 
   /**
    * The number of structural features of the '<em>Basic Strategy</em>' class.
@@ -1219,7 +1219,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int BASIC_STRATEGY_FEATURE_COUNT = STRATEGY_FEATURE_COUNT + 0;
+  int BASIC_STRATEGY_FEATURE_COUNT = GSNPackage.STRATEGY_FEATURE_COUNT + 0;
 
   /**
    * The number of operations of the '<em>Basic Strategy</em>' class.
@@ -1228,7 +1228,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int BASIC_STRATEGY_OPERATION_COUNT = STRATEGY_OPERATION_COUNT + 0;
+  int BASIC_STRATEGY_OPERATION_COUNT = GSNPackage.STRATEGY_OPERATION_COUNT + 0;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.ASILDecompositionStrategyImpl <em>ASIL Decomposition Strategy</em>}' class.
@@ -1247,7 +1247,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ASIL_DECOMPOSITION_STRATEGY__SUPPORTS = STRATEGY__SUPPORTS;
+  int ASIL_DECOMPOSITION_STRATEGY__SUPPORTS = GSNPackage.STRATEGY__SUPPORTS;
 
   /**
    * The feature id for the '<em><b>Supported By</b></em>' containment reference list.
@@ -1256,7 +1256,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ASIL_DECOMPOSITION_STRATEGY__SUPPORTED_BY = STRATEGY__SUPPORTED_BY;
+  int ASIL_DECOMPOSITION_STRATEGY__SUPPORTED_BY = GSNPackage.STRATEGY__SUPPORTED_BY;
 
   /**
    * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -1265,7 +1265,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ASIL_DECOMPOSITION_STRATEGY__ID = STRATEGY__ID;
+  int ASIL_DECOMPOSITION_STRATEGY__ID = GSNPackage.STRATEGY__ID;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -1274,7 +1274,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ASIL_DECOMPOSITION_STRATEGY__DESCRIPTION = STRATEGY__DESCRIPTION;
+  int ASIL_DECOMPOSITION_STRATEGY__DESCRIPTION = GSNPackage.STRATEGY__DESCRIPTION;
 
   /**
    * The feature id for the '<em><b>Content Validity</b></em>' attribute.
@@ -1283,7 +1283,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ASIL_DECOMPOSITION_STRATEGY__CONTENT_VALIDITY = STRATEGY__CONTENT_VALIDITY;
+  int ASIL_DECOMPOSITION_STRATEGY__CONTENT_VALIDITY = GSNPackage.STRATEGY__CONTENT_VALIDITY;
 
   /**
    * The feature id for the '<em><b>Status</b></em>' containment reference.
@@ -1292,7 +1292,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ASIL_DECOMPOSITION_STRATEGY__STATUS = STRATEGY__STATUS;
+  int ASIL_DECOMPOSITION_STRATEGY__STATUS = GSNPackage.STRATEGY__STATUS;
 
   /**
    * The feature id for the '<em><b>In Context Of</b></em>' containment reference list.
@@ -1301,7 +1301,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ASIL_DECOMPOSITION_STRATEGY__IN_CONTEXT_OF = STRATEGY__IN_CONTEXT_OF;
+  int ASIL_DECOMPOSITION_STRATEGY__IN_CONTEXT_OF = GSNPackage.STRATEGY__IN_CONTEXT_OF;
 
   /**
    * The number of structural features of the '<em>ASIL Decomposition Strategy</em>' class.
@@ -1310,7 +1310,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ASIL_DECOMPOSITION_STRATEGY_FEATURE_COUNT = STRATEGY_FEATURE_COUNT + 0;
+  int ASIL_DECOMPOSITION_STRATEGY_FEATURE_COUNT = GSNPackage.STRATEGY_FEATURE_COUNT + 0;
 
   /**
    * The number of operations of the '<em>ASIL Decomposition Strategy</em>' class.
@@ -1319,7 +1319,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ASIL_DECOMPOSITION_STRATEGY_OPERATION_COUNT = STRATEGY_OPERATION_COUNT + 0;
+  int ASIL_DECOMPOSITION_STRATEGY_OPERATION_COUNT = GSNPackage.STRATEGY_OPERATION_COUNT + 0;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.SolutionImpl <em>Solution</em>}' class.
@@ -1338,7 +1338,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int SOLUTION__ID = CORE_ELEMENT__ID;
+  int SOLUTION__ID = GSNPackage.CORE_ELEMENT__ID;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -1347,7 +1347,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int SOLUTION__DESCRIPTION = CORE_ELEMENT__DESCRIPTION;
+  int SOLUTION__DESCRIPTION = GSNPackage.CORE_ELEMENT__DESCRIPTION;
 
   /**
    * The feature id for the '<em><b>Content Validity</b></em>' attribute.
@@ -1356,7 +1356,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int SOLUTION__CONTENT_VALIDITY = CORE_ELEMENT__CONTENT_VALIDITY;
+  int SOLUTION__CONTENT_VALIDITY = GSNPackage.CORE_ELEMENT__CONTENT_VALIDITY;
 
   /**
    * The feature id for the '<em><b>Status</b></em>' containment reference.
@@ -1365,7 +1365,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int SOLUTION__STATUS = CORE_ELEMENT__STATUS;
+  int SOLUTION__STATUS = GSNPackage.CORE_ELEMENT__STATUS;
 
   /**
    * The feature id for the '<em><b>Supports</b></em>' reference list.
@@ -1374,7 +1374,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int SOLUTION__SUPPORTS = CORE_ELEMENT__SUPPORTS;
+  int SOLUTION__SUPPORTS = GSNPackage.CORE_ELEMENT__SUPPORTS;
 
   /**
    * The feature id for the '<em><b>State Validity</b></em>' attribute.
@@ -1383,7 +1383,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int SOLUTION__STATE_VALIDITY = CORE_ELEMENT_FEATURE_COUNT + 0;
+  int SOLUTION__STATE_VALIDITY = GSNPackage.CORE_ELEMENT_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Solution</em>' class.
@@ -1392,7 +1392,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int SOLUTION_FEATURE_COUNT = CORE_ELEMENT_FEATURE_COUNT + 1;
+  int SOLUTION_FEATURE_COUNT = GSNPackage.CORE_ELEMENT_FEATURE_COUNT + 1;
 
   /**
    * The number of operations of the '<em>Solution</em>' class.
@@ -1401,7 +1401,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int SOLUTION_OPERATION_COUNT = CORE_ELEMENT_OPERATION_COUNT + 0;
+  int SOLUTION_OPERATION_COUNT = GSNPackage.CORE_ELEMENT_OPERATION_COUNT + 0;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.ContextImpl <em>Context</em>}' class.
@@ -1420,7 +1420,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CONTEXT__ID = CONTEXTUAL_ELEMENT__ID;
+  int CONTEXT__ID = GSNPackage.CONTEXTUAL_ELEMENT__ID;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -1429,7 +1429,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CONTEXT__DESCRIPTION = CONTEXTUAL_ELEMENT__DESCRIPTION;
+  int CONTEXT__DESCRIPTION = GSNPackage.CONTEXTUAL_ELEMENT__DESCRIPTION;
 
   /**
    * The feature id for the '<em><b>Content Validity</b></em>' attribute.
@@ -1438,7 +1438,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CONTEXT__CONTENT_VALIDITY = CONTEXTUAL_ELEMENT__CONTENT_VALIDITY;
+  int CONTEXT__CONTENT_VALIDITY = GSNPackage.CONTEXTUAL_ELEMENT__CONTENT_VALIDITY;
 
   /**
    * The feature id for the '<em><b>Status</b></em>' containment reference.
@@ -1447,7 +1447,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CONTEXT__STATUS = CONTEXTUAL_ELEMENT__STATUS;
+  int CONTEXT__STATUS = GSNPackage.CONTEXTUAL_ELEMENT__STATUS;
 
   /**
    * The feature id for the '<em><b>Context Of</b></em>' reference list.
@@ -1456,7 +1456,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CONTEXT__CONTEXT_OF = CONTEXTUAL_ELEMENT__CONTEXT_OF;
+  int CONTEXT__CONTEXT_OF = GSNPackage.CONTEXTUAL_ELEMENT__CONTEXT_OF;
 
   /**
    * The number of structural features of the '<em>Context</em>' class.
@@ -1465,7 +1465,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CONTEXT_FEATURE_COUNT = CONTEXTUAL_ELEMENT_FEATURE_COUNT + 0;
+  int CONTEXT_FEATURE_COUNT = GSNPackage.CONTEXTUAL_ELEMENT_FEATURE_COUNT + 0;
 
   /**
    * The number of operations of the '<em>Context</em>' class.
@@ -1474,7 +1474,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CONTEXT_OPERATION_COUNT = CONTEXTUAL_ELEMENT_OPERATION_COUNT + 0;
+  int CONTEXT_OPERATION_COUNT = GSNPackage.CONTEXTUAL_ELEMENT_OPERATION_COUNT + 0;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.JustificationImpl <em>Justification</em>}' class.
@@ -1493,7 +1493,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int JUSTIFICATION__ID = CONTEXTUAL_ELEMENT__ID;
+  int JUSTIFICATION__ID = GSNPackage.CONTEXTUAL_ELEMENT__ID;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -1502,7 +1502,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int JUSTIFICATION__DESCRIPTION = CONTEXTUAL_ELEMENT__DESCRIPTION;
+  int JUSTIFICATION__DESCRIPTION = GSNPackage.CONTEXTUAL_ELEMENT__DESCRIPTION;
 
   /**
    * The feature id for the '<em><b>Content Validity</b></em>' attribute.
@@ -1511,7 +1511,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int JUSTIFICATION__CONTENT_VALIDITY = CONTEXTUAL_ELEMENT__CONTENT_VALIDITY;
+  int JUSTIFICATION__CONTENT_VALIDITY = GSNPackage.CONTEXTUAL_ELEMENT__CONTENT_VALIDITY;
 
   /**
    * The feature id for the '<em><b>Status</b></em>' containment reference.
@@ -1520,7 +1520,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int JUSTIFICATION__STATUS = CONTEXTUAL_ELEMENT__STATUS;
+  int JUSTIFICATION__STATUS = GSNPackage.CONTEXTUAL_ELEMENT__STATUS;
 
   /**
    * The feature id for the '<em><b>Context Of</b></em>' reference list.
@@ -1529,7 +1529,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int JUSTIFICATION__CONTEXT_OF = CONTEXTUAL_ELEMENT__CONTEXT_OF;
+  int JUSTIFICATION__CONTEXT_OF = GSNPackage.CONTEXTUAL_ELEMENT__CONTEXT_OF;
 
   /**
    * The number of structural features of the '<em>Justification</em>' class.
@@ -1538,7 +1538,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int JUSTIFICATION_FEATURE_COUNT = CONTEXTUAL_ELEMENT_FEATURE_COUNT + 0;
+  int JUSTIFICATION_FEATURE_COUNT = GSNPackage.CONTEXTUAL_ELEMENT_FEATURE_COUNT + 0;
 
   /**
    * The number of operations of the '<em>Justification</em>' class.
@@ -1547,7 +1547,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int JUSTIFICATION_OPERATION_COUNT = CONTEXTUAL_ELEMENT_OPERATION_COUNT + 0;
+  int JUSTIFICATION_OPERATION_COUNT = GSNPackage.CONTEXTUAL_ELEMENT_OPERATION_COUNT + 0;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.AssumptionImpl <em>Assumption</em>}' class.
@@ -1566,7 +1566,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ASSUMPTION__ID = CONTEXTUAL_ELEMENT__ID;
+  int ASSUMPTION__ID = GSNPackage.CONTEXTUAL_ELEMENT__ID;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -1575,7 +1575,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ASSUMPTION__DESCRIPTION = CONTEXTUAL_ELEMENT__DESCRIPTION;
+  int ASSUMPTION__DESCRIPTION = GSNPackage.CONTEXTUAL_ELEMENT__DESCRIPTION;
 
   /**
    * The feature id for the '<em><b>Content Validity</b></em>' attribute.
@@ -1584,7 +1584,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ASSUMPTION__CONTENT_VALIDITY = CONTEXTUAL_ELEMENT__CONTENT_VALIDITY;
+  int ASSUMPTION__CONTENT_VALIDITY = GSNPackage.CONTEXTUAL_ELEMENT__CONTENT_VALIDITY;
 
   /**
    * The feature id for the '<em><b>Status</b></em>' containment reference.
@@ -1593,7 +1593,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ASSUMPTION__STATUS = CONTEXTUAL_ELEMENT__STATUS;
+  int ASSUMPTION__STATUS = GSNPackage.CONTEXTUAL_ELEMENT__STATUS;
 
   /**
    * The feature id for the '<em><b>Context Of</b></em>' reference list.
@@ -1602,7 +1602,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ASSUMPTION__CONTEXT_OF = CONTEXTUAL_ELEMENT__CONTEXT_OF;
+  int ASSUMPTION__CONTEXT_OF = GSNPackage.CONTEXTUAL_ELEMENT__CONTEXT_OF;
 
   /**
    * The number of structural features of the '<em>Assumption</em>' class.
@@ -1611,7 +1611,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ASSUMPTION_FEATURE_COUNT = CONTEXTUAL_ELEMENT_FEATURE_COUNT + 0;
+  int ASSUMPTION_FEATURE_COUNT = GSNPackage.CONTEXTUAL_ELEMENT_FEATURE_COUNT + 0;
 
   /**
    * The number of operations of the '<em>Assumption</em>' class.
@@ -1620,7 +1620,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ASSUMPTION_OPERATION_COUNT = CONTEXTUAL_ELEMENT_OPERATION_COUNT + 0;
+  int ASSUMPTION_OPERATION_COUNT = GSNPackage.CONTEXTUAL_ELEMENT_OPERATION_COUNT + 0;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.ASILImpl <em>ASIL</em>}' class.
@@ -1740,7 +1740,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int SUPPORT_CONNECTOR__SUPPORTS = SUPPORTABLE__SUPPORTS;
+  int SUPPORT_CONNECTOR__SUPPORTS = GSNPackage.SUPPORTABLE__SUPPORTS;
 
   /**
    * The feature id for the '<em><b>Supported By</b></em>' containment reference list.
@@ -1749,7 +1749,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int SUPPORT_CONNECTOR__SUPPORTED_BY = SUPPORTABLE__SUPPORTED_BY;
+  int SUPPORT_CONNECTOR__SUPPORTED_BY = GSNPackage.SUPPORTABLE__SUPPORTED_BY;
 
   /**
    * The number of structural features of the '<em>Support Connector</em>' class.
@@ -1758,7 +1758,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int SUPPORT_CONNECTOR_FEATURE_COUNT = SUPPORTABLE_FEATURE_COUNT + 0;
+  int SUPPORT_CONNECTOR_FEATURE_COUNT = GSNPackage.SUPPORTABLE_FEATURE_COUNT + 0;
 
   /**
    * The number of operations of the '<em>Support Connector</em>' class.
@@ -1767,7 +1767,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int SUPPORT_CONNECTOR_OPERATION_COUNT = SUPPORTABLE_OPERATION_COUNT + 0;
+  int SUPPORT_CONNECTOR_OPERATION_COUNT = GSNPackage.SUPPORTABLE_OPERATION_COUNT + 0;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.AndSupporterImpl <em>And Supporter</em>}' class.
@@ -1786,7 +1786,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int AND_SUPPORTER__SUPPORTS = SUPPORT_CONNECTOR__SUPPORTS;
+  int AND_SUPPORTER__SUPPORTS = GSNPackage.SUPPORT_CONNECTOR__SUPPORTS;
 
   /**
    * The feature id for the '<em><b>Supported By</b></em>' containment reference list.
@@ -1795,7 +1795,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int AND_SUPPORTER__SUPPORTED_BY = SUPPORT_CONNECTOR__SUPPORTED_BY;
+  int AND_SUPPORTER__SUPPORTED_BY = GSNPackage.SUPPORT_CONNECTOR__SUPPORTED_BY;
 
   /**
    * The number of structural features of the '<em>And Supporter</em>' class.
@@ -1804,7 +1804,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int AND_SUPPORTER_FEATURE_COUNT = SUPPORT_CONNECTOR_FEATURE_COUNT + 0;
+  int AND_SUPPORTER_FEATURE_COUNT = GSNPackage.SUPPORT_CONNECTOR_FEATURE_COUNT + 0;
 
   /**
    * The number of operations of the '<em>And Supporter</em>' class.
@@ -1813,7 +1813,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int AND_SUPPORTER_OPERATION_COUNT = SUPPORT_CONNECTOR_OPERATION_COUNT + 0;
+  int AND_SUPPORTER_OPERATION_COUNT = GSNPackage.SUPPORT_CONNECTOR_OPERATION_COUNT + 0;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.OrSupporterImpl <em>Or Supporter</em>}' class.
@@ -1832,7 +1832,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int OR_SUPPORTER__SUPPORTS = SUPPORT_CONNECTOR__SUPPORTS;
+  int OR_SUPPORTER__SUPPORTS = GSNPackage.SUPPORT_CONNECTOR__SUPPORTS;
 
   /**
    * The feature id for the '<em><b>Supported By</b></em>' containment reference list.
@@ -1841,7 +1841,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int OR_SUPPORTER__SUPPORTED_BY = SUPPORT_CONNECTOR__SUPPORTED_BY;
+  int OR_SUPPORTER__SUPPORTED_BY = GSNPackage.SUPPORT_CONNECTOR__SUPPORTED_BY;
 
   /**
    * The number of structural features of the '<em>Or Supporter</em>' class.
@@ -1850,7 +1850,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int OR_SUPPORTER_FEATURE_COUNT = SUPPORT_CONNECTOR_FEATURE_COUNT + 0;
+  int OR_SUPPORTER_FEATURE_COUNT = GSNPackage.SUPPORT_CONNECTOR_FEATURE_COUNT + 0;
 
   /**
    * The number of operations of the '<em>Or Supporter</em>' class.
@@ -1859,7 +1859,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int OR_SUPPORTER_OPERATION_COUNT = SUPPORT_CONNECTOR_OPERATION_COUNT + 0;
+  int OR_SUPPORTER_OPERATION_COUNT = GSNPackage.SUPPORT_CONNECTOR_OPERATION_COUNT + 0;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.XorSupporterImpl <em>Xor Supporter</em>}' class.
@@ -1878,7 +1878,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int XOR_SUPPORTER__SUPPORTS = SUPPORT_CONNECTOR__SUPPORTS;
+  int XOR_SUPPORTER__SUPPORTS = GSNPackage.SUPPORT_CONNECTOR__SUPPORTS;
 
   /**
    * The feature id for the '<em><b>Supported By</b></em>' containment reference list.
@@ -1887,7 +1887,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int XOR_SUPPORTER__SUPPORTED_BY = SUPPORT_CONNECTOR__SUPPORTED_BY;
+  int XOR_SUPPORTER__SUPPORTED_BY = GSNPackage.SUPPORT_CONNECTOR__SUPPORTED_BY;
 
   /**
    * The number of structural features of the '<em>Xor Supporter</em>' class.
@@ -1896,7 +1896,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int XOR_SUPPORTER_FEATURE_COUNT = SUPPORT_CONNECTOR_FEATURE_COUNT + 0;
+  int XOR_SUPPORTER_FEATURE_COUNT = GSNPackage.SUPPORT_CONNECTOR_FEATURE_COUNT + 0;
 
   /**
    * The number of operations of the '<em>Xor Supporter</em>' class.
@@ -1905,7 +1905,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int XOR_SUPPORTER_OPERATION_COUNT = SUPPORT_CONNECTOR_OPERATION_COUNT + 0;
+  int XOR_SUPPORTER_OPERATION_COUNT = GSNPackage.SUPPORT_CONNECTOR_OPERATION_COUNT + 0;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.MofNSupporterImpl <em>Mof NSupporter</em>}' class.
@@ -1924,7 +1924,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int MOF_NSUPPORTER__SUPPORTS = SUPPORT_CONNECTOR__SUPPORTS;
+  int MOF_NSUPPORTER__SUPPORTS = GSNPackage.SUPPORT_CONNECTOR__SUPPORTS;
 
   /**
    * The feature id for the '<em><b>Supported By</b></em>' containment reference list.
@@ -1933,7 +1933,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int MOF_NSUPPORTER__SUPPORTED_BY = SUPPORT_CONNECTOR__SUPPORTED_BY;
+  int MOF_NSUPPORTER__SUPPORTED_BY = GSNPackage.SUPPORT_CONNECTOR__SUPPORTED_BY;
 
   /**
    * The feature id for the '<em><b>Target</b></em>' attribute.
@@ -1942,7 +1942,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int MOF_NSUPPORTER__TARGET = SUPPORT_CONNECTOR_FEATURE_COUNT + 0;
+  int MOF_NSUPPORTER__TARGET = GSNPackage.SUPPORT_CONNECTOR_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Mof NSupporter</em>' class.
@@ -1951,7 +1951,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int MOF_NSUPPORTER_FEATURE_COUNT = SUPPORT_CONNECTOR_FEATURE_COUNT + 1;
+  int MOF_NSUPPORTER_FEATURE_COUNT = GSNPackage.SUPPORT_CONNECTOR_FEATURE_COUNT + 1;
 
   /**
    * The number of operations of the '<em>Mof NSupporter</em>' class.
@@ -1960,7 +1960,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int MOF_NSUPPORTER_OPERATION_COUNT = SUPPORT_CONNECTOR_OPERATION_COUNT + 0;
+  int MOF_NSUPPORTER_OPERATION_COUNT = GSNPackage.SUPPORT_CONNECTOR_OPERATION_COUNT + 0;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.DecompositionStrategyImpl <em>Decomposition Strategy</em>}' class.
@@ -1979,7 +1979,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DECOMPOSITION_STRATEGY__SUPPORTS = STRATEGY__SUPPORTS;
+  int DECOMPOSITION_STRATEGY__SUPPORTS = GSNPackage.STRATEGY__SUPPORTS;
 
   /**
    * The feature id for the '<em><b>Supported By</b></em>' containment reference list.
@@ -1988,7 +1988,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DECOMPOSITION_STRATEGY__SUPPORTED_BY = STRATEGY__SUPPORTED_BY;
+  int DECOMPOSITION_STRATEGY__SUPPORTED_BY = GSNPackage.STRATEGY__SUPPORTED_BY;
 
   /**
    * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -1997,7 +1997,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DECOMPOSITION_STRATEGY__ID = STRATEGY__ID;
+  int DECOMPOSITION_STRATEGY__ID = GSNPackage.STRATEGY__ID;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -2006,7 +2006,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DECOMPOSITION_STRATEGY__DESCRIPTION = STRATEGY__DESCRIPTION;
+  int DECOMPOSITION_STRATEGY__DESCRIPTION = GSNPackage.STRATEGY__DESCRIPTION;
 
   /**
    * The feature id for the '<em><b>Content Validity</b></em>' attribute.
@@ -2015,7 +2015,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DECOMPOSITION_STRATEGY__CONTENT_VALIDITY = STRATEGY__CONTENT_VALIDITY;
+  int DECOMPOSITION_STRATEGY__CONTENT_VALIDITY = GSNPackage.STRATEGY__CONTENT_VALIDITY;
 
   /**
    * The feature id for the '<em><b>Status</b></em>' containment reference.
@@ -2024,7 +2024,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DECOMPOSITION_STRATEGY__STATUS = STRATEGY__STATUS;
+  int DECOMPOSITION_STRATEGY__STATUS = GSNPackage.STRATEGY__STATUS;
 
   /**
    * The feature id for the '<em><b>In Context Of</b></em>' containment reference list.
@@ -2033,7 +2033,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DECOMPOSITION_STRATEGY__IN_CONTEXT_OF = STRATEGY__IN_CONTEXT_OF;
+  int DECOMPOSITION_STRATEGY__IN_CONTEXT_OF = GSNPackage.STRATEGY__IN_CONTEXT_OF;
 
   /**
    * The number of structural features of the '<em>Decomposition Strategy</em>' class.
@@ -2042,7 +2042,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DECOMPOSITION_STRATEGY_FEATURE_COUNT = STRATEGY_FEATURE_COUNT + 0;
+  int DECOMPOSITION_STRATEGY_FEATURE_COUNT = GSNPackage.STRATEGY_FEATURE_COUNT + 0;
 
   /**
    * The operation id for the '<em>Validate</em>' operation.
@@ -2051,7 +2051,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DECOMPOSITION_STRATEGY___VALIDATE = STRATEGY_OPERATION_COUNT + 0;
+  int DECOMPOSITION_STRATEGY___VALIDATE = GSNPackage.STRATEGY_OPERATION_COUNT + 0;
 
   /**
    * The number of operations of the '<em>Decomposition Strategy</em>' class.
@@ -2060,7 +2060,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DECOMPOSITION_STRATEGY_OPERATION_COUNT = STRATEGY_OPERATION_COUNT + 1;
+  int DECOMPOSITION_STRATEGY_OPERATION_COUNT = GSNPackage.STRATEGY_OPERATION_COUNT + 1;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.DomainImpl <em>Domain</em>}' class.
@@ -2116,7 +2116,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int INT_DOMAIN__LOWER_BOUND = DOMAIN_FEATURE_COUNT + 0;
+  int INT_DOMAIN__LOWER_BOUND = GSNPackage.DOMAIN_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Upper Bound</b></em>' attribute.
@@ -2125,7 +2125,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int INT_DOMAIN__UPPER_BOUND = DOMAIN_FEATURE_COUNT + 1;
+  int INT_DOMAIN__UPPER_BOUND = GSNPackage.DOMAIN_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Int Domain</em>' class.
@@ -2134,7 +2134,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int INT_DOMAIN_FEATURE_COUNT = DOMAIN_FEATURE_COUNT + 2;
+  int INT_DOMAIN_FEATURE_COUNT = GSNPackage.DOMAIN_FEATURE_COUNT + 2;
 
   /**
    * The operation id for the '<em>Validate Decomposition</em>' operation.
@@ -2143,7 +2143,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int INT_DOMAIN___VALIDATE_DECOMPOSITION__ELIST = DOMAIN___VALIDATE_DECOMPOSITION__ELIST;
+  int INT_DOMAIN___VALIDATE_DECOMPOSITION__ELIST = GSNPackage.DOMAIN___VALIDATE_DECOMPOSITION__ELIST;
 
   /**
    * The number of operations of the '<em>Int Domain</em>' class.
@@ -2152,7 +2152,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int INT_DOMAIN_OPERATION_COUNT = DOMAIN_OPERATION_COUNT + 0;
+  int INT_DOMAIN_OPERATION_COUNT = GSNPackage.DOMAIN_OPERATION_COUNT + 0;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.RealDomainImpl <em>Real Domain</em>}' class.
@@ -2171,7 +2171,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int REAL_DOMAIN__LOWER_BOUND = DOMAIN_FEATURE_COUNT + 0;
+  int REAL_DOMAIN__LOWER_BOUND = GSNPackage.DOMAIN_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Upper Bound</b></em>' attribute.
@@ -2180,7 +2180,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int REAL_DOMAIN__UPPER_BOUND = DOMAIN_FEATURE_COUNT + 1;
+  int REAL_DOMAIN__UPPER_BOUND = GSNPackage.DOMAIN_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Real Domain</em>' class.
@@ -2189,7 +2189,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int REAL_DOMAIN_FEATURE_COUNT = DOMAIN_FEATURE_COUNT + 2;
+  int REAL_DOMAIN_FEATURE_COUNT = GSNPackage.DOMAIN_FEATURE_COUNT + 2;
 
   /**
    * The operation id for the '<em>Validate Decomposition</em>' operation.
@@ -2198,7 +2198,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int REAL_DOMAIN___VALIDATE_DECOMPOSITION__ELIST = DOMAIN___VALIDATE_DECOMPOSITION__ELIST;
+  int REAL_DOMAIN___VALIDATE_DECOMPOSITION__ELIST = GSNPackage.DOMAIN___VALIDATE_DECOMPOSITION__ELIST;
 
   /**
    * The number of operations of the '<em>Real Domain</em>' class.
@@ -2207,7 +2207,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int REAL_DOMAIN_OPERATION_COUNT = DOMAIN_OPERATION_COUNT + 0;
+  int REAL_DOMAIN_OPERATION_COUNT = GSNPackage.DOMAIN_OPERATION_COUNT + 0;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.EnumDomainImpl <em>Enum Domain</em>}' class.
@@ -2226,7 +2226,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ENUM_DOMAIN__VALUES = DOMAIN_FEATURE_COUNT + 0;
+  int ENUM_DOMAIN__VALUES = GSNPackage.DOMAIN_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Enum Domain</em>' class.
@@ -2235,7 +2235,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ENUM_DOMAIN_FEATURE_COUNT = DOMAIN_FEATURE_COUNT + 1;
+  int ENUM_DOMAIN_FEATURE_COUNT = GSNPackage.DOMAIN_FEATURE_COUNT + 1;
 
   /**
    * The operation id for the '<em>Validate Decomposition</em>' operation.
@@ -2244,7 +2244,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ENUM_DOMAIN___VALIDATE_DECOMPOSITION__ELIST = DOMAIN___VALIDATE_DECOMPOSITION__ELIST;
+  int ENUM_DOMAIN___VALIDATE_DECOMPOSITION__ELIST = GSNPackage.DOMAIN___VALIDATE_DECOMPOSITION__ELIST;
 
   /**
    * The number of operations of the '<em>Enum Domain</em>' class.
@@ -2253,7 +2253,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ENUM_DOMAIN_OPERATION_COUNT = DOMAIN_OPERATION_COUNT + 0;
+  int ENUM_DOMAIN_OPERATION_COUNT = GSNPackage.DOMAIN_OPERATION_COUNT + 0;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.ValueDomainImpl <em>Value Domain</em>}' class.
@@ -2272,7 +2272,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int VALUE_DOMAIN__VALUE = DOMAIN_FEATURE_COUNT + 0;
+  int VALUE_DOMAIN__VALUE = GSNPackage.DOMAIN_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Value Domain</em>' class.
@@ -2281,7 +2281,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int VALUE_DOMAIN_FEATURE_COUNT = DOMAIN_FEATURE_COUNT + 1;
+  int VALUE_DOMAIN_FEATURE_COUNT = GSNPackage.DOMAIN_FEATURE_COUNT + 1;
 
   /**
    * The operation id for the '<em>Validate Decomposition</em>' operation.
@@ -2290,7 +2290,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int VALUE_DOMAIN___VALIDATE_DECOMPOSITION__ELIST = DOMAIN___VALIDATE_DECOMPOSITION__ELIST;
+  int VALUE_DOMAIN___VALIDATE_DECOMPOSITION__ELIST = GSNPackage.DOMAIN___VALIDATE_DECOMPOSITION__ELIST;
 
   /**
    * The number of operations of the '<em>Value Domain</em>' class.
@@ -2299,7 +2299,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int VALUE_DOMAIN_OPERATION_COUNT = DOMAIN_OPERATION_COUNT + 0;
+  int VALUE_DOMAIN_OPERATION_COUNT = GSNPackage.DOMAIN_OPERATION_COUNT + 0;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.DomainDecompositionElementImpl <em>Domain Decomposition Element</em>}' class.
@@ -2355,7 +2355,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DOMAIN_DECOMPOSITION_STRATEGY__SUPPORTS = DECOMPOSITION_STRATEGY__SUPPORTS;
+  int DOMAIN_DECOMPOSITION_STRATEGY__SUPPORTS = GSNPackage.DECOMPOSITION_STRATEGY__SUPPORTS;
 
   /**
    * The feature id for the '<em><b>Supported By</b></em>' containment reference list.
@@ -2364,7 +2364,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DOMAIN_DECOMPOSITION_STRATEGY__SUPPORTED_BY = DECOMPOSITION_STRATEGY__SUPPORTED_BY;
+  int DOMAIN_DECOMPOSITION_STRATEGY__SUPPORTED_BY = GSNPackage.DECOMPOSITION_STRATEGY__SUPPORTED_BY;
 
   /**
    * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -2373,7 +2373,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DOMAIN_DECOMPOSITION_STRATEGY__ID = DECOMPOSITION_STRATEGY__ID;
+  int DOMAIN_DECOMPOSITION_STRATEGY__ID = GSNPackage.DECOMPOSITION_STRATEGY__ID;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -2382,7 +2382,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DOMAIN_DECOMPOSITION_STRATEGY__DESCRIPTION = DECOMPOSITION_STRATEGY__DESCRIPTION;
+  int DOMAIN_DECOMPOSITION_STRATEGY__DESCRIPTION = GSNPackage.DECOMPOSITION_STRATEGY__DESCRIPTION;
 
   /**
    * The feature id for the '<em><b>Content Validity</b></em>' attribute.
@@ -2391,7 +2391,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DOMAIN_DECOMPOSITION_STRATEGY__CONTENT_VALIDITY = DECOMPOSITION_STRATEGY__CONTENT_VALIDITY;
+  int DOMAIN_DECOMPOSITION_STRATEGY__CONTENT_VALIDITY = GSNPackage.DECOMPOSITION_STRATEGY__CONTENT_VALIDITY;
 
   /**
    * The feature id for the '<em><b>Status</b></em>' containment reference.
@@ -2400,7 +2400,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DOMAIN_DECOMPOSITION_STRATEGY__STATUS = DECOMPOSITION_STRATEGY__STATUS;
+  int DOMAIN_DECOMPOSITION_STRATEGY__STATUS = GSNPackage.DECOMPOSITION_STRATEGY__STATUS;
 
   /**
    * The feature id for the '<em><b>In Context Of</b></em>' containment reference list.
@@ -2409,7 +2409,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DOMAIN_DECOMPOSITION_STRATEGY__IN_CONTEXT_OF = DECOMPOSITION_STRATEGY__IN_CONTEXT_OF;
+  int DOMAIN_DECOMPOSITION_STRATEGY__IN_CONTEXT_OF = GSNPackage.DECOMPOSITION_STRATEGY__IN_CONTEXT_OF;
 
   /**
    * The feature id for the '<em><b>Domain</b></em>' containment reference.
@@ -2418,7 +2418,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DOMAIN_DECOMPOSITION_STRATEGY__DOMAIN = DECOMPOSITION_STRATEGY_FEATURE_COUNT + 0;
+  int DOMAIN_DECOMPOSITION_STRATEGY__DOMAIN = GSNPackage.DECOMPOSITION_STRATEGY_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Domain Decomposition Strategy</em>' class.
@@ -2427,7 +2427,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DOMAIN_DECOMPOSITION_STRATEGY_FEATURE_COUNT = DECOMPOSITION_STRATEGY_FEATURE_COUNT + 1;
+  int DOMAIN_DECOMPOSITION_STRATEGY_FEATURE_COUNT = GSNPackage.DECOMPOSITION_STRATEGY_FEATURE_COUNT + 1;
 
   /**
    * The operation id for the '<em>Validate</em>' operation.
@@ -2436,7 +2436,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DOMAIN_DECOMPOSITION_STRATEGY___VALIDATE = DECOMPOSITION_STRATEGY___VALIDATE;
+  int DOMAIN_DECOMPOSITION_STRATEGY___VALIDATE = GSNPackage.DECOMPOSITION_STRATEGY___VALIDATE;
 
   /**
    * The number of operations of the '<em>Domain Decomposition Strategy</em>' class.
@@ -2445,7 +2445,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DOMAIN_DECOMPOSITION_STRATEGY_OPERATION_COUNT = DECOMPOSITION_STRATEGY_OPERATION_COUNT + 0;
+  int DOMAIN_DECOMPOSITION_STRATEGY_OPERATION_COUNT = GSNPackage.DECOMPOSITION_STRATEGY_OPERATION_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Supports</b></em>' reference list.
@@ -2454,7 +2454,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DOMAIN_GOAL__SUPPORTS = GOAL__SUPPORTS;
+  int DOMAIN_GOAL__SUPPORTS = GSNPackage.GOAL__SUPPORTS;
 
   /**
    * The feature id for the '<em><b>Supported By</b></em>' containment reference list.
@@ -2463,7 +2463,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DOMAIN_GOAL__SUPPORTED_BY = GOAL__SUPPORTED_BY;
+  int DOMAIN_GOAL__SUPPORTED_BY = GSNPackage.GOAL__SUPPORTED_BY;
 
   /**
    * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -2472,7 +2472,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DOMAIN_GOAL__ID = GOAL__ID;
+  int DOMAIN_GOAL__ID = GSNPackage.GOAL__ID;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -2481,7 +2481,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DOMAIN_GOAL__DESCRIPTION = GOAL__DESCRIPTION;
+  int DOMAIN_GOAL__DESCRIPTION = GSNPackage.GOAL__DESCRIPTION;
 
   /**
    * The feature id for the '<em><b>Content Validity</b></em>' attribute.
@@ -2490,7 +2490,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DOMAIN_GOAL__CONTENT_VALIDITY = GOAL__CONTENT_VALIDITY;
+  int DOMAIN_GOAL__CONTENT_VALIDITY = GSNPackage.GOAL__CONTENT_VALIDITY;
 
   /**
    * The feature id for the '<em><b>Status</b></em>' containment reference.
@@ -2499,7 +2499,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DOMAIN_GOAL__STATUS = GOAL__STATUS;
+  int DOMAIN_GOAL__STATUS = GSNPackage.GOAL__STATUS;
 
   /**
    * The feature id for the '<em><b>In Context Of</b></em>' containment reference list.
@@ -2508,7 +2508,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DOMAIN_GOAL__IN_CONTEXT_OF = GOAL__IN_CONTEXT_OF;
+  int DOMAIN_GOAL__IN_CONTEXT_OF = GSNPackage.GOAL__IN_CONTEXT_OF;
 
   /**
    * The feature id for the '<em><b>State Validity</b></em>' attribute.
@@ -2517,7 +2517,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DOMAIN_GOAL__STATE_VALIDITY = GOAL__STATE_VALIDITY;
+  int DOMAIN_GOAL__STATE_VALIDITY = GSNPackage.GOAL__STATE_VALIDITY;
 
   /**
    * The feature id for the '<em><b>Asil</b></em>' containment reference.
@@ -2526,7 +2526,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DOMAIN_GOAL__ASIL = GOAL__ASIL;
+  int DOMAIN_GOAL__ASIL = GSNPackage.GOAL__ASIL;
 
   /**
    * The feature id for the '<em><b>Domain</b></em>' containment reference.
@@ -2535,7 +2535,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DOMAIN_GOAL__DOMAIN = GOAL_FEATURE_COUNT + 0;
+  int DOMAIN_GOAL__DOMAIN = GSNPackage.GOAL_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Domain Goal</em>' class.
@@ -2544,7 +2544,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DOMAIN_GOAL_FEATURE_COUNT = GOAL_FEATURE_COUNT + 1;
+  int DOMAIN_GOAL_FEATURE_COUNT = GSNPackage.GOAL_FEATURE_COUNT + 1;
 
   /**
    * The number of operations of the '<em>Domain Goal</em>' class.
@@ -2553,7 +2553,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DOMAIN_GOAL_OPERATION_COUNT = GOAL_OPERATION_COUNT + 0;
+  int DOMAIN_GOAL_OPERATION_COUNT = GSNPackage.GOAL_OPERATION_COUNT + 0;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.PropertyDecompositionElementImpl <em>Property Decomposition Element</em>}' class.
@@ -2609,7 +2609,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PROPERTY_DECOMPOSITION_STRATEGY__SUPPORTS = DECOMPOSITION_STRATEGY__SUPPORTS;
+  int PROPERTY_DECOMPOSITION_STRATEGY__SUPPORTS = GSNPackage.DECOMPOSITION_STRATEGY__SUPPORTS;
 
   /**
    * The feature id for the '<em><b>Supported By</b></em>' containment reference list.
@@ -2618,7 +2618,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PROPERTY_DECOMPOSITION_STRATEGY__SUPPORTED_BY = DECOMPOSITION_STRATEGY__SUPPORTED_BY;
+  int PROPERTY_DECOMPOSITION_STRATEGY__SUPPORTED_BY = GSNPackage.DECOMPOSITION_STRATEGY__SUPPORTED_BY;
 
   /**
    * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -2627,7 +2627,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PROPERTY_DECOMPOSITION_STRATEGY__ID = DECOMPOSITION_STRATEGY__ID;
+  int PROPERTY_DECOMPOSITION_STRATEGY__ID = GSNPackage.DECOMPOSITION_STRATEGY__ID;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -2636,7 +2636,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PROPERTY_DECOMPOSITION_STRATEGY__DESCRIPTION = DECOMPOSITION_STRATEGY__DESCRIPTION;
+  int PROPERTY_DECOMPOSITION_STRATEGY__DESCRIPTION = GSNPackage.DECOMPOSITION_STRATEGY__DESCRIPTION;
 
   /**
    * The feature id for the '<em><b>Content Validity</b></em>' attribute.
@@ -2645,7 +2645,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PROPERTY_DECOMPOSITION_STRATEGY__CONTENT_VALIDITY = DECOMPOSITION_STRATEGY__CONTENT_VALIDITY;
+  int PROPERTY_DECOMPOSITION_STRATEGY__CONTENT_VALIDITY = GSNPackage.DECOMPOSITION_STRATEGY__CONTENT_VALIDITY;
 
   /**
    * The feature id for the '<em><b>Status</b></em>' containment reference.
@@ -2654,7 +2654,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PROPERTY_DECOMPOSITION_STRATEGY__STATUS = DECOMPOSITION_STRATEGY__STATUS;
+  int PROPERTY_DECOMPOSITION_STRATEGY__STATUS = GSNPackage.DECOMPOSITION_STRATEGY__STATUS;
 
   /**
    * The feature id for the '<em><b>In Context Of</b></em>' containment reference list.
@@ -2663,7 +2663,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PROPERTY_DECOMPOSITION_STRATEGY__IN_CONTEXT_OF = DECOMPOSITION_STRATEGY__IN_CONTEXT_OF;
+  int PROPERTY_DECOMPOSITION_STRATEGY__IN_CONTEXT_OF = GSNPackage.DECOMPOSITION_STRATEGY__IN_CONTEXT_OF;
 
   /**
    * The feature id for the '<em><b>Property</b></em>' attribute.
@@ -2672,7 +2672,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PROPERTY_DECOMPOSITION_STRATEGY__PROPERTY = DECOMPOSITION_STRATEGY_FEATURE_COUNT + 0;
+  int PROPERTY_DECOMPOSITION_STRATEGY__PROPERTY = GSNPackage.DECOMPOSITION_STRATEGY_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Property Decomposition Strategy</em>' class.
@@ -2681,7 +2681,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PROPERTY_DECOMPOSITION_STRATEGY_FEATURE_COUNT = DECOMPOSITION_STRATEGY_FEATURE_COUNT + 1;
+  int PROPERTY_DECOMPOSITION_STRATEGY_FEATURE_COUNT = GSNPackage.DECOMPOSITION_STRATEGY_FEATURE_COUNT + 1;
 
   /**
    * The operation id for the '<em>Validate</em>' operation.
@@ -2690,7 +2690,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PROPERTY_DECOMPOSITION_STRATEGY___VALIDATE = DECOMPOSITION_STRATEGY___VALIDATE;
+  int PROPERTY_DECOMPOSITION_STRATEGY___VALIDATE = GSNPackage.DECOMPOSITION_STRATEGY___VALIDATE;
 
   /**
    * The number of operations of the '<em>Property Decomposition Strategy</em>' class.
@@ -2699,7 +2699,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PROPERTY_DECOMPOSITION_STRATEGY_OPERATION_COUNT = DECOMPOSITION_STRATEGY_OPERATION_COUNT + 0;
+  int PROPERTY_DECOMPOSITION_STRATEGY_OPERATION_COUNT = GSNPackage.DECOMPOSITION_STRATEGY_OPERATION_COUNT + 0;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.PropertyGoalImpl <em>Property Goal</em>}' class.
@@ -2718,7 +2718,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PROPERTY_GOAL__SUPPORTS = GOAL__SUPPORTS;
+  int PROPERTY_GOAL__SUPPORTS = GSNPackage.GOAL__SUPPORTS;
 
   /**
    * The feature id for the '<em><b>Supported By</b></em>' containment reference list.
@@ -2727,7 +2727,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PROPERTY_GOAL__SUPPORTED_BY = GOAL__SUPPORTED_BY;
+  int PROPERTY_GOAL__SUPPORTED_BY = GSNPackage.GOAL__SUPPORTED_BY;
 
   /**
    * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -2736,7 +2736,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PROPERTY_GOAL__ID = GOAL__ID;
+  int PROPERTY_GOAL__ID = GSNPackage.GOAL__ID;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -2745,7 +2745,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PROPERTY_GOAL__DESCRIPTION = GOAL__DESCRIPTION;
+  int PROPERTY_GOAL__DESCRIPTION = GSNPackage.GOAL__DESCRIPTION;
 
   /**
    * The feature id for the '<em><b>Content Validity</b></em>' attribute.
@@ -2754,7 +2754,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PROPERTY_GOAL__CONTENT_VALIDITY = GOAL__CONTENT_VALIDITY;
+  int PROPERTY_GOAL__CONTENT_VALIDITY = GSNPackage.GOAL__CONTENT_VALIDITY;
 
   /**
    * The feature id for the '<em><b>Status</b></em>' containment reference.
@@ -2763,7 +2763,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PROPERTY_GOAL__STATUS = GOAL__STATUS;
+  int PROPERTY_GOAL__STATUS = GSNPackage.GOAL__STATUS;
 
   /**
    * The feature id for the '<em><b>In Context Of</b></em>' containment reference list.
@@ -2772,7 +2772,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PROPERTY_GOAL__IN_CONTEXT_OF = GOAL__IN_CONTEXT_OF;
+  int PROPERTY_GOAL__IN_CONTEXT_OF = GSNPackage.GOAL__IN_CONTEXT_OF;
 
   /**
    * The feature id for the '<em><b>State Validity</b></em>' attribute.
@@ -2781,7 +2781,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PROPERTY_GOAL__STATE_VALIDITY = GOAL__STATE_VALIDITY;
+  int PROPERTY_GOAL__STATE_VALIDITY = GSNPackage.GOAL__STATE_VALIDITY;
 
   /**
    * The feature id for the '<em><b>Asil</b></em>' containment reference.
@@ -2790,7 +2790,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PROPERTY_GOAL__ASIL = GOAL__ASIL;
+  int PROPERTY_GOAL__ASIL = GSNPackage.GOAL__ASIL;
 
   /**
    * The feature id for the '<em><b>Property</b></em>' attribute.
@@ -2799,7 +2799,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PROPERTY_GOAL__PROPERTY = GOAL_FEATURE_COUNT + 0;
+  int PROPERTY_GOAL__PROPERTY = GSNPackage.GOAL_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Property Goal</em>' class.
@@ -2808,7 +2808,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PROPERTY_GOAL_FEATURE_COUNT = GOAL_FEATURE_COUNT + 1;
+  int PROPERTY_GOAL_FEATURE_COUNT = GSNPackage.GOAL_FEATURE_COUNT + 1;
 
   /**
    * The number of operations of the '<em>Property Goal</em>' class.
@@ -2817,7 +2817,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PROPERTY_GOAL_OPERATION_COUNT = GOAL_OPERATION_COUNT + 0;
+  int PROPERTY_GOAL_OPERATION_COUNT = GSNPackage.GOAL_OPERATION_COUNT + 0;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.ASILLevel <em>ASIL Level</em>}' enum.
@@ -3738,7 +3738,7 @@ public interface GSNPackage extends EPackage {
      * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getSafetyCase()
      * @generated
      */
-    EClass SAFETY_CASE = eINSTANCE.getSafetyCase();
+    EClass SAFETY_CASE = GSNPackage.eINSTANCE.getSafetyCase();
 
     /**
      * The meta object literal for the '<em><b>Goals</b></em>' containment reference list feature.
@@ -3746,7 +3746,7 @@ public interface GSNPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference SAFETY_CASE__GOALS = eINSTANCE.getSafetyCase_Goals();
+    EReference SAFETY_CASE__GOALS = GSNPackage.eINSTANCE.getSafetyCase_Goals();
 
     /**
      * The meta object literal for the '<em><b>Strategies</b></em>' containment reference list feature.
@@ -3754,7 +3754,7 @@ public interface GSNPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference SAFETY_CASE__STRATEGIES = eINSTANCE.getSafetyCase_Strategies();
+    EReference SAFETY_CASE__STRATEGIES = GSNPackage.eINSTANCE.getSafetyCase_Strategies();
 
     /**
      * The meta object literal for the '<em><b>Solutions</b></em>' containment reference list feature.
@@ -3762,7 +3762,7 @@ public interface GSNPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference SAFETY_CASE__SOLUTIONS = eINSTANCE.getSafetyCase_Solutions();
+    EReference SAFETY_CASE__SOLUTIONS = GSNPackage.eINSTANCE.getSafetyCase_Solutions();
 
     /**
      * The meta object literal for the '<em><b>Contexts</b></em>' containment reference list feature.
@@ -3770,7 +3770,7 @@ public interface GSNPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference SAFETY_CASE__CONTEXTS = eINSTANCE.getSafetyCase_Contexts();
+    EReference SAFETY_CASE__CONTEXTS = GSNPackage.eINSTANCE.getSafetyCase_Contexts();
 
     /**
      * The meta object literal for the '<em><b>Justifications</b></em>' containment reference list feature.
@@ -3778,7 +3778,7 @@ public interface GSNPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference SAFETY_CASE__JUSTIFICATIONS = eINSTANCE.getSafetyCase_Justifications();
+    EReference SAFETY_CASE__JUSTIFICATIONS = GSNPackage.eINSTANCE.getSafetyCase_Justifications();
 
     /**
      * The meta object literal for the '<em><b>Assumptions</b></em>' containment reference list feature.
@@ -3786,7 +3786,7 @@ public interface GSNPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference SAFETY_CASE__ASSUMPTIONS = eINSTANCE.getSafetyCase_Assumptions();
+    EReference SAFETY_CASE__ASSUMPTIONS = GSNPackage.eINSTANCE.getSafetyCase_Assumptions();
 
     /**
      * The meta object literal for the '<em><b>Connectors</b></em>' containment reference list feature.
@@ -3794,7 +3794,7 @@ public interface GSNPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference SAFETY_CASE__CONNECTORS = eINSTANCE.getSafetyCase_Connectors();
+    EReference SAFETY_CASE__CONNECTORS = GSNPackage.eINSTANCE.getSafetyCase_Connectors();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.ArgumentElementImpl <em>Argument Element</em>}' class.
@@ -3804,7 +3804,7 @@ public interface GSNPackage extends EPackage {
      * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getArgumentElement()
      * @generated
      */
-    EClass ARGUMENT_ELEMENT = eINSTANCE.getArgumentElement();
+    EClass ARGUMENT_ELEMENT = GSNPackage.eINSTANCE.getArgumentElement();
 
     /**
      * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
@@ -3812,7 +3812,7 @@ public interface GSNPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute ARGUMENT_ELEMENT__ID = eINSTANCE.getArgumentElement_Id();
+    EAttribute ARGUMENT_ELEMENT__ID = GSNPackage.eINSTANCE.getArgumentElement_Id();
 
     /**
      * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
@@ -3820,7 +3820,7 @@ public interface GSNPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute ARGUMENT_ELEMENT__DESCRIPTION = eINSTANCE.getArgumentElement_Description();
+    EAttribute ARGUMENT_ELEMENT__DESCRIPTION = GSNPackage.eINSTANCE.getArgumentElement_Description();
 
     /**
      * The meta object literal for the '<em><b>Content Validity</b></em>' attribute feature.
@@ -3828,7 +3828,7 @@ public interface GSNPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute ARGUMENT_ELEMENT__CONTENT_VALIDITY = eINSTANCE.getArgumentElement_ContentValidity();
+    EAttribute ARGUMENT_ELEMENT__CONTENT_VALIDITY = GSNPackage.eINSTANCE.getArgumentElement_ContentValidity();
 
     /**
      * The meta object literal for the '<em><b>Status</b></em>' containment reference feature.
@@ -3836,7 +3836,7 @@ public interface GSNPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference ARGUMENT_ELEMENT__STATUS = eINSTANCE.getArgumentElement_Status();
+    EReference ARGUMENT_ELEMENT__STATUS = GSNPackage.eINSTANCE.getArgumentElement_Status();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.StatefulElementImpl <em>Stateful Element</em>}' class.
@@ -3846,7 +3846,7 @@ public interface GSNPackage extends EPackage {
      * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getStatefulElement()
      * @generated
      */
-    EClass STATEFUL_ELEMENT = eINSTANCE.getStatefulElement();
+    EClass STATEFUL_ELEMENT = GSNPackage.eINSTANCE.getStatefulElement();
 
     /**
      * The meta object literal for the '<em><b>State Validity</b></em>' attribute feature.
@@ -3854,7 +3854,7 @@ public interface GSNPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute STATEFUL_ELEMENT__STATE_VALIDITY = eINSTANCE.getStatefulElement_StateValidity();
+    EAttribute STATEFUL_ELEMENT__STATE_VALIDITY = GSNPackage.eINSTANCE.getStatefulElement_StateValidity();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.ASILfulElementImpl <em>ASI Lful Element</em>}' class.
@@ -3864,7 +3864,7 @@ public interface GSNPackage extends EPackage {
      * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getASILfulElement()
      * @generated
      */
-    EClass ASI_LFUL_ELEMENT = eINSTANCE.getASILfulElement();
+    EClass ASI_LFUL_ELEMENT = GSNPackage.eINSTANCE.getASILfulElement();
 
     /**
      * The meta object literal for the '<em><b>Asil</b></em>' containment reference feature.
@@ -3872,7 +3872,7 @@ public interface GSNPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference ASI_LFUL_ELEMENT__ASIL = eINSTANCE.getASILfulElement_Asil();
+    EReference ASI_LFUL_ELEMENT__ASIL = GSNPackage.eINSTANCE.getASILfulElement_Asil();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.CoreElementImpl <em>Core Element</em>}' class.
@@ -3882,7 +3882,7 @@ public interface GSNPackage extends EPackage {
      * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getCoreElement()
      * @generated
      */
-    EClass CORE_ELEMENT = eINSTANCE.getCoreElement();
+    EClass CORE_ELEMENT = GSNPackage.eINSTANCE.getCoreElement();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.DecomposableCoreElementImpl <em>Decomposable Core Element</em>}' class.
@@ -3892,7 +3892,7 @@ public interface GSNPackage extends EPackage {
      * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getDecomposableCoreElement()
      * @generated
      */
-    EClass DECOMPOSABLE_CORE_ELEMENT = eINSTANCE.getDecomposableCoreElement();
+    EClass DECOMPOSABLE_CORE_ELEMENT = GSNPackage.eINSTANCE.getDecomposableCoreElement();
 
     /**
      * The meta object literal for the '<em><b>In Context Of</b></em>' containment reference list feature.
@@ -3900,7 +3900,7 @@ public interface GSNPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF = eINSTANCE.getDecomposableCoreElement_InContextOf();
+    EReference DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF = GSNPackage.eINSTANCE.getDecomposableCoreElement_InContextOf();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.ContextualElementImpl <em>Contextual Element</em>}' class.
@@ -3910,7 +3910,7 @@ public interface GSNPackage extends EPackage {
      * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getContextualElement()
      * @generated
      */
-    EClass CONTEXTUAL_ELEMENT = eINSTANCE.getContextualElement();
+    EClass CONTEXTUAL_ELEMENT = GSNPackage.eINSTANCE.getContextualElement();
 
     /**
      * The meta object literal for the '<em><b>Context Of</b></em>' reference list feature.
@@ -3918,7 +3918,7 @@ public interface GSNPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference CONTEXTUAL_ELEMENT__CONTEXT_OF = eINSTANCE.getContextualElement_ContextOf();
+    EReference CONTEXTUAL_ELEMENT__CONTEXT_OF = GSNPackage.eINSTANCE.getContextualElement_ContextOf();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.SupportedByImpl <em>Supported By</em>}' class.
@@ -3928,7 +3928,7 @@ public interface GSNPackage extends EPackage {
      * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getSupportedBy()
      * @generated
      */
-    EClass SUPPORTED_BY = eINSTANCE.getSupportedBy();
+    EClass SUPPORTED_BY = GSNPackage.eINSTANCE.getSupportedBy();
 
     /**
      * The meta object literal for the '<em><b>Source</b></em>' container reference feature.
@@ -3936,7 +3936,7 @@ public interface GSNPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference SUPPORTED_BY__SOURCE = eINSTANCE.getSupportedBy_Source();
+    EReference SUPPORTED_BY__SOURCE = GSNPackage.eINSTANCE.getSupportedBy_Source();
 
     /**
      * The meta object literal for the '<em><b>Target</b></em>' reference feature.
@@ -3944,7 +3944,7 @@ public interface GSNPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference SUPPORTED_BY__TARGET = eINSTANCE.getSupportedBy_Target();
+    EReference SUPPORTED_BY__TARGET = GSNPackage.eINSTANCE.getSupportedBy_Target();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.InContextOfImpl <em>In Context Of</em>}' class.
@@ -3954,7 +3954,7 @@ public interface GSNPackage extends EPackage {
      * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getInContextOf()
      * @generated
      */
-    EClass IN_CONTEXT_OF = eINSTANCE.getInContextOf();
+    EClass IN_CONTEXT_OF = GSNPackage.eINSTANCE.getInContextOf();
 
     /**
      * The meta object literal for the '<em><b>Context</b></em>' reference feature.
@@ -3962,7 +3962,7 @@ public interface GSNPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference IN_CONTEXT_OF__CONTEXT = eINSTANCE.getInContextOf_Context();
+    EReference IN_CONTEXT_OF__CONTEXT = GSNPackage.eINSTANCE.getInContextOf_Context();
 
     /**
      * The meta object literal for the '<em><b>Context Of</b></em>' container reference feature.
@@ -3970,7 +3970,7 @@ public interface GSNPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference IN_CONTEXT_OF__CONTEXT_OF = eINSTANCE.getInContextOf_ContextOf();
+    EReference IN_CONTEXT_OF__CONTEXT_OF = GSNPackage.eINSTANCE.getInContextOf_ContextOf();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.GoalImpl <em>Goal</em>}' class.
@@ -3980,7 +3980,7 @@ public interface GSNPackage extends EPackage {
      * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getGoal()
      * @generated
      */
-    EClass GOAL = eINSTANCE.getGoal();
+    EClass GOAL = GSNPackage.eINSTANCE.getGoal();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.BasicGoalImpl <em>Basic Goal</em>}' class.
@@ -3990,7 +3990,7 @@ public interface GSNPackage extends EPackage {
      * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getBasicGoal()
      * @generated
      */
-    EClass BASIC_GOAL = eINSTANCE.getBasicGoal();
+    EClass BASIC_GOAL = GSNPackage.eINSTANCE.getBasicGoal();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.IndependenceGoalImpl <em>Independence Goal</em>}' class.
@@ -4000,7 +4000,7 @@ public interface GSNPackage extends EPackage {
      * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getIndependenceGoal()
      * @generated
      */
-    EClass INDEPENDENCE_GOAL = eINSTANCE.getIndependenceGoal();
+    EClass INDEPENDENCE_GOAL = GSNPackage.eINSTANCE.getIndependenceGoal();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.DomainGoalImpl <em>Domain Goal</em>}' class.
@@ -4010,7 +4010,7 @@ public interface GSNPackage extends EPackage {
      * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getDomainGoal()
      * @generated
      */
-    EClass DOMAIN_GOAL = eINSTANCE.getDomainGoal();
+    EClass DOMAIN_GOAL = GSNPackage.eINSTANCE.getDomainGoal();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.PropertyDecompositionElementImpl <em>Property Decomposition Element</em>}' class.
@@ -4020,7 +4020,7 @@ public interface GSNPackage extends EPackage {
      * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getPropertyDecompositionElement()
      * @generated
      */
-    EClass PROPERTY_DECOMPOSITION_ELEMENT = eINSTANCE.getPropertyDecompositionElement();
+    EClass PROPERTY_DECOMPOSITION_ELEMENT = GSNPackage.eINSTANCE.getPropertyDecompositionElement();
 
     /**
      * The meta object literal for the '<em><b>Property</b></em>' attribute feature.
@@ -4028,7 +4028,7 @@ public interface GSNPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute PROPERTY_DECOMPOSITION_ELEMENT__PROPERTY = eINSTANCE.getPropertyDecompositionElement_Property();
+    EAttribute PROPERTY_DECOMPOSITION_ELEMENT__PROPERTY = GSNPackage.eINSTANCE.getPropertyDecompositionElement_Property();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.PropertyDecompositionStrategyImpl <em>Property Decomposition Strategy</em>}' class.
@@ -4038,7 +4038,7 @@ public interface GSNPackage extends EPackage {
      * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getPropertyDecompositionStrategy()
      * @generated
      */
-    EClass PROPERTY_DECOMPOSITION_STRATEGY = eINSTANCE.getPropertyDecompositionStrategy();
+    EClass PROPERTY_DECOMPOSITION_STRATEGY = GSNPackage.eINSTANCE.getPropertyDecompositionStrategy();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.PropertyGoalImpl <em>Property Goal</em>}' class.
@@ -4048,7 +4048,7 @@ public interface GSNPackage extends EPackage {
      * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getPropertyGoal()
      * @generated
      */
-    EClass PROPERTY_GOAL = eINSTANCE.getPropertyGoal();
+    EClass PROPERTY_GOAL = GSNPackage.eINSTANCE.getPropertyGoal();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.StrategyImpl <em>Strategy</em>}' class.
@@ -4058,7 +4058,7 @@ public interface GSNPackage extends EPackage {
      * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getStrategy()
      * @generated
      */
-    EClass STRATEGY = eINSTANCE.getStrategy();
+    EClass STRATEGY = GSNPackage.eINSTANCE.getStrategy();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.BasicStrategyImpl <em>Basic Strategy</em>}' class.
@@ -4068,7 +4068,7 @@ public interface GSNPackage extends EPackage {
      * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getBasicStrategy()
      * @generated
      */
-    EClass BASIC_STRATEGY = eINSTANCE.getBasicStrategy();
+    EClass BASIC_STRATEGY = GSNPackage.eINSTANCE.getBasicStrategy();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.ASILDecompositionStrategyImpl <em>ASIL Decomposition Strategy</em>}' class.
@@ -4078,7 +4078,7 @@ public interface GSNPackage extends EPackage {
      * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getASILDecompositionStrategy()
      * @generated
      */
-    EClass ASIL_DECOMPOSITION_STRATEGY = eINSTANCE.getASILDecompositionStrategy();
+    EClass ASIL_DECOMPOSITION_STRATEGY = GSNPackage.eINSTANCE.getASILDecompositionStrategy();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.SolutionImpl <em>Solution</em>}' class.
@@ -4088,7 +4088,7 @@ public interface GSNPackage extends EPackage {
      * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getSolution()
      * @generated
      */
-    EClass SOLUTION = eINSTANCE.getSolution();
+    EClass SOLUTION = GSNPackage.eINSTANCE.getSolution();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.ContextImpl <em>Context</em>}' class.
@@ -4098,7 +4098,7 @@ public interface GSNPackage extends EPackage {
      * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getContext()
      * @generated
      */
-    EClass CONTEXT = eINSTANCE.getContext();
+    EClass CONTEXT = GSNPackage.eINSTANCE.getContext();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.JustificationImpl <em>Justification</em>}' class.
@@ -4108,7 +4108,7 @@ public interface GSNPackage extends EPackage {
      * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getJustification()
      * @generated
      */
-    EClass JUSTIFICATION = eINSTANCE.getJustification();
+    EClass JUSTIFICATION = GSNPackage.eINSTANCE.getJustification();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.AssumptionImpl <em>Assumption</em>}' class.
@@ -4118,7 +4118,7 @@ public interface GSNPackage extends EPackage {
      * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getAssumption()
      * @generated
      */
-    EClass ASSUMPTION = eINSTANCE.getAssumption();
+    EClass ASSUMPTION = GSNPackage.eINSTANCE.getAssumption();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.ASILImpl <em>ASIL</em>}' class.
@@ -4128,7 +4128,7 @@ public interface GSNPackage extends EPackage {
      * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getASIL()
      * @generated
      */
-    EClass ASIL = eINSTANCE.getASIL();
+    EClass ASIL = GSNPackage.eINSTANCE.getASIL();
 
     /**
      * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
@@ -4136,7 +4136,7 @@ public interface GSNPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute ASIL__VALUE = eINSTANCE.getASIL_Value();
+    EAttribute ASIL__VALUE = GSNPackage.eINSTANCE.getASIL_Value();
 
     /**
      * The meta object literal for the '<em><b>Target</b></em>' container reference feature.
@@ -4144,7 +4144,7 @@ public interface GSNPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference ASIL__TARGET = eINSTANCE.getASIL_Target();
+    EReference ASIL__TARGET = GSNPackage.eINSTANCE.getASIL_Target();
 
     /**
      * The meta object literal for the '<em><b>Status</b></em>' containment reference feature.
@@ -4152,7 +4152,7 @@ public interface GSNPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference ASIL__STATUS = eINSTANCE.getASIL_Status();
+    EReference ASIL__STATUS = GSNPackage.eINSTANCE.getASIL_Status();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.ImpactAnnotationImpl <em>Impact Annotation</em>}' class.
@@ -4162,7 +4162,7 @@ public interface GSNPackage extends EPackage {
      * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getImpactAnnotation()
      * @generated
      */
-    EClass IMPACT_ANNOTATION = eINSTANCE.getImpactAnnotation();
+    EClass IMPACT_ANNOTATION = GSNPackage.eINSTANCE.getImpactAnnotation();
 
     /**
      * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
@@ -4170,7 +4170,7 @@ public interface GSNPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute IMPACT_ANNOTATION__TYPE = eINSTANCE.getImpactAnnotation_Type();
+    EAttribute IMPACT_ANNOTATION__TYPE = GSNPackage.eINSTANCE.getImpactAnnotation_Type();
 
     /**
      * The meta object literal for the '<em><b>Source</b></em>' attribute feature.
@@ -4178,7 +4178,7 @@ public interface GSNPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute IMPACT_ANNOTATION__SOURCE = eINSTANCE.getImpactAnnotation_Source();
+    EAttribute IMPACT_ANNOTATION__SOURCE = GSNPackage.eINSTANCE.getImpactAnnotation_Source();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.SupportableImpl <em>Supportable</em>}' class.
@@ -4188,7 +4188,7 @@ public interface GSNPackage extends EPackage {
      * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getSupportable()
      * @generated
      */
-    EClass SUPPORTABLE = eINSTANCE.getSupportable();
+    EClass SUPPORTABLE = GSNPackage.eINSTANCE.getSupportable();
 
     /**
      * The meta object literal for the '<em><b>Supported By</b></em>' containment reference list feature.
@@ -4196,7 +4196,7 @@ public interface GSNPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference SUPPORTABLE__SUPPORTED_BY = eINSTANCE.getSupportable_SupportedBy();
+    EReference SUPPORTABLE__SUPPORTED_BY = GSNPackage.eINSTANCE.getSupportable_SupportedBy();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.SupporterImpl <em>Supporter</em>}' class.
@@ -4206,7 +4206,7 @@ public interface GSNPackage extends EPackage {
      * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getSupporter()
      * @generated
      */
-    EClass SUPPORTER = eINSTANCE.getSupporter();
+    EClass SUPPORTER = GSNPackage.eINSTANCE.getSupporter();
 
     /**
      * The meta object literal for the '<em><b>Supports</b></em>' reference list feature.
@@ -4214,7 +4214,7 @@ public interface GSNPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference SUPPORTER__SUPPORTS = eINSTANCE.getSupporter_Supports();
+    EReference SUPPORTER__SUPPORTS = GSNPackage.eINSTANCE.getSupporter_Supports();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.SupportConnectorImpl <em>Support Connector</em>}' class.
@@ -4224,7 +4224,7 @@ public interface GSNPackage extends EPackage {
      * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getSupportConnector()
      * @generated
      */
-    EClass SUPPORT_CONNECTOR = eINSTANCE.getSupportConnector();
+    EClass SUPPORT_CONNECTOR = GSNPackage.eINSTANCE.getSupportConnector();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.AndSupporterImpl <em>And Supporter</em>}' class.
@@ -4234,7 +4234,7 @@ public interface GSNPackage extends EPackage {
      * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getAndSupporter()
      * @generated
      */
-    EClass AND_SUPPORTER = eINSTANCE.getAndSupporter();
+    EClass AND_SUPPORTER = GSNPackage.eINSTANCE.getAndSupporter();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.OrSupporterImpl <em>Or Supporter</em>}' class.
@@ -4244,7 +4244,7 @@ public interface GSNPackage extends EPackage {
      * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getOrSupporter()
      * @generated
      */
-    EClass OR_SUPPORTER = eINSTANCE.getOrSupporter();
+    EClass OR_SUPPORTER = GSNPackage.eINSTANCE.getOrSupporter();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.XorSupporterImpl <em>Xor Supporter</em>}' class.
@@ -4254,7 +4254,7 @@ public interface GSNPackage extends EPackage {
      * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getXorSupporter()
      * @generated
      */
-    EClass XOR_SUPPORTER = eINSTANCE.getXorSupporter();
+    EClass XOR_SUPPORTER = GSNPackage.eINSTANCE.getXorSupporter();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.MofNSupporterImpl <em>Mof NSupporter</em>}' class.
@@ -4264,7 +4264,7 @@ public interface GSNPackage extends EPackage {
      * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getMofNSupporter()
      * @generated
      */
-    EClass MOF_NSUPPORTER = eINSTANCE.getMofNSupporter();
+    EClass MOF_NSUPPORTER = GSNPackage.eINSTANCE.getMofNSupporter();
 
     /**
      * The meta object literal for the '<em><b>Target</b></em>' attribute feature.
@@ -4272,7 +4272,7 @@ public interface GSNPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute MOF_NSUPPORTER__TARGET = eINSTANCE.getMofNSupporter_Target();
+    EAttribute MOF_NSUPPORTER__TARGET = GSNPackage.eINSTANCE.getMofNSupporter_Target();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.DecompositionStrategyImpl <em>Decomposition Strategy</em>}' class.
@@ -4282,7 +4282,7 @@ public interface GSNPackage extends EPackage {
      * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getDecompositionStrategy()
      * @generated
      */
-    EClass DECOMPOSITION_STRATEGY = eINSTANCE.getDecompositionStrategy();
+    EClass DECOMPOSITION_STRATEGY = GSNPackage.eINSTANCE.getDecompositionStrategy();
 
     /**
      * The meta object literal for the '<em><b>Validate</b></em>' operation.
@@ -4290,7 +4290,7 @@ public interface GSNPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EOperation DECOMPOSITION_STRATEGY___VALIDATE = eINSTANCE.getDecompositionStrategy__Validate();
+    EOperation DECOMPOSITION_STRATEGY___VALIDATE = GSNPackage.eINSTANCE.getDecompositionStrategy__Validate();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.DomainImpl <em>Domain</em>}' class.
@@ -4300,7 +4300,7 @@ public interface GSNPackage extends EPackage {
      * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getDomain()
      * @generated
      */
-    EClass DOMAIN = eINSTANCE.getDomain();
+    EClass DOMAIN = GSNPackage.eINSTANCE.getDomain();
 
     /**
      * The meta object literal for the '<em><b>Validate Decomposition</b></em>' operation.
@@ -4308,7 +4308,7 @@ public interface GSNPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EOperation DOMAIN___VALIDATE_DECOMPOSITION__ELIST = eINSTANCE.getDomain__ValidateDecomposition__EList();
+    EOperation DOMAIN___VALIDATE_DECOMPOSITION__ELIST = GSNPackage.eINSTANCE.getDomain__ValidateDecomposition__EList();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.IntDomainImpl <em>Int Domain</em>}' class.
@@ -4318,7 +4318,7 @@ public interface GSNPackage extends EPackage {
      * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getIntDomain()
      * @generated
      */
-    EClass INT_DOMAIN = eINSTANCE.getIntDomain();
+    EClass INT_DOMAIN = GSNPackage.eINSTANCE.getIntDomain();
 
     /**
      * The meta object literal for the '<em><b>Lower Bound</b></em>' attribute feature.
@@ -4326,7 +4326,7 @@ public interface GSNPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute INT_DOMAIN__LOWER_BOUND = eINSTANCE.getIntDomain_LowerBound();
+    EAttribute INT_DOMAIN__LOWER_BOUND = GSNPackage.eINSTANCE.getIntDomain_LowerBound();
 
     /**
      * The meta object literal for the '<em><b>Upper Bound</b></em>' attribute feature.
@@ -4334,7 +4334,7 @@ public interface GSNPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute INT_DOMAIN__UPPER_BOUND = eINSTANCE.getIntDomain_UpperBound();
+    EAttribute INT_DOMAIN__UPPER_BOUND = GSNPackage.eINSTANCE.getIntDomain_UpperBound();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.RealDomainImpl <em>Real Domain</em>}' class.
@@ -4344,7 +4344,7 @@ public interface GSNPackage extends EPackage {
      * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getRealDomain()
      * @generated
      */
-    EClass REAL_DOMAIN = eINSTANCE.getRealDomain();
+    EClass REAL_DOMAIN = GSNPackage.eINSTANCE.getRealDomain();
 
     /**
      * The meta object literal for the '<em><b>Lower Bound</b></em>' attribute feature.
@@ -4352,7 +4352,7 @@ public interface GSNPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute REAL_DOMAIN__LOWER_BOUND = eINSTANCE.getRealDomain_LowerBound();
+    EAttribute REAL_DOMAIN__LOWER_BOUND = GSNPackage.eINSTANCE.getRealDomain_LowerBound();
 
     /**
      * The meta object literal for the '<em><b>Upper Bound</b></em>' attribute feature.
@@ -4360,7 +4360,7 @@ public interface GSNPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute REAL_DOMAIN__UPPER_BOUND = eINSTANCE.getRealDomain_UpperBound();
+    EAttribute REAL_DOMAIN__UPPER_BOUND = GSNPackage.eINSTANCE.getRealDomain_UpperBound();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.EnumDomainImpl <em>Enum Domain</em>}' class.
@@ -4370,7 +4370,7 @@ public interface GSNPackage extends EPackage {
      * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getEnumDomain()
      * @generated
      */
-    EClass ENUM_DOMAIN = eINSTANCE.getEnumDomain();
+    EClass ENUM_DOMAIN = GSNPackage.eINSTANCE.getEnumDomain();
 
     /**
      * The meta object literal for the '<em><b>Values</b></em>' attribute list feature.
@@ -4378,7 +4378,7 @@ public interface GSNPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute ENUM_DOMAIN__VALUES = eINSTANCE.getEnumDomain_Values();
+    EAttribute ENUM_DOMAIN__VALUES = GSNPackage.eINSTANCE.getEnumDomain_Values();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.ValueDomainImpl <em>Value Domain</em>}' class.
@@ -4388,7 +4388,7 @@ public interface GSNPackage extends EPackage {
      * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getValueDomain()
      * @generated
      */
-    EClass VALUE_DOMAIN = eINSTANCE.getValueDomain();
+    EClass VALUE_DOMAIN = GSNPackage.eINSTANCE.getValueDomain();
 
     /**
      * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
@@ -4396,7 +4396,7 @@ public interface GSNPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute VALUE_DOMAIN__VALUE = eINSTANCE.getValueDomain_Value();
+    EAttribute VALUE_DOMAIN__VALUE = GSNPackage.eINSTANCE.getValueDomain_Value();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.DomainDecompositionElementImpl <em>Domain Decomposition Element</em>}' class.
@@ -4406,7 +4406,7 @@ public interface GSNPackage extends EPackage {
      * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getDomainDecompositionElement()
      * @generated
      */
-    EClass DOMAIN_DECOMPOSITION_ELEMENT = eINSTANCE.getDomainDecompositionElement();
+    EClass DOMAIN_DECOMPOSITION_ELEMENT = GSNPackage.eINSTANCE.getDomainDecompositionElement();
 
     /**
      * The meta object literal for the '<em><b>Domain</b></em>' containment reference feature.
@@ -4414,7 +4414,7 @@ public interface GSNPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference DOMAIN_DECOMPOSITION_ELEMENT__DOMAIN = eINSTANCE.getDomainDecompositionElement_Domain();
+    EReference DOMAIN_DECOMPOSITION_ELEMENT__DOMAIN = GSNPackage.eINSTANCE.getDomainDecompositionElement_Domain();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.DomainDecompositionStrategyImpl <em>Domain Decomposition Strategy</em>}' class.
@@ -4424,7 +4424,7 @@ public interface GSNPackage extends EPackage {
      * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getDomainDecompositionStrategy()
      * @generated
      */
-    EClass DOMAIN_DECOMPOSITION_STRATEGY = eINSTANCE.getDomainDecompositionStrategy();
+    EClass DOMAIN_DECOMPOSITION_STRATEGY = GSNPackage.eINSTANCE.getDomainDecompositionStrategy();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.ASILLevel <em>ASIL Level</em>}' enum.
@@ -4434,7 +4434,7 @@ public interface GSNPackage extends EPackage {
      * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getASILLevel()
      * @generated
      */
-    EEnum ASIL_LEVEL = eINSTANCE.getASILLevel();
+    EEnum ASIL_LEVEL = GSNPackage.eINSTANCE.getASILLevel();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.ValidityValue <em>Validity Value</em>}' enum.
@@ -4444,7 +4444,7 @@ public interface GSNPackage extends EPackage {
      * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getValidityValue()
      * @generated
      */
-    EEnum VALIDITY_VALUE = eINSTANCE.getValidityValue();
+    EEnum VALIDITY_VALUE = GSNPackage.eINSTANCE.getValidityValue();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.ImpactType <em>Impact Type</em>}' enum.
@@ -4454,7 +4454,7 @@ public interface GSNPackage extends EPackage {
      * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getImpactType()
      * @generated
      */
-    EEnum IMPACT_TYPE = eINSTANCE.getImpactType();
+    EEnum IMPACT_TYPE = GSNPackage.eINSTANCE.getImpactType();
 
     /**
      * The meta object literal for the '<em>MMINT Exception</em>' data type.
@@ -4464,7 +4464,7 @@ public interface GSNPackage extends EPackage {
      * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getMMINTException()
      * @generated
      */
-    EDataType MMINT_EXCEPTION = eINSTANCE.getMMINTException();
+    EDataType MMINT_EXCEPTION = GSNPackage.eINSTANCE.getMMINTException();
 
   }
 

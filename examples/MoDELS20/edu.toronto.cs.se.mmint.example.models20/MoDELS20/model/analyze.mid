@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mid:MID xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editor="http://se.cs.toronto.edu/mmint/MID/Editor" xmlns:mid="http://se.cs.toronto.edu/mmint/MID" xmlns:relationship="http://se.cs.toronto.edu/mmint/MID/Relationship" xsi:schemaLocation="http://se.cs.toronto.edu/mmint/MID/Editor http://se.cs.toronto.edu/mmint/MID#//editor http://se.cs.toronto.edu/mmint/MID/Relationship http://se.cs.toronto.edu/mmint/MID#//relationship">
-  <models uri="/LMS/model/lms_sc.gsn" name="lms_sc" metatypeUri="http://se.cs.toronto.edu/modelepedia/GSN" dynamic="true" fileExtension="safetycase" editors="//@editors.0">
+  <models uri="/LMS/model/lms_sc.gsn" name="lms_sc" metatypeUri="http://se.cs.toronto.edu/modelepedia/GSN" dynamic="true" fileExtension="gsn" editors="//@editors.0">
     <modelElems uri="/LMS/model/lms_sc.gsn#//@goals.0_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Basic Goal G0" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="BasicGoal" featureName="goals" relatedClassName="SafetyCase"/>
     </modelElems>

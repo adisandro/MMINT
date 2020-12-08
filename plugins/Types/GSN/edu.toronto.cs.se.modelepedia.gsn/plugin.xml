@@ -15,7 +15,7 @@
 <plugin>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated safetycase -->
+      <!-- @generated gsn -->
       <package
             uri="http://se.cs.toronto.edu/modelepedia/GSN"
             class="edu.toronto.cs.se.modelepedia.gsn.GSNPackage"
