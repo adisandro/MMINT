@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.gsn.edit;singleton:=true
+Automatic-Module-Name: edu.toronto.cs.se.modelepedia.gsn.edit
+Bundle-Version: 2.7.99.qualifier
+Bundle-ClassPath: .
+Bundle-Activator: edu.toronto.cs.se.modelepedia.gsn.provider.GSNEditPlugin$Implementation
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: JavaSE-15
+Export-Package: edu.toronto.cs.se.modelepedia.gsn.provider
+Require-Bundle: org.eclipse.core.runtime,
+ edu.toronto.cs.se.modelepedia.gsn,
+ org.eclipse.emf.edit
+Bundle-ActivationPolicy: lazy

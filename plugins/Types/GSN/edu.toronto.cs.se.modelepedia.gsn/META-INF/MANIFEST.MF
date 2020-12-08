@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.gsn;singleton:=true
+Automatic-Module-Name: edu.toronto.cs.se.modelepedia.gsn
+Bundle-Version: 2.7.99.qualifier
+Bundle-ClassPath: .
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: JavaSE-15
+Export-Package: edu.toronto.cs.se.modelepedia.gsn,
+ edu.toronto.cs.se.modelepedia.gsn.impl,
+ edu.toronto.cs.se.modelepedia.gsn.util
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore,
+ edu.toronto.cs.se.mmint
+Bundle-ActivationPolicy: lazy

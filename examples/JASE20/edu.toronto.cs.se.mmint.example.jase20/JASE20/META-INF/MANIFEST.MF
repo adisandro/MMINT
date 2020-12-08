@@ -14,7 +14,7 @@ Require-Bundle: org.eclipse.emf.ecore,
  edu.toronto.cs.se.mmint,
  edu.toronto.cs.se.mmint.viatra,
  edu.toronto.cs.se.modelepedia.classdiagram,
- edu.toronto.cs.se.modelepedia.safetycase,
+ edu.toronto.cs.se.modelepedia.gsn,
  edu.toronto.cs.se.mmint.example.jase20.iso26262
 Bundle-RequiredExecutionEnvironment: JavaSE-15
 Automatic-Module-Name: JASE20

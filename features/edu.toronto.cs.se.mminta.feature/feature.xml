@@ -35,7 +35,7 @@
          version="0.0.0"/>
 
    <includes
-         id="edu.toronto.cs.se.modelepedia.safetycase.feature"
+         id="edu.toronto.cs.se.modelepedia.gsn.feature"
          version="0.0.0"/>
 
 </feature>

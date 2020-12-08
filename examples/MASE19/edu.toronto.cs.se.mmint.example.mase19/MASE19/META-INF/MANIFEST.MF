@@ -13,7 +13,7 @@ Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.xtext.xbase.lib,
  edu.toronto.cs.se.mmint,
  edu.toronto.cs.se.mmint.viatra,
- edu.toronto.cs.se.modelepedia.safetycase
+ edu.toronto.cs.se.modelepedia.gsn
 Bundle-RequiredExecutionEnvironment: JavaSE-15
 Automatic-Module-Name: MASE19
 Import-Package: org.apache.log4j

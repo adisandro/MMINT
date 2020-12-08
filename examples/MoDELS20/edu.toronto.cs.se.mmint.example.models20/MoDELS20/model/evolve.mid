@@ -2140,7 +2140,7 @@
   <editors uri="/LMS/model/lms_state_lms.statemachine" name="StateMachine tree for model /LMS/model/lms_state_lms.statemachine" metatypeUri="http://se.cs.toronto.edu/modelepedia/Tree_StateMachine" dynamic="true" modelUri="/LMS/model/lms_state_lms.statemachine" id="edu.toronto.cs.se.modelepedia.statemachine.presentation.StateMachineEditorID" wizardId="edu.toronto.cs.se.modelepedia.statemachine.presentation.StateMachineModelWizardID">
     <fileExtensions>statemachine</fileExtensions>
   </editors>
-  <editors xsi:type="editor:Diagram" uri="/LMS/representations.aird#_8SXUYGgvEeihGP6yb4cCyQ" name="GSN Representation for model /LMS/model/lms_sc.gsn" metatypeUri="http://se.cs.toronto.edu/modelepedia/Representation_GSN" dynamic="true" modelUri="/LMS/model/lms_sc.gsn" id="edu.toronto.cs.se.modelepedia.safetycase.design">
+  <editors xsi:type="editor:Diagram" uri="/LMS/representations.aird#_8SXUYGgvEeihGP6yb4cCyQ" name="GSN Representation for model /LMS/model/lms_sc.gsn" metatypeUri="http://se.cs.toronto.edu/modelepedia/Representation_GSN" dynamic="true" modelUri="/LMS/model/lms_sc.gsn" id="edu.toronto.cs.se.modelepedia.gsn.design">
     <fileExtensions>aird</fileExtensions>
   </editors>
   <editors uri="/LMS_Medini/hls/_hCHjYFpIEeq7aqjJixaiiQ.ha" name="HARA EMF Editor for model /LMS_Medini/hls/_hCHjYFpIEeq7aqjJixaiiQ.ha" metatypeUri="http://www.ikv.de/analyze/metamodels/HazardAnalysis/1.0_tree" dynamic="true" modelUri="/LMS_Medini/hls/_hCHjYFpIEeq7aqjJixaiiQ.ha" id="edu.toronto.cs.se.mmint.medini.hazard.presentation.HazardEditorID" wizardId="edu.toronto.cs.se.mmint.medini.hazard.presentation.HazardModelWizardID">

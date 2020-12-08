@@ -39,7 +39,7 @@
    <feature url="features/edu.toronto.cs.se.modelepedia.relationaldatabase.feature_2.7.99.qualifier.jar" id="edu.toronto.cs.se.modelepedia.relationaldatabase.feature" version="2.7.99.qualifier">
       <category name="Modelepedia"/>
    </feature>
-   <feature url="features/edu.toronto.cs.se.modelepedia.safetycase.feature_2.7.99.qualifier.jar" id="edu.toronto.cs.se.modelepedia.safetycase.feature" version="2.7.99.qualifier">
+   <feature url="features/edu.toronto.cs.se.modelepedia.gsn.feature_2.7.99.qualifier.jar" id="edu.toronto.cs.se.modelepedia.gsn.feature" version="2.7.99.qualifier">
       <category name="Modelepedia"/>
    </feature>
    <feature url="features/edu.toronto.cs.se.modelepedia.sequencediagram.feature_2.7.99.qualifier.jar" id="edu.toronto.cs.se.modelepedia.sequencediagram.feature" version="2.7.99.qualifier">

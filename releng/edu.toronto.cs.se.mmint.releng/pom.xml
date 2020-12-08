@@ -168,11 +168,11 @@
   	<module>../../plugins/Types/Graph/edu.toronto.cs.se.modelepedia.graph_mavo.edit</module>
   	<module>../../plugins/Types/Graph/edu.toronto.cs.se.modelepedia.graph_mavo.editor</module>
   	<module>../../plugins/Types/Graph/edu.toronto.cs.se.modelepedia.graph_mavo.operator</module>
-    <module>../../plugins/Types/GSN/edu.toronto.cs.se.modelepedia.safetycase</module>
-    <module>../../plugins/Types/GSN/edu.toronto.cs.se.modelepedia.safetycase.design</module>
-    <module>../../plugins/Types/GSN/edu.toronto.cs.se.modelepedia.safetycase.edit</module>
-    <module>../../plugins/Types/GSN/edu.toronto.cs.se.modelepedia.safetycase.editor</module>
-    <module>../../plugins/Types/GSN/edu.toronto.cs.se.modelepedia.safetycase.operator</module>
+    <module>../../plugins/Types/GSN/edu.toronto.cs.se.modelepedia.gsn</module>
+    <module>../../plugins/Types/GSN/edu.toronto.cs.se.modelepedia.gsn.design</module>
+    <module>../../plugins/Types/GSN/edu.toronto.cs.se.modelepedia.gsn.edit</module>
+    <module>../../plugins/Types/GSN/edu.toronto.cs.se.modelepedia.gsn.editor</module>
+    <module>../../plugins/Types/GSN/edu.toronto.cs.se.modelepedia.gsn.operator</module>
   	<module>../../plugins/Types/IStar/edu.toronto.cs.se.modelepedia.istar</module>
   	<module>../../plugins/Types/IStar/edu.toronto.cs.se.modelepedia.istar.diagram</module>
   	<module>../../plugins/Types/IStar/edu.toronto.cs.se.modelepedia.istar.edit</module>
@@ -237,7 +237,7 @@
   	<module>../../features/edu.toronto.cs.se.modelepedia.graph.feature</module>
   	<module>../../features/edu.toronto.cs.se.modelepedia.istar.feature</module>
   	<module>../../features/edu.toronto.cs.se.modelepedia.relationaldatabase.feature</module>
-    <module>../../features/edu.toronto.cs.se.modelepedia.safetycase.feature</module>
+    <module>../../features/edu.toronto.cs.se.modelepedia.gsn.feature</module>
     <module>../../features/edu.toronto.cs.se.modelepedia.sequencediagram.feature</module>
   	<module>../../features/edu.toronto.cs.se.modelepedia.statemachine.feature</module>
     <module>../../features/edu.toronto.cs.se.modelepedia.statemachine_mavo.feature</module>

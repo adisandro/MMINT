@@ -86,7 +86,7 @@
       <eInfo className="BasicGoal" featureName="goals" relatedClassName="SafetyCase"/>
     </modelElems>
   </models>
-  <editors xsi:type="editor:Diagram" uri="/LMS/representations.aird#_8SXUYGgvEeihGP6yb4cCyQ" name="GSN Representation for model /LMS/model/lms_sc.gsn" metatypeUri="http://se.cs.toronto.edu/modelepedia/Representation_GSN" dynamic="true" modelUri="/LMS/model/lms_sc.gsn" id="edu.toronto.cs.se.modelepedia.safetycase.design">
+  <editors xsi:type="editor:Diagram" uri="/LMS/representations.aird#_8SXUYGgvEeihGP6yb4cCyQ" name="GSN Representation for model /LMS/model/lms_sc.gsn" metatypeUri="http://se.cs.toronto.edu/modelepedia/Representation_GSN" dynamic="true" modelUri="/LMS/model/lms_sc.gsn" id="edu.toronto.cs.se.modelepedia.gsn.design">
     <fileExtensions>aird</fileExtensions>
   </editors>
   <extendibleTable key="/LMS/model/lms_sc.gsn" value="//@models.0"/>
