@@ -60,7 +60,7 @@ public class RealDomainImpl extends DomainImpl implements RealDomain {
    * @generated
    * @ordered
    */
-  protected double lowerBound = LOWER_BOUND_EDEFAULT;
+  protected double lowerBound = RealDomainImpl.LOWER_BOUND_EDEFAULT;
 
   /**
    * The default value of the '{@link #getUpperBound() <em>Upper Bound</em>}' attribute.
@@ -80,7 +80,7 @@ public class RealDomainImpl extends DomainImpl implements RealDomain {
    * @generated
    * @ordered
    */
-  protected double upperBound = UPPER_BOUND_EDEFAULT;
+  protected double upperBound = RealDomainImpl.UPPER_BOUND_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -108,7 +108,7 @@ public class RealDomainImpl extends DomainImpl implements RealDomain {
    */
   @Override
   public double getLowerBound() {
-    return lowerBound;
+    return this.lowerBound;
   }
 
   /**
@@ -118,10 +118,10 @@ public class RealDomainImpl extends DomainImpl implements RealDomain {
    */
   @Override
   public void setLowerBound(double newLowerBound) {
-    double oldLowerBound = lowerBound;
-    lowerBound = newLowerBound;
+    var oldLowerBound = this.lowerBound;
+    this.lowerBound = newLowerBound;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.REAL_DOMAIN__LOWER_BOUND, oldLowerBound, lowerBound));
+      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.REAL_DOMAIN__LOWER_BOUND, oldLowerBound, this.lowerBound));
   }
 
   /**
@@ -131,7 +131,7 @@ public class RealDomainImpl extends DomainImpl implements RealDomain {
    */
   @Override
   public double getUpperBound() {
-    return upperBound;
+    return this.upperBound;
   }
 
   /**
@@ -141,10 +141,10 @@ public class RealDomainImpl extends DomainImpl implements RealDomain {
    */
   @Override
   public void setUpperBound(double newUpperBound) {
-    double oldUpperBound = upperBound;
-    upperBound = newUpperBound;
+    var oldUpperBound = this.upperBound;
+    this.upperBound = newUpperBound;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.REAL_DOMAIN__UPPER_BOUND, oldUpperBound, upperBound));
+      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.REAL_DOMAIN__UPPER_BOUND, oldUpperBound, this.upperBound));
   }
 
   /**
@@ -190,10 +190,10 @@ public class RealDomainImpl extends DomainImpl implements RealDomain {
   public void eUnset(int featureID) {
     switch (featureID) {
       case GSNPackage.REAL_DOMAIN__LOWER_BOUND:
-        setLowerBound(LOWER_BOUND_EDEFAULT);
+        setLowerBound(RealDomainImpl.LOWER_BOUND_EDEFAULT);
         return;
       case GSNPackage.REAL_DOMAIN__UPPER_BOUND:
-        setUpperBound(UPPER_BOUND_EDEFAULT);
+        setUpperBound(RealDomainImpl.UPPER_BOUND_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -208,9 +208,9 @@ public class RealDomainImpl extends DomainImpl implements RealDomain {
   public boolean eIsSet(int featureID) {
     switch (featureID) {
       case GSNPackage.REAL_DOMAIN__LOWER_BOUND:
-        return lowerBound != LOWER_BOUND_EDEFAULT;
+        return this.lowerBound != RealDomainImpl.LOWER_BOUND_EDEFAULT;
       case GSNPackage.REAL_DOMAIN__UPPER_BOUND:
-        return upperBound != UPPER_BOUND_EDEFAULT;
+        return this.upperBound != RealDomainImpl.UPPER_BOUND_EDEFAULT;
     }
     return super.eIsSet(featureID);
   }
@@ -223,11 +223,11 @@ public class RealDomainImpl extends DomainImpl implements RealDomain {
   public String toStringGen() {
     if (eIsProxy()) return super.toString();
 
-    StringBuilder result = new StringBuilder(super.toString());
+    var result = new StringBuilder(super.toString());
     result.append(" (lowerBound: ");
-    result.append(lowerBound);
+    result.append(this.lowerBound);
     result.append(", upperBound: ");
-    result.append(upperBound);
+    result.append(this.upperBound);
     result.append(')');
     return result.toString();
   }
@@ -261,19 +261,19 @@ public class RealDomainImpl extends DomainImpl implements RealDomain {
     }
     Collections.sort(subBounds, (r1, r2) -> Double.compare(r1.getLowerBound(), r2.getLowerBound()));
     if (subBounds.get(0).getLowerBound() != getLowerBound()) {
-      throw new MMINTException("The lowest sub-domain bound does not match the domain lower bound");
+      throw new MMINTException("The sub-domain lower bound does not match the domain lower bound");
     }
     if (subBounds.get(subBounds.size()-1).getUpperBound() != getUpperBound()) {
-      throw new MMINTException("The uppermost sub-domain bound does not match the domain upper bound");
+      throw new MMINTException("The sub-domain upper bound does not match the domain upper bound");
     }
     for (var i = 0; i < subBounds.size()-1; i++) {
       var a = subBounds.get(i).getUpperBound();
       var b = subBounds.get(i+1).getLowerBound();
       if (a > b) {
-        throw new MMINTException("There is overlap between sub-domain bounds '_" + a + ")' and '(" + b + "_'");
+        throw new MMINTException("There is an overlap between sub-domain bounds '_" + a + ")' and '(" + b + "_'");
       }
       else if (a < b) {
-        throw new MMINTException("There is a hole between sub-domain bounds '_" + a + ")' and '(" + b + "_'");
+        throw new MMINTException("There is a gap between sub-domain bounds '_" + a + ")' and '(" + b + "_'");
       }
     }
   }

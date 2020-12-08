@@ -179,7 +179,6 @@
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
                 <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="CreateDomainGoal" id="edu.toronto.cs.se.modelepedia.gsn.design.tools.CreateDomainGoal"/>
-                <subModelOperations xsi:type="tool_1:ExternalJavaActionCall" name="CreateDomainGoalCall" action="//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@toolSections.0/@ownedTools[name='CreateDomainGoal']/@initialOperation/@firstModelOperations/@subModelOperations.0"/>
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
@@ -216,7 +215,6 @@
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
                 <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="CreateDomainDecompositionStrategy" id="edu.toronto.cs.se.modelepedia.gsn.design.tools.CreateDomainDecopositionStrategy"/>
-                <subModelOperations xsi:type="tool_1:ExternalJavaActionCall" name="CreateDomainDecompositionStrategyCall" action="//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@toolSections.0/@ownedTools[name='CreateDomainDecompositionStrategy']/@initialOperation/@firstModelOperations/@subModelOperations.0"/>
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
@@ -360,11 +358,8 @@
         <toolSections name="Menus">
           <ownedTools xsi:type="tool_1:PopupMenu" name="MMINT">
             <menuItemDescription xsi:type="tool_1:ExternalJavaAction" name="EvaluateQuery" label="Evaluate Query" id="edu.toronto.cs.se.mmint.mid.diagram.context.SiriusEvaluateQuery"/>
-            <menuItemDescription xsi:type="tool_1:ExternalJavaActionCall" name="EvaluateQueryCall" action="//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@toolSections.1/@ownedTools[name='MMINT']/@menuItemDescription.0"/>
             <menuItemDescription xsi:type="tool_1:ExternalJavaAction" name="DomainDecomposition" label="Domain Decomposition" id="edu.toronto.cs.se.modelepedia.gsn.design.context.DomainDecomposition"/>
-            <menuItemDescription xsi:type="tool_1:ExternalJavaActionCall" name="DomainDecompositionCall" action="//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@toolSections.1/@ownedTools[name='MMINT']/@menuItemDescription.2"/>
             <menuItemDescription xsi:type="tool_1:ExternalJavaAction" name="DomainDecompositionCheck" label="Domain Decomposition Check" id="edu.toronto.cs.se.modelepedia.gsn.design.context.DomainDecompositionCheck"/>
-            <menuItemDescription xsi:type="tool_1:ExternalJavaActionCall" name="DomainDecompositionCheckCall" action="//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@toolSections.1/@ownedTools[name='MMINT']/@menuItemDescription.4"/>
           </ownedTools>
         </toolSections>
       </defaultLayer>

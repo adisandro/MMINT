@@ -59,7 +59,7 @@ public class IntDomainImpl extends DomainImpl implements IntDomain {
    * @generated
    * @ordered
    */
-  protected int lowerBound = LOWER_BOUND_EDEFAULT;
+  protected int lowerBound = IntDomainImpl.LOWER_BOUND_EDEFAULT;
 
   /**
    * The default value of the '{@link #getUpperBound() <em>Upper Bound</em>}' attribute.
@@ -79,7 +79,7 @@ public class IntDomainImpl extends DomainImpl implements IntDomain {
    * @generated
    * @ordered
    */
-  protected int upperBound = UPPER_BOUND_EDEFAULT;
+  protected int upperBound = IntDomainImpl.UPPER_BOUND_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -107,7 +107,7 @@ public class IntDomainImpl extends DomainImpl implements IntDomain {
    */
   @Override
   public int getLowerBound() {
-    return lowerBound;
+    return this.lowerBound;
   }
 
   /**
@@ -117,10 +117,10 @@ public class IntDomainImpl extends DomainImpl implements IntDomain {
    */
   @Override
   public void setLowerBound(int newLowerBound) {
-    int oldLowerBound = lowerBound;
-    lowerBound = newLowerBound;
+    var oldLowerBound = this.lowerBound;
+    this.lowerBound = newLowerBound;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.INT_DOMAIN__LOWER_BOUND, oldLowerBound, lowerBound));
+      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.INT_DOMAIN__LOWER_BOUND, oldLowerBound, this.lowerBound));
   }
 
   /**
@@ -130,7 +130,7 @@ public class IntDomainImpl extends DomainImpl implements IntDomain {
    */
   @Override
   public int getUpperBound() {
-    return upperBound;
+    return this.upperBound;
   }
 
   /**
@@ -140,10 +140,10 @@ public class IntDomainImpl extends DomainImpl implements IntDomain {
    */
   @Override
   public void setUpperBound(int newUpperBound) {
-    int oldUpperBound = upperBound;
-    upperBound = newUpperBound;
+    var oldUpperBound = this.upperBound;
+    this.upperBound = newUpperBound;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.INT_DOMAIN__UPPER_BOUND, oldUpperBound, upperBound));
+      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.INT_DOMAIN__UPPER_BOUND, oldUpperBound, this.upperBound));
   }
 
   /**
@@ -189,10 +189,10 @@ public class IntDomainImpl extends DomainImpl implements IntDomain {
   public void eUnset(int featureID) {
     switch (featureID) {
       case GSNPackage.INT_DOMAIN__LOWER_BOUND:
-        setLowerBound(LOWER_BOUND_EDEFAULT);
+        setLowerBound(IntDomainImpl.LOWER_BOUND_EDEFAULT);
         return;
       case GSNPackage.INT_DOMAIN__UPPER_BOUND:
-        setUpperBound(UPPER_BOUND_EDEFAULT);
+        setUpperBound(IntDomainImpl.UPPER_BOUND_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -207,9 +207,9 @@ public class IntDomainImpl extends DomainImpl implements IntDomain {
   public boolean eIsSet(int featureID) {
     switch (featureID) {
       case GSNPackage.INT_DOMAIN__LOWER_BOUND:
-        return lowerBound != LOWER_BOUND_EDEFAULT;
+        return this.lowerBound != IntDomainImpl.LOWER_BOUND_EDEFAULT;
       case GSNPackage.INT_DOMAIN__UPPER_BOUND:
-        return upperBound != UPPER_BOUND_EDEFAULT;
+        return this.upperBound != IntDomainImpl.UPPER_BOUND_EDEFAULT;
     }
     return super.eIsSet(featureID);
   }
@@ -222,11 +222,11 @@ public class IntDomainImpl extends DomainImpl implements IntDomain {
   public String toStringGen() {
     if (eIsProxy()) return super.toString();
 
-    StringBuilder result = new StringBuilder(super.toString());
+    var result = new StringBuilder(super.toString());
     result.append(" (lowerBound: ");
-    result.append(lowerBound);
+    result.append(this.lowerBound);
     result.append(", upperBound: ");
-    result.append(upperBound);
+    result.append(this.upperBound);
     result.append(')');
     return result.toString();
   }
@@ -302,16 +302,16 @@ public class IntDomainImpl extends DomainImpl implements IntDomain {
       }
       if (prevSubValue == null) {
         if (subValue != getLowerBound()) {
-          throw new MMINTException("The lowest sub-domain bound does not match the domain lower bound");
+          throw new MMINTException("The sub-domain lower bound does not match the domain lower bound");
         }
       }
       else {
         if ((prevSubValue + 1) > subValue) {
-          throw new MMINTException("There is overlap between sub-domain values '" + prevSubValue + "' and '" +
+          throw new MMINTException("There is an overlap between sub-domain values '" + prevSubValue + "' and '" +
                                    subValue + "'");
         }
         else if ((prevSubValue + 1) < subValue) {
-          throw new MMINTException("There is a hole between sub-domain values '" + prevSubValue + "' and '" + subValue +
+          throw new MMINTException("There is a gap between sub-domain values '" + prevSubValue + "' and '" + subValue +
                                    "'");
         }
       }
@@ -325,7 +325,7 @@ public class IntDomainImpl extends DomainImpl implements IntDomain {
       }
     }
     if (prevSubValue != getUpperBound()) {
-      throw new MMINTException("The uppermost sub-domain bound does not match the domain upper bound");
+      throw new MMINTException("The sub-domain upper bound does not match the domain upper bound");
     }
   }
 
