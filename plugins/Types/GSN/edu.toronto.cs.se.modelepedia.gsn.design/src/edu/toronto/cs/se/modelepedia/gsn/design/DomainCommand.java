@@ -22,6 +22,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
+import edu.toronto.cs.se.modelepedia.gsn.BasicStrategy;
 import edu.toronto.cs.se.modelepedia.gsn.Domain;
 import edu.toronto.cs.se.modelepedia.gsn.DomainDecompositionStrategy;
 import edu.toronto.cs.se.modelepedia.gsn.DomainGoal;
@@ -75,11 +76,22 @@ public abstract class DomainCommand extends RecordingCommand {
     return goal;
   }
 
+  protected void addStrategy(Strategy strategy, String id, String description) {
+    addArgumentElement(strategy, id, description);
+    this.gsnElements.add(strategy);
+  }
+
+  protected BasicStrategy createBasicStrategy(String id, String description) {
+    var strategy = this.factory.createBasicStrategy();
+    addStrategy(strategy, id, description);
+
+    return strategy;
+  }
+
   protected DomainDecompositionStrategy createDomainStrategy(String id, String description, Domain domain) {
     var strategy = this.factory.createDomainDecompositionStrategy();
-    addArgumentElement(strategy, id, description);
+    addStrategy(strategy, id, description);
     strategy.setDomain(domain);
-    this.gsnElements.add(strategy);
 
     return strategy;
   }

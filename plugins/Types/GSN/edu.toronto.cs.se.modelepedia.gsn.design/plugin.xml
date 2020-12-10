@@ -54,6 +54,10 @@
             actionClass="edu.toronto.cs.se.modelepedia.gsn.design.context.DomainDecompositionCheck"
             id="edu.toronto.cs.se.modelepedia.gsn.design.context.DomainDecompositionCheck">
       </javaActions>
+      <javaActions
+            actionClass="edu.toronto.cs.se.modelepedia.gsn.design.context.PropertyDecomposition"
+            id="edu.toronto.cs.se.modelepedia.gsn.design.context.PropertyDecomposition">
+      </javaActions>
    </extension>
 
 </plugin>
