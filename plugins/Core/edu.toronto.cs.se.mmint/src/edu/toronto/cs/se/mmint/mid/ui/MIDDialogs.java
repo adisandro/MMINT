@@ -65,7 +65,7 @@ import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 public class MIDDialogs {
 
     //TODO MMINT[MISC] Remove double layer MIDDialogs + MIDTypeRegistry, and do filtering directly in content providers
-	public final static String CONSTRAINT_LANGUAGE_SEPARATOR = ":";
+	public final static String PROPERTY_LANGUAGE_SEPARATOR = ":";
 
 	protected static Object openDialog(MIDTreeSelectionDialog dialog, String title, String message) throws MIDDialogCancellation {
 
@@ -416,11 +416,29 @@ public class MIDDialogs {
 		return dialog.getValue();
 	}
 
+  public static String[] getPropertyInput(String title, String message, String initial) throws Exception {
+    var input = MIDDialogs.getBigStringInput(title, message, initial);
+    if (input.isBlank()) {
+      throw new MMINTException("Empty input");
+    }
+    input = input.strip();
+    var property = new String[2];
+    var separator = input.indexOf(MIDDialogs.PROPERTY_LANGUAGE_SEPARATOR);
+    if (separator == -1) {
+      throw new MMINTException("Missing separator '" + MIDDialogs.PROPERTY_LANGUAGE_SEPARATOR +
+                               "' between language and property");
+    }
+    property[0] = input.substring(0, separator).strip();
+    property[1] = input.substring(separator + 1).strip();
+
+    return property;
+  }
+
 	public static String[] getConstraintInput(String dialogTitle, String dialogInitial) throws MIDDialogCancellation {
 
 		var text = MIDDialogs.getBigStringInput(dialogTitle, "Insert new constraint in the format \"language: constraint\"", dialogInitial);
 		var constraint = new String[2];
-		var separatorIndex = text.indexOf(MIDDialogs.CONSTRAINT_LANGUAGE_SEPARATOR);
+		var separatorIndex = text.indexOf(MIDDialogs.PROPERTY_LANGUAGE_SEPARATOR);
 		if (separatorIndex == -1) {
 			constraint[0] = "ocl";
 			constraint[1] = text;

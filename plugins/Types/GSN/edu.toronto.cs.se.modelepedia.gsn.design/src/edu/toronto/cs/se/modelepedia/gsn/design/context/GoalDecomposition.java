@@ -16,6 +16,7 @@ import java.util.Collection;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.sirius.business.api.action.AbstractExternalJavaAction;
 import org.eclipse.sirius.viewpoint.DSemanticDecorator;
@@ -23,9 +24,8 @@ import org.eclipse.sirius.viewpoint.DSemanticDecorator;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 import edu.toronto.cs.se.modelepedia.gsn.Goal;
-import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
 import edu.toronto.cs.se.modelepedia.gsn.Strategy;
-import edu.toronto.cs.se.modelepedia.gsn.design.DomainCommand;
+import edu.toronto.cs.se.modelepedia.gsn.design.GSNBuilder;
 
 public abstract class GoalDecomposition extends AbstractExternalJavaAction {
 
@@ -41,12 +41,14 @@ public abstract class GoalDecomposition extends AbstractExternalJavaAction {
     return false;
   }
 
-  protected abstract class GoalDecompositionCommand extends DomainCommand {
+  protected abstract class GoalDecompositionCommand extends RecordingCommand {
     protected Goal decomposed;
+    protected GSNBuilder builder;
 
-    public GoalDecompositionCommand(TransactionalEditingDomain domain, Goal decomposed) {
-      super(domain, (SafetyCase) decomposed.eContainer());
+    public GoalDecompositionCommand(TransactionalEditingDomain domain, Goal decomposed, GSNBuilder builder) {
+      super(domain);
       this.decomposed = decomposed;
+      this.builder = builder;
     }
 
     protected abstract Strategy decompose() throws Exception;
@@ -55,8 +57,8 @@ public abstract class GoalDecomposition extends AbstractExternalJavaAction {
     protected void doExecute() {
       try {
         var strategy = decompose();
-        addSupporter(this.decomposed, strategy);
-        commitChanges();
+        this.builder.addSupporter(this.decomposed, strategy);
+        this.builder.commitChanges();
       }
       catch (MIDDialogCancellation e) {
         // do nothing

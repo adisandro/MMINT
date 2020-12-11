@@ -9,94 +9,52 @@
  */
 package edu.toronto.cs.se.modelepedia.gsn.design;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
-
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
-import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
-import edu.toronto.cs.se.modelepedia.gsn.BasicStrategy;
 import edu.toronto.cs.se.modelepedia.gsn.Domain;
+import edu.toronto.cs.se.modelepedia.gsn.DomainDecompositionElement;
 import edu.toronto.cs.se.modelepedia.gsn.DomainDecompositionStrategy;
 import edu.toronto.cs.se.modelepedia.gsn.DomainGoal;
 import edu.toronto.cs.se.modelepedia.gsn.EnumDomain;
-import edu.toronto.cs.se.modelepedia.gsn.GSNFactory;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
-import edu.toronto.cs.se.modelepedia.gsn.Goal;
 import edu.toronto.cs.se.modelepedia.gsn.IntDomain;
-import edu.toronto.cs.se.modelepedia.gsn.Justification;
 import edu.toronto.cs.se.modelepedia.gsn.RealDomain;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
-import edu.toronto.cs.se.modelepedia.gsn.Strategy;
-import edu.toronto.cs.se.modelepedia.gsn.Supportable;
-import edu.toronto.cs.se.modelepedia.gsn.Supporter;
 import edu.toronto.cs.se.modelepedia.gsn.ValueDomain;
 import edu.toronto.cs.se.modelepedia.gsn.impl.DomainImpl;
 
-public abstract class DomainCommand extends RecordingCommand {
-  protected SafetyCase gsnRootModelObj;
-  protected GSNFactory factory;
-  protected List<ArgumentElement> gsnElements;
+public class DomainBuilder extends GSNBuilder {
 
-  public DomainCommand(TransactionalEditingDomain domain, SafetyCase gsnRootModelObj) {
-    super(domain);
-    this.gsnRootModelObj = gsnRootModelObj;
-    this.factory = GSNFactory.eINSTANCE;
-    this.gsnElements = new ArrayList<>();
+  public DomainBuilder(SafetyCase gsnRootModelObj) {
+    super(gsnRootModelObj);
   }
 
-  protected void addSupporter(Supportable supportable, Supporter supporter) {
-    var support = this.factory.createSupportedBy();
-    support.setSource(supportable);
-    support.setTarget(supporter);
+  public void addDomainElement(DomainDecompositionElement domainElem, Domain domain) {
+    domainElem.setDomain(domain);
   }
 
-  protected void addArgumentElement(ArgumentElement argument, String id, String description) {
-    argument.setId(id);
-    argument.setDescription(description);
-  }
-
-  protected void addGoal(Goal goal, String id, String description) {
-    addArgumentElement(goal, id, description);
-    this.gsnElements.add(goal);
-  }
-
-  protected DomainGoal createDomainGoal(String id, String description, Domain domain) {
+  public DomainGoal createDomainGoal(String id, String description, Domain domain) {
     var goal = this.factory.createDomainGoal();
     addGoal(goal, id, description);
-    goal.setDomain(domain);
+    addDomainElement(goal, domain);
 
     return goal;
   }
 
-  protected void addStrategy(Strategy strategy, String id, String description) {
-    addArgumentElement(strategy, id, description);
-    this.gsnElements.add(strategy);
-  }
-
-  protected BasicStrategy createBasicStrategy(String id, String description) {
-    var strategy = this.factory.createBasicStrategy();
-    addStrategy(strategy, id, description);
-
-    return strategy;
-  }
-
-  protected DomainDecompositionStrategy createDomainStrategy(String id, String description, Domain domain) {
+  public DomainDecompositionStrategy createDomainStrategy(String id, String description, Domain domain) {
     var strategy = this.factory.createDomainDecompositionStrategy();
     addStrategy(strategy, id, description);
-    strategy.setDomain(domain);
+    addDomainElement(strategy, domain);
 
     return strategy;
   }
 
-  protected Domain createDomain(String title, String message, Set<Integer> whichTypes) throws Exception {
+  public Domain createDomain(String title, String message, Set<Integer> whichTypes) throws Exception {
     var syntaxes = Map.of(GSNPackage.INT_DOMAIN,   "'_' for ranges",
                           GSNPackage.REAL_DOMAIN,  "'_' for ranges",
                           GSNPackage.ENUM_DOMAIN,  "',' for enumerations");
@@ -139,19 +97,4 @@ public abstract class DomainCommand extends RecordingCommand {
 
     return domain;
   }
-
-  protected void commitChanges() {
-    for (var gsnElement : this.gsnElements) {
-      if (gsnElement instanceof Strategy) {
-        this.gsnRootModelObj.getStrategies().add((Strategy) gsnElement);
-      }
-      else if (gsnElement instanceof Justification) {
-        this.gsnRootModelObj.getJustifications().add((Justification) gsnElement);
-      }
-      else if (gsnElement instanceof Goal) {
-        this.gsnRootModelObj.getGoals().add((Goal) gsnElement);
-      }
-    }
-  }
-
 }

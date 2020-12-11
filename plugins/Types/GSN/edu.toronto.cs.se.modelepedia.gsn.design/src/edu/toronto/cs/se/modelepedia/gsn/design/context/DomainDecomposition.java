@@ -21,16 +21,14 @@ import org.eclipse.sirius.viewpoint.DSemanticDecorator;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
-import edu.toronto.cs.se.modelepedia.gsn.BasicGoal;
-import edu.toronto.cs.se.modelepedia.gsn.ContextualElement;
-import edu.toronto.cs.se.modelepedia.gsn.DecomposableCoreElement;
 import edu.toronto.cs.se.modelepedia.gsn.EnumDomain;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.Goal;
 import edu.toronto.cs.se.modelepedia.gsn.IntDomain;
-import edu.toronto.cs.se.modelepedia.gsn.Justification;
 import edu.toronto.cs.se.modelepedia.gsn.RealDomain;
+import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
 import edu.toronto.cs.se.modelepedia.gsn.Strategy;
+import edu.toronto.cs.se.modelepedia.gsn.design.DomainBuilder;
 
 public class DomainDecomposition extends GoalDecomposition {
 
@@ -45,39 +43,18 @@ public class DomainDecomposition extends GoalDecomposition {
   private class DomainDecompositionCommand extends GoalDecompositionCommand {
 
     public DomainDecompositionCommand(TransactionalEditingDomain domain, Goal decomposed) {
-      super(domain, decomposed);
-    }
-
-    private void addContext(DecomposableCoreElement decomposable, ContextualElement contextual) {
-      var context = this.factory.createInContextOf();
-      context.setContextOf(decomposable);
-      context.setContext(contextual);
-    }
-
-    private BasicGoal createCompletenessGoal(String id, String description) {
-      var goal = this.factory.createBasicGoal();
-      addGoal(goal, id, description);
-
-      return goal;
-    }
-
-    private Justification createJustification(Strategy strategy, String id, String description) {
-      var justification = this.factory.createJustification();
-      addArgumentElement(justification, id, description);
-      addContext(strategy, justification);
-      this.gsnElements.add(justification);
-
-      return justification;
+      super(domain, decomposed, new DomainBuilder((SafetyCase) decomposed.eContainer()));
     }
 
     @Override
     protected Strategy decompose() throws Exception {
+      var builder = (DomainBuilder) this.builder;
       // ask for input
       var title = "Domain Decomposition";
       var numDomains = 0;
       Set<Integer> subDomainTypes = null;
-      var domain = createDomain(title, "Insert the domain",
-                                Set.of(GSNPackage.INT_DOMAIN, GSNPackage.REAL_DOMAIN, GSNPackage.ENUM_DOMAIN));
+      var domain = builder.createDomain(title, "Insert the domain",
+                                        Set.of(GSNPackage.INT_DOMAIN, GSNPackage.REAL_DOMAIN, GSNPackage.ENUM_DOMAIN));
       if (domain instanceof IntDomain || domain instanceof RealDomain) {
         var message = "Insert the number of sub-domains";
         numDomains = Integer.parseInt(MIDDialogs.getStringInput(title, message, null));
@@ -106,17 +83,17 @@ public class DomainDecomposition extends GoalDecomposition {
       var justificationDesc = "Every scenario has a corresponding value in the domain " + domain.toString();
       var subGoalDesc = desc + " for sub-domain ";
       var compGoalDesc = "Every possible value in the domain " + domain.toString() + " is covered by sub-domains ";
-      var strategy = createDomainStrategy(strategyId, strategyDesc, domain);
-      createJustification(strategy, justificationId, justificationDesc);
+      var strategy = builder.createDomainStrategy(strategyId, strategyDesc, domain);
+      builder.createJustification(strategy, justificationId, justificationDesc);
       var subDomains = new ArrayList<String>();
       for (var i = 0; i < numDomains; i++) {
-        var subDomain = createDomain(title, "Insert the sub-domain #" + (i+1), subDomainTypes);
+        var subDomain = builder.createDomain(title, "Insert the sub-domain #" + (i+1), subDomainTypes);
         subDomains.add(subDomain.toString());
-        var goal = createDomainGoal(subGoalId + i, subGoalDesc + subDomain.toString(), subDomain);
-        addSupporter(strategy, goal);
+        var goal = builder.createDomainGoal(subGoalId + i, subGoalDesc + subDomain.toString(), subDomain);
+        builder.addSupporter(strategy, goal);
       }
-      var goal = createCompletenessGoal(compGoalId, compGoalDesc + String.join(", ", subDomains));
-      addSupporter(strategy, goal);
+      var goal = builder.createBasicGoal(compGoalId, compGoalDesc + String.join(", ", subDomains));
+      builder.addSupporter(strategy, goal);
       // check decomposition validity
       strategy.validate();
 

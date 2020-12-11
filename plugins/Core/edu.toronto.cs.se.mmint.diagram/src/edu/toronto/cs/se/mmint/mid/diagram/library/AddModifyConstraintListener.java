@@ -73,7 +73,7 @@ public class AddModifyConstraintListener extends MIDContextMenuListener {
 					constraint.setLanguage(languages.iterator().next());
 					constraint.setImplementation("");
 				}
-				var newConstraint = MIDDialogs.getConstraintInput(AddModifyConstraintListener.this.menuLabel, constraint.getLanguage() + MIDDialogs.CONSTRAINT_LANGUAGE_SEPARATOR + "\n" + constraint.getImplementation());
+				var newConstraint = MIDDialogs.getConstraintInput(AddModifyConstraintListener.this.menuLabel, constraint.getLanguage() + MIDDialogs.PROPERTY_LANGUAGE_SEPARATOR + "\n" + constraint.getImplementation());
 				constraint.setLanguage(newConstraint[0]);
 				constraint.setImplementation(newConstraint[1]);
 				if (AddModifyConstraintListener.this.element.getConstraint() == null) {

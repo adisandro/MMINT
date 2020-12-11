@@ -15,6 +15,7 @@ import java.util.Set;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.sirius.business.api.action.AbstractExternalJavaAction;
 import org.eclipse.sirius.business.api.session.SessionManager;
@@ -23,7 +24,7 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
-import edu.toronto.cs.se.modelepedia.gsn.design.DomainCommand;
+import edu.toronto.cs.se.modelepedia.gsn.design.DomainBuilder;
 
 public class CreateDomainGoal extends AbstractExternalJavaAction {
 
@@ -40,20 +41,22 @@ public class CreateDomainGoal extends AbstractExternalJavaAction {
     sDomain.getCommandStack().execute(new CreateDomainGoalCommand(sDomain, gsnRootModelObj));
   }
 
-  private class CreateDomainGoalCommand extends DomainCommand {
+  private class CreateDomainGoalCommand extends RecordingCommand {
+    private DomainBuilder builder;
 
     public CreateDomainGoalCommand(TransactionalEditingDomain domain, SafetyCase gsnRootModelObj) {
-      super(domain, gsnRootModelObj);
+      super(domain);
+      this.builder = new DomainBuilder(gsnRootModelObj);
     }
 
     @Override
     protected void doExecute() {
       try {
-        var domain = createDomain("Create Domain Goal", "Insert the domain",
-                                  Set.of(GSNPackage.INT_DOMAIN, GSNPackage.REAL_DOMAIN, GSNPackage.ENUM_DOMAIN,
-                                         GSNPackage.VALUE_DOMAIN));
-        createDomainGoal("", "", domain);
-        commitChanges();
+        var domain = this.builder.createDomain("Create Domain Goal", "Insert the domain",
+                                               Set.of(GSNPackage.INT_DOMAIN, GSNPackage.REAL_DOMAIN,
+                                                      GSNPackage.ENUM_DOMAIN, GSNPackage.VALUE_DOMAIN));
+        this.builder.createDomainGoal("", "", domain);
+        this.builder.commitChanges();
       }
       catch (MIDDialogCancellation e) {
         // do nothing
