@@ -3,29 +3,26 @@
  * All rights reserved. This program and the accompanying materials are made available under the terms
  * of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *   Alessio Di Sandro - Implementation
  *   Nick Fung - Implementation.
- * 
+ *
  */
 package edu.toronto.cs.se.modelepedia.gsn.impl;
+
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.Supportable;
 import edu.toronto.cs.se.modelepedia.gsn.SupportedBy;
 import edu.toronto.cs.se.modelepedia.gsn.Supporter;
-
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
-import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -121,15 +118,15 @@ public class SupportedByImpl extends MinimalEObjectImpl.Container implements Sup
    */
   @Override
   public Supporter getTarget() {
-    if (target != null && target.eIsProxy()) {
-      InternalEObject oldTarget = (InternalEObject)target;
-      target = (Supporter)eResolveProxy(oldTarget);
-      if (target != oldTarget) {
+    if (this.target != null && this.target.eIsProxy()) {
+      var oldTarget = (InternalEObject)this.target;
+      this.target = (Supporter)eResolveProxy(oldTarget);
+      if (this.target != oldTarget) {
         if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, GSNPackage.SUPPORTED_BY__TARGET, oldTarget, target));
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, GSNPackage.SUPPORTED_BY__TARGET, oldTarget, this.target));
       }
     }
-    return target;
+    return this.target;
   }
 
   /**
@@ -138,7 +135,7 @@ public class SupportedByImpl extends MinimalEObjectImpl.Container implements Sup
    * @generated
    */
   public Supporter basicGetTarget() {
-    return target;
+    return this.target;
   }
 
   /**
@@ -147,10 +144,10 @@ public class SupportedByImpl extends MinimalEObjectImpl.Container implements Sup
    * @generated
    */
   public NotificationChain basicSetTarget(Supporter newTarget, NotificationChain msgs) {
-    Supporter oldTarget = target;
-    target = newTarget;
+    var oldTarget = this.target;
+    this.target = newTarget;
     if (eNotificationRequired()) {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GSNPackage.SUPPORTED_BY__TARGET, oldTarget, newTarget);
+      var notification = new ENotificationImpl(this, Notification.SET, GSNPackage.SUPPORTED_BY__TARGET, oldTarget, newTarget);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -163,10 +160,10 @@ public class SupportedByImpl extends MinimalEObjectImpl.Container implements Sup
    */
   @Override
   public void setTarget(Supporter newTarget) {
-    if (newTarget != target) {
+    if (newTarget != this.target) {
       NotificationChain msgs = null;
-      if (target != null)
-        msgs = ((InternalEObject)target).eInverseRemove(this, GSNPackage.SUPPORTER__SUPPORTS, Supporter.class, msgs);
+      if (this.target != null)
+        msgs = ((InternalEObject)this.target).eInverseRemove(this, GSNPackage.SUPPORTER__SUPPORTS, Supporter.class, msgs);
       if (newTarget != null)
         msgs = ((InternalEObject)newTarget).eInverseAdd(this, GSNPackage.SUPPORTER__SUPPORTS, Supporter.class, msgs);
       msgs = basicSetTarget(newTarget, msgs);
@@ -189,8 +186,8 @@ public class SupportedByImpl extends MinimalEObjectImpl.Container implements Sup
           msgs = eBasicRemoveFromContainer(msgs);
         return basicSetSource((Supportable)otherEnd, msgs);
       case GSNPackage.SUPPORTED_BY__TARGET:
-        if (target != null)
-          msgs = ((InternalEObject)target).eInverseRemove(this, GSNPackage.SUPPORTER__SUPPORTS, Supporter.class, msgs);
+        if (this.target != null)
+          msgs = ((InternalEObject)this.target).eInverseRemove(this, GSNPackage.SUPPORTER__SUPPORTS, Supporter.class, msgs);
         return basicSetTarget((Supporter)otherEnd, msgs);
     }
     return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -290,7 +287,7 @@ public class SupportedByImpl extends MinimalEObjectImpl.Container implements Sup
       case GSNPackage.SUPPORTED_BY__SOURCE:
         return getSource() != null;
       case GSNPackage.SUPPORTED_BY__TARGET:
-        return target != null;
+        return this.target != null;
     }
     return super.eIsSet(featureID);
   }

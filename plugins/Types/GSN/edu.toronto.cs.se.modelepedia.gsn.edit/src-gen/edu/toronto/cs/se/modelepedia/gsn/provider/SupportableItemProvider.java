@@ -3,30 +3,28 @@
  * All rights reserved. This program and the accompanying materials are made available under the terms
  * of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *   Alessio Di Sandro - Implementation
  *   Nick Fung - Implementation.
- * 
+ *
  */
 package edu.toronto.cs.se.modelepedia.gsn.provider;
 
-
-import edu.toronto.cs.se.modelepedia.gsn.GSNFactory;
-import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
-import edu.toronto.cs.se.modelepedia.gsn.Supportable;
 
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
+import edu.toronto.cs.se.modelepedia.gsn.GSNFactory;
+import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
+import edu.toronto.cs.se.modelepedia.gsn.Supportable;
 
 /**
  * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.gsn.Supportable} object.
@@ -53,12 +51,12 @@ public class SupportableItemProvider extends SupporterItemProvider {
    */
   @Override
   public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-    if (itemPropertyDescriptors == null) {
+    if (this.itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
       addSupportedByPropertyDescriptor(object);
     }
-    return itemPropertyDescriptors;
+    return this.itemPropertyDescriptors;
   }
 
   /**
@@ -68,9 +66,9 @@ public class SupportableItemProvider extends SupporterItemProvider {
    * @generated
    */
   protected void addSupportedByPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
+    this.itemPropertyDescriptors.add
       (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+        (((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
          getString("_UI_Supportable_supportedBy_feature"),
          getString("_UI_PropertyDescriptor_description", "_UI_Supportable_supportedBy_feature", "_UI_Supportable_type"),
@@ -93,11 +91,11 @@ public class SupportableItemProvider extends SupporterItemProvider {
    */
   @Override
   public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-    if (childrenFeatures == null) {
+    if (this.childrenFeatures == null) {
       super.getChildrenFeatures(object);
-      childrenFeatures.add(GSNPackage.Literals.SUPPORTABLE__SUPPORTED_BY);
+      this.childrenFeatures.add(GSNPackage.Literals.SUPPORTABLE__SUPPORTED_BY);
     }
-    return childrenFeatures;
+    return this.childrenFeatures;
   }
 
   /**

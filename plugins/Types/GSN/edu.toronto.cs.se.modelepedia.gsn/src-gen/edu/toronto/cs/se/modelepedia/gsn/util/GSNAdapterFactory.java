@@ -3,22 +3,60 @@
  * All rights reserved. This program and the accompanying materials are made available under the terms
  * of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *   Alessio Di Sandro - Implementation
  *   Nick Fung - Implementation.
- * 
+ *
  */
 package edu.toronto.cs.se.modelepedia.gsn.util;
 
-import edu.toronto.cs.se.modelepedia.gsn.*;
-
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
+
+import edu.toronto.cs.se.modelepedia.gsn.ASIL;
+import edu.toronto.cs.se.modelepedia.gsn.ASILDecompositionStrategy;
+import edu.toronto.cs.se.modelepedia.gsn.ASILfulElement;
+import edu.toronto.cs.se.modelepedia.gsn.AndSupporter;
+import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
+import edu.toronto.cs.se.modelepedia.gsn.Assumption;
+import edu.toronto.cs.se.modelepedia.gsn.BasicGoal;
+import edu.toronto.cs.se.modelepedia.gsn.BasicStrategy;
+import edu.toronto.cs.se.modelepedia.gsn.Context;
+import edu.toronto.cs.se.modelepedia.gsn.ContextualElement;
+import edu.toronto.cs.se.modelepedia.gsn.CoreElement;
+import edu.toronto.cs.se.modelepedia.gsn.DecomposableCoreElement;
+import edu.toronto.cs.se.modelepedia.gsn.DecompositionStrategy;
+import edu.toronto.cs.se.modelepedia.gsn.Domain;
+import edu.toronto.cs.se.modelepedia.gsn.DomainDecompositionElement;
+import edu.toronto.cs.se.modelepedia.gsn.DomainDecompositionStrategy;
+import edu.toronto.cs.se.modelepedia.gsn.DomainGoal;
+import edu.toronto.cs.se.modelepedia.gsn.EnumDomain;
+import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
+import edu.toronto.cs.se.modelepedia.gsn.Goal;
+import edu.toronto.cs.se.modelepedia.gsn.ImpactAnnotation;
+import edu.toronto.cs.se.modelepedia.gsn.InContextOf;
+import edu.toronto.cs.se.modelepedia.gsn.IndependenceGoal;
+import edu.toronto.cs.se.modelepedia.gsn.IntDomain;
+import edu.toronto.cs.se.modelepedia.gsn.Justification;
+import edu.toronto.cs.se.modelepedia.gsn.MofNSupporter;
+import edu.toronto.cs.se.modelepedia.gsn.OrSupporter;
+import edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionElement;
+import edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionStrategy;
+import edu.toronto.cs.se.modelepedia.gsn.PropertyGoal;
+import edu.toronto.cs.se.modelepedia.gsn.RealDomain;
+import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
+import edu.toronto.cs.se.modelepedia.gsn.Solution;
+import edu.toronto.cs.se.modelepedia.gsn.StatefulElement;
+import edu.toronto.cs.se.modelepedia.gsn.Strategy;
+import edu.toronto.cs.se.modelepedia.gsn.SupportConnector;
+import edu.toronto.cs.se.modelepedia.gsn.Supportable;
+import edu.toronto.cs.se.modelepedia.gsn.SupportedBy;
+import edu.toronto.cs.se.modelepedia.gsn.Supporter;
+import edu.toronto.cs.se.modelepedia.gsn.ValueDomain;
+import edu.toronto.cs.se.modelepedia.gsn.XorSupporter;
 
 /**
  * <!-- begin-user-doc -->
@@ -44,8 +82,8 @@ public class GSNAdapterFactory extends AdapterFactoryImpl {
    * @generated
    */
   public GSNAdapterFactory() {
-    if (modelPackage == null) {
-      modelPackage = GSNPackage.eINSTANCE;
+    if (GSNAdapterFactory.modelPackage == null) {
+      GSNAdapterFactory.modelPackage = GSNPackage.eINSTANCE;
     }
   }
 
@@ -59,11 +97,11 @@ public class GSNAdapterFactory extends AdapterFactoryImpl {
    */
   @Override
   public boolean isFactoryForType(Object object) {
-    if (object == modelPackage) {
+    if (object == GSNAdapterFactory.modelPackage) {
       return true;
     }
     if (object instanceof EObject) {
-      return ((EObject)object).eClass().getEPackage() == modelPackage;
+      return ((EObject)object).eClass().getEPackage() == GSNAdapterFactory.modelPackage;
     }
     return false;
   }
@@ -75,7 +113,7 @@ public class GSNAdapterFactory extends AdapterFactoryImpl {
    * @generated
    */
   protected GSNSwitch<Adapter> modelSwitch =
-    new GSNSwitch<Adapter>() {
+    new GSNSwitch<>() {
       @Override
       public Adapter caseSafetyCase(SafetyCase object) {
         return createSafetyCaseAdapter();
@@ -252,7 +290,7 @@ public class GSNAdapterFactory extends AdapterFactoryImpl {
    */
   @Override
   public Adapter createAdapter(Notifier target) {
-    return modelSwitch.doSwitch((EObject)target);
+    return this.modelSwitch.doSwitch((EObject)target);
   }
 
 

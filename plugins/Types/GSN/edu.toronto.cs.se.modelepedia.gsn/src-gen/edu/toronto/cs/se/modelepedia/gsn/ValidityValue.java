@@ -3,11 +3,11 @@
  * All rights reserved. This program and the accompanying materials are made available under the terms
  * of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *   Alessio Di Sandro - Implementation
  *   Nick Fung - Implementation.
- * 
+ *
  */
 package edu.toronto.cs.se.modelepedia.gsn;
 
@@ -109,7 +109,7 @@ public enum ValidityValue implements Enumerator {
    * <!-- end-user-doc -->
    * @generated
    */
-  public static final List<ValidityValue> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+  public static final List<ValidityValue> VALUES = Collections.unmodifiableList(Arrays.asList(ValidityValue.VALUES_ARRAY));
 
   /**
    * Returns the '<em><b>Validity Value</b></em>' literal with the specified literal value.
@@ -120,8 +120,8 @@ public enum ValidityValue implements Enumerator {
    * @generated
    */
   public static ValidityValue get(String literal) {
-    for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-      ValidityValue result = VALUES_ARRAY[i];
+    for (var i = 0; i < ValidityValue.VALUES_ARRAY.length; ++i) {
+      var result = ValidityValue.VALUES_ARRAY[i];
       if (result.toString().equals(literal)) {
         return result;
       }
@@ -138,8 +138,8 @@ public enum ValidityValue implements Enumerator {
    * @generated
    */
   public static ValidityValue getByName(String name) {
-    for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-      ValidityValue result = VALUES_ARRAY[i];
+    for (var i = 0; i < ValidityValue.VALUES_ARRAY.length; ++i) {
+      var result = ValidityValue.VALUES_ARRAY[i];
       if (result.getName().equals(name)) {
         return result;
       }
@@ -204,7 +204,7 @@ public enum ValidityValue implements Enumerator {
    */
   @Override
   public int getValue() {
-    return value;
+    return this.value;
   }
 
   /**
@@ -214,7 +214,7 @@ public enum ValidityValue implements Enumerator {
    */
   @Override
   public String getName() {
-    return name;
+    return this.name;
   }
 
   /**
@@ -224,7 +224,7 @@ public enum ValidityValue implements Enumerator {
    */
   @Override
   public String getLiteral() {
-    return literal;
+    return this.literal;
   }
 
   /**
@@ -235,7 +235,7 @@ public enum ValidityValue implements Enumerator {
    */
   @Override
   public String toString() {
-    return literal;
+    return this.literal;
   }
-  
+
 } //ValidityValue

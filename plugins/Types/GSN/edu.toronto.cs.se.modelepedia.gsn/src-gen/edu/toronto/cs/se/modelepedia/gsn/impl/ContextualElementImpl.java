@@ -3,29 +3,26 @@
  * All rights reserved. This program and the accompanying materials are made available under the terms
  * of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *   Alessio Di Sandro - Implementation
  *   Nick Fung - Implementation.
- * 
+ *
  */
 package edu.toronto.cs.se.modelepedia.gsn.impl;
-
-import edu.toronto.cs.se.modelepedia.gsn.ContextualElement;
-import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
-import edu.toronto.cs.se.modelepedia.gsn.InContextOf;
 
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
+import edu.toronto.cs.se.modelepedia.gsn.ContextualElement;
+import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
+import edu.toronto.cs.se.modelepedia.gsn.InContextOf;
 
 /**
  * <!-- begin-user-doc -->
@@ -77,10 +74,10 @@ public abstract class ContextualElementImpl extends ArgumentElementImpl implemen
    */
   @Override
   public EList<InContextOf> getContextOf() {
-    if (contextOf == null) {
-      contextOf = new EObjectWithInverseResolvingEList<InContextOf>(InContextOf.class, this, GSNPackage.CONTEXTUAL_ELEMENT__CONTEXT_OF, GSNPackage.IN_CONTEXT_OF__CONTEXT);
+    if (this.contextOf == null) {
+      this.contextOf = new EObjectWithInverseResolvingEList<>(InContextOf.class, this, GSNPackage.CONTEXTUAL_ELEMENT__CONTEXT_OF, GSNPackage.IN_CONTEXT_OF__CONTEXT);
     }
-    return contextOf;
+    return this.contextOf;
   }
 
   /**
@@ -167,7 +164,7 @@ public abstract class ContextualElementImpl extends ArgumentElementImpl implemen
   public boolean eIsSet(int featureID) {
     switch (featureID) {
       case GSNPackage.CONTEXTUAL_ELEMENT__CONTEXT_OF:
-        return contextOf != null && !contextOf.isEmpty();
+        return this.contextOf != null && !this.contextOf.isEmpty();
     }
     return super.eIsSet(featureID);
   }

@@ -3,24 +3,22 @@
  * All rights reserved. This program and the accompanying materials are made available under the terms
  * of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *   Alessio Di Sandro - Implementation
  *   Nick Fung - Implementation.
- * 
+ *
  */
 package edu.toronto.cs.se.modelepedia.gsn.impl;
+
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.Solution;
 import edu.toronto.cs.se.modelepedia.gsn.StatefulElement;
 import edu.toronto.cs.se.modelepedia.gsn.ValidityValue;
-
-import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -54,7 +52,7 @@ public class SolutionImpl extends CoreElementImpl implements Solution {
    * @generated
    * @ordered
    */
-  protected ValidityValue stateValidity = STATE_VALIDITY_EDEFAULT;
+  protected ValidityValue stateValidity = SolutionImpl.STATE_VALIDITY_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -82,7 +80,7 @@ public class SolutionImpl extends CoreElementImpl implements Solution {
    */
   @Override
   public ValidityValue getStateValidity() {
-    return stateValidity;
+    return this.stateValidity;
   }
 
   /**
@@ -92,10 +90,10 @@ public class SolutionImpl extends CoreElementImpl implements Solution {
    */
   @Override
   public void setStateValidity(ValidityValue newStateValidity) {
-    ValidityValue oldStateValidity = stateValidity;
-    stateValidity = newStateValidity == null ? STATE_VALIDITY_EDEFAULT : newStateValidity;
+    var oldStateValidity = this.stateValidity;
+    this.stateValidity = newStateValidity == null ? SolutionImpl.STATE_VALIDITY_EDEFAULT : newStateValidity;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.SOLUTION__STATE_VALIDITY, oldStateValidity, stateValidity));
+      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.SOLUTION__STATE_VALIDITY, oldStateValidity, this.stateValidity));
   }
 
   /**
@@ -136,7 +134,7 @@ public class SolutionImpl extends CoreElementImpl implements Solution {
   public void eUnset(int featureID) {
     switch (featureID) {
       case GSNPackage.SOLUTION__STATE_VALIDITY:
-        setStateValidity(STATE_VALIDITY_EDEFAULT);
+        setStateValidity(SolutionImpl.STATE_VALIDITY_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -151,7 +149,7 @@ public class SolutionImpl extends CoreElementImpl implements Solution {
   public boolean eIsSet(int featureID) {
     switch (featureID) {
       case GSNPackage.SOLUTION__STATE_VALIDITY:
-        return stateValidity != STATE_VALIDITY_EDEFAULT;
+        return this.stateValidity != SolutionImpl.STATE_VALIDITY_EDEFAULT;
     }
     return super.eIsSet(featureID);
   }
@@ -197,9 +195,9 @@ public class SolutionImpl extends CoreElementImpl implements Solution {
   public String toString() {
     if (eIsProxy()) return super.toString();
 
-    StringBuilder result = new StringBuilder(super.toString());
+    var result = new StringBuilder(super.toString());
     result.append(" (stateValidity: ");
-    result.append(stateValidity);
+    result.append(this.stateValidity);
     result.append(')');
     return result.toString();
   }

@@ -3,22 +3,20 @@
  * All rights reserved. This program and the accompanying materials are made available under the terms
  * of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *   Alessio Di Sandro - Implementation
  *   Nick Fung - Implementation.
- * 
+ *
  */
 package edu.toronto.cs.se.modelepedia.gsn.impl;
 
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.MofNSupporter;
-
-import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -52,7 +50,7 @@ public class MofNSupporterImpl extends SupportConnectorImpl implements MofNSuppo
    * @generated
    * @ordered
    */
-  protected long target = TARGET_EDEFAULT;
+  protected long target = MofNSupporterImpl.TARGET_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -80,7 +78,7 @@ public class MofNSupporterImpl extends SupportConnectorImpl implements MofNSuppo
    */
   @Override
   public long getTarget() {
-    return target;
+    return this.target;
   }
 
   /**
@@ -90,10 +88,10 @@ public class MofNSupporterImpl extends SupportConnectorImpl implements MofNSuppo
    */
   @Override
   public void setTarget(long newTarget) {
-    long oldTarget = target;
-    target = newTarget;
+    var oldTarget = this.target;
+    this.target = newTarget;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.MOF_NSUPPORTER__TARGET, oldTarget, target));
+      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.MOF_NSUPPORTER__TARGET, oldTarget, this.target));
   }
 
   /**
@@ -134,7 +132,7 @@ public class MofNSupporterImpl extends SupportConnectorImpl implements MofNSuppo
   public void eUnset(int featureID) {
     switch (featureID) {
       case GSNPackage.MOF_NSUPPORTER__TARGET:
-        setTarget(TARGET_EDEFAULT);
+        setTarget(MofNSupporterImpl.TARGET_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -149,7 +147,7 @@ public class MofNSupporterImpl extends SupportConnectorImpl implements MofNSuppo
   public boolean eIsSet(int featureID) {
     switch (featureID) {
       case GSNPackage.MOF_NSUPPORTER__TARGET:
-        return target != TARGET_EDEFAULT;
+        return this.target != MofNSupporterImpl.TARGET_EDEFAULT;
     }
     return super.eIsSet(featureID);
   }
@@ -163,9 +161,9 @@ public class MofNSupporterImpl extends SupportConnectorImpl implements MofNSuppo
   public String toString() {
     if (eIsProxy()) return super.toString();
 
-    StringBuilder result = new StringBuilder(super.toString());
+    var result = new StringBuilder(super.toString());
     result.append(" (target: ");
-    result.append(target);
+    result.append(this.target);
     result.append(')');
     return result.toString();
   }

@@ -3,23 +3,21 @@
  * All rights reserved. This program and the accompanying materials are made available under the terms
  * of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *   Alessio Di Sandro - Implementation
  *   Nick Fung - Implementation.
- * 
+ *
  */
 package edu.toronto.cs.se.modelepedia.gsn.impl;
+
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionElement;
 import edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionStrategy;
-
-import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,12 +27,33 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.PropertyDecompositionStrategyImpl#getLanguage <em>Language</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.PropertyDecompositionStrategyImpl#getProperty <em>Property</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class PropertyDecompositionStrategyImpl extends DecompositionStrategyImpl implements PropertyDecompositionStrategy {
+  /**
+   * The default value of the '{@link #getLanguage() <em>Language</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getLanguage()
+   * @generated
+   * @ordered
+   */
+  protected static final String LANGUAGE_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getLanguage() <em>Language</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getLanguage()
+   * @generated
+   * @ordered
+   */
+  protected String language = PropertyDecompositionStrategyImpl.LANGUAGE_EDEFAULT;
+
   /**
    * The default value of the '{@link #getProperty() <em>Property</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -53,7 +72,7 @@ public class PropertyDecompositionStrategyImpl extends DecompositionStrategyImpl
    * @generated
    * @ordered
    */
-  protected String property = PROPERTY_EDEFAULT;
+  protected String property = PropertyDecompositionStrategyImpl.PROPERTY_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -80,8 +99,31 @@ public class PropertyDecompositionStrategyImpl extends DecompositionStrategyImpl
    * @generated
    */
   @Override
+  public String getLanguage() {
+    return this.language;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setLanguage(String newLanguage) {
+    var oldLanguage = this.language;
+    this.language = newLanguage;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.PROPERTY_DECOMPOSITION_STRATEGY__LANGUAGE, oldLanguage, this.language));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public String getProperty() {
-    return property;
+    return this.property;
   }
 
   /**
@@ -91,10 +133,10 @@ public class PropertyDecompositionStrategyImpl extends DecompositionStrategyImpl
    */
   @Override
   public void setProperty(String newProperty) {
-    String oldProperty = property;
-    property = newProperty;
+    var oldProperty = this.property;
+    this.property = newProperty;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.PROPERTY_DECOMPOSITION_STRATEGY__PROPERTY, oldProperty, property));
+      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.PROPERTY_DECOMPOSITION_STRATEGY__PROPERTY, oldProperty, this.property));
   }
 
   /**
@@ -105,6 +147,8 @@ public class PropertyDecompositionStrategyImpl extends DecompositionStrategyImpl
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
+      case GSNPackage.PROPERTY_DECOMPOSITION_STRATEGY__LANGUAGE:
+        return getLanguage();
       case GSNPackage.PROPERTY_DECOMPOSITION_STRATEGY__PROPERTY:
         return getProperty();
     }
@@ -119,6 +163,9 @@ public class PropertyDecompositionStrategyImpl extends DecompositionStrategyImpl
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
+      case GSNPackage.PROPERTY_DECOMPOSITION_STRATEGY__LANGUAGE:
+        setLanguage((String)newValue);
+        return;
       case GSNPackage.PROPERTY_DECOMPOSITION_STRATEGY__PROPERTY:
         setProperty((String)newValue);
         return;
@@ -134,8 +181,11 @@ public class PropertyDecompositionStrategyImpl extends DecompositionStrategyImpl
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
+      case GSNPackage.PROPERTY_DECOMPOSITION_STRATEGY__LANGUAGE:
+        setLanguage(PropertyDecompositionStrategyImpl.LANGUAGE_EDEFAULT);
+        return;
       case GSNPackage.PROPERTY_DECOMPOSITION_STRATEGY__PROPERTY:
-        setProperty(PROPERTY_EDEFAULT);
+        setProperty(PropertyDecompositionStrategyImpl.PROPERTY_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -149,8 +199,10 @@ public class PropertyDecompositionStrategyImpl extends DecompositionStrategyImpl
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
+      case GSNPackage.PROPERTY_DECOMPOSITION_STRATEGY__LANGUAGE:
+        return PropertyDecompositionStrategyImpl.LANGUAGE_EDEFAULT == null ? this.language != null : !PropertyDecompositionStrategyImpl.LANGUAGE_EDEFAULT.equals(this.language);
       case GSNPackage.PROPERTY_DECOMPOSITION_STRATEGY__PROPERTY:
-        return PROPERTY_EDEFAULT == null ? property != null : !PROPERTY_EDEFAULT.equals(property);
+        return PropertyDecompositionStrategyImpl.PROPERTY_EDEFAULT == null ? this.property != null : !PropertyDecompositionStrategyImpl.PROPERTY_EDEFAULT.equals(this.property);
     }
     return super.eIsSet(featureID);
   }
@@ -164,6 +216,7 @@ public class PropertyDecompositionStrategyImpl extends DecompositionStrategyImpl
   public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
     if (baseClass == PropertyDecompositionElement.class) {
       switch (derivedFeatureID) {
+        case GSNPackage.PROPERTY_DECOMPOSITION_STRATEGY__LANGUAGE: return GSNPackage.PROPERTY_DECOMPOSITION_ELEMENT__LANGUAGE;
         case GSNPackage.PROPERTY_DECOMPOSITION_STRATEGY__PROPERTY: return GSNPackage.PROPERTY_DECOMPOSITION_ELEMENT__PROPERTY;
         default: return -1;
       }
@@ -180,6 +233,7 @@ public class PropertyDecompositionStrategyImpl extends DecompositionStrategyImpl
   public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
     if (baseClass == PropertyDecompositionElement.class) {
       switch (baseFeatureID) {
+        case GSNPackage.PROPERTY_DECOMPOSITION_ELEMENT__LANGUAGE: return GSNPackage.PROPERTY_DECOMPOSITION_STRATEGY__LANGUAGE;
         case GSNPackage.PROPERTY_DECOMPOSITION_ELEMENT__PROPERTY: return GSNPackage.PROPERTY_DECOMPOSITION_STRATEGY__PROPERTY;
         default: return -1;
       }
@@ -196,9 +250,11 @@ public class PropertyDecompositionStrategyImpl extends DecompositionStrategyImpl
   public String toString() {
     if (eIsProxy()) return super.toString();
 
-    StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (property: ");
-    result.append(property);
+    var result = new StringBuilder(super.toString());
+    result.append(" (language: ");
+    result.append(this.language);
+    result.append(", property: ");
+    result.append(this.property);
     result.append(')');
     return result.toString();
   }

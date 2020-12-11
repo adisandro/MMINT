@@ -3,24 +3,23 @@
  * All rights reserved. This program and the accompanying materials are made available under the terms
  * of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *   Alessio Di Sandro - Implementation
  *   Nick Fung - Implementation.
- * 
+ *
  */
 package edu.toronto.cs.se.modelepedia.gsn.provider;
 
-
-import edu.toronto.cs.se.modelepedia.gsn.DecompositionStrategy;
 
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+
+import edu.toronto.cs.se.modelepedia.gsn.DecompositionStrategy;
 
 /**
  * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.gsn.DecompositionStrategy} object.
@@ -47,11 +46,11 @@ public class DecompositionStrategyItemProvider extends StrategyItemProvider {
    */
   @Override
   public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-    if (itemPropertyDescriptors == null) {
+    if (this.itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
     }
-    return itemPropertyDescriptors;
+    return this.itemPropertyDescriptors;
   }
 
   /**
@@ -62,7 +61,7 @@ public class DecompositionStrategyItemProvider extends StrategyItemProvider {
    */
   @Override
   public String getText(Object object) {
-    String label = ((DecompositionStrategy)object).getId();
+    var label = ((DecompositionStrategy)object).getId();
     return label == null || label.length() == 0 ?
       getString("_UI_DecompositionStrategy_type") :
       getString("_UI_DecompositionStrategy_type") + " " + label;

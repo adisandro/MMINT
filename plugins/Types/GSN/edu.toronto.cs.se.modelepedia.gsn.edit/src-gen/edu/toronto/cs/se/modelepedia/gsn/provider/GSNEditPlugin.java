@@ -3,16 +3,15 @@
  * All rights reserved. This program and the accompanying materials are made available under the terms
  * of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *   Alessio Di Sandro - Implementation
  *   Nick Fung - Implementation.
- * 
+ *
  */
 package edu.toronto.cs.se.modelepedia.gsn.provider;
 
 import org.eclipse.emf.common.EMFPlugin;
-
 import org.eclipse.emf.common.util.ResourceLocator;
 
 /**
@@ -59,7 +58,7 @@ public final class GSNEditPlugin extends EMFPlugin {
    */
   @Override
   public ResourceLocator getPluginResourceLocator() {
-    return plugin;
+    return GSNEditPlugin.plugin;
   }
 
   /**
@@ -70,7 +69,7 @@ public final class GSNEditPlugin extends EMFPlugin {
    * @generated
    */
   public static Implementation getPlugin() {
-    return plugin;
+    return GSNEditPlugin.plugin;
   }
 
   /**
@@ -91,7 +90,7 @@ public final class GSNEditPlugin extends EMFPlugin {
 
       // Remember the static instance.
       //
-      plugin = this;
+      GSNEditPlugin.plugin = this;
     }
   }
 

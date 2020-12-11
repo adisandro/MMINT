@@ -3,26 +3,24 @@
  * All rights reserved. This program and the accompanying materials are made available under the terms
  * of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *   Alessio Di Sandro - Implementation
  *   Nick Fung - Implementation.
- * 
+ *
  */
 package edu.toronto.cs.se.modelepedia.gsn.impl;
+
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import edu.toronto.cs.se.modelepedia.gsn.Domain;
 import edu.toronto.cs.se.modelepedia.gsn.DomainDecompositionElement;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
-
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -74,7 +72,7 @@ public abstract class DomainDecompositionElementImpl extends MinimalEObjectImpl.
    */
   @Override
   public Domain getDomain() {
-    return domain;
+    return this.domain;
   }
 
   /**
@@ -83,10 +81,10 @@ public abstract class DomainDecompositionElementImpl extends MinimalEObjectImpl.
    * @generated
    */
   public NotificationChain basicSetDomain(Domain newDomain, NotificationChain msgs) {
-    Domain oldDomain = domain;
-    domain = newDomain;
+    var oldDomain = this.domain;
+    this.domain = newDomain;
     if (eNotificationRequired()) {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GSNPackage.DOMAIN_DECOMPOSITION_ELEMENT__DOMAIN, oldDomain, newDomain);
+      var notification = new ENotificationImpl(this, Notification.SET, GSNPackage.DOMAIN_DECOMPOSITION_ELEMENT__DOMAIN, oldDomain, newDomain);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -99,12 +97,12 @@ public abstract class DomainDecompositionElementImpl extends MinimalEObjectImpl.
    */
   @Override
   public void setDomain(Domain newDomain) {
-    if (newDomain != domain) {
+    if (newDomain != this.domain) {
       NotificationChain msgs = null;
-      if (domain != null)
-        msgs = ((InternalEObject)domain).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GSNPackage.DOMAIN_DECOMPOSITION_ELEMENT__DOMAIN, null, msgs);
+      if (this.domain != null)
+        msgs = ((InternalEObject)this.domain).eInverseRemove(this, InternalEObject.EOPPOSITE_FEATURE_BASE - GSNPackage.DOMAIN_DECOMPOSITION_ELEMENT__DOMAIN, null, msgs);
       if (newDomain != null)
-        msgs = ((InternalEObject)newDomain).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GSNPackage.DOMAIN_DECOMPOSITION_ELEMENT__DOMAIN, null, msgs);
+        msgs = ((InternalEObject)newDomain).eInverseAdd(this, InternalEObject.EOPPOSITE_FEATURE_BASE - GSNPackage.DOMAIN_DECOMPOSITION_ELEMENT__DOMAIN, null, msgs);
       msgs = basicSetDomain(newDomain, msgs);
       if (msgs != null) msgs.dispatch();
     }
@@ -179,7 +177,7 @@ public abstract class DomainDecompositionElementImpl extends MinimalEObjectImpl.
   public boolean eIsSet(int featureID) {
     switch (featureID) {
       case GSNPackage.DOMAIN_DECOMPOSITION_ELEMENT__DOMAIN:
-        return domain != null;
+        return this.domain != null;
     }
     return super.eIsSet(featureID);
   }

@@ -3,30 +3,27 @@
  * All rights reserved. This program and the accompanying materials are made available under the terms
  * of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *   Alessio Di Sandro - Implementation
  *   Nick Fung - Implementation.
- * 
+ *
  */
 package edu.toronto.cs.se.modelepedia.gsn.impl;
+
+import java.util.Collection;
+
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 import edu.toronto.cs.se.modelepedia.gsn.CoreElement;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.SupportedBy;
 import edu.toronto.cs.se.modelepedia.gsn.Supporter;
-
-import java.util.Collection;
-
-import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
-
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -78,10 +75,10 @@ public abstract class CoreElementImpl extends ArgumentElementImpl implements Cor
    */
   @Override
   public EList<SupportedBy> getSupports() {
-    if (supports == null) {
-      supports = new EObjectWithInverseResolvingEList<SupportedBy>(SupportedBy.class, this, GSNPackage.CORE_ELEMENT__SUPPORTS, GSNPackage.SUPPORTED_BY__TARGET);
+    if (this.supports == null) {
+      this.supports = new EObjectWithInverseResolvingEList<>(SupportedBy.class, this, GSNPackage.CORE_ELEMENT__SUPPORTS, GSNPackage.SUPPORTED_BY__TARGET);
     }
-    return supports;
+    return this.supports;
   }
 
   /**
@@ -168,7 +165,7 @@ public abstract class CoreElementImpl extends ArgumentElementImpl implements Cor
   public boolean eIsSet(int featureID) {
     switch (featureID) {
       case GSNPackage.CORE_ELEMENT__SUPPORTS:
-        return supports != null && !supports.isEmpty();
+        return this.supports != null && !this.supports.isEmpty();
     }
     return super.eIsSet(featureID);
   }

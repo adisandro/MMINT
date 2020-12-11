@@ -3,26 +3,67 @@
  * All rights reserved. This program and the accompanying materials are made available under the terms
  * of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *   Alessio Di Sandro - Implementation
  *   Nick Fung - Implementation.
- * 
+ *
  */
 package edu.toronto.cs.se.modelepedia.gsn.util;
-
-import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.modelepedia.gsn.*;
 
 import java.util.Map;
 
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.util.EObjectValidator;
+
+import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.modelepedia.gsn.ASIL;
+import edu.toronto.cs.se.modelepedia.gsn.ASILDecompositionStrategy;
+import edu.toronto.cs.se.modelepedia.gsn.ASILLevel;
+import edu.toronto.cs.se.modelepedia.gsn.ASILfulElement;
+import edu.toronto.cs.se.modelepedia.gsn.AndSupporter;
+import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
+import edu.toronto.cs.se.modelepedia.gsn.Assumption;
+import edu.toronto.cs.se.modelepedia.gsn.BasicGoal;
+import edu.toronto.cs.se.modelepedia.gsn.BasicStrategy;
+import edu.toronto.cs.se.modelepedia.gsn.Context;
+import edu.toronto.cs.se.modelepedia.gsn.ContextualElement;
+import edu.toronto.cs.se.modelepedia.gsn.CoreElement;
+import edu.toronto.cs.se.modelepedia.gsn.DecomposableCoreElement;
+import edu.toronto.cs.se.modelepedia.gsn.DecompositionStrategy;
+import edu.toronto.cs.se.modelepedia.gsn.Domain;
+import edu.toronto.cs.se.modelepedia.gsn.DomainDecompositionElement;
+import edu.toronto.cs.se.modelepedia.gsn.DomainDecompositionStrategy;
+import edu.toronto.cs.se.modelepedia.gsn.DomainGoal;
+import edu.toronto.cs.se.modelepedia.gsn.EnumDomain;
+import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
+import edu.toronto.cs.se.modelepedia.gsn.Goal;
+import edu.toronto.cs.se.modelepedia.gsn.ImpactAnnotation;
+import edu.toronto.cs.se.modelepedia.gsn.ImpactType;
+import edu.toronto.cs.se.modelepedia.gsn.InContextOf;
+import edu.toronto.cs.se.modelepedia.gsn.IndependenceGoal;
+import edu.toronto.cs.se.modelepedia.gsn.IntDomain;
+import edu.toronto.cs.se.modelepedia.gsn.Justification;
+import edu.toronto.cs.se.modelepedia.gsn.MofNSupporter;
+import edu.toronto.cs.se.modelepedia.gsn.OrSupporter;
+import edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionElement;
+import edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionStrategy;
+import edu.toronto.cs.se.modelepedia.gsn.PropertyGoal;
+import edu.toronto.cs.se.modelepedia.gsn.RealDomain;
+import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
+import edu.toronto.cs.se.modelepedia.gsn.Solution;
+import edu.toronto.cs.se.modelepedia.gsn.StatefulElement;
+import edu.toronto.cs.se.modelepedia.gsn.Strategy;
+import edu.toronto.cs.se.modelepedia.gsn.SupportConnector;
+import edu.toronto.cs.se.modelepedia.gsn.Supportable;
+import edu.toronto.cs.se.modelepedia.gsn.SupportedBy;
+import edu.toronto.cs.se.modelepedia.gsn.Supporter;
+import edu.toronto.cs.se.modelepedia.gsn.ValidityValue;
+import edu.toronto.cs.se.modelepedia.gsn.ValueDomain;
+import edu.toronto.cs.se.modelepedia.gsn.XorSupporter;
 
 /**
  * <!-- begin-user-doc -->
@@ -64,7 +105,7 @@ public class GSNValidator extends EObjectValidator {
    * <!-- end-user-doc -->
    * @generated
    */
-  protected static final int DIAGNOSTIC_CODE_COUNT = GENERATED_DIAGNOSTIC_CODE_COUNT;
+  protected static final int DIAGNOSTIC_CODE_COUNT = GSNValidator.GENERATED_DIAGNOSTIC_CODE_COUNT;
 
   /**
    * Creates an instance of the switch.
@@ -196,7 +237,7 @@ public class GSNValidator extends EObjectValidator {
    */
   public boolean validateSafetyCase(SafetyCase safetyCase, DiagnosticChain diagnostics, Map<Object, Object> context) {
     if (!validate_NoCircularContainment(safetyCase, diagnostics, context)) return false;
-    boolean result = validate_EveryMultiplicityConforms(safetyCase, diagnostics, context);
+    var result = validate_EveryMultiplicityConforms(safetyCase, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryDataValueConforms(safetyCase, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(safetyCase, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(safetyCase, diagnostics, context);
@@ -232,9 +273,9 @@ public class GSNValidator extends EObjectValidator {
          context,
          "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
          "SingleRoot",
-         SAFETY_CASE__SINGLE_ROOT__EEXPRESSION,
+         GSNValidator.SAFETY_CASE__SINGLE_ROOT__EEXPRESSION,
          Diagnostic.ERROR,
-         DIAGNOSTIC_SOURCE,
+         GSNValidator.DIAGNOSTIC_SOURCE,
          0);
   }
 
@@ -272,7 +313,7 @@ public class GSNValidator extends EObjectValidator {
    */
   public boolean validateCoreElement(CoreElement coreElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
     if (!validate_NoCircularContainment(coreElement, diagnostics, context)) return false;
-    boolean result = validate_EveryMultiplicityConforms(coreElement, diagnostics, context);
+    var result = validate_EveryMultiplicityConforms(coreElement, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryDataValueConforms(coreElement, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(coreElement, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(coreElement, diagnostics, context);
@@ -291,7 +332,7 @@ public class GSNValidator extends EObjectValidator {
    */
   public boolean validateDecomposableCoreElement(DecomposableCoreElement decomposableCoreElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
     if (!validate_NoCircularContainment(decomposableCoreElement, diagnostics, context)) return false;
-    boolean result = validate_EveryMultiplicityConforms(decomposableCoreElement, diagnostics, context);
+    var result = validate_EveryMultiplicityConforms(decomposableCoreElement, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryDataValueConforms(decomposableCoreElement, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(decomposableCoreElement, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(decomposableCoreElement, diagnostics, context);
@@ -312,7 +353,7 @@ public class GSNValidator extends EObjectValidator {
    */
   public boolean validateContextualElement(ContextualElement contextualElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
     if (!validate_NoCircularContainment(contextualElement, diagnostics, context)) return false;
-    boolean result = validate_EveryMultiplicityConforms(contextualElement, diagnostics, context);
+    var result = validate_EveryMultiplicityConforms(contextualElement, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryDataValueConforms(contextualElement, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(contextualElement, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(contextualElement, diagnostics, context);
@@ -348,9 +389,9 @@ public class GSNValidator extends EObjectValidator {
          context,
          "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
          "ContextualElementSupporter",
-         CONTEXTUAL_ELEMENT__CONTEXTUAL_ELEMENT_SUPPORTER__EEXPRESSION,
+         GSNValidator.CONTEXTUAL_ELEMENT__CONTEXTUAL_ELEMENT_SUPPORTER__EEXPRESSION,
          Diagnostic.ERROR,
-         DIAGNOSTIC_SOURCE,
+         GSNValidator.DIAGNOSTIC_SOURCE,
          0);
   }
 
@@ -377,9 +418,9 @@ public class GSNValidator extends EObjectValidator {
          context,
          "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
          "ContextualElementContext",
-         CONTEXTUAL_ELEMENT__CONTEXTUAL_ELEMENT_CONTEXT__EEXPRESSION,
+         GSNValidator.CONTEXTUAL_ELEMENT__CONTEXTUAL_ELEMENT_CONTEXT__EEXPRESSION,
          Diagnostic.ERROR,
-         DIAGNOSTIC_SOURCE,
+         GSNValidator.DIAGNOSTIC_SOURCE,
          0);
   }
 
@@ -408,7 +449,7 @@ public class GSNValidator extends EObjectValidator {
    */
   public boolean validateGoal(Goal goal, DiagnosticChain diagnostics, Map<Object, Object> context) {
     if (!validate_NoCircularContainment(goal, diagnostics, context)) return false;
-    boolean result = validate_EveryMultiplicityConforms(goal, diagnostics, context);
+    var result = validate_EveryMultiplicityConforms(goal, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryDataValueConforms(goal, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(goal, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(goal, diagnostics, context);
@@ -450,9 +491,9 @@ public class GSNValidator extends EObjectValidator {
          context,
          "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
          "GoalSupporter",
-         GOAL__GOAL_SUPPORTER__EEXPRESSION,
+         GSNValidator.GOAL__GOAL_SUPPORTER__EEXPRESSION,
          Diagnostic.ERROR,
-         DIAGNOSTIC_SOURCE,
+         GSNValidator.DIAGNOSTIC_SOURCE,
          0);
   }
 
@@ -479,9 +520,9 @@ public class GSNValidator extends EObjectValidator {
          context,
          "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
          "GoalContext",
-         GOAL__GOAL_CONTEXT__EEXPRESSION,
+         GSNValidator.GOAL__GOAL_CONTEXT__EEXPRESSION,
          Diagnostic.ERROR,
-         DIAGNOSTIC_SOURCE,
+         GSNValidator.DIAGNOSTIC_SOURCE,
          0);
   }
 
@@ -510,9 +551,9 @@ public class GSNValidator extends EObjectValidator {
          context,
          "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
          "ASILInheritance",
-         GOAL__ASIL_INHERITANCE__EEXPRESSION,
+         GSNValidator.GOAL__ASIL_INHERITANCE__EEXPRESSION,
          Diagnostic.ERROR,
-         DIAGNOSTIC_SOURCE,
+         GSNValidator.DIAGNOSTIC_SOURCE,
          0);
   }
 
@@ -523,7 +564,7 @@ public class GSNValidator extends EObjectValidator {
    */
   public boolean validateBasicGoal(BasicGoal basicGoal, DiagnosticChain diagnostics, Map<Object, Object> context) {
     if (!validate_NoCircularContainment(basicGoal, diagnostics, context)) return false;
-    boolean result = validate_EveryMultiplicityConforms(basicGoal, diagnostics, context);
+    var result = validate_EveryMultiplicityConforms(basicGoal, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryDataValueConforms(basicGoal, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(basicGoal, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(basicGoal, diagnostics, context);
@@ -547,7 +588,7 @@ public class GSNValidator extends EObjectValidator {
    */
   public boolean validateIndependenceGoal(IndependenceGoal independenceGoal, DiagnosticChain diagnostics, Map<Object, Object> context) {
     if (!validate_NoCircularContainment(independenceGoal, diagnostics, context)) return false;
-    boolean result = validate_EveryMultiplicityConforms(independenceGoal, diagnostics, context);
+    var result = validate_EveryMultiplicityConforms(independenceGoal, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryDataValueConforms(independenceGoal, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(independenceGoal, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(independenceGoal, diagnostics, context);
@@ -571,7 +612,7 @@ public class GSNValidator extends EObjectValidator {
    */
   public boolean validateDomainGoal(DomainGoal domainGoal, DiagnosticChain diagnostics, Map<Object, Object> context) {
     if (!validate_NoCircularContainment(domainGoal, diagnostics, context)) return false;
-    boolean result = validate_EveryMultiplicityConforms(domainGoal, diagnostics, context);
+    var result = validate_EveryMultiplicityConforms(domainGoal, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryDataValueConforms(domainGoal, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(domainGoal, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(domainGoal, diagnostics, context);
@@ -604,7 +645,7 @@ public class GSNValidator extends EObjectValidator {
    */
   public boolean validatePropertyDecompositionStrategy(PropertyDecompositionStrategy propertyDecompositionStrategy, DiagnosticChain diagnostics, Map<Object, Object> context) {
     if (!validate_NoCircularContainment(propertyDecompositionStrategy, diagnostics, context)) return false;
-    boolean result = validate_EveryMultiplicityConforms(propertyDecompositionStrategy, diagnostics, context);
+    var result = validate_EveryMultiplicityConforms(propertyDecompositionStrategy, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryDataValueConforms(propertyDecompositionStrategy, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(propertyDecompositionStrategy, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(propertyDecompositionStrategy, diagnostics, context);
@@ -627,7 +668,7 @@ public class GSNValidator extends EObjectValidator {
    */
   public boolean validatePropertyGoal(PropertyGoal propertyGoal, DiagnosticChain diagnostics, Map<Object, Object> context) {
     if (!validate_NoCircularContainment(propertyGoal, diagnostics, context)) return false;
-    boolean result = validate_EveryMultiplicityConforms(propertyGoal, diagnostics, context);
+    var result = validate_EveryMultiplicityConforms(propertyGoal, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryDataValueConforms(propertyGoal, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(propertyGoal, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(propertyGoal, diagnostics, context);
@@ -651,7 +692,7 @@ public class GSNValidator extends EObjectValidator {
    */
   public boolean validateStrategy(Strategy strategy, DiagnosticChain diagnostics, Map<Object, Object> context) {
     if (!validate_NoCircularContainment(strategy, diagnostics, context)) return false;
-    boolean result = validate_EveryMultiplicityConforms(strategy, diagnostics, context);
+    var result = validate_EveryMultiplicityConforms(strategy, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryDataValueConforms(strategy, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(strategy, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(strategy, diagnostics, context);
@@ -692,9 +733,9 @@ public class GSNValidator extends EObjectValidator {
          context,
          "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
          "StrategySupporter",
-         STRATEGY__STRATEGY_SUPPORTER__EEXPRESSION,
+         GSNValidator.STRATEGY__STRATEGY_SUPPORTER__EEXPRESSION,
          Diagnostic.ERROR,
-         DIAGNOSTIC_SOURCE,
+         GSNValidator.DIAGNOSTIC_SOURCE,
          0);
   }
 
@@ -721,9 +762,9 @@ public class GSNValidator extends EObjectValidator {
          context,
          "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
          "StrategyContext",
-         STRATEGY__STRATEGY_CONTEXT__EEXPRESSION,
+         GSNValidator.STRATEGY__STRATEGY_CONTEXT__EEXPRESSION,
          Diagnostic.ERROR,
-         DIAGNOSTIC_SOURCE,
+         GSNValidator.DIAGNOSTIC_SOURCE,
          0);
   }
 
@@ -734,7 +775,7 @@ public class GSNValidator extends EObjectValidator {
    */
   public boolean validateBasicStrategy(BasicStrategy basicStrategy, DiagnosticChain diagnostics, Map<Object, Object> context) {
     if (!validate_NoCircularContainment(basicStrategy, diagnostics, context)) return false;
-    boolean result = validate_EveryMultiplicityConforms(basicStrategy, diagnostics, context);
+    var result = validate_EveryMultiplicityConforms(basicStrategy, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryDataValueConforms(basicStrategy, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(basicStrategy, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(basicStrategy, diagnostics, context);
@@ -757,7 +798,7 @@ public class GSNValidator extends EObjectValidator {
    */
   public boolean validateASILDecompositionStrategy(ASILDecompositionStrategy asilDecompositionStrategy, DiagnosticChain diagnostics, Map<Object, Object> context) {
     if (!validate_NoCircularContainment(asilDecompositionStrategy, diagnostics, context)) return false;
-    boolean result = validate_EveryMultiplicityConforms(asilDecompositionStrategy, diagnostics, context);
+    var result = validate_EveryMultiplicityConforms(asilDecompositionStrategy, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryDataValueConforms(asilDecompositionStrategy, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(asilDecompositionStrategy, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(asilDecompositionStrategy, diagnostics, context);
@@ -801,9 +842,9 @@ public class GSNValidator extends EObjectValidator {
          context,
          "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
          "ASILDecompositionIndependence",
-         ASIL_DECOMPOSITION_STRATEGY__ASIL_DECOMPOSITION_INDEPENDENCE__EEXPRESSION,
+         GSNValidator.ASIL_DECOMPOSITION_STRATEGY__ASIL_DECOMPOSITION_INDEPENDENCE__EEXPRESSION,
          Diagnostic.ERROR,
-         DIAGNOSTIC_SOURCE,
+         GSNValidator.DIAGNOSTIC_SOURCE,
          0);
   }
 
@@ -832,9 +873,9 @@ public class GSNValidator extends EObjectValidator {
          context,
          "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
          "ASILDecompositionComponents",
-         ASIL_DECOMPOSITION_STRATEGY__ASIL_DECOMPOSITION_COMPONENTS__EEXPRESSION,
+         GSNValidator.ASIL_DECOMPOSITION_STRATEGY__ASIL_DECOMPOSITION_COMPONENTS__EEXPRESSION,
          Diagnostic.ERROR,
-         DIAGNOSTIC_SOURCE,
+         GSNValidator.DIAGNOSTIC_SOURCE,
          0);
   }
 
@@ -867,9 +908,9 @@ public class GSNValidator extends EObjectValidator {
          context,
          "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
          "ASILDescendants",
-         ASIL_DECOMPOSITION_STRATEGY__ASIL_DESCENDANTS__EEXPRESSION,
+         GSNValidator.ASIL_DECOMPOSITION_STRATEGY__ASIL_DESCENDANTS__EEXPRESSION,
          Diagnostic.ERROR,
-         DIAGNOSTIC_SOURCE,
+         GSNValidator.DIAGNOSTIC_SOURCE,
          0);
   }
 
@@ -880,7 +921,7 @@ public class GSNValidator extends EObjectValidator {
    */
   public boolean validateSolution(Solution solution, DiagnosticChain diagnostics, Map<Object, Object> context) {
     if (!validate_NoCircularContainment(solution, diagnostics, context)) return false;
-    boolean result = validate_EveryMultiplicityConforms(solution, diagnostics, context);
+    var result = validate_EveryMultiplicityConforms(solution, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryDataValueConforms(solution, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(solution, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(solution, diagnostics, context);
@@ -917,9 +958,9 @@ public class GSNValidator extends EObjectValidator {
          context,
          "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
          "SolutionSupporter",
-         SOLUTION__SOLUTION_SUPPORTER__EEXPRESSION,
+         GSNValidator.SOLUTION__SOLUTION_SUPPORTER__EEXPRESSION,
          Diagnostic.ERROR,
-         DIAGNOSTIC_SOURCE,
+         GSNValidator.DIAGNOSTIC_SOURCE,
          0);
   }
 
@@ -946,9 +987,9 @@ public class GSNValidator extends EObjectValidator {
          context,
          "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
          "SolutionContext",
-         SOLUTION__SOLUTION_CONTEXT__EEXPRESSION,
+         GSNValidator.SOLUTION__SOLUTION_CONTEXT__EEXPRESSION,
          Diagnostic.ERROR,
-         DIAGNOSTIC_SOURCE,
+         GSNValidator.DIAGNOSTIC_SOURCE,
          0);
   }
 
@@ -959,7 +1000,7 @@ public class GSNValidator extends EObjectValidator {
    */
   public boolean validateContext(Context context, DiagnosticChain diagnostics, Map<Object, Object> theContext) {
     if (!validate_NoCircularContainment(context, diagnostics, theContext)) return false;
-    boolean result = validate_EveryMultiplicityConforms(context, diagnostics, theContext);
+    var result = validate_EveryMultiplicityConforms(context, diagnostics, theContext);
     if (result || diagnostics != null) result &= validate_EveryDataValueConforms(context, diagnostics, theContext);
     if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(context, diagnostics, theContext);
     if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(context, diagnostics, theContext);
@@ -979,7 +1020,7 @@ public class GSNValidator extends EObjectValidator {
    */
   public boolean validateJustification(Justification justification, DiagnosticChain diagnostics, Map<Object, Object> context) {
     if (!validate_NoCircularContainment(justification, diagnostics, context)) return false;
-    boolean result = validate_EveryMultiplicityConforms(justification, diagnostics, context);
+    var result = validate_EveryMultiplicityConforms(justification, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryDataValueConforms(justification, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(justification, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(justification, diagnostics, context);
@@ -999,7 +1040,7 @@ public class GSNValidator extends EObjectValidator {
    */
   public boolean validateAssumption(Assumption assumption, DiagnosticChain diagnostics, Map<Object, Object> context) {
     if (!validate_NoCircularContainment(assumption, diagnostics, context)) return false;
-    boolean result = validate_EveryMultiplicityConforms(assumption, diagnostics, context);
+    var result = validate_EveryMultiplicityConforms(assumption, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryDataValueConforms(assumption, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(assumption, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(assumption, diagnostics, context);
@@ -1037,7 +1078,7 @@ public class GSNValidator extends EObjectValidator {
    */
   public boolean validateSupportable(Supportable supportable, DiagnosticChain diagnostics, Map<Object, Object> context) {
     if (!validate_NoCircularContainment(supportable, diagnostics, context)) return false;
-    boolean result = validate_EveryMultiplicityConforms(supportable, diagnostics, context);
+    var result = validate_EveryMultiplicityConforms(supportable, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryDataValueConforms(supportable, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(supportable, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(supportable, diagnostics, context);
@@ -1076,9 +1117,9 @@ public class GSNValidator extends EObjectValidator {
          context,
          "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
          "SupportCycle",
-         SUPPORTABLE__SUPPORT_CYCLE__EEXPRESSION,
+         GSNValidator.SUPPORTABLE__SUPPORT_CYCLE__EEXPRESSION,
          Diagnostic.ERROR,
-         DIAGNOSTIC_SOURCE,
+         GSNValidator.DIAGNOSTIC_SOURCE,
          0);
   }
 
@@ -1105,9 +1146,9 @@ public class GSNValidator extends EObjectValidator {
          context,
          "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
          "NonSupportableLeaves",
-         SUPPORTABLE__NON_SUPPORTABLE_LEAVES__EEXPRESSION,
+         GSNValidator.SUPPORTABLE__NON_SUPPORTABLE_LEAVES__EEXPRESSION,
          Diagnostic.ERROR,
-         DIAGNOSTIC_SOURCE,
+         GSNValidator.DIAGNOSTIC_SOURCE,
          0);
   }
 
@@ -1118,7 +1159,7 @@ public class GSNValidator extends EObjectValidator {
    */
   public boolean validateSupporter(Supporter supporter, DiagnosticChain diagnostics, Map<Object, Object> context) {
     if (!validate_NoCircularContainment(supporter, diagnostics, context)) return false;
-    boolean result = validate_EveryMultiplicityConforms(supporter, diagnostics, context);
+    var result = validate_EveryMultiplicityConforms(supporter, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryDataValueConforms(supporter, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(supporter, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(supporter, diagnostics, context);
@@ -1153,9 +1194,9 @@ public class GSNValidator extends EObjectValidator {
          context,
          "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
          "GoalRoot",
-         SUPPORTER__GOAL_ROOT__EEXPRESSION,
+         GSNValidator.SUPPORTER__GOAL_ROOT__EEXPRESSION,
          Diagnostic.ERROR,
-         DIAGNOSTIC_SOURCE,
+         GSNValidator.DIAGNOSTIC_SOURCE,
          0);
   }
 
@@ -1166,7 +1207,7 @@ public class GSNValidator extends EObjectValidator {
    */
   public boolean validateSupportConnector(SupportConnector supportConnector, DiagnosticChain diagnostics, Map<Object, Object> context) {
     if (!validate_NoCircularContainment(supportConnector, diagnostics, context)) return false;
-    boolean result = validate_EveryMultiplicityConforms(supportConnector, diagnostics, context);
+    var result = validate_EveryMultiplicityConforms(supportConnector, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryDataValueConforms(supportConnector, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(supportConnector, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(supportConnector, diagnostics, context);
@@ -1187,7 +1228,7 @@ public class GSNValidator extends EObjectValidator {
    */
   public boolean validateAndSupporter(AndSupporter andSupporter, DiagnosticChain diagnostics, Map<Object, Object> context) {
     if (!validate_NoCircularContainment(andSupporter, diagnostics, context)) return false;
-    boolean result = validate_EveryMultiplicityConforms(andSupporter, diagnostics, context);
+    var result = validate_EveryMultiplicityConforms(andSupporter, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryDataValueConforms(andSupporter, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(andSupporter, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(andSupporter, diagnostics, context);
@@ -1208,7 +1249,7 @@ public class GSNValidator extends EObjectValidator {
    */
   public boolean validateOrSupporter(OrSupporter orSupporter, DiagnosticChain diagnostics, Map<Object, Object> context) {
     if (!validate_NoCircularContainment(orSupporter, diagnostics, context)) return false;
-    boolean result = validate_EveryMultiplicityConforms(orSupporter, diagnostics, context);
+    var result = validate_EveryMultiplicityConforms(orSupporter, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryDataValueConforms(orSupporter, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(orSupporter, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(orSupporter, diagnostics, context);
@@ -1229,7 +1270,7 @@ public class GSNValidator extends EObjectValidator {
    */
   public boolean validateXorSupporter(XorSupporter xorSupporter, DiagnosticChain diagnostics, Map<Object, Object> context) {
     if (!validate_NoCircularContainment(xorSupporter, diagnostics, context)) return false;
-    boolean result = validate_EveryMultiplicityConforms(xorSupporter, diagnostics, context);
+    var result = validate_EveryMultiplicityConforms(xorSupporter, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryDataValueConforms(xorSupporter, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(xorSupporter, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(xorSupporter, diagnostics, context);
@@ -1250,7 +1291,7 @@ public class GSNValidator extends EObjectValidator {
    */
   public boolean validateMofNSupporter(MofNSupporter mofNSupporter, DiagnosticChain diagnostics, Map<Object, Object> context) {
     if (!validate_NoCircularContainment(mofNSupporter, diagnostics, context)) return false;
-    boolean result = validate_EveryMultiplicityConforms(mofNSupporter, diagnostics, context);
+    var result = validate_EveryMultiplicityConforms(mofNSupporter, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryDataValueConforms(mofNSupporter, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(mofNSupporter, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(mofNSupporter, diagnostics, context);
@@ -1271,7 +1312,7 @@ public class GSNValidator extends EObjectValidator {
    */
   public boolean validateDecompositionStrategy(DecompositionStrategy decompositionStrategy, DiagnosticChain diagnostics, Map<Object, Object> context) {
     if (!validate_NoCircularContainment(decompositionStrategy, diagnostics, context)) return false;
-    boolean result = validate_EveryMultiplicityConforms(decompositionStrategy, diagnostics, context);
+    var result = validate_EveryMultiplicityConforms(decompositionStrategy, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryDataValueConforms(decompositionStrategy, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(decompositionStrategy, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(decompositionStrategy, diagnostics, context);
@@ -1348,7 +1389,7 @@ public class GSNValidator extends EObjectValidator {
    */
   public boolean validateDomainDecompositionStrategy(DomainDecompositionStrategy domainDecompositionStrategy, DiagnosticChain diagnostics, Map<Object, Object> context) {
     if (!validate_NoCircularContainment(domainDecompositionStrategy, diagnostics, context)) return false;
-    boolean result = validate_EveryMultiplicityConforms(domainDecompositionStrategy, diagnostics, context);
+    var result = validate_EveryMultiplicityConforms(domainDecompositionStrategy, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryDataValueConforms(domainDecompositionStrategy, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(domainDecompositionStrategy, diagnostics, context);
     if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(domainDecompositionStrategy, diagnostics, context);

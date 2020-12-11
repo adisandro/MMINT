@@ -3,28 +3,27 @@
  * All rights reserved. This program and the accompanying materials are made available under the terms
  * of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *   Alessio Di Sandro - Implementation
  *   Nick Fung - Implementation.
- * 
+ *
  */
 package edu.toronto.cs.se.modelepedia.gsn.provider;
 
-
-import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
-import edu.toronto.cs.se.modelepedia.gsn.MofNSupporter;
 
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
+import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
+import edu.toronto.cs.se.modelepedia.gsn.MofNSupporter;
 
 /**
  * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.gsn.MofNSupporter} object.
@@ -51,12 +50,12 @@ public class MofNSupporterItemProvider extends SupportConnectorItemProvider {
    */
   @Override
   public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-    if (itemPropertyDescriptors == null) {
+    if (this.itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
       addTargetPropertyDescriptor(object);
     }
-    return itemPropertyDescriptors;
+    return this.itemPropertyDescriptors;
   }
 
   /**
@@ -66,9 +65,9 @@ public class MofNSupporterItemProvider extends SupportConnectorItemProvider {
    * @generated
    */
   protected void addTargetPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
+    this.itemPropertyDescriptors.add
       (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+        (((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
          getString("_UI_MofNSupporter_target_feature"),
          getString("_UI_PropertyDescriptor_description", "_UI_MofNSupporter_target_feature", "_UI_MofNSupporter_type"),
@@ -100,7 +99,7 @@ public class MofNSupporterItemProvider extends SupportConnectorItemProvider {
    */
   @Override
   public String getText(Object object) {
-    MofNSupporter mofNSupporter = (MofNSupporter)object;
+    var mofNSupporter = (MofNSupporter)object;
     return getString("_UI_MofNSupporter_type") + " " + mofNSupporter.getTarget();
   }
 

@@ -3,28 +3,27 @@
  * All rights reserved. This program and the accompanying materials are made available under the terms
  * of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *   Alessio Di Sandro - Implementation
  *   Nick Fung - Implementation.
- * 
+ *
  */
 package edu.toronto.cs.se.modelepedia.gsn.provider;
 
-
-import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
-import edu.toronto.cs.se.modelepedia.gsn.PropertyGoal;
 
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
+import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
+import edu.toronto.cs.se.modelepedia.gsn.PropertyGoal;
 
 /**
  * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.gsn.PropertyGoal} object.
@@ -51,12 +50,35 @@ public class PropertyGoalItemProvider extends GoalItemProvider {
    */
   @Override
   public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-    if (itemPropertyDescriptors == null) {
+    if (this.itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
+      addLanguagePropertyDescriptor(object);
       addPropertyPropertyDescriptor(object);
     }
-    return itemPropertyDescriptors;
+    return this.itemPropertyDescriptors;
+  }
+
+  /**
+   * This adds a property descriptor for the Language feature.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected void addLanguagePropertyDescriptor(Object object) {
+    this.itemPropertyDescriptors.add
+      (createItemPropertyDescriptor
+        (((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
+         getResourceLocator(),
+         getString("_UI_PropertyDecompositionElement_language_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_PropertyDecompositionElement_language_feature", "_UI_PropertyDecompositionElement_type"),
+         GSNPackage.Literals.PROPERTY_DECOMPOSITION_ELEMENT__LANGUAGE,
+         true,
+         false,
+         false,
+         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+         null,
+         null));
   }
 
   /**
@@ -66,9 +88,9 @@ public class PropertyGoalItemProvider extends GoalItemProvider {
    * @generated
    */
   protected void addPropertyPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
+    this.itemPropertyDescriptors.add
       (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+        (((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
          getString("_UI_PropertyDecompositionElement_property_feature"),
          getString("_UI_PropertyDescriptor_description", "_UI_PropertyDecompositionElement_property_feature", "_UI_PropertyDecompositionElement_type"),
@@ -100,7 +122,7 @@ public class PropertyGoalItemProvider extends GoalItemProvider {
    */
   @Override
   public String getText(Object object) {
-    String label = ((PropertyGoal)object).getId();
+    var label = ((PropertyGoal)object).getId();
     return label == null || label.length() == 0 ?
       getString("_UI_PropertyGoal_type") :
       getString("_UI_PropertyGoal_type") + " " + label;
@@ -119,6 +141,7 @@ public class PropertyGoalItemProvider extends GoalItemProvider {
     updateChildren(notification);
 
     switch (notification.getFeatureID(PropertyGoal.class)) {
+      case GSNPackage.PROPERTY_GOAL__LANGUAGE:
       case GSNPackage.PROPERTY_GOAL__PROPERTY:
         fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
         return;

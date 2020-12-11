@@ -3,29 +3,26 @@
  * All rights reserved. This program and the accompanying materials are made available under the terms
  * of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *   Alessio Di Sandro - Implementation
  *   Nick Fung - Implementation.
- * 
+ *
  */
 package edu.toronto.cs.se.modelepedia.gsn.impl;
+
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import edu.toronto.cs.se.modelepedia.gsn.ContextualElement;
 import edu.toronto.cs.se.modelepedia.gsn.DecomposableCoreElement;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.InContextOf;
-
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
-import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -78,15 +75,15 @@ public class InContextOfImpl extends MinimalEObjectImpl.Container implements InC
    */
   @Override
   public ContextualElement getContext() {
-    if (context != null && context.eIsProxy()) {
-      InternalEObject oldContext = (InternalEObject)context;
-      context = (ContextualElement)eResolveProxy(oldContext);
-      if (context != oldContext) {
+    if (this.context != null && this.context.eIsProxy()) {
+      var oldContext = (InternalEObject)this.context;
+      this.context = (ContextualElement)eResolveProxy(oldContext);
+      if (this.context != oldContext) {
         if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, GSNPackage.IN_CONTEXT_OF__CONTEXT, oldContext, context));
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, GSNPackage.IN_CONTEXT_OF__CONTEXT, oldContext, this.context));
       }
     }
-    return context;
+    return this.context;
   }
 
   /**
@@ -95,7 +92,7 @@ public class InContextOfImpl extends MinimalEObjectImpl.Container implements InC
    * @generated
    */
   public ContextualElement basicGetContext() {
-    return context;
+    return this.context;
   }
 
   /**
@@ -104,10 +101,10 @@ public class InContextOfImpl extends MinimalEObjectImpl.Container implements InC
    * @generated
    */
   public NotificationChain basicSetContext(ContextualElement newContext, NotificationChain msgs) {
-    ContextualElement oldContext = context;
-    context = newContext;
+    var oldContext = this.context;
+    this.context = newContext;
     if (eNotificationRequired()) {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GSNPackage.IN_CONTEXT_OF__CONTEXT, oldContext, newContext);
+      var notification = new ENotificationImpl(this, Notification.SET, GSNPackage.IN_CONTEXT_OF__CONTEXT, oldContext, newContext);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -120,10 +117,10 @@ public class InContextOfImpl extends MinimalEObjectImpl.Container implements InC
    */
   @Override
   public void setContext(ContextualElement newContext) {
-    if (newContext != context) {
+    if (newContext != this.context) {
       NotificationChain msgs = null;
-      if (context != null)
-        msgs = ((InternalEObject)context).eInverseRemove(this, GSNPackage.CONTEXTUAL_ELEMENT__CONTEXT_OF, ContextualElement.class, msgs);
+      if (this.context != null)
+        msgs = ((InternalEObject)this.context).eInverseRemove(this, GSNPackage.CONTEXTUAL_ELEMENT__CONTEXT_OF, ContextualElement.class, msgs);
       if (newContext != null)
         msgs = ((InternalEObject)newContext).eInverseAdd(this, GSNPackage.CONTEXTUAL_ELEMENT__CONTEXT_OF, ContextualElement.class, msgs);
       msgs = basicSetContext(newContext, msgs);
@@ -185,8 +182,8 @@ public class InContextOfImpl extends MinimalEObjectImpl.Container implements InC
   public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
       case GSNPackage.IN_CONTEXT_OF__CONTEXT:
-        if (context != null)
-          msgs = ((InternalEObject)context).eInverseRemove(this, GSNPackage.CONTEXTUAL_ELEMENT__CONTEXT_OF, ContextualElement.class, msgs);
+        if (this.context != null)
+          msgs = ((InternalEObject)this.context).eInverseRemove(this, GSNPackage.CONTEXTUAL_ELEMENT__CONTEXT_OF, ContextualElement.class, msgs);
         return basicSetContext((ContextualElement)otherEnd, msgs);
       case GSNPackage.IN_CONTEXT_OF__CONTEXT_OF:
         if (eInternalContainer() != null)
@@ -288,7 +285,7 @@ public class InContextOfImpl extends MinimalEObjectImpl.Container implements InC
   public boolean eIsSet(int featureID) {
     switch (featureID) {
       case GSNPackage.IN_CONTEXT_OF__CONTEXT:
-        return context != null;
+        return this.context != null;
       case GSNPackage.IN_CONTEXT_OF__CONTEXT_OF:
         return getContextOf() != null;
     }

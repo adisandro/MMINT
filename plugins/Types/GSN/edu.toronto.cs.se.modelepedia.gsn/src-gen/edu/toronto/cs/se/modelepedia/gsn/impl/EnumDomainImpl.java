@@ -76,10 +76,10 @@ public class EnumDomainImpl extends DomainImpl implements EnumDomain {
    */
   @Override
   public EList<String> getValues() {
-    if (values == null) {
-      values = new EDataTypeUniqueEList<String>(String.class, this, GSNPackage.ENUM_DOMAIN__VALUES);
+    if (this.values == null) {
+      this.values = new EDataTypeUniqueEList<>(String.class, this, GSNPackage.ENUM_DOMAIN__VALUES);
     }
-    return values;
+    return this.values;
   }
 
   /**
@@ -137,7 +137,7 @@ public class EnumDomainImpl extends DomainImpl implements EnumDomain {
   public boolean eIsSet(int featureID) {
     switch (featureID) {
       case GSNPackage.ENUM_DOMAIN__VALUES:
-        return values != null && !values.isEmpty();
+        return this.values != null && !this.values.isEmpty();
     }
     return super.eIsSet(featureID);
   }
@@ -150,9 +150,9 @@ public class EnumDomainImpl extends DomainImpl implements EnumDomain {
   public String toStringGen() {
     if (eIsProxy()) return super.toString();
 
-    StringBuilder result = new StringBuilder(super.toString());
+    var result = new StringBuilder(super.toString());
     result.append(" (values: ");
-    result.append(values);
+    result.append(this.values);
     result.append(')');
     return result.toString();
   }

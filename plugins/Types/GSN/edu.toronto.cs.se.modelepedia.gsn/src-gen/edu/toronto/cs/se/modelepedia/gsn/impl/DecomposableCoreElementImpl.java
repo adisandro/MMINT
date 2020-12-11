@@ -3,13 +3,24 @@
  * All rights reserved. This program and the accompanying materials are made available under the terms
  * of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *   Alessio Di Sandro - Implementation
  *   Nick Fung - Implementation.
- * 
+ *
  */
 package edu.toronto.cs.se.modelepedia.gsn.impl;
+
+import java.util.Collection;
+
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
 import edu.toronto.cs.se.modelepedia.gsn.CoreElement;
@@ -18,21 +29,6 @@ import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.ImpactAnnotation;
 import edu.toronto.cs.se.modelepedia.gsn.InContextOf;
 import edu.toronto.cs.se.modelepedia.gsn.ValidityValue;
-
-import java.util.Collection;
-
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
-
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -70,7 +66,7 @@ public abstract class DecomposableCoreElementImpl extends SupportableImpl implem
    * @generated
    * @ordered
    */
-  protected String id = ID_EDEFAULT;
+  protected String id = DecomposableCoreElementImpl.ID_EDEFAULT;
 
   /**
    * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
@@ -90,7 +86,7 @@ public abstract class DecomposableCoreElementImpl extends SupportableImpl implem
    * @generated
    * @ordered
    */
-  protected String description = DESCRIPTION_EDEFAULT;
+  protected String description = DecomposableCoreElementImpl.DESCRIPTION_EDEFAULT;
 
   /**
    * The default value of the '{@link #getContentValidity() <em>Content Validity</em>}' attribute.
@@ -110,7 +106,7 @@ public abstract class DecomposableCoreElementImpl extends SupportableImpl implem
    * @generated
    * @ordered
    */
-  protected ValidityValue contentValidity = CONTENT_VALIDITY_EDEFAULT;
+  protected ValidityValue contentValidity = DecomposableCoreElementImpl.CONTENT_VALIDITY_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getStatus() <em>Status</em>}' containment reference.
@@ -158,7 +154,7 @@ public abstract class DecomposableCoreElementImpl extends SupportableImpl implem
    */
   @Override
   public String getId() {
-    return id;
+    return this.id;
   }
 
   /**
@@ -168,10 +164,10 @@ public abstract class DecomposableCoreElementImpl extends SupportableImpl implem
    */
   @Override
   public void setId(String newId) {
-    String oldId = id;
-    id = newId;
+    var oldId = this.id;
+    this.id = newId;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.DECOMPOSABLE_CORE_ELEMENT__ID, oldId, id));
+      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.DECOMPOSABLE_CORE_ELEMENT__ID, oldId, this.id));
   }
 
   /**
@@ -181,7 +177,7 @@ public abstract class DecomposableCoreElementImpl extends SupportableImpl implem
    */
   @Override
   public String getDescription() {
-    return description;
+    return this.description;
   }
 
   /**
@@ -191,10 +187,10 @@ public abstract class DecomposableCoreElementImpl extends SupportableImpl implem
    */
   @Override
   public void setDescription(String newDescription) {
-    String oldDescription = description;
-    description = newDescription;
+    var oldDescription = this.description;
+    this.description = newDescription;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.DECOMPOSABLE_CORE_ELEMENT__DESCRIPTION, oldDescription, description));
+      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.DECOMPOSABLE_CORE_ELEMENT__DESCRIPTION, oldDescription, this.description));
   }
 
   /**
@@ -204,7 +200,7 @@ public abstract class DecomposableCoreElementImpl extends SupportableImpl implem
    */
   @Override
   public ValidityValue getContentValidity() {
-    return contentValidity;
+    return this.contentValidity;
   }
 
   /**
@@ -214,10 +210,10 @@ public abstract class DecomposableCoreElementImpl extends SupportableImpl implem
    */
   @Override
   public void setContentValidity(ValidityValue newContentValidity) {
-    ValidityValue oldContentValidity = contentValidity;
-    contentValidity = newContentValidity == null ? CONTENT_VALIDITY_EDEFAULT : newContentValidity;
+    var oldContentValidity = this.contentValidity;
+    this.contentValidity = newContentValidity == null ? DecomposableCoreElementImpl.CONTENT_VALIDITY_EDEFAULT : newContentValidity;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.DECOMPOSABLE_CORE_ELEMENT__CONTENT_VALIDITY, oldContentValidity, contentValidity));
+      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.DECOMPOSABLE_CORE_ELEMENT__CONTENT_VALIDITY, oldContentValidity, this.contentValidity));
   }
 
   /**
@@ -227,7 +223,7 @@ public abstract class DecomposableCoreElementImpl extends SupportableImpl implem
    */
   @Override
   public ImpactAnnotation getStatus() {
-    return status;
+    return this.status;
   }
 
   /**
@@ -236,10 +232,10 @@ public abstract class DecomposableCoreElementImpl extends SupportableImpl implem
    * @generated
    */
   public NotificationChain basicSetStatus(ImpactAnnotation newStatus, NotificationChain msgs) {
-    ImpactAnnotation oldStatus = status;
-    status = newStatus;
+    var oldStatus = this.status;
+    this.status = newStatus;
     if (eNotificationRequired()) {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GSNPackage.DECOMPOSABLE_CORE_ELEMENT__STATUS, oldStatus, newStatus);
+      var notification = new ENotificationImpl(this, Notification.SET, GSNPackage.DECOMPOSABLE_CORE_ELEMENT__STATUS, oldStatus, newStatus);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -252,12 +248,12 @@ public abstract class DecomposableCoreElementImpl extends SupportableImpl implem
    */
   @Override
   public void setStatus(ImpactAnnotation newStatus) {
-    if (newStatus != status) {
+    if (newStatus != this.status) {
       NotificationChain msgs = null;
-      if (status != null)
-        msgs = ((InternalEObject)status).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GSNPackage.DECOMPOSABLE_CORE_ELEMENT__STATUS, null, msgs);
+      if (this.status != null)
+        msgs = ((InternalEObject)this.status).eInverseRemove(this, InternalEObject.EOPPOSITE_FEATURE_BASE - GSNPackage.DECOMPOSABLE_CORE_ELEMENT__STATUS, null, msgs);
       if (newStatus != null)
-        msgs = ((InternalEObject)newStatus).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GSNPackage.DECOMPOSABLE_CORE_ELEMENT__STATUS, null, msgs);
+        msgs = ((InternalEObject)newStatus).eInverseAdd(this, InternalEObject.EOPPOSITE_FEATURE_BASE - GSNPackage.DECOMPOSABLE_CORE_ELEMENT__STATUS, null, msgs);
       msgs = basicSetStatus(newStatus, msgs);
       if (msgs != null) msgs.dispatch();
     }
@@ -272,10 +268,10 @@ public abstract class DecomposableCoreElementImpl extends SupportableImpl implem
    */
   @Override
   public EList<InContextOf> getInContextOf() {
-    if (inContextOf == null) {
-      inContextOf = new EObjectContainmentWithInverseEList<InContextOf>(InContextOf.class, this, GSNPackage.DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF, GSNPackage.IN_CONTEXT_OF__CONTEXT_OF);
+    if (this.inContextOf == null) {
+      this.inContextOf = new EObjectContainmentWithInverseEList<>(InContextOf.class, this, GSNPackage.DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF, GSNPackage.IN_CONTEXT_OF__CONTEXT_OF);
     }
-    return inContextOf;
+    return this.inContextOf;
   }
 
   /**
@@ -369,13 +365,13 @@ public abstract class DecomposableCoreElementImpl extends SupportableImpl implem
   public void eUnset(int featureID) {
     switch (featureID) {
       case GSNPackage.DECOMPOSABLE_CORE_ELEMENT__ID:
-        setId(ID_EDEFAULT);
+        setId(DecomposableCoreElementImpl.ID_EDEFAULT);
         return;
       case GSNPackage.DECOMPOSABLE_CORE_ELEMENT__DESCRIPTION:
-        setDescription(DESCRIPTION_EDEFAULT);
+        setDescription(DecomposableCoreElementImpl.DESCRIPTION_EDEFAULT);
         return;
       case GSNPackage.DECOMPOSABLE_CORE_ELEMENT__CONTENT_VALIDITY:
-        setContentValidity(CONTENT_VALIDITY_EDEFAULT);
+        setContentValidity(DecomposableCoreElementImpl.CONTENT_VALIDITY_EDEFAULT);
         return;
       case GSNPackage.DECOMPOSABLE_CORE_ELEMENT__STATUS:
         setStatus((ImpactAnnotation)null);
@@ -396,15 +392,15 @@ public abstract class DecomposableCoreElementImpl extends SupportableImpl implem
   public boolean eIsSet(int featureID) {
     switch (featureID) {
       case GSNPackage.DECOMPOSABLE_CORE_ELEMENT__ID:
-        return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
+        return DecomposableCoreElementImpl.ID_EDEFAULT == null ? this.id != null : !DecomposableCoreElementImpl.ID_EDEFAULT.equals(this.id);
       case GSNPackage.DECOMPOSABLE_CORE_ELEMENT__DESCRIPTION:
-        return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
+        return DecomposableCoreElementImpl.DESCRIPTION_EDEFAULT == null ? this.description != null : !DecomposableCoreElementImpl.DESCRIPTION_EDEFAULT.equals(this.description);
       case GSNPackage.DECOMPOSABLE_CORE_ELEMENT__CONTENT_VALIDITY:
-        return contentValidity != CONTENT_VALIDITY_EDEFAULT;
+        return this.contentValidity != DecomposableCoreElementImpl.CONTENT_VALIDITY_EDEFAULT;
       case GSNPackage.DECOMPOSABLE_CORE_ELEMENT__STATUS:
-        return status != null;
+        return this.status != null;
       case GSNPackage.DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF:
-        return inContextOf != null && !inContextOf.isEmpty();
+        return this.inContextOf != null && !this.inContextOf.isEmpty();
     }
     return super.eIsSet(featureID);
   }
@@ -466,13 +462,13 @@ public abstract class DecomposableCoreElementImpl extends SupportableImpl implem
   public String toString() {
     if (eIsProxy()) return super.toString();
 
-    StringBuilder result = new StringBuilder(super.toString());
+    var result = new StringBuilder(super.toString());
     result.append(" (id: ");
-    result.append(id);
+    result.append(this.id);
     result.append(", description: ");
-    result.append(description);
+    result.append(this.description);
     result.append(", contentValidity: ");
-    result.append(contentValidity);
+    result.append(this.contentValidity);
     result.append(')');
     return result.toString();
   }

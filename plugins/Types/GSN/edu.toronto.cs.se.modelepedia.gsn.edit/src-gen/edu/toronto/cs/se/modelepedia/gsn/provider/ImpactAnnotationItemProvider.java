@@ -3,27 +3,21 @@
  * All rights reserved. This program and the accompanying materials are made available under the terms
  * of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *   Alessio Di Sandro - Implementation
  *   Nick Fung - Implementation.
- * 
+ *
  */
 package edu.toronto.cs.se.modelepedia.gsn.provider;
 
-
-import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
-import edu.toronto.cs.se.modelepedia.gsn.ImpactAnnotation;
-import edu.toronto.cs.se.modelepedia.gsn.ImpactType;
 
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -35,13 +29,16 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
+import edu.toronto.cs.se.modelepedia.gsn.ImpactAnnotation;
+
 /**
  * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.gsn.ImpactAnnotation} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ImpactAnnotationItemProvider 
+public class ImpactAnnotationItemProvider
   extends ItemProviderAdapter
   implements
     IEditingDomainItemProvider,
@@ -67,13 +64,13 @@ public class ImpactAnnotationItemProvider
    */
   @Override
   public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-    if (itemPropertyDescriptors == null) {
+    if (this.itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
       addTypePropertyDescriptor(object);
       addSourcePropertyDescriptor(object);
     }
-    return itemPropertyDescriptors;
+    return this.itemPropertyDescriptors;
   }
 
   /**
@@ -83,9 +80,9 @@ public class ImpactAnnotationItemProvider
    * @generated
    */
   protected void addTypePropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
+    this.itemPropertyDescriptors.add
       (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+        (((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
          getString("_UI_ImpactAnnotation_type_feature"),
          getString("_UI_PropertyDescriptor_description", "_UI_ImpactAnnotation_type_feature", "_UI_ImpactAnnotation_type"),
@@ -105,9 +102,9 @@ public class ImpactAnnotationItemProvider
    * @generated
    */
   protected void addSourcePropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
+    this.itemPropertyDescriptors.add
       (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+        (((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
          getString("_UI_ImpactAnnotation_source_feature"),
          getString("_UI_PropertyDescriptor_description", "_UI_ImpactAnnotation_source_feature", "_UI_ImpactAnnotation_type"),
@@ -139,8 +136,8 @@ public class ImpactAnnotationItemProvider
    */
   @Override
   public String getText(Object object) {
-    ImpactType labelValue = ((ImpactAnnotation)object).getType();
-    String label = labelValue == null ? null : labelValue.toString();
+    var labelValue = ((ImpactAnnotation)object).getType();
+    var label = labelValue == null ? null : labelValue.toString();
     return label == null || label.length() == 0 ?
       getString("_UI_ImpactAnnotation_type") :
       getString("_UI_ImpactAnnotation_type") + " " + label;

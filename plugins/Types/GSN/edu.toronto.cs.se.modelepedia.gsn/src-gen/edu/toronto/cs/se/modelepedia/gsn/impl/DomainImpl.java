@@ -11,6 +11,9 @@
  */
 package edu.toronto.cs.se.modelepedia.gsn.impl;
 
+import java.lang.reflect.InvocationTargetException;
+
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
@@ -22,8 +25,6 @@ import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.IntDomain;
 import edu.toronto.cs.se.modelepedia.gsn.RealDomain;
 import edu.toronto.cs.se.modelepedia.gsn.ValueDomain;
-import java.lang.reflect.InvocationTargetException;
-import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->

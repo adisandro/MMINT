@@ -3,24 +3,22 @@
  * All rights reserved. This program and the accompanying materials are made available under the terms
  * of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *   Alessio Di Sandro - Implementation
  *   Nick Fung - Implementation.
- * 
+ *
  */
 package edu.toronto.cs.se.modelepedia.gsn.impl;
+
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.ImpactAnnotation;
 import edu.toronto.cs.se.modelepedia.gsn.ImpactType;
-
-import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -55,7 +53,7 @@ public class ImpactAnnotationImpl extends MinimalEObjectImpl.Container implement
    * @generated
    * @ordered
    */
-  protected ImpactType type = TYPE_EDEFAULT;
+  protected ImpactType type = ImpactAnnotationImpl.TYPE_EDEFAULT;
 
   /**
    * The default value of the '{@link #getSource() <em>Source</em>}' attribute.
@@ -75,7 +73,7 @@ public class ImpactAnnotationImpl extends MinimalEObjectImpl.Container implement
    * @generated
    * @ordered
    */
-  protected String source = SOURCE_EDEFAULT;
+  protected String source = ImpactAnnotationImpl.SOURCE_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -103,7 +101,7 @@ public class ImpactAnnotationImpl extends MinimalEObjectImpl.Container implement
    */
   @Override
   public ImpactType getType() {
-    return type;
+    return this.type;
   }
 
   /**
@@ -113,10 +111,10 @@ public class ImpactAnnotationImpl extends MinimalEObjectImpl.Container implement
    */
   @Override
   public void setType(ImpactType newType) {
-    ImpactType oldType = type;
-    type = newType == null ? TYPE_EDEFAULT : newType;
+    var oldType = this.type;
+    this.type = newType == null ? ImpactAnnotationImpl.TYPE_EDEFAULT : newType;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.IMPACT_ANNOTATION__TYPE, oldType, type));
+      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.IMPACT_ANNOTATION__TYPE, oldType, this.type));
   }
 
   /**
@@ -126,7 +124,7 @@ public class ImpactAnnotationImpl extends MinimalEObjectImpl.Container implement
    */
   @Override
   public String getSource() {
-    return source;
+    return this.source;
   }
 
   /**
@@ -136,10 +134,10 @@ public class ImpactAnnotationImpl extends MinimalEObjectImpl.Container implement
    */
   @Override
   public void setSource(String newSource) {
-    String oldSource = source;
-    source = newSource;
+    var oldSource = this.source;
+    this.source = newSource;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.IMPACT_ANNOTATION__SOURCE, oldSource, source));
+      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.IMPACT_ANNOTATION__SOURCE, oldSource, this.source));
   }
 
   /**
@@ -185,10 +183,10 @@ public class ImpactAnnotationImpl extends MinimalEObjectImpl.Container implement
   public void eUnset(int featureID) {
     switch (featureID) {
       case GSNPackage.IMPACT_ANNOTATION__TYPE:
-        setType(TYPE_EDEFAULT);
+        setType(ImpactAnnotationImpl.TYPE_EDEFAULT);
         return;
       case GSNPackage.IMPACT_ANNOTATION__SOURCE:
-        setSource(SOURCE_EDEFAULT);
+        setSource(ImpactAnnotationImpl.SOURCE_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -203,9 +201,9 @@ public class ImpactAnnotationImpl extends MinimalEObjectImpl.Container implement
   public boolean eIsSet(int featureID) {
     switch (featureID) {
       case GSNPackage.IMPACT_ANNOTATION__TYPE:
-        return type != TYPE_EDEFAULT;
+        return this.type != ImpactAnnotationImpl.TYPE_EDEFAULT;
       case GSNPackage.IMPACT_ANNOTATION__SOURCE:
-        return SOURCE_EDEFAULT == null ? source != null : !SOURCE_EDEFAULT.equals(source);
+        return ImpactAnnotationImpl.SOURCE_EDEFAULT == null ? this.source != null : !ImpactAnnotationImpl.SOURCE_EDEFAULT.equals(this.source);
     }
     return super.eIsSet(featureID);
   }
@@ -219,11 +217,11 @@ public class ImpactAnnotationImpl extends MinimalEObjectImpl.Container implement
   public String toString() {
     if (eIsProxy()) return super.toString();
 
-    StringBuilder result = new StringBuilder(super.toString());
+    var result = new StringBuilder(super.toString());
     result.append(" (type: ");
-    result.append(type);
+    result.append(this.type);
     result.append(", source: ");
-    result.append(source);
+    result.append(this.source);
     result.append(')');
     return result.toString();
   }

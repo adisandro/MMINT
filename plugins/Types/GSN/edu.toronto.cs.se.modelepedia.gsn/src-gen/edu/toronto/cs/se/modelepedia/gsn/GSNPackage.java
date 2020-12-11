@@ -2566,13 +2566,22 @@ public interface GSNPackage extends EPackage {
   int PROPERTY_DECOMPOSITION_ELEMENT = 37;
 
   /**
+   * The feature id for the '<em><b>Language</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_DECOMPOSITION_ELEMENT__LANGUAGE = 0;
+
+  /**
    * The feature id for the '<em><b>Property</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PROPERTY_DECOMPOSITION_ELEMENT__PROPERTY = 0;
+  int PROPERTY_DECOMPOSITION_ELEMENT__PROPERTY = 1;
 
   /**
    * The number of structural features of the '<em>Property Decomposition Element</em>' class.
@@ -2581,7 +2590,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PROPERTY_DECOMPOSITION_ELEMENT_FEATURE_COUNT = 1;
+  int PROPERTY_DECOMPOSITION_ELEMENT_FEATURE_COUNT = 2;
 
   /**
    * The number of operations of the '<em>Property Decomposition Element</em>' class.
@@ -2666,13 +2675,22 @@ public interface GSNPackage extends EPackage {
   int PROPERTY_DECOMPOSITION_STRATEGY__IN_CONTEXT_OF = GSNPackage.DECOMPOSITION_STRATEGY__IN_CONTEXT_OF;
 
   /**
+   * The feature id for the '<em><b>Language</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_DECOMPOSITION_STRATEGY__LANGUAGE = GSNPackage.DECOMPOSITION_STRATEGY_FEATURE_COUNT + 0;
+
+  /**
    * The feature id for the '<em><b>Property</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PROPERTY_DECOMPOSITION_STRATEGY__PROPERTY = GSNPackage.DECOMPOSITION_STRATEGY_FEATURE_COUNT + 0;
+  int PROPERTY_DECOMPOSITION_STRATEGY__PROPERTY = GSNPackage.DECOMPOSITION_STRATEGY_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Property Decomposition Strategy</em>' class.
@@ -2681,7 +2699,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PROPERTY_DECOMPOSITION_STRATEGY_FEATURE_COUNT = GSNPackage.DECOMPOSITION_STRATEGY_FEATURE_COUNT + 1;
+  int PROPERTY_DECOMPOSITION_STRATEGY_FEATURE_COUNT = GSNPackage.DECOMPOSITION_STRATEGY_FEATURE_COUNT + 2;
 
   /**
    * The operation id for the '<em>Validate</em>' operation.
@@ -2793,13 +2811,22 @@ public interface GSNPackage extends EPackage {
   int PROPERTY_GOAL__ASIL = GSNPackage.GOAL__ASIL;
 
   /**
+   * The feature id for the '<em><b>Language</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_GOAL__LANGUAGE = GSNPackage.GOAL_FEATURE_COUNT + 0;
+
+  /**
    * The feature id for the '<em><b>Property</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PROPERTY_GOAL__PROPERTY = GSNPackage.GOAL_FEATURE_COUNT + 0;
+  int PROPERTY_GOAL__PROPERTY = GSNPackage.GOAL_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Property Goal</em>' class.
@@ -2808,7 +2835,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PROPERTY_GOAL_FEATURE_COUNT = GSNPackage.GOAL_FEATURE_COUNT + 1;
+  int PROPERTY_GOAL_FEATURE_COUNT = GSNPackage.GOAL_FEATURE_COUNT + 2;
 
   /**
    * The number of operations of the '<em>Property Goal</em>' class.
@@ -3209,6 +3236,17 @@ public interface GSNPackage extends EPackage {
    * @generated
    */
   EClass getPropertyDecompositionElement();
+
+  /**
+   * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionElement#getLanguage <em>Language</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Language</em>'.
+   * @see edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionElement#getLanguage()
+   * @see #getPropertyDecompositionElement()
+   * @generated
+   */
+  EAttribute getPropertyDecompositionElement_Language();
 
   /**
    * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionElement#getProperty <em>Property</em>}'.
@@ -4021,6 +4059,14 @@ public interface GSNPackage extends EPackage {
      * @generated
      */
     EClass PROPERTY_DECOMPOSITION_ELEMENT = GSNPackage.eINSTANCE.getPropertyDecompositionElement();
+
+    /**
+     * The meta object literal for the '<em><b>Language</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute PROPERTY_DECOMPOSITION_ELEMENT__LANGUAGE = GSNPackage.eINSTANCE.getPropertyDecompositionElement_Language();
 
     /**
      * The meta object literal for the '<em><b>Property</b></em>' attribute feature.

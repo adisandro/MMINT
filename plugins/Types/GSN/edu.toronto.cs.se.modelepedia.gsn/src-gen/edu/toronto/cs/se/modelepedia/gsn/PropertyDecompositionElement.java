@@ -3,11 +3,11 @@
  * All rights reserved. This program and the accompanying materials are made available under the terms
  * of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *   Alessio Di Sandro - Implementation
  *   Nick Fung - Implementation.
- * 
+ *
  */
 package edu.toronto.cs.se.modelepedia.gsn;
 
@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionElement#getLanguage <em>Language</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionElement#getProperty <em>Property</em>}</li>
  * </ul>
  *
@@ -30,6 +31,28 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface PropertyDecompositionElement extends EObject {
+  /**
+   * Returns the value of the '<em><b>Language</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Language</em>' attribute.
+   * @see #setLanguage(String)
+   * @see edu.toronto.cs.se.modelepedia.gsn.GSNPackage#getPropertyDecompositionElement_Language()
+   * @model required="true"
+   * @generated
+   */
+  String getLanguage();
+
+  /**
+   * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionElement#getLanguage <em>Language</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Language</em>' attribute.
+   * @see #getLanguage()
+   * @generated
+   */
+  void setLanguage(String value);
+
   /**
    * Returns the value of the '<em><b>Property</b></em>' attribute.
    * <!-- begin-user-doc -->

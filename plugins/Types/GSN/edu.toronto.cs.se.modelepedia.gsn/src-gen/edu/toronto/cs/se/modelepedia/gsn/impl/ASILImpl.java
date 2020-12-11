@@ -3,30 +3,27 @@
  * All rights reserved. This program and the accompanying materials are made available under the terms
  * of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *   Alessio Di Sandro - Implementation
  *   Nick Fung - Implementation.
- * 
+ *
  */
 package edu.toronto.cs.se.modelepedia.gsn.impl;
+
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import edu.toronto.cs.se.modelepedia.gsn.ASIL;
 import edu.toronto.cs.se.modelepedia.gsn.ASILLevel;
 import edu.toronto.cs.se.modelepedia.gsn.ASILfulElement;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.ImpactAnnotation;
-
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
-import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -62,7 +59,7 @@ public class ASILImpl extends MinimalEObjectImpl.Container implements ASIL {
    * @generated
    * @ordered
    */
-  protected ASILLevel value = VALUE_EDEFAULT;
+  protected ASILLevel value = ASILImpl.VALUE_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getStatus() <em>Status</em>}' containment reference.
@@ -100,7 +97,7 @@ public class ASILImpl extends MinimalEObjectImpl.Container implements ASIL {
    */
   @Override
   public ASILLevel getValue() {
-    return value;
+    return this.value;
   }
 
   /**
@@ -110,10 +107,10 @@ public class ASILImpl extends MinimalEObjectImpl.Container implements ASIL {
    */
   @Override
   public void setValue(ASILLevel newValue) {
-    ASILLevel oldValue = value;
-    value = newValue == null ? VALUE_EDEFAULT : newValue;
+    var oldValue = this.value;
+    this.value = newValue == null ? ASILImpl.VALUE_EDEFAULT : newValue;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.ASIL__VALUE, oldValue, value));
+      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.ASIL__VALUE, oldValue, this.value));
   }
 
   /**
@@ -166,7 +163,7 @@ public class ASILImpl extends MinimalEObjectImpl.Container implements ASIL {
    */
   @Override
   public ImpactAnnotation getStatus() {
-    return status;
+    return this.status;
   }
 
   /**
@@ -175,10 +172,10 @@ public class ASILImpl extends MinimalEObjectImpl.Container implements ASIL {
    * @generated
    */
   public NotificationChain basicSetStatus(ImpactAnnotation newStatus, NotificationChain msgs) {
-    ImpactAnnotation oldStatus = status;
-    status = newStatus;
+    var oldStatus = this.status;
+    this.status = newStatus;
     if (eNotificationRequired()) {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GSNPackage.ASIL__STATUS, oldStatus, newStatus);
+      var notification = new ENotificationImpl(this, Notification.SET, GSNPackage.ASIL__STATUS, oldStatus, newStatus);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -191,12 +188,12 @@ public class ASILImpl extends MinimalEObjectImpl.Container implements ASIL {
    */
   @Override
   public void setStatus(ImpactAnnotation newStatus) {
-    if (newStatus != status) {
+    if (newStatus != this.status) {
       NotificationChain msgs = null;
-      if (status != null)
-        msgs = ((InternalEObject)status).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GSNPackage.ASIL__STATUS, null, msgs);
+      if (this.status != null)
+        msgs = ((InternalEObject)this.status).eInverseRemove(this, InternalEObject.EOPPOSITE_FEATURE_BASE - GSNPackage.ASIL__STATUS, null, msgs);
       if (newStatus != null)
-        msgs = ((InternalEObject)newStatus).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GSNPackage.ASIL__STATUS, null, msgs);
+        msgs = ((InternalEObject)newStatus).eInverseAdd(this, InternalEObject.EOPPOSITE_FEATURE_BASE - GSNPackage.ASIL__STATUS, null, msgs);
       msgs = basicSetStatus(newStatus, msgs);
       if (msgs != null) msgs.dispatch();
     }
@@ -298,7 +295,7 @@ public class ASILImpl extends MinimalEObjectImpl.Container implements ASIL {
   public void eUnset(int featureID) {
     switch (featureID) {
       case GSNPackage.ASIL__VALUE:
-        setValue(VALUE_EDEFAULT);
+        setValue(ASILImpl.VALUE_EDEFAULT);
         return;
       case GSNPackage.ASIL__TARGET:
         setTarget((ASILfulElement)null);
@@ -319,11 +316,11 @@ public class ASILImpl extends MinimalEObjectImpl.Container implements ASIL {
   public boolean eIsSet(int featureID) {
     switch (featureID) {
       case GSNPackage.ASIL__VALUE:
-        return value != VALUE_EDEFAULT;
+        return this.value != ASILImpl.VALUE_EDEFAULT;
       case GSNPackage.ASIL__TARGET:
         return getTarget() != null;
       case GSNPackage.ASIL__STATUS:
-        return status != null;
+        return this.status != null;
     }
     return super.eIsSet(featureID);
   }
@@ -337,9 +334,9 @@ public class ASILImpl extends MinimalEObjectImpl.Container implements ASIL {
   public String toString() {
     if (eIsProxy()) return super.toString();
 
-    StringBuilder result = new StringBuilder(super.toString());
+    var result = new StringBuilder(super.toString());
     result.append(" (value: ");
-    result.append(value);
+    result.append(this.value);
     result.append(')');
     return result.toString();
   }

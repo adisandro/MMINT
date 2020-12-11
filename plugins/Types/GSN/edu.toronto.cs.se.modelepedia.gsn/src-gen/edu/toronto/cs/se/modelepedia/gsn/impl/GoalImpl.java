@@ -3,13 +3,19 @@
  * All rights reserved. This program and the accompanying materials are made available under the terms
  * of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *   Alessio Di Sandro - Implementation
  *   Nick Fung - Implementation.
- * 
+ *
  */
 package edu.toronto.cs.se.modelepedia.gsn.impl;
+
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import edu.toronto.cs.se.modelepedia.gsn.ASIL;
 import edu.toronto.cs.se.modelepedia.gsn.ASILfulElement;
@@ -17,14 +23,6 @@ import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.Goal;
 import edu.toronto.cs.se.modelepedia.gsn.StatefulElement;
 import edu.toronto.cs.se.modelepedia.gsn.ValidityValue;
-
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -59,7 +57,7 @@ public abstract class GoalImpl extends DecomposableCoreElementImpl implements Go
    * @generated
    * @ordered
    */
-  protected ValidityValue stateValidity = STATE_VALIDITY_EDEFAULT;
+  protected ValidityValue stateValidity = GoalImpl.STATE_VALIDITY_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getAsil() <em>Asil</em>}' containment reference.
@@ -97,7 +95,7 @@ public abstract class GoalImpl extends DecomposableCoreElementImpl implements Go
    */
   @Override
   public ValidityValue getStateValidity() {
-    return stateValidity;
+    return this.stateValidity;
   }
 
   /**
@@ -107,10 +105,10 @@ public abstract class GoalImpl extends DecomposableCoreElementImpl implements Go
    */
   @Override
   public void setStateValidity(ValidityValue newStateValidity) {
-    ValidityValue oldStateValidity = stateValidity;
-    stateValidity = newStateValidity == null ? STATE_VALIDITY_EDEFAULT : newStateValidity;
+    var oldStateValidity = this.stateValidity;
+    this.stateValidity = newStateValidity == null ? GoalImpl.STATE_VALIDITY_EDEFAULT : newStateValidity;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.GOAL__STATE_VALIDITY, oldStateValidity, stateValidity));
+      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.GOAL__STATE_VALIDITY, oldStateValidity, this.stateValidity));
   }
 
   /**
@@ -120,7 +118,7 @@ public abstract class GoalImpl extends DecomposableCoreElementImpl implements Go
    */
   @Override
   public ASIL getAsil() {
-    return asil;
+    return this.asil;
   }
 
   /**
@@ -129,10 +127,10 @@ public abstract class GoalImpl extends DecomposableCoreElementImpl implements Go
    * @generated
    */
   public NotificationChain basicSetAsil(ASIL newAsil, NotificationChain msgs) {
-    ASIL oldAsil = asil;
-    asil = newAsil;
+    var oldAsil = this.asil;
+    this.asil = newAsil;
     if (eNotificationRequired()) {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GSNPackage.GOAL__ASIL, oldAsil, newAsil);
+      var notification = new ENotificationImpl(this, Notification.SET, GSNPackage.GOAL__ASIL, oldAsil, newAsil);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -145,10 +143,10 @@ public abstract class GoalImpl extends DecomposableCoreElementImpl implements Go
    */
   @Override
   public void setAsil(ASIL newAsil) {
-    if (newAsil != asil) {
+    if (newAsil != this.asil) {
       NotificationChain msgs = null;
-      if (asil != null)
-        msgs = ((InternalEObject)asil).eInverseRemove(this, GSNPackage.ASIL__TARGET, ASIL.class, msgs);
+      if (this.asil != null)
+        msgs = ((InternalEObject)this.asil).eInverseRemove(this, GSNPackage.ASIL__TARGET, ASIL.class, msgs);
       if (newAsil != null)
         msgs = ((InternalEObject)newAsil).eInverseAdd(this, GSNPackage.ASIL__TARGET, ASIL.class, msgs);
       msgs = basicSetAsil(newAsil, msgs);
@@ -167,8 +165,8 @@ public abstract class GoalImpl extends DecomposableCoreElementImpl implements Go
   public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
       case GSNPackage.GOAL__ASIL:
-        if (asil != null)
-          msgs = ((InternalEObject)asil).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GSNPackage.GOAL__ASIL, null, msgs);
+        if (this.asil != null)
+          msgs = ((InternalEObject)this.asil).eInverseRemove(this, InternalEObject.EOPPOSITE_FEATURE_BASE - GSNPackage.GOAL__ASIL, null, msgs);
         return basicSetAsil((ASIL)otherEnd, msgs);
     }
     return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -231,7 +229,7 @@ public abstract class GoalImpl extends DecomposableCoreElementImpl implements Go
   public void eUnset(int featureID) {
     switch (featureID) {
       case GSNPackage.GOAL__STATE_VALIDITY:
-        setStateValidity(STATE_VALIDITY_EDEFAULT);
+        setStateValidity(GoalImpl.STATE_VALIDITY_EDEFAULT);
         return;
       case GSNPackage.GOAL__ASIL:
         setAsil((ASIL)null);
@@ -249,9 +247,9 @@ public abstract class GoalImpl extends DecomposableCoreElementImpl implements Go
   public boolean eIsSet(int featureID) {
     switch (featureID) {
       case GSNPackage.GOAL__STATE_VALIDITY:
-        return stateValidity != STATE_VALIDITY_EDEFAULT;
+        return this.stateValidity != GoalImpl.STATE_VALIDITY_EDEFAULT;
       case GSNPackage.GOAL__ASIL:
-        return asil != null;
+        return this.asil != null;
     }
     return super.eIsSet(featureID);
   }
@@ -309,9 +307,9 @@ public abstract class GoalImpl extends DecomposableCoreElementImpl implements Go
   public String toString() {
     if (eIsProxy()) return super.toString();
 
-    StringBuilder result = new StringBuilder(super.toString());
+    var result = new StringBuilder(super.toString());
     result.append(" (stateValidity: ");
-    result.append(stateValidity);
+    result.append(this.stateValidity);
     result.append(')');
     return result.toString();
   }

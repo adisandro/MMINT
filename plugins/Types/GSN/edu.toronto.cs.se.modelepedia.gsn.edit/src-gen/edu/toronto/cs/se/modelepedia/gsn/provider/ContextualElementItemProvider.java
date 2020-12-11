@@ -3,26 +3,25 @@
  * All rights reserved. This program and the accompanying materials are made available under the terms
  * of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *   Alessio Di Sandro - Implementation
  *   Nick Fung - Implementation.
- * 
+ *
  */
 package edu.toronto.cs.se.modelepedia.gsn.provider;
 
-
-import edu.toronto.cs.se.modelepedia.gsn.ContextualElement;
-import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+
+import edu.toronto.cs.se.modelepedia.gsn.ContextualElement;
+import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 
 /**
  * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.gsn.ContextualElement} object.
@@ -49,12 +48,12 @@ public class ContextualElementItemProvider extends ArgumentElementItemProvider {
    */
   @Override
   public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-    if (itemPropertyDescriptors == null) {
+    if (this.itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
       addContextOfPropertyDescriptor(object);
     }
-    return itemPropertyDescriptors;
+    return this.itemPropertyDescriptors;
   }
 
   /**
@@ -64,9 +63,9 @@ public class ContextualElementItemProvider extends ArgumentElementItemProvider {
    * @generated
    */
   protected void addContextOfPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
+    this.itemPropertyDescriptors.add
       (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+        (((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
          getString("_UI_ContextualElement_contextOf_feature"),
          getString("_UI_PropertyDescriptor_description", "_UI_ContextualElement_contextOf_feature", "_UI_ContextualElement_type"),
@@ -87,7 +86,7 @@ public class ContextualElementItemProvider extends ArgumentElementItemProvider {
    */
   @Override
   public String getText(Object object) {
-    String label = ((ContextualElement)object).getId();
+    var label = ((ContextualElement)object).getId();
     return label == null || label.length() == 0 ?
       getString("_UI_ContextualElement_type") :
       getString("_UI_ContextualElement_type") + " " + label;

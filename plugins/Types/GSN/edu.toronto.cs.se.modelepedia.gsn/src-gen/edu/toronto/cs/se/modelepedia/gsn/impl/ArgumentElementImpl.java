@@ -3,27 +3,25 @@
  * All rights reserved. This program and the accompanying materials are made available under the terms
  * of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *   Alessio Di Sandro - Implementation
  *   Nick Fung - Implementation.
- * 
+ *
  */
 package edu.toronto.cs.se.modelepedia.gsn.impl;
+
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.ImpactAnnotation;
 import edu.toronto.cs.se.modelepedia.gsn.ValidityValue;
-
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -60,7 +58,7 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
    * @generated
    * @ordered
    */
-  protected String id = ID_EDEFAULT;
+  protected String id = ArgumentElementImpl.ID_EDEFAULT;
 
   /**
    * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
@@ -80,7 +78,7 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
    * @generated
    * @ordered
    */
-  protected String description = DESCRIPTION_EDEFAULT;
+  protected String description = ArgumentElementImpl.DESCRIPTION_EDEFAULT;
 
   /**
    * The default value of the '{@link #getContentValidity() <em>Content Validity</em>}' attribute.
@@ -100,7 +98,7 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
    * @generated
    * @ordered
    */
-  protected ValidityValue contentValidity = CONTENT_VALIDITY_EDEFAULT;
+  protected ValidityValue contentValidity = ArgumentElementImpl.CONTENT_VALIDITY_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getStatus() <em>Status</em>}' containment reference.
@@ -138,7 +136,7 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
    */
   @Override
   public String getId() {
-    return id;
+    return this.id;
   }
 
   /**
@@ -148,10 +146,10 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
    */
   @Override
   public void setId(String newId) {
-    String oldId = id;
-    id = newId;
+    var oldId = this.id;
+    this.id = newId;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.ARGUMENT_ELEMENT__ID, oldId, id));
+      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.ARGUMENT_ELEMENT__ID, oldId, this.id));
   }
 
   /**
@@ -161,7 +159,7 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
    */
   @Override
   public String getDescription() {
-    return description;
+    return this.description;
   }
 
   /**
@@ -171,10 +169,10 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
    */
   @Override
   public void setDescription(String newDescription) {
-    String oldDescription = description;
-    description = newDescription;
+    var oldDescription = this.description;
+    this.description = newDescription;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.ARGUMENT_ELEMENT__DESCRIPTION, oldDescription, description));
+      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.ARGUMENT_ELEMENT__DESCRIPTION, oldDescription, this.description));
   }
 
   /**
@@ -184,7 +182,7 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
    */
   @Override
   public ValidityValue getContentValidity() {
-    return contentValidity;
+    return this.contentValidity;
   }
 
   /**
@@ -194,10 +192,10 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
    */
   @Override
   public void setContentValidity(ValidityValue newContentValidity) {
-    ValidityValue oldContentValidity = contentValidity;
-    contentValidity = newContentValidity == null ? CONTENT_VALIDITY_EDEFAULT : newContentValidity;
+    var oldContentValidity = this.contentValidity;
+    this.contentValidity = newContentValidity == null ? ArgumentElementImpl.CONTENT_VALIDITY_EDEFAULT : newContentValidity;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.ARGUMENT_ELEMENT__CONTENT_VALIDITY, oldContentValidity, contentValidity));
+      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.ARGUMENT_ELEMENT__CONTENT_VALIDITY, oldContentValidity, this.contentValidity));
   }
 
   /**
@@ -207,7 +205,7 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
    */
   @Override
   public ImpactAnnotation getStatus() {
-    return status;
+    return this.status;
   }
 
   /**
@@ -216,10 +214,10 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
    * @generated
    */
   public NotificationChain basicSetStatus(ImpactAnnotation newStatus, NotificationChain msgs) {
-    ImpactAnnotation oldStatus = status;
-    status = newStatus;
+    var oldStatus = this.status;
+    this.status = newStatus;
     if (eNotificationRequired()) {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GSNPackage.ARGUMENT_ELEMENT__STATUS, oldStatus, newStatus);
+      var notification = new ENotificationImpl(this, Notification.SET, GSNPackage.ARGUMENT_ELEMENT__STATUS, oldStatus, newStatus);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -232,12 +230,12 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
    */
   @Override
   public void setStatus(ImpactAnnotation newStatus) {
-    if (newStatus != status) {
+    if (newStatus != this.status) {
       NotificationChain msgs = null;
-      if (status != null)
-        msgs = ((InternalEObject)status).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GSNPackage.ARGUMENT_ELEMENT__STATUS, null, msgs);
+      if (this.status != null)
+        msgs = ((InternalEObject)this.status).eInverseRemove(this, InternalEObject.EOPPOSITE_FEATURE_BASE - GSNPackage.ARGUMENT_ELEMENT__STATUS, null, msgs);
       if (newStatus != null)
-        msgs = ((InternalEObject)newStatus).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GSNPackage.ARGUMENT_ELEMENT__STATUS, null, msgs);
+        msgs = ((InternalEObject)newStatus).eInverseAdd(this, InternalEObject.EOPPOSITE_FEATURE_BASE - GSNPackage.ARGUMENT_ELEMENT__STATUS, null, msgs);
       msgs = basicSetStatus(newStatus, msgs);
       if (msgs != null) msgs.dispatch();
     }
@@ -312,13 +310,13 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
   public void eUnset(int featureID) {
     switch (featureID) {
       case GSNPackage.ARGUMENT_ELEMENT__ID:
-        setId(ID_EDEFAULT);
+        setId(ArgumentElementImpl.ID_EDEFAULT);
         return;
       case GSNPackage.ARGUMENT_ELEMENT__DESCRIPTION:
-        setDescription(DESCRIPTION_EDEFAULT);
+        setDescription(ArgumentElementImpl.DESCRIPTION_EDEFAULT);
         return;
       case GSNPackage.ARGUMENT_ELEMENT__CONTENT_VALIDITY:
-        setContentValidity(CONTENT_VALIDITY_EDEFAULT);
+        setContentValidity(ArgumentElementImpl.CONTENT_VALIDITY_EDEFAULT);
         return;
       case GSNPackage.ARGUMENT_ELEMENT__STATUS:
         setStatus((ImpactAnnotation)null);
@@ -336,13 +334,13 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
   public boolean eIsSet(int featureID) {
     switch (featureID) {
       case GSNPackage.ARGUMENT_ELEMENT__ID:
-        return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
+        return ArgumentElementImpl.ID_EDEFAULT == null ? this.id != null : !ArgumentElementImpl.ID_EDEFAULT.equals(this.id);
       case GSNPackage.ARGUMENT_ELEMENT__DESCRIPTION:
-        return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
+        return ArgumentElementImpl.DESCRIPTION_EDEFAULT == null ? this.description != null : !ArgumentElementImpl.DESCRIPTION_EDEFAULT.equals(this.description);
       case GSNPackage.ARGUMENT_ELEMENT__CONTENT_VALIDITY:
-        return contentValidity != CONTENT_VALIDITY_EDEFAULT;
+        return this.contentValidity != ArgumentElementImpl.CONTENT_VALIDITY_EDEFAULT;
       case GSNPackage.ARGUMENT_ELEMENT__STATUS:
-        return status != null;
+        return this.status != null;
     }
     return super.eIsSet(featureID);
   }
@@ -356,13 +354,13 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
   public String toString() {
     if (eIsProxy()) return super.toString();
 
-    StringBuilder result = new StringBuilder(super.toString());
+    var result = new StringBuilder(super.toString());
     result.append(" (id: ");
-    result.append(id);
+    result.append(this.id);
     result.append(", description: ");
-    result.append(description);
+    result.append(this.description);
     result.append(", contentValidity: ");
-    result.append(contentValidity);
+    result.append(this.contentValidity);
     result.append(')');
     return result.toString();
   }

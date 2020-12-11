@@ -3,13 +3,23 @@
  * All rights reserved. This program and the accompanying materials are made available under the terms
  * of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *   Alessio Di Sandro - Implementation
  *   Nick Fung - Implementation.
- * 
+ *
  */
 package edu.toronto.cs.se.modelepedia.gsn.impl;
+
+import java.util.Collection;
+
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 import edu.toronto.cs.se.modelepedia.gsn.Assumption;
 import edu.toronto.cs.se.modelepedia.gsn.Context;
@@ -20,20 +30,6 @@ import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
 import edu.toronto.cs.se.modelepedia.gsn.Solution;
 import edu.toronto.cs.se.modelepedia.gsn.Strategy;
 import edu.toronto.cs.se.modelepedia.gsn.SupportConnector;
-
-import java.util.Collection;
-
-import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
-
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -151,10 +147,10 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
    */
   @Override
   public EList<Goal> getGoals() {
-    if (goals == null) {
-      goals = new EObjectContainmentEList<Goal>(Goal.class, this, GSNPackage.SAFETY_CASE__GOALS);
+    if (this.goals == null) {
+      this.goals = new EObjectContainmentEList<>(Goal.class, this, GSNPackage.SAFETY_CASE__GOALS);
     }
-    return goals;
+    return this.goals;
   }
 
   /**
@@ -164,10 +160,10 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
    */
   @Override
   public EList<Strategy> getStrategies() {
-    if (strategies == null) {
-      strategies = new EObjectContainmentEList<Strategy>(Strategy.class, this, GSNPackage.SAFETY_CASE__STRATEGIES);
+    if (this.strategies == null) {
+      this.strategies = new EObjectContainmentEList<>(Strategy.class, this, GSNPackage.SAFETY_CASE__STRATEGIES);
     }
-    return strategies;
+    return this.strategies;
   }
 
   /**
@@ -177,10 +173,10 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
    */
   @Override
   public EList<Solution> getSolutions() {
-    if (solutions == null) {
-      solutions = new EObjectContainmentEList<Solution>(Solution.class, this, GSNPackage.SAFETY_CASE__SOLUTIONS);
+    if (this.solutions == null) {
+      this.solutions = new EObjectContainmentEList<>(Solution.class, this, GSNPackage.SAFETY_CASE__SOLUTIONS);
     }
-    return solutions;
+    return this.solutions;
   }
 
   /**
@@ -190,10 +186,10 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
    */
   @Override
   public EList<Context> getContexts() {
-    if (contexts == null) {
-      contexts = new EObjectContainmentEList<Context>(Context.class, this, GSNPackage.SAFETY_CASE__CONTEXTS);
+    if (this.contexts == null) {
+      this.contexts = new EObjectContainmentEList<>(Context.class, this, GSNPackage.SAFETY_CASE__CONTEXTS);
     }
-    return contexts;
+    return this.contexts;
   }
 
   /**
@@ -203,10 +199,10 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
    */
   @Override
   public EList<Justification> getJustifications() {
-    if (justifications == null) {
-      justifications = new EObjectContainmentEList<Justification>(Justification.class, this, GSNPackage.SAFETY_CASE__JUSTIFICATIONS);
+    if (this.justifications == null) {
+      this.justifications = new EObjectContainmentEList<>(Justification.class, this, GSNPackage.SAFETY_CASE__JUSTIFICATIONS);
     }
-    return justifications;
+    return this.justifications;
   }
 
   /**
@@ -216,10 +212,10 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
    */
   @Override
   public EList<Assumption> getAssumptions() {
-    if (assumptions == null) {
-      assumptions = new EObjectContainmentEList<Assumption>(Assumption.class, this, GSNPackage.SAFETY_CASE__ASSUMPTIONS);
+    if (this.assumptions == null) {
+      this.assumptions = new EObjectContainmentEList<>(Assumption.class, this, GSNPackage.SAFETY_CASE__ASSUMPTIONS);
     }
-    return assumptions;
+    return this.assumptions;
   }
 
   /**
@@ -229,10 +225,10 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
    */
   @Override
   public EList<SupportConnector> getConnectors() {
-    if (connectors == null) {
-      connectors = new EObjectContainmentEList<SupportConnector>(SupportConnector.class, this, GSNPackage.SAFETY_CASE__CONNECTORS);
+    if (this.connectors == null) {
+      this.connectors = new EObjectContainmentEList<>(SupportConnector.class, this, GSNPackage.SAFETY_CASE__CONNECTORS);
     }
-    return connectors;
+    return this.connectors;
   }
 
   /**
@@ -370,19 +366,19 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
   public boolean eIsSet(int featureID) {
     switch (featureID) {
       case GSNPackage.SAFETY_CASE__GOALS:
-        return goals != null && !goals.isEmpty();
+        return this.goals != null && !this.goals.isEmpty();
       case GSNPackage.SAFETY_CASE__STRATEGIES:
-        return strategies != null && !strategies.isEmpty();
+        return this.strategies != null && !this.strategies.isEmpty();
       case GSNPackage.SAFETY_CASE__SOLUTIONS:
-        return solutions != null && !solutions.isEmpty();
+        return this.solutions != null && !this.solutions.isEmpty();
       case GSNPackage.SAFETY_CASE__CONTEXTS:
-        return contexts != null && !contexts.isEmpty();
+        return this.contexts != null && !this.contexts.isEmpty();
       case GSNPackage.SAFETY_CASE__JUSTIFICATIONS:
-        return justifications != null && !justifications.isEmpty();
+        return this.justifications != null && !this.justifications.isEmpty();
       case GSNPackage.SAFETY_CASE__ASSUMPTIONS:
-        return assumptions != null && !assumptions.isEmpty();
+        return this.assumptions != null && !this.assumptions.isEmpty();
       case GSNPackage.SAFETY_CASE__CONNECTORS:
-        return connectors != null && !connectors.isEmpty();
+        return this.connectors != null && !this.connectors.isEmpty();
     }
     return super.eIsSet(featureID);
   }

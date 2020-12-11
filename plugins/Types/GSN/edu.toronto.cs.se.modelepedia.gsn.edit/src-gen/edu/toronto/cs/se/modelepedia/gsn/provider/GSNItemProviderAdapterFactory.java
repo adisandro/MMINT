@@ -3,15 +3,13 @@
  * All rights reserved. This program and the accompanying materials are made available under the terms
  * of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *   Alessio Di Sandro - Implementation
  *   Nick Fung - Implementation.
- * 
+ *
  */
 package edu.toronto.cs.se.modelepedia.gsn.provider;
-
-import edu.toronto.cs.se.modelepedia.gsn.util.GSNAdapterFactory;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -19,7 +17,6 @@ import java.util.Collection;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.edit.provider.ChangeNotifier;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -31,6 +28,8 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+
+import edu.toronto.cs.se.modelepedia.gsn.util.GSNAdapterFactory;
 
 /**
  * This is the factory that is used to provide the interfaces needed to support Viewers.
@@ -64,7 +63,7 @@ public class GSNItemProviderAdapterFactory extends GSNAdapterFactory implements 
    * <!-- end-user-doc -->
    * @generated
    */
-  protected Collection<Object> supportedTypes = new ArrayList<Object>();
+  protected Collection<Object> supportedTypes = new ArrayList<>();
 
   /**
    * This constructs an instance.
@@ -73,11 +72,11 @@ public class GSNItemProviderAdapterFactory extends GSNAdapterFactory implements 
    * @generated
    */
   public GSNItemProviderAdapterFactory() {
-    supportedTypes.add(IEditingDomainItemProvider.class);
-    supportedTypes.add(IStructuredItemContentProvider.class);
-    supportedTypes.add(ITreeItemContentProvider.class);
-    supportedTypes.add(IItemLabelProvider.class);
-    supportedTypes.add(IItemPropertySource.class);
+    this.supportedTypes.add(IEditingDomainItemProvider.class);
+    this.supportedTypes.add(IStructuredItemContentProvider.class);
+    this.supportedTypes.add(ITreeItemContentProvider.class);
+    this.supportedTypes.add(IItemLabelProvider.class);
+    this.supportedTypes.add(IItemPropertySource.class);
   }
 
   /**
@@ -96,11 +95,11 @@ public class GSNItemProviderAdapterFactory extends GSNAdapterFactory implements 
    */
   @Override
   public Adapter createSafetyCaseAdapter() {
-    if (safetyCaseItemProvider == null) {
-      safetyCaseItemProvider = new SafetyCaseItemProvider(this);
+    if (this.safetyCaseItemProvider == null) {
+      this.safetyCaseItemProvider = new SafetyCaseItemProvider(this);
     }
 
-    return safetyCaseItemProvider;
+    return this.safetyCaseItemProvider;
   }
 
   /**
@@ -119,11 +118,11 @@ public class GSNItemProviderAdapterFactory extends GSNAdapterFactory implements 
    */
   @Override
   public Adapter createSupportedByAdapter() {
-    if (supportedByItemProvider == null) {
-      supportedByItemProvider = new SupportedByItemProvider(this);
+    if (this.supportedByItemProvider == null) {
+      this.supportedByItemProvider = new SupportedByItemProvider(this);
     }
 
-    return supportedByItemProvider;
+    return this.supportedByItemProvider;
   }
 
   /**
@@ -142,11 +141,11 @@ public class GSNItemProviderAdapterFactory extends GSNAdapterFactory implements 
    */
   @Override
   public Adapter createInContextOfAdapter() {
-    if (inContextOfItemProvider == null) {
-      inContextOfItemProvider = new InContextOfItemProvider(this);
+    if (this.inContextOfItemProvider == null) {
+      this.inContextOfItemProvider = new InContextOfItemProvider(this);
     }
 
-    return inContextOfItemProvider;
+    return this.inContextOfItemProvider;
   }
 
   /**
@@ -165,11 +164,11 @@ public class GSNItemProviderAdapterFactory extends GSNAdapterFactory implements 
    */
   @Override
   public Adapter createBasicGoalAdapter() {
-    if (basicGoalItemProvider == null) {
-      basicGoalItemProvider = new BasicGoalItemProvider(this);
+    if (this.basicGoalItemProvider == null) {
+      this.basicGoalItemProvider = new BasicGoalItemProvider(this);
     }
 
-    return basicGoalItemProvider;
+    return this.basicGoalItemProvider;
   }
 
   /**
@@ -188,11 +187,11 @@ public class GSNItemProviderAdapterFactory extends GSNAdapterFactory implements 
    */
   @Override
   public Adapter createIndependenceGoalAdapter() {
-    if (independenceGoalItemProvider == null) {
-      independenceGoalItemProvider = new IndependenceGoalItemProvider(this);
+    if (this.independenceGoalItemProvider == null) {
+      this.independenceGoalItemProvider = new IndependenceGoalItemProvider(this);
     }
 
-    return independenceGoalItemProvider;
+    return this.independenceGoalItemProvider;
   }
 
   /**
@@ -211,11 +210,11 @@ public class GSNItemProviderAdapterFactory extends GSNAdapterFactory implements 
    */
   @Override
   public Adapter createDomainGoalAdapter() {
-    if (domainGoalItemProvider == null) {
-      domainGoalItemProvider = new DomainGoalItemProvider(this);
+    if (this.domainGoalItemProvider == null) {
+      this.domainGoalItemProvider = new DomainGoalItemProvider(this);
     }
 
-    return domainGoalItemProvider;
+    return this.domainGoalItemProvider;
   }
 
   /**
@@ -234,11 +233,11 @@ public class GSNItemProviderAdapterFactory extends GSNAdapterFactory implements 
    */
   @Override
   public Adapter createPropertyDecompositionElementAdapter() {
-    if (propertyDecompositionElementItemProvider == null) {
-      propertyDecompositionElementItemProvider = new PropertyDecompositionElementItemProvider(this);
+    if (this.propertyDecompositionElementItemProvider == null) {
+      this.propertyDecompositionElementItemProvider = new PropertyDecompositionElementItemProvider(this);
     }
 
-    return propertyDecompositionElementItemProvider;
+    return this.propertyDecompositionElementItemProvider;
   }
 
   /**
@@ -257,11 +256,11 @@ public class GSNItemProviderAdapterFactory extends GSNAdapterFactory implements 
    */
   @Override
   public Adapter createPropertyDecompositionStrategyAdapter() {
-    if (propertyDecompositionStrategyItemProvider == null) {
-      propertyDecompositionStrategyItemProvider = new PropertyDecompositionStrategyItemProvider(this);
+    if (this.propertyDecompositionStrategyItemProvider == null) {
+      this.propertyDecompositionStrategyItemProvider = new PropertyDecompositionStrategyItemProvider(this);
     }
 
-    return propertyDecompositionStrategyItemProvider;
+    return this.propertyDecompositionStrategyItemProvider;
   }
 
   /**
@@ -280,11 +279,11 @@ public class GSNItemProviderAdapterFactory extends GSNAdapterFactory implements 
    */
   @Override
   public Adapter createPropertyGoalAdapter() {
-    if (propertyGoalItemProvider == null) {
-      propertyGoalItemProvider = new PropertyGoalItemProvider(this);
+    if (this.propertyGoalItemProvider == null) {
+      this.propertyGoalItemProvider = new PropertyGoalItemProvider(this);
     }
 
-    return propertyGoalItemProvider;
+    return this.propertyGoalItemProvider;
   }
 
   /**
@@ -303,11 +302,11 @@ public class GSNItemProviderAdapterFactory extends GSNAdapterFactory implements 
    */
   @Override
   public Adapter createBasicStrategyAdapter() {
-    if (basicStrategyItemProvider == null) {
-      basicStrategyItemProvider = new BasicStrategyItemProvider(this);
+    if (this.basicStrategyItemProvider == null) {
+      this.basicStrategyItemProvider = new BasicStrategyItemProvider(this);
     }
 
-    return basicStrategyItemProvider;
+    return this.basicStrategyItemProvider;
   }
 
   /**
@@ -326,11 +325,11 @@ public class GSNItemProviderAdapterFactory extends GSNAdapterFactory implements 
    */
   @Override
   public Adapter createASILDecompositionStrategyAdapter() {
-    if (asilDecompositionStrategyItemProvider == null) {
-      asilDecompositionStrategyItemProvider = new ASILDecompositionStrategyItemProvider(this);
+    if (this.asilDecompositionStrategyItemProvider == null) {
+      this.asilDecompositionStrategyItemProvider = new ASILDecompositionStrategyItemProvider(this);
     }
 
-    return asilDecompositionStrategyItemProvider;
+    return this.asilDecompositionStrategyItemProvider;
   }
 
   /**
@@ -349,11 +348,11 @@ public class GSNItemProviderAdapterFactory extends GSNAdapterFactory implements 
    */
   @Override
   public Adapter createSolutionAdapter() {
-    if (solutionItemProvider == null) {
-      solutionItemProvider = new SolutionItemProvider(this);
+    if (this.solutionItemProvider == null) {
+      this.solutionItemProvider = new SolutionItemProvider(this);
     }
 
-    return solutionItemProvider;
+    return this.solutionItemProvider;
   }
 
   /**
@@ -372,11 +371,11 @@ public class GSNItemProviderAdapterFactory extends GSNAdapterFactory implements 
    */
   @Override
   public Adapter createContextAdapter() {
-    if (contextItemProvider == null) {
-      contextItemProvider = new ContextItemProvider(this);
+    if (this.contextItemProvider == null) {
+      this.contextItemProvider = new ContextItemProvider(this);
     }
 
-    return contextItemProvider;
+    return this.contextItemProvider;
   }
 
   /**
@@ -395,11 +394,11 @@ public class GSNItemProviderAdapterFactory extends GSNAdapterFactory implements 
    */
   @Override
   public Adapter createJustificationAdapter() {
-    if (justificationItemProvider == null) {
-      justificationItemProvider = new JustificationItemProvider(this);
+    if (this.justificationItemProvider == null) {
+      this.justificationItemProvider = new JustificationItemProvider(this);
     }
 
-    return justificationItemProvider;
+    return this.justificationItemProvider;
   }
 
   /**
@@ -418,11 +417,11 @@ public class GSNItemProviderAdapterFactory extends GSNAdapterFactory implements 
    */
   @Override
   public Adapter createAssumptionAdapter() {
-    if (assumptionItemProvider == null) {
-      assumptionItemProvider = new AssumptionItemProvider(this);
+    if (this.assumptionItemProvider == null) {
+      this.assumptionItemProvider = new AssumptionItemProvider(this);
     }
 
-    return assumptionItemProvider;
+    return this.assumptionItemProvider;
   }
 
   /**
@@ -441,11 +440,11 @@ public class GSNItemProviderAdapterFactory extends GSNAdapterFactory implements 
    */
   @Override
   public Adapter createASILAdapter() {
-    if (asilItemProvider == null) {
-      asilItemProvider = new ASILItemProvider(this);
+    if (this.asilItemProvider == null) {
+      this.asilItemProvider = new ASILItemProvider(this);
     }
 
-    return asilItemProvider;
+    return this.asilItemProvider;
   }
 
   /**
@@ -464,11 +463,11 @@ public class GSNItemProviderAdapterFactory extends GSNAdapterFactory implements 
    */
   @Override
   public Adapter createImpactAnnotationAdapter() {
-    if (impactAnnotationItemProvider == null) {
-      impactAnnotationItemProvider = new ImpactAnnotationItemProvider(this);
+    if (this.impactAnnotationItemProvider == null) {
+      this.impactAnnotationItemProvider = new ImpactAnnotationItemProvider(this);
     }
 
-    return impactAnnotationItemProvider;
+    return this.impactAnnotationItemProvider;
   }
 
   /**
@@ -487,11 +486,11 @@ public class GSNItemProviderAdapterFactory extends GSNAdapterFactory implements 
    */
   @Override
   public Adapter createAndSupporterAdapter() {
-    if (andSupporterItemProvider == null) {
-      andSupporterItemProvider = new AndSupporterItemProvider(this);
+    if (this.andSupporterItemProvider == null) {
+      this.andSupporterItemProvider = new AndSupporterItemProvider(this);
     }
 
-    return andSupporterItemProvider;
+    return this.andSupporterItemProvider;
   }
 
   /**
@@ -510,11 +509,11 @@ public class GSNItemProviderAdapterFactory extends GSNAdapterFactory implements 
    */
   @Override
   public Adapter createOrSupporterAdapter() {
-    if (orSupporterItemProvider == null) {
-      orSupporterItemProvider = new OrSupporterItemProvider(this);
+    if (this.orSupporterItemProvider == null) {
+      this.orSupporterItemProvider = new OrSupporterItemProvider(this);
     }
 
-    return orSupporterItemProvider;
+    return this.orSupporterItemProvider;
   }
 
   /**
@@ -533,11 +532,11 @@ public class GSNItemProviderAdapterFactory extends GSNAdapterFactory implements 
    */
   @Override
   public Adapter createXorSupporterAdapter() {
-    if (xorSupporterItemProvider == null) {
-      xorSupporterItemProvider = new XorSupporterItemProvider(this);
+    if (this.xorSupporterItemProvider == null) {
+      this.xorSupporterItemProvider = new XorSupporterItemProvider(this);
     }
 
-    return xorSupporterItemProvider;
+    return this.xorSupporterItemProvider;
   }
 
   /**
@@ -556,11 +555,11 @@ public class GSNItemProviderAdapterFactory extends GSNAdapterFactory implements 
    */
   @Override
   public Adapter createMofNSupporterAdapter() {
-    if (mofNSupporterItemProvider == null) {
-      mofNSupporterItemProvider = new MofNSupporterItemProvider(this);
+    if (this.mofNSupporterItemProvider == null) {
+      this.mofNSupporterItemProvider = new MofNSupporterItemProvider(this);
     }
 
-    return mofNSupporterItemProvider;
+    return this.mofNSupporterItemProvider;
   }
 
   /**
@@ -579,11 +578,11 @@ public class GSNItemProviderAdapterFactory extends GSNAdapterFactory implements 
    */
   @Override
   public Adapter createIntDomainAdapter() {
-    if (intDomainItemProvider == null) {
-      intDomainItemProvider = new IntDomainItemProvider(this);
+    if (this.intDomainItemProvider == null) {
+      this.intDomainItemProvider = new IntDomainItemProvider(this);
     }
 
-    return intDomainItemProvider;
+    return this.intDomainItemProvider;
   }
 
   /**
@@ -602,11 +601,11 @@ public class GSNItemProviderAdapterFactory extends GSNAdapterFactory implements 
    */
   @Override
   public Adapter createRealDomainAdapter() {
-    if (realDomainItemProvider == null) {
-      realDomainItemProvider = new RealDomainItemProvider(this);
+    if (this.realDomainItemProvider == null) {
+      this.realDomainItemProvider = new RealDomainItemProvider(this);
     }
 
-    return realDomainItemProvider;
+    return this.realDomainItemProvider;
   }
 
   /**
@@ -625,11 +624,11 @@ public class GSNItemProviderAdapterFactory extends GSNAdapterFactory implements 
    */
   @Override
   public Adapter createEnumDomainAdapter() {
-    if (enumDomainItemProvider == null) {
-      enumDomainItemProvider = new EnumDomainItemProvider(this);
+    if (this.enumDomainItemProvider == null) {
+      this.enumDomainItemProvider = new EnumDomainItemProvider(this);
     }
 
-    return enumDomainItemProvider;
+    return this.enumDomainItemProvider;
   }
 
   /**
@@ -648,11 +647,11 @@ public class GSNItemProviderAdapterFactory extends GSNAdapterFactory implements 
    */
   @Override
   public Adapter createValueDomainAdapter() {
-    if (valueDomainItemProvider == null) {
-      valueDomainItemProvider = new ValueDomainItemProvider(this);
+    if (this.valueDomainItemProvider == null) {
+      this.valueDomainItemProvider = new ValueDomainItemProvider(this);
     }
 
-    return valueDomainItemProvider;
+    return this.valueDomainItemProvider;
   }
 
   /**
@@ -671,11 +670,11 @@ public class GSNItemProviderAdapterFactory extends GSNAdapterFactory implements 
    */
   @Override
   public Adapter createDomainDecompositionStrategyAdapter() {
-    if (domainDecompositionStrategyItemProvider == null) {
-      domainDecompositionStrategyItemProvider = new DomainDecompositionStrategyItemProvider(this);
+    if (this.domainDecompositionStrategyItemProvider == null) {
+      this.domainDecompositionStrategyItemProvider = new DomainDecompositionStrategyItemProvider(this);
     }
 
-    return domainDecompositionStrategyItemProvider;
+    return this.domainDecompositionStrategyItemProvider;
   }
 
   /**
@@ -686,7 +685,7 @@ public class GSNItemProviderAdapterFactory extends GSNAdapterFactory implements 
    */
   @Override
   public ComposeableAdapterFactory getRootAdapterFactory() {
-    return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
+    return this.parentAdapterFactory == null ? this : this.parentAdapterFactory.getRootAdapterFactory();
   }
 
   /**
@@ -707,7 +706,7 @@ public class GSNItemProviderAdapterFactory extends GSNAdapterFactory implements 
    */
   @Override
   public boolean isFactoryForType(Object type) {
-    return supportedTypes.contains(type) || super.isFactoryForType(type);
+    return this.supportedTypes.contains(type) || super.isFactoryForType(type);
   }
 
   /**
@@ -729,7 +728,7 @@ public class GSNItemProviderAdapterFactory extends GSNAdapterFactory implements 
   @Override
   public Object adapt(Object object, Object type) {
     if (isFactoryForType(type)) {
-      Object adapter = super.adapt(object, type);
+      var adapter = super.adapt(object, type);
       if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter))) {
         return adapter;
       }
@@ -746,7 +745,7 @@ public class GSNItemProviderAdapterFactory extends GSNAdapterFactory implements 
    */
   @Override
   public void addListener(INotifyChangedListener notifyChangedListener) {
-    changeNotifier.addListener(notifyChangedListener);
+    this.changeNotifier.addListener(notifyChangedListener);
   }
 
   /**
@@ -757,7 +756,7 @@ public class GSNItemProviderAdapterFactory extends GSNAdapterFactory implements 
    */
   @Override
   public void removeListener(INotifyChangedListener notifyChangedListener) {
-    changeNotifier.removeListener(notifyChangedListener);
+    this.changeNotifier.removeListener(notifyChangedListener);
   }
 
   /**
@@ -768,47 +767,47 @@ public class GSNItemProviderAdapterFactory extends GSNAdapterFactory implements 
    */
   @Override
   public void fireNotifyChanged(Notification notification) {
-    changeNotifier.fireNotifyChanged(notification);
+    this.changeNotifier.fireNotifyChanged(notification);
 
-    if (parentAdapterFactory != null) {
-      parentAdapterFactory.fireNotifyChanged(notification);
+    if (this.parentAdapterFactory != null) {
+      this.parentAdapterFactory.fireNotifyChanged(notification);
     }
   }
 
   /**
-   * This disposes all of the item providers created by this factory. 
+   * This disposes all of the item providers created by this factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
   @Override
   public void dispose() {
-    if (safetyCaseItemProvider != null) safetyCaseItemProvider.dispose();
-    if (supportedByItemProvider != null) supportedByItemProvider.dispose();
-    if (inContextOfItemProvider != null) inContextOfItemProvider.dispose();
-    if (basicGoalItemProvider != null) basicGoalItemProvider.dispose();
-    if (independenceGoalItemProvider != null) independenceGoalItemProvider.dispose();
-    if (basicStrategyItemProvider != null) basicStrategyItemProvider.dispose();
-    if (asilDecompositionStrategyItemProvider != null) asilDecompositionStrategyItemProvider.dispose();
-    if (solutionItemProvider != null) solutionItemProvider.dispose();
-    if (contextItemProvider != null) contextItemProvider.dispose();
-    if (justificationItemProvider != null) justificationItemProvider.dispose();
-    if (assumptionItemProvider != null) assumptionItemProvider.dispose();
-    if (asilItemProvider != null) asilItemProvider.dispose();
-    if (impactAnnotationItemProvider != null) impactAnnotationItemProvider.dispose();
-    if (andSupporterItemProvider != null) andSupporterItemProvider.dispose();
-    if (orSupporterItemProvider != null) orSupporterItemProvider.dispose();
-    if (xorSupporterItemProvider != null) xorSupporterItemProvider.dispose();
-    if (mofNSupporterItemProvider != null) mofNSupporterItemProvider.dispose();
-    if (intDomainItemProvider != null) intDomainItemProvider.dispose();
-    if (realDomainItemProvider != null) realDomainItemProvider.dispose();
-    if (enumDomainItemProvider != null) enumDomainItemProvider.dispose();
-    if (valueDomainItemProvider != null) valueDomainItemProvider.dispose();
-    if (domainDecompositionStrategyItemProvider != null) domainDecompositionStrategyItemProvider.dispose();
-    if (domainGoalItemProvider != null) domainGoalItemProvider.dispose();
-    if (propertyDecompositionElementItemProvider != null) propertyDecompositionElementItemProvider.dispose();
-    if (propertyDecompositionStrategyItemProvider != null) propertyDecompositionStrategyItemProvider.dispose();
-    if (propertyGoalItemProvider != null) propertyGoalItemProvider.dispose();
+    if (this.safetyCaseItemProvider != null) this.safetyCaseItemProvider.dispose();
+    if (this.supportedByItemProvider != null) this.supportedByItemProvider.dispose();
+    if (this.inContextOfItemProvider != null) this.inContextOfItemProvider.dispose();
+    if (this.basicGoalItemProvider != null) this.basicGoalItemProvider.dispose();
+    if (this.independenceGoalItemProvider != null) this.independenceGoalItemProvider.dispose();
+    if (this.basicStrategyItemProvider != null) this.basicStrategyItemProvider.dispose();
+    if (this.asilDecompositionStrategyItemProvider != null) this.asilDecompositionStrategyItemProvider.dispose();
+    if (this.solutionItemProvider != null) this.solutionItemProvider.dispose();
+    if (this.contextItemProvider != null) this.contextItemProvider.dispose();
+    if (this.justificationItemProvider != null) this.justificationItemProvider.dispose();
+    if (this.assumptionItemProvider != null) this.assumptionItemProvider.dispose();
+    if (this.asilItemProvider != null) this.asilItemProvider.dispose();
+    if (this.impactAnnotationItemProvider != null) this.impactAnnotationItemProvider.dispose();
+    if (this.andSupporterItemProvider != null) this.andSupporterItemProvider.dispose();
+    if (this.orSupporterItemProvider != null) this.orSupporterItemProvider.dispose();
+    if (this.xorSupporterItemProvider != null) this.xorSupporterItemProvider.dispose();
+    if (this.mofNSupporterItemProvider != null) this.mofNSupporterItemProvider.dispose();
+    if (this.intDomainItemProvider != null) this.intDomainItemProvider.dispose();
+    if (this.realDomainItemProvider != null) this.realDomainItemProvider.dispose();
+    if (this.enumDomainItemProvider != null) this.enumDomainItemProvider.dispose();
+    if (this.valueDomainItemProvider != null) this.valueDomainItemProvider.dispose();
+    if (this.domainDecompositionStrategyItemProvider != null) this.domainDecompositionStrategyItemProvider.dispose();
+    if (this.domainGoalItemProvider != null) this.domainGoalItemProvider.dispose();
+    if (this.propertyDecompositionElementItemProvider != null) this.propertyDecompositionElementItemProvider.dispose();
+    if (this.propertyDecompositionStrategyItemProvider != null) this.propertyDecompositionStrategyItemProvider.dispose();
+    if (this.propertyGoalItemProvider != null) this.propertyGoalItemProvider.dispose();
   }
 
 }

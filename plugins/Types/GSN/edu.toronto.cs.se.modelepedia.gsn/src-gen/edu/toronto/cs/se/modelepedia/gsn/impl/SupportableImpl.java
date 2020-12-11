@@ -3,29 +3,26 @@
  * All rights reserved. This program and the accompanying materials are made available under the terms
  * of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *   Alessio Di Sandro - Implementation
  *   Nick Fung - Implementation.
- * 
+ *
  */
 package edu.toronto.cs.se.modelepedia.gsn.impl;
-
-import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
-import edu.toronto.cs.se.modelepedia.gsn.Supportable;
-import edu.toronto.cs.se.modelepedia.gsn.SupportedBy;
 
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
+import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
+import edu.toronto.cs.se.modelepedia.gsn.Supportable;
+import edu.toronto.cs.se.modelepedia.gsn.SupportedBy;
 
 /**
  * <!-- begin-user-doc -->
@@ -77,10 +74,10 @@ public abstract class SupportableImpl extends SupporterImpl implements Supportab
    */
   @Override
   public EList<SupportedBy> getSupportedBy() {
-    if (supportedBy == null) {
-      supportedBy = new EObjectContainmentWithInverseEList<SupportedBy>(SupportedBy.class, this, GSNPackage.SUPPORTABLE__SUPPORTED_BY, GSNPackage.SUPPORTED_BY__SOURCE);
+    if (this.supportedBy == null) {
+      this.supportedBy = new EObjectContainmentWithInverseEList<>(SupportedBy.class, this, GSNPackage.SUPPORTABLE__SUPPORTED_BY, GSNPackage.SUPPORTED_BY__SOURCE);
     }
-    return supportedBy;
+    return this.supportedBy;
   }
 
   /**
@@ -167,7 +164,7 @@ public abstract class SupportableImpl extends SupporterImpl implements Supportab
   public boolean eIsSet(int featureID) {
     switch (featureID) {
       case GSNPackage.SUPPORTABLE__SUPPORTED_BY:
-        return supportedBy != null && !supportedBy.isEmpty();
+        return this.supportedBy != null && !this.supportedBy.isEmpty();
     }
     return super.eIsSet(featureID);
   }

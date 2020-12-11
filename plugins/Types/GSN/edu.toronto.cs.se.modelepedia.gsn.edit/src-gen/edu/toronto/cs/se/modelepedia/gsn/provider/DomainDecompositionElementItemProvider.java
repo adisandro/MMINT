@@ -3,29 +3,22 @@
  * All rights reserved. This program and the accompanying materials are made available under the terms
  * of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *   Alessio Di Sandro - Implementation
  *   Nick Fung - Implementation.
- * 
+ *
  */
 package edu.toronto.cs.se.modelepedia.gsn.provider;
 
-
-import edu.toronto.cs.se.modelepedia.gsn.DomainDecompositionElement;
-import edu.toronto.cs.se.modelepedia.gsn.GSNFactory;
-import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -35,13 +28,17 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import edu.toronto.cs.se.modelepedia.gsn.DomainDecompositionElement;
+import edu.toronto.cs.se.modelepedia.gsn.GSNFactory;
+import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
+
 /**
  * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.gsn.DomainDecompositionElement} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class DomainDecompositionElementItemProvider 
+public class DomainDecompositionElementItemProvider
   extends ItemProviderAdapter
   implements
     IEditingDomainItemProvider,
@@ -67,11 +64,11 @@ public class DomainDecompositionElementItemProvider
    */
   @Override
   public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-    if (itemPropertyDescriptors == null) {
+    if (this.itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
     }
-    return itemPropertyDescriptors;
+    return this.itemPropertyDescriptors;
   }
 
   /**
@@ -84,11 +81,11 @@ public class DomainDecompositionElementItemProvider
    */
   @Override
   public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-    if (childrenFeatures == null) {
+    if (this.childrenFeatures == null) {
       super.getChildrenFeatures(object);
-      childrenFeatures.add(GSNPackage.Literals.DOMAIN_DECOMPOSITION_ELEMENT__DOMAIN);
+      this.childrenFeatures.add(GSNPackage.Literals.DOMAIN_DECOMPOSITION_ELEMENT__DOMAIN);
     }
-    return childrenFeatures;
+    return this.childrenFeatures;
   }
 
   /**

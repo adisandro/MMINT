@@ -3,26 +3,24 @@
  * All rights reserved. This program and the accompanying materials are made available under the terms
  * of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *   Alessio Di Sandro - Implementation
  *   Nick Fung - Implementation.
- * 
+ *
  */
 package edu.toronto.cs.se.modelepedia.gsn.impl;
+
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import edu.toronto.cs.se.modelepedia.gsn.ASIL;
 import edu.toronto.cs.se.modelepedia.gsn.ASILfulElement;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
-
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -74,7 +72,7 @@ public abstract class ASILfulElementImpl extends MinimalEObjectImpl.Container im
    */
   @Override
   public ASIL getAsil() {
-    return asil;
+    return this.asil;
   }
 
   /**
@@ -83,10 +81,10 @@ public abstract class ASILfulElementImpl extends MinimalEObjectImpl.Container im
    * @generated
    */
   public NotificationChain basicSetAsil(ASIL newAsil, NotificationChain msgs) {
-    ASIL oldAsil = asil;
-    asil = newAsil;
+    var oldAsil = this.asil;
+    this.asil = newAsil;
     if (eNotificationRequired()) {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GSNPackage.ASI_LFUL_ELEMENT__ASIL, oldAsil, newAsil);
+      var notification = new ENotificationImpl(this, Notification.SET, GSNPackage.ASI_LFUL_ELEMENT__ASIL, oldAsil, newAsil);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -99,10 +97,10 @@ public abstract class ASILfulElementImpl extends MinimalEObjectImpl.Container im
    */
   @Override
   public void setAsil(ASIL newAsil) {
-    if (newAsil != asil) {
+    if (newAsil != this.asil) {
       NotificationChain msgs = null;
-      if (asil != null)
-        msgs = ((InternalEObject)asil).eInverseRemove(this, GSNPackage.ASIL__TARGET, ASIL.class, msgs);
+      if (this.asil != null)
+        msgs = ((InternalEObject)this.asil).eInverseRemove(this, GSNPackage.ASIL__TARGET, ASIL.class, msgs);
       if (newAsil != null)
         msgs = ((InternalEObject)newAsil).eInverseAdd(this, GSNPackage.ASIL__TARGET, ASIL.class, msgs);
       msgs = basicSetAsil(newAsil, msgs);
@@ -121,8 +119,8 @@ public abstract class ASILfulElementImpl extends MinimalEObjectImpl.Container im
   public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
       case GSNPackage.ASI_LFUL_ELEMENT__ASIL:
-        if (asil != null)
-          msgs = ((InternalEObject)asil).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GSNPackage.ASI_LFUL_ELEMENT__ASIL, null, msgs);
+        if (this.asil != null)
+          msgs = ((InternalEObject)this.asil).eInverseRemove(this, InternalEObject.EOPPOSITE_FEATURE_BASE - GSNPackage.ASI_LFUL_ELEMENT__ASIL, null, msgs);
         return basicSetAsil((ASIL)otherEnd, msgs);
     }
     return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -195,7 +193,7 @@ public abstract class ASILfulElementImpl extends MinimalEObjectImpl.Container im
   public boolean eIsSet(int featureID) {
     switch (featureID) {
       case GSNPackage.ASI_LFUL_ELEMENT__ASIL:
-        return asil != null;
+        return this.asil != null;
     }
     return super.eIsSet(featureID);
   }

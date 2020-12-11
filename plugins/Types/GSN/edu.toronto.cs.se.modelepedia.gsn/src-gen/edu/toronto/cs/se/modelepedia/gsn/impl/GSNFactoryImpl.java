@@ -3,25 +3,53 @@
  * All rights reserved. This program and the accompanying materials are made available under the terms
  * of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *   Alessio Di Sandro - Implementation
  *   Nick Fung - Implementation.
- * 
+ *
  */
 package edu.toronto.cs.se.modelepedia.gsn.impl;
-
-import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.modelepedia.gsn.*;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+
+import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.modelepedia.gsn.ASIL;
+import edu.toronto.cs.se.modelepedia.gsn.ASILDecompositionStrategy;
+import edu.toronto.cs.se.modelepedia.gsn.ASILLevel;
+import edu.toronto.cs.se.modelepedia.gsn.AndSupporter;
+import edu.toronto.cs.se.modelepedia.gsn.Assumption;
+import edu.toronto.cs.se.modelepedia.gsn.BasicGoal;
+import edu.toronto.cs.se.modelepedia.gsn.BasicStrategy;
+import edu.toronto.cs.se.modelepedia.gsn.Context;
+import edu.toronto.cs.se.modelepedia.gsn.DomainDecompositionStrategy;
+import edu.toronto.cs.se.modelepedia.gsn.DomainGoal;
+import edu.toronto.cs.se.modelepedia.gsn.EnumDomain;
+import edu.toronto.cs.se.modelepedia.gsn.GSNFactory;
+import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
+import edu.toronto.cs.se.modelepedia.gsn.ImpactAnnotation;
+import edu.toronto.cs.se.modelepedia.gsn.ImpactType;
+import edu.toronto.cs.se.modelepedia.gsn.InContextOf;
+import edu.toronto.cs.se.modelepedia.gsn.IndependenceGoal;
+import edu.toronto.cs.se.modelepedia.gsn.IntDomain;
+import edu.toronto.cs.se.modelepedia.gsn.Justification;
+import edu.toronto.cs.se.modelepedia.gsn.MofNSupporter;
+import edu.toronto.cs.se.modelepedia.gsn.OrSupporter;
+import edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionElement;
+import edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionStrategy;
+import edu.toronto.cs.se.modelepedia.gsn.PropertyGoal;
+import edu.toronto.cs.se.modelepedia.gsn.RealDomain;
+import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
+import edu.toronto.cs.se.modelepedia.gsn.Solution;
+import edu.toronto.cs.se.modelepedia.gsn.SupportedBy;
+import edu.toronto.cs.se.modelepedia.gsn.ValidityValue;
+import edu.toronto.cs.se.modelepedia.gsn.ValueDomain;
+import edu.toronto.cs.se.modelepedia.gsn.XorSupporter;
 
 /**
  * <!-- begin-user-doc -->
@@ -38,7 +66,7 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
    */
   public static GSNFactory init() {
     try {
-      GSNFactory theGSNFactory = (GSNFactory)EPackage.Registry.INSTANCE.getEFactory(GSNPackage.eNS_URI);
+      var theGSNFactory = (GSNFactory)EPackage.Registry.INSTANCE.getEFactory(GSNPackage.eNS_URI);
       if (theGSNFactory != null) {
         return theGSNFactory;
       }
@@ -147,7 +175,7 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
    */
   @Override
   public SafetyCase createSafetyCase() {
-    SafetyCaseImpl safetyCase = new SafetyCaseImpl();
+    var safetyCase = new SafetyCaseImpl();
     return safetyCase;
   }
 
@@ -158,7 +186,7 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
    */
   @Override
   public SupportedBy createSupportedBy() {
-    SupportedByImpl supportedBy = new SupportedByImpl();
+    var supportedBy = new SupportedByImpl();
     return supportedBy;
   }
 
@@ -169,7 +197,7 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
    */
   @Override
   public InContextOf createInContextOf() {
-    InContextOfImpl inContextOf = new InContextOfImpl();
+    var inContextOf = new InContextOfImpl();
     return inContextOf;
   }
 
@@ -180,7 +208,7 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
    */
   @Override
   public BasicGoal createBasicGoal() {
-    BasicGoalImpl basicGoal = new BasicGoalImpl();
+    var basicGoal = new BasicGoalImpl();
     return basicGoal;
   }
 
@@ -191,7 +219,7 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
    */
   @Override
   public IndependenceGoal createIndependenceGoal() {
-    IndependenceGoalImpl independenceGoal = new IndependenceGoalImpl();
+    var independenceGoal = new IndependenceGoalImpl();
     return independenceGoal;
   }
 
@@ -202,7 +230,7 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
    */
   @Override
   public DomainGoal createDomainGoal() {
-    DomainGoalImpl domainGoal = new DomainGoalImpl();
+    var domainGoal = new DomainGoalImpl();
     return domainGoal;
   }
 
@@ -213,7 +241,7 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
    */
   @Override
   public PropertyDecompositionElement createPropertyDecompositionElement() {
-    PropertyDecompositionElementImpl propertyDecompositionElement = new PropertyDecompositionElementImpl();
+    var propertyDecompositionElement = new PropertyDecompositionElementImpl();
     return propertyDecompositionElement;
   }
 
@@ -224,7 +252,7 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
    */
   @Override
   public PropertyDecompositionStrategy createPropertyDecompositionStrategy() {
-    PropertyDecompositionStrategyImpl propertyDecompositionStrategy = new PropertyDecompositionStrategyImpl();
+    var propertyDecompositionStrategy = new PropertyDecompositionStrategyImpl();
     return propertyDecompositionStrategy;
   }
 
@@ -235,7 +263,7 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
    */
   @Override
   public PropertyGoal createPropertyGoal() {
-    PropertyGoalImpl propertyGoal = new PropertyGoalImpl();
+    var propertyGoal = new PropertyGoalImpl();
     return propertyGoal;
   }
 
@@ -246,7 +274,7 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
    */
   @Override
   public BasicStrategy createBasicStrategy() {
-    BasicStrategyImpl basicStrategy = new BasicStrategyImpl();
+    var basicStrategy = new BasicStrategyImpl();
     return basicStrategy;
   }
 
@@ -257,7 +285,7 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
    */
   @Override
   public ASILDecompositionStrategy createASILDecompositionStrategy() {
-    ASILDecompositionStrategyImpl asilDecompositionStrategy = new ASILDecompositionStrategyImpl();
+    var asilDecompositionStrategy = new ASILDecompositionStrategyImpl();
     return asilDecompositionStrategy;
   }
 
@@ -268,7 +296,7 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
    */
   @Override
   public Solution createSolution() {
-    SolutionImpl solution = new SolutionImpl();
+    var solution = new SolutionImpl();
     return solution;
   }
 
@@ -279,7 +307,7 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
    */
   @Override
   public Context createContext() {
-    ContextImpl context = new ContextImpl();
+    var context = new ContextImpl();
     return context;
   }
 
@@ -290,7 +318,7 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
    */
   @Override
   public Justification createJustification() {
-    JustificationImpl justification = new JustificationImpl();
+    var justification = new JustificationImpl();
     return justification;
   }
 
@@ -301,7 +329,7 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
    */
   @Override
   public Assumption createAssumption() {
-    AssumptionImpl assumption = new AssumptionImpl();
+    var assumption = new AssumptionImpl();
     return assumption;
   }
 
@@ -312,7 +340,7 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
    */
   @Override
   public ASIL createASIL() {
-    ASILImpl asil = new ASILImpl();
+    var asil = new ASILImpl();
     return asil;
   }
 
@@ -323,7 +351,7 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
    */
   @Override
   public ImpactAnnotation createImpactAnnotation() {
-    ImpactAnnotationImpl impactAnnotation = new ImpactAnnotationImpl();
+    var impactAnnotation = new ImpactAnnotationImpl();
     return impactAnnotation;
   }
 
@@ -334,7 +362,7 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
    */
   @Override
   public AndSupporter createAndSupporter() {
-    AndSupporterImpl andSupporter = new AndSupporterImpl();
+    var andSupporter = new AndSupporterImpl();
     return andSupporter;
   }
 
@@ -345,7 +373,7 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
    */
   @Override
   public OrSupporter createOrSupporter() {
-    OrSupporterImpl orSupporter = new OrSupporterImpl();
+    var orSupporter = new OrSupporterImpl();
     return orSupporter;
   }
 
@@ -356,7 +384,7 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
    */
   @Override
   public XorSupporter createXorSupporter() {
-    XorSupporterImpl xorSupporter = new XorSupporterImpl();
+    var xorSupporter = new XorSupporterImpl();
     return xorSupporter;
   }
 
@@ -367,7 +395,7 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
    */
   @Override
   public MofNSupporter createMofNSupporter() {
-    MofNSupporterImpl mofNSupporter = new MofNSupporterImpl();
+    var mofNSupporter = new MofNSupporterImpl();
     return mofNSupporter;
   }
 
@@ -378,7 +406,7 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
    */
   @Override
   public IntDomain createIntDomain() {
-    IntDomainImpl intDomain = new IntDomainImpl();
+    var intDomain = new IntDomainImpl();
     return intDomain;
   }
 
@@ -389,7 +417,7 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
    */
   @Override
   public RealDomain createRealDomain() {
-    RealDomainImpl realDomain = new RealDomainImpl();
+    var realDomain = new RealDomainImpl();
     return realDomain;
   }
 
@@ -400,7 +428,7 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
    */
   @Override
   public EnumDomain createEnumDomain() {
-    EnumDomainImpl enumDomain = new EnumDomainImpl();
+    var enumDomain = new EnumDomainImpl();
     return enumDomain;
   }
 
@@ -411,7 +439,7 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
    */
   @Override
   public ValueDomain createValueDomain() {
-    ValueDomainImpl valueDomain = new ValueDomainImpl();
+    var valueDomain = new ValueDomainImpl();
     return valueDomain;
   }
 
@@ -422,7 +450,7 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
    */
   @Override
   public DomainDecompositionStrategy createDomainDecompositionStrategy() {
-    DomainDecompositionStrategyImpl domainDecompositionStrategy = new DomainDecompositionStrategyImpl();
+    var domainDecompositionStrategy = new DomainDecompositionStrategyImpl();
     return domainDecompositionStrategy;
   }
 
@@ -432,7 +460,7 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
    * @generated
    */
   public ASILLevel createASILLevelFromString(EDataType eDataType, String initialValue) {
-    ASILLevel result = ASILLevel.get(initialValue);
+    var result = ASILLevel.get(initialValue);
     if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
     return result;
   }
@@ -452,7 +480,7 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
    * @generated
    */
   public ValidityValue createValidityValueFromString(EDataType eDataType, String initialValue) {
-    ValidityValue result = ValidityValue.get(initialValue);
+    var result = ValidityValue.get(initialValue);
     if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
     return result;
   }
@@ -472,7 +500,7 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
    * @generated
    */
   public ImpactType createImpactTypeFromString(EDataType eDataType, String initialValue) {
-    ImpactType result = ImpactType.get(initialValue);
+    var result = ImpactType.get(initialValue);
     if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
     return result;
   }
