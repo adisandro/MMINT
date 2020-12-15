@@ -57,7 +57,9 @@ public class PropertyDecomposition extends GoalDecomposition {
        * D: Turn overlap error into warning
        * D+P: Allow incorrect decomposition rather than preventing creation of all objects?
        * P: Add decomposition check
-       * P: Solve reasoner name problem
+       * P: Solve reasoner name problem (and here rename language to reasonerName)
+       * L: Find where is lean's mathlab library (readlink -f $(type -P lean)) and add it to config file
+       * L: Extract dir recursively from jar
        */
       var builder = (PropertyBuilder) this.builder;
       // ask for input

@@ -24,5 +24,5 @@ public interface IReasoner {
    *
    * @return The reasoner name.
    */
-  public String getName();
+  String getName();
 }

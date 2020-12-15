@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.gsn.impl;
 
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -121,11 +122,12 @@ public class DomainDecompositionStrategyImpl extends DecompositionStrategyImpl i
    */
   @Override
   public void validate() throws MMINTException {
-    var domain = getDomain();
+    var domain = Objects.requireNonNull(getDomain(), "Domain not specified");
     var subDomains = getSupportedBy().stream()
       .map(SupportedBy::getTarget)
       .filter(g -> g instanceof DomainGoal)
       .map(g -> ((DomainGoal) g).getDomain())
+      .filter(d -> d != null)
       .collect(Collectors.toList());
     if (subDomains.size() <= 1) {
       throw new MMINTException("A domain must be decomposed into >1 sub-domains");

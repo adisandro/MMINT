@@ -12,6 +12,9 @@
  *******************************************************************************/
 package edu.toronto.cs.se.modelepedia.gsn.reasoning;
 
+import java.util.List;
+
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.reasoning.IReasoner;
 
 /**
@@ -21,4 +24,5 @@ import edu.toronto.cs.se.mmint.mid.reasoning.IReasoner;
  */
 public interface IDecompositionTrait extends IReasoner {
 
+  void validatePropertyDecomposition(String property, List<String> subProperties) throws MMINTException;
 }

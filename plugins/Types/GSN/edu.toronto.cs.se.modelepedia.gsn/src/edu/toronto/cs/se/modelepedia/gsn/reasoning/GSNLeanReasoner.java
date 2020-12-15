@@ -12,6 +12,9 @@
  *******************************************************************************/
 package edu.toronto.cs.se.modelepedia.gsn.reasoning;
 
+import java.util.List;
+
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.lean.reasoning.LeanReasoner;
 
 public class GSNLeanReasoner extends LeanReasoner implements IDecompositionTrait {
@@ -19,5 +22,14 @@ public class GSNLeanReasoner extends LeanReasoner implements IDecompositionTrait
   @Override
   public String getName() {
     return "Lean2";
+  }
+
+  @Override
+  public void validatePropertyDecomposition(String property, List<String> subProperties) throws MMINTException {
+    /**TODO
+     * Pass model
+     * Assemble property + subProperties into extendibleelementconstraint
+     * invoke checkModelConstraint
+     */
   }
 }

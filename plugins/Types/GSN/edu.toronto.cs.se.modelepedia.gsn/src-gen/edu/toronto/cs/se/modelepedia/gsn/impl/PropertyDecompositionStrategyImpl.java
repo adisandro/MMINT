@@ -11,18 +11,21 @@
  */
 package edu.toronto.cs.se.modelepedia.gsn.impl;
 
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionElement;
 import edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionStrategy;
 import edu.toronto.cs.se.modelepedia.gsn.PropertyGoal;
 import edu.toronto.cs.se.modelepedia.gsn.SupportedBy;
+import edu.toronto.cs.se.modelepedia.gsn.reasoning.IDecompositionTrait;
 
 /**
  * <!-- begin-user-doc -->
@@ -149,14 +152,24 @@ public class PropertyDecompositionStrategyImpl extends DecompositionStrategyImpl
    */
   @Override
   public void validate() throws MMINTException {
+    var reasonerName = Objects.requireNonNull(getLanguage(), "Reasoner not specified");
+    var reasoner = Objects.requireNonNull(MMINT.getReasoner(reasonerName),
+                                          "The reasoner '" + reasonerName + "' is not installed");
+    if (!(reasoner instanceof IDecompositionTrait)) {
+      throw new MMINTException("The reasoner '" + reasonerName +
+                               "' does not have support for GSN property decompositions");
+    }
+    var property = Objects.requireNonNull(getProperty(), "Property not specified");
     var subProperties = getSupportedBy().stream()
       .map(SupportedBy::getTarget)
       .filter(g -> g instanceof PropertyGoal)
       .map(g -> ((PropertyGoal) g).getProperty())
+      .filter(p -> p != null)
       .collect(Collectors.toList());
     if (subProperties.size() <= 1) {
       throw new MMINTException("A property must be decomposed into >1 sub-properties");
     }
+    ((IDecompositionTrait) reasoner).validatePropertyDecomposition(property, subProperties);
   }
 
   /**

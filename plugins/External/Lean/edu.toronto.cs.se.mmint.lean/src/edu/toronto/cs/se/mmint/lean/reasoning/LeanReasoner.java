@@ -64,10 +64,6 @@ public class LeanReasoner implements IModelConstraintTrait {
                       LeanReasoner.LEAN_DIR;
     var absWorkingPath = FileUtils.prependWorkspacePath(workingPath);
     try {
-      /**TODO:
-       * - Find where is lean's mathlab library (readlink -f $(type -P lean)) and add it to config file
-       * - Extract dir recursively from jar
-       */
       // project dir
       Files.createDirectory(Path.of(absWorkingPath));
       // constraint file

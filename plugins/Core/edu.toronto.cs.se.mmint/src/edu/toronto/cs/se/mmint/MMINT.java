@@ -1005,7 +1005,7 @@ public class MMINT implements MMINTConstants {
 		return MMINT.reasoners.keySet();
 	}
 
-  public static IReasoner getReasoner(String reasonerName) {
+  public static @Nullable IReasoner getReasoner(String reasonerName) {
     return MMINT.reasoners.get(reasonerName);
   }
 
