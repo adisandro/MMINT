@@ -18,7 +18,7 @@ import edu.toronto.cs.se.mmint.mid.Model;
  *
  * @author Alessio Di Sandro
  */
-public interface IModelConstraintTrait {
+public interface IModelConstraintTrait extends IReasoner {
 
   /**
    * Checks if a constraint is satisfied on a model.

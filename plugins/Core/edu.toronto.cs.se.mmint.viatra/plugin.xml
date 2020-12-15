@@ -10,7 +10,7 @@
     Alessio Di Sandro - Implementation.
 --><plugin>
   <extension point="edu.toronto.cs.se.mmint.reasoners">
-    <reasoner class="edu.toronto.cs.se.mmint.viatra.reasoning.ViatraReasoner" name="Viatra"/>
+    <reasoner class="edu.toronto.cs.se.mmint.viatra.reasoning.ViatraReasoner" />
   </extension>
   <extension id="edu.toronto.cs.se.mmint.viatra.mid.Mid" point="org.eclipse.viatra.query.runtime.queryspecification">
     <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:edu.toronto.cs.se.mmint.viatra.mid.Mid" id="edu.toronto.cs.se.mmint.viatra.mid.Mid">

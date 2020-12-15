@@ -50,6 +50,7 @@ import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator;
+import edu.toronto.cs.se.mmint.mid.reasoning.IReasoner;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
@@ -103,7 +104,7 @@ public class MMINT implements MMINTConstants {
   /** The reasoning traits **/
   static Map<String, Object> traits;
 	/** The reasoners. */
-	static Map<String, Object> reasoners;
+	static Map<String, IReasoner> reasoners;
 	/** The cache of runtime types. */
 	static Map<ExtendibleElement, List<? extends ExtendibleElement>> cachedRuntimeTypes;
 	/** The cached MID view provider */
@@ -741,18 +742,9 @@ public class MMINT implements MMINTConstants {
 			.forEach(dynamicOperatorType -> this.createDynamicType(dynamicOperatorType));
 	}
 
-	public static Object createTrait(IConfigurationElement extensionConfig) throws CoreException {
-    var traitName = extensionConfig.getAttribute(MMINTConstants.TRAITS_TRAIT_ATTR_NAME);
-    var traitInterface = extensionConfig.getAttribute(MMINTConstants.TRAITS_TRAIT_ATTR_INTERFACE);
-    MMINT.traits.put(traitName, traitInterface);
-
-    return traitInterface;
-	}
-
 	public static Object createReasoner(IConfigurationElement extensionConfig) throws CoreException {
-		var reasonerName = extensionConfig.getAttribute(MMINTConstants.REASONERS_REASONER_ATTR_NAME);
-		var reasoner = extensionConfig.createExecutableExtension(MMINTConstants.REASONERS_REASONER_ATTR_CLASS);
-		MMINT.reasoners.put(reasonerName, reasoner);
+		var reasoner = (IReasoner) extensionConfig.createExecutableExtension(MMINTConstants.REASONERS_REASONER_ATTR_CLASS);
+		MMINT.reasoners.put(reasoner.getName(), reasoner);
 
 		return reasoner;
 	}
@@ -841,14 +833,6 @@ public class MMINT implements MMINTConstants {
 		// dynamic types from last shutdown
 		this.createDynamicTypes();
 		// reasoning
-    for (var config : registry.getConfigurationElementsFor(MMINTConstants.TRAITS_EXT_POINT)) {
-      try {
-        createTrait(config);
-      }
-      catch (CoreException e) {
-        MMINTException.print(IStatus.ERROR, "Trait can't be created in " + config.getContributor().getName(), e);
-      }
-    }
 		for (var config : registry.getConfigurationElementsFor(MMINTConstants.REASONERS_EXT_POINT)) {
 			try {
 				createReasoner(config);
@@ -1021,7 +1005,7 @@ public class MMINT implements MMINTConstants {
 		return MMINT.reasoners.keySet();
 	}
 
-  public static Object getReasoner(String reasonerName) {
+  public static IReasoner getReasoner(String reasonerName) {
     return MMINT.reasoners.get(reasonerName);
   }
 
@@ -1033,7 +1017,7 @@ public class MMINT implements MMINTConstants {
    * @return The set of reasoners that implement the trait.
    */
 	@SuppressWarnings("unchecked")
-  public static <T> Set<? extends T> getReasonersForTrait(Class<T> traitClass) {
+  public static <T extends IReasoner> Set<? extends T> getReasonersForTrait(Class<T> traitClass) {
 	  return MMINT.reasoners.values().stream()
 	    .filter(r -> traitClass.isInstance(r))
 	    .map(r -> (T) r)

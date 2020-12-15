@@ -26,7 +26,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
  *
  * @author Alessio Di Sandro
  */
-public interface IOperatorConstraintTrait {
+public interface IOperatorConstraintTrait extends IReasoner {
 
   /**
    * Checks if a generic type is allowed for an operator type. This is used if there are cases when formal generic

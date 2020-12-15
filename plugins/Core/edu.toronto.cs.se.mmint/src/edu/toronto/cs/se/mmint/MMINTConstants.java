@@ -161,19 +161,8 @@ public interface MMINTConstants {
 	public final static String REASONERS_EXT_POINT = "edu.toronto.cs.se.mmint.reasoners";
 	/** The Reasoners extension point's reasoner child. */
 	public final static String REASONERS_CHILD_REASONER = "reasoner";
-	/** The Reasoners extension point's reasoner's name attribute. */
-	public final static String REASONERS_REASONER_ATTR_NAME = "name";
 	/** The Reasoners extension point's reasoner's class attribute. */
 	public final static String REASONERS_REASONER_ATTR_CLASS = "class";
-
-  /** The Traits extension point's id. */
-  public final static String TRAITS_EXT_POINT = "edu.toronto.cs.se.mmint.traits";
-  /** The Traits extension point's trait child. */
-  public final static String TRAITS_CHILD_TRAIT = "reasoner";
-  /** The Traits extension point's trait's name attribute. */
-  public final static String TRAITS_TRAIT_ATTR_NAME = "name";
-  /** The Traits extension point's trait's interface attribute. */
-  public final static String TRAITS_TRAIT_ATTR_INTERFACE = "interface";
 
 	public final static String PREFERENCE_MMINT_ID = "edu.toronto.cs.se.mmint";
 	public final static String PREFERENCE_TESTS_ENABLED = MMINTConstants.PREFERENCE_MMINT_ID + ".TestsEnabled";

@@ -48,6 +48,7 @@ import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
+import edu.toronto.cs.se.mmint.mid.reasoning.IReasoner;
 import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
@@ -170,7 +171,7 @@ public class MIDDialogs {
 	}
 
 	@SuppressWarnings("unchecked")
-  public static <T> T selectReasoner(Class<T> traitClass, String traitDesc) throws MMINTException {
+  public static <T extends IReasoner> T selectReasoner(Class<T> traitClass, String traitDesc) throws MMINTException {
     var reasoners = MMINT.getReasonersForTrait(traitClass);
     if (reasoners.isEmpty()) {
       throw new MMINTException("There are no reasoners installed that implement " + traitDesc);
@@ -181,7 +182,7 @@ public class MIDDialogs {
     var dialog = new ListDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell());
     dialog.setAddCancelButton(true);
     dialog.setContentProvider(new ArrayContentProvider());
-    dialog.setLabelProvider(new LabelProvider());
+    dialog.setLabelProvider(LabelProvider.createTextProvider(e -> ((IReasoner) e).getName()));
     dialog.setInput(reasoners);
     var title = "Choose reasoner";
     var message = "Select reasoner for " + traitDesc;

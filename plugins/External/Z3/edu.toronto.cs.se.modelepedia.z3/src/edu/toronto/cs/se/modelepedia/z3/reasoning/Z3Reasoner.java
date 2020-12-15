@@ -65,6 +65,11 @@ public class Z3Reasoner implements IModelConstraintTrait, IMAVOTrait {
 	private Z3Model z3ConstraintModel;
 	private Z3Model z3NotConstraintModel;
 
+  @Override
+  public String getName() {
+    return "Z3";
+  }
+
 	public Z3MAVOModelParser generateSMTLIBEncoding(Model model) throws Exception {
 
 		if (!(model.getEMFInstanceRoot() instanceof MAVORoot)) {
@@ -477,5 +482,4 @@ public class Z3Reasoner implements IModelConstraintTrait, IMAVOTrait {
 			MMINTException.print(IStatus.WARNING, "Can't highlight MAVO element, skipping it", e);
 		}
 	}
-
 }

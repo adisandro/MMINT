@@ -41,6 +41,11 @@ public class LeanReasoner implements IModelConstraintTrait {
   private final static String LEAN_CONFIG = "leanpkg.path";
   private final static String LEAN_EXEC = "lean";
 
+  @Override
+  public String getName() {
+    return "Lean";
+  }
+
   private String generateEncoding(Model model, String workingPath) throws Exception {
     var inputModels = ECollections.newBasicEList(model);
     var encoder = MIDTypeHierarchy.getPolyOperator(LeanReasoner.ENCODER_ID, inputModels);
@@ -109,5 +114,4 @@ public class LeanReasoner implements IModelConstraintTrait {
       FileUtils.deleteDirectory(absWorkingPath, false);
     }
   }
-
 }

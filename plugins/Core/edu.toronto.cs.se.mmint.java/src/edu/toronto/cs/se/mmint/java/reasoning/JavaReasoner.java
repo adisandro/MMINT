@@ -35,6 +35,11 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
  */
 public class JavaReasoner implements IModelConstraintTrait, IOperatorConstraintTrait {
 
+  @Override
+  public String getName() {
+    return "Java";
+  }
+
 	private Object getJavaConstraint(String javaClassName, String typeUri) throws Exception {
 		Object javaConstraint = MIDTypeRegistry.getTypeBundle(typeUri)
 		  .loadClass(javaClassName).getConstructor().newInstance();
@@ -89,5 +94,4 @@ public class JavaReasoner implements IModelConstraintTrait, IOperatorConstraintT
 
 			return javaConstraint.getOutputModelRelEndpoints(genericsByName, inputsByName, outputsByName);
 	}
-
 }

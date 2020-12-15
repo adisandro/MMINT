@@ -488,8 +488,10 @@ mappingTypes:
 	}
 
   @SuppressWarnings("unchecked")
-  public static <T> Optional<? extends T> getReasoner(@Nullable ExtendibleElementConstraint constraint,
-                                                      Class<T> traitClass, String traitDesc) throws MMINTException {
+  public static <T extends IReasoner> Optional<? extends T>
+                                      getReasoner(@Nullable ExtendibleElementConstraint constraint,
+                                                  Class<T> traitClass, String traitDesc)
+                                      throws MMINTException {
     //TODO MMINT[CONSTRAINT] Guarantee that constraint is not nullable and move this to ExtendibleElementConstraint
     if (constraint == null || constraint.getImplementation() == null || constraint.getImplementation().equals("")) {
       return Optional.empty();

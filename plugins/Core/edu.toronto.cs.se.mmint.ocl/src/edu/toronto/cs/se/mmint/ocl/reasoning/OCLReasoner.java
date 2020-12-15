@@ -44,6 +44,11 @@ public class OCLReasoner implements IQueryTrait, IModelConstraintTrait {
   protected final static String OCL_MODELENDPOINT_VARIABLE = "$ENDPOINT_";
   protected final static char OCL_VARIABLE_SEPARATOR = '.';
 
+  @Override
+  public String getName() {
+    return "OCL";
+  }
+
   protected EObject getConstraintContext(Model model, String oclConstraint, MIDLevel constraintLevel) throws MMINTException {
 
     //TODO MMINT[CONSTRAINT] find language to express more complex contraints on model rels
@@ -224,5 +229,4 @@ public class OCLReasoner implements IQueryTrait, IModelConstraintTrait {
       ocl.dispose();
     }
   }
-
 }

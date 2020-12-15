@@ -31,6 +31,11 @@ import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 public class ViatraReasoner implements IQueryTrait {
 
   @Override
+  public String getName() {
+    return "Viatra";
+  }
+
+  @Override
   public Set<String> getQueryFileExtensions() {
     return Set.of("vql");
   }
@@ -104,5 +109,4 @@ public class ViatraReasoner implements IQueryTrait {
       }
     }
   }
-
 }

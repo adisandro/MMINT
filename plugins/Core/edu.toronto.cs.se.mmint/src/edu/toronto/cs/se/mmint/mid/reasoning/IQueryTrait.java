@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @author Alessio Di Sandro
  */
-public interface IQueryTrait {
+public interface IQueryTrait extends IReasoner {
 
   /**
    * Gets the file extensions of the supported query files.

@@ -22,9 +22,10 @@ import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
+import edu.toronto.cs.se.mmint.mid.reasoning.IReasoner;
 
 //TODO MMINT[MAVO] All the apis should really throw an exception with errors instead of returning null
-public interface IMAVOTrait {
+public interface IMAVOTrait extends IReasoner {
 
 	public enum MAVOTruthValue {
 
