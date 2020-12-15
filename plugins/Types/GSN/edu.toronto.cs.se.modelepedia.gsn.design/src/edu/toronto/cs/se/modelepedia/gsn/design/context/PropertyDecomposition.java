@@ -57,6 +57,7 @@ public class PropertyDecomposition extends GoalDecomposition {
        * D: Turn overlap error into warning
        * D+P: Allow incorrect decomposition rather than preventing creation of all objects?
        * P: Add decomposition check
+       * P: Solve reasoner name problem
        */
       var builder = (PropertyBuilder) this.builder;
       // ask for input
@@ -95,6 +96,7 @@ public class PropertyDecomposition extends GoalDecomposition {
       var formalGoal = builder.createBasicGoal(formalGoalId, formalGoalDesc);
       builder.addSupporter(formalStrategy, formalGoal);
       var propStrategy = builder.createPropertyStrategy(propStrategyId, propStrategyDesc, reasonerName, property);
+      builder.addSupporter(formalGoal, propStrategy);
       builder.createJustification(propStrategy, justId, justDesc);
       for (var i = 0; i < numProperties; i++) {
         var subProperty = MIDDialogs.getBigStringInput(title, "Insert the sub-property #" + (i+1), null);

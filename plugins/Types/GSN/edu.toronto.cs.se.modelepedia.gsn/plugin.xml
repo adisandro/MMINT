@@ -31,5 +31,11 @@
          </type>
       </modelType>
    </extension>
+   <extension
+         point="edu.toronto.cs.se.mmint.reasoners">
+      <reasoner
+            class="edu.toronto.cs.se.modelepedia.gsn.reasoning.GSNLeanReasoner">
+      </reasoner>
+   </extension>
 
 </plugin>
