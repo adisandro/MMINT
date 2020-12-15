@@ -122,8 +122,7 @@
    <extension
          point="edu.toronto.cs.se.mmint.reasoners">
       <reasoner
-            class="edu.toronto.cs.se.modelepedia.kleisli.reasoning.KleisliReasoner"
-            name="Kleisli">
+            class="edu.toronto.cs.se.modelepedia.kleisli.reasoning.KleisliReasoner">
       </reasoner>
    </extension>
 

@@ -25,11 +25,12 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
+import edu.toronto.cs.se.mmint.mid.reasoning.IReasoner;
 import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.ocl.reasoning.OCLReasoner;
 
-public class KleisliReasoner {
+public class KleisliReasoner implements IReasoner {
 
 	public static final String KLEISLI_MODELTYPE_URI_SUFFIX = "_Kleisli";
 	public static final String LANGUAGE_ID = "Kleisli";
@@ -43,6 +44,11 @@ public class KleisliReasoner {
 	public static final String QUERY_MAP_VARIABLE_SEPARATOR1 = ".";
 	public static final String QUERY_MAP_VARIABLE_SEPARATOR2 = "->get(";
 	public static final String QUERY_MAP_VARIABLE_SEPARATOR3 = ")";
+
+  @Override
+  public String getName() {
+    return "Kleisli";
+  }
 
 	public void evaluateEClassQuery(String kQuery, OCLReasoner oclReasoner, EObject kRootModelObj, EClass kModelElemTypeClass, EFactory kModelTypeFactory, Map<String, Map<EObject, EObject>> queryUnion) {
 
@@ -129,5 +135,4 @@ public class KleisliReasoner {
 			}
 		}
 	}
-
 }
