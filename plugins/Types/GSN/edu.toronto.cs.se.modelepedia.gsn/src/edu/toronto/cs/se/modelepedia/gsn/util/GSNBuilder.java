@@ -10,7 +10,7 @@
  * Contributors:
  *     Alessio Di Sandro - Implementation
  *******************************************************************************/
-package edu.toronto.cs.se.modelepedia.gsn.design;
+package edu.toronto.cs.se.modelepedia.gsn.util;
 
 import java.util.ArrayList;
 import java.util.List;

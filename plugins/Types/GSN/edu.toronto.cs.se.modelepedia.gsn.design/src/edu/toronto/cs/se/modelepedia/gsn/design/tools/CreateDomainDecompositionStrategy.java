@@ -24,7 +24,7 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
-import edu.toronto.cs.se.modelepedia.gsn.design.DomainBuilder;
+import edu.toronto.cs.se.modelepedia.gsn.util.DomainBuilder;
 
 public class CreateDomainDecompositionStrategy extends AbstractExternalJavaAction {
 

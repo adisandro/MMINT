@@ -10,7 +10,7 @@
  * Contributors:
  *     Alessio Di Sandro - Implementation
  *******************************************************************************/
-package edu.toronto.cs.se.modelepedia.gsn.design;
+package edu.toronto.cs.se.modelepedia.gsn.util;
 
 import edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionElement;
 import edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionStrategy;
@@ -23,29 +23,25 @@ public class PropertyBuilder extends GSNBuilder {
     super(gsnRootModelObj);
   }
 
-  public void addPropertyElement(PropertyDecompositionElement propertyElem, String language, String property) {
-    propertyElem.setLanguage(language);
+  public void addPropertyElement(PropertyDecompositionElement propertyElem, String reasonerName, String property) {
+    propertyElem.setLanguage(reasonerName);
     propertyElem.setProperty(property);
   }
 
-  public PropertyGoal createPropertyGoal(String id, String description, String language, String property) {
+  public PropertyGoal createPropertyGoal(String id, String description, String reasonerName, String property) {
     var goal = this.factory.createPropertyGoal();
     addGoal(goal, id, description);
-    addPropertyElement(goal, language, property);
+    addPropertyElement(goal, reasonerName, property);
 
     return goal;
   }
 
-  public PropertyDecompositionStrategy createPropertyStrategy(String id, String description, String language,
+  public PropertyDecompositionStrategy createPropertyStrategy(String id, String description, String reasonerName,
                                                               String property) {
     var strategy = this.factory.createPropertyDecompositionStrategy();
     addStrategy(strategy, id, description);
-    addPropertyElement(strategy, language, property);
+    addPropertyElement(strategy, reasonerName, property);
 
     return strategy;
-  }
-
-  public void parsePropertyString(String propertyString) throws Exception {
-
   }
 }

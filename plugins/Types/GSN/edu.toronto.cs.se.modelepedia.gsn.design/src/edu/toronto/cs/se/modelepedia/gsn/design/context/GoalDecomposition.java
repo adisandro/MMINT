@@ -25,7 +25,7 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 import edu.toronto.cs.se.modelepedia.gsn.Goal;
 import edu.toronto.cs.se.modelepedia.gsn.Strategy;
-import edu.toronto.cs.se.modelepedia.gsn.design.GSNBuilder;
+import edu.toronto.cs.se.modelepedia.gsn.util.GSNBuilder;
 
 public abstract class GoalDecomposition extends AbstractExternalJavaAction {
 

@@ -10,8 +10,10 @@ Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-15
 Export-Package: edu.toronto.cs.se.modelepedia.gsn,
  edu.toronto.cs.se.modelepedia.gsn.impl,
+ edu.toronto.cs.se.modelepedia.gsn.reasoning,
  edu.toronto.cs.se.modelepedia.gsn.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore,
- edu.toronto.cs.se.mmint
+ edu.toronto.cs.se.mmint,
+ org.eclipse.jdt.annotation;resolution:=optional
 Bundle-ActivationPolicy: lazy

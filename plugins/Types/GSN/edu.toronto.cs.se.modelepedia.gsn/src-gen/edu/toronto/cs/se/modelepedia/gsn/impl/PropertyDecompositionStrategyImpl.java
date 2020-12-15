@@ -11,13 +11,18 @@
  */
 package edu.toronto.cs.se.modelepedia.gsn.impl;
 
+import java.util.stream.Collectors;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionElement;
 import edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionStrategy;
+import edu.toronto.cs.se.modelepedia.gsn.PropertyGoal;
+import edu.toronto.cs.se.modelepedia.gsn.SupportedBy;
 
 /**
  * <!-- begin-user-doc -->
@@ -137,6 +142,21 @@ public class PropertyDecompositionStrategyImpl extends DecompositionStrategyImpl
     this.property = newProperty;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.PROPERTY_DECOMPOSITION_STRATEGY__PROPERTY, oldProperty, this.property));
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public void validate() throws MMINTException {
+    var subProperties = getSupportedBy().stream()
+      .map(SupportedBy::getTarget)
+      .filter(g -> g instanceof PropertyGoal)
+      .map(g -> ((PropertyGoal) g).getProperty())
+      .collect(Collectors.toList());
+    if (subProperties.size() <= 1) {
+      throw new MMINTException("A property must be decomposed into >1 sub-properties");
+    }
   }
 
   /**

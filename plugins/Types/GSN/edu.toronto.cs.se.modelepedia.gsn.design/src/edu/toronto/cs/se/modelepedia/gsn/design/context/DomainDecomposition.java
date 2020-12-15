@@ -28,7 +28,7 @@ import edu.toronto.cs.se.modelepedia.gsn.IntDomain;
 import edu.toronto.cs.se.modelepedia.gsn.RealDomain;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
 import edu.toronto.cs.se.modelepedia.gsn.Strategy;
-import edu.toronto.cs.se.modelepedia.gsn.design.DomainBuilder;
+import edu.toronto.cs.se.modelepedia.gsn.util.DomainBuilder;
 
 public class DomainDecomposition extends GoalDecomposition {
 
@@ -72,25 +72,25 @@ public class DomainDecomposition extends GoalDecomposition {
         numDomains = ((EnumDomain) domain).getValues().size();
         subDomainTypes = Set.of(GSNPackage.ENUM_DOMAIN, GSNPackage.VALUE_DOMAIN);
       }
-      // create domain decomposition strategy + justification + domain subgoals + completeness goal
+      // create decomposition template
       var id = this.decomposed.getId();
       var desc = this.decomposed.getDescription();
       var strategyId = "S-" + id;
-      var justificationId = "J-" + id;
+      var justId = "J-" + id;
       var subGoalId = id + "-";
       var compGoalId = id + "-C";
       var strategyDesc = "Decomposition over domain " + domain.toString();
-      var justificationDesc = "Every scenario has a corresponding value in the domain " + domain.toString();
+      var justDesc = "Every scenario has a corresponding value in the domain " + domain.toString();
       var subGoalDesc = desc + " for sub-domain ";
       var compGoalDesc = "Every possible value in the domain " + domain.toString() + " is covered by sub-domains ";
       var strategy = builder.createDomainStrategy(strategyId, strategyDesc, domain);
-      builder.createJustification(strategy, justificationId, justificationDesc);
+      builder.createJustification(strategy, justId, justDesc);
       var subDomains = new ArrayList<String>();
       for (var i = 0; i < numDomains; i++) {
         var subDomain = builder.createDomain(title, "Insert the sub-domain #" + (i+1), subDomainTypes);
         subDomains.add(subDomain.toString());
-        var goal = builder.createDomainGoal(subGoalId + i, subGoalDesc + subDomain.toString(), subDomain);
-        builder.addSupporter(strategy, goal);
+        var subGoal = builder.createDomainGoal(subGoalId + i, subGoalDesc + subDomain.toString(), subDomain);
+        builder.addSupporter(strategy, subGoal);
       }
       var goal = builder.createBasicGoal(compGoalId, compGoalDesc + String.join(", ", subDomains));
       builder.addSupporter(strategy, goal);
