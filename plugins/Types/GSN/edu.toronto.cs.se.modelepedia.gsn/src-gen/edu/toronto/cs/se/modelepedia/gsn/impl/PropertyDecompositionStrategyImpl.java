@@ -169,7 +169,12 @@ public class PropertyDecompositionStrategyImpl extends DecompositionStrategyImpl
     if (subProperties.size() <= 1) {
       throw new MMINTException("A property must be decomposed into >1 sub-properties");
     }
-    ((IDecompositionTrait) reasoner).validatePropertyDecomposition(property, subProperties);
+    try {
+      ((IDecompositionTrait) reasoner).validatePropertyDecomposition(null, property, subProperties);
+    }
+    catch (Exception e) {
+      throw new MMINTException("Validation failed", e);
+    }
   }
 
   /**

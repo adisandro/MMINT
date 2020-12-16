@@ -20,7 +20,12 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.sirius.business.api.session.SessionManager;
 import org.eclipse.sirius.viewpoint.DSemanticDecorator;
 
+import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.ModelElement;
+import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
+import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 import edu.toronto.cs.se.modelepedia.gsn.Goal;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
 import edu.toronto.cs.se.modelepedia.gsn.Strategy;
@@ -39,6 +44,7 @@ public class PropertyDecomposition extends GoalDecomposition {
   }
 
   private class PropertyDecompositionCommand extends GoalDecompositionCommand {
+
     public PropertyDecompositionCommand(TransactionalEditingDomain domain, Goal decomposed) {
       super(domain, decomposed, new PropertyBuilder((SafetyCase) decomposed.eContainer()));
     }
@@ -48,6 +54,43 @@ public class PropertyDecomposition extends GoalDecomposition {
         property :
         property.substring(0, PropertyDecomposition.SHORT_PROPERTY) +  "..";
       return "'" + shortProperty + "'";
+    }
+
+    private Model getRelatedModel() throws MMINTException {
+      var gsnModel = MIDDiagramUtils.getInstanceMIDModelFromModelEditor(this.decomposed);
+      var gsnDecomposedUri = MIDRegistry.getModelElementUri(this.decomposed);
+      var modelRels = MIDRegistry.getConnectedModelRels(gsnModel, gsnModel.getMIDContainer());
+      for (var modelRel : modelRels) {
+        if (modelRel.getModelEndpoints().size() != 2) { // exclude non-binary
+          continue;
+        }
+        // find decomposed, get the other side, check that it's the root of its own model
+        for (var mapping : modelRel.getMappings()) {
+          var endpoints = mapping.getModelElemEndpoints();
+          if (endpoints.size() != 2) { // exclude non-binary
+            continue;
+          }
+          ModelElement relatedModelElem;
+          var uri0 = MIDRegistry.getModelObjectUri(endpoints.get(0).getTarget());
+          var uri1 = MIDRegistry.getModelObjectUri(endpoints.get(1).getTarget());
+          if (uri0.equals(gsnDecomposedUri)) {
+            relatedModelElem = endpoints.get(1).getTarget();
+          }
+          else if (uri1.equals(gsnDecomposedUri)) {
+            relatedModelElem = endpoints.get(0).getTarget();
+          }
+          else {
+            continue;
+          }
+          var relatedModelObj = relatedModelElem.getEMFInstanceObject();
+          var relatedModel = (Model) relatedModelElem.eContainer();
+          var relatedModelObjRoot = relatedModel.getEMFInstanceRoot();
+          if (relatedModelObj == relatedModelObjRoot) {
+            return relatedModel;
+          }
+        }
+      }
+      throw new MMINTException("Not found");
     }
 
     @Override

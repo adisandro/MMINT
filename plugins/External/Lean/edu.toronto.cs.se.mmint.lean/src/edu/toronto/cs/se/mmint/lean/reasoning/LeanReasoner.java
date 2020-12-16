@@ -70,7 +70,11 @@ public class LeanReasoner implements IModelConstraintTrait {
       Files.writeString(Path.of(absWorkingPath, LeanReasoner.LEAN_CONSTRAINT), constraint.getImplementation(),
                         StandardOpenOption.CREATE);
       // package config file
-      var config = "builtin_path\npath .\npath LTS\n"; //TODO MMINT[JAVA15] Convert to text block;
+      var config = """
+        builtin_path
+        path .
+        path LTS
+      """;
       Files.writeString(Path.of(absWorkingPath, LeanReasoner.LEAN_CONFIG), config, StandardOpenOption.CREATE);
       // model encoding files
       var mainEncoding = generateEncoding(model, workingPath);

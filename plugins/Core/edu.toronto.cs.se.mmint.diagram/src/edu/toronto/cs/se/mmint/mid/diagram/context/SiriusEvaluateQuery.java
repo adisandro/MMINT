@@ -151,12 +151,9 @@ public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
         .map(obj -> ((DSemanticDecorator) obj).getTarget())
         .collect(Collectors.toList());
       var modelPath = MIDRegistry.getModelUri(modelObjs.get(0));
-      var instanceMID = MIDDiagramUtils.getInstanceMIDsInWorkspace().keySet().stream()
-        .filter(mid -> mid.getExtendibleElement(modelPath) != null)
-        .findFirst()
-        //TODO MMINT[QUERY] orElse the context should simply be the sirius model
-        .orElseThrow(() -> new MMINTException("The MID editor containing this model must be among the open tabs"));
-      var model = instanceMID.<Model>getExtendibleElement(modelPath);
+      var model = MIDDiagramUtils.getInstanceMIDModelFromModelEditor(modelObjs.get(0));
+      //TODO MMINT[QUERY] in case of exception the context should simply be the sirius model
+      var instanceMID = model.getMIDContainer();
       var modelElems = model.getModelElems().stream()
         .collect(Collectors.toMap(e -> MIDRegistry.getModelObjectUri(e), e -> e));
       /**TODO MMINT[QUERY]

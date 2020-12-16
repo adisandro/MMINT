@@ -14,8 +14,10 @@ package edu.toronto.cs.se.modelepedia.gsn.reasoning;
 
 import java.util.List;
 
-import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.lean.reasoning.LeanReasoner;
+import edu.toronto.cs.se.mmint.mid.MIDFactory;
+import edu.toronto.cs.se.mmint.mid.MIDLevel;
+import edu.toronto.cs.se.mmint.mid.Model;
 
 public class GSNLeanReasoner extends LeanReasoner implements IDecompositionTrait {
 
@@ -24,12 +26,31 @@ public class GSNLeanReasoner extends LeanReasoner implements IDecompositionTrait
     return "Lean2";
   }
 
+  private String encodeProperty(String property, String modelName) {
+    return "(fun p : path " + modelName + ", sat (" + property + ") p)";
+  }
+
   @Override
-  public void validatePropertyDecomposition(String property, List<String> subProperties) throws MMINTException {
+  public void validatePropertyDecomposition(Model model, String property, List<String> subProperties) throws Exception {
     /**TODO
-     * Pass model
-     * Assemble property + subProperties into extendibleelementconstraint
-     * invoke checkModelConstraint
+     * Pass model or root element?
+     * invoke checkModelConstraint or decouple portion of it?
      */
+    var modelName = model.getName();
+    var encoding =
+      "strategy.mk" +
+      "(Claim.mk" +
+        "(set.univ)" +
+        encodeProperty(property, modelName) +
+      ")" +
+      "([";
+    for (var subProperty : subProperties) {
+      encoding += encodeProperty(subProperty, modelName);
+    }
+    encoding += ")]";
+    var constraint = MIDFactory.eINSTANCE.createExtendibleElementConstraint();
+    constraint.setLanguage(getName());
+    constraint.setImplementation(encoding);
+    checkModelConstraint(model, constraint, MIDLevel.INSTANCES);
   }
 }

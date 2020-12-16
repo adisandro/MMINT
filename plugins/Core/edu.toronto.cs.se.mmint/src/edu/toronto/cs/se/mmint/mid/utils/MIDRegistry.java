@@ -54,6 +54,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementEndpointReferen
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.ui.GMFUtils;
 
 /**
@@ -406,14 +407,19 @@ public class MIDRegistry {
     return inoutWorkflowModels;
   }
 
-	public static Set<BinaryModelRel> getConnectedBinaryModelRels(Model model, MID mid) {
+  public static Set<ModelRel> getConnectedModelRels(Model model, MID mid) {
+    //TODO MMINT[OO] This is expensive, need a direct way to reach model rels from models
+    return mid.getModelRels().stream()
+      .filter(modelRel -> modelRel.getModelEndpoints().stream()
+        .anyMatch(endpoint -> endpoint.getTarget() == model))
+      .collect(Collectors.toSet());
+  }
 
-		return mid.getModelRels().stream()
-			.filter(modelRel -> modelRel instanceof BinaryModelRel)
-			.filter(modelRel -> modelRel.getModelEndpoints().stream()
-				.anyMatch(endpoint -> endpoint.getTarget() == model))
-			.map(modelRel -> (BinaryModelRel) modelRel)
-			.collect(Collectors.toSet());
+	public static Set<BinaryModelRel> getConnectedBinaryModelRels(Model model, MID mid) {
+	  return getConnectedModelRels(model, mid).stream()
+	    .filter(modelRel -> modelRel instanceof BinaryModelRel)
+	    .map(modelRel -> (BinaryModelRel) modelRel)
+      .collect(Collectors.toSet());
 	}
 
 	public static Set<ModelEndpoint> getConnectedNaryModelRelEndpoints(Model model, MID mid) {
