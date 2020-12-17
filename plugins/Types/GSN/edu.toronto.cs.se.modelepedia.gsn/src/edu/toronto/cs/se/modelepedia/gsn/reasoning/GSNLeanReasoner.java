@@ -13,6 +13,7 @@
 package edu.toronto.cs.se.modelepedia.gsn.reasoning;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.lean.reasoning.LeanReasoner;
@@ -34,16 +35,16 @@ public class GSNLeanReasoner extends LeanReasoner implements IDecompositionTrait
   public void validatePropertyDecomposition(Model model, String property, List<String> subProperties) throws Exception {
     var modelName = model.getName();
     var encoding =
-      "strategy.mk" +
-      "(Claim.mk" +
-        "(set.univ)" +
-        encodeProperty(property, modelName) +
-      ")" +
-      "([";
-    for (var subProperty : subProperties) {
-      encoding += encodeProperty(subProperty, modelName);
-    }
-    encoding += ")]";
+      "strategy.mk\n" +
+      "(Claim.mk\n" +
+        "(set.univ)\n" +
+        encodeProperty(property, modelName) + "\n" +
+      ")\n" +
+      "([\n";
+    encoding += subProperties.stream()
+      .map(p -> encodeProperty(p, modelName))
+      .collect(Collectors.joining(",\n"));
+    encoding += "\n])\n";
     var workingPath = FileUtils.replaceLastSegmentInPath(model.getUri(), LeanReasoner.LEAN_DIR);
     var valid = checkProperty(model, encoding, workingPath);
     if (!valid) {

@@ -46,7 +46,7 @@ public class DomainDecompositionCheck extends AbstractExternalJavaAction {
       MessageDialog.openInformation(shell, title, "The domain decomposition is valid");
     }
     catch (Exception e) {
-      MMINTException.print(IStatus.ERROR, "The domain decomposition is not valid:\n" + e.getMessage(), e);
+      MMINTException.print(IStatus.ERROR, "The domain decomposition is not valid", e);
     }
   }
 

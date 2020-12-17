@@ -15,7 +15,7 @@ meta def main_lts
 (_ : parse (tk "main_lts")) : lean.parser unit :=
 
 do 
-   F ← read "constraint.lean" types.texpr,
+   F ← read "property.lean" types.texpr,
    of_tactic 
    (do
       STRAT ← tactic.to_expr F,

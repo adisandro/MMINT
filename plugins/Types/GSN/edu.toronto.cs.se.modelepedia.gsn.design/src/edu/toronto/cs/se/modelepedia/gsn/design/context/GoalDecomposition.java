@@ -62,7 +62,7 @@ public abstract class GoalDecomposition extends AbstractExternalJavaAction {
           strategy.validate();
         }
         catch (Exception e) {
-          MMINTException.print(IStatus.ERROR, "The goal decomposition is not valid:\n" + e.getMessage(), e);
+          MMINTException.print(IStatus.ERROR, "The goal decomposition is not valid", e);
         }
       }
       catch (MIDDialogCancellation e) {

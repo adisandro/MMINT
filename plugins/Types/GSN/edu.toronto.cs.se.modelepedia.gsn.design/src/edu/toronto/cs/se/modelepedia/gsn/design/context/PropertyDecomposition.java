@@ -101,7 +101,6 @@ public class PropertyDecomposition extends GoalDecomposition {
     protected DecompositionStrategy decompose() throws Exception {
       /**TODO
        * P: Refactor constraint code to use this code?
-       * D: Turn overlap error into warning
        * P: Add decomposition check
        * P: Solve reasoner name problem
        * L: Find where is lean's mathlab library (readlink -f $(type -P lean)) and add it to config file

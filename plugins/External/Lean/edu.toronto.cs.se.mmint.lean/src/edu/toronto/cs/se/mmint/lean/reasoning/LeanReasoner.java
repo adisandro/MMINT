@@ -37,7 +37,7 @@ public class LeanReasoner implements IModelConstraintTrait {
 
   private final static String ENCODER_ID = "edu.toronto.cs.se.mmint.lean.operators.ToLean";
   protected final static String LEAN_DIR = "lean/";
-  private final static String LEAN_CONSTRAINT = "constraint.lean";
+  private final static String LEAN_PROPERTY = "property.lean";
   private final static String LEAN_CONFIG = "leanpkg.path";
   private final static String LEAN_EXEC = "lean";
 
@@ -63,13 +63,12 @@ public class LeanReasoner implements IModelConstraintTrait {
       // project dir
       Files.createDirectory(Path.of(absWorkingPath));
       // property file
-      Files.writeString(Path.of(absWorkingPath, LeanReasoner.LEAN_CONSTRAINT), property, StandardOpenOption.CREATE);
+      Files.writeString(Path.of(absWorkingPath, LeanReasoner.LEAN_PROPERTY), property, StandardOpenOption.CREATE);
       // package config file
       var config = """
         builtin_path
         path .
-        path LTS
-      """;
+        path LTS""";
       Files.writeString(Path.of(absWorkingPath, LeanReasoner.LEAN_CONFIG), config, StandardOpenOption.CREATE);
       // model encoding files
       var mainEncoding = generateEncoding(model, workingPath);
