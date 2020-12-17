@@ -84,7 +84,7 @@ public class DomainGoalImpl extends GoalImpl implements DomainGoal {
     var oldDomain = this.domain;
     this.domain = newDomain;
     if (eNotificationRequired()) {
-      var notification = new ENotificationImpl(this, Notification.SET, GSNPackage.DOMAIN_GOAL__DOMAIN, oldDomain, newDomain);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GSNPackage.DOMAIN_GOAL__DOMAIN, oldDomain, newDomain);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;

@@ -24,5 +24,17 @@ import edu.toronto.cs.se.mmint.mid.reasoning.IReasoner;
  */
 public interface IDecompositionTrait extends IReasoner {
 
+  /**
+   * Validates the correctness of a GSN property decomposition.
+   *
+   * @param model
+   *          The model the property refers to.
+   * @param property
+   *          The main property that is being decomposed.
+   * @param subProperties
+   *          The sub-properties that the main property is being decomposed into.
+   * @throws Exception
+   *           If the validation fails.
+   */
   void validatePropertyDecomposition(Model model, String property, List<String> subProperties) throws Exception;
 }

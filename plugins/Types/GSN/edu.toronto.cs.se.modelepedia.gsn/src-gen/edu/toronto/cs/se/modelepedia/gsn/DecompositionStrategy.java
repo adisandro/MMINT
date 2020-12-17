@@ -11,8 +11,6 @@
  */
 package edu.toronto.cs.se.modelepedia.gsn;
 
-import edu.toronto.cs.se.mmint.MMINTException;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Decomposition Strategy</b></em>'.
@@ -27,11 +25,11 @@ public interface DecompositionStrategy extends Strategy {
   /**
    * <!-- begin-user-doc -->Validates the correctness of this decomposition strategy.
    *
-   * @throws MMINTException
-   *           If the decomposition in not correct. <!-- end-user-doc -->
-   * @model exceptions="edu.toronto.cs.se.modelepedia.gsn.MMINTException"
+   * @throws Exception
+   *           If the decomposition is not correct. <!-- end-user-doc -->
+   * @model exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception"
    * @generated
    */
-  void validate() throws MMINTException;
+  void validate() throws Exception;
 
 } // DecompositionStrategy

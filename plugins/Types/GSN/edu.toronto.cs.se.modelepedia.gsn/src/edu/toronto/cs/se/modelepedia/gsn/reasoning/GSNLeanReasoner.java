@@ -14,10 +14,10 @@ package edu.toronto.cs.se.modelepedia.gsn.reasoning;
 
 import java.util.List;
 
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.lean.reasoning.LeanReasoner;
-import edu.toronto.cs.se.mmint.mid.MIDFactory;
-import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 
 public class GSNLeanReasoner extends LeanReasoner implements IDecompositionTrait {
 
@@ -32,10 +32,6 @@ public class GSNLeanReasoner extends LeanReasoner implements IDecompositionTrait
 
   @Override
   public void validatePropertyDecomposition(Model model, String property, List<String> subProperties) throws Exception {
-    /**TODO
-     * Pass model or root element?
-     * invoke checkModelConstraint or decouple portion of it?
-     */
     var modelName = model.getName();
     var encoding =
       "strategy.mk" +
@@ -48,9 +44,10 @@ public class GSNLeanReasoner extends LeanReasoner implements IDecompositionTrait
       encoding += encodeProperty(subProperty, modelName);
     }
     encoding += ")]";
-    var constraint = MIDFactory.eINSTANCE.createExtendibleElementConstraint();
-    constraint.setLanguage(getName());
-    constraint.setImplementation(encoding);
-    checkModelConstraint(model, constraint, MIDLevel.INSTANCES);
+    var workingPath = FileUtils.replaceLastSegmentInPath(model.getUri(), LeanReasoner.LEAN_DIR);
+    var valid = checkProperty(model, encoding, workingPath);
+    if (!valid) {
+      throw new MMINTException("The property decomposition is not valid");
+    }
   }
 }

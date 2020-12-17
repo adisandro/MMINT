@@ -223,7 +223,7 @@ public class RealDomainImpl extends DomainImpl implements RealDomain {
   public String toStringGen() {
     if (eIsProxy()) return super.toString();
 
-    var result = new StringBuilder(super.toString());
+    StringBuilder result = new StringBuilder(super.toString());
     result.append(" (lowerBound: ");
     result.append(this.lowerBound);
     result.append(", upperBound: ");
@@ -244,7 +244,7 @@ public class RealDomainImpl extends DomainImpl implements RealDomain {
    * @generated NOT
    */
   @Override
-  public void validateDecomposition(EList<Domain> subDomains) throws MMINTException {
+  public void validateDecomposition(EList<Domain> subDomains) throws Exception {
     var subBounds = new ArrayList<RealDomain>();
     for (var subDomain : subDomains) {
       if (subDomain instanceof IntDomain || subDomain instanceof EnumDomain || subDomain instanceof ValueDomain) {

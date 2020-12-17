@@ -150,7 +150,7 @@ public class EnumDomainImpl extends DomainImpl implements EnumDomain {
   public String toStringGen() {
     if (eIsProxy()) return super.toString();
 
-    var result = new StringBuilder(super.toString());
+    StringBuilder result = new StringBuilder(super.toString());
     result.append(" (values: ");
     result.append(this.values);
     result.append(')');
@@ -169,7 +169,7 @@ public class EnumDomainImpl extends DomainImpl implements EnumDomain {
    * @generated NOT
    */
   @Override
-  public void validateDecomposition(EList<Domain> subDomains) throws MMINTException {
+  public void validateDecomposition(EList<Domain> subDomains) throws Exception {
     var enumValues = new HashSet<>(getValues());
     for (var subDomain : subDomains) {
       if (subDomain instanceof IntDomain || subDomain instanceof RealDomain) {

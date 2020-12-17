@@ -59,7 +59,7 @@ public abstract class DomainImpl extends MinimalEObjectImpl.Container implements
    * @generated
    */
   @Override
-  public void validateDecomposition(EList<Domain> subDomains) throws MMINTException {
+  public void validateDecomposition(EList<Domain> subDomains) throws Exception {
     // TODO: implement this method
     // Ensure that you remove @generated or mark it @generated NOT
     throw new UnsupportedOperationException();

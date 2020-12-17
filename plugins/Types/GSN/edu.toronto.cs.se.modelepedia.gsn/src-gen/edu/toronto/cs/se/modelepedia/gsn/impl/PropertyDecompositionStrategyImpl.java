@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionElement;
 import edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionStrategy;
@@ -35,7 +36,7 @@ import edu.toronto.cs.se.modelepedia.gsn.reasoning.IDecompositionTrait;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.PropertyDecompositionStrategyImpl#getLanguage <em>Language</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.PropertyDecompositionStrategyImpl#getReasonerName <em>Reasoner Name</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.PropertyDecompositionStrategyImpl#getProperty <em>Property</em>}</li>
  * </ul>
  *
@@ -43,24 +44,24 @@ import edu.toronto.cs.se.modelepedia.gsn.reasoning.IDecompositionTrait;
  */
 public class PropertyDecompositionStrategyImpl extends DecompositionStrategyImpl implements PropertyDecompositionStrategy {
   /**
-   * The default value of the '{@link #getLanguage() <em>Language</em>}' attribute.
+   * The default value of the '{@link #getReasonerName() <em>Reasoner Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getLanguage()
+   * @see #getReasonerName()
    * @generated
    * @ordered
    */
-  protected static final String LANGUAGE_EDEFAULT = null;
+  protected static final String REASONER_NAME_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getLanguage() <em>Language</em>}' attribute.
+   * The cached value of the '{@link #getReasonerName() <em>Reasoner Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getLanguage()
+   * @see #getReasonerName()
    * @generated
    * @ordered
    */
-  protected String language = PropertyDecompositionStrategyImpl.LANGUAGE_EDEFAULT;
+  protected String reasonerName = PropertyDecompositionStrategyImpl.REASONER_NAME_EDEFAULT;
 
   /**
    * The default value of the '{@link #getProperty() <em>Property</em>}' attribute.
@@ -107,8 +108,8 @@ public class PropertyDecompositionStrategyImpl extends DecompositionStrategyImpl
    * @generated
    */
   @Override
-  public String getLanguage() {
-    return this.language;
+  public String getReasonerName() {
+    return this.reasonerName;
   }
 
   /**
@@ -117,11 +118,11 @@ public class PropertyDecompositionStrategyImpl extends DecompositionStrategyImpl
    * @generated
    */
   @Override
-  public void setLanguage(String newLanguage) {
-    var oldLanguage = this.language;
-    this.language = newLanguage;
+  public void setReasonerName(String newReasonerName) {
+    var oldReasonerName = this.reasonerName;
+    this.reasonerName = newReasonerName;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.PROPERTY_DECOMPOSITION_STRATEGY__LANGUAGE, oldLanguage, this.language));
+      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.PROPERTY_DECOMPOSITION_STRATEGY__REASONER_NAME, oldReasonerName, this.reasonerName));
   }
 
   /**
@@ -151,8 +152,8 @@ public class PropertyDecompositionStrategyImpl extends DecompositionStrategyImpl
    * @generated NOT
    */
   @Override
-  public void validate() throws MMINTException {
-    var reasonerName = Objects.requireNonNull(getLanguage(), "Reasoner not specified");
+  public void validate() throws Exception {
+    var reasonerName = Objects.requireNonNull(getReasonerName(), "Reasoner not specified");
     var reasoner = Objects.requireNonNull(MMINT.getReasoner(reasonerName),
                                           "The reasoner '" + reasonerName + "' is not installed");
     if (!(reasoner instanceof IDecompositionTrait)) {
@@ -169,12 +170,8 @@ public class PropertyDecompositionStrategyImpl extends DecompositionStrategyImpl
     if (subProperties.size() <= 1) {
       throw new MMINTException("A property must be decomposed into >1 sub-properties");
     }
-    try {
-      ((IDecompositionTrait) reasoner).validatePropertyDecomposition(null, property, subProperties);
-    }
-    catch (Exception e) {
-      throw new MMINTException("Validation failed", e);
-    }
+    Model model = null;
+    ((IDecompositionTrait) reasoner).validatePropertyDecomposition(model, property, subProperties);
   }
 
   /**
@@ -185,8 +182,8 @@ public class PropertyDecompositionStrategyImpl extends DecompositionStrategyImpl
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
-      case GSNPackage.PROPERTY_DECOMPOSITION_STRATEGY__LANGUAGE:
-        return getLanguage();
+      case GSNPackage.PROPERTY_DECOMPOSITION_STRATEGY__REASONER_NAME:
+        return getReasonerName();
       case GSNPackage.PROPERTY_DECOMPOSITION_STRATEGY__PROPERTY:
         return getProperty();
     }
@@ -201,8 +198,8 @@ public class PropertyDecompositionStrategyImpl extends DecompositionStrategyImpl
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
-      case GSNPackage.PROPERTY_DECOMPOSITION_STRATEGY__LANGUAGE:
-        setLanguage((String)newValue);
+      case GSNPackage.PROPERTY_DECOMPOSITION_STRATEGY__REASONER_NAME:
+        setReasonerName((String)newValue);
         return;
       case GSNPackage.PROPERTY_DECOMPOSITION_STRATEGY__PROPERTY:
         setProperty((String)newValue);
@@ -219,8 +216,8 @@ public class PropertyDecompositionStrategyImpl extends DecompositionStrategyImpl
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
-      case GSNPackage.PROPERTY_DECOMPOSITION_STRATEGY__LANGUAGE:
-        setLanguage(PropertyDecompositionStrategyImpl.LANGUAGE_EDEFAULT);
+      case GSNPackage.PROPERTY_DECOMPOSITION_STRATEGY__REASONER_NAME:
+        setReasonerName(PropertyDecompositionStrategyImpl.REASONER_NAME_EDEFAULT);
         return;
       case GSNPackage.PROPERTY_DECOMPOSITION_STRATEGY__PROPERTY:
         setProperty(PropertyDecompositionStrategyImpl.PROPERTY_EDEFAULT);
@@ -237,8 +234,8 @@ public class PropertyDecompositionStrategyImpl extends DecompositionStrategyImpl
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
-      case GSNPackage.PROPERTY_DECOMPOSITION_STRATEGY__LANGUAGE:
-        return PropertyDecompositionStrategyImpl.LANGUAGE_EDEFAULT == null ? this.language != null : !PropertyDecompositionStrategyImpl.LANGUAGE_EDEFAULT.equals(this.language);
+      case GSNPackage.PROPERTY_DECOMPOSITION_STRATEGY__REASONER_NAME:
+        return PropertyDecompositionStrategyImpl.REASONER_NAME_EDEFAULT == null ? this.reasonerName != null : !PropertyDecompositionStrategyImpl.REASONER_NAME_EDEFAULT.equals(this.reasonerName);
       case GSNPackage.PROPERTY_DECOMPOSITION_STRATEGY__PROPERTY:
         return PropertyDecompositionStrategyImpl.PROPERTY_EDEFAULT == null ? this.property != null : !PropertyDecompositionStrategyImpl.PROPERTY_EDEFAULT.equals(this.property);
     }
@@ -254,7 +251,7 @@ public class PropertyDecompositionStrategyImpl extends DecompositionStrategyImpl
   public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
     if (baseClass == PropertyDecompositionElement.class) {
       switch (derivedFeatureID) {
-        case GSNPackage.PROPERTY_DECOMPOSITION_STRATEGY__LANGUAGE: return GSNPackage.PROPERTY_DECOMPOSITION_ELEMENT__LANGUAGE;
+        case GSNPackage.PROPERTY_DECOMPOSITION_STRATEGY__REASONER_NAME: return GSNPackage.PROPERTY_DECOMPOSITION_ELEMENT__REASONER_NAME;
         case GSNPackage.PROPERTY_DECOMPOSITION_STRATEGY__PROPERTY: return GSNPackage.PROPERTY_DECOMPOSITION_ELEMENT__PROPERTY;
         default: return -1;
       }
@@ -271,7 +268,7 @@ public class PropertyDecompositionStrategyImpl extends DecompositionStrategyImpl
   public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
     if (baseClass == PropertyDecompositionElement.class) {
       switch (baseFeatureID) {
-        case GSNPackage.PROPERTY_DECOMPOSITION_ELEMENT__LANGUAGE: return GSNPackage.PROPERTY_DECOMPOSITION_STRATEGY__LANGUAGE;
+        case GSNPackage.PROPERTY_DECOMPOSITION_ELEMENT__REASONER_NAME: return GSNPackage.PROPERTY_DECOMPOSITION_STRATEGY__REASONER_NAME;
         case GSNPackage.PROPERTY_DECOMPOSITION_ELEMENT__PROPERTY: return GSNPackage.PROPERTY_DECOMPOSITION_STRATEGY__PROPERTY;
         default: return -1;
       }
@@ -288,9 +285,9 @@ public class PropertyDecompositionStrategyImpl extends DecompositionStrategyImpl
   public String toString() {
     if (eIsProxy()) return super.toString();
 
-    var result = new StringBuilder(super.toString());
-    result.append(" (language: ");
-    result.append(this.language);
+    StringBuilder result = new StringBuilder(super.toString());
+    result.append(" (reasonerName: ");
+    result.append(this.reasonerName);
     result.append(", property: ");
     result.append(this.property);
     result.append(')');

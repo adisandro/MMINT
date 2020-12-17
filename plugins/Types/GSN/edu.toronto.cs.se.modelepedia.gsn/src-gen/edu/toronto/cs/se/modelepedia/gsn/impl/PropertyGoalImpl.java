@@ -27,7 +27,7 @@ import edu.toronto.cs.se.modelepedia.gsn.PropertyGoal;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.PropertyGoalImpl#getLanguage <em>Language</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.PropertyGoalImpl#getReasonerName <em>Reasoner Name</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.PropertyGoalImpl#getProperty <em>Property</em>}</li>
  * </ul>
  *
@@ -35,24 +35,24 @@ import edu.toronto.cs.se.modelepedia.gsn.PropertyGoal;
  */
 public class PropertyGoalImpl extends GoalImpl implements PropertyGoal {
   /**
-   * The default value of the '{@link #getLanguage() <em>Language</em>}' attribute.
+   * The default value of the '{@link #getReasonerName() <em>Reasoner Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getLanguage()
+   * @see #getReasonerName()
    * @generated
    * @ordered
    */
-  protected static final String LANGUAGE_EDEFAULT = null;
+  protected static final String REASONER_NAME_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getLanguage() <em>Language</em>}' attribute.
+   * The cached value of the '{@link #getReasonerName() <em>Reasoner Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getLanguage()
+   * @see #getReasonerName()
    * @generated
    * @ordered
    */
-  protected String language = PropertyGoalImpl.LANGUAGE_EDEFAULT;
+  protected String reasonerName = PropertyGoalImpl.REASONER_NAME_EDEFAULT;
 
   /**
    * The default value of the '{@link #getProperty() <em>Property</em>}' attribute.
@@ -99,8 +99,8 @@ public class PropertyGoalImpl extends GoalImpl implements PropertyGoal {
    * @generated
    */
   @Override
-  public String getLanguage() {
-    return this.language;
+  public String getReasonerName() {
+    return this.reasonerName;
   }
 
   /**
@@ -109,11 +109,11 @@ public class PropertyGoalImpl extends GoalImpl implements PropertyGoal {
    * @generated
    */
   @Override
-  public void setLanguage(String newLanguage) {
-    var oldLanguage = this.language;
-    this.language = newLanguage;
+  public void setReasonerName(String newReasonerName) {
+    var oldReasonerName = this.reasonerName;
+    this.reasonerName = newReasonerName;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.PROPERTY_GOAL__LANGUAGE, oldLanguage, this.language));
+      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.PROPERTY_GOAL__REASONER_NAME, oldReasonerName, this.reasonerName));
   }
 
   /**
@@ -147,8 +147,8 @@ public class PropertyGoalImpl extends GoalImpl implements PropertyGoal {
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
-      case GSNPackage.PROPERTY_GOAL__LANGUAGE:
-        return getLanguage();
+      case GSNPackage.PROPERTY_GOAL__REASONER_NAME:
+        return getReasonerName();
       case GSNPackage.PROPERTY_GOAL__PROPERTY:
         return getProperty();
     }
@@ -163,8 +163,8 @@ public class PropertyGoalImpl extends GoalImpl implements PropertyGoal {
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
-      case GSNPackage.PROPERTY_GOAL__LANGUAGE:
-        setLanguage((String)newValue);
+      case GSNPackage.PROPERTY_GOAL__REASONER_NAME:
+        setReasonerName((String)newValue);
         return;
       case GSNPackage.PROPERTY_GOAL__PROPERTY:
         setProperty((String)newValue);
@@ -181,8 +181,8 @@ public class PropertyGoalImpl extends GoalImpl implements PropertyGoal {
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
-      case GSNPackage.PROPERTY_GOAL__LANGUAGE:
-        setLanguage(PropertyGoalImpl.LANGUAGE_EDEFAULT);
+      case GSNPackage.PROPERTY_GOAL__REASONER_NAME:
+        setReasonerName(PropertyGoalImpl.REASONER_NAME_EDEFAULT);
         return;
       case GSNPackage.PROPERTY_GOAL__PROPERTY:
         setProperty(PropertyGoalImpl.PROPERTY_EDEFAULT);
@@ -199,8 +199,8 @@ public class PropertyGoalImpl extends GoalImpl implements PropertyGoal {
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
-      case GSNPackage.PROPERTY_GOAL__LANGUAGE:
-        return PropertyGoalImpl.LANGUAGE_EDEFAULT == null ? this.language != null : !PropertyGoalImpl.LANGUAGE_EDEFAULT.equals(this.language);
+      case GSNPackage.PROPERTY_GOAL__REASONER_NAME:
+        return PropertyGoalImpl.REASONER_NAME_EDEFAULT == null ? this.reasonerName != null : !PropertyGoalImpl.REASONER_NAME_EDEFAULT.equals(this.reasonerName);
       case GSNPackage.PROPERTY_GOAL__PROPERTY:
         return PropertyGoalImpl.PROPERTY_EDEFAULT == null ? this.property != null : !PropertyGoalImpl.PROPERTY_EDEFAULT.equals(this.property);
     }
@@ -216,7 +216,7 @@ public class PropertyGoalImpl extends GoalImpl implements PropertyGoal {
   public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
     if (baseClass == PropertyDecompositionElement.class) {
       switch (derivedFeatureID) {
-        case GSNPackage.PROPERTY_GOAL__LANGUAGE: return GSNPackage.PROPERTY_DECOMPOSITION_ELEMENT__LANGUAGE;
+        case GSNPackage.PROPERTY_GOAL__REASONER_NAME: return GSNPackage.PROPERTY_DECOMPOSITION_ELEMENT__REASONER_NAME;
         case GSNPackage.PROPERTY_GOAL__PROPERTY: return GSNPackage.PROPERTY_DECOMPOSITION_ELEMENT__PROPERTY;
         default: return -1;
       }
@@ -233,7 +233,7 @@ public class PropertyGoalImpl extends GoalImpl implements PropertyGoal {
   public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
     if (baseClass == PropertyDecompositionElement.class) {
       switch (baseFeatureID) {
-        case GSNPackage.PROPERTY_DECOMPOSITION_ELEMENT__LANGUAGE: return GSNPackage.PROPERTY_GOAL__LANGUAGE;
+        case GSNPackage.PROPERTY_DECOMPOSITION_ELEMENT__REASONER_NAME: return GSNPackage.PROPERTY_GOAL__REASONER_NAME;
         case GSNPackage.PROPERTY_DECOMPOSITION_ELEMENT__PROPERTY: return GSNPackage.PROPERTY_GOAL__PROPERTY;
         default: return -1;
       }
@@ -250,9 +250,9 @@ public class PropertyGoalImpl extends GoalImpl implements PropertyGoal {
   public String toString() {
     if (eIsProxy()) return super.toString();
 
-    var result = new StringBuilder(super.toString());
-    result.append(" (language: ");
-    result.append(this.language);
+    StringBuilder result = new StringBuilder(super.toString());
+    result.append(" (reasonerName: ");
+    result.append(this.reasonerName);
     result.append(", property: ");
     result.append(this.property);
     result.append(')');

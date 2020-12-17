@@ -2566,13 +2566,13 @@ public interface GSNPackage extends EPackage {
   int PROPERTY_DECOMPOSITION_ELEMENT = 37;
 
   /**
-   * The feature id for the '<em><b>Language</b></em>' attribute.
+   * The feature id for the '<em><b>Reasoner Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PROPERTY_DECOMPOSITION_ELEMENT__LANGUAGE = 0;
+  int PROPERTY_DECOMPOSITION_ELEMENT__REASONER_NAME = 0;
 
   /**
    * The feature id for the '<em><b>Property</b></em>' attribute.
@@ -2675,13 +2675,13 @@ public interface GSNPackage extends EPackage {
   int PROPERTY_DECOMPOSITION_STRATEGY__IN_CONTEXT_OF = GSNPackage.DECOMPOSITION_STRATEGY__IN_CONTEXT_OF;
 
   /**
-   * The feature id for the '<em><b>Language</b></em>' attribute.
+   * The feature id for the '<em><b>Reasoner Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PROPERTY_DECOMPOSITION_STRATEGY__LANGUAGE = GSNPackage.DECOMPOSITION_STRATEGY_FEATURE_COUNT + 0;
+  int PROPERTY_DECOMPOSITION_STRATEGY__REASONER_NAME = GSNPackage.DECOMPOSITION_STRATEGY_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Property</b></em>' attribute.
@@ -2811,13 +2811,13 @@ public interface GSNPackage extends EPackage {
   int PROPERTY_GOAL__ASIL = GSNPackage.GOAL__ASIL;
 
   /**
-   * The feature id for the '<em><b>Language</b></em>' attribute.
+   * The feature id for the '<em><b>Reasoner Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PROPERTY_GOAL__LANGUAGE = GSNPackage.GOAL_FEATURE_COUNT + 0;
+  int PROPERTY_GOAL__REASONER_NAME = GSNPackage.GOAL_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Property</b></em>' attribute.
@@ -2878,15 +2878,14 @@ public interface GSNPackage extends EPackage {
 
 
   /**
-   * The meta object id for the '<em>MMINT Exception</em>' data type.
+   * The meta object id for the '<em>Exception</em>' data type.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see edu.toronto.cs.se.mmint.MMINTException
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getMMINTException()
+   * @see java.lang.Exception
+   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getException()
    * @generated
    */
-  int MMINT_EXCEPTION = 43;
-
+  int EXCEPTION = 43;
 
   /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.gsn.SafetyCase <em>Safety Case</em>}'.
@@ -3238,15 +3237,15 @@ public interface GSNPackage extends EPackage {
   EClass getPropertyDecompositionElement();
 
   /**
-   * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionElement#getLanguage <em>Language</em>}'.
+   * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionElement#getReasonerName <em>Reasoner Name</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Language</em>'.
-   * @see edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionElement#getLanguage()
+   * @return the meta object for the attribute '<em>Reasoner Name</em>'.
+   * @see edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionElement#getReasonerName()
    * @see #getPropertyDecompositionElement()
    * @generated
    */
-  EAttribute getPropertyDecompositionElement_Language();
+  EAttribute getPropertyDecompositionElement_ReasonerName();
 
   /**
    * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionElement#getProperty <em>Property</em>}'.
@@ -3735,15 +3734,15 @@ public interface GSNPackage extends EPackage {
   EEnum getImpactType();
 
   /**
-   * Returns the meta object for data type '{@link edu.toronto.cs.se.mmint.MMINTException <em>MMINT Exception</em>}'.
+   * Returns the meta object for data type '{@link java.lang.Exception <em>Exception</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for data type '<em>MMINT Exception</em>'.
-   * @see edu.toronto.cs.se.mmint.MMINTException
-   * @model instanceClass="edu.toronto.cs.se.mmint.MMINTException"
+   * @return the meta object for data type '<em>Exception</em>'.
+   * @see java.lang.Exception
+   * @model instanceClass="java.lang.Exception"
    * @generated
    */
-  EDataType getMMINTException();
+  EDataType getException();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -4061,12 +4060,12 @@ public interface GSNPackage extends EPackage {
     EClass PROPERTY_DECOMPOSITION_ELEMENT = GSNPackage.eINSTANCE.getPropertyDecompositionElement();
 
     /**
-     * The meta object literal for the '<em><b>Language</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Reasoner Name</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute PROPERTY_DECOMPOSITION_ELEMENT__LANGUAGE = GSNPackage.eINSTANCE.getPropertyDecompositionElement_Language();
+    EAttribute PROPERTY_DECOMPOSITION_ELEMENT__REASONER_NAME = GSNPackage.eINSTANCE.getPropertyDecompositionElement_ReasonerName();
 
     /**
      * The meta object literal for the '<em><b>Property</b></em>' attribute feature.
@@ -4503,14 +4502,14 @@ public interface GSNPackage extends EPackage {
     EEnum IMPACT_TYPE = GSNPackage.eINSTANCE.getImpactType();
 
     /**
-     * The meta object literal for the '<em>MMINT Exception</em>' data type.
+     * The meta object literal for the '<em>Exception</em>' data type.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see edu.toronto.cs.se.mmint.MMINTException
-     * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getMMINTException()
+     * @see java.lang.Exception
+     * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getException()
      * @generated
      */
-    EDataType MMINT_EXCEPTION = GSNPackage.eINSTANCE.getMMINTException();
+    EDataType EXCEPTION = GSNPackage.eINSTANCE.getException();
 
   }
 

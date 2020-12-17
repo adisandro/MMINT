@@ -84,7 +84,7 @@ public abstract class ASILfulElementImpl extends MinimalEObjectImpl.Container im
     var oldAsil = this.asil;
     this.asil = newAsil;
     if (eNotificationRequired()) {
-      var notification = new ENotificationImpl(this, Notification.SET, GSNPackage.ASI_LFUL_ELEMENT__ASIL, oldAsil, newAsil);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GSNPackage.ASI_LFUL_ELEMENT__ASIL, oldAsil, newAsil);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;

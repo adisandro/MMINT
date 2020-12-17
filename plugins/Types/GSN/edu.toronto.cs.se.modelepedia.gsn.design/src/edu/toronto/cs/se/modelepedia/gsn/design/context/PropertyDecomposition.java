@@ -26,9 +26,9 @@ import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
+import edu.toronto.cs.se.modelepedia.gsn.DecompositionStrategy;
 import edu.toronto.cs.se.modelepedia.gsn.Goal;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
-import edu.toronto.cs.se.modelepedia.gsn.Strategy;
 import edu.toronto.cs.se.modelepedia.gsn.reasoning.IDecompositionTrait;
 import edu.toronto.cs.se.modelepedia.gsn.util.PropertyBuilder;
 
@@ -93,16 +93,20 @@ public class PropertyDecomposition extends GoalDecomposition {
       throw new MMINTException("Not found");
     }
 
+    private Model getRelatedModel2() throws MMINTException {
+      return null;
+    }
+
     @Override
-    protected Strategy decompose() throws Exception {
+    protected DecompositionStrategy decompose() throws Exception {
       /**TODO
        * P: Refactor constraint code to use this code?
        * D: Turn overlap error into warning
-       * D+P: Allow incorrect decomposition rather than preventing creation of all objects?
        * P: Add decomposition check
-       * P: Solve reasoner name problem (and here rename language to reasonerName)
+       * P: Solve reasoner name problem
        * L: Find where is lean's mathlab library (readlink -f $(type -P lean)) and add it to config file
        * L: Extract dir recursively from jar
+       * L: Is it GSNLeanReasoner or LTSLeanReasoner?
        */
       var builder = (PropertyBuilder) this.builder;
       // ask for input
@@ -150,10 +154,9 @@ public class PropertyDecomposition extends GoalDecomposition {
                                                  reasonerName, subProperty);
         builder.addSupporter(propStrategy, subGoal);
       }
-      // check decomposition validity
-      propStrategy.validate();
+      builder.addSupporter(this.decomposed, formalStrategy);
 
-      return formalStrategy;
+      return propStrategy;
     }
   }
 }

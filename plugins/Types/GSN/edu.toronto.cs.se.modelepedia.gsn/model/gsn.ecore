@@ -182,10 +182,10 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DecompositionStrategy" abstract="true"
       eSuperTypes="#//Strategy">
-    <eOperations name="validate" eExceptions="#//MMINTException"/>
+    <eOperations name="validate" eExceptions="#//Exception"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Domain" abstract="true">
-    <eOperations name="validateDecomposition" eExceptions="#//MMINTException">
+    <eOperations name="validateDecomposition" eExceptions="#//Exception">
       <eParameters name="subDomains" upperBound="-1" eType="#//Domain"/>
     </eOperations>
   </eClassifiers>
@@ -215,12 +215,12 @@
   <eClassifiers xsi:type="ecore:EClass" name="DomainDecompositionStrategy" eSuperTypes="#//DecompositionStrategy #//DomainDecompositionElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="DomainGoal" eSuperTypes="#//Goal #//DomainDecompositionElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="PropertyDecompositionElement">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="language" lowerBound="1"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="reasonerName" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="property" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PropertyDecompositionStrategy" eSuperTypes="#//DecompositionStrategy #//PropertyDecompositionElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="PropertyGoal" eSuperTypes="#//Goal #//PropertyDecompositionElement"/>
-  <eClassifiers xsi:type="ecore:EDataType" name="MMINTException" instanceClassName="edu.toronto.cs.se.mmint.MMINTException"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="Exception" instanceClassName="java.lang.Exception"/>
 </ecore:EPackage>

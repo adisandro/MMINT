@@ -163,7 +163,7 @@ public class ValueDomainImpl extends DomainImpl implements ValueDomain {
   public String toStringGen() {
     if (eIsProxy()) return super.toString();
 
-    var result = new StringBuilder(super.toString());
+    StringBuilder result = new StringBuilder(super.toString());
     result.append(" (value: ");
     result.append(this.value);
     result.append(')');
@@ -182,7 +182,7 @@ public class ValueDomainImpl extends DomainImpl implements ValueDomain {
    * @generated NOT
    */
   @Override
-  public void validateDecomposition(EList<Domain> subDomains) throws MMINTException {
+  public void validateDecomposition(EList<Domain> subDomains) throws Exception {
     throw new MMINTException("A value domain can't be decomposed");
   }
 

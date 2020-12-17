@@ -36,7 +36,7 @@ import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 public class LeanReasoner implements IModelConstraintTrait {
 
   private final static String ENCODER_ID = "edu.toronto.cs.se.mmint.lean.operators.ToLean";
-  private final static String LEAN_DIR = "lean/";
+  protected final static String LEAN_DIR = "lean/";
   private final static String LEAN_CONSTRAINT = "constraint.lean";
   private final static String LEAN_CONFIG = "leanpkg.path";
   private final static String LEAN_EXEC = "lean";
@@ -46,7 +46,7 @@ public class LeanReasoner implements IModelConstraintTrait {
     return "Lean";
   }
 
-  private String generateEncoding(Model model, String workingPath) throws Exception {
+  protected String generateEncoding(Model model, String workingPath) throws Exception {
     var inputModels = ECollections.newBasicEList(model);
     var encoder = MIDTypeHierarchy.getPolyOperator(LeanReasoner.ENCODER_ID, inputModels);
     var encoderInputs = encoder.checkAllowedInputs(inputModels); //TODO MMINT[JAVA16] Refactor using records
@@ -57,18 +57,13 @@ public class LeanReasoner implements IModelConstraintTrait {
     return FileUtils.getLastSegmentFromPath(encoded.getOutputModels().get(0).getUri());
   }
 
-  @Override
-  public boolean checkModelConstraint(Model model, ExtendibleElementConstraint constraint, MIDLevel constraintLevel)
-                                     throws Exception {
-    var workingPath = MMINT.getActiveInstanceMIDFile().getParent().getFullPath().toString() + IPath.SEPARATOR +
-                      LeanReasoner.LEAN_DIR;
+  public boolean checkProperty(Model model, String property, String workingPath) throws Exception {
     var absWorkingPath = FileUtils.prependWorkspacePath(workingPath);
     try {
       // project dir
       Files.createDirectory(Path.of(absWorkingPath));
-      // constraint file
-      Files.writeString(Path.of(absWorkingPath, LeanReasoner.LEAN_CONSTRAINT), constraint.getImplementation(),
-                        StandardOpenOption.CREATE);
+      // property file
+      Files.writeString(Path.of(absWorkingPath, LeanReasoner.LEAN_CONSTRAINT), property, StandardOpenOption.CREATE);
       // package config file
       var config = """
         builtin_path
@@ -113,5 +108,14 @@ public class LeanReasoner implements IModelConstraintTrait {
       // clean up generated dir
       FileUtils.deleteDirectory(absWorkingPath, false);
     }
+  }
+
+  @Override
+  public boolean checkModelConstraint(Model model, ExtendibleElementConstraint constraint, MIDLevel constraintLevel)
+                                     throws Exception {
+    var workingPath = MMINT.getActiveInstanceMIDFile().getParent().getFullPath().toString() + IPath.SEPARATOR +
+                      LeanReasoner.LEAN_DIR;
+
+    return checkProperty(model, constraint.getImplementation(), workingPath);
   }
 }

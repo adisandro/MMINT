@@ -222,7 +222,7 @@ public class IntDomainImpl extends DomainImpl implements IntDomain {
   public String toStringGen() {
     if (eIsProxy()) return super.toString();
 
-    var result = new StringBuilder(super.toString());
+    StringBuilder result = new StringBuilder(super.toString());
     result.append(" (lowerBound: ");
     result.append(this.lowerBound);
     result.append(", upperBound: ");
@@ -243,7 +243,7 @@ public class IntDomainImpl extends DomainImpl implements IntDomain {
    * @generated NOT
    */
   @Override
-  public void validateDecomposition(EList<Domain> subDomains) throws MMINTException {
+  public void validateDecomposition(EList<Domain> subDomains) throws Exception {
     var subBounds = new ArrayList<IntDomain>();
     var subValues = new ArrayList<Integer>();
 

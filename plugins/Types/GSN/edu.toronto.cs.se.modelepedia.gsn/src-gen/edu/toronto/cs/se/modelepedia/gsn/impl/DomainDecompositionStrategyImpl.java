@@ -91,7 +91,7 @@ public class DomainDecompositionStrategyImpl extends DecompositionStrategyImpl i
     var oldDomain = this.domain;
     this.domain = newDomain;
     if (eNotificationRequired()) {
-      var notification = new ENotificationImpl(this, Notification.SET, GSNPackage.DOMAIN_DECOMPOSITION_STRATEGY__DOMAIN, oldDomain, newDomain);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GSNPackage.DOMAIN_DECOMPOSITION_STRATEGY__DOMAIN, oldDomain, newDomain);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -121,7 +121,7 @@ public class DomainDecompositionStrategyImpl extends DecompositionStrategyImpl i
    * @generated NOT
    */
   @Override
-  public void validate() throws MMINTException {
+  public void validate() throws Exception {
     var domain = Objects.requireNonNull(getDomain(), "Domain not specified");
     var subDomains = getSupportedBy().stream()
       .map(SupportedBy::getTarget)

@@ -67,26 +67,26 @@ public class PropertyDecompositionElementItemProvider
     if (this.itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
-      addLanguagePropertyDescriptor(object);
+      addReasonerNamePropertyDescriptor(object);
       addPropertyPropertyDescriptor(object);
     }
     return this.itemPropertyDescriptors;
   }
 
   /**
-   * This adds a property descriptor for the Language feature.
+   * This adds a property descriptor for the Reasoner Name feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected void addLanguagePropertyDescriptor(Object object) {
+  protected void addReasonerNamePropertyDescriptor(Object object) {
     this.itemPropertyDescriptors.add
       (createItemPropertyDescriptor
         (((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
-         getString("_UI_PropertyDecompositionElement_language_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_PropertyDecompositionElement_language_feature", "_UI_PropertyDecompositionElement_type"),
-         GSNPackage.Literals.PROPERTY_DECOMPOSITION_ELEMENT__LANGUAGE,
+         getString("_UI_PropertyDecompositionElement_reasonerName_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_PropertyDecompositionElement_reasonerName_feature", "_UI_PropertyDecompositionElement_type"),
+         GSNPackage.Literals.PROPERTY_DECOMPOSITION_ELEMENT__REASONER_NAME,
          true,
          false,
          false,
@@ -136,7 +136,7 @@ public class PropertyDecompositionElementItemProvider
    */
   @Override
   public String getText(Object object) {
-    var label = ((PropertyDecompositionElement)object).getLanguage();
+    var label = ((PropertyDecompositionElement)object).getReasonerName();
     return label == null || label.length() == 0 ?
       getString("_UI_PropertyDecompositionElement_type") :
       getString("_UI_PropertyDecompositionElement_type") + " " + label;
@@ -155,7 +155,7 @@ public class PropertyDecompositionElementItemProvider
     updateChildren(notification);
 
     switch (notification.getFeatureID(PropertyDecompositionElement.class)) {
-      case GSNPackage.PROPERTY_DECOMPOSITION_ELEMENT__LANGUAGE:
+      case GSNPackage.PROPERTY_DECOMPOSITION_ELEMENT__REASONER_NAME:
       case GSNPackage.PROPERTY_DECOMPOSITION_ELEMENT__PROPERTY:
         fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
         return;

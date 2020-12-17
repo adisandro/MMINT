@@ -24,7 +24,7 @@ public class PropertyBuilder extends GSNBuilder {
   }
 
   public void addPropertyElement(PropertyDecompositionElement propertyElem, String reasonerName, String property) {
-    propertyElem.setLanguage(reasonerName);
+    propertyElem.setReasonerName(reasonerName);
     propertyElem.setProperty(property);
   }
 

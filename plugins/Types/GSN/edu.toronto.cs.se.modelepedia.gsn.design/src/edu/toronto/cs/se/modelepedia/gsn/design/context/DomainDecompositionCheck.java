@@ -12,6 +12,7 @@ package edu.toronto.cs.se.modelepedia.gsn.design.context;
 import java.util.Collection;
 import java.util.Map;
 
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.sirius.business.api.action.AbstractExternalJavaAction;
@@ -42,10 +43,10 @@ public class DomainDecompositionCheck extends AbstractExternalJavaAction {
     var title = "Domain Decomposition Check";
     try {
       strategy.validate();
-      MessageDialog.openInformation(shell, title, "The domain decomposition is correct");
+      MessageDialog.openInformation(shell, title, "The domain decomposition is valid");
     }
-    catch (MMINTException e) {
-      MessageDialog.openError(shell, title, "The domain decomposition is incorrect:\n" + e.getMessage());
+    catch (Exception e) {
+      MMINTException.print(IStatus.ERROR, "The domain decomposition is not valid:\n" + e.getMessage(), e);
     }
   }
 

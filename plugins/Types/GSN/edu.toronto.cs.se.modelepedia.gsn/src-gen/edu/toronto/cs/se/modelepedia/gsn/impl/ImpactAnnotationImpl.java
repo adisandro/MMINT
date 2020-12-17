@@ -217,7 +217,7 @@ public class ImpactAnnotationImpl extends MinimalEObjectImpl.Container implement
   public String toString() {
     if (eIsProxy()) return super.toString();
 
-    var result = new StringBuilder(super.toString());
+    StringBuilder result = new StringBuilder(super.toString());
     result.append(" (type: ");
     result.append(this.type);
     result.append(", source: ");

@@ -161,7 +161,7 @@ public class MofNSupporterImpl extends SupportConnectorImpl implements MofNSuppo
   public String toString() {
     if (eIsProxy()) return super.toString();
 
-    var result = new StringBuilder(super.toString());
+    StringBuilder result = new StringBuilder(super.toString());
     result.append(" (target: ");
     result.append(this.target);
     result.append(')');

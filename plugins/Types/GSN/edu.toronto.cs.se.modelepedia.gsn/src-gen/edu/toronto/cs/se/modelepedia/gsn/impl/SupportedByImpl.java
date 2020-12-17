@@ -147,7 +147,7 @@ public class SupportedByImpl extends MinimalEObjectImpl.Container implements Sup
     var oldTarget = this.target;
     this.target = newTarget;
     if (eNotificationRequired()) {
-      var notification = new ENotificationImpl(this, Notification.SET, GSNPackage.SUPPORTED_BY__TARGET, oldTarget, newTarget);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GSNPackage.SUPPORTED_BY__TARGET, oldTarget, newTarget);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;

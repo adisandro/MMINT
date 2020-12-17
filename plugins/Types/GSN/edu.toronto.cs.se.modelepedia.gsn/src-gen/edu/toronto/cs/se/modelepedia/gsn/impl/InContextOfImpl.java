@@ -104,7 +104,7 @@ public class InContextOfImpl extends MinimalEObjectImpl.Container implements InC
     var oldContext = this.context;
     this.context = newContext;
     if (eNotificationRequired()) {
-      var notification = new ENotificationImpl(this, Notification.SET, GSNPackage.IN_CONTEXT_OF__CONTEXT, oldContext, newContext);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GSNPackage.IN_CONTEXT_OF__CONTEXT, oldContext, newContext);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;

@@ -16,7 +16,6 @@ import java.lang.reflect.InvocationTargetException;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
-import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.modelepedia.gsn.DecompositionStrategy;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 
@@ -53,7 +52,7 @@ public abstract class DecompositionStrategyImpl extends StrategyImpl implements 
    * @generated
    */
   @Override
-  public void validate() throws MMINTException {
+  public void validate() throws Exception {
     // TODO: implement this method
     // Ensure that you remove @generated or mark it @generated NOT
     throw new UnsupportedOperationException();

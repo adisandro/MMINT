@@ -28,7 +28,7 @@
       <genEnumLiterals ecoreEnumLiteral="gsn.ecore#//ImpactType/RecheckState"/>
       <genEnumLiterals ecoreEnumLiteral="gsn.ecore#//ImpactType/Reuse"/>
     </genEnums>
-    <genDataTypes ecoreDataType="gsn.ecore#//MMINTException"/>
+    <genDataTypes ecoreDataType="gsn.ecore#//Exception"/>
     <genClasses ecoreClass="gsn.ecore#//SafetyCase">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gsn.ecore#//SafetyCase/goals"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gsn.ecore#//SafetyCase/strategies"/>
@@ -125,7 +125,7 @@
     <genClasses ecoreClass="gsn.ecore#//DomainDecompositionStrategy"/>
     <genClasses ecoreClass="gsn.ecore#//DomainGoal"/>
     <genClasses ecoreClass="gsn.ecore#//PropertyDecompositionElement">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//PropertyDecompositionElement/language"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//PropertyDecompositionElement/reasonerName"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//PropertyDecompositionElement/property"/>
     </genClasses>
     <genClasses ecoreClass="gsn.ecore#//PropertyDecompositionStrategy"/>

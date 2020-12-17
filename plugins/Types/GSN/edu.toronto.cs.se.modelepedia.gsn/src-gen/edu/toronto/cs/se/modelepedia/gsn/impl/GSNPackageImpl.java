@@ -21,7 +21,6 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
-import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.modelepedia.gsn.ASILDecompositionStrategy;
 import edu.toronto.cs.se.modelepedia.gsn.ASILLevel;
 import edu.toronto.cs.se.modelepedia.gsn.ASILfulElement;
@@ -381,7 +380,7 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
    * <!-- end-user-doc -->
    * @generated
    */
-  private EDataType mmintExceptionEDataType = null;
+  private EDataType exceptionEDataType = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -790,7 +789,7 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
    * @generated
    */
   @Override
-  public EAttribute getPropertyDecompositionElement_Language() {
+  public EAttribute getPropertyDecompositionElement_ReasonerName() {
     return (EAttribute)this.propertyDecompositionElementEClass.getEStructuralFeatures().get(0);
   }
 
@@ -1270,8 +1269,8 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
    * @generated
    */
   @Override
-  public EDataType getMMINTException() {
-    return this.mmintExceptionEDataType;
+  public EDataType getException() {
+    return this.exceptionEDataType;
   }
 
   /**
@@ -1414,7 +1413,7 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     this.domainGoalEClass = createEClass(GSNPackage.DOMAIN_GOAL);
 
     this.propertyDecompositionElementEClass = createEClass(GSNPackage.PROPERTY_DECOMPOSITION_ELEMENT);
-    createEAttribute(this.propertyDecompositionElementEClass, GSNPackage.PROPERTY_DECOMPOSITION_ELEMENT__LANGUAGE);
+    createEAttribute(this.propertyDecompositionElementEClass, GSNPackage.PROPERTY_DECOMPOSITION_ELEMENT__REASONER_NAME);
     createEAttribute(this.propertyDecompositionElementEClass, GSNPackage.PROPERTY_DECOMPOSITION_ELEMENT__PROPERTY);
 
     this.propertyDecompositionStrategyEClass = createEClass(GSNPackage.PROPERTY_DECOMPOSITION_STRATEGY);
@@ -1427,7 +1426,7 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     this.impactTypeEEnum = createEEnum(GSNPackage.IMPACT_TYPE);
 
     // Create data types
-    this.mmintExceptionEDataType = createEDataType(GSNPackage.MMINT_EXCEPTION);
+    this.exceptionEDataType = createEDataType(GSNPackage.EXCEPTION);
   }
 
   /**
@@ -1583,13 +1582,13 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     initEClass(this.decompositionStrategyEClass, DecompositionStrategy.class, "DecompositionStrategy", EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 
     var op = initEOperation(getDecompositionStrategy__Validate(), null, "validate", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
-    addEException(op, this.getMMINTException());
+    addEException(op, this.getException());
 
     initEClass(this.domainEClass, Domain.class, "Domain", EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 
     op = initEOperation(getDomain__ValidateDecomposition__EList(), null, "validateDecomposition", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEParameter(op, this.getDomain(), "subDomains", 0, -1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
-    addEException(op, this.getMMINTException());
+    addEException(op, this.getException());
 
     initEClass(this.intDomainEClass, IntDomain.class, "IntDomain", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getIntDomain_LowerBound(), this.ecorePackage.getEInt(), "lowerBound", null, 1, 1, IntDomain.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
@@ -1613,7 +1612,7 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     initEClass(this.domainGoalEClass, DomainGoal.class, "DomainGoal", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(this.propertyDecompositionElementEClass, PropertyDecompositionElement.class, "PropertyDecompositionElement", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getPropertyDecompositionElement_Language(), this.ecorePackage.getEString(), "language", null, 1, 1, PropertyDecompositionElement.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
+    initEAttribute(getPropertyDecompositionElement_ReasonerName(), this.ecorePackage.getEString(), "reasonerName", null, 1, 1, PropertyDecompositionElement.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
     initEAttribute(getPropertyDecompositionElement_Property(), this.ecorePackage.getEString(), "property", null, 1, 1, PropertyDecompositionElement.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
 
     initEClass(this.propertyDecompositionStrategyEClass, PropertyDecompositionStrategy.class, "PropertyDecompositionStrategy", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
@@ -1640,7 +1639,7 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     addEEnumLiteral(this.impactTypeEEnum, ImpactType.REUSE);
 
     // Initialize data types
-    initEDataType(this.mmintExceptionEDataType, MMINTException.class, "MMINTException", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+    initEDataType(this.exceptionEDataType, Exception.class, "Exception", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 
     // Create resource
     createResource(GSNPackage.eNS_URI);

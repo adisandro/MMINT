@@ -195,7 +195,7 @@ public class SolutionImpl extends CoreElementImpl implements Solution {
   public String toString() {
     if (eIsProxy()) return super.toString();
 
-    var result = new StringBuilder(super.toString());
+    StringBuilder result = new StringBuilder(super.toString());
     result.append(" (stateValidity: ");
     result.append(this.stateValidity);
     result.append(')');

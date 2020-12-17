@@ -130,7 +130,7 @@ public abstract class GoalImpl extends DecomposableCoreElementImpl implements Go
     var oldAsil = this.asil;
     this.asil = newAsil;
     if (eNotificationRequired()) {
-      var notification = new ENotificationImpl(this, Notification.SET, GSNPackage.GOAL__ASIL, oldAsil, newAsil);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GSNPackage.GOAL__ASIL, oldAsil, newAsil);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -307,7 +307,7 @@ public abstract class GoalImpl extends DecomposableCoreElementImpl implements Go
   public String toString() {
     if (eIsProxy()) return super.toString();
 
-    var result = new StringBuilder(super.toString());
+    StringBuilder result = new StringBuilder(super.toString());
     result.append(" (stateValidity: ");
     result.append(this.stateValidity);
     result.append(')');

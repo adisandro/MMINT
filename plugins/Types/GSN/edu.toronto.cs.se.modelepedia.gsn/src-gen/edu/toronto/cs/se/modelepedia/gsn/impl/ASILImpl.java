@@ -175,7 +175,7 @@ public class ASILImpl extends MinimalEObjectImpl.Container implements ASIL {
     var oldStatus = this.status;
     this.status = newStatus;
     if (eNotificationRequired()) {
-      var notification = new ENotificationImpl(this, Notification.SET, GSNPackage.ASIL__STATUS, oldStatus, newStatus);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GSNPackage.ASIL__STATUS, oldStatus, newStatus);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -334,7 +334,7 @@ public class ASILImpl extends MinimalEObjectImpl.Container implements ASIL {
   public String toString() {
     if (eIsProxy()) return super.toString();
 
-    var result = new StringBuilder(super.toString());
+    StringBuilder result = new StringBuilder(super.toString());
     result.append(" (value: ");
     result.append(this.value);
     result.append(')');

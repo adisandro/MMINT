@@ -217,7 +217,7 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
     var oldStatus = this.status;
     this.status = newStatus;
     if (eNotificationRequired()) {
-      var notification = new ENotificationImpl(this, Notification.SET, GSNPackage.ARGUMENT_ELEMENT__STATUS, oldStatus, newStatus);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GSNPackage.ARGUMENT_ELEMENT__STATUS, oldStatus, newStatus);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -354,7 +354,7 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
   public String toString() {
     if (eIsProxy()) return super.toString();
 
-    var result = new StringBuilder(super.toString());
+    StringBuilder result = new StringBuilder(super.toString());
     result.append(" (id: ");
     result.append(this.id);
     result.append(", description: ");

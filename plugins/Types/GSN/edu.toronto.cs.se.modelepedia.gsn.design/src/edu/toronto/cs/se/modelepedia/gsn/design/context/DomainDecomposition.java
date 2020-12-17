@@ -21,13 +21,13 @@ import org.eclipse.sirius.viewpoint.DSemanticDecorator;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
+import edu.toronto.cs.se.modelepedia.gsn.DecompositionStrategy;
 import edu.toronto.cs.se.modelepedia.gsn.EnumDomain;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.Goal;
 import edu.toronto.cs.se.modelepedia.gsn.IntDomain;
 import edu.toronto.cs.se.modelepedia.gsn.RealDomain;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
-import edu.toronto.cs.se.modelepedia.gsn.Strategy;
 import edu.toronto.cs.se.modelepedia.gsn.util.DomainBuilder;
 
 public class DomainDecomposition extends GoalDecomposition {
@@ -47,7 +47,7 @@ public class DomainDecomposition extends GoalDecomposition {
     }
 
     @Override
-    protected Strategy decompose() throws Exception {
+    protected DecompositionStrategy decompose() throws Exception {
       var builder = (DomainBuilder) this.builder;
       // ask for input
       var title = "Domain Decomposition";
@@ -94,8 +94,7 @@ public class DomainDecomposition extends GoalDecomposition {
       }
       var goal = builder.createBasicGoal(compGoalId, compGoalDesc + String.join(", ", subDomains));
       builder.addSupporter(strategy, goal);
-      // check decomposition validity
-      strategy.validate();
+      builder.addSupporter(this.decomposed, strategy);
 
       return strategy;
     }

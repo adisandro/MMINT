@@ -72,12 +72,15 @@ public class FileUtils {
 
 	private static @NonNull String getAllButLastSegmentFromPath(@NonNull String path) {
 
+    if (path.isEmpty()) { // empty path
+      return path;
+    }
     var end = path.length() - 1;
     if (path.charAt(end) == IPath.SEPARATOR) { // last segment is a dir
       end -= 1;
     }
 		var sepIndex = path.lastIndexOf(IPath.SEPARATOR, end);
-		if (sepIndex == -1) { // the path has 1 segment only or is empty
+		if (sepIndex == -1) { // the path has 1 segment only
 			return "";
 		}
 

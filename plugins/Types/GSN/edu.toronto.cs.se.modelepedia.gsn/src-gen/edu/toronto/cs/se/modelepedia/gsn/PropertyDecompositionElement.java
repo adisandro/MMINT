@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionElement#getLanguage <em>Language</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionElement#getReasonerName <em>Reasoner Name</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionElement#getProperty <em>Property</em>}</li>
  * </ul>
  *
@@ -32,26 +32,26 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface PropertyDecompositionElement extends EObject {
   /**
-   * Returns the value of the '<em><b>Language</b></em>' attribute.
+   * Returns the value of the '<em><b>Reasoner Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Language</em>' attribute.
-   * @see #setLanguage(String)
-   * @see edu.toronto.cs.se.modelepedia.gsn.GSNPackage#getPropertyDecompositionElement_Language()
+   * @return the value of the '<em>Reasoner Name</em>' attribute.
+   * @see #setReasonerName(String)
+   * @see edu.toronto.cs.se.modelepedia.gsn.GSNPackage#getPropertyDecompositionElement_ReasonerName()
    * @model required="true"
    * @generated
    */
-  String getLanguage();
+  String getReasonerName();
 
   /**
-   * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionElement#getLanguage <em>Language</em>}' attribute.
+   * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionElement#getReasonerName <em>Reasoner Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Language</em>' attribute.
-   * @see #getLanguage()
+   * @param value the new value of the '<em>Reasoner Name</em>' attribute.
+   * @see #getReasonerName()
    * @generated
    */
-  void setLanguage(String value);
+  void setReasonerName(String value);
 
   /**
    * Returns the value of the '<em><b>Property</b></em>' attribute.

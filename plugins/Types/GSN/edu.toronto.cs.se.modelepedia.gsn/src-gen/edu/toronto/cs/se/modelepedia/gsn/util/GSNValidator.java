@@ -19,7 +19,6 @@ import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 
-import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.modelepedia.gsn.ASIL;
 import edu.toronto.cs.se.modelepedia.gsn.ASILDecompositionStrategy;
 import edu.toronto.cs.se.modelepedia.gsn.ASILLevel;
@@ -223,8 +222,8 @@ public class GSNValidator extends EObjectValidator {
         return validateValidityValue((ValidityValue)value, diagnostics, context);
       case GSNPackage.IMPACT_TYPE:
         return validateImpactType((ImpactType)value, diagnostics, context);
-      case GSNPackage.MMINT_EXCEPTION:
-        return validateMMINTException((MMINTException)value, diagnostics, context);
+      case GSNPackage.EXCEPTION:
+        return validateException((Exception)value, diagnostics, context);
       default:
         return true;
     }
@@ -1437,7 +1436,7 @@ public class GSNValidator extends EObjectValidator {
    * <!-- end-user-doc -->
    * @generated
    */
-  public boolean validateMMINTException(MMINTException mmintException, DiagnosticChain diagnostics, Map<Object, Object> context) {
+  public boolean validateException(Exception exception, DiagnosticChain diagnostics, Map<Object, Object> context) {
     return true;
   }
 

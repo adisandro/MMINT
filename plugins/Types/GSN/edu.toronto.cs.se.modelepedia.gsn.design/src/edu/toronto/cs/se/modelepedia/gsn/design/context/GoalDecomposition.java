@@ -23,8 +23,8 @@ import org.eclipse.sirius.viewpoint.DSemanticDecorator;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
+import edu.toronto.cs.se.modelepedia.gsn.DecompositionStrategy;
 import edu.toronto.cs.se.modelepedia.gsn.Goal;
-import edu.toronto.cs.se.modelepedia.gsn.Strategy;
 import edu.toronto.cs.se.modelepedia.gsn.util.GSNBuilder;
 
 public abstract class GoalDecomposition extends AbstractExternalJavaAction {
@@ -51,14 +51,19 @@ public abstract class GoalDecomposition extends AbstractExternalJavaAction {
       this.builder = builder;
     }
 
-    protected abstract Strategy decompose() throws Exception;
+    protected abstract DecompositionStrategy decompose() throws Exception;
 
     @Override
     protected void doExecute() {
       try {
         var strategy = decompose();
-        this.builder.addSupporter(this.decomposed, strategy);
         this.builder.commitChanges();
+        try {
+          strategy.validate();
+        }
+        catch (Exception e) {
+          MMINTException.print(IStatus.ERROR, "The goal decomposition is not valid:\n" + e.getMessage(), e);
+        }
       }
       catch (MIDDialogCancellation e) {
         // do nothing
