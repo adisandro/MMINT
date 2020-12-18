@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -18,15 +18,15 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
+import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTConstants;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
-import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.impl.ModelEndpointImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
@@ -97,7 +97,7 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
    */
 	@Override
   public KleisliModel getExtendedTarget() {
-    return extendedTarget;
+    return this.extendedTarget;
   }
 
 	/**
@@ -106,8 +106,8 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
    * @generated
    */
 	public NotificationChain basicSetExtendedTarget(KleisliModel newExtendedTarget, NotificationChain msgs) {
-    KleisliModel oldExtendedTarget = extendedTarget;
-    extendedTarget = newExtendedTarget;
+    var oldExtendedTarget = this.extendedTarget;
+    this.extendedTarget = newExtendedTarget;
     if (eNotificationRequired()) {
       ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, KleisliPackage.KLEISLI_MODEL_ENDPOINT__EXTENDED_TARGET, oldExtendedTarget, newExtendedTarget);
       if (msgs == null) msgs = notification; else msgs.add(notification);
@@ -122,12 +122,12 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
    */
 	@Override
   public void setExtendedTarget(KleisliModel newExtendedTarget) {
-    if (newExtendedTarget != extendedTarget) {
+    if (newExtendedTarget != this.extendedTarget) {
       NotificationChain msgs = null;
-      if (extendedTarget != null)
-        msgs = ((InternalEObject)extendedTarget).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - KleisliPackage.KLEISLI_MODEL_ENDPOINT__EXTENDED_TARGET, null, msgs);
+      if (this.extendedTarget != null)
+        msgs = ((InternalEObject)this.extendedTarget).eInverseRemove(this, InternalEObject.EOPPOSITE_FEATURE_BASE - KleisliPackage.KLEISLI_MODEL_ENDPOINT__EXTENDED_TARGET, null, msgs);
       if (newExtendedTarget != null)
-        msgs = ((InternalEObject)newExtendedTarget).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - KleisliPackage.KLEISLI_MODEL_ENDPOINT__EXTENDED_TARGET, null, msgs);
+        msgs = ((InternalEObject)newExtendedTarget).eInverseAdd(this, InternalEObject.EOPPOSITE_FEATURE_BASE - KleisliPackage.KLEISLI_MODEL_ENDPOINT__EXTENDED_TARGET, null, msgs);
       msgs = basicSetExtendedTarget(newExtendedTarget, msgs);
       if (msgs != null) msgs.dispatch();
     }
@@ -136,15 +136,11 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
   }
 
 	/**
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
+   * @generated NOT
    */
 	@Override
   public String getExtendedTargetUri() {
-    // TODO: implement this method to return the 'Extended Target Uri' attribute
-    // Ensure that you remove @generated or mark it @generated NOT
-    throw new UnsupportedOperationException();
+	  return getExtendedTarget().getUri();
   }
 
 	/**
@@ -216,9 +212,9 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 	public boolean eIsSet(int featureID) {
     switch (featureID) {
       case KleisliPackage.KLEISLI_MODEL_ENDPOINT__EXTENDED_TARGET:
-        return extendedTarget != null;
+        return this.extendedTarget != null;
       case KleisliPackage.KLEISLI_MODEL_ENDPOINT__EXTENDED_TARGET_URI:
-        return EXTENDED_TARGET_URI_EDEFAULT == null ? getExtendedTargetUri() != null : !EXTENDED_TARGET_URI_EDEFAULT.equals(getExtendedTargetUri());
+        return KleisliModelEndpointImpl.EXTENDED_TARGET_URI_EDEFAULT == null ? getExtendedTargetUri() != null : !KleisliModelEndpointImpl.EXTENDED_TARGET_URI_EDEFAULT.equals(getExtendedTargetUri());
     }
     return super.eIsSet(featureID);
   }
@@ -239,18 +235,18 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 			}
 		}
 
-		boolean isK =
+		var isK =
 			FileUtils.isFileOrDirectoryInState(
 				KleisliModelImpl.getModelTypeExtendedUri((KleisliModelRel) containerModelRelType, targetModelType, newModelTypeEndpointName)
 			);
-		boolean extendMetamodel = false;
+		var extendMetamodel = false;
 		if (!isK && MMINT.isInitialized() && !Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_TESTS_ENABLED))) {
 			extendMetamodel = MIDDialogs.getBooleanInput("Create new Kleisli model type endpoint", "Extend " + targetModelType.getName() + " metamodel?");
 			isK = extendMetamodel;
 		}
 		ModelEndpointReference newModelTypeEndpointRef;
 		if (isK) {
-			KleisliModelEndpoint newModelTypeEndpoint = super.createThisEClass();
+			var newModelTypeEndpoint = super.<KleisliModelEndpoint>createThisEClass();
 			newModelTypeEndpointRef = super.addSubtypeAndReference(newModelTypeEndpoint, newModelTypeEndpointName, targetModelType, isBinarySrc, containerModelRelType);
 			KleisliModel kModelType;
 			try {
@@ -262,7 +258,7 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 			}
 			if (extendMetamodel) {
 				Model ecoreModelType = MIDTypeRegistry.getType(EcorePackage.eNS_URI);
-				Editor ecoreEditorType = ecoreModelType.getEditors().get(0);
+				var ecoreEditorType = ecoreModelType.getEditors().get(0);
 				try {
 					FileUtils.openEclipseEditorInState(
 						kModelType.getUri(),
@@ -274,7 +270,7 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 			}
 		}
 		else {
-			ModelEndpoint newModelTypeEndpoint = MIDFactory.eINSTANCE.createModelEndpoint();
+			var newModelTypeEndpoint = MIDFactory.eINSTANCE.createModelEndpoint();
 			newModelTypeEndpointRef = super.addSubtypeAndReference(newModelTypeEndpoint, newModelTypeEndpointName, targetModelType, isBinarySrc, containerModelRelType);
 		}
 
@@ -322,8 +318,8 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 			throw new MMINTException("Can't add more than 2 model endpoints to a binary model relationship");
 		}
 
-		KleisliModelEndpoint newModelEndpoint = super.createThisEClass();
-		ModelEndpointReference newModelEndpointRef = super.addInstanceAndReference(newModelEndpoint, targetModel, containerModelRel);
+		var newModelEndpoint = super.<KleisliModelEndpoint>createThisEClass();
+		var newModelEndpointRef = super.addInstanceAndReference(newModelEndpoint, targetModel, containerModelRel);
 		getExtendedTarget().kleisliCreateInstance(newModelEndpoint);
 
 		return newModelEndpointRef;

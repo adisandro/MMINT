@@ -18,9 +18,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcorePackage;
 
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MMINTConstants;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
@@ -119,12 +119,12 @@ public class KleisliModelImpl extends ModelImpl implements KleisliModel {
 		//TODO MMINT[KLEISLI] should try to emulate normal api structure
 		MMINTException.mustBeType(this);
 
-		Model origModelType = containerModelTypeEndpoint.getTarget();
-		String kModelTypeUri = getModelTypeExtendedUri((KleisliModelRel) containerModelTypeEndpoint.eContainer(), origModelType, containerModelTypeEndpoint.getName());
+		var origModelType = containerModelTypeEndpoint.getTarget();
+		var kModelTypeUri = getModelTypeExtendedUri((KleisliModelRel) containerModelTypeEndpoint.eContainer(), origModelType, containerModelTypeEndpoint.getName());
 		if (!FileUtils.isFileOrDirectoryInState(kModelTypeUri)) {
 			try {
-				EPackage origRootModelTypeObj = origModelType.getEMFTypeRoot();
-				String origModelTypeUri = origRootModelTypeObj.getNsURI();
+				var origRootModelTypeObj = origModelType.getEMFTypeRoot();
+				var origModelTypeUri = origRootModelTypeObj.getNsURI();
 				origRootModelTypeObj.setNsURI(origModelTypeUri + KleisliReasoner.KLEISLI_MODELTYPE_URI_SUFFIX);
 				FileUtils.writeModelFileInState(origRootModelTypeObj, kModelTypeUri);
 				origRootModelTypeObj.setNsURI(origModelTypeUri); // restore original for packages coming from the registry
@@ -134,16 +134,16 @@ public class KleisliModelImpl extends ModelImpl implements KleisliModel {
 			}
 		}
 
-		KleisliModel kModelType = super.createThisEClass();
+		var kModelType = super.<KleisliModel>createThisEClass();
 		kModelType.setUri(kModelTypeUri);
 		kModelType.setName(origModelType.getName());
 		kModelType.setLevel(MIDLevel.TYPES);
 		kModelType.setSupertype(origModelType.getSupertype());
 		kModelType.setDynamic(true);
 		kModelType.setAbstract(origModelType.isAbstract());
-		ExtendibleElementConstraint origConstraint = origModelType.getConstraint();
+		var origConstraint = origModelType.getConstraint();
 		if (origConstraint != null) {
-			ExtendibleElementConstraint kConstraint = MIDFactory.eINSTANCE.createExtendibleElementConstraint();
+			var kConstraint = MIDFactory.eINSTANCE.createExtendibleElementConstraint();
 			kConstraint.setLanguage(origConstraint.getLanguage());
 			kConstraint.setImplementation(origConstraint.getImplementation());
 			kModelType.setConstraint(kConstraint);
@@ -174,11 +174,14 @@ public class KleisliModelImpl extends ModelImpl implements KleisliModel {
 
 		MMINTException.mustBeType(this);
 
+		if (MIDTypeHierarchy.isRootType(this)) { // special case for base kleisli endpoint
+		  return super.getEMFTypeRoot();
+		}
 		try {
 			return (EPackage) FileUtils.readModelFileInState(getUri());
 		}
 		catch (Exception e) {
-			throw new MMINTException("Error accessing the extended metamodel file for model type" + getUri(), e);
+			throw new MMINTException("Error accessing the extended metamodel file for model type " + getUri(), e);
 		}
 	}
 
@@ -208,8 +211,8 @@ public class KleisliModelImpl extends ModelImpl implements KleisliModel {
 
 		MMINTException.mustBeType(this);
 
-		Model origModel = containerModelEndpoint.getTarget();
-		KleisliModel kModel = super.createThisEClass();
+		var origModel = containerModelEndpoint.getTarget();
+		var kModel = super.<KleisliModel>createThisEClass();
 		kModel.setUri(getModelExtendedUri(containerModelEndpoint));
 		kModel.setName(origModel.getName());
 		kModel.setLevel(MIDLevel.INSTANCES);

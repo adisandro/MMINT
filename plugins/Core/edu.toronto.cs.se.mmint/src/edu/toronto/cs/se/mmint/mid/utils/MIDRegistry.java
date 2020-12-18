@@ -172,7 +172,7 @@ public class MIDRegistry {
 
 	public static void addEndpointCardinality(String uri, Map<String, Integer> cardinalityTable) {
 
-		Integer value = cardinalityTable.get(uri);
+		var value = cardinalityTable.get(uri);
 		Integer newValue = (value == null) ?
 			new Integer(1) :
 			new Integer(value.intValue()+1);
@@ -181,7 +181,7 @@ public class MIDRegistry {
 
 	public static void subtractEndpointCardinality(String uri, Map<String, Integer> cardinalityTable) throws MMINTException {
 
-		Integer value = cardinalityTable.get(uri);
+		var value = cardinalityTable.get(uri);
 		if (value == null) {
 			throw new MMINTException("Uri " + uri + " doesn't exist in the cardinality table");
 		}
@@ -190,12 +190,12 @@ public class MIDRegistry {
 
 	public static boolean checkNewEndpointUpperCardinality(ExtendibleElementEndpoint typeEndpoint, Map<String, Integer> cardinalityTable) {
 
-		int upperBound = typeEndpoint.getUpperBound();
+		var upperBound = typeEndpoint.getUpperBound();
 		if (upperBound == -1) {
 			return true;
 		}
-		Integer existingEndpoints = cardinalityTable.get(typeEndpoint.getUri());
-		int numEndpoints = (existingEndpoints == null) ? 0 : existingEndpoints;
+		var existingEndpoints = cardinalityTable.get(typeEndpoint.getUri());
+		var numEndpoints = (existingEndpoints == null) ? 0 : existingEndpoints;
 		if (numEndpoints < upperBound) {
 			return true;
 		}
@@ -205,7 +205,7 @@ public class MIDRegistry {
 
 	public static @NonNull String getModelUri(@NonNull String modelObjUri) {
 
-	    int sep = modelObjUri.lastIndexOf(MMINTConstants.MODEL_URI_SEPARATOR);
+	    var sep = modelObjUri.lastIndexOf(MMINTConstants.MODEL_URI_SEPARATOR);
 	    if (sep == -1) {
 	        return modelObjUri;
 	    }
@@ -216,14 +216,14 @@ public class MIDRegistry {
 	public static @NonNull String getModelUri(@NonNull EObject modelObj) {
 
 		String modelUri;
-		if (modelObj instanceof EClass) { // MIDLevel.TYPES
+		if (modelObj instanceof EClass || modelObj instanceof EStructuralFeature) { // MIDLevel.TYPES
 			modelUri = ((EPackage) EcoreUtil.getRootContainer(modelObj)).getNsURI(); // safe against metamodels in state
 		}
 		else { // MIDLevel.INSTANCES
 			if (modelObj instanceof PrimitiveEObjectWrapper) { // unwrap
 				modelObj = ((PrimitiveEObjectWrapper) modelObj).getOwner();
 			}
-			String emfUri = EcoreUtil.getURI(modelObj).toString();
+			var emfUri = EcoreUtil.getURI(modelObj).toString();
 			if (emfUri.startsWith(MIDRegistry.RESOURCE_URI_PREFIX)) {
 				emfUri = emfUri.substring(MIDRegistry.RESOURCE_URI_PREFIX.length());
 			}
@@ -236,8 +236,8 @@ public class MIDRegistry {
 	public static @NonNull String getModelElementUri(@NonNull EObject modelObj) {
 
 		String modelElemUri;
-		String emfUri = EcoreUtil.getURI(modelObj).toString();
-		if (modelObj instanceof EClass) { // MIDLevel.TYPES
+		var emfUri = EcoreUtil.getURI(modelObj).toString();
+		if (modelObj instanceof EClass || modelObj instanceof EStructuralFeature) { // MIDLevel.TYPES
 			String metamodelUri = MIDRegistry.getModelUri(modelObj);
 			modelElemUri = metamodelUri + MMINTConstants.ECORE_MODEL_URI_SEPARATOR + emfUri.substring(emfUri.indexOf(MMINTConstants.ECORE_MODEL_URI_SEPARATOR)+MMINTConstants.ECORE_MODEL_URI_SEPARATOR.length());
 		}
@@ -269,9 +269,9 @@ public class MIDRegistry {
 	//TODO MMINT[MODELELEMENT] add support for non-containment EReferences
 	public static EMFInfo getModelElementEMFInfo(EObject modelObj, MIDLevel level) {
 
-		EMFInfo eInfo = MIDFactory.eINSTANCE.createEMFInfo();
+		var eInfo = MIDFactory.eINSTANCE.createEMFInfo();
 		String className, featureName = null, relatedClassName = null;
-		boolean isAttribute = false;
+		var isAttribute = false;
 		if (level == MIDLevel.INSTANCES) {
 			if (modelObj instanceof PrimitiveEObjectWrapper) {
 				className = ((PrimitiveEObjectWrapper) modelObj).getOwner().eClass().getName();
@@ -335,7 +335,7 @@ public class MIDRegistry {
 	public static ModelElementReference getModelElementReference(ModelEndpointReference modelEndpointRef, EObject modelObj) {
 
 		ModelElement modelElemType = MIDConstraintChecker.getAllowedModelElementType(modelEndpointRef, modelObj);
-		String modelElemUri = MIDRegistry.getModelElementUri(modelObj) + MMINTConstants.ROLE_SEPARATOR + modelElemType.getUri();
+		var modelElemUri = MIDRegistry.getModelElementUri(modelObj) + MMINTConstants.ROLE_SEPARATOR + modelElemType.getUri();
 
 		return MIDRegistry.getReference(modelElemUri, modelEndpointRef.getModelElemRefs());
 	}
@@ -427,11 +427,11 @@ public class MIDRegistry {
 
 	public static String getNextWorkflowID(MID workflowMID) {
 
-		final String WORKFLOW_ID_PREFIX = "w";
+		final var WORKFLOW_ID_PREFIX = "w";
 		TreeSet<String> x = new TreeSet<>(workflowMID.getExtendibleTable().keySet());
-		String lastID = x.floor(WORKFLOW_ID_PREFIX + "9999");
-		int numID = (lastID == null || !lastID.startsWith(WORKFLOW_ID_PREFIX)) ? -1 : Integer.parseInt(lastID.substring(1));
-		String nextID = WORKFLOW_ID_PREFIX + (numID + 1);
+		var lastID = x.floor(WORKFLOW_ID_PREFIX + "9999");
+		var numID = (lastID == null || !lastID.startsWith(WORKFLOW_ID_PREFIX)) ? -1 : Integer.parseInt(lastID.substring(1));
+		var nextID = WORKFLOW_ID_PREFIX + (numID + 1);
 
 		return nextID;
 	}

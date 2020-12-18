@@ -944,7 +944,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
                     rootModelTypeObj = (EPackage) FileUtils.readModelFile(metamodelUri, null, false);
                 }
                 catch (Exception e) {
-                    throw new MMINTException("Error accessing the metamodel file for model type" + this.getUri(), e);
+                    throw new MMINTException("Error accessing the metamodel file for model type " + this.getUri(), e);
                 }
             }
             else { // climb up light types

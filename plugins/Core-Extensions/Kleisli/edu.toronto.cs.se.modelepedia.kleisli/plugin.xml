@@ -81,7 +81,7 @@
          <generics>
             <parameter>
 	           <type
-	                 name="KMR">
+	                 name="MR">
 	           </type>
 	           <typeEndpoint
 	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/KleisliModelRel">

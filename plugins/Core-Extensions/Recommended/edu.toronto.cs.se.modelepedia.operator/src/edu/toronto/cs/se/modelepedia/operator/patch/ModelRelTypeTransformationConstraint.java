@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -20,8 +20,12 @@ public class ModelRelTypeTransformationConstraint implements IJavaModelConstrain
 	@Override
 	public boolean check(Model model) {
 
-		ModelRel modelRelType = (ModelRel) model;
-		if (modelRelType.getModelEndpointRefs().size() != 2) {
+		var modelRelType = (ModelRel) model;
+		// remove overridden endpoints from the count
+		var effectiveEndpointRefs = modelRelType.getModelEndpointRefs().stream()
+		  .filter(e1 -> modelRelType.getModelEndpointRefs().stream().noneMatch(e2 -> e2.getSupertypeRef() == e1))
+		  .count();
+		if (effectiveEndpointRefs != 2) {
 			return false;
 		}
 

@@ -32,7 +32,7 @@ import edu.toronto.cs.se.mmint.ocl.reasoning.OCLReasoner;
 public class KleisliReasoner {
 
 	public static final String KLEISLI_MODELTYPE_URI_SUFFIX = "_Kleisli";
-	public static final String LANGUAGE_ID = "kleisli";
+	public static final String LANGUAGE_ID = "Kleisli";
 	public static final String ROW_SEPARATOR = "\n";
 	public static final String UNION_KEYWORD = "union";
 	public static final String UNION_ASSIGNMENT = ":=";

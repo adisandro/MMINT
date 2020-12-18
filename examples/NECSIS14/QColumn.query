@@ -1,4 +1,4 @@
-KLEISLI:
+Kleisli:
 union classes := classes
 union subclasses := classes->select(not parent.oclIsUndefined())
 union attributes := classes->collect(attributes)
