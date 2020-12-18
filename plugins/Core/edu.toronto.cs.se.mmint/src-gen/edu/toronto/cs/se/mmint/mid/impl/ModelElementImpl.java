@@ -111,7 +111,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
    * @generated
    */
     public NotificationChain basicSetEInfo(EMFInfo newEInfo, NotificationChain msgs) {
-    EMFInfo oldEInfo = this.eInfo;
+    var oldEInfo = this.eInfo;
     this.eInfo = newEInfo;
     if (eNotificationRequired()) {
       ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MIDPackage.MODEL_ELEMENT__EINFO, oldEInfo, newEInfo);
@@ -147,7 +147,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
    */
   public EObject getEMFInstanceObjectGen() {
     if (this.emfInstanceObject != null && this.emfInstanceObject.eIsProxy()) {
-      InternalEObject oldEMFInstanceObject = (InternalEObject)this.emfInstanceObject;
+      var oldEMFInstanceObject = (InternalEObject)this.emfInstanceObject;
       this.emfInstanceObject = eResolveProxy(oldEMFInstanceObject);
       if (this.emfInstanceObject != oldEMFInstanceObject) {
         if (eNotificationRequired())
@@ -170,11 +170,11 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
       var modelObj = getEMFInstanceObjectGen();
       if (modelObj == null) {
         String modelObjUri = MIDRegistry.getModelObjectUri(this);
-        int lastSegmentIndex = modelObjUri.lastIndexOf(MMINTConstants.MODEL_URI_SEPARATOR);
-        String lastSegment = modelObjUri.substring(lastSegmentIndex + 1);
-        boolean isPrimitive = !lastSegment.equals("") &&
-                              !lastSegment.contains(MIDRegistry.ECORE_EREFERENCE_URI_PREFIX) &&
-                              !lastSegment.startsWith("_");
+        var lastSegmentIndex = modelObjUri.lastIndexOf(MMINTConstants.MODEL_URI_SEPARATOR);
+        var lastSegment = modelObjUri.substring(lastSegmentIndex + 1);
+        var isPrimitive = !lastSegment.equals("/") &&
+                          !lastSegment.contains(MIDRegistry.ECORE_EREFERENCE_URI_PREFIX) &&
+                          !lastSegment.startsWith("_");
         if (isPrimitive) {
           modelObjUri = modelObjUri.substring(0, lastSegmentIndex);
         }
@@ -212,7 +212,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
    */
   @Override
   public void setEMFInstanceObject(EObject newEMFInstanceObject) {
-    EObject oldEMFInstanceObject = this.emfInstanceObject;
+    var oldEMFInstanceObject = this.emfInstanceObject;
     this.emfInstanceObject = newEMFInstanceObject;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.MODEL_ELEMENT__EMF_INSTANCE_OBJECT, oldEMFInstanceObject, this.emfInstanceObject));
@@ -225,7 +225,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
    */
     @Override
     public ModelElement getMetatype() {
-    ExtendibleElement metatype = super.getMetatype();
+    var metatype = super.getMetatype();
     return (metatype == null) ? null : (ModelElement) metatype;
   }
 
@@ -236,7 +236,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
    */
     @Override
     public ModelElement getSupertype() {
-    ExtendibleElement supertype = super.getSupertype();
+    var supertype = super.getSupertype();
     return (supertype == null) ? null : (ModelElement) supertype;
   }
 
@@ -427,7 +427,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 
         MMINTException.mustBeType(this);
 
-        ModelElementReference newModelElemTypeRef = super.createThisReferenceEClass();
+        var newModelElemTypeRef = super.<ModelElementReference>createThisReferenceEClass();
         super.addTypeReference(newModelElemTypeRef, modelElemTypeRef, isModifiable, false);
         containerModelTypeEndpointRef.getModelElemRefs().add(newModelElemTypeRef);
 
@@ -442,9 +442,9 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 
         MMINTException.mustBeType(this);
 
-        ModelRel modelRelType = (ModelRel) containerModelTypeEndpointRef.eContainer();
-        MID typeMID = modelRelType.getMIDContainer();
-        ModelElement newModelElemType = typeMID.getExtendibleElement(newModelElemTypeUri);
+        var modelRelType = (ModelRel) containerModelTypeEndpointRef.eContainer();
+        var typeMID = modelRelType.getMIDContainer();
+        var newModelElemType = typeMID.<ModelElement>getExtendibleElement(newModelElemTypeUri);
         if (newModelElemType == null) {
             // create the "thing"
             newModelElemType = super.createThisEClass();
@@ -452,13 +452,13 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
             MIDTypeFactory.addModelElementType(newModelElemType, eInfo, containerModelTypeEndpointRef.getObject().getTarget());
         }
         // create the reference of the "thing"
-        ModelElementReference newModelElemTypeRef = newModelElemType.createTypeReference(modelElemTypeRef, true, containerModelTypeEndpointRef);
+        var newModelElemTypeRef = newModelElemType.createTypeReference(modelElemTypeRef, true, containerModelTypeEndpointRef);
         // create references of the "thing" in subtypes of the container
         for (ModelRel modelRelSubtype : MIDTypeHierarchy.getSubtypes(modelRelType, typeMID)) {
-            ModelEndpointReference containerModelSubtypeEndpointRef = MIDRegistry.getReference(containerModelTypeEndpointRef, modelRelSubtype.getModelEndpointRefs());
+            var containerModelSubtypeEndpointRef = MIDRegistry.getReference(containerModelTypeEndpointRef, modelRelSubtype.getModelEndpointRefs());
             ModelElementReference modelElemSubtypeRef = null;
             if (modelElemTypeRef != null) {
-                ModelEndpointReference modelSubtypeRefSuper = MIDRegistry.getReference((ModelEndpointReference) modelElemTypeRef.eContainer(), modelRelSubtype.getModelEndpointRefs());
+                var modelSubtypeRefSuper = MIDRegistry.getReference((ModelEndpointReference) modelElemTypeRef.eContainer(), modelRelSubtype.getModelEndpointRefs());
                 modelElemSubtypeRef = MIDRegistry.getReference(modelElemTypeRef, modelSubtypeRefSuper.getModelElemRefs());
             }
             newModelElemType.createTypeReference(modelElemSubtypeRef, false, containerModelSubtypeEndpointRef);
@@ -506,7 +506,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 
         MMINTException.mustBeInstance(this);
 
-        ModelElementReference newModelElemRef = super.createThisReferenceEClass();
+        var newModelElemRef = super.<ModelElementReference>createThisReferenceEClass();
         super.addInstanceReference(newModelElemRef, false);
         containerModelEndpointRef.getModelElemRefs().add(newModelElemRef);
 
@@ -521,8 +521,8 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 
         MMINTException.mustBeType(this);
 
-        Model containerModel = containerModelEndpointRef.getObject().getTarget();
-        MID instanceMID = containerModel.getMIDContainer();
+        var containerModel = containerModelEndpointRef.getObject().getTarget();
+        var instanceMID = containerModel.getMIDContainer();
         ModelElement newModelElem = null;
         newModelElemUri += MMINTConstants.ROLE_SEPARATOR + this.getUri();
         if (instanceMID != null) { // can be null when the containing model is not stored in the MID
@@ -539,7 +539,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
             newModelElem.setEInfo(eInfo);
             containerModel.getModelElems().add(newModelElem);
         }
-        ModelElementReference newModelElemRef = newModelElem.createInstanceReference(containerModelEndpointRef);
+        var newModelElemRef = newModelElem.createInstanceReference(containerModelEndpointRef);
 
         return newModelElemRef;
     }

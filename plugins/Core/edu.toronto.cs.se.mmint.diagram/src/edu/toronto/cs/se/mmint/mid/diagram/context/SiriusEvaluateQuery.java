@@ -150,7 +150,6 @@ public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
       var modelObjs = arg0.stream()
         .map(obj -> ((DSemanticDecorator) obj).getTarget())
         .collect(Collectors.toList());
-      var modelPath = MIDRegistry.getModelUri(modelObjs.get(0));
       var model = MIDDiagramUtils.getInstanceMIDModelFromModelEditor(modelObjs.get(0));
       //TODO MMINT[QUERY] in case of exception the context should simply be the sirius model
       var instanceMID = model.getMIDContainer();
