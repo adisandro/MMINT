@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -40,8 +40,8 @@ public class KleisliAddModifyQueryListener extends AddModifyConstraintListener {
 	public void widgetSelected(SelectionEvent e) {
 
 		KleisliAddModifyQueryCommand command = new KleisliAddModifyQueryCommand(
-			TransactionUtil.getEditingDomain(element),
-			menuLabel,
+			TransactionUtil.getEditingDomain(this.element),
+			this.menuLabel,
 			MIDDiagramUtils.getActiveInstanceMIDFiles()
 		);
 		runListenerCommand(command);
@@ -57,10 +57,11 @@ public class KleisliAddModifyQueryListener extends AddModifyConstraintListener {
 		@Override
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-			CommandResult result = super.doExecuteWithResult(monitor, info);
+			var result = super.doExecuteWithResult(monitor, info);
 			if (result.getStatus().getSeverity() == IStatus.OK) {
-				if (!element.getConstraint().getLanguage().equals(KleisliReasoner.LANGUAGE_ID)) {
-					MMINTException.print(IStatus.ERROR, "The query language is not " + KleisliReasoner.LANGUAGE_ID, null);
+			  var reasonerName = new KleisliReasoner().getName();
+				if (!KleisliAddModifyQueryListener.this.element.getConstraint().getLanguage().equals(reasonerName)) {
+					MMINTException.print(IStatus.ERROR, "The reasoner name is not '" + reasonerName + "'", null);
 					result = CommandResult.newErrorCommandResult("No kleisli query added");
 				}
 			}
