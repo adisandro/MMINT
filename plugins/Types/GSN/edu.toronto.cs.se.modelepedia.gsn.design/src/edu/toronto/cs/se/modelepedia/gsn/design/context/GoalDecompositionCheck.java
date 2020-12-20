@@ -1,12 +1,15 @@
-/**
- * Copyright (c) 2012-2020 Alessio Di Sandro, Marsha Chechik.
- * All rights reserved. This program and the accompanying materials are made available under the terms
- * of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+/*******************************************************************************
+ * Copyright (c) 2020, 2020 Alessio Di Sandro.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *   Alessio Di Sandro - Implementation
- */
+ *     Alessio Di Sandro - Implementation
+ *******************************************************************************/
 package edu.toronto.cs.se.modelepedia.gsn.design.context;
 
 import java.util.Collection;
@@ -20,9 +23,9 @@ import org.eclipse.sirius.viewpoint.DSemanticDecorator;
 import org.eclipse.ui.PlatformUI;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.modelepedia.gsn.DomainDecompositionStrategy;
+import edu.toronto.cs.se.modelepedia.gsn.DecompositionStrategy;
 
-public class DomainDecompositionCheck extends AbstractExternalJavaAction {
+public class GoalDecompositionCheck extends AbstractExternalJavaAction {
 
   @Override
   public boolean canExecute(Collection<? extends EObject> arg0) {
@@ -30,7 +33,7 @@ public class DomainDecompositionCheck extends AbstractExternalJavaAction {
       return false;
     }
     var modelObj = ((DSemanticDecorator) arg0.iterator().next()).getTarget();
-    if (modelObj instanceof DomainDecompositionStrategy) {
+    if (modelObj instanceof DecompositionStrategy) {
       return true;
     }
     return false;
@@ -38,15 +41,15 @@ public class DomainDecompositionCheck extends AbstractExternalJavaAction {
 
   @Override
   public void execute(Collection<? extends EObject> arg0, Map<String, Object> arg1) {
-    var strategy = (DomainDecompositionStrategy) ((DSemanticDecorator) arg0.iterator().next()).getTarget();
+    var strategy = (DecompositionStrategy) ((DSemanticDecorator) arg0.iterator().next()).getTarget();
     var shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-    var title = "Domain Decomposition Check";
+    var title = "Goal Decomposition Check";
     try {
       strategy.validate();
-      MessageDialog.openInformation(shell, title, "The domain decomposition is valid");
+      MessageDialog.openInformation(shell, title, "The goal decomposition is valid");
     }
     catch (Exception e) {
-      MMINTException.print(IStatus.ERROR, "The domain decomposition is not valid", e);
+      MMINTException.print(IStatus.ERROR, "The goal decomposition is not valid", e);
     }
   }
 

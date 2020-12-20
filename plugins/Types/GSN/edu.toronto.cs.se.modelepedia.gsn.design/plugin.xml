@@ -51,12 +51,12 @@
             id="edu.toronto.cs.se.modelepedia.gsn.design.context.DomainDecomposition">
       </javaActions>
       <javaActions
-            actionClass="edu.toronto.cs.se.modelepedia.gsn.design.context.DomainDecompositionCheck"
-            id="edu.toronto.cs.se.modelepedia.gsn.design.context.DomainDecompositionCheck">
-      </javaActions>
-      <javaActions
             actionClass="edu.toronto.cs.se.modelepedia.gsn.design.context.PropertyDecomposition"
             id="edu.toronto.cs.se.modelepedia.gsn.design.context.PropertyDecomposition">
+      </javaActions>
+      <javaActions
+            actionClass="edu.toronto.cs.se.modelepedia.gsn.design.context.GoalDecompositionCheck"
+            id="edu.toronto.cs.se.modelepedia.gsn.design.context.GoalDecompositionCheck">
       </javaActions>
    </extension>
 
