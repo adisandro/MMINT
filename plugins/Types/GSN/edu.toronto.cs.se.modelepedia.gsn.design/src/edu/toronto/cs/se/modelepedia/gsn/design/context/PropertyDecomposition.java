@@ -12,13 +12,7 @@
  *******************************************************************************/
 package edu.toronto.cs.se.modelepedia.gsn.design.context;
 
-import java.util.Collection;
-import java.util.Map;
-
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.sirius.business.api.session.SessionManager;
-import org.eclipse.sirius.viewpoint.DSemanticDecorator;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.Model;
@@ -33,27 +27,16 @@ import edu.toronto.cs.se.modelepedia.gsn.reasoning.IDecompositionTrait;
 import edu.toronto.cs.se.modelepedia.gsn.util.PropertyBuilder;
 
 public class PropertyDecomposition extends GoalDecomposition {
-  public static final int SHORT_PROPERTY = 15;
 
   @Override
-  public void execute(Collection<? extends EObject> arg0, Map<String, Object> arg1) {
-    var goal = (Goal) ((DSemanticDecorator) arg0.iterator().next()).getTarget();
-    var sSession = SessionManager.INSTANCE.getSession(goal);
-    var sDomain = sSession.getTransactionalEditingDomain();
-    sDomain.getCommandStack().execute(new PropertyDecompositionCommand(sDomain, goal));
+  protected GoalDecompositionCommand createCommand(TransactionalEditingDomain domain, Goal goal) {
+    return new PropertyDecompositionCommand(domain, goal);
   }
 
   private class PropertyDecompositionCommand extends GoalDecompositionCommand {
 
     public PropertyDecompositionCommand(TransactionalEditingDomain domain, Goal decomposed) {
       super(domain, decomposed, new PropertyBuilder((SafetyCase) decomposed.eContainer()));
-    }
-
-    private String shortenProperty(String property) {
-      var shortProperty = (property.length() < PropertyDecomposition.SHORT_PROPERTY) ?
-        property :
-        property.substring(0, PropertyDecomposition.SHORT_PROPERTY) +  "..";
-      return "'" + shortProperty + "'";
     }
 
     private Model getRelatedModel() throws MMINTException {
@@ -93,15 +76,10 @@ public class PropertyDecomposition extends GoalDecomposition {
       throw new MMINTException("Not found");
     }
 
-    private Model getRelatedModel2() throws MMINTException {
-      return null;
-    }
-
     @Override
     protected DecompositionStrategy decompose() throws Exception {
       /**TODO
        * P: Refactor constraint code to use this code?
-       * P: Add decomposition check
        * P: Solve reasoner name problem
        * L: Find where is lean's mathlab library (readlink -f $(type -P lean)) and add it to config file
        * L: Extract dir recursively from jar
@@ -114,12 +92,11 @@ public class PropertyDecomposition extends GoalDecomposition {
       var reasonerName = reasoner.getName();
       var property = MIDDialogs.getBigStringInput(title, "Insert the " + reasonerName + " property to be decomposed",
                                                   null);
-      var shortProperty = shortenProperty(property);
+      var shortProperty = builder.shortenProperty(property);
       var numProperties = Integer.parseInt(MIDDialogs.getStringInput(title, "Insert the number of sub-properties",
                                                                      null));
       // create decomposition template
       var id = this.decomposed.getId();
-      var desc = this.decomposed.getDescription();
       var formalStrategyId = "SF-" + id;
       var formalStrategyDesc = "Argument by " + reasonerName + " formalization";
       var modelGoalId = id + "-M";
@@ -148,7 +125,7 @@ public class PropertyDecomposition extends GoalDecomposition {
       builder.createJustification(propStrategy, justId, justDesc);
       for (var i = 0; i < numProperties; i++) {
         var subProperty = MIDDialogs.getBigStringInput(title, "Insert the sub-property #" + (i+1), null);
-        var subShortProperty = shortenProperty(subProperty);
+        var subShortProperty = builder.shortenProperty(subProperty);
         var subGoal = builder.createPropertyGoal(subGoalId + i, subGoalDesc1 + subShortProperty + subGoalDesc2,
                                                  reasonerName, subProperty);
         builder.addSupporter(propStrategy, subGoal);

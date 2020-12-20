@@ -14,7 +14,6 @@ package edu.toronto.cs.se.modelepedia.gsn.design.tools;
 
 import java.util.Collection;
 import java.util.Map;
-import java.util.Set;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
@@ -25,11 +24,12 @@ import org.eclipse.sirius.business.api.session.SessionManager;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
-import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
-import edu.toronto.cs.se.modelepedia.gsn.util.DomainBuilder;
+import edu.toronto.cs.se.modelepedia.gsn.reasoning.IDecompositionTrait;
+import edu.toronto.cs.se.modelepedia.gsn.util.PropertyBuilder;
 
-public class CreateDomainGoal extends AbstractExternalJavaAction {
+public class CreatePropertyGoal extends AbstractExternalJavaAction {
 
   @Override
   public boolean canExecute(Collection<? extends EObject> arg0) {
@@ -41,31 +41,33 @@ public class CreateDomainGoal extends AbstractExternalJavaAction {
     var gsnRootModelObj = (SafetyCase) arg0.iterator().next();
     var sSession = SessionManager.INSTANCE.getSession(gsnRootModelObj);
     var sDomain = sSession.getTransactionalEditingDomain();
-    sDomain.getCommandStack().execute(new CreateDomainGoalCommand(sDomain, gsnRootModelObj));
+    sDomain.getCommandStack().execute(new CreatePropertyGoalCommand(sDomain, gsnRootModelObj));
   }
 
-  private class CreateDomainGoalCommand extends RecordingCommand {
-    private DomainBuilder builder;
+  private class CreatePropertyGoalCommand extends RecordingCommand {
+    private PropertyBuilder builder;
 
-    public CreateDomainGoalCommand(TransactionalEditingDomain domain, SafetyCase gsnRootModelObj) {
+    public CreatePropertyGoalCommand(TransactionalEditingDomain domain, SafetyCase gsnRootModelObj) {
       super(domain);
-      this.builder = new DomainBuilder(gsnRootModelObj);
+      this.builder = new PropertyBuilder(gsnRootModelObj);
     }
 
     @Override
     protected void doExecute() {
       try {
-        var domain = this.builder.createDomain("Create Domain Goal", "Insert the domain",
-                                               Set.of(GSNPackage.INT_DOMAIN, GSNPackage.REAL_DOMAIN,
-                                                      GSNPackage.ENUM_DOMAIN, GSNPackage.VALUE_DOMAIN));
-        this.builder.createDomainGoal("", "", domain);
+        var title = "Property Decomposition";
+        var reasoner = MIDDialogs.selectReasoner(IDecompositionTrait.class, "GSN property decomposition");
+        var reasonerName = reasoner.getName();
+        var property = MIDDialogs.getBigStringInput(title, "Insert the " + reasonerName + " property", null);
+        var shortProperty = this.builder.shortenProperty(property);
+        this.builder.createPropertyGoal("", shortProperty, reasonerName, property);
         this.builder.commitChanges();
       }
       catch (MIDDialogCancellation e) {
         // do nothing
       }
       catch (Exception e) {
-        MMINTException.print(IStatus.ERROR, "Create domain goal error", e);
+        MMINTException.print(IStatus.ERROR, "Create property goal error", e);
       }
     }
   }

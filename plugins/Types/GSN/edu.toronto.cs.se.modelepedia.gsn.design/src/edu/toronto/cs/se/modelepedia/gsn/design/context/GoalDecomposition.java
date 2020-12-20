@@ -13,12 +13,14 @@
 package edu.toronto.cs.se.modelepedia.gsn.design.context;
 
 import java.util.Collection;
+import java.util.Map;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.sirius.business.api.action.AbstractExternalJavaAction;
+import org.eclipse.sirius.business.api.session.SessionManager;
 import org.eclipse.sirius.viewpoint.DSemanticDecorator;
 
 import edu.toronto.cs.se.mmint.MMINTException;
@@ -28,6 +30,8 @@ import edu.toronto.cs.se.modelepedia.gsn.Goal;
 import edu.toronto.cs.se.modelepedia.gsn.util.GSNBuilder;
 
 public abstract class GoalDecomposition extends AbstractExternalJavaAction {
+
+  protected abstract GoalDecompositionCommand createCommand(TransactionalEditingDomain domain, Goal goal);
 
   @Override
   public boolean canExecute(Collection<? extends EObject> arg0) {
@@ -39,6 +43,14 @@ public abstract class GoalDecomposition extends AbstractExternalJavaAction {
       return true;
     }
     return false;
+  }
+
+  @Override
+  public void execute(Collection<? extends EObject> arg0, Map<String, Object> arg1) {
+    var goal = (Goal) ((DSemanticDecorator) arg0.iterator().next()).getTarget();
+    var sSession = SessionManager.INSTANCE.getSession(goal);
+    var sDomain = sSession.getTransactionalEditingDomain();
+    sDomain.getCommandStack().execute(createCommand(sDomain, goal));
   }
 
   protected abstract class GoalDecompositionCommand extends RecordingCommand {

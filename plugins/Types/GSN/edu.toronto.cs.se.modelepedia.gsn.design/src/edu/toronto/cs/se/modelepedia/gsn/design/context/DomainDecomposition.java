@@ -10,14 +10,9 @@
 package edu.toronto.cs.se.modelepedia.gsn.design.context;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.sirius.business.api.session.SessionManager;
-import org.eclipse.sirius.viewpoint.DSemanticDecorator;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
@@ -33,11 +28,8 @@ import edu.toronto.cs.se.modelepedia.gsn.util.DomainBuilder;
 public class DomainDecomposition extends GoalDecomposition {
 
   @Override
-  public void execute(Collection<? extends EObject> arg0, Map<String, Object> arg1) {
-    var goal = (Goal) ((DSemanticDecorator) arg0.iterator().next()).getTarget();
-    var sSession = SessionManager.INSTANCE.getSession(goal);
-    var sDomain = sSession.getTransactionalEditingDomain();
-    sDomain.getCommandStack().execute(new DomainDecompositionCommand(sDomain, goal));
+  protected GoalDecompositionCommand createCommand(TransactionalEditingDomain domain, Goal goal) {
+    return new DomainDecompositionCommand(domain, goal);
   }
 
   private class DomainDecompositionCommand extends GoalDecompositionCommand {

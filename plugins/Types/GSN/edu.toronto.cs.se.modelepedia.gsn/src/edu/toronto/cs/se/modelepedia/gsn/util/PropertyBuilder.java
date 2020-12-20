@@ -18,6 +18,7 @@ import edu.toronto.cs.se.modelepedia.gsn.PropertyGoal;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
 
 public class PropertyBuilder extends GSNBuilder {
+  private static final int SHORT_PROPERTY = 15;
 
   public PropertyBuilder(SafetyCase gsnRootModelObj) {
     super(gsnRootModelObj);
@@ -43,5 +44,12 @@ public class PropertyBuilder extends GSNBuilder {
     addPropertyElement(strategy, reasonerName, property);
 
     return strategy;
+  }
+
+  public String shortenProperty(String property) {
+    var shortProperty = (property.length() < PropertyBuilder.SHORT_PROPERTY) ?
+      property :
+      property.substring(0, PropertyBuilder.SHORT_PROPERTY) +  "..";
+    return "'" + shortProperty + "'";
   }
 }
