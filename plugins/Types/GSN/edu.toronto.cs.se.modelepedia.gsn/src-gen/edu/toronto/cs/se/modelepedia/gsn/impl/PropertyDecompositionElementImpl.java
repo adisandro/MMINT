@@ -33,7 +33,7 @@ import edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionElement;
  *
  * @generated
  */
-public class PropertyDecompositionElementImpl extends MinimalEObjectImpl.Container implements PropertyDecompositionElement {
+public abstract class PropertyDecompositionElementImpl extends MinimalEObjectImpl.Container implements PropertyDecompositionElement {
   /**
    * The default value of the '{@link #getReasonerName() <em>Reasoner Name</em>}' attribute.
    * <!-- begin-user-doc -->

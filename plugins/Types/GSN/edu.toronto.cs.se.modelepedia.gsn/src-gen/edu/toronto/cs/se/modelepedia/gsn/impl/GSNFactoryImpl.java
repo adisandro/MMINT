@@ -39,7 +39,6 @@ import edu.toronto.cs.se.modelepedia.gsn.IntDomain;
 import edu.toronto.cs.se.modelepedia.gsn.Justification;
 import edu.toronto.cs.se.modelepedia.gsn.MofNSupporter;
 import edu.toronto.cs.se.modelepedia.gsn.OrSupporter;
-import edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionElement;
 import edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionStrategy;
 import edu.toronto.cs.se.modelepedia.gsn.PropertyGoal;
 import edu.toronto.cs.se.modelepedia.gsn.RealDomain;
@@ -117,7 +116,6 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
       case GSNPackage.VALUE_DOMAIN: return createValueDomain();
       case GSNPackage.DOMAIN_DECOMPOSITION_STRATEGY: return createDomainDecompositionStrategy();
       case GSNPackage.DOMAIN_GOAL: return createDomainGoal();
-      case GSNPackage.PROPERTY_DECOMPOSITION_ELEMENT: return createPropertyDecompositionElement();
       case GSNPackage.PROPERTY_DECOMPOSITION_STRATEGY: return createPropertyDecompositionStrategy();
       case GSNPackage.PROPERTY_GOAL: return createPropertyGoal();
       default:
@@ -231,17 +229,6 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
   public DomainGoal createDomainGoal() {
     DomainGoalImpl domainGoal = new DomainGoalImpl();
     return domainGoal;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public PropertyDecompositionElement createPropertyDecompositionElement() {
-    PropertyDecompositionElementImpl propertyDecompositionElement = new PropertyDecompositionElementImpl();
-    return propertyDecompositionElement;
   }
 
   /**

@@ -129,8 +129,8 @@ public class DomainDecompositionStrategyImpl extends DecompositionStrategyImpl i
       .map(g -> ((DomainGoal) g).getDomain())
       .filter(d -> d != null)
       .collect(Collectors.toList());
-    if (subDomains.size() <= 1) {
-      throw new MMINTException("A domain must be decomposed into >1 sub-domains");
+    if (subDomains.size() == 0) {
+      throw new MMINTException("A domain must be decomposed into sub-domains");
     }
     domain.validateDecomposition(ECollections.toEList(subDomains));
   }

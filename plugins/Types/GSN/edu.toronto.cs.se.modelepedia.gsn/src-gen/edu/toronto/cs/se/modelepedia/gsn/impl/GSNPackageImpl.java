@@ -1611,7 +1611,7 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
 
     initEClass(this.domainGoalEClass, DomainGoal.class, "DomainGoal", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(this.propertyDecompositionElementEClass, PropertyDecompositionElement.class, "PropertyDecompositionElement", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+    initEClass(this.propertyDecompositionElementEClass, PropertyDecompositionElement.class, "PropertyDecompositionElement", EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getPropertyDecompositionElement_ReasonerName(), this.ecorePackage.getEString(), "reasonerName", null, 1, 1, PropertyDecompositionElement.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
     initEAttribute(getPropertyDecompositionElement_Property(), this.ecorePackage.getEString(), "property", null, 1, 1, PropertyDecompositionElement.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
 

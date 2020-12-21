@@ -27,7 +27,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see edu.toronto.cs.se.modelepedia.gsn.GSNPackage#getPropertyDecompositionElement()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface PropertyDecompositionElement extends EObject {

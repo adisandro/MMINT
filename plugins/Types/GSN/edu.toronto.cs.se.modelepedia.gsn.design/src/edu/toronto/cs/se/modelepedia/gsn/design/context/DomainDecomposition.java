@@ -45,7 +45,7 @@ public class DomainDecomposition extends GoalDecomposition {
       var title = "Domain Decomposition";
       var numDomains = 0;
       Set<Integer> subDomainTypes = null;
-      var domain = builder.createDomain(title, "Insert the domain",
+      var domain = builder.createDomain(title, "Insert the domain to be decomposed",
                                         Set.of(GSNPackage.INT_DOMAIN, GSNPackage.REAL_DOMAIN, GSNPackage.ENUM_DOMAIN));
       if (domain instanceof IntDomain || domain instanceof RealDomain) {
         var message = "Insert the number of sub-domains";

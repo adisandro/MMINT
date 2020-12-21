@@ -164,11 +164,12 @@ public class PropertyDecompositionStrategyImpl extends DecompositionStrategyImpl
     var subProperties = getSupportedBy().stream()
       .map(SupportedBy::getTarget)
       .filter(g -> g instanceof PropertyGoal)
+      .filter(g -> ((PropertyGoal) g).getReasonerName().equals(reasonerName))
       .map(g -> ((PropertyGoal) g).getProperty())
       .filter(p -> p != null)
       .collect(Collectors.toList());
-    if (subProperties.size() <= 1) {
-      throw new MMINTException("A property must be decomposed into >1 sub-properties");
+    if (subProperties.size() == 0) {
+      throw new MMINTException("A property must be decomposed into sub-properties");
     }
     Model model = null;
     ((IDecompositionTrait) reasoner).validatePropertyDecomposition(model, property, subProperties);

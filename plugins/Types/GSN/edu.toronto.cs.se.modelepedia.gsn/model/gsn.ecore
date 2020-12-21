@@ -214,7 +214,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DomainDecompositionStrategy" eSuperTypes="#//DecompositionStrategy #//DomainDecompositionElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="DomainGoal" eSuperTypes="#//Goal #//DomainDecompositionElement"/>
-  <eClassifiers xsi:type="ecore:EClass" name="PropertyDecompositionElement">
+  <eClassifiers xsi:type="ecore:EClass" name="PropertyDecompositionElement" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="reasonerName" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="property" lowerBound="1"

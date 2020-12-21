@@ -218,29 +218,6 @@ public class GSNItemProviderAdapterFactory extends GSNAdapterFactory implements 
   }
 
   /**
-   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionElement} instances.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected PropertyDecompositionElementItemProvider propertyDecompositionElementItemProvider;
-
-  /**
-   * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionElement}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Adapter createPropertyDecompositionElementAdapter() {
-    if (this.propertyDecompositionElementItemProvider == null) {
-      this.propertyDecompositionElementItemProvider = new PropertyDecompositionElementItemProvider(this);
-    }
-
-    return this.propertyDecompositionElementItemProvider;
-  }
-
-  /**
    * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionStrategy} instances.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -805,7 +782,6 @@ public class GSNItemProviderAdapterFactory extends GSNAdapterFactory implements 
     if (this.valueDomainItemProvider != null) this.valueDomainItemProvider.dispose();
     if (this.domainDecompositionStrategyItemProvider != null) this.domainDecompositionStrategyItemProvider.dispose();
     if (this.domainGoalItemProvider != null) this.domainGoalItemProvider.dispose();
-    if (this.propertyDecompositionElementItemProvider != null) this.propertyDecompositionElementItemProvider.dispose();
     if (this.propertyDecompositionStrategyItemProvider != null) this.propertyDecompositionStrategyItemProvider.dispose();
     if (this.propertyGoalItemProvider != null) this.propertyGoalItemProvider.dispose();
   }

@@ -85,15 +85,6 @@ public interface GSNFactory extends EFactory {
   DomainGoal createDomainGoal();
 
   /**
-   * Returns a new object of class '<em>Property Decomposition Element</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Property Decomposition Element</em>'.
-   * @generated
-   */
-  PropertyDecompositionElement createPropertyDecompositionElement();
-
-  /**
    * Returns a new object of class '<em>Property Decomposition Strategy</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
