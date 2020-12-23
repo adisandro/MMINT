@@ -38,10 +38,8 @@ public class PropertyDecomposition extends GoalDecomposition {
     protected DecompositionStrategy decompose() throws Exception {
       /**TODO
        * P: Refactor constraint code to use this code?
-       * P: Solve reasoner name problem
        * L: Find where is lean's mathlab library (readlink -f $(type -P lean)) and add it to config file
        * L: Extract dir recursively from jar
-       * L: Is it GSNLeanReasoner or LTSLeanReasoner?
        */
       var builder = (PropertyBuilder) this.builder;
       // ask for input

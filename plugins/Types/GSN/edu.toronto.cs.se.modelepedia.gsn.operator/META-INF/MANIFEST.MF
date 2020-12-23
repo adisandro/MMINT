@@ -13,5 +13,7 @@ Require-Bundle: org.eclipse.emf.validation,
  edu.toronto.cs.se.mmint,
  edu.toronto.cs.se.mmint.java,
  edu.toronto.cs.se.mmint.operator,
+ edu.toronto.cs.se.mmint.lean,
  edu.toronto.cs.se.modelepedia.gsn
 Import-Package: org.eclipse.jdt.annotation
+Export-Package: edu.toronto.cs.se.modelepedia.gsn.reasoning

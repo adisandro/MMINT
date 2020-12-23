@@ -14,6 +14,7 @@ package edu.toronto.cs.se.mmint.types.lts.operators;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.eclipse.core.runtime.IPath;
 
@@ -27,8 +28,9 @@ import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
+import edu.toronto.cs.se.modelepedia.gsn.reasoning.IGSNLeanEncoder;
 
-public class LTSToLean extends ToLean {
+public class LTSToLean extends ToLean implements IGSNLeanEncoder {
 
   private final static String LEAN_EXT = ".lean";
   private final static String LEAN_MAIN_FILE = "main" + LTSToLean.LEAN_EXT;
@@ -62,5 +64,26 @@ public class LTSToLean extends ToLean {
     // static lean files from this bundle
     var bundlePath = MIDTypeRegistry.getFileBundlePath(this.getMetatype(), LTSToLean.LEAN_BUNDLE_DIR);
     FileUtils.copyDirectory(bundlePath, false, workingPath, true);
+  }
+
+  private String encodeProperty(String modelName, String property) {
+    return "(fun p : path " + modelName + ", sat (" + property + ") p)";
+  }
+
+  @Override
+  public String encodePropertyDecomposition(String modelName, String property, List<String> subProperties) {
+    var encoding =
+      "strategy.mk\n" +
+      "(Claim.mk\n" +
+        "(set.univ)\n" +
+        encodeProperty(modelName, property) + "\n" +
+      ")\n" +
+      "([\n";
+    encoding += subProperties.stream()
+      .map(p -> encodeProperty(modelName, p))
+      .collect(Collectors.joining(",\n"));
+    encoding += "\n])\n";
+
+    return encoding;
   }
 }

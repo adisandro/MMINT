@@ -13,8 +13,10 @@
 package edu.toronto.cs.se.modelepedia.gsn.reasoning;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
+import org.eclipse.emf.common.util.ECollections;
+
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.lean.reasoning.LeanReasoner;
 import edu.toronto.cs.se.mmint.mid.Model;
@@ -24,29 +26,20 @@ public class GSNLeanReasoner extends LeanReasoner implements IGSNDecompositionTr
 
   @Override
   public String getName() {
-    return "Lean2";
-  }
-
-  private String encodeProperty(String property, String modelName) {
-    return "(fun p : path " + modelName + ", sat (" + property + ") p)";
+    return "Lean (+ GSN library)";
   }
 
   @Override
   public void validatePropertyDecomposition(Model model, String property, List<String> subProperties) throws Exception {
     var modelName = model.getName();
-    var encoding =
-      "strategy.mk\n" +
-      "(Claim.mk\n" +
-        "(set.univ)\n" +
-        encodeProperty(property, modelName) + "\n" +
-      ")\n" +
-      "([\n";
-    encoding += subProperties.stream()
-      .map(p -> encodeProperty(p, modelName))
-      .collect(Collectors.joining(",\n"));
-    encoding += "\n])\n";
+    var encoder = MIDTypeHierarchy.getPolyOperator(LeanReasoner.ENCODER_ID, ECollections.newBasicEList(model));
+    if (!(encoder instanceof IGSNLeanEncoder)) {
+      throw new MMINTException("The Lean encoder for model '" + modelName +
+                               "' does not support GSN property decompositions");
+    }
+    var propEncoding = ((IGSNLeanEncoder) encoder).encodePropertyDecomposition(modelName, property, subProperties);
     var workingPath = FileUtils.replaceLastSegmentInPath(model.getUri(), LeanReasoner.LEAN_DIR);
-    var valid = checkProperty(model, encoding, workingPath);
+    var valid = checkProperty(model, propEncoding, workingPath);
     if (!valid) {
       throw new MMINTException("The property decomposition is not valid");
     }

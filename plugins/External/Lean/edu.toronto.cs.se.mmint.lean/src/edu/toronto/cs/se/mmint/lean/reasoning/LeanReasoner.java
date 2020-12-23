@@ -35,7 +35,7 @@ import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 
 public class LeanReasoner implements IModelConstraintTrait {
 
-  private final static String ENCODER_ID = "edu.toronto.cs.se.mmint.lean.operators.ToLean";
+  protected final static String ENCODER_ID = "edu.toronto.cs.se.mmint.lean.operators.ToLean";
   protected final static String LEAN_DIR = "lean/";
   private final static String LEAN_PROPERTY = "property.lean";
   private final static String LEAN_CONFIG = "leanpkg.path";
