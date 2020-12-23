@@ -22,7 +22,7 @@ import edu.toronto.cs.se.mmint.mid.reasoning.IReasoner;
  *
  * @author Alessio Di Sandro
  */
-public interface IDecompositionTrait extends IReasoner {
+public interface IGSNDecompositionTrait extends IReasoner {
 
   /**
    * Validates the correctness of a GSN property decomposition.

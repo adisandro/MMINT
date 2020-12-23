@@ -32,7 +32,7 @@ import edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionStrategy;
 import edu.toronto.cs.se.modelepedia.gsn.PropertyGoal;
 import edu.toronto.cs.se.modelepedia.gsn.Strategy;
 import edu.toronto.cs.se.modelepedia.gsn.SupportedBy;
-import edu.toronto.cs.se.modelepedia.gsn.reasoning.IDecompositionTrait;
+import edu.toronto.cs.se.modelepedia.gsn.reasoning.IGSNDecompositionTrait;
 
 /**
  * <!-- begin-user-doc -->
@@ -220,7 +220,7 @@ grandparent:
     var reasonerName = Objects.requireNonNull(getReasonerName(), "Reasoner not specified");
     var reasoner = Objects.requireNonNull(MMINT.getReasoner(reasonerName),
                                           "The reasoner '" + reasonerName + "' is not installed");
-    if (!(reasoner instanceof IDecompositionTrait)) {
+    if (!(reasoner instanceof IGSNDecompositionTrait)) {
       throw new MMINTException("The reasoner '" + reasonerName +
                                "' does not have support for GSN property decompositions");
     }
@@ -235,7 +235,7 @@ grandparent:
     if (subProperties.size() == 0) {
       throw new MMINTException("A property must be decomposed into sub-properties");
     }
-    ((IDecompositionTrait) reasoner).validatePropertyDecomposition(getRelatedModel(), property, subProperties);
+    ((IGSNDecompositionTrait) reasoner).validatePropertyDecomposition(getRelatedModel(), property, subProperties);
   }
 
   /**

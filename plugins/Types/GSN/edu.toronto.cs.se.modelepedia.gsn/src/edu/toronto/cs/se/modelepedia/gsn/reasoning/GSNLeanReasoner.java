@@ -20,7 +20,7 @@ import edu.toronto.cs.se.mmint.lean.reasoning.LeanReasoner;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 
-public class GSNLeanReasoner extends LeanReasoner implements IDecompositionTrait {
+public class GSNLeanReasoner extends LeanReasoner implements IGSNDecompositionTrait {
 
   @Override
   public String getName() {

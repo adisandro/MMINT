@@ -18,7 +18,7 @@ import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.modelepedia.gsn.DecompositionStrategy;
 import edu.toronto.cs.se.modelepedia.gsn.Goal;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
-import edu.toronto.cs.se.modelepedia.gsn.reasoning.IDecompositionTrait;
+import edu.toronto.cs.se.modelepedia.gsn.reasoning.IGSNDecompositionTrait;
 import edu.toronto.cs.se.modelepedia.gsn.util.PropertyBuilder;
 
 public class PropertyDecomposition extends GoalDecomposition {
@@ -46,7 +46,7 @@ public class PropertyDecomposition extends GoalDecomposition {
       var builder = (PropertyBuilder) this.builder;
       // ask for input
       var title = "Property Decomposition";
-      var reasoner = MIDDialogs.selectReasoner(IDecompositionTrait.class, "GSN property decomposition");
+      var reasoner = MIDDialogs.selectReasoner(IGSNDecompositionTrait.class, "GSN property decomposition");
       var reasonerName = reasoner.getName();
       var property = MIDDialogs.getBigStringInput(title, "Insert the " + reasonerName + " property to be decomposed",
                                                   null);
