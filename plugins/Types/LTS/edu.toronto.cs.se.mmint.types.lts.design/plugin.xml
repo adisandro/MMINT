@@ -24,7 +24,7 @@
    <extension
          point="edu.toronto.cs.se.mmint.editors">
       <editorType
-            modelTypeUri="edu.toronto.cs.se.mmint.types.lts"
+            modelTypeUri="model://edu.toronto.cs.se.mmint.types.lts"
             id="edu.toronto.cs.se.mmint.types.lts.design"
             isDiagram="true"
             wizardId="edu.toronto.cs.se.mmint.types.lts.presentation.LTSModelWizardID">

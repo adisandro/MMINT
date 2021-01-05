@@ -46,7 +46,7 @@
          point="edu.toronto.cs.se.mmint.editors">
       <editorType
             id="edu.toronto.cs.se.mmint.types.lts.presentation.LTSEditorID"
-            modelTypeUri="edu.toronto.cs.se.mmint.types.lts"
+            modelTypeUri="model://edu.toronto.cs.se.mmint.types.lts"
             wizardId="edu.toronto.cs.se.mmint.types.lts.presentation.LTSModelWizardID">
          <type
                name="LTS EMF Editor"

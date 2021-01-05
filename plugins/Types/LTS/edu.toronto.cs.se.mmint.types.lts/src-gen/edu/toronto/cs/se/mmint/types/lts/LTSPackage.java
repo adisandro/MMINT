@@ -49,7 +49,7 @@ public interface LTSPackage extends EPackage {
    * <!-- end-user-doc -->
    * @generated
    */
-  String eNS_URI = "edu.toronto.cs.se.mmint.types.lts";
+  String eNS_URI = "model://edu.toronto.cs.se.mmint.types.lts";
 
   /**
    * The package namespace name.

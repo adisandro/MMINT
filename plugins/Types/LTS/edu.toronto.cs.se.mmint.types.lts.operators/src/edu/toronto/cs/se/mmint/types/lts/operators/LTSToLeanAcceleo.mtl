@@ -1,5 +1,5 @@
 [comment encoding = UTF-8 /]
-[module LTSToLeanAcceleo('edu.toronto.cs.se.mmint.types.lts')/]
+[module LTSToLeanAcceleo('model://edu.toronto.cs.se.mmint.types.lts')/]
 
 [template private sanitize(name : String)]
 [name.replace(' ', '_')/]

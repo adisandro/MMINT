@@ -3,7 +3,7 @@
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/edu.toronto.cs.se.mmint.types.lts/src-gen" editDirectory="/edu.toronto.cs.se.mmint.types.lts.edit/src-gen"
     editorDirectory="/edu.toronto.cs.se.mmint.types.lts.editor/src-gen" modelPluginID="edu.toronto.cs.se.mmint.types.lts"
     modelName="LTS" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
-    importerID="org.eclipse.emf.importer.ecore" complianceLevel="14.0" copyrightFields="false"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="15.0" copyrightFields="false"
     operationReflection="true" importOrganizing="true">
   <foreignModel>lts.ecore</foreignModel>
   <genPackages prefix="LTS" basePackage="edu.toronto.cs.se.mmint.types" disposableProviderFactory="true"

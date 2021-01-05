@@ -17,7 +17,7 @@
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <!-- @generated lts -->
       <factory
-            uri="edu.toronto.cs.se.mmint.types.lts"
+            uri="model://edu.toronto.cs.se.mmint.types.lts"
             class="edu.toronto.cs.se.mmint.types.lts.provider.LTSItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider

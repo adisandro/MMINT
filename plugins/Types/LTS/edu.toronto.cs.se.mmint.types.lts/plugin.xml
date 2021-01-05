@@ -17,7 +17,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated lts -->
       <package
-            uri="edu.toronto.cs.se.mmint.types.lts"
+            uri="model://edu.toronto.cs.se.mmint.types.lts"
             class="edu.toronto.cs.se.mmint.types.lts.LTSPackage"
             genModel="model/lts.genmodel"/>
    </extension>
@@ -27,7 +27,7 @@
       <modelType>
          <type
                name="LTS"
-               uri="edu.toronto.cs.se.mmint.types.lts">
+               uri="model://edu.toronto.cs.se.mmint.types.lts">
          </type>
       </modelType>
    </extension>
