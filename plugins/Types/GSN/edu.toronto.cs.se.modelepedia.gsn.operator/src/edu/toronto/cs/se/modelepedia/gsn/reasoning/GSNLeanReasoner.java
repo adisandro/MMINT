@@ -21,8 +21,20 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.lean.reasoning.LeanReasoner;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.modelepedia.gsn.reasoning.IGSNLeanEncoder.PropertyTemplate;
 
 public class GSNLeanReasoner extends LeanReasoner implements IGSNDecompositionTrait {
+
+  private IGSNLeanEncoder getEncoder(Model model) throws MMINTException {
+    var modelName = model.getName();
+    var encoder = MIDTypeHierarchy.getPolyOperator(LeanReasoner.ENCODER_ID, ECollections.newBasicEList(model));
+    if (!(encoder instanceof IGSNLeanEncoder)) {
+      throw new MMINTException("The Lean encoder for model '" + modelName +
+                               "' does not support GSN property decompositions");
+    }
+
+    return (IGSNLeanEncoder) encoder;
+  }
 
   @Override
   public String getName() {
@@ -30,14 +42,16 @@ public class GSNLeanReasoner extends LeanReasoner implements IGSNDecompositionTr
   }
 
   @Override
+  public List<PropertyTemplate> getTemplateProperties(Model model) throws MMINTException {
+    var encoder = getEncoder(model);
+
+    return encoder.getTemplateProperties();
+  }
+
+  @Override
   public void validatePropertyDecomposition(Model model, String property, List<String> subProperties) throws Exception {
-    var modelName = model.getName();
-    var encoder = MIDTypeHierarchy.getPolyOperator(LeanReasoner.ENCODER_ID, ECollections.newBasicEList(model));
-    if (!(encoder instanceof IGSNLeanEncoder)) {
-      throw new MMINTException("The Lean encoder for model '" + modelName +
-                               "' does not support GSN property decompositions");
-    }
-    var propEncoding = ((IGSNLeanEncoder) encoder).encodePropertyDecomposition(modelName, property, subProperties);
+    var encoder = getEncoder(model);
+    var propEncoding = encoder.encodePropertyDecomposition(model, property, subProperties);
     var workingPath = FileUtils.replaceLastSegmentInPath(model.getUri(), LeanReasoner.LEAN_DIR);
     var valid = checkProperty(model, propEncoding, workingPath);
     if (!valid) {

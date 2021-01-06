@@ -66,12 +66,31 @@ public class LTSToLean extends ToLean implements IGSNLeanEncoder {
     FileUtils.copyDirectory(bundlePath, false, workingPath, true);
   }
 
+  @Override
+  public List<PropertyTemplate> getTemplateProperties() {
+    var t1 = new PropertyTemplate();
+    t1.property = "precedes.globally (coe A) (coe B)";
+    t1.description = "State A always precedes transition B";
+    t1.variables = Map.of("A", null, "B", null);
+    var t2 = new PropertyTemplate();
+    t2.property = "absent.before (coe A) (coe B)";
+    t2.description = "Transition A can't be encountered before state B";
+    t2.variables = Map.of("A", null, "B", null);
+    var t3 = new PropertyTemplate();
+    t3.property = "exist.globally (coe A)";
+    t3.description = "State A is always encountered";
+    t3.variables = Map.of("A", null);
+
+    return List.of(t1, t2, t3);
+  }
+
   private String encodeProperty(String modelName, String property) {
     return "(fun p : path " + modelName + ", sat (" + property + ") p)";
   }
 
   @Override
-  public String encodePropertyDecomposition(String modelName, String property, List<String> subProperties) {
+  public String encodePropertyDecomposition(Model model, String property, List<String> subProperties) {
+    var modelName = model.getName();
     var encoding =
       "strategy.mk\n" +
       "(Claim.mk\n" +

@@ -40,6 +40,13 @@ public class PropertyDecomposition extends GoalDecomposition {
        * P: Refactor constraint code to use this code?
        * L: Find where is lean's mathlab library (readlink -f $(type -P lean)) and add it to config file
        * L: Extract dir recursively from jar
+       * TEMPLATE DECOMPOSITION:
+       * - Select the reasoner, just like it happens now
+       * - Get the related model here rather than from the final strategy
+       * - Use the reasoner to fetch the model encoder
+       * - Ask the encoder for a list of template properties to choose from, if any (add the option for manual insertion)
+       * - If a template property is chosen, ask for possible variables to be filled as well
+       * - PropertyTemplate: add useful methods (bind variable, replace all variables in property), add type constraints for variables
        */
       var builder = (PropertyBuilder) this.builder;
       // ask for input

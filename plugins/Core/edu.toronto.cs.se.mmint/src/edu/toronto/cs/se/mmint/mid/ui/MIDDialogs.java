@@ -21,6 +21,7 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ArrayContentProvider;
@@ -393,7 +394,7 @@ public class MIDDialogs {
 	}
 
 	//TODO MMINT[MISC] merge with getStringInput()
-	public static String getBigStringInput(String dialogTitle, String dialogMessage, String dialogInitial) throws MIDDialogCancellation {
+	public static String getBigStringInput(String dialogTitle, String dialogMessage, @Nullable String dialogInitial) throws MIDDialogCancellation {
 
 		var shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		InputDialog dialog = new InputDialog(shell, dialogTitle, dialogMessage, dialogInitial, null) {

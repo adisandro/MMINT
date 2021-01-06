@@ -15,4 +15,4 @@ Require-Bundle: org.eclipse.core.runtime,
  edu.toronto.cs.se.mmint.primitive,
  edu.toronto.cs.se.mmint.types.lts,
  edu.toronto.cs.se.mmint.lean,
- edu.toronto.cs.se.modelepedia.gsn.operator
+ edu.toronto.cs.se.modelepedia.gsn

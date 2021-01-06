@@ -14,8 +14,10 @@ package edu.toronto.cs.se.modelepedia.gsn.reasoning;
 
 import java.util.List;
 
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.reasoning.IReasoner;
+import edu.toronto.cs.se.modelepedia.gsn.reasoning.IGSNLeanEncoder.PropertyTemplate;
 
 /**
  * The specification of a reasoning trait to decompose GSN goals.
@@ -23,6 +25,8 @@ import edu.toronto.cs.se.mmint.mid.reasoning.IReasoner;
  * @author Alessio Di Sandro
  */
 public interface IGSNDecompositionTrait extends IReasoner {
+
+  List<PropertyTemplate> getTemplateProperties(Model model) throws MMINTException;
 
   /**
    * Validates the correctness of a GSN property decomposition.
