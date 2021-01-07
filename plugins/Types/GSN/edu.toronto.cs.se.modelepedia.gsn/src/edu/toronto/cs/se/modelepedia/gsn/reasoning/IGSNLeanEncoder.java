@@ -31,7 +31,9 @@ public interface IGSNLeanEncoder {
     public PropertyTemplate() {}
   }
 
-  List<PropertyTemplate> getTemplateProperties();
+  default List<PropertyTemplate> getTemplateProperties() {
+    return List.of();
+  }
 
   /**
    * Encodes a Lean property that is decomposed into sub-properties.

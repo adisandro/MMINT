@@ -157,6 +157,37 @@ public class PropertyDecompositionStrategyImpl extends DecompositionStrategyImpl
   /**
    * @generated NOT
    */
+  private Model getRelatedModel(HashSet<String> goalUris) throws MMINTException {
+    // find the goals in connected rels
+    var gsnModel = MIDDiagramUtils.getInstanceMIDModelFromModelEditor(this);
+    var modelRels = MIDRegistry.getConnectedModelRels(gsnModel, gsnModel.getMIDContainer());
+    //TODO MMINT[GSN]: Ask if there are multiple matches instead of getting the first
+    for (var modelRel : modelRels) {
+      if (modelRel.getModelEndpoints().size() != 2) { // exclude non-binary
+        continue;
+      }
+      for (var mapping : modelRel.getMappings()) {
+        var endpoints = mapping.getModelElemEndpoints();
+        if (endpoints.size() != 2) { // exclude non-binary
+          continue;
+        }
+        ModelElement relatedModelElem;
+        var uri0 = MIDRegistry.getModelObjectUri(endpoints.get(0).getTarget());
+        var uri1 = MIDRegistry.getModelObjectUri(endpoints.get(1).getTarget());
+        if (goalUris.contains(uri0)) {
+          return (Model) endpoints.get(1).getTarget().eContainer();
+        }
+        else if (goalUris.contains(uri1)) {
+          return (Model) endpoints.get(0).getTarget().eContainer();
+        }
+      }
+    }
+    throw new MMINTException("No related model found");
+  }
+
+  /**
+   * @generated NOT
+   */
   private Model getRelatedModel() throws MMINTException {
     // find parent and grandparent goals, to be checked for connections
     var parentGoal = this.getSupports().stream()
@@ -185,31 +216,7 @@ grandparent:
     if (grandparentGoal != null) {
       goalUris.add(MIDRegistry.getModelElementUri(grandparentGoal));
     }
-    // find the goals in connected rels
-    var gsnModel = MIDDiagramUtils.getInstanceMIDModelFromModelEditor(this);
-    var modelRels = MIDRegistry.getConnectedModelRels(gsnModel, gsnModel.getMIDContainer());
-    //TODO MMINT[GSN]: Ask if there are multiple matches instead of getting the first
-    for (var modelRel : modelRels) {
-      if (modelRel.getModelEndpoints().size() != 2) { // exclude non-binary
-        continue;
-      }
-      for (var mapping : modelRel.getMappings()) {
-        var endpoints = mapping.getModelElemEndpoints();
-        if (endpoints.size() != 2) { // exclude non-binary
-          continue;
-        }
-        ModelElement relatedModelElem;
-        var uri0 = MIDRegistry.getModelObjectUri(endpoints.get(0).getTarget());
-        var uri1 = MIDRegistry.getModelObjectUri(endpoints.get(1).getTarget());
-        if (goalUris.contains(uri0)) {
-          return (Model) endpoints.get(1).getTarget().eContainer();
-        }
-        else if (goalUris.contains(uri1)) {
-          return (Model) endpoints.get(0).getTarget().eContainer();
-        }
-      }
-    }
-    throw new MMINTException("No related model found");
+    return getRelatedModel(goalUris);
   }
 
   /**

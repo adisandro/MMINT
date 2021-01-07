@@ -12,13 +12,25 @@
  *******************************************************************************/
 package edu.toronto.cs.se.modelepedia.gsn.design.context;
 
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import java.util.List;
+import java.util.Map;
 
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.jface.viewers.ArrayContentProvider;
+import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.jface.window.Window;
+import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.dialogs.ListDialog;
+
+import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.modelepedia.gsn.DecompositionStrategy;
 import edu.toronto.cs.se.modelepedia.gsn.Goal;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
 import edu.toronto.cs.se.modelepedia.gsn.reasoning.IGSNDecompositionTrait;
+import edu.toronto.cs.se.modelepedia.gsn.reasoning.IGSNLeanEncoder.PropertyTemplate;
 import edu.toronto.cs.se.modelepedia.gsn.util.PropertyBuilder;
 
 public class PropertyDecomposition extends GoalDecomposition {
@@ -34,27 +46,60 @@ public class PropertyDecomposition extends GoalDecomposition {
       super(domain, decomposed, new PropertyBuilder((SafetyCase) decomposed.eContainer()));
     }
 
+    private PropertyTemplate selectTemplate(String title, String message, List<PropertyTemplate> templates) throws MMINTException {
+      var manual = new PropertyTemplate();
+      manual.property = "";
+      manual.description = "Custom property";
+      manual.variables = Map.of();
+      templates.add(manual);
+      var dialog = new ListDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell());
+      dialog.setAddCancelButton(true);
+      dialog.setTitle(title);
+      dialog.setMessage(message);
+      dialog.setContentProvider(new ArrayContentProvider());
+      dialog.setLabelProvider(LabelProvider.createTextProvider(t -> ((PropertyTemplate) t).description));
+      dialog.setInput(templates);
+      if (dialog.open() == Window.CANCEL) {
+        throw new MIDDialogCancellation();
+      }
+
+      return (PropertyTemplate) dialog.getResult()[0];
+    }
+
+    private String inputProperty(String title, String selectMessage, String insertMessage,
+                                 List<PropertyTemplate> templates) throws MMINTException {
+      String property = null;
+      if (templates.size() > 0) {
+        var template = selectTemplate(title, selectMessage, templates);
+        if (!template.property.isEmpty()) {
+          property = template.property;
+          // TODO bind variables
+        }
+      }
+      if (property == null) {
+        property = MIDDialogs.getBigStringInput(title, insertMessage, null);
+      }
+
+      return property;
+    }
+
     @Override
     protected DecompositionStrategy decompose() throws Exception {
       /**TODO
        * P: Refactor constraint code to use this code?
        * L: Find where is lean's mathlab library (readlink -f $(type -P lean)) and add it to config file
        * L: Extract dir recursively from jar
-       * TEMPLATE DECOMPOSITION:
-       * - Select the reasoner, just like it happens now
-       * - Get the related model here rather than from the final strategy
-       * - Use the reasoner to fetch the model encoder
-       * - Ask the encoder for a list of template properties to choose from, if any (add the option for manual insertion)
-       * - If a template property is chosen, ask for possible variables to be filled as well
-       * - PropertyTemplate: add useful methods (bind variable, replace all variables in property), add type constraints for variables
+       * PropertyTemplate: add useful methods (bind variable, replace all variables in property), add type constraints for variables
        */
       var builder = (PropertyBuilder) this.builder;
       // ask for input
       var title = "Property Decomposition";
       var reasoner = MIDDialogs.selectReasoner(IGSNDecompositionTrait.class, "GSN property decomposition");
       var reasonerName = reasoner.getName();
-      var property = MIDDialogs.getBigStringInput(title, "Insert the " + reasonerName + " property to be decomposed",
-                                                  null);
+      Model relatedModel = null; // TODO find related model here
+      var templates = reasoner.getTemplateProperties(relatedModel);
+      var property = inputProperty(title, "Select the property to be decomposed",
+                                   "Insert the " + reasonerName + " property to be decomposed", templates);
       var shortProperty = builder.shortenProperty(property);
       var numProperties = Integer.parseInt(MIDDialogs.getStringInput(title, "Insert the number of sub-properties",
                                                                      null));
@@ -87,7 +132,8 @@ public class PropertyDecomposition extends GoalDecomposition {
       builder.addSupporter(formalGoal, propStrategy);
       builder.createJustification(propStrategy, justId, justDesc);
       for (var i = 0; i < numProperties; i++) {
-        var subProperty = MIDDialogs.getBigStringInput(title, "Insert the sub-property #" + (i+1), null);
+        var subProperty = inputProperty(title, "Select the sub-property #" + (i+1), "Insert the sub-property #" + (i+1),
+                                        templates);
         var subShortProperty = builder.shortenProperty(subProperty);
         var subGoal = builder.createPropertyGoal(subGoalId + i, subGoalDesc1 + subShortProperty + subGoalDesc2,
                                                  reasonerName, subProperty);
