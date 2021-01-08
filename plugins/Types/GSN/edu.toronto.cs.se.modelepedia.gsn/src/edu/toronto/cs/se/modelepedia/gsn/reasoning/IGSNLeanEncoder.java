@@ -13,9 +13,14 @@
 package edu.toronto.cs.se.modelepedia.gsn.reasoning;
 
 import java.util.List;
-import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
+
+import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 
 /**
  * The specification of a Lean encoder that handles GSN property decomposition quirks.
@@ -27,8 +32,28 @@ public interface IGSNLeanEncoder {
   static class PropertyTemplate {
     public String property;
     public String description;
-    public Map<String, String> variables;
-    public PropertyTemplate() {}
+    public List<String> variables;
+    public static PropertyTemplate CUSTOM = new PropertyTemplate(null, "Custom property", List.of());
+
+    public PropertyTemplate(@Nullable String property, String description, List<String> variables) {
+      this.property  = property;
+      this.description = Objects.requireNonNull(description);
+      this.variables = Objects.requireNonNull(variables);
+    }
+
+    public Optional<String> bindPropertyVariables(String title) throws MIDDialogCancellation {
+      if (this.property == null) {
+        return Optional.empty();
+      }
+      var boundProperty = this.property;
+      for (var variable : this.variables) {
+        var bound = MIDDialogs.getStringInput(
+          title, "Insert the name of the model element corresponding to variable '" + variable + "'", null);
+        boundProperty = boundProperty.replace(variable, bound);
+      }
+
+      return Optional.of(boundProperty);
+    }
   }
 
   default List<PropertyTemplate> getTemplateProperties() {

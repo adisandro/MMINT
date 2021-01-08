@@ -68,18 +68,11 @@ public class LTSToLean extends ToLean implements IGSNLeanEncoder {
 
   @Override
   public List<PropertyTemplate> getTemplateProperties() {
-    var t1 = new PropertyTemplate();
-    t1.property = "precedes.globally (coe A) (coe B)";
-    t1.description = "State A always precedes transition B";
-    t1.variables = Map.of("A", null, "B", null);
-    var t2 = new PropertyTemplate();
-    t2.property = "absent.before (coe A) (coe B)";
-    t2.description = "Transition A can't be encountered before state B";
-    t2.variables = Map.of("A", null, "B", null);
-    var t3 = new PropertyTemplate();
-    t3.property = "exist.globally (coe A)";
-    t3.description = "State A is always encountered";
-    t3.variables = Map.of("A", null);
+    var t1 = new PropertyTemplate("precedes.globally (coe A) (coe B)", "State A always precedes transition B",
+                                  List.of("A", "B"));
+    var t2 = new PropertyTemplate("absent.before (coe A) (coe B)", "Transition A can't be encountered before state B",
+                                  List.of("A", "B"));
+    var t3 = new PropertyTemplate("exist.globally (coe A)", "State A is always encountered", List.of("A"));
 
     return List.of(t1, t2, t3);
   }
