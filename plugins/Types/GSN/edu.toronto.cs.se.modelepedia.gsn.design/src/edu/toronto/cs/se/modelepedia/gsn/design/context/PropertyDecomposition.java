@@ -80,14 +80,14 @@ public class PropertyDecomposition extends GoalDecomposition {
        * P: Refactor constraint code to use this code?
        * L: Find where is lean's mathlab library (readlink -f $(type -P lean)) and add it to config file
        * L: Extract dir recursively from jar
-       * PropertyTemplate: add type constraints for variables?
+       * E: Switch to records
        */
       var builder = (PropertyBuilder) this.builder;
       // ask for input
       var title = "Property Decomposition";
       var reasoner = MIDDialogs.selectReasoner(IGSNDecompositionTrait.class, "GSN property decomposition");
       var reasonerName = reasoner.getName();
-      Model relatedModel = null; // TODO find related model here + review Lean GSN reasoner name
+      Model relatedModel = null; // TODO find related model here + review Lean GSN reasoner name + fix orElse
       var templates = reasoner.getTemplateProperties(relatedModel);
       var property = selectProperty(title, "Select the property to be decomposed",
                                     "Insert the " + reasonerName + " property to be decomposed", templates);

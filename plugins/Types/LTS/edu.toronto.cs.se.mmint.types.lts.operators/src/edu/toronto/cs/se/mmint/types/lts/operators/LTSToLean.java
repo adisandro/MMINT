@@ -14,9 +14,11 @@ package edu.toronto.cs.se.mmint.types.lts.operators;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.emf.ecore.EObject;
 
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.MMINTException;
@@ -28,6 +30,7 @@ import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
+import edu.toronto.cs.se.mmint.types.lts.LabeledElement;
 import edu.toronto.cs.se.modelepedia.gsn.reasoning.IGSNLeanEncoder;
 
 public class LTSToLean extends ToLean implements IGSNLeanEncoder {
@@ -68,11 +71,14 @@ public class LTSToLean extends ToLean implements IGSNLeanEncoder {
 
   @Override
   public List<PropertyTemplate> getTemplateProperties() {
+    var validTypes = Set.<Class<? extends EObject>>of(LabeledElement.class);
+    var a = new PropertyVariable("A", validTypes);
+    var b = new PropertyVariable("B", validTypes);
     var t1 = new PropertyTemplate("precedes.globally (coe A) (coe B)", "State A always precedes transition B",
-                                  List.of("A", "B"));
+                                  List.of(a, b));
     var t2 = new PropertyTemplate("absent.before (coe A) (coe B)", "Transition A can't be encountered before state B",
-                                  List.of("A", "B"));
-    var t3 = new PropertyTemplate("exist.globally (coe A)", "State A is always encountered", List.of("A"));
+                                  List.of(a, b));
+    var t3 = new PropertyTemplate("exist.globally (coe A)", "State A is always encountered", List.of(a));
 
     return List.of(t1, t2, t3);
   }
