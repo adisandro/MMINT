@@ -18,7 +18,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.core.runtime.IPath;
-import org.eclipse.emf.ecore.EObject;
 
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.MMINTException;
@@ -30,7 +29,7 @@ import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
-import edu.toronto.cs.se.mmint.types.lts.LabeledElement;
+import edu.toronto.cs.se.mmint.types.lts.LTSPackage;
 import edu.toronto.cs.se.modelepedia.gsn.reasoning.IGSNLeanEncoder;
 
 public class LTSToLean extends ToLean implements IGSNLeanEncoder {
@@ -71,86 +70,86 @@ public class LTSToLean extends ToLean implements IGSNLeanEncoder {
 
   @Override
   public List<PropertyTemplate> getTemplateProperties() {
-    var validTypes = Set.<Class<? extends EObject>>of(LabeledElement.class);
+    var validTypes = Set.of(LTSPackage.eINSTANCE.getLabeledElement());
     var x = new PropertyVariable("X", validTypes);
     var y = new PropertyVariable("Y", validTypes);
     var a = new PropertyVariable("A", validTypes);
     var b = new PropertyVariable("B", validTypes);
     var absent1 = new PropertyTemplate("absent.globally (coe X)",
                                        "X must not happen",
-                                       List.of(x));
+                                       "Absence", List.of(x));
     var absent2 = new PropertyTemplate("absent.before (coe X) (coe A)",
                                        "X must not happen before A",
-                                       List.of(x, a));
+                                       "Absence", List.of(x, a));
     var absent3 = new PropertyTemplate("absent.after (coe X) (coe B)",
                                        "X must not happen after B",
-                                       List.of(x, b));
+                                       "Absence", List.of(x, b));
     var absent4 = new PropertyTemplate("absent.between (coe X) (coe A) (coe B)",
                                        "X must not happen between A and B",
-                                       List.of(x, a, b));
+                                       "Absence", List.of(x, a, b));
     var absent5 = new PropertyTemplate("absent.after_until (coe X) (coe A) (coe B)",
                                        "X must not happen after A and until B",
-                                       List.of(x, a, b));
+                                       "Absence", List.of(x, a, b));
     var exist1  = new PropertyTemplate("exist.globally (coe X)",
                                        "X must happen",
-                                       List.of(x));
+                                       "Existence", List.of(x));
     var exist2  = new PropertyTemplate("exist.before (coe X) (coe A)",
                                        "X must happen before A",
-                                       List.of(x, a));
+                                       "Existence", List.of(x, a));
     var exist3  = new PropertyTemplate("exist.after (coe X) (coe B)",
                                        "X must happen after B",
-                                       List.of(x, b));
+                                       "Existence", List.of(x, b));
     var exist4  = new PropertyTemplate("exist.between (coe X) (coe A) (coe B)",
                                        "X must happen between A and B",
-                                       List.of(x, a, b));
+                                       "Existence", List.of(x, a, b));
     var exist5  = new PropertyTemplate("exist.after_until (coe X) (coe A) (coe B)",
                                        "X must happen after A and until B",
-                                       List.of(x, a, b));
+                                       "Existence", List.of(x, a, b));
     var univ1   = new PropertyTemplate("universal.globally (coe X)",
                                        "X and only X must happen",
-                                       List.of(x));
+                                       "Universal", List.of(x));
     var univ2   = new PropertyTemplate("universal.before (coe X) (coe A)",
                                        "X and only X must happen before A",
-                                       List.of(x, a));
+                                       "Universal", List.of(x, a));
     var univ3   = new PropertyTemplate("universal.after (coe X) (coe B)",
                                        "X and only X must happen after B",
-                                       List.of(x, b));
+                                       "Universal", List.of(x, b));
     var univ4   = new PropertyTemplate("universal.between (coe X) (coe A) (coe B)",
                                        "X and only X must happen between A and B",
-                                       List.of(x, a, b));
+                                       "Universal", List.of(x, a, b));
     var univ5   = new PropertyTemplate("universal.after_until (coe X) (coe A) (coe B)",
                                        "X and only X must happen after A and until B",
-                                       List.of(x, a, b));
+                                       "Universal", List.of(x, a, b));
     var prec1   = new PropertyTemplate("precedes.globally (coe X) (coe Y)",
                                        "If Y happens, X must precede Y",
-                                       List.of(x, y));
+                                       "Precedence", List.of(x, y));
     var prec2   = new PropertyTemplate("precedes.before (coe X) (coe Y) (coe A)",
                                        "If Y happens before A, X must precede Y",
-                                       List.of(x, y, a));
+                                       "Precedence", List.of(x, y, a));
     var prec3   = new PropertyTemplate("precedes.after (coe X) (coe Y) (coe B)",
                                        "If Y happens after B, X must precede Y",
-                                       List.of(x, y, b));
+                                       "Precedence", List.of(x, y, b));
     var prec4   = new PropertyTemplate("precedes.between (coe X) (coe Y) (coe A) (coe B)",
                                        "If Y happens between A and B, X must precede Y",
-                                       List.of(x, y, a, b));
+                                       "Precedence", List.of(x, y, a, b));
     var prec5   = new PropertyTemplate("precedes.after_until (coe X) (coe Y) (coe A) (coe B)",
                                        "If Y happens between A and until B, X must precede Y",
-                                       List.of(x, y, a, b));
+                                       "Precedence", List.of(x, y, a, b));
     var resp1   = new PropertyTemplate("responds.globally (coe Y) (coe X)",
                                        "If X happens, Y must follow X",
-                                       List.of(y, x));
+                                       "Response", List.of(y, x));
     var resp2   = new PropertyTemplate("responds.before (coe Y) (coe X) (coe A)",
                                        "If X happens before A, Y must follow X",
-                                       List.of(y, x, a));
+                                       "Response", List.of(y, x, a));
     var resp3   = new PropertyTemplate("responds.after (coe Y) (coe X) (coe B)",
                                        "If X happens after B, Y must follow X",
-                                       List.of(y, x, b));
+                                       "Response", List.of(y, x, b));
     var resp4   = new PropertyTemplate("responds.between (coe Y) (coe X) (coe A) (coe B)",
                                        "If X happens between A and B, Y must follow X",
-                                       List.of(y, x, a, b));
+                                       "Response", List.of(y, x, a, b));
     var resp5   = new PropertyTemplate("responds.after_until (coe Y) (coe X) (coe A) (coe B)",
                                        "If X happens between A and until B, Y must follow X",
-                                       List.of(y, x, a, b));
+                                       "Response", List.of(y, x, a, b));
 
     return List.of(absent1, absent2, absent3, absent4, absent5,
                    exist1,  exist2,  exist3,  exist4,  exist5,

@@ -69,7 +69,7 @@ public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
     dialog.setValidator(new FilesOnlyDialogSelectionValidator());
     var title = "Evaluate query";
     var message = "Select query file";
-    var queryFile = (IFile) MIDDialogs.openSelectionDialog(dialog, title, message);
+    var queryFile = (IFile) MIDDialogs.openTreeDialog(dialog, title, message);
 
     return queryFile.getFullPath().toString();
   }

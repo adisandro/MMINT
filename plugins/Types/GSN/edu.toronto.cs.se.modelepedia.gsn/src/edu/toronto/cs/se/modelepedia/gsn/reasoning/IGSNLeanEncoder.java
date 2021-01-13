@@ -12,17 +12,24 @@
  *******************************************************************************/
 package edu.toronto.cs.se.modelepedia.gsn.reasoning;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.Set;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.jface.viewers.ArrayContentProvider;
 
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.ui.GMFUtils;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 
 /**
  * The specification of a Lean encoder that handles GSN property decomposition quirks.
@@ -31,10 +38,18 @@ import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
  */
 public interface IGSNLeanEncoder {
 
+  static class BoundProperty {
+    public String property;
+    public String description;
+    public BoundProperty(String property, String description) {
+      this.property = property;
+      this.description = description;
+    }
+  }
   static class PropertyVariable {
     public String name;
-    public Set<Class<? extends EObject>> validTypes;
-    public PropertyVariable(String name, Set<Class<? extends EObject>> validTypes) {
+    public Set<EClass> validTypes;
+    public PropertyVariable(String name, Set<EClass> validTypes) {
       this.name = name;
       this.validTypes = validTypes;
     }
@@ -42,29 +57,46 @@ public interface IGSNLeanEncoder {
   static class PropertyTemplate {
     public String property;
     public String description;
+    public String category;
     public List<PropertyVariable> variables;
-    public static PropertyTemplate CUSTOM = new PropertyTemplate(null, "Custom property", List.of());
+    public static PropertyTemplate CUSTOM = new PropertyTemplate("", "Custom property", null, List.of());
 
-    public PropertyTemplate(@Nullable String property, String description, List<PropertyVariable> variables) {
+    public PropertyTemplate(String property, String description, @Nullable String category,
+                            List<PropertyVariable> variables) {
       this.property  = property;
       this.description = Objects.requireNonNull(description);
+      this.category = category;
       this.variables = Objects.requireNonNull(variables);
     }
 
-    public Optional<String> bindPropertyVariables(String title) throws MIDDialogCancellation {
-      if (this.property == null) {
-        return Optional.empty();
-      }
-      //TODO pass model or model root, go through all its contents and categorize elements by validtypes
-      //TODO then, use a list dialog to ask the user which element they want to select
-      var boundProperty = this.property;
-      for (var variable : this.variables) {
-        var bound = MIDDialogs.getStringInput(
-          title, "Insert the name of the model element corresponding to variable '" + variable + "'", null);
-        boundProperty = boundProperty.replace(variable.name, bound);
+    public BoundProperty bindVariables(String title, HashMap<EClass, List<EObject>> modelObjs)
+                                       throws MIDDialogCancellation {
+      if (this.variables.isEmpty()) {
+        return new BoundProperty(this.property, this.description);
       }
 
-      return Optional.of(boundProperty);
+      var message = this.description + ":\nSelect the model element corresponding to variable ";
+      var contentProvider = new ArrayContentProvider();
+      var labelProvider = new AdapterFactoryLabelProvider(GMFUtils.getAdapterFactory());
+      var boundProperty = this.property;
+      var boundDescription = this.description;
+      for (var variable : this.variables) {
+        var validModelObjs = new ArrayList<EObject>();
+        variable.validTypes.forEach(t -> validModelObjs.addAll(modelObjs.getOrDefault(t, List.of())));
+        var modelObj = MIDDialogs.<EObject>openListDialog(title, message + variable.name, validModelObjs,
+                                                          contentProvider, labelProvider);
+        String boundVariable;
+        try {
+          boundVariable = (String) FileUtils.getModelObjectFeature(modelObj, "label");
+        }
+        catch (MMINTException e) {
+          boundVariable = modelObj.toString();
+        }
+        boundProperty = boundProperty.replace(variable.name, boundVariable);
+        boundDescription = boundDescription.replace(variable.name, boundVariable);
+      }
+
+      return new BoundProperty(boundProperty, boundDescription);
     }
   }
 

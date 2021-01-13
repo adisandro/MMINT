@@ -25,6 +25,8 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ArrayContentProvider;
+import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.StructuredSelection;
@@ -69,7 +71,7 @@ public class MIDDialogs {
     //TODO MMINT[MISC] Remove double layer MIDDialogs + MIDTypeRegistry, and do filtering directly in content providers
 	public final static String PROPERTY_LANGUAGE_SEPARATOR = ":";
 
-	protected static Object openDialog(MIDTreeSelectionDialog dialog, String title, String message) throws MIDDialogCancellation {
+	public static Object openTreeDialog(MIDTreeSelectionDialog dialog, String title, String message) throws MIDDialogCancellation {
 
 		dialog.setTitle(title);
 		dialog.setMessage(message);
@@ -85,18 +87,31 @@ public class MIDDialogs {
 		return selection;
 	}
 
-	public static Object openSelectionDialog(MIDTreeSelectionDialog dialog, String title, String message)
-	                     throws MIDDialogCancellation {
-		return MIDDialogs.openDialog(dialog, title, message);
-	}
-
-	public static Object openSelectionDialogWithDefault(MIDTreeSelectionDialog dialog, String title, String message)
+	public static Object openTreeDialogWithDefault(MIDTreeSelectionDialog dialog, String title, String message)
 	                     throws MIDDialogCancellation {
 		var selection = dialog.getUniqueResult();
 		if (selection == null) { // more than one choice possible, open the dialog
-			selection = MIDDialogs.openDialog(dialog, title, message);
+			selection = MIDDialogs.openTreeDialog(dialog, title, message);
 		}
 		return selection;
+	}
+
+	@SuppressWarnings("unchecked")
+  public static <T> T openListDialog(String title, String message, Object input,
+	                                   IStructuredContentProvider contentProvider, ILabelProvider labelProvider)
+	                                  throws MIDDialogCancellation {
+    var dialog = new ListDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell());
+    dialog.setAddCancelButton(true);
+    dialog.setTitle(title);
+    dialog.setMessage(message);
+    dialog.setContentProvider(contentProvider);
+    dialog.setLabelProvider(labelProvider);
+    dialog.setInput(input);
+    if (dialog.open() == Window.CANCEL) {
+      throw new MIDDialogCancellation();
+    }
+
+    return (T) dialog.getResult()[0];
 	}
 
 	/**
@@ -113,7 +128,7 @@ public class MIDDialogs {
 		var title = "Create new light model type";
 		var message = "Choose model supertype";
 
-		return (Model) MIDDialogs.openSelectionDialogWithDefault(dialog, title, message);
+		return (Model) MIDDialogs.openTreeDialogWithDefault(dialog, title, message);
 	}
 
 	/**
@@ -130,7 +145,7 @@ public class MIDDialogs {
 		var title = "Create new light model relationship type";
 		var message = "Choose model relationship supertype";
 
-		return (ModelRel) MIDDialogs.openSelectionDialogWithDefault(dialog, title, message);
+		return (ModelRel) MIDDialogs.openTreeDialogWithDefault(dialog, title, message);
 	}
 
 	public static MappingReference selectMappingTypeReferenceToExtend(ModelRel modelRelType, ModelElementReference srcModelElemTypeRef, ModelElementReference tgtModelElemTypeRef) throws MIDDialogCancellation {
@@ -139,7 +154,7 @@ public class MIDDialogs {
 		var title = "Create new light mapping type";
 		var message = "Choose mapping supertype";
 
-		return (MappingReference) MIDDialogs.openSelectionDialogWithDefault(dialog, title, message);
+		return (MappingReference) MIDDialogs.openTreeDialogWithDefault(dialog, title, message);
 	}
 
 	public static String selectWorkflowMIDToCreateOperatorType(MID typeMID) throws MIDDialogCancellation {
@@ -147,7 +162,7 @@ public class MIDDialogs {
 		var dialog = MIDTypeRegistry.getOperatorTypeCreationDialog(typeMID);
 		var title = "Create new operator type from workflow";
 		var message = "Choose Workflow MID";
-		var workflowMIDFile = (IFile) MIDDialogs.openSelectionDialog(dialog, title, message);
+		var workflowMIDFile = (IFile) MIDDialogs.openTreeDialog(dialog, title, message);
 
 		return workflowMIDFile.getFullPath().toString();
 	}
@@ -168,10 +183,9 @@ public class MIDDialogs {
 	    var title = "Create new operator type from workflow";
 	    var message = "Other operators exist with the same name, you can select one of them to override";
 
-	    return (Operator) MIDDialogs.openSelectionDialogWithDefault(dialog, title, message);
+	    return (Operator) MIDDialogs.openTreeDialogWithDefault(dialog, title, message);
 	}
 
-	@SuppressWarnings("unchecked")
   public static <T extends IReasoner> T selectReasoner(Class<T> traitClass, String traitDesc) throws MMINTException {
     var reasoners = MMINT.getReasonersForTrait(traitClass);
     if (reasoners.isEmpty()) {
@@ -180,20 +194,12 @@ public class MIDDialogs {
     if (reasoners.size() == 1) {
       return reasoners.iterator().next();
     }
-    var dialog = new ListDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell());
-    dialog.setAddCancelButton(true);
-    dialog.setContentProvider(new ArrayContentProvider());
-    dialog.setLabelProvider(LabelProvider.createTextProvider(e -> ((IReasoner) e).getName()));
-    dialog.setInput(reasoners);
     var title = "Choose reasoner";
     var message = "Select reasoner for " + traitDesc;
-    dialog.setTitle(title);
-    dialog.setMessage(message);
-    if (dialog.open() == Window.CANCEL) {
-      throw new MIDDialogCancellation();
-    }
+    var contentProvider = new ArrayContentProvider();
+    var labelProvider = LabelProvider.createTextProvider(e -> ((IReasoner) e).getName());
 
-    return (T) dialog.getResult()[0];
+    return openListDialog(title, message, reasoners, contentProvider, labelProvider);
 	}
 
 	public static @NonNull String selectSiriusRepresentationsFileToContainModelDiagram(@NonNull String modelPath)
@@ -226,7 +232,7 @@ public class MIDDialogs {
 
         var title = "Model with Sirius Representation";
         var message = "Select Sirius representations file";
-        var sAirdFile = (IFile) MIDDialogs.openSelectionDialogWithDefault(dialog, title, message);
+        var sAirdFile = (IFile) MIDDialogs.openTreeDialogWithDefault(dialog, title, message);
         sAirdPath = sAirdFile.getFullPath().toString();
 
         return sAirdPath;
@@ -249,7 +255,7 @@ public class MIDDialogs {
         dialog.setValidator(new NewModelDialogSelectionValidator());
 		var title = "Create new model";
 		var message = "Choose editor to create model";
-		var editorType = (Editor) MIDDialogs.openSelectionDialog(dialog, title, message);
+		var editorType = (Editor) MIDDialogs.openTreeDialog(dialog, title, message);
 		IStructuredSelection midContainer;
 		String midContainerUri = FileUtils.replaceLastSegmentInPath(
 		    instanceMID.eResource().getURI().toPlatformString(true), "");
@@ -288,7 +294,7 @@ public class MIDDialogs {
 		var dialog = MIDTypeRegistry.getModelImportDialog();
 		var title = "Import model";
 		var message = "Choose model to import";
-		var modelFile = (IFile) MIDDialogs.openSelectionDialog(dialog, title, message);
+		var modelFile = (IFile) MIDDialogs.openTreeDialog(dialog, title, message);
 
 		return modelFile.getFullPath().toString();
 	}
@@ -299,7 +305,7 @@ public class MIDDialogs {
 		var title = "Create new model relationship";
 		var message = "Choose model relationship type";
 
-		return (ModelRel) MIDDialogs.openSelectionDialogWithDefault(dialog, title, message);
+		return (ModelRel) MIDDialogs.openTreeDialogWithDefault(dialog, title, message);
 	}
 
 	public static ModelEndpointReference selectModelTypeEndpointToCreate(ModelRel modelRel, List<String> modelTypeEndpointUris, String modelEndpointId) throws MIDDialogCancellation {
@@ -308,7 +314,7 @@ public class MIDDialogs {
 		var title = "Create new model endpoint";
 		var message = "Choose " + modelEndpointId + "model type endpoint role";
 
-		return (ModelEndpointReference) MIDDialogs.openSelectionDialogWithDefault(dialog, title, message);
+		return (ModelEndpointReference) MIDDialogs.openTreeDialogWithDefault(dialog, title, message);
 	}
 
 	public static Mapping selectMappingTypeToCreate(ModelRel modelRel, ModelElementReference srcModelElemRef, ModelElementReference tgtModelElemRef) throws MIDDialogCancellation {
@@ -322,7 +328,7 @@ public class MIDDialogs {
 		var title = "Create new mapping";
 		var message = "Choose mapping type";
 
-		return (Mapping) MIDDialogs.openSelectionDialogWithDefault(dialog, title, message);
+		return (Mapping) MIDDialogs.openTreeDialogWithDefault(dialog, title, message);
 	}
 
 	public static ModelElementEndpointReference selectModelElementTypeEndpointToCreate(MappingReference mappingRef, List<String> modelElemTypeEndpointUris) throws MIDDialogCancellation {
@@ -331,7 +337,7 @@ public class MIDDialogs {
 		var title = "Create new model endpoint";
 		var message = "Choose model type endpoint role";
 
-		return (ModelElementEndpointReference) MIDDialogs.openSelectionDialogWithDefault(dialog, title, message);
+		return (ModelElementEndpointReference) MIDDialogs.openTreeDialogWithDefault(dialog, title, message);
 	}
 
 	public static GenericElement selectGenericTypeToCreate(GenericEndpoint genericSuperTypeEndpoint, EList<OperatorInput> inputs) throws MIDDialogCancellation {
@@ -341,7 +347,7 @@ public class MIDDialogs {
 		var message = "Choose type <" + genericSuperTypeEndpoint.getName() + "> of operator " +
 			((Operator) genericSuperTypeEndpoint.eContainer()).getName();
 
-		return (GenericElement) MIDDialogs.openSelectionDialogWithDefault(dialog, title, message);
+		return (GenericElement) MIDDialogs.openTreeDialogWithDefault(dialog, title, message);
 	}
 
 	public static Model selectWorkflowModelTypeToCreate(MID workflowMID) throws MIDDialogCancellation, MMINTException {
@@ -350,7 +356,7 @@ public class MIDDialogs {
 		var title = "Create new initial workflow model";
 		var message = "Choose model type";
 
-		return (Model) MIDDialogs.openSelectionDialog(dialog, title, message);
+		return (Model) MIDDialogs.openTreeDialog(dialog, title, message);
 	}
 
 	public static ModelRel selectWorkflowModelRelTypeToCreate(Model srcModel, Model tgtModel) throws MIDDialogCancellation {
@@ -359,7 +365,7 @@ public class MIDDialogs {
 		var title = "Create new initial workflow model relationship";
 		var message = "Choose model relationship type";
 
-		return (ModelRel) MIDDialogs.openSelectionDialogWithDefault(dialog, title, message);
+		return (ModelRel) MIDDialogs.openTreeDialogWithDefault(dialog, title, message);
 	}
 
 	public static boolean getBooleanInput(String dialogTitle, String dialogMessage) {
