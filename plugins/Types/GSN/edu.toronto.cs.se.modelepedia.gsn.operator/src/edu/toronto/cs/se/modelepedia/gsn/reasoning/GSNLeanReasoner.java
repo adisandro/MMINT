@@ -12,7 +12,10 @@
  *******************************************************************************/
 package edu.toronto.cs.se.modelepedia.gsn.reasoning;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.common.util.ECollections;
 
@@ -42,10 +45,13 @@ public class GSNLeanReasoner extends LeanReasoner implements IGSNDecompositionTr
   }
 
   @Override
-  public List<PropertyTemplate> getTemplateProperties(Model model) throws MMINTException {
+  public Map<String, List<PropertyTemplate>> getTemplateProperties(Model model) throws MMINTException {
     var encoder = getEncoder(model);
+    var templates = new LinkedHashMap<String, List<PropertyTemplate>>();
+    encoder.getTemplateProperties().forEach(t -> templates.computeIfAbsent(t.category, k -> new ArrayList<>()).add(t));
+    templates.computeIfAbsent(PropertyTemplate.CUSTOM.category, k -> new ArrayList<>()).add(PropertyTemplate.CUSTOM);
 
-    return encoder.getTemplateProperties();
+    return templates;
   }
 
   @Override

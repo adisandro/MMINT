@@ -14,10 +14,11 @@ package edu.toronto.cs.se.mmint.types.lts.operators;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.MMINTException;
@@ -70,7 +71,8 @@ public class LTSToLean extends ToLean implements IGSNLeanEncoder {
 
   @Override
   public List<PropertyTemplate> getTemplateProperties() {
-    var validTypes = Set.of(LTSPackage.eINSTANCE.getLabeledElement());
+    var validTypes = Map.<EClass, EStructuralFeature>of(LTSPackage.eINSTANCE.getLabeledElement(),
+                                                        LTSPackage.eINSTANCE.getLabeledElement_Label());
     var x = new PropertyVariable("X", validTypes);
     var y = new PropertyVariable("Y", validTypes);
     var a = new PropertyVariable("A", validTypes);

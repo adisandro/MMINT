@@ -15,21 +15,21 @@ package edu.toronto.cs.se.modelepedia.gsn.reasoning;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
+import java.util.stream.Stream;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 
-import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ui.GMFUtils;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
-import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 
 /**
  * The specification of a Lean encoder that handles GSN property decomposition quirks.
@@ -42,16 +42,16 @@ public interface IGSNLeanEncoder {
     public String property;
     public String description;
     public BoundProperty(String property, String description) {
-      this.property = property;
-      this.description = description;
+      this.property = Objects.requireNonNull(property);
+      this.description = Objects.requireNonNull(description);
     }
   }
   static class PropertyVariable {
     public String name;
-    public Set<EClass> validTypes;
-    public PropertyVariable(String name, Set<EClass> validTypes) {
-      this.name = name;
-      this.validTypes = validTypes;
+    public Map<EClass, EStructuralFeature> validTypes;
+    public PropertyVariable(String name, Map<EClass, EStructuralFeature> validTypes) {
+      this.name = Objects.requireNonNull(name);
+      this.validTypes = Objects.requireNonNull(validTypes);
     }
   }
   static class PropertyTemplate {
@@ -82,16 +82,16 @@ public interface IGSNLeanEncoder {
       var boundDescription = this.description;
       for (var variable : this.variables) {
         var validModelObjs = new ArrayList<EObject>();
-        variable.validTypes.forEach(t -> validModelObjs.addAll(modelObjs.getOrDefault(t, List.of())));
+        variable.validTypes.keySet().forEach(t -> validModelObjs.addAll(modelObjs.getOrDefault(t, List.of())));
         var modelObj = MIDDialogs.<EObject>openListDialog(title, message + variable.name, validModelObjs,
                                                           contentProvider, labelProvider);
         String boundVariable;
-        try {
-          boundVariable = (String) FileUtils.getModelObjectFeature(modelObj, "label");
-        }
-        catch (MMINTException e) {
-          boundVariable = modelObj.toString();
-        }
+        var modelObjClass = modelObj.eClass();
+        var feature = Stream.concat(Stream.of(modelObjClass), modelObjClass.getEAllSuperTypes().stream())
+          .filter(c -> variable.validTypes.containsKey(c))
+          .map(c -> variable.validTypes.get(c))
+          .findFirst();
+        boundVariable = feature.map(f -> (String) modelObj.eGet(f)).orElse(modelObj.toString());
         boundProperty = boundProperty.replace(variable.name, boundVariable);
         boundDescription = boundDescription.replace(variable.name, boundVariable);
       }

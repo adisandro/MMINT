@@ -13,6 +13,7 @@
 package edu.toronto.cs.se.modelepedia.gsn.reasoning;
 
 import java.util.List;
+import java.util.Map;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.Model;
@@ -26,7 +27,7 @@ import edu.toronto.cs.se.modelepedia.gsn.reasoning.IGSNLeanEncoder.PropertyTempl
  */
 public interface IGSNDecompositionTrait extends IReasoner {
 
-  List<PropertyTemplate> getTemplateProperties(Model model) throws MMINTException;
+  Map<String, List<PropertyTemplate>> getTemplateProperties(Model model) throws MMINTException;
 
   /**
    * Validates the correctness of a GSN property decomposition.
