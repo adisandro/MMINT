@@ -6,27 +6,37 @@
 [/template]
 
 [template private encodeMain(modelName : String)]
-import LTS [modelName/]
-open lean.parser interactive tactic S A
+import justification common_meta property_catalogue.LTL
+import [modelName/]
+open interactive S A
+
+meta def main_program_[modelName/] (input : pexpr) : tactic unit :=
+do
+  STRAT ← tactic.to_expr input,
+  match STRAT with
+  | `(property.auxiliary.mk %%CLAIM %%PROPS) := do
+    aux ← tactic.eval_expr (property.auxiliary (path [modelName/])) STRAT,
+    let g : expr := `(deductive (path [modelName/]) (property.to_strategy (%%STRAT))),
+    let tac := initialize (aux.Props.length) STRAT,
+    try_tactic_on_goal tac g,
+    switch,
+    res ← is_solved,
+    match res with
+    | tt := tactic.trace "true"
+    | ff := tactic.trace "false"
+    end
+| _ := tactic.trace "N/A"
+end
 
 @['['/]user_command[']'/]
-meta def main_lts
+meta def [modelName/]_main
 (meta_info : decl_meta_info)
-(_ : parse (tk "main_lts")) : lean.parser unit :=
-
-do 
+(_ : parse (lean.parser.tk "[modelName/]_main")) : lean.parser unit :=
+do
    F ← read "property.lean" types.texpr,
-   of_tactic 
-   (do
-      STRAT ← tactic.to_expr F,
-      s ← tactic.eval_expr (strategy (path [modelName/])) STRAT,
-      let goal := `(deductive %%(reflect (path [modelName/])) %%STRAT), 
-      let tac  := solve_patterns (s.Props.length) in do
-        res ← try_tactic_on_goal tac goal, 
-        if res then do trace "true" 
-        else trace "false"
-      )
-. main_lts
+   lean.parser.of_tactic $ main_program_[modelName/] F
+.
+[modelName/]_main
 [/template]
 
 [template private encodeModel(lts : LTS, modelName : String)]

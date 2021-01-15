@@ -3,8 +3,6 @@ import LTS.defs
 variable {M : LTS}
 set_option pp.beta true 
 
-def pattern : Type 1 := Π {M : LTS}, formula M → formula M
-
 
 namespace absent 
 
@@ -100,3 +98,5 @@ def after_until (S P Q R: formula M) : formula M :=
 end responds
 
 lemma sat_em (P : formula M) (π : path M) :  sat P π → ¬sat ( !P) π := by {intros, rw sat, tidy}
+
+

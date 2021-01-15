@@ -20,6 +20,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.util.ECollections;
@@ -27,6 +28,7 @@ import org.eclipse.emf.common.util.ECollections;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.lean.operators.ToLean;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
@@ -46,10 +48,8 @@ public class LeanReasoner implements IModelConstraintTrait {
     return "Lean";
   }
 
-  protected String generateEncoding(Model model, String workingPath) throws Exception {
-    var inputModels = ECollections.newBasicEList(model);
-    var encoder = MIDTypeHierarchy.getPolyOperator(LeanReasoner.ENCODER_ID, inputModels);
-    var encoderInputs = encoder.checkAllowedInputs(inputModels); //TODO MMINT[JAVA16] Refactor using records
+  protected String generateEncoding(ToLean encoder, Model model, String workingPath) throws Exception {
+    var encoderInputs = encoder.checkAllowedInputs(ECollections.newBasicEList(model)); //TODO MMINT[JAVA16] Refactor using records?
     encoder.setWorkingPath(workingPath);
     var encoded = encoder.startInstance(encoderInputs, null, ECollections.emptyEList(), Map.of(), null);
 
@@ -58,6 +58,7 @@ public class LeanReasoner implements IModelConstraintTrait {
   }
 
   public boolean checkProperty(Model model, String property, String workingPath) throws Exception {
+    var encoder = (ToLean) MIDTypeHierarchy.getPolyOperator(LeanReasoner.ENCODER_ID, ECollections.newBasicEList(model));
     var absWorkingPath = FileUtils.prependWorkspacePath(workingPath);
     try {
       // project dir
@@ -67,11 +68,11 @@ public class LeanReasoner implements IModelConstraintTrait {
       // package config file
       var config = """
         builtin_path
-        path .
-        path LTS""";
+        path .""";
+      config += "\n" + encoder.getConfigPaths().stream().map(p -> "path " + p).collect(Collectors.joining("\n"));
       Files.writeString(Path.of(absWorkingPath, LeanReasoner.LEAN_CONFIG), config, StandardOpenOption.CREATE);
       // model encoding files
-      var mainEncoding = generateEncoding(model, workingPath);
+      var mainEncoding = generateEncoding(encoder, model, workingPath);
       // run lean
       var builder = new ProcessBuilder(LeanReasoner.LEAN_EXEC, mainEncoding);
       builder.redirectErrorStream(true);

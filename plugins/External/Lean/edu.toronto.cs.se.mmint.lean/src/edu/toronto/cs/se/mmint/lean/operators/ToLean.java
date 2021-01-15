@@ -73,6 +73,10 @@ public class ToLean extends OperatorImpl {
     }
   }
 
+  public List<String> getConfigPaths() {
+    return List.of();
+  }
+
   protected void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws Exception {
     this.input = new Input(inputsByName);
     this.output = new Output(outputMIDsByName, getWorkingPath());

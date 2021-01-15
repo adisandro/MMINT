@@ -28,11 +28,10 @@ import edu.toronto.cs.se.modelepedia.gsn.reasoning.IGSNLeanEncoder.PropertyTempl
 
 public class GSNLeanReasoner extends LeanReasoner implements IGSNDecompositionTrait {
 
-  private IGSNLeanEncoder getEncoder(Model model) throws MMINTException {
-    var modelName = model.getName();
+  protected IGSNLeanEncoder getEncoder(Model model) throws MMINTException {
     var encoder = MIDTypeHierarchy.getPolyOperator(LeanReasoner.ENCODER_ID, ECollections.newBasicEList(model));
     if (!(encoder instanceof IGSNLeanEncoder)) {
-      throw new MMINTException("The Lean encoder for model '" + modelName +
+      throw new MMINTException("The Lean encoder for model '" + model.getName() +
                                "' does not support GSN property decompositions");
     }
 

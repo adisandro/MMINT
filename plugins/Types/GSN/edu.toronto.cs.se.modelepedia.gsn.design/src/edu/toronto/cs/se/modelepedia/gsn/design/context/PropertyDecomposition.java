@@ -13,11 +13,14 @@
 package edu.toronto.cs.se.modelepedia.gsn.design.context;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -34,6 +37,7 @@ import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 import edu.toronto.cs.se.modelepedia.gsn.DecompositionStrategy;
 import edu.toronto.cs.se.modelepedia.gsn.Goal;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
+import edu.toronto.cs.se.modelepedia.gsn.design.Activator;
 import edu.toronto.cs.se.modelepedia.gsn.reasoning.IGSNDecompositionTrait;
 import edu.toronto.cs.se.modelepedia.gsn.reasoning.IGSNLeanEncoder.PropertyTemplate;
 import edu.toronto.cs.se.modelepedia.gsn.util.PropertyBuilder;
@@ -117,6 +121,9 @@ public class PropertyDecomposition extends GoalDecomposition {
       });
       var contentProvider = new TemplatePropertyContentProvider(templates);
       var dialog = new MIDTreeSelectionDialog(labelProvider, contentProvider, templates);
+      dialog.setValidator(selection -> (Arrays.stream(selection).anyMatch(s -> s instanceof String)) ?
+                                         new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Property not selected") :
+                                         new Status(IStatus.OK, Activator.PLUGIN_ID, ""));
 
       return (PropertyTemplate) MIDDialogs.openTreeDialog(dialog, title, message);
     }
@@ -130,7 +137,6 @@ public class PropertyDecomposition extends GoalDecomposition {
        * IGSNLeanEncoder: Switch to records
        * PropertyDecompositionStrategyImpl: Related model in validate could come from here
        * GSNLeanReasoner: Review name
-       * LeanReasoner: Update lean files
        *
        * precedes.globally (coe pay) (coe restart)
        * absent.before (coe restart) (coe pay)

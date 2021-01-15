@@ -26,8 +26,27 @@ meta def try_tactic_on_goal (tac: tactic unit)
 set_goal goal >> tac >> is_solved
 
 
-meta def initialize (n : ℕ) : tactic unit := 
-do tactic.interactive.apply ``(justfd_imp_deductive _),
+meta def init2 (n : ℕ) : tactic unit := do 
+try `[rw justified, simp, rw set.Inter],
+   x ← get_unused_name `pth, H ← get_unused_name `H,
+   intro x,
+   try `[simp],
+   intro H >>
+   (list.range n).mmap 
+   (λ i, do 
+   let h : name := ("H" ++ to_string (i+1) : string),
+   tactic.interactive.«have» h none ```(H ⟨%%(reflect i), dec_trivial⟩)),
+   `[clear H, try {dsimp at *}],
+   return ()
+
+
+meta def test (clm lst : expr) : tactic unit := 
+return () <|>
+tactic.interactive.apply ``(property.deductive_of_justfd %%clm %%lst)
+
+
+meta def initialize (n : ℕ) (S : expr) : tactic unit := 
+do  tactic.interactive.apply ``(property.deductive_of_justfd %%S),
    try `[rw justified, simp, rw set.Inter],
    x ← get_unused_name `pth, H ← get_unused_name `H,
    intro x,
@@ -37,13 +56,40 @@ do tactic.interactive.apply ``(justfd_imp_deductive _),
    (λ i, do 
    let h : name := ("H" ++ to_string (i+1) : string),
    tactic.interactive.«have» h none ```(H ⟨%%(reflect i), dec_trivial⟩)),
-   `[clear H, try {simp at *}],
-return ()
+   `[clear H, try {dsimp at *}],
+   return ()
 
 
-meta def finish_up : tactic unit := 
+
+meta def inductive_solve (n : ℕ) (S : expr) : tactic unit := 
 do  
-   repeat (applyc ``and.intro),
+   tactic.interactive.apply ``(property.deductive_of_justfd %%S),
+   try `[rw justified, simp, rw set.Inter],
+   x ← get_unused_name `pth, H ← get_unused_name `H,
+   intro x,
+   try `[simp],
+   intro H >>
+   (list.range n).mmap 
+   (λ i, do 
+   let h : name := ("H" ++ to_string (i+1) : string),
+   tactic.interactive.«have» h none ```(H ⟨%%(reflect i), dec_trivial⟩)),
+   `[clear H, try {dsimp at *}]
+
+meta def by_induction : tactic unit := 
+do  
+try (do
+   i ← get_unused_name `i,
+   intro i >>
+   `[induction i with i IH,
+   assumption,
+   apply H2, exact IH]),
+   res ← is_solved,
+   if res then return () else failed
+
+meta def by_cases : tactic unit := 
+do  
+   try (do repeat (applyc ``and.intro),
     all_goals 
-   (`[assumption] <|> do trace "Try adding this", target >>= trace), 
-return ()
+   (`[assumption] <|> return ())),
+   res ← is_solved,
+   if res then return () else failed 

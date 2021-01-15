@@ -1,5 +1,7 @@
-import LTS.patterns tactic
+import LTS property_catalogue.LTL.patterns tactic 
+
 open tactic
+
 variable {M : LTS}
 
 namespace precedes 
@@ -63,17 +65,28 @@ begin
     contradiction,
 end 
 
-meta def solve (tok1 tok2 : expr) : list expr → tactic  unit
+
+meta def solve_by_precedes_globally (tok1 tok2 : expr) : tactic unit := do
+tactic.interactive.apply ``(by_transitive %%tok1 _ %%tok2), return ()
+
+meta def solve_by_absent_before (tok1 tok2 : expr) : 
+tactic unit := do  
+  tactic.interactive.apply ``(by_absent_before %%tok1 %%tok2), return () 
+
+
+meta def solve (tok1 tok2 : expr) : list expr → tactic unit
 | [] :=  return ()
 | (h::t) := 
 do typ ← infer_type h, 
    match typ with 
-   | `(sat (precedes.globally %%tok1 %%new) %%path) := do
-     tactic.interactive.apply ``(by_transitive %%tok1 %%new %%tok2) 
-   | `(sat (absent.before %%tok2 %%tok1) %%path) := do 
-     tactic.interactive.apply ``(by_absent_before %%tok1 %%tok2)
+   | `(sat (precedes.globally %%tok1 _) _) := 
+       solve_by_precedes_globally tok1 tok2
+   | `(sat (absent.before %%tok2 %%tok1) _) := 
+     solve_by_precedes_globally tok1 tok2 
    | _ := solve t 
 end 
+
+
 
 end globally
 
@@ -97,17 +110,8 @@ begin
     rw [precedes.before, sat, imp_iff_not_or], 
     exact or.inr R,
 end 
-/-
-meta def solve (tok1 tok2 tok3 : expr) : list expr → tactic unit 
-| [] := return ()
-| (h::t) := do 
-  typ ← infer_type h,
-  match typ with 
-  | `(sat (exist.globally (%%tok1 ⅋ %%tok2)) %%path) := do 
-    tactic.interactive.apply ``(by_absent_before %%tok1 %%tok2 %%tok3)
-  |  `(sat (exist.globally (%%tok1 ⅋ %%tok2)) %%path) := do sorry 
-  | _ := solve t 
--/
+
+
 end before 
 
 

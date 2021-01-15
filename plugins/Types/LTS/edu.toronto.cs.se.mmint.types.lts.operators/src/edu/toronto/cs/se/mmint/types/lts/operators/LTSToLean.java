@@ -56,6 +56,11 @@ public class LTSToLean extends ToLean implements IGSNLeanEncoder {
   }
 
   @Override
+  public List<String> getConfigPaths() {
+    return List.of("LTS", "property_catalogue");
+  }
+
+  @Override
   protected void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws Exception {
     super.init(inputsByName, outputMIDsByName);
     var workingPath = getWorkingPath() + IPath.SEPARATOR;
@@ -168,9 +173,9 @@ public class LTSToLean extends ToLean implements IGSNLeanEncoder {
   public String encodePropertyDecomposition(Model model, String property, List<String> subProperties) {
     var modelName = model.getName();
     var encoding =
-      "strategy.mk\n" +
+      "property.auxiliary.mk\n" +
       "(Claim.mk\n" +
-        "(set.univ)\n" +
+        "{x : path " + modelName + " | true}\n" +
         encodeProperty(modelName, property) + "\n" +
       ")\n" +
       "([\n";

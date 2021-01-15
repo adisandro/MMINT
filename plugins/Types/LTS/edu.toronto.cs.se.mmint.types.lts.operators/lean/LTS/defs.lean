@@ -70,6 +70,7 @@ instance act_to_tok {M : LTS} : has_coe M.Act (token M) :=
 
 inductive formula (M : LTS) 
 | T : formula 
+| state_predicate (p : M.S → Prop) : formula 
 | tok (x : token M) : formula 
 | neg (x : formula) : formula 
 | conj (φ₁ φ₂ : formula) : formula 
@@ -95,6 +96,7 @@ def sat {M : LTS} : formula M → path M → Prop
     ∃ j, sat φ₂ (π.drop j) ∧ (∀ i < j, sat φ₁ (π.drop i))
 | (formula.always φ) := λ π, ∀ i, sat φ (π.drop i) 
 | (formula.eventually φ) := λ π, ∃ i, sat φ (π.drop i)
+| (formula.state_predicate p) := λ π, p π.init
 
 
 notation φ ` & ` ψ := formula.conj  φ ψ 
@@ -136,3 +138,23 @@ lemma always_eventually_dual (P : formula M) (π : path M) :
     sat (◾!P) π ↔ (¬ sat (◆P) π) := 
 by {repeat {rw sat}, tidy}
 
+
+/-
+example (P Q : formula M) (π : path M) : sat (P U (Q ⅋ !P)) π ↔ sat ((◾ P) ⇒ (◆Q)) π := 
+begin 
+    split, 
+    {repeat {rw sat}, simp, intro i,
+     intros H1 H2 H3,
+     cases H1, use i, exact H1,
+     replace H3 := H3 i, contradiction,
+    },
+    {
+      repeat {rw sat}, simp, intros H1,
+      rw imp_iff_not_or at H1,
+      cases H1, simp at H1,
+      cases H1 with i H1,
+      use i,
+      split
+    }
+end  
+-/

@@ -75,7 +75,7 @@ public interface IGSNLeanEncoder {
         return new BoundProperty(this.property, this.description);
       }
 
-      var message = this.description + ":\nSelect the model element corresponding to variable ";
+      var message = ":\nSelect the model element corresponding to variable ";
       var contentProvider = new ArrayContentProvider();
       var labelProvider = new AdapterFactoryLabelProvider(GMFUtils.getAdapterFactory());
       var boundProperty = this.property;
@@ -83,8 +83,8 @@ public interface IGSNLeanEncoder {
       for (var variable : this.variables) {
         var validModelObjs = new ArrayList<EObject>();
         variable.validTypes.keySet().forEach(t -> validModelObjs.addAll(modelObjs.getOrDefault(t, List.of())));
-        var modelObj = MIDDialogs.<EObject>openListDialog(title, message + variable.name, validModelObjs,
-                                                          contentProvider, labelProvider);
+        var modelObj = MIDDialogs.<EObject>openListDialog(title, boundDescription + message + variable.name,
+                                                          validModelObjs, contentProvider, labelProvider);
         String boundVariable;
         var modelObjClass = modelObj.eClass();
         var feature = Stream.concat(Stream.of(modelObjClass), modelObjClass.getEAllSuperTypes().stream())

@@ -1,5 +1,7 @@
-import LTS.defs LTS.patterns tactic
+import LTS property_catalogue.LTL.patterns tactic 
+
 open tactic
+
 variable {M : LTS}
 
 namespace absent
@@ -40,11 +42,30 @@ meta def solve (tok : expr) : list expr → tactic unit
    do typ ← infer_type h,
    match typ with 
    | `(sat (absent.before %%tok %%new) %%path) := do 
-      tactic.interactive.apply ``(absent.globally.by_partition_before_aft %%tok %%new) 
+      tactic.interactive.apply ``(absent.globally.by_partition_before_aft %%tok %%new),
+      return ()
    | `(sat (absent.after %%tok %%new) %%path) := do 
-      tactic.interactive.apply ``(absent.globally.by_partition_before_aft %%tok %%new)
+      tactic.interactive.apply ``(absent.globally.by_partition_before_aft %%tok %%new), 
+      return () 
    | _ := do solve t 
    end 
+
+
+meta def solve_subs (tok : expr) : list expr → tactic unit 
+| [] :=  return ()
+| (h::t) := 
+   do typ ← infer_type h,
+   match typ with 
+   | `(sat (absent.before %%tok %%new) %%path) := do 
+      tactic.interactive.apply ``(absent.globally.by_partition_before_aft %%tok %%new),
+      return ()
+   | `(sat (absent.after %%tok %%new) %%path) := do 
+      tactic.interactive.apply ``(absent.globally.by_partition_before_aft %%tok %%new), 
+      return () 
+   | _ := do solve_subs t 
+   end 
+
+
 
 end globally 
 end absent 
