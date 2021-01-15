@@ -137,14 +137,16 @@ public class PropertyDecomposition extends GoalDecomposition {
        * IGSNLeanEncoder: Switch to records
        * PropertyDecompositionStrategyImpl: Related model in validate could come from here
        * GSNLeanReasoner: Review name
+       * here: Ask for a description with custom properties
        *
-       * precedes.globally (coe pay) (coe restart)
-       * absent.before (coe restart) (coe pay)
-       * exist.globally (coe pay)
+       * precedes.globally (coe pay)   (coe restart)
+       * precedes.globally (coe pay)   (coe serve)
+       * precedes.globally (coe serve) (coe restart)
        */
       var builder = (PropertyBuilder) this.builder;
       // ask for input
       var title = "Property Decomposition";
+      var customMsg = "Insert an optional description for the custom property";
       var reasoner = MIDDialogs.selectReasoner(IGSNDecompositionTrait.class, "GSN property decomposition");
       var reasonerName = reasoner.getName();
       var relatedModel = getRelatedModel();
@@ -157,7 +159,10 @@ public class PropertyDecomposition extends GoalDecomposition {
       if (property.isBlank()) {
         property = MIDDialogs.getBigStringInput(title, "Insert the " + reasonerName + " property to be decomposed",
                                                 null);
-        description = "'" + property + "'";
+        try {
+          description = "'" + MIDDialogs.getStringInput(title, customMsg, null) + "'";
+        }
+        catch (MIDDialogCancellation e) {}
       }
       var numProperties = Integer.parseInt(MIDDialogs.getStringInput(title, "Insert the number of sub-properties",
                                                                      null));
@@ -196,7 +201,10 @@ public class PropertyDecomposition extends GoalDecomposition {
         var subDescription = "'" + subBoundTemplate.description + "'";
         if (subProperty.isBlank()) {
           subProperty = MIDDialogs.getBigStringInput(title, "Insert the sub-property #" + (i+1), null);
-          subDescription = "'" + subProperty + "'";
+          try {
+            subDescription = "'" + MIDDialogs.getStringInput(title, customMsg, null) + "'";
+          }
+          catch (MIDDialogCancellation e) {}
         }
         subDescription = subGoalDesc1 + subDescription + subGoalDesc2;
         var subGoal = builder.createPropertyGoal(subGoalId + i, subDescription, reasonerName, subProperty);
