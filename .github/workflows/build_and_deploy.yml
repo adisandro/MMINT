@@ -42,8 +42,8 @@ jobs:
         run: |
           BRANCH=${BRANCH##*/}
           cd deploy
-          rm -rf mmint/${BRANCH/master/release}
-          mv ../releng/edu.toronto.cs.se.mmint.install/target/repository mmint/${BRANCH/master/release}
+          rm -rf mmint/${BRANCH/main/release}
+          mv ../releng/edu.toronto.cs.se.mmint.install/target/repository mmint/${BRANCH/main/release}
           git config user.name "Deploy CI Bot"
           git config user.email "deploy@github.com"
           git add .
