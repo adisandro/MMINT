@@ -1,4 +1,4 @@
-import LTS property_catalogue.LTL.patterns tactic 
+import LTS property_catalogue.LTL.patterns tactic common_meta
 
 open tactic
 
@@ -9,16 +9,15 @@ namespace precedes
 namespace globally
 
 -- precedes.globally P S 
-
 -- i.e. if S happens, P must happen first 
 
--- Decomposition 1 : S never happens 
 
+-- Proof 1 : Because S never happens 
 lemma vacuous (P S : formula M) (π : path M) : 
  (sat (absent.globally S) π) → sat (precedes.globally P S) π 
 := λ s, or.inl s  
 
--- Decomposition 2 : P precedes S because S can't happen before P
+-- Proof 2 : P precedes S because S can't happen before P
 
 lemma by_absent_before (P S : formula M) (π : path M) : 
  (sat (absent.before S P) π) ∧ 
@@ -33,8 +32,7 @@ begin
  right, assumption,
 end 
 
-
--- Decompotiion 3 : P precedes R because P precedes Q and Q precedes R 
+-- Proof 3 : P precedes R because P precedes Q and Q precedes R 
 
 lemma by_transitive (P Q R : formula M) (π : path M) : 
     (sat (precedes.globally P Q) π ) ∧ 
@@ -65,28 +63,40 @@ begin
     contradiction,
 end 
 
+meta def solve_by_transitive (tok1 tok2 tok3: expr) (str : string): tactic string := 
+do
+  tactic.interactive.apply ``(by_transitive %%tok1 _ %%tok2), 
+  t1 ← tactic_format_expr tok1,
+  t2 ← tactic_format_expr tok2,
+  t3 ← tactic_format_expr tok3,
+  new_str str $
+  "apply precedes.globally.by_transitive " ++ 
+  t1.to_string ++ " " ++ 
+  t3.to_string ++ " " ++ 
+  t2.to_string ++ ",\n"
 
-meta def solve_by_precedes_globally (tok1 tok2 : expr) : tactic unit := do
-tactic.interactive.apply ``(by_transitive %%tok1 _ %%tok2), return ()
+meta def solve_by_absent_before (tok1 tok2 : expr) (str : string) : 
+tactic string := 
+do  
+  tactic.interactive.apply ``(by_absent_before %%tok1 %%tok2),
+  t1 ← tactic_format_expr tok1,
+  t2 ← tactic_format_expr tok2,
+  new_str str $ 
+  "apply precedes.globally.by_absent_before " ++ 
+  t1.to_string ++ " " ++ 
+  t2.to_string ++ ",\n"
 
-meta def solve_by_absent_before (tok1 tok2 : expr) : 
-tactic unit := do  
-  tactic.interactive.apply ``(by_absent_before %%tok1 %%tok2), return () 
-
-
-meta def solve (tok1 tok2 : expr) : list expr → tactic unit
-| [] :=  return ()
+meta def solve (tok1 tok2 : expr) (str : string) : list expr → tactic string
+| [] :=  return string.empty
 | (h::t) := 
-do typ ← infer_type h, 
+do typ ← infer_type h,
    match typ with 
-   | `(sat (precedes.globally %%tok1 _) _) := 
-       solve_by_precedes_globally tok1 tok2
-   | `(sat (absent.before %%tok2 %%tok1) _) := 
-     solve_by_precedes_globally tok1 tok2 
+   | `(sat (precedes.globally _ %%new) _) := 
+       solve_by_transitive tok1 tok2 new str <|> solve t
+   | `(sat (absent.before _ _) _) := 
+      solve_by_absent_before tok1 tok2 str  <|> solve t 
    | _ := solve t 
 end 
-
-
 
 end globally
 
@@ -110,7 +120,6 @@ begin
     rw [precedes.before, sat, imp_iff_not_or], 
     exact or.inr R,
 end 
-
 
 end before 
 

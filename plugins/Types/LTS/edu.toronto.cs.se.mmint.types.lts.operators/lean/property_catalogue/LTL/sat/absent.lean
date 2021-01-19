@@ -1,4 +1,4 @@
-import LTS property_catalogue.LTL.patterns tactic 
+import LTS property_catalogue.LTL.patterns tactic common_meta
 
 open tactic
 
@@ -36,35 +36,23 @@ begin
     assumption,
 end 
 
-meta def solve (tok : expr) : list expr → tactic unit 
-| [] :=  return ()
+meta def solve_by_partition (tok1 tok2 : expr) (str : string) : tactic string := 
+do 
+  tactic.interactive.apply ``(by_partition_before_aft %%tok1 %%tok2),
+  t1 ← tactic_format_expr tok1,
+  t2 ← tactic_format_expr tok2,
+  new_str str ("apply by_partition_before_aft" ++ t1.to_string ++ t2.to_string ++ "\n")
+
+
+meta def solve (tok : expr) (str : string) : list expr → tactic string 
+| [] :=  return string.empty
 | (h::t) := 
    do typ ← infer_type h,
    match typ with 
-   | `(sat (absent.before %%tok %%new) %%path) := do 
-      tactic.interactive.apply ``(absent.globally.by_partition_before_aft %%tok %%new),
-      return ()
-   | `(sat (absent.after %%tok %%new) %%path) := do 
-      tactic.interactive.apply ``(absent.globally.by_partition_before_aft %%tok %%new), 
-      return () 
+   | `(sat (absent.before %%tok %%new) %%path):= solve_by_partition tok new str <|> solve t
+   | `(sat (absent.after %%tok %%new) %%path) := solve_by_partition tok new str <|> solve t 
    | _ := do solve t 
    end 
-
-
-meta def solve_subs (tok : expr) : list expr → tactic unit 
-| [] :=  return ()
-| (h::t) := 
-   do typ ← infer_type h,
-   match typ with 
-   | `(sat (absent.before %%tok %%new) %%path) := do 
-      tactic.interactive.apply ``(absent.globally.by_partition_before_aft %%tok %%new),
-      return ()
-   | `(sat (absent.after %%tok %%new) %%path) := do 
-      tactic.interactive.apply ``(absent.globally.by_partition_before_aft %%tok %%new), 
-      return () 
-   | _ := do solve_subs t 
-   end 
-
 
 
 end globally 

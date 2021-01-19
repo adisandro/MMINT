@@ -23,7 +23,8 @@ notation π[i] := index π i
 
 lemma drop_helper (π : path M) (n : ℕ) : 
     ((π.s n).snd, (drop (n+1) π.s 0).fst, (drop (n+1) π.s 0).snd) ∈ M.TR ∧ ∀ (i : ℕ), ((drop (n+1) π.s i).snd, (stream.drop (n+1) π.s (i + 1)).fst, (drop (n+1) π.s (i + 1)).snd) ∈ M.TR := 
-    begin have := π.sound, cases this with L R,
+    begin 
+         have := π.sound, cases this with L R,
          rw stream.drop,
          dsimp at *, simp at *,
          split,
@@ -59,19 +60,11 @@ lemma drop_drop  (π : path M) {i j : ℕ} :
 end path 
 
 
-
-def token (M : LTS) : Type := M.S ⊕ M.Act 
-
-instance state_to_tok {M : LTS} : has_coe M.S (token M) := 
-⟨λ s, sum.inl s⟩
-
-instance act_to_tok {M : LTS} : has_coe M.Act (token M) := 
-⟨λ a, sum.inr a⟩
-
 inductive formula (M : LTS) 
 | T : formula 
-| state_predicate (p : M.S → Prop) : formula 
-| tok (x : token M) : formula 
+| state_predicate (p : M.S → Prop) : formula
+| state (s : M.S) : formula  
+| act (a : M.Act) : formula 
 | neg (x : formula) : formula 
 | conj (φ₁ φ₂ : formula) : formula 
 | disj (φ₁ φ₂ : formula) : formula 
@@ -83,10 +76,8 @@ inductive formula (M : LTS)
 
 def sat {M : LTS} : formula M → path M → Prop 
 | formula.T := λ _, true 
-| (formula.tok t) := match t with 
-                     | (sum.inl s) := λ π, π.init = s 
-                     | (sum.inr a) := λ π, π[1].1 = a  
-                     end 
+| (formula.state s) :=  λ π, π.init = s 
+| (formula.act a)  := λ π, π[1].1 = a 
 | (formula.neg φ) := λ π, ¬ (sat φ) π
 | (formula.conj φ₁ φ₂) := λ π, sat φ₁ π ∧ sat φ₂ π
 | (formula.disj φ₁ φ₂) := λ π, sat φ₁ π ∨ sat φ₂ π
@@ -127,9 +118,6 @@ lemma  weak_until (φ ψ : formula M) (π : path M) :
 
 end sat 
 
-
-instance tok_to_form {M : LTS} : has_coe (token M) (formula M) :=  ⟨λ t, formula.tok t⟩ 
-
 lemma push_neg_tok {M : LTS} {π : path M} : ∀ P : formula M,
     ¬ (sat P π) ↔ sat (!P) π := 
 by {intro P, refl,}
@@ -137,24 +125,3 @@ by {intro P, refl,}
 lemma always_eventually_dual (P : formula M) (π : path M) : 
     sat (◾!P) π ↔ (¬ sat (◆P) π) := 
 by {repeat {rw sat}, tidy}
-
-
-/-
-example (P Q : formula M) (π : path M) : sat (P U (Q ⅋ !P)) π ↔ sat ((◾ P) ⇒ (◆Q)) π := 
-begin 
-    split, 
-    {repeat {rw sat}, simp, intro i,
-     intros H1 H2 H3,
-     cases H1, use i, exact H1,
-     replace H3 := H3 i, contradiction,
-    },
-    {
-      repeat {rw sat}, simp, intros H1,
-      rw imp_iff_not_or at H1,
-      cases H1, simp at H1,
-      cases H1 with i H1,
-      use i,
-      split
-    }
-end  
--/

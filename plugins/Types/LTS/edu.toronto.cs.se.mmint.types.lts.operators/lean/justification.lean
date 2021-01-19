@@ -30,7 +30,6 @@ structure auxiliary (α : Type) :=
 (Clm : Claim α)
 (Props : list (Property α))
 
-
 def justified
 (Γ : auxiliary α) : Prop :=
 let Xs : fin (Γ.Props.length) → set α := 
@@ -65,53 +64,51 @@ end property
 
 namespace domain 
 
+@[reducible]
+def to_claim {α : Type}
+(P : Property α) (X : set α) : Claim α := 
+Claim.mk X P
+
+@[reducible]
 def preimages {α β: Type} 
 (f : α → β)
-(n : ℕ)
-(range_sets : fin n → (set β)) 
 (Clm : Claim α)
-: fin n → set α := 
-λ (i : fin n), {x ∈ Clm.X | f x ∈ range_sets i}
+(bs : list (set β)) : list (set α) := 
+list.map (set.preimage f) bs
 
+@[reducible]
 def decomposition {α β: Type} 
 (f : α → β)
-(n : ℕ)
-(range_sets : fin n → (set β)) 
+(sets_range : list (set β))
 (Clm : Claim α) : list (Claim α) :=
-list.of_fn (λ i : fin n, Claim.mk (preimages f n range_sets Clm i)  (Clm.P))
+(preimages f Clm sets_range).map (to_claim Clm.P)
 
 structure auxiliary (α β : Type) :=
 (Clm : Claim α)
 (f : α → β)
-(n : ℕ)
-(range_sets : fin n → (set β))
+(range_sets : list (set β))
 
-def justified (Γ : auxiliary α β) : Prop := 
-∀ x ∈ Γ.Clm.X, ∃ d : β, d = Γ.f x
+def set_of_list : list α → set α 
+| [] := ∅ 
+| (h::t) := {h} ∪ set_of_list t
 
 def complete (Γ : auxiliary α β) : Prop := 
- (⋃ i, Γ.range_sets i) = set.univ
-
+ ∀ b : β, ∃ s ∈ Γ.range_sets, b ∈ s
 
 def to_strategy (Γ : auxiliary α β) : strategy α := 
-strategy.mk (Γ.Clm) (domain.decomposition Γ.f Γ.n Γ.range_sets)
+strategy.mk (Γ.Clm) (domain.decomposition Γ.f Γ.range_sets)
 
-theorem deductive_of_justfd_comp (Γ : auxiliary α β) : justified Γ → complete Γ →  deductive α (to_strategy Γ) :=
+theorem deductive_of_justfd_comp (Γ : auxiliary α β) : complete Γ →  deductive α (to_strategy Γ) :=
 begin 
-  rw [justified, complete, deductive, meaning, to_strategy], 
+  rw [complete, deductive, meaning, to_strategy], 
   simp only [fin.val_eq_coe],
-  intros H1 H2 H3 x xMem,
-  unfold decomposition at H3,
-  simp at H3,
-  have H4 : ∃ j : fin Γ.n, Γ.f x ∈ Γ.range_sets j, from 
-    begin
-      refine set.mem_Union.mp _,
-      rw H2, simp only [set.mem_univ],
-    end,
-  cases H4 with j H4,
-  replace H3 := H3 j, 
-  rw meaning at H3, simp at H3,
-  apply H3, rw preimages, split, assumption, assumption,
+  intros H1 H2 x xMem,
+  unfold decomposition at H2,simp at H2,
+  unfold to_claim at H2,
+  have H3 : ∃ s ∈ Γ.range_sets, Γ.f x ∈ s, from H1 (Γ.f x),
+  rcases H3 with ⟨s,H3,H4⟩,
+  replace H2 := H2 s H3,
+  apply H2, assumption,
 end 
 
 end domain

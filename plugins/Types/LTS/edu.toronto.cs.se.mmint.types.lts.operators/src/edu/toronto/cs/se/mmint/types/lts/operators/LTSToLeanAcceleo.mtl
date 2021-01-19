@@ -10,22 +10,34 @@ import justification common_meta property_catalogue.LTL
 import [modelName/]
 open interactive S A
 
-meta def main_program_[modelName/] (input : pexpr) : tactic unit :=
+set_option pp.structure_instances_qualifier true
+
+meta def proof_template (g : format) (p : string) : string :=
+" import justification [modelName/] common_meta property_catalogue.LTL \n open S A \n \n
+example : " ++ (g.to_string) ++  " := \nbegin \n" ++ p ++ "\nend"
+
+meta def output (s : string) : io unit := do
+  of ← io.mk_file_handle "evidence.lean" io.mode.write,
+  io.fs.write of s.to_char_buffer
+
+meta def main_program (input : pexpr) : tactic unit :=
 do
   STRAT ← tactic.to_expr input,
   match STRAT with
-  | `(property.auxiliary.mk %%CLAIM %%PROPS) := do
-    aux ← tactic.eval_expr (property.auxiliary (path [modelName/])) STRAT,
-    let g : expr := `(deductive (path [modelName/]) (property.to_strategy (%%STRAT))),
-    let tac := initialize (aux.Props.length) STRAT,
-    try_tactic_on_goal tac g,
-    switch,
-    res ← is_solved,
-    match res with
-    | tt := tactic.trace "true"
-    | ff := tactic.trace "false"
-    end
-| _ := tactic.trace "N/A"
+  | `(property.auxiliary.mk %%CLAIM %%PROPS) :=
+  do
+  aux ← tactic.eval_expr (property.auxiliary (path [modelName/])) STRAT,
+  let g := `(deductive (path [modelName/]) (property.to_strategy %%STRAT)),
+  set_goal g,
+  goal ← tactic_format_expr g,
+  str ← solve_patterns (aux.Props.length) STRAT,
+  tactic.unsafe_run_io $ output $ proof_template goal str,
+  res ← is_solved,
+  match res with 
+  | tt := tactic.trace "True"
+  | _ := tactic.trace "False"
+  end   
+| _ := return ()
 end
 
 @['['/]user_command[']'/]
@@ -34,7 +46,7 @@ meta def [modelName/]_main
 (_ : parse (lean.parser.tk "[modelName/]_main")) : lean.parser unit :=
 do
    F ← read "property.lean" types.texpr,
-   lean.parser.of_tactic $ main_program_[modelName/] F
+   lean.parser.of_tactic $ main_program F
 .
 [modelName/]_main
 [/template]
@@ -63,11 +75,11 @@ def TR : set (S × A × S) :=
 
 def [modelName/] : LTS := LTS.mk S A TR
 
-instance coe1 : has_coe S (token [modelName/]) := 
-{coe := fun s, by {rw [modelName/], rw token, exact sum.inl s}}
+@['['/]instance[']'/] def S_to_form : has_coe S (formula [modelName/]) :=
+⟨λ s, formula.state s⟩
 
-instance coe2 : has_coe A (token [modelName/]) := 
-{coe := fun s, by {rw [modelName/], rw token, exact sum.inr s}}
+@['['/]instance[']'/] def Act_to_form : has_coe A (formula [modelName/]) :=
+⟨λ a, formula.act a⟩
 [/template]
 
 [template public LTSToLean(lts : LTS, modelName : String)]
