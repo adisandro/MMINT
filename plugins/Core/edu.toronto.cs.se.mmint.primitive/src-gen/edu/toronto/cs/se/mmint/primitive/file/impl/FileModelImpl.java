@@ -18,6 +18,7 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.ide.IDE;
 
@@ -79,6 +80,16 @@ public class FileModelImpl extends ModelImpl implements FileModel {
     newModel.setName(FileUtils.getLastSegmentFromPath(newModelPath));
 
     return newModel;
+  }
+
+  @Override
+  public Resource getEMFInstanceResource() {
+    return null;
+  }
+
+  @Override
+  public EObject getEMFInstanceRoot() {
+    return null;
   }
 
 } //FileModelImpl

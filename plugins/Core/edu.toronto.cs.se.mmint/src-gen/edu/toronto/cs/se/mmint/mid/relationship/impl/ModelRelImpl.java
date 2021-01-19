@@ -928,11 +928,15 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 
         MMINTException.mustBeInstance(this);
 
-        ResourceSet resourceSet = new ResourceSetImpl();
-        List<Resource> resources = resourceSet.getResources();
+        var resourceSet = new ResourceSetImpl();
+        var resources = resourceSet.getResources();
         for (ModelEndpointReference modelEndpointRef : getModelEndpointRefs()) {
             var model = modelEndpointRef.getObject().getTarget();
-            resources.add(model.getEMFInstanceRoot().eResource());
+            var resource = model.getEMFInstanceResource();
+            if (resource == null) {
+              continue;
+            }
+            resources.add(resource);
         }
 
         return resourceSet;
