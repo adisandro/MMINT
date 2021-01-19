@@ -69,7 +69,7 @@ public class LeanReasoner implements IModelConstraintTrait {
       var config = """
         builtin_path
         path .""";
-      config += "\n" + encoder.getConfigPaths().stream().map(p -> "path " + p).collect(Collectors.joining("\n"));
+      config += "\n" + encoder.getImportPaths().stream().map(p -> "path " + p).collect(Collectors.joining("\n"));
       Files.writeString(Path.of(absWorkingPath, LeanReasoner.LEAN_CONFIG), config, StandardOpenOption.CREATE);
       // model encoding files
       var mainEncoding = generateEncoding(encoder, model, workingPath);

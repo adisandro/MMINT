@@ -70,7 +70,7 @@ public class FileUtils {
 			path.substring(1, sepIndex);
 	}
 
-	private static @NonNull String getAllButLastSegmentFromPath(@NonNull String path) {
+	public static @NonNull String getAllButLastSegmentFromPath(@NonNull String path) {
 
     if (path.isEmpty()) { // empty path
       return path;

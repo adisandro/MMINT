@@ -32,6 +32,7 @@ import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 
 public class ToLean extends OperatorImpl {
 
+  protected final static String LEAN_EXT = ".lean";
   protected Input input;
   protected Output output;
   protected AbstractAcceleoGenerator leanGenerator;
@@ -62,7 +63,7 @@ public class ToLean extends OperatorImpl {
 
     public Map<String, Model> packed() throws MMINTException, IOException {
       if (this.leanPaths.stream().anyMatch(path -> !FileUtils.isFile(path, true))) {
-        throw new MMINTException("Acceleo generation failed");
+        throw new MMINTException("Lean code generation failed");
       }
       var fileModelType = MIDTypeRegistry.<Model>getType(Output.MODEL_TYPE_ID);
       for (var i = 0; i < this.leanPaths.size(); i++) {
@@ -73,7 +74,7 @@ public class ToLean extends OperatorImpl {
     }
   }
 
-  public List<String> getConfigPaths() {
+  public List<String> getImportPaths() {
     return List.of();
   }
 
@@ -86,7 +87,9 @@ public class ToLean extends OperatorImpl {
   public Map<String, Model> run(Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
                                 Map<String, MID> outputMIDsByName) throws Exception {
     init(inputsByName, outputMIDsByName);
-    AcceleoUtils.runAcceleo(this.leanGenerator);
+    if (this.leanGenerator != null) {
+      AcceleoUtils.runAcceleo(this.leanGenerator);
+    }
 
     return this.output.packed();
   }

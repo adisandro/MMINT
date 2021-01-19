@@ -125,7 +125,7 @@ public class PropertyDecomposition extends GoalDecomposition {
                                          new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Property not selected") :
                                          new Status(IStatus.OK, Activator.PLUGIN_ID, ""));
 
-      return (PropertyTemplate) MIDDialogs.openTreeDialog(dialog, title, message);
+      return (PropertyTemplate) MIDDialogs.openTreeDialogWithDefault(dialog, title, message);
     }
 
     @Override
@@ -137,7 +137,6 @@ public class PropertyDecomposition extends GoalDecomposition {
        * IGSNLeanEncoder: Switch to records
        * PropertyDecompositionStrategyImpl: Related model in validate could come from here
        * GSNLeanReasoner: Review name
-       * here: Ask for a description with custom properties
        *
        * precedes.globally (coe pay)   (coe restart)
        * precedes.globally (coe pay)   (coe serve)

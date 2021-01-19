@@ -35,8 +35,7 @@ import edu.toronto.cs.se.modelepedia.gsn.reasoning.IGSNLeanEncoder;
 
 public class LTSToLean extends ToLean implements IGSNLeanEncoder {
 
-  private final static String LEAN_EXT = ".lean";
-  private final static String LEAN_MAIN_FILE = "main" + LTSToLean.LEAN_EXT;
+  private final static String LEAN_MAIN_FILE = "main" + ToLean.LEAN_EXT;
   private final static String LEAN_BUNDLE_DIR = "lean/";
 
   @Override
@@ -56,7 +55,7 @@ public class LTSToLean extends ToLean implements IGSNLeanEncoder {
   }
 
   @Override
-  public List<String> getConfigPaths() {
+  public List<String> getImportPaths() {
     return List.of("LTS", "property_catalogue");
   }
 
@@ -65,8 +64,8 @@ public class LTSToLean extends ToLean implements IGSNLeanEncoder {
     super.init(inputsByName, outputMIDsByName);
     var workingPath = getWorkingPath() + IPath.SEPARATOR;
     // dynamic lean files generated from the input model
-    super.output.leanPaths.add(workingPath + LTSToLean.LEAN_MAIN_FILE);
-    super.output.leanPaths.add(workingPath + this.input.model.getName() + LTSToLean.LEAN_EXT);
+    this.output.leanPaths.add(workingPath + LTSToLean.LEAN_MAIN_FILE);
+    this.output.leanPaths.add(workingPath + this.input.model.getName() + ToLean.LEAN_EXT);
     this.leanGenerator = new LTSToLeanAcceleo(this.input.model.getEMFInstanceRoot(), this.output.leanFolder,
                                               List.of(this.input.model.getName()));
     // static lean files from this bundle
