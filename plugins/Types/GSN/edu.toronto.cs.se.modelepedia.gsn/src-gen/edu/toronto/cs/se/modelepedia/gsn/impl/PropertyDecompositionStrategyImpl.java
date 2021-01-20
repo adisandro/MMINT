@@ -192,7 +192,8 @@ public class PropertyDecompositionStrategyImpl extends DecompositionStrategyImpl
     // find parent and grandparent goals, to be checked for connections
     var parentGoal = this.getSupports().stream()
       .map(SupportedBy::getSource)
-      .filter(g -> g instanceof Goal).map(g -> (Goal) g)
+      .filter(g -> g instanceof Goal)
+      .map(g -> (Goal) g)
       .findFirst()
       .orElseThrow(() -> new MMINTException("No parent goal found"));
     Goal grandparentGoal = null;

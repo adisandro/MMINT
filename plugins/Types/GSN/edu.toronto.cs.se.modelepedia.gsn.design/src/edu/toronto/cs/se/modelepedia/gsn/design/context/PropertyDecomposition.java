@@ -17,6 +17,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.eclipse.core.runtime.IStatus;
@@ -55,8 +56,8 @@ public class PropertyDecomposition extends GoalDecomposition {
       super(domain, decomposed, new PropertyBuilder((SafetyCase) decomposed.eContainer()));
     }
 
-    private HashMap<EClass, List<EObject>> categorizeModelObjects(Model model,
-                                                                  Map<String, List<PropertyTemplate>> templates) {
+    private Map<EClass, List<EObject>> categorizeModelObjects(Model model,
+                                                              Map<String, List<PropertyTemplate>> templates) {
       var validClasses = templates.values().stream()
         .flatMap(l -> l.stream())
         .flatMap(t -> t.variables.stream())
@@ -82,7 +83,7 @@ public class PropertyDecomposition extends GoalDecomposition {
       return modelObjs;
     }
 
-    private Model getRelatedModel() throws MMINTException {
+    private Optional<Model> getRelatedModel() throws MMINTException {
       // find the goals in connected rels
       var gsnModel = MIDDiagramUtils.getInstanceMIDModelFromModelEditor(this.decomposed);
       var modelRels = MIDRegistry.getConnectedModelRels(gsnModel, gsnModel.getMIDContainer());
@@ -101,14 +102,19 @@ public class PropertyDecomposition extends GoalDecomposition {
           var uri0 = MIDRegistry.getModelObjectUri(endpoints.get(0).getTarget());
           var uri1 = MIDRegistry.getModelObjectUri(endpoints.get(1).getTarget());
           if (decomposedUri.equals(uri0)) {
-            return (Model) endpoints.get(1).getTarget().eContainer();
+            return Optional.of((Model) endpoints.get(1).getTarget().eContainer());
           }
           else if (decomposedUri.equals(uri1)) {
-            return (Model) endpoints.get(0).getTarget().eContainer();
+            return Optional.of((Model) endpoints.get(0).getTarget().eContainer());
           }
         }
       }
-      throw new MMINTException("No related model found");
+
+      return Optional.empty();
+    }
+
+    private String getRelatedFile() {
+      return "";
     }
 
     private PropertyTemplate selectTemplate(String title, String message, Map<String, List<PropertyTemplate>> templates)
@@ -135,12 +141,20 @@ public class PropertyDecomposition extends GoalDecomposition {
        * LeanReasoner: Find where is lean's mathlab library (readlink -f $(type -P lean)) and add it to config file
        * LeanReasoner: Extract dir recursively from jar
        * IGSNLeanEncoder: Switch to records
-       * PropertyDecompositionStrategyImpl: Related model in validate could come from here
        * GSNLeanReasoner: Review name
+       * (GSN)LeanReasoner: Store encoding and results in a prop_validation_GX_timestamp dir, without deleting them at the end
        *
        * precedes.globally (coe pay)   (coe restart)
        * precedes.globally (coe pay)   (coe serve)
        * precedes.globally (coe serve) (coe restart)
+       *
+       * LEAN FILE AS INPUT:
+       * 1) A file model can't be used in a model rel to the gsn model, so getRelatedModel will throw an exception
+       * 2) So, if it does, ask the user to select a file with source code and skip all the template parts (ask for custom properties always)
+       * 2bis) Create the context node, attached to the PropertyDecompositionImpl -> either a lean file path, or a model path
+       * 3) PropertyDecompositionImpl reads the context node and possibly generates the encoding (updating the context node to be a lean file path) -> run in a command
+       * 4) Then it's validation time: LeanReasoner should have apis that split generateEncoding from checkProperty
+       * 4bis) The justification and solution (add encoder api to fetch the name) nodes should be filled by the validation step -> run in a command
        */
       var builder = (PropertyBuilder) this.builder;
       // ask for input
@@ -149,8 +163,21 @@ public class PropertyDecomposition extends GoalDecomposition {
       var reasoner = MIDDialogs.selectReasoner(IGSNDecompositionTrait.class, "GSN property decomposition");
       var reasonerName = reasoner.getName();
       var relatedModel = getRelatedModel();
-      var templates = reasoner.getTemplateProperties(relatedModel);
-      var modelObjs = categorizeModelObjects(relatedModel, templates);
+      var templates = Map.<String, List<PropertyTemplate>>of();
+      var modelObjs = Map.<EClass, List<EObject>>of();
+      String relatedFile = null;
+      if (relatedModel.isEmpty()) { // no related model: ask to manually provide an encoding
+        relatedFile = getRelatedFile();
+      }
+      else {
+        try {
+          templates = reasoner.getTemplateProperties(relatedModel.get());
+          modelObjs = categorizeModelObjects(relatedModel.get(), templates);
+        }
+        catch (MMINTException e) { // no model encoder: ask to manually provide an encoding
+          relatedFile = getRelatedFile();
+        }
+      }
       var template = selectTemplate(title, "Select the property to be decomposed", templates);
       var boundTemplate = template.bindVariables(title, modelObjs);
       var property = boundTemplate.property;

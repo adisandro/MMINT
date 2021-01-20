@@ -13,7 +13,6 @@
 package edu.toronto.cs.se.modelepedia.gsn.reasoning;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -69,8 +68,8 @@ public interface IGSNLeanEncoder {
       this.variables = Objects.requireNonNull(variables);
     }
 
-    public BoundProperty bindVariables(String title, HashMap<EClass, List<EObject>> modelObjs)
-                                       throws MIDDialogCancellation {
+    public BoundProperty bindVariables(String title, Map<EClass, List<EObject>> modelObjs)
+                                      throws MIDDialogCancellation {
       if (this.variables.isEmpty()) {
         return new BoundProperty(this.property, this.description);
       }

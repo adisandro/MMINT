@@ -28,16 +28,6 @@ import edu.toronto.cs.se.modelepedia.gsn.reasoning.IGSNLeanEncoder.PropertyTempl
 
 public class GSNLeanReasoner extends LeanReasoner implements IGSNDecompositionTrait {
 
-  protected IGSNLeanEncoder getEncoder(Model model) throws MMINTException {
-    var encoder = MIDTypeHierarchy.getPolyOperator(LeanReasoner.ENCODER_ID, ECollections.newBasicEList(model));
-    if (!(encoder instanceof IGSNLeanEncoder)) {
-      throw new MMINTException("The Lean encoder for model '" + model.getName() +
-                               "' does not support GSN property decompositions");
-    }
-
-    return (IGSNLeanEncoder) encoder;
-  }
-
   @Override
   public String getName() {
     return "Lean (+ GSN library)";
@@ -45,9 +35,12 @@ public class GSNLeanReasoner extends LeanReasoner implements IGSNDecompositionTr
 
   @Override
   public Map<String, List<PropertyTemplate>> getTemplateProperties(Model model) throws MMINTException {
-    var encoder = getEncoder(model);
     var templates = new LinkedHashMap<String, List<PropertyTemplate>>();
-    encoder.getTemplateProperties().forEach(t -> templates.computeIfAbsent(t.category, k -> new ArrayList<>()).add(t));
+    var encoder = MIDTypeHierarchy.getPolyOperator(LeanReasoner.ENCODER_ID, ECollections.newBasicEList(model));
+    if (encoder instanceof IGSNLeanEncoder) {
+      ((IGSNLeanEncoder) encoder).getTemplateProperties()
+        .forEach(t -> templates.computeIfAbsent(t.category, k -> new ArrayList<>()).add(t));
+    }
     templates.computeIfAbsent(PropertyTemplate.CUSTOM.category, k -> new ArrayList<>()).add(PropertyTemplate.CUSTOM);
 
     return templates;
@@ -55,8 +48,9 @@ public class GSNLeanReasoner extends LeanReasoner implements IGSNDecompositionTr
 
   @Override
   public void validatePropertyDecomposition(Model model, String property, List<String> subProperties) throws Exception {
-    var encoder = getEncoder(model);
-    var propEncoding = encoder.encodePropertyDecomposition(model, property, subProperties);
+    var encoder = MIDTypeHierarchy.getPolyOperator(LeanReasoner.ENCODER_ID, ECollections.newBasicEList(model));
+    var gsnEncoder = (encoder instanceof IGSNLeanEncoder) ? (IGSNLeanEncoder) encoder : new IGSNLeanEncoder() {};
+    var propEncoding = gsnEncoder.encodePropertyDecomposition(model, property, subProperties);
     var workingPath = FileUtils.replaceLastSegmentInPath(model.getUri(), LeanReasoner.LEAN_DIR);
     var valid = checkProperty(model, propEncoding, workingPath);
     if (!valid) {
