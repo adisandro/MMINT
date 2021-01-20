@@ -115,5 +115,7 @@ public interface IGSNLeanEncoder {
    *          The Lean sub-properties.
    * @return The Lean encoding representing the property decomposition.
    */
-  String encodePropertyDecomposition(Model model, String property, List<String> subProperties);
+  default String encodePropertyDecomposition(Model model, String property, List<String> subProperties) {
+    return property + "\n" + String.join("\n", subProperties);
+  }
 }
