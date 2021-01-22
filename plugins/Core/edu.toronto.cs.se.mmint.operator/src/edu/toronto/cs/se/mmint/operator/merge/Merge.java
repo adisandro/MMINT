@@ -52,8 +52,9 @@ public class Merge extends OperatorImpl {
   private final static String OUT_MODELREL1 = "trace1";
   private final static String OUT_MODELREL2 = "trace2";
   // constants
-  private static final String MERGED_MODELOBJECT_ATTRIBUTE = "name";
   private static final String MERGE_SEPARATOR = "_";
+  private static final String TRACE_COPIED_NAME = "copied";
+  private static final String TRACE_MERGED_NAME = "merged";
 
   private static class Input {
     private ModelRel overlapRel;
@@ -139,33 +140,31 @@ public class Merge extends OperatorImpl {
     }
     var mergedModelObjs = new HashMap<String, EObject>();
     var allModelObjs = new LinkedHashMap<EObject, EObject>(); // need to track insertion order
-    allModelObjs.put(rootModelObj1, rootMergedModelObj);
 
     // copy elements from model1
-    var iter1 = rootModelObj1.eAllContents();
-    for (var modelObj1 = iter1.next(); iter1.hasNext(); ) {
+    allModelObjs.put(rootModelObj1, rootMergedModelObj);
+    for (var iter1 = rootModelObj1.eAllContents(); iter1.hasNext(); ) {
+      var modelObj1 = iter1.next();
       var mergedModelObj = modelFactory.create(modelObj1.eClass());
       allModelObjs.put(modelObj1, mergedModelObj);
       var modelElemUri1 = MIDRegistry.getModelElementUri(modelObj1);
-      if (overlapModelElems1.containsKey(modelElemUri1)) {
+      var isMerged = overlapModelElems1.containsKey(modelElemUri1);
+      if (isMerged) {
         var modelElem2 = overlapModelElems1.get(modelElemUri1);
         var modelObj2 = modelElem2.getEMFInstanceObject();
         mergedModelObjs.put(MIDRegistry.getModelObjectUri(modelElem2), mergedModelObj);
-        try { // change merged attribute
-          var modelObjAttr1 = FileUtils.getModelObjectFeature(modelObj1, Merge.MERGED_MODELOBJECT_ATTRIBUTE);
-          var modelObjAttr2 = FileUtils.getModelObjectFeature(modelObj2, Merge.MERGED_MODELOBJECT_ATTRIBUTE);
-          if (!modelObjAttr1.equals(modelObjAttr2)) {
-            FileUtils.setModelObjectFeature(mergedModelObj, Merge.MERGED_MODELOBJECT_ATTRIBUTE,
-                                            modelObjAttr1 + Merge.MERGE_SEPARATOR + modelObjAttr2);
-          }
-        }
-        catch (MMINTException e) {
-          // no attribute to merge
-        }
       }
+      // containment (pre-requisite for proper creation of trace rel)
+      var containerObj1 = modelObj1.eContainer();
+      if (containerObj1 != null) { // non-root
+        var mergedContainerObj = allModelObjs.get(containerObj1);
+        FileUtils.setModelObjectFeature(mergedContainerObj, modelObj1.eContainingFeature().getName(), mergedModelObj);
+      }
+      // trace1 rel
+      var traceName = (isMerged) ? Merge.TRACE_MERGED_NAME : Merge.TRACE_COPIED_NAME;
       var traceModelElemRefs1 = new BasicEList<ModelElementReference>();
-      traceModelElemRefs1.add(traceRel1.getModelEndpointRefs().get(0).createModelElementInstanceAndReference(
-                                modelObj1, null));
+      traceModelElemRefs1.add(
+        traceRel1.getModelEndpointRefs().get(0).createModelElementInstanceAndReference(modelObj1, null));
       var newModelElemUri = mergedModel.getUri() + MIDRegistry.getModelElementUri(mergedModelObj);
       var eInfo = MIDRegistry.getModelElementEMFInfo(mergedModelObj, MIDLevel.INSTANCES);
       var newModelElemName = MIDRegistry.getModelElementName(eInfo, mergedModelObj, MIDLevel.INSTANCES);
@@ -173,27 +172,30 @@ public class Merge extends OperatorImpl {
         modelElemType.createInstanceAndReference(newModelElemUri, newModelElemName, eInfo,
                                                  traceRel1.getModelEndpointRefs().get(1)));
       var newMappingRef = mappingType.createInstanceAndReferenceAndEndpointsAndReferences(true, traceModelElemRefs1);
-      try {
-        newMappingRef.getObject().setName(
-          FileUtils.getModelObjectFeature(mergedModelObj, Merge.MERGED_MODELOBJECT_ATTRIBUTE).toString());
-      }
-      catch (MMINTException e) {
-        // no name to set
-      }
+      newMappingRef.getObject().setName(traceName);
     }
 
     // copy elements from model2
     var rootModelObj2 = model2.getEMFInstanceRoot();
-    var iter2 = rootModelObj2.eAllContents();
-    for (var modelObj2 = iter2.next(); iter2.hasNext(); ) {
+    allModelObjs.put(rootModelObj2, rootMergedModelObj);
+    for (var iter2 = rootModelObj2.eAllContents(); iter2.hasNext(); ) {
+      var modelObj2 = iter2.next();
       var modelElemUri2 = MIDRegistry.getModelElementUri(modelObj2);
-      var mergedModelObj = (mergedModelObjs.containsKey(modelElemUri2)) ?
-        mergedModelObjs.get(modelElemUri2) :
-        modelFactory.create(modelObj2.eClass());
+      var isMerged = mergedModelObjs.containsKey(modelElemUri2);
+      var mergedModelObj = (isMerged) ? mergedModelObjs.get(modelElemUri2) : modelFactory.create(modelObj2.eClass());
       allModelObjs.put(modelObj2, mergedModelObj);
+      // containment (pre-requisite for proper creation of trace rel)
+      var containerObj2 = modelObj2.eContainer();
+      if (containerObj2 != null && // non-root
+          !mergedModelObjs.containsKey(MIDRegistry.getModelElementUri(modelObj2))) { // non-merged
+        var mergedContainerObj = allModelObjs.get(containerObj2);
+        FileUtils.setModelObjectFeature(mergedContainerObj, modelObj2.eContainingFeature().getName(), mergedModelObj);
+      }
+      // trace2 rel
+      var traceName = (isMerged) ? Merge.TRACE_MERGED_NAME : Merge.TRACE_COPIED_NAME;
       var traceModelElemRefs2 = new BasicEList<ModelElementReference>();
-      traceModelElemRefs2.add(traceRel2.getModelEndpointRefs().get(0).createModelElementInstanceAndReference(
-                                modelObj2, null));
+      traceModelElemRefs2.add(
+        traceRel2.getModelEndpointRefs().get(0).createModelElementInstanceAndReference(modelObj2, null));
       var newModelElemUri = mergedModel.getUri() + MIDRegistry.getModelElementUri(mergedModelObj);
       var eInfo = MIDRegistry.getModelElementEMFInfo(mergedModelObj, MIDLevel.INSTANCES);
       var newModelElemName = MIDRegistry.getModelElementName(eInfo, mergedModelObj, MIDLevel.INSTANCES);
@@ -201,27 +203,14 @@ public class Merge extends OperatorImpl {
         modelElemType.createInstanceAndReference(newModelElemUri, newModelElemName, eInfo,
                                                  traceRel2.getModelEndpointRefs().get(1)));
       var newMappingRef = mappingType.createInstanceAndReferenceAndEndpointsAndReferences(true, traceModelElemRefs2);
-      try {
-        newMappingRef.getObject().setName(
-          FileUtils.getModelObjectFeature(mergedModelObj, Merge.MERGED_MODELOBJECT_ATTRIBUTE).toString());
-      }
-      catch (MMINTException e) {
-        // no name to set
-      }
+      newMappingRef.getObject().setName(traceName);
     }
 
     // populate structural features
     for (var entry : allModelObjs.entrySet()) {
       var modelObj = entry.getKey();
       var mergedModelObj = entry.getValue();
-      var containerObj = modelObj.eContainer();
-      // containment
-      if (containerObj != null && // non-root
-          !mergedModelObjs.containsKey(MIDRegistry.getModelElementUri(modelObj))) { // non-merged
-        var mergedContainerObj = allModelObjs.get(containerObj);
-        FileUtils.setModelObjectFeature(mergedContainerObj, modelObj.eContainingFeature().getName(), mergedModelObj);
-      }
-      // references (runs twice for merged objects, merging non-containment references too)
+      // references (runs twice for merged objects, merging non-containment references of both sides)
       for (var reference : modelObj.eClass().getEAllReferences()) {
         if (reference.isContainment()) {
           continue;
@@ -242,14 +231,16 @@ public class Merge extends OperatorImpl {
           FileUtils.setModelObjectFeature(mergedModelObj, reference.getName(), allModelObjs.get(referencedModelObj));
         }
       }
-      // attributes
+      // attributes (runs twice for merged objects, merging string attributes)
       for (var attribute : modelObj.eClass().getEAllAttributes()) {
-        // TODO MERGED_MODELOBJECT_ATTRIBUTE should be handled here + review if running twice is correct
         var attributeName = attribute.getName();
-        if (attributeName.equals(Merge.MERGED_MODELOBJECT_ATTRIBUTE)) {
-          continue;
-        }
         var attributeValue = FileUtils.getModelObjectFeature(modelObj, attributeName);
+        if (attributeValue instanceof String) {
+          var mergedAttributeValue = FileUtils.getModelObjectFeature(mergedModelObj, attributeName);
+          if (mergedAttributeValue != null && !mergedAttributeValue.equals(attributeValue)) {
+            attributeValue = mergedAttributeValue + Merge.MERGE_SEPARATOR + attributeValue;
+          }
+        }
         FileUtils.setModelObjectFeature(mergedModelObj, attributeName, attributeValue);
       }
     }
