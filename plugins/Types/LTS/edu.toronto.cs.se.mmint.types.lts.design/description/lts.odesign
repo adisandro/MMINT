@@ -26,7 +26,7 @@
           </style>
         </edgeMappings>
         <toolSections name="CreateTools" label="Create">
-          <ownedTools xsi:type="tool:NodeCreationDescription" name="CreateInitialState" label="Initial State" precondition="aql:container.states->filter(lts::InitialState)->isEmpty()" nodeMappings="//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@nodeMappings[name='InitialStateNode']">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="CreateInitialState" label="Initial State" nodeMappings="//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@nodeMappings[name='InitialStateNode']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>

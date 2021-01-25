@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gsn:SafetyCase xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gsn="http://se.cs.toronto.edu/modelepedia/GSN">
+  <goals xsi:type="gsn:BasicGoal" id="C1" description="The FCS never reaches a damaged state during any of its executions"/>
+</gsn:SafetyCase>
