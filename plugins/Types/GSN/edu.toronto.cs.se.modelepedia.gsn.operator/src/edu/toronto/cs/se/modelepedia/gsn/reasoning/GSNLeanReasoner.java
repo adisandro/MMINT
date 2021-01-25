@@ -12,6 +12,8 @@
  *******************************************************************************/
 package edu.toronto.cs.se.modelepedia.gsn.reasoning;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -51,8 +53,10 @@ public class GSNLeanReasoner extends LeanReasoner implements IGSNDecompositionTr
     var encoder = MIDTypeHierarchy.getPolyOperator(LeanReasoner.ENCODER_ID, ECollections.newBasicEList(model));
     var gsnEncoder = (encoder instanceof IGSNLeanEncoder) ? (IGSNLeanEncoder) encoder : new IGSNLeanEncoder() {};
     var propEncoding = gsnEncoder.encodePropertyDecomposition(model, property, subProperties);
-    var workingPath = FileUtils.replaceLastSegmentInPath(model.getUri(), LeanReasoner.LEAN_DIR);
-    var valid = checkProperty(model, propEncoding, workingPath);
+    var relWorkingPath = FileUtils.replaceLastSegmentInPath(model.getUri(), System.currentTimeMillis() +
+                                                                            LeanReasoner.LEAN_DIR);
+    Files.createDirectory(Path.of(FileUtils.prependWorkspacePath(relWorkingPath)));
+    var valid = checkProperty(model, propEncoding, relWorkingPath);
     if (!valid) {
       throw new MMINTException("The property decomposition is not valid");
     }

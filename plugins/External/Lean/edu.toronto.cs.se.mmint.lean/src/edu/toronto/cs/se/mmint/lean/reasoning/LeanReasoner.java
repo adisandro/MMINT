@@ -48,74 +48,83 @@ public class LeanReasoner implements IModelConstraintTrait {
     return "Lean";
   }
 
-  protected String generateEncoding(ToLean encoder, Model model, String workingPath) throws Exception {
+  protected String generateEncoding(ToLean encoder, Model model, String relWorkingPath) throws Exception {
     var encoderInputs = encoder.checkAllowedInputs(ECollections.newBasicEList(model)); //TODO MMINT[JAVA16] Refactor using records?
-    encoder.setWorkingPath(workingPath);
+    encoder.setWorkingPath(relWorkingPath);
     var encoded = encoder.startInstance(encoderInputs, null, ECollections.emptyEList(), Map.of(), null);
 
     // when multiple files are created, the first is the one we feed into Lean (i.e. a main)
     return FileUtils.getLastSegmentFromPath(encoded.getOutputModels().get(0).getUri());
   }
 
-  public boolean checkProperty(Model model, String property, String workingPath) throws Exception {
-    var encoder = (ToLean) MIDTypeHierarchy.getPolyOperator(LeanReasoner.ENCODER_ID, ECollections.newBasicEList(model));
-    var absWorkingPath = FileUtils.prependWorkspacePath(workingPath);
-    try {
-      // project dir
-      Files.createDirectory(Path.of(absWorkingPath));
-      // property file
-      Files.writeString(Path.of(absWorkingPath, LeanReasoner.LEAN_PROPERTY), property, StandardOpenOption.CREATE);
-      // package config file
-      var config = """
-        builtin_path
-        path .""";
-      config += "\n" + encoder.getImportPaths().stream().map(p -> "path " + p).collect(Collectors.joining("\n"));
-      Files.writeString(Path.of(absWorkingPath, LeanReasoner.LEAN_CONFIG), config, StandardOpenOption.CREATE);
-      // model encoding files
-      var mainEncoding = generateEncoding(encoder, model, workingPath);
-      // run lean
-      var builder = new ProcessBuilder(LeanReasoner.LEAN_EXEC, mainEncoding);
-      builder.redirectErrorStream(true);
-      builder.directory(new File(absWorkingPath));
-      var process = builder.start();
-      var output = new StringBuilder();
-      int exitValue;
-      Thread readerThread;
-      try (var reader = new BufferedReader(new InputStreamReader(process.getInputStream()))) {
-        readerThread = new Thread(() -> {
-          String line;
-          try {
-            while ((line = reader.readLine()) != null) {
-              output.append(line + System.lineSeparator());
-            }
+  public boolean checkProperty(String encodingFileName, String property, String absWorkingPath) throws Exception {
+    // write property file
+    Files.writeString(Path.of(absWorkingPath, LeanReasoner.LEAN_PROPERTY), property, StandardOpenOption.CREATE);
+    // run lean from a shell
+    var builder = new ProcessBuilder(LeanReasoner.LEAN_EXEC, encodingFileName);
+    builder.redirectErrorStream(true);
+    builder.directory(new File(absWorkingPath));
+    var process = builder.start();
+    var output = new StringBuilder();
+    int exitValue;
+    Thread readerThread;
+    try (var reader = new BufferedReader(new InputStreamReader(process.getInputStream()))) {
+      readerThread = new Thread(() -> {
+        String line;
+        try {
+          while ((line = reader.readLine()) != null) {
+            output.append(line + System.lineSeparator());
           }
-          catch (IOException e) {
-            // just terminate
-          }
-        });
-        readerThread.start();
-        exitValue = process.waitFor();
-      }
-      readerThread.join();
-      var result = output.toString().trim();
-      if (exitValue != 0) {
-        throw new MMINTException(result);
-      }
+        }
+        catch (IOException e) {
+          // just terminate
+        }
+      });
+      readerThread.start();
+      exitValue = process.waitFor();
+    }
+    readerThread.join();
+    var result = output.toString().trim();
+    if (exitValue != 0) {
+      throw new MMINTException(result);
+    }
 
-      return Boolean.valueOf(result);
-    }
-    finally {
-      // clean up generated dir
-      FileUtils.deleteDirectory(absWorkingPath, false);
-    }
+    return Boolean.valueOf(result);
+  }
+
+  public boolean checkProperty(Model model, String property, String relWorkingPath) throws Exception {
+    var absWorkingPath = FileUtils.prependWorkspacePath(relWorkingPath);
+    // get encoder
+    var encoder = (ToLean) MIDTypeHierarchy.getPolyOperator(LeanReasoner.ENCODER_ID, ECollections.newBasicEList(model));
+    // write lean config file
+    var config = """
+      builtin_path
+      path .""";
+    config += "\n" + encoder.getImportPaths().stream().map(p -> "path " + p).collect(Collectors.joining("\n"));
+    Files.writeString(Path.of(absWorkingPath, LeanReasoner.LEAN_CONFIG), config, StandardOpenOption.CREATE);
+    // generate model encoding files
+    var mainEncoding = generateEncoding(encoder, model, relWorkingPath);
+
+    // run lean
+    return checkProperty(mainEncoding, property, absWorkingPath);
   }
 
   @Override
   public boolean checkModelConstraint(Model model, ExtendibleElementConstraint constraint, MIDLevel constraintLevel)
                                      throws Exception {
-    var workingPath = MMINT.getActiveInstanceMIDFile().getParent().getFullPath().toString() + IPath.SEPARATOR +
-                      LeanReasoner.LEAN_DIR;
+    var relWorkingPath = MMINT.getActiveInstanceMIDFile().getParent().getFullPath().toString() + IPath.SEPARATOR +
+                         LeanReasoner.LEAN_DIR;
+    var absWorkingPath = FileUtils.prependWorkspacePath(relWorkingPath);
+    try {
+      // create project dir
+      Files.createDirectory(Path.of(absWorkingPath));
 
-    return checkProperty(model, constraint.getImplementation(), workingPath);
+      // check property
+      return checkProperty(model, constraint.getImplementation(), relWorkingPath);
+    }
+    finally {
+      // clean up generated dir
+      FileUtils.deleteDirectory(absWorkingPath, false);
+    }
   }
 }
