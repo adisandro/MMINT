@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mid:MID xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editor="http://se.cs.toronto.edu/mmint/MID/Editor" xmlns:mid="http://se.cs.toronto.edu/mmint/MID">
+  <models uri="/SAFECOMP21/fcs.lts" name="fcs" metatypeUri="model://edu.toronto.cs.se.mmint.types.lts" dynamic="true" origin="CREATED" fileExtension="lts" editors="//@editors.0"/>
+  <editors xsi:type="editor:Diagram" uri="/SAFECOMP21/representations.aird#_ec3Q4F6dEeuzRqps9eyyPw" name="LTS Sirius Diagram for model /SAFECOMP21/fcs.lts" metatypeUri="edu.toronto.cs.se.mmint.types.lts.design" dynamic="true" modelUri="/SAFECOMP21/fcs.lts" id="edu.toronto.cs.se.mmint.types.lts.design" wizardId="edu.toronto.cs.se.mmint.types.lts.presentation.LTSModelWizardID">
+    <fileExtensions>aird#_ec3Q4F6dEeuzRqps9eyyPw</fileExtensions>
+  </editors>
+  <extendibleTable key="/SAFECOMP21/fcs.lts" value="//@models.0"/>
+</mid:MID>
