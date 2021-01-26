@@ -18,6 +18,7 @@ import java.util.Map;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.reasoning.IReasoner;
+import edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionStrategy;
 import edu.toronto.cs.se.modelepedia.gsn.reasoning.IGSNLeanEncoder.PropertyTemplate;
 
 /**
@@ -34,6 +35,8 @@ public interface IGSNDecompositionTrait extends IReasoner {
    *
    * @param model
    *          The model the property refers to.
+   * @param strategy
+   *          The GSN property decomposition strategy.
    * @param property
    *          The main property that is being decomposed.
    * @param subProperties
@@ -41,5 +44,6 @@ public interface IGSNDecompositionTrait extends IReasoner {
    * @throws Exception
    *           If the validation fails.
    */
-  void validatePropertyDecomposition(Model model, String property, List<String> subProperties) throws Exception;
+  void validatePropertyDecomposition(Model model, PropertyDecompositionStrategy strategy, String property,
+                                     List<String> subProperties) throws Exception;
 }

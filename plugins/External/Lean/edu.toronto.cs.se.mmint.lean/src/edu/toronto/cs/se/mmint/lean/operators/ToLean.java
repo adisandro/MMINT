@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.eclipse.acceleo.engine.service.AbstractAcceleoGenerator;
 
@@ -76,6 +77,10 @@ public class ToLean extends OperatorImpl {
 
   public List<String> getImportPaths() {
     return List.of();
+  }
+
+  public Optional<String> getOutputFileName() {
+    return Optional.empty();
   }
 
   protected void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws Exception {

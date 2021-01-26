@@ -243,7 +243,7 @@ grandparent:
     if (subProperties.size() == 0) {
       throw new MMINTException("A property must be decomposed into sub-properties");
     }
-    ((IGSNDecompositionTrait) reasoner).validatePropertyDecomposition(getRelatedModel(), property, subProperties);
+    ((IGSNDecompositionTrait) reasoner).validatePropertyDecomposition(getRelatedModel(), this, property, subProperties);
   }
 
   /**

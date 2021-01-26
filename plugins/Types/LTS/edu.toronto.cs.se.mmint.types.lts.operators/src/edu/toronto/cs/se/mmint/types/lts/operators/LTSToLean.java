@@ -14,6 +14,7 @@ package edu.toronto.cs.se.mmint.types.lts.operators;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.eclipse.core.runtime.IPath;
@@ -36,7 +37,9 @@ import edu.toronto.cs.se.modelepedia.gsn.reasoning.IGSNLeanEncoder;
 public class LTSToLean extends ToLean implements IGSNLeanEncoder {
 
   private final static String LEAN_MAIN_FILE = "main" + ToLean.LEAN_EXT;
+  private final static String LEAN_OUT_FILE = "evidence" + ToLean.LEAN_EXT;
   private final static String LEAN_BUNDLE_DIR = "lean/";
+  private final static List<String> LEAN_BUNDLE_IMPORTS = List.of("LTS", "property_catalogue");
 
   @Override
   public void createWorkflowInstanceOutputs(Operator newOperator, Map<String, GenericElement> genericsByName,
@@ -56,7 +59,12 @@ public class LTSToLean extends ToLean implements IGSNLeanEncoder {
 
   @Override
   public List<String> getImportPaths() {
-    return List.of("LTS", "property_catalogue");
+    return LTSToLean.LEAN_BUNDLE_IMPORTS;
+  }
+
+  @Override
+  public Optional<String> getOutputFileName() {
+    return Optional.of(LTSToLean.LEAN_OUT_FILE);
   }
 
   @Override

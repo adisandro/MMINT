@@ -17,8 +17,11 @@ import java.util.Map;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.sirius.business.api.action.AbstractExternalJavaAction;
+import org.eclipse.sirius.business.api.session.SessionManager;
 import org.eclipse.sirius.viewpoint.DSemanticDecorator;
 import org.eclipse.ui.PlatformUI;
 
@@ -42,15 +45,30 @@ public class GoalDecompositionCheck extends AbstractExternalJavaAction {
   @Override
   public void execute(Collection<? extends EObject> arg0, Map<String, Object> arg1) {
     var strategy = (DecompositionStrategy) ((DSemanticDecorator) arg0.iterator().next()).getTarget();
-    var shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-    var title = "Goal Decomposition Check";
-    try {
-      strategy.validate();
-      MessageDialog.openInformation(shell, title, "The goal decomposition is valid");
-    }
-    catch (Exception e) {
-      MMINTException.print(IStatus.ERROR, "The goal decomposition is not valid", e);
-    }
+    var sSession = SessionManager.INSTANCE.getSession(strategy);
+    var sDomain = sSession.getTransactionalEditingDomain();
+    sDomain.getCommandStack().execute(new GoalDecompositionCheckCommand(sDomain, strategy));
   }
 
+  private class GoalDecompositionCheckCommand extends RecordingCommand {
+    private DecompositionStrategy strategy;
+
+    public GoalDecompositionCheckCommand(TransactionalEditingDomain domain, DecompositionStrategy strategy) {
+      super(domain);
+      this.strategy = strategy;
+    }
+
+    @Override
+    protected void doExecute() {
+      var shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+      var title = "Goal Decomposition Check";
+      try {
+        this.strategy.validate();
+        MessageDialog.openInformation(shell, title, "The goal decomposition is valid");
+      }
+      catch (Exception e) {
+        MMINTException.print(IStatus.ERROR, "The goal decomposition is not valid", e);
+      }
+    }
+  }
 }

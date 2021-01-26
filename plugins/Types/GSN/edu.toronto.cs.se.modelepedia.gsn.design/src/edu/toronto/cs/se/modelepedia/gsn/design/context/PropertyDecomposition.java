@@ -142,7 +142,6 @@ public class PropertyDecomposition extends GoalDecomposition {
        * LeanReasoner: Extract dir recursively from jar
        * IGSNLeanEncoder: Switch to records
        * GSNLeanReasoner: Review name
-       * (GSN)LeanReasoner: Store encoding and results in a prop_validation_GX_timestamp dir, without deleting them at the end
        *
        * precedes.globally (coe pay)   (coe restart)
        * precedes.globally (coe pay)   (coe serve)
@@ -152,7 +151,7 @@ public class PropertyDecomposition extends GoalDecomposition {
        * 1) A file model can't be used in a model rel to the gsn model, so getRelatedModel will throw an exception
        * 2) So, if it does, ask the user to select a file with source code and skip all the template parts (ask for custom properties always)
        * 2bis) Create the context node, attached to the PropertyDecompositionImpl -> either a lean file path, or a model path
-       * 3) PropertyDecompositionImpl reads the context node and possibly generates the encoding (updating the context node to be a lean file path) -> run in a command
+       * 3) PropertyDecompositionImpl reads the context node and possibly generates the encoding (updating the context node to be a lean file path)
        * 4) Then it's validation time: LeanReasoner should have apis that split generateEncoding from checkProperty
        * 4bis) The justification and solution (add encoder api to fetch the name) nodes should be filled by the validation step -> run in a command
        */
@@ -203,10 +202,8 @@ public class PropertyDecomposition extends GoalDecomposition {
       var propGoalDesc = id + " asserts the property " + description;
       var formalGoalId = id + "-F";
       var formalGoalDesc = "The property " + description + " holds for the related model";
-      var propStrategyId = "SP-" + id;
+      var propStrategyId = "S-" + id;
       var propStrategyDesc = "Decomposition over property " + description;
-      var justId = "J-" + id;
-      var justDesc = "Decomposition validity proven in " + reasonerName;
       var subGoalId = id + "-";
       var subGoalDesc1 = "The property ";
       var subGoalDesc2 = " holds for the related model";
@@ -219,7 +216,6 @@ public class PropertyDecomposition extends GoalDecomposition {
       builder.addSupporter(formalStrategy, formalGoal);
       var propStrategy = builder.createPropertyStrategy(propStrategyId, propStrategyDesc, reasonerName, property);
       builder.addSupporter(formalGoal, propStrategy);
-      builder.createJustification(propStrategy, justId, justDesc);
       for (var i = 0; i < numProperties; i++) {
         var subTemplate = selectTemplate(title, "Select the sub-property #" + (i+1), templates);
         var subBoundTemplate = subTemplate.bindVariables(title, modelObjs);
