@@ -18,6 +18,7 @@ import java.util.List;
 import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
 import edu.toronto.cs.se.modelepedia.gsn.BasicGoal;
 import edu.toronto.cs.se.modelepedia.gsn.BasicStrategy;
+import edu.toronto.cs.se.modelepedia.gsn.Context;
 import edu.toronto.cs.se.modelepedia.gsn.ContextualElement;
 import edu.toronto.cs.se.modelepedia.gsn.DecomposableCoreElement;
 import edu.toronto.cs.se.modelepedia.gsn.GSNFactory;
@@ -74,19 +75,27 @@ public class GSNBuilder {
     return strategy;
   }
 
-  public void addContext(DecomposableCoreElement decomposable, ContextualElement contextual) {
+  public void addContext(DecomposableCoreElement decomposable, ContextualElement contextual, String id,
+                         String description) {
+    addArgumentElement(contextual, id, description);
     var context = this.factory.createInContextOf();
     context.setContextOf(decomposable);
     context.setContext(contextual);
+    this.gsnElements.add(contextual);
   }
 
-  public Justification createJustification(Strategy strategy, String id, String description) {
+  public Justification createJustification(DecomposableCoreElement decomposable, String id, String description) {
     var justification = this.factory.createJustification();
-    addArgumentElement(justification, id, description);
-    addContext(strategy, justification);
-    this.gsnElements.add(justification);
+    addContext(decomposable, justification, id, description);
 
     return justification;
+  }
+
+  public Context createContext(DecomposableCoreElement decomposable, String id, String description) {
+    var context = this.factory.createContext();
+    addContext(decomposable, context, id, description);
+
+    return context;
   }
 
   public void commitChanges() {
@@ -96,6 +105,9 @@ public class GSNBuilder {
       }
       else if (gsnElement instanceof Justification) {
         this.gsnRootModelObj.getJustifications().add((Justification) gsnElement);
+      }
+      else if (gsnElement instanceof Context) {
+        this.gsnRootModelObj.getContexts().add((Context) gsnElement);
       }
       else if (gsnElement instanceof Goal) {
         this.gsnRootModelObj.getGoals().add((Goal) gsnElement);

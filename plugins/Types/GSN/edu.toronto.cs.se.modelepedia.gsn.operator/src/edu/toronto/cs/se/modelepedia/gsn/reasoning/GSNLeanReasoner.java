@@ -27,6 +27,7 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.lean.operators.ToLean;
 import edu.toronto.cs.se.mmint.lean.reasoning.LeanReasoner;
 import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionStrategy;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
@@ -53,28 +54,67 @@ public class GSNLeanReasoner extends LeanReasoner implements IGSNDecompositionTr
     return templates;
   }
 
-  @Override
-  public void validatePropertyDecomposition(Model model, PropertyDecompositionStrategy strategy, String property,
-                                            List<String> subProperties) throws Exception {
+  private boolean a(Model relatedModel, String property, List<String> subProperties) throws Exception {
     // set up working directory to be stored
-    var encoder = (ToLean) MIDTypeHierarchy.getPolyOperator(LeanReasoner.ENCODER_ID, ECollections.newBasicEList(model));
-    var gsnEncoder = (encoder instanceof IGSNLeanEncoder) ? (IGSNLeanEncoder) encoder : new IGSNLeanEncoder() {};
-    var propEncoding = gsnEncoder.encodePropertyDecomposition(model, property, subProperties);
+    var encoder = (ToLean) MIDTypeHierarchy.getPolyOperator(LeanReasoner.ENCODER_ID, ECollections.newBasicEList(relatedModel));
+    var gsnEncoder = (encoder instanceof IGSNLeanEncoder) ? (IGSNLeanEncoder) encoder : new IGSNLeanEncoder(){};
+    var propEncoding = gsnEncoder.encodePropertyDecomposition(relatedModel, property, subProperties);
     var timestampDir = new SimpleDateFormat("yyyyMMddHHmmss").format(System.currentTimeMillis()) +
                        "_" + LeanReasoner.LEAN_DIR;
-    var relWorkingPath = FileUtils.replaceLastSegmentInPath(model.getUri(), timestampDir);
-    Files.createDirectory(Path.of(FileUtils.prependWorkspacePath(relWorkingPath)));
+    var workingPath = FileUtils.replaceLastSegmentInPath(relatedModel.getUri(), timestampDir);
+    Files.createDirectory(Path.of(FileUtils.prependWorkspacePath(workingPath)));
+
     // run lean
-    var valid = checkProperty(model, propEncoding, relWorkingPath);
+    return checkProperty(relatedModel, propEncoding, workingPath);
+  }
+
+  private boolean b(String relatedModelPath, String property, List<String> subProperties) throws Exception {
+    var workingPath = FileUtils.getAllButLastSegmentFromPath(relatedModelPath);
+    var encodingFileName = FileUtils.getLastSegmentFromPath(relatedModelPath);
+    var propEncoding = new IGSNLeanEncoder(){}.encodePropertyDecomposition(null, property, subProperties);
+
+    // run lean
+    return checkProperty(encodingFileName, propEncoding, workingPath);
+  }
+
+  @Override
+  public void validatePropertyDecomposition(PropertyDecompositionStrategy strategy, String relatedModelPath,
+                                            String property, List<String> subProperties) throws Exception {
+    var gsnModel = MIDDiagramUtils.getInstanceMIDModelFromModelEditor(strategy);
+    var instanceMID = gsnModel.getMIDContainer();
+    var relatedModel = instanceMID.<Model>getExtendibleElement(relatedModelPath);
+    boolean valid;
+    String justDesc;
+    if (relatedModel == null) { // custom Lean encoding file
+      // run lean as-is
+      var workingPath = FileUtils.getAllButLastSegmentFromPath(relatedModelPath);
+      var encodingFileName = FileUtils.getLastSegmentFromPath(relatedModelPath);
+      var propEncoding = new IGSNLeanEncoder(){}.encodePropertyDecomposition(null, property, subProperties);
+      valid = checkProperty(encodingFileName, propEncoding, workingPath);
+      justDesc = "(refer to file '" + relatedModelPath + "')";
+    }
+    else { // use ToLean encoder
+      // set up working directory to store encoding
+      var encoder = (ToLean) MIDTypeHierarchy.getPolyOperator(LeanReasoner.ENCODER_ID,
+                                                              ECollections.newBasicEList(relatedModel));
+      var gsnEncoder = (encoder instanceof IGSNLeanEncoder) ? (IGSNLeanEncoder) encoder : new IGSNLeanEncoder(){};
+      var propEncoding = gsnEncoder.encodePropertyDecomposition(relatedModel, property, subProperties);
+      var timestampPath = new SimpleDateFormat("yyyyMMddHHmmss").format(System.currentTimeMillis()) +
+                          "_" + LeanReasoner.LEAN_DIR;
+      var workingPath = FileUtils.replaceLastSegmentInPath(relatedModel.getUri(), timestampPath);
+      Files.createDirectory(Path.of(FileUtils.prependWorkspacePath(workingPath)));
+      // run lean
+      valid = checkProperty(relatedModel, propEncoding, workingPath);
+      var outputPath = encoder.getOutputFileName();
+      justDesc = (outputPath.isPresent()) ?
+        "(refer to output file '" + timestampPath + outputPath.get() + "')" :
+        "(refer to directory '" + timestampPath + "')";
+    }
     // create justification
     var proof = (valid) ? "proven" : "disproven";
     var builder = new PropertyBuilder((SafetyCase) strategy.eContainer());
     var justId = "J-" + strategy.getId();
-    var justDesc = "Decomposition validity " + proof + " in " + getName();
-    var outputPath = encoder.getOutputFileName();
-    if (outputPath.isPresent()) {
-      justDesc += " (refer to output file '" + timestampDir + outputPath.get() + "')";
-    }
+    justDesc = "Decomposition validity " + proof + " in " + getName() + " " + justDesc;
     builder.createJustification(strategy, justId, justDesc);
     builder.commitChanges();
     if (!valid) {

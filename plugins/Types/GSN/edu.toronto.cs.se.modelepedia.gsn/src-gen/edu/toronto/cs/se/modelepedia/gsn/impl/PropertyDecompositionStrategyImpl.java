@@ -11,7 +11,6 @@
  */
 package edu.toronto.cs.se.modelepedia.gsn.impl;
 
-import java.util.HashSet;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -21,16 +20,14 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.ModelElement;
-import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
-import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.modelepedia.gsn.Context;
+import edu.toronto.cs.se.modelepedia.gsn.ContextualElement;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
-import edu.toronto.cs.se.modelepedia.gsn.Goal;
+import edu.toronto.cs.se.modelepedia.gsn.InContextOf;
 import edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionElement;
 import edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionStrategy;
 import edu.toronto.cs.se.modelepedia.gsn.PropertyGoal;
-import edu.toronto.cs.se.modelepedia.gsn.Strategy;
 import edu.toronto.cs.se.modelepedia.gsn.SupportedBy;
 import edu.toronto.cs.se.modelepedia.gsn.reasoning.IGSNDecompositionTrait;
 
@@ -157,72 +154,6 @@ public class PropertyDecompositionStrategyImpl extends DecompositionStrategyImpl
   /**
    * @generated NOT
    */
-  private Model getRelatedModel(HashSet<String> goalUris) throws MMINTException {
-    // find the goals in connected rels
-    var gsnModel = MIDDiagramUtils.getInstanceMIDModelFromModelEditor(this);
-    var modelRels = MIDRegistry.getConnectedModelRels(gsnModel, gsnModel.getMIDContainer());
-    //TODO MMINT[GSN]: Ask if there are multiple matches instead of getting the first
-    for (var modelRel : modelRels) {
-      if (modelRel.getModelEndpoints().size() != 2) { // exclude non-binary
-        continue;
-      }
-      for (var mapping : modelRel.getMappings()) {
-        var endpoints = mapping.getModelElemEndpoints();
-        if (endpoints.size() != 2) { // exclude non-binary
-          continue;
-        }
-        ModelElement relatedModelElem;
-        var uri0 = MIDRegistry.getModelObjectUri(endpoints.get(0).getTarget());
-        var uri1 = MIDRegistry.getModelObjectUri(endpoints.get(1).getTarget());
-        if (goalUris.contains(uri0)) {
-          return (Model) endpoints.get(1).getTarget().eContainer();
-        }
-        else if (goalUris.contains(uri1)) {
-          return (Model) endpoints.get(0).getTarget().eContainer();
-        }
-      }
-    }
-    throw new MMINTException("No related model found");
-  }
-
-  /**
-   * @generated NOT
-   */
-  private Model getRelatedModel() throws MMINTException {
-    // find parent and grandparent goals, to be checked for connections
-    var parentGoal = this.getSupports().stream()
-      .map(SupportedBy::getSource)
-      .filter(g -> g instanceof Goal)
-      .map(g -> (Goal) g)
-      .findFirst()
-      .orElseThrow(() -> new MMINTException("No parent goal found"));
-    Goal grandparentGoal = null;
-grandparent:
-    for (var level1 : parentGoal.getSupports().stream().map(SupportedBy::getSource).collect(Collectors.toList())) {
-      if (level1 instanceof Goal) { // direct grandparent (manual decomposition case)
-        grandparentGoal = (Goal) level1;
-        break;
-      }
-      else if (level1 instanceof Strategy) { // indirect grandparent (assisted decomposition case)
-        for (var level2 : level1.getSupports().stream().map(SupportedBy::getSource).collect(Collectors.toList())) {
-          if (level2 instanceof Goal) {
-            grandparentGoal = (Goal) level2;
-            break grandparent;
-          }
-        }
-      }
-    }
-    var goalUris = new HashSet<String>();
-    goalUris.add(MIDRegistry.getModelElementUri(parentGoal));
-    if (grandparentGoal != null) {
-      goalUris.add(MIDRegistry.getModelElementUri(grandparentGoal));
-    }
-    return getRelatedModel(goalUris);
-  }
-
-  /**
-   * @generated NOT
-   */
   @Override
   public void validate() throws Exception {
     var reasonerName = Objects.requireNonNull(getReasonerName(), "Reasoner not specified");
@@ -243,7 +174,17 @@ grandparent:
     if (subProperties.size() == 0) {
       throw new MMINTException("A property must be decomposed into sub-properties");
     }
-    ((IGSNDecompositionTrait) reasoner).validatePropertyDecomposition(getRelatedModel(), this, property, subProperties);
+    var relatedPath = getInContextOf().stream()
+      .map(InContextOf::getContext)
+      .filter(c -> c instanceof Context)
+      .map(ContextualElement::getDescription)
+      .findAny()
+      .orElseThrow(() ->
+        new MMINTException("The property decomposition strategy is missing a context pointing to the related model"));
+    if (!FileUtils.isFile(relatedPath, true)) {
+      throw new MMINTException("The context description is not a path to a valid file");
+    }
+    ((IGSNDecompositionTrait) reasoner).validatePropertyDecomposition(this, relatedPath, property, subProperties);
   }
 
   /**

@@ -18,19 +18,26 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.ui.model.BaseWorkbenchContentProvider;
+import org.eclipse.ui.model.WorkbenchLabelProvider;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
+import edu.toronto.cs.se.mmint.mid.ui.FileExtensionsDialogFilter;
+import edu.toronto.cs.se.mmint.mid.ui.FilesOnlyDialogSelectionValidator;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.mid.ui.MIDTreeSelectionDialog;
@@ -113,8 +120,14 @@ public class PropertyDecomposition extends GoalDecomposition {
       return Optional.empty();
     }
 
-    private String getRelatedFile() {
-      return "";
+    private String getEncodingFile(String title, String message) throws MIDDialogCancellation {
+      var dialog = new MIDTreeSelectionDialog(new WorkbenchLabelProvider(), new BaseWorkbenchContentProvider(),
+                                              ResourcesPlugin.getWorkspace().getRoot());
+      dialog.addFilter(new FileExtensionsDialogFilter(Set.of("lean")));
+      dialog.setValidator(new FilesOnlyDialogSelectionValidator("Lean file selected", "Please select a Lean file"));
+      var encodingFile = (IFile) MIDDialogs.openTreeDialog(dialog, title, message);
+
+      return encodingFile.getFullPath().toString();
     }
 
     private PropertyTemplate selectTemplate(String title, String message, Map<String, List<PropertyTemplate>> templates)
@@ -146,14 +159,6 @@ public class PropertyDecomposition extends GoalDecomposition {
        * precedes.globally (coe pay)   (coe restart)
        * precedes.globally (coe pay)   (coe serve)
        * precedes.globally (coe serve) (coe restart)
-       *
-       * LEAN FILE AS INPUT:
-       * 1) A file model can't be used in a model rel to the gsn model, so getRelatedModel will throw an exception
-       * 2) So, if it does, ask the user to select a file with source code and skip all the template parts (ask for custom properties always)
-       * 2bis) Create the context node, attached to the PropertyDecompositionImpl -> either a lean file path, or a model path
-       * 3) PropertyDecompositionImpl reads the context node and possibly generates the encoding (updating the context node to be a lean file path)
-       * 4) Then it's validation time: LeanReasoner should have apis that split generateEncoding from checkProperty
-       * 4bis) The justification and solution (add encoder api to fetch the name) nodes should be filled by the validation step -> run in a command
        */
       var builder = (PropertyBuilder) this.builder;
       // ask for input
@@ -161,20 +166,24 @@ public class PropertyDecomposition extends GoalDecomposition {
       var customMsg = "Insert an optional description for the custom property";
       var reasoner = MIDDialogs.selectReasoner(IGSNDecompositionTrait.class, "GSN property decomposition");
       var reasonerName = reasoner.getName();
-      var relatedModel = getRelatedModel();
+      var relatedModelOpt = getRelatedModel();
       var templates = Map.<String, List<PropertyTemplate>>of();
       var modelObjs = Map.<EClass, List<EObject>>of();
-      String relatedFile = null;
-      if (relatedModel.isEmpty()) { // no related model: ask to manually provide an encoding
-        relatedFile = getRelatedFile();
+      String relatedModelPath;
+      var encodingMsg = ", please manually select a " + reasonerName + " file";
+      if (relatedModelOpt.isEmpty()) { // no related model: ask to manually provide an encoding
+        relatedModelPath = getEncodingFile(title, "No related model found" + encodingMsg);
       }
       else {
+        var relatedModel = relatedModelOpt.get();
         try {
-          templates = reasoner.getTemplateProperties(relatedModel.get());
-          modelObjs = categorizeModelObjects(relatedModel.get(), templates);
+          templates = reasoner.getTemplateProperties(relatedModel);
+          modelObjs = categorizeModelObjects(relatedModel, templates);
+          relatedModelPath = relatedModel.getUri();
         }
         catch (MMINTException e) { // no model encoder: ask to manually provide an encoding
-          relatedFile = getRelatedFile();
+          relatedModelPath = getEncodingFile(title, "Related model does not have a " + reasonerName + " encoder" +
+                                             encodingMsg);
         }
       }
       var template = selectTemplate(title, "Select the property to be decomposed", templates);
@@ -204,6 +213,7 @@ public class PropertyDecomposition extends GoalDecomposition {
       var formalGoalDesc = "The property " + description + " holds for the related model";
       var propStrategyId = "S-" + id;
       var propStrategyDesc = "Decomposition over property " + description;
+      var modelContextId = "C-" + id;
       var subGoalId = id + "-";
       var subGoalDesc1 = "The property ";
       var subGoalDesc2 = " holds for the related model";
@@ -216,6 +226,7 @@ public class PropertyDecomposition extends GoalDecomposition {
       builder.addSupporter(formalStrategy, formalGoal);
       var propStrategy = builder.createPropertyStrategy(propStrategyId, propStrategyDesc, reasonerName, property);
       builder.addSupporter(formalGoal, propStrategy);
+      builder.createContext(propStrategy, modelContextId, relatedModelPath);
       for (var i = 0; i < numProperties; i++) {
         var subTemplate = selectTemplate(title, "Select the sub-property #" + (i+1), templates);
         var subBoundTemplate = subTemplate.bindVariables(title, modelObjs);

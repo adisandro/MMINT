@@ -48,16 +48,17 @@ public class LeanReasoner implements IModelConstraintTrait {
     return "Lean";
   }
 
-  protected String generateEncoding(ToLean encoder, Model model, String relWorkingPath) throws Exception {
+  protected String generateEncoding(ToLean encoder, Model model, String workingPath) throws Exception {
     var encoderInputs = encoder.checkAllowedInputs(ECollections.newBasicEList(model)); //TODO MMINT[JAVA16] Refactor using records?
-    encoder.setWorkingPath(relWorkingPath);
+    encoder.setWorkingPath(workingPath);
     var encoded = encoder.startInstance(encoderInputs, null, ECollections.emptyEList(), Map.of(), null);
 
     // when multiple files are created, the first is the one we feed into Lean (i.e. a main)
     return FileUtils.getLastSegmentFromPath(encoded.getOutputModels().get(0).getUri());
   }
 
-  public boolean checkProperty(String encodingFileName, String property, String absWorkingPath) throws Exception {
+  public boolean checkProperty(String encodingFileName, String property, String workingPath) throws Exception {
+    var absWorkingPath = FileUtils.prependWorkspacePath(workingPath);
     // write property file
     Files.writeString(Path.of(absWorkingPath, LeanReasoner.LEAN_PROPERTY), property, StandardOpenOption.CREATE);
     // run lean from a shell
@@ -92,8 +93,8 @@ public class LeanReasoner implements IModelConstraintTrait {
     return Boolean.valueOf(result);
   }
 
-  public boolean checkProperty(Model model, String property, String relWorkingPath) throws Exception {
-    var absWorkingPath = FileUtils.prependWorkspacePath(relWorkingPath);
+  public boolean checkProperty(Model model, String property, String workingPath) throws Exception {
+    var absWorkingPath = FileUtils.prependWorkspacePath(workingPath);
     // get encoder
     var encoder = (ToLean) MIDTypeHierarchy.getPolyOperator(LeanReasoner.ENCODER_ID, ECollections.newBasicEList(model));
     // write lean config file
@@ -103,24 +104,24 @@ public class LeanReasoner implements IModelConstraintTrait {
     config += "\n" + encoder.getImportPaths().stream().map(p -> "path " + p).collect(Collectors.joining("\n"));
     Files.writeString(Path.of(absWorkingPath, LeanReasoner.LEAN_CONFIG), config, StandardOpenOption.CREATE);
     // generate model encoding files
-    var mainEncoding = generateEncoding(encoder, model, relWorkingPath);
+    var mainEncoding = generateEncoding(encoder, model, workingPath);
 
     // run lean
-    return checkProperty(mainEncoding, property, absWorkingPath);
+    return checkProperty(mainEncoding, property, workingPath);
   }
 
   @Override
   public boolean checkModelConstraint(Model model, ExtendibleElementConstraint constraint, MIDLevel constraintLevel)
                                      throws Exception {
-    var relWorkingPath = MMINT.getActiveInstanceMIDFile().getParent().getFullPath().toString() + IPath.SEPARATOR +
-                         LeanReasoner.LEAN_DIR;
-    var absWorkingPath = FileUtils.prependWorkspacePath(relWorkingPath);
+    var workingPath = MMINT.getActiveInstanceMIDFile().getParent().getFullPath().toString() + IPath.SEPARATOR +
+                      LeanReasoner.LEAN_DIR;
+    var absWorkingPath = FileUtils.prependWorkspacePath(workingPath);
     try {
       // create project dir
       Files.createDirectory(Path.of(absWorkingPath));
 
       // check property
-      return checkProperty(model, constraint.getImplementation(), relWorkingPath);
+      return checkProperty(model, constraint.getImplementation(), workingPath);
     }
     finally {
       // clean up generated dir

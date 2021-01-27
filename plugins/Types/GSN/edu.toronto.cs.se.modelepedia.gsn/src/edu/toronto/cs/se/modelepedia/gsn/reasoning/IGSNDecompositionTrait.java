@@ -33,10 +33,10 @@ public interface IGSNDecompositionTrait extends IReasoner {
   /**
    * Validates the correctness of a GSN property decomposition.
    *
-   * @param model
-   *          The model the property refers to.
    * @param strategy
    *          The GSN property decomposition strategy.
+   * @param modelPath
+   *          The path to the model the property refers to.
    * @param property
    *          The main property that is being decomposed.
    * @param subProperties
@@ -44,6 +44,6 @@ public interface IGSNDecompositionTrait extends IReasoner {
    * @throws Exception
    *           If the validation fails.
    */
-  void validatePropertyDecomposition(Model model, PropertyDecompositionStrategy strategy, String property,
+  void validatePropertyDecomposition(PropertyDecompositionStrategy strategy, String modelPath, String property,
                                      List<String> subProperties) throws Exception;
 }
