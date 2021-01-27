@@ -30,7 +30,7 @@
             isDiagram="true"
             wizardId="edu.toronto.cs.se.modelepedia.gsn.presentation.GSNModelWizardID">
          <type
-               name="GSN Representation"
+               name="GSN Sirius Diagram"
                uri="http://se.cs.toronto.edu/modelepedia/Representation_GSN">
          </type>
       </editorType>

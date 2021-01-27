@@ -49,7 +49,7 @@
             modelTypeUri="http://se.cs.toronto.edu/modelepedia/GSN"
             wizardId="edu.toronto.cs.se.modelepedia.gsn.presentation.GSNModelWizardID">
          <type
-               name="GSN Editor"
+               name="GSN EMF Editor"
                uri="http://se.cs.toronto.edu/modelepedia/Editor_GSN">
          </type>
       </editorType>
