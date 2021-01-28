@@ -699,7 +699,7 @@ Contributors:
    <extension point="org.eclipse.ui.menus">
       <menuContribution locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu">
          <dynamic
-               class="edu.toronto.cs.se.mmint.mid.relationship.diagram.context.RelationshipContextMenu"
+               class="edu.toronto.cs.se.mmint.mid.relationship.diagram.context.RelContextMenu"
                id="edu.toronto.cs.se.mmint.mid.relationship.diagram.context.RelationshipContextMenu">
             <visibleWhen>
                <with variable="activePartId">

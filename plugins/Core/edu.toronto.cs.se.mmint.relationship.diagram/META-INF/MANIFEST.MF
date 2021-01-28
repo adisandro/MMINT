@@ -1,4 +1,5 @@
 Manifest-Version: 1.0
+Automatic-Module-Name: edu.toronto.cs.se.mmint.relationship.diagram
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.mmint.relationship.diagram; singleton:=true
@@ -38,6 +39,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ocl.ecore,
  org.eclipse.emf.validation,
  org.eclipse.gef,
+ org.eclipse.sirius.diagram,
  org.eclipse.jdt.annotation;resolution:=optional,
  edu.toronto.cs.se.mmint,
  edu.toronto.cs.se.mmint.edit,

@@ -27,8 +27,10 @@ import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.mid.diagram.context.MIDContextEvaluateQueryListener;
 import edu.toronto.cs.se.mmint.mid.diagram.context.MIDContextMenu;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ModelElementReferenceEditPart;
+import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ModelEndpointReferenceEditPart;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ModelRelEditPart;
 
 /**
@@ -37,9 +39,9 @@ import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ModelRelEditP
  * @author Alessio Di Sandro
  *
  */
-public class RelationshipContextMenu extends ContributionItem {
+public class RelContextMenu extends ContributionItem {
 
-  private static final String MMINT_MENU_EVALUATEQUERY_LABEL = "Evaluate Query";
+  private static final String REL_MENU_HIGHLIGHTENDPOINT_LABEL = "Highlight Model Elements";
 
   @Override
   public boolean isDynamic() {
@@ -55,15 +57,17 @@ public class RelationshipContextMenu extends ContributionItem {
       return;
     }
     var objects = ((StructuredSelection) selection).toArray();
-    boolean doQuery = true;
+    boolean doQuery = true, doHighlight = true;
 
     // get model selection
     ModelRel rel = null;
-    var selectedRefs = new ArrayList<ExtendibleElementReference>();
+    ModelEndpointReference modelEndpointRef = null;
+    var modelElemRefs = new ArrayList<ExtendibleElementReference>();
     for (var object : objects) {
       if (!(
         object instanceof ModelRelEditPart ||
-        object instanceof ModelElementReferenceEditPart
+        object instanceof ModelElementReferenceEditPart ||
+        object instanceof ModelEndpointReferenceEditPart
       )) {
         continue;
       }
@@ -71,15 +75,21 @@ public class RelationshipContextMenu extends ContributionItem {
       var editPartElement = ((View) editPart.getModel()).getElement();
       if (editPartElement instanceof ModelRel) {
         rel = (ModelRel) editPartElement;
+        doHighlight = false;
+      }
+      else if (editPartElement instanceof ModelEndpointReference) {
+        modelEndpointRef = (ModelEndpointReference) editPartElement;
+        doQuery = false;
       }
       else {
-        selectedRefs.add((ExtendibleElementReference) editPartElement);
+        modelElemRefs.add((ExtendibleElementReference) editPartElement);
+        doHighlight = false;
       }
-      if (!doQuery) { // no action available
+      if (!doQuery && !doHighlight) { // no action available
         return;
       }
     }
-    if (rel == null && selectedRefs.isEmpty()) { // no relevant edit parts selected
+    if (rel == null && modelEndpointRef == null && modelElemRefs.isEmpty()) { // no relevant edit parts selected
       return;
     }
 
@@ -91,14 +101,22 @@ public class RelationshipContextMenu extends ContributionItem {
     MMINT.stashActiveInstanceMIDFile();
     // evaluate query
     if (doQuery) {
-      var mid = (rel == null) ? selectedRefs.get(0).getMIDContainer() : rel.getMIDContainer();
-      var selectedElems = selectedRefs.stream()
+      var mid = (rel == null) ? modelElemRefs.get(0).getMIDContainer() : rel.getMIDContainer();
+      var selectedElems = modelElemRefs.stream()
         .map(ExtendibleElementReference::getObject)
         .collect(Collectors.toList());
       var queryItem = new MenuItem(mmintMenu, SWT.NONE);
       queryItem.setText(MIDContextMenu.MMINT_MENU_EVALUATEQUERY_LABEL);
       queryItem.addSelectionListener(
         new MIDContextEvaluateQueryListener(MIDContextMenu.MMINT_MENU_EVALUATEQUERY_LABEL, mid, selectedElems)
+      );
+    }
+    // highlight model elements
+    if (doHighlight) {
+      var highlightItem = new MenuItem(mmintMenu, SWT.NONE);
+      highlightItem.setText(RelContextMenu.REL_MENU_HIGHLIGHTENDPOINT_LABEL);
+      highlightItem.addSelectionListener(
+        new RelContextHighlightModelEndpointListener(RelContextMenu.REL_MENU_HIGHLIGHTENDPOINT_LABEL, modelEndpointRef)
       );
     }
   }
