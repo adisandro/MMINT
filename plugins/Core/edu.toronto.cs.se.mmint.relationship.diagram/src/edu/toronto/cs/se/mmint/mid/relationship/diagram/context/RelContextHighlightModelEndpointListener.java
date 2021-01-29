@@ -19,12 +19,12 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.sirius.business.api.session.SessionManager;
-import org.eclipse.sirius.diagram.BundledImage;
+import org.eclipse.sirius.diagram.ContainerStyle;
 import org.eclipse.sirius.diagram.DDiagramElement;
 import org.eclipse.sirius.diagram.DNodeContainer;
 import org.eclipse.sirius.diagram.DSemanticDiagram;
 import org.eclipse.sirius.diagram.EdgeStyle;
-import org.eclipse.sirius.diagram.FlatContainerStyle;
+import org.eclipse.sirius.diagram.NodeStyle;
 import org.eclipse.sirius.viewpoint.RGBValues;
 import org.eclipse.swt.events.SelectionEvent;
 
@@ -37,12 +37,14 @@ import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
 public class RelContextHighlightModelEndpointListener extends MIDContextMenuListener {
-  private static final RGBValues HIGHLIGHT_COLOR = RGBValues.create(255, 0, 0);
   private ModelEndpointReference modelEndpointRef;
+  private RGBValues highlightColor;
 
-  public RelContextHighlightModelEndpointListener(String menuLabel, ModelEndpointReference modelEndpointRef) {
+  public RelContextHighlightModelEndpointListener(String menuLabel, ModelEndpointReference modelEndpointRef,
+                                                  RGBValues highlightColor) {
     super(menuLabel);
     this.modelEndpointRef = modelEndpointRef;
+    this.highlightColor = highlightColor;
   }
 
   private void highlight(DDiagramElement sDiagramElem, Set<String> modelElemUris) {
@@ -55,15 +57,14 @@ public class RelContextHighlightModelEndpointListener extends MIDContextMenuList
       }
     }
     var style = sDiagramElem.getStyle();
-    if (style instanceof BundledImage) {
-      ((BundledImage) style).setColor(RelContextHighlightModelEndpointListener.HIGHLIGHT_COLOR);
+    if (style instanceof NodeStyle) {
+      ((NodeStyle) style).setLabelColor(this.highlightColor);
     }
-    else if (style instanceof FlatContainerStyle) {
-      ((FlatContainerStyle) style).setForegroundColor(RelContextHighlightModelEndpointListener.HIGHLIGHT_COLOR);
-      ((FlatContainerStyle) style).setBackgroundColor(RelContextHighlightModelEndpointListener.HIGHLIGHT_COLOR);
+    else if (style instanceof ContainerStyle) {
+      ((ContainerStyle) style).setLabelColor(this.highlightColor);
     }
     else if (style instanceof EdgeStyle) {
-      ((EdgeStyle) style).setStrokeColor(RelContextHighlightModelEndpointListener.HIGHLIGHT_COLOR);
+      ((EdgeStyle) style).setStrokeColor(this.highlightColor);
     }
   }
 

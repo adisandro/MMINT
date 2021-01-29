@@ -18,6 +18,7 @@ import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.action.ContributionItem;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.sirius.viewpoint.RGBValues;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
@@ -41,7 +42,10 @@ import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ModelRelEditP
  */
 public class RelContextMenu extends ContributionItem {
 
-  private static final String REL_MENU_HIGHLIGHTENDPOINT_LABEL = "Highlight Model Elements";
+  private static final String HIGHLIGHTENDPOINT_LABEL = "Highlight Model Elements";
+  private static final String HIGHLIGHTENDPOINT_RED_LABEL = "Red";
+  private static final String HIGHLIGHTENDPOINT_GREEN_LABEL = "Green";
+  private static final String HIGHLIGHTENDPOINT_BLUE_LABEL = "Blue";
 
   @Override
   public boolean isDynamic() {
@@ -113,10 +117,24 @@ public class RelContextMenu extends ContributionItem {
     }
     // highlight model elements
     if (doHighlight) {
-      var highlightItem = new MenuItem(mmintMenu, SWT.NONE);
-      highlightItem.setText(RelContextMenu.REL_MENU_HIGHLIGHTENDPOINT_LABEL);
-      highlightItem.addSelectionListener(
-        new RelContextHighlightModelEndpointListener(RelContextMenu.REL_MENU_HIGHLIGHTENDPOINT_LABEL, modelEndpointRef)
+      var highlightItem = new MenuItem(mmintMenu, SWT.CASCADE);
+      highlightItem.setText(RelContextMenu.HIGHLIGHTENDPOINT_LABEL);
+      var colorMenu = new Menu(mmintMenu);
+      highlightItem.setMenu(colorMenu);
+      var redItem = new MenuItem(colorMenu, SWT.NONE);
+      redItem.setText(RelContextMenu.HIGHLIGHTENDPOINT_RED_LABEL);
+      redItem.addSelectionListener(new RelContextHighlightModelEndpointListener(
+        RelContextMenu.HIGHLIGHTENDPOINT_LABEL, modelEndpointRef, RGBValues.create(255, 0, 0))
+      );
+      var greenItem = new MenuItem(colorMenu, SWT.NONE);
+      greenItem.setText(RelContextMenu.HIGHLIGHTENDPOINT_GREEN_LABEL);
+      greenItem.addSelectionListener(new RelContextHighlightModelEndpointListener(
+        RelContextMenu.HIGHLIGHTENDPOINT_LABEL, modelEndpointRef, RGBValues.create(0, 255, 0))
+      );
+      var blueItem = new MenuItem(colorMenu, SWT.NONE);
+      blueItem.setText(RelContextMenu.HIGHLIGHTENDPOINT_BLUE_LABEL);
+      blueItem.addSelectionListener(new RelContextHighlightModelEndpointListener(
+        RelContextMenu.HIGHLIGHTENDPOINT_LABEL, modelEndpointRef, RGBValues.create(0, 0, 255))
       );
     }
   }
