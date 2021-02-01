@@ -75,7 +75,12 @@ def TR : set (S × A × S) :=
 
 def [modelName/] : LTS := LTS.mk S A TR
 
-@['['/]instance[']'/] def S_to_form : has_coe S (formula [modelName/]) :=
+@['['/]instance[']'/] def S_to_[modelName/]S : has_coe S ([modelName/].S) :=⟨id⟩
+
+@['['/]instance[']'/] def S_to_form : has_coe [modelName/].S (formula [modelName/]) :=
+⟨λ s, formula.state s⟩
+
+@['['/]instance[']'/] def S_to_form' : has_coe S (formula [modelName/]) :=
 ⟨λ s, formula.state s⟩
 
 @['['/]instance[']'/] def Act_to_form : has_coe A (formula [modelName/]) :=

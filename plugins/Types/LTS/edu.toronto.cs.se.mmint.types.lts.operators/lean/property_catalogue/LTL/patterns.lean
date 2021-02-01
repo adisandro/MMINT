@@ -4,6 +4,17 @@ variable {M : LTS}
 set_option pp.beta true 
 
 
+
+def init_state (s : M.S) [has_coe M.S (formula M)] : formula M := ↑s
+
+def holds_over_transition (s : M.S) [has_coe M.S (formula M)] : formula M :=  ◾(↑s ⇒ formula.next ↑s)
+ 
+
+def not_init (s : M.S) [has_coe M.S (formula M)] : formula M := !↑s
+
+def transitions_safe  (s : M.S) [has_coe M.S (formula M)]  : formula M := ◾(!↑s ⇒ ! formula.next ↑s)
+
+
 namespace absent 
 
 def globally (P : formula M) : formula M := 
