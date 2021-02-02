@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -22,12 +22,9 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import edu.toronto.cs.se.mmint.MMINT;
-import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
-import edu.toronto.cs.se.mmint.mid.EMFInfo;
-import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
-import edu.toronto.cs.se.mmint.mid.MID;
+import edu.toronto.cs.se.mmint.MMINTConstants;
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
@@ -90,10 +87,10 @@ public class ModelEndpointReferenceImpl extends ExtendibleElementEndpointReferen
    */
     @Override
     public EList<ModelElementReference> getModelElemRefs() {
-    if (modelElemRefs == null) {
-      modelElemRefs = new EObjectContainmentEList<ModelElementReference>(ModelElementReference.class, this, RelationshipPackage.MODEL_ENDPOINT_REFERENCE__MODEL_ELEM_REFS);
+    if (this.modelElemRefs == null) {
+      this.modelElemRefs = new EObjectContainmentEList<>(ModelElementReference.class, this, RelationshipPackage.MODEL_ENDPOINT_REFERENCE__MODEL_ELEM_REFS);
     }
-    return modelElemRefs;
+    return this.modelElemRefs;
   }
 
     /**
@@ -103,7 +100,7 @@ public class ModelEndpointReferenceImpl extends ExtendibleElementEndpointReferen
    */
     @Override
     public ModelEndpoint getObject() {
-    ExtendibleElementEndpoint object = super.getObject();
+    var object = super.getObject();
     return (object == null) ? null : (ModelEndpoint) object;
   }
 
@@ -114,7 +111,7 @@ public class ModelEndpointReferenceImpl extends ExtendibleElementEndpointReferen
    */
     @Override
     public ModelEndpointReference getSupertypeRef() {
-    ExtendibleElementEndpointReference supertypeRef = super.getSupertypeRef();
+    var supertypeRef = super.getSupertypeRef();
     return (supertypeRef == null) ? null : (ModelEndpointReference) supertypeRef;
   }
 
@@ -187,7 +184,7 @@ public class ModelEndpointReferenceImpl extends ExtendibleElementEndpointReferen
     public boolean eIsSet(int featureID) {
     switch (featureID) {
       case RelationshipPackage.MODEL_ENDPOINT_REFERENCE__MODEL_ELEM_REFS:
-        return modelElemRefs != null && !modelElemRefs.isEmpty();
+        return this.modelElemRefs != null && !this.modelElemRefs.isEmpty();
     }
     return super.eIsSet(featureID);
   }
@@ -263,11 +260,12 @@ public class ModelEndpointReferenceImpl extends ExtendibleElementEndpointReferen
     /**
      * @generated NOT
      */
+    @Override
     public boolean acceptModelElementType(EObject metamodelObj) throws MMINTException {
 
         MMINTException.mustBeType(this);
 
-        MID typeMID = this.getMIDContainer();
+        var typeMID = this.getMIDContainer();
         String modelTypeUri = MIDRegistry.getModelUri(metamodelObj);
         String modelElemTypeUri = MIDRegistry.getModelElementUri(metamodelObj);
         if (
@@ -288,6 +286,7 @@ public class ModelEndpointReferenceImpl extends ExtendibleElementEndpointReferen
     /**
      * @generated NOT
      */
+    @Override
     public void deleteTypeReference(boolean isFullDelete) throws MMINTException {
 
         MMINTException.mustBeType(this);
@@ -297,7 +296,7 @@ public class ModelEndpointReferenceImpl extends ExtendibleElementEndpointReferen
             getModelElemRefs().get(0).deleteTypeReference();
         }
         if (isFullDelete) {
-            ModelRel modelRelType = (ModelRel) eContainer();
+            var modelRelType = (ModelRel) eContainer();
             modelRelType.getModelEndpointRefs().remove(this);
         }
     }
@@ -305,22 +304,32 @@ public class ModelEndpointReferenceImpl extends ExtendibleElementEndpointReferen
     /**
      * @generated NOT
      */
+    @Override
     public ModelElement acceptModelElementInstance(EObject modelObj) throws MMINTException {
 
         MMINTException.mustBeInstance(this);
 
-        String modelUri = MIDRegistry.getModelUri(modelObj);
-        String modelElemUri = MIDRegistry.getModelElementUri(modelObj);
-        if (!modelUri.equals(getTargetUri())) { // different model
+        var modelElemUri = MIDRegistry.getModelElementUri(modelObj);
+        var endpointUri = getTargetUri();
+        if (endpointUri.isEmpty()) { // endpoint is a rel
+          var relUri = MIDRegistry.getModelElementUri(getObject().getTarget());
+          if (!modelElemUri.startsWith(relUri)) { // different rel
             return null;
+          }
+        }
+        else { // endpoint is a model
+          var modelUri = MIDRegistry.getModelUri(modelObj);
+          if (!modelUri.equals(endpointUri)) { // different model
+            return null;
+          }
         }
         // filter unallowed model element types
-        ModelElement modelElemType = MIDConstraintChecker.getAllowedModelElementType(this, modelObj);
+        var modelElemType = MIDConstraintChecker.getAllowedModelElementType(this, modelObj);
         if (modelElemType == null) {
             return null;
         }
         // filter duplicates
-        if (MIDRegistry.getReference(modelElemUri + MMINT.ROLE_SEPARATOR + modelElemType.getUri(), getModelElemRefs()) != null) {
+        if (MIDRegistry.getReference(modelElemUri + MMINTConstants.ROLE_SEPARATOR + modelElemType.getUri(), getModelElemRefs()) != null) {
             return null;
         }
 
@@ -330,17 +339,18 @@ public class ModelEndpointReferenceImpl extends ExtendibleElementEndpointReferen
     /**
      * @generated NOT
      */
+    @Override
     public ModelElementReference createModelElementInstanceAndReference(EObject modelObj, String newModelElemName) throws MMINTException {
 
         MMINTException.mustBeInstance(this);
 
         ModelElement modelElemType = MIDConstraintChecker.getAllowedModelElementType(this, modelObj);
         String newModelElemUri = MIDRegistry.getModelElementUri(modelObj);
-        EMFInfo eInfo = MIDRegistry.getModelElementEMFInfo(modelObj, MIDLevel.INSTANCES);
+        var eInfo = MIDRegistry.getModelElementEMFInfo(modelObj, MIDLevel.INSTANCES);
         if (newModelElemName == null) {
             newModelElemName = MIDRegistry.getModelElementName(eInfo, modelObj, MIDLevel.INSTANCES);
         }
-        ModelElementReference newModelElemRef = modelElemType.createInstanceAndReference(newModelElemUri, newModelElemName, eInfo, this);
+        var newModelElemRef = modelElemType.createInstanceAndReference(newModelElemUri, newModelElemName, eInfo, this);
 
         return newModelElemRef;
     }

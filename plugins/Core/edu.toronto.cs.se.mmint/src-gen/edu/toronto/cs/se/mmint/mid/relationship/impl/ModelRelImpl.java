@@ -17,6 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -916,8 +917,30 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
      * @generated NOT
      */
     @Override
-    public EObject getEMFInstanceRoot() {
+    public Resource getEMFInstanceResource() {
+      try {
+        MMINTException.mustBeInstance(this);
+        return FileUtils.getEMFResource(MIDRegistry.getModelUri(this), null, true);
+      }
+      catch (Exception e) {
+        MMINTException.print(IStatus.WARNING, "Can't load EMF rel resource, returning null", e);
         return null;
+      }
+    }
+
+    /**
+     * @generated NOT
+     */
+    @Override
+    public EObject getEMFInstanceRoot() {
+      try {
+        MMINTException.mustBeInstance(this);
+        return this;
+      }
+      catch (Exception e) {
+        MMINTException.print(IStatus.WARNING, "Can't load root EMF rel object, returning null", e);
+        return null;
+      }
     }
 
     /**
