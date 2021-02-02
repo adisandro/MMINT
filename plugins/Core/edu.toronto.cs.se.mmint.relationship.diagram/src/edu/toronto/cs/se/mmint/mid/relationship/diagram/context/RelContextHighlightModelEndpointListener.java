@@ -48,13 +48,13 @@ public class RelContextHighlightModelEndpointListener extends MIDContextMenuList
   }
 
   private void highlight(DDiagramElement sDiagramElem, Set<String> modelElemUris) {
-    if (!modelElemUris.contains(MIDRegistry.getModelElementUri(sDiagramElem.getTarget()))) {
-      return;
-    }
     if (sDiagramElem instanceof DNodeContainer) {
       for (var sContainedDiagramElem : ((DNodeContainer) sDiagramElem).getOwnedDiagramElements()) {
         highlight(sContainedDiagramElem, modelElemUris);
       }
+    }
+    if (!modelElemUris.contains(MIDRegistry.getModelElementUri(sDiagramElem.getTarget()))) {
+      return;
     }
     var style = sDiagramElem.getStyle();
     if (style instanceof NodeStyle) {
