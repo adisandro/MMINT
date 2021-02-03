@@ -425,6 +425,15 @@
 	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
 	           </typeEndpoint>
             </parameter>
+            <parameter>
+             <type
+                   name="mergeTrace"
+                   uri="http://se.cs.toronto.edu/mmint/Operator_Merge-ModelRel/mergeTrace">
+             </type>
+             <typeEndpoint
+                   targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
+             </typeEndpoint>
+            </parameter>
          </outputs>
       </operatorType>
    </extension>
