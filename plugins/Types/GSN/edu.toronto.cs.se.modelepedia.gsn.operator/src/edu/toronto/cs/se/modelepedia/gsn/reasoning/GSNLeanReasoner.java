@@ -54,29 +54,6 @@ public class GSNLeanReasoner extends LeanReasoner implements IGSNDecompositionTr
     return templates;
   }
 
-  private boolean a(Model relatedModel, String property, List<String> subProperties) throws Exception {
-    // set up working directory to be stored
-    var encoder = (ToLean) MIDTypeHierarchy.getPolyOperator(LeanReasoner.ENCODER_ID, ECollections.newBasicEList(relatedModel));
-    var gsnEncoder = (encoder instanceof IGSNLeanEncoder) ? (IGSNLeanEncoder) encoder : new IGSNLeanEncoder(){};
-    var propEncoding = gsnEncoder.encodePropertyDecomposition(relatedModel, property, subProperties);
-    var timestampDir = new SimpleDateFormat("yyyyMMddHHmmss").format(System.currentTimeMillis()) +
-                       "_" + LeanReasoner.LEAN_DIR;
-    var workingPath = FileUtils.replaceLastSegmentInPath(relatedModel.getUri(), timestampDir);
-    Files.createDirectory(Path.of(FileUtils.prependWorkspacePath(workingPath)));
-
-    // run lean
-    return checkProperty(relatedModel, propEncoding, workingPath);
-  }
-
-  private boolean b(String relatedModelPath, String property, List<String> subProperties) throws Exception {
-    var workingPath = FileUtils.getAllButLastSegmentFromPath(relatedModelPath);
-    var encodingFileName = FileUtils.getLastSegmentFromPath(relatedModelPath);
-    var propEncoding = new IGSNLeanEncoder(){}.encodePropertyDecomposition(null, property, subProperties);
-
-    // run lean
-    return checkProperty(encodingFileName, propEncoding, workingPath);
-  }
-
   @Override
   public void validatePropertyDecomposition(PropertyDecompositionStrategy strategy, String relatedModelPath,
                                             String property, List<String> subProperties) throws Exception {
