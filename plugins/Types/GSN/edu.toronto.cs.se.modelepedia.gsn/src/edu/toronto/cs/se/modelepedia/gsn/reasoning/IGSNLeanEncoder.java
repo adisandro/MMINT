@@ -90,7 +90,7 @@ public interface IGSNLeanEncoder {
           .filter(c -> variable.validTypes.containsKey(c))
           .map(c -> variable.validTypes.get(c))
           .findFirst();
-        boundVariable = feature.map(f -> (String) modelObj.eGet(f)).orElse(modelObj.toString());
+        boundVariable = feature.map(f -> (String) modelObj.eGet(f)).orElse(modelObj.toString()).replaceAll("\\s", "_");
         boundProperty = boundProperty.replace(variable.name, boundVariable);
         boundDescription = boundDescription.replace(variable.name, boundVariable);
       }

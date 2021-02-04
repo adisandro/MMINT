@@ -2,7 +2,7 @@
 [module LTSToLeanAcceleo('model://edu.toronto.cs.se.mmint.types.lts')/]
 
 [template private sanitize(name : String)]
-[name.replace(' ', '_')/]
+[name.replaceAll('\\s', '_')/]
 [/template]
 
 [template private encodeMain(modelName : String)]
