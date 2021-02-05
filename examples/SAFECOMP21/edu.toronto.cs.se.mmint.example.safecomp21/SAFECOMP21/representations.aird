@@ -5,14 +5,14 @@
     <semanticResources>sc.gsn</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" uid="_TeLVwF6dEeuzRqps9eyyPw">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']"/>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_edC3EV6dEeuzRqps9eyyPw" name="fcs" repPath="#_ec3Q4F6dEeuzRqps9eyyPw" changeId="252bd32d-5e50-4709-8c30-b6e4a80c6f15">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_edC3EV6dEeuzRqps9eyyPw" name="fcs" repPath="#_ec3Q4F6dEeuzRqps9eyyPw" changeId="08c0aac8-2930-4081-8ba2-36b91aa5a47c">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']"/>
         <target xmi:type="lts:LTS" href="fcs.lts#/"/>
       </ownedRepresentationDescriptors>
     </ownedViews>
     <ownedViews xmi:type="viewpoint:DView" uid="_clvBEF6mEeuYfq7XakckNg">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']"/>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_o6YCgF6mEeuYfq7XakckNg" name="sc" repPath="#_o6VmQF6mEeuYfq7XakckNg" changeId="9066a748-2773-45a7-94df-3a5004f90df6">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_o6YCgF6mEeuYfq7XakckNg" name="sc" repPath="#_o6VmQF6mEeuYfq7XakckNg" changeId="a9d0bf94-a47e-4d2f-868d-774f4628c703">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']"/>
         <target xmi:type="gsn:SafetyCase" href="sc.gsn#/"/>
       </ownedRepresentationDescriptors>
@@ -90,7 +90,7 @@
         <styles xmi:type="notation:DiagramStyle" xmi:id="_edI9sl6dEeuzRqps9eyyPw"/>
         <edges xmi:type="notation:Edge" xmi:id="_ehvUYF6eEeuzRqps9eyyPw" type="4001" element="_ehgq4F6eEeuzRqps9eyyPw" source="_5WJAcF6dEeuzRqps9eyyPw" target="_FWraIF6eEeuzRqps9eyyPw">
           <children xmi:type="notation:Node" xmi:id="_ehwigF6eEeuzRqps9eyyPw" type="6001">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ehwigV6eEeuzRqps9eyyPw" x="28" y="-54"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ehwigV6eEeuzRqps9eyyPw" x="28" y="-62"/>
           </children>
           <children xmi:type="notation:Node" xmi:id="_ehwigl6eEeuzRqps9eyyPw" type="6002">
             <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ehwig16eEeuzRqps9eyyPw" x="-10" y="8"/>
@@ -186,7 +186,7 @@
         </edges>
         <edges xmi:type="notation:Edge" xmi:id="_PUZLAF6fEeuzRqps9eyyPw" type="4001" element="_PUWHuF6fEeuzRqps9eyyPw" source="_FWraIF6eEeuzRqps9eyyPw" target="_FPXbwF6fEeuzRqps9eyyPw">
           <children xmi:type="notation:Node" xmi:id="_PUZyEF6fEeuzRqps9eyyPw" type="6001">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_PUZyEV6fEeuzRqps9eyyPw" x="25" y="20"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_PUZyEV6fEeuzRqps9eyyPw" x="18" y="20"/>
           </children>
           <children xmi:type="notation:Node" xmi:id="_PUZyEl6fEeuzRqps9eyyPw" type="6002">
             <layoutConstraint xmi:type="notation:Bounds" xmi:id="_PUZyE16fEeuzRqps9eyyPw" x="-14" y="-5"/>
@@ -202,7 +202,7 @@
         </edges>
         <edges xmi:type="notation:Edge" xmi:id="_P3X8VF6fEeuzRqps9eyyPw" type="4001" element="_P3WHLF6fEeuzRqps9eyyPw" source="_Uknj8F6eEeuzRqps9eyyPw" target="_FPXbwF6fEeuzRqps9eyyPw">
           <children xmi:type="notation:Node" xmi:id="_P3YjUF6fEeuzRqps9eyyPw" type="6001">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_P3YjUV6fEeuzRqps9eyyPw" x="86" y="39"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_P3YjUV6fEeuzRqps9eyyPw" x="93" y="44"/>
           </children>
           <children xmi:type="notation:Node" xmi:id="_P3YjUl6fEeuzRqps9eyyPw" type="6002">
             <layoutConstraint xmi:type="notation:Bounds" xmi:id="_P3YjU16fEeuzRqps9eyyPw" x="132" y="3"/>
@@ -218,7 +218,7 @@
         </edges>
         <edges xmi:type="notation:Edge" xmi:id="_dUKp0F6lEeuYfq7XakckNg" type="4001" element="_dUCG8F6lEeuYfq7XakckNg" source="_YYCuEF6lEeuYfq7XakckNg" target="_FPXbwF6fEeuzRqps9eyyPw">
           <children xmi:type="notation:Node" xmi:id="_dUL38F6lEeuYfq7XakckNg" type="6001">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_dUL38V6lEeuYfq7XakckNg" x="28" y="-29"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_dUL38V6lEeuYfq7XakckNg" x="20" y="-29"/>
           </children>
           <children xmi:type="notation:Node" xmi:id="_dUMfAF6lEeuYfq7XakckNg" type="6002">
             <layoutConstraint xmi:type="notation:Bounds" xmi:id="_dUMfAV6lEeuYfq7XakckNg" x="-35" y="-1"/>
@@ -234,7 +234,7 @@
         </edges>
         <edges xmi:type="notation:Edge" xmi:id="_pk0xMGcLEeurLKUcenYyMQ" type="4001" element="_pkrnTGcLEeurLKUcenYyMQ" source="_YYCuEF6lEeuYfq7XakckNg" target="_FPXbwF6fEeuzRqps9eyyPw">
           <children xmi:type="notation:Node" xmi:id="_plA-cGcLEeurLKUcenYyMQ" type="6001">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_plA-cWcLEeurLKUcenYyMQ" x="14" y="26"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_plA-cWcLEeurLKUcenYyMQ" x="17" y="26"/>
           </children>
           <children xmi:type="notation:Node" xmi:id="_plA-cmcLEeurLKUcenYyMQ" type="6002">
             <layoutConstraint xmi:type="notation:Bounds" xmi:id="_plA-c2cLEeurLKUcenYyMQ" y="10"/>
@@ -253,7 +253,7 @@
     <ownedAnnotationEntries xmi:type="description:AnnotationEntry" uid="_edT80F6dEeuzRqps9eyyPw" source="DANNOTATION_CUSTOMIZATION_KEY">
       <data xmi:type="diagram:ComputedStyleDescriptionRegistry" uid="_edT80V6dEeuzRqps9eyyPw"/>
     </ownedAnnotationEntries>
-    <ownedDiagramElements xmi:type="diagram:DNode" uid="_5V7lEF6dEeuzRqps9eyyPw" name="Clean&#xA;Non-hazardous&#xA;No object" outgoingEdges="_ehgq4F6eEeuzRqps9eyyPw _gvXplF6eEeuzRqps9eyyPw" incomingEdges="_iGtP9F6eEeuzRqps9eyyPw _l-ahVF6eEeuzRqps9eyyPw" width="7" height="7" resizeKind="NSEW">
+    <ownedDiagramElements xmi:type="diagram:DNode" uid="_5V7lEF6dEeuzRqps9eyyPw" name="Clean&#xA;No hazard&#xA;No object" outgoingEdges="_ehgq4F6eEeuzRqps9eyyPw _gvXplF6eEeuzRqps9eyyPw" incomingEdges="_iGtP9F6eEeuzRqps9eyyPw _l-ahVF6eEeuzRqps9eyyPw" width="7" height="7" resizeKind="NSEW">
       <target xmi:type="lts:InitialState" href="fcs.lts#//@states.0"/>
       <semanticElements xmi:type="lts:InitialState" href="fcs.lts#//@states.0"/>
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
@@ -275,7 +275,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@nodeMappings[name='InitialStateNode']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DNode" uid="_FWoW0F6eEeuzRqps9eyyPw" name="Clean&#xA;Non-hazardous&#xA;Has object" outgoingEdges="_iGtP9F6eEeuzRqps9eyyPw _PUWHuF6fEeuzRqps9eyyPw" incomingEdges="_ehgq4F6eEeuzRqps9eyyPw" width="7" height="7" resizeKind="NSEW">
+    <ownedDiagramElements xmi:type="diagram:DNode" uid="_FWoW0F6eEeuzRqps9eyyPw" name="Clean&#xA;No hazard&#xA;Has object" outgoingEdges="_iGtP9F6eEeuzRqps9eyyPw _PUWHuF6fEeuzRqps9eyyPw" incomingEdges="_ehgq4F6eEeuzRqps9eyyPw" width="7" height="7" resizeKind="NSEW">
       <target xmi:type="lts:State" href="fcs.lts#//@states.1"/>
       <semanticElements xmi:type="lts:State" href="fcs.lts#//@states.1"/>
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
@@ -286,7 +286,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@nodeMappings[name='StateNode']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DNode" uid="_N5nEgV6eEeuzRqps9eyyPw" name="Grimy&#xA;Non-hazardous&#xA;No object" outgoingEdges="_l-ahVF6eEeuzRqps9eyyPw _313rIF6eEeuzRqps9eyyPw" incomingEdges="_gvXplF6eEeuzRqps9eyyPw _4Kugyl6eEeuzRqps9eyyPw" width="7" height="7" resizeKind="NSEW">
+    <ownedDiagramElements xmi:type="diagram:DNode" uid="_N5nEgV6eEeuzRqps9eyyPw" name="Grimy&#xA;No hazard&#xA;No object" outgoingEdges="_l-ahVF6eEeuzRqps9eyyPw _313rIF6eEeuzRqps9eyyPw" incomingEdges="_gvXplF6eEeuzRqps9eyyPw _4Kugyl6eEeuzRqps9eyyPw" width="7" height="7" resizeKind="NSEW">
       <target xmi:type="lts:State" href="fcs.lts#//@states.2"/>
       <semanticElements xmi:type="lts:State" href="fcs.lts#//@states.2"/>
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
@@ -297,7 +297,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@nodeMappings[name='StateNode']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DNode" uid="_Ukluw16eEeuzRqps9eyyPw" name="Grimy&#xA;Non-hazardous&#xA;Has object" outgoingEdges="_4Kugyl6eEeuzRqps9eyyPw _P3WHLF6fEeuzRqps9eyyPw" incomingEdges="_313rIF6eEeuzRqps9eyyPw" width="7" height="7" resizeKind="NSEW">
+    <ownedDiagramElements xmi:type="diagram:DNode" uid="_Ukluw16eEeuzRqps9eyyPw" name="Grimy&#xA;No hazard&#xA;Has object" outgoingEdges="_4Kugyl6eEeuzRqps9eyyPw _P3WHLF6fEeuzRqps9eyyPw" incomingEdges="_313rIF6eEeuzRqps9eyyPw" width="7" height="7" resizeKind="NSEW">
       <target xmi:type="lts:State" href="fcs.lts#//@states.3"/>
       <semanticElements xmi:type="lts:State" href="fcs.lts#//@states.3"/>
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
@@ -319,7 +319,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@nodeMappings[name='StateNode']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_ehgq4F6eEeuzRqps9eyyPw" name="Add object" sourceNode="_5V7lEF6dEeuzRqps9eyyPw" targetNode="_FWoW0F6eEeuzRqps9eyyPw">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_ehgq4F6eEeuzRqps9eyyPw" name="Add object 2" sourceNode="_5V7lEF6dEeuzRqps9eyyPw" targetNode="_FWoW0F6eEeuzRqps9eyyPw">
       <target xmi:type="lts:Transition" href="fcs.lts#//@transitions.0"/>
       <semanticElements xmi:type="lts:Transition" href="fcs.lts#//@transitions.0"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_ehjuMF6eEeuzRqps9eyyPw" size="2" strokeColor="0,0,0">
@@ -337,7 +337,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_iGtP9F6eEeuzRqps9eyyPw" name="Vacuum object" sourceNode="_FWoW0F6eEeuzRqps9eyyPw" targetNode="_5V7lEF6dEeuzRqps9eyyPw">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_iGtP9F6eEeuzRqps9eyyPw" name="Vacuum object 2" sourceNode="_FWoW0F6eEeuzRqps9eyyPw" targetNode="_5V7lEF6dEeuzRqps9eyyPw">
       <target xmi:type="lts:Transition" href="fcs.lts#//@transitions.2"/>
       <semanticElements xmi:type="lts:Transition" href="fcs.lts#//@transitions.2"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_iGtP9V6eEeuzRqps9eyyPw" size="2" strokeColor="0,0,0">
@@ -346,7 +346,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_l-ahVF6eEeuzRqps9eyyPw" name="Clean tile" sourceNode="_N5nEgV6eEeuzRqps9eyyPw" targetNode="_5V7lEF6dEeuzRqps9eyyPw">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_l-ahVF6eEeuzRqps9eyyPw" name="Clean tile 1" sourceNode="_N5nEgV6eEeuzRqps9eyyPw" targetNode="_5V7lEF6dEeuzRqps9eyyPw">
       <target xmi:type="lts:Transition" href="fcs.lts#//@transitions.3"/>
       <semanticElements xmi:type="lts:Transition" href="fcs.lts#//@transitions.3"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_l-ahVV6eEeuzRqps9eyyPw" size="2" strokeColor="0,0,0">
@@ -355,7 +355,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_313rIF6eEeuzRqps9eyyPw" name="Add object" sourceNode="_N5nEgV6eEeuzRqps9eyyPw" targetNode="_Ukluw16eEeuzRqps9eyyPw">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_313rIF6eEeuzRqps9eyyPw" name="Add object 1" sourceNode="_N5nEgV6eEeuzRqps9eyyPw" targetNode="_Ukluw16eEeuzRqps9eyyPw">
       <target xmi:type="lts:Transition" href="fcs.lts#//@transitions.4"/>
       <semanticElements xmi:type="lts:Transition" href="fcs.lts#//@transitions.4"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_313rIV6eEeuzRqps9eyyPw" size="2" strokeColor="0,0,0">
@@ -364,7 +364,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_4Kugyl6eEeuzRqps9eyyPw" name="Vacuum object" sourceNode="_Ukluw16eEeuzRqps9eyyPw" targetNode="_N5nEgV6eEeuzRqps9eyyPw">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_4Kugyl6eEeuzRqps9eyyPw" name="Vacuum object 1" sourceNode="_Ukluw16eEeuzRqps9eyyPw" targetNode="_N5nEgV6eEeuzRqps9eyyPw">
       <target xmi:type="lts:Transition" href="fcs.lts#//@transitions.5"/>
       <semanticElements xmi:type="lts:Transition" href="fcs.lts#//@transitions.5"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_4Kugy16eEeuzRqps9eyyPw" size="2" strokeColor="0,0,0">
@@ -373,7 +373,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_PUWHuF6fEeuzRqps9eyyPw" name="Clean tile" sourceNode="_FWoW0F6eEeuzRqps9eyyPw" targetNode="_FPUYcF6fEeuzRqps9eyyPw">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_PUWHuF6fEeuzRqps9eyyPw" name="Clean tile 3" sourceNode="_FWoW0F6eEeuzRqps9eyyPw" targetNode="_FPUYcF6fEeuzRqps9eyyPw">
       <target xmi:type="lts:Transition" href="fcs.lts#//@transitions.6"/>
       <semanticElements xmi:type="lts:Transition" href="fcs.lts#//@transitions.6"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_PUWHuV6fEeuzRqps9eyyPw" size="2" strokeColor="0,0,0">
@@ -382,7 +382,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_P3WHLF6fEeuzRqps9eyyPw" name="Clean tile" sourceNode="_Ukluw16eEeuzRqps9eyyPw" targetNode="_FPUYcF6fEeuzRqps9eyyPw">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_P3WHLF6fEeuzRqps9eyyPw" name="Clean tile 2" sourceNode="_Ukluw16eEeuzRqps9eyyPw" targetNode="_FPUYcF6fEeuzRqps9eyyPw">
       <target xmi:type="lts:Transition" href="fcs.lts#//@transitions.7"/>
       <semanticElements xmi:type="lts:Transition" href="fcs.lts#//@transitions.7"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_P3WuIF6fEeuzRqps9eyyPw" size="2" strokeColor="0,0,0">
@@ -391,7 +391,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_dUCG8F6lEeuYfq7XakckNg" name="Clean tile" sourceNode="_YX15wF6lEeuYfq7XakckNg" targetNode="_FPUYcF6fEeuzRqps9eyyPw">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_dUCG8F6lEeuYfq7XakckNg" name="Clean tile 4" sourceNode="_YX15wF6lEeuYfq7XakckNg" targetNode="_FPUYcF6fEeuzRqps9eyyPw">
       <target xmi:type="lts:Transition" href="fcs.lts#//@transitions.8"/>
       <semanticElements xmi:type="lts:Transition" href="fcs.lts#//@transitions.8"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_dUCG8V6lEeuYfq7XakckNg" size="2" strokeColor="0,0,0">
@@ -434,7 +434,7 @@
     <ownedAnnotationEntries xmi:type="description:AnnotationEntry" uid="_o6bF0F6mEeuYfq7XakckNg" source="DANNOTATION_CUSTOMIZATION_KEY">
       <data xmi:type="diagram:ComputedStyleDescriptionRegistry" uid="_o6bF0V6mEeuYfq7XakckNg"/>
     </ownedAnnotationEntries>
-    <ownedDiagramElements xmi:type="diagram:DNode" uid="_CH-TYF6nEeuYfq7XakckNg" name="C1 The FCS never reaches a damaged state during any of its executions" width="-1" height="-1" resizeKind="NSEW">
+    <ownedDiagramElements xmi:type="diagram:DNode" uid="_CH-TYF6nEeuYfq7XakckNg" name="G1 The FCS never reaches a damaged state" width="-1" height="-1" resizeKind="NSEW">
       <target xmi:type="gsn:BasicGoal" href="sc.gsn#//@goals.0"/>
       <semanticElements xmi:type="gsn:BasicGoal" href="sc.gsn#//@goals.0"/>
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
