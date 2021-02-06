@@ -205,7 +205,7 @@ public class PropertyDecomposition extends GoalDecomposition {
       var formalStrategyId = "SF-" + id;
       var formalStrategyDesc = "Argument by " + reasonerName + " formalization";
       var modelGoalId = id + "-M";
-      var modelGoalDesc = "The related model correctly models all aspects of the system related to property " +
+      var modelGoalDesc = "The related model correctly models all aspects of the system for property " +
                           description;
       var propGoalId = id + "-P";
       var propGoalDesc = id + " asserts the property " + description;

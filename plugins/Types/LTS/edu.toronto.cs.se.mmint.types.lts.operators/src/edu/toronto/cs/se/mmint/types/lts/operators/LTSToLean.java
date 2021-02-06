@@ -165,17 +165,17 @@ public class LTSToLean extends ToLean implements IGSNLeanEncoder {
                                        "If X happens between A and until B, Y must follow X",
                                        "Response", List.of(y, x, a, b));
     var misc1   = new PropertyTemplate("init_state (coe X)",
-                                       "X is an initial state",
-                                       "Misc", List.of(x));
+                                       "Start from X",
+                                       "States", List.of(x));
     var misc2   = new PropertyTemplate("not_init (coe X)",
-                                       "X is not an initial state",
-                                       "Misc", List.of(x));
+                                       "Do not start from X",
+                                       "States", List.of(x));
     var misc3   = new PropertyTemplate("holds_over_transition (coe X)",
-                                       "X always happens while executing a transition",
-                                       "Misc", List.of(x));
+                                       "Always enter X",
+                                       "States", List.of(x));
     var misc4   = new PropertyTemplate("transitions_safe (coe X)",
-                                       "X does not happen while executing a transition",
-                                       "Misc", List.of(x));
+                                       "Never enter X",
+                                       "States", List.of(x));
 
     return List.of(absent1, absent2, absent3, absent4, absent5,
                    exist1,  exist2,  exist3,  exist4,  exist5,

@@ -68,7 +68,7 @@ public class GSNLeanReasoner extends LeanReasoner implements IGSNDecompositionTr
       var encodingFileName = FileUtils.getLastSegmentFromPath(relatedModelPath);
       var propEncoding = new IGSNLeanEncoder(){}.encodePropertyDecomposition(null, property, subProperties);
       valid = checkProperty(encodingFileName, propEncoding, workingPath);
-      justDesc = "(refer to file '" + relatedModelPath + "')";
+      justDesc = "see file '" + relatedModelPath + "'";
     }
     else { // use ToLean encoder
       // set up working directory to store encoding
@@ -84,14 +84,14 @@ public class GSNLeanReasoner extends LeanReasoner implements IGSNDecompositionTr
       valid = checkProperty(relatedModel, propEncoding, workingPath);
       var outputPath = encoder.getOutputFileName();
       justDesc = (outputPath.isPresent()) ?
-        "(refer to output file '" + timestampPath + outputPath.get() + "')" :
-        "(refer to directory '" + timestampPath + "')";
+        "see output file '" + timestampPath + outputPath.get() + "'" :
+        "see directory '" + timestampPath + "'";
     }
     // create justification
     var proof = (valid) ? "proven" : "disproven";
     var builder = new PropertyBuilder((SafetyCase) strategy.eContainer());
     var justId = "J-" + strategy.getId();
-    justDesc = "Decomposition validity " + proof + " in " + getName() + " " + justDesc;
+    justDesc = "Decomposition validity " + proof + " in " + getName() + ": " + justDesc;
     builder.createJustification(strategy, justId, justDesc);
     builder.commitChanges();
     if (!valid) {
