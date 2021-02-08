@@ -12,8 +12,10 @@
 package edu.toronto.cs.se.mmint.mid.relationship.diagram.context;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
+import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.action.ContributionItem;
@@ -27,6 +29,7 @@ import org.eclipse.ui.PlatformUI;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.mid.diagram.context.MIDContextEvaluateQueryListener;
 import edu.toronto.cs.se.mmint.mid.diagram.context.MIDContextMenu;
+import edu.toronto.cs.se.mmint.mid.provider.MIDEditPlugin;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
@@ -43,6 +46,17 @@ import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ModelRelEditP
 public class RelContextMenu extends ContributionItem {
 
   private static final String HIGHLIGHTENDPOINT_LABEL = "Highlight Model Elements";
+  //TODO MMINT[JAVA16]
+  private static final List<String> HIGHLIGHTENDPOINT_COLORS = List.of(
+    "black", "gray", "silver", "white", "maroon", "red", "olive", "yellow", "green", "lime", "teal", "aqua", "navy",
+    "blue", "purple", "fuchsia");
+  private static final List<RGBValues> HIGHLIGHTENDPOINT_RGBS = List.of(
+    RGBValues.create(0, 0, 0), RGBValues.create(128, 128, 128), RGBValues.create(192, 192, 192),
+    RGBValues.create(255, 255, 255), RGBValues.create(128, 0, 0), RGBValues.create(255, 0, 0),
+    RGBValues.create(128, 128, 0), RGBValues.create(255, 255, 0), RGBValues.create(0, 128, 0),
+    RGBValues.create(0, 255, 0), RGBValues.create(0, 128, 128), RGBValues.create(0, 255, 255),
+    RGBValues.create(0, 0, 128), RGBValues.create(0, 0, 255), RGBValues.create(128, 0, 128),
+    RGBValues.create(255, 0, 255));
   private static final String HIGHLIGHTENDPOINT_RED_LABEL = "Red";
   private static final String HIGHLIGHTENDPOINT_GREEN_LABEL = "Green";
   private static final String HIGHLIGHTENDPOINT_BLUE_LABEL = "Blue";
@@ -121,21 +135,16 @@ public class RelContextMenu extends ContributionItem {
       highlightItem.setText(RelContextMenu.HIGHLIGHTENDPOINT_LABEL);
       var colorMenu = new Menu(mmintMenu);
       highlightItem.setMenu(colorMenu);
-      var redItem = new MenuItem(colorMenu, SWT.NONE);
-      redItem.setText(RelContextMenu.HIGHLIGHTENDPOINT_RED_LABEL);
-      redItem.addSelectionListener(new RelContextHighlightModelEndpointListener(
-        RelContextMenu.HIGHLIGHTENDPOINT_LABEL, modelEndpointRef, RGBValues.create(255, 0, 0))
-      );
-      var greenItem = new MenuItem(colorMenu, SWT.NONE);
-      greenItem.setText(RelContextMenu.HIGHLIGHTENDPOINT_GREEN_LABEL);
-      greenItem.addSelectionListener(new RelContextHighlightModelEndpointListener(
-        RelContextMenu.HIGHLIGHTENDPOINT_LABEL, modelEndpointRef, RGBValues.create(0, 255, 0))
-      );
-      var blueItem = new MenuItem(colorMenu, SWT.NONE);
-      blueItem.setText(RelContextMenu.HIGHLIGHTENDPOINT_BLUE_LABEL);
-      blueItem.addSelectionListener(new RelContextHighlightModelEndpointListener(
-        RelContextMenu.HIGHLIGHTENDPOINT_LABEL, modelEndpointRef, RGBValues.create(0, 0, 255))
-      );
+      for (var i = 0; i < RelContextMenu.HIGHLIGHTENDPOINT_COLORS.size(); i++) {
+        var color = RelContextMenu.HIGHLIGHTENDPOINT_COLORS.get(i);
+        var rgb = RelContextMenu.HIGHLIGHTENDPOINT_RGBS.get(i);
+        var label = color.substring(0, 1).toUpperCase() + color.substring(1);
+        var image = ExtendedImageRegistry.getInstance().getImage(MIDEditPlugin.INSTANCE.getImage("colors/" + color));
+        var colorItem = new MenuItem(colorMenu, SWT.NONE);
+        colorItem.setText(label);
+        colorItem.setImage(image);
+        colorItem.addSelectionListener(new RelContextHighlightModelEndpointListener(label, modelEndpointRef, rgb));
+      }
     }
   }
 
