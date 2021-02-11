@@ -3,12 +3,6 @@
  */
 package edu.toronto.cs.se.mmint.viatra.mid;
 
-import edu.toronto.cs.se.mmint.viatra.mid.AllConnectedEMFObjects;
-import edu.toronto.cs.se.mmint.viatra.mid.AllConnectedModelElements;
-import edu.toronto.cs.se.mmint.viatra.mid.AllConnectedModels;
-import edu.toronto.cs.se.mmint.viatra.mid.ConnectedEMFObjects;
-import edu.toronto.cs.se.mmint.viatra.mid.ConnectedModelElements;
-import edu.toronto.cs.se.mmint.viatra.mid.ConnectedModels;
 import org.eclipse.viatra.query.runtime.api.ViatraQueryEngine;
 import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedPatternGroup;
 

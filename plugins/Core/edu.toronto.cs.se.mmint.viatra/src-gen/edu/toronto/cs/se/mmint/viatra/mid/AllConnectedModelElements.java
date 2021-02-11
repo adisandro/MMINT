@@ -4,7 +4,6 @@
 package edu.toronto.cs.se.mmint.viatra.mid;
 
 import edu.toronto.cs.se.mmint.mid.ModelElement;
-import edu.toronto.cs.se.mmint.viatra.mid.ConnectedModelElements;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedHashSet;
