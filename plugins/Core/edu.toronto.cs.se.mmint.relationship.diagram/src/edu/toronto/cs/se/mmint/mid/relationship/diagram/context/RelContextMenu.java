@@ -45,18 +45,26 @@ import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ModelRelEditP
  */
 public class RelContextMenu extends ContributionItem {
 
+  private record SiriusColor(String color, RGBValues rgb) {}
+
   private static final String HIGHLIGHTENDPOINT_LABEL = "Highlight Model Elements";
-  //TODO MMINT[JAVA16]
-  private static final List<String> HIGHLIGHTENDPOINT_COLORS = List.of(
-    "black", "gray", "silver", "white", "maroon", "red", "olive", "yellow", "green", "lime", "teal", "aqua", "navy",
-    "blue", "purple", "fuchsia");
-  private static final List<RGBValues> HIGHLIGHTENDPOINT_RGBS = List.of(
-    RGBValues.create(0, 0, 0), RGBValues.create(128, 128, 128), RGBValues.create(192, 192, 192),
-    RGBValues.create(255, 255, 255), RGBValues.create(128, 0, 0), RGBValues.create(255, 0, 0),
-    RGBValues.create(128, 128, 0), RGBValues.create(255, 255, 0), RGBValues.create(0, 128, 0),
-    RGBValues.create(0, 255, 0), RGBValues.create(0, 128, 128), RGBValues.create(0, 255, 255),
-    RGBValues.create(0, 0, 128), RGBValues.create(0, 0, 255), RGBValues.create(128, 0, 128),
-    RGBValues.create(255, 0, 255));
+  private static final List<SiriusColor> HIGHLIGHTENDPOINT_COLORS = List.of(
+    new SiriusColor("black",   RGBValues.create(0, 0, 0)),
+    new SiriusColor("gray",    RGBValues.create(128, 128, 128)),
+    new SiriusColor("silver",  RGBValues.create(192, 192, 192)),
+    new SiriusColor("white",   RGBValues.create(255, 255, 255)),
+    new SiriusColor("maroon",  RGBValues.create(128, 0, 0)),
+    new SiriusColor("red",     RGBValues.create(255, 0, 0)),
+    new SiriusColor("olive",   RGBValues.create(128, 128, 0)),
+    new SiriusColor("yellow",  RGBValues.create(255, 255, 0)),
+    new SiriusColor("green",   RGBValues.create(0, 128, 0)),
+    new SiriusColor("lime",    RGBValues.create(0, 255, 0)),
+    new SiriusColor("teal",    RGBValues.create(0, 128, 128)),
+    new SiriusColor("aqua",    RGBValues.create(0, 255, 255)),
+    new SiriusColor("navy",    RGBValues.create(0, 0, 128)),
+    new SiriusColor("blue",    RGBValues.create(0, 0, 255)),
+    new SiriusColor("purple",  RGBValues.create(128, 0, 128)),
+    new SiriusColor("fuchsia", RGBValues.create(255, 0, 255)));
   private static final String HIGHLIGHTENDPOINT_RED_LABEL = "Red";
   private static final String HIGHLIGHTENDPOINT_GREEN_LABEL = "Green";
   private static final String HIGHLIGHTENDPOINT_BLUE_LABEL = "Blue";
@@ -135,15 +143,15 @@ public class RelContextMenu extends ContributionItem {
       highlightItem.setText(RelContextMenu.HIGHLIGHTENDPOINT_LABEL);
       var colorMenu = new Menu(mmintMenu);
       highlightItem.setMenu(colorMenu);
-      for (var i = 0; i < RelContextMenu.HIGHLIGHTENDPOINT_COLORS.size(); i++) {
-        var color = RelContextMenu.HIGHLIGHTENDPOINT_COLORS.get(i);
-        var rgb = RelContextMenu.HIGHLIGHTENDPOINT_RGBS.get(i);
+      for (var rgbColor : RelContextMenu.HIGHLIGHTENDPOINT_COLORS) {
+        var color = rgbColor.color();
         var label = color.substring(0, 1).toUpperCase() + color.substring(1);
         var image = ExtendedImageRegistry.getInstance().getImage(MIDEditPlugin.INSTANCE.getImage("colors/" + color));
         var colorItem = new MenuItem(colorMenu, SWT.NONE);
         colorItem.setText(label);
         colorItem.setImage(image);
-        colorItem.addSelectionListener(new RelContextHighlightModelEndpointListener(label, modelEndpointRef, rgb));
+        colorItem.addSelectionListener(
+          new RelContextHighlightModelEndpointListener(label, modelEndpointRef, rgbColor.rgb()));
       }
     }
   }
