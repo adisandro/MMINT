@@ -6,7 +6,7 @@ Bundle-Version: 2.8.99.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-15
+Bundle-RequiredExecutionEnvironment: JavaSE-16
 Export-Package: edu.toronto.cs.se.modelepedia.istar,
  edu.toronto.cs.se.modelepedia.istar.impl,
  edu.toronto.cs.se.modelepedia.istar.util
