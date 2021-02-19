@@ -1,10 +1,8 @@
 import data.set data.stream.basic
 open stream 
 
-structure LTS:= 
-(S : Type)
-(Act : Type)
-(TR : set (S × Act × S))
+structure LTS:= (S : Type) (Act : Type)(TR : set (S × Act × S))
+--structure LTS:= (S : Type) (A : Type) (Δ : set (S × Act × S))
 
 structure path (M : LTS) := 
 (init : M.S)
@@ -19,9 +17,7 @@ namespace path
 def index (π : path M) : ℕ+ → (M.Act × M.S)
 | (n) := (π.s (n-1))
 
-notation π[i] := index π i 
-
-lemma drop_helper (π : path M) (n : ℕ) : 
+lemma drop_aux (π : path M) (n : ℕ) : 
     ((π.s n).snd, (drop (n+1) π.s 0).fst, (drop (n+1) π.s 0).snd) ∈ M.TR ∧ ∀ (i : ℕ), ((drop (n+1) π.s i).snd, (stream.drop (n+1) π.s (i + 1)).fst, (drop (n+1) π.s (i + 1)).snd) ∈ M.TR := 
     begin 
          have := π.sound, cases this with L R,
@@ -39,7 +35,7 @@ end
 def drop (π : path M) : ℕ → path M 
 | 0 := π 
 | (nat.succ n) := 
-    path.mk (π.s n).2 (π.s.drop n.succ) (drop_helper π n)
+    path.mk (π.s n).2 (π.s.drop n.succ) (drop_aux π n)
 
 lemma drop_drop  (π : path M) {i j : ℕ} : 
     (π.drop i).drop j = π.drop (i+j) := 
@@ -77,7 +73,7 @@ inductive formula (M : LTS)
 def sat {M : LTS} : formula M → path M → Prop 
 | formula.T := λ _, true 
 | (formula.state s) :=  λ π, π.init = s 
-| (formula.act a)  := λ π, π[1].1 = a 
+| (formula.act a)  := λ π, (path.index π 1).1 = a 
 | (formula.neg φ) := λ π, ¬ (sat φ) π
 | (formula.conj φ₁ φ₂) := λ π, sat φ₁ π ∧ sat φ₂ π
 | (formula.disj φ₁ φ₂) := λ π, sat φ₁ π ∨ sat φ₂ π
@@ -92,14 +88,12 @@ def sat {M : LTS} : formula M → path M → Prop
 
 notation φ ` & ` ψ := formula.conj  φ ψ 
 notation φ ` ⅋ ` ψ := formula.disj φ ψ 
-
 notation ` !` φ := formula.neg φ 
 notation φ ` U ` ψ := formula.until φ ψ 
-
 notation ` ◆` φ := formula.eventually φ 
-
 notation ` ◾` φ  := formula.always  φ
 notation φ ` ⇒ ` ψ := formula.impl φ ψ 
+notation π `⊨` P := sat P π 
 
 namespace formula 
 
@@ -125,3 +119,7 @@ by {intro P, refl,}
 lemma always_eventually_dual (P : formula M) (π : path M) : 
     sat (◾!P) π ↔ (¬ sat (◆P) π) := 
 by {repeat {rw sat}, tidy}
+
+@[simp] lemma succ_add_1 {π : path M} {i : ℕ} : 
+ (π.drop i).drop 1 = π.drop (i.succ) := 
+ by {rw path.drop_drop}

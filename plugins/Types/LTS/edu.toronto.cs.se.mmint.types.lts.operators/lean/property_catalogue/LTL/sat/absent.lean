@@ -36,12 +36,11 @@ begin
     assumption,
 end 
 
-meta def solve_by_partition (tok1 tok2 : expr) (str : string) : tactic string := 
+meta def solve_by_partition (tok1 tok2 : expr) (s : string) : tactic string := 
 do 
   tactic.interactive.apply ``(by_partition_before_aft %%tok1 %%tok2),
-  t1 ← tactic_format_expr tok1,
-  t2 ← tactic_format_expr tok2,
-  new_str str ("apply by_partition_before_aft" ++ t1.to_string ++ t2.to_string ++ "\n")
+  t1 ← tok1.log_format, t2 ← tok2.log_format,
+  s.log $ "apply by_partition_before_aft" ++ t1 ++ t2 ++ "\n"
 
 
 meta def solve (tok : expr) (str : string) : list expr → tactic string 

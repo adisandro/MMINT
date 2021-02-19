@@ -2,17 +2,23 @@ import property_catalogue.LTL.sat.absent
 import property_catalogue.LTL.sat.precedes 
 import common_meta 
 
-meta def switch (str : string) : tactic string := 
+meta def switch (s : string) : tactic string := 
 do 
   tgt ← tactic.target, ctx ← tactic.local_context,
   match tgt with
-  | `(sat (precedes.globally %%tok1 %%tok2) _) :=  precedes.globally.solve tok1 tok2 str ctx
-  | `(sat (absent.globally %%tok1) _) :=  absent.globally.solve tok1 str ctx 
+  | `(sat (precedes.globally %%e₁ %%e₂) _) :=  
+    precedes.globally.solve e₁ e₂ s ctx
+  | `(sat (absent.globally %%e₁) _) :=  
+    absent.globally.solve e₁ s ctx 
   | _ := return string.empty
   end 
 
-meta def solve_patterns (n : ℕ) (S : expr) : tactic string := 
+
+meta def solve_patterns' (n : ℕ) : tactic (string × string) := 
 do 
-   s₁ ← initialize n S,
-   s₂ ← switch s₁,
-   by_cases s₂ <|> return s₁
+   let s₁ := string.empty,
+   p ← by_induction s₁,
+ --  tactic.trace s₂,
+   return p 
+ --  ((by_induction s₁ >> return s₁) <|>
+ --    (switch s₁ >> return s₁) <|> return s₁)

@@ -8,60 +8,78 @@ structure Claim (α : Type) :=
 (X : set α)
 (P : Property α)
 
+@[reducible]
 def meaning {α : Type} (C : Claim α) : Prop := 
 ∀ x ∈ C.X, C.P x 
 
-structure strategy (α : Type) : Type :=
-(Parent : Claim α)
-(Decomp : Claim α → list (Claim α))
+notation ⟦C⟧ := meaning C 
 
-def deductive (α : Type) (S : strategy α) : Prop := 
-let subclaims := (S.Decomp) S.Parent in 
-(∀ clm ∈ subclaims, meaning clm) → meaning S.Parent 
+structure Strategy (α : Type) :=
+(parent : Claim α) (decomp : Claim α → list (Claim α))
+
+def deductive (α : Type) (S : Strategy α) : Prop := 
+let subclaims := (S.decomp) S.parent in 
+(∀ clm ∈ subclaims, ⟦clm⟧) →  ⟦S.parent⟧ 
 
 namespace property 
 
+@[reducible]
 def decomposition 
 (Ps : list (Property α)) 
 (Clm : Claim α) : list (Claim α) := 
 list.map (Claim.mk Clm.X) Ps
 
-structure auxiliary (α : Type) :=
+structure input (α : Type) :=
 (Clm : Claim α)
 (Props : list (Property α))
 
+namespace input 
+
+@[reducible]
+def length (Γ : input α) : ℕ := Γ.Props.length
+
+lemma len_decomp (Γ : input α) : 
+Γ.length = (decomposition Γ.Props Γ.Clm).length := 
+by {rw decomposition, simp}
+
+@[reducible]
+def subsets (Γ : input α) : fin (Γ.length) → set α := 
+λ i, set_of (Γ.Props.nth_le i.1 i.2)
+
+end input
+
 def justified
-(Γ : auxiliary α) : Prop :=
-let Xs : fin (Γ.Props.length) → set α := 
-λ i, set_of ((Γ.Props.nth_le i.1 ) i.2) in
-(⋂ i, Xs i) ⊆ {x | Γ.Clm.P x}
+(Γ : input α) : Prop :=
+(⋂ i, Γ.subsets i) ⊆ {x | Γ.Clm.P x}
 
+@[reducible]
+def strategy (Γ : input α) : Strategy α := 
+{ parent := Γ.Clm, 
+  decomp := property.decomposition Γ.Props }  
 
-def to_strategy (Γ : auxiliary α) : strategy α := 
-strategy.mk Γ.Clm 
-  (property.decomposition Γ.Props)
 
 
 theorem deductive_of_justfd
-(Γ : auxiliary α) : 
-justified Γ → deductive α (property.to_strategy Γ) :=  
+: Π {Γ : property.input α},
+justified Γ → deductive α (property.strategy Γ) :=  
 begin 
-  rw [justified,deductive, meaning,to_strategy], 
+  intro Γ,
+  rw [justified,deductive, meaning,strategy], 
   simp only [fin.val_eq_coe],
   intros H1 H2 x xMem, apply H1,
   simp only [set.mem_Inter, set.mem_set_of_eq],
   intro i, 
-  have len : Γ.Props.length = (decomposition Γ.Props Γ.Clm).length, by {rw decomposition, simp},
-  replace H2 := H2 ((decomposition Γ.Props Γ.Clm).nth_le i.1 (fin.cast len i).2),
-  unfold decomposition at H2,
+  replace H2 := H2 ((decomposition Γ.Props Γ.Clm).nth_le i.1 (fin.cast (input.len_decomp Γ) i).2),
   simp at H2, apply H2, 
   apply list.nth_le_mem, assumption,
 end 
 
-
 end property 
 
 
+
+
+/-
 namespace domain 
 
 @[reducible]
@@ -112,3 +130,4 @@ begin
 end 
 
 end domain
+-/

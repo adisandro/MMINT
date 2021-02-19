@@ -1,18 +1,26 @@
 import LTS.defs
 
 variable {M : LTS}
+
 set_option pp.beta true 
 
 
-
+@[reducible]
 def init_state (s : M.S) [has_coe M.S (formula M)] : formula M := ↑s
 
-def holds_over_transition (s : M.S) [has_coe M.S (formula M)] : formula M :=  ◾(↑s ⇒ formula.next ↑s)
+
+@[reducible]
+def holds_over_transition (s : M.S) [has_coe M.S (formula M)] : formula M :=  
+◾(↑s ⇒ formula.next ↑s)
  
 
+@[reducible]
 def not_init (s : M.S) [has_coe M.S (formula M)] : formula M := !↑s
 
-def transitions_safe  (s : M.S) [has_coe M.S (formula M)]  : formula M := ◾(!↑s ⇒ ! formula.next ↑s)
+
+@[reducible]
+def transitions_safe  (s : M.S) [has_coe M.S (formula M)]  : formula M := 
+◾(!↑s ⇒ ! formula.next ↑s)
 
 
 namespace absent 
@@ -42,6 +50,7 @@ def globally (P : formula M) : formula M :=
 
 def before (P R : formula M) : formula M := 
     (!R) W (P & !R)
+
 
 def after (P Q : formula M)  : formula M := 
     (◾(!Q)) ⅋ ◆(Q & ◆ P)

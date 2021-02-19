@@ -12,43 +12,65 @@ open interactive S A
 
 set_option pp.structure_instances_qualifier true
 
-meta def proof_template (g : format) (p : string) : string :=
-" import justification [modelName/] common_meta property_catalogue.LTL \n open S A \n \n
-example : " ++ (g.to_string) ++  " := \nbegin \n" ++ p ++ "\nend"
+def local_input_name : string := "[modelName/]_input_1"
+def local_strat_name : string := "[modelName/]_strat_1"
+def local_prf_name : string := "[modelName/]_prf_1"
+
+/- Some hacky stuff for formatting evidence.lean -/
+
+def preamble : string := "import justification [modelName/] common_meta property_catalogue.LTL \n open S A"
+
+meta def proof_template (g : format) (p : string × string) : string :=
+"\n\n
+theorem " ++ local_prf_name ++ " : " ++ (g.to_string) ++  " := \nbegin \n" ++ p.1 ++ "\nend" ++ "\n \n \n --" ++ p.2
+
+meta def evidence_file_template (e : format) (prf : string) : string :=
+preamble
+++ "\n\n @['['/]reducible[']'/] def "
+++ local_input_name
+++ " : property.input (path [modelName/]) := "
+++ e.to_string
+++ "\n\n @['['/]reducible[']'/] def "
+++ local_strat_name
+++ " : Strategy (path [modelName/]) := property.strategy "
+++ local_input_name
+++ prf
 
 meta def output (s : string) : io unit := do
   of ← io.mk_file_handle "evidence.lean" io.mode.write,
   io.fs.write of s.to_char_buffer
 
-meta def main_program (input : pexpr) : tactic unit :=
+meta def driver (input : pexpr) : tactic unit :=
 do
   STRAT ← tactic.to_expr input,
   match STRAT with
-  | `(property.auxiliary.mk %%CLAIM %%PROPS) :=
+  | `(property.input.mk %%CLAIM %%PROPS) :=
   do
-  aux ← tactic.eval_expr (property.auxiliary (path [modelName/])) STRAT,
-  let g := `(deductive (path [modelName/]) (property.to_strategy %%STRAT)),
+  aux ← tactic.eval_expr (property.input (path [modelName/])) STRAT,
+  let g := `(deductive (path [modelName/]) (property.strategy %%STRAT)),
   set_goal g,
-  goal ← tactic_format_expr g,
-  str ← solve_patterns (aux.Props.length) STRAT,
-  tactic.unsafe_run_io $ output $ proof_template goal str,
+  let goal_str :=
+  "deductive (path [modelName/]) " ++ local_strat_name,
+  p ← solve_patterns' (aux.Props.length),
+  STRAT ← (tactic_format_expr STRAT),
+  tactic.unsafe_run_io $ output $ evidence_file_template STRAT $ proof_template goal_str p,
   res ← is_solved,
-  match res with 
+  match res with
   | tt := tactic.trace "True"
   | _ := tactic.trace "False"
-  end   
+  end
 | _ := return ()
 end
 
 @['['/]user_command[']'/]
-meta def [modelName/]_main
+meta def main
 (meta_info : decl_meta_info)
-(_ : parse (lean.parser.tk "[modelName/]_main")) : lean.parser unit :=
+(_ : parse (lean.parser.tk "main")) : lean.parser unit :=
 do
    F ← read "property.lean" types.texpr,
-   lean.parser.of_tactic $ main_program F
+   lean.parser.of_tactic $ driver F
 .
-[modelName/]_main
+main
 [/template]
 
 [template private encodeModel(lts : LTS, modelName : String)]

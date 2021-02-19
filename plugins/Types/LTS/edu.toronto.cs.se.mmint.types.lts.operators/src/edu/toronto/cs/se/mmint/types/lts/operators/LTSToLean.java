@@ -193,7 +193,7 @@ public class LTSToLean extends ToLean implements IGSNLeanEncoder {
   public String encodePropertyDecomposition(Model model, String property, List<String> subProperties) {
     var modelName = model.getName();
     var encoding =
-      "property.auxiliary.mk\n" +
+      "property.input.mk\n" +
       "(Claim.mk\n" +
         "{x : path " + modelName + " | true}\n" +
         encodeProperty(modelName, property) + "\n" +
