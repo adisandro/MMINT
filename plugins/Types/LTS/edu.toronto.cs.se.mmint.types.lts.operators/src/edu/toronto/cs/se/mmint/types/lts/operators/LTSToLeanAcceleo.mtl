@@ -22,7 +22,7 @@ def preamble : string := "import justification [modelName/] common_meta property
 
 meta def proof_template (g : format) (p : string × string) : string :=
 "\n\n
-theorem " ++ local_prf_name ++ " : " ++ (g.to_string) ++  " := \nbegin \n" ++ p.1 ++ "\nend" ++ "\n \n \n --" ++ p.2
+theorem " ++ local_prf_name ++ " : " ++ (g.to_string) ++  " :=\nbegin\n" ++ p.1 ++ "\nend" ++ "\n\n\n--" ++ p.2
 
 meta def evidence_file_template (e : format) (prf : string) : string :=
 preamble

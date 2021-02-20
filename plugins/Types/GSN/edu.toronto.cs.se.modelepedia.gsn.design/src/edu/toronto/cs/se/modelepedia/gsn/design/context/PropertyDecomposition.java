@@ -155,10 +155,6 @@ public class PropertyDecomposition extends GoalDecomposition {
        * LeanReasoner: Extract dir recursively from jar
        * IGSNLeanEncoder: Switch to records
        * GSNLeanReasoner: Review name
-       *
-       * precedes.globally (coe pay)   (coe restart)
-       * precedes.globally (coe pay)   (coe serve)
-       * precedes.globally (coe serve) (coe restart)
        */
       var builder = (PropertyBuilder) this.builder;
       // ask for input

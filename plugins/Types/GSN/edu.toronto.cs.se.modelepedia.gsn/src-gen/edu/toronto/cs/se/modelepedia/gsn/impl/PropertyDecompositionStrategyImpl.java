@@ -12,7 +12,6 @@
 package edu.toronto.cs.se.modelepedia.gsn.impl;
 
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
@@ -20,15 +19,9 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
-import edu.toronto.cs.se.modelepedia.gsn.Context;
-import edu.toronto.cs.se.modelepedia.gsn.ContextualElement;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
-import edu.toronto.cs.se.modelepedia.gsn.InContextOf;
 import edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionElement;
 import edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionStrategy;
-import edu.toronto.cs.se.modelepedia.gsn.PropertyGoal;
-import edu.toronto.cs.se.modelepedia.gsn.SupportedBy;
 import edu.toronto.cs.se.modelepedia.gsn.reasoning.IGSNDecompositionTrait;
 
 /**
@@ -160,31 +153,10 @@ public class PropertyDecompositionStrategyImpl extends DecompositionStrategyImpl
     var reasoner = Objects.requireNonNull(MMINT.getReasoner(reasonerName),
                                           "The reasoner '" + reasonerName + "' is not installed");
     if (!(reasoner instanceof IGSNDecompositionTrait)) {
-      throw new MMINTException("The reasoner '" + reasonerName +
-                               "' does not have support for GSN property decompositions");
+      throw new MMINTException("The reasoner '" + reasonerName + "' does not support GSN property decompositions");
     }
-    var property = Objects.requireNonNull(getProperty(), "Property not specified");
-    var subProperties = getSupportedBy().stream()
-      .map(SupportedBy::getTarget)
-      .filter(g -> g instanceof PropertyGoal)
-      .filter(g -> ((PropertyGoal) g).getReasonerName().equals(reasonerName))
-      .map(g -> ((PropertyGoal) g).getProperty())
-      .filter(p -> p != null)
-      .collect(Collectors.toList());
-    if (subProperties.size() == 0) {
-      throw new MMINTException("A property must be decomposed into sub-properties");
-    }
-    var relatedPath = getInContextOf().stream()
-      .map(InContextOf::getContext)
-      .filter(c -> c instanceof Context)
-      .map(ContextualElement::getDescription)
-      .findAny()
-      .orElseThrow(() ->
-        new MMINTException("The property decomposition strategy is missing a context pointing to the related model"));
-    if (!FileUtils.isFile(relatedPath, true)) {
-      throw new MMINTException("The context description is not a path to a valid file");
-    }
-    ((IGSNDecompositionTrait) reasoner).validatePropertyDecomposition(this, relatedPath, property, subProperties);
+    Objects.requireNonNull(getProperty(), "Property not specified");
+    ((IGSNDecompositionTrait) reasoner).validatePropertyDecomposition(this);
   }
 
   /**

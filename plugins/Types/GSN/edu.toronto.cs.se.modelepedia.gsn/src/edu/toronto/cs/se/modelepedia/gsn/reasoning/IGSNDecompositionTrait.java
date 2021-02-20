@@ -45,15 +45,8 @@ public interface IGSNDecompositionTrait extends IReasoner {
    *
    * @param strategy
    *          The GSN property decomposition strategy.
-   * @param modelPath
-   *          The path to the model the property refers to.
-   * @param property
-   *          The main property that is being decomposed.
-   * @param subProperties
-   *          The sub-properties that the main property is being decomposed into.
    * @throws Exception
    *           If the validation fails.
    */
-  void validatePropertyDecomposition(PropertyDecompositionStrategy strategy, String modelPath, String property,
-                                     List<String> subProperties) throws Exception;
+  void validatePropertyDecomposition(PropertyDecompositionStrategy strategy) throws Exception;
 }

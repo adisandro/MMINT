@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.ECollections;
 
@@ -29,8 +30,13 @@ import edu.toronto.cs.se.mmint.lean.reasoning.LeanReasoner;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.modelepedia.gsn.Context;
+import edu.toronto.cs.se.modelepedia.gsn.ContextualElement;
+import edu.toronto.cs.se.modelepedia.gsn.InContextOf;
 import edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionStrategy;
+import edu.toronto.cs.se.modelepedia.gsn.PropertyGoal;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
+import edu.toronto.cs.se.modelepedia.gsn.SupportedBy;
 import edu.toronto.cs.se.modelepedia.gsn.reasoning.IGSNLeanEncoder.PropertyTemplate;
 import edu.toronto.cs.se.modelepedia.gsn.util.PropertyBuilder;
 
@@ -54,12 +60,45 @@ public class GSNLeanReasoner extends LeanReasoner implements IGSNDecompositionTr
     return templates;
   }
 
+  private List<String> getSubProperties(PropertyDecompositionStrategy strategy) throws MMINTException {
+    var subProperties = strategy.getSupportedBy().stream()
+      .map(SupportedBy::getTarget)
+      .filter(g -> g instanceof PropertyGoal)
+      .filter(g -> ((PropertyGoal) g).getReasonerName().equals(getName()))
+      .map(g -> ((PropertyGoal) g).getProperty())
+      .filter(p -> p != null)
+      .collect(Collectors.toList());
+    if (subProperties.size() == 0) {
+      throw new MMINTException("A property must be decomposed into sub-properties");
+    }
+
+    return subProperties;
+  }
+
+  private String getRelatedModelPath(PropertyDecompositionStrategy strategy) throws MMINTException {
+    var relatedModelPath = strategy.getInContextOf().stream()
+      .map(InContextOf::getContext)
+      .filter(c -> c instanceof Context)
+      .map(ContextualElement::getDescription)
+      .findAny()
+      .orElseThrow(() ->
+        new MMINTException("The property decomposition strategy is missing a context pointing to the related model"));
+    if (!FileUtils.isFile(relatedModelPath, true)) {
+      throw new MMINTException("The context description is not a path to a valid file");
+    }
+
+    return relatedModelPath;
+  }
+
   @Override
-  public void validatePropertyDecomposition(PropertyDecompositionStrategy strategy, String relatedModelPath,
-                                            String property, List<String> subProperties) throws Exception {
+  public void validatePropertyDecomposition(PropertyDecompositionStrategy strategy) throws Exception {
+    var property = strategy.getProperty();
+    var subProperties = getSubProperties(strategy);
+    var relatedModelPath = getRelatedModelPath(strategy);
     var gsnModel = MIDDiagramUtils.getInstanceMIDModelFromModelEditor(strategy);
     var instanceMID = gsnModel.getMIDContainer();
     var relatedModel = instanceMID.<Model>getExtendibleElement(relatedModelPath);
+    var invalidMsg = "The property decomposition is not valid";
     boolean valid;
     String justDesc;
     if (relatedModel == null) { // custom Lean encoding file
@@ -79,13 +118,35 @@ public class GSNLeanReasoner extends LeanReasoner implements IGSNDecompositionTr
       var timestampPath = new SimpleDateFormat("yyyyMMddHHmmss").format(System.currentTimeMillis()) +
                           "_" + LeanReasoner.LEAN_DIR;
       var workingPath = FileUtils.replaceLastSegmentInPath(relatedModel.getUri(), timestampPath);
-      Files.createDirectory(Path.of(FileUtils.prependWorkspacePath(workingPath)));
+      var workingPath2 = Path.of(FileUtils.prependWorkspacePath(workingPath));
+      Files.createDirectory(workingPath2);
       // run lean
       valid = checkProperty(relatedModel, propEncoding, workingPath);
-      var outputPath = encoder.getOutputFileName();
-      justDesc = (outputPath.isPresent()) ?
-        "see output file '" + timestampPath + outputPath.get() + "'" :
+      var outputFile = encoder.getOutputFileName().filter(f -> FileUtils.isFile(workingPath + f, true));
+      justDesc = (outputFile.isPresent()) ?
+        "see output file '" + timestampPath + outputFile.get() + "'" :
         "see directory '" + timestampPath + "'";
+      if (!valid && outputFile.isPresent()) {
+        // parse failed proof to find the bad sub-property
+        var outputPath = workingPath2.resolve(outputFile.get());
+        var badProperty = Files.lines(outputPath)
+          .map(l -> l.strip())
+          .filter(l -> l.startsWith(LeanReasoner.LEAN_COMMENT))
+          .map(l -> l.substring(LeanReasoner.LEAN_COMMENT.length(), l.indexOf(" ")))
+          .findFirst();
+        if (badProperty.isPresent()) {
+          var badGoal = strategy.getSupportedBy().stream()
+            .map(SupportedBy::getTarget)
+            .filter(g -> g instanceof PropertyGoal)
+            .map(g -> (PropertyGoal) g)
+            .filter(g -> g.getProperty().startsWith(badProperty.get()))
+            .findFirst();
+          if (badGoal.isPresent()) {
+            invalidMsg += " because of the property associated with sub-goal '" + badGoal.get().getId() +
+                          "'. Consider changing the property and validating the decomposition again.";
+          }
+        }
+      }
     }
     // create justification
     var proof = (valid) ? "proven" : "disproven";
@@ -95,7 +156,7 @@ public class GSNLeanReasoner extends LeanReasoner implements IGSNDecompositionTr
     builder.createJustification(strategy, justId, justDesc);
     builder.commitChanges();
     if (!valid) {
-      throw new MMINTException("The property decomposition is not valid");
+      throw new MMINTException(invalidMsg);
     }
   }
 }
