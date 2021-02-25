@@ -229,6 +229,7 @@
   	<module>../../features/edu.toronto.cs.se.mmint.feature</module>
   	<module>../../features/edu.toronto.cs.se.mmint.sdk.feature</module>
     <module>../../features/edu.toronto.cs.se.mmint.types.lts.feature</module>
+    <module>../../features/edu.toronto.cs.se.mmint.types.simulink.feature</module>
     <module>../../features/edu.toronto.cs.se.mminta.feature</module>
     <module>../../features/edu.toronto.cs.se.mummint.feature</module>
     <module>../../features/edu.toronto.cs.se.mmint.lean.feature</module>

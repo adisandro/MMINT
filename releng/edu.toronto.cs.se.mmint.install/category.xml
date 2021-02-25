@@ -48,6 +48,9 @@
    <feature url="features/edu.toronto.cs.se.modelepedia.sequencediagram.feature_2.8.99.qualifier.jar" id="edu.toronto.cs.se.modelepedia.sequencediagram.feature" version="2.8.99.qualifier">
       <category name="Modelepedia"/>
    </feature>
+   <feature url="features/edu.toronto.cs.se.mmint.types.simulink.feature_2.8.99.qualifier.jar" id="edu.toronto.cs.se.mmint.types.simulink.feature" version="2.8.99.qualifier">
+      <category name="Modelepedia"/>
+   </feature>
    <feature url="features/edu.toronto.cs.se.modelepedia.statemachine.feature_2.8.99.qualifier.jar" id="edu.toronto.cs.se.modelepedia.statemachine.feature" version="2.8.99.qualifier">
       <category name="Modelepedia"/>
    </feature>
@@ -79,4 +82,5 @@
    <category-def name="Modelepedia" label="Modelepedia"/>
    <category-def name="Examples" label="Examples"/>
    <repository-reference location="http://download.eclipse.org/modeling/emft/henshin/updates/release" enabled="true" />
+   <repository-reference location="http://https://static.incquerylabs.com/projects/massif/release/0.7.0/repository" enabled="true" />
 </site>
