@@ -21,6 +21,11 @@
   	  <layout>p2</layout>
   	  <url>http://download.eclipse.org/modeling/emft/henshin/updates/release</url>
     </repository>
+    <repository>
+      <id>Massif</id>
+      <layout>p2</layout>
+      <url>http://https://static.incquerylabs.com/projects/massif/release/0.7.0/repository</url>
+    </repository>
   </repositories>
   <pluginRepositories>
     <pluginRepository>
