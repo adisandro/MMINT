@@ -5,5 +5,5 @@
 ## Paper example instructions
 
 1. Add `https://adisandro.github.io/mmint/release` to the list of software sites in Eclipse (`Help > Install New Software > Available Software Sites`).
-2. Install `Examples > SAFECOMP21`.
+2. Install `Examples > MMINT - SAFECOMP21 paper`.
 3. Open `/SAFECOMP21/examples.middiag`.

@@ -14,7 +14,7 @@
 
 <feature
       id="edu.toronto.cs.se.mmint.example.mase19.feature"
-      label="MASE19"
+      label="MMINT - MASE19 paper"
       version="2.8.99.qualifier"
       provider-name="Software Engineering Group, University of Toronto">
 
@@ -30,24 +30,12 @@
       This program and the accompanying materials are made available under the terms of the Eclipse Public License 2.0 which is available at https://www.eclipse.org/legal/epl-2.0/
    </license>
 
-   <includes
-         id="edu.toronto.cs.se.mminta.feature"
-         version="0.0.0"/>
-
-   <includes
-         id="edu.toronto.cs.se.modelepedia.classdiagram.feature"
-         version="0.0.0"/>
-
-   <includes
-         id="edu.toronto.cs.se.modelepedia.sequencediagram.feature"
-         version="0.0.0"/>
-
-   <includes
-         id="edu.toronto.cs.se.modelepedia.statemachine.feature"
-         version="0.0.0"/>
-
    <requires>
       <import plugin="org.eclipse.emf.common.ui"/>
+      <import feature="edu.toronto.cs.se.mminta.feature"/>
+      <import feature="edu.toronto.cs.se.modelepedia.classdiagram.feature"/>
+      <import feature="edu.toronto.cs.se.modelepedia.sequencediagram.feature"/>
+      <import feature="edu.toronto.cs.se.modelepedia.statemachine.feature"/>
    </requires>
 
    <plugin
