@@ -395,15 +395,9 @@ public class Reduce extends NestingOperatorImpl {
     var instanceMID = outputMIDsByName.get(Reduce.OUT_MID);
 
     // loop until reduction is no longer possible, reducing one input at a time
-    var openEditors = Boolean.parseBoolean(
-      MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_OPENMODELEDITORS_ENABLED));
-    if (openEditors) {
-      MMINT.setPreference(MMINTConstants.PREFERENCE_MENU_OPENMODELEDITORS_ENABLED, "false");
-    }
+    var prevPreference = MMINT.setPreference(MMINTConstants.PREFERENCE_MENU_OPENMODELEDITORS_ENABLED, "false");
     var reducedMID = this.reduce(inputMIDModel, accumulatorOperatorType);
-    if (openEditors) {
-      MMINT.setPreference(MMINTConstants.PREFERENCE_MENU_OPENMODELEDITORS_ENABLED, "true");
-    }
+    MMINT.setPreference(MMINTConstants.PREFERENCE_MENU_OPENMODELEDITORS_ENABLED, prevPreference);
 
     // output
     var reducedMIDModelPath = FileUtils.getUniquePath(

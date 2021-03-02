@@ -8,6 +8,7 @@ Bundle-RequiredExecutionEnvironment: JavaSE-15
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.ui,
  org.eclipse.emf.ecore,
  org.eclipse.emf.validation,
  org.eclipse.jdt.annotation;resolution:=optional,

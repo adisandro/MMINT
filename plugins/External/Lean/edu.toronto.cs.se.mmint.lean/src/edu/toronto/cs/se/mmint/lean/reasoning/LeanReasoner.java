@@ -28,6 +28,7 @@ import org.eclipse.emf.common.util.ECollections;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.lean.menu.MMINTLeanMathlibPathMenu;
 import edu.toronto.cs.se.mmint.lean.operators.ToLean;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
@@ -99,10 +100,15 @@ public class LeanReasoner implements IModelConstraintTrait {
     // get encoder
     var encoder = (ToLean) MIDTypeHierarchy.getPolyOperator(LeanReasoner.ENCODER_ID, ECollections.newBasicEList(model));
     // write lean config file
+    var mathlibPath = MMINT.getPreference(MMINTLeanMathlibPathMenu.PREFERENCE_MENU_LEAN_MATHLIB_PATH);
+    if (mathlibPath == null) {
+      throw new MMINTException("Mathlib path not configured (you can do it through the MMINT top menu)");
+    }
     var config = """
       builtin_path
-      path .""";
-    config += "\n" + encoder.getImportPaths().stream().map(p -> "path " + p).collect(Collectors.joining("\n"));
+      path .
+      path\s""" + mathlibPath + File.separator + "src\n" +
+      encoder.getImportPaths().stream().map(p -> "path " + p).collect(Collectors.joining("\n"));
     Files.writeString(Path.of(absWorkingPath, LeanReasoner.LEAN_CONFIG), config, StandardOpenOption.CREATE);
     // generate model encoding files
     var mainEncoding = generateEncoding(encoder, model, workingPath);
@@ -120,7 +126,6 @@ public class LeanReasoner implements IModelConstraintTrait {
     try {
       // create project dir
       Files.createDirectory(Path.of(absWorkingPath));
-
       // check property
       return checkProperty(model, constraint.getImplementation(), workingPath);
     }

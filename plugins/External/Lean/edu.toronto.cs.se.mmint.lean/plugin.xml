@@ -14,9 +14,35 @@
 -->
 <plugin>
 
-  <extension point="edu.toronto.cs.se.mmint.reasoners">
-    <reasoner class="edu.toronto.cs.se.mmint.lean.reasoning.LeanReasoner" />
-  </extension>
+   <extension point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="menu:edu.toronto.cs.se.mmint.mid.diagram.menu">
+         <menu
+               id="edu.toronto.cs.se.mmint.lean.menu"
+               label="Lean">
+            <command
+                  commandId="edu.toronto.cs.se.mmint.lean.menu.MMINTLeanMathlibPathMenu"
+                  label="Change Lean Mathlib Path"
+                  style="push"
+                  tooltip="Changes the path to the Lean Mathlib library">
+            </command>
+         </menu>
+      </menuContribution>
+   </extension>
+
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="edu.toronto.cs.se.mmint.lean.menu.MMINTLeanMathlibPathMenu"
+            id="edu.toronto.cs.se.mmint.lean.menu.MMINTLeanMathlibPathMenu"
+            name="LeanMathlibPathMenu">
+      </command>
+   </extension>
+
+   <extension point="edu.toronto.cs.se.mmint.reasoners">
+      <reasoner class="edu.toronto.cs.se.mmint.lean.reasoning.LeanReasoner" />
+   </extension>
 
    <extension
          point="edu.toronto.cs.se.mmint.operators">

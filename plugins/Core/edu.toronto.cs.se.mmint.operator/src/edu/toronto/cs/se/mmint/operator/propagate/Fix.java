@@ -88,11 +88,10 @@ public class Fix extends NestingOperatorImpl {
                 return false;
             }
             // inputs must be valid for the fixer
-            String runtimeTypingPreference = null;
+            String prevPreference = null;
             if (inputs.get(0).getModel().isWorkflowsLevel()) {
-                runtimeTypingPreference = MMINT
-                    .getPreference(MMINTConstants.PREFERENCE_MENU_POLYMORPHISM_RUNTIMETYPING_ENABLED);
-                MMINT.setPreference(MMINTConstants.PREFERENCE_MENU_POLYMORPHISM_RUNTIMETYPING_ENABLED, "false");
+                prevPreference = MMINT.setPreference(MMINTConstants.PREFERENCE_MENU_POLYMORPHISM_RUNTIMETYPING_ENABLED,
+                                                     "false");
             }
             var inputModels = ECollections.asEList(
                 inputs.stream()
@@ -109,9 +108,9 @@ public class Fix extends NestingOperatorImpl {
                 return false;
             }
             finally {
-                if (runtimeTypingPreference != null) {
+                if (prevPreference != null) {
                     MMINT.setPreference(MMINTConstants.PREFERENCE_MENU_POLYMORPHISM_RUNTIMETYPING_ENABLED,
-                                        runtimeTypingPreference);
+                                        prevPreference);
                 }
             }
         }

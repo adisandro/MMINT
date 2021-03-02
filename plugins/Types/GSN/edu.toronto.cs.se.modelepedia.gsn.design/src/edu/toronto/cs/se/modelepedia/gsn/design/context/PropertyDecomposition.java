@@ -151,7 +151,6 @@ public class PropertyDecomposition extends GoalDecomposition {
     protected DecompositionStrategy decompose() throws Exception {
       /**TODO
        * AddModifyConstraintListener: Refactor constraint code to use this code?
-       * LeanReasoner: Find where is lean's mathlab library (readlink -f $(type -P lean)) and add it to config file
        * LeanReasoner: Extract dir recursively from jar
        * IGSNLeanEncoder: Switch to records
        * GSNLeanReasoner: Review name

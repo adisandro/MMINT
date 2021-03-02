@@ -17,6 +17,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -968,37 +969,36 @@ public class MMINT implements MMINTConstants {
 	 * @return The preference value, null if the preference name could not be
 	 *         found.
 	 */
-	public static String getPreference(String preferenceName) {
+	public static @Nullable String getPreference(String preferenceName) {
 
 		var preferences = InstanceScope.INSTANCE.getNode(MMINTActivator.PLUGIN_ID);
 
 		return preferences.get(preferenceName, null);
 	}
 
-	/**
-	 * Sets a preference.
-	 *
-	 * @param preferenceName
-	 *            The preference name.
-	 * @param preferenceValue
-	 *            The new preference value.
-	 * @return True if the preference was set, false if the preference name
-	 *         could not be found.
-	 */
-	public static boolean setPreference(String preferenceName, String preferenceValue) {
+  /**
+   * Sets a preference.
+   *
+   * @param preferenceName
+   *          The preference name.
+   * @param newValue
+   *          The new preference value (can't be null).
+   * @return The previous preference value, or null if the preference was not previously set.
+   */
+	public static @Nullable String setPreference(String preferenceName, String newValue) {
 
+	  Objects.requireNonNull(newValue, "The value for preference '" + preferenceName + "' can't be null");
 		var preferences = InstanceScope.INSTANCE.getNode(MMINTActivator.PLUGIN_ID);
-		if (preferences.get(preferenceName, null) == null) {
-			return false;
+		var oldValue = preferences.get(preferenceName, null);
+		if (oldValue == null || !oldValue.equals(newValue)) {
+	    preferences.put(preferenceName, newValue);
+	    try {
+	      preferences.flush();
+	    }
+	    catch (BackingStoreException e) {
+	    }
 		}
-		preferences.put(preferenceName, preferenceValue);
-		try {
-			preferences.flush();
-			return true;
-		}
-		catch (BackingStoreException e) {
-			return false;
-		}
+    return oldValue;
 	}
 
 	public static Set<String> getReasonerNames() {
