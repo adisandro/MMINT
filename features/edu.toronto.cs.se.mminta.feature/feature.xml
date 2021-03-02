@@ -11,7 +11,6 @@
     Contributors:
         Alessio Di Sandro - Implementation
  -->
-
 <feature
       id="edu.toronto.cs.se.mminta.feature"
       label="MMINT-A"
@@ -32,6 +31,10 @@
 
    <includes
          id="edu.toronto.cs.se.mmint.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="edu.toronto.cs.se.mmint.lean.feature"
          version="0.0.0"/>
 
    <includes

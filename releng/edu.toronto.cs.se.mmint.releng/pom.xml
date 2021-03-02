@@ -230,6 +230,7 @@
     <module>../../features/edu.toronto.cs.se.mmint.types.lts.feature</module>
     <module>../../features/edu.toronto.cs.se.mminta.feature</module>
     <module>../../features/edu.toronto.cs.se.mummint.feature</module>
+    <module>../../features/edu.toronto.cs.se.mmint.lean.feature</module>
   	<module>../../features/edu.toronto.cs.se.modelepedia.feature</module>
   	<module>../../features/edu.toronto.cs.se.modelepedia.z3.feature</module>
   	<module>../../features/edu.toronto.cs.se.modelepedia.kleisli.feature</module>
