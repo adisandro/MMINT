@@ -12,6 +12,7 @@
 package edu.toronto.cs.se.mmint;
 
 import java.io.File;
+import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
@@ -499,17 +500,24 @@ public class MIDTypeRegistry {
       if (bundleEntry == null) {
         throw new MMINTException("Can't find '" + pathLastSegment + "'");
       }
-      if (bundleEntry.isDirectory()) { // extract entire jar
-        var orderedEntries = bundleJar.stream() // order by path length to create parent directories first
-          .sorted(Comparator.comparing(JarEntry::getName))
+      if (bundleEntry.isDirectory()) { // extract jar dir structure
+        var orderedEntries = bundleJar.stream()
+          .filter(e -> e.getName().startsWith(relativePath) || relativePath.startsWith(e.getName()))
+          .sorted(Comparator.comparing(JarEntry::getName)) // order by path length to create parent directories first
           .collect(Collectors.toList());
         for (var entry : orderedEntries) {
-          var tmpEntryPath = tmpPath.resolve(entry.getName());
+          var entryName = entry.getName();
+          var tmpEntryPath = tmpPath.resolve(entryName);
           if (!tmpEntryPath.startsWith(tmpPath)) { // zip slip vulnerability
             throw new MMINTException("Jar entry is outside of extraction dir");
           }
           if (entry.isDirectory()) {
-            Files.createDirectory(tmpEntryPath);
+            try {
+              Files.createDirectory(tmpEntryPath);
+            }
+            catch (FileAlreadyExistsException e) {
+              // do nothing
+            }
             continue;
           }
           Files.copy(bundleJar.getInputStream(bundleEntry), tmpEntryPath, StandardCopyOption.REPLACE_EXISTING);
@@ -524,7 +532,7 @@ public class MIDTypeRegistry {
       }
     }
 
-    return tmpPath.toString() + relativePath;
+    return tmpPath.toString() + File.separator + relativePath;
 	}
 
 	private static String getBinaryBundlePath(String bundleLocation, String relativePath) throws Exception {
