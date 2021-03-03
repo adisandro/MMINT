@@ -520,8 +520,10 @@ public class MIDTypeRegistry {
             }
             continue;
           }
-          Files.copy(bundleJar.getInputStream(bundleEntry), tmpEntryPath, StandardCopyOption.REPLACE_EXISTING);
+          Files.copy(bundleJar.getInputStream(entry), tmpEntryPath, StandardCopyOption.REPLACE_EXISTING);
         }
+
+        return tmpPath.toString() + File.separator + relativePath;
       }
       else {
         var tmpEntryPath = tmpPath.resolve(pathLastSegment);
@@ -529,10 +531,10 @@ public class MIDTypeRegistry {
           throw new MMINTException("Jar entry is outside of extraction dir");
         }
         Files.copy(bundleJar.getInputStream(bundleEntry), tmpEntryPath, StandardCopyOption.REPLACE_EXISTING);
+
+        return tmpEntryPath.toString();
       }
     }
-
-    return tmpPath.toString() + File.separator + relativePath;
 	}
 
 	private static String getBinaryBundlePath(String bundleLocation, String relativePath) throws Exception {
