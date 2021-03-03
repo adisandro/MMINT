@@ -115,7 +115,7 @@ public class WorkflowOperatorImpl extends NestingOperatorImpl implements Workflo
             else {
                 //TODO MMINT[WORKFLOW] Generalize addSubtype for heavy factory, setting nestedMIDPath there, then use it
                 var workflowMIDPath = this.getClass().getName().replace(".", File.separator) + "." + MIDPackage.eNAME;
-                var workflowMIDBundlePath = MIDTypeRegistry.getFileBundlePath(this, workflowMIDPath);
+                var workflowMIDBundlePath = MIDTypeRegistry.getBundlePath(this, workflowMIDPath);
                 workflowMID = (MID) FileUtils.readModelFile(workflowMIDBundlePath, null, false);
             }
             return workflowMID;
@@ -158,8 +158,8 @@ public class WorkflowOperatorImpl extends NestingOperatorImpl implements Workflo
             //TODO MMINT[WORKFLOW] Generalize addSubtype for heavy factory, setting nestedMIDPath there, then use it
             var workflowMIDPath = this.getClass().getName().replace(".", File.separator) + "." + MIDPackage.eNAME;
             // in a binary install, extracts the file from the jar as a side effect
-            MIDTypeRegistry.getFileBundlePath(this, workflowMIDPath);
-            var workflowMIDDiagramBundlePath = MIDTypeRegistry.getFileBundlePath(this, workflowMIDPath +
+            MIDTypeRegistry.getBundlePath(this, workflowMIDPath);
+            var workflowMIDDiagramBundlePath = MIDTypeRegistry.getBundlePath(this, workflowMIDPath +
                                                                                  GMFUtils.DIAGRAM_SUFFIX);
             FileUtils.openEclipseEditor(workflowMIDDiagramBundlePath, midDiagramTypeId, false);
         }

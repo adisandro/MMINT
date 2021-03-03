@@ -13,12 +13,14 @@ package edu.toronto.cs.se.mmint;
 
 import java.io.File;
 import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -489,61 +491,90 @@ public class MIDTypeRegistry {
 		return bundle;
 	}
 
-	private static String extractJarFile(String bundlePath, String relativeFilePath) throws Exception {
-    var fileName = FileUtils.getLastSegmentFromPath(relativeFilePath);
-    var tmpFilePath = Paths.get(System.getProperty("java.io.tmpdir") + File.separator + fileName);
-    try (var bundleJar = new JarFile(new File(bundlePath))) {
-      var bundleJarEntry = bundleJar.getEntry(relativeFilePath);
-      if (bundleJarEntry == null) {
-        throw new MMINTException("Can't find '" + fileName + "'");
+	private static String extractFromJar(String bundleLocation, String relativePath) throws Exception {
+    var pathLastSegment = FileUtils.getLastSegmentFromPath(relativePath);
+    var tmpPath = Path.of(System.getProperty("java.io.tmpdir"));
+    try (var bundleJar = new JarFile(new File(bundleLocation))) {
+      var bundleEntry = bundleJar.getEntry(relativePath);
+      if (bundleEntry == null) {
+        throw new MMINTException("Can't find '" + pathLastSegment + "'");
       }
-      Files.copy(bundleJar.getInputStream(bundleJarEntry), tmpFilePath, StandardCopyOption.REPLACE_EXISTING);
+      if (bundleEntry.isDirectory()) { // extract entire jar
+        var orderedEntries = bundleJar.stream() // order by path length to create parent directories first
+          .sorted(Comparator.comparing(JarEntry::getName))
+          .collect(Collectors.toList());
+        for (var entry : orderedEntries) {
+          var tmpEntryPath = tmpPath.resolve(entry.getName());
+          if (!tmpEntryPath.startsWith(tmpPath)) { // zip slip vulnerability
+            throw new MMINTException("Jar entry is outside of extraction dir");
+          }
+          if (entry.isDirectory()) {
+            Files.createDirectory(tmpEntryPath);
+            continue;
+          }
+          Files.copy(bundleJar.getInputStream(bundleEntry), tmpEntryPath, StandardCopyOption.REPLACE_EXISTING);
+        }
+      }
+      else {
+        var tmpEntryPath = tmpPath.resolve(pathLastSegment);
+        if (!tmpEntryPath.startsWith(tmpPath)) { // zip slip vulnerability
+          throw new MMINTException("Jar entry is outside of extraction dir");
+        }
+        Files.copy(bundleJar.getInputStream(bundleEntry), tmpEntryPath, StandardCopyOption.REPLACE_EXISTING);
+      }
     }
 
-    return tmpFilePath.toString();
+    return tmpPath.toString() + relativePath;
 	}
 
-	public static String getFileBundlePath(ExtendibleElement typeInBundle, String relativeFilePath) throws Exception {
-    var bundlePath = typeInBundle.getClass().getProtectionDomain().getCodeSource().getLocation().getFile();
-    var fileName = FileUtils.getLastSegmentFromPath(relativeFilePath);
-    if (bundlePath.endsWith("jar")) { // binary installation
-      // first attempt: find file in original jar
-      try {
-        return extractJarFile(bundlePath, relativeFilePath);
-      }
-      catch (Exception e) {
-        // fallthrough to second attempt
-      }
-      // second attempt: find file in source jar
-      var separator = bundlePath.lastIndexOf("_");
-      var srcBundlePath = bundlePath.substring(0, separator) + ".source" + bundlePath.substring(separator);
-      if (!FileUtils.isFile(srcBundlePath, false)) {
-        var errorMsg = "Can't find '" + fileName + "'";
-        if (fileName.endsWith("java")) {
-          errorMsg += " (try installing mmint.sdk)";
-        }
-        throw new MMINTException(errorMsg);
-      }
-      return extractJarFile(srcBundlePath, relativeFilePath);
+	private static String getBinaryBundlePath(String bundleLocation, String relativePath) throws Exception {
+    var pathLastSegment = FileUtils.getLastSegmentFromPath(relativePath);
+    // first attempt: find in binary jar
+    try {
+      return extractFromJar(bundleLocation, relativePath);
     }
-    else { // running from the sources
-      Bundle bundle = MIDTypeRegistry.getTypeBundle(typeInBundle.getUri());
-      if (bundle == null) {
-        throw new MMINTException("Can't find the bundle for '" + typeInBundle.getName() + "'");
-      }
-      var filePattern = (fileName.charAt(fileName.length()-1) == IPath.SEPARATOR) ?
-        fileName.substring(0, fileName.length()-1) : // directory
-        fileName;
-      var bundleEntries = bundle.findEntries("/", filePattern, true);
-      if (bundleEntries == null || !bundleEntries.hasMoreElements()) {
-        throw new MMINTException("Can't find '" + fileName + "'");
-      }
-      var filePath = FileLocator.toFileURL(bundleEntries.nextElement()).getFile();
-      if (Platform.getOS().equals(Platform.OS_WIN32)) {
-        filePath = filePath.substring(1); // remove leading slash
-      }
-      return filePath;
+    catch (Exception e) {
+      // fallthrough to second attempt
     }
+    // second attempt: find in sdk jar
+    var separator = bundleLocation.lastIndexOf("_");
+    var sdkBundleLocation = bundleLocation.substring(0, separator) + ".source" + bundleLocation.substring(separator);
+    if (!FileUtils.isFile(sdkBundleLocation, false)) { // sdk not installed
+      var errorMsg = "Can't find '" + pathLastSegment + "'";
+      if (pathLastSegment.endsWith("java")) {
+        errorMsg += " (try installing mmint.sdk)";
+      }
+      throw new MMINTException(errorMsg);
+    }
+    return extractFromJar(sdkBundleLocation, relativePath);
+	}
+
+	private static String getDevelopmentBundlePath(ExtendibleElement typeInBundle, String relativePath) throws Exception {
+    Bundle bundle = MIDTypeRegistry.getTypeBundle(typeInBundle.getUri());
+    if (bundle == null) {
+      throw new MMINTException("Can't find the bundle for '" + typeInBundle.getName() + "'");
+    }
+    var pathLastSegment = FileUtils.getLastSegmentFromPath(relativePath);
+    var pattern = (pathLastSegment.charAt(pathLastSegment.length()-1) == IPath.SEPARATOR) ?
+      pathLastSegment.substring(0, pathLastSegment.length()-1) : // directory
+      pathLastSegment; // file or directory
+    var bundleEntries = bundle.findEntries("/", pattern, true);
+    if (bundleEntries == null || !bundleEntries.hasMoreElements()) {
+      throw new MMINTException("Can't find '" + pathLastSegment + "'");
+    }
+    var bundlePath = FileLocator.toFileURL(bundleEntries.nextElement()).getFile();
+    if (Platform.getOS().equals(Platform.OS_WIN32)) {
+      bundlePath = bundlePath.substring(1); // remove leading slash
+    }
+
+    return bundlePath;
+	}
+
+	public static String getBundlePath(ExtendibleElement typeInBundle, String relativePath) throws Exception {
+    var bundleLocation = typeInBundle.getClass().getProtectionDomain().getCodeSource().getLocation().getFile();
+    return (bundleLocation.endsWith("jar")) ?
+      getBinaryBundlePath(bundleLocation, relativePath) :
+      getDevelopmentBundlePath(typeInBundle, relativePath);
   }
 
 	/**

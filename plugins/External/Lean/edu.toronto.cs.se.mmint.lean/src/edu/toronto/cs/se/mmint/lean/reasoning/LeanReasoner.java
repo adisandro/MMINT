@@ -102,7 +102,7 @@ public class LeanReasoner implements IModelConstraintTrait {
     // write lean config file
     var mathlibPath = MMINT.getPreference(MMINTLeanMathlibPathMenu.PREFERENCE_MENU_LEAN_MATHLIB_PATH);
     if (mathlibPath == null) {
-      throw new MMINTException("Mathlib path not configured (you can do it through the MMINT top menu)");
+      throw new MMINTException("Mathlib path not configured (set it in the MMINT top menu)");
     }
     var config = """
       builtin_path
