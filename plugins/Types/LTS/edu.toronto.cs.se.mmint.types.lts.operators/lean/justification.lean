@@ -8,6 +8,10 @@ structure Claim (α : Type) :=
 (X : set α)
 (P : Property α)
 
+@[instance] def claim_default {α : Type} : inhabited (Claim α) := 
+⟨Claim.mk ∅ (λ x, true)⟩ 
+
+
 @[reducible]
 def meaning {α : Type} (C : Claim α) : Prop := 
 ∀ x ∈ C.X, C.P x 
@@ -16,6 +20,11 @@ notation ⟦C⟧ := meaning C
 
 structure Strategy (α : Type) :=
 (parent : Claim α) (decomp : Claim α → list (Claim α))
+
+@[instance] def strat_default {α : Type} : inhabited (Strategy α) := 
+⟨Strategy.mk (default (Claim α)) (λ c, [])⟩
+
+
 
 def deductive (α : Type) (S : Strategy α) : Prop := 
 let subclaims := (S.decomp) S.parent in 
@@ -32,6 +41,9 @@ list.map (Claim.mk Clm.X) Ps
 structure input (α : Type) :=
 (Clm : Claim α)
 (Props : list (Property α))
+
+@[instance] def input_default {α : Type} : inhabited (input α) := 
+⟨input.mk (default (Claim α)) []⟩
 
 namespace input 
 

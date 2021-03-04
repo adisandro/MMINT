@@ -42,6 +42,8 @@ import edu.toronto.cs.se.modelepedia.gsn.util.PropertyBuilder;
 
 public class GSNLeanReasoner extends LeanReasoner implements IGSNDecompositionTrait {
 
+  private final static String FEEDBACK_PROPERTY_HINT = "HINT";
+
   @Override
   public String getName() {
     return "Lean/GSN";
@@ -127,23 +129,45 @@ public class GSNLeanReasoner extends LeanReasoner implements IGSNDecompositionTr
         "see output file '" + timestampPath + outputFile.get() + "'" :
         "see directory '" + timestampPath + "'";
       if (!valid && outputFile.isPresent()) {
-        // parse failed proof to find the bad sub-property
+        // parse failed proof to find the bad sub-properties
         var outputPath = workingPath2.resolve(outputFile.get());
-        var badProperty = Files.lines(outputPath)
+        var feedbackLines = Files.lines(outputPath)
           .map(l -> l.strip())
           .filter(l -> l.startsWith(LeanReasoner.LEAN_COMMENT))
-          .map(l -> l.substring(LeanReasoner.LEAN_COMMENT.length(), l.indexOf(" ")))
-          .findFirst();
-        if (badProperty.isPresent()) {
-          var badGoal = strategy.getSupportedBy().stream()
+          .map(l -> l.substring(LeanReasoner.LEAN_COMMENT.length()).stripLeading())
+          .collect(Collectors.toList());
+        var badProperties = new ArrayList<String>();
+        var hintProperties = new ArrayList<String>();
+        List<String> properties;
+        for (var feedback : feedbackLines) {
+          if (feedback.startsWith(GSNLeanReasoner.FEEDBACK_PROPERTY_HINT)) {
+            properties = hintProperties;
+            feedback = feedback.substring(GSNLeanReasoner.FEEDBACK_PROPERTY_HINT.length()).stripLeading();
+          }
+          else {
+            properties = badProperties;
+          }
+          feedback = feedback.substring(0, feedback.indexOf(" "));
+          properties.add(feedback);
+        }
+        if (!badProperties.isEmpty()) {
+          var badGoals = strategy.getSupportedBy().stream()
             .map(SupportedBy::getTarget)
             .filter(g -> g instanceof PropertyGoal)
             .map(g -> (PropertyGoal) g)
-            .filter(g -> g.getProperty().startsWith(badProperty.get()))
-            .findFirst();
-          if (badGoal.isPresent()) {
-            invalidMsg += " because of the property associated with sub-goal '" + badGoal.get().getId() +
-                          "'. Consider changing the property and validating the decomposition again.";
+            .filter(g -> badProperties.stream().anyMatch(p -> g.getProperty().startsWith(p)))
+            .map(PropertyGoal::getId)
+            .collect(Collectors.toList());
+          if (!badGoals.isEmpty()) {
+            var propertyWord = (badGoals.size() > 1) ? "properties" : "property";
+            var subgoalWord = (badGoals.size() > 1) ? "sub-goals" : "sub-goal";
+            var hint = (hintProperties.isEmpty()) ? "" : String.join(", ", hintProperties);
+            invalidMsg += " because of the " + propertyWord + " associated with " + subgoalWord + " '" +
+                          String.join(", ", badGoals) + "'. Consider changing the " + propertyWord +
+                          " and validating the decomposition again.";
+            if (!hintProperties.isEmpty()) {
+              invalidMsg += "\n(hint: using '" + String.join(", ", hintProperties) + "' instead may work)";
+            }
           }
         }
       }
