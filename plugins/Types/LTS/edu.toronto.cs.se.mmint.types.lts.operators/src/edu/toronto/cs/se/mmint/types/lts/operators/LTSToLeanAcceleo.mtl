@@ -61,6 +61,10 @@ do
   set_goal ps.init_goal,
   ps ← solve_inductive (ps),
   str ← get_unused ps,
+    match ps.solved with 
+    | tt := tactic.trace "True"
+    | ff := tactic.trace "False"
+    end,
     tactic.unsafe_run_io $ output $ evidence_file_template {unused := str ..ps}
 | _ := return ()
 end
