@@ -17,16 +17,14 @@ import edu.toronto.cs.se.modelepedia.gsn.BasicStrategy;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Basic Strategy</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Basic Strategy</b></em>'. <!-- end-user-doc -->
  *
  * @generated
  */
 public class BasicStrategyImpl extends StrategyImpl implements BasicStrategy {
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected BasicStrategyImpl() {
@@ -34,8 +32,8 @@ public class BasicStrategyImpl extends StrategyImpl implements BasicStrategy {
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -43,4 +41,4 @@ public class BasicStrategyImpl extends StrategyImpl implements BasicStrategy {
     return GSNPackage.Literals.BASIC_STRATEGY;
   }
 
-} //BasicStrategyImpl
+} // BasicStrategyImpl

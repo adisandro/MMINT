@@ -11,7 +11,6 @@
  */
 package edu.toronto.cs.se.modelepedia.gsn.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -22,16 +21,15 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import edu.toronto.cs.se.modelepedia.gsn.Justification;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.gsn.Justification} object.
- * <!-- begin-user-doc -->
- * <!-- end-user-doc -->
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.gsn.Justification} object. <!--
+ * begin-user-doc --> <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class JustificationItemProvider extends ContextualElementItemProvider {
   /**
-   * This constructs an instance from a factory and a notifier.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public JustificationItemProvider(AdapterFactory adapterFactory) {
@@ -39,24 +37,22 @@ public class JustificationItemProvider extends ContextualElementItemProvider {
   }
 
   /**
-   * This returns the property descriptors for the adapted class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
   public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-    if (this.itemPropertyDescriptors == null) {
+    if (itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
     }
-    return this.itemPropertyDescriptors;
+    return itemPropertyDescriptors;
   }
 
   /**
-   * This returns Justification.gif.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * This returns Justification.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -65,25 +61,21 @@ public class JustificationItemProvider extends ContextualElementItemProvider {
   }
 
   /**
-   * This returns the label text for the adapted class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
   public String getText(Object object) {
-    var label = ((Justification)object).getId();
-    return label == null || label.length() == 0 ?
-      getString("_UI_Justification_type") :
-      getString("_UI_Justification_type") + " " + label;
+    String label = ((Justification) object).getId();
+    return label == null || label.length() == 0 ? getString("_UI_Justification_type")
+      : getString("_UI_Justification_type") + " " + label;
   }
 
-
   /**
-   * This handles model notifications by calling {@link #updateChildren} to update any cached
-   * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating a
+   * viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -93,10 +85,9 @@ public class JustificationItemProvider extends ContextualElementItemProvider {
   }
 
   /**
-   * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-   * that can be created under this object.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created under
+   * this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override

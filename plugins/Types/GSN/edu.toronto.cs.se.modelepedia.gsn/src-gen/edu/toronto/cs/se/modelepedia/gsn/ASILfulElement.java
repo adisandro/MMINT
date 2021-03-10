@@ -14,15 +14,14 @@ package edu.toronto.cs.se.modelepedia.gsn;
 import org.eclipse.emf.ecore.EObject;
 
 /**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>ASI Lful Element</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>ASI Lful Element</b></em>'. <!-- end-user-doc
+ * -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.ASILfulElement#getAsil <em>Asil</em>}</li>
+ * <li>{@link edu.toronto.cs.se.modelepedia.gsn.ASILfulElement#getAsil <em>Asil</em>}</li>
  * </ul>
  *
  * @see edu.toronto.cs.se.modelepedia.gsn.GSNPackage#getASILfulElement()
@@ -31,10 +30,10 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface ASILfulElement extends EObject {
   /**
-   * Returns the value of the '<em><b>Asil</b></em>' containment reference.
-   * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.gsn.ASIL#getTarget <em>Target</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Returns the value of the '<em><b>Asil</b></em>' containment reference. It is bidirectional and its opposite is
+   * '{@link edu.toronto.cs.se.modelepedia.gsn.ASIL#getTarget <em>Target</em>}'. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
+   * 
    * @return the value of the '<em>Asil</em>' containment reference.
    * @see #setAsil(ASIL)
    * @see edu.toronto.cs.se.modelepedia.gsn.GSNPackage#getASILfulElement_Asil()
@@ -45,10 +44,11 @@ public interface ASILfulElement extends EObject {
   ASIL getAsil();
 
   /**
-   * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.gsn.ASILfulElement#getAsil <em>Asil</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Asil</em>' containment reference.
+   * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.gsn.ASILfulElement#getAsil <em>Asil</em>}' containment
+   * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
+   * @param value
+   *          the new value of the '<em>Asil</em>' containment reference.
    * @see #getAsil()
    * @generated
    */

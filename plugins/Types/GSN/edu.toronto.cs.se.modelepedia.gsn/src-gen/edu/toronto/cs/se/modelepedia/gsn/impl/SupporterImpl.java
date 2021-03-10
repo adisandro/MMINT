@@ -26,23 +26,21 @@ import edu.toronto.cs.se.modelepedia.gsn.SupportedBy;
 import edu.toronto.cs.se.modelepedia.gsn.Supporter;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Supporter</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Supporter</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.SupporterImpl#getSupports <em>Supports</em>}</li>
+ * <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.SupporterImpl#getSupports <em>Supports</em>}</li>
  * </ul>
  *
  * @generated
  */
 public abstract class SupporterImpl extends MinimalEObjectImpl.Container implements Supporter {
   /**
-   * The cached value of the '{@link #getSupports() <em>Supports</em>}' reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The cached value of the '{@link #getSupports() <em>Supports</em>}' reference list. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
+   * 
    * @see #getSupports()
    * @generated
    * @ordered
@@ -50,8 +48,8 @@ public abstract class SupporterImpl extends MinimalEObjectImpl.Container impleme
   protected EList<SupportedBy> supports;
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected SupporterImpl() {
@@ -59,8 +57,8 @@ public abstract class SupporterImpl extends MinimalEObjectImpl.Container impleme
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -69,105 +67,107 @@ public abstract class SupporterImpl extends MinimalEObjectImpl.Container impleme
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
   public EList<SupportedBy> getSupports() {
-    if (this.supports == null) {
-      this.supports = new EObjectWithInverseResolvingEList<>(SupportedBy.class, this, GSNPackage.SUPPORTER__SUPPORTS, GSNPackage.SUPPORTED_BY__TARGET);
+    if (supports == null) {
+      supports = new EObjectWithInverseResolvingEList<SupportedBy>(SupportedBy.class, this,
+                                                                   GSNPackage.SUPPORTER__SUPPORTS,
+                                                                   GSNPackage.SUPPORTED_BY__TARGET);
     }
-    return this.supports;
+    return supports;
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
   @Override
   public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
-      case GSNPackage.SUPPORTER__SUPPORTS:
-        return ((InternalEList<InternalEObject>)(InternalEList<?>)getSupports()).basicAdd(otherEnd, msgs);
+    case GSNPackage.SUPPORTER__SUPPORTS:
+      return ((InternalEList<InternalEObject>) (InternalEList<?>) getSupports()).basicAdd(otherEnd, msgs);
     }
     return super.eInverseAdd(otherEnd, featureID, msgs);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
-      case GSNPackage.SUPPORTER__SUPPORTS:
-        return ((InternalEList<?>)getSupports()).basicRemove(otherEnd, msgs);
+    case GSNPackage.SUPPORTER__SUPPORTS:
+      return ((InternalEList<?>) getSupports()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
-      case GSNPackage.SUPPORTER__SUPPORTS:
-        return getSupports();
+    case GSNPackage.SUPPORTER__SUPPORTS:
+      return getSupports();
     }
     return super.eGet(featureID, resolve, coreType);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
-      case GSNPackage.SUPPORTER__SUPPORTS:
-        getSupports().clear();
-        getSupports().addAll((Collection<? extends SupportedBy>)newValue);
-        return;
+    case GSNPackage.SUPPORTER__SUPPORTS:
+      getSupports().clear();
+      getSupports().addAll((Collection<? extends SupportedBy>) newValue);
+      return;
     }
     super.eSet(featureID, newValue);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
-      case GSNPackage.SUPPORTER__SUPPORTS:
-        getSupports().clear();
-        return;
+    case GSNPackage.SUPPORTER__SUPPORTS:
+      getSupports().clear();
+      return;
     }
     super.eUnset(featureID);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
-      case GSNPackage.SUPPORTER__SUPPORTS:
-        return this.supports != null && !this.supports.isEmpty();
+    case GSNPackage.SUPPORTER__SUPPORTS:
+      return supports != null && !supports.isEmpty();
     }
     return super.eIsSet(featureID);
   }
 
-} //SupporterImpl
+} // SupporterImpl

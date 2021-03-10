@@ -11,7 +11,6 @@
  */
 package edu.toronto.cs.se.modelepedia.gsn.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -26,16 +25,15 @@ import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.Solution;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.gsn.Solution} object.
- * <!-- begin-user-doc -->
- * <!-- end-user-doc -->
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.gsn.Solution} object. <!--
+ * begin-user-doc --> <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class SolutionItemProvider extends CoreElementItemProvider {
   /**
-   * This constructs an instance from a factory and a notifier.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public SolutionItemProvider(AdapterFactory adapterFactory) {
@@ -43,47 +41,40 @@ public class SolutionItemProvider extends CoreElementItemProvider {
   }
 
   /**
-   * This returns the property descriptors for the adapted class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
   public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-    if (this.itemPropertyDescriptors == null) {
+    if (itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
       addStateValidityPropertyDescriptor(object);
     }
-    return this.itemPropertyDescriptors;
+    return itemPropertyDescriptors;
   }
 
   /**
-   * This adds a property descriptor for the State Validity feature.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * This adds a property descriptor for the State Validity feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected void addStateValidityPropertyDescriptor(Object object) {
-    this.itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_StatefulElement_stateValidity_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_StatefulElement_stateValidity_feature", "_UI_StatefulElement_type"),
-         GSNPackage.Literals.STATEFUL_ELEMENT__STATE_VALIDITY,
-         true,
-         false,
-         false,
-         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-         null,
-         null));
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+                                                             getResourceLocator(), getString(
+                                                                                             "_UI_StatefulElement_stateValidity_feature"),
+                                                             getString("_UI_PropertyDescriptor_description",
+                                                                       "_UI_StatefulElement_stateValidity_feature",
+                                                                       "_UI_StatefulElement_type"),
+                                                             GSNPackage.Literals.STATEFUL_ELEMENT__STATE_VALIDITY, true,
+                                                             false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                                                             null, null));
   }
 
   /**
-   * This returns Solution.gif.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * This returns Solution.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -92,25 +83,21 @@ public class SolutionItemProvider extends CoreElementItemProvider {
   }
 
   /**
-   * This returns the label text for the adapted class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
   public String getText(Object object) {
-    var label = ((Solution)object).getId();
-    return label == null || label.length() == 0 ?
-      getString("_UI_Solution_type") :
-      getString("_UI_Solution_type") + " " + label;
+    String label = ((Solution) object).getId();
+    return label == null || label.length() == 0 ? getString("_UI_Solution_type")
+      : getString("_UI_Solution_type") + " " + label;
   }
 
-
   /**
-   * This handles model notifications by calling {@link #updateChildren} to update any cached
-   * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating a
+   * viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -118,18 +105,17 @@ public class SolutionItemProvider extends CoreElementItemProvider {
     updateChildren(notification);
 
     switch (notification.getFeatureID(Solution.class)) {
-      case GSNPackage.SOLUTION__STATE_VALIDITY:
-        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-        return;
+    case GSNPackage.SOLUTION__STATE_VALIDITY:
+      fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+      return;
     }
     super.notifyChanged(notification);
   }
 
   /**
-   * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-   * that can be created under this object.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created under
+   * this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override

@@ -17,16 +17,15 @@ import edu.toronto.cs.se.modelepedia.gsn.ASILDecompositionStrategy;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>ASIL Decomposition Strategy</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>ASIL Decomposition Strategy</b></em>'. <!--
+ * end-user-doc -->
  *
  * @generated
  */
 public class ASILDecompositionStrategyImpl extends StrategyImpl implements ASILDecompositionStrategy {
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected ASILDecompositionStrategyImpl() {
@@ -34,8 +33,8 @@ public class ASILDecompositionStrategyImpl extends StrategyImpl implements ASILD
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -43,4 +42,4 @@ public class ASILDecompositionStrategyImpl extends StrategyImpl implements ASILD
     return GSNPackage.Literals.ASIL_DECOMPOSITION_STRATEGY;
   }
 
-} //ASILDecompositionStrategyImpl
+} // ASILDecompositionStrategyImpl

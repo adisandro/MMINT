@@ -29,6 +29,8 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ui.GMFUtils;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
+import edu.toronto.cs.se.modelepedia.gsn.GSNFactory;
+import edu.toronto.cs.se.modelepedia.gsn.Property;
 
 /**
  * The specification of a Lean encoder that handles GSN property decomposition quirks.
@@ -37,14 +39,6 @@ import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
  */
 public interface IGSNLeanEncoder {
 
-  static class BoundProperty {
-    public String property;
-    public String description;
-    public BoundProperty(String property, String description) {
-      this.property = Objects.requireNonNull(property);
-      this.description = Objects.requireNonNull(description);
-    }
-  }
   static class PropertyVariable {
     public String name;
     public Map<EClass, EStructuralFeature> validTypes;
@@ -54,35 +48,38 @@ public interface IGSNLeanEncoder {
     }
   }
   static class PropertyTemplate {
-    public String property;
-    public String description;
+    public String formal;
+    public String informal;
     public String category;
     public List<PropertyVariable> variables;
     public static PropertyTemplate CUSTOM = new PropertyTemplate("", "Custom property", null, List.of());
 
-    public PropertyTemplate(String property, String description, @Nullable String category,
+    public PropertyTemplate(String formal, String informal, @Nullable String category,
                             List<PropertyVariable> variables) {
-      this.property  = property;
-      this.description = Objects.requireNonNull(description);
+      this.formal  = formal;
+      this.informal = Objects.requireNonNull(informal);
       this.category = category;
       this.variables = Objects.requireNonNull(variables);
     }
 
-    public BoundProperty bindVariables(String title, Map<EClass, List<EObject>> modelObjs)
+    public Property bindVariables(String title, Map<EClass, List<EObject>> modelObjs)
                                       throws MIDDialogCancellation {
+      var property = GSNFactory.eINSTANCE.createProperty();
       if (this.variables.isEmpty()) {
-        return new BoundProperty(this.property, this.description);
+        property.setFormal(this.formal);
+        property.setInformal(this.informal);
+        return property;
       }
 
       var message = ":\nSelect the model element corresponding to variable ";
       var contentProvider = new ArrayContentProvider();
       var labelProvider = new AdapterFactoryLabelProvider(GMFUtils.getAdapterFactory());
-      var boundProperty = this.property;
-      var boundDescription = this.description;
+      var boundFormal = this.formal;
+      var boundInformal = this.informal;
       for (var variable : this.variables) {
         var validModelObjs = new ArrayList<EObject>();
         variable.validTypes.keySet().forEach(t -> validModelObjs.addAll(modelObjs.getOrDefault(t, List.of())));
-        var modelObj = MIDDialogs.<EObject>openListDialog(title, boundDescription + message + variable.name,
+        var modelObj = MIDDialogs.<EObject>openListDialog(title, boundInformal + message + variable.name,
                                                           validModelObjs, contentProvider, labelProvider);
         String boundVariable;
         var modelObjClass = modelObj.eClass();
@@ -91,11 +88,13 @@ public interface IGSNLeanEncoder {
           .map(c -> variable.validTypes.get(c))
           .findFirst();
         boundVariable = feature.map(f -> (String) modelObj.eGet(f)).orElse(modelObj.toString()).replaceAll("\\s", "_");
-        boundProperty = boundProperty.replace(variable.name, boundVariable);
-        boundDescription = boundDescription.replace(variable.name, boundVariable);
+        boundFormal = boundFormal.replace(variable.name, boundVariable);
+        boundInformal = boundInformal.replace(variable.name, boundVariable);
       }
+      property.setFormal(boundFormal);
+      property.setInformal(boundInformal);
 
-      return new BoundProperty(boundProperty, boundDescription);
+      return property;
     }
   }
 

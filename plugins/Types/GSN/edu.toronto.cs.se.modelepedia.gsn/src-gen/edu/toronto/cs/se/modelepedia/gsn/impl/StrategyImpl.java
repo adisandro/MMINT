@@ -17,16 +17,14 @@ import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.Strategy;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Strategy</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Strategy</b></em>'. <!-- end-user-doc -->
  *
  * @generated
  */
 public abstract class StrategyImpl extends DecomposableCoreElementImpl implements Strategy {
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected StrategyImpl() {
@@ -34,8 +32,8 @@ public abstract class StrategyImpl extends DecomposableCoreElementImpl implement
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -43,4 +41,4 @@ public abstract class StrategyImpl extends DecomposableCoreElementImpl implement
     return GSNPackage.Literals.STRATEGY;
   }
 
-} //StrategyImpl
+} // StrategyImpl

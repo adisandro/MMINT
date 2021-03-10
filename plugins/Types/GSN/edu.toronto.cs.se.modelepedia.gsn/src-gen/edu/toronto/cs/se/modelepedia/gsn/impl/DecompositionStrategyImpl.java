@@ -20,16 +20,15 @@ import edu.toronto.cs.se.modelepedia.gsn.DecompositionStrategy;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Decomposition Strategy</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Decomposition Strategy</b></em>'. <!--
+ * end-user-doc -->
  *
  * @generated
  */
 public abstract class DecompositionStrategyImpl extends StrategyImpl implements DecompositionStrategy {
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected DecompositionStrategyImpl() {
@@ -37,8 +36,8 @@ public abstract class DecompositionStrategyImpl extends StrategyImpl implements 
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -47,8 +46,8 @@ public abstract class DecompositionStrategyImpl extends StrategyImpl implements 
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -59,23 +58,23 @@ public abstract class DecompositionStrategyImpl extends StrategyImpl implements 
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
   public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
     switch (operationID) {
-      case GSNPackage.DECOMPOSITION_STRATEGY___VALIDATE:
-        try {
-          validate();
-          return null;
-        }
-        catch (Throwable throwable) {
-          throw new InvocationTargetException(throwable);
-        }
+    case GSNPackage.DECOMPOSITION_STRATEGY___VALIDATE:
+      try {
+        validate();
+        return null;
+      }
+      catch (Throwable throwable) {
+        throw new InvocationTargetException(throwable);
+      }
     }
     return super.eInvoke(operationID, arguments);
   }
 
-} //DecompositionStrategyImpl
+} // DecompositionStrategyImpl

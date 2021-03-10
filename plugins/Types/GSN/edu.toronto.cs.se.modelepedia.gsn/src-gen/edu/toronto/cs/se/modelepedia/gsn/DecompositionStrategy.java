@@ -12,9 +12,8 @@
 package edu.toronto.cs.se.modelepedia.gsn;
 
 /**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Decomposition Strategy</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>Decomposition Strategy</b></em>'. <!--
+ * end-user-doc -->
  *
  *
  * @see edu.toronto.cs.se.modelepedia.gsn.GSNPackage#getDecompositionStrategy()

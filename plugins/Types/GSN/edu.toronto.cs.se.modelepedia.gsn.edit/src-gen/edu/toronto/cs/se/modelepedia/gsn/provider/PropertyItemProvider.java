@@ -3,20 +3,25 @@
  * All rights reserved. This program and the accompanying materials are made available under the terms
  * of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
  *   Alessio Di Sandro - Implementation
  *   Nick Fung - Implementation.
- *
+ * 
  */
 package edu.toronto.cs.se.modelepedia.gsn.provider;
+
+import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
+import edu.toronto.cs.se.modelepedia.gsn.Property;
 
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -28,24 +33,20 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
-import edu.toronto.cs.se.modelepedia.gsn.ImpactAnnotation;
-import edu.toronto.cs.se.modelepedia.gsn.ImpactType;
-
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.gsn.ImpactAnnotation} object. <!--
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.gsn.Property} object. <!--
  * begin-user-doc --> <!-- end-user-doc -->
  * 
  * @generated
  */
-public class ImpactAnnotationItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+public class PropertyItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
   IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
   /**
    * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
-  public ImpactAnnotationItemProvider(AdapterFactory adapterFactory) {
+  public PropertyItemProvider(AdapterFactory adapterFactory) {
     super(adapterFactory);
   }
 
@@ -59,54 +60,52 @@ public class ImpactAnnotationItemProvider extends ItemProviderAdapter implements
     if (itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
-      addTypePropertyDescriptor(object);
-      addSourcePropertyDescriptor(object);
+      addFormalPropertyDescriptor(object);
+      addInformalPropertyDescriptor(object);
     }
     return itemPropertyDescriptors;
   }
 
   /**
-   * This adds a property descriptor for the Type feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * This adds a property descriptor for the Informal feature. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
-  protected void addTypePropertyDescriptor(Object object) {
+  protected void addInformalPropertyDescriptor(Object object) {
     itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
                                                              getResourceLocator(), getString(
-                                                                                             "_UI_ImpactAnnotation_type_feature"),
+                                                                                             "_UI_Property_informal_feature"),
                                                              getString("_UI_PropertyDescriptor_description",
-                                                                       "_UI_ImpactAnnotation_type_feature",
-                                                                       "_UI_ImpactAnnotation_type"),
-                                                             GSNPackage.Literals.IMPACT_ANNOTATION__TYPE, true, false,
-                                                             false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
-                                                             null));
+                                                                       "_UI_Property_informal_feature",
+                                                                       "_UI_Property_type"),
+                                                             GSNPackage.Literals.PROPERTY__INFORMAL, true, false, false,
+                                                             ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
   }
 
   /**
-   * This adds a property descriptor for the Source feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * This adds a property descriptor for the Formal feature. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
-  protected void addSourcePropertyDescriptor(Object object) {
+  protected void addFormalPropertyDescriptor(Object object) {
     itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
                                                              getResourceLocator(), getString(
-                                                                                             "_UI_ImpactAnnotation_source_feature"),
+                                                                                             "_UI_Property_formal_feature"),
                                                              getString("_UI_PropertyDescriptor_description",
-                                                                       "_UI_ImpactAnnotation_source_feature",
-                                                                       "_UI_ImpactAnnotation_type"),
-                                                             GSNPackage.Literals.IMPACT_ANNOTATION__SOURCE, true, false,
-                                                             false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
-                                                             null));
+                                                                       "_UI_Property_formal_feature",
+                                                                       "_UI_Property_type"),
+                                                             GSNPackage.Literals.PROPERTY__FORMAL, true, false, false,
+                                                             ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
   }
 
   /**
-   * This returns ImpactAnnotation.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * This returns Property.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
   @Override
   public Object getImage(Object object) {
-    return overlayImage(object, getResourceLocator().getImage("full/obj16/ImpactAnnotation"));
+    return overlayImage(object, getResourceLocator().getImage("full/obj16/Property"));
   }
 
   /**
@@ -116,10 +115,9 @@ public class ImpactAnnotationItemProvider extends ItemProviderAdapter implements
    */
   @Override
   public String getText(Object object) {
-    ImpactType labelValue = ((ImpactAnnotation) object).getType();
-    String label = labelValue == null ? null : labelValue.toString();
-    return label == null || label.length() == 0 ? getString("_UI_ImpactAnnotation_type")
-      : getString("_UI_ImpactAnnotation_type") + " " + label;
+    String label = ((Property) object).getFormal();
+    return label == null || label.length() == 0 ? getString("_UI_Property_type")
+      : getString("_UI_Property_type") + " " + label;
   }
 
   /**
@@ -132,9 +130,9 @@ public class ImpactAnnotationItemProvider extends ItemProviderAdapter implements
   public void notifyChanged(Notification notification) {
     updateChildren(notification);
 
-    switch (notification.getFeatureID(ImpactAnnotation.class)) {
-    case GSNPackage.IMPACT_ANNOTATION__TYPE:
-    case GSNPackage.IMPACT_ANNOTATION__SOURCE:
+    switch (notification.getFeatureID(Property.class)) {
+    case GSNPackage.PROPERTY__FORMAL:
+    case GSNPackage.PROPERTY__INFORMAL:
       fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
       return;
     }

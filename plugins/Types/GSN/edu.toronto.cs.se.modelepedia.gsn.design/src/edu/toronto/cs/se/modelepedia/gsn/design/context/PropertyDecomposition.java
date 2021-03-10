@@ -136,7 +136,7 @@ public class PropertyDecomposition extends GoalDecomposition {
         return PropertyTemplate.CUSTOM;
       }
       var labelProvider = LabelProvider.createTextProvider(t -> {
-        return (t instanceof PropertyTemplate) ? ((PropertyTemplate) t).description : (String) t;
+        return (t instanceof PropertyTemplate) ? ((PropertyTemplate) t).informal : (String) t;
       });
       var contentProvider = new TemplatePropertyContentProvider(templates);
       var dialog = new MIDTreeSelectionDialog(labelProvider, contentProvider, templates);
@@ -181,14 +181,12 @@ public class PropertyDecomposition extends GoalDecomposition {
         }
       }
       var template = selectTemplate(title, "Select the property to be decomposed", templates);
-      var boundTemplate = template.bindVariables(title, modelObjs);
-      var property = boundTemplate.property;
-      var description = "'" + boundTemplate.description + "'";
-      if (property.isBlank()) {
-        property = MIDDialogs.getBigStringInput(title, "Insert the " + reasonerName + " property to be decomposed",
-                                                null);
+      var property = template.bindVariables(title, modelObjs);
+      if (property.getFormal().isBlank()) {
+        property.setFormal(
+          MIDDialogs.getBigStringInput(title, "Insert the " + reasonerName + " property to be decomposed", null));
         try {
-          description = "'" + MIDDialogs.getStringInput(title, customMsg, null) + "'";
+          property.setInformal(MIDDialogs.getStringInput(title, customMsg, null));
         }
         catch (MIDDialogCancellation e) {}
       }
@@ -196,21 +194,21 @@ public class PropertyDecomposition extends GoalDecomposition {
                                                                      null));
       // create decomposition template
       var id = this.decomposed.getId();
+      var informal = "'" + property.getInformal() + "'";
       var formalStrategyId = "SF-" + id;
       var formalStrategyDesc = "Argument by " + reasonerName + " formalization";
       var modelGoalId = id + "-M";
-      var modelGoalDesc = "The related model correctly models all aspects of the system for property " +
-                          description;
+      var modelGoalDesc = "The related model correctly models all aspects of the system for property " + informal;
       var propGoalId = id + "-P";
-      var propGoalDesc = id + " asserts the property " + description;
+      var propGoalDesc = id + " asserts the property " + informal;
+      var propDesc1 = "The property ";
+      var propDesc2 = " holds for the related model";
       var formalGoalId = id + "-F";
-      var formalGoalDesc = "The property " + description + " holds for the related model";
+      var formalGoalDesc = propDesc1 + informal + propDesc2;
       var propStrategyId = "S-" + id;
-      var propStrategyDesc = "Decomposition over property " + description;
+      var propStrategyDesc = "Decomposition over property " + informal;
       var modelContextId = "C-" + id;
       var subGoalId = id + "-";
-      var subGoalDesc1 = "The property ";
-      var subGoalDesc2 = " holds for the related model";
       var formalStrategy = builder.createBasicStrategy(formalStrategyId, formalStrategyDesc);
       var modelGoal = builder.createBasicGoal(modelGoalId, modelGoalDesc);
       builder.addSupporter(formalStrategy, modelGoal);
@@ -223,18 +221,16 @@ public class PropertyDecomposition extends GoalDecomposition {
       builder.createContext(propStrategy, modelContextId, relatedModelPath);
       for (var i = 0; i < numProperties; i++) {
         var subTemplate = selectTemplate(title, "Select the sub-property #" + (i+1), templates);
-        var subBoundTemplate = subTemplate.bindVariables(title, modelObjs);
-        var subProperty = subBoundTemplate.property;
-        var subDescription = "'" + subBoundTemplate.description + "'";
-        if (subProperty.isBlank()) {
-          subProperty = MIDDialogs.getBigStringInput(title, "Insert the sub-property #" + (i+1), null);
+        var subProperty = subTemplate.bindVariables(title, modelObjs);
+        if (subProperty.getFormal().isBlank()) {
+          subProperty.setFormal(MIDDialogs.getBigStringInput(title, "Insert the sub-property #" + (i+1), null));
           try {
-            subDescription = "'" + MIDDialogs.getStringInput(title, customMsg, null) + "'";
+            subProperty.setInformal(MIDDialogs.getStringInput(title, customMsg, null));
           }
           catch (MIDDialogCancellation e) {}
         }
-        subDescription = subGoalDesc1 + subDescription + subGoalDesc2;
-        var subGoal = builder.createPropertyGoal(subGoalId + i, subDescription, reasonerName, subProperty);
+        var subGoalDesc = propDesc1 + "'" + subProperty.getInformal() + "'" + propDesc2;
+        var subGoal = builder.createPropertyGoal(subGoalId + i, subGoalDesc, reasonerName, subProperty);
         builder.addSupporter(propStrategy, subGoal);
       }
       builder.addSupporter(this.decomposed, formalStrategy);

@@ -14,30 +14,30 @@ package edu.toronto.cs.se.modelepedia.gsn;
 import org.eclipse.emf.common.util.EList;
 
 /**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Contextual Element</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>Contextual Element</b></em>'. <!-- end-user-doc
+ * -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.ContextualElement#getContextOf <em>Context Of</em>}</li>
+ * <li>{@link edu.toronto.cs.se.modelepedia.gsn.ContextualElement#getContextOf <em>Context Of</em>}</li>
  * </ul>
  *
  * @see edu.toronto.cs.se.modelepedia.gsn.GSNPackage#getContextualElement()
- * @model abstract="true"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ContextualElementSupporter ContextualElementContext'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot ContextualElementSupporter='self.oclAsType(DecomposableCoreElement).oclIsInvalid()' ContextualElementContext='self.oclAsType(DecomposableCoreElement).oclIsInvalid()'"
+ * @model abstract="true" annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ContextualElementSupporter
+ *        ContextualElementContext'" annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot
+ *        ContextualElementSupporter='self.oclAsType(DecomposableCoreElement).oclIsInvalid()'
+ *        ContextualElementContext='self.oclAsType(DecomposableCoreElement).oclIsInvalid()'"
  * @generated
  */
 public interface ContextualElement extends ArgumentElement {
   /**
-   * Returns the value of the '<em><b>Context Of</b></em>' reference list.
-   * The list contents are of type {@link edu.toronto.cs.se.modelepedia.gsn.InContextOf}.
-   * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.gsn.InContextOf#getContext <em>Context</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Returns the value of the '<em><b>Context Of</b></em>' reference list. The list contents are of type
+   * {@link edu.toronto.cs.se.modelepedia.gsn.InContextOf}. It is bidirectional and its opposite is
+   * '{@link edu.toronto.cs.se.modelepedia.gsn.InContextOf#getContext <em>Context</em>}'. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
+   * 
    * @return the value of the '<em>Context Of</em>' reference list.
    * @see edu.toronto.cs.se.modelepedia.gsn.GSNPackage#getContextualElement_ContextOf()
    * @see edu.toronto.cs.se.modelepedia.gsn.InContextOf#getContext

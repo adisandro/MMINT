@@ -17,16 +17,14 @@ import edu.toronto.cs.se.modelepedia.gsn.BasicGoal;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Basic Goal</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Basic Goal</b></em>'. <!-- end-user-doc -->
  *
  * @generated
  */
 public class BasicGoalImpl extends GoalImpl implements BasicGoal {
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected BasicGoalImpl() {
@@ -34,8 +32,8 @@ public class BasicGoalImpl extends GoalImpl implements BasicGoal {
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -43,4 +41,4 @@ public class BasicGoalImpl extends GoalImpl implements BasicGoal {
     return GSNPackage.Literals.BASIC_GOAL;
   }
 
-} //BasicGoalImpl
+} // BasicGoalImpl

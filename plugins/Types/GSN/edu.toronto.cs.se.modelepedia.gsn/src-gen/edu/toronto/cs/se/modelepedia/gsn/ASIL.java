@@ -14,17 +14,15 @@ package edu.toronto.cs.se.modelepedia.gsn;
 import org.eclipse.emf.ecore.EObject;
 
 /**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>ASIL</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>ASIL</b></em>'. <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.ASIL#getValue <em>Value</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.ASIL#getTarget <em>Target</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.ASIL#getStatus <em>Status</em>}</li>
+ * <li>{@link edu.toronto.cs.se.modelepedia.gsn.ASIL#getValue <em>Value</em>}</li>
+ * <li>{@link edu.toronto.cs.se.modelepedia.gsn.ASIL#getTarget <em>Target</em>}</li>
+ * <li>{@link edu.toronto.cs.se.modelepedia.gsn.ASIL#getStatus <em>Status</em>}</li>
  * </ul>
  *
  * @see edu.toronto.cs.se.modelepedia.gsn.GSNPackage#getASIL()
@@ -33,10 +31,9 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface ASIL extends EObject {
   /**
-   * Returns the value of the '<em><b>Value</b></em>' attribute.
-   * The literals are from the enumeration {@link edu.toronto.cs.se.modelepedia.gsn.ASILLevel}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Returns the value of the '<em><b>Value</b></em>' attribute. The literals are from the enumeration
+   * {@link edu.toronto.cs.se.modelepedia.gsn.ASILLevel}. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @return the value of the '<em>Value</em>' attribute.
    * @see edu.toronto.cs.se.modelepedia.gsn.ASILLevel
    * @see #setValue(ASILLevel)
@@ -47,10 +44,11 @@ public interface ASIL extends EObject {
   ASILLevel getValue();
 
   /**
-   * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.gsn.ASIL#getValue <em>Value</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Value</em>' attribute.
+   * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.gsn.ASIL#getValue <em>Value</em>}' attribute. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
+   * 
+   * @param value
+   *          the new value of the '<em>Value</em>' attribute.
    * @see edu.toronto.cs.se.modelepedia.gsn.ASILLevel
    * @see #getValue()
    * @generated
@@ -58,10 +56,10 @@ public interface ASIL extends EObject {
   void setValue(ASILLevel value);
 
   /**
-   * Returns the value of the '<em><b>Target</b></em>' container reference.
-   * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.gsn.ASILfulElement#getAsil <em>Asil</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Returns the value of the '<em><b>Target</b></em>' container reference. It is bidirectional and its opposite is
+   * '{@link edu.toronto.cs.se.modelepedia.gsn.ASILfulElement#getAsil <em>Asil</em>}'. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
+   * 
    * @return the value of the '<em>Target</em>' container reference.
    * @see #setTarget(ASILfulElement)
    * @see edu.toronto.cs.se.modelepedia.gsn.GSNPackage#getASIL_Target()
@@ -72,19 +70,20 @@ public interface ASIL extends EObject {
   ASILfulElement getTarget();
 
   /**
-   * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.gsn.ASIL#getTarget <em>Target</em>}' container reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Target</em>' container reference.
+   * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.gsn.ASIL#getTarget <em>Target</em>}' container
+   * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
+   * @param value
+   *          the new value of the '<em>Target</em>' container reference.
    * @see #getTarget()
    * @generated
    */
   void setTarget(ASILfulElement value);
 
   /**
-   * Returns the value of the '<em><b>Status</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Returns the value of the '<em><b>Status</b></em>' containment reference. <!-- begin-user-doc --> <!-- end-user-doc
+   * -->
+   * 
    * @return the value of the '<em>Status</em>' containment reference.
    * @see #setStatus(ImpactAnnotation)
    * @see edu.toronto.cs.se.modelepedia.gsn.GSNPackage#getASIL_Status()
@@ -94,10 +93,11 @@ public interface ASIL extends EObject {
   ImpactAnnotation getStatus();
 
   /**
-   * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.gsn.ASIL#getStatus <em>Status</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Status</em>' containment reference.
+   * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.gsn.ASIL#getStatus <em>Status</em>}' containment
+   * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
+   * @param value
+   *          the new value of the '<em>Status</em>' containment reference.
    * @see #getStatus()
    * @generated
    */

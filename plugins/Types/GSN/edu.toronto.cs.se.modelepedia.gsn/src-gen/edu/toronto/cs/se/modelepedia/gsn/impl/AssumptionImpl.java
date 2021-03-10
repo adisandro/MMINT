@@ -17,16 +17,14 @@ import edu.toronto.cs.se.modelepedia.gsn.Assumption;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Assumption</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Assumption</b></em>'. <!-- end-user-doc -->
  *
  * @generated
  */
 public class AssumptionImpl extends ContextualElementImpl implements Assumption {
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected AssumptionImpl() {
@@ -34,8 +32,8 @@ public class AssumptionImpl extends ContextualElementImpl implements Assumption 
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -43,4 +41,4 @@ public class AssumptionImpl extends ContextualElementImpl implements Assumption 
     return GSNPackage.Literals.ASSUMPTION;
   }
 
-} //AssumptionImpl
+} // AssumptionImpl

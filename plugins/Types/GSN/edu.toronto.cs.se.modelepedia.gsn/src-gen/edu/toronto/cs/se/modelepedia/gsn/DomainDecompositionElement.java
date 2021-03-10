@@ -14,15 +14,13 @@ package edu.toronto.cs.se.modelepedia.gsn;
 import org.eclipse.emf.ecore.EObject;
 
 /**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Domain Element</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>Domain Element</b></em>'. <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.DomainDecompositionElement#getDomain <em>Domain</em>}</li>
+ * <li>{@link edu.toronto.cs.se.modelepedia.gsn.DomainDecompositionElement#getDomain <em>Domain</em>}</li>
  * </ul>
  *
  * @see edu.toronto.cs.se.modelepedia.gsn.GSNPackage#getDomainDecompositionElement()
@@ -31,9 +29,9 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface DomainDecompositionElement extends EObject {
   /**
-   * Returns the value of the '<em><b>Domain</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Returns the value of the '<em><b>Domain</b></em>' containment reference. <!-- begin-user-doc --> <!-- end-user-doc
+   * -->
+   * 
    * @return the value of the '<em>Domain</em>' containment reference.
    * @see #setDomain(Domain)
    * @see edu.toronto.cs.se.modelepedia.gsn.GSNPackage#getDomainDecompositionElement_Domain()
@@ -43,10 +41,11 @@ public interface DomainDecompositionElement extends EObject {
   Domain getDomain();
 
   /**
-   * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.gsn.DomainDecompositionElement#getDomain <em>Domain</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Domain</em>' containment reference.
+   * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.gsn.DomainDecompositionElement#getDomain
+   * <em>Domain</em>}' containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
+   * @param value
+   *          the new value of the '<em>Domain</em>' containment reference.
    * @see #getDomain()
    * @generated
    */

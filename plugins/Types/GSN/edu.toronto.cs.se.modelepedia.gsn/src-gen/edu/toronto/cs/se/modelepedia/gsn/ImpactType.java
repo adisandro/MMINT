@@ -18,19 +18,17 @@ import java.util.List;
 import org.eclipse.emf.common.util.Enumerator;
 
 /**
- * <!-- begin-user-doc -->
- * A representation of the literals of the enumeration '<em><b>Impact Type</b></em>',
- * and utility methods for working with them.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the literals of the enumeration '<em><b>Impact Type</b></em>', and
+ * utility methods for working with them. <!-- end-user-doc -->
+ * 
  * @see edu.toronto.cs.se.modelepedia.gsn.GSNPackage#getImpactType()
  * @model
  * @generated
  */
 public enum ImpactType implements Enumerator {
   /**
-   * The '<em><b>Revise</b></em>' literal object.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The '<em><b>Revise</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #REVISE_VALUE
    * @generated
    * @ordered
@@ -38,9 +36,8 @@ public enum ImpactType implements Enumerator {
   REVISE(1, "Revise", "Revise"),
 
   /**
-   * The '<em><b>Recheck Content</b></em>' literal object.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The '<em><b>Recheck Content</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #RECHECK_CONTENT_VALUE
    * @generated
    * @ordered
@@ -48,9 +45,8 @@ public enum ImpactType implements Enumerator {
   RECHECK_CONTENT(2, "RecheckContent", "RecheckContent"),
 
   /**
-   * The '<em><b>Recheck State</b></em>' literal object.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The '<em><b>Recheck State</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #RECHECK_STATE_VALUE
    * @generated
    * @ordered
@@ -58,9 +54,8 @@ public enum ImpactType implements Enumerator {
   RECHECK_STATE(3, "RecheckState", "RecheckState"),
 
   /**
-   * The '<em><b>Reuse</b></em>' literal object.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The '<em><b>Reuse</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #REUSE_VALUE
    * @generated
    * @ordered
@@ -68,9 +63,8 @@ public enum ImpactType implements Enumerator {
   REUSE(4, "Reuse", "Reuse");
 
   /**
-   * The '<em><b>Revise</b></em>' literal value.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The '<em><b>Revise</b></em>' literal value. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #REVISE
    * @model name="Revise"
    * @generated
@@ -79,9 +73,8 @@ public enum ImpactType implements Enumerator {
   public static final int REVISE_VALUE = 1;
 
   /**
-   * The '<em><b>Recheck Content</b></em>' literal value.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The '<em><b>Recheck Content</b></em>' literal value. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #RECHECK_CONTENT
    * @model name="RecheckContent"
    * @generated
@@ -90,9 +83,8 @@ public enum ImpactType implements Enumerator {
   public static final int RECHECK_CONTENT_VALUE = 2;
 
   /**
-   * The '<em><b>Recheck State</b></em>' literal value.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The '<em><b>Recheck State</b></em>' literal value. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #RECHECK_STATE
    * @model name="RecheckState"
    * @generated
@@ -101,9 +93,8 @@ public enum ImpactType implements Enumerator {
   public static final int RECHECK_STATE_VALUE = 3;
 
   /**
-   * The '<em><b>Reuse</b></em>' literal value.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The '<em><b>Reuse</b></em>' literal value. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #REUSE
    * @model name="Reuse"
    * @generated
@@ -112,38 +103,32 @@ public enum ImpactType implements Enumerator {
   public static final int REUSE_VALUE = 4;
 
   /**
-   * An array of all the '<em><b>Impact Type</b></em>' enumerators.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * An array of all the '<em><b>Impact Type</b></em>' enumerators. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
-  private static final ImpactType[] VALUES_ARRAY =
-    new ImpactType[] {
-      REVISE,
-      RECHECK_CONTENT,
-      RECHECK_STATE,
-      REUSE,
-    };
+  private static final ImpactType[] VALUES_ARRAY = new ImpactType[] { REVISE, RECHECK_CONTENT, RECHECK_STATE, REUSE, };
 
   /**
-   * A public read-only list of all the '<em><b>Impact Type</b></em>' enumerators.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * A public read-only list of all the '<em><b>Impact Type</b></em>' enumerators. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
+   * 
    * @generated
    */
-  public static final List<ImpactType> VALUES = Collections.unmodifiableList(Arrays.asList(ImpactType.VALUES_ARRAY));
+  public static final List<ImpactType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
   /**
-   * Returns the '<em><b>Impact Type</b></em>' literal with the specified literal value.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param literal the literal.
+   * Returns the '<em><b>Impact Type</b></em>' literal with the specified literal value. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
+   * 
+   * @param literal
+   *          the literal.
    * @return the matching enumerator or <code>null</code>.
    * @generated
    */
   public static ImpactType get(String literal) {
-    for (var i = 0; i < ImpactType.VALUES_ARRAY.length; ++i) {
-      var result = ImpactType.VALUES_ARRAY[i];
+    for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+      ImpactType result = VALUES_ARRAY[i];
       if (result.toString().equals(literal)) {
         return result;
       }
@@ -152,16 +137,17 @@ public enum ImpactType implements Enumerator {
   }
 
   /**
-   * Returns the '<em><b>Impact Type</b></em>' literal with the specified name.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param name the name.
+   * Returns the '<em><b>Impact Type</b></em>' literal with the specified name. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
+   * 
+   * @param name
+   *          the name.
    * @return the matching enumerator or <code>null</code>.
    * @generated
    */
   public static ImpactType getByName(String name) {
-    for (var i = 0; i < ImpactType.VALUES_ARRAY.length; ++i) {
-      var result = ImpactType.VALUES_ARRAY[i];
+    for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+      ImpactType result = VALUES_ARRAY[i];
       if (result.getName().equals(name)) {
         return result;
       }
@@ -170,48 +156,52 @@ public enum ImpactType implements Enumerator {
   }
 
   /**
-   * Returns the '<em><b>Impact Type</b></em>' literal with the specified integer value.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the integer value.
+   * Returns the '<em><b>Impact Type</b></em>' literal with the specified integer value. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
+   * 
+   * @param value
+   *          the integer value.
    * @return the matching enumerator or <code>null</code>.
    * @generated
    */
   public static ImpactType get(int value) {
     switch (value) {
-      case REVISE_VALUE: return REVISE;
-      case RECHECK_CONTENT_VALUE: return RECHECK_CONTENT;
-      case RECHECK_STATE_VALUE: return RECHECK_STATE;
-      case REUSE_VALUE: return REUSE;
+    case REVISE_VALUE:
+      return REVISE;
+    case RECHECK_CONTENT_VALUE:
+      return RECHECK_CONTENT;
+    case RECHECK_STATE_VALUE:
+      return RECHECK_STATE;
+    case REUSE_VALUE:
+      return REUSE;
     }
     return null;
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   private final int value;
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   private final String name;
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   private final String literal;
 
   /**
-   * Only this class can construct instances.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Only this class can construct instances. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   private ImpactType(int value, String name, String literal) {
@@ -221,44 +211,44 @@ public enum ImpactType implements Enumerator {
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
   public int getValue() {
-    return this.value;
+    return value;
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
   public String getName() {
-    return this.name;
+    return name;
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
   public String getLiteral() {
-    return this.literal;
+    return literal;
   }
 
   /**
-   * Returns the literal value of the enumerator, which is its string representation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Returns the literal value of the enumerator, which is its string representation. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
+   * 
    * @generated
    */
   @Override
   public String toString() {
-    return this.literal;
+    return literal;
   }
 
-} //ImpactType
+} // ImpactType

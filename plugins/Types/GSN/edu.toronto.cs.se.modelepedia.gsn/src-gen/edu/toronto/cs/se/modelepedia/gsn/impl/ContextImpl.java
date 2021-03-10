@@ -17,16 +17,14 @@ import edu.toronto.cs.se.modelepedia.gsn.Context;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Context</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Context</b></em>'. <!-- end-user-doc -->
  *
  * @generated
  */
 public class ContextImpl extends ContextualElementImpl implements Context {
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected ContextImpl() {
@@ -34,8 +32,8 @@ public class ContextImpl extends ContextualElementImpl implements Context {
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -43,4 +41,4 @@ public class ContextImpl extends ContextualElementImpl implements Context {
     return GSNPackage.Literals.CONTEXT;
   }
 
-} //ContextImpl
+} // ContextImpl

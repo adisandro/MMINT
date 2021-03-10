@@ -18,19 +18,17 @@ import java.util.List;
 import org.eclipse.emf.common.util.Enumerator;
 
 /**
- * <!-- begin-user-doc -->
- * A representation of the literals of the enumeration '<em><b>Validity Value</b></em>',
- * and utility methods for working with them.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the literals of the enumeration '<em><b>Validity Value</b></em>', and
+ * utility methods for working with them. <!-- end-user-doc -->
+ * 
  * @see edu.toronto.cs.se.modelepedia.gsn.GSNPackage#getValidityValue()
  * @model
  * @generated
  */
 public enum ValidityValue implements Enumerator {
   /**
-   * The '<em><b>Invalid</b></em>' literal object.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The '<em><b>Invalid</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #INVALID_VALUE
    * @generated
    * @ordered
@@ -38,9 +36,8 @@ public enum ValidityValue implements Enumerator {
   INVALID(0, "Invalid", "Invalid"),
 
   /**
-   * The '<em><b>Valid</b></em>' literal object.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The '<em><b>Valid</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #VALID_VALUE
    * @generated
    * @ordered
@@ -48,9 +45,8 @@ public enum ValidityValue implements Enumerator {
   VALID(1, "Valid", "Valid"),
 
   /**
-   * The '<em><b>Undetermined</b></em>' literal object.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The '<em><b>Undetermined</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #UNDETERMINED_VALUE
    * @generated
    * @ordered
@@ -58,9 +54,8 @@ public enum ValidityValue implements Enumerator {
   UNDETERMINED(2, "Undetermined", "Undetermined");
 
   /**
-   * The '<em><b>Invalid</b></em>' literal value.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The '<em><b>Invalid</b></em>' literal value. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #INVALID
    * @model name="Invalid"
    * @generated
@@ -69,9 +64,8 @@ public enum ValidityValue implements Enumerator {
   public static final int INVALID_VALUE = 0;
 
   /**
-   * The '<em><b>Valid</b></em>' literal value.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The '<em><b>Valid</b></em>' literal value. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #VALID
    * @model name="Valid"
    * @generated
@@ -80,9 +74,8 @@ public enum ValidityValue implements Enumerator {
   public static final int VALID_VALUE = 1;
 
   /**
-   * The '<em><b>Undetermined</b></em>' literal value.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The '<em><b>Undetermined</b></em>' literal value. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #UNDETERMINED
    * @model name="Undetermined"
    * @generated
@@ -91,37 +84,32 @@ public enum ValidityValue implements Enumerator {
   public static final int UNDETERMINED_VALUE = 2;
 
   /**
-   * An array of all the '<em><b>Validity Value</b></em>' enumerators.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * An array of all the '<em><b>Validity Value</b></em>' enumerators. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
-  private static final ValidityValue[] VALUES_ARRAY =
-    new ValidityValue[] {
-      INVALID,
-      VALID,
-      UNDETERMINED,
-    };
+  private static final ValidityValue[] VALUES_ARRAY = new ValidityValue[] { INVALID, VALID, UNDETERMINED, };
 
   /**
-   * A public read-only list of all the '<em><b>Validity Value</b></em>' enumerators.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * A public read-only list of all the '<em><b>Validity Value</b></em>' enumerators. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
+   * 
    * @generated
    */
-  public static final List<ValidityValue> VALUES = Collections.unmodifiableList(Arrays.asList(ValidityValue.VALUES_ARRAY));
+  public static final List<ValidityValue> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
   /**
-   * Returns the '<em><b>Validity Value</b></em>' literal with the specified literal value.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param literal the literal.
+   * Returns the '<em><b>Validity Value</b></em>' literal with the specified literal value. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
+   * 
+   * @param literal
+   *          the literal.
    * @return the matching enumerator or <code>null</code>.
    * @generated
    */
   public static ValidityValue get(String literal) {
-    for (var i = 0; i < ValidityValue.VALUES_ARRAY.length; ++i) {
-      var result = ValidityValue.VALUES_ARRAY[i];
+    for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+      ValidityValue result = VALUES_ARRAY[i];
       if (result.toString().equals(literal)) {
         return result;
       }
@@ -130,16 +118,17 @@ public enum ValidityValue implements Enumerator {
   }
 
   /**
-   * Returns the '<em><b>Validity Value</b></em>' literal with the specified name.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param name the name.
+   * Returns the '<em><b>Validity Value</b></em>' literal with the specified name. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
+   * 
+   * @param name
+   *          the name.
    * @return the matching enumerator or <code>null</code>.
    * @generated
    */
   public static ValidityValue getByName(String name) {
-    for (var i = 0; i < ValidityValue.VALUES_ARRAY.length; ++i) {
-      var result = ValidityValue.VALUES_ARRAY[i];
+    for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+      ValidityValue result = VALUES_ARRAY[i];
       if (result.getName().equals(name)) {
         return result;
       }
@@ -148,47 +137,50 @@ public enum ValidityValue implements Enumerator {
   }
 
   /**
-   * Returns the '<em><b>Validity Value</b></em>' literal with the specified integer value.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the integer value.
+   * Returns the '<em><b>Validity Value</b></em>' literal with the specified integer value. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
+   * 
+   * @param value
+   *          the integer value.
    * @return the matching enumerator or <code>null</code>.
    * @generated
    */
   public static ValidityValue get(int value) {
     switch (value) {
-      case INVALID_VALUE: return INVALID;
-      case VALID_VALUE: return VALID;
-      case UNDETERMINED_VALUE: return UNDETERMINED;
+    case INVALID_VALUE:
+      return INVALID;
+    case VALID_VALUE:
+      return VALID;
+    case UNDETERMINED_VALUE:
+      return UNDETERMINED;
     }
     return null;
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   private final int value;
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   private final String name;
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   private final String literal;
 
   /**
-   * Only this class can construct instances.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Only this class can construct instances. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   private ValidityValue(int value, String name, String literal) {
@@ -198,44 +190,44 @@ public enum ValidityValue implements Enumerator {
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
   public int getValue() {
-    return this.value;
+    return value;
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
   public String getName() {
-    return this.name;
+    return name;
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
   public String getLiteral() {
-    return this.literal;
+    return literal;
   }
 
   /**
-   * Returns the literal value of the enumerator, which is its string representation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Returns the literal value of the enumerator, which is its string representation. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
+   * 
    * @generated
    */
   @Override
   public String toString() {
-    return this.literal;
+    return literal;
   }
 
-} //ValidityValue
+} // ValidityValue

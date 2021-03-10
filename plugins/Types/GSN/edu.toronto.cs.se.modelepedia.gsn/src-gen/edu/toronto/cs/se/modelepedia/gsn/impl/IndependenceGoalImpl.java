@@ -17,16 +17,15 @@ import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.IndependenceGoal;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Independence Goal</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Independence Goal</b></em>'. <!-- end-user-doc
+ * -->
  *
  * @generated
  */
 public class IndependenceGoalImpl extends GoalImpl implements IndependenceGoal {
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected IndependenceGoalImpl() {
@@ -34,8 +33,8 @@ public class IndependenceGoalImpl extends GoalImpl implements IndependenceGoal {
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -43,4 +42,4 @@ public class IndependenceGoalImpl extends GoalImpl implements IndependenceGoal {
     return GSNPackage.Literals.INDEPENDENCE_GOAL;
   }
 
-} //IndependenceGoalImpl
+} // IndependenceGoalImpl

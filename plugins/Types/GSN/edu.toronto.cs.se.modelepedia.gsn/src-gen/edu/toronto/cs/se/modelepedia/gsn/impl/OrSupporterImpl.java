@@ -17,16 +17,14 @@ import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.OrSupporter;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Or Supporter</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Or Supporter</b></em>'. <!-- end-user-doc -->
  *
  * @generated
  */
 public class OrSupporterImpl extends SupportConnectorImpl implements OrSupporter {
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected OrSupporterImpl() {
@@ -34,8 +32,8 @@ public class OrSupporterImpl extends SupportConnectorImpl implements OrSupporter
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -43,4 +41,4 @@ public class OrSupporterImpl extends SupportConnectorImpl implements OrSupporter
     return GSNPackage.Literals.OR_SUPPORTER;
   }
 
-} //OrSupporterImpl
+} // OrSupporterImpl

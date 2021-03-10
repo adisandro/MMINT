@@ -22,23 +22,21 @@ import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.ValueDomain;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Value Domain</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Value Domain</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.ValueDomainImpl#getValue <em>Value</em>}</li>
+ * <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.ValueDomainImpl#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class ValueDomainImpl extends DomainImpl implements ValueDomain {
   /**
-   * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The default value of the '{@link #getValue() <em>Value</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+   * -->
+   * 
    * @see #getValue()
    * @generated
    * @ordered
@@ -46,18 +44,18 @@ public class ValueDomainImpl extends DomainImpl implements ValueDomain {
   protected static final String VALUE_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The cached value of the '{@link #getValue() <em>Value</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+   * -->
+   * 
    * @see #getValue()
    * @generated
    * @ordered
    */
-  protected String value = ValueDomainImpl.VALUE_EDEFAULT;
+  protected String value = VALUE_EDEFAULT;
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected ValueDomainImpl() {
@@ -65,8 +63,8 @@ public class ValueDomainImpl extends DomainImpl implements ValueDomain {
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -75,97 +73,98 @@ public class ValueDomainImpl extends DomainImpl implements ValueDomain {
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
   public String getValue() {
-    return this.value;
+    return value;
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
   public void setValue(String newValue) {
-    var oldValue = this.value;
-    this.value = newValue;
+    String oldValue = value;
+    value = newValue;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.VALUE_DOMAIN__VALUE, oldValue, this.value));
+      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.VALUE_DOMAIN__VALUE, oldValue, value));
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
-      case GSNPackage.VALUE_DOMAIN__VALUE:
-        return getValue();
+    case GSNPackage.VALUE_DOMAIN__VALUE:
+      return getValue();
     }
     return super.eGet(featureID, resolve, coreType);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
-      case GSNPackage.VALUE_DOMAIN__VALUE:
-        setValue((String)newValue);
-        return;
+    case GSNPackage.VALUE_DOMAIN__VALUE:
+      setValue((String) newValue);
+      return;
     }
     super.eSet(featureID, newValue);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
-      case GSNPackage.VALUE_DOMAIN__VALUE:
-        setValue(ValueDomainImpl.VALUE_EDEFAULT);
-        return;
+    case GSNPackage.VALUE_DOMAIN__VALUE:
+      setValue(VALUE_EDEFAULT);
+      return;
     }
     super.eUnset(featureID);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
-      case GSNPackage.VALUE_DOMAIN__VALUE:
-        return ValueDomainImpl.VALUE_EDEFAULT == null ? this.value != null : !ValueDomainImpl.VALUE_EDEFAULT.equals(this.value);
+    case GSNPackage.VALUE_DOMAIN__VALUE:
+      return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
     }
     return super.eIsSet(featureID);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public String toStringGen() {
-    if (eIsProxy()) return super.toString();
+    if (eIsProxy())
+      return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (value: ");
-    result.append(this.value);
+    result.append(value);
     result.append(')');
     return result.toString();
   }
@@ -186,4 +185,4 @@ public class ValueDomainImpl extends DomainImpl implements ValueDomain {
     throw new MMINTException("A value domain can't be decomposed");
   }
 
-} //ValueDomainImpl
+} // ValueDomainImpl

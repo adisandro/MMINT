@@ -3,82 +3,83 @@
  * All rights reserved. This program and the accompanying materials are made available under the terms
  * of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
  *   Alessio Di Sandro - Implementation
  *   Nick Fung - Implementation.
- *
+ * 
  */
 package edu.toronto.cs.se.modelepedia.gsn.impl;
 
+import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
+import edu.toronto.cs.se.modelepedia.gsn.Property;
+
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
-import edu.toronto.cs.se.modelepedia.gsn.ImpactAnnotation;
-import edu.toronto.cs.se.modelepedia.gsn.ImpactType;
-
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Impact Annotation</b></em>'. <!-- end-user-doc
- * -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Property</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.ImpactAnnotationImpl#getType <em>Type</em>}</li>
- * <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.ImpactAnnotationImpl#getSource <em>Source</em>}</li>
+ * <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.PropertyImpl#getFormal <em>Formal</em>}</li>
+ * <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.PropertyImpl#getInformal <em>Informal</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ImpactAnnotationImpl extends MinimalEObjectImpl.Container implements ImpactAnnotation {
+public class PropertyImpl extends MinimalEObjectImpl.Container implements Property {
   /**
-   * The default value of the '{@link #getType() <em>Type</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
-   * -->
-   * 
-   * @see #getType()
-   * @generated
-   * @ordered
-   */
-  protected static final ImpactType TYPE_EDEFAULT = ImpactType.REVISE;
-
-  /**
-   * The cached value of the '{@link #getType() <em>Type</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
-   * @see #getType()
-   * @generated
-   * @ordered
-   */
-  protected ImpactType type = TYPE_EDEFAULT;
-
-  /**
-   * The default value of the '{@link #getSource() <em>Source</em>}' attribute. <!-- begin-user-doc --> <!--
+   * The default value of the '{@link #getFormal() <em>Formal</em>}' attribute. <!-- begin-user-doc --> <!--
    * end-user-doc -->
    * 
-   * @see #getSource()
+   * @see #getFormal()
    * @generated
    * @ordered
    */
-  protected static final String SOURCE_EDEFAULT = null;
+  protected static final String FORMAL_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getSource() <em>Source</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+   * The cached value of the '{@link #getFormal() <em>Formal</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
    * -->
    * 
-   * @see #getSource()
+   * @see #getFormal()
    * @generated
    * @ordered
    */
-  protected String source = SOURCE_EDEFAULT;
+  protected String formal = FORMAL_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getInformal() <em>Informal</em>}' attribute. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
+   * 
+   * @see #getInformal()
+   * @generated
+   * @ordered
+   */
+  protected static final String INFORMAL_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getInformal() <em>Informal</em>}' attribute. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
+   * 
+   * @see #getInformal()
+   * @generated
+   * @ordered
+   */
+  protected String informal = INFORMAL_EDEFAULT;
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
-  protected ImpactAnnotationImpl() {
+  protected PropertyImpl() {
     super();
   }
 
@@ -89,7 +90,7 @@ public class ImpactAnnotationImpl extends MinimalEObjectImpl.Container implement
    */
   @Override
   protected EClass eStaticClass() {
-    return GSNPackage.Literals.IMPACT_ANNOTATION;
+    return GSNPackage.Literals.PROPERTY;
   }
 
   /**
@@ -98,8 +99,8 @@ public class ImpactAnnotationImpl extends MinimalEObjectImpl.Container implement
    * @generated
    */
   @Override
-  public ImpactType getType() {
-    return type;
+  public String getInformal() {
+    return informal;
   }
 
   /**
@@ -108,11 +109,11 @@ public class ImpactAnnotationImpl extends MinimalEObjectImpl.Container implement
    * @generated
    */
   @Override
-  public void setType(ImpactType newType) {
-    ImpactType oldType = type;
-    type = newType == null ? TYPE_EDEFAULT : newType;
+  public void setInformal(String newInformal) {
+    String oldInformal = informal;
+    informal = newInformal;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.IMPACT_ANNOTATION__TYPE, oldType, type));
+      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.PROPERTY__INFORMAL, oldInformal, informal));
   }
 
   /**
@@ -121,8 +122,8 @@ public class ImpactAnnotationImpl extends MinimalEObjectImpl.Container implement
    * @generated
    */
   @Override
-  public String getSource() {
-    return source;
+  public String getFormal() {
+    return formal;
   }
 
   /**
@@ -131,11 +132,11 @@ public class ImpactAnnotationImpl extends MinimalEObjectImpl.Container implement
    * @generated
    */
   @Override
-  public void setSource(String newSource) {
-    String oldSource = source;
-    source = newSource;
+  public void setFormal(String newFormal) {
+    String oldFormal = formal;
+    formal = newFormal;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.IMPACT_ANNOTATION__SOURCE, oldSource, source));
+      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.PROPERTY__FORMAL, oldFormal, formal));
   }
 
   /**
@@ -146,10 +147,10 @@ public class ImpactAnnotationImpl extends MinimalEObjectImpl.Container implement
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
-    case GSNPackage.IMPACT_ANNOTATION__TYPE:
-      return getType();
-    case GSNPackage.IMPACT_ANNOTATION__SOURCE:
-      return getSource();
+    case GSNPackage.PROPERTY__FORMAL:
+      return getFormal();
+    case GSNPackage.PROPERTY__INFORMAL:
+      return getInformal();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -162,11 +163,11 @@ public class ImpactAnnotationImpl extends MinimalEObjectImpl.Container implement
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
-    case GSNPackage.IMPACT_ANNOTATION__TYPE:
-      setType((ImpactType) newValue);
+    case GSNPackage.PROPERTY__FORMAL:
+      setFormal((String) newValue);
       return;
-    case GSNPackage.IMPACT_ANNOTATION__SOURCE:
-      setSource((String) newValue);
+    case GSNPackage.PROPERTY__INFORMAL:
+      setInformal((String) newValue);
       return;
     }
     super.eSet(featureID, newValue);
@@ -180,11 +181,11 @@ public class ImpactAnnotationImpl extends MinimalEObjectImpl.Container implement
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
-    case GSNPackage.IMPACT_ANNOTATION__TYPE:
-      setType(TYPE_EDEFAULT);
+    case GSNPackage.PROPERTY__FORMAL:
+      setFormal(FORMAL_EDEFAULT);
       return;
-    case GSNPackage.IMPACT_ANNOTATION__SOURCE:
-      setSource(SOURCE_EDEFAULT);
+    case GSNPackage.PROPERTY__INFORMAL:
+      setInformal(INFORMAL_EDEFAULT);
       return;
     }
     super.eUnset(featureID);
@@ -198,10 +199,10 @@ public class ImpactAnnotationImpl extends MinimalEObjectImpl.Container implement
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
-    case GSNPackage.IMPACT_ANNOTATION__TYPE:
-      return type != TYPE_EDEFAULT;
-    case GSNPackage.IMPACT_ANNOTATION__SOURCE:
-      return SOURCE_EDEFAULT == null ? source != null : !SOURCE_EDEFAULT.equals(source);
+    case GSNPackage.PROPERTY__FORMAL:
+      return FORMAL_EDEFAULT == null ? formal != null : !FORMAL_EDEFAULT.equals(formal);
+    case GSNPackage.PROPERTY__INFORMAL:
+      return INFORMAL_EDEFAULT == null ? informal != null : !INFORMAL_EDEFAULT.equals(informal);
     }
     return super.eIsSet(featureID);
   }
@@ -217,12 +218,12 @@ public class ImpactAnnotationImpl extends MinimalEObjectImpl.Container implement
       return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (type: ");
-    result.append(type);
-    result.append(", source: ");
-    result.append(source);
+    result.append(" (formal: ");
+    result.append(formal);
+    result.append(", informal: ");
+    result.append(informal);
     result.append(')');
     return result.toString();
   }
 
-} // ImpactAnnotationImpl
+} // PropertyImpl

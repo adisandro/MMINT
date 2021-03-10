@@ -27,24 +27,22 @@ import edu.toronto.cs.se.modelepedia.gsn.IntDomain;
 import edu.toronto.cs.se.modelepedia.gsn.ValueDomain;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Int Domain</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Int Domain</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.IntDomainImpl#getLowerBound <em>Lower Bound</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.IntDomainImpl#getUpperBound <em>Upper Bound</em>}</li>
+ * <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.IntDomainImpl#getLowerBound <em>Lower Bound</em>}</li>
+ * <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.IntDomainImpl#getUpperBound <em>Upper Bound</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class IntDomainImpl extends DomainImpl implements IntDomain {
   /**
-   * The default value of the '{@link #getLowerBound() <em>Lower Bound</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The default value of the '{@link #getLowerBound() <em>Lower Bound</em>}' attribute. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
+   * 
    * @see #getLowerBound()
    * @generated
    * @ordered
@@ -52,19 +50,19 @@ public class IntDomainImpl extends DomainImpl implements IntDomain {
   protected static final int LOWER_BOUND_EDEFAULT = 0;
 
   /**
-   * The cached value of the '{@link #getLowerBound() <em>Lower Bound</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The cached value of the '{@link #getLowerBound() <em>Lower Bound</em>}' attribute. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
+   * 
    * @see #getLowerBound()
    * @generated
    * @ordered
    */
-  protected int lowerBound = IntDomainImpl.LOWER_BOUND_EDEFAULT;
+  protected int lowerBound = LOWER_BOUND_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getUpperBound() <em>Upper Bound</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The default value of the '{@link #getUpperBound() <em>Upper Bound</em>}' attribute. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
+   * 
    * @see #getUpperBound()
    * @generated
    * @ordered
@@ -72,18 +70,18 @@ public class IntDomainImpl extends DomainImpl implements IntDomain {
   protected static final int UPPER_BOUND_EDEFAULT = 0;
 
   /**
-   * The cached value of the '{@link #getUpperBound() <em>Upper Bound</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The cached value of the '{@link #getUpperBound() <em>Upper Bound</em>}' attribute. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
+   * 
    * @see #getUpperBound()
    * @generated
    * @ordered
    */
-  protected int upperBound = IntDomainImpl.UPPER_BOUND_EDEFAULT;
+  protected int upperBound = UPPER_BOUND_EDEFAULT;
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected IntDomainImpl() {
@@ -91,8 +89,8 @@ public class IntDomainImpl extends DomainImpl implements IntDomain {
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -101,132 +99,135 @@ public class IntDomainImpl extends DomainImpl implements IntDomain {
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
   public int getLowerBound() {
-    return this.lowerBound;
+    return lowerBound;
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
   public void setLowerBound(int newLowerBound) {
-    var oldLowerBound = this.lowerBound;
-    this.lowerBound = newLowerBound;
+    int oldLowerBound = lowerBound;
+    lowerBound = newLowerBound;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.INT_DOMAIN__LOWER_BOUND, oldLowerBound, this.lowerBound));
+      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.INT_DOMAIN__LOWER_BOUND, oldLowerBound,
+                                    lowerBound));
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
   public int getUpperBound() {
-    return this.upperBound;
+    return upperBound;
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
   public void setUpperBound(int newUpperBound) {
-    var oldUpperBound = this.upperBound;
-    this.upperBound = newUpperBound;
+    int oldUpperBound = upperBound;
+    upperBound = newUpperBound;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.INT_DOMAIN__UPPER_BOUND, oldUpperBound, this.upperBound));
+      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.INT_DOMAIN__UPPER_BOUND, oldUpperBound,
+                                    upperBound));
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
-      case GSNPackage.INT_DOMAIN__LOWER_BOUND:
-        return getLowerBound();
-      case GSNPackage.INT_DOMAIN__UPPER_BOUND:
-        return getUpperBound();
+    case GSNPackage.INT_DOMAIN__LOWER_BOUND:
+      return getLowerBound();
+    case GSNPackage.INT_DOMAIN__UPPER_BOUND:
+      return getUpperBound();
     }
     return super.eGet(featureID, resolve, coreType);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
-      case GSNPackage.INT_DOMAIN__LOWER_BOUND:
-        setLowerBound((Integer)newValue);
-        return;
-      case GSNPackage.INT_DOMAIN__UPPER_BOUND:
-        setUpperBound((Integer)newValue);
-        return;
+    case GSNPackage.INT_DOMAIN__LOWER_BOUND:
+      setLowerBound((Integer) newValue);
+      return;
+    case GSNPackage.INT_DOMAIN__UPPER_BOUND:
+      setUpperBound((Integer) newValue);
+      return;
     }
     super.eSet(featureID, newValue);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
-      case GSNPackage.INT_DOMAIN__LOWER_BOUND:
-        setLowerBound(IntDomainImpl.LOWER_BOUND_EDEFAULT);
-        return;
-      case GSNPackage.INT_DOMAIN__UPPER_BOUND:
-        setUpperBound(IntDomainImpl.UPPER_BOUND_EDEFAULT);
-        return;
+    case GSNPackage.INT_DOMAIN__LOWER_BOUND:
+      setLowerBound(LOWER_BOUND_EDEFAULT);
+      return;
+    case GSNPackage.INT_DOMAIN__UPPER_BOUND:
+      setUpperBound(UPPER_BOUND_EDEFAULT);
+      return;
     }
     super.eUnset(featureID);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
-      case GSNPackage.INT_DOMAIN__LOWER_BOUND:
-        return this.lowerBound != IntDomainImpl.LOWER_BOUND_EDEFAULT;
-      case GSNPackage.INT_DOMAIN__UPPER_BOUND:
-        return this.upperBound != IntDomainImpl.UPPER_BOUND_EDEFAULT;
+    case GSNPackage.INT_DOMAIN__LOWER_BOUND:
+      return lowerBound != LOWER_BOUND_EDEFAULT;
+    case GSNPackage.INT_DOMAIN__UPPER_BOUND:
+      return upperBound != UPPER_BOUND_EDEFAULT;
     }
     return super.eIsSet(featureID);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public String toStringGen() {
-    if (eIsProxy()) return super.toString();
+    if (eIsProxy())
+      return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (lowerBound: ");
-    result.append(this.lowerBound);
+    result.append(lowerBound);
     result.append(", upperBound: ");
-    result.append(this.upperBound);
+    result.append(upperBound);
     result.append(')');
     return result.toString();
   }
@@ -307,12 +308,12 @@ public class IntDomainImpl extends DomainImpl implements IntDomain {
       }
       else {
         if ((prevSubValue + 1) > subValue) {
-          throw new MMINTException("There is an overlap between sub-domain values '" + prevSubValue + "' and '" +
-                                   subValue + "'");
+          throw new MMINTException("There is an overlap between sub-domain values '" + prevSubValue + "' and '"
+            + subValue + "'");
         }
         else if ((prevSubValue + 1) < subValue) {
-          throw new MMINTException("There is a gap between sub-domain values '" + prevSubValue + "' and '" + subValue +
-                                   "'");
+          throw new MMINTException("There is a gap between sub-domain values '" + prevSubValue + "' and '" + subValue
+            + "'");
         }
       }
       if (isBound) {
@@ -329,4 +330,4 @@ public class IntDomainImpl extends DomainImpl implements IntDomain {
     }
   }
 
-} //IntDomainImpl
+} // IntDomainImpl

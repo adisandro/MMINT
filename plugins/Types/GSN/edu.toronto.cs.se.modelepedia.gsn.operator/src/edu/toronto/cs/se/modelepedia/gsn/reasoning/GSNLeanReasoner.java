@@ -33,6 +33,7 @@ import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.modelepedia.gsn.Context;
 import edu.toronto.cs.se.modelepedia.gsn.ContextualElement;
 import edu.toronto.cs.se.modelepedia.gsn.InContextOf;
+import edu.toronto.cs.se.modelepedia.gsn.Property;
 import edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionStrategy;
 import edu.toronto.cs.se.modelepedia.gsn.PropertyGoal;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
@@ -67,7 +68,7 @@ public class GSNLeanReasoner extends LeanReasoner implements IGSNDecompositionTr
       .map(SupportedBy::getTarget)
       .filter(g -> g instanceof PropertyGoal)
       .filter(g -> ((PropertyGoal) g).getReasonerName().equals(getName()))
-      .map(g -> ((PropertyGoal) g).getProperty())
+      .map(g -> ((PropertyGoal) g).getProperty().getFormal())
       .filter(p -> p != null)
       .collect(Collectors.toList());
     if (subProperties.size() == 0) {
@@ -94,7 +95,7 @@ public class GSNLeanReasoner extends LeanReasoner implements IGSNDecompositionTr
 
   @Override
   public void validatePropertyDecomposition(PropertyDecompositionStrategy strategy) throws Exception {
-    var property = strategy.getProperty();
+    var property = strategy.getProperty().getFormal();
     var subProperties = getSubProperties(strategy);
     var relatedModelPath = getRelatedModelPath(strategy);
     var gsnModel = MIDDiagramUtils.getInstanceMIDModelFromModelEditor(strategy);
@@ -151,20 +152,18 @@ public class GSNLeanReasoner extends LeanReasoner implements IGSNDecompositionTr
           properties.add(feedback);
         }
         if (!badProperties.isEmpty()) {
-          var badGoals = strategy.getSupportedBy().stream()
+          var badInformals = strategy.getSupportedBy().stream()
             .map(SupportedBy::getTarget)
             .filter(g -> g instanceof PropertyGoal)
-            .map(g -> (PropertyGoal) g)
-            .filter(g -> badProperties.stream().anyMatch(p -> g.getProperty().startsWith(p)))
-            .map(PropertyGoal::getId)
+            .map(g -> ((PropertyGoal) g).getProperty())
+            .filter(p -> badProperties.stream().anyMatch(bp -> p.getFormal().startsWith(bp)))
+            .map(Property::getInformal)
             .collect(Collectors.toList());
-          if (!badGoals.isEmpty()) {
-            var propertyWord = (badGoals.size() > 1) ? "properties" : "property";
-            var subgoalWord = (badGoals.size() > 1) ? "sub-goals" : "sub-goal";
-            var hint = (hintProperties.isEmpty()) ? "" : String.join(", ", hintProperties);
-            invalidMsg += " because of the " + propertyWord + " associated with " + subgoalWord + " '" +
-                          String.join(", ", badGoals) + "'. Consider changing the " + propertyWord +
-                          " and validating the decomposition again.";
+          if (!badInformals.isEmpty()) {
+            var propertyWord = (badInformals.size() > 1) ? "properties" : "property";
+            var objWord = (badInformals.size() > 1) ? "them" : "it";
+            invalidMsg += " because of the " + propertyWord + " '" + String.join(", ", badInformals) +
+                          "'. Consider changing " + objWord + " and validating the decomposition again.";
             if (!hintProperties.isEmpty()) {
               invalidMsg += "\n(hint: using '" + String.join(", ", hintProperties) + "' instead may work)";
             }

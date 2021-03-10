@@ -11,16 +11,15 @@
  */
 package edu.toronto.cs.se.modelepedia.gsn;
 
-
 /**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Solution</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>Solution</b></em>'. <!-- end-user-doc -->
  *
  *
  * @see edu.toronto.cs.se.modelepedia.gsn.GSNPackage#getSolution()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='SolutionSupporter SolutionContext'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot SolutionSupporter='self.oclAsType(DecomposableCoreElement).oclIsInvalid()' SolutionContext='self.oclAsType(DecomposableCoreElement).oclIsInvalid()'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot
+ *        SolutionSupporter='self.oclAsType(DecomposableCoreElement).oclIsInvalid()'
+ *        SolutionContext='self.oclAsType(DecomposableCoreElement).oclIsInvalid()'"
  * @generated
  */
 public interface Solution extends CoreElement, StatefulElement {

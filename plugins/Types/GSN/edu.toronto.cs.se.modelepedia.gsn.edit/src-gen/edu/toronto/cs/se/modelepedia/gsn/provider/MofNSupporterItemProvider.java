@@ -11,7 +11,6 @@
  */
 package edu.toronto.cs.se.modelepedia.gsn.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -26,16 +25,15 @@ import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.MofNSupporter;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.gsn.MofNSupporter} object.
- * <!-- begin-user-doc -->
- * <!-- end-user-doc -->
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.gsn.MofNSupporter} object. <!--
+ * begin-user-doc --> <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class MofNSupporterItemProvider extends SupportConnectorItemProvider {
   /**
-   * This constructs an instance from a factory and a notifier.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public MofNSupporterItemProvider(AdapterFactory adapterFactory) {
@@ -43,47 +41,40 @@ public class MofNSupporterItemProvider extends SupportConnectorItemProvider {
   }
 
   /**
-   * This returns the property descriptors for the adapted class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
   public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-    if (this.itemPropertyDescriptors == null) {
+    if (itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
       addTargetPropertyDescriptor(object);
     }
-    return this.itemPropertyDescriptors;
+    return itemPropertyDescriptors;
   }
 
   /**
-   * This adds a property descriptor for the Target feature.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * This adds a property descriptor for the Target feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected void addTargetPropertyDescriptor(Object object) {
-    this.itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_MofNSupporter_target_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_MofNSupporter_target_feature", "_UI_MofNSupporter_type"),
-         GSNPackage.Literals.MOF_NSUPPORTER__TARGET,
-         true,
-         false,
-         false,
-         ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-         null,
-         null));
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+                                                             getResourceLocator(), getString(
+                                                                                             "_UI_MofNSupporter_target_feature"),
+                                                             getString("_UI_PropertyDescriptor_description",
+                                                                       "_UI_MofNSupporter_target_feature",
+                                                                       "_UI_MofNSupporter_type"),
+                                                             GSNPackage.Literals.MOF_NSUPPORTER__TARGET, true, false,
+                                                             false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null,
+                                                             null));
   }
 
   /**
-   * This returns MofNSupporter.gif.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * This returns MofNSupporter.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -92,23 +83,20 @@ public class MofNSupporterItemProvider extends SupportConnectorItemProvider {
   }
 
   /**
-   * This returns the label text for the adapted class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
   public String getText(Object object) {
-    var mofNSupporter = (MofNSupporter)object;
+    MofNSupporter mofNSupporter = (MofNSupporter) object;
     return getString("_UI_MofNSupporter_type") + " " + mofNSupporter.getTarget();
   }
 
-
   /**
-   * This handles model notifications by calling {@link #updateChildren} to update any cached
-   * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating a
+   * viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -116,18 +104,17 @@ public class MofNSupporterItemProvider extends SupportConnectorItemProvider {
     updateChildren(notification);
 
     switch (notification.getFeatureID(MofNSupporter.class)) {
-      case GSNPackage.MOF_NSUPPORTER__TARGET:
-        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-        return;
+    case GSNPackage.MOF_NSUPPORTER__TARGET:
+      fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+      return;
     }
     super.notifyChanged(notification);
   }
 
   /**
-   * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-   * that can be created under this object.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created under
+   * this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override

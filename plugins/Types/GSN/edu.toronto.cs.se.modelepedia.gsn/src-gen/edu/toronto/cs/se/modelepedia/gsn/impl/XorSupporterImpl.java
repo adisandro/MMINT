@@ -17,16 +17,14 @@ import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.XorSupporter;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Xor Supporter</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Xor Supporter</b></em>'. <!-- end-user-doc -->
  *
  * @generated
  */
 public class XorSupporterImpl extends SupportConnectorImpl implements XorSupporter {
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected XorSupporterImpl() {
@@ -34,8 +32,8 @@ public class XorSupporterImpl extends SupportConnectorImpl implements XorSupport
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -43,4 +41,4 @@ public class XorSupporterImpl extends SupportConnectorImpl implements XorSupport
     return GSNPackage.Literals.XOR_SUPPORTER;
   }
 
-} //XorSupporterImpl
+} // XorSupporterImpl

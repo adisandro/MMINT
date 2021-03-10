@@ -26,23 +26,21 @@ import edu.toronto.cs.se.modelepedia.gsn.SupportedBy;
 import edu.toronto.cs.se.modelepedia.gsn.Supporter;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Core Element</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Core Element</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.CoreElementImpl#getSupports <em>Supports</em>}</li>
+ * <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.CoreElementImpl#getSupports <em>Supports</em>}</li>
  * </ul>
  *
  * @generated
  */
 public abstract class CoreElementImpl extends ArgumentElementImpl implements CoreElement {
   /**
-   * The cached value of the '{@link #getSupports() <em>Supports</em>}' reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The cached value of the '{@link #getSupports() <em>Supports</em>}' reference list. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
+   * 
    * @see #getSupports()
    * @generated
    * @ordered
@@ -50,8 +48,8 @@ public abstract class CoreElementImpl extends ArgumentElementImpl implements Cor
   protected EList<SupportedBy> supports;
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected CoreElementImpl() {
@@ -59,8 +57,8 @@ public abstract class CoreElementImpl extends ArgumentElementImpl implements Cor
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -69,137 +67,143 @@ public abstract class CoreElementImpl extends ArgumentElementImpl implements Cor
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
   public EList<SupportedBy> getSupports() {
-    if (this.supports == null) {
-      this.supports = new EObjectWithInverseResolvingEList<>(SupportedBy.class, this, GSNPackage.CORE_ELEMENT__SUPPORTS, GSNPackage.SUPPORTED_BY__TARGET);
+    if (supports == null) {
+      supports = new EObjectWithInverseResolvingEList<SupportedBy>(SupportedBy.class, this,
+                                                                   GSNPackage.CORE_ELEMENT__SUPPORTS,
+                                                                   GSNPackage.SUPPORTED_BY__TARGET);
     }
-    return this.supports;
+    return supports;
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
   @Override
   public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
-      case GSNPackage.CORE_ELEMENT__SUPPORTS:
-        return ((InternalEList<InternalEObject>)(InternalEList<?>)getSupports()).basicAdd(otherEnd, msgs);
+    case GSNPackage.CORE_ELEMENT__SUPPORTS:
+      return ((InternalEList<InternalEObject>) (InternalEList<?>) getSupports()).basicAdd(otherEnd, msgs);
     }
     return super.eInverseAdd(otherEnd, featureID, msgs);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
-      case GSNPackage.CORE_ELEMENT__SUPPORTS:
-        return ((InternalEList<?>)getSupports()).basicRemove(otherEnd, msgs);
+    case GSNPackage.CORE_ELEMENT__SUPPORTS:
+      return ((InternalEList<?>) getSupports()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
-      case GSNPackage.CORE_ELEMENT__SUPPORTS:
-        return getSupports();
+    case GSNPackage.CORE_ELEMENT__SUPPORTS:
+      return getSupports();
     }
     return super.eGet(featureID, resolve, coreType);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
-      case GSNPackage.CORE_ELEMENT__SUPPORTS:
-        getSupports().clear();
-        getSupports().addAll((Collection<? extends SupportedBy>)newValue);
-        return;
+    case GSNPackage.CORE_ELEMENT__SUPPORTS:
+      getSupports().clear();
+      getSupports().addAll((Collection<? extends SupportedBy>) newValue);
+      return;
     }
     super.eSet(featureID, newValue);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
-      case GSNPackage.CORE_ELEMENT__SUPPORTS:
-        getSupports().clear();
-        return;
+    case GSNPackage.CORE_ELEMENT__SUPPORTS:
+      getSupports().clear();
+      return;
     }
     super.eUnset(featureID);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
-      case GSNPackage.CORE_ELEMENT__SUPPORTS:
-        return this.supports != null && !this.supports.isEmpty();
+    case GSNPackage.CORE_ELEMENT__SUPPORTS:
+      return supports != null && !supports.isEmpty();
     }
     return super.eIsSet(featureID);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
   public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
     if (baseClass == Supporter.class) {
       switch (derivedFeatureID) {
-        case GSNPackage.CORE_ELEMENT__SUPPORTS: return GSNPackage.SUPPORTER__SUPPORTS;
-        default: return -1;
+      case GSNPackage.CORE_ELEMENT__SUPPORTS:
+        return GSNPackage.SUPPORTER__SUPPORTS;
+      default:
+        return -1;
       }
     }
     return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
   public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
     if (baseClass == Supporter.class) {
       switch (baseFeatureID) {
-        case GSNPackage.SUPPORTER__SUPPORTS: return GSNPackage.CORE_ELEMENT__SUPPORTS;
-        default: return -1;
+      case GSNPackage.SUPPORTER__SUPPORTS:
+        return GSNPackage.CORE_ELEMENT__SUPPORTS;
+      default:
+        return -1;
       }
     }
     return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
   }
 
-} //CoreElementImpl
+} // CoreElementImpl

@@ -17,16 +17,14 @@ import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.Justification;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Justification</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Justification</b></em>'. <!-- end-user-doc -->
  *
  * @generated
  */
 public class JustificationImpl extends ContextualElementImpl implements Justification {
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected JustificationImpl() {
@@ -34,8 +32,8 @@ public class JustificationImpl extends ContextualElementImpl implements Justific
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -43,4 +41,4 @@ public class JustificationImpl extends ContextualElementImpl implements Justific
     return GSNPackage.Literals.JUSTIFICATION;
   }
 
-} //JustificationImpl
+} // JustificationImpl

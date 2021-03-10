@@ -25,23 +25,21 @@ import edu.toronto.cs.se.modelepedia.gsn.Supportable;
 import edu.toronto.cs.se.modelepedia.gsn.SupportedBy;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Supportable</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Supportable</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.SupportableImpl#getSupportedBy <em>Supported By</em>}</li>
+ * <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.SupportableImpl#getSupportedBy <em>Supported By</em>}</li>
  * </ul>
  *
  * @generated
  */
 public abstract class SupportableImpl extends SupporterImpl implements Supportable {
   /**
-   * The cached value of the '{@link #getSupportedBy() <em>Supported By</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The cached value of the '{@link #getSupportedBy() <em>Supported By</em>}' containment reference list. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #getSupportedBy()
    * @generated
    * @ordered
@@ -49,8 +47,8 @@ public abstract class SupportableImpl extends SupporterImpl implements Supportab
   protected EList<SupportedBy> supportedBy;
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected SupportableImpl() {
@@ -58,8 +56,8 @@ public abstract class SupportableImpl extends SupporterImpl implements Supportab
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -68,105 +66,107 @@ public abstract class SupportableImpl extends SupporterImpl implements Supportab
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
   public EList<SupportedBy> getSupportedBy() {
-    if (this.supportedBy == null) {
-      this.supportedBy = new EObjectContainmentWithInverseEList<>(SupportedBy.class, this, GSNPackage.SUPPORTABLE__SUPPORTED_BY, GSNPackage.SUPPORTED_BY__SOURCE);
+    if (supportedBy == null) {
+      supportedBy = new EObjectContainmentWithInverseEList<SupportedBy>(SupportedBy.class, this,
+                                                                        GSNPackage.SUPPORTABLE__SUPPORTED_BY,
+                                                                        GSNPackage.SUPPORTED_BY__SOURCE);
     }
-    return this.supportedBy;
+    return supportedBy;
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
   @Override
   public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
-      case GSNPackage.SUPPORTABLE__SUPPORTED_BY:
-        return ((InternalEList<InternalEObject>)(InternalEList<?>)getSupportedBy()).basicAdd(otherEnd, msgs);
+    case GSNPackage.SUPPORTABLE__SUPPORTED_BY:
+      return ((InternalEList<InternalEObject>) (InternalEList<?>) getSupportedBy()).basicAdd(otherEnd, msgs);
     }
     return super.eInverseAdd(otherEnd, featureID, msgs);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
-      case GSNPackage.SUPPORTABLE__SUPPORTED_BY:
-        return ((InternalEList<?>)getSupportedBy()).basicRemove(otherEnd, msgs);
+    case GSNPackage.SUPPORTABLE__SUPPORTED_BY:
+      return ((InternalEList<?>) getSupportedBy()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
-      case GSNPackage.SUPPORTABLE__SUPPORTED_BY:
-        return getSupportedBy();
+    case GSNPackage.SUPPORTABLE__SUPPORTED_BY:
+      return getSupportedBy();
     }
     return super.eGet(featureID, resolve, coreType);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
-      case GSNPackage.SUPPORTABLE__SUPPORTED_BY:
-        getSupportedBy().clear();
-        getSupportedBy().addAll((Collection<? extends SupportedBy>)newValue);
-        return;
+    case GSNPackage.SUPPORTABLE__SUPPORTED_BY:
+      getSupportedBy().clear();
+      getSupportedBy().addAll((Collection<? extends SupportedBy>) newValue);
+      return;
     }
     super.eSet(featureID, newValue);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
-      case GSNPackage.SUPPORTABLE__SUPPORTED_BY:
-        getSupportedBy().clear();
-        return;
+    case GSNPackage.SUPPORTABLE__SUPPORTED_BY:
+      getSupportedBy().clear();
+      return;
     }
     super.eUnset(featureID);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
-      case GSNPackage.SUPPORTABLE__SUPPORTED_BY:
-        return this.supportedBy != null && !this.supportedBy.isEmpty();
+    case GSNPackage.SUPPORTABLE__SUPPORTED_BY:
+      return supportedBy != null && !supportedBy.isEmpty();
     }
     return super.eIsSet(featureID);
   }
 
-} //SupportableImpl
+} // SupportableImpl

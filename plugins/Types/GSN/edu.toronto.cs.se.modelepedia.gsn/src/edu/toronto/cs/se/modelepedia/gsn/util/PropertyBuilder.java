@@ -12,6 +12,7 @@
  *******************************************************************************/
 package edu.toronto.cs.se.modelepedia.gsn.util;
 
+import edu.toronto.cs.se.modelepedia.gsn.Property;
 import edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionElement;
 import edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionStrategy;
 import edu.toronto.cs.se.modelepedia.gsn.PropertyGoal;
@@ -23,12 +24,12 @@ public class PropertyBuilder extends GSNBuilder {
     super(gsnRootModelObj);
   }
 
-  public void addPropertyElement(PropertyDecompositionElement propertyElem, String reasonerName, String property) {
+  public void addPropertyElement(PropertyDecompositionElement propertyElem, String reasonerName, Property property) {
     propertyElem.setReasonerName(reasonerName);
     propertyElem.setProperty(property);
   }
 
-  public PropertyGoal createPropertyGoal(String id, String description, String reasonerName, String property) {
+  public PropertyGoal createPropertyGoal(String id, String description, String reasonerName, Property property) {
     var goal = this.factory.createPropertyGoal();
     addGoal(goal, id, description);
     addPropertyElement(goal, reasonerName, property);
@@ -37,7 +38,7 @@ public class PropertyBuilder extends GSNBuilder {
   }
 
   public PropertyDecompositionStrategy createPropertyStrategy(String id, String description, String reasonerName,
-                                                              String property) {
+                                                              Property property) {
     var strategy = this.factory.createPropertyDecompositionStrategy();
     addStrategy(strategy, id, description);
     addPropertyElement(strategy, reasonerName, property);

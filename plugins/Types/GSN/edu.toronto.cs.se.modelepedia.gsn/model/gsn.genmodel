@@ -124,9 +124,13 @@
     </genClasses>
     <genClasses ecoreClass="gsn.ecore#//DomainDecompositionStrategy"/>
     <genClasses ecoreClass="gsn.ecore#//DomainGoal"/>
+    <genClasses ecoreClass="gsn.ecore#//Property">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//Property/formal"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//Property/informal"/>
+    </genClasses>
     <genClasses ecoreClass="gsn.ecore#//PropertyDecompositionElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//PropertyDecompositionElement/reasonerName"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//PropertyDecompositionElement/property"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EReference gsn.ecore#//PropertyDecompositionElement/property"/>
     </genClasses>
     <genClasses ecoreClass="gsn.ecore#//PropertyDecompositionStrategy"/>
     <genClasses ecoreClass="gsn.ecore#//PropertyGoal"/>

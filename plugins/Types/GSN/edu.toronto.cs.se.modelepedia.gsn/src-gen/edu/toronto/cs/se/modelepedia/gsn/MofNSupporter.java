@@ -11,17 +11,14 @@
  */
 package edu.toronto.cs.se.modelepedia.gsn;
 
-
 /**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Mof NSupporter</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>Mof NSupporter</b></em>'. <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.MofNSupporter#getTarget <em>Target</em>}</li>
+ * <li>{@link edu.toronto.cs.se.modelepedia.gsn.MofNSupporter#getTarget <em>Target</em>}</li>
  * </ul>
  *
  * @see edu.toronto.cs.se.modelepedia.gsn.GSNPackage#getMofNSupporter()
@@ -30,10 +27,9 @@ package edu.toronto.cs.se.modelepedia.gsn;
  */
 public interface MofNSupporter extends SupportConnector {
   /**
-   * Returns the value of the '<em><b>Target</b></em>' attribute.
-   * The default value is <code>"1"</code>.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Returns the value of the '<em><b>Target</b></em>' attribute. The default value is <code>"1"</code>. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @return the value of the '<em>Target</em>' attribute.
    * @see #setTarget(long)
    * @see edu.toronto.cs.se.modelepedia.gsn.GSNPackage#getMofNSupporter_Target()
@@ -43,10 +39,11 @@ public interface MofNSupporter extends SupportConnector {
   long getTarget();
 
   /**
-   * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.gsn.MofNSupporter#getTarget <em>Target</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Target</em>' attribute.
+   * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.gsn.MofNSupporter#getTarget <em>Target</em>}'
+   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
+   * @param value
+   *          the new value of the '<em>Target</em>' attribute.
    * @see #getTarget()
    * @generated
    */

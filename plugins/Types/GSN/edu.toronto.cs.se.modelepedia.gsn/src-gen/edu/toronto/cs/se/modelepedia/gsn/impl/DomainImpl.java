@@ -27,16 +27,14 @@ import edu.toronto.cs.se.modelepedia.gsn.RealDomain;
 import edu.toronto.cs.se.modelepedia.gsn.ValueDomain;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Domain</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Domain</b></em>'. <!-- end-user-doc -->
  *
  * @generated
  */
 public abstract class DomainImpl extends MinimalEObjectImpl.Container implements Domain {
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected DomainImpl() {
@@ -44,8 +42,8 @@ public abstract class DomainImpl extends MinimalEObjectImpl.Container implements
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -54,8 +52,8 @@ public abstract class DomainImpl extends MinimalEObjectImpl.Container implements
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -66,22 +64,22 @@ public abstract class DomainImpl extends MinimalEObjectImpl.Container implements
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
   @SuppressWarnings("unchecked")
   public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
     switch (operationID) {
-      case GSNPackage.DOMAIN___VALIDATE_DECOMPOSITION__ELIST:
-        try {
-          validateDecomposition((EList<Domain>)arguments.get(0));
-          return null;
-        }
-        catch (Throwable throwable) {
-          throw new InvocationTargetException(throwable);
-        }
+    case GSNPackage.DOMAIN___VALIDATE_DECOMPOSITION__ELIST:
+      try {
+        validateDecomposition((EList<Domain>) arguments.get(0));
+        return null;
+      }
+      catch (Throwable throwable) {
+        throw new InvocationTargetException(throwable);
+      }
     }
     return super.eInvoke(operationID, arguments);
   }
@@ -152,4 +150,4 @@ public abstract class DomainImpl extends MinimalEObjectImpl.Container implements
     return domain;
   }
 
-} //DomainImpl
+} // DomainImpl

@@ -17,16 +17,15 @@ import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.SupportConnector;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Support Connector</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Support Connector</b></em>'. <!-- end-user-doc
+ * -->
  *
  * @generated
  */
 public abstract class SupportConnectorImpl extends SupportableImpl implements SupportConnector {
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected SupportConnectorImpl() {
@@ -34,8 +33,8 @@ public abstract class SupportConnectorImpl extends SupportableImpl implements Su
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -43,4 +42,4 @@ public abstract class SupportConnectorImpl extends SupportableImpl implements Su
     return GSNPackage.Literals.SUPPORT_CONNECTOR;
   }
 
-} //SupportConnectorImpl
+} // SupportConnectorImpl

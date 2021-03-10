@@ -17,16 +17,14 @@ import edu.toronto.cs.se.modelepedia.gsn.AndSupporter;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>And Supporter</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>And Supporter</b></em>'. <!-- end-user-doc -->
  *
  * @generated
  */
 public class AndSupporterImpl extends SupportConnectorImpl implements AndSupporter {
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected AndSupporterImpl() {
@@ -34,8 +32,8 @@ public class AndSupporterImpl extends SupportConnectorImpl implements AndSupport
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -43,4 +41,4 @@ public class AndSupporterImpl extends SupportConnectorImpl implements AndSupport
     return GSNPackage.Literals.AND_SUPPORTER;
   }
 
-} //AndSupporterImpl
+} // AndSupporterImpl

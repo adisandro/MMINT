@@ -27,23 +27,21 @@ import edu.toronto.cs.se.modelepedia.gsn.RealDomain;
 import edu.toronto.cs.se.modelepedia.gsn.ValueDomain;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Enum Domain</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Enum Domain</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.EnumDomainImpl#getValues <em>Values</em>}</li>
+ * <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.EnumDomainImpl#getValues <em>Values</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class EnumDomainImpl extends DomainImpl implements EnumDomain {
   /**
-   * The cached value of the '{@link #getValues() <em>Values</em>}' attribute list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The cached value of the '{@link #getValues() <em>Values</em>}' attribute list. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
+   * 
    * @see #getValues()
    * @generated
    * @ordered
@@ -51,8 +49,8 @@ public class EnumDomainImpl extends DomainImpl implements EnumDomain {
   protected EList<String> values;
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected EnumDomainImpl() {
@@ -60,8 +58,8 @@ public class EnumDomainImpl extends DomainImpl implements EnumDomain {
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -70,89 +68,90 @@ public class EnumDomainImpl extends DomainImpl implements EnumDomain {
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
   public EList<String> getValues() {
-    if (this.values == null) {
-      this.values = new EDataTypeUniqueEList<>(String.class, this, GSNPackage.ENUM_DOMAIN__VALUES);
+    if (values == null) {
+      values = new EDataTypeUniqueEList<String>(String.class, this, GSNPackage.ENUM_DOMAIN__VALUES);
     }
-    return this.values;
+    return values;
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
-      case GSNPackage.ENUM_DOMAIN__VALUES:
-        return getValues();
+    case GSNPackage.ENUM_DOMAIN__VALUES:
+      return getValues();
     }
     return super.eGet(featureID, resolve, coreType);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
-      case GSNPackage.ENUM_DOMAIN__VALUES:
-        getValues().clear();
-        getValues().addAll((Collection<? extends String>)newValue);
-        return;
+    case GSNPackage.ENUM_DOMAIN__VALUES:
+      getValues().clear();
+      getValues().addAll((Collection<? extends String>) newValue);
+      return;
     }
     super.eSet(featureID, newValue);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
-      case GSNPackage.ENUM_DOMAIN__VALUES:
-        getValues().clear();
-        return;
+    case GSNPackage.ENUM_DOMAIN__VALUES:
+      getValues().clear();
+      return;
     }
     super.eUnset(featureID);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
-      case GSNPackage.ENUM_DOMAIN__VALUES:
-        return this.values != null && !this.values.isEmpty();
+    case GSNPackage.ENUM_DOMAIN__VALUES:
+      return values != null && !values.isEmpty();
     }
     return super.eIsSet(featureID);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public String toStringGen() {
-    if (eIsProxy()) return super.toString();
+    if (eIsProxy())
+      return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (values: ");
-    result.append(this.values);
+    result.append(values);
     result.append(')');
     return result.toString();
   }
@@ -178,8 +177,7 @@ public class EnumDomainImpl extends DomainImpl implements EnumDomain {
       else if (subDomain instanceof EnumDomain) {
         var subValues = ((EnumDomain) subDomain).getValues();
         if (!enumValues.containsAll(subValues)) {
-          throw new MMINTException("One or more sub-domain values within '" + subValues +
-                                   "' are not in the domain");
+          throw new MMINTException("One or more sub-domain values within '" + subValues + "' are not in the domain");
         }
         enumValues.removeAll(subValues);
       }
@@ -196,4 +194,4 @@ public class EnumDomainImpl extends DomainImpl implements EnumDomain {
     }
   }
 
-} //EnumDomainImpl
+} // EnumDomainImpl

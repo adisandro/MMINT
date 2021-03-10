@@ -14,16 +14,15 @@ package edu.toronto.cs.se.modelepedia.gsn;
 import org.eclipse.emf.ecore.EObject;
 
 /**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Impact Annotation</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>Impact Annotation</b></em>'. <!-- end-user-doc
+ * -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.ImpactAnnotation#getType <em>Type</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.ImpactAnnotation#getSource <em>Source</em>}</li>
+ * <li>{@link edu.toronto.cs.se.modelepedia.gsn.ImpactAnnotation#getType <em>Type</em>}</li>
+ * <li>{@link edu.toronto.cs.se.modelepedia.gsn.ImpactAnnotation#getSource <em>Source</em>}</li>
  * </ul>
  *
  * @see edu.toronto.cs.se.modelepedia.gsn.GSNPackage#getImpactAnnotation()
@@ -32,10 +31,9 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface ImpactAnnotation extends EObject {
   /**
-   * Returns the value of the '<em><b>Type</b></em>' attribute.
-   * The literals are from the enumeration {@link edu.toronto.cs.se.modelepedia.gsn.ImpactType}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Returns the value of the '<em><b>Type</b></em>' attribute. The literals are from the enumeration
+   * {@link edu.toronto.cs.se.modelepedia.gsn.ImpactType}. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @return the value of the '<em>Type</em>' attribute.
    * @see edu.toronto.cs.se.modelepedia.gsn.ImpactType
    * @see #setType(ImpactType)
@@ -47,9 +45,10 @@ public interface ImpactAnnotation extends EObject {
 
   /**
    * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.gsn.ImpactAnnotation#getType <em>Type</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Type</em>' attribute.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
+   * @param value
+   *          the new value of the '<em>Type</em>' attribute.
    * @see edu.toronto.cs.se.modelepedia.gsn.ImpactType
    * @see #getType()
    * @generated
@@ -57,9 +56,8 @@ public interface ImpactAnnotation extends EObject {
   void setType(ImpactType value);
 
   /**
-   * Returns the value of the '<em><b>Source</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Returns the value of the '<em><b>Source</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @return the value of the '<em>Source</em>' attribute.
    * @see #setSource(String)
    * @see edu.toronto.cs.se.modelepedia.gsn.GSNPackage#getImpactAnnotation_Source()
@@ -69,10 +67,11 @@ public interface ImpactAnnotation extends EObject {
   String getSource();
 
   /**
-   * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.gsn.ImpactAnnotation#getSource <em>Source</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Source</em>' attribute.
+   * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.gsn.ImpactAnnotation#getSource <em>Source</em>}'
+   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
+   * @param value
+   *          the new value of the '<em>Source</em>' attribute.
    * @see #getSource()
    * @generated
    */
