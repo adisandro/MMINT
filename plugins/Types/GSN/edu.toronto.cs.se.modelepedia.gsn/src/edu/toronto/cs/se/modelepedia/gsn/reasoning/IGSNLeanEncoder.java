@@ -62,8 +62,7 @@ public interface IGSNLeanEncoder {
       this.variables = Objects.requireNonNull(variables);
     }
 
-    public Property bindVariables(String title, Map<EClass, List<EObject>> modelObjs)
-                                      throws MIDDialogCancellation {
+    public Property bindVariables(String title, Map<EClass, List<EObject>> modelObjs) throws MIDDialogCancellation {
       var property = GSNFactory.eINSTANCE.createProperty();
       if (this.variables.isEmpty()) {
         property.setFormal(this.formal);

@@ -187,7 +187,7 @@
             <viewVariable name="containerView"/>
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
-                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="gsn.PropertyGoal" referenceName="goals"/>
+                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="CreatePropertyGoal" id="edu.toronto.cs.se.modelepedia.gsn.design.tools.CreatePropertyGoal"/>
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
@@ -214,7 +214,7 @@
             <viewVariable name="containerView"/>
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
-                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="CreateDomainDecompositionStrategy" id="edu.toronto.cs.se.modelepedia.gsn.design.tools.CreateDomainDecopositionStrategy"/>
+                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="CreateDomainDecompositionStrategy" id="edu.toronto.cs.se.modelepedia.gsn.design.tools.CreateDomainDecompositionStrategy"/>
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
@@ -223,7 +223,7 @@
             <viewVariable name="containerView"/>
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
-                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="gsn.PropertyDecompositionStrategy" referenceName="strategies"/>
+                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="CreatePropertyDecompositionStrategy" id="edu.toronto.cs.se.modelepedia.gsn.design.tools.CreatePropertyDecompositionStrategy"/>
               </firstModelOperations>
             </initialOperation>
           </ownedTools>

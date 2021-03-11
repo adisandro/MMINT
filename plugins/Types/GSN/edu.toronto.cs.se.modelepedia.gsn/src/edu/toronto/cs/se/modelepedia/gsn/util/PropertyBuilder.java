@@ -12,6 +12,8 @@
  *******************************************************************************/
 package edu.toronto.cs.se.modelepedia.gsn.util;
 
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.modelepedia.gsn.Property;
 import edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionElement;
 import edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionStrategy;
@@ -27,6 +29,17 @@ public class PropertyBuilder extends GSNBuilder {
   public void addPropertyElement(PropertyDecompositionElement propertyElem, String reasonerName, Property property) {
     propertyElem.setReasonerName(reasonerName);
     propertyElem.setProperty(property);
+  }
+
+  public Property createProperty(String title, String formalMessage, String informalMessage)
+                                throws MIDDialogCancellation {
+    var property = this.factory.createProperty();
+    var formal = MIDDialogs.getBigStringInput(title, formalMessage, null);
+    var informal = MIDDialogs.getStringInput(title, informalMessage, null);
+    property.setFormal(formal);
+    property.setInformal(informal);
+
+    return property;
   }
 
   public PropertyGoal createPropertyGoal(String id, String description, String reasonerName, Property property) {

@@ -51,6 +51,14 @@
             id="edu.toronto.cs.se.modelepedia.gsn.design.context.DomainDecomposition">
       </javaActions>
       <javaActions
+            actionClass="edu.toronto.cs.se.modelepedia.gsn.design.tools.CreatePropertyGoal"
+            id="edu.toronto.cs.se.modelepedia.gsn.design.tools.CreatePropertyGoal">
+      </javaActions>
+      <javaActions
+            actionClass="edu.toronto.cs.se.modelepedia.gsn.design.tools.CreatePropertyDecompositionStrategy"
+            id="edu.toronto.cs.se.modelepedia.gsn.design.tools.CreatePropertyDecompositionStrategy">
+      </javaActions>
+      <javaActions
             actionClass="edu.toronto.cs.se.modelepedia.gsn.design.context.PropertyDecomposition"
             id="edu.toronto.cs.se.modelepedia.gsn.design.context.PropertyDecomposition">
       </javaActions>

@@ -153,11 +153,12 @@ public class PropertyDecomposition extends GoalDecomposition {
        * AddModifyConstraintListener: Refactor constraint code to use this code?
        * IGSNLeanEncoder: Switch to records
        * GSNLeanReasoner: Review name
+       * Handle chain of assisted decompositions? Rel model should be searched recursively
        */
       var builder = (PropertyBuilder) this.builder;
       // ask for input
       var title = "Property Decomposition";
-      var customMsg = "Insert an optional description for the custom property";
+      var customMsg = "Insert a description for the custom property";
       var reasoner = MIDDialogs.selectReasoner(IGSNDecompositionTrait.class, "GSN property decomposition");
       var reasonerName = reasoner.getName();
       var relatedModelOpt = getRelatedModel();
@@ -181,15 +182,9 @@ public class PropertyDecomposition extends GoalDecomposition {
         }
       }
       var template = selectTemplate(title, "Select the property to be decomposed", templates);
-      var property = template.bindVariables(title, modelObjs);
-      if (property.getFormal().isBlank()) {
-        property.setFormal(
-          MIDDialogs.getBigStringInput(title, "Insert the " + reasonerName + " property to be decomposed", null));
-        try {
-          property.setInformal(MIDDialogs.getStringInput(title, customMsg, null));
-        }
-        catch (MIDDialogCancellation e) {}
-      }
+      var property = (template == PropertyTemplate.CUSTOM) ?
+        builder.createProperty(title, "Insert the " + reasonerName + " property to be decomposed", customMsg) :
+        template.bindVariables(title, modelObjs);
       var numProperties = Integer.parseInt(MIDDialogs.getStringInput(title, "Insert the number of sub-properties",
                                                                      null));
       // create decomposition template
@@ -221,14 +216,9 @@ public class PropertyDecomposition extends GoalDecomposition {
       builder.createContext(propStrategy, modelContextId, relatedModelPath);
       for (var i = 0; i < numProperties; i++) {
         var subTemplate = selectTemplate(title, "Select the sub-property #" + (i+1), templates);
-        var subProperty = subTemplate.bindVariables(title, modelObjs);
-        if (subProperty.getFormal().isBlank()) {
-          subProperty.setFormal(MIDDialogs.getBigStringInput(title, "Insert the sub-property #" + (i+1), null));
-          try {
-            subProperty.setInformal(MIDDialogs.getStringInput(title, customMsg, null));
-          }
-          catch (MIDDialogCancellation e) {}
-        }
+        var subProperty = (subTemplate == PropertyTemplate.CUSTOM) ?
+          builder.createProperty(title, "Insert the sub-property #" + (i+1), customMsg) :
+          subTemplate.bindVariables(title, modelObjs);
         var subGoalDesc = propDesc1 + "'" + subProperty.getInformal() + "'" + propDesc2;
         var subGoal = builder.createPropertyGoal(subGoalId + i, subGoalDesc, reasonerName, subProperty);
         builder.addSupporter(propStrategy, subGoal);

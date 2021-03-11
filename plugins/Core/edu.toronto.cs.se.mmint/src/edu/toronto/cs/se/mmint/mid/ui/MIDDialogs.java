@@ -387,7 +387,7 @@ public class MIDDialogs {
 	 * @throws MIDDialogCancellation
 	 *             If the text input was not completed for any reason.
 	 */
-	public static String getStringInput(String dialogTitle, String dialogMessage, String dialogInitial) throws MIDDialogCancellation {
+	public static String getStringInput(String dialogTitle, String dialogMessage, @Nullable String dialogInitial) throws MIDDialogCancellation {
 
 		var shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		var dialog = new InputDialog(shell, dialogTitle, dialogMessage, dialogInitial, null);
