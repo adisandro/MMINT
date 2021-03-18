@@ -8,7 +8,8 @@ Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore,
+ hu.bme.mit.massif.simulink,
  edu.toronto.cs.se.mmint
 Bundle-ActivationPolicy: lazy
 Automatic-Module-Name: edu.toronto.cs.se.mmint.types.simulink
-Bundle-RequiredExecutionEnvironment: JavaSE-15
+Bundle-RequiredExecutionEnvironment: JavaSE-16

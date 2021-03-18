@@ -33,6 +33,7 @@
       <import plugin="org.eclipse.core.runtime"/>
       <import plugin="org.eclipse.emf.ecore"/>
       <import plugin="edu.toronto.cs.se.mmint"/>
+      <import feature="hu.bme.mit.massif.simulink.emf"/>
       <import feature="hu.bme.mit.massif.simulink.ui"/>
    </requires>
 
