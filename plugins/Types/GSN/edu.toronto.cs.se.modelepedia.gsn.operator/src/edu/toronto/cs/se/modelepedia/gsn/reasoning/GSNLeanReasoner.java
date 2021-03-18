@@ -53,9 +53,9 @@ public class GSNLeanReasoner extends LeanReasoner implements IGSNDecompositionTr
   @Override
   public Map<String, List<PropertyTemplate>> getTemplateProperties(Model model) throws MMINTException {
     var templates = new LinkedHashMap<String, List<PropertyTemplate>>();
-    var encoder = (ToLean) MIDTypeHierarchy.getPolyOperator(LeanReasoner.ENCODER_ID, ECollections.newBasicEList(model));
-    if (encoder instanceof IGSNLeanEncoder) {
-      ((IGSNLeanEncoder) encoder).getTemplateProperties()
+    var encoder = MIDTypeHierarchy.<ToLean>getPolyOperator(LeanReasoner.ENCODER_ID, ECollections.newBasicEList(model));
+    if (encoder.operator() instanceof IGSNLeanEncoder gsnEncoder) {
+      gsnEncoder.getTemplateProperties()
         .forEach(t -> templates.computeIfAbsent(t.category, k -> new ArrayList<>()).add(t));
     }
     templates.computeIfAbsent(PropertyTemplate.CUSTOM.category, k -> new ArrayList<>()).add(PropertyTemplate.CUSTOM);
@@ -114,18 +114,19 @@ public class GSNLeanReasoner extends LeanReasoner implements IGSNDecompositionTr
     }
     else { // use ToLean encoder
       // set up working directory to store encoding
-      var encoder = (ToLean) MIDTypeHierarchy.getPolyOperator(LeanReasoner.ENCODER_ID,
-                                                              ECollections.newBasicEList(relatedModel));
-      var gsnEncoder = (encoder instanceof IGSNLeanEncoder) ? (IGSNLeanEncoder) encoder : new IGSNLeanEncoder(){};
-      var propEncoding = gsnEncoder.encodePropertyDecomposition(relatedModel, property, subProperties);
+      var encoder = MIDTypeHierarchy.<ToLean>getPolyOperator(LeanReasoner.ENCODER_ID,
+                                                             ECollections.newBasicEList(relatedModel));
+      var propEncoding = (encoder.operator() instanceof IGSNLeanEncoder gsnEncoder) ?
+        gsnEncoder.encodePropertyDecomposition(relatedModel, property, subProperties) :
+        new IGSNLeanEncoder(){}.encodePropertyDecomposition(relatedModel, property, subProperties);
       var timestampPath = new SimpleDateFormat("yyyyMMddHHmmss").format(System.currentTimeMillis()) +
                           "_" + LeanReasoner.LEAN_DIR;
       var workingPath = FileUtils.replaceLastSegmentInPath(relatedModel.getUri(), timestampPath);
       var workingPath2 = Path.of(FileUtils.prependWorkspacePath(workingPath));
       Files.createDirectory(workingPath2);
       // run lean
-      valid = checkProperty(relatedModel, propEncoding, workingPath);
-      var outputFile = encoder.getOutputFileName().filter(f -> FileUtils.isFile(workingPath + f, true));
+      valid = checkProperty(encoder, propEncoding, workingPath);
+      var outputFile = encoder.operator().getOutputFileName().filter(f -> FileUtils.isFile(workingPath + f, true));
       justDesc = (outputFile.isPresent()) ?
         "see output file '" + timestampPath + outputFile.get() + "'" :
         "see directory '" + timestampPath + "'";

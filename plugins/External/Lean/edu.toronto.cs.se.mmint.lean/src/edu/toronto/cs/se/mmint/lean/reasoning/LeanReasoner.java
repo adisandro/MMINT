@@ -50,15 +50,6 @@ public class LeanReasoner implements IModelConstraintTrait {
     return "Lean";
   }
 
-  protected String generateEncoding(ToLean encoder, Model model, String workingPath) throws Exception {
-    var encoderInputs = encoder.checkAllowedInputs(ECollections.newBasicEList(model)); //TODO MMINT[JAVA16] Refactor using records?
-    encoder.setWorkingPath(workingPath);
-    var encoded = encoder.startInstance(encoderInputs, null, ECollections.emptyEList(), Map.of(), null);
-
-    // when multiple files are created, the first is the one we feed into Lean (i.e. a main)
-    return FileUtils.getLastSegmentFromPath(encoded.getOutputModels().get(0).getUri());
-  }
-
   public boolean checkProperty(String encodingFileName, String property, String workingPath) throws Exception {
     var absWorkingPath = FileUtils.prependWorkspacePath(workingPath);
     // write property file
@@ -95,10 +86,9 @@ public class LeanReasoner implements IModelConstraintTrait {
     return Boolean.valueOf(result);
   }
 
-  public boolean checkProperty(Model model, String property, String workingPath) throws Exception {
+  public boolean checkProperty(MIDTypeHierarchy.PolyOperator<ToLean> encoder, String property, String workingPath)
+                              throws Exception {
     var absWorkingPath = FileUtils.prependWorkspacePath(workingPath);
-    // get encoder
-    var encoder = (ToLean) MIDTypeHierarchy.getPolyOperator(LeanReasoner.ENCODER_ID, ECollections.newBasicEList(model));
     // write lean config file
     var mathlibPath = MMINT.getPreference(MMINTLeanMathlibPathMenu.PREFERENCE_MENU_LEAN_MATHLIB_PATH);
     if (mathlibPath == null) {
@@ -108,13 +98,22 @@ public class LeanReasoner implements IModelConstraintTrait {
       builtin_path
       path .
       path\s""" + mathlibPath + File.separator + "src\n" +
-      encoder.getImportPaths().stream().map(p -> "path " + p).collect(Collectors.joining("\n"));
+      encoder.operator().getImportPaths().stream().map(p -> "path " + p).collect(Collectors.joining("\n"));
     Files.writeString(Path.of(absWorkingPath, LeanReasoner.LEAN_CONFIG), config, StandardOpenOption.CREATE);
     // generate model encoding files
-    var mainEncoding = generateEncoding(encoder, model, workingPath);
+    encoder.operator().setWorkingPath(workingPath);
+    var encoded = encoder.operator().startInstance(encoder.inputs(), null, ECollections.emptyEList(), Map.of(), null);
+    // when multiple files are created, the first is the one we feed into Lean (i.e. a main)
+    var mainEncoding = FileUtils.getLastSegmentFromPath(encoded.getOutputModels().get(0).getUri());
 
-    // run lean
     return checkProperty(mainEncoding, property, workingPath);
+  }
+
+  public boolean checkProperty(Model model, String property, String workingPath) throws Exception {
+    // find poly encoder
+    var encoder = MIDTypeHierarchy.<ToLean>getPolyOperator(LeanReasoner.ENCODER_ID, ECollections.newBasicEList(model));
+
+    return checkProperty(encoder, property, workingPath);
   }
 
   @Override

@@ -772,30 +772,25 @@ public class MIDTypeHierarchy {
 		MMINT.cachedRuntimeTypes.clear();
 	}
 
-  public static Operator getPolyOperator(String operatorId, EList<Model> inputModels) throws MMINTException {
-    //TODO MMINT[JAVA16] Use records to return operator+operatorInputs
-    var baseOperator = MIDTypeRegistry.<Operator>getType(operatorId);
+	public record PolyOperator<T extends Operator>(T operator, EList<OperatorInput> inputs) {}
+
+	public static <T extends Operator> PolyOperator<T> getPolyOperator(String operatorId, EList<Model> inputModels)
+	                                                                  throws MMINTException {
+    var baseOperator = MIDTypeRegistry.<T>getType(operatorId);
     var polyOperators = getSubtypes(baseOperator);
     polyOperators.add(0, baseOperator);
     var polyIter = getInverseTypeHierarchyIterator(polyOperators);
-    EList<OperatorInput> operatorInputs = null;
-    Operator operator = null;
     while (polyIter.hasNext()) { // start from the most specialized operator backwards
       var polyOperator = polyIter.next();
       if (polyOperator.isAbstract()) {
         continue;
       }
-      operatorInputs = polyOperator.checkAllowedInputs(inputModels);
-      if (operatorInputs != null) {
-        operator = polyOperator;
-        break;
+      var inputs = polyOperator.checkAllowedInputs(inputModels);
+      if (inputs != null) {
+        return new PolyOperator<T>(polyOperator, inputs);
       }
     }
-    if (operator == null) {
-      throw new MMINTException("Can't find an operator overriding " + operatorId + " for inputs " + inputModels);
-    }
-
-    return operator;
+    throw new MMINTException("Can't find an operator overriding " + operatorId + " for inputs " + inputModels);
   }
 
 }
