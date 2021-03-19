@@ -18,8 +18,8 @@ The easiest way of installing MMINT in Eclipse is using the [binary packages](#b
 
 ### Requirements
 
-* Java 15
-* Eclipse Modeling Tools 2020-12. Within Eclipse, use `Help > Install New Software` to add the following components:
+* Java 16
+* Eclipse Modeling Tools 2021-03. Within Eclipse, use `Help > Install New Software` to add the following components:
   * Acceleo
   * Papyrus for UML
   * Sirius Properties Views - Specifier Support
@@ -27,14 +27,15 @@ The easiest way of installing MMINT in Eclipse is using the [binary packages](#b
   * Sirius Integration with Xtext
   * VIATRA Query and Transformation SDK
   * ATL SDK - ATL Transformation Language SDK _(Required for Modelepedia ClassDiagram)_
+  * Massif Core _(Required for Modelepedia Simulink)_
   * Henshin SDK _(Required for Z3)_
-  * m2e - Maven Integration for Eclipse _(Required for sources)_
+  * m2e - Maven Integration for Eclipse _(Required for building the source code)_
 
 Requirements marked with _(Required for ...)_ are optional except for the specified component.
 
 ### Binary Packages
 
-Binary packages for MMINT are automatically created at each release and will automatically install the necessary Eclipse dependencies.
+Binary packages for MMINT are created at each release and will automatically install the necessary Eclipse dependencies.
 
 1. Add `https://adisandro.github.io/mmint/release` to the list of software sites in Eclipse (`Help > Install New Software > Available Software Sites`).
 2. Install `Modeling > MMINT`.
@@ -43,9 +44,9 @@ You can also install [MMINT-A](#mmint-a) (a version of MMINT for automotive safe
 
 Binary packages for the current development version of MMINT are similarly available using the software site `https://adisandro.github.io/mmint/develop`.
 
-### Sources
+### Source code
 
-To import the sources in your Eclipse workspace, use `File > Import` and then `Projects from Git` under the `Git` category. Wait until everything is built, then right-click on any project and `Run As > Eclipse Application`.
+To import the source code in your Eclipse workspace, use `File > Import` and then `Projects from Git` under the `Git` category. Wait until everything is built, then right-click on any project and `Run As > Eclipse Application`.
 
 The projects are under the [plugins](https://github.com/adisandro/MMINT/tree/master/plugins) directory: required projects under [Core](https://github.com/adisandro/MMINT/tree/master/plugins/Core), projects that significantly extend functionality under [Core-Extensions](https://github.com/adisandro/MMINT/tree/master/plugins/Core-Extensions), optional and domain specific projects under [Types](https://github.com/adisandro/MMINT/tree/master/plugins/Types) and projects that deal with external tools under [External](https://github.com/adisandro/MMINT/tree/master/plugins/External). The [features](https://github.com/adisandro/MMINT/tree/master/features) directory contains the logical units of functionality, [tests](https://github.com/adisandro/MMINT/tree/master/tests) contains a suite for regression testing, [releng](https://github.com/adisandro/MMINT/tree/master/releng) contains the release engineering code, and [examples](https://github.com/adisandro/MMINT/tree/master/examples) contains artifacts created with MMINT for various papers and conferences.
 
