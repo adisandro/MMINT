@@ -149,6 +149,10 @@ public class Merge extends OperatorImpl {
     return connModelElemRefs;
   }
 
+  protected void rule() {
+
+  }
+
   private void merge() throws Exception {
     var modelElemType = MIDTypeHierarchy.getRootModelElementType();
     var mappingType = MIDTypeHierarchy.getRootMappingType();
@@ -164,7 +168,7 @@ public class Merge extends OperatorImpl {
                              MIDRegistry.getModelObjectUri(modelElemRef2.getObject()));
     }
     var mergedModelObjs = new HashMap<String, EObject>(); // uri2 to mergedObj
-    var allModelObjs = new LinkedHashMap<EObject, EObject>(); // we have to track insertion order
+    var allModelObjs = new LinkedHashMap<EObject, EObject>(); // obj1/obj2 to mergedObj (+ we track insertion order)
 
     // copy elements from model1
     allModelObjs.put(rootModelObj1, rootMergedModelObj);
@@ -236,7 +240,7 @@ public class Merge extends OperatorImpl {
       var mergedModelObj = entry.getValue();
       // references (runs twice for merged objects, merging non-containment references of both sides)
       for (var reference : modelObj.eClass().getEAllReferences()) {
-        if (reference.isContainment()) {
+        if (reference.isContainment() || !reference.isChangeable() || reference.isDerived()) {
           continue;
         }
         var referenceValue = FileUtils.getModelObjectFeature(modelObj, reference.getName());
@@ -257,6 +261,9 @@ public class Merge extends OperatorImpl {
       }
       // attributes (runs twice for merged objects, merging string attributes)
       for (var attribute : modelObj.eClass().getEAllAttributes()) {
+        if (!attribute.isChangeable() || attribute.isDerived()) {
+          continue;
+        }
         var attributeName = attribute.getName();
         var attributeValue = FileUtils.getModelObjectFeature(modelObj, attributeName);
         if (attributeValue instanceof String) {
