@@ -149,12 +149,7 @@ public class PropertyDecomposition extends GoalDecomposition {
 
     @Override
     protected DecompositionStrategy decompose() throws Exception {
-      /**TODO
-       * AddModifyConstraintListener: Refactor constraint code to use this code?
-       * IGSNLeanEncoder: Switch to records
-       * GSNLeanReasoner: Review name
-       * Handle chain of assisted decompositions? Rel model should be searched recursively
-       */
+      //TODO MMINT[GSN] Support chain of property decompositions (search related model recursively)
       var builder = (PropertyBuilder) this.builder;
       // ask for input
       var title = "Property Decomposition";

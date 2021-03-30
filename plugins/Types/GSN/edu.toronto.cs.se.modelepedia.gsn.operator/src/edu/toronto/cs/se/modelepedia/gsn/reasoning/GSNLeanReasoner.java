@@ -47,6 +47,7 @@ public class GSNLeanReasoner extends LeanReasoner implements IGSNDecompositionTr
 
   @Override
   public String getName() {
+    //TODO MMINT[REASONER] Review whether we have to have different names for each reasoner
     return "Lean/GSN";
   }
 
