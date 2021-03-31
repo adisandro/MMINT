@@ -8,12 +8,12 @@
     <tycho-version>2.3.0</tycho-version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
-  <pluginRepositories>
+  <!--<pluginRepositories>
     <pluginRepository>
       <id>Tycho</id>
-      <url>https://oss.sonatype.org/content/repositories/orgeclipsetycho-1066</url>
+      <url>https://repo.eclipse.org/content/repositories/tycho-snapshots</url>
     </pluginRepository>
-  </pluginRepositories>
+  </pluginRepositories>-->
   <build>
     <plugins>
       <plugin>

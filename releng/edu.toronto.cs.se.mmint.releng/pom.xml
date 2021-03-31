@@ -28,10 +28,10 @@
     </repository>
   </repositories>
   <pluginRepositories>
-    <pluginRepository>
+    <!--<pluginRepository>
       <id>Tycho</id>
-      <url>https://oss.sonatype.org/content/repositories/orgeclipsetycho-1066</url>
-    </pluginRepository>
+      <url>https://repo.eclipse.org/content/repositories/tycho-snapshots</url>
+    </pluginRepository>-->
     <pluginRepository>
       <id>Acceleo</id>
       <url>https://repo.eclipse.org/content/groups/releases</url>
