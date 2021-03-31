@@ -1115,7 +1115,7 @@
       iD="edu.toronto.cs.se.mmint.relationship.diagram"
       name="Relationship Diagram Type"
       provider="Software Engineering Group, University of Toronto"
-      version="2.8.99.qualifier">
+      version="2.9.0">
     <requiredPlugins>org.eclipse.papyrus.infra.gmfdiag.tooling.runtime</requiredPlugins>
     <requiredPlugins>org.eclipse.draw2d</requiredPlugins>
     <requiredPlugins>org.eclipse.gmf.runtime.draw2d.ui</requiredPlugins>
