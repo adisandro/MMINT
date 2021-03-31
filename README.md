@@ -14,7 +14,7 @@ MMINT is used by the Software Engineering group as a common research platform an
 
 ## Installation
 
-The easiest way of installing MMINT in Eclipse is using the [binary packages](#binary-packages), which will automatically take care of all the Eclipse dependencies. Alternatively, you can download and build the [sources](#sources). Please take a look at the [requirements](#requirements) to check that your system can run MMINT.
+The easiest way of installing MMINT in Eclipse is using the [binary packages](#binary-packages), which will automatically take care of all the Eclipse dependencies. Alternatively, you can download and build the [source code](#source-code) from this git repository. Please take a look at the [requirements](#requirements) to check that your system can run MMINT.
 
 ### Requirements
 
