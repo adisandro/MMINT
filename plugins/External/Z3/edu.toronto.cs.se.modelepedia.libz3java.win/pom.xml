@@ -5,7 +5,7 @@
   <parent>
   	<groupId>libz3java</groupId>
   	<artifactId>edu.toronto.cs.se.modelepedia.libz3java.releng</artifactId>
-  	<version>2.9.0</version>
+  	<version>2.9.99-SNAPSHOT</version>
   	<relativePath>../../../../releng/edu.toronto.cs.se.modelepedia.libz3java.releng</relativePath>
   </parent>
   <build>
