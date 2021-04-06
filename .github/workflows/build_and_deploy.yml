@@ -12,6 +12,7 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: '16'
+          distribution: 'adopt'
 
       - name: Load Maven cache
         uses: actions/cache@v2.1.4
