@@ -32,7 +32,7 @@
     <modelEndpointRefs referencedObject="//@models.11/@modelEndpoints.0" modifiable="true"/>
     <modelEndpointRefs referencedObject="//@models.11/@modelEndpoints.1" modifiable="true"/>
   </models>
-  <models uri="/NECSIS15/megamodels/Architecture.uml" name="Architecture" metatypeUri="http://www.eclipse.org/uml2/5.0.0/UMLDeploymentDiagram" dynamic="true" origin="CREATED" fileExtension="uml" editors="//@editors.8"/>
+  <models uri="/NECSIS15/megamodels/Architecture.uml" name="Architecture" metatypeUri="http://www.eclipse.org/uml2/5.0.0/UML" dynamic="true" origin="CREATED" fileExtension="uml" editors="//@editors.8"/>
   <models xsi:type="relationship:BinaryModelRel" uri="" name="depl" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel" dynamic="true" origin="CREATED" fileExtension="" sourceModel="//@models.4" targetModel="//@models.12">
     <modelEndpoints uri="" name="ACC" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.4"/>
     <modelEndpoints uri="" name="Architecture" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.12"/>
