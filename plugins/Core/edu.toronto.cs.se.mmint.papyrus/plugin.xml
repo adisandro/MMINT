@@ -15,26 +15,13 @@
 
 <plugin>
 
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <package
-            uri="http://www.eclipse.org/uml2/5.0.0/UML_MAVO"
-            class="org.eclipse.uml2.uml.UMLPackage"/>
-   </extension>
-
    <extension
          point="edu.toronto.cs.se.mmint.models">
       <modelType>
          <type
-               name="UML_MAVO"
-               uri="http://www.eclipse.org/uml2/5.0.0/UML_MAVO"
-               class="edu.toronto.cs.se.mmint.mavo.library.MAVOMIDHeavyTypeFactory"
-               isAbstract="true">
-            <superType
-                  uri="http://se.cs.toronto.edu/MAVO">
-            </superType>
-            <superType
-                  uri="http://www.eclipse.org/uml2/5.0.0/UML">
-            </superType>
+               name="UML"
+               uri="http://www.eclipse.org/uml2/5.0.0/UML"
+               class="edu.toronto.cs.se.mmint.uml.UMLMIDHeavyTypeFactory">
          </type>
       </modelType>
    </extension>
@@ -42,13 +29,13 @@
    <extension
          point="edu.toronto.cs.se.mmint.editors">
       <editorType
-            modelTypeUri="http://www.eclipse.org/uml2/5.0.0/UML_MAVO"
+            modelTypeUri="http://www.eclipse.org/uml2/5.0.0/UML"
             id="org.eclipse.uml2.uml.editor.presentation.UMLEditorID"
             isDiagram="false"
             wizardId="org.eclipse.uml2.uml.editor.presentation.UMLModelWizardID">
          <type
-               name="UML_MAVO tree"
-               uri="http://www.eclipse.org/uml2/5.0.0/UML_MAVO_tree">
+               name="UML tree"
+               uri="http://www.eclipse.org/uml2/5.0.0/UML_tree">
          </type>
       </editorType>
    </extension>
@@ -58,19 +45,19 @@
       <editorType
             id="org.eclipse.papyrus.infra.core.papyrusEditor"
             isDiagram="true"
-            modelTypeUri="http://www.eclipse.org/uml2/5.0.0/UML_MAVO"
-            wizardDialogClass="edu.toronto.cs.se.modelepedia.uml.ui.UMLDiagramCreationWizardDialog"
+            modelTypeUri="http://www.eclipse.org/uml2/5.0.0/UML"
+            wizardDialogClass="edu.toronto.cs.se.mmint.uml.ui.UMLDiagramCreationWizardDialog"
             wizardId="org.eclipse.papyrus.uml.diagram.wizards.createmodel">
          <type
-               name="UML_MAVO diagram"
-               uri="http://www.eclipse.org/uml2/5.0.0/UML_MAVO_diagram">
+               name="UML diagram"
+               uri="http://www.eclipse.org/uml2/5.0.0/UML_diagram">
          </type>
       </editorType>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel_MAVO"
+            uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel"
             class="edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage"/>
    </extension>
 
@@ -79,59 +66,55 @@
       <relationshipType>
          <modelType>
             <type
-                  name="UMLComponentDeploymentRel_MAVO"
-                  uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel_MAVO"
-                  class="edu.toronto.cs.se.mmint.mavo.library.MAVOMIDHeavyTypeFactory">
-               <superType
-                     uri="http://se.cs.toronto.edu/mmint/MAVOModelRel">
-               </superType>
+                  name="UMLComponentDeploymentRel"
+                  uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel">
             </type>
          </modelType>
          <binaryType
-               sourceTypeUri="http://www.eclipse.org/uml2/5.0.0/UML_MAVO"
-               targetTypeUri="http://www.eclipse.org/uml2/5.0.0/UML_MAVO">
+               sourceTypeUri="http://www.eclipse.org/uml2/5.0.0/UML"
+               targetTypeUri="http://www.eclipse.org/uml2/5.0.0/UML">
          </binaryType>
          <modelTypeEndpoint>
             <type
                   name="UMLComponentEndpoint"
-                  uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel_MAVO-UML_MAVO/UMLComponentEndpoint">
+                  uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel-UML/UMLComponentEndpoint">
             </type>
             <typeEndpoint
-                  targetTypeUri="http://www.eclipse.org/uml2/5.0.0/UML_MAVO">
+                  targetTypeUri="http://www.eclipse.org/uml2/5.0.0/UML">
             </typeEndpoint>
             <modelElemType>
                 <type
                      name="Usage"
-                     uri="http://www.eclipse.org/uml2/5.0.0/UML_MAVO#//Usage">
+                     uri="http://www.eclipse.org/uml2/5.0.0/UML#//Usage">
                 </type>
             </modelElemType>
             <modelElemType>
                 <type
                      name="Component"
-                     uri="http://www.eclipse.org/uml2/5.0.0/UML_MAVO#//Component">
+                     uri="http://www.eclipse.org/uml2/5.0.0/UML#//Component">
                 </type>
             </modelElemType>
          </modelTypeEndpoint>
          <modelTypeEndpoint>
             <type
                   name="UMLDeploymentEndpoint"
-                  uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel_MAVO-UML_MAVO/UMLDeploymentEndpoint">
+                  uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel-UML/UMLDeploymentEndpoint">
             </type>
             <typeEndpoint
-                  targetTypeUri="http://www.eclipse.org/uml2/5.0.0/UML_MAVO">
+                  targetTypeUri="http://www.eclipse.org/uml2/5.0.0/UML">
             </typeEndpoint>
             <modelElemType>
                 <type
                      name="Node"
-                     uri="http://www.eclipse.org/uml2/5.0.0/UML_MAVO#//Node">
+                     uri="http://www.eclipse.org/uml2/5.0.0/UML#//Node">
                 </type>
             </modelElemType>
             <modelElemType>
                 <type
                      name="Device"
-                     uri="http://www.eclipse.org/uml2/5.0.0/UML_MAVO#//Device">
+                     uri="http://www.eclipse.org/uml2/5.0.0/UML#//Device">
                    <superType
-                         uri="http://www.eclipse.org/uml2/5.0.0/UML_MAVO#//Node">
+                         uri="http://www.eclipse.org/uml2/5.0.0/UML#//Node">
                    </superType>
                 </type>
             </modelElemType>
@@ -139,61 +122,61 @@
          <mappingType>
             <type
                   name="ComponentDeviceLink"
-                  uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel_MAVO/ComponentDeviceLink">
+                  uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/ComponentDeviceLink">
             </type>
             <binaryType
-                  sourceTypeUri="http://www.eclipse.org/uml2/5.0.0/UML_MAVO#//Component"
-                  targetTypeUri="http://www.eclipse.org/uml2/5.0.0/UML_MAVO#//Device">
+                  sourceTypeUri="http://www.eclipse.org/uml2/5.0.0/UML#//Component"
+                  targetTypeUri="http://www.eclipse.org/uml2/5.0.0/UML#//Device">
             </binaryType>
             <modelElemTypeEndpoint>
                <type
                      name="ComponentEndpoint"
-                     uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel_MAVO/ComponentDeviceLink-Component/ComponentEndpoint">
+                     uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/ComponentDeviceLink-Component/ComponentEndpoint">
                </type>
                <typeEndpoint
                      lowerBound="0"
                      upperBound="-1"
-                     targetTypeUri="http://www.eclipse.org/uml2/5.0.0/UML_MAVO#//Component">
+                     targetTypeUri="http://www.eclipse.org/uml2/5.0.0/UML#//Component">
                </typeEndpoint>
             </modelElemTypeEndpoint>
             <modelElemTypeEndpoint>
                <type
                      name="DeviceEndpoint"
-                     uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel_MAVO/ComponentDeviceLink-Device/DeviceEndpoint">
+                     uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/ComponentDeviceLink-Device/DeviceEndpoint">
                </type>
                <typeEndpoint
-                     targetTypeUri="http://www.eclipse.org/uml2/5.0.0/UML_MAVO#//Device">
+                     targetTypeUri="http://www.eclipse.org/uml2/5.0.0/UML#//Device">
                </typeEndpoint>
             </modelElemTypeEndpoint>
          </mappingType>
          <mappingType>
             <type
                   name="UsageNodeLink"
-                  uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel_MAVO/UsageNodeLink">
+                  uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/UsageNodeLink">
             </type>
             <binaryType
-                  sourceTypeUri="http://www.eclipse.org/uml2/5.0.0/UML_MAVO#//Usage"
-                  targetTypeUri="http://www.eclipse.org/uml2/5.0.0/UML_MAVO#//Node">
+                  sourceTypeUri="http://www.eclipse.org/uml2/5.0.0/UML#//Usage"
+                  targetTypeUri="http://www.eclipse.org/uml2/5.0.0/UML#//Node">
             </binaryType>
             <modelElemTypeEndpoint>
                <type
                      name="UsageEndpoint"
-                     uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel_MAVO/UsageNodeLink-Usage/UsageEndpoint">
+                     uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/UsageNodeLink-Usage/UsageEndpoint">
                </type>
                <typeEndpoint
                      lowerBound="0"
                      upperBound="-1"
-                     targetTypeUri="http://www.eclipse.org/uml2/5.0.0/UML_MAVO#//Usage">
+                     targetTypeUri="http://www.eclipse.org/uml2/5.0.0/UML#//Usage">
                </typeEndpoint>
             </modelElemTypeEndpoint>
             <modelElemTypeEndpoint>
                <type
                      name="NodeEndpoint"
-                     uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel_MAVO/UsageNodeLink-Node/NodeEndpoint">
+                     uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/UsageNodeLink-Node/NodeEndpoint">
                </type>
                <typeEndpoint
                      lowerBound="0"
-                     targetTypeUri="http://www.eclipse.org/uml2/5.0.0/UML_MAVO#//Node">
+                     targetTypeUri="http://www.eclipse.org/uml2/5.0.0/UML#//Node">
                </typeEndpoint>
             </modelElemTypeEndpoint>
          </mappingType>

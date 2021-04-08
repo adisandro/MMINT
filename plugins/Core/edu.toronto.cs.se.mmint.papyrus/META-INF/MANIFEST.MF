@@ -1,17 +1,18 @@
 Manifest-Version: 1.0
+Automatic-Module-Name: edu.toronto.cs.se.mmint.papyrus
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
-Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.mavo.uml;singleton:=true
+Bundle-SymbolicName: edu.toronto.cs.se.mmint.papyrus;singleton:=true
 Bundle-Version: 2.9.99.qualifier
-Bundle-Vendor: %providerName
 Bundle-RequiredExecutionEnvironment: JavaSE-16
-Require-Bundle: org.eclipse.papyrus.uml.diagram.wizards,
+Bundle-Vendor: %providerName
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.papyrus.uml.diagram.wizards,
  org.eclipse.ui,
  org.eclipse.ui.ide,
+ org.eclipse.emf.validation,
  org.eclipse.uml2.uml,
  org.eclipse.gmf.runtime.notation,
  org.eclipse.jdt.annotation;resolution:=optional,
  edu.toronto.cs.se.mmint,
- edu.toronto.cs.se.mmint.java,
- edu.toronto.cs.se.mmint.mavo,
- edu.toronto.cs.se.mmint.papyrus
+ edu.toronto.cs.se.mmint.java
