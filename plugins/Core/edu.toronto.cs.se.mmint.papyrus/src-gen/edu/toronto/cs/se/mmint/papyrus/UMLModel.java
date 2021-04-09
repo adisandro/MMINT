@@ -10,21 +10,27 @@
  * Contributors:
  *     Alessio Di Sandro - Implementation
  *******************************************************************************/
-package edu.toronto.cs.se.mmint.uml;
+package edu.toronto.cs.se.mmint.papyrus;
 
-import edu.toronto.cs.se.mmint.MIDHeavyTypeFactory;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.extensions.ExtensionPointType;
 import edu.toronto.cs.se.mmint.mid.Model;
 
-public class UMLMIDHeavyTypeFactory extends MIDHeavyTypeFactory {
-  public static final String NOTATION_FILEEXT = "notation";
-
+/**
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>UML Model</b></em>'. <!-- end-user-doc -->
+ *
+ *
+ * @see edu.toronto.cs.se.mmint.papyrus.PapyrusPackage#getUMLModel()
+ * @model
+ * @generated
+ */
+public interface UMLModel extends Model {
+  /**
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
+   * @generated
+   */
   @Override
-  public Model createHeavyModelType(ExtensionPointType extensionType) throws MMINTException {
-    var newModelType = new UMLModel();
-    super.addHeavyModelType(newModelType, extensionType.getUri(), extensionType.getSupertypeUri(), extensionType.getName(), extensionType.isAbstract());
+  void deleteInstanceAndFile() throws MMINTException;
 
-    return newModelType;
-  }
-}
+} // UMLModel

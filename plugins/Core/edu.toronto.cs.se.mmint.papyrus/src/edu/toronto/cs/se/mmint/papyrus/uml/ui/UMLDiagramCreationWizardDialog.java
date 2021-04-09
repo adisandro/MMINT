@@ -1,15 +1,16 @@
-/**
- * Copyright (c) 2012-2021 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
- * Rick Salay.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+/*******************************************************************************
+ * Copyright (c) 2021, 2021 Alessio Di Sandro.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *    Alessio Di Sandro - Implementation.
- */
-package edu.toronto.cs.se.mmint.uml.ui;
+ *     Alessio Di Sandro - Implementation
+ *******************************************************************************/
+package edu.toronto.cs.se.mmint.papyrus.uml.ui;
 
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.jface.wizard.IWizard;
@@ -20,15 +21,14 @@ import edu.toronto.cs.se.mmint.mid.ui.EditorCreationWizardDialog;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 
 public class UMLDiagramCreationWizardDialog extends EditorCreationWizardDialog {
-
 	private final static String MODEL_FILEEXT = "uml";
 
 	@Override
 	protected void storeCreatedModelUri(IWizardPage page) {
-
-		NewModelFilePage filePage = (NewModelFilePage) page;
+		var filePage = (NewModelFilePage) page;
 		this.createdModelUri = filePage.getContainerFullPath().toString() + IPath.SEPARATOR + filePage.getFileName();
-		this.createdModelUri = FileUtils.replaceFileExtensionInPath(this.createdModelUri, MODEL_FILEEXT);
+		this.createdModelUri = FileUtils.replaceFileExtensionInPath(this.createdModelUri,
+		                                                            UMLDiagramCreationWizardDialog.MODEL_FILEEXT);
 	}
 
 	/**
@@ -40,8 +40,6 @@ public class UMLDiagramCreationWizardDialog extends EditorCreationWizardDialog {
 	 *            The wizard.
 	 */
 	public UMLDiagramCreationWizardDialog(IWizard newWizard) {
-
 		super(newWizard);
 	}
-
 }

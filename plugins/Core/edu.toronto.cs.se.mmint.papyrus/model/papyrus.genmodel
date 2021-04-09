@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel"
+    modelDirectory="/edu.toronto.cs.se.mmint.papyrus/src-gen" editDirectory="/edu.toronto.cs.se.mmint.papyrus.edit/src-gen"
+    editorDirectory="/edu.toronto.cs.se.mmint.papyrus.editor/src-gen" modelPluginID="edu.toronto.cs.se.mmint.papyrus"
+    modelName="Papyrus" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="16.0" copyrightFields="false"
+    usedGenPackages="../../edu.toronto.cs.se.mmint/model/mid.genmodel#//mid" operationReflection="true"
+    importOrganizing="true">
+  <foreignModel>papyrus.ecore</foreignModel>
+  <genPackages prefix="Papyrus" basePackage="edu.toronto.cs.se.mmint" disposableProviderFactory="true"
+      childCreationExtenders="true" ecorePackage="papyrus.ecore#/">
+    <genClasses ecoreClass="papyrus.ecore#//UMLModel">
+      <genOperations ecoreOperation="papyrus.ecore#//UMLModel/deleteInstanceAndFile"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

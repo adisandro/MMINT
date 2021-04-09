@@ -4,9 +4,15 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.mmint.papyrus;singleton:=true
 Bundle-Version: 2.9.99.qualifier
+Bundle-ClassPath: .
 Bundle-RequiredExecutionEnvironment: JavaSE-16
 Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Export-Package: edu.toronto.cs.se.mmint.papyrus,
+ edu.toronto.cs.se.mmint.papyrus.impl,
+ edu.toronto.cs.se.mmint.papyrus.util
 Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore,
  org.eclipse.papyrus.uml.diagram.wizards,
  org.eclipse.ui,
  org.eclipse.ui.ide,
@@ -16,3 +22,4 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.jdt.annotation;resolution:=optional,
  edu.toronto.cs.se.mmint,
  edu.toronto.cs.se.mmint.java
+Bundle-ActivationPolicy: lazy
