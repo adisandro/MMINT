@@ -29,7 +29,6 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.RegistryFactory;
 import org.eclipse.core.runtime.preferences.IEclipsePreferences;
 import org.eclipse.core.runtime.preferences.InstanceScope;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.diagram.core.providers.IViewProvider;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ui.PlatformUI;
@@ -52,10 +51,8 @@ import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator;
 import edu.toronto.cs.se.mmint.mid.reasoning.IReasoner;
-import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
-import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
-import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDEcoreUtil;
@@ -193,6 +190,7 @@ public class MMINT implements MMINTConstants {
 	 * - Refactor functions in mid.ecore like getMetatype() using generics (and rename that to getType())
 	 * - ExtendibleElementReference.containedObject is completely useless
 	 * - Remove all operation implementations from mid.ecore
+	 * - Simplify binary types xml config and support binary non-directional
 	 */
 
 	private static void createTypeConstraint(IConfigurationElement extensionConfig, ExtendibleElement constrainedType, MIDHeavyTypeFactory typeFactory) {
@@ -257,32 +255,34 @@ public class MMINT implements MMINTConstants {
 		}
 		var binaryTypeConfigs = extensionConfig.getChildren(MMINTConstants.CHILD_BINARYTYPE);
 		var isBinary = (binaryTypeConfigs.length == 0) ? false : true;
-		ModelRel newModelRelType = modelRelExtensionType.getFactory().createHeavyModelRelType(
+		var newModelRelType = modelRelExtensionType.getFactory().createHeavyModelRelType(
 			modelRelExtensionType,
 			isBinary
 		);
 		createTypeConstraint(modelTypeConfig, newModelRelType, modelRelExtensionType.getFactory());
-		// binary model rel type
+    // binary model rel type
 		String srcModelTypeUri = null, tgtModelTypeUri = null;
-		if (isBinary) {
-			srcModelTypeUri = binaryTypeConfigs[0].getAttribute(MMINTConstants.BINARYTYPE_ATTR_SOURCETYPEURI);
-			((BinaryModelRel) newModelRelType).addModelType(MIDTypeRegistry.<Model>getType(srcModelTypeUri), true);
-			tgtModelTypeUri = binaryTypeConfigs[0].getAttribute(MMINTConstants.BINARYTYPE_ATTR_TARGETTYPEURI);
-			((BinaryModelRel) newModelRelType).addModelType(MIDTypeRegistry.<Model>getType(tgtModelTypeUri), false);
-		}
+    if (isBinary) {
+      srcModelTypeUri = binaryTypeConfigs[0].getAttribute(MMINTConstants.BINARYTYPE_ATTR_SOURCETYPEURI);
+      tgtModelTypeUri = binaryTypeConfigs[0].getAttribute(MMINTConstants.BINARYTYPE_ATTR_TARGETTYPEURI);
+    }
 		// model type endpoints
+    var newModelElemTypeRefs = new HashMap<String, ModelElementReference>();
 		var modelTypeEndpointConfigs = extensionConfig.getChildren(MMINTConstants.MODELRELS_CHILD_MODELTYPEENDPOINT);
-		for (IConfigurationElement modelTypeEndpointConfig : modelTypeEndpointConfigs) {
+		for (var i = 0; i < modelTypeEndpointConfigs.length; i++) {
+		  var modelTypeEndpointConfig = modelTypeEndpointConfigs[i];
 			extensionType = new ExtensionPointType(modelTypeEndpointConfig, MMINT.typeFactory);
 			var modelTypeEndpointSubconfig = modelTypeEndpointConfig.getChildren(MMINTConstants.CHILD_TYPEENDPOINT)[0];
 			var targetModelTypeUri = modelTypeEndpointSubconfig.getAttribute(MMINTConstants.TYPEENDPOINT_ATTR_TARGETTYPEURI);
-			Model targetModelType = MIDTypeRegistry.getType(targetModelTypeUri);
+			var targetModelType = MIDTypeRegistry.<Model>getType(targetModelTypeUri);
 			if (targetModelType == null) {
 				MMINTException.print(IStatus.WARNING, "Target model type " + targetModelTypeUri + " can't be found, skipping it", null);
 				continue;
 			}
-			var isBinarySrc = (isBinary && srcModelTypeUri.equals(targetModelTypeUri));
-			ModelEndpointReference newModelTypeEndpointRef = modelRelExtensionType.getFactory().createHeavyModelTypeEndpointAndModelTypeEndpointReference(
+      var isBinarySrc = isBinary && ( // required
+                          (srcModelTypeUri.equals(tgtModelTypeUri) && i == 0) || // same-type endpoints
+                          srcModelTypeUri.equals(targetModelTypeUri)); // "normal" case
+			var newModelTypeEndpointRef = modelRelExtensionType.getFactory().createHeavyModelTypeEndpointAndModelTypeEndpointReference(
 				extensionType,
 				targetModelType,
 				isBinarySrc,
@@ -300,11 +300,11 @@ public class MMINT implements MMINTConstants {
 			var rootModelTypeObj = newModelTypeEndpointRef.getObject().getTarget().getEMFTypeRoot();
 			// model element types
 			var modelElemTypeConfigs = modelTypeEndpointConfig.getChildren(MMINTConstants.MODELRELS_MODELTYPEENDPOINT_CHILD_MODELELEMTYPE);
-			for (IConfigurationElement modelElemTypeConfig : modelElemTypeConfigs) {
+			for (var modelElemTypeConfig : modelElemTypeConfigs) {
 				extensionType = new ExtensionPointType(modelElemTypeConfig, MMINT.typeFactory);
-				ModelElement newModelElemType = MIDTypeRegistry.getType(extensionType.getUri());
+				var newModelElemType = MIDTypeRegistry.<ModelElement>getType(extensionType.getUri());
 				if (newModelElemType == null) { // create new model element type
-					EObject modelElemTypeObj = FileUtils.readModelObject(extensionType.getUri(), rootModelTypeObj.eResource());
+					var modelElemTypeObj = FileUtils.readModelObject(extensionType.getUri(), rootModelTypeObj.eResource());
 					var eInfo = MIDRegistry.getModelElementEMFInfo(modelElemTypeObj, MIDLevel.TYPES);
 					try {
 						newModelElemType = modelRelExtensionType.getFactory().createHeavyModelElementType(
@@ -321,12 +321,13 @@ public class MMINT implements MMINTConstants {
 				var modelElemTypeRef = (extensionType.getSupertypeUri() == null) ?
 					null :
 					MIDRegistry.getReference(extensionType.getSupertypeUri(), newModelTypeEndpointRef.getModelElemRefs());
-				newModelElemType.createTypeReference(modelElemTypeRef, true, newModelTypeEndpointRef);
+				var newModelElemTypeRef = newModelElemType.createTypeReference(modelElemTypeRef, true, newModelTypeEndpointRef);
+        newModelElemTypeRefs.put(newModelElemType.getUri(), newModelElemTypeRef);
 			}
 		}
-		// link types
+		// mapping types
 		var mappingTypeConfigs = extensionConfig.getChildren(MMINTConstants.MODELRELS_CHILD_MAPPINGTYPE);
-		for (IConfigurationElement mappingTypeConfig : mappingTypeConfigs) {
+		for (var mappingTypeConfig : mappingTypeConfigs) {
 			binaryTypeConfigs = mappingTypeConfig.getChildren(MMINTConstants.CHILD_BINARYTYPE);
 			isBinary = (binaryTypeConfigs.length == 0) ? false : true;
 			extensionType = new ExtensionPointType(mappingTypeConfig, MMINT.typeFactory);
@@ -342,37 +343,28 @@ public class MMINT implements MMINTConstants {
 				MMINTException.print(IStatus.WARNING, "Link type " + extensionType.getUri() + " can't be created, skipping it", e);
 				continue;
 			}
-			// binary link type
+			// binary mapping type
 			String srcModelElemTypeUri = null, tgtModelElemTypeUri = null;
 			if (isBinary) {
 				srcModelElemTypeUri = binaryTypeConfigs[0].getAttribute(MMINTConstants.BINARYTYPE_ATTR_SOURCETYPEURI);
-				var containerModelTypeEndpointRef = MIDRegistry.getEndpointReferences(
-					((Model) MIDTypeRegistry.<ModelElement>getType(srcModelElemTypeUri).eContainer()).getUri(),
-					newModelRelType.getModelEndpointRefs()
-				).get(0);
-				((BinaryMappingReference) newMappingTypeRef).addModelElementTypeReference(MIDRegistry.getReference(srcModelElemTypeUri, containerModelTypeEndpointRef.getModelElemRefs()), true);
 				tgtModelElemTypeUri = binaryTypeConfigs[0].getAttribute(MMINTConstants.BINARYTYPE_ATTR_TARGETTYPEURI);
-				containerModelTypeEndpointRef = MIDRegistry.getEndpointReferences(
-					((Model) MIDTypeRegistry.<ModelElement>getType(tgtModelElemTypeUri).eContainer()).getUri(),
-					newModelRelType.getModelEndpointRefs()
-				).get(0);
-				((BinaryMappingReference) newMappingTypeRef).addModelElementTypeReference(MIDRegistry.getReference(tgtModelElemTypeUri, containerModelTypeEndpointRef.getModelElemRefs()), false);
 			}
 			// model element type endpoints
 			var modelElemTypeEndpointConfigs = mappingTypeConfig.getChildren(MMINTConstants.MODELRELS_MAPPINGTYPE_CHILD_MODELELEMTYPEENDPOINT);
-			for (IConfigurationElement modelElemTypeEndpointConfig : modelElemTypeEndpointConfigs) {
+			for (var i = 0; i < modelElemTypeEndpointConfigs.length; i++) {
+			  var modelElemTypeEndpointConfig = modelElemTypeEndpointConfigs[i];
 				extensionType = new ExtensionPointType(modelElemTypeEndpointConfig, MMINT.typeFactory);
 				var modelElemTypeEndpointSubconfig = modelElemTypeEndpointConfig.getChildren(MMINTConstants.CHILD_TYPEENDPOINT)[0];
 				var targetModelElemTypeUri = modelElemTypeEndpointSubconfig.getAttribute(MMINTConstants.TYPEENDPOINT_ATTR_TARGETTYPEURI);
-				ModelElement modelElemType = MIDTypeRegistry.getType(targetModelElemTypeUri);
-				if (modelElemType == null) {
+				var newModelElemTypeRef = newModelElemTypeRefs.get(targetModelElemTypeUri);
+				if (newModelElemTypeRef == null) {
 					MMINTException.print(IStatus.WARNING, "Target model element type " + targetModelElemTypeUri + " can't be found, skipping it", null);
 					continue;
 				}
 				//TODO MMINT[MODELENDPOINT] well model elements should *really* be contained in the model endpoint now that they exist
-				var modelTypeEndpointRef = MIDRegistry.getEndpointReferences(((Model) modelElemType.eContainer()).getUri(), newModelRelType.getModelEndpointRefs()).get(0);
-				var newModelElemTypeRef = MIDRegistry.getReference(targetModelElemTypeUri, modelTypeEndpointRef.getModelElemRefs());
-				var isBinarySrc = (isBinary && srcModelElemTypeUri.equals(targetModelElemTypeUri));
+				var isBinarySrc = isBinary && ( // required
+				                    (srcModelElemTypeUri.equals(tgtModelElemTypeUri) && i == 0) || // same-type endpoints
+				                    srcModelElemTypeUri.equals(targetModelElemTypeUri)); // "normal" case
 				var newModelElemTypeEndpointRef = modelRelExtensionType.getFactory().createHeavyModelElementTypeEndpointAndModelElementTypeEndpointReference(
 					extensionType,
 					newModelElemTypeRef,
