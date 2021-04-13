@@ -59,7 +59,7 @@
             id="org.eclipse.papyrus.infra.core.papyrusEditor"
             isDiagram="true"
             modelTypeUri="http://www.eclipse.org/uml2/5.0.0/UML_MAVO"
-            wizardDialogClass="edu.toronto.cs.se.modelepedia.uml.ui.UMLDiagramCreationWizardDialog"
+            wizardDialogClass="edu.toronto.cs.se.mmint.papyrus.uml.ui.UMLDiagramCreationWizardDialog"
             wizardId="org.eclipse.papyrus.uml.diagram.wizards.createmodel">
          <type
                name="UML_MAVO diagram"
