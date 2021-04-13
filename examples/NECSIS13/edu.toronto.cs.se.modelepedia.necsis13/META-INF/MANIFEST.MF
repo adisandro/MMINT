@@ -7,7 +7,11 @@ Bundle-RequiredExecutionEnvironment: JavaSE-16
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore,
  org.eclipse.emf.validation,
+ org.eclipse.uml2.uml,
  org.eclipse.jdt.annotation;resolution:=optional,
  edu.toronto.cs.se.mavo,
- edu.toronto.cs.se.mmint
+ edu.toronto.cs.se.mmint,
+ edu.toronto.cs.se.mmint.java,
+ edu.toronto.cs.se.mmint.papyrus,
+ edu.toronto.cs.se.modelepedia.mavo.uml
 Bundle-Vendor: %providerName

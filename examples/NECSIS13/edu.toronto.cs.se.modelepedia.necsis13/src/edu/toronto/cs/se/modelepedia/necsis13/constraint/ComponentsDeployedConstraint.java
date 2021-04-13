@@ -10,7 +10,7 @@
  * Contributors:
  *     Alessio Di Sandro - Implementation
  *******************************************************************************/
-package edu.toronto.cs.se.mmint.papyrus.uml.constraint;
+package edu.toronto.cs.se.modelepedia.necsis13.constraint;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.uml2.uml.Component;
