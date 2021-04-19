@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel"
+    modelDirectory="/edu.toronto.cs.se.mmint.productline/src-gen" creationIcons="false"
+    editDirectory="/edu.toronto.cs.se.mmint.productline.edit/src-gen" editorDirectory="/edu.toronto.cs.se.mmint.productline.editor/src-gen"
+    modelPluginID="edu.toronto.cs.se.mmint.productline" modelName="ProductLine" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    codeFormatting="true" importerID="org.eclipse.emf.importer.ecore" complianceLevel="16.0"
+    copyrightFields="false" usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore"
+    importOrganizing="true">
+  <foreignModel>productline.ecore</foreignModel>
+  <testsDirectory xsi:nil="true"/>
+  <genPackages prefix="ProductLine" basePackage="edu.toronto.cs.se.mmint" disposableProviderFactory="true"
+      ecorePackage="productline.ecore#/">
+    <genClasses ecoreClass="productline.ecore#//ProductLine">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute productline.ecore#//ProductLine/features"/>
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference productline.ecore#//ProductLine/classes"/>
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference productline.ecore#//ProductLine/references"/>
+    </genClasses>
+    <genClasses ecoreClass="productline.ecore#//PLElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute productline.ecore#//PLElement/presenceCondition"/>
+    </genClasses>
+    <genClasses ecoreClass="productline.ecore#//Class">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference productline.ecore#//Class/referencesAsSource"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference productline.ecore#//Class/referencesAsTargets"/>
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference productline.ecore#//Class/attributes"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference productline.ecore#//Class/type"/>
+    </genClasses>
+    <genClasses ecoreClass="productline.ecore#//Reference">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference productline.ecore#//Reference/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference productline.ecore#//Reference/targets"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference productline.ecore#//Reference/type"/>
+    </genClasses>
+    <genClasses ecoreClass="productline.ecore#//Attribute">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute productline.ecore#//Attribute/value"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference productline.ecore#//Attribute/type"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

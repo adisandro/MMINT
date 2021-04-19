@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: edu.toronto.cs.se.mmint.productline.edit;singleton:=true
+Automatic-Module-Name: edu.toronto.cs.se.mmint.productline.edit
+Bundle-Version: 1.0.0.qualifier
+Bundle-ClassPath: .
+Bundle-Activator: edu.toronto.cs.se.mmint.productline.provider.ProductLineEditPlugin$Implementation
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Export-Package: edu.toronto.cs.se.mmint.productline.provider
+Require-Bundle: org.eclipse.core.runtime,
+ edu.toronto.cs.se.mmint.productline;visibility:=reexport,
+ org.eclipse.emf.edit;visibility:=reexport,
+ org.eclipse.emf.ecore;visibility:=reexport,
+ org.eclipse.emf.ecore.edit;visibility:=reexport
+Bundle-ActivationPolicy: lazy
