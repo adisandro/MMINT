@@ -36,7 +36,7 @@ public class AttributeImpl extends PLElementImpl implements Attribute {
    * @generated
    * @ordered
    */
-  protected static final Object VALUE_EDEFAULT = null;
+  protected static final String VALUE_EDEFAULT = null;
   /**
    * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -45,7 +45,7 @@ public class AttributeImpl extends PLElementImpl implements Attribute {
    * @generated
    * @ordered
    */
-  protected Object value = VALUE_EDEFAULT;
+  protected String value = VALUE_EDEFAULT;
   /**
    * The cached value of the '{@link #getType() <em>Type</em>}' reference.
    * <!-- begin-user-doc -->
@@ -81,7 +81,7 @@ public class AttributeImpl extends PLElementImpl implements Attribute {
    * @generated
    */
   @Override
-  public Object getValue() {
+  public String getValue() {
     return value;
   }
 
@@ -91,8 +91,8 @@ public class AttributeImpl extends PLElementImpl implements Attribute {
    * @generated
    */
   @Override
-  public void setValue(Object newValue) {
-    Object oldValue = value;
+  public void setValue(String newValue) {
+    String oldValue = value;
     value = newValue;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, ProductLinePackage.ATTRIBUTE__VALUE, oldValue, value));
@@ -165,7 +165,7 @@ public class AttributeImpl extends PLElementImpl implements Attribute {
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
     case ProductLinePackage.ATTRIBUTE__VALUE:
-      setValue(newValue);
+      setValue((String) newValue);
       return;
     case ProductLinePackage.ATTRIBUTE__TYPE:
       setType((EAttribute) newValue);

@@ -27,12 +27,12 @@ public interface Attribute extends PLElement {
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Value</em>' attribute.
-   * @see #setValue(Object)
+   * @see #setValue(String)
    * @see edu.toronto.cs.se.mmint.productline.ProductLinePackage#getAttribute_Value()
    * @model required="true"
    * @generated
    */
-  Object getValue();
+  String getValue();
 
   /**
    * Sets the value of the '{@link edu.toronto.cs.se.mmint.productline.Attribute#getValue <em>Value</em>}' attribute.
@@ -42,7 +42,7 @@ public interface Attribute extends PLElement {
    * @see #getValue()
    * @generated
    */
-  void setValue(Object value);
+  void setValue(String value);
 
   /**
    * Returns the value of the '<em><b>Type</b></em>' reference.

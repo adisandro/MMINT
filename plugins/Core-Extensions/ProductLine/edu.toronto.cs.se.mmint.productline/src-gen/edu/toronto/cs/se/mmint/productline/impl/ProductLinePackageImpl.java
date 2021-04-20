@@ -443,9 +443,8 @@ public class ProductLinePackageImpl extends EPackageImpl implements ProductLineP
                    IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(attributeEClass, Attribute.class, "Attribute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getAttribute_Value(), ecorePackage.getEJavaObject(), "value", null, 1, 1, Attribute.class,
-                   !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
-                   IS_ORDERED);
+    initEAttribute(getAttribute_Value(), ecorePackage.getEString(), "value", null, 1, 1, Attribute.class, !IS_TRANSIENT,
+                   !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getAttribute_Type(), theEcorePackage.getEAttribute(), null, "type", null, 1, 1, Attribute.class,
                    !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
                    IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

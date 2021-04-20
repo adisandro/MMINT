@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" name="productline" version="12.0.0.2017041100">
+  <ownedViewpoints name="ProductLineViewpoint" modelFileExtension="productline">
+    <ownedRepresentations xsi:type="description_1:DiagramDescription" name="ProductLineDiagram" label="Product Line Diagram" domainClass="productline.ProductLine" enablePopupBars="true">
+      <defaultLayer name="Default">
+        <edgeMappings name="ReferenceEdge" semanticCandidatesExpression="feature:references" sourceMapping="//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@containerMappings[name='ClassContainer']" targetMapping="//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@containerMappings[name='ClassContainer']" targetFinderExpression="feature:targets" sourceFinderExpression="feature:source" domainClass="productline.Reference" useDomainElement="true">
+          <style sizeComputationExpression="2">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            <centerLabelStyleDescription labelSize="12" showIcon="false" labelExpression="aql:self.type.name+' ('+self.presenceCondition+')'">
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
+        <containerMappings name="ClassContainer" semanticCandidatesExpression="feature:classes" domainClass="productline.Class" childrenPresentation="List">
+          <subNodeMappings name="AttributeNode" semanticCandidatesExpression="feature:attributes" domainClass="productline.Attribute">
+            <style xsi:type="style:SquareDescription" labelSize="12" showIcon="false" labelExpression="aql:self.type.name+': '+self.value+' ('+self.presenceCondition+')'" labelPosition="node" resizeKind="NSEW">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            </style>
+          </subNodeMappings>
+          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="12" showIcon="false" labelExpression="aql:self.type.name+' ('+self.presenceCondition+')'" roundedCorner="true">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+            <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+          </style>
+        </containerMappings>
+      </defaultLayer>
+    </ownedRepresentations>
+    <ownedJavaExtensions qualifiedClassName="edu.toronto.cs.se.mmint.productline.design.Services"/>
+  </ownedViewpoints>
+</description:Group>

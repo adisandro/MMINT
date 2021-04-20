@@ -34,4 +34,17 @@
       </editor>
    </extension>
 
+   <extension
+         point="edu.toronto.cs.se.mmint.editors">
+      <editorType
+            id="edu.toronto.cs.se.mmint.productline.presentation.ProductLineEditorID"
+            modelTypeUri="model://edu.toronto.cs.se.mmint.productline"
+            wizardId="edu.toronto.cs.se.mmint.productline.presentation.ProductLineModelWizardID">
+         <type
+               name="ProductLine EMF Editor"
+               uri="edu.toronto.cs.se.mmint.productline.editor">
+         </type>
+      </editorType>
+   </extension>
+
 </plugin>
