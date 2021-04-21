@@ -59,6 +59,7 @@ public class ProductLineItemProvider extends ItemProviderAdapter implements IEdi
       addFeaturesPropertyDescriptor(object);
       addClassesPropertyDescriptor(object);
       addReferencesPropertyDescriptor(object);
+      addMetamodelPropertyDescriptor(object);
     }
     return itemPropertyDescriptors;
   }
@@ -112,6 +113,23 @@ public class ProductLineItemProvider extends ItemProviderAdapter implements IEdi
                                                                        "_UI_ProductLine_references_feature",
                                                                        "_UI_ProductLine_type"),
                                                              ProductLinePackage.Literals.PRODUCT_LINE__REFERENCES, true,
+                                                             false, true, null, null, null));
+  }
+
+  /**
+   * This adds a property descriptor for the Metamodel feature.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected void addMetamodelPropertyDescriptor(Object object) {
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+                                                             getResourceLocator(), getString(
+                                                                                             "_UI_ProductLine_metamodel_feature"),
+                                                             getString("_UI_PropertyDescriptor_description",
+                                                                       "_UI_ProductLine_metamodel_feature",
+                                                                       "_UI_ProductLine_type"),
+                                                             ProductLinePackage.Literals.PRODUCT_LINE__METAMODEL, true,
                                                              false, true, null, null, null));
   }
 

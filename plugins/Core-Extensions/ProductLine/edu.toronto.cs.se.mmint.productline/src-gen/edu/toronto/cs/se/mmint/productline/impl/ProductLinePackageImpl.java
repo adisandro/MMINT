@@ -172,6 +172,16 @@ public class ProductLinePackageImpl extends EPackageImpl implements ProductLineP
    * @generated
    */
   @Override
+  public EReference getProductLine_Metamodel() {
+    return (EReference) productLineEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EClass getPLElement() {
     return plElementEClass;
   }
@@ -340,6 +350,7 @@ public class ProductLinePackageImpl extends EPackageImpl implements ProductLineP
     createEAttribute(productLineEClass, PRODUCT_LINE__FEATURES);
     createEReference(productLineEClass, PRODUCT_LINE__CLASSES);
     createEReference(productLineEClass, PRODUCT_LINE__REFERENCES);
+    createEReference(productLineEClass, PRODUCT_LINE__METAMODEL);
 
     plElementEClass = createEClass(PL_ELEMENT);
     createEAttribute(plElementEClass, PL_ELEMENT__PRESENCE_CONDITION);
@@ -408,6 +419,9 @@ public class ProductLinePackageImpl extends EPackageImpl implements ProductLineP
     initEReference(getProductLine_References(), this.getReference(), null, "references", null, 0, -1, ProductLine.class,
                    !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
                    IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getProductLine_Metamodel(), theEcorePackage.getEPackage(), null, "metamodel", null, 1, 1,
+                   ProductLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+                   !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(plElementEClass, PLElement.class, "PLElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getPLElement_PresenceCondition(), ecorePackage.getEString(), "presenceCondition", null, 0, 1,

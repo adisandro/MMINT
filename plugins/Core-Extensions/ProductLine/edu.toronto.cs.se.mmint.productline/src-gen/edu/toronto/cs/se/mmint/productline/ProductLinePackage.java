@@ -93,13 +93,22 @@ public interface ProductLinePackage extends EPackage {
   int PRODUCT_LINE__REFERENCES = 2;
 
   /**
+   * The feature id for the '<em><b>Metamodel</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PRODUCT_LINE__METAMODEL = 3;
+
+  /**
    * The number of structural features of the '<em>Product Line</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PRODUCT_LINE_FEATURE_COUNT = 3;
+  int PRODUCT_LINE_FEATURE_COUNT = 4;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.mmint.productline.impl.PLElementImpl <em>PL Element</em>}' class.
@@ -338,6 +347,17 @@ public interface ProductLinePackage extends EPackage {
   EReference getProductLine_References();
 
   /**
+   * Returns the meta object for the reference '{@link edu.toronto.cs.se.mmint.productline.ProductLine#getMetamodel <em>Metamodel</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Metamodel</em>'.
+   * @see edu.toronto.cs.se.mmint.productline.ProductLine#getMetamodel()
+   * @see #getProductLine()
+   * @generated
+   */
+  EReference getProductLine_Metamodel();
+
+  /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.productline.PLElement <em>PL Element</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -542,6 +562,14 @@ public interface ProductLinePackage extends EPackage {
      * @generated
      */
     EReference PRODUCT_LINE__REFERENCES = eINSTANCE.getProductLine_References();
+
+    /**
+     * The meta object literal for the '<em><b>Metamodel</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference PRODUCT_LINE__METAMODEL = eINSTANCE.getProductLine_Metamodel();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint.productline.impl.PLElementImpl <em>PL Element</em>}' class.

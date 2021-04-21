@@ -14,6 +14,7 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -33,6 +34,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link edu.toronto.cs.se.mmint.productline.impl.ProductLineImpl#getFeatures <em>Features</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.productline.impl.ProductLineImpl#getClasses <em>Classes</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.productline.impl.ProductLineImpl#getReferences <em>References</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmint.productline.impl.ProductLineImpl#getMetamodel <em>Metamodel</em>}</li>
  * </ul>
  *
  * @generated
@@ -77,6 +79,16 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
    * @ordered
    */
   protected EList<Reference> references;
+
+  /**
+   * The cached value of the '{@link #getMetamodel() <em>Metamodel</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getMetamodel()
+   * @generated
+   * @ordered
+   */
+  protected EPackage metamodel;
 
   /**
    * <!-- begin-user-doc -->
@@ -156,6 +168,48 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
    * @generated
    */
   @Override
+  public EPackage getMetamodel() {
+    if (metamodel != null && metamodel.eIsProxy()) {
+      InternalEObject oldMetamodel = (InternalEObject) metamodel;
+      metamodel = (EPackage) eResolveProxy(oldMetamodel);
+      if (metamodel != oldMetamodel) {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProductLinePackage.PRODUCT_LINE__METAMODEL,
+                                        oldMetamodel, metamodel));
+      }
+    }
+    return metamodel;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EPackage basicGetMetamodel() {
+    return metamodel;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setMetamodel(EPackage newMetamodel) {
+    EPackage oldMetamodel = metamodel;
+    metamodel = newMetamodel;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProductLinePackage.PRODUCT_LINE__METAMODEL, oldMetamodel,
+                                    metamodel));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
     case ProductLinePackage.PRODUCT_LINE__CLASSES:
@@ -180,6 +234,10 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
       return getClasses();
     case ProductLinePackage.PRODUCT_LINE__REFERENCES:
       return getReferences();
+    case ProductLinePackage.PRODUCT_LINE__METAMODEL:
+      if (resolve)
+        return getMetamodel();
+      return basicGetMetamodel();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -204,6 +262,9 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
       getReferences().clear();
       getReferences().addAll((Collection<? extends Reference>) newValue);
       return;
+    case ProductLinePackage.PRODUCT_LINE__METAMODEL:
+      setMetamodel((EPackage) newValue);
+      return;
     }
     super.eSet(featureID, newValue);
   }
@@ -225,6 +286,9 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
     case ProductLinePackage.PRODUCT_LINE__REFERENCES:
       getReferences().clear();
       return;
+    case ProductLinePackage.PRODUCT_LINE__METAMODEL:
+      setMetamodel((EPackage) null);
+      return;
     }
     super.eUnset(featureID);
   }
@@ -243,6 +307,8 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
       return classes != null && !classes.isEmpty();
     case ProductLinePackage.PRODUCT_LINE__REFERENCES:
       return references != null && !references.isEmpty();
+    case ProductLinePackage.PRODUCT_LINE__METAMODEL:
+      return metamodel != null;
     }
     return super.eIsSet(featureID);
   }

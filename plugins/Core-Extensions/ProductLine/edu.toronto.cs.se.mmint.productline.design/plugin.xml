@@ -10,6 +10,14 @@
   </extension>
 
    <extension
+         point="org.eclipse.sirius.externalJavaAction">
+      <javaActions
+            actionClass="edu.toronto.cs.se.mmint.productline.design.tools.CreateClass"
+            id="edu.toronto.cs.se.mmint.productline.design.tools.CreateClass">
+      </javaActions>
+   </extension>
+
+   <extension
          point="edu.toronto.cs.se.mmint.editors">
       <editorType
             modelTypeUri="model://edu.toronto.cs.se.mmint.productline"

@@ -5,6 +5,7 @@ package edu.toronto.cs.se.mmint.productline;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -18,6 +19,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link edu.toronto.cs.se.mmint.productline.ProductLine#getFeatures <em>Features</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.productline.ProductLine#getClasses <em>Classes</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.productline.ProductLine#getReferences <em>References</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmint.productline.ProductLine#getMetamodel <em>Metamodel</em>}</li>
  * </ul>
  *
  * @see edu.toronto.cs.se.mmint.productline.ProductLinePackage#getProductLine()
@@ -70,5 +72,27 @@ public interface ProductLine extends EObject {
    * @generated
    */
   EList<Reference> getReferences();
+
+  /**
+   * Returns the value of the '<em><b>Metamodel</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Metamodel</em>' reference.
+   * @see #setMetamodel(EPackage)
+   * @see edu.toronto.cs.se.mmint.productline.ProductLinePackage#getProductLine_Metamodel()
+   * @model required="true"
+   * @generated
+   */
+  EPackage getMetamodel();
+
+  /**
+   * Sets the value of the '{@link edu.toronto.cs.se.mmint.productline.ProductLine#getMetamodel <em>Metamodel</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Metamodel</em>' reference.
+   * @see #getMetamodel()
+   * @generated
+   */
+  void setMetamodel(EPackage value);
 
 } // ProductLine
