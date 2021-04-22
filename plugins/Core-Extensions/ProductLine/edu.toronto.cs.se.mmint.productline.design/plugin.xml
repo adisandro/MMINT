@@ -15,6 +15,14 @@
             actionClass="edu.toronto.cs.se.mmint.productline.design.tools.CreateClass"
             id="edu.toronto.cs.se.mmint.productline.design.tools.CreateClass">
       </javaActions>
+      <javaActions
+            actionClass="edu.toronto.cs.se.mmint.productline.design.tools.CreateAttribute"
+            id="edu.toronto.cs.se.mmint.productline.design.tools.CreateAttribute">
+      </javaActions>
+      <javaActions
+            actionClass="edu.toronto.cs.se.mmint.productline.design.tools.CreateReference"
+            id="edu.toronto.cs.se.mmint.productline.design.tools.CreateReference">
+      </javaActions>
    </extension>
 
    <extension
