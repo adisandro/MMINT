@@ -1,20 +1,28 @@
-/**
- */
+/*******************************************************************************
+ * Copyright (c) 2021, 2021 Alessio Di Sandro.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *     Alessio Di Sandro - Implementation
+ *******************************************************************************/
 package edu.toronto.cs.se.mmint.productline.impl;
+
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.impl.EFactoryImpl;
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 import edu.toronto.cs.se.mmint.productline.Attribute;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.productline.ProductLineFactory;
 import edu.toronto.cs.se.mmint.productline.ProductLinePackage;
 import edu.toronto.cs.se.mmint.productline.Reference;
-
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
-
-import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
-import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 /**
  * <!-- begin-user-doc -->
@@ -31,7 +39,7 @@ public class ProductLineFactoryImpl extends EFactoryImpl implements ProductLineF
    */
   public static ProductLineFactory init() {
     try {
-      ProductLineFactory theProductLineFactory = (ProductLineFactory) EPackage.Registry.INSTANCE.getEFactory(ProductLinePackage.eNS_URI);
+      var theProductLineFactory = (ProductLineFactory) EPackage.Registry.INSTANCE.getEFactory(ProductLinePackage.eNS_URI);
       if (theProductLineFactory != null) {
         return theProductLineFactory;
       }
@@ -80,7 +88,7 @@ public class ProductLineFactoryImpl extends EFactoryImpl implements ProductLineF
    */
   @Override
   public ProductLine createProductLine() {
-    ProductLineImpl productLine = new ProductLineImpl();
+    var productLine = new ProductLineImpl();
     return productLine;
   }
 
@@ -91,7 +99,7 @@ public class ProductLineFactoryImpl extends EFactoryImpl implements ProductLineF
    */
   @Override
   public edu.toronto.cs.se.mmint.productline.Class createClass() {
-    ClassImpl class_ = new ClassImpl();
+    var class_ = new ClassImpl();
     return class_;
   }
 
@@ -102,7 +110,7 @@ public class ProductLineFactoryImpl extends EFactoryImpl implements ProductLineF
    */
   @Override
   public Reference createReference() {
-    ReferenceImpl reference = new ReferenceImpl();
+    var reference = new ReferenceImpl();
     return reference;
   }
 
@@ -113,7 +121,7 @@ public class ProductLineFactoryImpl extends EFactoryImpl implements ProductLineF
    */
   @Override
   public Attribute createAttribute() {
-    AttributeImpl attribute = new AttributeImpl();
+    var attribute = new AttributeImpl();
     return attribute;
   }
 

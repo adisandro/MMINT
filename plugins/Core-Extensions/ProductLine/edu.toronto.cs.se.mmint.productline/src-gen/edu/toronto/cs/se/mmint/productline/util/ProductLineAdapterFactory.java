@@ -1,19 +1,27 @@
-/**
- */
+/*******************************************************************************
+ * Copyright (c) 2021, 2021 Alessio Di Sandro.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *     Alessio Di Sandro - Implementation
+ *******************************************************************************/
 package edu.toronto.cs.se.mmint.productline.util;
+
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.Notifier;
+import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
+import org.eclipse.emf.ecore.EObject;
 
 import edu.toronto.cs.se.mmint.productline.Attribute;
 import edu.toronto.cs.se.mmint.productline.PLElement;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.productline.ProductLinePackage;
 import edu.toronto.cs.se.mmint.productline.Reference;
-
-import org.eclipse.emf.common.notify.Adapter;
-import org.eclipse.emf.common.notify.Notifier;
-
-import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -39,8 +47,8 @@ public class ProductLineAdapterFactory extends AdapterFactoryImpl {
    * @generated
    */
   public ProductLineAdapterFactory() {
-    if (modelPackage == null) {
-      modelPackage = ProductLinePackage.eINSTANCE;
+    if (ProductLineAdapterFactory.modelPackage == null) {
+      ProductLineAdapterFactory.modelPackage = ProductLinePackage.eINSTANCE;
     }
   }
 
@@ -54,11 +62,11 @@ public class ProductLineAdapterFactory extends AdapterFactoryImpl {
    */
   @Override
   public boolean isFactoryForType(Object object) {
-    if (object == modelPackage) {
+    if (object == ProductLineAdapterFactory.modelPackage) {
       return true;
     }
     if (object instanceof EObject) {
-      return ((EObject) object).eClass().getEPackage() == modelPackage;
+      return ((EObject) object).eClass().getEPackage() == ProductLineAdapterFactory.modelPackage;
     }
     return false;
   }
@@ -69,7 +77,7 @@ public class ProductLineAdapterFactory extends AdapterFactoryImpl {
    * <!-- end-user-doc -->
    * @generated
    */
-  protected ProductLineSwitch<Adapter> modelSwitch = new ProductLineSwitch<Adapter>() {
+  protected ProductLineSwitch<Adapter> modelSwitch = new ProductLineSwitch<>() {
     @Override
     public Adapter caseProductLine(ProductLine object) {
       return createProductLineAdapter();
@@ -111,7 +119,7 @@ public class ProductLineAdapterFactory extends AdapterFactoryImpl {
    */
   @Override
   public Adapter createAdapter(Notifier target) {
-    return modelSwitch.doSwitch((EObject) target);
+    return this.modelSwitch.doSwitch((EObject) target);
   }
 
   /**

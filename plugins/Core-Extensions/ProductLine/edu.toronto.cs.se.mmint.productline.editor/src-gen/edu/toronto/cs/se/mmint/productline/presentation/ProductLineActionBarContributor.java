@@ -1,26 +1,31 @@
-/**
- */
+/*******************************************************************************
+ * Copyright (c) 2021, 2021 Alessio Di Sandro.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *     Alessio Di Sandro - Implementation
+ *******************************************************************************/
 package edu.toronto.cs.se.mmint.productline.presentation;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
 import org.eclipse.emf.common.ui.viewer.IViewerProvider;
-
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
-
 import org.eclipse.emf.edit.ui.action.ControlAction;
 import org.eclipse.emf.edit.ui.action.CreateChildAction;
 import org.eclipse.emf.edit.ui.action.CreateSiblingAction;
 import org.eclipse.emf.edit.ui.action.EditingDomainActionBarContributor;
 import org.eclipse.emf.edit.ui.action.LoadResourceAction;
 import org.eclipse.emf.edit.ui.action.ValidateAction;
-
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.ActionContributionItem;
 import org.eclipse.jface.action.IAction;
-import org.eclipse.jface.action.IContributionItem;
 import org.eclipse.jface.action.IContributionManager;
 import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
@@ -28,14 +33,11 @@ import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.action.SubContributionItem;
-
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
-import org.eclipse.jface.viewers.Viewer;
-
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PartInitException;
 
@@ -91,13 +93,13 @@ public class ProductLineActionBarContributor extends EditingDomainActionBarContr
   protected IAction refreshViewerAction = new Action(ProductLineEditorPlugin.INSTANCE.getString("_UI_RefreshViewer_menu_item")) {
     @Override
     public boolean isEnabled() {
-      return activeEditorPart instanceof IViewerProvider;
+      return ProductLineActionBarContributor.this.activeEditorPart instanceof IViewerProvider;
     }
 
     @Override
     public void run() {
-      if (activeEditorPart instanceof IViewerProvider) {
-        Viewer viewer = ((IViewerProvider) activeEditorPart).getViewer();
+      if (ProductLineActionBarContributor.this.activeEditorPart instanceof IViewerProvider) {
+        var viewer = ((IViewerProvider) ProductLineActionBarContributor.this.activeEditorPart).getViewer();
         if (viewer != null) {
           viewer.refresh();
         }
@@ -146,10 +148,10 @@ public class ProductLineActionBarContributor extends EditingDomainActionBarContr
    * @generated
    */
   public ProductLineActionBarContributor() {
-    super(ADDITIONS_LAST_STYLE);
-    loadResourceAction = new LoadResourceAction();
-    validateAction = new ValidateAction();
-    controlAction = new ControlAction();
+    super(EditingDomainActionBarContributor.ADDITIONS_LAST_STYLE);
+    this.loadResourceAction = new LoadResourceAction();
+    this.validateAction = new ValidateAction();
+    this.controlAction = new ControlAction();
   }
 
   /**
@@ -186,13 +188,13 @@ public class ProductLineActionBarContributor extends EditingDomainActionBarContr
 
     // Prepare for CreateChild item addition or removal.
     //
-    createChildMenuManager = new MenuManager(ProductLineEditorPlugin.INSTANCE.getString("_UI_CreateChild_menu_item"));
-    submenuManager.insertBefore("additions", createChildMenuManager);
+    this.createChildMenuManager = new MenuManager(ProductLineEditorPlugin.INSTANCE.getString("_UI_CreateChild_menu_item"));
+    submenuManager.insertBefore("additions", this.createChildMenuManager);
 
     // Prepare for CreateSibling item addition or removal.
     //
-    createSiblingMenuManager = new MenuManager(ProductLineEditorPlugin.INSTANCE.getString("_UI_CreateSibling_menu_item"));
-    submenuManager.insertBefore("additions", createSiblingMenuManager);
+    this.createSiblingMenuManager = new MenuManager(ProductLineEditorPlugin.INSTANCE.getString("_UI_CreateSibling_menu_item"));
+    submenuManager.insertBefore("additions", this.createSiblingMenuManager);
 
     // Force an update because Eclipse hides empty menus now.
     //
@@ -215,24 +217,24 @@ public class ProductLineActionBarContributor extends EditingDomainActionBarContr
   @Override
   public void setActiveEditor(IEditorPart part) {
     super.setActiveEditor(part);
-    activeEditorPart = part;
+    this.activeEditorPart = part;
 
     // Switch to the new selection provider.
     //
-    if (selectionProvider != null) {
-      selectionProvider.removeSelectionChangedListener(this);
+    if (this.selectionProvider != null) {
+      this.selectionProvider.removeSelectionChangedListener(this);
     }
     if (part == null) {
-      selectionProvider = null;
+      this.selectionProvider = null;
     }
     else {
-      selectionProvider = part.getSite().getSelectionProvider();
-      selectionProvider.addSelectionChangedListener(this);
+      this.selectionProvider = part.getSite().getSelectionProvider();
+      this.selectionProvider.addSelectionChangedListener(this);
 
       // Fake a selection changed event to update the menus.
       //
-      if (selectionProvider.getSelection() != null) {
-        selectionChanged(new SelectionChangedEvent(selectionProvider, selectionProvider.getSelection()));
+      if (this.selectionProvider.getSelection() != null) {
+        selectionChanged(new SelectionChangedEvent(this.selectionProvider, this.selectionProvider.getSelection()));
       }
     }
   }
@@ -249,11 +251,11 @@ public class ProductLineActionBarContributor extends EditingDomainActionBarContr
   public void selectionChanged(SelectionChangedEvent event) {
     // Remove any menu items for old selection.
     //
-    if (createChildMenuManager != null) {
-      depopulateManager(createChildMenuManager, createChildActions);
+    if (this.createChildMenuManager != null) {
+      depopulateManager(this.createChildMenuManager, this.createChildActions);
     }
-    if (createSiblingMenuManager != null) {
-      depopulateManager(createSiblingMenuManager, createSiblingActions);
+    if (this.createSiblingMenuManager != null) {
+      depopulateManager(this.createSiblingMenuManager, this.createSiblingActions);
     }
 
     // Query the new selection for appropriate new child/sibling descriptors
@@ -261,11 +263,11 @@ public class ProductLineActionBarContributor extends EditingDomainActionBarContr
     Collection<?> newChildDescriptors = null;
     Collection<?> newSiblingDescriptors = null;
 
-    ISelection selection = event.getSelection();
+    var selection = event.getSelection();
     if (selection instanceof IStructuredSelection && ((IStructuredSelection) selection).size() == 1) {
-      Object object = ((IStructuredSelection) selection).getFirstElement();
+      var object = ((IStructuredSelection) selection).getFirstElement();
 
-      EditingDomain domain = ((IEditingDomainProvider) activeEditorPart).getEditingDomain();
+      var domain = ((IEditingDomainProvider) this.activeEditorPart).getEditingDomain();
 
       newChildDescriptors = domain.getNewChildDescriptors(object, null);
       newSiblingDescriptors = domain.getNewChildDescriptors(null, object);
@@ -273,16 +275,16 @@ public class ProductLineActionBarContributor extends EditingDomainActionBarContr
 
     // Generate actions for selection; populate and redraw the menus.
     //
-    createChildActions = generateCreateChildActions(newChildDescriptors, selection);
-    createSiblingActions = generateCreateSiblingActions(newSiblingDescriptors, selection);
+    this.createChildActions = generateCreateChildActions(newChildDescriptors, selection);
+    this.createSiblingActions = generateCreateSiblingActions(newSiblingDescriptors, selection);
 
-    if (createChildMenuManager != null) {
-      populateManager(createChildMenuManager, createChildActions, null);
-      createChildMenuManager.update(true);
+    if (this.createChildMenuManager != null) {
+      populateManager(this.createChildMenuManager, this.createChildActions, null);
+      this.createChildMenuManager.update(true);
     }
-    if (createSiblingMenuManager != null) {
-      populateManager(createSiblingMenuManager, createSiblingActions, null);
-      createSiblingMenuManager.update(true);
+    if (this.createSiblingMenuManager != null) {
+      populateManager(this.createSiblingMenuManager, this.createSiblingActions, null);
+      this.createSiblingMenuManager.update(true);
     }
   }
 
@@ -294,10 +296,10 @@ public class ProductLineActionBarContributor extends EditingDomainActionBarContr
    * @generated
    */
   protected Collection<IAction> generateCreateChildActions(Collection<?> descriptors, ISelection selection) {
-    Collection<IAction> actions = new ArrayList<IAction>();
+    Collection<IAction> actions = new ArrayList<>();
     if (descriptors != null) {
       for (Object descriptor : descriptors) {
-        actions.add(new CreateChildAction(activeEditorPart, selection, descriptor));
+        actions.add(new CreateChildAction(this.activeEditorPart, selection, descriptor));
       }
     }
     return actions;
@@ -311,10 +313,10 @@ public class ProductLineActionBarContributor extends EditingDomainActionBarContr
    * @generated
    */
   protected Collection<IAction> generateCreateSiblingActions(Collection<?> descriptors, ISelection selection) {
-    Collection<IAction> actions = new ArrayList<IAction>();
+    Collection<IAction> actions = new ArrayList<>();
     if (descriptors != null) {
       for (Object descriptor : descriptors) {
-        actions.add(new CreateSiblingAction(activeEditorPart, selection, descriptor));
+        actions.add(new CreateSiblingAction(this.activeEditorPart, selection, descriptor));
       }
     }
     return actions;
@@ -352,11 +354,11 @@ public class ProductLineActionBarContributor extends EditingDomainActionBarContr
    */
   protected void depopulateManager(IContributionManager manager, Collection<? extends IAction> actions) {
     if (actions != null) {
-      IContributionItem[] items = manager.getItems();
-      for (int i = 0; i < items.length; i++) {
+      var items = manager.getItems();
+      for (var i = 0; i < items.length; i++) {
         // Look into SubContributionItems
         //
-        IContributionItem contributionItem = items[i];
+        var contributionItem = items[i];
         while (contributionItem instanceof SubContributionItem) {
           contributionItem = ((SubContributionItem) contributionItem).getInnerItem();
         }
@@ -364,7 +366,7 @@ public class ProductLineActionBarContributor extends EditingDomainActionBarContr
         // Delete the ActionContributionItems with matching action.
         //
         if (contributionItem instanceof ActionContributionItem) {
-          IAction action = ((ActionContributionItem) contributionItem).getAction();
+          var action = ((ActionContributionItem) contributionItem).getAction();
           if (actions.contains(action)) {
             manager.remove(contributionItem);
           }
@@ -385,11 +387,11 @@ public class ProductLineActionBarContributor extends EditingDomainActionBarContr
     MenuManager submenuManager = null;
 
     submenuManager = new MenuManager(ProductLineEditorPlugin.INSTANCE.getString("_UI_CreateChild_menu_item"));
-    populateManager(submenuManager, createChildActions, null);
+    populateManager(submenuManager, this.createChildActions, null);
     menuManager.insertBefore("edit", submenuManager);
 
     submenuManager = new MenuManager(ProductLineEditorPlugin.INSTANCE.getString("_UI_CreateSibling_menu_item"));
-    populateManager(submenuManager, createSiblingActions, null);
+    populateManager(submenuManager, this.createSiblingActions, null);
     menuManager.insertBefore("edit", submenuManager);
   }
 
@@ -402,10 +404,10 @@ public class ProductLineActionBarContributor extends EditingDomainActionBarContr
   @Override
   protected void addGlobalActions(IMenuManager menuManager) {
     menuManager.insertAfter("additions-end", new Separator("ui-actions"));
-    menuManager.insertAfter("ui-actions", showPropertiesViewAction);
+    menuManager.insertAfter("ui-actions", this.showPropertiesViewAction);
 
-    refreshViewerAction.setEnabled(refreshViewerAction.isEnabled());
-    menuManager.insertAfter("ui-actions", refreshViewerAction);
+    this.refreshViewerAction.setEnabled(this.refreshViewerAction.isEnabled());
+    menuManager.insertAfter("ui-actions", this.refreshViewerAction);
 
     super.addGlobalActions(menuManager);
   }

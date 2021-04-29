@@ -1,8 +1,16 @@
-/**
- */
+/*******************************************************************************
+ * Copyright (c) 2021, 2021 Alessio Di Sandro.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *     Alessio Di Sandro - Implementation
+ *******************************************************************************/
 package edu.toronto.cs.se.mmint.productline.provider;
-
-import edu.toronto.cs.se.mmint.productline.util.ProductLineAdapterFactory;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -10,7 +18,6 @@ import java.util.Collection;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.edit.provider.ChangeNotifier;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -22,6 +29,8 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+
+import edu.toronto.cs.se.mmint.productline.util.ProductLineAdapterFactory;
 
 /**
  * This is the factory that is used to provide the interfaces needed to support Viewers.
@@ -56,7 +65,7 @@ public class ProductLineItemProviderAdapterFactory extends ProductLineAdapterFac
    * <!-- end-user-doc -->
    * @generated
    */
-  protected Collection<Object> supportedTypes = new ArrayList<Object>();
+  protected Collection<Object> supportedTypes = new ArrayList<>();
 
   /**
    * This constructs an instance.
@@ -65,11 +74,11 @@ public class ProductLineItemProviderAdapterFactory extends ProductLineAdapterFac
    * @generated
    */
   public ProductLineItemProviderAdapterFactory() {
-    supportedTypes.add(IEditingDomainItemProvider.class);
-    supportedTypes.add(IStructuredItemContentProvider.class);
-    supportedTypes.add(ITreeItemContentProvider.class);
-    supportedTypes.add(IItemLabelProvider.class);
-    supportedTypes.add(IItemPropertySource.class);
+    this.supportedTypes.add(IEditingDomainItemProvider.class);
+    this.supportedTypes.add(IStructuredItemContentProvider.class);
+    this.supportedTypes.add(ITreeItemContentProvider.class);
+    this.supportedTypes.add(IItemLabelProvider.class);
+    this.supportedTypes.add(IItemPropertySource.class);
   }
 
   /**
@@ -88,11 +97,11 @@ public class ProductLineItemProviderAdapterFactory extends ProductLineAdapterFac
    */
   @Override
   public Adapter createProductLineAdapter() {
-    if (productLineItemProvider == null) {
-      productLineItemProvider = new ProductLineItemProvider(this);
+    if (this.productLineItemProvider == null) {
+      this.productLineItemProvider = new ProductLineItemProvider(this);
     }
 
-    return productLineItemProvider;
+    return this.productLineItemProvider;
   }
 
   /**
@@ -111,11 +120,11 @@ public class ProductLineItemProviderAdapterFactory extends ProductLineAdapterFac
    */
   @Override
   public Adapter createClassAdapter() {
-    if (classItemProvider == null) {
-      classItemProvider = new ClassItemProvider(this);
+    if (this.classItemProvider == null) {
+      this.classItemProvider = new ClassItemProvider(this);
     }
 
-    return classItemProvider;
+    return this.classItemProvider;
   }
 
   /**
@@ -134,11 +143,11 @@ public class ProductLineItemProviderAdapterFactory extends ProductLineAdapterFac
    */
   @Override
   public Adapter createReferenceAdapter() {
-    if (referenceItemProvider == null) {
-      referenceItemProvider = new ReferenceItemProvider(this);
+    if (this.referenceItemProvider == null) {
+      this.referenceItemProvider = new ReferenceItemProvider(this);
     }
 
-    return referenceItemProvider;
+    return this.referenceItemProvider;
   }
 
   /**
@@ -157,11 +166,11 @@ public class ProductLineItemProviderAdapterFactory extends ProductLineAdapterFac
    */
   @Override
   public Adapter createAttributeAdapter() {
-    if (attributeItemProvider == null) {
-      attributeItemProvider = new AttributeItemProvider(this);
+    if (this.attributeItemProvider == null) {
+      this.attributeItemProvider = new AttributeItemProvider(this);
     }
 
-    return attributeItemProvider;
+    return this.attributeItemProvider;
   }
 
   /**
@@ -172,7 +181,7 @@ public class ProductLineItemProviderAdapterFactory extends ProductLineAdapterFac
    */
   @Override
   public ComposeableAdapterFactory getRootAdapterFactory() {
-    return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
+    return this.parentAdapterFactory == null ? this : this.parentAdapterFactory.getRootAdapterFactory();
   }
 
   /**
@@ -193,7 +202,7 @@ public class ProductLineItemProviderAdapterFactory extends ProductLineAdapterFac
    */
   @Override
   public boolean isFactoryForType(Object type) {
-    return supportedTypes.contains(type) || super.isFactoryForType(type);
+    return this.supportedTypes.contains(type) || super.isFactoryForType(type);
   }
 
   /**
@@ -215,7 +224,7 @@ public class ProductLineItemProviderAdapterFactory extends ProductLineAdapterFac
   @Override
   public Object adapt(Object object, Object type) {
     if (isFactoryForType(type)) {
-      Object adapter = super.adapt(object, type);
+      var adapter = super.adapt(object, type);
       if (!(type instanceof Class<?>) || (((Class<?>) type).isInstance(adapter))) {
         return adapter;
       }
@@ -232,7 +241,7 @@ public class ProductLineItemProviderAdapterFactory extends ProductLineAdapterFac
    */
   @Override
   public void addListener(INotifyChangedListener notifyChangedListener) {
-    changeNotifier.addListener(notifyChangedListener);
+    this.changeNotifier.addListener(notifyChangedListener);
   }
 
   /**
@@ -243,7 +252,7 @@ public class ProductLineItemProviderAdapterFactory extends ProductLineAdapterFac
    */
   @Override
   public void removeListener(INotifyChangedListener notifyChangedListener) {
-    changeNotifier.removeListener(notifyChangedListener);
+    this.changeNotifier.removeListener(notifyChangedListener);
   }
 
   /**
@@ -254,29 +263,29 @@ public class ProductLineItemProviderAdapterFactory extends ProductLineAdapterFac
    */
   @Override
   public void fireNotifyChanged(Notification notification) {
-    changeNotifier.fireNotifyChanged(notification);
+    this.changeNotifier.fireNotifyChanged(notification);
 
-    if (parentAdapterFactory != null) {
-      parentAdapterFactory.fireNotifyChanged(notification);
+    if (this.parentAdapterFactory != null) {
+      this.parentAdapterFactory.fireNotifyChanged(notification);
     }
   }
 
   /**
-   * This disposes all of the item providers created by this factory. 
+   * This disposes all of the item providers created by this factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
   @Override
   public void dispose() {
-    if (productLineItemProvider != null)
-      productLineItemProvider.dispose();
-    if (classItemProvider != null)
-      classItemProvider.dispose();
-    if (referenceItemProvider != null)
-      referenceItemProvider.dispose();
-    if (attributeItemProvider != null)
-      attributeItemProvider.dispose();
+    if (this.productLineItemProvider != null)
+      this.productLineItemProvider.dispose();
+    if (this.classItemProvider != null)
+      this.classItemProvider.dispose();
+    if (this.referenceItemProvider != null)
+      this.referenceItemProvider.dispose();
+    if (this.attributeItemProvider != null)
+      this.attributeItemProvider.dispose();
   }
 
 }

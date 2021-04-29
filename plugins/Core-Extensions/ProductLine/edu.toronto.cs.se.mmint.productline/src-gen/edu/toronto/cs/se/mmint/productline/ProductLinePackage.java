@@ -1,5 +1,15 @@
-/**
- */
+/*******************************************************************************
+ * Copyright (c) 2021, 2021 Alessio Di Sandro.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *     Alessio Di Sandro - Implementation
+ *******************************************************************************/
 package edu.toronto.cs.se.mmint.productline;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -155,7 +165,7 @@ public interface ProductLinePackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CLASS__PRESENCE_CONDITION = PL_ELEMENT__PRESENCE_CONDITION;
+  int CLASS__PRESENCE_CONDITION = ProductLinePackage.PL_ELEMENT__PRESENCE_CONDITION;
 
   /**
    * The feature id for the '<em><b>References As Source</b></em>' reference list.
@@ -164,7 +174,7 @@ public interface ProductLinePackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CLASS__REFERENCES_AS_SOURCE = PL_ELEMENT_FEATURE_COUNT + 0;
+  int CLASS__REFERENCES_AS_SOURCE = ProductLinePackage.PL_ELEMENT_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>References As Targets</b></em>' reference list.
@@ -173,7 +183,7 @@ public interface ProductLinePackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CLASS__REFERENCES_AS_TARGETS = PL_ELEMENT_FEATURE_COUNT + 1;
+  int CLASS__REFERENCES_AS_TARGETS = ProductLinePackage.PL_ELEMENT_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Attributes</b></em>' containment reference list.
@@ -182,7 +192,7 @@ public interface ProductLinePackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CLASS__ATTRIBUTES = PL_ELEMENT_FEATURE_COUNT + 2;
+  int CLASS__ATTRIBUTES = ProductLinePackage.PL_ELEMENT_FEATURE_COUNT + 2;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' reference.
@@ -191,7 +201,7 @@ public interface ProductLinePackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CLASS__TYPE = PL_ELEMENT_FEATURE_COUNT + 3;
+  int CLASS__TYPE = ProductLinePackage.PL_ELEMENT_FEATURE_COUNT + 3;
 
   /**
    * The number of structural features of the '<em>Class</em>' class.
@@ -200,7 +210,7 @@ public interface ProductLinePackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CLASS_FEATURE_COUNT = PL_ELEMENT_FEATURE_COUNT + 4;
+  int CLASS_FEATURE_COUNT = ProductLinePackage.PL_ELEMENT_FEATURE_COUNT + 4;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.mmint.productline.impl.ReferenceImpl <em>Reference</em>}' class.
@@ -219,7 +229,7 @@ public interface ProductLinePackage extends EPackage {
    * @generated
    * @ordered
    */
-  int REFERENCE__PRESENCE_CONDITION = PL_ELEMENT__PRESENCE_CONDITION;
+  int REFERENCE__PRESENCE_CONDITION = ProductLinePackage.PL_ELEMENT__PRESENCE_CONDITION;
 
   /**
    * The feature id for the '<em><b>Source</b></em>' reference.
@@ -228,7 +238,7 @@ public interface ProductLinePackage extends EPackage {
    * @generated
    * @ordered
    */
-  int REFERENCE__SOURCE = PL_ELEMENT_FEATURE_COUNT + 0;
+  int REFERENCE__SOURCE = ProductLinePackage.PL_ELEMENT_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Targets</b></em>' reference list.
@@ -237,7 +247,7 @@ public interface ProductLinePackage extends EPackage {
    * @generated
    * @ordered
    */
-  int REFERENCE__TARGETS = PL_ELEMENT_FEATURE_COUNT + 1;
+  int REFERENCE__TARGETS = ProductLinePackage.PL_ELEMENT_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' reference.
@@ -246,7 +256,7 @@ public interface ProductLinePackage extends EPackage {
    * @generated
    * @ordered
    */
-  int REFERENCE__TYPE = PL_ELEMENT_FEATURE_COUNT + 2;
+  int REFERENCE__TYPE = ProductLinePackage.PL_ELEMENT_FEATURE_COUNT + 2;
 
   /**
    * The number of structural features of the '<em>Reference</em>' class.
@@ -255,7 +265,7 @@ public interface ProductLinePackage extends EPackage {
    * @generated
    * @ordered
    */
-  int REFERENCE_FEATURE_COUNT = PL_ELEMENT_FEATURE_COUNT + 3;
+  int REFERENCE_FEATURE_COUNT = ProductLinePackage.PL_ELEMENT_FEATURE_COUNT + 3;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.mmint.productline.impl.AttributeImpl <em>Attribute</em>}' class.
@@ -274,7 +284,7 @@ public interface ProductLinePackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ATTRIBUTE__PRESENCE_CONDITION = PL_ELEMENT__PRESENCE_CONDITION;
+  int ATTRIBUTE__PRESENCE_CONDITION = ProductLinePackage.PL_ELEMENT__PRESENCE_CONDITION;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -283,7 +293,7 @@ public interface ProductLinePackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ATTRIBUTE__VALUE = PL_ELEMENT_FEATURE_COUNT + 0;
+  int ATTRIBUTE__VALUE = ProductLinePackage.PL_ELEMENT_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' reference.
@@ -292,7 +302,7 @@ public interface ProductLinePackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ATTRIBUTE__TYPE = PL_ELEMENT_FEATURE_COUNT + 1;
+  int ATTRIBUTE__TYPE = ProductLinePackage.PL_ELEMENT_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Attribute</em>' class.
@@ -301,7 +311,7 @@ public interface ProductLinePackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ATTRIBUTE_FEATURE_COUNT = PL_ELEMENT_FEATURE_COUNT + 2;
+  int ATTRIBUTE_FEATURE_COUNT = ProductLinePackage.PL_ELEMENT_FEATURE_COUNT + 2;
 
   /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.productline.ProductLine <em>Product Line</em>}'.
@@ -537,7 +547,7 @@ public interface ProductLinePackage extends EPackage {
      * @see edu.toronto.cs.se.mmint.productline.impl.ProductLinePackageImpl#getProductLine()
      * @generated
      */
-    EClass PRODUCT_LINE = eINSTANCE.getProductLine();
+    EClass PRODUCT_LINE = ProductLinePackage.eINSTANCE.getProductLine();
 
     /**
      * The meta object literal for the '<em><b>Features</b></em>' attribute feature.
@@ -545,7 +555,7 @@ public interface ProductLinePackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute PRODUCT_LINE__FEATURES = eINSTANCE.getProductLine_Features();
+    EAttribute PRODUCT_LINE__FEATURES = ProductLinePackage.eINSTANCE.getProductLine_Features();
 
     /**
      * The meta object literal for the '<em><b>Classes</b></em>' containment reference list feature.
@@ -553,7 +563,7 @@ public interface ProductLinePackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference PRODUCT_LINE__CLASSES = eINSTANCE.getProductLine_Classes();
+    EReference PRODUCT_LINE__CLASSES = ProductLinePackage.eINSTANCE.getProductLine_Classes();
 
     /**
      * The meta object literal for the '<em><b>References</b></em>' containment reference list feature.
@@ -561,7 +571,7 @@ public interface ProductLinePackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference PRODUCT_LINE__REFERENCES = eINSTANCE.getProductLine_References();
+    EReference PRODUCT_LINE__REFERENCES = ProductLinePackage.eINSTANCE.getProductLine_References();
 
     /**
      * The meta object literal for the '<em><b>Metamodel</b></em>' reference feature.
@@ -569,7 +579,7 @@ public interface ProductLinePackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference PRODUCT_LINE__METAMODEL = eINSTANCE.getProductLine_Metamodel();
+    EReference PRODUCT_LINE__METAMODEL = ProductLinePackage.eINSTANCE.getProductLine_Metamodel();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint.productline.impl.PLElementImpl <em>PL Element</em>}' class.
@@ -579,7 +589,7 @@ public interface ProductLinePackage extends EPackage {
      * @see edu.toronto.cs.se.mmint.productline.impl.ProductLinePackageImpl#getPLElement()
      * @generated
      */
-    EClass PL_ELEMENT = eINSTANCE.getPLElement();
+    EClass PL_ELEMENT = ProductLinePackage.eINSTANCE.getPLElement();
 
     /**
      * The meta object literal for the '<em><b>Presence Condition</b></em>' attribute feature.
@@ -587,7 +597,7 @@ public interface ProductLinePackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute PL_ELEMENT__PRESENCE_CONDITION = eINSTANCE.getPLElement_PresenceCondition();
+    EAttribute PL_ELEMENT__PRESENCE_CONDITION = ProductLinePackage.eINSTANCE.getPLElement_PresenceCondition();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint.productline.impl.ClassImpl <em>Class</em>}' class.
@@ -597,7 +607,7 @@ public interface ProductLinePackage extends EPackage {
      * @see edu.toronto.cs.se.mmint.productline.impl.ProductLinePackageImpl#getClass_()
      * @generated
      */
-    EClass CLASS = eINSTANCE.getClass_();
+    EClass CLASS = ProductLinePackage.eINSTANCE.getClass_();
 
     /**
      * The meta object literal for the '<em><b>References As Source</b></em>' reference list feature.
@@ -605,7 +615,7 @@ public interface ProductLinePackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference CLASS__REFERENCES_AS_SOURCE = eINSTANCE.getClass_ReferencesAsSource();
+    EReference CLASS__REFERENCES_AS_SOURCE = ProductLinePackage.eINSTANCE.getClass_ReferencesAsSource();
 
     /**
      * The meta object literal for the '<em><b>References As Targets</b></em>' reference list feature.
@@ -613,7 +623,7 @@ public interface ProductLinePackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference CLASS__REFERENCES_AS_TARGETS = eINSTANCE.getClass_ReferencesAsTargets();
+    EReference CLASS__REFERENCES_AS_TARGETS = ProductLinePackage.eINSTANCE.getClass_ReferencesAsTargets();
 
     /**
      * The meta object literal for the '<em><b>Attributes</b></em>' containment reference list feature.
@@ -621,7 +631,7 @@ public interface ProductLinePackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference CLASS__ATTRIBUTES = eINSTANCE.getClass_Attributes();
+    EReference CLASS__ATTRIBUTES = ProductLinePackage.eINSTANCE.getClass_Attributes();
 
     /**
      * The meta object literal for the '<em><b>Type</b></em>' reference feature.
@@ -629,7 +639,7 @@ public interface ProductLinePackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference CLASS__TYPE = eINSTANCE.getClass_Type();
+    EReference CLASS__TYPE = ProductLinePackage.eINSTANCE.getClass_Type();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint.productline.impl.ReferenceImpl <em>Reference</em>}' class.
@@ -639,7 +649,7 @@ public interface ProductLinePackage extends EPackage {
      * @see edu.toronto.cs.se.mmint.productline.impl.ProductLinePackageImpl#getReference()
      * @generated
      */
-    EClass REFERENCE = eINSTANCE.getReference();
+    EClass REFERENCE = ProductLinePackage.eINSTANCE.getReference();
 
     /**
      * The meta object literal for the '<em><b>Source</b></em>' reference feature.
@@ -647,7 +657,7 @@ public interface ProductLinePackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference REFERENCE__SOURCE = eINSTANCE.getReference_Source();
+    EReference REFERENCE__SOURCE = ProductLinePackage.eINSTANCE.getReference_Source();
 
     /**
      * The meta object literal for the '<em><b>Targets</b></em>' reference list feature.
@@ -655,7 +665,7 @@ public interface ProductLinePackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference REFERENCE__TARGETS = eINSTANCE.getReference_Targets();
+    EReference REFERENCE__TARGETS = ProductLinePackage.eINSTANCE.getReference_Targets();
 
     /**
      * The meta object literal for the '<em><b>Type</b></em>' reference feature.
@@ -663,7 +673,7 @@ public interface ProductLinePackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference REFERENCE__TYPE = eINSTANCE.getReference_Type();
+    EReference REFERENCE__TYPE = ProductLinePackage.eINSTANCE.getReference_Type();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint.productline.impl.AttributeImpl <em>Attribute</em>}' class.
@@ -673,7 +683,7 @@ public interface ProductLinePackage extends EPackage {
      * @see edu.toronto.cs.se.mmint.productline.impl.ProductLinePackageImpl#getAttribute()
      * @generated
      */
-    EClass ATTRIBUTE = eINSTANCE.getAttribute();
+    EClass ATTRIBUTE = ProductLinePackage.eINSTANCE.getAttribute();
 
     /**
      * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
@@ -681,7 +691,7 @@ public interface ProductLinePackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute ATTRIBUTE__VALUE = eINSTANCE.getAttribute_Value();
+    EAttribute ATTRIBUTE__VALUE = ProductLinePackage.eINSTANCE.getAttribute_Value();
 
     /**
      * The meta object literal for the '<em><b>Type</b></em>' reference feature.
@@ -689,7 +699,7 @@ public interface ProductLinePackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference ATTRIBUTE__TYPE = eINSTANCE.getAttribute_Type();
+    EReference ATTRIBUTE__TYPE = ProductLinePackage.eINSTANCE.getAttribute_Type();
 
   }
 

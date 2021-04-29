@@ -1,22 +1,31 @@
-/**
- */
+/*******************************************************************************
+ * Copyright (c) 2021, 2021 Alessio Di Sandro.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *     Alessio Di Sandro - Implementation
+ *******************************************************************************/
 package edu.toronto.cs.se.mmint.productline.impl;
 
-import edu.toronto.cs.se.mmint.productline.ProductLinePackage;
-import edu.toronto.cs.se.mmint.productline.Reference;
-
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
+import edu.toronto.cs.se.mmint.productline.ProductLinePackage;
+import edu.toronto.cs.se.mmint.productline.Reference;
 
 /**
  * <!-- begin-user-doc -->
@@ -90,16 +99,16 @@ public class ReferenceImpl extends PLElementImpl implements Reference {
    */
   @Override
   public edu.toronto.cs.se.mmint.productline.Class getSource() {
-    if (source != null && source.eIsProxy()) {
-      InternalEObject oldSource = (InternalEObject) source;
-      source = (edu.toronto.cs.se.mmint.productline.Class) eResolveProxy(oldSource);
-      if (source != oldSource) {
+    if (this.source != null && this.source.eIsProxy()) {
+      var oldSource = (InternalEObject) this.source;
+      this.source = (edu.toronto.cs.se.mmint.productline.Class) eResolveProxy(oldSource);
+      if (this.source != oldSource) {
         if (eNotificationRequired())
           eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProductLinePackage.REFERENCE__SOURCE, oldSource,
-                                        source));
+                                        this.source));
       }
     }
-    return source;
+    return this.source;
   }
 
   /**
@@ -108,7 +117,7 @@ public class ReferenceImpl extends PLElementImpl implements Reference {
    * @generated
    */
   public edu.toronto.cs.se.mmint.productline.Class basicGetSource() {
-    return source;
+    return this.source;
   }
 
   /**
@@ -117,10 +126,10 @@ public class ReferenceImpl extends PLElementImpl implements Reference {
    * @generated
    */
   public NotificationChain basicSetSource(edu.toronto.cs.se.mmint.productline.Class newSource, NotificationChain msgs) {
-    edu.toronto.cs.se.mmint.productline.Class oldSource = source;
-    source = newSource;
+    var oldSource = this.source;
+    this.source = newSource;
     if (eNotificationRequired()) {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+      var notification = new ENotificationImpl(this, Notification.SET,
                                                              ProductLinePackage.REFERENCE__SOURCE, oldSource,
                                                              newSource);
       if (msgs == null)
@@ -138,10 +147,10 @@ public class ReferenceImpl extends PLElementImpl implements Reference {
    */
   @Override
   public void setSource(edu.toronto.cs.se.mmint.productline.Class newSource) {
-    if (newSource != source) {
+    if (newSource != this.source) {
       NotificationChain msgs = null;
-      if (source != null)
-        msgs = ((InternalEObject) source).eInverseRemove(this, ProductLinePackage.CLASS__REFERENCES_AS_SOURCE,
+      if (this.source != null)
+        msgs = ((InternalEObject) this.source).eInverseRemove(this, ProductLinePackage.CLASS__REFERENCES_AS_SOURCE,
                                                          edu.toronto.cs.se.mmint.productline.Class.class, msgs);
       if (newSource != null)
         msgs = ((InternalEObject) newSource).eInverseAdd(this, ProductLinePackage.CLASS__REFERENCES_AS_SOURCE,
@@ -162,13 +171,13 @@ public class ReferenceImpl extends PLElementImpl implements Reference {
    */
   @Override
   public EList<edu.toronto.cs.se.mmint.productline.Class> getTargets() {
-    if (targets == null) {
-      targets = new EObjectWithInverseResolvingEList.ManyInverse<edu.toronto.cs.se.mmint.productline.Class>(edu.toronto.cs.se.mmint.productline.Class.class,
+    if (this.targets == null) {
+      this.targets = new EObjectWithInverseResolvingEList.ManyInverse<>(edu.toronto.cs.se.mmint.productline.Class.class,
                                                                                                             this,
                                                                                                             ProductLinePackage.REFERENCE__TARGETS,
                                                                                                             ProductLinePackage.CLASS__REFERENCES_AS_TARGETS);
     }
-    return targets;
+    return this.targets;
   }
 
   /**
@@ -178,15 +187,15 @@ public class ReferenceImpl extends PLElementImpl implements Reference {
    */
   @Override
   public EReference getType() {
-    if (type != null && type.eIsProxy()) {
-      InternalEObject oldType = (InternalEObject) type;
-      type = (EReference) eResolveProxy(oldType);
-      if (type != oldType) {
+    if (this.type != null && this.type.eIsProxy()) {
+      var oldType = (InternalEObject) this.type;
+      this.type = (EReference) eResolveProxy(oldType);
+      if (this.type != oldType) {
         if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProductLinePackage.REFERENCE__TYPE, oldType, type));
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProductLinePackage.REFERENCE__TYPE, oldType, this.type));
       }
     }
-    return type;
+    return this.type;
   }
 
   /**
@@ -195,7 +204,7 @@ public class ReferenceImpl extends PLElementImpl implements Reference {
    * @generated
    */
   public EReference basicGetType() {
-    return type;
+    return this.type;
   }
 
   /**
@@ -205,10 +214,10 @@ public class ReferenceImpl extends PLElementImpl implements Reference {
    */
   @Override
   public void setType(EReference newType) {
-    EReference oldType = type;
-    type = newType;
+    var oldType = this.type;
+    this.type = newType;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProductLinePackage.REFERENCE__TYPE, oldType, type));
+      eNotify(new ENotificationImpl(this, Notification.SET, ProductLinePackage.REFERENCE__TYPE, oldType, this.type));
   }
 
   /**
@@ -221,8 +230,8 @@ public class ReferenceImpl extends PLElementImpl implements Reference {
   public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
     case ProductLinePackage.REFERENCE__SOURCE:
-      if (source != null)
-        msgs = ((InternalEObject) source).eInverseRemove(this, ProductLinePackage.CLASS__REFERENCES_AS_SOURCE,
+      if (this.source != null)
+        msgs = ((InternalEObject) this.source).eInverseRemove(this, ProductLinePackage.CLASS__REFERENCES_AS_SOURCE,
                                                          edu.toronto.cs.se.mmint.productline.Class.class, msgs);
       return basicSetSource((edu.toronto.cs.se.mmint.productline.Class) otherEnd, msgs);
     case ProductLinePackage.REFERENCE__TARGETS:
@@ -322,11 +331,11 @@ public class ReferenceImpl extends PLElementImpl implements Reference {
   public boolean eIsSet(int featureID) {
     switch (featureID) {
     case ProductLinePackage.REFERENCE__SOURCE:
-      return source != null;
+      return this.source != null;
     case ProductLinePackage.REFERENCE__TARGETS:
-      return targets != null && !targets.isEmpty();
+      return this.targets != null && !this.targets.isEmpty();
     case ProductLinePackage.REFERENCE__TYPE:
-      return type != null;
+      return this.type != null;
     }
     return super.eIsSet(featureID);
   }

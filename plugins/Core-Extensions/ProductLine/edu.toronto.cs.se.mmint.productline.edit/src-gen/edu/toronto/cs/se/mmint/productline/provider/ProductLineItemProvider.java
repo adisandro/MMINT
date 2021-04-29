@@ -1,21 +1,24 @@
-/**
- */
+/*******************************************************************************
+ * Copyright (c) 2021, 2021 Alessio Di Sandro.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *     Alessio Di Sandro - Implementation
+ *******************************************************************************/
 package edu.toronto.cs.se.mmint.productline.provider;
-
-import edu.toronto.cs.se.mmint.productline.ProductLine;
-import edu.toronto.cs.se.mmint.productline.ProductLineFactory;
-import edu.toronto.cs.se.mmint.productline.ProductLinePackage;
 
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -26,6 +29,10 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
+import edu.toronto.cs.se.mmint.productline.ProductLine;
+import edu.toronto.cs.se.mmint.productline.ProductLineFactory;
+import edu.toronto.cs.se.mmint.productline.ProductLinePackage;
 
 /**
  * This is the item provider adapter for a {@link edu.toronto.cs.se.mmint.productline.ProductLine} object.
@@ -53,7 +60,7 @@ public class ProductLineItemProvider extends ItemProviderAdapter implements IEdi
    */
   @Override
   public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-    if (itemPropertyDescriptors == null) {
+    if (this.itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
       addFeaturesPropertyDescriptor(object);
@@ -61,7 +68,7 @@ public class ProductLineItemProvider extends ItemProviderAdapter implements IEdi
       addReferencesPropertyDescriptor(object);
       addMetamodelPropertyDescriptor(object);
     }
-    return itemPropertyDescriptors;
+    return this.itemPropertyDescriptors;
   }
 
   /**
@@ -71,7 +78,7 @@ public class ProductLineItemProvider extends ItemProviderAdapter implements IEdi
    * @generated
    */
   protected void addFeaturesPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+    this.itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(),
                                                              getResourceLocator(), getString(
                                                                                              "_UI_ProductLine_features_feature"),
                                                              getString("_UI_PropertyDescriptor_description",
@@ -89,7 +96,7 @@ public class ProductLineItemProvider extends ItemProviderAdapter implements IEdi
    * @generated
    */
   protected void addClassesPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+    this.itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(),
                                                              getResourceLocator(), getString(
                                                                                              "_UI_ProductLine_classes_feature"),
                                                              getString("_UI_PropertyDescriptor_description",
@@ -106,7 +113,7 @@ public class ProductLineItemProvider extends ItemProviderAdapter implements IEdi
    * @generated
    */
   protected void addReferencesPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+    this.itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(),
                                                              getResourceLocator(), getString(
                                                                                              "_UI_ProductLine_references_feature"),
                                                              getString("_UI_PropertyDescriptor_description",
@@ -123,7 +130,7 @@ public class ProductLineItemProvider extends ItemProviderAdapter implements IEdi
    * @generated
    */
   protected void addMetamodelPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+    this.itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(),
                                                              getResourceLocator(), getString(
                                                                                              "_UI_ProductLine_metamodel_feature"),
                                                              getString("_UI_PropertyDescriptor_description",
@@ -143,12 +150,12 @@ public class ProductLineItemProvider extends ItemProviderAdapter implements IEdi
    */
   @Override
   public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-    if (childrenFeatures == null) {
+    if (this.childrenFeatures == null) {
       super.getChildrenFeatures(object);
-      childrenFeatures.add(ProductLinePackage.Literals.PRODUCT_LINE__CLASSES);
-      childrenFeatures.add(ProductLinePackage.Literals.PRODUCT_LINE__REFERENCES);
+      this.childrenFeatures.add(ProductLinePackage.Literals.PRODUCT_LINE__CLASSES);
+      this.childrenFeatures.add(ProductLinePackage.Literals.PRODUCT_LINE__REFERENCES);
     }
-    return childrenFeatures;
+    return this.childrenFeatures;
   }
 
   /**
@@ -193,7 +200,7 @@ public class ProductLineItemProvider extends ItemProviderAdapter implements IEdi
    */
   @Override
   public String getText(Object object) {
-    String label = ((ProductLine) object).getFeatures();
+    var label = ((ProductLine) object).getFeatures();
     return label == null || label.length() == 0 ? getString("_UI_ProductLine_type")
       : getString("_UI_ProductLine_type") + " " + label;
   }

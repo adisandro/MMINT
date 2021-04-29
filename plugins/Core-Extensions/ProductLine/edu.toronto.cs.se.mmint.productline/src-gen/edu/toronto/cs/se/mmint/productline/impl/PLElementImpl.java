@@ -1,16 +1,24 @@
-/**
- */
+/*******************************************************************************
+ * Copyright (c) 2021, 2021 Alessio Di Sandro.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *     Alessio Di Sandro - Implementation
+ *******************************************************************************/
 package edu.toronto.cs.se.mmint.productline.impl;
+
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import edu.toronto.cs.se.mmint.productline.PLElement;
 import edu.toronto.cs.se.mmint.productline.ProductLinePackage;
-
-import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -44,7 +52,7 @@ public abstract class PLElementImpl extends MinimalEObjectImpl.Container impleme
    * @generated
    * @ordered
    */
-  protected String presenceCondition = PRESENCE_CONDITION_EDEFAULT;
+  protected String presenceCondition = PLElementImpl.PRESENCE_CONDITION_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -72,7 +80,7 @@ public abstract class PLElementImpl extends MinimalEObjectImpl.Container impleme
    */
   @Override
   public String getPresenceCondition() {
-    return presenceCondition;
+    return this.presenceCondition;
   }
 
   /**
@@ -82,11 +90,11 @@ public abstract class PLElementImpl extends MinimalEObjectImpl.Container impleme
    */
   @Override
   public void setPresenceCondition(String newPresenceCondition) {
-    String oldPresenceCondition = presenceCondition;
-    presenceCondition = newPresenceCondition;
+    var oldPresenceCondition = this.presenceCondition;
+    this.presenceCondition = newPresenceCondition;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, ProductLinePackage.PL_ELEMENT__PRESENCE_CONDITION,
-                                    oldPresenceCondition, presenceCondition));
+                                    oldPresenceCondition, this.presenceCondition));
   }
 
   /**
@@ -127,7 +135,7 @@ public abstract class PLElementImpl extends MinimalEObjectImpl.Container impleme
   public void eUnset(int featureID) {
     switch (featureID) {
     case ProductLinePackage.PL_ELEMENT__PRESENCE_CONDITION:
-      setPresenceCondition(PRESENCE_CONDITION_EDEFAULT);
+      setPresenceCondition(PLElementImpl.PRESENCE_CONDITION_EDEFAULT);
       return;
     }
     super.eUnset(featureID);
@@ -142,8 +150,8 @@ public abstract class PLElementImpl extends MinimalEObjectImpl.Container impleme
   public boolean eIsSet(int featureID) {
     switch (featureID) {
     case ProductLinePackage.PL_ELEMENT__PRESENCE_CONDITION:
-      return PRESENCE_CONDITION_EDEFAULT == null ? presenceCondition != null
-        : !PRESENCE_CONDITION_EDEFAULT.equals(presenceCondition);
+      return PLElementImpl.PRESENCE_CONDITION_EDEFAULT == null ? this.presenceCondition != null
+        : !PLElementImpl.PRESENCE_CONDITION_EDEFAULT.equals(this.presenceCondition);
     }
     return super.eIsSet(featureID);
   }
@@ -158,9 +166,9 @@ public abstract class PLElementImpl extends MinimalEObjectImpl.Container impleme
     if (eIsProxy())
       return super.toString();
 
-    StringBuilder result = new StringBuilder(super.toString());
+    var result = new StringBuilder(super.toString());
     result.append(" (presenceCondition: ");
-    result.append(presenceCondition);
+    result.append(this.presenceCondition);
     result.append(')');
     return result.toString();
   }

@@ -1,13 +1,20 @@
-/**
- */
+/*******************************************************************************
+ * Copyright (c) 2021, 2021 Alessio Di Sandro.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *     Alessio Di Sandro - Implementation
+ *******************************************************************************/
 package edu.toronto.cs.se.mmint.productline.presentation;
 
 import org.eclipse.emf.common.EMFPlugin;
-
 import org.eclipse.emf.common.ui.EclipseUIPlugin;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
 
 /**
@@ -52,7 +59,7 @@ public final class ProductLineEditorPlugin extends EMFPlugin {
    */
   @Override
   public ResourceLocator getPluginResourceLocator() {
-    return plugin;
+    return ProductLineEditorPlugin.plugin;
   }
 
   /**
@@ -63,7 +70,7 @@ public final class ProductLineEditorPlugin extends EMFPlugin {
    * @generated
    */
   public static Implementation getPlugin() {
-    return plugin;
+    return ProductLineEditorPlugin.plugin;
   }
 
   /**
@@ -84,7 +91,7 @@ public final class ProductLineEditorPlugin extends EMFPlugin {
 
       // Remember the static instance.
       //
-      plugin = this;
+      ProductLineEditorPlugin.plugin = this;
     }
   }
 

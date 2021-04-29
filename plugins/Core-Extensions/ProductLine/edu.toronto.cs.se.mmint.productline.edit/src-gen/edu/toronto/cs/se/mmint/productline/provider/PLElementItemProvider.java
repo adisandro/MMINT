@@ -1,18 +1,23 @@
-/**
- */
+/*******************************************************************************
+ * Copyright (c) 2021, 2021 Alessio Di Sandro.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *     Alessio Di Sandro - Implementation
+ *******************************************************************************/
 package edu.toronto.cs.se.mmint.productline.provider;
-
-import edu.toronto.cs.se.mmint.productline.PLElement;
-import edu.toronto.cs.se.mmint.productline.ProductLinePackage;
 
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -23,6 +28,9 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
+import edu.toronto.cs.se.mmint.productline.PLElement;
+import edu.toronto.cs.se.mmint.productline.ProductLinePackage;
 
 /**
  * This is the item provider adapter for a {@link edu.toronto.cs.se.mmint.productline.PLElement} object.
@@ -50,12 +58,12 @@ public class PLElementItemProvider extends ItemProviderAdapter implements IEditi
    */
   @Override
   public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-    if (itemPropertyDescriptors == null) {
+    if (this.itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
       addPresenceConditionPropertyDescriptor(object);
     }
-    return itemPropertyDescriptors;
+    return this.itemPropertyDescriptors;
   }
 
   /**
@@ -65,7 +73,7 @@ public class PLElementItemProvider extends ItemProviderAdapter implements IEditi
    * @generated
    */
   protected void addPresenceConditionPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+    this.itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(),
                                                              getResourceLocator(), getString(
                                                                                              "_UI_PLElement_presenceCondition_feature"),
                                                              getString("_UI_PropertyDescriptor_description",
@@ -105,7 +113,7 @@ public class PLElementItemProvider extends ItemProviderAdapter implements IEditi
    */
   @Override
   public String getText(Object object) {
-    String label = ((PLElement) object).getPresenceCondition();
+    var label = ((PLElement) object).getPresenceCondition();
     return label == null || label.length() == 0 ? getString("_UI_PLElement_type")
       : getString("_UI_PLElement_type") + " " + label;
   }

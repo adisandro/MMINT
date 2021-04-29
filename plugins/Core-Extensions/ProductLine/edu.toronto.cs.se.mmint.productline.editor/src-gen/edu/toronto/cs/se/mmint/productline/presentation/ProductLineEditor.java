@@ -1,10 +1,18 @@
-/**
- */
+/*******************************************************************************
+ * Copyright (c) 2021, 2021 Alessio Di Sandro.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *     Alessio Di Sandro - Implementation
+ *******************************************************************************/
 package edu.toronto.cs.se.mmint.productline.presentation;
 
 import java.io.IOException;
-import java.io.InputStream;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -15,7 +23,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IResourceChangeEvent;
@@ -23,24 +30,53 @@ import org.eclipse.core.resources.IResourceChangeListener;
 import org.eclipse.core.resources.IResourceDelta;
 import org.eclipse.core.resources.IResourceDeltaVisitor;
 import org.eclipse.core.resources.ResourcesPlugin;
-
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
-
+import org.eclipse.emf.common.command.BasicCommandStack;
+import org.eclipse.emf.common.command.CommandStack;
+import org.eclipse.emf.common.command.CommandStackListener;
+import org.eclipse.emf.common.notify.AdapterFactory;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.ui.MarkerHelper;
+import org.eclipse.emf.common.ui.ViewerPane;
+import org.eclipse.emf.common.ui.editor.ProblemEditorPart;
+import org.eclipse.emf.common.ui.viewer.IViewerProvider;
+import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.provider.EcoreItemProviderAdapterFactory;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.EContentAdapter;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
+import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.edit.domain.IEditingDomainProvider;
+import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
+import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
+import org.eclipse.emf.edit.ui.action.EditingDomainActionBarContributor;
+import org.eclipse.emf.edit.ui.celleditor.AdapterFactoryTreeEditor;
+import org.eclipse.emf.edit.ui.dnd.EditingDomainViewerDropAdapter;
+import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
+import org.eclipse.emf.edit.ui.dnd.ViewerDragAdapter;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.emf.edit.ui.provider.UnwrappingSelectionProvider;
+import org.eclipse.emf.edit.ui.util.EditUIMarkerHelper;
+import org.eclipse.emf.edit.ui.util.EditUIUtil;
+import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
 import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IStatusLineManager;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
-
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
-
 import org.eclipse.jface.util.LocalSelectionTransfer;
-
 import org.eclipse.jface.viewers.ColumnWeightData;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
@@ -54,30 +90,18 @@ import org.eclipse.jface.viewers.TableLayout;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
-
 import org.eclipse.swt.SWT;
-
 import org.eclipse.swt.custom.CTabFolder;
-
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.FileTransfer;
 import org.eclipse.swt.dnd.Transfer;
-
 import org.eclipse.swt.events.ControlAdapter;
 import org.eclipse.swt.events.ControlEvent;
-
-import org.eclipse.swt.graphics.Point;
-import org.eclipse.swt.graphics.Rectangle;
-
 import org.eclipse.swt.layout.FillLayout;
-
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Menu;
-import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeColumn;
-
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
@@ -85,79 +109,19 @@ import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IPartListener;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
-
+import org.eclipse.ui.actions.WorkspaceModifyOperation;
 import org.eclipse.ui.dialogs.SaveAsDialog;
-
 import org.eclipse.ui.ide.IGotoMarker;
-
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.MultiPageEditorPart;
-
 import org.eclipse.ui.views.contentoutline.ContentOutline;
 import org.eclipse.ui.views.contentoutline.ContentOutlinePage;
 import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
-
 import org.eclipse.ui.views.properties.IPropertySheetPage;
 import org.eclipse.ui.views.properties.PropertySheet;
 import org.eclipse.ui.views.properties.PropertySheetPage;
 
-import org.eclipse.emf.common.command.BasicCommandStack;
-import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.common.command.CommandStack;
-import org.eclipse.emf.common.command.CommandStackListener;
-
-import org.eclipse.emf.common.notify.AdapterFactory;
-import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.common.ui.MarkerHelper;
-import org.eclipse.emf.common.ui.ViewerPane;
-
-import org.eclipse.emf.common.ui.editor.ProblemEditorPart;
-
-import org.eclipse.emf.common.ui.viewer.IViewerProvider;
-
-import org.eclipse.emf.common.util.BasicDiagnostic;
-import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.emf.common.util.URI;
-
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-
-import org.eclipse.emf.ecore.util.EContentAdapter;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-
-import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
-import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.edit.domain.IEditingDomainProvider;
-
-import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
-import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
-import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
-
-import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
-
-import org.eclipse.emf.edit.ui.action.EditingDomainActionBarContributor;
-
-import org.eclipse.emf.edit.ui.celleditor.AdapterFactoryTreeEditor;
-
-import org.eclipse.emf.edit.ui.dnd.EditingDomainViewerDropAdapter;
-import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
-import org.eclipse.emf.edit.ui.dnd.ViewerDragAdapter;
-
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.eclipse.emf.edit.ui.provider.UnwrappingSelectionProvider;
-
-import org.eclipse.emf.edit.ui.util.EditUIMarkerHelper;
-import org.eclipse.emf.edit.ui.util.EditUIUtil;
-
-import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
-
 import edu.toronto.cs.se.mmint.productline.provider.ProductLineItemProviderAdapterFactory;
-
-import org.eclipse.emf.ecore.provider.EcoreItemProviderAdapterFactory;
-
-import org.eclipse.ui.actions.WorkspaceModifyOperation;
 
 /**
  * This is an example of a ProductLine model editor.
@@ -213,7 +177,7 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
    * <!-- end-user-doc -->
    * @generated
    */
-  protected List<PropertySheetPage> propertySheetPages = new ArrayList<PropertySheetPage>();
+  protected List<PropertySheetPage> propertySheetPages = new ArrayList<>();
 
   /**
    * This is the viewer that shadows the selection in the content outline.
@@ -296,7 +260,7 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
    * <!-- end-user-doc -->
    * @generated
    */
-  protected Collection<ISelectionChangedListener> selectionChangedListeners = new ArrayList<ISelectionChangedListener>();
+  protected Collection<ISelectionChangedListener> selectionChangedListeners = new ArrayList<>();
 
   /**
    * This keeps track of the selection of the editor as a whole.
@@ -325,14 +289,14 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
     @Override
     public void partActivated(IWorkbenchPart p) {
       if (p instanceof ContentOutline) {
-        if (((ContentOutline) p).getCurrentPage() == contentOutlinePage) {
+        if (((ContentOutline) p).getCurrentPage() == ProductLineEditor.this.contentOutlinePage) {
           getActionBarContributor().setActiveEditor(ProductLineEditor.this);
 
-          setCurrentViewer(contentOutlineViewer);
+          setCurrentViewer(ProductLineEditor.this.contentOutlineViewer);
         }
       }
       else if (p instanceof PropertySheet) {
-        if (propertySheetPages.contains(((PropertySheet) p).getCurrentPage())) {
+        if (ProductLineEditor.this.propertySheetPages.contains(((PropertySheet) p).getCurrentPage())) {
           getActionBarContributor().setActiveEditor(ProductLineEditor.this);
           handleActivate();
         }
@@ -369,7 +333,7 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
    * <!-- end-user-doc -->
    * @generated
    */
-  protected Collection<Resource> removedResources = new ArrayList<Resource>();
+  protected Collection<Resource> removedResources = new ArrayList<>();
 
   /**
    * Resources that have been changed since last activation.
@@ -377,7 +341,7 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
    * <!-- end-user-doc -->
    * @generated
    */
-  protected Collection<Resource> changedResources = new ArrayList<Resource>();
+  protected Collection<Resource> changedResources = new ArrayList<>();
 
   /**
    * Resources that have been saved.
@@ -385,7 +349,7 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
    * <!-- end-user-doc -->
    * @generated
    */
-  protected Collection<Resource> savedResources = new ArrayList<Resource>();
+  protected Collection<Resource> savedResources = new ArrayList<>();
 
   /**
    * Map to store the diagnostic associated with a resource.
@@ -393,7 +357,7 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
    * <!-- end-user-doc -->
    * @generated
    */
-  protected Map<Resource, Diagnostic> resourceToDiagnosticMap = new LinkedHashMap<Resource, Diagnostic>();
+  protected Map<Resource, Diagnostic> resourceToDiagnosticMap = new LinkedHashMap<>();
 
   /**
    * Controls whether the problem indication should be updated.
@@ -419,13 +383,13 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
         case Resource.RESOURCE__IS_LOADED:
         case Resource.RESOURCE__ERRORS:
         case Resource.RESOURCE__WARNINGS: {
-          Resource resource = (Resource) notification.getNotifier();
-          Diagnostic diagnostic = analyzeResourceProblems(resource, null);
+          var resource = (Resource) notification.getNotifier();
+          var diagnostic = analyzeResourceProblems(resource, null);
           if (diagnostic.getSeverity() != Diagnostic.OK) {
-            resourceToDiagnosticMap.put(resource, diagnostic);
+            ProductLineEditor.this.resourceToDiagnosticMap.put(resource, diagnostic);
           }
           else {
-            resourceToDiagnosticMap.remove(resource);
+            ProductLineEditor.this.resourceToDiagnosticMap.remove(resource);
           }
           dispatchUpdateProblemIndication();
           break;
@@ -438,8 +402,8 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
     }
 
     protected void dispatchUpdateProblemIndication() {
-      if (updateProblemIndication && !dispatching) {
-        dispatching = true;
+      if (ProductLineEditor.this.updateProblemIndication && !this.dispatching) {
+        this.dispatching = true;
         getSite().getShell().getDisplay().asyncExec(new Runnable() {
           @Override
           public void run() {
@@ -458,7 +422,7 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
     @Override
     protected void unsetTarget(Resource target) {
       basicUnsetTarget(target);
-      resourceToDiagnosticMap.remove(target);
+      ProductLineEditor.this.resourceToDiagnosticMap.remove(target);
       dispatchUpdateProblemIndication();
     }
   };
@@ -472,27 +436,27 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
   protected IResourceChangeListener resourceChangeListener = new IResourceChangeListener() {
     @Override
     public void resourceChanged(IResourceChangeEvent event) {
-      IResourceDelta delta = event.getDelta();
+      var delta = event.getDelta();
       try {
         class ResourceDeltaVisitor implements IResourceDeltaVisitor {
-          protected ResourceSet resourceSet = editingDomain.getResourceSet();
-          protected Collection<Resource> changedResources = new ArrayList<Resource>();
-          protected Collection<Resource> removedResources = new ArrayList<Resource>();
+          protected ResourceSet resourceSet = ProductLineEditor.this.editingDomain.getResourceSet();
+          protected Collection<Resource> changedResources = new ArrayList<>();
+          protected Collection<Resource> removedResources = new ArrayList<>();
 
           @Override
           public boolean visit(IResourceDelta delta) {
             if (delta.getResource().getType() == IResource.FILE) {
               if (delta.getKind() == IResourceDelta.REMOVED || delta.getKind() == IResourceDelta.CHANGED && delta
                                                                                                                  .getFlags() != IResourceDelta.MARKERS) {
-                Resource resource = resourceSet.getResource(URI.createPlatformResourceURI(delta.getFullPath()
+                var resource = this.resourceSet.getResource(URI.createPlatformResourceURI(delta.getFullPath()
                                                                                                .toString(), true),
                                                             false);
                 if (resource != null) {
                   if (delta.getKind() == IResourceDelta.REMOVED) {
-                    removedResources.add(resource);
+                    this.removedResources.add(resource);
                   }
-                  else if (!savedResources.remove(resource)) {
-                    changedResources.add(resource);
+                  else if (!ProductLineEditor.this.savedResources.remove(resource)) {
+                    this.changedResources.add(resource);
                   }
                 }
               }
@@ -503,22 +467,22 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
           }
 
           public Collection<Resource> getChangedResources() {
-            return changedResources;
+            return this.changedResources;
           }
 
           public Collection<Resource> getRemovedResources() {
-            return removedResources;
+            return this.removedResources;
           }
         }
 
-        final ResourceDeltaVisitor visitor = new ResourceDeltaVisitor();
+        final var visitor = new ResourceDeltaVisitor();
         delta.accept(visitor);
 
         if (!visitor.getRemovedResources().isEmpty()) {
           getSite().getShell().getDisplay().asyncExec(new Runnable() {
             @Override
             public void run() {
-              removedResources.addAll(visitor.getRemovedResources());
+              ProductLineEditor.this.removedResources.addAll(visitor.getRemovedResources());
               if (!isDirty()) {
                 getSite().getPage().closeEditor(ProductLineEditor.this, false);
               }
@@ -530,7 +494,7 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
           getSite().getShell().getDisplay().asyncExec(new Runnable() {
             @Override
             public void run() {
-              changedResources.addAll(visitor.getChangedResources());
+              ProductLineEditor.this.changedResources.addAll(visitor.getChangedResources());
               if (getSite().getPage().getActiveEditor() == ProductLineEditor.this) {
                 handleActivate();
               }
@@ -553,29 +517,29 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
   protected void handleActivate() {
     // Recompute the read only state.
     //
-    if (editingDomain.getResourceToReadOnlyMap() != null) {
-      editingDomain.getResourceToReadOnlyMap().clear();
+    if (this.editingDomain.getResourceToReadOnlyMap() != null) {
+      this.editingDomain.getResourceToReadOnlyMap().clear();
 
       // Refresh any actions that may become enabled or disabled.
       //
       setSelection(getSelection());
     }
 
-    if (!removedResources.isEmpty()) {
+    if (!this.removedResources.isEmpty()) {
       if (handleDirtyConflict()) {
         getSite().getPage().closeEditor(ProductLineEditor.this, false);
       }
       else {
-        removedResources.clear();
-        changedResources.clear();
-        savedResources.clear();
+        this.removedResources.clear();
+        this.changedResources.clear();
+        this.savedResources.clear();
       }
     }
-    else if (!changedResources.isEmpty()) {
-      changedResources.removeAll(savedResources);
+    else if (!this.changedResources.isEmpty()) {
+      this.changedResources.removeAll(this.savedResources);
       handleChangedResources();
-      changedResources.clear();
-      savedResources.clear();
+      this.changedResources.clear();
+      this.savedResources.clear();
     }
   }
 
@@ -586,33 +550,33 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
    * @generated
    */
   protected void handleChangedResources() {
-    if (!changedResources.isEmpty() && (!isDirty() || handleDirtyConflict())) {
-      ResourceSet resourceSet = editingDomain.getResourceSet();
+    if (!this.changedResources.isEmpty() && (!isDirty() || handleDirtyConflict())) {
+      var resourceSet = this.editingDomain.getResourceSet();
       if (isDirty()) {
-        changedResources.addAll(resourceSet.getResources());
+        this.changedResources.addAll(resourceSet.getResources());
       }
-      editingDomain.getCommandStack().flush();
+      this.editingDomain.getCommandStack().flush();
 
-      updateProblemIndication = false;
-      for (Resource resource : changedResources) {
+      this.updateProblemIndication = false;
+      for (Resource resource : this.changedResources) {
         if (resource.isLoaded()) {
           resource.unload();
           try {
             resource.load(resourceSet.getLoadOptions());
           }
           catch (IOException exception) {
-            if (!resourceToDiagnosticMap.containsKey(resource)) {
-              resourceToDiagnosticMap.put(resource, analyzeResourceProblems(resource, exception));
+            if (!this.resourceToDiagnosticMap.containsKey(resource)) {
+              this.resourceToDiagnosticMap.put(resource, analyzeResourceProblems(resource, exception));
             }
           }
         }
       }
 
-      if (AdapterFactoryEditingDomain.isStale(editorSelection)) {
+      if (AdapterFactoryEditingDomain.isStale(this.editorSelection)) {
         setSelection(StructuredSelection.EMPTY);
       }
 
-      updateProblemIndication = true;
+      this.updateProblemIndication = true;
       updateProblemIndication();
     }
   }
@@ -624,16 +588,16 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
    * @generated
    */
   protected void updateProblemIndication() {
-    if (updateProblemIndication) {
-      BasicDiagnostic diagnostic = new BasicDiagnostic(Diagnostic.OK, "edu.toronto.cs.se.mmint.productline.editor", 0,
-                                                       null, new Object[] { editingDomain.getResourceSet() });
-      for (Diagnostic childDiagnostic : resourceToDiagnosticMap.values()) {
+    if (this.updateProblemIndication) {
+      var diagnostic = new BasicDiagnostic(Diagnostic.OK, "edu.toronto.cs.se.mmint.productline.editor", 0,
+                                                       null, new Object[] { this.editingDomain.getResourceSet() });
+      for (Diagnostic childDiagnostic : this.resourceToDiagnosticMap.values()) {
         if (childDiagnostic.getSeverity() != Diagnostic.OK) {
           diagnostic.add(childDiagnostic);
         }
       }
 
-      int lastEditorPage = getPageCount() - 1;
+      var lastEditorPage = getPageCount() - 1;
       if (lastEditorPage >= 0 && getEditor(lastEditorPage) instanceof ProblemEditorPart) {
         ((ProblemEditorPart) getEditor(lastEditorPage)).setDiagnostic(diagnostic);
         if (diagnostic.getSeverity() != Diagnostic.OK) {
@@ -641,9 +605,9 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
         }
       }
       else if (diagnostic.getSeverity() != Diagnostic.OK) {
-        ProblemEditorPart problemEditorPart = new ProblemEditorPart();
+        var problemEditorPart = new ProblemEditorPart();
         problemEditorPart.setDiagnostic(diagnostic);
-        problemEditorPart.setMarkerHelper(markerHelper);
+        problemEditorPart.setMarkerHelper(this.markerHelper);
         try {
           addPage(++lastEditorPage, problemEditorPart, getEditorInput());
           setPageText(lastEditorPage, problemEditorPart.getPartName());
@@ -655,9 +619,9 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
         }
       }
 
-      if (markerHelper.hasMarkers(editingDomain.getResourceSet())) {
+      if (this.markerHelper.hasMarkers(this.editingDomain.getResourceSet())) {
         try {
-          markerHelper.updateMarkers(diagnostic);
+          this.markerHelper.updateMarkers(diagnostic);
         }
         catch (CoreException exception) {
           ProductLineEditorPlugin.INSTANCE.log(exception);
@@ -697,16 +661,16 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
   protected void initializeEditingDomain() {
     // Create an adapter factory that yields item providers.
     //
-    adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+    this.adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 
-    adapterFactory.addAdapterFactory(new ResourceItemProviderAdapterFactory());
-    adapterFactory.addAdapterFactory(new ProductLineItemProviderAdapterFactory());
-    adapterFactory.addAdapterFactory(new EcoreItemProviderAdapterFactory());
-    adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
+    this.adapterFactory.addAdapterFactory(new ResourceItemProviderAdapterFactory());
+    this.adapterFactory.addAdapterFactory(new ProductLineItemProviderAdapterFactory());
+    this.adapterFactory.addAdapterFactory(new EcoreItemProviderAdapterFactory());
+    this.adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
 
     // Create the command stack that will notify this editor as commands are executed.
     //
-    BasicCommandStack commandStack = new BasicCommandStack();
+    var commandStack = new BasicCommandStack();
 
     // Add a listener to set the most recent command's affected objects to be the selection of the viewer with focus.
     //
@@ -720,12 +684,12 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
 
             // Try to select the affected objects.
             //
-            Command mostRecentCommand = ((CommandStack) event.getSource()).getMostRecentCommand();
+            var mostRecentCommand = ((CommandStack) event.getSource()).getMostRecentCommand();
             if (mostRecentCommand != null) {
               setSelectionToViewer(mostRecentCommand.getAffectedObjects());
             }
-            for (Iterator<PropertySheetPage> i = propertySheetPages.iterator(); i.hasNext();) {
-              PropertySheetPage propertySheetPage = i.next();
+            for (var i = ProductLineEditor.this.propertySheetPages.iterator(); i.hasNext();) {
+              var propertySheetPage = i.next();
               if (propertySheetPage.getControl() == null || propertySheetPage.getControl().isDisposed()) {
                 i.remove();
               }
@@ -740,7 +704,7 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
 
     // Create the editing domain with a special command stack.
     //
-    editingDomain = new AdapterFactoryEditingDomain(adapterFactory, commandStack, new HashMap<Resource, Boolean>());
+    this.editingDomain = new AdapterFactoryEditingDomain(this.adapterFactory, commandStack, new HashMap<Resource, Boolean>());
   }
 
   /**
@@ -770,8 +734,8 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
         public void run() {
           // Try to select the items in the current content viewer of the editor.
           //
-          if (currentViewer != null) {
-            currentViewer.setSelection(new StructuredSelection(theSelection.toArray()), true);
+          if (ProductLineEditor.this.currentViewer != null) {
+            ProductLineEditor.this.currentViewer.setSelection(new StructuredSelection(theSelection.toArray()), true);
           }
         }
       };
@@ -789,7 +753,7 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
    */
   @Override
   public EditingDomain getEditingDomain() {
-    return editingDomain;
+    return this.editingDomain;
   }
 
   /**
@@ -814,7 +778,7 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
      */
     @Override
     public Object[] getElements(Object object) {
-      Object parent = super.getParent(object);
+      var parent = super.getParent(object);
       return (parent == null ? Collections.EMPTY_SET : Collections.singleton(parent)).toArray();
     }
 
@@ -825,7 +789,7 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
      */
     @Override
     public Object[] getChildren(Object object) {
-      Object parent = super.getParent(object);
+      var parent = super.getParent(object);
       return (parent == null ? Collections.EMPTY_SET : Collections.singleton(parent)).toArray();
     }
 
@@ -836,7 +800,7 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
      */
     @Override
     public boolean hasChildren(Object object) {
-      Object parent = super.getParent(object);
+      var parent = super.getParent(object);
       return parent != null;
     }
 
@@ -857,13 +821,13 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
    * @generated
    */
   public void setCurrentViewerPane(ViewerPane viewerPane) {
-    if (currentViewerPane != viewerPane) {
-      if (currentViewerPane != null) {
-        currentViewerPane.showFocus(false);
+    if (this.currentViewerPane != viewerPane) {
+      if (this.currentViewerPane != null) {
+        this.currentViewerPane.showFocus(false);
       }
-      currentViewerPane = viewerPane;
+      this.currentViewerPane = viewerPane;
     }
-    setCurrentViewer(currentViewerPane.getViewer());
+    setCurrentViewer(this.currentViewerPane.getViewer());
   }
 
   /**
@@ -876,11 +840,11 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
   public void setCurrentViewer(Viewer viewer) {
     // If it is changing...
     //
-    if (currentViewer != viewer) {
-      if (selectionChangedListener == null) {
+    if (this.currentViewer != viewer) {
+      if (this.selectionChangedListener == null) {
         // Create the listener on demand.
         //
-        selectionChangedListener = new ISelectionChangedListener() {
+        this.selectionChangedListener = new ISelectionChangedListener() {
           // This just notifies those things that are affected by the section.
           //
           @Override
@@ -892,23 +856,23 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
 
       // Stop listening to the old one.
       //
-      if (currentViewer != null) {
-        currentViewer.removeSelectionChangedListener(selectionChangedListener);
+      if (this.currentViewer != null) {
+        this.currentViewer.removeSelectionChangedListener(this.selectionChangedListener);
       }
 
       // Start listening to the new one.
       //
       if (viewer != null) {
-        viewer.addSelectionChangedListener(selectionChangedListener);
+        viewer.addSelectionChangedListener(this.selectionChangedListener);
       }
 
       // Remember it.
       //
-      currentViewer = viewer;
+      this.currentViewer = viewer;
 
       // Set the editors selection based on the current viewer's selection.
       //
-      setSelection(currentViewer == null ? StructuredSelection.EMPTY : currentViewer.getSelection());
+      setSelection(this.currentViewer == null ? StructuredSelection.EMPTY : this.currentViewer.getSelection());
     }
   }
 
@@ -920,7 +884,7 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
    */
   @Override
   public Viewer getViewer() {
-    return currentViewer;
+    return this.currentViewer;
   }
 
   /**
@@ -930,19 +894,19 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
    * @generated
    */
   protected void createContextMenuFor(StructuredViewer viewer) {
-    MenuManager contextMenu = new MenuManager("#PopUp");
+    var contextMenu = new MenuManager("#PopUp");
     contextMenu.add(new Separator("additions"));
     contextMenu.setRemoveAllWhenShown(true);
     contextMenu.addMenuListener(this);
-    Menu menu = contextMenu.createContextMenu(viewer.getControl());
+    var menu = contextMenu.createContextMenu(viewer.getControl());
     viewer.getControl().setMenu(menu);
     getSite().registerContextMenu(contextMenu, new UnwrappingSelectionProvider(viewer));
 
-    int dndOperations = DND.DROP_COPY | DND.DROP_MOVE | DND.DROP_LINK;
-    Transfer[] transfers = new Transfer[] { LocalTransfer.getInstance(), LocalSelectionTransfer.getTransfer(),
+    var dndOperations = DND.DROP_COPY | DND.DROP_MOVE | DND.DROP_LINK;
+    var transfers = new Transfer[] { LocalTransfer.getInstance(), LocalSelectionTransfer.getTransfer(),
       FileTransfer.getInstance() };
     viewer.addDragSupport(dndOperations, transfers, new ViewerDragAdapter(viewer));
-    viewer.addDropSupport(dndOperations, transfers, new EditingDomainViewerDropAdapter(editingDomain, viewer));
+    viewer.addDropSupport(dndOperations, transfers, new EditingDomainViewerDropAdapter(this.editingDomain, viewer));
   }
 
   /**
@@ -952,24 +916,24 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
    * @generated
    */
   public void createModel() {
-    URI resourceURI = EditUIUtil.getURI(getEditorInput(), editingDomain.getResourceSet().getURIConverter());
+    var resourceURI = EditUIUtil.getURI(getEditorInput(), this.editingDomain.getResourceSet().getURIConverter());
     Exception exception = null;
     Resource resource = null;
     try {
       // Load the resource through the editing domain.
       //
-      resource = editingDomain.getResourceSet().getResource(resourceURI, true);
+      resource = this.editingDomain.getResourceSet().getResource(resourceURI, true);
     }
     catch (Exception e) {
       exception = e;
-      resource = editingDomain.getResourceSet().getResource(resourceURI, false);
+      resource = this.editingDomain.getResourceSet().getResource(resourceURI, false);
     }
 
-    Diagnostic diagnostic = analyzeResourceProblems(resource, exception);
+    var diagnostic = analyzeResourceProblems(resource, exception);
     if (diagnostic.getSeverity() != Diagnostic.OK) {
-      resourceToDiagnosticMap.put(resource, analyzeResourceProblems(resource, exception));
+      this.resourceToDiagnosticMap.put(resource, analyzeResourceProblems(resource, exception));
     }
-    editingDomain.getResourceSet().eAdapters().add(problemIndicationAdapter);
+    this.editingDomain.getResourceSet().eAdapters().add(this.problemIndicationAdapter);
   }
 
   /**
@@ -980,9 +944,9 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
    * @generated
    */
   public Diagnostic analyzeResourceProblems(Resource resource, Exception exception) {
-    boolean hasErrors = !resource.getErrors().isEmpty();
+    var hasErrors = !resource.getErrors().isEmpty();
     if (hasErrors || !resource.getWarnings().isEmpty()) {
-      BasicDiagnostic basicDiagnostic = new BasicDiagnostic(hasErrors ? Diagnostic.ERROR : Diagnostic.WARNING,
+      var basicDiagnostic = new BasicDiagnostic(hasErrors ? Diagnostic.ERROR : Diagnostic.WARNING,
                                                             "edu.toronto.cs.se.mmint.productline.editor", 0, getString(
                                                                                                                        "_UI_CreateModelError_message",
                                                                                                                        resource.getURI()),
@@ -1023,8 +987,8 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
         ViewerPane viewerPane = new ViewerPane(getSite().getPage(), ProductLineEditor.this) {
           @Override
           public Viewer createViewer(Composite composite) {
-            Tree tree = new Tree(composite, SWT.MULTI);
-            TreeViewer newTreeViewer = new TreeViewer(tree);
+            var tree = new Tree(composite, SWT.MULTI);
+            var newTreeViewer = new TreeViewer(tree);
             return newTreeViewer;
           }
 
@@ -1036,20 +1000,20 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
         };
         viewerPane.createControl(getContainer());
 
-        selectionViewer = (TreeViewer) viewerPane.getViewer();
-        selectionViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
-        selectionViewer.setUseHashlookup(true);
+        this.selectionViewer = (TreeViewer) viewerPane.getViewer();
+        this.selectionViewer.setContentProvider(new AdapterFactoryContentProvider(this.adapterFactory));
+        this.selectionViewer.setUseHashlookup(true);
 
-        selectionViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
-        selectionViewer.setInput(editingDomain.getResourceSet());
-        selectionViewer.setSelection(new StructuredSelection(editingDomain.getResourceSet().getResources().get(0)),
+        this.selectionViewer.setLabelProvider(new AdapterFactoryLabelProvider(this.adapterFactory));
+        this.selectionViewer.setInput(this.editingDomain.getResourceSet());
+        this.selectionViewer.setSelection(new StructuredSelection(this.editingDomain.getResourceSet().getResources().get(0)),
                                      true);
-        viewerPane.setTitle(editingDomain.getResourceSet());
+        viewerPane.setTitle(this.editingDomain.getResourceSet());
 
-        new AdapterFactoryTreeEditor(selectionViewer.getTree(), adapterFactory);
+        new AdapterFactoryTreeEditor(this.selectionViewer.getTree(), this.adapterFactory);
 
-        createContextMenuFor(selectionViewer);
-        int pageIndex = addPage(viewerPane.getControl());
+        createContextMenuFor(this.selectionViewer);
+        var pageIndex = addPage(viewerPane.getControl());
         setPageText(pageIndex, getString("_UI_SelectionPage_label"));
       }
 
@@ -1059,8 +1023,8 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
         ViewerPane viewerPane = new ViewerPane(getSite().getPage(), ProductLineEditor.this) {
           @Override
           public Viewer createViewer(Composite composite) {
-            Tree tree = new Tree(composite, SWT.MULTI);
-            TreeViewer newTreeViewer = new TreeViewer(tree);
+            var tree = new Tree(composite, SWT.MULTI);
+            var newTreeViewer = new TreeViewer(tree);
             return newTreeViewer;
           }
 
@@ -1072,13 +1036,13 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
         };
         viewerPane.createControl(getContainer());
 
-        parentViewer = (TreeViewer) viewerPane.getViewer();
-        parentViewer.setAutoExpandLevel(30);
-        parentViewer.setContentProvider(new ReverseAdapterFactoryContentProvider(adapterFactory));
-        parentViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
+        this.parentViewer = (TreeViewer) viewerPane.getViewer();
+        this.parentViewer.setAutoExpandLevel(30);
+        this.parentViewer.setContentProvider(new ReverseAdapterFactoryContentProvider(this.adapterFactory));
+        this.parentViewer.setLabelProvider(new AdapterFactoryLabelProvider(this.adapterFactory));
 
-        createContextMenuFor(parentViewer);
-        int pageIndex = addPage(viewerPane.getControl());
+        createContextMenuFor(this.parentViewer);
+        var pageIndex = addPage(viewerPane.getControl());
         setPageText(pageIndex, getString("_UI_ParentPage_label"));
       }
 
@@ -1098,12 +1062,12 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
           }
         };
         viewerPane.createControl(getContainer());
-        listViewer = (ListViewer) viewerPane.getViewer();
-        listViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
-        listViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
+        this.listViewer = (ListViewer) viewerPane.getViewer();
+        this.listViewer.setContentProvider(new AdapterFactoryContentProvider(this.adapterFactory));
+        this.listViewer.setLabelProvider(new AdapterFactoryLabelProvider(this.adapterFactory));
 
-        createContextMenuFor(listViewer);
-        int pageIndex = addPage(viewerPane.getControl());
+        createContextMenuFor(this.listViewer);
+        var pageIndex = addPage(viewerPane.getControl());
         setPageText(pageIndex, getString("_UI_ListPage_label"));
       }
 
@@ -1123,14 +1087,14 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
           }
         };
         viewerPane.createControl(getContainer());
-        treeViewer = (TreeViewer) viewerPane.getViewer();
-        treeViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
-        treeViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
+        this.treeViewer = (TreeViewer) viewerPane.getViewer();
+        this.treeViewer.setContentProvider(new AdapterFactoryContentProvider(this.adapterFactory));
+        this.treeViewer.setLabelProvider(new AdapterFactoryLabelProvider(this.adapterFactory));
 
-        new AdapterFactoryTreeEditor(treeViewer.getTree(), adapterFactory);
+        new AdapterFactoryTreeEditor(this.treeViewer.getTree(), this.adapterFactory);
 
-        createContextMenuFor(treeViewer);
-        int pageIndex = addPage(viewerPane.getControl());
+        createContextMenuFor(this.treeViewer);
+        var pageIndex = addPage(viewerPane.getControl());
         setPageText(pageIndex, getString("_UI_TreePage_label"));
       }
 
@@ -1150,30 +1114,30 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
           }
         };
         viewerPane.createControl(getContainer());
-        tableViewer = (TableViewer) viewerPane.getViewer();
+        this.tableViewer = (TableViewer) viewerPane.getViewer();
 
-        Table table = tableViewer.getTable();
-        TableLayout layout = new TableLayout();
+        var table = this.tableViewer.getTable();
+        var layout = new TableLayout();
         table.setLayout(layout);
         table.setHeaderVisible(true);
         table.setLinesVisible(true);
 
-        TableColumn objectColumn = new TableColumn(table, SWT.NONE);
+        var objectColumn = new TableColumn(table, SWT.NONE);
         layout.addColumnData(new ColumnWeightData(3, 100, true));
         objectColumn.setText(getString("_UI_ObjectColumn_label"));
         objectColumn.setResizable(true);
 
-        TableColumn selfColumn = new TableColumn(table, SWT.NONE);
+        var selfColumn = new TableColumn(table, SWT.NONE);
         layout.addColumnData(new ColumnWeightData(2, 100, true));
         selfColumn.setText(getString("_UI_SelfColumn_label"));
         selfColumn.setResizable(true);
 
-        tableViewer.setColumnProperties(new String[] { "a", "b" });
-        tableViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
-        tableViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
+        this.tableViewer.setColumnProperties(new String[] { "a", "b" });
+        this.tableViewer.setContentProvider(new AdapterFactoryContentProvider(this.adapterFactory));
+        this.tableViewer.setLabelProvider(new AdapterFactoryLabelProvider(this.adapterFactory));
 
-        createContextMenuFor(tableViewer);
-        int pageIndex = addPage(viewerPane.getControl());
+        createContextMenuFor(this.tableViewer);
+        var pageIndex = addPage(viewerPane.getControl());
         setPageText(pageIndex, getString("_UI_TablePage_label"));
       }
 
@@ -1194,29 +1158,29 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
         };
         viewerPane.createControl(getContainer());
 
-        treeViewerWithColumns = (TreeViewer) viewerPane.getViewer();
+        this.treeViewerWithColumns = (TreeViewer) viewerPane.getViewer();
 
-        Tree tree = treeViewerWithColumns.getTree();
+        var tree = this.treeViewerWithColumns.getTree();
         tree.setLayoutData(new FillLayout());
         tree.setHeaderVisible(true);
         tree.setLinesVisible(true);
 
-        TreeColumn objectColumn = new TreeColumn(tree, SWT.NONE);
+        var objectColumn = new TreeColumn(tree, SWT.NONE);
         objectColumn.setText(getString("_UI_ObjectColumn_label"));
         objectColumn.setResizable(true);
         objectColumn.setWidth(250);
 
-        TreeColumn selfColumn = new TreeColumn(tree, SWT.NONE);
+        var selfColumn = new TreeColumn(tree, SWT.NONE);
         selfColumn.setText(getString("_UI_SelfColumn_label"));
         selfColumn.setResizable(true);
         selfColumn.setWidth(200);
 
-        treeViewerWithColumns.setColumnProperties(new String[] { "a", "b" });
-        treeViewerWithColumns.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
-        treeViewerWithColumns.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
+        this.treeViewerWithColumns.setColumnProperties(new String[] { "a", "b" });
+        this.treeViewerWithColumns.setContentProvider(new AdapterFactoryContentProvider(this.adapterFactory));
+        this.treeViewerWithColumns.setLabelProvider(new AdapterFactoryLabelProvider(this.adapterFactory));
 
-        createContextMenuFor(treeViewerWithColumns);
-        int pageIndex = addPage(viewerPane.getControl());
+        createContextMenuFor(this.treeViewerWithColumns);
+        var pageIndex = addPage(viewerPane.getControl());
         setPageText(pageIndex, getString("_UI_TreeWithColumnsPage_label"));
       }
 
@@ -1238,10 +1202,10 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
 
       @Override
       public void controlResized(ControlEvent event) {
-        if (!guard) {
-          guard = true;
+        if (!this.guard) {
+          this.guard = true;
           hideTabs();
-          guard = false;
+          this.guard = false;
         }
       }
     });
@@ -1265,8 +1229,8 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
     if (getPageCount() <= 1) {
       setPageText(0, "");
       if (getContainer() instanceof CTabFolder) {
-        Point point = getContainer().getSize();
-        Rectangle clientArea = getContainer().getClientArea();
+        var point = getContainer().getSize();
+        var clientArea = getContainer().getClientArea();
         getContainer().setSize(point.x, 2 * point.y - clientArea.height - clientArea.y);
       }
     }
@@ -1283,8 +1247,8 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
     if (getPageCount() > 1) {
       setPageText(0, getString("_UI_SelectionPage_label"));
       if (getContainer() instanceof CTabFolder) {
-        Point point = getContainer().getSize();
-        Rectangle clientArea = getContainer().getClientArea();
+        var point = getContainer().getSize();
+        var clientArea = getContainer().getClientArea();
         getContainer().setSize(point.x, clientArea.height + clientArea.y);
       }
     }
@@ -1300,8 +1264,8 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
   protected void pageChange(int pageIndex) {
     super.pageChange(pageIndex);
 
-    if (contentOutlinePage != null) {
-      handleContentOutlineSelection(contentOutlinePage.getSelection());
+    if (this.contentOutlinePage != null) {
+      handleContentOutlineSelection(this.contentOutlinePage.getSelection());
     }
   }
 
@@ -1334,31 +1298,31 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
    * @generated
    */
   public IContentOutlinePage getContentOutlinePage() {
-    if (contentOutlinePage == null) {
+    if (this.contentOutlinePage == null) {
       // The content outline is just a tree.
       //
       class MyContentOutlinePage extends ContentOutlinePage {
         @Override
         public void createControl(Composite parent) {
           super.createControl(parent);
-          contentOutlineViewer = getTreeViewer();
-          contentOutlineViewer.addSelectionChangedListener(this);
+          ProductLineEditor.this.contentOutlineViewer = getTreeViewer();
+          ProductLineEditor.this.contentOutlineViewer.addSelectionChangedListener(this);
 
           // Set up the tree viewer.
           //
-          contentOutlineViewer.setUseHashlookup(true);
-          contentOutlineViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
-          contentOutlineViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
-          contentOutlineViewer.setInput(editingDomain.getResourceSet());
+          ProductLineEditor.this.contentOutlineViewer.setUseHashlookup(true);
+          ProductLineEditor.this.contentOutlineViewer.setContentProvider(new AdapterFactoryContentProvider(ProductLineEditor.this.adapterFactory));
+          ProductLineEditor.this.contentOutlineViewer.setLabelProvider(new AdapterFactoryLabelProvider(ProductLineEditor.this.adapterFactory));
+          ProductLineEditor.this.contentOutlineViewer.setInput(ProductLineEditor.this.editingDomain.getResourceSet());
 
           // Make sure our popups work.
           //
-          createContextMenuFor(contentOutlineViewer);
+          createContextMenuFor(ProductLineEditor.this.contentOutlineViewer);
 
-          if (!editingDomain.getResourceSet().getResources().isEmpty()) {
+          if (!ProductLineEditor.this.editingDomain.getResourceSet().getResources().isEmpty()) {
             // Select the root object in the view.
             //
-            contentOutlineViewer.setSelection(new StructuredSelection(editingDomain.getResourceSet().getResources().get(
+            ProductLineEditor.this.contentOutlineViewer.setSelection(new StructuredSelection(ProductLineEditor.this.editingDomain.getResourceSet().getResources().get(
                                                                                                                         0)),
                                               true);
           }
@@ -1368,7 +1332,7 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
         public void makeContributions(IMenuManager menuManager, IToolBarManager toolBarManager,
                                       IStatusLineManager statusLineManager) {
           super.makeContributions(menuManager, toolBarManager, statusLineManager);
-          contentOutlineStatusLineManager = statusLineManager;
+          ProductLineEditor.this.contentOutlineStatusLineManager = statusLineManager;
         }
 
         @Override
@@ -1378,11 +1342,11 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
         }
       }
 
-      contentOutlinePage = new MyContentOutlinePage();
+      this.contentOutlinePage = new MyContentOutlinePage();
 
       // Listen to selection so that we can handle it is a special way.
       //
-      contentOutlinePage.addSelectionChangedListener(new ISelectionChangedListener() {
+      this.contentOutlinePage.addSelectionChangedListener(new ISelectionChangedListener() {
         // This ensures that we handle selections correctly.
         //
         @Override
@@ -1392,7 +1356,7 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
       });
     }
 
-    return contentOutlinePage;
+    return this.contentOutlinePage;
   }
 
   /**
@@ -1402,7 +1366,7 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
    * @generated
    */
   public IPropertySheetPage getPropertySheetPage() {
-    PropertySheetPage propertySheetPage = new ExtendedPropertySheetPage(editingDomain,
+    PropertySheetPage propertySheetPage = new ExtendedPropertySheetPage(this.editingDomain,
                                                                         ExtendedPropertySheetPage.Decoration.NONE, null,
                                                                         0, false) {
       @Override
@@ -1417,8 +1381,8 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
         getActionBarContributor().shareGlobalActions(this, actionBars);
       }
     };
-    propertySheetPage.setPropertySourceProvider(new AdapterFactoryContentProvider(adapterFactory));
-    propertySheetPages.add(propertySheetPage);
+    propertySheetPage.setPropertySourceProvider(new AdapterFactoryContentProvider(this.adapterFactory));
+    this.propertySheetPages.add(propertySheetPage);
 
     return propertySheetPage;
   }
@@ -1430,7 +1394,7 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
    * @generated
    */
   public void handleContentOutlineSelection(ISelection selection) {
-    if (currentViewerPane != null && !selection.isEmpty() && selection instanceof IStructuredSelection) {
+    if (this.currentViewerPane != null && !selection.isEmpty() && selection instanceof IStructuredSelection) {
       Iterator<?> selectedElements = ((IStructuredSelection) selection).iterator();
       if (selectedElements.hasNext()) {
         // Get the first selected element.
@@ -1439,8 +1403,8 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
 
         // If it's the selection viewer, then we want it to select the same selection as this selection.
         //
-        if (currentViewerPane.getViewer() == selectionViewer) {
-          ArrayList<Object> selectionList = new ArrayList<Object>();
+        if (this.currentViewerPane.getViewer() == this.selectionViewer) {
+          var selectionList = new ArrayList<>();
           selectionList.add(selectedElement);
           while (selectedElements.hasNext()) {
             selectionList.add(selectedElements.next());
@@ -1448,14 +1412,14 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
 
           // Set the selection to the widget.
           //
-          selectionViewer.setSelection(new StructuredSelection(selectionList));
+          this.selectionViewer.setSelection(new StructuredSelection(selectionList));
         }
         else {
           // Set the input to the widget.
           //
-          if (currentViewerPane.getViewer().getInput() != selectedElement) {
-            currentViewerPane.getViewer().setInput(selectedElement);
-            currentViewerPane.setTitle(selectedElement);
+          if (this.currentViewerPane.getViewer().getInput() != selectedElement) {
+            this.currentViewerPane.getViewer().setInput(selectedElement);
+            this.currentViewerPane.setTitle(selectedElement);
           }
         }
       }
@@ -1470,7 +1434,7 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
    */
   @Override
   public boolean isDirty() {
-    return ((BasicCommandStack) editingDomain.getCommandStack()).isSaveNeeded();
+    return ((BasicCommandStack) this.editingDomain.getCommandStack()).isSaveNeeded();
   }
 
   /**
@@ -1483,7 +1447,7 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
   public void doSave(IProgressMonitor progressMonitor) {
     // Save only resources that have actually changed.
     //
-    final Map<Object, Object> saveOptions = new HashMap<Object, Object>();
+    final Map<Object, Object> saveOptions = new HashMap<>();
     saveOptions.put(Resource.OPTION_SAVE_ONLY_IF_CHANGED, Resource.OPTION_SAVE_ONLY_IF_CHANGED_MEMORY_BUFFER);
     saveOptions.put(Resource.OPTION_LINE_DELIMITER, Resource.OPTION_LINE_DELIMITER_UNSPECIFIED);
 
@@ -1496,21 +1460,21 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
       public void execute(IProgressMonitor monitor) {
         // Save the resources to the file system.
         //
-        boolean first = true;
-        List<Resource> resources = editingDomain.getResourceSet().getResources();
-        for (int i = 0; i < resources.size(); ++i) {
-          Resource resource = resources.get(i);
-          if ((first || !resource.getContents().isEmpty() || isPersisted(resource)) && !editingDomain.isReadOnly(
+        var first = true;
+        List<Resource> resources = ProductLineEditor.this.editingDomain.getResourceSet().getResources();
+        for (var i = 0; i < resources.size(); ++i) {
+          var resource = resources.get(i);
+          if ((first || !resource.getContents().isEmpty() || isPersisted(resource)) && !ProductLineEditor.this.editingDomain.isReadOnly(
                                                                                                                  resource)) {
             try {
-              long timeStamp = resource.getTimeStamp();
+              var timeStamp = resource.getTimeStamp();
               resource.save(saveOptions);
               if (resource.getTimeStamp() != timeStamp) {
-                savedResources.add(resource);
+                ProductLineEditor.this.savedResources.add(resource);
               }
             }
             catch (Exception exception) {
-              resourceToDiagnosticMap.put(resource, analyzeResourceProblems(resource, exception));
+              ProductLineEditor.this.resourceToDiagnosticMap.put(resource, analyzeResourceProblems(resource, exception));
             }
             first = false;
           }
@@ -1518,7 +1482,7 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
       }
     };
 
-    updateProblemIndication = false;
+    this.updateProblemIndication = false;
     try {
       // This runs the options, and shows progress.
       //
@@ -1526,7 +1490,7 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
 
       // Refresh the necessary state.
       //
-      ((BasicCommandStack) editingDomain.getCommandStack()).saveIsDone();
+      ((BasicCommandStack) this.editingDomain.getCommandStack()).saveIsDone();
       firePropertyChange(IEditorPart.PROP_DIRTY);
     }
     catch (Exception exception) {
@@ -1534,7 +1498,7 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
       //
       ProductLineEditorPlugin.INSTANCE.log(exception);
     }
-    updateProblemIndication = true;
+    this.updateProblemIndication = true;
     updateProblemIndication();
   }
 
@@ -1546,9 +1510,9 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
    * @generated
    */
   protected boolean isPersisted(Resource resource) {
-    boolean result = false;
+    var result = false;
     try {
-      InputStream stream = editingDomain.getResourceSet().getURIConverter().createInputStream(resource.getURI());
+      var stream = this.editingDomain.getResourceSet().getURIConverter().createInputStream(resource.getURI());
       if (stream != null) {
         result = true;
         stream.close();
@@ -1579,11 +1543,11 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
    */
   @Override
   public void doSaveAs() {
-    SaveAsDialog saveAsDialog = new SaveAsDialog(getSite().getShell());
+    var saveAsDialog = new SaveAsDialog(getSite().getShell());
     saveAsDialog.open();
-    IPath path = saveAsDialog.getResult();
+    var path = saveAsDialog.getResult();
     if (path != null) {
-      IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(path);
+      var file = ResourcesPlugin.getWorkspace().getRoot().getFile(path);
       if (file != null) {
         doSaveAs(URI.createPlatformResourceURI(file.getFullPath().toString(), true), new FileEditorInput(file));
       }
@@ -1596,10 +1560,10 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
    * @generated
    */
   protected void doSaveAs(URI uri, IEditorInput editorInput) {
-    (editingDomain.getResourceSet().getResources().get(0)).setURI(uri);
+    (this.editingDomain.getResourceSet().getResources().get(0)).setURI(uri);
     setInputWithNotify(editorInput);
     setPartName(editorInput.getName());
-    IProgressMonitor progressMonitor = getActionBars().getStatusLineManager() != null ? getActionBars()
+    var progressMonitor = getActionBars().getStatusLineManager() != null ? getActionBars()
                                                                                                        .getStatusLineManager()
                                                                                                        .getProgressMonitor()
       : new NullProgressMonitor();
@@ -1613,7 +1577,7 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
    */
   @Override
   public void gotoMarker(IMarker marker) {
-    List<?> targetObjects = markerHelper.getTargetObjects(editingDomain, marker);
+    List<?> targetObjects = this.markerHelper.getTargetObjects(this.editingDomain, marker);
     if (!targetObjects.isEmpty()) {
       setSelectionToViewer(targetObjects);
     }
@@ -1631,8 +1595,8 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
     setInputWithNotify(editorInput);
     setPartName(editorInput.getName());
     site.setSelectionProvider(this);
-    site.getPage().addPartListener(partListener);
-    ResourcesPlugin.getWorkspace().addResourceChangeListener(resourceChangeListener, IResourceChangeEvent.POST_CHANGE);
+    site.getPage().addPartListener(this.partListener);
+    ResourcesPlugin.getWorkspace().addResourceChangeListener(this.resourceChangeListener, IResourceChangeEvent.POST_CHANGE);
   }
 
   /**
@@ -1642,8 +1606,8 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
    */
   @Override
   public void setFocus() {
-    if (currentViewerPane != null) {
-      currentViewerPane.setFocus();
+    if (this.currentViewerPane != null) {
+      this.currentViewerPane.setFocus();
     }
     else {
       getControl(getActivePage()).setFocus();
@@ -1658,7 +1622,7 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
    */
   @Override
   public void addSelectionChangedListener(ISelectionChangedListener listener) {
-    selectionChangedListeners.add(listener);
+    this.selectionChangedListeners.add(listener);
   }
 
   /**
@@ -1669,7 +1633,7 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
    */
   @Override
   public void removeSelectionChangedListener(ISelectionChangedListener listener) {
-    selectionChangedListeners.remove(listener);
+    this.selectionChangedListeners.remove(listener);
   }
 
   /**
@@ -1680,7 +1644,7 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
    */
   @Override
   public ISelection getSelection() {
-    return editorSelection;
+    return this.editorSelection;
   }
 
   /**
@@ -1692,9 +1656,9 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
    */
   @Override
   public void setSelection(ISelection selection) {
-    editorSelection = selection;
+    this.editorSelection = selection;
 
-    for (ISelectionChangedListener listener : selectionChangedListeners) {
+    for (ISelectionChangedListener listener : this.selectionChangedListeners) {
       listener.selectionChanged(new SelectionChangedEvent(this, selection));
     }
     setStatusLineManager(selection);
@@ -1706,8 +1670,8 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
    * @generated
    */
   public void setStatusLineManager(ISelection selection) {
-    IStatusLineManager statusLineManager = currentViewer != null && currentViewer == contentOutlineViewer
-      ? contentOutlineStatusLineManager
+    var statusLineManager = this.currentViewer != null && this.currentViewer == this.contentOutlineViewer
+      ? this.contentOutlineStatusLineManager
       : getActionBars().getStatusLineManager();
 
     if (statusLineManager != null) {
@@ -1719,7 +1683,7 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
           break;
         }
         case 1: {
-          String text = new AdapterFactoryItemDelegator(adapterFactory).getText(collection.iterator().next());
+          var text = new AdapterFactoryItemDelegator(this.adapterFactory).getText(collection.iterator().next());
           statusLineManager.setMessage(getString("_UI_SingleObjectSelected", text));
           break;
         }
@@ -1790,7 +1754,7 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
    * @generated
    */
   public AdapterFactory getAdapterFactory() {
-    return adapterFactory;
+    return this.adapterFactory;
   }
 
   /**
@@ -1800,24 +1764,24 @@ public class ProductLineEditor extends MultiPageEditorPart implements IEditingDo
    */
   @Override
   public void dispose() {
-    updateProblemIndication = false;
+    this.updateProblemIndication = false;
 
-    ResourcesPlugin.getWorkspace().removeResourceChangeListener(resourceChangeListener);
+    ResourcesPlugin.getWorkspace().removeResourceChangeListener(this.resourceChangeListener);
 
-    getSite().getPage().removePartListener(partListener);
+    getSite().getPage().removePartListener(this.partListener);
 
-    adapterFactory.dispose();
+    this.adapterFactory.dispose();
 
     if (getActionBarContributor().getActiveEditor() == this) {
       getActionBarContributor().setActiveEditor(null);
     }
 
-    for (PropertySheetPage propertySheetPage : propertySheetPages) {
+    for (PropertySheetPage propertySheetPage : this.propertySheetPages) {
       propertySheetPage.dispose();
     }
 
-    if (contentOutlinePage != null) {
-      contentOutlinePage.dispose();
+    if (this.contentOutlinePage != null) {
+      this.contentOutlinePage.dispose();
     }
 
     super.dispose();

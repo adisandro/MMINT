@@ -1,27 +1,33 @@
-/**
- */
+/*******************************************************************************
+ * Copyright (c) 2021, 2021 Alessio Di Sandro.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *     Alessio Di Sandro - Implementation
+ *******************************************************************************/
 package edu.toronto.cs.se.mmint.productline.impl;
-
-import edu.toronto.cs.se.mmint.productline.ProductLine;
-import edu.toronto.cs.se.mmint.productline.ProductLinePackage;
-import edu.toronto.cs.se.mmint.productline.Reference;
 
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
+import edu.toronto.cs.se.mmint.productline.ProductLine;
+import edu.toronto.cs.se.mmint.productline.ProductLinePackage;
+import edu.toronto.cs.se.mmint.productline.Reference;
 
 /**
  * <!-- begin-user-doc -->
@@ -58,7 +64,7 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
    * @generated
    * @ordered
    */
-  protected String features = FEATURES_EDEFAULT;
+  protected String features = ProductLineImpl.FEATURES_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getClasses() <em>Classes</em>}' containment reference list.
@@ -116,7 +122,7 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
    */
   @Override
   public String getFeatures() {
-    return features;
+    return this.features;
   }
 
   /**
@@ -126,11 +132,11 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
    */
   @Override
   public void setFeatures(String newFeatures) {
-    String oldFeatures = features;
-    features = newFeatures;
+    var oldFeatures = this.features;
+    this.features = newFeatures;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, ProductLinePackage.PRODUCT_LINE__FEATURES, oldFeatures,
-                                    features));
+                                    this.features));
   }
 
   /**
@@ -140,12 +146,12 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
    */
   @Override
   public EList<edu.toronto.cs.se.mmint.productline.Class> getClasses() {
-    if (classes == null) {
-      classes = new EObjectContainmentEList<edu.toronto.cs.se.mmint.productline.Class>(edu.toronto.cs.se.mmint.productline.Class.class,
+    if (this.classes == null) {
+      this.classes = new EObjectContainmentEList<>(edu.toronto.cs.se.mmint.productline.Class.class,
                                                                                        this,
                                                                                        ProductLinePackage.PRODUCT_LINE__CLASSES);
     }
-    return classes;
+    return this.classes;
   }
 
   /**
@@ -155,11 +161,11 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
    */
   @Override
   public EList<Reference> getReferences() {
-    if (references == null) {
-      references = new EObjectContainmentEList<Reference>(Reference.class, this,
+    if (this.references == null) {
+      this.references = new EObjectContainmentEList<>(Reference.class, this,
                                                           ProductLinePackage.PRODUCT_LINE__REFERENCES);
     }
-    return references;
+    return this.references;
   }
 
   /**
@@ -169,16 +175,16 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
    */
   @Override
   public EPackage getMetamodel() {
-    if (metamodel != null && metamodel.eIsProxy()) {
-      InternalEObject oldMetamodel = (InternalEObject) metamodel;
-      metamodel = (EPackage) eResolveProxy(oldMetamodel);
-      if (metamodel != oldMetamodel) {
+    if (this.metamodel != null && this.metamodel.eIsProxy()) {
+      var oldMetamodel = (InternalEObject) this.metamodel;
+      this.metamodel = (EPackage) eResolveProxy(oldMetamodel);
+      if (this.metamodel != oldMetamodel) {
         if (eNotificationRequired())
           eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProductLinePackage.PRODUCT_LINE__METAMODEL,
-                                        oldMetamodel, metamodel));
+                                        oldMetamodel, this.metamodel));
       }
     }
-    return metamodel;
+    return this.metamodel;
   }
 
   /**
@@ -187,7 +193,7 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
    * @generated
    */
   public EPackage basicGetMetamodel() {
-    return metamodel;
+    return this.metamodel;
   }
 
   /**
@@ -197,11 +203,11 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
    */
   @Override
   public void setMetamodel(EPackage newMetamodel) {
-    EPackage oldMetamodel = metamodel;
-    metamodel = newMetamodel;
+    var oldMetamodel = this.metamodel;
+    this.metamodel = newMetamodel;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, ProductLinePackage.PRODUCT_LINE__METAMODEL, oldMetamodel,
-                                    metamodel));
+                                    this.metamodel));
   }
 
   /**
@@ -278,7 +284,7 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
   public void eUnset(int featureID) {
     switch (featureID) {
     case ProductLinePackage.PRODUCT_LINE__FEATURES:
-      setFeatures(FEATURES_EDEFAULT);
+      setFeatures(ProductLineImpl.FEATURES_EDEFAULT);
       return;
     case ProductLinePackage.PRODUCT_LINE__CLASSES:
       getClasses().clear();
@@ -302,13 +308,13 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
   public boolean eIsSet(int featureID) {
     switch (featureID) {
     case ProductLinePackage.PRODUCT_LINE__FEATURES:
-      return FEATURES_EDEFAULT == null ? features != null : !FEATURES_EDEFAULT.equals(features);
+      return ProductLineImpl.FEATURES_EDEFAULT == null ? this.features != null : !ProductLineImpl.FEATURES_EDEFAULT.equals(this.features);
     case ProductLinePackage.PRODUCT_LINE__CLASSES:
-      return classes != null && !classes.isEmpty();
+      return this.classes != null && !this.classes.isEmpty();
     case ProductLinePackage.PRODUCT_LINE__REFERENCES:
-      return references != null && !references.isEmpty();
+      return this.references != null && !this.references.isEmpty();
     case ProductLinePackage.PRODUCT_LINE__METAMODEL:
-      return metamodel != null;
+      return this.metamodel != null;
     }
     return super.eIsSet(featureID);
   }
@@ -323,9 +329,9 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
     if (eIsProxy())
       return super.toString();
 
-    StringBuilder result = new StringBuilder(super.toString());
+    var result = new StringBuilder(super.toString());
     result.append(" (features: ");
-    result.append(features);
+    result.append(this.features);
     result.append(')');
     return result.toString();
   }

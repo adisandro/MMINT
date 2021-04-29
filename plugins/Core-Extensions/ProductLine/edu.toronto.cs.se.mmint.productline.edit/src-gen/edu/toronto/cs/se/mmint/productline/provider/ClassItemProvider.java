@@ -1,21 +1,29 @@
-/**
- */
+/*******************************************************************************
+ * Copyright (c) 2021, 2021 Alessio Di Sandro.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *     Alessio Di Sandro - Implementation
+ *******************************************************************************/
 package edu.toronto.cs.se.mmint.productline.provider;
-
-import edu.toronto.cs.se.mmint.productline.ProductLineFactory;
-import edu.toronto.cs.se.mmint.productline.ProductLinePackage;
 
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
+import edu.toronto.cs.se.mmint.productline.ProductLineFactory;
+import edu.toronto.cs.se.mmint.productline.ProductLinePackage;
 
 /**
  * This is the item provider adapter for a {@link edu.toronto.cs.se.mmint.productline.Class} object.
@@ -42,7 +50,7 @@ public class ClassItemProvider extends PLElementItemProvider {
    */
   @Override
   public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-    if (itemPropertyDescriptors == null) {
+    if (this.itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
       addReferencesAsSourcePropertyDescriptor(object);
@@ -50,7 +58,7 @@ public class ClassItemProvider extends PLElementItemProvider {
       addAttributesPropertyDescriptor(object);
       addTypePropertyDescriptor(object);
     }
-    return itemPropertyDescriptors;
+    return this.itemPropertyDescriptors;
   }
 
   /**
@@ -60,7 +68,7 @@ public class ClassItemProvider extends PLElementItemProvider {
    * @generated
    */
   protected void addReferencesAsSourcePropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+    this.itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(),
                                                              getResourceLocator(), getString(
                                                                                              "_UI_Class_referencesAsSource_feature"),
                                                              getString("_UI_PropertyDescriptor_description",
@@ -77,7 +85,7 @@ public class ClassItemProvider extends PLElementItemProvider {
    * @generated
    */
   protected void addReferencesAsTargetsPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+    this.itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(),
                                                              getResourceLocator(), getString(
                                                                                              "_UI_Class_referencesAsTargets_feature"),
                                                              getString("_UI_PropertyDescriptor_description",
@@ -94,7 +102,7 @@ public class ClassItemProvider extends PLElementItemProvider {
    * @generated
    */
   protected void addAttributesPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+    this.itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(),
                                                              getResourceLocator(), getString(
                                                                                              "_UI_Class_attributes_feature"),
                                                              getString("_UI_PropertyDescriptor_description",
@@ -111,7 +119,7 @@ public class ClassItemProvider extends PLElementItemProvider {
    * @generated
    */
   protected void addTypePropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+    this.itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(),
                                                              getResourceLocator(), getString("_UI_Class_type_feature"),
                                                              getString("_UI_PropertyDescriptor_description",
                                                                        "_UI_Class_type_feature", "_UI_Class_type"),
@@ -129,11 +137,11 @@ public class ClassItemProvider extends PLElementItemProvider {
    */
   @Override
   public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-    if (childrenFeatures == null) {
+    if (this.childrenFeatures == null) {
       super.getChildrenFeatures(object);
-      childrenFeatures.add(ProductLinePackage.Literals.CLASS__ATTRIBUTES);
+      this.childrenFeatures.add(ProductLinePackage.Literals.CLASS__ATTRIBUTES);
     }
-    return childrenFeatures;
+    return this.childrenFeatures;
   }
 
   /**
@@ -178,7 +186,7 @@ public class ClassItemProvider extends PLElementItemProvider {
    */
   @Override
   public String getText(Object object) {
-    String label = ((edu.toronto.cs.se.mmint.productline.Class) object).getPresenceCondition();
+    var label = ((edu.toronto.cs.se.mmint.productline.Class) object).getPresenceCondition();
     return label == null || label.length() == 0 ? getString("_UI_Class_type")
       : getString("_UI_Class_type") + " " + label;
   }

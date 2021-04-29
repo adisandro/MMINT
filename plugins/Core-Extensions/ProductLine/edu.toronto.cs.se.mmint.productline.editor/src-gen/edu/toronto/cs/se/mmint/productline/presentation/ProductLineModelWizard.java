@@ -1,5 +1,15 @@
-/**
- */
+/*******************************************************************************
+ * Copyright (c) 2021, 2021 Alessio Di Sandro.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *     Alessio Di Sandro - Implementation
+ *******************************************************************************/
 package edu.toronto.cs.se.mmint.productline.presentation;
 
 import java.util.ArrayList;
@@ -12,75 +22,48 @@ import java.util.Map;
 import java.util.MissingResourceException;
 import java.util.StringTokenizer;
 
-import org.eclipse.emf.common.CommonPlugin;
-
-import org.eclipse.emf.common.util.URI;
-
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
-
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-
-import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.emf.ecore.xmi.XMLResource;
-
-import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
-
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
-
 import org.eclipse.core.runtime.IProgressMonitor;
-
+import org.eclipse.core.runtime.Path;
+import org.eclipse.emf.common.CommonPlugin;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.XMLResource;
+import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
 import org.eclipse.jface.dialogs.MessageDialog;
-
+import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.jface.wizard.WizardPage;
-
 import org.eclipse.swt.SWT;
-
-import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.ModifyEvent;
-
+import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
-
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
-
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
-
+import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
-
 import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
-
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.ISetSelectionTarget;
 
 import edu.toronto.cs.se.mmint.productline.ProductLineFactory;
 import edu.toronto.cs.se.mmint.productline.ProductLinePackage;
 import edu.toronto.cs.se.mmint.productline.provider.ProductLineEditPlugin;
-
-import org.eclipse.core.runtime.Path;
-
-import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.jface.viewers.StructuredSelection;
-
-import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.IWorkbenchPart;
-import org.eclipse.ui.IWorkbenchWindow;
-import org.eclipse.ui.PartInitException;
 
 /**
  * This is a simple wizard for creating a new model file.
@@ -121,7 +104,7 @@ public class ProductLineModelWizard extends Wizard implements INewWizard {
    * <!-- end-user-doc -->
    * @generated
    */
-  protected ProductLineFactory productLineFactory = productLinePackage.getProductLineFactory();
+  protected ProductLineFactory productLineFactory = this.productLinePackage.getProductLineFactory();
 
   /**
    * This is the file creation page.
@@ -184,19 +167,18 @@ public class ProductLineModelWizard extends Wizard implements INewWizard {
    * @generated
    */
   protected Collection<String> getInitialObjectNames() {
-    if (initialObjectNames == null) {
-      initialObjectNames = new ArrayList<String>();
-      for (EClassifier eClassifier : productLinePackage.getEClassifiers()) {
-        if (eClassifier instanceof EClass) {
-          EClass eClass = (EClass) eClassifier;
+    if (this.initialObjectNames == null) {
+      this.initialObjectNames = new ArrayList<>();
+      for (EClassifier eClassifier : this.productLinePackage.getEClassifiers()) {
+        if (eClassifier instanceof EClass eClass) {
           if (!eClass.isAbstract()) {
-            initialObjectNames.add(eClass.getName());
+            this.initialObjectNames.add(eClass.getName());
           }
         }
       }
-      Collections.sort(initialObjectNames, CommonPlugin.INSTANCE.getComparator());
+      Collections.sort(this.initialObjectNames, CommonPlugin.INSTANCE.getComparator());
     }
-    return initialObjectNames;
+    return this.initialObjectNames;
   }
 
   /**
@@ -206,8 +188,8 @@ public class ProductLineModelWizard extends Wizard implements INewWizard {
    * @generated
    */
   protected EObject createInitialModel() {
-    EClass eClass = (EClass) productLinePackage.getEClassifier(initialObjectCreationPage.getInitialObjectName());
-    EObject rootObject = productLineFactory.create(eClass);
+    var eClass = (EClass) this.productLinePackage.getEClassifier(this.initialObjectCreationPage.getInitialObjectName());
+    var rootObject = this.productLineFactory.create(eClass);
     return rootObject;
   }
 
@@ -222,7 +204,7 @@ public class ProductLineModelWizard extends Wizard implements INewWizard {
     try {
       // Remember the file.
       //
-      final IFile modelFile = getModelFile();
+      final var modelFile = getModelFile();
 
       // Do the work within an operation.
       //
@@ -236,23 +218,23 @@ public class ProductLineModelWizard extends Wizard implements INewWizard {
 
             // Get the URI of the model file.
             //
-            URI fileURI = URI.createPlatformResourceURI(modelFile.getFullPath().toString(), true);
+            var fileURI = URI.createPlatformResourceURI(modelFile.getFullPath().toString(), true);
 
             // Create a resource for this file.
             //
-            Resource resource = resourceSet.createResource(fileURI);
+            var resource = resourceSet.createResource(fileURI);
 
             // Add the initial model object to the contents.
             //
-            EObject rootObject = createInitialModel();
+            var rootObject = createInitialModel();
             if (rootObject != null) {
               resource.getContents().add(rootObject);
             }
 
             // Save the contents of the resource to the file system.
             //
-            Map<Object, Object> options = new HashMap<Object, Object>();
-            options.put(XMLResource.OPTION_ENCODING, initialObjectCreationPage.getEncoding());
+            Map<Object, Object> options = new HashMap<>();
+            options.put(XMLResource.OPTION_ENCODING, ProductLineModelWizard.this.initialObjectCreationPage.getEncoding());
             resource.save(options);
           }
           catch (Exception exception) {
@@ -268,9 +250,9 @@ public class ProductLineModelWizard extends Wizard implements INewWizard {
 
       // Select the new file resource in the current view.
       //
-      IWorkbenchWindow workbenchWindow = workbench.getActiveWorkbenchWindow();
-      IWorkbenchPage page = workbenchWindow.getActivePage();
-      final IWorkbenchPart activePart = page.getActivePart();
+      var workbenchWindow = this.workbench.getActiveWorkbenchWindow();
+      var page = workbenchWindow.getActivePage();
+      final var activePart = page.getActivePart();
       if (activePart instanceof ISetSelectionTarget) {
         final ISelection targetSelection = new StructuredSelection(modelFile);
         getShell().getDisplay().asyncExec(new Runnable() {
@@ -284,7 +266,7 @@ public class ProductLineModelWizard extends Wizard implements INewWizard {
       // Open an editor on the new file.
       //
       try {
-        page.openEditor(new FileEditorInput(modelFile), workbench.getEditorRegistry().getDefaultEditor(modelFile
+        page.openEditor(new FileEditorInput(modelFile), this.workbench.getEditorRegistry().getDefaultEditor(modelFile
                                                                                                                 .getFullPath()
                                                                                                                 .toString())
                                                                  .getId());
@@ -330,10 +312,10 @@ public class ProductLineModelWizard extends Wizard implements INewWizard {
     @Override
     protected boolean validatePage() {
       if (super.validatePage()) {
-        String extension = new Path(getFileName()).getFileExtension();
-        if (extension == null || !FILE_EXTENSIONS.contains(extension)) {
-          String key = FILE_EXTENSIONS.size() > 1 ? "_WARN_FilenameExtensions" : "_WARN_FilenameExtension";
-          setErrorMessage(ProductLineEditorPlugin.INSTANCE.getString(key, new Object[] { FORMATTED_FILE_EXTENSIONS }));
+        var extension = new Path(getFileName()).getFileExtension();
+        if (extension == null || !ProductLineModelWizard.FILE_EXTENSIONS.contains(extension)) {
+          var key = ProductLineModelWizard.FILE_EXTENSIONS.size() > 1 ? "_WARN_FilenameExtensions" : "_WARN_FilenameExtension";
+          setErrorMessage(ProductLineEditorPlugin.INSTANCE.getString(key, new Object[] { ProductLineModelWizard.FORMATTED_FILE_EXTENSIONS }));
           return false;
         }
         return true;
@@ -396,68 +378,68 @@ public class ProductLineModelWizard extends Wizard implements INewWizard {
      */
     @Override
     public void createControl(Composite parent) {
-      Composite composite = new Composite(parent, SWT.NONE);
+      var composite = new Composite(parent, SWT.NONE);
       {
-        GridLayout layout = new GridLayout();
+        var layout = new GridLayout();
         layout.numColumns = 1;
         layout.verticalSpacing = 12;
         composite.setLayout(layout);
 
-        GridData data = new GridData();
+        var data = new GridData();
         data.verticalAlignment = GridData.FILL;
         data.grabExcessVerticalSpace = true;
         data.horizontalAlignment = GridData.FILL;
         composite.setLayoutData(data);
       }
 
-      Label containerLabel = new Label(composite, SWT.LEFT);
+      var containerLabel = new Label(composite, SWT.LEFT);
       {
         containerLabel.setText(ProductLineEditorPlugin.INSTANCE.getString("_UI_ModelObject"));
 
-        GridData data = new GridData();
+        var data = new GridData();
         data.horizontalAlignment = GridData.FILL;
         containerLabel.setLayoutData(data);
       }
 
-      initialObjectField = new Combo(composite, SWT.BORDER);
+      this.initialObjectField = new Combo(composite, SWT.BORDER);
       {
-        GridData data = new GridData();
+        var data = new GridData();
         data.horizontalAlignment = GridData.FILL;
         data.grabExcessHorizontalSpace = true;
-        initialObjectField.setLayoutData(data);
+        this.initialObjectField.setLayoutData(data);
       }
 
       for (String objectName : getInitialObjectNames()) {
-        initialObjectField.add(getLabel(objectName));
+        this.initialObjectField.add(getLabel(objectName));
       }
 
-      if (initialObjectField.getItemCount() == 1) {
-        initialObjectField.select(0);
+      if (this.initialObjectField.getItemCount() == 1) {
+        this.initialObjectField.select(0);
       }
-      initialObjectField.addModifyListener(validator);
+      this.initialObjectField.addModifyListener(this.validator);
 
-      Label encodingLabel = new Label(composite, SWT.LEFT);
+      var encodingLabel = new Label(composite, SWT.LEFT);
       {
         encodingLabel.setText(ProductLineEditorPlugin.INSTANCE.getString("_UI_XMLEncoding"));
 
-        GridData data = new GridData();
+        var data = new GridData();
         data.horizontalAlignment = GridData.FILL;
         encodingLabel.setLayoutData(data);
       }
-      encodingField = new Combo(composite, SWT.BORDER);
+      this.encodingField = new Combo(composite, SWT.BORDER);
       {
-        GridData data = new GridData();
+        var data = new GridData();
         data.horizontalAlignment = GridData.FILL;
         data.grabExcessHorizontalSpace = true;
-        encodingField.setLayoutData(data);
+        this.encodingField.setLayoutData(data);
       }
 
       for (String encoding : getEncodings()) {
-        encodingField.add(encoding);
+        this.encodingField.add(encoding);
       }
 
-      encodingField.select(0);
-      encodingField.addModifyListener(validator);
+      this.encodingField.select(0);
+      this.encodingField.addModifyListener(this.validator);
 
       setPageComplete(validatePage());
       setControl(composite);
@@ -481,7 +463,7 @@ public class ProductLineModelWizard extends Wizard implements INewWizard {
      * @generated
      */
     protected boolean validatePage() {
-      return getInitialObjectName() != null && getEncodings().contains(encodingField.getText());
+      return getInitialObjectName() != null && getEncodings().contains(this.encodingField.getText());
     }
 
     /**
@@ -493,13 +475,13 @@ public class ProductLineModelWizard extends Wizard implements INewWizard {
     public void setVisible(boolean visible) {
       super.setVisible(visible);
       if (visible) {
-        if (initialObjectField.getItemCount() == 1) {
-          initialObjectField.clearSelection();
-          encodingField.setFocus();
+        if (this.initialObjectField.getItemCount() == 1) {
+          this.initialObjectField.clearSelection();
+          this.encodingField.setFocus();
         }
         else {
-          encodingField.clearSelection();
-          initialObjectField.setFocus();
+          this.encodingField.clearSelection();
+          this.initialObjectField.setFocus();
         }
       }
     }
@@ -510,7 +492,7 @@ public class ProductLineModelWizard extends Wizard implements INewWizard {
      * @generated
      */
     public String getInitialObjectName() {
-      String label = initialObjectField.getText();
+      var label = this.initialObjectField.getText();
 
       for (String name : getInitialObjectNames()) {
         if (getLabel(name).equals(label)) {
@@ -526,7 +508,7 @@ public class ProductLineModelWizard extends Wizard implements INewWizard {
      * @generated
      */
     public String getEncoding() {
-      return encodingField.getText();
+      return this.encodingField.getText();
     }
 
     /**
@@ -551,13 +533,13 @@ public class ProductLineModelWizard extends Wizard implements INewWizard {
      * @generated
      */
     protected Collection<String> getEncodings() {
-      if (encodings == null) {
-        encodings = new ArrayList<String>();
-        for (StringTokenizer stringTokenizer = new StringTokenizer(ProductLineEditorPlugin.INSTANCE.getString("_UI_XMLEncodingChoices")); stringTokenizer.hasMoreTokens();) {
-          encodings.add(stringTokenizer.nextToken());
+      if (this.encodings == null) {
+        this.encodings = new ArrayList<>();
+        for (var stringTokenizer = new StringTokenizer(ProductLineEditorPlugin.INSTANCE.getString("_UI_XMLEncodingChoices")); stringTokenizer.hasMoreTokens();) {
+          this.encodings.add(stringTokenizer.nextToken());
         }
       }
-      return encodings;
+      return this.encodings;
     }
   }
 
@@ -571,23 +553,20 @@ public class ProductLineModelWizard extends Wizard implements INewWizard {
   public void addPages() {
     // Create a page, set the title, and the initial model file name.
     //
-    newFileCreationPage = new ProductLineModelWizardNewFileCreationPage("Whatever", selection);
-    newFileCreationPage.setTitle(ProductLineEditorPlugin.INSTANCE.getString("_UI_ProductLineModelWizard_label"));
-    newFileCreationPage.setDescription(ProductLineEditorPlugin.INSTANCE.getString("_UI_ProductLineModelWizard_description"));
-    newFileCreationPage.setFileName(ProductLineEditorPlugin.INSTANCE.getString("_UI_ProductLineEditorFilenameDefaultBase")
-      + "." + FILE_EXTENSIONS.get(0));
-    addPage(newFileCreationPage);
+    this.newFileCreationPage = new ProductLineModelWizardNewFileCreationPage("Whatever", this.selection);
+    this.newFileCreationPage.setTitle(ProductLineEditorPlugin.INSTANCE.getString("_UI_ProductLineModelWizard_label"));
+    this.newFileCreationPage.setDescription(ProductLineEditorPlugin.INSTANCE.getString("_UI_ProductLineModelWizard_description"));
+    this.newFileCreationPage.setFileName(ProductLineEditorPlugin.INSTANCE.getString("_UI_ProductLineEditorFilenameDefaultBase")
+      + "." + ProductLineModelWizard.FILE_EXTENSIONS.get(0));
+    addPage(this.newFileCreationPage);
 
     // Try and get the resource selection to determine a current directory for the file dialog.
     //
-    if (selection != null && !selection.isEmpty()) {
+    if (this.selection != null && !this.selection.isEmpty()) {
       // Get the resource...
       //
-      Object selectedElement = selection.iterator().next();
-      if (selectedElement instanceof IResource) {
-        // Get the resource parent, if its a file.
-        //
-        IResource selectedResource = (IResource) selectedElement;
+      var selectedElement = this.selection.iterator().next();
+      if (selectedElement instanceof IResource selectedResource) {
         if (selectedResource.getType() == IResource.FILE) {
           selectedResource = selectedResource.getParent();
         }
@@ -597,24 +576,24 @@ public class ProductLineModelWizard extends Wizard implements INewWizard {
         if (selectedResource instanceof IFolder || selectedResource instanceof IProject) {
           // Set this for the container.
           //
-          newFileCreationPage.setContainerFullPath(selectedResource.getFullPath());
+          this.newFileCreationPage.setContainerFullPath(selectedResource.getFullPath());
 
           // Make up a unique new name here.
           //
-          String defaultModelBaseFilename = ProductLineEditorPlugin.INSTANCE.getString("_UI_ProductLineEditorFilenameDefaultBase");
-          String defaultModelFilenameExtension = FILE_EXTENSIONS.get(0);
-          String modelFilename = defaultModelBaseFilename + "." + defaultModelFilenameExtension;
-          for (int i = 1; ((IContainer) selectedResource).findMember(modelFilename) != null; ++i) {
+          var defaultModelBaseFilename = ProductLineEditorPlugin.INSTANCE.getString("_UI_ProductLineEditorFilenameDefaultBase");
+          var defaultModelFilenameExtension = ProductLineModelWizard.FILE_EXTENSIONS.get(0);
+          var modelFilename = defaultModelBaseFilename + "." + defaultModelFilenameExtension;
+          for (var i = 1; ((IContainer) selectedResource).findMember(modelFilename) != null; ++i) {
             modelFilename = defaultModelBaseFilename + i + "." + defaultModelFilenameExtension;
           }
-          newFileCreationPage.setFileName(modelFilename);
+          this.newFileCreationPage.setFileName(modelFilename);
         }
       }
     }
-    initialObjectCreationPage = new ProductLineModelWizardInitialObjectCreationPage("Whatever2");
-    initialObjectCreationPage.setTitle(ProductLineEditorPlugin.INSTANCE.getString("_UI_ProductLineModelWizard_label"));
-    initialObjectCreationPage.setDescription(ProductLineEditorPlugin.INSTANCE.getString("_UI_Wizard_initial_object_description"));
-    addPage(initialObjectCreationPage);
+    this.initialObjectCreationPage = new ProductLineModelWizardInitialObjectCreationPage("Whatever2");
+    this.initialObjectCreationPage.setTitle(ProductLineEditorPlugin.INSTANCE.getString("_UI_ProductLineModelWizard_label"));
+    this.initialObjectCreationPage.setDescription(ProductLineEditorPlugin.INSTANCE.getString("_UI_Wizard_initial_object_description"));
+    addPage(this.initialObjectCreationPage);
   }
 
   /**
@@ -624,7 +603,7 @@ public class ProductLineModelWizard extends Wizard implements INewWizard {
    * @generated
    */
   public IFile getModelFile() {
-    return newFileCreationPage.getModelFile();
+    return this.newFileCreationPage.getModelFile();
   }
 
 }

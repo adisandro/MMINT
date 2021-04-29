@@ -1,17 +1,26 @@
-/**
- */
+/*******************************************************************************
+ * Copyright (c) 2021, 2021 Alessio Di Sandro.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *     Alessio Di Sandro - Implementation
+ *******************************************************************************/
 package edu.toronto.cs.se.mmint.productline.util;
+
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.util.Switch;
 
 import edu.toronto.cs.se.mmint.productline.Attribute;
 import edu.toronto.cs.se.mmint.productline.PLElement;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.productline.ProductLinePackage;
 import edu.toronto.cs.se.mmint.productline.Reference;
-
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
-
-import org.eclipse.emf.ecore.util.Switch;
 
 /**
  * <!-- begin-user-doc -->
@@ -42,8 +51,8 @@ public class ProductLineSwitch<T> extends Switch<T> {
    * @generated
    */
   public ProductLineSwitch() {
-    if (modelPackage == null) {
-      modelPackage = ProductLinePackage.eINSTANCE;
+    if (ProductLineSwitch.modelPackage == null) {
+      ProductLineSwitch.modelPackage = ProductLinePackage.eINSTANCE;
     }
   }
 
@@ -57,7 +66,7 @@ public class ProductLineSwitch<T> extends Switch<T> {
    */
   @Override
   protected boolean isSwitchFor(EPackage ePackage) {
-    return ePackage == modelPackage;
+    return ePackage == ProductLineSwitch.modelPackage;
   }
 
   /**
@@ -71,22 +80,22 @@ public class ProductLineSwitch<T> extends Switch<T> {
   protected T doSwitch(int classifierID, EObject theEObject) {
     switch (classifierID) {
     case ProductLinePackage.PRODUCT_LINE: {
-      ProductLine productLine = (ProductLine) theEObject;
-      T result = caseProductLine(productLine);
+      var productLine = (ProductLine) theEObject;
+      var result = caseProductLine(productLine);
       if (result == null)
         result = defaultCase(theEObject);
       return result;
     }
     case ProductLinePackage.PL_ELEMENT: {
-      PLElement plElement = (PLElement) theEObject;
-      T result = casePLElement(plElement);
+      var plElement = (PLElement) theEObject;
+      var result = casePLElement(plElement);
       if (result == null)
         result = defaultCase(theEObject);
       return result;
     }
     case ProductLinePackage.CLASS: {
-      edu.toronto.cs.se.mmint.productline.Class class_ = (edu.toronto.cs.se.mmint.productline.Class) theEObject;
-      T result = caseClass(class_);
+      var class_ = (edu.toronto.cs.se.mmint.productline.Class) theEObject;
+      var result = caseClass(class_);
       if (result == null)
         result = casePLElement(class_);
       if (result == null)
@@ -94,8 +103,8 @@ public class ProductLineSwitch<T> extends Switch<T> {
       return result;
     }
     case ProductLinePackage.REFERENCE: {
-      Reference reference = (Reference) theEObject;
-      T result = caseReference(reference);
+      var reference = (Reference) theEObject;
+      var result = caseReference(reference);
       if (result == null)
         result = casePLElement(reference);
       if (result == null)
@@ -103,8 +112,8 @@ public class ProductLineSwitch<T> extends Switch<T> {
       return result;
     }
     case ProductLinePackage.ATTRIBUTE: {
-      Attribute attribute = (Attribute) theEObject;
-      T result = caseAttribute(attribute);
+      var attribute = (Attribute) theEObject;
+      var result = caseAttribute(attribute);
       if (result == null)
         result = casePLElement(attribute);
       if (result == null)
