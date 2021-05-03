@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: edu.toronto.cs.se.mmint.productline.operators;singleton:=true
+Bundle-Version: 2.9.9.qualifier
+Automatic-Module-Name: edu.toronto.cs.se.mmint.productline.operators
+Bundle-RequiredExecutionEnvironment: JavaSE-16
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.validation,
+ edu.toronto.cs.se.mmint,
+ edu.toronto.cs.se.mmint.productline
+Bundle-Vendor: %providerName
