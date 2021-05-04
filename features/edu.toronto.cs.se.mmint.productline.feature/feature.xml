@@ -43,6 +43,7 @@
       <import plugin="org.eclipse.emf.ecore.xmi"/>
       <import plugin="org.eclipse.emf.edit.ui"/>
       <import plugin="org.eclipse.ui.ide"/>
+      <import plugin="org.eclipse.emf.validation"/>
    </requires>
 
    <plugin
@@ -68,6 +69,13 @@
 
    <plugin
          id="edu.toronto.cs.se.mmint.productline.editor"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="edu.toronto.cs.se.mmint.productline.operators"
          download-size="0"
          install-size="0"
          version="0.0.0"

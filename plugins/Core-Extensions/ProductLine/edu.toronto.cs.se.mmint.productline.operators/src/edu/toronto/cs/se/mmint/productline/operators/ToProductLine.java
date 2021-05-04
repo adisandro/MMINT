@@ -13,7 +13,15 @@
 package edu.toronto.cs.se.mmint.productline.operators;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.MMINTException;
@@ -21,6 +29,8 @@ import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
+import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
+import edu.toronto.cs.se.mmint.productline.Class;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.productline.ProductLineFactory;
 
@@ -48,7 +58,8 @@ public class ToProductLine extends OperatorImpl {
     public Output(Map<String, MID> outputMIDsByName, String workingPath, Input input) {
       this.plModelType = MIDTypeRegistry.<Model>getType(Output.MODEL_TYPE_ID);
       this.productLine = ProductLineFactory.eINSTANCE.createProductLine();
-      this.plPath = workingPath + input.productModel.getName() + "." + this.plModelType.getFileExtension();
+      this.plPath = workingPath + IPath.SEPARATOR + input.productModel.getName() + "." +
+                    this.plModelType.getFileExtension();
       this.mid = outputMIDsByName.get(Output.MODEL);
     }
 
@@ -65,23 +76,66 @@ public class ToProductLine extends OperatorImpl {
   }
 
   private void toProductLine() {
-    // pass 1: classes and attributes
     var product = this.input.productModel.getEMFInstanceRoot();
+    var plClasses = new HashMap<String, Class>();
+    // pass 1: classes and attributes
     for (var iter = product.eAllContents(); iter.hasNext();) {
       var pModelObj = iter.next();
       var pType = pModelObj.eClass();
       var plClass = ProductLineFactory.eINSTANCE.createClass();
       plClass.setPresenceCondition("true");
       plClass.setType(pType);
+      this.output.productLine.getClasses().add(plClass);
+      plClasses.put(MIDRegistry.getModelElementUri(pModelObj), plClass);
       for (var pAttribute : pType.getEAllAttributes()) {
+        var plValue = pModelObj.eGet(pAttribute);
+        if (plValue == null) {
+          continue;
+        }
         var plAttribute = ProductLineFactory.eINSTANCE.createAttribute();
-        plClass.getAttributes().add(plAttribute);
-        plAttribute.setType(pAttribute);
         plAttribute.setPresenceCondition("true");
-        plAttribute.setValue(pModelObj.eGet(pAttribute).toString());
+        plAttribute.setType(pAttribute);
+        plAttribute.setValue(plValue.toString());
+        plClass.getAttributes().add(plAttribute);
       }
     }
     // pass 2: references
+    var pOpposites = new HashSet<EReference>();
+    for (var iter = product.eAllContents(); iter.hasNext();) {
+      var pModelObj = iter.next();
+      for (var pReference : pModelObj.eClass().getEAllReferences()) {
+        if (pOpposites.contains(pReference)) {
+          continue;
+        }
+        var pOpposite = pReference.getEOpposite();
+        if (pOpposite != null) {
+          pOpposites.add(pOpposite);
+        }
+        var pTarget = pModelObj.eGet(pReference);
+        var plTargets = new ArrayList<Class>();
+        if (pTarget instanceof EList pTargetList) {
+          if (pTargetList.isEmpty()) {
+            continue;
+          }
+          pTargetList.forEach(t -> plTargets.add(plClasses.get(MIDRegistry.getModelElementUri((EObject) t))));
+        }
+        else {
+          if (pTarget == null) {
+            continue;
+          }
+          plTargets.add(plClasses.get(MIDRegistry.getModelElementUri((EObject) pTarget)));
+        }
+        var plSource = plClasses.get(MIDRegistry.getModelElementUri(pModelObj));
+        for (var plTarget : plTargets) {
+          var plReference = ProductLineFactory.eINSTANCE.createReference();
+          plReference.setPresenceCondition("true");
+          plReference.setType(pReference);
+          plReference.setSource(plSource);
+          plReference.getTargets().add(plTarget);
+          this.output.productLine.getReferences().add(plReference);
+        }
+      }
+    }
   }
 
   @Override

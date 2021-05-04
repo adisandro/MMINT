@@ -164,6 +164,7 @@
     <module>../../plugins/Core-Extensions/ProductLine/edu.toronto.cs.se.mmint.productline.design</module>
     <module>../../plugins/Core-Extensions/ProductLine/edu.toronto.cs.se.mmint.productline.edit</module>
     <module>../../plugins/Core-Extensions/ProductLine/edu.toronto.cs.se.mmint.productline.editor</module>
+    <module>../../plugins/Core-Extensions/ProductLine/edu.toronto.cs.se.mmint.productline.operators</module>
     <module>../../plugins/External/Lean/edu.toronto.cs.se.mmint.lean</module>
   	<module>../../plugins/External/Z3/edu.toronto.cs.se.modelepedia.z3</module>
   	<module>../../plugins/External/Z3/edu.toronto.cs.se.modelepedia.z3.operator</module>
