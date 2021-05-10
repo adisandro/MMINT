@@ -10,7 +10,7 @@
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']"/>
         <target xmi:type="lts:LTS" href="fcs.lts#/"/>
       </ownedRepresentationDescriptors>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_fmFMoLGoEeudEakJBW0CPw" name="pump" repPath="#_fmElkLGoEeudEakJBW0CPw" changeId="7fb5f742-e647-4faf-99cc-3f5d615d4bfa">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_fmFMoLGoEeudEakJBW0CPw" name="pump" repPath="#_fmElkLGoEeudEakJBW0CPw" changeId="b2193984-5d4b-4f6f-b40c-67d6e6bcf119">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']"/>
         <target xmi:type="lts:LTS" href="pump.lts#/"/>
       </ownedRepresentationDescriptors>
@@ -539,7 +539,7 @@
             <layoutConstraint xmi:type="notation:Bounds" xmi:id="_V_mBRLGtEeudEakJBW0CPw"/>
           </children>
           <styles xmi:type="notation:ShapeStyle" xmi:id="_V_laMbGtEeudEakJBW0CPw" fontName="Cantarell" fontHeight="12"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_V_laMrGtEeudEakJBW0CPw" x="1232" y="208" width="102" height="97"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_V_laMrGtEeudEakJBW0CPw" x="1232" y="240" width="102" height="97"/>
         </children>
         <children xmi:type="notation:Node" xmi:id="_Y24XcLGtEeudEakJBW0CPw" type="2001" element="_Y217MLGtEeudEakJBW0CPw">
           <children xmi:type="notation:Node" xmi:id="_Y24Xc7GtEeudEakJBW0CPw" type="5002">
@@ -550,7 +550,40 @@
             <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Y24Xd7GtEeudEakJBW0CPw"/>
           </children>
           <styles xmi:type="notation:ShapeStyle" xmi:id="_Y24XcbGtEeudEakJBW0CPw" fontName="Cantarell" fontHeight="12"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Y24XcrGtEeudEakJBW0CPw" x="1125" y="384" width="97" height="97"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Y24XcrGtEeudEakJBW0CPw" x="1136" y="384" width="97" height="97"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_hTaooLHeEeuiO8bdsAI5mQ" type="2001" element="_hTGfkLHeEeuiO8bdsAI5mQ">
+          <children xmi:type="notation:Node" xmi:id="_hTnc8LHeEeuiO8bdsAI5mQ" type="5002">
+            <layoutConstraint xmi:type="notation:Location" xmi:id="_hTnc8bHeEeuiO8bdsAI5mQ" y="5"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_hTpSILHeEeuiO8bdsAI5mQ" type="3016" element="_hTHGoLHeEeuiO8bdsAI5mQ">
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_hTpSIbHeEeuiO8bdsAI5mQ" fontName="Cantarell"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_hTpSIrHeEeuiO8bdsAI5mQ"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_hTaoobHeEeuiO8bdsAI5mQ" fontName="Cantarell" fontHeight="12"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_hTaoorHeEeuiO8bdsAI5mQ" x="1584" y="240" width="105" height="97"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_vMvv8LHeEeuiO8bdsAI5mQ" type="2001" element="_vMqQYLHeEeuiO8bdsAI5mQ">
+          <children xmi:type="notation:Node" xmi:id="_vMwXALHeEeuiO8bdsAI5mQ" type="5002">
+            <layoutConstraint xmi:type="notation:Location" xmi:id="_vMwXAbHeEeuiO8bdsAI5mQ" y="5"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_vMw-ELHeEeuiO8bdsAI5mQ" type="3016" element="_vMqQYbHeEeuiO8bdsAI5mQ">
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_vMw-EbHeEeuiO8bdsAI5mQ" fontName="Cantarell"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_vMw-ErHeEeuiO8bdsAI5mQ"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_vMvv8bHeEeuiO8bdsAI5mQ" fontName="Cantarell" fontHeight="12"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_vMvv8rHeEeuiO8bdsAI5mQ" x="1586" y="80" width="102" height="97"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_ZWW2ALHfEeuiO8bdsAI5mQ" type="2001" element="_ZWSkkLHfEeuiO8bdsAI5mQ">
+          <children xmi:type="notation:Node" xmi:id="_ZWW2A7HfEeuiO8bdsAI5mQ" type="5002">
+            <layoutConstraint xmi:type="notation:Location" xmi:id="_ZWW2BLHfEeuiO8bdsAI5mQ" y="5"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_ZWXdELHfEeuiO8bdsAI5mQ" type="3016" element="_ZWSkkbHfEeuiO8bdsAI5mQ">
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_ZWXdEbHfEeuiO8bdsAI5mQ" fontName="Cantarell"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ZWXdErHfEeuiO8bdsAI5mQ"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_ZWW2AbHfEeuiO8bdsAI5mQ" fontName="Cantarell" fontHeight="12"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ZWW2ArHfEeuiO8bdsAI5mQ" x="1920" y="64" width="102" height="97"/>
         </children>
         <styles xmi:type="notation:DiagramStyle" xmi:id="_fmKFIrGoEeudEakJBW0CPw"/>
         <edges xmi:type="notation:Edge" xmi:id="_y76_8LGoEeudEakJBW0CPw" type="4001" element="_y73VkLGoEeudEakJBW0CPw" source="_l0OJ4LGoEeudEakJBW0CPw" target="_pV8kMLGoEeudEakJBW0CPw">
@@ -953,90 +986,440 @@
         </edges>
         <edges xmi:type="notation:Edge" xmi:id="_vDY5ELGxEeudEakJBW0CPw" type="4001" element="_vDWc2LGxEeudEakJBW0CPw" source="_Y24XcLGtEeudEakJBW0CPw" target="_V_laMLGtEeudEakJBW0CPw">
           <children xmi:type="notation:Node" xmi:id="_vDZgILGxEeudEakJBW0CPw" type="6001">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_vDZgIbGxEeudEakJBW0CPw" x="1" y="-10"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_vDZgIbGxEeudEakJBW0CPw" y="-14"/>
           </children>
           <children xmi:type="notation:Node" xmi:id="_vDZgIrGxEeudEakJBW0CPw" type="6002">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_vDZgI7GxEeudEakJBW0CPw" x="-1" y="9"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_vDZgI7GxEeudEakJBW0CPw" x="1" y="7"/>
           </children>
           <children xmi:type="notation:Node" xmi:id="_vDZgJLGxEeudEakJBW0CPw" type="6003">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_vDZgJbGxEeudEakJBW0CPw" y="7"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_vDZgJbGxEeudEakJBW0CPw" y="4"/>
           </children>
           <styles xmi:type="notation:ConnectorStyle" xmi:id="_vDY5EbGxEeudEakJBW0CPw"/>
           <styles xmi:type="notation:FontStyle" xmi:id="_vDY5ErGxEeudEakJBW0CPw" fontName="Cantarell" fontHeight="12"/>
-          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_vDY5E7GxEeudEakJBW0CPw" points="[16, -26, -68, 107]$[69, -112, -15, 21]"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_vDY5E7GxEeudEakJBW0CPw" points="[16, -23, -57, 78]$[57, -80, -16, 21]"/>
           <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_vDZgJrGxEeudEakJBW0CPw" id="(0.8350515463917526,0.3402061855670103)"/>
           <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_vDZgJ7GxEeudEakJBW0CPw" id="(0.5686274509803921,0.7835051546391752)"/>
         </edges>
         <edges xmi:type="notation:Edge" xmi:id="_wBhVQLGxEeudEakJBW0CPw" type="4001" element="_wBeSGrGxEeudEakJBW0CPw" source="_V_laMLGtEeudEakJBW0CPw" target="_Y24XcLGtEeudEakJBW0CPw">
           <children xmi:type="notation:Node" xmi:id="_wBhVRLGxEeudEakJBW0CPw" type="6001">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_wBhVRbGxEeudEakJBW0CPw" y="-8"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_wBhVRbGxEeudEakJBW0CPw" x="-2" y="-2"/>
           </children>
           <children xmi:type="notation:Node" xmi:id="_wBhVRrGxEeudEakJBW0CPw" type="6002">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_wBhVR7GxEeudEakJBW0CPw" y="10"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_wBhVR7GxEeudEakJBW0CPw" y="12"/>
           </children>
           <children xmi:type="notation:Node" xmi:id="_wBhVSLGxEeudEakJBW0CPw" type="6003">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_wBhVSbGxEeudEakJBW0CPw" x="2" y="12"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_wBhVSbGxEeudEakJBW0CPw" y="12"/>
           </children>
           <styles xmi:type="notation:ConnectorStyle" xmi:id="_wBhVQbGxEeudEakJBW0CPw"/>
           <styles xmi:type="notation:FontStyle" xmi:id="_wBhVQrGxEeudEakJBW0CPw" fontName="Cantarell" fontHeight="12"/>
-          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_wBhVQ7GxEeudEakJBW0CPw" points="[-19, 30, 52, -84]$[-68, 109, 3, -5]"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_wBhVQ7GxEeudEakJBW0CPw" points="[-19, 25, 41, -57]$[-57, 77, 3, -5]"/>
           <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_wBh8ULGxEeudEakJBW0CPw" id="(0.18627450980392157,0.6907216494845361)"/>
           <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_wBh8UbGxEeudEakJBW0CPw" id="(0.5670103092783505,0.05154639175257732)"/>
         </edges>
         <edges xmi:type="notation:Edge" xmi:id="_1QX_wLGxEeudEakJBW0CPw" type="4001" element="_1QU80LGxEeudEakJBW0CPw" source="_pV8kMLGoEeudEakJBW0CPw" target="_V_laMLGtEeudEakJBW0CPw">
           <children xmi:type="notation:Node" xmi:id="_1QYm0LGxEeudEakJBW0CPw" type="6001">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_1QYm0bGxEeudEakJBW0CPw" x="8" y="26"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_1QYm0bGxEeudEakJBW0CPw" x="7" y="26"/>
           </children>
           <children xmi:type="notation:Node" xmi:id="_1QYm0rGxEeudEakJBW0CPw" type="6002">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_1QYm07GxEeudEakJBW0CPw" y="9"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_1QYm07GxEeudEakJBW0CPw" x="-1" y="9"/>
           </children>
           <children xmi:type="notation:Node" xmi:id="_1QYm1LGxEeudEakJBW0CPw" type="6003">
             <layoutConstraint xmi:type="notation:Bounds" xmi:id="_1QYm1bGxEeudEakJBW0CPw" x="-1" y="10"/>
           </children>
           <styles xmi:type="notation:ConnectorStyle" xmi:id="_1QX_wbGxEeudEakJBW0CPw"/>
           <styles xmi:type="notation:FontStyle" xmi:id="_1QX_wrGxEeudEakJBW0CPw" fontName="Cantarell" fontHeight="12"/>
-          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_1QX_w7GxEeudEakJBW0CPw" points="[20, 5, -506, -141]$[526, 146, 0, 0]"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_1QX_w7GxEeudEakJBW0CPw" points="[20, 6, -506, -172]$[526, 178, 0, 0]"/>
           <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_1QYm1rGxEeudEakJBW0CPw" id="(0.803921568627451,0.8041237113402062)"/>
           <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_1QYm17GxEeudEakJBW0CPw" id="(0.0,0.6597938144329897)"/>
         </edges>
         <edges xmi:type="notation:Edge" xmi:id="_45VqgLGxEeudEakJBW0CPw" type="4001" element="_45SnhLGxEeudEakJBW0CPw" source="_V_laMLGtEeudEakJBW0CPw" target="_pV8kMLGoEeudEakJBW0CPw">
           <children xmi:type="notation:Node" xmi:id="_45VqhLGxEeudEakJBW0CPw" type="6001">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_45VqhbGxEeudEakJBW0CPw" y="-10"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_45VqhbGxEeudEakJBW0CPw" x="-1" y="-10"/>
           </children>
           <children xmi:type="notation:Node" xmi:id="_45WRkLGxEeudEakJBW0CPw" type="6002">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_45WRkbGxEeudEakJBW0CPw" y="10"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_45WRkbGxEeudEakJBW0CPw" x="3" y="10"/>
           </children>
           <children xmi:type="notation:Node" xmi:id="_45WRkrGxEeudEakJBW0CPw" type="6003">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_45WRk7GxEeudEakJBW0CPw" y="10"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_45WRk7GxEeudEakJBW0CPw" x="2" y="10"/>
           </children>
           <styles xmi:type="notation:ConnectorStyle" xmi:id="_45VqgbGxEeudEakJBW0CPw"/>
           <styles xmi:type="notation:FontStyle" xmi:id="_45VqgrGxEeudEakJBW0CPw" fontName="Cantarell" fontHeight="12"/>
-          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_45Vqg7GxEeudEakJBW0CPw" points="[0, 0, 506, 128]$[-506, -128, 0, 0]"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_45Vqg7GxEeudEakJBW0CPw" points="[0, 0, 506, 160]$[-506, -160, 0, 0]"/>
           <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_45WRlLGxEeudEakJBW0CPw" id="(0.0,0.32989690721649484)"/>
           <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_45WRlbGxEeudEakJBW0CPw" id="(1.0,0.6597938144329897)"/>
         </edges>
         <edges xmi:type="notation:Edge" xmi:id="_BHibALGyEeudEakJBW0CPw" type="4001" element="_BHfYArGyEeudEakJBW0CPw" source="_V_laMLGtEeudEakJBW0CPw" target="_FLHpYLGrEeudEakJBW0CPw">
           <children xmi:type="notation:Node" xmi:id="_BHibBLGyEeudEakJBW0CPw" type="6001">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_BHibBbGyEeudEakJBW0CPw" x="9" y="5"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_BHibBbGyEeudEakJBW0CPw" x="23" y="5"/>
           </children>
           <children xmi:type="notation:Node" xmi:id="_BHjCELGyEeudEakJBW0CPw" type="6002">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_BHjCEbGyEeudEakJBW0CPw" x="-9" y="-5"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_BHjCEbGyEeudEakJBW0CPw" x="-5" y="-7"/>
           </children>
           <children xmi:type="notation:Node" xmi:id="_BHjCErGyEeudEakJBW0CPw" type="6003">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_BHjCE7GyEeudEakJBW0CPw" x="-6" y="8"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_BHjCE7GyEeudEakJBW0CPw" x="-2" y="7"/>
           </children>
           <styles xmi:type="notation:ConnectorStyle" xmi:id="_BHibAbGyEeudEakJBW0CPw"/>
           <styles xmi:type="notation:FontStyle" xmi:id="_BHibArGyEeudEakJBW0CPw" fontName="Cantarell" fontHeight="12"/>
-          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_BHibA7GyEeudEakJBW0CPw" points="[0, 0, -48, 317]$[-112, -192, -160, 125]$[48, -317, 0, 0]"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_BHibA7GyEeudEakJBW0CPw" points="[0, 0, -48, 349]$[-112, -224, -160, 125]$[48, -349, 0, 0]"/>
           <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_BHjCFLGyEeudEakJBW0CPw" id="(0.3137254901960784,0.0)"/>
           <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_BHjCFbGyEeudEakJBW0CPw" id="(0.3137254901960784,1.0)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_qFAaELHeEeuiO8bdsAI5mQ" type="4001" element="_qE3QJbHeEeuiO8bdsAI5mQ" source="_hTaooLHeEeuiO8bdsAI5mQ" target="_V_laMLGtEeudEakJBW0CPw">
+          <children xmi:type="notation:Node" xmi:id="_qFBoMLHeEeuiO8bdsAI5mQ" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_qFBoMbHeEeuiO8bdsAI5mQ" x="-3" y="21"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_qFCPQLHeEeuiO8bdsAI5mQ" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_qFCPQbHeEeuiO8bdsAI5mQ" x="1" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_qFC2ULHeEeuiO8bdsAI5mQ" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_qFC2UbHeEeuiO8bdsAI5mQ" x="1" y="11"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_qFAaEbHeEeuiO8bdsAI5mQ"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_qFAaErHeEeuiO8bdsAI5mQ" fontName="Cantarell" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_qFAaE7HeEeuiO8bdsAI5mQ" points="[0, 0, 250, 0]$[-250, 0, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_qFErgLHeEeuiO8bdsAI5mQ" id="(0.0,0.16494845360824742)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_qFErgbHeEeuiO8bdsAI5mQ" id="(1.0,0.16494845360824742)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_sNqIoLHeEeuiO8bdsAI5mQ" type="4001" element="_sNi0DLHeEeuiO8bdsAI5mQ" source="_V_laMLGtEeudEakJBW0CPw" target="_hTaooLHeEeuiO8bdsAI5mQ">
+          <children xmi:type="notation:Node" xmi:id="_sNqvsLHeEeuiO8bdsAI5mQ" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_sNqvsbHeEeuiO8bdsAI5mQ" x="6" y="15"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_sNqvsrHeEeuiO8bdsAI5mQ" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_sNqvs7HeEeuiO8bdsAI5mQ" y="9"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_sNqvtLHeEeuiO8bdsAI5mQ" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_sNqvtbHeEeuiO8bdsAI5mQ" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_sNqIobHeEeuiO8bdsAI5mQ"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_sNqIorHeEeuiO8bdsAI5mQ" fontName="Cantarell" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_sNqIo7HeEeuiO8bdsAI5mQ" points="[0, 0, -250, 0]$[250, 0, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_sNqvtrHeEeuiO8bdsAI5mQ" id="(1.0,0.4948453608247423)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_sNqvt7HeEeuiO8bdsAI5mQ" id="(0.0,0.4948453608247423)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_yHitILHeEeuiO8bdsAI5mQ" type="4001" element="_yHcmzLHeEeuiO8bdsAI5mQ" source="_hTaooLHeEeuiO8bdsAI5mQ" target="_vMvv8LHeEeuiO8bdsAI5mQ">
+          <children xmi:type="notation:Node" xmi:id="_yHitJLHeEeuiO8bdsAI5mQ" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_yHitJbHeEeuiO8bdsAI5mQ" x="16" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_yHitJrHeEeuiO8bdsAI5mQ" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_yHitJ7HeEeuiO8bdsAI5mQ" x="16" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_yHjUMLHeEeuiO8bdsAI5mQ" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_yHjUMbHeEeuiO8bdsAI5mQ" x="3" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_yHitIbHeEeuiO8bdsAI5mQ"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_yHitIrHeEeuiO8bdsAI5mQ" fontName="Cantarell" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_yHitI7HeEeuiO8bdsAI5mQ" points="[0, 0, 0, 63]$[0, -63, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_yHjUMrHeEeuiO8bdsAI5mQ" id="(0.5047619047619047,0.0)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_yHjUM7HeEeuiO8bdsAI5mQ" id="(0.5,1.0)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_0w4G4LHeEeuiO8bdsAI5mQ" type="4001" element="_0w1quLHeEeuiO8bdsAI5mQ" source="_vMvv8LHeEeuiO8bdsAI5mQ" target="_V_laMLGtEeudEakJBW0CPw">
+          <children xmi:type="notation:Node" xmi:id="_0w4t8LHeEeuiO8bdsAI5mQ" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0w4t8bHeEeuiO8bdsAI5mQ" y="-8"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_0w4t8rHeEeuiO8bdsAI5mQ" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0w4t87HeEeuiO8bdsAI5mQ" x="1" y="12"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_0w4t9LHeEeuiO8bdsAI5mQ" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0w4t9bHeEeuiO8bdsAI5mQ" x="1" y="11"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_0w4G4bHeEeuiO8bdsAI5mQ"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_0w4G4rHeEeuiO8bdsAI5mQ" fontName="Cantarell" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_0w4G47HeEeuiO8bdsAI5mQ" points="[-4, 1, 296, -122]$[-269, 110, 31, -13]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_0w4t9rHeEeuiO8bdsAI5mQ" id="(0.0392156862745098,0.5154639175257731)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_0w4t97HeEeuiO8bdsAI5mQ" id="(0.5686274509803921,0.13402061855670103)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_9cfMILHeEeuiO8bdsAI5mQ" type="4001" element="_9caT2rHeEeuiO8bdsAI5mQ" source="_vMvv8LHeEeuiO8bdsAI5mQ" target="_pV8kMLGoEeudEakJBW0CPw">
+          <children xmi:type="notation:Node" xmi:id="_9cfzMLHeEeuiO8bdsAI5mQ" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_9cfzMbHeEeuiO8bdsAI5mQ" x="2" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_9cfzMrHeEeuiO8bdsAI5mQ" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_9cfzM7HeEeuiO8bdsAI5mQ" x="1" y="-9"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_9cfzNLHeEeuiO8bdsAI5mQ" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_9cfzNbHeEeuiO8bdsAI5mQ" x="-1" y="-9"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_9cfMIbHeEeuiO8bdsAI5mQ"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_9cfMIrHeEeuiO8bdsAI5mQ" fontName="Cantarell" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_9cfMI7HeEeuiO8bdsAI5mQ" points="[0, 0, 911, 32]$[-418, 32, 493, 64]$[-860, -25, 51, 7]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_9cfzNrHeEeuiO8bdsAI5mQ" id="(0.0,0.4948453608247423)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_BiKoELHfEeuiO8bdsAI5mQ" type="4001" element="_BiFI1LHfEeuiO8bdsAI5mQ" source="_vMvv8LHeEeuiO8bdsAI5mQ" target="_FLHpYLGrEeudEakJBW0CPw">
+          <children xmi:type="notation:Node" xmi:id="_BiKoFLHfEeuiO8bdsAI5mQ" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_BiKoFbHfEeuiO8bdsAI5mQ" x="-19" y="-12"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_BiKoFrHfEeuiO8bdsAI5mQ" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_BiKoF7HfEeuiO8bdsAI5mQ" x="1" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_BiKoGLHfEeuiO8bdsAI5mQ" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_BiKoGbHfEeuiO8bdsAI5mQ" x="6" y="13"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_BiKoEbHfEeuiO8bdsAI5mQ"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_BiKoErHfEeuiO8bdsAI5mQ" fontName="Cantarell" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_BiKoE7HfEeuiO8bdsAI5mQ" points="[-17, -16, 229, 224]$[-235, -230, 11, 10]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_BiLPILHfEeuiO8bdsAI5mQ" id="(0.30392156862745096,0.16494845360824742)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_BiLPIbHfEeuiO8bdsAI5mQ" id="(0.8921568627450981,0.6391752577319587)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_sILWQLHfEeuiO8bdsAI5mQ" type="4001" element="_sIGeIrHfEeuiO8bdsAI5mQ" source="_vMvv8LHeEeuiO8bdsAI5mQ" target="_ZWW2ALHfEeuiO8bdsAI5mQ">
+          <children xmi:type="notation:Node" xmi:id="_sIL9UbHfEeuiO8bdsAI5mQ" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_sIL9UrHfEeuiO8bdsAI5mQ" x="1" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_sIL9U7HfEeuiO8bdsAI5mQ" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_sIL9VLHfEeuiO8bdsAI5mQ" x="-1" y="9"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_sIL9VbHfEeuiO8bdsAI5mQ" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_sIL9VrHfEeuiO8bdsAI5mQ" x="-1" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_sILWQbHfEeuiO8bdsAI5mQ"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_sILWQrHfEeuiO8bdsAI5mQ" fontName="Cantarell" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_sIL9ULHfEeuiO8bdsAI5mQ" points="[0, 0, -232, 16]$[232, -16, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_sIL9V7HfEeuiO8bdsAI5mQ" id="(1.0,0.4948453608247423)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_sIL9WLHfEeuiO8bdsAI5mQ" id="(0.0,0.4948453608247423)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_u-5EsLHfEeuiO8bdsAI5mQ" type="4001" element="_u-2B9LHfEeuiO8bdsAI5mQ" source="_Z_WGQLGrEeudEakJBW0CPw" target="_ZWW2ALHfEeuiO8bdsAI5mQ">
+          <children xmi:type="notation:Node" xmi:id="_u-5EtLHfEeuiO8bdsAI5mQ" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_u-5EtbHfEeuiO8bdsAI5mQ" x="-1" y="-11"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_u-5EtrHfEeuiO8bdsAI5mQ" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_u-5Et7HfEeuiO8bdsAI5mQ" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_u-5EuLHfEeuiO8bdsAI5mQ" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_u-5EubHfEeuiO8bdsAI5mQ" y="9"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_u-5EsbHfEeuiO8bdsAI5mQ"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_u-5EsrHfEeuiO8bdsAI5mQ" fontName="Cantarell" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_u-5Es7HfEeuiO8bdsAI5mQ" points="[16, 0, -558, -15]$[570, 14, -4, -1]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_u-5EurHfEeuiO8bdsAI5mQ" id="(0.8431372549019608,0.4329896907216495)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_u-5Eu7HfEeuiO8bdsAI5mQ" id="(0.0392156862745098,0.25773195876288657)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_ys8DwLHfEeuiO8bdsAI5mQ" type="4001" element="_ys5oGLHfEeuiO8bdsAI5mQ" source="_Z_WGQLGrEeudEakJBW0CPw" target="_ZWW2ALHfEeuiO8bdsAI5mQ">
+          <children xmi:type="notation:Node" xmi:id="_ys8q0LHfEeuiO8bdsAI5mQ" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ys8q0bHfEeuiO8bdsAI5mQ" x="4" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_ys8q0rHfEeuiO8bdsAI5mQ" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ys8q07HfEeuiO8bdsAI5mQ" y="9"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_ys8q1LHfEeuiO8bdsAI5mQ" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ys8q1bHfEeuiO8bdsAI5mQ" x="2" y="9"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_ys8DwbHfEeuiO8bdsAI5mQ"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_ys8DwrHfEeuiO8bdsAI5mQ" fontName="Cantarell" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_ys8Dw7HfEeuiO8bdsAI5mQ" points="[0, 0, -576, -9]$[314, -32, -262, -41]$[554, 6, -22, -3]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_ys8q1rHfEeuiO8bdsAI5mQ" id="(1.0,0.32989690721649484)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_ys8q17HfEeuiO8bdsAI5mQ" id="(0.21568627450980393,0.09278350515463918)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_5bAeQLHfEeuiO8bdsAI5mQ" type="4001" element="_5a7mKLHfEeuiO8bdsAI5mQ" source="_ZWW2ALHfEeuiO8bdsAI5mQ" target="_FLHpYLGrEeudEakJBW0CPw">
+          <children xmi:type="notation:Node" xmi:id="_5bAeRLHfEeuiO8bdsAI5mQ" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_5bAeRbHfEeuiO8bdsAI5mQ" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_5bAeRrHfEeuiO8bdsAI5mQ" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_5bAeR7HfEeuiO8bdsAI5mQ" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_5bAeSLHfEeuiO8bdsAI5mQ" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_5bAeSbHfEeuiO8bdsAI5mQ" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_5bAeQbHfEeuiO8bdsAI5mQ"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_5bAeQrHfEeuiO8bdsAI5mQ" fontName="Cantarell" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_5bAeQ7HfEeuiO8bdsAI5mQ" points="[0, 0, 538, 240]$[-538, -240, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_5bAeSrHfEeuiO8bdsAI5mQ" id="(0.0,0.16494845360824742)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_5bAeS7HfEeuiO8bdsAI5mQ" id="(1.0,0.4742268041237113)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_Mus8gLHgEeuiO8bdsAI5mQ" type="4001" element="_MuorRLHgEeuiO8bdsAI5mQ" source="_FLHpYLGrEeudEakJBW0CPw" target="_ZWW2ALHfEeuiO8bdsAI5mQ">
+          <children xmi:type="notation:Node" xmi:id="_MutjkLHgEeuiO8bdsAI5mQ" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_MutjkbHgEeuiO8bdsAI5mQ" x="-1" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_MutjkrHgEeuiO8bdsAI5mQ" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Mutjk7HgEeuiO8bdsAI5mQ" x="-1" y="8"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_MutjlLHgEeuiO8bdsAI5mQ" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_MutjlbHgEeuiO8bdsAI5mQ" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_Mus8gbHgEeuiO8bdsAI5mQ"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_Mus8grHgEeuiO8bdsAI5mQ" fontName="Cantarell" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Mus8g7HgEeuiO8bdsAI5mQ" points="[0, 0, -563, -253]$[538, 241, -25, -12]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_MutjlrHgEeuiO8bdsAI5mQ" id="(1.0,0.30927835051546393)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Mutjl7HgEeuiO8bdsAI5mQ" id="(0.24509803921568626,0.13402061855670103)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_QZOGcLHgEeuiO8bdsAI5mQ" type="4001" element="_QZLqhLHgEeuiO8bdsAI5mQ" source="_FLHpYLGrEeudEakJBW0CPw" target="_ZWW2ALHfEeuiO8bdsAI5mQ">
+          <children xmi:type="notation:Node" xmi:id="_QZOGdLHgEeuiO8bdsAI5mQ" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_QZOGdbHgEeuiO8bdsAI5mQ" x="1" y="-14"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_QZOGdrHgEeuiO8bdsAI5mQ" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_QZOGd7HgEeuiO8bdsAI5mQ" x="1" y="6"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_QZOGeLHgEeuiO8bdsAI5mQ" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_QZOGebHgEeuiO8bdsAI5mQ" x="7" y="8"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_QZOGcbHgEeuiO8bdsAI5mQ"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_QZOGcrHgEeuiO8bdsAI5mQ" fontName="Cantarell" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_QZOGc7HgEeuiO8bdsAI5mQ" points="[22, 5, -558, -254]$[336, 79, -244, -180]$[574, 255, -6, -4]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_QZOtgLHgEeuiO8bdsAI5mQ" id="(0.7843137254901961,0.15463917525773196)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_QZOtgbHgEeuiO8bdsAI5mQ" id="(0.19607843137254902,0.041237113402061855)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_V83VMLHgEeuiO8bdsAI5mQ" type="4001" element="_V8zD1LHgEeuiO8bdsAI5mQ" source="_n48I2LGqEeudEakJBW0CPw" target="_ZWW2ALHfEeuiO8bdsAI5mQ">
+          <children xmi:type="notation:Node" xmi:id="_V83VNLHgEeuiO8bdsAI5mQ" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_V83VNbHgEeuiO8bdsAI5mQ" x="4" y="-12"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_V83VNrHgEeuiO8bdsAI5mQ" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_V83VN7HgEeuiO8bdsAI5mQ" x="2" y="7"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_V838QLHgEeuiO8bdsAI5mQ" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_V838QbHgEeuiO8bdsAI5mQ" x="7" y="8"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_V83VMbHgEeuiO8bdsAI5mQ"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_V83VMrHgEeuiO8bdsAI5mQ" fontName="Cantarell" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_V83VM7HgEeuiO8bdsAI5mQ" points="[3, 0, -845, -321]$[509, 62, -339, -259]$[844, 318, -4, -3]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_V838QrHgEeuiO8bdsAI5mQ" id="(0.9705882352941176,0.4948453608247423)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_V838Q7HgEeuiO8bdsAI5mQ" id="(0.3431372549019608,0.030927835051546393)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_cJ44ILHgEeuiO8bdsAI5mQ" type="4001" element="_cJz_7LHgEeuiO8bdsAI5mQ" source="_qyskJrGqEeudEakJBW0CPw" target="_ZWW2ALHfEeuiO8bdsAI5mQ">
+          <children xmi:type="notation:Node" xmi:id="_cJ44JLHgEeuiO8bdsAI5mQ" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_cJ44JbHgEeuiO8bdsAI5mQ" x="-2" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_cJ44JrHgEeuiO8bdsAI5mQ" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_cJ44J7HgEeuiO8bdsAI5mQ" x="2" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_cJ44KLHgEeuiO8bdsAI5mQ" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_cJ44KbHgEeuiO8bdsAI5mQ" x="8" y="6"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_cJ44IbHgEeuiO8bdsAI5mQ"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_cJ44IrHgEeuiO8bdsAI5mQ" fontName="Cantarell" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_cJ44I7HgEeuiO8bdsAI5mQ" points="[0, 0, -826, -464]$[586, 144, -240, -320]$[826, 464, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_cJ44KrHgEeuiO8bdsAI5mQ" id="(1.0,0.6597938144329897)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_cJ44K7HgEeuiO8bdsAI5mQ" id="(0.3137254901960784,0.0)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_fQdngLHgEeuiO8bdsAI5mQ" type="4001" element="_fQbLjLHgEeuiO8bdsAI5mQ" source="_qyskJrGqEeudEakJBW0CPw" target="_ZWW2ALHfEeuiO8bdsAI5mQ">
+          <children xmi:type="notation:Node" xmi:id="_fQdnhLHgEeuiO8bdsAI5mQ" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_fQdnhbHgEeuiO8bdsAI5mQ" x="-2" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_fQdnhrHgEeuiO8bdsAI5mQ" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_fQdnh7HgEeuiO8bdsAI5mQ" x="2" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_fQdniLHgEeuiO8bdsAI5mQ" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_fQdnibHgEeuiO8bdsAI5mQ" x="8" y="6"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_fQdngbHgEeuiO8bdsAI5mQ"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_fQdngrHgEeuiO8bdsAI5mQ" fontName="Cantarell" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_fQdng7HgEeuiO8bdsAI5mQ" points="[0, 0, -842, -480]$[570, 96, -272, -384]$[842, 480, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_fQdnirHgEeuiO8bdsAI5mQ" id="(1.0,0.4948453608247423)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_fQdni7HgEeuiO8bdsAI5mQ" id="(0.47058823529411764,0.0)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_jeCbMLHgEeuiO8bdsAI5mQ" type="4001" element="_jd_YlLHgEeuiO8bdsAI5mQ" source="_-06KsLGpEeudEakJBW0CPw" target="_ZWW2ALHfEeuiO8bdsAI5mQ">
+          <children xmi:type="notation:Node" xmi:id="_jeCbNLHgEeuiO8bdsAI5mQ" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jeCbNbHgEeuiO8bdsAI5mQ" x="-59" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_jeDCQLHgEeuiO8bdsAI5mQ" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jeDCQbHgEeuiO8bdsAI5mQ" x="-18" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_jeDCQrHgEeuiO8bdsAI5mQ" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jeDCQ7HgEeuiO8bdsAI5mQ" x="55" y="2"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_jeCbMbHgEeuiO8bdsAI5mQ"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_jeCbMrHgEeuiO8bdsAI5mQ" fontName="Cantarell" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_jeCbM7HgEeuiO8bdsAI5mQ" points="[0, -7, -1583, -278]$[12, -279, -1571, -550]$[1356, -279, -227, -550]$[1580, 265, -3, -6]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_jeDCRLHgEeuiO8bdsAI5mQ" id="(0.5098039215686274,0.06862745098039216)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_jeDCRbHgEeuiO8bdsAI5mQ" id="(0.6568627450980392,0.061855670103092786)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_qwFsgLHgEeuiO8bdsAI5mQ" type="4001" element="_qwDQaLHgEeuiO8bdsAI5mQ" source="_V_laMLGtEeudEakJBW0CPw" target="_ZWW2ALHfEeuiO8bdsAI5mQ">
+          <children xmi:type="notation:Node" xmi:id="_qwFshLHgEeuiO8bdsAI5mQ" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_qwFshbHgEeuiO8bdsAI5mQ" x="5" y="-9"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_qwFshrHgEeuiO8bdsAI5mQ" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_qwFsh7HgEeuiO8bdsAI5mQ" y="9"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_qwFsiLHgEeuiO8bdsAI5mQ" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_qwFsibHgEeuiO8bdsAI5mQ" x="-7" y="7"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_qwFsgbHgEeuiO8bdsAI5mQ"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_qwFsgrHgEeuiO8bdsAI5mQ" fontName="Cantarell" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_qwFsg7HgEeuiO8bdsAI5mQ" points="[19, 1, -586, 183]$[349, 42, -256, 224]$[605, -182, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_qwFsirHgEeuiO8bdsAI5mQ" id="(0.8137254901960784,0.7216494845360825)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_qwFsi7HgEeuiO8bdsAI5mQ" id="(0.0,0.6597938144329897)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_uh2t8LHgEeuiO8bdsAI5mQ" type="4001" element="_uhzDlLHgEeuiO8bdsAI5mQ" source="_pV8kMLGoEeudEakJBW0CPw" target="_ZWW2ALHfEeuiO8bdsAI5mQ">
+          <children xmi:type="notation:Node" xmi:id="_uh2t9LHgEeuiO8bdsAI5mQ" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_uh2t9bHgEeuiO8bdsAI5mQ" x="11" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_uh3VALHgEeuiO8bdsAI5mQ" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_uh3VAbHgEeuiO8bdsAI5mQ" x="-3" y="8"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_uh3VArHgEeuiO8bdsAI5mQ" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_uh3VA7HgEeuiO8bdsAI5mQ" x="1" y="6"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_uh2t8bHgEeuiO8bdsAI5mQ"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_uh2t8rHgEeuiO8bdsAI5mQ" fontName="Cantarell" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_uh2t87HgEeuiO8bdsAI5mQ" points="[51, 42, -1209, 4]$[509, 416, -751, 378]$[1021, 304, -239, 266]$[1245, 54, -15, 16]"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_uh3VBbHgEeuiO8bdsAI5mQ" id="(0.14705882352941177,0.7216494845360825)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_4qULsLHgEeuiO8bdsAI5mQ" type="4001" element="_4qQhcLHgEeuiO8bdsAI5mQ" source="_CCQlkLGsEeudEakJBW0CPw" target="_ZWW2ALHfEeuiO8bdsAI5mQ">
+          <children xmi:type="notation:Node" xmi:id="_4qUywLHgEeuiO8bdsAI5mQ" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4qUywbHgEeuiO8bdsAI5mQ" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_4qUywrHgEeuiO8bdsAI5mQ" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4qUyw7HgEeuiO8bdsAI5mQ" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_4qUyxLHgEeuiO8bdsAI5mQ" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4qUyxbHgEeuiO8bdsAI5mQ" x="-8" y="6"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_4qULsbHgEeuiO8bdsAI5mQ"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_4qULsrHgEeuiO8bdsAI5mQ" fontName="Cantarell" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_4qULs7HgEeuiO8bdsAI5mQ" points="[0, 0, -906, 367]$[650, -16, -256, 351]$[906, -367, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4qUyxrHgEeuiO8bdsAI5mQ" id="(1.0,0.4948453608247423)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4qUyx7HgEeuiO8bdsAI5mQ" id="(0.1568627450980392,1.0)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_8XBG8LHgEeuiO8bdsAI5mQ" type="4001" element="_8W9cnLHgEeuiO8bdsAI5mQ" source="_H9TnsLGsEeudEakJBW0CPw" target="_ZWW2ALHfEeuiO8bdsAI5mQ">
+          <children xmi:type="notation:Node" xmi:id="_8XBG9LHgEeuiO8bdsAI5mQ" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_8XBG9bHgEeuiO8bdsAI5mQ" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_8XBG9rHgEeuiO8bdsAI5mQ" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_8XBG97HgEeuiO8bdsAI5mQ" x="-4" y="9"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_8XBuALHgEeuiO8bdsAI5mQ" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_8XBuAbHgEeuiO8bdsAI5mQ" x="-10" y="5"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_8XBG8bHgEeuiO8bdsAI5mQ"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_8XBG8rHgEeuiO8bdsAI5mQ" fontName="Cantarell" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_8XBG87HgEeuiO8bdsAI5mQ" points="[4, -2, -922, 574]$[686, -177, -240, 399]$[926, -576, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_8XBuArHgEeuiO8bdsAI5mQ" id="(0.9607843137254902,0.5051546391752577)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_8XBuA7HgEeuiO8bdsAI5mQ" id="(0.3137254901960784,1.0)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_AsDNgLHhEeuiO8bdsAI5mQ" type="4001" element="_AsAKjLHhEeuiO8bdsAI5mQ" source="_wQrFMLGpEeudEakJBW0CPw" target="_ZWW2ALHfEeuiO8bdsAI5mQ">
+          <children xmi:type="notation:Node" xmi:id="_AsDNhLHhEeuiO8bdsAI5mQ" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_AsDNhbHhEeuiO8bdsAI5mQ" x="3" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_AsDNhrHhEeuiO8bdsAI5mQ" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_AsDNh7HhEeuiO8bdsAI5mQ" x="7" y="7"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_AsD0kLHhEeuiO8bdsAI5mQ" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_AsD0kbHhEeuiO8bdsAI5mQ" x="-9" y="4"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_AsDNgbHhEeuiO8bdsAI5mQ"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_AsDNgrHhEeuiO8bdsAI5mQ" fontName="Cantarell" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_AsDNg7HhEeuiO8bdsAI5mQ" points="[11, 13, -1269, 416]$[240, 268, -1040, 671]$[1056, 44, -224, 447]$[1280, -403, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_AsD0krHhEeuiO8bdsAI5mQ" id="(0.6391752577319587,0.865979381443299)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_AsD0k7HhEeuiO8bdsAI5mQ" id="(0.47058823529411764,1.0)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_IB5ZsLHhEeuiO8bdsAI5mQ" type="4001" element="_IB2-FLHhEeuiO8bdsAI5mQ" source="_ZWW2ALHfEeuiO8bdsAI5mQ" target="_l0OJ4LGoEeudEakJBW0CPw">
+          <children xmi:type="notation:Node" xmi:id="_IB5ZtLHhEeuiO8bdsAI5mQ" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_IB5ZtbHhEeuiO8bdsAI5mQ" x="36" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_IB5ZtrHhEeuiO8bdsAI5mQ" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_IB5Zt7HhEeuiO8bdsAI5mQ" x="10" y="-2"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_IB5ZuLHhEeuiO8bdsAI5mQ" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_IB5ZubHhEeuiO8bdsAI5mQ" x="47" y="-3"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_IB5ZsbHhEeuiO8bdsAI5mQ"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_IB5ZsrHhEeuiO8bdsAI5mQ" fontName="Cantarell" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_IB5Zs7HhEeuiO8bdsAI5mQ" points="[-2, 4, 1852, 22]$[-222, 691, 1632, 709]$[-1854, 707, 0, 725]$[-1854, -12, 0, 6]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_IB5ZurHhEeuiO8bdsAI5mQ" id="(0.6078431372549019,0.9587628865979382)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_IB5Zu7HhEeuiO8bdsAI5mQ" id="(0.47058823529411764,0.9381443298969072)"/>
         </edges>
       </data>
     </ownedAnnotationEntries>
     <ownedAnnotationEntries xmi:type="description:AnnotationEntry" uid="_fmKFI7GoEeudEakJBW0CPw" source="DANNOTATION_CUSTOMIZATION_KEY">
       <data xmi:type="diagram:ComputedStyleDescriptionRegistry" uid="_fmKFJLGoEeudEakJBW0CPw"/>
     </ownedAnnotationEntries>
-    <ownedDiagramElements xmi:type="diagram:DNode" uid="_l0G1ILGoEeudEakJBW0CPw" name="init" outgoingEdges="_y73VkLGoEeudEakJBW0CPw" width="7" height="7" resizeKind="NSEW">
+    <ownedDiagramElements xmi:type="diagram:DNode" uid="_l0G1ILGoEeudEakJBW0CPw" name="init" outgoingEdges="_y73VkLGoEeudEakJBW0CPw" incomingEdges="_IB2-FLHhEeuiO8bdsAI5mQ" width="7" height="7" resizeKind="NSEW">
       <target xmi:type="lts:InitialState" href="pump.lts#//@states.0"/>
       <semanticElements xmi:type="lts:InitialState" href="pump.lts#//@states.0"/>
       <ownedStyle xmi:type="diagram:Ellipse" uid="_l0HcMLGoEeudEakJBW0CPw" labelSize="12" showIcon="false" labelColor="255,255,255" borderSize="2" borderSizeComputationExpression="2" borderColor="255,255,255" labelPosition="node" horizontalDiameter="7" verticalDiameter="7" color="0,0,0">
@@ -1044,7 +1427,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@nodeMappings[name='InitialStateNode']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DNode" uid="_pV5g4LGoEeudEakJBW0CPw" name="Infusion_NormalOperation" outgoingEdges="__b02NLGoEeudEakJBW0CPw _k6CkMLGpEeudEakJBW0CPw _zT0GHLGpEeudEakJBW0CPw _DzchXLGqEeudEakJBW0CPw _Rsth8LGrEeudEakJBW0CPw _c5sXvLGrEeudEakJBW0CPw _1QU80LGxEeudEakJBW0CPw" incomingEdges="_y73VkLGoEeudEakJBW0CPw _ZWQX5LGpEeudEakJBW0CPw _cY30ULGpEeudEakJBW0CPw _ofox4LGpEeudEakJBW0CPw _GBLkPrGqEeudEakJBW0CPw _ipgPmLGqEeudEakJBW0CPw _vAI1HLGqEeudEakJBW0CPw _WBBPxLGrEeudEakJBW0CPw _hMXt6LGrEeudEakJBW0CPw _S7d-pLGsEeudEakJBW0CPw _45SnhLGxEeudEakJBW0CPw" width="7" height="7" resizeKind="NSEW">
+    <ownedDiagramElements xmi:type="diagram:DNode" uid="_pV5g4LGoEeudEakJBW0CPw" name="Infusion_NormalOperation" outgoingEdges="__b02NLGoEeudEakJBW0CPw _k6CkMLGpEeudEakJBW0CPw _zT0GHLGpEeudEakJBW0CPw _DzchXLGqEeudEakJBW0CPw _Rsth8LGrEeudEakJBW0CPw _c5sXvLGrEeudEakJBW0CPw _1QU80LGxEeudEakJBW0CPw _uhzDlLHgEeuiO8bdsAI5mQ" incomingEdges="_y73VkLGoEeudEakJBW0CPw _ZWQX5LGpEeudEakJBW0CPw _cY30ULGpEeudEakJBW0CPw _ofox4LGpEeudEakJBW0CPw _GBLkPrGqEeudEakJBW0CPw _ipgPmLGqEeudEakJBW0CPw _vAI1HLGqEeudEakJBW0CPw _WBBPxLGrEeudEakJBW0CPw _hMXt6LGrEeudEakJBW0CPw _S7d-pLGsEeudEakJBW0CPw _45SnhLGxEeudEakJBW0CPw _9caT2rHeEeuiO8bdsAI5mQ" width="7" height="7" resizeKind="NSEW">
       <target xmi:type="lts:State" href="pump.lts#//@states.1"/>
       <semanticElements xmi:type="lts:State" href="pump.lts#//@states.1"/>
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
@@ -1077,7 +1460,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@nodeMappings[name='StateNode']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DNode" uid="_wQoB4LGpEeudEakJBW0CPw" name="Alrm_EmptyReservoir" outgoingEdges="_GOoftLGsEeudEakJBW0CPw" incomingEdges="_zT0GHLGpEeudEakJBW0CPw" width="7" height="7" resizeKind="NSEW">
+    <ownedDiagramElements xmi:type="diagram:DNode" uid="_wQoB4LGpEeudEakJBW0CPw" name="Alrm_EmptyReservoir" outgoingEdges="_GOoftLGsEeudEakJBW0CPw _AsAKjLHhEeuiO8bdsAI5mQ" incomingEdges="_zT0GHLGpEeudEakJBW0CPw" width="7" height="7" resizeKind="NSEW">
       <target xmi:type="lts:State" href="pump.lts#//@states.4"/>
       <semanticElements xmi:type="lts:State" href="pump.lts#//@states.4"/>
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
@@ -1088,7 +1471,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@nodeMappings[name='StateNode']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DNode" uid="_-03HYLGpEeudEakJBW0CPw" name="ConfirmPause" outgoingEdges="_GBLkPrGqEeudEakJBW0CPw _Pv8IgLGqEeudEakJBW0CPw _LqjLLLGrEeudEakJBW0CPw" incomingEdges="_DzchXLGqEeudEakJBW0CPw" width="7" height="7" resizeKind="NSEW">
+    <ownedDiagramElements xmi:type="diagram:DNode" uid="_-03HYLGpEeudEakJBW0CPw" name="ConfirmPause" outgoingEdges="_GBLkPrGqEeudEakJBW0CPw _Pv8IgLGqEeudEakJBW0CPw _LqjLLLGrEeudEakJBW0CPw _jd_YlLHgEeuiO8bdsAI5mQ" incomingEdges="_DzchXLGqEeudEakJBW0CPw" width="7" height="7" resizeKind="NSEW">
       <target xmi:type="lts:State" href="pump.lts#//@states.5"/>
       <semanticElements xmi:type="lts:State" href="pump.lts#//@states.5"/>
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
@@ -1110,7 +1493,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@nodeMappings[name='StateNode']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DNode" uid="_n45sgLGqEeudEakJBW0CPw" name="PausedStopConfirm" outgoingEdges="_yWz2ALGqEeudEakJBW0CPw" incomingEdges="_06n2cLGqEeudEakJBW0CPw" width="7" height="7" resizeKind="NSEW">
+    <ownedDiagramElements xmi:type="diagram:DNode" uid="_n45sgLGqEeudEakJBW0CPw" name="PausedStopConfirm" outgoingEdges="_yWz2ALGqEeudEakJBW0CPw _V8zD1LHgEeuiO8bdsAI5mQ" incomingEdges="_06n2cLGqEeudEakJBW0CPw" width="7" height="7" resizeKind="NSEW">
       <target xmi:type="lts:State" href="pump.lts#//@states.7"/>
       <semanticElements xmi:type="lts:State" href="pump.lts#//@states.7"/>
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
@@ -1121,7 +1504,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@nodeMappings[name='StateNode']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DNode" uid="_qyqH4LGqEeudEakJBW0CPw" name="Alrm_TooLongInfusionPause" outgoingEdges="_vAI1HLGqEeudEakJBW0CPw" incomingEdges="_AImx47GrEeudEakJBW0CPw" width="7" height="7" resizeKind="NSEW">
+    <ownedDiagramElements xmi:type="diagram:DNode" uid="_qyqH4LGqEeudEakJBW0CPw" name="Alrm_TooLongInfusionPause" outgoingEdges="_vAI1HLGqEeudEakJBW0CPw _cJz_7LHgEeuiO8bdsAI5mQ _fQbLjLHgEeuiO8bdsAI5mQ" incomingEdges="_AImx47GrEeudEakJBW0CPw" width="7" height="7" resizeKind="NSEW">
       <target xmi:type="lts:State" href="pump.lts#//@states.8"/>
       <semanticElements xmi:type="lts:State" href="pump.lts#//@states.8"/>
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
@@ -1132,7 +1515,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@nodeMappings[name='StateNode']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DNode" uid="_FLFNILGrEeudEakJBW0CPw" name="Alrm_LevelTwoHardwareFailure" outgoingEdges="_WBBPxLGrEeudEakJBW0CPw" incomingEdges="_LqjLLLGrEeudEakJBW0CPw _Rsth8LGrEeudEakJBW0CPw _lbZTILGrEeudEakJBW0CPw _BHfYArGyEeudEakJBW0CPw" width="7" height="7" resizeKind="NSEW">
+    <ownedDiagramElements xmi:type="diagram:DNode" uid="_FLFNILGrEeudEakJBW0CPw" name="Alrm_LevelTwoHardwareFailure" outgoingEdges="_WBBPxLGrEeudEakJBW0CPw _MuorRLHgEeuiO8bdsAI5mQ _QZLqhLHgEeuiO8bdsAI5mQ" incomingEdges="_LqjLLLGrEeudEakJBW0CPw _Rsth8LGrEeudEakJBW0CPw _lbZTILGrEeudEakJBW0CPw _BHfYArGyEeudEakJBW0CPw _BiFI1LHfEeuiO8bdsAI5mQ _5a7mKLHfEeuiO8bdsAI5mQ" width="7" height="7" resizeKind="NSEW">
       <target xmi:type="lts:State" href="pump.lts#//@states.9"/>
       <semanticElements xmi:type="lts:State" href="pump.lts#//@states.9"/>
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
@@ -1143,7 +1526,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@nodeMappings[name='StateNode']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DNode" uid="_Z_TC8LGrEeudEakJBW0CPw" name="ConfirmStop" outgoingEdges="_hMXt6LGrEeudEakJBW0CPw _lbZTILGrEeudEakJBW0CPw" incomingEdges="_c5sXvLGrEeudEakJBW0CPw" width="7" height="7" resizeKind="NSEW">
+    <ownedDiagramElements xmi:type="diagram:DNode" uid="_Z_TC8LGrEeudEakJBW0CPw" name="ConfirmStop" outgoingEdges="_hMXt6LGrEeudEakJBW0CPw _lbZTILGrEeudEakJBW0CPw _u-2B9LHfEeuiO8bdsAI5mQ _ys5oGLHfEeuiO8bdsAI5mQ" incomingEdges="_c5sXvLGrEeudEakJBW0CPw" width="7" height="7" resizeKind="NSEW">
       <target xmi:type="lts:State" href="pump.lts#//@states.10"/>
       <semanticElements xmi:type="lts:State" href="pump.lts#//@states.10"/>
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
@@ -1154,7 +1537,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@nodeMappings[name='StateNode']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DNode" uid="_CCOJULGsEeudEakJBW0CPw" name="CheckDrug" outgoingEdges="_MAmeTLGsEeudEakJBW0CPw _S7d-pLGsEeudEakJBW0CPw" incomingEdges="_GOoftLGsEeudEakJBW0CPw _Og_-eLGsEeudEakJBW0CPw" width="7" height="7" resizeKind="NSEW">
+    <ownedDiagramElements xmi:type="diagram:DNode" uid="_CCOJULGsEeudEakJBW0CPw" name="CheckDrug" outgoingEdges="_MAmeTLGsEeudEakJBW0CPw _S7d-pLGsEeudEakJBW0CPw _4qQhcLHgEeuiO8bdsAI5mQ" incomingEdges="_GOoftLGsEeudEakJBW0CPw _Og_-eLGsEeudEakJBW0CPw" width="7" height="7" resizeKind="NSEW">
       <target xmi:type="lts:State" href="pump.lts#//@states.11"/>
       <semanticElements xmi:type="lts:State" href="pump.lts#//@states.11"/>
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
@@ -1165,7 +1548,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@nodeMappings[name='StateNode']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DNode" uid="_H9RLcLGsEeudEakJBW0CPw" name="Alrm_WrongDrug" outgoingEdges="_Og_-eLGsEeudEakJBW0CPw" incomingEdges="_MAmeTLGsEeudEakJBW0CPw" width="7" height="7" resizeKind="NSEW">
+    <ownedDiagramElements xmi:type="diagram:DNode" uid="_H9RLcLGsEeudEakJBW0CPw" name="Alrm_WrongDrug" outgoingEdges="_Og_-eLGsEeudEakJBW0CPw _8W9cnLHgEeuiO8bdsAI5mQ" incomingEdges="_MAmeTLGsEeudEakJBW0CPw" width="7" height="7" resizeKind="NSEW">
       <target xmi:type="lts:State" href="pump.lts#//@states.12"/>
       <semanticElements xmi:type="lts:State" href="pump.lts#//@states.12"/>
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
@@ -1176,7 +1559,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@nodeMappings[name='StateNode']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DNode" uid="_V_i98LGtEeudEakJBW0CPw" name="ChangeRate" outgoingEdges="_wBeSGrGxEeudEakJBW0CPw _45SnhLGxEeudEakJBW0CPw _BHfYArGyEeudEakJBW0CPw" incomingEdges="_vDWc2LGxEeudEakJBW0CPw _1QU80LGxEeudEakJBW0CPw" width="7" height="7" resizeKind="NSEW">
+    <ownedDiagramElements xmi:type="diagram:DNode" uid="_V_i98LGtEeudEakJBW0CPw" name="ChangeRate" outgoingEdges="_wBeSGrGxEeudEakJBW0CPw _45SnhLGxEeudEakJBW0CPw _BHfYArGyEeudEakJBW0CPw _sNi0DLHeEeuiO8bdsAI5mQ _qwDQaLHgEeuiO8bdsAI5mQ" incomingEdges="_vDWc2LGxEeudEakJBW0CPw _1QU80LGxEeudEakJBW0CPw _qE3QJbHeEeuiO8bdsAI5mQ _0w1quLHeEeuiO8bdsAI5mQ" width="7" height="7" resizeKind="NSEW">
       <target xmi:type="lts:State" href="pump.lts#//@states.13"/>
       <semanticElements xmi:type="lts:State" href="pump.lts#//@states.13"/>
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
@@ -1194,6 +1577,39 @@
       <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
       <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
       <ownedStyle xmi:type="diagram:Ellipse" uid="_Y217MbGtEeudEakJBW0CPw" labelSize="12" showIcon="false" borderSize="2" borderSizeComputationExpression="2" labelPosition="node" horizontalDiameter="7" verticalDiameter="7" color="255,255,255">
+        <description xmi:type="style:EllipseNodeDescription" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@nodeMappings[name='StateNode']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@nodeMappings[name='StateNode']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DNode" uid="_hTGfkLHeEeuiO8bdsAI5mQ" name="CheckNewRate" outgoingEdges="_qE3QJbHeEeuiO8bdsAI5mQ _yHcmzLHeEeuiO8bdsAI5mQ" incomingEdges="_sNi0DLHeEeuiO8bdsAI5mQ" width="7" height="7" resizeKind="NSEW">
+      <target xmi:type="lts:State" href="pump.lts#//@states.15"/>
+      <semanticElements xmi:type="lts:State" href="pump.lts#//@states.15"/>
+      <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+      <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+      <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+      <ownedStyle xmi:type="diagram:Ellipse" uid="_hTHGoLHeEeuiO8bdsAI5mQ" labelSize="12" showIcon="false" borderSize="2" borderSizeComputationExpression="2" labelPosition="node" horizontalDiameter="7" verticalDiameter="7" color="255,255,255">
+        <description xmi:type="style:EllipseNodeDescription" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@nodeMappings[name='StateNode']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@nodeMappings[name='StateNode']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DNode" uid="_vMqQYLHeEeuiO8bdsAI5mQ" name="Alrm_UnsafeNewRate" outgoingEdges="_0w1quLHeEeuiO8bdsAI5mQ _9caT2rHeEeuiO8bdsAI5mQ _BiFI1LHfEeuiO8bdsAI5mQ _sIGeIrHfEeuiO8bdsAI5mQ" incomingEdges="_yHcmzLHeEeuiO8bdsAI5mQ" width="7" height="7" resizeKind="NSEW">
+      <target xmi:type="lts:State" href="pump.lts#//@states.16"/>
+      <semanticElements xmi:type="lts:State" href="pump.lts#//@states.16"/>
+      <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+      <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+      <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+      <ownedStyle xmi:type="diagram:Ellipse" uid="_vMqQYbHeEeuiO8bdsAI5mQ" labelSize="12" showIcon="false" borderSize="2" borderSizeComputationExpression="2" labelPosition="node" horizontalDiameter="7" verticalDiameter="7" color="255,255,255">
+        <description xmi:type="style:EllipseNodeDescription" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@nodeMappings[name='StateNode']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@nodeMappings[name='StateNode']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DNode" uid="_ZWSkkLHfEeuiO8bdsAI5mQ" name="InfusionStopped" outgoingEdges="_5a7mKLHfEeuiO8bdsAI5mQ _IB2-FLHhEeuiO8bdsAI5mQ" incomingEdges="_sIGeIrHfEeuiO8bdsAI5mQ _u-2B9LHfEeuiO8bdsAI5mQ _ys5oGLHfEeuiO8bdsAI5mQ _MuorRLHgEeuiO8bdsAI5mQ _QZLqhLHgEeuiO8bdsAI5mQ _V8zD1LHgEeuiO8bdsAI5mQ _cJz_7LHgEeuiO8bdsAI5mQ _fQbLjLHgEeuiO8bdsAI5mQ _jd_YlLHgEeuiO8bdsAI5mQ _qwDQaLHgEeuiO8bdsAI5mQ _uhzDlLHgEeuiO8bdsAI5mQ _4qQhcLHgEeuiO8bdsAI5mQ _8W9cnLHgEeuiO8bdsAI5mQ _AsAKjLHhEeuiO8bdsAI5mQ" width="7" height="7" resizeKind="NSEW">
+      <target xmi:type="lts:State" href="pump.lts#//@states.17"/>
+      <semanticElements xmi:type="lts:State" href="pump.lts#//@states.17"/>
+      <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+      <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+      <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+      <ownedStyle xmi:type="diagram:Ellipse" uid="_ZWSkkbHfEeuiO8bdsAI5mQ" labelSize="12" showIcon="false" borderSize="2" borderSizeComputationExpression="2" labelPosition="node" horizontalDiameter="7" verticalDiameter="7" color="255,255,255">
         <description xmi:type="style:EllipseNodeDescription" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@nodeMappings[name='StateNode']/@style"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@nodeMappings[name='StateNode']"/>
@@ -1465,6 +1881,204 @@
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_BHfYA7GyEeudEakJBW0CPw" size="2" strokeColor="0,0,0">
         <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']/@style"/>
         <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_BHfYBLGyEeudEakJBW0CPw" labelSize="12" showIcon="false"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_qE3QJbHeEeuiO8bdsAI5mQ" name="Cond_7_4?" sourceNode="_hTGfkLHeEeuiO8bdsAI5mQ" targetNode="_V_i98LGtEeudEakJBW0CPw">
+      <target xmi:type="lts:Transition" href="pump.lts#//@transitions.30"/>
+      <semanticElements xmi:type="lts:Transition" href="pump.lts#//@transitions.30"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_qE3QJrHeEeuiO8bdsAI5mQ" size="2" strokeColor="0,0,0">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_qE3QJ7HeEeuiO8bdsAI5mQ" labelSize="12" showIcon="false"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_sNi0DLHeEeuiO8bdsAI5mQ" name="E_ConfirmDoseRate?" sourceNode="_V_i98LGtEeudEakJBW0CPw" targetNode="_hTGfkLHeEeuiO8bdsAI5mQ">
+      <target xmi:type="lts:Transition" href="pump.lts#//@transitions.31"/>
+      <semanticElements xmi:type="lts:Transition" href="pump.lts#//@transitions.31"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_sNja8LHeEeuiO8bdsAI5mQ" size="2" strokeColor="0,0,0">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_sNja8bHeEeuiO8bdsAI5mQ" labelSize="12" showIcon="false"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_yHcmzLHeEeuiO8bdsAI5mQ" name="Cond_7_3?" sourceNode="_hTGfkLHeEeuiO8bdsAI5mQ" targetNode="_vMqQYLHeEeuiO8bdsAI5mQ">
+      <target xmi:type="lts:Transition" href="pump.lts#//@transitions.32"/>
+      <semanticElements xmi:type="lts:Transition" href="pump.lts#//@transitions.32"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_yHdNkLHeEeuiO8bdsAI5mQ" size="2" strokeColor="0,0,0">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_yHdNkbHeEeuiO8bdsAI5mQ" labelSize="12" showIcon="false"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_0w1quLHeEeuiO8bdsAI5mQ" name="E_ChangeDoseRate?" sourceNode="_vMqQYLHeEeuiO8bdsAI5mQ" targetNode="_V_i98LGtEeudEakJBW0CPw">
+      <target xmi:type="lts:Transition" href="pump.lts#//@transitions.33"/>
+      <semanticElements xmi:type="lts:Transition" href="pump.lts#//@transitions.33"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_0w1qubHeEeuiO8bdsAI5mQ" size="2" strokeColor="0,0,0">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_0w1qurHeEeuiO8bdsAI5mQ" labelSize="12" showIcon="false"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_9caT2rHeEeuiO8bdsAI5mQ" name="E_Cancel?" sourceNode="_vMqQYLHeEeuiO8bdsAI5mQ" targetNode="_pV5g4LGoEeudEakJBW0CPw">
+      <target xmi:type="lts:Transition" href="pump.lts#//@transitions.34"/>
+      <semanticElements xmi:type="lts:Transition" href="pump.lts#//@transitions.34"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_9caT27HeEeuiO8bdsAI5mQ" size="2" strokeColor="0,0,0">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_9caT3LHeEeuiO8bdsAI5mQ" labelSize="12" showIcon="false"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_BiFI1LHfEeuiO8bdsAI5mQ" name="Level_Two_Alarm? x1 = 0" sourceNode="_vMqQYLHeEeuiO8bdsAI5mQ" targetNode="_FLFNILGrEeudEakJBW0CPw">
+      <target xmi:type="lts:Transition" href="pump.lts#//@transitions.35"/>
+      <semanticElements xmi:type="lts:Transition" href="pump.lts#//@transitions.35"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_BiFvkLHfEeuiO8bdsAI5mQ" size="2" strokeColor="0,0,0">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_BiFvkbHfEeuiO8bdsAI5mQ" labelSize="12" showIcon="false"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_sIGeIrHfEeuiO8bdsAI5mQ" name="Cond_6_2?" sourceNode="_vMqQYLHeEeuiO8bdsAI5mQ" targetNode="_ZWSkkLHfEeuiO8bdsAI5mQ">
+      <target xmi:type="lts:Transition" href="pump.lts#//@transitions.36"/>
+      <semanticElements xmi:type="lts:Transition" href="pump.lts#//@transitions.36"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_sIHE0LHfEeuiO8bdsAI5mQ" size="2" strokeColor="0,0,0">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_sIHE0bHfEeuiO8bdsAI5mQ" labelSize="12" showIcon="false"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_u-2B9LHfEeuiO8bdsAI5mQ" name="Cond_6_2?" sourceNode="_Z_TC8LGrEeudEakJBW0CPw" targetNode="_ZWSkkLHfEeuiO8bdsAI5mQ">
+      <target xmi:type="lts:Transition" href="pump.lts#//@transitions.37"/>
+      <semanticElements xmi:type="lts:Transition" href="pump.lts#//@transitions.37"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_u-2B9bHfEeuiO8bdsAI5mQ" size="2" strokeColor="0,0,0">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_u-2B9rHfEeuiO8bdsAI5mQ" labelSize="12" showIcon="false"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_ys5oGLHfEeuiO8bdsAI5mQ" name="E_ConfirmStopInfusion?" sourceNode="_Z_TC8LGrEeudEakJBW0CPw" targetNode="_ZWSkkLHfEeuiO8bdsAI5mQ">
+      <target xmi:type="lts:Transition" href="pump.lts#//@transitions.38"/>
+      <semanticElements xmi:type="lts:Transition" href="pump.lts#//@transitions.38"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_ys5oGbHfEeuiO8bdsAI5mQ" size="2" strokeColor="0,0,0">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_ys5oGrHfEeuiO8bdsAI5mQ" labelSize="12" showIcon="false"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_5a7mKLHfEeuiO8bdsAI5mQ" name="Level_Two_Alarm? x1 = 0" sourceNode="_ZWSkkLHfEeuiO8bdsAI5mQ" targetNode="_FLFNILGrEeudEakJBW0CPw">
+      <target xmi:type="lts:Transition" href="pump.lts#//@transitions.39"/>
+      <semanticElements xmi:type="lts:Transition" href="pump.lts#//@transitions.39"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_5a7mKbHfEeuiO8bdsAI5mQ" size="2" strokeColor="0,0,0">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_5a7mKrHfEeuiO8bdsAI5mQ" labelSize="12" showIcon="false"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_MuorRLHgEeuiO8bdsAI5mQ" name="E_StopInfusion?" sourceNode="_FLFNILGrEeudEakJBW0CPw" targetNode="_ZWSkkLHfEeuiO8bdsAI5mQ">
+      <target xmi:type="lts:Transition" href="pump.lts#//@transitions.40"/>
+      <semanticElements xmi:type="lts:Transition" href="pump.lts#//@transitions.40"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_MuorRbHgEeuiO8bdsAI5mQ" size="2" strokeColor="0,0,0">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_MuorRrHgEeuiO8bdsAI5mQ" labelSize="12" showIcon="false"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_QZLqhLHgEeuiO8bdsAI5mQ" name="x1 >= MAX_ALRM_T" sourceNode="_FLFNILGrEeudEakJBW0CPw" targetNode="_ZWSkkLHfEeuiO8bdsAI5mQ">
+      <target xmi:type="lts:Transition" href="pump.lts#//@transitions.41"/>
+      <semanticElements xmi:type="lts:Transition" href="pump.lts#//@transitions.41"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_QZLqhbHgEeuiO8bdsAI5mQ" size="2" strokeColor="0,0,0">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_QZLqhrHgEeuiO8bdsAI5mQ" labelSize="12" showIcon="false"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_V8zD1LHgEeuiO8bdsAI5mQ" name="E_ConfirmStopInfusion?" sourceNode="_n45sgLGqEeudEakJBW0CPw" targetNode="_ZWSkkLHfEeuiO8bdsAI5mQ">
+      <target xmi:type="lts:Transition" href="pump.lts#//@transitions.42"/>
+      <semanticElements xmi:type="lts:Transition" href="pump.lts#//@transitions.42"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_V8zD1bHgEeuiO8bdsAI5mQ" size="2" strokeColor="0,0,0">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_V8zD1rHgEeuiO8bdsAI5mQ" labelSize="12" showIcon="false"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_cJz_7LHgEeuiO8bdsAI5mQ" name="E_StopInfusion?" sourceNode="_qyqH4LGqEeudEakJBW0CPw" targetNode="_ZWSkkLHfEeuiO8bdsAI5mQ">
+      <target xmi:type="lts:Transition" href="pump.lts#//@transitions.43"/>
+      <semanticElements xmi:type="lts:Transition" href="pump.lts#//@transitions.43"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_cJz_7bHgEeuiO8bdsAI5mQ" size="2" strokeColor="0,0,0">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_cJz_7rHgEeuiO8bdsAI5mQ" labelSize="12" showIcon="false"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_fQbLjLHgEeuiO8bdsAI5mQ" name="x1 >= MAX_ALRM_T" sourceNode="_qyqH4LGqEeudEakJBW0CPw" targetNode="_ZWSkkLHfEeuiO8bdsAI5mQ">
+      <target xmi:type="lts:Transition" href="pump.lts#//@transitions.44"/>
+      <semanticElements xmi:type="lts:Transition" href="pump.lts#//@transitions.44"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_fQbLjbHgEeuiO8bdsAI5mQ" size="2" strokeColor="0,0,0">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_fQbLjrHgEeuiO8bdsAI5mQ" labelSize="12" showIcon="false"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_jd_YlLHgEeuiO8bdsAI5mQ" name="Cond_6_2?" sourceNode="_-03HYLGpEeudEakJBW0CPw" targetNode="_ZWSkkLHfEeuiO8bdsAI5mQ">
+      <target xmi:type="lts:Transition" href="pump.lts#//@transitions.45"/>
+      <semanticElements xmi:type="lts:Transition" href="pump.lts#//@transitions.45"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_jd_-8LHgEeuiO8bdsAI5mQ" size="2" strokeColor="0,0,0">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_jd_-8bHgEeuiO8bdsAI5mQ" labelSize="12" showIcon="false"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_qwDQaLHgEeuiO8bdsAI5mQ" name="Cond_6_2?" sourceNode="_V_i98LGtEeudEakJBW0CPw" targetNode="_ZWSkkLHfEeuiO8bdsAI5mQ">
+      <target xmi:type="lts:Transition" href="pump.lts#//@transitions.46"/>
+      <semanticElements xmi:type="lts:Transition" href="pump.lts#//@transitions.46"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_qwDQabHgEeuiO8bdsAI5mQ" size="2" strokeColor="0,0,0">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_qwDQarHgEeuiO8bdsAI5mQ" labelSize="12" showIcon="false"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_uhzDlLHgEeuiO8bdsAI5mQ" name="Cond_6_2?" sourceNode="_pV5g4LGoEeudEakJBW0CPw" targetNode="_ZWSkkLHfEeuiO8bdsAI5mQ">
+      <target xmi:type="lts:Transition" href="pump.lts#//@transitions.47"/>
+      <semanticElements xmi:type="lts:Transition" href="pump.lts#//@transitions.47"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_uhzDlbHgEeuiO8bdsAI5mQ" size="2" strokeColor="0,0,0">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_uhzDlrHgEeuiO8bdsAI5mQ" labelSize="12" showIcon="false"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_4qQhcLHgEeuiO8bdsAI5mQ" name="x1 >= MAX_CHECK_DRUG_T" sourceNode="_CCOJULGsEeudEakJBW0CPw" targetNode="_ZWSkkLHfEeuiO8bdsAI5mQ">
+      <target xmi:type="lts:Transition" href="pump.lts#//@transitions.48"/>
+      <semanticElements xmi:type="lts:Transition" href="pump.lts#//@transitions.48"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_4qQhcbHgEeuiO8bdsAI5mQ" size="2" strokeColor="0,0,0">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_4qQhcrHgEeuiO8bdsAI5mQ" labelSize="12" showIcon="false"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_8W9cnLHgEeuiO8bdsAI5mQ" name="E_StopInfusion?" sourceNode="_H9RLcLGsEeudEakJBW0CPw" targetNode="_ZWSkkLHfEeuiO8bdsAI5mQ">
+      <target xmi:type="lts:Transition" href="pump.lts#//@transitions.49"/>
+      <semanticElements xmi:type="lts:Transition" href="pump.lts#//@transitions.49"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_8W9cnbHgEeuiO8bdsAI5mQ" size="2" strokeColor="0,0,0">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_8W9cnrHgEeuiO8bdsAI5mQ" labelSize="12" showIcon="false"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_AsAKjLHhEeuiO8bdsAI5mQ" name="E_StopInfusion?" sourceNode="_wQoB4LGpEeudEakJBW0CPw" targetNode="_ZWSkkLHfEeuiO8bdsAI5mQ">
+      <target xmi:type="lts:Transition" href="pump.lts#//@transitions.50"/>
+      <semanticElements xmi:type="lts:Transition" href="pump.lts#//@transitions.50"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_AsAKjbHhEeuiO8bdsAI5mQ" size="2" strokeColor="0,0,0">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_AsAKjrHhEeuiO8bdsAI5mQ" labelSize="12" showIcon="false"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_IB2-FLHhEeuiO8bdsAI5mQ" name="E_NewInfusion? M_ISSM_State = false, MCDR_In_Progress = true" sourceNode="_ZWSkkLHfEeuiO8bdsAI5mQ" targetNode="_l0G1ILGoEeudEakJBW0CPw">
+      <target xmi:type="lts:Transition" href="pump.lts#//@transitions.51"/>
+      <semanticElements xmi:type="lts:Transition" href="pump.lts#//@transitions.51"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_IB2-FbHhEeuiO8bdsAI5mQ" size="2" strokeColor="0,0,0">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_IB2-FrHhEeuiO8bdsAI5mQ" labelSize="12" showIcon="false"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
     </ownedDiagramElements>
