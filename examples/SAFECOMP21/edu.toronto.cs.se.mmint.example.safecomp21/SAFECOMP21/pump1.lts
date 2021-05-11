@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <lts:LTS xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:lts="model://edu.toronto.cs.se.mmint.types.lts">
-  <states xsi:type="lts:InitialState" label="init" incoming="//@transitions.51" outgoing="//@transitions.0"/>
+  <states xsi:type="lts:InitialState" label="Init" incoming="//@transitions.51" outgoing="//@transitions.0"/>
   <states label="Infusion_NormalOperation" incoming="//@transitions.0 //@transitions.2 //@transitions.3 //@transitions.5 //@transitions.8 //@transitions.10 //@transitions.11 //@transitions.17 //@transitions.19 //@transitions.24 //@transitions.28 //@transitions.34" outgoing="//@transitions.1 //@transitions.4 //@transitions.6 //@transitions.7 //@transitions.16 //@transitions.18 //@transitions.27 //@transitions.47"/>
   <states label="BolusRequest" incoming="//@transitions.1" outgoing="//@transitions.2 //@transitions.3"/>
   <states label="Wrn_LowReservoir" incoming="//@transitions.4" outgoing="//@transitions.5"/>

@@ -28,19 +28,19 @@
       <modelElemEndpointRefs referencedObject="//@models.2/@mappings.0/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.0"/>
     </mappingRefs>
   </models>
-  <models uri="/SAFECOMP21/pump.lts" name="pump" metatypeUri="model://edu.toronto.cs.se.mmint.types.lts" dynamic="true" origin="CREATED" fileExtension="lts" editors="//@editors.2"/>
+  <models uri="/SAFECOMP21/pump1.lts" name="pump1" metatypeUri="model://edu.toronto.cs.se.mmint.types.lts" dynamic="true" origin="CREATED" fileExtension="lts" editors="//@editors.2"/>
   <editors xsi:type="editor:Diagram" uri="/SAFECOMP21/representations.aird#_ec3Q4F6dEeuzRqps9eyyPw" name="LTS Sirius Diagram for model /SAFECOMP21/fcs.lts" metatypeUri="edu.toronto.cs.se.mmint.types.lts.design" dynamic="true" modelUri="/SAFECOMP21/fcs.lts" id="edu.toronto.cs.se.mmint.types.lts.design" wizardId="edu.toronto.cs.se.mmint.types.lts.presentation.LTSModelWizardID">
     <fileExtensions>aird#_ec3Q4F6dEeuzRqps9eyyPw</fileExtensions>
   </editors>
   <editors xsi:type="editor:Diagram" uri="/SAFECOMP21/representations.aird#_o6VmQF6mEeuYfq7XakckNg" name="GSN Representation for model /SAFECOMP21/sc.gsn" metatypeUri="http://se.cs.toronto.edu/modelepedia/Representation_GSN" dynamic="true" modelUri="/SAFECOMP21/sc.gsn" id="edu.toronto.cs.se.modelepedia.gsn.design" wizardId="edu.toronto.cs.se.modelepedia.gsn.presentation.GSNModelWizardID">
     <fileExtensions>aird#_o6VmQF6mEeuYfq7XakckNg</fileExtensions>
   </editors>
-  <editors xsi:type="editor:Diagram" uri="/SAFECOMP21/representations.aird#_fmElkLGoEeudEakJBW0CPw" name="LTS Sirius Diagram for model /SAFECOMP21/pump.lts" metatypeUri="edu.toronto.cs.se.mmint.types.lts.design" dynamic="true" modelUri="/SAFECOMP21/pump.lts" id="edu.toronto.cs.se.mmint.types.lts.design" wizardId="edu.toronto.cs.se.mmint.types.lts.presentation.LTSModelWizardID">
+  <editors xsi:type="editor:Diagram" uri="/SAFECOMP21/representations.aird#_fmElkLGoEeudEakJBW0CPw" name="LTS Sirius Diagram for model /SAFECOMP21/pump1.lts" metatypeUri="edu.toronto.cs.se.mmint.types.lts.design" dynamic="true" modelUri="/SAFECOMP21/pump1.lts" id="edu.toronto.cs.se.mmint.types.lts.design" wizardId="edu.toronto.cs.se.mmint.types.lts.presentation.LTSModelWizardID">
     <fileExtensions>aird#_fmElkLGoEeudEakJBW0CPw</fileExtensions>
   </editors>
   <extendibleTable key="/SAFECOMP21/fcs.lts" value="//@models.0"/>
   <extendibleTable key="/SAFECOMP21/sc.gsn" value="//@models.1"/>
   <extendibleTable key="/SAFECOMP21/fcs.lts#/_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.0"/>
   <extendibleTable key="/SAFECOMP21/sc.gsn#//@goals.0_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.0"/>
-  <extendibleTable key="/SAFECOMP21/pump.lts" value="//@models.3"/>
+  <extendibleTable key="/SAFECOMP21/pump1.lts" value="//@models.3"/>
 </mid:MID>
