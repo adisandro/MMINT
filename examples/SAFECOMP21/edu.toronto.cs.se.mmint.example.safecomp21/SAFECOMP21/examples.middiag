@@ -37,6 +37,15 @@
       <element xmi:type="mid:Model" href="examples.mid#//@models.3"/>
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_fqa6FLGoEeudEakJBW0CPw" x="326" y="284"/>
     </children>
+    <children xmi:type="notation:Node" xmi:id="_9LD68LJMEeu7F5osn3R8mA" type="2001">
+      <children xmi:type="notation:DecorationNode" xmi:id="_9LFwILJMEeu7F5osn3R8mA" type="5001"/>
+      <children xmi:type="notation:DecorationNode" xmi:id="_9LFwIbJMEeu7F5osn3R8mA" type="5002"/>
+      <styles xmi:type="notation:DescriptionStyle" xmi:id="_9LD68bJMEeu7F5osn3R8mA"/>
+      <styles xmi:type="notation:FontStyle" xmi:id="_9LD68rJMEeu7F5osn3R8mA" fontName="Cantarell" fontHeight="10"/>
+      <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_9LD687JMEeu7F5osn3R8mA" hint="Mid"/>
+      <element xmi:type="mid:Model" href="examples.mid#//@models.4"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_9LD69LJMEeu7F5osn3R8mA" x="513" y="284"/>
+    </children>
     <styles xmi:type="notation:DiagramStyle" xmi:id="_aHMRIV6dEeuzRqps9eyyPw"/>
     <element xmi:type="mid:MID" href="examples.mid#/"/>
     <edges xmi:type="notation:Edge" xmi:id="_TcbdwF6nEeuYfq7XakckNg" type="4002" source="_PfXyUF6nEeuYfq7XakckNg" target="_eiL1wF6dEeuzRqps9eyyPw">

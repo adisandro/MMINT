@@ -29,6 +29,7 @@
     </mappingRefs>
   </models>
   <models uri="/SAFECOMP21/pump1.lts" name="pump1" metatypeUri="model://edu.toronto.cs.se.mmint.types.lts" dynamic="true" origin="CREATED" fileExtension="lts" editors="//@editors.2"/>
+  <models uri="/SAFECOMP21/pump2.lts" name="pump2" metatypeUri="model://edu.toronto.cs.se.mmint.types.lts" dynamic="true" origin="CREATED" fileExtension="lts" editors="//@editors.3"/>
   <editors xsi:type="editor:Diagram" uri="/SAFECOMP21/representations.aird#_ec3Q4F6dEeuzRqps9eyyPw" name="LTS Sirius Diagram for model /SAFECOMP21/fcs.lts" metatypeUri="edu.toronto.cs.se.mmint.types.lts.design" dynamic="true" modelUri="/SAFECOMP21/fcs.lts" id="edu.toronto.cs.se.mmint.types.lts.design" wizardId="edu.toronto.cs.se.mmint.types.lts.presentation.LTSModelWizardID">
     <fileExtensions>aird#_ec3Q4F6dEeuzRqps9eyyPw</fileExtensions>
   </editors>
@@ -38,9 +39,13 @@
   <editors xsi:type="editor:Diagram" uri="/SAFECOMP21/representations.aird#_fmElkLGoEeudEakJBW0CPw" name="LTS Sirius Diagram for model /SAFECOMP21/pump1.lts" metatypeUri="edu.toronto.cs.se.mmint.types.lts.design" dynamic="true" modelUri="/SAFECOMP21/pump1.lts" id="edu.toronto.cs.se.mmint.types.lts.design" wizardId="edu.toronto.cs.se.mmint.types.lts.presentation.LTSModelWizardID">
     <fileExtensions>aird#_fmElkLGoEeudEakJBW0CPw</fileExtensions>
   </editors>
+  <editors xsi:type="editor:Diagram" uri="/SAFECOMP21/representations.aird#_9DeFMLJMEeu7F5osn3R8mA" name="LTS Sirius Diagram for model /SAFECOMP21/pump2.lts" metatypeUri="edu.toronto.cs.se.mmint.types.lts.design" dynamic="true" modelUri="/SAFECOMP21/pump2.lts" id="edu.toronto.cs.se.mmint.types.lts.design" wizardId="edu.toronto.cs.se.mmint.types.lts.presentation.LTSModelWizardID">
+    <fileExtensions>aird#_9DeFMLJMEeu7F5osn3R8mA</fileExtensions>
+  </editors>
   <extendibleTable key="/SAFECOMP21/fcs.lts" value="//@models.0"/>
   <extendibleTable key="/SAFECOMP21/sc.gsn" value="//@models.1"/>
   <extendibleTable key="/SAFECOMP21/fcs.lts#/_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.0"/>
   <extendibleTable key="/SAFECOMP21/sc.gsn#//@goals.0_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.0"/>
   <extendibleTable key="/SAFECOMP21/pump1.lts" value="//@models.3"/>
+  <extendibleTable key="/SAFECOMP21/pump2.lts" value="//@models.4"/>
 </mid:MID>
