@@ -9,7 +9,7 @@
   <states label="DisplaySettings" incoming="//@transitions.9 //@transitions.10 //@transitions.11 //@transitions.12 //@transitions.14" outgoing="//@transitions.13 //@transitions.15 //@transitions.19"/>
   <states label="Alrm_LongWait_StartInfusion" incoming="//@transitions.13" outgoing="//@transitions.12"/>
   <states label="ReadyToStart" incoming="//@transitions.15" outgoing="//@transitions.14 //@transitions.16"/>
-  <states incoming="//@transitions.16" outgoing="//@transitions.17"/>
+  <states label="No_Label_1" incoming="//@transitions.16" outgoing="//@transitions.17"/>
   <states xsi:type="lts:InitialState" label="Init" incoming="//@transitions.17" outgoing="//@transitions.18"/>
   <states label="DisplayVTBI" incoming="//@transitions.18 //@transitions.19 //@transitions.20" outgoing="//@transitions.21 //@transitions.24"/>
   <states label="ChangeVTBI" incoming="//@transitions.21 //@transitions.26 //@transitions.28 //@transitions.29" outgoing="//@transitions.20 //@transitions.22 //@transitions.25"/>
@@ -19,34 +19,34 @@
   <states label="Wrn_VTBISoftLimitsViolation" incoming="//@transitions.30" outgoing="//@transitions.29 //@transitions.31"/>
   <transitions label="Cond_4_5?" from="//@states.2" to="//@states.0"/>
   <transitions label="Cond_4_4?" from="//@states.2" to="//@states.1"/>
-  <transitions label="E_ChangeDoseRate? x1 = 0" from="//@states.1" to="//@states.3"/>
-  <transitions label="E_ChangeDoseRate?" from="//@states.0" to="//@states.3"/>
-  <transitions label="E_ConfirmDoseRate?" from="//@states.3" to="//@states.2"/>
-  <transitions label="x1 >= MAX_WAIT_INPUT_T x1 = 0" from="//@states.3" to="//@states.4"/>
-  <transitions from="//@states.4" to="//@states.3"/>
-  <transitions label="E_Cancel?" from="//@states.3" to="//@states.5"/>
-  <transitions label="E_ChangeDoseRate? x1 = 0" from="//@states.5" to="//@states.3"/>
-  <transitions label="E_ConfirmDoseRate? x1 = 0" from="//@states.5" to="//@states.6"/>
-  <transitions label="x1 = 0 Cond_4_6?" from="//@states.2" to="//@states.6"/>
-  <transitions label="E_ConfirmDoseRate? x1 = 0" from="//@states.0" to="//@states.6"/>
-  <transitions from="//@states.7" to="//@states.6"/>
-  <transitions label="x1 >= MAX_WAIT_INPUT_T x1 = 0" from="//@states.6" to="//@states.7"/>
+  <transitions label="E_ChangeDoseRate?_1" from="//@states.1" to="//@states.3"/>
+  <transitions label="E_ChangeDoseRate?_2" from="//@states.0" to="//@states.3"/>
+  <transitions label="E_ConfirmDoseRate?_1" from="//@states.3" to="//@states.2"/>
+  <transitions label="x1 >= MAX_WAIT_INPUT_T_1" from="//@states.3" to="//@states.4"/>
+  <transitions label="No_Label_2" from="//@states.4" to="//@states.3"/>
+  <transitions label="E_Cancel?_1" from="//@states.3" to="//@states.5"/>
+  <transitions label="E_ChangeDoseRate?_3" from="//@states.5" to="//@states.3"/>
+  <transitions label="E_ConfirmDoseRate?_2" from="//@states.5" to="//@states.6"/>
+  <transitions label="Cond_4_6?" from="//@states.2" to="//@states.6"/>
+  <transitions label="E_ConfirmDoseRate?_3" from="//@states.0" to="//@states.6"/>
+  <transitions label="No_Label_3" from="//@states.7" to="//@states.6"/>
+  <transitions label="x1 >= MAX_WAIT_INPUT_T_2" from="//@states.6" to="//@states.7"/>
   <transitions label="Cond_5_1?" from="//@states.8" to="//@states.6"/>
   <transitions label="E_StartInfusion?" from="//@states.6" to="//@states.8"/>
   <transitions label="Cond_5_2?" from="//@states.8" to="//@states.9"/>
   <transitions label="Cond_2!" from="//@states.9" to="//@states.10"/>
   <transitions label="MICR_In_Progress == true" from="//@states.10" to="//@states.11"/>
-  <transitions label="E_ChangeVTBI?" from="//@states.6" to="//@states.11"/>
-  <transitions label="E_Cancel?" from="//@states.12" to="//@states.11"/>
-  <transitions label="E_ChangeVTBI? x1 = 0" from="//@states.11" to="//@states.12"/>
-  <transitions label="E_ConfirmVTBI?" from="//@states.12" to="//@states.13"/>
+  <transitions label="E_ChangeVTBI?_1" from="//@states.6" to="//@states.11"/>
+  <transitions label="E_Cancel?_2" from="//@states.12" to="//@states.11"/>
+  <transitions label="E_ChangeVTBI?_2" from="//@states.11" to="//@states.12"/>
+  <transitions label="E_ConfirmVTBI?_1" from="//@states.12" to="//@states.13"/>
   <transitions label="Cond_4_3?" from="//@states.13" to="//@states.5"/>
-  <transitions label="E_ConfirmVTBI?" from="//@states.11" to="//@states.5"/>
-  <transitions label="x1 >= MAX_WAIT_INPUT_T x1 = 0" from="//@states.12" to="//@states.14"/>
-  <transitions from="//@states.14" to="//@states.12"/>
+  <transitions label="E_ConfirmVTBI?_2" from="//@states.11" to="//@states.5"/>
+  <transitions label="x1 >= MAX_WAIT_INPUT_T_3" from="//@states.12" to="//@states.14"/>
+  <transitions label="No_Label_3" from="//@states.14" to="//@states.12"/>
   <transitions label="Cond_4_1?" from="//@states.13" to="//@states.15"/>
-  <transitions label="E_ChangeVTBI? x1 = 0" from="//@states.15" to="//@states.12"/>
-  <transitions label="E_ChangeVTBI?" from="//@states.16" to="//@states.12"/>
+  <transitions label="E_ChangeVTBI?_3" from="//@states.15" to="//@states.12"/>
+  <transitions label="E_ChangeVTBI?_4" from="//@states.16" to="//@states.12"/>
   <transitions label="Cond_4_2?" from="//@states.13" to="//@states.16"/>
-  <transitions label="E_ConfirmVTBI?" from="//@states.16" to="//@states.5"/>
+  <transitions label="E_ConfirmVTBI?_2" from="//@states.16" to="//@states.5"/>
 </lts:LTS>

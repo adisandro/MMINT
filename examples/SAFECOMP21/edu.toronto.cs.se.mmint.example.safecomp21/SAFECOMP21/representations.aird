@@ -11,11 +11,11 @@
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']"/>
         <target xmi:type="lts:LTS" href="fcs.lts#/"/>
       </ownedRepresentationDescriptors>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_fmFMoLGoEeudEakJBW0CPw" name="pump1" repPath="#_fmElkLGoEeudEakJBW0CPw" changeId="5fe9287c-1c4c-462f-aa4c-db43a95387d6">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_fmFMoLGoEeudEakJBW0CPw" name="pump1" repPath="#_fmElkLGoEeudEakJBW0CPw" changeId="ef71d8aa-be92-451c-9432-7e94f348af46">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']"/>
         <target xmi:type="lts:LTS" href="pump1.lts#/"/>
       </ownedRepresentationDescriptors>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_9DmoELJMEeu7F5osn3R8mA" name="pump2" repPath="#_9DeFMLJMEeu7F5osn3R8mA" changeId="6e017e48-2975-4605-b132-d02ae62e4335">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_9DmoELJMEeu7F5osn3R8mA" name="pump2" repPath="#_9DeFMLJMEeu7F5osn3R8mA" changeId="599d4d02-94d8-4a35-9a70-bf9b3496c5b8">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']"/>
         <target xmi:type="lts:LTS" href="pump2.lts#/"/>
       </ownedRepresentationDescriptors>
@@ -1619,7 +1619,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@nodeMappings[name='StateNode']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_y73VkLGoEeudEakJBW0CPw" name="M_ISSM_STATE == true Cond_2?" sourceNode="_l0G1ILGoEeudEakJBW0CPw" targetNode="_pV5g4LGoEeudEakJBW0CPw">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_y73VkLGoEeudEakJBW0CPw" name="Cond_2?" sourceNode="_l0G1ILGoEeudEakJBW0CPw" targetNode="_pV5g4LGoEeudEakJBW0CPw">
       <target xmi:type="lts:Transition" href="pump1.lts#//@transitions.0"/>
       <semanticElements xmi:type="lts:Transition" href="pump1.lts#//@transitions.0"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_y73VkbGoEeudEakJBW0CPw" size="2" strokeColor="0,0,0">
@@ -1664,7 +1664,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_ofox4LGpEeudEakJBW0CPw" sourceNode="_gr5IsLGpEeudEakJBW0CPw" targetNode="_pV5g4LGoEeudEakJBW0CPw">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_ofox4LGpEeudEakJBW0CPw" name="No_Label1" sourceNode="_gr5IsLGpEeudEakJBW0CPw" targetNode="_pV5g4LGoEeudEakJBW0CPw">
       <target xmi:type="lts:Transition" href="pump1.lts#//@transitions.5"/>
       <semanticElements xmi:type="lts:Transition" href="pump1.lts#//@transitions.5"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_ofox4bGpEeudEakJBW0CPw" size="2" strokeColor="0,0,0">
@@ -1673,7 +1673,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_zT0GHLGpEeudEakJBW0CPw" name="x1 = 0 Cond_6_3?" sourceNode="_pV5g4LGoEeudEakJBW0CPw" targetNode="_wQoB4LGpEeudEakJBW0CPw">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_zT0GHLGpEeudEakJBW0CPw" name="Cond_6_3?" sourceNode="_pV5g4LGoEeudEakJBW0CPw" targetNode="_wQoB4LGpEeudEakJBW0CPw">
       <target xmi:type="lts:Transition" href="pump1.lts#//@transitions.6"/>
       <semanticElements xmi:type="lts:Transition" href="pump1.lts#//@transitions.6"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_zT0GHbGpEeudEakJBW0CPw" size="2" strokeColor="0,0,0">
@@ -1691,7 +1691,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_GBLkPrGqEeudEakJBW0CPw" name="E_Cancel?" sourceNode="_-03HYLGpEeudEakJBW0CPw" targetNode="_pV5g4LGoEeudEakJBW0CPw">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_GBLkPrGqEeudEakJBW0CPw" name="E_Cancel?1" sourceNode="_-03HYLGpEeudEakJBW0CPw" targetNode="_pV5g4LGoEeudEakJBW0CPw">
       <target xmi:type="lts:Transition" href="pump1.lts#//@transitions.8"/>
       <semanticElements xmi:type="lts:Transition" href="pump1.lts#//@transitions.8"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_GBLkP7GqEeudEakJBW0CPw" size="2" strokeColor="0,0,0">
@@ -1700,7 +1700,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_Pv8IgLGqEeudEakJBW0CPw" name="E_confirmPauseInfusion? x1 = 0" sourceNode="_-03HYLGpEeudEakJBW0CPw" targetNode="_IwSOsLGqEeudEakJBW0CPw">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_Pv8IgLGqEeudEakJBW0CPw" name="E_ConfirmPauseInfusion?" sourceNode="_-03HYLGpEeudEakJBW0CPw" targetNode="_IwSOsLGqEeudEakJBW0CPw">
       <target xmi:type="lts:Transition" href="pump1.lts#//@transitions.9"/>
       <semanticElements xmi:type="lts:Transition" href="pump1.lts#//@transitions.9"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_Pv8IgbGqEeudEakJBW0CPw" size="2" strokeColor="0,0,0">
@@ -1709,7 +1709,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_ipgPmLGqEeudEakJBW0CPw" name="E_Cancel?" sourceNode="_IwSOsLGqEeudEakJBW0CPw" targetNode="_pV5g4LGoEeudEakJBW0CPw">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_ipgPmLGqEeudEakJBW0CPw" name="E_Cancel?2" sourceNode="_IwSOsLGqEeudEakJBW0CPw" targetNode="_pV5g4LGoEeudEakJBW0CPw">
       <target xmi:type="lts:Transition" href="pump1.lts#//@transitions.10"/>
       <semanticElements xmi:type="lts:Transition" href="pump1.lts#//@transitions.10"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_ipg2gLGqEeudEakJBW0CPw" size="2" strokeColor="0,0,0">
@@ -1718,7 +1718,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_vAI1HLGqEeudEakJBW0CPw" name="E_ClearAlarm?" sourceNode="_qyqH4LGqEeudEakJBW0CPw" targetNode="_pV5g4LGoEeudEakJBW0CPw">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_vAI1HLGqEeudEakJBW0CPw" name="E_ClearAlarm?1" sourceNode="_qyqH4LGqEeudEakJBW0CPw" targetNode="_pV5g4LGoEeudEakJBW0CPw">
       <target xmi:type="lts:Transition" href="pump1.lts#//@transitions.11"/>
       <semanticElements xmi:type="lts:Transition" href="pump1.lts#//@transitions.11"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_vAI1HbGqEeudEakJBW0CPw" size="2" strokeColor="0,0,0">
@@ -1727,7 +1727,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_yWz2ALGqEeudEakJBW0CPw" name="E_Cancel?" sourceNode="_n45sgLGqEeudEakJBW0CPw" targetNode="_IwSOsLGqEeudEakJBW0CPw">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_yWz2ALGqEeudEakJBW0CPw" name="E_Cancel?3" sourceNode="_n45sgLGqEeudEakJBW0CPw" targetNode="_IwSOsLGqEeudEakJBW0CPw">
       <target xmi:type="lts:Transition" href="pump1.lts#//@transitions.12"/>
       <semanticElements xmi:type="lts:Transition" href="pump1.lts#//@transitions.12"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_yWz2AbGqEeudEakJBW0CPw" size="2" strokeColor="0,0,0">
@@ -1745,7 +1745,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_AImx47GrEeudEakJBW0CPw" name="x1 >= MAX_PAUSED_T x1 = 0" sourceNode="_IwSOsLGqEeudEakJBW0CPw" targetNode="_qyqH4LGqEeudEakJBW0CPw">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_AImx47GrEeudEakJBW0CPw" name="x1 >= MAX_PAUSED_T" sourceNode="_IwSOsLGqEeudEakJBW0CPw" targetNode="_qyqH4LGqEeudEakJBW0CPw">
       <target xmi:type="lts:Transition" href="pump1.lts#//@transitions.14"/>
       <semanticElements xmi:type="lts:Transition" href="pump1.lts#//@transitions.14"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_AImx5LGrEeudEakJBW0CPw" size="2" strokeColor="0,0,0">
@@ -1754,7 +1754,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_LqjLLLGrEeudEakJBW0CPw" name="Level_Two_Alarm? x1 = 0" sourceNode="_-03HYLGpEeudEakJBW0CPw" targetNode="_FLFNILGrEeudEakJBW0CPw">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_LqjLLLGrEeudEakJBW0CPw" name="Level_Two_Alarm?1" sourceNode="_-03HYLGpEeudEakJBW0CPw" targetNode="_FLFNILGrEeudEakJBW0CPw">
       <target xmi:type="lts:Transition" href="pump1.lts#//@transitions.15"/>
       <semanticElements xmi:type="lts:Transition" href="pump1.lts#//@transitions.15"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_LqjLLbGrEeudEakJBW0CPw" size="2" strokeColor="0,0,0">
@@ -1763,7 +1763,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_Rsth8LGrEeudEakJBW0CPw" name="Level_Two_Alarm? x1 = 0" sourceNode="_pV5g4LGoEeudEakJBW0CPw" targetNode="_FLFNILGrEeudEakJBW0CPw">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_Rsth8LGrEeudEakJBW0CPw" name="Level_Two_Alarm?2" sourceNode="_pV5g4LGoEeudEakJBW0CPw" targetNode="_FLFNILGrEeudEakJBW0CPw">
       <target xmi:type="lts:Transition" href="pump1.lts#//@transitions.16"/>
       <semanticElements xmi:type="lts:Transition" href="pump1.lts#//@transitions.16"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_RsuIwLGrEeudEakJBW0CPw" size="2" strokeColor="0,0,0">
@@ -1772,7 +1772,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_WBBPxLGrEeudEakJBW0CPw" name="E_ClearAlarm?" sourceNode="_FLFNILGrEeudEakJBW0CPw" targetNode="_pV5g4LGoEeudEakJBW0CPw">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_WBBPxLGrEeudEakJBW0CPw" name="E_ClearAlarm?2" sourceNode="_FLFNILGrEeudEakJBW0CPw" targetNode="_pV5g4LGoEeudEakJBW0CPw">
       <target xmi:type="lts:Transition" href="pump1.lts#//@transitions.17"/>
       <semanticElements xmi:type="lts:Transition" href="pump1.lts#//@transitions.17"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_WBB2kLGrEeudEakJBW0CPw" size="2" strokeColor="0,0,0">
@@ -1790,7 +1790,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_hMXt6LGrEeudEakJBW0CPw" name="E_Cancel?" sourceNode="_Z_TC8LGrEeudEakJBW0CPw" targetNode="_pV5g4LGoEeudEakJBW0CPw">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_hMXt6LGrEeudEakJBW0CPw" name="E_Cancel?4" sourceNode="_Z_TC8LGrEeudEakJBW0CPw" targetNode="_pV5g4LGoEeudEakJBW0CPw">
       <target xmi:type="lts:Transition" href="pump1.lts#//@transitions.19"/>
       <semanticElements xmi:type="lts:Transition" href="pump1.lts#//@transitions.19"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_hMXt6bGrEeudEakJBW0CPw" size="2" strokeColor="0,0,0">
@@ -1799,7 +1799,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_lbZTILGrEeudEakJBW0CPw" name="Level_Two_Alarm? x1 = 0" sourceNode="_Z_TC8LGrEeudEakJBW0CPw" targetNode="_FLFNILGrEeudEakJBW0CPw">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_lbZTILGrEeudEakJBW0CPw" name="Level_Two_Alarm?3" sourceNode="_Z_TC8LGrEeudEakJBW0CPw" targetNode="_FLFNILGrEeudEakJBW0CPw">
       <target xmi:type="lts:Transition" href="pump1.lts#//@transitions.20"/>
       <semanticElements xmi:type="lts:Transition" href="pump1.lts#//@transitions.20"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_lbZTIbGrEeudEakJBW0CPw" size="2" strokeColor="0,0,0">
@@ -1808,7 +1808,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_GOoftLGsEeudEakJBW0CPw" name="E_CheckDrug?" sourceNode="_wQoB4LGpEeudEakJBW0CPw" targetNode="_CCOJULGsEeudEakJBW0CPw">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_GOoftLGsEeudEakJBW0CPw" name="E_CheckDrug?1" sourceNode="_wQoB4LGpEeudEakJBW0CPw" targetNode="_CCOJULGsEeudEakJBW0CPw">
       <target xmi:type="lts:Transition" href="pump1.lts#//@transitions.21"/>
       <semanticElements xmi:type="lts:Transition" href="pump1.lts#//@transitions.21"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_GOoftbGsEeudEakJBW0CPw" size="2" strokeColor="0,0,0">
@@ -1826,7 +1826,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_Og_-eLGsEeudEakJBW0CPw" name="E_CheckDrug?" sourceNode="_H9RLcLGsEeudEakJBW0CPw" targetNode="_CCOJULGsEeudEakJBW0CPw">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_Og_-eLGsEeudEakJBW0CPw" name="E_CheckDrug?2" sourceNode="_H9RLcLGsEeudEakJBW0CPw" targetNode="_CCOJULGsEeudEakJBW0CPw">
       <target xmi:type="lts:Transition" href="pump1.lts#//@transitions.23"/>
       <semanticElements xmi:type="lts:Transition" href="pump1.lts#//@transitions.23"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_Og_-ebGsEeudEakJBW0CPw" size="2" strokeColor="0,0,0">
@@ -1844,7 +1844,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_vDWc2LGxEeudEakJBW0CPw" sourceNode="_Y217MLGtEeudEakJBW0CPw" targetNode="_V_i98LGtEeudEakJBW0CPw">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_vDWc2LGxEeudEakJBW0CPw" name="No_Label2" sourceNode="_Y217MLGtEeudEakJBW0CPw" targetNode="_V_i98LGtEeudEakJBW0CPw">
       <target xmi:type="lts:Transition" href="pump1.lts#//@transitions.25"/>
       <semanticElements xmi:type="lts:Transition" href="pump1.lts#//@transitions.25"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_vDWc2bGxEeudEakJBW0CPw" size="2" strokeColor="0,0,0">
@@ -1853,7 +1853,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_wBeSGrGxEeudEakJBW0CPw" name="x1 >= MAX_WAIT_INPUT_T x1 = 0" sourceNode="_V_i98LGtEeudEakJBW0CPw" targetNode="_Y217MLGtEeudEakJBW0CPw">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_wBeSGrGxEeudEakJBW0CPw" name="x1 >= MAX_WAIT_INPUT_T" sourceNode="_V_i98LGtEeudEakJBW0CPw" targetNode="_Y217MLGtEeudEakJBW0CPw">
       <target xmi:type="lts:Transition" href="pump1.lts#//@transitions.26"/>
       <semanticElements xmi:type="lts:Transition" href="pump1.lts#//@transitions.26"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_wBeSG7GxEeudEakJBW0CPw" size="2" strokeColor="0,0,0">
@@ -1862,7 +1862,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_1QU80LGxEeudEakJBW0CPw" name="E_ChangeDoseRate? x1 = 0" sourceNode="_pV5g4LGoEeudEakJBW0CPw" targetNode="_V_i98LGtEeudEakJBW0CPw">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_1QU80LGxEeudEakJBW0CPw" name="E_ChangeDoseRate?1" sourceNode="_pV5g4LGoEeudEakJBW0CPw" targetNode="_V_i98LGtEeudEakJBW0CPw">
       <target xmi:type="lts:Transition" href="pump1.lts#//@transitions.27"/>
       <semanticElements xmi:type="lts:Transition" href="pump1.lts#//@transitions.27"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_1QU80bGxEeudEakJBW0CPw" size="2" strokeColor="0,0,0">
@@ -1871,7 +1871,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_45SnhLGxEeudEakJBW0CPw" name="E_Cancel?" sourceNode="_V_i98LGtEeudEakJBW0CPw" targetNode="_pV5g4LGoEeudEakJBW0CPw">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_45SnhLGxEeudEakJBW0CPw" name="E_Cancel?5" sourceNode="_V_i98LGtEeudEakJBW0CPw" targetNode="_pV5g4LGoEeudEakJBW0CPw">
       <target xmi:type="lts:Transition" href="pump1.lts#//@transitions.28"/>
       <semanticElements xmi:type="lts:Transition" href="pump1.lts#//@transitions.28"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_45SnhbGxEeudEakJBW0CPw" size="2" strokeColor="0,0,0">
@@ -1880,7 +1880,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_BHfYArGyEeudEakJBW0CPw" name="Level_Two_Alarm? x1 = 0" sourceNode="_V_i98LGtEeudEakJBW0CPw" targetNode="_FLFNILGrEeudEakJBW0CPw">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_BHfYArGyEeudEakJBW0CPw" name="Level_Two_Alarm?4" sourceNode="_V_i98LGtEeudEakJBW0CPw" targetNode="_FLFNILGrEeudEakJBW0CPw">
       <target xmi:type="lts:Transition" href="pump1.lts#//@transitions.29"/>
       <semanticElements xmi:type="lts:Transition" href="pump1.lts#//@transitions.29"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_BHfYA7GyEeudEakJBW0CPw" size="2" strokeColor="0,0,0">
@@ -1916,7 +1916,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_0w1quLHeEeuiO8bdsAI5mQ" name="E_ChangeDoseRate?" sourceNode="_vMqQYLHeEeuiO8bdsAI5mQ" targetNode="_V_i98LGtEeudEakJBW0CPw">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_0w1quLHeEeuiO8bdsAI5mQ" name="E_ChangeDoseRate?2" sourceNode="_vMqQYLHeEeuiO8bdsAI5mQ" targetNode="_V_i98LGtEeudEakJBW0CPw">
       <target xmi:type="lts:Transition" href="pump1.lts#//@transitions.33"/>
       <semanticElements xmi:type="lts:Transition" href="pump1.lts#//@transitions.33"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_0w1qubHeEeuiO8bdsAI5mQ" size="2" strokeColor="0,0,0">
@@ -1925,7 +1925,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_9caT2rHeEeuiO8bdsAI5mQ" name="E_Cancel?" sourceNode="_vMqQYLHeEeuiO8bdsAI5mQ" targetNode="_pV5g4LGoEeudEakJBW0CPw">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_9caT2rHeEeuiO8bdsAI5mQ" name="E_Cancel?6" sourceNode="_vMqQYLHeEeuiO8bdsAI5mQ" targetNode="_pV5g4LGoEeudEakJBW0CPw">
       <target xmi:type="lts:Transition" href="pump1.lts#//@transitions.34"/>
       <semanticElements xmi:type="lts:Transition" href="pump1.lts#//@transitions.34"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_9caT27HeEeuiO8bdsAI5mQ" size="2" strokeColor="0,0,0">
@@ -1934,7 +1934,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_BiFI1LHfEeuiO8bdsAI5mQ" name="Level_Two_Alarm? x1 = 0" sourceNode="_vMqQYLHeEeuiO8bdsAI5mQ" targetNode="_FLFNILGrEeudEakJBW0CPw">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_BiFI1LHfEeuiO8bdsAI5mQ" name="Level_Two_Alarm?5" sourceNode="_vMqQYLHeEeuiO8bdsAI5mQ" targetNode="_FLFNILGrEeudEakJBW0CPw">
       <target xmi:type="lts:Transition" href="pump1.lts#//@transitions.35"/>
       <semanticElements xmi:type="lts:Transition" href="pump1.lts#//@transitions.35"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_BiFvkLHfEeuiO8bdsAI5mQ" size="2" strokeColor="0,0,0">
@@ -1943,7 +1943,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_sIGeIrHfEeuiO8bdsAI5mQ" name="Cond_6_2?" sourceNode="_vMqQYLHeEeuiO8bdsAI5mQ" targetNode="_ZWSkkLHfEeuiO8bdsAI5mQ">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_sIGeIrHfEeuiO8bdsAI5mQ" name="Cond_6_2?1" sourceNode="_vMqQYLHeEeuiO8bdsAI5mQ" targetNode="_ZWSkkLHfEeuiO8bdsAI5mQ">
       <target xmi:type="lts:Transition" href="pump1.lts#//@transitions.36"/>
       <semanticElements xmi:type="lts:Transition" href="pump1.lts#//@transitions.36"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_sIHE0LHfEeuiO8bdsAI5mQ" size="2" strokeColor="0,0,0">
@@ -1952,7 +1952,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_u-2B9LHfEeuiO8bdsAI5mQ" name="Cond_6_2?" sourceNode="_Z_TC8LGrEeudEakJBW0CPw" targetNode="_ZWSkkLHfEeuiO8bdsAI5mQ">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_u-2B9LHfEeuiO8bdsAI5mQ" name="Cond_6_2?2" sourceNode="_Z_TC8LGrEeudEakJBW0CPw" targetNode="_ZWSkkLHfEeuiO8bdsAI5mQ">
       <target xmi:type="lts:Transition" href="pump1.lts#//@transitions.37"/>
       <semanticElements xmi:type="lts:Transition" href="pump1.lts#//@transitions.37"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_u-2B9bHfEeuiO8bdsAI5mQ" size="2" strokeColor="0,0,0">
@@ -1961,7 +1961,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_ys5oGLHfEeuiO8bdsAI5mQ" name="E_ConfirmStopInfusion?" sourceNode="_Z_TC8LGrEeudEakJBW0CPw" targetNode="_ZWSkkLHfEeuiO8bdsAI5mQ">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_ys5oGLHfEeuiO8bdsAI5mQ" name="E_ConfirmStopInfusion?1" sourceNode="_Z_TC8LGrEeudEakJBW0CPw" targetNode="_ZWSkkLHfEeuiO8bdsAI5mQ">
       <target xmi:type="lts:Transition" href="pump1.lts#//@transitions.38"/>
       <semanticElements xmi:type="lts:Transition" href="pump1.lts#//@transitions.38"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_ys5oGbHfEeuiO8bdsAI5mQ" size="2" strokeColor="0,0,0">
@@ -1979,7 +1979,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_MuorRLHgEeuiO8bdsAI5mQ" name="E_StopInfusion?" sourceNode="_FLFNILGrEeudEakJBW0CPw" targetNode="_ZWSkkLHfEeuiO8bdsAI5mQ">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_MuorRLHgEeuiO8bdsAI5mQ" name="E_StopInfusion?1" sourceNode="_FLFNILGrEeudEakJBW0CPw" targetNode="_ZWSkkLHfEeuiO8bdsAI5mQ">
       <target xmi:type="lts:Transition" href="pump1.lts#//@transitions.40"/>
       <semanticElements xmi:type="lts:Transition" href="pump1.lts#//@transitions.40"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_MuorRbHgEeuiO8bdsAI5mQ" size="2" strokeColor="0,0,0">
@@ -1997,7 +1997,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_V8zD1LHgEeuiO8bdsAI5mQ" name="E_ConfirmStopInfusion?" sourceNode="_n45sgLGqEeudEakJBW0CPw" targetNode="_ZWSkkLHfEeuiO8bdsAI5mQ">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_V8zD1LHgEeuiO8bdsAI5mQ" name="E_ConfirmStopInfusion?2" sourceNode="_n45sgLGqEeudEakJBW0CPw" targetNode="_ZWSkkLHfEeuiO8bdsAI5mQ">
       <target xmi:type="lts:Transition" href="pump1.lts#//@transitions.42"/>
       <semanticElements xmi:type="lts:Transition" href="pump1.lts#//@transitions.42"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_V8zD1bHgEeuiO8bdsAI5mQ" size="2" strokeColor="0,0,0">
@@ -2024,7 +2024,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_jd_YlLHgEeuiO8bdsAI5mQ" name="Cond_6_2?" sourceNode="_-03HYLGpEeudEakJBW0CPw" targetNode="_ZWSkkLHfEeuiO8bdsAI5mQ">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_jd_YlLHgEeuiO8bdsAI5mQ" name="Cond_6_2?3" sourceNode="_-03HYLGpEeudEakJBW0CPw" targetNode="_ZWSkkLHfEeuiO8bdsAI5mQ">
       <target xmi:type="lts:Transition" href="pump1.lts#//@transitions.45"/>
       <semanticElements xmi:type="lts:Transition" href="pump1.lts#//@transitions.45"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_jd_-8LHgEeuiO8bdsAI5mQ" size="2" strokeColor="0,0,0">
@@ -2033,7 +2033,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_qwDQaLHgEeuiO8bdsAI5mQ" name="Cond_6_2?" sourceNode="_V_i98LGtEeudEakJBW0CPw" targetNode="_ZWSkkLHfEeuiO8bdsAI5mQ">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_qwDQaLHgEeuiO8bdsAI5mQ" name="Cond_6_2?4" sourceNode="_V_i98LGtEeudEakJBW0CPw" targetNode="_ZWSkkLHfEeuiO8bdsAI5mQ">
       <target xmi:type="lts:Transition" href="pump1.lts#//@transitions.46"/>
       <semanticElements xmi:type="lts:Transition" href="pump1.lts#//@transitions.46"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_qwDQabHgEeuiO8bdsAI5mQ" size="2" strokeColor="0,0,0">
@@ -2042,7 +2042,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_uhzDlLHgEeuiO8bdsAI5mQ" name="Cond_6_2?" sourceNode="_pV5g4LGoEeudEakJBW0CPw" targetNode="_ZWSkkLHfEeuiO8bdsAI5mQ">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_uhzDlLHgEeuiO8bdsAI5mQ" name="Cond_6_2?5" sourceNode="_pV5g4LGoEeudEakJBW0CPw" targetNode="_ZWSkkLHfEeuiO8bdsAI5mQ">
       <target xmi:type="lts:Transition" href="pump1.lts#//@transitions.47"/>
       <semanticElements xmi:type="lts:Transition" href="pump1.lts#//@transitions.47"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_uhzDlbHgEeuiO8bdsAI5mQ" size="2" strokeColor="0,0,0">
@@ -2060,7 +2060,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_8W9cnLHgEeuiO8bdsAI5mQ" name="E_StopInfusion?" sourceNode="_H9RLcLGsEeudEakJBW0CPw" targetNode="_ZWSkkLHfEeuiO8bdsAI5mQ">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_8W9cnLHgEeuiO8bdsAI5mQ" name="E_StopInfusion?2" sourceNode="_H9RLcLGsEeudEakJBW0CPw" targetNode="_ZWSkkLHfEeuiO8bdsAI5mQ">
       <target xmi:type="lts:Transition" href="pump1.lts#//@transitions.49"/>
       <semanticElements xmi:type="lts:Transition" href="pump1.lts#//@transitions.49"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_8W9cnbHgEeuiO8bdsAI5mQ" size="2" strokeColor="0,0,0">
@@ -2069,7 +2069,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_AsAKjLHhEeuiO8bdsAI5mQ" name="E_StopInfusion?" sourceNode="_wQoB4LGpEeudEakJBW0CPw" targetNode="_ZWSkkLHfEeuiO8bdsAI5mQ">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_AsAKjLHhEeuiO8bdsAI5mQ" name="E_StopInfusion?3" sourceNode="_wQoB4LGpEeudEakJBW0CPw" targetNode="_ZWSkkLHfEeuiO8bdsAI5mQ">
       <target xmi:type="lts:Transition" href="pump1.lts#//@transitions.50"/>
       <semanticElements xmi:type="lts:Transition" href="pump1.lts#//@transitions.50"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_AsAKjbHhEeuiO8bdsAI5mQ" size="2" strokeColor="0,0,0">
@@ -2078,7 +2078,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_IB2-FLHhEeuiO8bdsAI5mQ" name="E_NewInfusion? M_ISSM_State = false, MCDR_In_Progress = true" sourceNode="_ZWSkkLHfEeuiO8bdsAI5mQ" targetNode="_l0G1ILGoEeudEakJBW0CPw">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_IB2-FLHhEeuiO8bdsAI5mQ" name="E_NewInfusion?" sourceNode="_ZWSkkLHfEeuiO8bdsAI5mQ" targetNode="_l0G1ILGoEeudEakJBW0CPw">
       <target xmi:type="lts:Transition" href="pump1.lts#//@transitions.51"/>
       <semanticElements xmi:type="lts:Transition" href="pump1.lts#//@transitions.51"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_IB2-FbHhEeuiO8bdsAI5mQ" size="2" strokeColor="0,0,0">
@@ -2896,7 +2896,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@nodeMappings[name='StateNode']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DNode" uid="_v8jnkLJzEeugsKxPYAA-vA" outgoingEdges="_3CtyNLJzEeugsKxPYAA-vA" incomingEdges="_ySK0MLJzEeugsKxPYAA-vA" width="7" height="7" resizeKind="NSEW">
+    <ownedDiagramElements xmi:type="diagram:DNode" uid="_v8jnkLJzEeugsKxPYAA-vA" name="No_Label_1" outgoingEdges="_3CtyNLJzEeugsKxPYAA-vA" incomingEdges="_ySK0MLJzEeugsKxPYAA-vA" width="7" height="7" resizeKind="NSEW">
       <target xmi:type="lts:State" href="pump2.lts#//@states.9"/>
       <semanticElements xmi:type="lts:State" href="pump2.lts#//@states.9"/>
       <ownedStyle xmi:type="diagram:Ellipse" uid="_v8jnkbJzEeugsKxPYAA-vA" labelSize="12" showIcon="false" borderSize="2" borderSizeComputationExpression="2" labelPosition="node" horizontalDiameter="7" verticalDiameter="7" color="255,255,255">
@@ -2985,7 +2985,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_L1Gg-LJiEeuABPxUxyypzg" name="E_ChangeDoseRate? x1 = 0" sourceNode="_gEPgULJNEeu7F5osn3R8mA" targetNode="_AOaKoLJiEeuABPxUxyypzg">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_L1Gg-LJiEeuABPxUxyypzg" name="E_ChangeDoseRate?_1" sourceNode="_gEPgULJNEeu7F5osn3R8mA" targetNode="_AOaKoLJiEeuABPxUxyypzg">
       <target xmi:type="lts:Transition" href="pump2.lts#//@transitions.2"/>
       <semanticElements xmi:type="lts:Transition" href="pump2.lts#//@transitions.2"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_L1Gg-bJiEeuABPxUxyypzg" size="2" strokeColor="0,0,0">
@@ -2994,7 +2994,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_PjwkCLJiEeuABPxUxyypzg" name="E_ChangeDoseRate?" sourceNode="_dS1vsLJNEeu7F5osn3R8mA" targetNode="_AOaKoLJiEeuABPxUxyypzg">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_PjwkCLJiEeuABPxUxyypzg" name="E_ChangeDoseRate?_2" sourceNode="_dS1vsLJNEeu7F5osn3R8mA" targetNode="_AOaKoLJiEeuABPxUxyypzg">
       <target xmi:type="lts:Transition" href="pump2.lts#//@transitions.3"/>
       <semanticElements xmi:type="lts:Transition" href="pump2.lts#//@transitions.3"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_PjwkCbJiEeuABPxUxyypzg" size="2" strokeColor="0,0,0">
@@ -3003,7 +3003,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_SupLoLJiEeuABPxUxyypzg" name="E_ConfirmDoseRate?" sourceNode="_AOaKoLJiEeuABPxUxyypzg" targetNode="_8XEFoLJhEeuABPxUxyypzg">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_SupLoLJiEeuABPxUxyypzg" name="E_ConfirmDoseRate?_1" sourceNode="_AOaKoLJiEeuABPxUxyypzg" targetNode="_8XEFoLJhEeuABPxUxyypzg">
       <target xmi:type="lts:Transition" href="pump2.lts#//@transitions.4"/>
       <semanticElements xmi:type="lts:Transition" href="pump2.lts#//@transitions.4"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_SupLobJiEeuABPxUxyypzg" size="2" strokeColor="0,0,0">
@@ -3012,7 +3012,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_WeT7XLJiEeuABPxUxyypzg" name="x1 >= MAX_WAIT_INPUT_T x1 = 0" sourceNode="_AOaKoLJiEeuABPxUxyypzg" targetNode="_C-wyYLJiEeuABPxUxyypzg">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_WeT7XLJiEeuABPxUxyypzg" name="x1 >= MAX_WAIT_INPUT_T_1" sourceNode="_AOaKoLJiEeuABPxUxyypzg" targetNode="_C-wyYLJiEeuABPxUxyypzg">
       <target xmi:type="lts:Transition" href="pump2.lts#//@transitions.5"/>
       <semanticElements xmi:type="lts:Transition" href="pump2.lts#//@transitions.5"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_WeT7XbJiEeuABPxUxyypzg" size="2" strokeColor="0,0,0">
@@ -3021,7 +3021,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_W1qrc7JiEeuABPxUxyypzg" sourceNode="_C-wyYLJiEeuABPxUxyypzg" targetNode="_AOaKoLJiEeuABPxUxyypzg">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_W1qrc7JiEeuABPxUxyypzg" name="No_Label_2" sourceNode="_C-wyYLJiEeuABPxUxyypzg" targetNode="_AOaKoLJiEeuABPxUxyypzg">
       <target xmi:type="lts:Transition" href="pump2.lts#//@transitions.6"/>
       <semanticElements xmi:type="lts:Transition" href="pump2.lts#//@transitions.6"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_W1rScLJiEeuABPxUxyypzg" size="2" strokeColor="0,0,0">
@@ -3030,7 +3030,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_eZWfRLJiEeuABPxUxyypzg" name="E_Cancel?" sourceNode="_AOaKoLJiEeuABPxUxyypzg" targetNode="_beHdMLJiEeuABPxUxyypzg">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_eZWfRLJiEeuABPxUxyypzg" name="E_Cancel?_1" sourceNode="_AOaKoLJiEeuABPxUxyypzg" targetNode="_beHdMLJiEeuABPxUxyypzg">
       <target xmi:type="lts:Transition" href="pump2.lts#//@transitions.7"/>
       <semanticElements xmi:type="lts:Transition" href="pump2.lts#//@transitions.7"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_eZWfRbJiEeuABPxUxyypzg" size="2" strokeColor="0,0,0">
@@ -3039,7 +3039,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_e0TWALJiEeuABPxUxyypzg" name="E_ChangeDoseRate? x1 = 0" sourceNode="_beHdMLJiEeuABPxUxyypzg" targetNode="_AOaKoLJiEeuABPxUxyypzg">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_e0TWALJiEeuABPxUxyypzg" name="E_ChangeDoseRate?_3" sourceNode="_beHdMLJiEeuABPxUxyypzg" targetNode="_AOaKoLJiEeuABPxUxyypzg">
       <target xmi:type="lts:Transition" href="pump2.lts#//@transitions.8"/>
       <semanticElements xmi:type="lts:Transition" href="pump2.lts#//@transitions.8"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_e0T88LJiEeuABPxUxyypzg" size="2" strokeColor="0,0,0">
@@ -3048,7 +3048,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_TJPNQLJzEeugsKxPYAA-vA" name="E_ConfirmDoseRate? x1 = 0" sourceNode="_beHdMLJiEeuABPxUxyypzg" targetNode="_OwC_YLJzEeugsKxPYAA-vA">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_TJPNQLJzEeugsKxPYAA-vA" name="E_ConfirmDoseRate?_2" sourceNode="_beHdMLJiEeuABPxUxyypzg" targetNode="_OwC_YLJzEeugsKxPYAA-vA">
       <target xmi:type="lts:Transition" href="pump2.lts#//@transitions.9"/>
       <semanticElements xmi:type="lts:Transition" href="pump2.lts#//@transitions.9"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_TJP0QLJzEeugsKxPYAA-vA" size="2" strokeColor="0,0,0">
@@ -3057,7 +3057,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_WVj_RLJzEeugsKxPYAA-vA" name="x1 = 0 Cond_4_6?" sourceNode="_8XEFoLJhEeuABPxUxyypzg" targetNode="_OwC_YLJzEeugsKxPYAA-vA">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_WVj_RLJzEeugsKxPYAA-vA" name="Cond_4_6?" sourceNode="_8XEFoLJhEeuABPxUxyypzg" targetNode="_OwC_YLJzEeugsKxPYAA-vA">
       <target xmi:type="lts:Transition" href="pump2.lts#//@transitions.10"/>
       <semanticElements xmi:type="lts:Transition" href="pump2.lts#//@transitions.10"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_WVj_RbJzEeugsKxPYAA-vA" size="2" strokeColor="0,0,0">
@@ -3066,7 +3066,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_ZrBfMrJzEeugsKxPYAA-vA" name="E_ConfirmDoseRate? x1 = 0" sourceNode="_dS1vsLJNEeu7F5osn3R8mA" targetNode="_OwC_YLJzEeugsKxPYAA-vA">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_ZrBfMrJzEeugsKxPYAA-vA" name="E_ConfirmDoseRate?_3" sourceNode="_dS1vsLJNEeu7F5osn3R8mA" targetNode="_OwC_YLJzEeugsKxPYAA-vA">
       <target xmi:type="lts:Transition" href="pump2.lts#//@transitions.11"/>
       <semanticElements xmi:type="lts:Transition" href="pump2.lts#//@transitions.11"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_ZrBfM7JzEeugsKxPYAA-vA" size="2" strokeColor="0,0,0">
@@ -3075,7 +3075,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_e7hvkLJzEeugsKxPYAA-vA" sourceNode="_b6UoULJzEeugsKxPYAA-vA" targetNode="_OwC_YLJzEeugsKxPYAA-vA">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_e7hvkLJzEeugsKxPYAA-vA" name="No_Label_3" sourceNode="_b6UoULJzEeugsKxPYAA-vA" targetNode="_OwC_YLJzEeugsKxPYAA-vA">
       <target xmi:type="lts:Transition" href="pump2.lts#//@transitions.12"/>
       <semanticElements xmi:type="lts:Transition" href="pump2.lts#//@transitions.12"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_e7hvkbJzEeugsKxPYAA-vA" size="2" strokeColor="0,0,0">
@@ -3084,7 +3084,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_fYhNlrJzEeugsKxPYAA-vA" name="x1 >= MAX_WAIT_INPUT_T x1 = 0" sourceNode="_OwC_YLJzEeugsKxPYAA-vA" targetNode="_b6UoULJzEeugsKxPYAA-vA">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_fYhNlrJzEeugsKxPYAA-vA" name="x1 >= MAX_WAIT_INPUT_T_2" sourceNode="_OwC_YLJzEeugsKxPYAA-vA" targetNode="_b6UoULJzEeugsKxPYAA-vA">
       <target xmi:type="lts:Transition" href="pump2.lts#//@transitions.13"/>
       <semanticElements xmi:type="lts:Transition" href="pump2.lts#//@transitions.13"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_fYhNl7JzEeugsKxPYAA-vA" size="2" strokeColor="0,0,0">
@@ -3146,7 +3146,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="__ym6gLJzEeugsKxPYAA-vA" name="E_ChangeVTBI?" sourceNode="_OwC_YLJzEeugsKxPYAA-vA" targetNode="_7txy4LJzEeugsKxPYAA-vA">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="__ym6gLJzEeugsKxPYAA-vA" name="E_ChangeVTBI?_1" sourceNode="_OwC_YLJzEeugsKxPYAA-vA" targetNode="_7txy4LJzEeugsKxPYAA-vA">
       <target xmi:type="lts:Transition" href="pump2.lts#//@transitions.19"/>
       <semanticElements xmi:type="lts:Transition" href="pump2.lts#//@transitions.19"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="__ym6gbJzEeugsKxPYAA-vA" size="2" strokeColor="0,0,0">
@@ -3155,7 +3155,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_JMs2SLJ0EeugsKxPYAA-vA" name="E_Cancel?" sourceNode="_C2nd0LJ0EeugsKxPYAA-vA" targetNode="_7txy4LJzEeugsKxPYAA-vA">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_JMs2SLJ0EeugsKxPYAA-vA" name="E_Cancel?_2" sourceNode="_C2nd0LJ0EeugsKxPYAA-vA" targetNode="_7txy4LJzEeugsKxPYAA-vA">
       <target xmi:type="lts:Transition" href="pump2.lts#//@transitions.20"/>
       <semanticElements xmi:type="lts:Transition" href="pump2.lts#//@transitions.20"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_JMs2SbJ0EeugsKxPYAA-vA" size="2" strokeColor="0,0,0">
@@ -3164,7 +3164,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_KJTBkLJ0EeugsKxPYAA-vA" name="E_ChangeVTBI? x1 = 0" sourceNode="_7txy4LJzEeugsKxPYAA-vA" targetNode="_C2nd0LJ0EeugsKxPYAA-vA">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_KJTBkLJ0EeugsKxPYAA-vA" name="E_ChangeVTBI?_2" sourceNode="_7txy4LJzEeugsKxPYAA-vA" targetNode="_C2nd0LJ0EeugsKxPYAA-vA">
       <target xmi:type="lts:Transition" href="pump2.lts#//@transitions.21"/>
       <semanticElements xmi:type="lts:Transition" href="pump2.lts#//@transitions.21"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_KJTBkbJ0EeugsKxPYAA-vA" size="2" strokeColor="0,0,0">
@@ -3173,7 +3173,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_Kx22UrJ0EeugsKxPYAA-vA" name="E_ConfirmVTBI?" sourceNode="_C2nd0LJ0EeugsKxPYAA-vA" targetNode="_FBwfsLJ0EeugsKxPYAA-vA">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_Kx22UrJ0EeugsKxPYAA-vA" name="E_ConfirmVTBI?_1" sourceNode="_C2nd0LJ0EeugsKxPYAA-vA" targetNode="_FBwfsLJ0EeugsKxPYAA-vA">
       <target xmi:type="lts:Transition" href="pump2.lts#//@transitions.22"/>
       <semanticElements xmi:type="lts:Transition" href="pump2.lts#//@transitions.22"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_Kx22U7J0EeugsKxPYAA-vA" size="2" strokeColor="0,0,0">
@@ -3191,7 +3191,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_M7bKzrJ0EeugsKxPYAA-vA" name="E_ConfirmVTBI?" sourceNode="_7txy4LJzEeugsKxPYAA-vA" targetNode="_beHdMLJiEeuABPxUxyypzg">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_M7bKzrJ0EeugsKxPYAA-vA" name="E_ConfirmVTBI?_2" sourceNode="_7txy4LJzEeugsKxPYAA-vA" targetNode="_beHdMLJiEeuABPxUxyypzg">
       <target xmi:type="lts:Transition" href="pump2.lts#//@transitions.24"/>
       <semanticElements xmi:type="lts:Transition" href="pump2.lts#//@transitions.24"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_M7bKz7J0EeugsKxPYAA-vA" size="2" strokeColor="0,0,0">
@@ -3200,7 +3200,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_oqB_zLJ0EeugsKxPYAA-vA" name="x1 >= MAX_WAIT_INPUT_T x1 = 0" sourceNode="_C2nd0LJ0EeugsKxPYAA-vA" targetNode="_dJ6ygLJ0EeugsKxPYAA-vA">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_oqB_zLJ0EeugsKxPYAA-vA" name="x1 >= MAX_WAIT_INPUT_T_3" sourceNode="_C2nd0LJ0EeugsKxPYAA-vA" targetNode="_dJ6ygLJ0EeugsKxPYAA-vA">
       <target xmi:type="lts:Transition" href="pump2.lts#//@transitions.25"/>
       <semanticElements xmi:type="lts:Transition" href="pump2.lts#//@transitions.25"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_oqB_zbJ0EeugsKxPYAA-vA" size="2" strokeColor="0,0,0">
@@ -3209,7 +3209,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_phJ1BLJ0EeugsKxPYAA-vA" sourceNode="_dJ6ygLJ0EeugsKxPYAA-vA" targetNode="_C2nd0LJ0EeugsKxPYAA-vA">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_phJ1BLJ0EeugsKxPYAA-vA" name="No_Label_3" sourceNode="_dJ6ygLJ0EeugsKxPYAA-vA" targetNode="_C2nd0LJ0EeugsKxPYAA-vA">
       <target xmi:type="lts:Transition" href="pump2.lts#//@transitions.26"/>
       <semanticElements xmi:type="lts:Transition" href="pump2.lts#//@transitions.26"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_phJ1BbJ0EeugsKxPYAA-vA" size="2" strokeColor="0,0,0">
@@ -3227,7 +3227,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_rlXvjrJ0EeugsKxPYAA-vA" name="E_ChangeVTBI? x1 = 0" sourceNode="_hLmfQLJ0EeugsKxPYAA-vA" targetNode="_C2nd0LJ0EeugsKxPYAA-vA">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_rlXvjrJ0EeugsKxPYAA-vA" name="E_ChangeVTBI?_3" sourceNode="_hLmfQLJ0EeugsKxPYAA-vA" targetNode="_C2nd0LJ0EeugsKxPYAA-vA">
       <target xmi:type="lts:Transition" href="pump2.lts#//@transitions.28"/>
       <semanticElements xmi:type="lts:Transition" href="pump2.lts#//@transitions.28"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_rlXvj7J0EeugsKxPYAA-vA" size="2" strokeColor="0,0,0">
@@ -3236,7 +3236,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_s9fY8bJ0EeugsKxPYAA-vA" name="E_ChangeVTBI?" sourceNode="_kaxJ8LJ0EeugsKxPYAA-vA" targetNode="_C2nd0LJ0EeugsKxPYAA-vA">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_s9fY8bJ0EeugsKxPYAA-vA" name="E_ChangeVTBI?_4" sourceNode="_kaxJ8LJ0EeugsKxPYAA-vA" targetNode="_C2nd0LJ0EeugsKxPYAA-vA">
       <target xmi:type="lts:Transition" href="pump2.lts#//@transitions.29"/>
       <semanticElements xmi:type="lts:Transition" href="pump2.lts#//@transitions.29"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_s9fY8rJ0EeugsKxPYAA-vA" size="2" strokeColor="0,0,0">
@@ -3254,7 +3254,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer/@edgeMappings[name='TransitionEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_vmrBtLJ0EeugsKxPYAA-vA" name="E_ConfirmVTBI?" sourceNode="_kaxJ8LJ0EeugsKxPYAA-vA" targetNode="_beHdMLJiEeuABPxUxyypzg">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_vmrBtLJ0EeugsKxPYAA-vA" name="E_ConfirmVTBI?_2" sourceNode="_kaxJ8LJ0EeugsKxPYAA-vA" targetNode="_beHdMLJiEeuABPxUxyypzg">
       <target xmi:type="lts:Transition" href="pump2.lts#//@transitions.31"/>
       <semanticElements xmi:type="lts:Transition" href="pump2.lts#//@transitions.31"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_vmrBtbJ0EeugsKxPYAA-vA" size="2" strokeColor="0,0,0">
