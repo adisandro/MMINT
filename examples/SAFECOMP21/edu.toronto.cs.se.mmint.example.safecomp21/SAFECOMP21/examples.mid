@@ -9,8 +9,11 @@
     <modelElems uri="/SAFECOMP21/sc.gsn#//@goals.0_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Basic Goal C1" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="BasicGoal" featureName="goals" relatedClassName="SafetyCase"/>
     </modelElems>
+    <modelElems uri="/SAFECOMP21/sc.gsn#//@goals.1_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Basic Goal C2" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="BasicGoal" featureName="goals" relatedClassName="SafetyCase"/>
+    </modelElems>
   </models>
-  <models xsi:type="relationship:ModelRel" uri="" name="trace" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel" dynamic="true" origin="CREATED" fileExtension="">
+  <models xsi:type="relationship:ModelRel" uri="" name="trace1" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel" dynamic="true" origin="CREATED" fileExtension="">
     <modelEndpoints uri="" name="fcs" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0"/>
     <modelEndpoints uri="" name="sc" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1"/>
     <mappings uri="" name="m" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.0/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.0/@modelElemEndpointRefs.1">
@@ -28,8 +31,30 @@
       <modelElemEndpointRefs referencedObject="//@models.2/@mappings.0/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.0"/>
     </mappingRefs>
   </models>
-  <models uri="/SAFECOMP21/pump1.lts" name="pump1" metatypeUri="model://edu.toronto.cs.se.mmint.types.lts" dynamic="true" origin="CREATED" fileExtension="lts" editors="//@editors.2"/>
+  <models uri="/SAFECOMP21/pump1.lts" name="pump1" metatypeUri="model://edu.toronto.cs.se.mmint.types.lts" dynamic="true" origin="CREATED" fileExtension="lts" editors="//@editors.2">
+    <modelElems uri="/SAFECOMP21/pump1.lts#/_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="LTS" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="LTS" featureName="root"/>
+    </modelElems>
+  </models>
   <models uri="/SAFECOMP21/pump2.lts" name="pump2" metatypeUri="model://edu.toronto.cs.se.mmint.types.lts" dynamic="true" origin="CREATED" fileExtension="lts" editors="//@editors.3"/>
+  <models xsi:type="relationship:ModelRel" uri="" name="trace2" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel" dynamic="true" origin="CREATED" fileExtension="">
+    <modelEndpoints uri="" name="sc" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1"/>
+    <modelEndpoints uri="" name="pump1" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3"/>
+    <mappings uri="" name="m" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping" dynamic="true" modelElemEndpointRefs="//@models.5/@mappingRefs.0/@modelElemEndpointRefs.0 //@models.5/@mappingRefs.0/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="Basic Goal C2" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping-ModelElem/ModelElemEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.1"/>
+      <modelElemEndpoints uri="" name="LTS" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping-ModelElem/ModelElemEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.0"/>
+    </mappings>
+    <modelEndpointRefs referencedObject="//@models.5/@modelEndpoints.0" modifiable="true">
+      <modelElemRefs referencedObject="//@models.1/@modelElems.1" modifiable="true" modelElemEndpointRefs="//@models.5/@mappingRefs.0/@modelElemEndpointRefs.0"/>
+    </modelEndpointRefs>
+    <modelEndpointRefs referencedObject="//@models.5/@modelEndpoints.1" modifiable="true">
+      <modelElemRefs referencedObject="//@models.3/@modelElems.0" modifiable="true" modelElemEndpointRefs="//@models.5/@mappingRefs.0/@modelElemEndpointRefs.1"/>
+    </modelEndpointRefs>
+    <mappingRefs referencedObject="//@models.5/@mappings.0" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.5/@mappings.0/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.5/@modelEndpointRefs.0/@modelElemRefs.0"/>
+      <modelElemEndpointRefs referencedObject="//@models.5/@mappings.0/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.5/@modelEndpointRefs.1/@modelElemRefs.0"/>
+    </mappingRefs>
+  </models>
   <editors xsi:type="editor:Diagram" uri="/SAFECOMP21/representations.aird#_ec3Q4F6dEeuzRqps9eyyPw" name="LTS Sirius Diagram for model /SAFECOMP21/fcs.lts" metatypeUri="edu.toronto.cs.se.mmint.types.lts.design" dynamic="true" modelUri="/SAFECOMP21/fcs.lts" id="edu.toronto.cs.se.mmint.types.lts.design" wizardId="edu.toronto.cs.se.mmint.types.lts.presentation.LTSModelWizardID">
     <fileExtensions>aird#_ec3Q4F6dEeuzRqps9eyyPw</fileExtensions>
   </editors>
@@ -48,4 +73,6 @@
   <extendibleTable key="/SAFECOMP21/sc.gsn#//@goals.0_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.0"/>
   <extendibleTable key="/SAFECOMP21/pump1.lts" value="//@models.3"/>
   <extendibleTable key="/SAFECOMP21/pump2.lts" value="//@models.4"/>
+  <extendibleTable key="/SAFECOMP21/sc.gsn#//@goals.1_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.1"/>
+  <extendibleTable key="/SAFECOMP21/pump1.lts#/_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.3/@modelElems.0"/>
 </mid:MID>
