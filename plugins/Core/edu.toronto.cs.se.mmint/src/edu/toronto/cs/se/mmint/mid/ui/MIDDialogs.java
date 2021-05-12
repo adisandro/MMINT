@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.mmint.mid.ui;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
@@ -37,6 +38,7 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.eclipse.ui.dialogs.ListDialog;
 import org.eclipse.ui.model.BaseWorkbenchContentProvider;
 import org.eclipse.ui.model.WorkbenchLabelProvider;
@@ -113,6 +115,22 @@ public class MIDDialogs {
 
     return (T) dialog.getResult()[0];
 	}
+
+  @SuppressWarnings("unchecked")
+  public static <T> List<T> openListMultipleDialog(String title, String message, List<T> input,
+                                                   ILabelProvider labelProvider) throws MIDDialogCancellation {
+    var dialog = new ElementListSelectionDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),
+                                                labelProvider);
+    dialog.setTitle(title);
+    dialog.setMessage(message);
+    dialog.setMultipleSelection(true);
+    dialog.setElements(input.toArray());
+    if (dialog.open() == Window.CANCEL) {
+      throw new MIDDialogCancellation();
+    }
+
+    return Arrays.asList((T[]) dialog.getResult());
+  }
 
 	/**
 	 * Shows a tree dialog to select a model type choosing from the registered
