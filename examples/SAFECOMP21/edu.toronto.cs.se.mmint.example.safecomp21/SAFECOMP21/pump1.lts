@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <lts:LTS xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:lts="model://edu.toronto.cs.se.mmint.types.lts">
-  <states xsi:type="lts:InitialState" label="Init" incoming="//@transitions.51" outgoing="//@transitions.0"/>
+  <states xsi:type="lts:InitialState" label="Init" incoming="//@transitions.51 //@transitions.57" outgoing="//@transitions.0"/>
   <states label="Infusion_NormalOperation" incoming="//@transitions.0 //@transitions.2 //@transitions.3 //@transitions.5 //@transitions.8 //@transitions.10 //@transitions.11 //@transitions.17 //@transitions.19 //@transitions.24 //@transitions.28 //@transitions.34" outgoing="//@transitions.1 //@transitions.4 //@transitions.6 //@transitions.7 //@transitions.16 //@transitions.18 //@transitions.27 //@transitions.47"/>
   <states label="BolusRequest" incoming="//@transitions.1" outgoing="//@transitions.2 //@transitions.3"/>
   <states label="Wrn_LowReservoir" incoming="//@transitions.4" outgoing="//@transitions.5"/>
@@ -18,6 +18,10 @@
   <states label="CheckNewRate" incoming="//@transitions.31" outgoing="//@transitions.30 //@transitions.32"/>
   <states label="Alrm_UnsafeNewRate" incoming="//@transitions.32" outgoing="//@transitions.33 //@transitions.34 //@transitions.35 //@transitions.36"/>
   <states label="InfusionStopped" incoming="//@transitions.36 //@transitions.37 //@transitions.38 //@transitions.40 //@transitions.41 //@transitions.42 //@transitions.43 //@transitions.44 //@transitions.45 //@transitions.46 //@transitions.47 //@transitions.48 //@transitions.49 //@transitions.50" outgoing="//@transitions.39 //@transitions.51"/>
+  <states xsi:type="lts:InitialState" label="PowerDown" incoming="//@transitions.55" outgoing="//@transitions.52"/>
+  <states label="POST_In_Progress" incoming="//@transitions.52" outgoing="//@transitions.53 //@transitions.54 //@transitions.56"/>
+  <states label="POSTDone" incoming="//@transitions.56" outgoing="//@transitions.57"/>
+  <states label="Alrm_POSTFailure" incoming="//@transitions.53 //@transitions.54" outgoing="//@transitions.55"/>
   <transitions label="Cond_2?" from="//@states.0" to="//@states.1"/>
   <transitions label="E_RequestBolus?" from="//@states.1" to="//@states.2"/>
   <transitions label="Cond_7_1?" from="//@states.2" to="//@states.1"/>
@@ -70,4 +74,10 @@
   <transitions label="E_StopInfusion?_5" from="//@states.12" to="//@states.17"/>
   <transitions label="E_StopInfusion?_6" from="//@states.4" to="//@states.17"/>
   <transitions label="E_NewInfusion?" from="//@states.17" to="//@states.0"/>
+  <transitions label="E_PowerButton?_1" from="//@states.18" to="//@states.19"/>
+  <transitions label="MCond_1_3?" from="//@states.19" to="//@states.21"/>
+  <transitions label="x1 >= MAX_POST_WAIT" from="//@states.19" to="//@states.21"/>
+  <transitions label="E_PowerButton?_2" from="//@states.21" to="//@states.18"/>
+  <transitions label="MCond_1_4?" from="//@states.19" to="//@states.20"/>
+  <transitions label="No_Label_3" from="//@states.20" to="//@states.0"/>
 </lts:LTS>
