@@ -59,6 +59,7 @@ end path
 inductive formula (M : LTS) 
 | T : formula 
 | state_predicate (p : M.S → Prop) : formula
+| act_predicate (p : M.Act → Prop) : formula
 | state (s : M.S) : formula  
 | act (a : M.Act) : formula 
 | neg (x : formula) : formula 
@@ -84,7 +85,7 @@ def sat {M : LTS} : formula M → path M → Prop
 | (formula.always φ) := λ π, ∀ i, sat φ (π.drop i) 
 | (formula.eventually φ) := λ π, ∃ i, sat φ (π.drop i)
 | (formula.state_predicate p) := λ π, p π.init
-
+| (formula.act_predicate p) := λ π, p (path.index π 1).1 
 
 notation φ ` & ` ψ := formula.conj  φ ψ 
 notation φ ` ⅋ ` ψ := formula.disj φ ψ 

@@ -150,8 +150,11 @@ public class GSNLeanReasoner extends LeanReasoner implements IGSNDecompositionTr
           else {
             properties = badProperties;
           }
-          feedback = feedback.substring(0, feedback.indexOf(" "));
-          properties.add(feedback);
+          var token = feedback.indexOf(" ");
+          feedback = (token == -1) ? feedback : feedback.substring(0, token);
+          if (!feedback.isBlank()) {
+            properties.add(feedback);
+          }
         }
         if (!badProperties.isEmpty()) {
           var badInformals = strategy.getSupportedBy().stream()
