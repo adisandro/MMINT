@@ -185,21 +185,23 @@ public class PropertyDecomposition extends GoalDecomposition {
       // create decomposition template
       var id = this.decomposed.getId();
       var informal = "'" + property.getInformal() + "'";
-      var formalStrategyId = "SF-" + id;
+      var formalStrategyId = "S1." + id;
       var formalStrategyDesc = "Argument by " + reasonerName + " formalization";
-      var modelGoalId = id + "-M";
-      var modelGoalDesc = "The related model correctly models all aspects of the system for property " + informal;
-      var propGoalId = id + "-P";
-      var propGoalDesc = id + " asserts the property " + informal;
-      var propDesc1 = "The property ";
-      var propDesc2 = " holds for the related model";
-      var formalGoalId = id + "-F";
-      var formalGoalDesc = propDesc1 + informal + propDesc2;
-      var propStrategyId = "S-" + id;
-      var propStrategyDesc = "Decomposition over property " + informal;
-      var modelContextId = "C-" + id;
-      var subGoalId = id + "-";
+      var propContextId = "Ctx1." + id;
+      var propContextDesc = "Property " + informal;
+      var modelGoalId = id + ".1";
+      var modelGoalDesc = "The related model correctly models all aspects of the system for the property in " +
+                          propContextId;
+      var propGoalId = id + ".2";
+      var propGoalDesc = id + " asserts the property in " + propContextId;
+      var formalGoalId = id + ".3";
+      var formalGoalDesc = "The property in " + propContextId + " holds";
+      var propStrategyId = "S2." + id;
+      var propStrategyDesc = "Decomposition over property in " + propContextId;
+      var modelContextId = "Ctx2." + id;
+      var subGoalId = id + ".";
       var formalStrategy = builder.createBasicStrategy(formalStrategyId, formalStrategyDesc);
+      builder.createContext(formalStrategy, propContextId, propContextDesc);
       var modelGoal = builder.createBasicGoal(modelGoalId, modelGoalDesc);
       builder.addSupporter(formalStrategy, modelGoal);
       var propGoal = builder.createBasicGoal(propGoalId, propGoalDesc);
@@ -214,8 +216,8 @@ public class PropertyDecomposition extends GoalDecomposition {
         var subProperty = (subTemplate == PropertyTemplate.CUSTOM) ?
           builder.createProperty(title, "Insert the sub-property #" + (i+1), customMsg) :
           subTemplate.bindVariables(title, modelObjs);
-        var subGoalDesc = propDesc1 + "'" + subProperty.getInformal() + "'" + propDesc2;
-        var subGoal = builder.createPropertyGoal(subGoalId + i, subGoalDesc, reasonerName, subProperty);
+        var subGoalDesc = "The property '" + subProperty.getInformal() + "' holds";
+        var subGoal = builder.createPropertyGoal(subGoalId + (i+4), subGoalDesc, reasonerName, subProperty);
         builder.addSupporter(propStrategy, subGoal);
       }
       builder.addSupporter(this.decomposed, formalStrategy);

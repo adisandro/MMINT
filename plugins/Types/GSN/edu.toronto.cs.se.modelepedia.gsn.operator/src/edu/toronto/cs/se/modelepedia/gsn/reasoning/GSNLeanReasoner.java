@@ -179,7 +179,7 @@ public class GSNLeanReasoner extends LeanReasoner implements IGSNDecompositionTr
     // create justification
     var proof = (valid) ? "proven" : "disproven";
     var builder = new PropertyBuilder((SafetyCase) strategy.eContainer());
-    var justId = "J-" + strategy.getId();
+    var justId = "J." + strategy.getId().split("\\.")[1];
     justDesc = "Decomposition validity " + proof + " in " + getName() + ": " + justDesc;
     builder.createJustification(strategy, justId, justDesc);
     builder.commitChanges();
