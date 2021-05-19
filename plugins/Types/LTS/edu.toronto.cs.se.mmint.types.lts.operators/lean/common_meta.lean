@@ -1,4 +1,4 @@
-import system.io tactic justification LTS property_catalogue.LTL.patterns
+import system.io tactic justification LTS property_catalogue.LTL.patterns property_catalogue.LTL.pattern_meta
 open io list lean.parser tactic interactive.types
 
 open lean.parser (ident)
@@ -198,6 +198,29 @@ do
    local_context >>= Inductive_hyp tgt ,
    `[repeat {rw sat at *}], 
    return p₂
+
+
+
+
+meta def solve_inductive (ps : PROOF_STATE α) : tactic (PROOF_STATE α) := 
+do 
+   let s₁ := string.empty,
+   p ← by_induction ps,
+   b ← is_solved, 
+   if !b then do 
+   h ← debug_inductive,
+   return {hints := p.hints ++ [h] ..p} else 
+   return {solved := b, ..p} 
+
+
+meta def Switch (ps : PROOF_STATE α) : tactic (PROOF_STATE α) := 
+do
+   analyze ps,
+   l ← local_context >>= load_properties,
+   let ps := {total := l ..ps},  `[repeat {rw sat at *}], 
+   switch ps.tscript.head,
+    b ← is_solved, 
+   return {solved := b, ..ps}
 
 meta def match_premises : tactic unit := 
 do  repeat1 (applyc `and.intro), `[repeat {assumption}]

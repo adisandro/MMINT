@@ -1,6 +1,5 @@
 import property_catalogue.LTL.sat.absent 
 import property_catalogue.LTL.sat.precedes 
-import common_meta 
 
 variable {α : Type}
 
@@ -12,6 +11,10 @@ do
     precedes.globally.solve e₁ e₂ s ctx
   | `(sat (absent.globally %%e₁) _) :=  
     absent.globally.solve e₁ s ctx 
+  | `(sat (absent.between %%e1 %%e2 %%e3) _) := 
+   absent.between.solve s ctx
+  | `(sat (absent.after_until %%e1 %%e2 %%e3) _) := 
+    absent.after_until.solve s ctx
   | _ := return ()
   end 
 
@@ -30,14 +33,3 @@ do
       return $ to_string e4 ++ " " ++ to_string e2
    |  _ :=    return string.empty
    end 
-
-
-meta def solve_inductive (ps : PROOF_STATE α) : tactic (PROOF_STATE α) := 
-do 
-   let s₁ := string.empty,
-   p ← by_induction ps,
-   b ← is_solved, 
-   if !b then do 
-   h ← debug_inductive,
-   return {hints := p.hints ++ [h] ..p} else 
-   return {solved := b, ..p} 

@@ -35,9 +35,15 @@ def after (P Q : formula M)  : formula M :=
     ◾(Q ⇒ ◾!P)
 
 def between (P Q R : formula M) : formula M :=   
-    ◾((Q & !R & ◆ R) ⇒ (!P U R))
+    ◾((Q & ◆ R) ⇒ (!P U R))
 
 def after_until (P Q R: formula M) : formula M :=
+    ◾((Q & ◆ R) ⇒ (!P W R))
+
+def strong_between (P Q R : formula M) : formula M :=   
+    ◾((Q & !R & ◆ R) ⇒ (!P U R))
+
+def strong_after_until (P Q R: formula M) : formula M :=
     ◾((Q & !R) ⇒ ((!P) W R))
 
 end absent
