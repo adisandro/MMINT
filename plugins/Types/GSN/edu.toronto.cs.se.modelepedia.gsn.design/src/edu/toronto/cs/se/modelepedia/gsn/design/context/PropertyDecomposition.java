@@ -42,9 +42,13 @@ import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.mid.ui.MIDTreeSelectionDialog;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
+import edu.toronto.cs.se.modelepedia.gsn.BasicStrategy;
 import edu.toronto.cs.se.modelepedia.gsn.DecompositionStrategy;
 import edu.toronto.cs.se.modelepedia.gsn.Goal;
+import edu.toronto.cs.se.modelepedia.gsn.Property;
+import edu.toronto.cs.se.modelepedia.gsn.PropertyGoal;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
+import edu.toronto.cs.se.modelepedia.gsn.Strategy;
 import edu.toronto.cs.se.modelepedia.gsn.design.Activator;
 import edu.toronto.cs.se.modelepedia.gsn.reasoning.IGSNDecompositionTrait;
 import edu.toronto.cs.se.modelepedia.gsn.reasoning.IGSNLeanEncoder.PropertyTemplate;
@@ -90,11 +94,42 @@ public class PropertyDecomposition extends GoalDecomposition {
       return modelObjs;
     }
 
+    private Goal moveOneDecompositionUp(Goal goal) throws MMINTException {
+      if (goal.getSupports().size() > 1) {
+        throw new MMINTException("Goal '" + goal.getId() + "' should not support more than one GSN element");
+      }
+      var supported = goal.getSupports().get(0).getSource();
+      if (!(supported instanceof Strategy strategy)) {
+        throw new MMINTException("Goal '" + goal.getId() + "' should support a strategy");
+      }
+      if (strategy.getSupports().size() > 1) {
+        throw new MMINTException("Strategy '" + strategy.getId() + "' should not support more than one GSN element");
+      }
+      supported = strategy.getSupports().get(0).getSource();
+      if (!(supported instanceof Goal parentGoal)) {
+        throw new MMINTException("Strategy '" + strategy.getId() + "' should support a goal");
+      }
+
+      return parentGoal;
+    }
+
     private Optional<Model> getRelatedModel() throws MMINTException {
+      // detect if this is a decomposition chain
+      var relatedGoal = this.decomposed;
+      try {
+        while (relatedGoal instanceof PropertyGoal) {
+          relatedGoal = moveOneDecompositionUp(relatedGoal);
+        }
+        relatedGoal = moveOneDecompositionUp(relatedGoal); // formal argument level
+      }
+      catch (MMINTException e) {
+        MMINTException.print(IStatus.WARNING, "Bad structure for assisted decomposition", e);
+        return Optional.empty();
+      }
       // find the goals in connected rels
-      var gsnModel = MIDDiagramUtils.getInstanceMIDModelFromModelEditor(this.decomposed);
+      var gsnModel = MIDDiagramUtils.getInstanceMIDModelFromModelEditor(relatedGoal);
       var modelRels = MIDRegistry.getConnectedModelRels(gsnModel, gsnModel.getMIDContainer());
-      var decomposedUri = MIDRegistry.getModelElementUri(this.decomposed);
+      var decomposedUri = MIDRegistry.getModelElementUri(relatedGoal);
       //TODO MMINT[GSN]: Ask if there are multiple matches instead of getting the first
       for (var modelRel : modelRels) {
         if (modelRel.getModelEndpoints().size() != 2) { // exclude non-binary
@@ -149,7 +184,6 @@ public class PropertyDecomposition extends GoalDecomposition {
 
     @Override
     protected DecompositionStrategy decompose() throws Exception {
-      //TODO MMINT[GSN] Support chain of property decompositions (search related model recursively)
       var builder = (PropertyBuilder) this.builder;
       // ask for input
       var title = "Property Decomposition";
@@ -160,6 +194,7 @@ public class PropertyDecomposition extends GoalDecomposition {
       var templates = Map.<String, List<PropertyTemplate>>of();
       var modelObjs = Map.<EClass, List<EObject>>of();
       String relatedModelPath;
+      Property property;
       var encodingMsg = ", please manually select a " + reasonerName + " file";
       if (relatedModelOpt.isEmpty()) { // no related model: ask to manually provide an encoding
         relatedModelPath = getEncodingFile(title, "No related model found" + encodingMsg);
@@ -176,38 +211,53 @@ public class PropertyDecomposition extends GoalDecomposition {
                                              encodingMsg);
         }
       }
-      var template = selectTemplate(title, "Select the property to be decomposed", templates);
-      var property = (template == PropertyTemplate.CUSTOM) ?
-        builder.createProperty(title, "Insert the " + reasonerName + " property to be decomposed", customMsg) :
-        template.bindVariables(title, modelObjs);
+      if (this.decomposed instanceof PropertyGoal propDecomposed) { // decomposition chain, parent property exists
+        property = propDecomposed.getProperty();
+      }
+      else {
+        var template = selectTemplate(title, "Select the property to be decomposed", templates);
+        property = (template == PropertyTemplate.CUSTOM) ?
+          builder.createProperty(title, "Insert the " + reasonerName + " property to be decomposed", customMsg) :
+          template.bindVariables(title, modelObjs);
+      }
       var numProperties = Integer.parseInt(MIDDialogs.getStringInput(title, "Insert the number of sub-properties",
                                                                      null));
       // create decomposition template
       var id = this.decomposed.getId();
       var informal = "'" + property.getInformal() + "'";
-      var formalStrategyId = "S1." + id;
-      var formalStrategyDesc = "Argument by " + reasonerName + " formalization";
-      var propContextId = "Ctx1." + id;
-      var propContextDesc = "Property " + informal;
-      var modelGoalId = id + ".1";
-      var modelGoalDesc = "The related model correctly models all aspects of the system for the property in " +
-                          propContextId;
-      var propGoalId = id + ".2";
-      var propGoalDesc = id + " asserts the property in " + propContextId;
-      var formalGoalId = id + ".3";
-      var formalGoalDesc = "The property in " + propContextId + " holds";
-      var propStrategyId = "S2." + id;
-      var propStrategyDesc = "Decomposition over property in " + propContextId;
+      BasicStrategy formalStrategy = null;
+      var formalGoal = this.decomposed;
+      String propStrategyId;
+      var propStrategyDesc = "Decomposition over property ";
+      if (!(this.decomposed instanceof PropertyGoal)) { // not a decomposition chain, create formal argument level
+        var formalStrategyId = "S1." + id;
+        var formalStrategyDesc = "Argument by " + reasonerName + " formalization";
+        var propContextId = "Ctx1." + id;
+        var propContextDesc = "Property " + informal;
+        var modelGoalId = id + ".1";
+        var modelGoalDesc = "The related model correctly models all aspects of the system for the property in " +
+                            propContextId;
+        var propGoalId = id + ".2";
+        var propGoalDesc = id + " asserts the property in " + propContextId;
+        var formalGoalId = id + ".3";
+        var formalGoalDesc = "The property in " + propContextId + " holds";
+        formalStrategy = builder.createBasicStrategy(formalStrategyId, formalStrategyDesc);
+        builder.createContext(formalStrategy, propContextId, propContextDesc);
+        var modelGoal = builder.createBasicGoal(modelGoalId, modelGoalDesc);
+        builder.addSupporter(formalStrategy, modelGoal);
+        var propGoal = builder.createBasicGoal(propGoalId, propGoalDesc);
+        builder.addSupporter(formalStrategy, propGoal);
+        formalGoal = builder.createBasicGoal(formalGoalId, formalGoalDesc);
+        builder.addSupporter(formalStrategy, formalGoal);
+        propStrategyId = "S2." + id;
+        propStrategyDesc += "in " + propContextId;
+      }
+      else {
+        propStrategyId = "S1." + id;
+        propStrategyDesc += informal;
+      }
       var modelContextId = "Ctx2." + id;
       var subGoalId = id + ".";
-      var formalStrategy = builder.createBasicStrategy(formalStrategyId, formalStrategyDesc);
-      builder.createContext(formalStrategy, propContextId, propContextDesc);
-      var modelGoal = builder.createBasicGoal(modelGoalId, modelGoalDesc);
-      builder.addSupporter(formalStrategy, modelGoal);
-      var propGoal = builder.createBasicGoal(propGoalId, propGoalDesc);
-      builder.addSupporter(formalStrategy, propGoal);
-      var formalGoal = builder.createBasicGoal(formalGoalId, formalGoalDesc);
-      builder.addSupporter(formalStrategy, formalGoal);
       var propStrategy = builder.createPropertyStrategy(propStrategyId, propStrategyDesc, reasonerName, property);
       builder.addSupporter(formalGoal, propStrategy);
       builder.createContext(propStrategy, modelContextId, relatedModelPath);
@@ -220,7 +270,7 @@ public class PropertyDecomposition extends GoalDecomposition {
         var subGoal = builder.createPropertyGoal(subGoalId + (i+4), subGoalDesc, reasonerName, subProperty);
         builder.addSupporter(propStrategy, subGoal);
       }
-      builder.addSupporter(this.decomposed, formalStrategy);
+      builder.addSupporter(this.decomposed, (formalStrategy == null) ? propStrategy : formalStrategy);
 
       return propStrategy;
     }
