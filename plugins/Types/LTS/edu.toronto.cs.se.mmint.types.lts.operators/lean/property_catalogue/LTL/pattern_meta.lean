@@ -1,21 +1,24 @@
 import property_catalogue.LTL.sat.absent 
 import property_catalogue.LTL.sat.precedes 
+import proof_state tactic 
 
 variable {α : Type}
 
-meta def switch (s : string) : tactic unit := 
+meta def switch (ps : PROOF_STATE α) : tactic (PROOF_STATE α) := 
 do 
   tgt ← tactic.target, ctx ← tactic.local_context,
   match tgt with
-  | `(sat (precedes.globally %%e₁ %%e₂) _) :=  
-    precedes.globally.solve e₁ e₂ s ctx
-  | `(sat (absent.globally %%e₁) _) :=  
-    absent.globally.solve e₁ s ctx 
-  | `(sat (absent.between %%e1 %%e2 %%e3) _) := 
-   absent.between.solve s ctx
+  -- | `(sat (precedes.globally %%e₁ %%e₂) _) :=  
+  --   precedes.globally.solve e₁ e₂ ps ctx
+  | `(sat (absent.globally %%e₁) _) :=  do 
+    ps ← absent.globally.solve e₁ ps ctx, return ps 
+  | `(sat (absent.between %%e1 %%e2 %%e3) _) := do
+   ps ← absent.between.solve ps ctx, return ps 
   | `(sat (absent.after_until %%e1 %%e2 %%e3) _) := 
-    absent.after_until.solve s ctx
-  | _ := return ()
+  do 
+    ps ← absent.after_until.solve ps ctx, 
+    return ps
+  | _ := return ps
   end 
 
 

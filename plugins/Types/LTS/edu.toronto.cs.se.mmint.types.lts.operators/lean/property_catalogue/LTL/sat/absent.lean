@@ -1,8 +1,9 @@
-import LTS property_catalogue.LTL.patterns tactic 
+import LTS property_catalogue.LTL.patterns tactic proof_state
 
 open tactic
 
 variable {M : LTS}
+variable {α : Type}
 
 namespace absent
 namespace globally 
@@ -36,20 +37,23 @@ begin
     assumption,
 end 
 
-meta def solve_by_partition (tok1 tok2 : expr) (s : string) : tactic unit := 
+meta def solve_by_partition (tok1 tok2 : expr) (ps : PROOF_STATE α ): tactic (PROOF_STATE α) := 
 do 
-  tactic.interactive.apply ``(by_partition_before_aft %%tok1 %%tok2)
+  tactic.interactive.apply ``(by_partition_before_aft %%tok1 %%tok2),
+  return ps 
 -- t1 ← tok1.log_format, t2 ← tok2.log_format,
 --  s.log $ "apply by_partition_before_aft" ++ t1 ++ t2 ++ "\n"
 
 
-meta def solve (tok : expr) (str : string) : list expr → tactic unit 
-| [] :=  return ()
+meta def solve (tok : expr) (ps : PROOF_STATE α) : list expr → tactic (PROOF_STATE α)
+| [] :=  return ps
 | (h::t) := 
    do typ ← infer_type h,
    match typ with 
-   | `(sat (absent.before %%tok %%new) %%path):= solve_by_partition tok new str <|> solve t
-   | `(sat (absent.after %%tok %%new) %%path) := solve_by_partition tok new str <|> solve t 
+   | `(sat (absent.before %%tok %%new) %%path):= 
+   do {ps ←  solve_by_partition tok new ps, return ps }<|> solve t
+   | `(sat (absent.after %%tok %%new) %%path) := 
+   do {ps ← solve_by_partition tok new ps, return ps }<|> solve t 
    | _ := do solve t 
    end 
 
@@ -173,18 +177,19 @@ end
 
 
 
-meta def solve_by_absent_between_response (A : expr) : tactic unit := 
+meta def solve_by_absent_between_response (A : expr) (ps : PROOF_STATE α): tactic (PROOF_STATE α) := 
 do 
   tactic.interactive.apply ``(absent_between_response %%A),
-  repeat1 (applyc `and.intro), `[repeat {assumption}]
+  repeat1 (applyc `and.intro), `[repeat {assumption}],
+  return ps 
 
-meta def solve  (str : string) : list expr → tactic unit 
-| [] :=  return ()
+meta def solve  (ps : PROOF_STATE α) : list expr → tactic (PROOF_STATE α) 
+| [] :=  return ps
 | (h::t) := 
    do typ ← infer_type h,
    match typ with 
    | `(sat (responds.globally %%C %%A) _):=
-     solve_by_absent_between_response A <|> solve t
+    do {ps ← solve_by_absent_between_response A ps, return ps} <|> solve t
    | _ := do solve t 
    end 
 
@@ -196,7 +201,7 @@ end between
 namespace after_until
 
 
-theorem absent_after_between_response {M : LTS} {p : path M} { B I C : formula M} ( A : formula M) : 
+theorem from_absent_between_response {M : LTS} {p : path M} { B I C : formula M} ( A : formula M) : 
 (sat (responds.globally  (C) (A) ) p) ∧ 
 (sat (absent.between (B) (C) (A)) p) ∧  
 (sat (absent.after_until (B) (A) (I)) p)→ (sat (absent.after_until (B) (C) (I)) p) := 
@@ -221,18 +226,22 @@ begin
 end 
 
 
-meta def solve_by_absent_between_response (A : expr) : tactic unit := 
+meta def solve_by_absent_between_response (A : expr) (ps : PROOF_STATE α): tactic (PROOF_STATE α) := 
 do 
-  tactic.interactive.apply ``(absent_after_between_response %%A),
-  repeat1 (applyc `and.intro), `[repeat {assumption}]
+  tactic.interactive.apply ``(from_absent_between_response %%A),
+  ps ← ps.log "apply absent.after_until.from_absent_between_response",
+  let ps := {used := ps.used ++ ["apply absent.after_until.from_absent_between_response"], ..ps},
+  repeat1 (applyc `and.intro), `[repeat {assumption}],
+  ps ← ps.log "match_premises",
+  return {used := ps.used ++ ["match_premises"], ..ps}
 
-meta def solve  (str : string) : list expr → tactic unit 
-| [] :=  return ()
+meta def solve  (ps : PROOF_STATE α) : list expr → tactic (PROOF_STATE α) 
+| [] :=  return ps
 | (h::t) := 
    do typ ← infer_type h,
    match typ with 
    | `(sat (responds.globally %%C %%A) _):=
-     solve_by_absent_between_response A <|> solve t
+     do {ps ← solve_by_absent_between_response A ps, return ps} <|> solve t
    | _ := do solve t 
    end 
 

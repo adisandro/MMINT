@@ -59,7 +59,7 @@ do
   let ps := get_originals ps,
   let goal_str := "deductive (path [modelName/]) " ++ local_strat_name,
   set_goal ps.init_goal,
-  ps ← Switch (ps),
+  ps ← SOLVE (ps),
   str ← get_unused ps,
     match ps.solved with
     | tt := tactic.trace "True"

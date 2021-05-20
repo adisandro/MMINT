@@ -1,53 +1,10 @@
 import system.io tactic justification LTS property_catalogue.LTL.patterns property_catalogue.LTL.pattern_meta
+
 open io list lean.parser tactic interactive.types
 
 open lean.parser (ident)
 
 variable {α : Type}
-
-meta structure PROOF_STATE (α : Type) := 
-(init_goal : expr := default expr)
-(input : property.input α := default (property.input α))
-(input_string : string := string.empty)
-(strat_expr : expr := default expr)
-(solved : bool := ff)
-(originals : list (string × expr) := [])
-(total : list expr := [])
-(used : list string := [])
-(PROPS : expr := default expr)
-(tscript : list string := [])
-(hints : list string := [])
-(unused : string := string.empty)
-
-meta def originals_aux : expr → list expr  
-| `(list.cons %%h %%t) := match h with 
-   | `(λ x, x ⊨ %%prop) := do [prop] ++ originals_aux t
-   | _ := originals_aux t  
-   end 
-| _ := []
-
-meta def get_originals (ps : PROOF_STATE α) : (PROOF_STATE α) := 
- let l := originals_aux ps.PROPS in 
- let l':= (list.range l.length).map 
- (λ i, ("P" ++ to_string (i+1) : string)) in 
- {originals := list.zip l' l ..ps}
-
-namespace PROOF_STATE 
-
-
-meta def log (ps : PROOF_STATE α) (s : string) : tactic (PROOF_STATE α):= 
-return { tscript := ps.tscript ++ [s] ..ps}
-
-meta def fill_props : list expr → tactic (list expr)
-| [] := return []
-| (h::t) := do h_t ← infer_type h, 
-            match h_t with 
-            | `(sat %%foo %%bar) := 
-            do et ← fill_props t, return ([h] ++ et)
-            | _ := fill_props t  
-            end 
-
-end PROOF_STATE
 
 
 def tscript_string : list string → string 
@@ -183,28 +140,24 @@ meta def inductive_case  (ps : PROOF_STATE α)  : list expr → tactic (PROOF_ST
 end
 
 meta def by_induction (ps : PROOF_STATE α) : tactic (PROOF_STATE α) := 
-do
-   analyze ps,
-   l ← local_context >>= load_properties,
-   let ps := {total := l ..ps},  `[repeat {rw sat at *}], 
-   i ← get_unused_name `i,  IH ← get_unused_name `IH,
-   intro i, 
-   `[induction i with i IH], -- fix this, logan!
+do  
+   `[repeat {rw sat at *}], 
+   i ← get_unused_name `i,  
+   IH ← get_unused_name `IH,
+   intro i, `[induction i with i IH], -- fix this, logan!
    ps ← ps.log "by_induction",
    tgt ← target,
    p₁ ← local_context >>= base_case ps tgt,
    p₂ ← local_context >>= inductive_case p₁,
    tgt ← target,
    local_context >>= Inductive_hyp tgt ,
-   `[repeat {rw sat at *}], 
+   `[repeat {rw sat at *}],
    return p₂
-
 
 
 
 meta def solve_inductive (ps : PROOF_STATE α) : tactic (PROOF_STATE α) := 
 do 
-   let s₁ := string.empty,
    p ← by_induction ps,
    b ← is_solved, 
    if !b then do 
@@ -215,18 +168,33 @@ do
 
 meta def Switch (ps : PROOF_STATE α) : tactic (PROOF_STATE α) := 
 do
+   let n := ps.input.length,
+   let chr := repr n,
+   ps ← ps.log ("analyze " ++ chr),
+   ps ← switch ps,
+   b ← is_solved, 
+   return {solved := b, ..ps}
+
+meta def SOLVE (ps : PROOF_STATE α ) : tactic (PROOF_STATE α) := 
+do 
    analyze ps,
    l ← local_context >>= load_properties,
-   let ps := {total := l ..ps},  `[repeat {rw sat at *}], 
-   switch ps.tscript.head,
-    b ← is_solved, 
-   return {solved := b, ..ps}
+   let ps := {total := l ..ps},
+   ps ← Switch ps,
+   if ps.solved then return ps else do  
+   ps ← solve_inductive {tscript := [], used := [], ..ps},
+   return ps 
+
+     
 
 meta def match_premises : tactic unit := 
 do  repeat1 (applyc `and.intro), `[repeat {assumption}]
 
 open interactive (parse)
 
+
+meta def tactic.interactive.match_premises : tactic unit := 
+do  repeat1 (applyc `and.intro), `[repeat {assumption}]
 
 meta def tactic.interactive.analyze (n : ℕ) : tactic unit := 
 do 
