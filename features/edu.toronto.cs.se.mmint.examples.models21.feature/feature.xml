@@ -12,13 +12,13 @@
         Alessio Di Sandro - Implementation
  -->
 <feature
-      id="edu.toronto.cs.se.mmint.example.safecomp21.feature"
-      label="MMINT - SAFECOMP21 paper"
+      id="edu.toronto.cs.se.mmint.examples.models21.feature"
+      label="MMINT - MODELS21 paper"
       version="2.9.99.qualifier"
       provider-name="Software Engineering Group, University of Toronto">
 
    <description url="">
-      MMINT support for the SAFECOMP21 paper.
+      MMINT support for the MODELS21 paper.
    </description>
 
    <copyright>
@@ -36,7 +36,7 @@
    </requires>
 
    <plugin
-         id="edu.toronto.cs.se.mmint.example.safecomp21"
+         id="edu.toronto.cs.se.mmint.examples.models21"
          download-size="0"
          install-size="0"
          version="0.0.0"

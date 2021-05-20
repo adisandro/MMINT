@@ -231,7 +231,7 @@
     <module>../../examples/LMS/edu.toronto.cs.se.mmint.example.lms</module>
     <module>../../examples/MASE19/edu.toronto.cs.se.mmint.example.mase19</module>
     <module>../../examples/MoDELS20/edu.toronto.cs.se.mmint.example.models20</module>
-    <module>../../examples/SAFECOMP21/edu.toronto.cs.se.mmint.example.safecomp21</module>
+    <module>../../examples/MODELS21/edu.toronto.cs.se.mmint.examples.models21</module>
   	<module>../../features/edu.toronto.cs.se.mmint.feature</module>
   	<module>../../features/edu.toronto.cs.se.mmint.sdk.feature</module>
     <module>../../features/edu.toronto.cs.se.mmint.types.lts.feature</module>
@@ -257,7 +257,7 @@
     <module>../../features/edu.toronto.cs.se.mmint.example.jase20.feature</module>
     <module>../../features/edu.toronto.cs.se.mmint.example.mase19.feature</module>
     <module>../../features/edu.toronto.cs.se.mmint.example.models20.feature</module>
-    <module>../../features/edu.toronto.cs.se.mmint.example.safecomp21.feature</module>
+    <module>../../features/edu.toronto.cs.se.mmint.examples.models21.feature</module>
   	<module>../../tests/edu.toronto.cs.se.modelepedia.tests</module>
   	<module>../edu.toronto.cs.se.mmint.install</module>
   </modules>

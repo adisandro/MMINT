@@ -75,7 +75,7 @@
    <feature url="features/edu.toronto.cs.se.mmmint.example.models20.feature_2.9.99.qualifier.jar" id="edu.toronto.cs.se.mmint.example.models20.feature" version="2.9.99.qualifier">
       <category name="Examples"/>
    </feature>
-   <feature url="features/edu.toronto.cs.se.mmmint.example.safecomp21.feature_2.9.99.qualifier.jar" id="edu.toronto.cs.se.mmint.example.safecomp21.feature" version="2.9.99.qualifier">
+   <feature url="features/edu.toronto.cs.se.mmmint.examples.models21.feature_2.9.99.qualifier.jar" id="edu.toronto.cs.se.mmint.examples.models21.feature" version="2.9.99.qualifier">
       <category name="Examples"/>
    </feature>
    <category-def name="Modeling" label="Modeling"/>
