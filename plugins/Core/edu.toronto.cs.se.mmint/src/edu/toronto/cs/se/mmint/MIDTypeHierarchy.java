@@ -23,6 +23,7 @@ import java.util.TreeSet;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mmint.extensions.ExtensionPointType;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
@@ -65,9 +66,9 @@ public class MIDTypeHierarchy {
 		/** The map from a uri to its supertype uri within the hierarchy of extensions. */
 		private Map<String, String> extensionUris;
 		/** The name of the xml child to be used in the extensions. */
-		private String childName;
+		private @Nullable String childName;
 		/** The root uri in the hierarchy. */
-		private String rootUri;
+		private @Nullable String rootUri;
 
 		/**
 		 * Constructor: initializes the comparator.
@@ -80,11 +81,27 @@ public class MIDTypeHierarchy {
 		 * @param rootUri
 		 *            The root uri in the hierarchy.
 		 */
-		public ExtensionHierarchyComparator(Map<String, String> extensionUris, String childName, String rootUri) {
+		public ExtensionHierarchyComparator(Map<String, String> extensionUris, @Nullable String childName, @Nullable String rootUri) {
 
 			this.extensionUris = extensionUris;
 			this.childName = childName;
 			this.rootUri = rootUri;
+		}
+
+		private int getNumSupertypes(String uri) {
+      var numSupertypes = (this.rootUri != null && uri.equals(this.rootUri)) ? -1 : 0;
+      if (numSupertypes == -1) {
+        return numSupertypes;
+      }
+      var tempUri = uri;
+      var tempSupertypeUri = this.extensionUris.get(tempUri);
+      while (tempSupertypeUri != null) {
+        numSupertypes++;
+        tempUri = tempSupertypeUri;
+        tempSupertypeUri = this.extensionUris.get(tempUri);
+      }
+
+      return numSupertypes;
 		}
 
 		/**
@@ -99,27 +116,12 @@ public class MIDTypeHierarchy {
 				extension1 = extension1.getChildren(this.childName)[0];
 				extension2 = extension2.getChildren(this.childName)[0];
 			}
-			ExtensionPointType type1 = new ExtensionPointType(extension1);
-			String uri1 = type1.getUri();
-			var tempUri1 = uri1;
-			String tempSupertypeUri1 = this.extensionUris.get(uri1);
-			var supertypes1 = (this.rootUri != null && uri1.equals(this.rootUri)) ? -1 : 0;
-			while (tempSupertypeUri1 != null) {
-				supertypes1++;
-				tempUri1 = tempSupertypeUri1;
-				tempSupertypeUri1 = this.extensionUris.get(tempUri1);
-			}
-			ExtensionPointType type2 = new ExtensionPointType(extension2);
-			String uri2 = type2.getUri();
-			var tempUri2 = uri2;
-			String tempSupertypeUri2 = this.extensionUris.get(uri2);
-			var supertypes2 = (this.rootUri != null && uri2.equals(this.rootUri)) ? -1 : 0;
-			while (tempSupertypeUri2 != null) {
-				supertypes2++;
-				tempUri2 = tempSupertypeUri2;
-				tempSupertypeUri2 = this.extensionUris.get(tempUri2);
-			}
-
+			var type1 = new ExtensionPointType(extension1);
+			var uri1 = type1.getUri();
+			var supertypes1 = getNumSupertypes(uri1);
+			var type2 = new ExtensionPointType(extension2);
+			var uri2 = type2.getUri();
+			var supertypes2 = getNumSupertypes(uri2);
 			var relativeOrder = supertypes1 - supertypes2;
 			if (relativeOrder == 0) {
 				relativeOrder = uri1.compareTo(uri2);
