@@ -18,7 +18,7 @@ import java.util.List;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
@@ -847,10 +847,10 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
      */
     private <T extends ExtendibleElement> List<T> filterSubtypes(T type, List<T> subtypes) {
 
-        List<T> filteredSubtypes = new ArrayList<>();
+        var filteredSubtypes = new ArrayList<T>();
 
         // only direct subtypes
-        for (T subtype : subtypes) {
+        for (var subtype : subtypes) {
             if (!subtype.getSupertype().getUri().equals(type.getUri())) {
                 continue;
             }
@@ -862,7 +862,7 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
         }
 
         if (type instanceof Model && !(type instanceof ModelRel)) { // explore metamodel-compatible supertrees and subtrees
-            List<T> metamodelSubtypes = new ArrayList<>();
+            var metamodelSubtypes = new ArrayList<T>();
             EPackage rootStaticModelTypeObj;
             try {
                 rootStaticModelTypeObj = ((Model) this).getMetatype().getEMFTypeRoot();
@@ -872,7 +872,7 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
                 return metamodelSubtypes;
             }
             var metamodelUri = rootStaticModelTypeObj.getNsURI();
-            for (T filteredSubtype : filteredSubtypes) {
+            for (var filteredSubtype : filteredSubtypes) {
                 if (
                     metamodelUri.equals(filteredSubtype.getUri()) ||
                     MIDTypeHierarchy.isSubtypeOf(filteredSubtype.getUri(), metamodelUri) ||
@@ -882,7 +882,7 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
                 }
                 else { // try multiple inheritance
                     //TODO MMINT[MID] this is too tailored for UML_MAVO
-                    for (String multipleInheritanceUri : MIDTypeHierarchy.getMultipleInheritanceUris(metamodelUri)) {
+                    for (var multipleInheritanceUri : MIDTypeHierarchy.getMultipleInheritanceUris(metamodelUri)) {
                         if (
                             multipleInheritanceUri.equals(filteredSubtype.getUri()) ||
                             MIDTypeHierarchy.isSubtypeOf(filteredSubtype.getUri(), multipleInheritanceUri) ||
@@ -939,7 +939,7 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 
         // recurse for each subtype
         var subtypes = this.filterSubtypes(type, MIDTypeHierarchy.getSubtypes(type));
-        for (T subtype : subtypes) {
+        for (var subtype : subtypes) {
             this.getRuntimeTypes(subtype, types);
         }
     }
@@ -955,10 +955,10 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 
         var cachedTypes = (List<T>) MIDTypeHierarchy.getCachedRuntimeTypes(this);
         if (cachedTypes != null) {
-            return new BasicEList<>(cachedTypes);
+            return ECollections.asEList(cachedTypes);
         }
 
-        EList<T> types = new BasicEList<>();
+        var types = ECollections.<T>newBasicEList();
         if (Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_POLYMORPHISM_RUNTIMETYPING_ENABLED))) {
             // start from root
             T rootType = MIDTypeRegistry.getType(MIDTypeHierarchy.getRootTypeUri(this));

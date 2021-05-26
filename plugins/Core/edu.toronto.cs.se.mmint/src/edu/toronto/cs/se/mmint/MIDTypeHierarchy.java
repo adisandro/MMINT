@@ -758,7 +758,7 @@ public class MIDTypeHierarchy {
 		return typeMID.getExtendibleElement(MMINTConstants.ROOT_MODELELEMENDPOINT_URI);
 	}
 
-	public static List<? extends ExtendibleElement> getCachedRuntimeTypes(ExtendibleElement instance) {
+	public static @Nullable List<? extends ExtendibleElement> getCachedRuntimeTypes(ExtendibleElement instance) {
 
 		return MMINT.cachedRuntimeTypes.get(instance);
 	}

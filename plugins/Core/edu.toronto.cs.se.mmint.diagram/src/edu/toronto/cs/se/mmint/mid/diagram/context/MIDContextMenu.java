@@ -213,14 +213,16 @@ public class MIDContextMenu extends ContributionItem {
       if (prevPreference != null) { // restore runtime typing preference
         MMINT.setPreference(MMINTConstants.PREFERENCE_MENU_POLYMORPHISM_RUNTIMETYPING_ENABLED, prevPreference);
       }
-      MIDTypeHierarchy.clearCachedRuntimeTypes();
+      if (!doCast) { // reuse for casting
+        MIDTypeHierarchy.clearCachedRuntimeTypes();
+      }
       if (!executableOperators.isEmpty()) {
-              Collections.sort(executableOperators, new Comparator<ExecutableOperator>() { // alphabetical order
-                  @Override
-                  public int compare(ExecutableOperator o1, ExecutableOperator o2) {
-                      return o1.operatorType.getName().compareTo(o2.operatorType.getName());
-                  }
-              });
+        Collections.sort(executableOperators, new Comparator<ExecutableOperator>() { // alphabetical order
+          @Override
+          public int compare(ExecutableOperator o1, ExecutableOperator o2) {
+            return o1.operatorType.getName().compareTo(o2.operatorType.getName());
+          }
+        });
         MenuItem operatorItem = new MenuItem(mmintMenu, SWT.CASCADE);
         var menuLabel = (mid.isInstancesLevel()) ?
           MIDContextMenu.MMINT_MENU_OPERATOR_LABEL_INSTANCES :
@@ -252,7 +254,9 @@ public class MIDContextMenu extends ContributionItem {
     // cast
     if (doCast) {
       // polymorphism
-      MIDTypeHierarchy.clearCachedRuntimeTypes();
+      if (!doOperator) { // reuse from operators
+        MIDTypeHierarchy.clearCachedRuntimeTypes();
+      }
       EList<Model> runtimeModelTypes = new BasicEList<>();
       try {
         runtimeModelTypes.addAll(selectedModels.get(0).getRuntimeTypes());
