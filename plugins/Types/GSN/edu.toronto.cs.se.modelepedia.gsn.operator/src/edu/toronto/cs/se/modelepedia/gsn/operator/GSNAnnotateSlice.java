@@ -10,13 +10,18 @@
  */
 package edu.toronto.cs.se.modelepedia.gsn.operator;
 
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.Nullable;
 
+import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.mid.MID;
+import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
@@ -36,6 +41,29 @@ import edu.toronto.cs.se.modelepedia.gsn.SupportedBy;
 import edu.toronto.cs.se.modelepedia.gsn.operator.GSNSlice.GSNSliceType;
 
 public class GSNAnnotateSlice extends AnnotateSlice {
+
+  protected static class GSNOutput extends Output {
+    public SafetyCase gsnRoot;
+
+    public GSNOutput(Input input, Map<String, MID> outputMIDsByName) {
+      super(input, outputMIDsByName);
+      this.annotatedPath = FileUtils.addFileNameSuffixInPath(input.model.getUri(), "_" + Output.OUT_MODEL);
+      this.annotatedModelType = input.model.getMetatype();
+    }
+
+    @Override
+    public Map<String, Model> packed() throws MMINTException, IOException {
+      var annotatedModel = this.annotatedModelType.createInstanceAndEditor(this.gsnRoot, this.annotatedPath, this.mid);
+
+      return Map.of(Output.OUT_MODEL, annotatedModel);
+    }
+  }
+
+  @Override
+  protected void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) {
+    this.input = new Input(inputsByName);
+    this.output = new GSNOutput(this.input, outputMIDsByName);
+  }
 
   private void annotateModelElem(ArgumentElement gsnModelObj, @Nullable String cause, String annotationId) {
     var annotation = GSNFactory.eINSTANCE.createImpactAnnotation();
@@ -82,8 +110,8 @@ public class GSNAnnotateSlice extends AnnotateSlice {
     // annotate sliced elements first..
     annotateSliceTypes(this.input.sliceRel);
     // ..then iterate through each argument element and annotate with REUSE
-    var gsnRoot = (SafetyCase) this.input.model.getEMFInstanceRoot();
-    Iterator<EObject> gsnIter = gsnRoot.eAllContents();
+    ((GSNOutput) this.output).gsnRoot = (SafetyCase) this.input.model.getEMFInstanceRoot();
+    Iterator<EObject> gsnIter = ((GSNOutput) this.output).gsnRoot.eAllContents();
     while (gsnIter.hasNext()) {
       var gsnModelObj = gsnIter.next();
       if (!(gsnModelObj instanceof ArgumentElement)) {
@@ -148,9 +176,5 @@ public class GSNAnnotateSlice extends AnnotateSlice {
         }
       }
     }
-
-    String annotatedPath = FileUtils.addFileNameSuffixInPath(this.input.model.getUri(), "_" + Output.OUT_MODEL);
-    this.output.annotatedModel = this.input.model.getMetatype().createInstanceAndEditor(gsnRoot, annotatedPath,
-                                                                                        this.output.mid);
   }
 }

@@ -60,17 +60,18 @@ public class AnnotateSlice extends OperatorImpl {
     public static final String MODEL_TYPE_ID = "http://se.cs.toronto.edu/mmint/File";
     public MID mid;
     public String modelName;
-    public String filePath;
+    public String annotatedPath;
+    public Model annotatedModelType;
 
     public Output(Input input, Map<String, MID> outputMIDsByName) {
       this.modelName = input.model.getName() + "_" + Output.OUT_MODEL;
-      this.filePath = FileUtils.replaceLastSegmentInPath(input.model.getUri(), this.modelName + ".txt");
+      this.annotatedPath = FileUtils.replaceLastSegmentInPath(input.model.getUri(), this.modelName + ".txt");
       this.mid = outputMIDsByName.get(Output.OUT_MODEL);
+      this.annotatedModelType = MIDTypeRegistry.<Model>getType(Output.MODEL_TYPE_ID);
     }
 
     public Map<String, Model> packed() throws MMINTException, IOException {
-      var fileModelType = MIDTypeRegistry.<Model>getType(Output.MODEL_TYPE_ID);
-      var annotatedModel = fileModelType.createInstance(null, this.filePath, this.mid);
+      var annotatedModel = this.annotatedModelType.createInstance(null, this.annotatedPath, this.mid);
       annotatedModel.setName(this.modelName);
 
       return Map.of(Output.OUT_MODEL, annotatedModel);
@@ -125,8 +126,8 @@ public class AnnotateSlice extends OperatorImpl {
   }
 
   protected void annotate() throws Exception {
-    var systemFilePath = FileUtils.prependWorkspacePath(this.output.filePath);
-    try (var buffer = Files.newBufferedWriter(Paths.get(systemFilePath), Charset.forName("UTF-8"))) {
+    var filePath = FileUtils.prependWorkspacePath(this.output.annotatedPath);
+    try (var buffer = Files.newBufferedWriter(Paths.get(filePath), Charset.forName("UTF-8"))) {
       // group mappings by slice types
       var mappingTypes = this.input.sliceRel.getMappingRefs().stream()
         .collect(Collectors.groupingBy(mr -> mr.getObject().getMetatype().getName()));
