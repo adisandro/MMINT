@@ -35,10 +35,20 @@
       <import plugin="edu.toronto.cs.se.mmint"/>
       <import feature="hu.bme.mit.massif.simulink.emf"/>
       <import feature="hu.bme.mit.massif.simulink.ui"/>
+      <import plugin="hu.bme.mit.massif.simulink"/>
+      <import plugin="org.eclipse.emf.validation"/>
+      <import plugin="edu.toronto.cs.se.mmint.operator"/>
    </requires>
 
    <plugin
          id="edu.toronto.cs.se.mmint.types.simulink"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="edu.toronto.cs.se.mmint.types.simulink.operators"
          download-size="0"
          install-size="0"
          version="0.0.0"

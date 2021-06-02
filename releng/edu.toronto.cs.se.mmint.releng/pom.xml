@@ -207,6 +207,7 @@
     <module>../../plugins/Types/SequenceDiagram/edu.toronto.cs.se.modelepedia.sequencediagram.editor</module>
     <module>../../plugins/Types/SequenceDiagram/edu.toronto.cs.se.modelepedia.sequencediagram.operator</module>
     <module>../../plugins/Types/Simulink/edu.toronto.cs.se.mmint.types.simulink</module>
+    <module>../../plugins/Types/Simulink/edu.toronto.cs.se.mmint.types.simulink.operators</module>
   	<module>../../plugins/Types/StateMachine/edu.toronto.cs.se.modelepedia.statemachine</module>
     <module>../../plugins/Types/StateMachine/edu.toronto.cs.se.modelepedia.statemachine.design</module>
   	<module>../../plugins/Types/StateMachine/edu.toronto.cs.se.modelepedia.statemachine.diagram</module>
