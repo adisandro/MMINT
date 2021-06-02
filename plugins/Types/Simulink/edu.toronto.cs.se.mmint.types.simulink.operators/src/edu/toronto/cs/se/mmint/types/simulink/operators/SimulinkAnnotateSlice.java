@@ -18,7 +18,7 @@ public class SimulinkAnnotateSlice extends AnnotateSlice {
   @Override
   protected void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) {
     super.init(inputsByName, outputMIDsByName);
-    this.output.annotatedPath = FileUtils.replaceFileExtensionInPath(this.output.annotatedPath, ".m");
+    this.output.annotatedPath = FileUtils.replaceFileExtensionInPath(this.output.annotatedPath, "m");
   }
 
   @Override
@@ -26,14 +26,15 @@ public class SimulinkAnnotateSlice extends AnnotateSlice {
     var simulinkRoot = (SimulinkModel) this.input.model.getEMFInstanceRoot();
     var filePath = FileUtils.prependWorkspacePath(this.output.annotatedPath);
     try (var buffer = Files.newBufferedWriter(Paths.get(filePath), Charset.forName("UTF-8"))) {
-      buffer.write("r = ReachCoreach('" + simulinkRoot.getSimulinkRef().getName() + "');");
-      buffer.write("r.clear();");
+      buffer.write("sl_refresh_customizations;\n");
+      buffer.write("r = ReachCoreach('" + simulinkRoot.getSimulinkRef().getName() + "');\n");
+      buffer.write("r.clear();\n");
       var simulinkIds = this.input.sliceRel.getMappingRefs().stream()
         .flatMap(mr -> mr.getModelElemEndpointRefs().stream())
         .map(meer -> ((SimulinkElement) meer.getModelElemRef().getObject().getEMFInstanceObject()).getSimulinkRef())
         .map(sr -> "'" + sr.getQualifier() + "/" + sr.getName() + "'")
         .collect(Collectors.joining(","));
-      buffer.write("r.reachAll({" + simulinkIds + "}, []);");
+      buffer.write("r.reachAll({" + simulinkIds + "}, []);\n");
     }
   }
 }
