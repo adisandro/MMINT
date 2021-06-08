@@ -32,8 +32,8 @@
             </superType>
          </type>
          <constraint
-               implementation="Attribute.allInstances()-&gt;exists(attribute | attribute.public)"
-               language="OCL">
+               implementation="edu.toronto.cs.se.modelepedia.models15.operator.CDPublicAttributes"
+               language="Java">
          </constraint>
       </modelType>
    </extension>
@@ -55,8 +55,8 @@
             </superType>
          </type>
          <constraint
-               implementation="not Attribute.allInstances()-&gt;exists(attribute | attribute.public)"
-               language="OCL">
+               implementation="edu.toronto.cs.se.modelepedia.models15.operator.CDNoPublicAttributes"
+               language="Java">
          </constraint>
       </modelType>
    </extension>
