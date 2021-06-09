@@ -12,6 +12,7 @@ Require-Bundle: org.eclipse.core.runtime,
  hu.bme.mit.massif.simulink,
  org.eclipse.jdt.annotation;resolution:=optional,
  edu.toronto.cs.se.mmint,
+ edu.toronto.cs.se.mmint.java,
  edu.toronto.cs.se.mmint.operator,
  edu.toronto.cs.se.mmint.types.simulink
 Bundle-ActivationPolicy: lazy
