@@ -159,7 +159,7 @@
          <outputs>
             <parameter>
                <type
-                     name="slice"
+                     name="loaded"
                      uri="edu.toronto.cs.se.mmint.types.simulink.operators.SimulinkLoadSlice.slice">
                </type>
                <typeEndpoint

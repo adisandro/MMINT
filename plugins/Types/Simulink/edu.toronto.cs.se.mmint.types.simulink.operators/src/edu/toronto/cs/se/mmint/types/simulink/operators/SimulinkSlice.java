@@ -26,5 +26,4 @@ public class SimulinkSlice extends Slice {
     var empty = Map.<EObject, SliceInfo>of();
     return new SliceStep(empty, empty);
   }
-
 }

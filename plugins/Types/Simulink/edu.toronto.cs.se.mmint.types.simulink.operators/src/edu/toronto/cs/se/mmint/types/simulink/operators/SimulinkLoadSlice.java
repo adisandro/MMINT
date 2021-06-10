@@ -12,8 +12,10 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.types.simulink.operators;
 
+import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.ECollections;
 
@@ -26,6 +28,8 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.mmint.operator.slice.Slice.SliceType;
+import hu.bme.mit.massif.simulink.SimulinkElement;
 
 public class SimulinkLoadSlice extends OperatorImpl {
   private Input input;
@@ -33,7 +37,7 @@ public class SimulinkLoadSlice extends OperatorImpl {
 
   private static class Input {
     private final static String IN_MODEL = "simulink";
-    private final static String SLICE_FILE_EXT = "slice";
+    private final static String SLICE_FILE_EXT = "reached";
     public Model simulinkModel;
     public String sliceFileName;
 
@@ -48,15 +52,15 @@ public class SimulinkLoadSlice extends OperatorImpl {
   }
 
   private static class Output {
-    public final static String OUT_MODELREL = "slice";
+    public final static String OUT_MODELREL = "loaded";
     public static final String MODELREL_TYPE_ID = "rel://edu.toronto.cs.se.mmint.types.simulink.SimulinkSliceRel";
     public ModelRel sliceRel;
 
     public Output(Input input, Map<String, MID> outputMIDsByName) throws MMINTException {
       var mid = outputMIDsByName.get(Output.OUT_MODELREL);
       var relType = MIDTypeRegistry.<ModelRel>getType(Output.MODELREL_TYPE_ID);
-      relType.createInstanceAndEndpoints(null, Output.OUT_MODELREL, ECollections.newBasicEList(input.simulinkModel),
-                                         mid);
+      this.sliceRel = relType.createInstanceAndEndpoints(null, Output.OUT_MODELREL,
+                                                         ECollections.newBasicEList(input.simulinkModel), mid);
     }
 
     public Map<String, Model> packed() {
@@ -82,8 +86,23 @@ public class SimulinkLoadSlice extends OperatorImpl {
     this.output = new Output(this.input, outputMIDsByName);
   }
 
-  private void load() {
+  private void load() throws Exception {
+    var sliceEndpointRef = this.output.sliceRel.getModelEndpointRefs().get(0);
+    var sliceType = new SliceType(SliceType.MOD, 0);
     var slicePath = Paths.get(FileUtils.prependWorkspacePath(this.input.sliceFileName));
+    var simulinkIds = Files.lines(slicePath).collect(Collectors.toSet());
+    for (var simulinkIter = this.input.simulinkModel.getEMFInstanceRoot().eAllContents(); simulinkIter.hasNext();) {
+      var simulinkModelObj = simulinkIter.next();
+      if (!(simulinkModelObj instanceof SimulinkElement simulinkElem)) {
+        continue;
+      }
+      var simulinkId = simulinkElem.getSimulinkRef().getQualifier() + "/" + simulinkElem.getSimulinkRef().getName();
+      if (simulinkIds.contains(simulinkId)) {
+        var sliceModelElemRef = sliceEndpointRef.createModelElementInstanceAndReference(simulinkModelObj, null);
+        sliceType.mappingType
+          .createInstanceAndReferenceAndEndpointsAndReferences(false, ECollections.asEList(sliceModelElemRef));
+      }
+    }
   }
 
   //TODO constraint checks if there is a file with the appropriate name, then searches the model for the corresponding refs and creates a slice rel out of it
