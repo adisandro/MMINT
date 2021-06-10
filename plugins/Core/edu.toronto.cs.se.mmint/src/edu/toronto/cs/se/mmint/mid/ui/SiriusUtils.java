@@ -55,9 +55,7 @@ public class SiriusUtils {
                 continue;
             }
             for (DRepresentationDescriptor sReprDesc : sView.getOwnedRepresentationDescriptors()) {
-                if (sReprDesc.getDescription().getName().equals(diagramTypeUri) &&
-                    MIDRegistry.getModelUri(sReprDesc.getTarget()).equals(modelPath)
-                ) {
+                if (MIDRegistry.getModelUri(sReprDesc.getTarget()).equals(modelPath) ) {
                     return sReprDesc;
                 }
             }
