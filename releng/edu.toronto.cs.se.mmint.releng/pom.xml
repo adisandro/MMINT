@@ -7,7 +7,7 @@
   <properties>
     <tycho-version>2.4.0-SNAPSHOT</tycho-version>
     <acceleo-version>3.6.4</acceleo-version>
-    <ecj-version>3.26.0.v20210407-0512</ecj-version>
+    <ecj-version>3.26.0.v20210603-0432</ecj-version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
   <repositories>
