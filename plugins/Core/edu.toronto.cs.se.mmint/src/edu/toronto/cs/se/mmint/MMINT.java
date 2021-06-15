@@ -670,7 +670,7 @@ public class MMINT implements MMINTConstants {
 	 *            The dynamic model type from the last shutdown.
 	 * @return The created model type, null if the model type can't be created.
 	 */
-	private ExtendibleElement createDynamicType(ExtendibleElement dynamicType) {
+	private @Nullable ExtendibleElement createDynamicType(ExtendibleElement dynamicType) {
 
 		ExtendibleElement type = MIDTypeRegistry.getType(dynamicType.getSupertype().getUri());
 		if (type == null && dynamicType.getSupertype().isDynamic()) {
@@ -703,38 +703,6 @@ public class MMINT implements MMINTConstants {
 		return newType;
 	}
 
-	/**
-	 * Creates and adds types to the repository from all the dynamic ("light") types created at runtime before the last
-	 * shutdown.
-	 */
-	private void createDynamicTypes() {
-
-		MID typeMID;
-		try {
-			typeMID = (MID) FileUtils.readModelFileInState(MMINT.TYPEMID_FILENAME);
-		}
-		catch (Exception e) {
-			MMINTException.print(IStatus.WARNING, "No previous Type MID found, skipping dynamic types", e);
-			return;
-		}
-
-		// do model types first
-		//TODO MMINT[MISC] this probably explains the todo in type hierarchy (are type and type ref iterators really needed, or are the lists already ordered by construction?)
-		typeMID.getModels().stream()
-			.filter(modelType -> !(modelType instanceof ModelRel))
-			.filter(modelType -> modelType.isDynamic())
-			.filter(modelType -> MIDTypeRegistry.getType(modelType.getUri()) == null)
-			.forEach(dynamicModelType -> this.createDynamicType(dynamicModelType));
-		typeMID.getModelRels().stream()
-			.filter(modelRelType -> modelRelType.isDynamic())
-			.filter(modelRelType -> MIDTypeRegistry.getType(modelRelType.getUri()) == null)
-			.forEach(dynamicModelRelType -> this.createDynamicType(dynamicModelRelType));
-		typeMID.getOperators().stream()
-			.filter(operatorType -> operatorType.isDynamic())
-			.filter(operatorType -> MIDTypeRegistry.getType(operatorType.getUri()) == null)
-			.forEach(dynamicOperatorType -> this.createDynamicType(dynamicOperatorType));
-	}
-
 	public static Object createReasoner(IConfigurationElement extensionConfig) throws CoreException {
 		var reasoner = (IReasoner) extensionConfig.createExecutableExtension(MMINTConstants.REASONERS_REASONER_ATTR_CLASS);
 		MMINT.reasoners.put(reasoner.getName(), reasoner);
@@ -761,6 +729,13 @@ public class MMINT implements MMINTConstants {
 		MMINT.activeInstanceMIDFile = null;
 		MMINT.cachedMIDViewProvider = null;
 		Iterator<IConfigurationElement> extensionsIter;
+    MID typeMID = null;
+    try {
+      typeMID = (MID) FileUtils.readModelFileInState(MMINT.TYPEMID_FILENAME);
+    }
+    catch (Exception e) {
+      MMINTException.print(IStatus.WARNING, "No previous Type MID found, skipping dynamic types", e);
+    }
 
 		// model types
 		var configs = registry.getConfigurationElementsFor(MMINTConstants.MODELS_EXT_POINT);
@@ -775,7 +750,29 @@ public class MMINT implements MMINTConstants {
 				MMINTException.print(IStatus.ERROR, "Model type can't be created in " + config.getContributor().getName(), e);
 			}
 		}
-		// model relationship types
+    // editor types
+    configs = registry.getConfigurationElementsFor(MMINTConstants.EDITORS_EXT_POINT);
+    extensionsIter = MIDTypeHierarchy.getExtensionHierarchyIterator(configs, null, MMINTConstants.ROOT_EDITOR_URI);
+    while (extensionsIter.hasNext()) {
+      var config = extensionsIter.next();
+      try {
+        var editorType = createEditorType(config);
+        MMINT.bundleTable.put(editorType.getUri(), config.getContributor().getName());
+        MIDHeavyTypeFactory.addHeavyModelTypeEditor(editorType, editorType.getModelUri());
+      }
+      catch (MMINTException e) {
+        MMINTException.print(IStatus.ERROR, "Editor type can't be created in " + config.getContributor().getName(), e);
+      }
+    }
+    // dynamic model types
+		if (typeMID != null) {
+      typeMID.getModels().stream()
+        .filter(modelType -> !(modelType instanceof ModelRel) &&
+                             modelType.isDynamic() &&
+                             MIDTypeRegistry.getType(modelType.getUri()) == null)
+        .forEach(dynamicModelType -> this.createDynamicType(dynamicModelType));
+		}
+		// relationship types
 		configs = registry.getConfigurationElementsFor(MMINTConstants.MODELRELS_EXT_POINT);
 		extensionsIter = MIDTypeHierarchy.getExtensionHierarchyIterator(configs, MMINTConstants.MODELS_CHILD_MODELTYPE, MMINTConstants.ROOT_MODELREL_URI);
 		while (extensionsIter.hasNext()) {
@@ -788,20 +785,13 @@ public class MMINT implements MMINTConstants {
 				MMINTException.print(IStatus.ERROR, "Model relationship type can't be created in " + config.getContributor().getName(), e);
 			}
 		}
-		// editor types
-		configs = registry.getConfigurationElementsFor(MMINTConstants.EDITORS_EXT_POINT);
-		extensionsIter = MIDTypeHierarchy.getExtensionHierarchyIterator(configs, null, MMINTConstants.ROOT_EDITOR_URI);
-		while (extensionsIter.hasNext()) {
-			var config = extensionsIter.next();
-			try {
-				var editorType = createEditorType(config);
-				MMINT.bundleTable.put(editorType.getUri(), config.getContributor().getName());
-				MIDHeavyTypeFactory.addHeavyModelTypeEditor(editorType, editorType.getModelUri());
-			}
-			catch (MMINTException e) {
-				MMINTException.print(IStatus.ERROR, "Editor type can't be created in " + config.getContributor().getName(), e);
-			}
-		}
+    // dynamic relationship types
+    if (typeMID != null) {
+      typeMID.getModelRels().stream()
+        .filter(modelRelType -> modelRelType.isDynamic() &&
+                                MIDTypeRegistry.getType(modelRelType.getUri()) == null)
+        .forEach(dynamicModelRelType -> this.createDynamicType(dynamicModelRelType));
+    }
 		// operator types
 		configs = registry.getConfigurationElementsFor(MMINTConstants.OPERATORS_EXT_POINT);
 		extensionsIter = MIDTypeHierarchy.getExtensionHierarchyIterator(configs, null, null);
@@ -823,8 +813,13 @@ public class MMINT implements MMINTConstants {
 				MMINTException.print(IStatus.ERROR, "Generics can't be created for operator type in " + config.getContributor().getName(), e);
 			}
 		}
-		// dynamic types from last shutdown
-		this.createDynamicTypes();
+    // dynamic operator types
+    if (typeMID != null) {
+      typeMID.getOperators().stream()
+        .filter(operatorType -> operatorType.isDynamic() &&
+                                MIDTypeRegistry.getType(operatorType.getUri()) == null)
+        .forEach(dynamicOperatorType -> this.createDynamicType(dynamicOperatorType));
+    }
 		// reasoning
 		for (var config : registry.getConfigurationElementsFor(MMINTConstants.REASONERS_EXT_POINT)) {
 			try {
