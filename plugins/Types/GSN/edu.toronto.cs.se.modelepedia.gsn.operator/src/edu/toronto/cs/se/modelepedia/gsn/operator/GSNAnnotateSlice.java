@@ -108,9 +108,9 @@ public class GSNAnnotateSlice extends AnnotateSlice {
   @Override
   protected void annotate() throws Exception {
     // annotate sliced elements first..
+    ((GSNOutput) this.output).gsnRoot = (SafetyCase) this.input.model.getEMFInstanceRoot();
     annotateSliceTypes(this.input.sliceRel);
     // ..then iterate through each argument element and annotate with REUSE
-    ((GSNOutput) this.output).gsnRoot = (SafetyCase) this.input.model.getEMFInstanceRoot();
     Iterator<EObject> gsnIter = ((GSNOutput) this.output).gsnRoot.eAllContents();
     while (gsnIter.hasNext()) {
       var gsnModelObj = gsnIter.next();
