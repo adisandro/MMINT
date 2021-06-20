@@ -7,7 +7,7 @@
   <properties>
     <tycho-version>2.4.0-SNAPSHOT</tycho-version>
     <acceleo-version>3.6.4</acceleo-version>
-    <ecj-version>3.26.0.v20210603-0432</ecj-version>
+    <ecj-version>3.26.0.v20210609-0549</ecj-version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
   <repositories>
@@ -63,7 +63,7 @@
       </plugins>
     </pluginManagement>
     <plugins>
-      <plugin>
+      <!--<plugin>
         <groupId>org.eclipse.tycho</groupId>
         <artifactId>tycho-compiler-plugin</artifactId>
         <version>${tycho-version}</version>
@@ -74,7 +74,7 @@
             <version>${ecj-version}</version>
           </dependency>
         </dependencies>
-      </plugin>
+      </plugin>-->
       <plugin>
         <groupId>org.eclipse.tycho</groupId>
         <artifactId>tycho-maven-plugin</artifactId>
