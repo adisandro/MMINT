@@ -14,6 +14,7 @@ package edu.toronto.cs.se.mmint.types.simulink.operators;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -37,16 +38,20 @@ public class SimulinkLoadSlice extends OperatorImpl {
 
   private static class Input {
     private final static String IN_MODEL = "simulink";
-    private final static String SLICE_FILE_EXT = "reached";
+    private final static String REACHED_FILE_EXT = "reached";
+    private final static String CHANGED_FILE_EXT = "changed";
     public Model simulinkModel;
     public String sliceFileName;
 
     public Input(Map<String, Model> inputsByName) {
       this.simulinkModel = inputsByName.get(Input.IN_MODEL);
-      this.sliceFileName = FileUtils.replaceFileExtensionInPath(this.simulinkModel.getUri(), Input.SLICE_FILE_EXT);
+      this.sliceFileName = FileUtils.replaceFileExtensionInPath(this.simulinkModel.getUri(), Input.REACHED_FILE_EXT);
       if (!FileUtils.isFile(this.sliceFileName, true)) {
-        // a .slice file from Matlab's reach/coreach is required
-        throw new IllegalArgumentException();
+        this.sliceFileName = FileUtils.replaceFileExtensionInPath(this.simulinkModel.getUri(), Input.CHANGED_FILE_EXT);
+        if (!FileUtils.isFile(this.sliceFileName, true)) {
+          // a file from Matlab's reach/coreach or model-comparison is required
+          throw new IllegalArgumentException();
+        }
       }
     }
   }
@@ -88,16 +93,55 @@ public class SimulinkLoadSlice extends OperatorImpl {
 
   private void load() throws Exception {
     var sliceEndpointRef = this.output.sliceRel.getModelEndpointRefs().get(0);
-    var sliceType = new SliceType(SliceType.MOD, 0);
+    var addSliceType = new SliceType(SliceType.ADD, 10);
+    var delSliceType = new SliceType(SliceType.DEL, 20);
+    var modSliceType = new SliceType(SliceType.MOD, 30);
     var slicePath = Paths.get(FileUtils.prependWorkspacePath(this.input.sliceFileName));
-    var simulinkIds = Files.lines(slicePath).collect(Collectors.toSet());
+    Map<String, SliceType> simulinkIds;
+    if (this.input.sliceFileName.endsWith(Input.REACHED_FILE_EXT)) {
+      simulinkIds = Files.lines(slicePath).map(String::strip).collect(Collectors.toMap(l -> l, l -> modSliceType));
+    }
+    else {
+      simulinkIds = new HashMap<>();
+      var header = "Comparison Root/Simulink/";
+      var lines = Files.readAllLines(slicePath);
+      var line = lines.get(0).strip();
+      var numLines = Integer.parseInt(line.substring(line.lastIndexOf(" ")+1));
+      var start = 1;
+      var end = 1 + numLines;
+      for (var i = start; i < end; i++) {
+        var simulinkId = lines.get(i).strip().substring(header.length());
+        simulinkIds.put(simulinkId, addSliceType);
+      }
+      line = lines.get(end).strip();
+      numLines = Integer.parseInt(line.substring(line.lastIndexOf(" ")+1));
+      start = end + 1;
+      end += 1 + numLines;
+      for (var i = start; i < end; i++) {
+        var simulinkId = lines.get(i).strip().substring(header.length());
+        simulinkIds.put(simulinkId, delSliceType);
+      }
+      line = lines.get(end).strip();
+      numLines = Integer.parseInt(line.substring(line.lastIndexOf(" ")+1));
+      start = end + 1;
+      end += 1 + numLines;
+      line = lines.get(end).strip();
+      numLines = Integer.parseInt(line.substring(line.lastIndexOf(" ")+1));
+      start = end + 1;
+      end += 1 + numLines;
+      for (var i = start; i < end; i++) {
+        var simulinkId = lines.get(i).strip().substring(header.length());
+        simulinkIds.put(simulinkId, modSliceType);
+      }
+    }
     for (var simulinkIter = this.input.simulinkModel.getEMFInstanceRoot().eAllContents(); simulinkIter.hasNext();) {
       var simulinkModelObj = simulinkIter.next();
       if (!(simulinkModelObj instanceof SimulinkElement simulinkElem)) {
         continue;
       }
       var simulinkId = simulinkElem.getSimulinkRef().getQualifier() + "/" + simulinkElem.getSimulinkRef().getName();
-      if (simulinkIds.contains(simulinkId)) {
+      var sliceType = simulinkIds.get(simulinkId);
+      if (sliceType != null) {
         var sliceModelElemRef = sliceEndpointRef.createModelElementInstanceAndReference(simulinkModelObj, null);
         sliceType.mappingType
           .createInstanceAndReferenceAndEndpointsAndReferences(false, ECollections.asEList(sliceModelElemRef));
@@ -105,7 +149,6 @@ public class SimulinkLoadSlice extends OperatorImpl {
     }
   }
 
-  //TODO constraint checks if there is a file with the appropriate name, then searches the model for the corresponding refs and creates a slice rel out of it
   @Override
   public Map<String, Model> run(Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
                                 Map<String, MID> outputMIDsByName) throws Exception {
