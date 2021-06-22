@@ -15,22 +15,28 @@ package edu.toronto.cs.se.mmint.types.simulink.operators;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.ECollections;
 
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
+import edu.toronto.cs.se.mmint.MMINTConstants;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorConstraint;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
+import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 import edu.toronto.cs.se.mmint.operator.slice.Slice.SliceType;
 import hu.bme.mit.massif.simulink.SimulinkElement;
+import hu.bme.mit.massif.simulink.SimulinkModel;
 
 public class SimulinkLoadSlice extends OperatorImpl {
   private Input input;
@@ -92,46 +98,54 @@ public class SimulinkLoadSlice extends OperatorImpl {
   }
 
   private void load() throws Exception {
+    var simulinkRoot = (SimulinkModel) this.input.simulinkModel.getEMFInstanceRoot();
+    var rootId = simulinkRoot.getSimulinkRef().getName();
     var sliceEndpointRef = this.output.sliceRel.getModelEndpointRefs().get(0);
     var addSliceType = new SliceType(SliceType.ADD, 10);
     var delSliceType = new SliceType(SliceType.DEL, 20);
     var modSliceType = new SliceType(SliceType.MOD, 30);
     var slicePath = Paths.get(FileUtils.prependWorkspacePath(this.input.sliceFileName));
-    Map<String, SliceType> simulinkIds;
+    Map<String, Set<SliceType>> simulinkIds;
     if (this.input.sliceFileName.endsWith(Input.REACHED_FILE_EXT)) {
-      simulinkIds = Files.lines(slicePath).map(String::strip).collect(Collectors.toMap(l -> l, l -> modSliceType));
+      simulinkIds = Files.lines(slicePath)
+        .map(String::strip)
+        .collect(Collectors.toMap(l -> l, l -> Set.of(modSliceType)));
     }
     else {
       simulinkIds = new HashMap<>();
-      var header = "Comparison Root/Simulink/";
+      var header = "Comparison Root/Simulink";
       var lines = Files.readAllLines(slicePath);
       var line = lines.get(0).strip();
       var numLines = Integer.parseInt(line.substring(line.lastIndexOf(" ")+1));
       var start = 1;
       var end = 1 + numLines;
       for (var i = start; i < end; i++) {
-        var simulinkId = lines.get(i).strip().substring(header.length());
-        simulinkIds.put(simulinkId, addSliceType);
+        var simulinkId = rootId + lines.get(i).strip().substring(header.length());
+        simulinkIds.computeIfAbsent(simulinkId, k -> new HashSet<>()).add(addSliceType);
       }
       line = lines.get(end).strip();
       numLines = Integer.parseInt(line.substring(line.lastIndexOf(" ")+1));
       start = end + 1;
       end += 1 + numLines;
       for (var i = start; i < end; i++) {
-        var simulinkId = lines.get(i).strip().substring(header.length());
-        simulinkIds.put(simulinkId, delSliceType);
+        var simulinkId = rootId + lines.get(i).strip().substring(header.length());
+        simulinkIds.computeIfAbsent(simulinkId, k -> new HashSet<>()).add(delSliceType);
       }
       line = lines.get(end).strip();
       numLines = Integer.parseInt(line.substring(line.lastIndexOf(" ")+1));
       start = end + 1;
       end += 1 + numLines;
+      for (var i = start; i < end; i++) {
+        var simulinkId = rootId + lines.get(i).strip().substring(header.length());
+        simulinkIds.computeIfAbsent(simulinkId, k -> new HashSet<>()).add(modSliceType);
+      }
       line = lines.get(end).strip();
       numLines = Integer.parseInt(line.substring(line.lastIndexOf(" ")+1));
       start = end + 1;
       end += 1 + numLines;
       for (var i = start; i < end; i++) {
-        var simulinkId = lines.get(i).strip().substring(header.length());
-        simulinkIds.put(simulinkId, modSliceType);
+        var simulinkId = rootId + lines.get(i).strip().substring(header.length());
+        simulinkIds.computeIfAbsent(simulinkId, k -> new HashSet<>()).add(modSliceType);
       }
     }
     for (var simulinkIter = this.input.simulinkModel.getEMFInstanceRoot().eAllContents(); simulinkIter.hasNext();) {
@@ -140,11 +154,18 @@ public class SimulinkLoadSlice extends OperatorImpl {
         continue;
       }
       var simulinkId = simulinkElem.getSimulinkRef().getQualifier() + "/" + simulinkElem.getSimulinkRef().getName();
-      var sliceType = simulinkIds.get(simulinkId);
-      if (sliceType != null) {
-        var sliceModelElemRef = sliceEndpointRef.createModelElementInstanceAndReference(simulinkModelObj, null);
-        sliceType.mappingType
-          .createInstanceAndReferenceAndEndpointsAndReferences(false, ECollections.asEList(sliceModelElemRef));
+      var sliceTypes = simulinkIds.get(simulinkId);
+      if (sliceTypes != null) {
+        var modelElemType = MIDConstraintChecker.getAllowedModelElementType(sliceEndpointRef, simulinkModelObj);
+        var sliceModelElemRef = (modelElemType == null) ?
+          MIDRegistry.getReference(
+            MIDRegistry.getModelElementUri(simulinkModelObj) + MMINTConstants.ROLE_SEPARATOR + modelElemType.getUri(),
+            sliceEndpointRef.getModelElemRefs()) :
+          sliceEndpointRef.createModelElementInstanceAndReference(simulinkModelObj, null);
+        for (var sliceType : sliceTypes) {
+          sliceType.mappingType
+            .createInstanceAndReferenceAndEndpointsAndReferences(false, ECollections.asEList(sliceModelElemRef));
+        }
       }
     }
   }
