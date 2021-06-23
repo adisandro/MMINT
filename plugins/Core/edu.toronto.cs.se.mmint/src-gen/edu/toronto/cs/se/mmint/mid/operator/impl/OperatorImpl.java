@@ -28,6 +28,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicEList;
@@ -863,7 +864,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 
         MMINTException.mustBeType(this);
 
-        var operatorClassRelativePath = this.getClass().getName().replace(".", File.separator) + ".java";
+        var operatorClassRelativePath = this.getClass().getName().replace('.', IPath.SEPARATOR) + ".java";
         String operatorImplPath = MIDTypeRegistry.getBundlePath(this, operatorClassRelativePath);
         FileUtils.openEclipseEditor(operatorImplPath, null, false);
     }

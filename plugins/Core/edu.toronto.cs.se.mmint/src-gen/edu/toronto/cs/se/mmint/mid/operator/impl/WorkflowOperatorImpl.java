@@ -11,7 +11,6 @@
  */
 package edu.toronto.cs.se.mmint.mid.operator.impl;
 
-import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -19,6 +18,7 @@ import java.util.Map;
 import java.util.Random;
 import java.util.stream.Collectors;
 
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
@@ -114,7 +114,7 @@ public class WorkflowOperatorImpl extends NestingOperatorImpl implements Workflo
             }
             else {
                 //TODO MMINT[WORKFLOW] Generalize addSubtype for heavy factory, setting nestedMIDPath there, then use it
-                var workflowMIDPath = this.getClass().getName().replace(".", File.separator) + "." + MIDPackage.eNAME;
+                var workflowMIDPath = this.getClass().getName().replace('.', IPath.SEPARATOR) + "." + MIDPackage.eNAME;
                 var workflowMIDBundlePath = MIDTypeRegistry.getBundlePath(this, workflowMIDPath);
                 workflowMID = (MID) FileUtils.readModelFile(workflowMIDBundlePath, null, false);
             }
@@ -156,7 +156,7 @@ public class WorkflowOperatorImpl extends NestingOperatorImpl implements Workflo
         }
         else {
             //TODO MMINT[WORKFLOW] Generalize addSubtype for heavy factory, setting nestedMIDPath there, then use it
-            var workflowMIDPath = this.getClass().getName().replace(".", File.separator) + "." + MIDPackage.eNAME;
+            var workflowMIDPath = this.getClass().getName().replace('.', IPath.SEPARATOR) + "." + MIDPackage.eNAME;
             // in a binary install, extracts the file from the jar as a side effect
             MIDTypeRegistry.getBundlePath(this, workflowMIDPath);
             var workflowMIDDiagramBundlePath = MIDTypeRegistry.getBundlePath(this, workflowMIDPath +
