@@ -5,15 +5,15 @@
   <version>2.9.99-SNAPSHOT</version>
   <packaging>pom</packaging>
   <properties>
-    <tycho-version>2.4.0-SNAPSHOT</tycho-version>
+    <tycho-version>2.4.0</tycho-version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
-  <pluginRepositories>
+  <!--<pluginRepositories>
     <pluginRepository>
       <id>Tycho</id>
       <url>https://repo.eclipse.org/content/repositories/tycho-snapshots</url>
     </pluginRepository>
-  </pluginRepositories>
+  </pluginRepositories>-->
   <build>
     <plugins>
       <plugin>
