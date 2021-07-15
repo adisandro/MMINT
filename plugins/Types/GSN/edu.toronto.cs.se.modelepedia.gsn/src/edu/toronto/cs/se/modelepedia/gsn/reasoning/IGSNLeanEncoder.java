@@ -23,7 +23,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.jface.viewers.ArrayContentProvider;
 
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ui.GMFUtils;
@@ -40,17 +39,22 @@ import edu.toronto.cs.se.modelepedia.gsn.Property;
 public interface IGSNLeanEncoder {
 
   static class PropertyVariable {
+    public interface Replacer {
+      public String replace(List<String> modelNames);
+    }
     public String name;
     public Map<EClass, EStructuralFeature> validTypes;
-    public PropertyVariable(String name, Map<EClass, EStructuralFeature> validTypes) {
+    public Replacer replacer;
+    public PropertyVariable(String name, Map<EClass, EStructuralFeature> validTypes, Replacer replacer) {
       this.name = Objects.requireNonNull(name);
       this.validTypes = Objects.requireNonNull(validTypes);
+      this.replacer = replacer;
     }
   }
   static class PropertyTemplate {
     public String formal;
     public String informal;
-    public String category;
+    public @Nullable String category;
     public List<PropertyVariable> variables;
     public static PropertyTemplate CUSTOM = new PropertyTemplate("", "Custom property", null, List.of());
 
@@ -70,25 +74,26 @@ public interface IGSNLeanEncoder {
         return property;
       }
 
-      var message = ":\nSelect the model element(s) corresponding to variable ";
-      var contentProvider = new ArrayContentProvider();
+      var message = ":\nSelect one or more model elements corresponding to variable ";
       var labelProvider = new AdapterFactoryLabelProvider(GMFUtils.getAdapterFactory());
       var boundFormal = this.formal;
       var boundInformal = this.informal;
       for (var variable : this.variables) {
         var validModelObjs = new ArrayList<EObject>();
         variable.validTypes.keySet().forEach(t -> validModelObjs.addAll(modelObjs.getOrDefault(t, List.of())));
-        var modelObj = MIDDialogs.<EObject>openListMultipleDialog(title, boundInformal + message + variable.name,
-                                                                  validModelObjs, labelProvider).get(0);
-        String boundVariable;
-        var modelObjClass = modelObj.eClass();
-        var feature = Stream.concat(Stream.of(modelObjClass), modelObjClass.getEAllSuperTypes().stream())
-          .filter(c -> variable.validTypes.containsKey(c))
-          .map(c -> variable.validTypes.get(c))
-          .findFirst();
-        boundVariable = feature.map(f -> (String) modelObj.eGet(f)).orElse(modelObj.toString()).replaceAll("\\s", "_");
-        boundFormal = boundFormal.replace(variable.name, boundVariable);
-        boundInformal = boundInformal.replace(variable.name, boundVariable);
+        var boundModelObjs = MIDDialogs.<EObject>openListMultipleDialog(title, boundInformal + message + variable.name,
+                                                                        validModelObjs, labelProvider);
+        var boundVariables = new ArrayList<String>();
+        for (var modelObj : boundModelObjs) {
+          var modelObjClass = modelObj.eClass();
+          var feature = Stream.concat(Stream.of(modelObjClass), modelObjClass.getEAllSuperTypes().stream())
+            .filter(c -> variable.validTypes.containsKey(c))
+            .map(c -> variable.validTypes.get(c))
+            .findFirst();
+          boundVariables.add(feature.map(f -> (String) modelObj.eGet(f)).orElse(modelObj.toString()));
+        }
+        boundFormal = boundFormal.replace(variable.name, variable.replacer.replace(boundVariables));
+        boundInformal = boundInformal.replace(variable.name, String.join(",", boundVariables));
       }
       property.setFormal(boundFormal);
       property.setInformal(boundInformal);

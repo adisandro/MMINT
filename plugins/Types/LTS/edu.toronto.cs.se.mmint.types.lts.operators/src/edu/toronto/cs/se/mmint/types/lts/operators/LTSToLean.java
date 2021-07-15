@@ -33,6 +33,7 @@ import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 import edu.toronto.cs.se.mmint.types.lts.LTSPackage;
 import edu.toronto.cs.se.modelepedia.gsn.reasoning.IGSNLeanEncoder;
+import edu.toronto.cs.se.modelepedia.gsn.reasoning.IGSNLeanEncoder.PropertyVariable.Replacer;
 
 public class LTSToLean extends ToLean implements IGSNLeanEncoder {
 
@@ -85,96 +86,108 @@ public class LTSToLean extends ToLean implements IGSNLeanEncoder {
   public List<PropertyTemplate> getTemplateProperties() {
     var validTypes = Map.<EClass, EStructuralFeature>of(LTSPackage.eINSTANCE.getLabeledElement(),
                                                         LTSPackage.eINSTANCE.getLabeledElement_Label());
-    var x = new PropertyVariable("X", validTypes);
-    var y = new PropertyVariable("Y", validTypes);
-    var a = new PropertyVariable("A", validTypes);
-    var b = new PropertyVariable("B", validTypes);
-    var absent1 = new PropertyTemplate("absent.globally (coe X)",
-                                       "X is not reached",
+    Replacer replacer = (modelNames) -> {
+      var regexp = "[\\s=<>?!]";
+      if (modelNames.size() == 1) {
+        return "(coe " + modelNames.get(0).replaceAll(regexp, "_") + ")";
+      }
+      else {
+        var sanitizedNames = modelNames.stream()
+          .map(n -> n.replaceAll(regexp, "_"))
+          .collect(Collectors.joining(", "));
+        return "(coe " + modelNames.get(0).replaceAll(regexp, "_") + ")";
+      }
+    };
+    var x = new PropertyVariable("$X", validTypes, replacer);
+    var y = new PropertyVariable("$Y", validTypes, replacer);
+    var a = new PropertyVariable("$A", validTypes, replacer);
+    var b = new PropertyVariable("$B", validTypes, replacer);
+    var absent1 = new PropertyTemplate("absent.globally $X",
+                                       "$X is not reached",
                                        "Absence", List.of(x));
-    var absent2 = new PropertyTemplate("absent.before (coe X) (coe A)",
-                                       "X is not reached before A",
+    var absent2 = new PropertyTemplate("absent.before $X $A",
+                                       "$X is not reached before $A",
                                        "Absence", List.of(x, a));
-    var absent3 = new PropertyTemplate("absent.after (coe X) (coe B)",
-                                       "X is not reached after B",
+    var absent3 = new PropertyTemplate("absent.after $X $B",
+                                       "$X is not reached after $B",
                                        "Absence", List.of(x, b));
-    var absent4 = new PropertyTemplate("absent.between (coe X) (coe A) (coe B)",
-                                       "X is not reached between A and B",
+    var absent4 = new PropertyTemplate("absent.between $X $A $B",
+                                       "$X is not reached between $A and $B",
                                        "Absence", List.of(x, a, b));
-    var absent5 = new PropertyTemplate("absent.after_until (coe X) (coe A) (coe B)",
-                                       "X is not reached after A and until B",
+    var absent5 = new PropertyTemplate("absent.after_until $X $A $B",
+                                       "$X is not reached after $A and until $B",
                                        "Absence", List.of(x, a, b));
-    var exist1  = new PropertyTemplate("exist.globally (coe X)",
-                                       "X is reached",
+    var exist1  = new PropertyTemplate("exist.globally $X",
+                                       "$X is reached",
                                        "Existence", List.of(x));
-    var exist2  = new PropertyTemplate("exist.before (coe X) (coe A)",
-                                       "X is reached before A",
+    var exist2  = new PropertyTemplate("exist.before $X $A",
+                                       "$X is reached before$A",
                                        "Existence", List.of(x, a));
-    var exist3  = new PropertyTemplate("exist.after (coe X) (coe B)",
-                                       "X is reached after B",
+    var exist3  = new PropertyTemplate("exist.after $X $B",
+                                       "$X is reached after $B",
                                        "Existence", List.of(x, b));
-    var exist4  = new PropertyTemplate("exist.between (coe X) (coe A) (coe B)",
-                                       "X is reached between A and B",
+    var exist4  = new PropertyTemplate("exist.between $X $A $B",
+                                       "$X is reached between $A and $B",
                                        "Existence", List.of(x, a, b));
-    var exist5  = new PropertyTemplate("exist.after_until (coe X) (coe A) (coe B)",
-                                       "X is reached after A and until B",
+    var exist5  = new PropertyTemplate("exist.after_until $X $A $B",
+                                       "$X is reached after $A and until $B",
                                        "Existence", List.of(x, a, b));
-    var univ1   = new PropertyTemplate("universal.globally (coe X)",
-                                       "X and only X is reached",
+    var univ1   = new PropertyTemplate("universal.globally $X",
+                                       "$X and only $X is reached",
                                        "Universal", List.of(x));
-    var univ2   = new PropertyTemplate("universal.before (coe X) (coe A)",
-                                       "X and only X is reached before A",
+    var univ2   = new PropertyTemplate("universal.before $X $A",
+                                       "$X and only $X is reached before $A",
                                        "Universal", List.of(x, a));
-    var univ3   = new PropertyTemplate("universal.after (coe X) (coe B)",
-                                       "X and only X is reached after B",
+    var univ3   = new PropertyTemplate("universal.after $X $B",
+                                       "$X and only $X is reached after $B",
                                        "Universal", List.of(x, b));
-    var univ4   = new PropertyTemplate("universal.between (coe X) (coe A) (coe B)",
-                                       "X and only X is reached between A and B",
+    var univ4   = new PropertyTemplate("universal.between $X $A $B",
+                                       "$X and only $X is reached between $A and $B",
                                        "Universal", List.of(x, a, b));
-    var univ5   = new PropertyTemplate("universal.after_until (coe X) (coe A) (coe B)",
-                                       "X and only X is reached after A and until B",
+    var univ5   = new PropertyTemplate("universal.after_until $X $A $B",
+                                       "$X and only $X is reached after $A and until $B",
                                        "Universal", List.of(x, a, b));
-    var prec1   = new PropertyTemplate("precedes.globally (coe X) (coe Y)",
-                                       "If Y is reached, X must precede Y",
+    var prec1   = new PropertyTemplate("precedes.globally $X $Y",
+                                       "If $Y is reached, $X must precede $Y",
                                        "Precedence", List.of(x, y));
-    var prec2   = new PropertyTemplate("precedes.before (coe X) (coe Y) (coe A)",
-                                       "If Y is reached before A, X must precede Y",
+    var prec2   = new PropertyTemplate("precedes.before $X $Y $A",
+                                       "If $Y is reached before $A, $X must precede $Y",
                                        "Precedence", List.of(x, y, a));
-    var prec3   = new PropertyTemplate("precedes.after (coe X) (coe Y) (coe B)",
-                                       "If Y is reached after B, X must precede Y",
+    var prec3   = new PropertyTemplate("precedes.after $X $Y $B",
+                                       "If $Y is reached after $B, $X must precede $Y",
                                        "Precedence", List.of(x, y, b));
-    var prec4   = new PropertyTemplate("precedes.between (coe X) (coe Y) (coe A) (coe B)",
-                                       "If Y is reached between A and B, X must precede Y",
+    var prec4   = new PropertyTemplate("precedes.between $X $Y $A $B",
+                                       "If $Y is reached between $A and $B, $X must precede $Y",
                                        "Precedence", List.of(x, y, a, b));
-    var prec5   = new PropertyTemplate("precedes.after_until (coe X) (coe Y) (coe A) (coe B)",
-                                       "If Y is reached between A and until B, X must precede Y",
+    var prec5   = new PropertyTemplate("precedes.after_until $X $Y $A $B",
+                                       "If $Y is reached between $A and until $B, $X must precede $Y",
                                        "Precedence", List.of(x, y, a, b));
-    var resp1   = new PropertyTemplate("responds.globally (coe Y) (coe X)",
-                                       "If X is reached, Y must follow X",
-                                       "Response", List.of(y, x));
-    var resp2   = new PropertyTemplate("responds.before (coe Y) (coe X) (coe A)",
-                                       "If X is reached before A, Y must follow X",
-                                       "Response", List.of(y, x, a));
-    var resp3   = new PropertyTemplate("responds.after (coe Y) (coe X) (coe B)",
-                                       "If X is reached after B, Y must follow X",
-                                       "Response", List.of(y, x, b));
-    var resp4   = new PropertyTemplate("responds.between (coe Y) (coe X) (coe A) (coe B)",
-                                       "If X is reached between A and B, Y must follow X",
-                                       "Response", List.of(y, x, a, b));
-    var resp5   = new PropertyTemplate("responds.after_until (coe Y) (coe X) (coe A) (coe B)",
-                                       "If X is reached between A and until B, Y must follow X",
-                                       "Response", List.of(y, x, a, b));
-    var misc1   = new PropertyTemplate("init_state (coe X)",
-                                       "Begin from X",
+    var resp1   = new PropertyTemplate("responds.globally $X $Y",
+                                       "If $X is reached, $Y must follow $X",
+                                       "Response", List.of(x, y));
+    var resp2   = new PropertyTemplate("responds.before $X $Y $A",
+                                       "If $X is reached before $A, $Y must follow $X",
+                                       "Response", List.of(x, y, a));
+    var resp3   = new PropertyTemplate("responds.after $X $Y $B",
+                                       "If $X is reached after $B, $Y must follow $X",
+                                       "Response", List.of(x, y, b));
+    var resp4   = new PropertyTemplate("responds.between $X $Y $A $B",
+                                       "If $X is reached between $A and $B, $Y must follow $X",
+                                       "Response", List.of(x, y, a, b));
+    var resp5   = new PropertyTemplate("responds.after_until $X $Y $A $B",
+                                       "If $X is reached between $A and until $B, $Y must follow $X",
+                                       "Response", List.of(x, y, a, b));
+    var misc1   = new PropertyTemplate("init_state $X",
+                                       "Begin from $X",
                                        "Transitions", List.of(x));
-    var misc2   = new PropertyTemplate("not_init (coe X)",
-                                       "Do not begin from X",
+    var misc2   = new PropertyTemplate("not_init $X",
+                                       "Do not begin from $X",
                                        "Transitions", List.of(x));
-    var misc3   = new PropertyTemplate("holds_over_transition (coe X)",
-                                       "Never transition out of X",
+    var misc3   = new PropertyTemplate("holds_over_transition $X",
+                                       "Never transition out of $X",
                                        "Transitions", List.of(x));
-    var misc4   = new PropertyTemplate("transitions_safe (coe X)",
-                                       "Never transition into X",
+    var misc4   = new PropertyTemplate("transitions_safe $X",
+                                       "Never transition into $X",
                                        "Transitions", List.of(x));
 
     return List.of(absent1, absent2, absent3, absent4, absent5,
