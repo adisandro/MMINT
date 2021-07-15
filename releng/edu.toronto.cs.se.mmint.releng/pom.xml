@@ -17,6 +17,11 @@
   	  <url>http://download.eclipse.org/releases/2021-06</url>
     </repository>
     <repository>
+      <id>Eclipse-old</id>
+      <layout>p2</layout>
+      <url>http://download.eclipse.org/releases/2021-03</url>
+    </repository>
+    <repository>
   	  <id>Henshin</id>
   	  <layout>p2</layout>
   	  <url>http://download.eclipse.org/modeling/emft/henshin/updates/release</url>
