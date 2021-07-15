@@ -30,23 +30,11 @@ sets of related models.
       <import plugin="edu.toronto.cs.se.mmint"/>
       <import plugin="edu.toronto.cs.se.mmint.diagram"/>
       <import plugin="edu.toronto.cs.se.mmint.java"/>
-      <import plugin="org.eclipse.papyrus.uml.diagram.wizards"/>
-      <import plugin="org.eclipse.ui"/>
-      <import plugin="org.eclipse.ui.ide"/>
-      <import plugin="org.eclipse.uml2.uml"/>
-      <import plugin="org.eclipse.gmf.runtime.notation"/>
       <import plugin="edu.toronto.cs.se.mmint.primitive"/>
    </requires>
 
    <plugin
          id="edu.toronto.cs.se.modelepedia.operator"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="edu.toronto.cs.se.modelepedia.uml"
          download-size="0"
          install-size="0"
          version="0.0.0"
