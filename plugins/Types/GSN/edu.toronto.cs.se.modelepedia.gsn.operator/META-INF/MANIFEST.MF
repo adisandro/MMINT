@@ -3,7 +3,7 @@ Automatic-Module-Name: edu.toronto.cs.se.modelepedia.gsn.operator
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.gsn.operator;singleton:=true
-Bundle-Version: 2.9.99.qualifier
+Bundle-Version: 2.10.0
 Bundle-RequiredExecutionEnvironment: JavaSE-16
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
