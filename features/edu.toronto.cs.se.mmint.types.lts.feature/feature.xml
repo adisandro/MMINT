@@ -14,7 +14,7 @@
 <feature
       id="edu.toronto.cs.se.mmint.types.lts.feature"
       label="MMINT - LTS models"
-      version="2.10.0"
+      version="2.10.0.qualifier"
       provider-name="Software Engineering Group, University of Toronto">
 
    <description>
