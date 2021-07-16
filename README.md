@@ -86,7 +86,7 @@ MoDELS 15
 ### Using MMINT
 
 * A Lean Approach to Building Valid Model-Based Safety Arguments  
-MODELS21 | Install: `Examples > MMINT - MODELS21` | [Readme](examples/MODELS21/edu.toronto.cs.se.mmint.examples.models21/MODELS21/README.md)
+MODELS 21 | Install: `Examples > MMINT - MODELS21` | [Readme](examples/MODELS21/edu.toronto.cs.se.mmint.examples.models21/MODELS21/README.md)
 * Assurance case property checking with MMINT-A and OCL  
 CSER 20
 * [Querying Automotive System Models and Safety Artifacts: Tool Support and Case Study](https://doi.org/10.2991/jase.d.200912.001)  
