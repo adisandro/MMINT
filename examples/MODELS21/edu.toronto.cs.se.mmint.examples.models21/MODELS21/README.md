@@ -14,7 +14,7 @@
     3. Insert `2` as the number of sub-properties.
     4. Select `Transitions > Do not begin from $X` as the first sub-property, then select `State Damaged` for variable `$X`.
     5. Select `Transitions > Never transition out of $X` as the second sub-property, then select `State Damaged` for variable `$X`. The decomposition fails and the user is notified about possible corrective actions.
-    6. Repeat steps 1 to 4, then select `Transitions > Never transition into $X` as the second sub-property, then select `State Damaged` for variable `$X`.
+    6. Repeat FCS steps 1 to 4, then select `Transitions > Never transition into $X` as the second sub-property, then select `State Damaged` for variable `$X`.
 6. Infusion Pump case study (Sec. VI-A):
     1. Right-click on the claim named `C2` and select `MMINT > Property Decomposition`.
     2. Select `Absence > $X is not reached after $A and until $B` as the property to be decomposed, then select `State BolusRequest` for variable `$X`, `Transition Cond_6_3?` for variable `$A`, `State Infusion_NormalOperation` for variable `$B`.
