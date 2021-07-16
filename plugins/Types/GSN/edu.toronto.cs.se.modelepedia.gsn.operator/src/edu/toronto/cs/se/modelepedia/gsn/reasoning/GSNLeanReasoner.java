@@ -21,7 +21,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.ECollections;
+import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MMINTException;
@@ -183,6 +186,8 @@ public class GSNLeanReasoner extends LeanReasoner implements IGSNDecompositionTr
     justDesc = "Decomposition validity " + proof + " in " + getName() + ": " + justDesc;
     builder.createJustification(strategy, justId, justDesc);
     builder.commitChanges();
+    WorkspaceSynchronizer.getFile(instanceMID.eResource()).getParent()
+      .refreshLocal(IResource.DEPTH_ONE, new NullProgressMonitor());
     if (!valid) {
       throw new MMINTException(invalidMsg);
     }

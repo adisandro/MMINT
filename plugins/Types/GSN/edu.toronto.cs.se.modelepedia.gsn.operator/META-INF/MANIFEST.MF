@@ -9,6 +9,7 @@ Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.emf.validation,
  org.eclipse.emf.ecore,
+ org.eclipse.emf.workspace,
  org.eclipse.core.runtime,
  edu.toronto.cs.se.mmint,
  edu.toronto.cs.se.mmint.diagram,
