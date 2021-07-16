@@ -75,7 +75,7 @@ Follow these steps to install MMINT-A:
 ### About MMINT
 
 * [MMINT-A 2.0: Tool Support for the Lifecycle of Model-Based Safety Artifacts](https://doi.org/10.1145/3417990.3422012)  
-MoDELS 20 | Install: `Examples > MoDELS20` | [Readme](examples/MoDELS20/edu.toronto.cs.se.mmint.example.models20/MoDELS20/README.md)
+MoDELS 20 | Install: `Examples > MMINT - MoDELS20` | [Readme](examples/MoDELS20/edu.toronto.cs.se.mmint.example.models20/MoDELS20/README.md)
 * [MMINT-A: A Tool for Automated Change Impact Assessment on Assurance Cases](https://doi.org/10.1007/978-3-319-99229-7_7)  
 SAFECOMP 18
 * [MU-MMINT: An IDE for Model Uncertainty](https://doi.org/10.1109/ICSE.2015.226)  
@@ -85,14 +85,16 @@ MoDELS 15
 
 ### Using MMINT
 
+* A Lean Approach to Building Valid Model-Based Safety Arguments  
+MODELS21 | Install: `Examples > MMINT - MODELS21` | [Readme](examples/MODELS21/edu.toronto.cs.se.mmint.examples.models21/MODELS21/README.md)
 * Assurance case property checking with MMINT-A and OCL  
 CSER 20
 * [Querying Automotive System Models and Safety Artifacts: Tool Support and Case Study](https://doi.org/10.2991/jase.d.200912.001)  
-JASE Vol. 1-1 | Install: `Examples > JASE20` | [Readme](examples/JASE20/edu.toronto.cs.se.mmint.example.jase20/JASE20/README.md)
+JASE Vol. 1-1 | Install: `Examples > MMINT - JASE20` | [Readme](examples/JASE20/edu.toronto.cs.se.mmint.example.jase20/JASE20/README.md)
 * [Heterogeneous Megamodel Management using Collection Operators](https://doi.org/10.1007/s10270-019-00738-9)  
 SoSyM Vol. 19-1 | Install: `Examples > SoSyM18` | [Readme](examples/SOSYM18/README.md)
 * [Querying Automotive System Models and Safety Artifacts with MMINT and Viatra](https://doi.org/10.1109/MODELS-C.2019.00008)  
-MASE@MoDELS 19 | Install: `Examples > MASE19` | [Readme](examples/MASE19/edu.toronto.cs.se.mmint.example.mase19/MASE19/README.md)
+MASE@MoDELS 19 | Install: `Examples > MMINT - MASE19` | [Readme](examples/MASE19/edu.toronto.cs.se.mmint.example.mase19/MASE19/README.md)
 * [Migrating Automotive Product Lines: A Case Study](https://doi.org/10.1007/978-3-319-21155-8_7)  
 ICMT 15
 * [Enriching megamodel management with collection-based operators](https://doi.org/10.1109/MODELS.2015.7338254)  
