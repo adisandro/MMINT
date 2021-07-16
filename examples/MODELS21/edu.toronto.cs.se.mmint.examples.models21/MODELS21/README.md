@@ -1,8 +1,8 @@
 ## MODELS 2021 paper
 
+A Lean Approach to Building Valid Model-Based Safety Arguments
 
-
-## Paper example instructions
+## Instructions to reproduce the examples
 
 1. Add `https://adisandro.github.io/mmint/release` to the list of software sites in Eclipse (`Help > Install New Software > Available Software Sites`).
 2. Install `Examples > MMINT - MODELS21 paper`.
