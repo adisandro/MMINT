@@ -14,7 +14,7 @@
     <repository>
   	  <id>Eclipse</id>
   	  <layout>p2</layout>
-  	  <url>http://download.eclipse.org/releases/2021-06</url>
+  	  <url>http://download.eclipse.org/releases/2021-09</url>
     </repository>
     <repository>
       <id>Eclipse-old</id>
