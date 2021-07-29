@@ -47,4 +47,37 @@
       </operatorType>
    </extension>
 
+   <extension
+         point="edu.toronto.cs.se.mmint.operators">
+      <operatorType>
+         <type
+               name="ToProduct"
+               uri="edu.toronto.cs.se.mmint.productline.operators.ToProduct"
+               class="edu.toronto.cs.se.mmint.productline.operators.ToProduct">
+         </type>
+         <inputs>
+            <parameter>
+               <type
+                     name="productLine"
+                     uri="edu.toronto.cs.se.mmint.productline.operators.ToProduct/productLine">
+               </type>
+               <typeEndpoint
+                     targetTypeUri="model://edu.toronto.cs.se.mmint.productline">
+               </typeEndpoint>
+            </parameter>
+         </inputs>
+         <outputs>
+            <parameter>
+               <type
+                     name="product"
+                     uri="edu.toronto.cs.se.mmint.productline.operators.ToProduct/product">
+               </type>
+               <typeEndpoint
+                     targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
+               </typeEndpoint>
+            </parameter>
+         </outputs>
+      </operatorType>
+   </extension>
+
 </plugin>
