@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -15,8 +15,8 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
+
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jdt.annotation.NonNull;
 
@@ -43,14 +43,13 @@ public class Z3IncrementalSolver {
 
 	private void reset() {
 
-		context = null;
-		solver = null;
-		sorts.clear();
-		decls.clear();
+		this.context = null;
+		this.solver = null;
+		this.sorts.clear();
+		this.decls.clear();
 	}
 
 	private boolean isValidSymbol(@NonNull String smtSymbol) {
-
 		if (smtSymbol.contains(Z3Utils.Z3_MODEL_SEPARATOR)) {
 			return false;
 		}
@@ -64,17 +63,16 @@ public class Z3IncrementalSolver {
 	}
 
 	private @NonNull Z3Model runCheckSatAndGetModel(@NonNull String smtEncoding) throws Z3Exception {
-
-		BoolExpr expr;
-		if (sorts.isEmpty() || decls.isEmpty()) {
+		BoolExpr[] expr;
+		if (this.sorts.isEmpty() || this.decls.isEmpty()) {
 			// parse baseline encoding
-			expr = context.parseSMTLIB2String(smtEncoding, null, null, null, null);
+			expr = this.context.parseSMTLIB2String(smtEncoding, null, null, null, null);
 		}
 		else {
 			// parse incremental encoding
-			Set<Sort> lastSorts = sorts.getLast();
-			Set<FuncDecl> lastDecls = decls.getLast();
-			expr = context.parseSMTLIB2String(
+			var lastSorts = this.sorts.getLast();
+			var lastDecls = this.decls.getLast();
+			expr = this.context.parseSMTLIB2String(
 				smtEncoding,
 				lastSorts.stream().map(Sort::getName).toArray(size -> new Symbol[size]),
 				lastSorts.toArray(new Sort[0]),
@@ -83,27 +81,27 @@ public class Z3IncrementalSolver {
 		}
 
 		// check sat and get model
-		solver.add(expr);
-		Status status = solver.check();
+		this.solver.add(expr);
+		var status = this.solver.check();
 		Model returnModel = null;
 		if (status == Status.SATISFIABLE) {
-			returnModel = solver.getModel();
-			Set<Sort> returnSorts = (sorts.isEmpty()) ? new HashSet<>() : new HashSet<>(sorts.getLast());
-			Set<FuncDecl> returnDecls = (decls.isEmpty()) ? new HashSet<>() : new HashSet<>(decls.getLast());
-			for (Sort returnSort : returnModel.getSorts()) {
+			returnModel = this.solver.getModel();
+			var returnSorts = (this.sorts.isEmpty()) ? new HashSet<Sort>() : new HashSet<>(this.sorts.getLast());
+			var returnDecls = (this.decls.isEmpty()) ? new HashSet<FuncDecl>() : new HashSet<>(this.decls.getLast());
+			for (var returnSort : returnModel.getSorts()) {
 				if (!isValidSymbol(returnSort.getName().toString()) || returnSorts.contains(returnSort)) {
 					continue;
 				}
 				returnSorts.add(returnSort);
 			}
-			for (FuncDecl returnDecl : returnModel.getDecls()) {
+			for (var returnDecl : returnModel.getDecls()) {
 				if (!isValidSymbol(returnDecl.getName().toString()) || returnDecls.contains(returnDecl)) {
 					continue;
 				}
 				returnDecls.add(returnDecl);
 			}
-			sorts.add(returnSorts);
-			decls.add(returnDecls);
+			this.sorts.add(returnSorts);
+			this.decls.add(returnDecls);
 		}
 
 		return new Z3Model(status, returnModel);
@@ -111,14 +109,13 @@ public class Z3IncrementalSolver {
 
 	// first check sat and get model as baseline
 	public @NonNull Z3Model firstCheckSatAndGetModel(@NonNull String smtEncoding) {
-
-		Map<String, String> config = new HashMap<>();
+		var config = new HashMap<String, String>();
 		config.put("model", "true");
 		try {
-			context = new Context(config);
-			solver = context.mkSolver();
-			sorts = new ArrayDeque<>();
-			decls = new ArrayDeque<>();
+			this.context = new Context(config);
+			this.solver = this.context.mkSolver();
+			this.sorts = new ArrayDeque<>();
+			this.decls = new ArrayDeque<>();
 
 			return runCheckSatAndGetModel(smtEncoding);
 		}
@@ -132,7 +129,7 @@ public class Z3IncrementalSolver {
 	// incremental check sat and get model
 	public @NonNull Z3Model checkSatAndGetModel(@NonNull String smtEncoding, @NonNull Z3IncrementalBehavior incBehavior) {
 
-		if (sorts.isEmpty() || decls.isEmpty()) {
+		if (this.sorts.isEmpty() || this.decls.isEmpty()) {
 			MMINTException.print(IStatus.WARNING, "No incremental model found, invoking firstCheckSatAndGetModel() instead", null);
 			return firstCheckSatAndGetModel(smtEncoding);
 		}
@@ -140,22 +137,22 @@ public class Z3IncrementalSolver {
 		try {
 			// push
 			if (incBehavior != Z3IncrementalBehavior.NORMAL) {
-				solver.push();
+				this.solver.push();
 			}
 			// run
-			Z3Model z3Model = runCheckSatAndGetModel(smtEncoding);
+			var z3Model = runCheckSatAndGetModel(smtEncoding);
 			if (z3Model.getZ3Result().isSAT()) {
 				switch (incBehavior) {
 					case NORMAL:
 					case POP_IF_UNSAT:
 						// keep current model
-						sorts.removeFirst();
-						decls.removeFirst();
+						this.sorts.removeFirst();
+						this.decls.removeFirst();
 						break;
 					case POP:
 						// keep previous model
-						sorts.removeLast();
-						decls.removeLast();
+						this.sorts.removeLast();
+						this.decls.removeLast();
 						break;
 					case PUSH:
 						// do nothing: keep previous and current models
@@ -166,7 +163,7 @@ public class Z3IncrementalSolver {
 				incBehavior == Z3IncrementalBehavior.POP ||
 				(incBehavior == Z3IncrementalBehavior.POP_IF_UNSAT && !z3Model.getZ3Result().isSAT())
 			) {
-				solver.pop();
+				this.solver.pop();
 			}
 
 			return z3Model;
@@ -182,8 +179,8 @@ public class Z3IncrementalSolver {
 	public void finalizePreviousPush() {
 
 		//TODO MMINT[Z3] Will break if there is a POP_IF_UNSAT with SAT result between the PUSH and this
-		sorts.removeFirst();
-		decls.removeFirst();
+		this.sorts.removeFirst();
+		this.decls.removeFirst();
 	}
 
 	// manual pop
@@ -191,9 +188,9 @@ public class Z3IncrementalSolver {
 
 		//TODO MMINT[Z3] Will break if there is a POP_IF_UNSAT with SAT result between the PUSH and this
 		try {
-			sorts.removeLast();
-			decls.removeLast();
-			solver.pop();
+			this.sorts.removeLast();
+			this.decls.removeLast();
+			this.solver.pop();
 		}
 		catch (Z3Exception e) {
 			MMINTException.print(IStatus.WARNING, "Z3 problem, resetting the solver", e);
