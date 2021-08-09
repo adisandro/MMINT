@@ -15,12 +15,10 @@ package edu.toronto.cs.se.mmint.productline.operators;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeoutException;
 
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.ecore.EObject;
-import org.sat4j.minisat.SolverFactory;
-import org.sat4j.specs.IProblem;
-import org.sat4j.specs.TimeoutException;
 
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.MMINTException;
@@ -29,10 +27,12 @@ import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
+import edu.toronto.cs.se.modelepedia.z3.Z3Solver;
 
 public class ToProduct extends OperatorImpl {
   private Input input;
   private Output output;
+  private Z3Solver solver;
 
   private static class Input {
     public final static String MODEL = "productLine";
@@ -69,17 +69,15 @@ public class ToProduct extends OperatorImpl {
   private void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws Exception {
     this.input = new Input(inputsByName);
     this.output = new Output(outputMIDsByName, getWorkingPath(), this.input);
+    this.solver = new Z3Solver();
   }
 
   private void toProduct() throws TimeoutException {
     //TODO ask for variable values, check that getFeatures is sat, then check vars with each presence condition
     var productModelObjs = new HashMap<String, EObject>();
     var productFactory = this.input.pl.getMetamodel().getEFactoryInstance();
-    var solver = SolverFactory.newLight();
-    solver.setTimeout(60);
     for (var plClass : this.input.pl.getClasses()) {
-      IProblem problem = solver;
-      if (problem.isSatisfiable()) {
+      if (this.solver.checkSat("(assert true)").isSAT()) {
         var productModelObj = productFactory.create(plClass.getType());
         for (var plAttribute : plClass.getAttributes()) {
 

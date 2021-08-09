@@ -20,11 +20,4 @@
   	<version>2.10.99-SNAPSHOT</version>
   	<relativePath>../../../../releng/edu.toronto.cs.se.mmint.releng</relativePath>
   </parent>
-  <dependencies>
-  	<dependency>
-  		<groupId>org.sat4j</groupId>
-  		<artifactId>org.sat4j.core</artifactId>
-  		<version>2.3.1</version>
-  	</dependency>
-  </dependencies>
 </project>
