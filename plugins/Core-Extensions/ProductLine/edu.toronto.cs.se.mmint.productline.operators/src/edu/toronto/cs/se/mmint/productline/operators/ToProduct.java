@@ -15,7 +15,6 @@ package edu.toronto.cs.se.mmint.productline.operators;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.TimeoutException;
 
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.ecore.EObject;
@@ -26,8 +25,13 @@ import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.mmint.productline.Class;
+import edu.toronto.cs.se.mmint.productline.PLElement;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.modelepedia.z3.Z3Solver;
+import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
 
 public class ToProduct extends OperatorImpl {
   private Input input;
@@ -56,6 +60,7 @@ public class ToProduct extends OperatorImpl {
       this.productModelType = MIDTypeRegistry.<Model>getType(input.pl.getMetamodel().getNsURI());
       this.productPath = workingPath + IPath.SEPARATOR + input.plModel.getName() + "." +
                          this.productModelType.getFileExtension();
+      this.productPath = FileUtils.getUniquePath(this.productPath, true, false);
       this.mid = outputMIDsByName.get(Output.MODEL);
     }
 
@@ -72,20 +77,75 @@ public class ToProduct extends OperatorImpl {
     this.solver = new Z3Solver();
   }
 
-  private void toProduct() throws TimeoutException {
-    //TODO ask for variable values, check that getFeatures is sat, then check vars with each presence condition
-    var productModelObjs = new HashMap<String, EObject>();
+  private boolean isInProduct(PLElement plElement, Map<String, Boolean> varsValues) {
+    var presenceCondition = plElement.getPresenceCondition();
+    if (presenceCondition == null) {
+      return true;
+    }
+    return isInProduct(presenceCondition, varsValues);
+  }
+
+  private boolean isInProduct(String presenceCondition, Map<String, Boolean> varsValues) {
+    if (presenceCondition.isBlank()) {
+      return true;
+    }
+
+    var vars = presenceCondition.strip().split("[\\s\\(\\){or}{and}{not}]");
+    for (var variable : vars) {
+      if (variable.isBlank()) {
+        continue;
+      }
+      var value = varsValues.get(variable);
+      if (value == null) {
+        value = MIDDialogs.getBooleanInput("Variable '" + variable + "'",
+                                           "Assign true to variable '" + variable + "'?");
+        varsValues.put(variable, value);
+      }
+      presenceCondition = presenceCondition.replaceAll("\\b" + variable + "\\b", value.toString());
+    }
+
+    return this.solver.checkSat(Z3Utils.assertion(presenceCondition)).isSAT();
+  }
+
+  private void toProduct() throws MMINTException {
+    var varsValues = new HashMap<String, Boolean>();
+    if (!isInProduct(this.input.pl.getFeatures(), varsValues)) {
+      throw new MMINTException("The boolean formula for features is not satisfiable");
+    }
+    var productModelObjs = new HashMap<Class, EObject>();
     var productFactory = this.input.pl.getMetamodel().getEFactoryInstance();
     for (var plClass : this.input.pl.getClasses()) {
-      if (this.solver.checkSat("(assert true)").isSAT()) {
-        var productModelObj = productFactory.create(plClass.getType());
-        for (var plAttribute : plClass.getAttributes()) {
-
+      if (!isInProduct(plClass, varsValues)) {
+        continue;
+      }
+      var productModelObj = productFactory.create(plClass.getType());
+      productModelObjs.put(plClass, productModelObj);
+      if (this.output.product == null) {
+        this.output.product = productModelObj;
+      }
+      for (var plAttribute : plClass.getAttributes()) {
+        if (!isInProduct(plAttribute, varsValues)) {
+          continue;
         }
+        //TODO MMINT[PL] Convert string value to appropriate EAttribute data type
+        FileUtils.setModelObjectFeature(productModelObj, plAttribute.getType().getName(), plAttribute.getValue());
       }
     }
     for (var plReference : this.input.pl.getReferences()) {
-
+      if (!isInProduct(plReference, varsValues)) {
+        continue;
+      }
+      var srcProductModelObj = productModelObjs.get(plReference.getSource());
+      if (srcProductModelObj == null) {
+        continue;
+      }
+      for (var target : plReference.getTargets()) {
+        var tgtProductModelObj = productModelObjs.get(target);
+        if (tgtProductModelObj == null) {
+          continue;
+        }
+        FileUtils.setModelObjectFeature(srcProductModelObj, plReference.getType().getName(), tgtProductModelObj);
+      }
     }
   }
 
