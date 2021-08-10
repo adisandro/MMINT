@@ -23,10 +23,6 @@ Famelis, Rick Salay, Naama Ben-David. All rights reserved.
          version="0.0.0"/>
 
    <includes
-         id="edu.toronto.cs.se.modelepedia.libz3java.feature"
-         version="0.0.0"/>
-
-   <includes
          id="edu.toronto.cs.se.modelepedia.z3.feature"
          version="0.0.0"/>
 

@@ -181,8 +181,6 @@ public class MMINT implements MMINTConstants {
 	 * - Resource change listeners to track changes in model elements
 	 * - Formalize override semantics
 	 * - Formalize type introspection
-	 * - Unify libz3java if library load problems are fixed (z3java vs libz3java)
-	 * - Separate libz3java into own repo?
 	 * - Introduce intermediate level between model element and model element reference, contained in model endpoints
 	 * - Support standalone model rels (in their own file)
 	 * - Can operators detect input/output by code inspection rather than plugin.xml?

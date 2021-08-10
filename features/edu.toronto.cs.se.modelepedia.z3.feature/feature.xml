@@ -27,12 +27,10 @@ Famelis, Rick Salay. All rights reserved.
       <import plugin="edu.toronto.cs.se.mavo"/>
       <import plugin="edu.toronto.cs.se.mmint"/>
       <import plugin="edu.toronto.cs.se.mmint.mavo"/>
-      <import plugin="edu.toronto.cs.se.modelepedia.libz3java"/>
       <import plugin="org.eclipse.emf.henshin.interpreter"/>
       <import plugin="org.eclipse.emf.henshin.trace"/>
       <import plugin="org.eclipse.ui"/>
       <import plugin="edu.toronto.cs.se.mmint.java"/>
-      <import feature="edu.toronto.cs.se.modelepedia.libz3java.feature"/>
       <import feature="org.eclipse.emf.henshin.sdk"/>
    </requires>
 
