@@ -49,14 +49,14 @@
   <build>
     <pluginManagement>
       <plugins>
-        <!-- Acceleo maven configuration to compile .emtl files -->
         <plugin>
+          <!-- Compile Acceleo .emtl files -->
+          <?m2e ignore?>
           <groupId>org.eclipse.acceleo</groupId>
           <artifactId>org.eclipse.acceleo.maven</artifactId>
           <version>${acceleo-version}</version>
           <executions>
             <execution>
-              <?m2e ignore?>
               <id>acceleo-compile</id>
               <phase>compile</phase>
               <goals>
@@ -100,6 +100,8 @@
         </executions>
       </plugin>
       <plugin>
+        <!-- Explicitly compile using the desired java version (required, it won't pick it up from manifest files) -->
+        <?m2e ignore?>
         <groupId>org.eclipse.tycho</groupId>
         <artifactId>target-platform-configuration</artifactId>
         <version>${tycho-version}</version>
