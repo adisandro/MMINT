@@ -18,8 +18,8 @@ The easiest way of installing MMINT in Eclipse is using the [binary packages](#b
 
 ### Requirements
 
-* Java 16
-* Eclipse Modeling Tools 2021-06. Within Eclipse, use `Help > Install New Software` to add the following components:
+* Java 17
+* Eclipse Modeling Tools 2021-09. Within Eclipse, use `Help > Install New Software` to add the following components:
   * Acceleo
   * Papyrus for UML
   * Sirius Properties Views - Specifier Support
