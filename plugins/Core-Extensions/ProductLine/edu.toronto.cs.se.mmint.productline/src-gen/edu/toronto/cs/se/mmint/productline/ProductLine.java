@@ -12,9 +12,16 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.productline;
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.xtext.xbase.lib.Pure;
+
+import edu.toronto.cs.se.modelepedia.z3.Z3Solver;
+import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
 
 /**
  * <!-- begin-user-doc -->
@@ -103,5 +110,18 @@ public interface ProductLine extends EObject {
    * @generated
    */
   void setMetamodel(EPackage value);
+
+  /**
+   * @generated NOT
+   */
+  @Pure
+  public static boolean isQueryPattern(String features, String... presenceConditions) {
+    var solver = new Z3Solver();
+    var pattern = Z3Utils.and(
+      features + " " +
+      Arrays.stream(presenceConditions).filter(pc -> pc != null).collect(Collectors.joining(" ")));
+
+    return solver.checkSat(Z3Utils.assertion(pattern)).isSAT();
+  }
 
 } // ProductLine

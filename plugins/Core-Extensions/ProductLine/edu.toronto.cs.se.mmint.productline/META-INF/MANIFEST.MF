@@ -10,8 +10,10 @@ Bundle-Localization: plugin
 Export-Package: edu.toronto.cs.se.mmint.productline,
  edu.toronto.cs.se.mmint.productline.impl,
  edu.toronto.cs.se.mmint.productline.util
-Require-Bundle: org.eclipse.emf.ecore;visibility:=reexport,
+Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.core.runtime,
- edu.toronto.cs.se.mmint
+ org.eclipse.xtext.xbase.lib,
+ edu.toronto.cs.se.mmint,
+ edu.toronto.cs.se.modelepedia.z3
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-16

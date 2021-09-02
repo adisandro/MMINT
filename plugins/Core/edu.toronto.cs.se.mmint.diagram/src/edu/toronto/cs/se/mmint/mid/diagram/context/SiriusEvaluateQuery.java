@@ -126,8 +126,8 @@ public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
     }
     var shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
     var title = "Query Results";
-    var message = String.join("\n", printResults);
-    if (context instanceof MID) {
+    var message = (queryResults.isEmpty()) ? "No Results" : String.join("\n", printResults);
+    if (!queryResults.isEmpty() && context instanceof MID) {
       message += "\n\nDo you want to store the results as model relationships for future use?";
       var store = MessageDialog.openQuestion(shell, title, message);
       if (store) {
