@@ -86,15 +86,11 @@ public class ToProduct extends OperatorImpl {
   }
 
   private boolean isInProduct(String presenceCondition, Map<String, Boolean> varsValues) {
-    if (presenceCondition.isBlank()) {
+    var variables = ProductLine.getVariables(presenceCondition);
+    if (variables.isEmpty()) {
       return true;
     }
-
-    var vars = presenceCondition.strip().split("[\\s\\(\\){or}{and}{not}]");
-    for (var variable : vars) {
-      if (variable.isBlank()) {
-        continue;
-      }
+    for (var variable : variables) {
       var value = varsValues.get(variable);
       if (value == null) {
         value = MIDDialogs.getBooleanInput("Variable '" + variable + "'",

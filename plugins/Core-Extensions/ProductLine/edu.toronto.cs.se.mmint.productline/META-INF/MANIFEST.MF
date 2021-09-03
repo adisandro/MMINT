@@ -13,6 +13,7 @@ Export-Package: edu.toronto.cs.se.mmint.productline,
 Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.core.runtime,
  org.eclipse.xtext.xbase.lib,
+ org.eclipse.jdt.annotation;resolution:=optional,
  edu.toronto.cs.se.mmint,
  edu.toronto.cs.se.modelepedia.z3
 Bundle-ActivationPolicy: lazy
