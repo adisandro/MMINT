@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<?eclipse version="3.0"?>
-<!--
+<?xml version="1.0" encoding="UTF-8"?><?eclipse version="3.0"?><!--
     Copyright (c) 2021, 2021 Alessio Di Sandro.
    
     This program and the accompanying materials are made available under the
@@ -11,25 +9,21 @@
    
     Contributors:
         Alessio Di Sandro - Implementation
--->
-<plugin>
-
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated productline -->
-      <package
-            uri="model://edu.toronto.cs.se.mmint.productline"
-            class="edu.toronto.cs.se.mmint.productline.ProductLinePackage"
-            genModel="model/productline.genmodel"/>
-   </extension>
-
-   <extension
-         point="edu.toronto.cs.se.mmint.models">
-      <modelType>
-         <type
-               name="ProductLine"
-               uri="model://edu.toronto.cs.se.mmint.productline">
-         </type>
-      </modelType>
-   </extension>
-
+--><plugin>
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <!-- @generated productline -->
+    <package class="edu.toronto.cs.se.mmint.productline.ProductLinePackage" genModel="model/productline.genmodel" uri="model://edu.toronto.cs.se.mmint.productline"/>
+  </extension>
+  <extension point="edu.toronto.cs.se.mmint.models">
+    <modelType>
+      <type name="ProductLine" uri="model://edu.toronto.cs.se.mmint.productline"/>
+    </modelType>
+  </extension>
+  <extension id="edu.toronto.cs.se.mmint.productline.viatra.Pl" point="org.eclipse.viatra.query.runtime.queryspecification">
+    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:edu.toronto.cs.se.mmint.productline.viatra.Pl" id="edu.toronto.cs.se.mmint.productline.viatra.Pl">
+      <query-specification fqn="edu.toronto.cs.se.mmint.productline.viatra.classType"/>
+      <query-specification fqn="edu.toronto.cs.se.mmint.productline.viatra.referenceType"/>
+      <query-specification fqn="edu.toronto.cs.se.mmint.productline.viatra.connection"/>
+    </group>
+  </extension>
 </plugin>

@@ -1,0 +1,27 @@
+package edu.toronto.cs.se.mmint.productline.viatra
+
+import "http://www.eclipse.org/emf/2002/Ecore"
+import "model://edu.toronto.cs.se.mmint.productline"
+
+private pattern superType(class: EClass, superClass: EClass) {
+  class != superClass;
+  EClass.eSuperTypes(class, superClass);
+}
+
+pattern classType(plClass: Class, type: java String) {
+  Class.type(plClass, class);
+  find superType*(class, superClass);
+  EClass.name(superClass, type);
+}
+
+pattern referenceType(plReference: Reference, type: java String) {
+  Reference.type.name(plReference, type);
+}
+
+pattern connection(plClassSrc: Class, srcType: java String, plClassTgt: Class, tgtType: java String, plReference: Reference, refType: java String) {
+  find classType(plClassSrc, srcType);
+  Class.referencesAsSource(plClassSrc, plReference);
+  find referenceType(plReference, refType);
+  Reference.targets(plReference, plClassTgt);
+  find classType(plClassTgt, tgtType);
+}

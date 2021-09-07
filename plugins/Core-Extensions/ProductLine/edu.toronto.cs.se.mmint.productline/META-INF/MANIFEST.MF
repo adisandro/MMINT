@@ -2,19 +2,25 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.mmint.productline;singleton:=true
-Automatic-Module-Name: edu.toronto.cs.se.mmint.productline
 Bundle-Version: 2.10.99.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Export-Package: edu.toronto.cs.se.mmint.productline,
  edu.toronto.cs.se.mmint.productline.impl,
- edu.toronto.cs.se.mmint.productline.util
+ edu.toronto.cs.se.mmint.productline.util,
+ edu.toronto.cs.se.mmint.productline.viatra
 Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.core.runtime,
+ org.apache.log4j,
  org.eclipse.xtext.xbase.lib,
+ org.eclipse.viatra.query.runtime,
+ org.eclipse.viatra.query.runtime.rete,
+ org.eclipse.viatra.query.runtime.localsearch,
+ org.eclipse.viatra.query.patternlanguage.emf,
  org.eclipse.jdt.annotation;resolution:=optional,
  edu.toronto.cs.se.mmint,
  edu.toronto.cs.se.modelepedia.z3
-Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-16
+Bundle-ActivationPolicy: lazy
+Automatic-Module-Name: edu.toronto.cs.se.mmint.productline

@@ -5,6 +5,16 @@
 	<projects>
 	</projects>
 	<buildSpec>
+    <buildCommand>
+      <name>org.eclipse.xtext.ui.shared.xtextBuilder</name>
+      <arguments>
+      </arguments>
+    </buildCommand>
+    <buildCommand>
+      <name>org.eclipse.viatra.query.tooling.ui.projectbuilder</name>
+      <arguments>
+      </arguments>
+    </buildCommand>
 		<buildCommand>
 			<name>org.eclipse.jdt.core.javabuilder</name>
 			<arguments>
@@ -30,5 +40,7 @@
 		<nature>org.eclipse.m2e.core.maven2Nature</nature>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 		<nature>org.eclipse.pde.PluginNature</nature>
+    <nature>org.eclipse.xtext.ui.shared.xtextNature</nature>
+    <nature>org.eclipse.viatra.query.projectnature</nature>
 	</natures>
 </projectDescription>
