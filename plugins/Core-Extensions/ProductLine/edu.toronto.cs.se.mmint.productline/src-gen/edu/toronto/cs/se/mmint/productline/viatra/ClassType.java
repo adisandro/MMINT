@@ -708,7 +708,7 @@ public final class ClassType extends BaseGeneratedEMFQuerySpecification<ClassTyp
           new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.eclipse.org/emf/2002/Ecore", "EClass")));
           new Equality(body, var__virtual_0_, var_class);
           //   find superType*(class, superClass)
-          new BinaryReflexiveTransitiveClosure(body, Tuples.flatTupleOf(var_class, var_superClass), SuperType.instance().getInternalQueryRepresentation(), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.eclipse.org/emf/2002/Ecore", "EObject")));
+          new BinaryReflexiveTransitiveClosure(body, Tuples.flatTupleOf(var_class, var_superClass), SuperType.instance().getInternalQueryRepresentation(), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.eclipse.org/emf/2002/Ecore", "EClass")));
           //   EClass.name(superClass, type)
           new TypeConstraint(body, Tuples.flatTupleOf(var_superClass), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.eclipse.org/emf/2002/Ecore", "EClass")));
           PVariable var__virtual_1_ = body.getOrCreateVariableByName(".virtual{1}");
