@@ -17,6 +17,7 @@ import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.viatra.query.patternlanguage.emf.specification.SpecificationBuilder;
+import org.eclipse.viatra.query.patternlanguage.emf.vql.Pattern;
 import org.eclipse.viatra.query.patternlanguage.emf.vql.PatternModel;
 import org.eclipse.viatra.query.runtime.api.AdvancedViatraQueryEngine;
 import org.eclipse.viatra.query.runtime.api.GenericPatternMatcher;
@@ -40,22 +41,28 @@ public class ViatraReasoner implements IQueryTrait {
     return Set.of("vql");
   }
 
+  protected Pattern getPattern(String queryFilePath, String queryName) throws Exception {
+    // get model representation of query file
+    var queryRoot = FileUtils.readModelFile(queryFilePath, null, true);
+    if (!(queryRoot instanceof PatternModel)) {
+      throw new MMINTException("Bad query file");
+    }
+    // find named query
+    var pattern = ((PatternModel) queryRoot).getPatterns().stream()
+      .filter(p -> queryName.equals(p.getName()))
+      .findFirst()
+      .orElseThrow(() -> new MMINTException(MessageFormat.format("Pattern {0} not found", queryName)));
+
+    return pattern;
+  }
+
   @Override
   public List<Object> evaluateQuery(String queryFilePath, String queryName, EObject context,
                                     List<? extends EObject> queryArgs) throws Exception {
     AdvancedViatraQueryEngine engine = null;
     try {
-      // get model representation of query file
-      var queryRoot = FileUtils.readModelFile(queryFilePath, null, true);
-      if (!(queryRoot instanceof PatternModel)) {
-        throw new MMINTException("Bad query file");
-      }
-      // find named query
-      var pattern = ((PatternModel) queryRoot).getPatterns().stream()
-        .filter(p -> queryName.equals(p.getName()))
-        .findFirst()
-        .orElseThrow(() -> new MMINTException(MessageFormat.format("Pattern {0} not found", queryName)));
       // handle query arguments
+      var pattern = getPattern(queryFilePath, queryName);
       if (!queryArgs.isEmpty()) { // bound input arguments
         var numFormal = pattern.getParameters().size();
         var numActual = queryArgs.size();

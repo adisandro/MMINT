@@ -20,6 +20,7 @@ Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.viatra.query.patternlanguage.emf,
  org.eclipse.jdt.annotation;resolution:=optional,
  edu.toronto.cs.se.mmint,
+ edu.toronto.cs.se.mmint.viatra,
  edu.toronto.cs.se.modelepedia.z3
 Bundle-RequiredExecutionEnvironment: JavaSE-16
 Bundle-ActivationPolicy: lazy
