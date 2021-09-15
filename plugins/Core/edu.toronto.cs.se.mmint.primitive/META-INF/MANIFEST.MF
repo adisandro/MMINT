@@ -7,7 +7,7 @@ Bundle-Version: 2.10.99.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-16
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Export-Package: edu.toronto.cs.se.mmint.primitive.boolean_,
  edu.toronto.cs.se.mmint.primitive.boolean_.impl,
  edu.toronto.cs.se.mmint.primitive.boolean_.util,

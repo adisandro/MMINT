@@ -4,7 +4,7 @@ Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.mmint.productline.operators;singleton:=true
 Bundle-Version: 2.10.99.qualifier
 Automatic-Module-Name: edu.toronto.cs.se.mmint.productline.operators
-Bundle-RequiredExecutionEnvironment: JavaSE-16
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.validation,
