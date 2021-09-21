@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.viatra.query.runtime.api.IPatternMatch;
 import org.eclipse.viatra.query.runtime.api.IQuerySpecification;
 import org.eclipse.viatra.query.runtime.api.ViatraQueryEngine;
@@ -24,6 +25,7 @@ import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedEMFQuerySpecificat
 import org.eclipse.viatra.query.runtime.api.impl.BaseMatcher;
 import org.eclipse.viatra.query.runtime.api.impl.BasePatternMatch;
 import org.eclipse.viatra.query.runtime.emf.types.EClassTransitiveInstancesKey;
+import org.eclipse.viatra.query.runtime.emf.types.EDataTypeInSlotsKey;
 import org.eclipse.viatra.query.runtime.emf.types.EStructuralFeatureInstancesKey;
 import org.eclipse.viatra.query.runtime.matchers.backend.QueryEvaluationHint;
 import org.eclipse.viatra.query.runtime.matchers.context.common.JavaTransitiveInstancesKey;
@@ -46,12 +48,13 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 
  * <p>Original source:
  *         <code><pre>
- *         pattern connection(plClassSrc: Class, srcType: java String, plClassTgt: Class, tgtType: java String, plReference: Reference, refType: java String) {
- *           find classType(plClassSrc, srcType);
- *           Class.referencesAsSource(plClassSrc, plReference);
- *           find referenceType(plReference, refType);
- *           Reference.targets(plReference, plClassTgt);
- *           find classType(plClassTgt, tgtType);
+ *         pattern connection(plSrc: Class, srcType: java String, plDst: Class, dstType: java String,
+ *                            plRef: Reference, refType: java String) {
+ *           find classType(plSrc, srcType);
+ *           Class.referencesAsSource(plSrc, plRef);
+ *           Reference.type.name(plRef, refType);
+ *           Reference.targets(plRef, plDst);
+ *           find classType(plDst, dstType);
  *         }
  * </pre></code>
  * 
@@ -74,37 +77,37 @@ public final class Connection extends BaseGeneratedEMFQuerySpecification<Connect
    * 
    */
   public static abstract class Match extends BasePatternMatch {
-    private edu.toronto.cs.se.mmint.productline.Class fPlClassSrc;
+    private edu.toronto.cs.se.mmint.productline.Class fPlSrc;
     
     private String fSrcType;
     
-    private edu.toronto.cs.se.mmint.productline.Class fPlClassTgt;
+    private edu.toronto.cs.se.mmint.productline.Class fPlDst;
     
-    private String fTgtType;
+    private String fDstType;
     
-    private Reference fPlReference;
+    private Reference fPlRef;
     
     private String fRefType;
     
-    private static List<String> parameterNames = makeImmutableList("plClassSrc", "srcType", "plClassTgt", "tgtType", "plReference", "refType");
+    private static List<String> parameterNames = makeImmutableList("plSrc", "srcType", "plDst", "dstType", "plRef", "refType");
     
-    private Match(final edu.toronto.cs.se.mmint.productline.Class pPlClassSrc, final String pSrcType, final edu.toronto.cs.se.mmint.productline.Class pPlClassTgt, final String pTgtType, final Reference pPlReference, final String pRefType) {
-      this.fPlClassSrc = pPlClassSrc;
+    private Match(final edu.toronto.cs.se.mmint.productline.Class pPlSrc, final String pSrcType, final edu.toronto.cs.se.mmint.productline.Class pPlDst, final String pDstType, final Reference pPlRef, final String pRefType) {
+      this.fPlSrc = pPlSrc;
       this.fSrcType = pSrcType;
-      this.fPlClassTgt = pPlClassTgt;
-      this.fTgtType = pTgtType;
-      this.fPlReference = pPlReference;
+      this.fPlDst = pPlDst;
+      this.fDstType = pDstType;
+      this.fPlRef = pPlRef;
       this.fRefType = pRefType;
     }
     
     @Override
     public Object get(final String parameterName) {
       switch(parameterName) {
-          case "plClassSrc": return this.fPlClassSrc;
+          case "plSrc": return this.fPlSrc;
           case "srcType": return this.fSrcType;
-          case "plClassTgt": return this.fPlClassTgt;
-          case "tgtType": return this.fTgtType;
-          case "plReference": return this.fPlReference;
+          case "plDst": return this.fPlDst;
+          case "dstType": return this.fDstType;
+          case "plRef": return this.fPlRef;
           case "refType": return this.fRefType;
           default: return null;
       }
@@ -113,34 +116,34 @@ public final class Connection extends BaseGeneratedEMFQuerySpecification<Connect
     @Override
     public Object get(final int index) {
       switch(index) {
-          case 0: return this.fPlClassSrc;
+          case 0: return this.fPlSrc;
           case 1: return this.fSrcType;
-          case 2: return this.fPlClassTgt;
-          case 3: return this.fTgtType;
-          case 4: return this.fPlReference;
+          case 2: return this.fPlDst;
+          case 3: return this.fDstType;
+          case 4: return this.fPlRef;
           case 5: return this.fRefType;
           default: return null;
       }
     }
     
-    public edu.toronto.cs.se.mmint.productline.Class getPlClassSrc() {
-      return this.fPlClassSrc;
+    public edu.toronto.cs.se.mmint.productline.Class getPlSrc() {
+      return this.fPlSrc;
     }
     
     public String getSrcType() {
       return this.fSrcType;
     }
     
-    public edu.toronto.cs.se.mmint.productline.Class getPlClassTgt() {
-      return this.fPlClassTgt;
+    public edu.toronto.cs.se.mmint.productline.Class getPlDst() {
+      return this.fPlDst;
     }
     
-    public String getTgtType() {
-      return this.fTgtType;
+    public String getDstType() {
+      return this.fDstType;
     }
     
-    public Reference getPlReference() {
-      return this.fPlReference;
+    public Reference getPlRef() {
+      return this.fPlRef;
     }
     
     public String getRefType() {
@@ -150,24 +153,24 @@ public final class Connection extends BaseGeneratedEMFQuerySpecification<Connect
     @Override
     public boolean set(final String parameterName, final Object newValue) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
-      if ("plClassSrc".equals(parameterName) ) {
-          this.fPlClassSrc = (edu.toronto.cs.se.mmint.productline.Class) newValue;
+      if ("plSrc".equals(parameterName) ) {
+          this.fPlSrc = (edu.toronto.cs.se.mmint.productline.Class) newValue;
           return true;
       }
       if ("srcType".equals(parameterName) ) {
           this.fSrcType = (String) newValue;
           return true;
       }
-      if ("plClassTgt".equals(parameterName) ) {
-          this.fPlClassTgt = (edu.toronto.cs.se.mmint.productline.Class) newValue;
+      if ("plDst".equals(parameterName) ) {
+          this.fPlDst = (edu.toronto.cs.se.mmint.productline.Class) newValue;
           return true;
       }
-      if ("tgtType".equals(parameterName) ) {
-          this.fTgtType = (String) newValue;
+      if ("dstType".equals(parameterName) ) {
+          this.fDstType = (String) newValue;
           return true;
       }
-      if ("plReference".equals(parameterName) ) {
-          this.fPlReference = (Reference) newValue;
+      if ("plRef".equals(parameterName) ) {
+          this.fPlRef = (Reference) newValue;
           return true;
       }
       if ("refType".equals(parameterName) ) {
@@ -177,9 +180,9 @@ public final class Connection extends BaseGeneratedEMFQuerySpecification<Connect
       return false;
     }
     
-    public void setPlClassSrc(final edu.toronto.cs.se.mmint.productline.Class pPlClassSrc) {
+    public void setPlSrc(final edu.toronto.cs.se.mmint.productline.Class pPlSrc) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
-      this.fPlClassSrc = pPlClassSrc;
+      this.fPlSrc = pPlSrc;
     }
     
     public void setSrcType(final String pSrcType) {
@@ -187,19 +190,19 @@ public final class Connection extends BaseGeneratedEMFQuerySpecification<Connect
       this.fSrcType = pSrcType;
     }
     
-    public void setPlClassTgt(final edu.toronto.cs.se.mmint.productline.Class pPlClassTgt) {
+    public void setPlDst(final edu.toronto.cs.se.mmint.productline.Class pPlDst) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
-      this.fPlClassTgt = pPlClassTgt;
+      this.fPlDst = pPlDst;
     }
     
-    public void setTgtType(final String pTgtType) {
+    public void setDstType(final String pDstType) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
-      this.fTgtType = pTgtType;
+      this.fDstType = pDstType;
     }
     
-    public void setPlReference(final Reference pPlReference) {
+    public void setPlRef(final Reference pPlRef) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
-      this.fPlReference = pPlReference;
+      this.fPlRef = pPlRef;
     }
     
     public void setRefType(final String pRefType) {
@@ -219,29 +222,29 @@ public final class Connection extends BaseGeneratedEMFQuerySpecification<Connect
     
     @Override
     public Object[] toArray() {
-      return new Object[]{fPlClassSrc, fSrcType, fPlClassTgt, fTgtType, fPlReference, fRefType};
+      return new Object[]{fPlSrc, fSrcType, fPlDst, fDstType, fPlRef, fRefType};
     }
     
     @Override
     public Connection.Match toImmutable() {
-      return isMutable() ? newMatch(fPlClassSrc, fSrcType, fPlClassTgt, fTgtType, fPlReference, fRefType) : this;
+      return isMutable() ? newMatch(fPlSrc, fSrcType, fPlDst, fDstType, fPlRef, fRefType) : this;
     }
     
     @Override
     public String prettyPrint() {
       StringBuilder result = new StringBuilder();
-      result.append("\"plClassSrc\"=" + prettyPrintValue(fPlClassSrc) + ", ");
+      result.append("\"plSrc\"=" + prettyPrintValue(fPlSrc) + ", ");
       result.append("\"srcType\"=" + prettyPrintValue(fSrcType) + ", ");
-      result.append("\"plClassTgt\"=" + prettyPrintValue(fPlClassTgt) + ", ");
-      result.append("\"tgtType\"=" + prettyPrintValue(fTgtType) + ", ");
-      result.append("\"plReference\"=" + prettyPrintValue(fPlReference) + ", ");
+      result.append("\"plDst\"=" + prettyPrintValue(fPlDst) + ", ");
+      result.append("\"dstType\"=" + prettyPrintValue(fDstType) + ", ");
+      result.append("\"plRef\"=" + prettyPrintValue(fPlRef) + ", ");
       result.append("\"refType\"=" + prettyPrintValue(fRefType));
       return result.toString();
     }
     
     @Override
     public int hashCode() {
-      return Objects.hash(fPlClassSrc, fSrcType, fPlClassTgt, fTgtType, fPlReference, fRefType);
+      return Objects.hash(fPlSrc, fSrcType, fPlDst, fDstType, fPlRef, fRefType);
     }
     
     @Override
@@ -253,7 +256,7 @@ public final class Connection extends BaseGeneratedEMFQuerySpecification<Connect
       }
       if ((obj instanceof Connection.Match)) {
           Connection.Match other = (Connection.Match) obj;
-          return Objects.equals(fPlClassSrc, other.fPlClassSrc) && Objects.equals(fSrcType, other.fSrcType) && Objects.equals(fPlClassTgt, other.fPlClassTgt) && Objects.equals(fTgtType, other.fTgtType) && Objects.equals(fPlReference, other.fPlReference) && Objects.equals(fRefType, other.fRefType);
+          return Objects.equals(fPlSrc, other.fPlSrc) && Objects.equals(fSrcType, other.fSrcType) && Objects.equals(fPlDst, other.fPlDst) && Objects.equals(fDstType, other.fDstType) && Objects.equals(fPlRef, other.fPlRef) && Objects.equals(fRefType, other.fRefType);
       } else {
           // this should be infrequent
           if (!(obj instanceof IPatternMatch)) {
@@ -284,39 +287,39 @@ public final class Connection extends BaseGeneratedEMFQuerySpecification<Connect
      * Returns a mutable (partial) match.
      * Fields of the mutable match can be filled to create a partial match, usable as matcher input.
      * 
-     * @param pPlClassSrc the fixed value of pattern parameter plClassSrc, or null if not bound.
+     * @param pPlSrc the fixed value of pattern parameter plSrc, or null if not bound.
      * @param pSrcType the fixed value of pattern parameter srcType, or null if not bound.
-     * @param pPlClassTgt the fixed value of pattern parameter plClassTgt, or null if not bound.
-     * @param pTgtType the fixed value of pattern parameter tgtType, or null if not bound.
-     * @param pPlReference the fixed value of pattern parameter plReference, or null if not bound.
+     * @param pPlDst the fixed value of pattern parameter plDst, or null if not bound.
+     * @param pDstType the fixed value of pattern parameter dstType, or null if not bound.
+     * @param pPlRef the fixed value of pattern parameter plRef, or null if not bound.
      * @param pRefType the fixed value of pattern parameter refType, or null if not bound.
      * @return the new, mutable (partial) match object.
      * 
      */
-    public static Connection.Match newMutableMatch(final edu.toronto.cs.se.mmint.productline.Class pPlClassSrc, final String pSrcType, final edu.toronto.cs.se.mmint.productline.Class pPlClassTgt, final String pTgtType, final Reference pPlReference, final String pRefType) {
-      return new Mutable(pPlClassSrc, pSrcType, pPlClassTgt, pTgtType, pPlReference, pRefType);
+    public static Connection.Match newMutableMatch(final edu.toronto.cs.se.mmint.productline.Class pPlSrc, final String pSrcType, final edu.toronto.cs.se.mmint.productline.Class pPlDst, final String pDstType, final Reference pPlRef, final String pRefType) {
+      return new Mutable(pPlSrc, pSrcType, pPlDst, pDstType, pPlRef, pRefType);
     }
     
     /**
      * Returns a new (partial) match.
      * This can be used e.g. to call the matcher with a partial match.
      * <p>The returned match will be immutable. Use {@link #newEmptyMatch()} to obtain a mutable match object.
-     * @param pPlClassSrc the fixed value of pattern parameter plClassSrc, or null if not bound.
+     * @param pPlSrc the fixed value of pattern parameter plSrc, or null if not bound.
      * @param pSrcType the fixed value of pattern parameter srcType, or null if not bound.
-     * @param pPlClassTgt the fixed value of pattern parameter plClassTgt, or null if not bound.
-     * @param pTgtType the fixed value of pattern parameter tgtType, or null if not bound.
-     * @param pPlReference the fixed value of pattern parameter plReference, or null if not bound.
+     * @param pPlDst the fixed value of pattern parameter plDst, or null if not bound.
+     * @param pDstType the fixed value of pattern parameter dstType, or null if not bound.
+     * @param pPlRef the fixed value of pattern parameter plRef, or null if not bound.
      * @param pRefType the fixed value of pattern parameter refType, or null if not bound.
      * @return the (partial) match object.
      * 
      */
-    public static Connection.Match newMatch(final edu.toronto.cs.se.mmint.productline.Class pPlClassSrc, final String pSrcType, final edu.toronto.cs.se.mmint.productline.Class pPlClassTgt, final String pTgtType, final Reference pPlReference, final String pRefType) {
-      return new Immutable(pPlClassSrc, pSrcType, pPlClassTgt, pTgtType, pPlReference, pRefType);
+    public static Connection.Match newMatch(final edu.toronto.cs.se.mmint.productline.Class pPlSrc, final String pSrcType, final edu.toronto.cs.se.mmint.productline.Class pPlDst, final String pDstType, final Reference pPlRef, final String pRefType) {
+      return new Immutable(pPlSrc, pSrcType, pPlDst, pDstType, pPlRef, pRefType);
     }
     
     private static final class Mutable extends Connection.Match {
-      Mutable(final edu.toronto.cs.se.mmint.productline.Class pPlClassSrc, final String pSrcType, final edu.toronto.cs.se.mmint.productline.Class pPlClassTgt, final String pTgtType, final Reference pPlReference, final String pRefType) {
-        super(pPlClassSrc, pSrcType, pPlClassTgt, pTgtType, pPlReference, pRefType);
+      Mutable(final edu.toronto.cs.se.mmint.productline.Class pPlSrc, final String pSrcType, final edu.toronto.cs.se.mmint.productline.Class pPlDst, final String pDstType, final Reference pPlRef, final String pRefType) {
+        super(pPlSrc, pSrcType, pPlDst, pDstType, pPlRef, pRefType);
       }
       
       @Override
@@ -326,8 +329,8 @@ public final class Connection extends BaseGeneratedEMFQuerySpecification<Connect
     }
     
     private static final class Immutable extends Connection.Match {
-      Immutable(final edu.toronto.cs.se.mmint.productline.Class pPlClassSrc, final String pSrcType, final edu.toronto.cs.se.mmint.productline.Class pPlClassTgt, final String pTgtType, final Reference pPlReference, final String pRefType) {
-        super(pPlClassSrc, pSrcType, pPlClassTgt, pTgtType, pPlReference, pRefType);
+      Immutable(final edu.toronto.cs.se.mmint.productline.Class pPlSrc, final String pSrcType, final edu.toronto.cs.se.mmint.productline.Class pPlDst, final String pDstType, final Reference pPlRef, final String pRefType) {
+        super(pPlSrc, pSrcType, pPlDst, pDstType, pPlRef, pRefType);
       }
       
       @Override
@@ -348,12 +351,13 @@ public final class Connection extends BaseGeneratedEMFQuerySpecification<Connect
    * 
    * <p>Original source:
    * <code><pre>
-   * pattern connection(plClassSrc: Class, srcType: java String, plClassTgt: Class, tgtType: java String, plReference: Reference, refType: java String) {
-   *   find classType(plClassSrc, srcType);
-   *   Class.referencesAsSource(plClassSrc, plReference);
-   *   find referenceType(plReference, refType);
-   *   Reference.targets(plReference, plClassTgt);
-   *   find classType(plClassTgt, tgtType);
+   * pattern connection(plSrc: Class, srcType: java String, plDst: Class, dstType: java String,
+   *                    plRef: Reference, refType: java String) {
+   *   find classType(plSrc, srcType);
+   *   Class.referencesAsSource(plSrc, plRef);
+   *   Reference.type.name(plRef, refType);
+   *   Reference.targets(plRef, plDst);
+   *   find classType(plDst, dstType);
    * }
    * </pre></code>
    * 
@@ -389,15 +393,15 @@ public final class Connection extends BaseGeneratedEMFQuerySpecification<Connect
       return new Matcher();
     }
     
-    private static final int POSITION_PLCLASSSRC = 0;
+    private static final int POSITION_PLSRC = 0;
     
     private static final int POSITION_SRCTYPE = 1;
     
-    private static final int POSITION_PLCLASSTGT = 2;
+    private static final int POSITION_PLDST = 2;
     
-    private static final int POSITION_TGTTYPE = 3;
+    private static final int POSITION_DSTTYPE = 3;
     
-    private static final int POSITION_PLREFERENCE = 4;
+    private static final int POSITION_PLREF = 4;
     
     private static final int POSITION_REFTYPE = 5;
     
@@ -417,17 +421,17 @@ public final class Connection extends BaseGeneratedEMFQuerySpecification<Connect
     
     /**
      * Returns the set of all matches of the pattern that conform to the given fixed values of some parameters.
-     * @param pPlClassSrc the fixed value of pattern parameter plClassSrc, or null if not bound.
+     * @param pPlSrc the fixed value of pattern parameter plSrc, or null if not bound.
      * @param pSrcType the fixed value of pattern parameter srcType, or null if not bound.
-     * @param pPlClassTgt the fixed value of pattern parameter plClassTgt, or null if not bound.
-     * @param pTgtType the fixed value of pattern parameter tgtType, or null if not bound.
-     * @param pPlReference the fixed value of pattern parameter plReference, or null if not bound.
+     * @param pPlDst the fixed value of pattern parameter plDst, or null if not bound.
+     * @param pDstType the fixed value of pattern parameter dstType, or null if not bound.
+     * @param pPlRef the fixed value of pattern parameter plRef, or null if not bound.
      * @param pRefType the fixed value of pattern parameter refType, or null if not bound.
      * @return matches represented as a Match object.
      * 
      */
-    public Collection<Connection.Match> getAllMatches(final edu.toronto.cs.se.mmint.productline.Class pPlClassSrc, final String pSrcType, final edu.toronto.cs.se.mmint.productline.Class pPlClassTgt, final String pTgtType, final Reference pPlReference, final String pRefType) {
-      return rawStreamAllMatches(new Object[]{pPlClassSrc, pSrcType, pPlClassTgt, pTgtType, pPlReference, pRefType}).collect(Collectors.toSet());
+    public Collection<Connection.Match> getAllMatches(final edu.toronto.cs.se.mmint.productline.Class pPlSrc, final String pSrcType, final edu.toronto.cs.se.mmint.productline.Class pPlDst, final String pDstType, final Reference pPlRef, final String pRefType) {
+      return rawStreamAllMatches(new Object[]{pPlSrc, pSrcType, pPlDst, pDstType, pPlRef, pRefType}).collect(Collectors.toSet());
     }
     
     /**
@@ -436,129 +440,129 @@ public final class Connection extends BaseGeneratedEMFQuerySpecification<Connect
      * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
      * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
      * In such cases, either rely on {@link #getAllMatches()} or collect the results of the stream in end-user code.
-     * @param pPlClassSrc the fixed value of pattern parameter plClassSrc, or null if not bound.
+     * @param pPlSrc the fixed value of pattern parameter plSrc, or null if not bound.
      * @param pSrcType the fixed value of pattern parameter srcType, or null if not bound.
-     * @param pPlClassTgt the fixed value of pattern parameter plClassTgt, or null if not bound.
-     * @param pTgtType the fixed value of pattern parameter tgtType, or null if not bound.
-     * @param pPlReference the fixed value of pattern parameter plReference, or null if not bound.
+     * @param pPlDst the fixed value of pattern parameter plDst, or null if not bound.
+     * @param pDstType the fixed value of pattern parameter dstType, or null if not bound.
+     * @param pPlRef the fixed value of pattern parameter plRef, or null if not bound.
      * @param pRefType the fixed value of pattern parameter refType, or null if not bound.
      * @return a stream of matches represented as a Match object.
      * 
      */
-    public Stream<Connection.Match> streamAllMatches(final edu.toronto.cs.se.mmint.productline.Class pPlClassSrc, final String pSrcType, final edu.toronto.cs.se.mmint.productline.Class pPlClassTgt, final String pTgtType, final Reference pPlReference, final String pRefType) {
-      return rawStreamAllMatches(new Object[]{pPlClassSrc, pSrcType, pPlClassTgt, pTgtType, pPlReference, pRefType});
+    public Stream<Connection.Match> streamAllMatches(final edu.toronto.cs.se.mmint.productline.Class pPlSrc, final String pSrcType, final edu.toronto.cs.se.mmint.productline.Class pPlDst, final String pDstType, final Reference pPlRef, final String pRefType) {
+      return rawStreamAllMatches(new Object[]{pPlSrc, pSrcType, pPlDst, pDstType, pPlRef, pRefType});
     }
     
     /**
      * Returns an arbitrarily chosen match of the pattern that conforms to the given fixed values of some parameters.
      * Neither determinism nor randomness of selection is guaranteed.
-     * @param pPlClassSrc the fixed value of pattern parameter plClassSrc, or null if not bound.
+     * @param pPlSrc the fixed value of pattern parameter plSrc, or null if not bound.
      * @param pSrcType the fixed value of pattern parameter srcType, or null if not bound.
-     * @param pPlClassTgt the fixed value of pattern parameter plClassTgt, or null if not bound.
-     * @param pTgtType the fixed value of pattern parameter tgtType, or null if not bound.
-     * @param pPlReference the fixed value of pattern parameter plReference, or null if not bound.
+     * @param pPlDst the fixed value of pattern parameter plDst, or null if not bound.
+     * @param pDstType the fixed value of pattern parameter dstType, or null if not bound.
+     * @param pPlRef the fixed value of pattern parameter plRef, or null if not bound.
      * @param pRefType the fixed value of pattern parameter refType, or null if not bound.
      * @return a match represented as a Match object, or null if no match is found.
      * 
      */
-    public Optional<Connection.Match> getOneArbitraryMatch(final edu.toronto.cs.se.mmint.productline.Class pPlClassSrc, final String pSrcType, final edu.toronto.cs.se.mmint.productline.Class pPlClassTgt, final String pTgtType, final Reference pPlReference, final String pRefType) {
-      return rawGetOneArbitraryMatch(new Object[]{pPlClassSrc, pSrcType, pPlClassTgt, pTgtType, pPlReference, pRefType});
+    public Optional<Connection.Match> getOneArbitraryMatch(final edu.toronto.cs.se.mmint.productline.Class pPlSrc, final String pSrcType, final edu.toronto.cs.se.mmint.productline.Class pPlDst, final String pDstType, final Reference pPlRef, final String pRefType) {
+      return rawGetOneArbitraryMatch(new Object[]{pPlSrc, pSrcType, pPlDst, pDstType, pPlRef, pRefType});
     }
     
     /**
      * Indicates whether the given combination of specified pattern parameters constitute a valid pattern match,
      * under any possible substitution of the unspecified parameters (if any).
-     * @param pPlClassSrc the fixed value of pattern parameter plClassSrc, or null if not bound.
+     * @param pPlSrc the fixed value of pattern parameter plSrc, or null if not bound.
      * @param pSrcType the fixed value of pattern parameter srcType, or null if not bound.
-     * @param pPlClassTgt the fixed value of pattern parameter plClassTgt, or null if not bound.
-     * @param pTgtType the fixed value of pattern parameter tgtType, or null if not bound.
-     * @param pPlReference the fixed value of pattern parameter plReference, or null if not bound.
+     * @param pPlDst the fixed value of pattern parameter plDst, or null if not bound.
+     * @param pDstType the fixed value of pattern parameter dstType, or null if not bound.
+     * @param pPlRef the fixed value of pattern parameter plRef, or null if not bound.
      * @param pRefType the fixed value of pattern parameter refType, or null if not bound.
      * @return true if the input is a valid (partial) match of the pattern.
      * 
      */
-    public boolean hasMatch(final edu.toronto.cs.se.mmint.productline.Class pPlClassSrc, final String pSrcType, final edu.toronto.cs.se.mmint.productline.Class pPlClassTgt, final String pTgtType, final Reference pPlReference, final String pRefType) {
-      return rawHasMatch(new Object[]{pPlClassSrc, pSrcType, pPlClassTgt, pTgtType, pPlReference, pRefType});
+    public boolean hasMatch(final edu.toronto.cs.se.mmint.productline.Class pPlSrc, final String pSrcType, final edu.toronto.cs.se.mmint.productline.Class pPlDst, final String pDstType, final Reference pPlRef, final String pRefType) {
+      return rawHasMatch(new Object[]{pPlSrc, pSrcType, pPlDst, pDstType, pPlRef, pRefType});
     }
     
     /**
      * Returns the number of all matches of the pattern that conform to the given fixed values of some parameters.
-     * @param pPlClassSrc the fixed value of pattern parameter plClassSrc, or null if not bound.
+     * @param pPlSrc the fixed value of pattern parameter plSrc, or null if not bound.
      * @param pSrcType the fixed value of pattern parameter srcType, or null if not bound.
-     * @param pPlClassTgt the fixed value of pattern parameter plClassTgt, or null if not bound.
-     * @param pTgtType the fixed value of pattern parameter tgtType, or null if not bound.
-     * @param pPlReference the fixed value of pattern parameter plReference, or null if not bound.
+     * @param pPlDst the fixed value of pattern parameter plDst, or null if not bound.
+     * @param pDstType the fixed value of pattern parameter dstType, or null if not bound.
+     * @param pPlRef the fixed value of pattern parameter plRef, or null if not bound.
      * @param pRefType the fixed value of pattern parameter refType, or null if not bound.
      * @return the number of pattern matches found.
      * 
      */
-    public int countMatches(final edu.toronto.cs.se.mmint.productline.Class pPlClassSrc, final String pSrcType, final edu.toronto.cs.se.mmint.productline.Class pPlClassTgt, final String pTgtType, final Reference pPlReference, final String pRefType) {
-      return rawCountMatches(new Object[]{pPlClassSrc, pSrcType, pPlClassTgt, pTgtType, pPlReference, pRefType});
+    public int countMatches(final edu.toronto.cs.se.mmint.productline.Class pPlSrc, final String pSrcType, final edu.toronto.cs.se.mmint.productline.Class pPlDst, final String pDstType, final Reference pPlRef, final String pRefType) {
+      return rawCountMatches(new Object[]{pPlSrc, pSrcType, pPlDst, pDstType, pPlRef, pRefType});
     }
     
     /**
      * Executes the given processor on an arbitrarily chosen match of the pattern that conforms to the given fixed values of some parameters.
      * Neither determinism nor randomness of selection is guaranteed.
-     * @param pPlClassSrc the fixed value of pattern parameter plClassSrc, or null if not bound.
+     * @param pPlSrc the fixed value of pattern parameter plSrc, or null if not bound.
      * @param pSrcType the fixed value of pattern parameter srcType, or null if not bound.
-     * @param pPlClassTgt the fixed value of pattern parameter plClassTgt, or null if not bound.
-     * @param pTgtType the fixed value of pattern parameter tgtType, or null if not bound.
-     * @param pPlReference the fixed value of pattern parameter plReference, or null if not bound.
+     * @param pPlDst the fixed value of pattern parameter plDst, or null if not bound.
+     * @param pDstType the fixed value of pattern parameter dstType, or null if not bound.
+     * @param pPlRef the fixed value of pattern parameter plRef, or null if not bound.
      * @param pRefType the fixed value of pattern parameter refType, or null if not bound.
      * @param processor the action that will process the selected match.
      * @return true if the pattern has at least one match with the given parameter values, false if the processor was not invoked
      * 
      */
-    public boolean forOneArbitraryMatch(final edu.toronto.cs.se.mmint.productline.Class pPlClassSrc, final String pSrcType, final edu.toronto.cs.se.mmint.productline.Class pPlClassTgt, final String pTgtType, final Reference pPlReference, final String pRefType, final Consumer<? super Connection.Match> processor) {
-      return rawForOneArbitraryMatch(new Object[]{pPlClassSrc, pSrcType, pPlClassTgt, pTgtType, pPlReference, pRefType}, processor);
+    public boolean forOneArbitraryMatch(final edu.toronto.cs.se.mmint.productline.Class pPlSrc, final String pSrcType, final edu.toronto.cs.se.mmint.productline.Class pPlDst, final String pDstType, final Reference pPlRef, final String pRefType, final Consumer<? super Connection.Match> processor) {
+      return rawForOneArbitraryMatch(new Object[]{pPlSrc, pSrcType, pPlDst, pDstType, pPlRef, pRefType}, processor);
     }
     
     /**
      * Returns a new (partial) match.
      * This can be used e.g. to call the matcher with a partial match.
      * <p>The returned match will be immutable. Use {@link #newEmptyMatch()} to obtain a mutable match object.
-     * @param pPlClassSrc the fixed value of pattern parameter plClassSrc, or null if not bound.
+     * @param pPlSrc the fixed value of pattern parameter plSrc, or null if not bound.
      * @param pSrcType the fixed value of pattern parameter srcType, or null if not bound.
-     * @param pPlClassTgt the fixed value of pattern parameter plClassTgt, or null if not bound.
-     * @param pTgtType the fixed value of pattern parameter tgtType, or null if not bound.
-     * @param pPlReference the fixed value of pattern parameter plReference, or null if not bound.
+     * @param pPlDst the fixed value of pattern parameter plDst, or null if not bound.
+     * @param pDstType the fixed value of pattern parameter dstType, or null if not bound.
+     * @param pPlRef the fixed value of pattern parameter plRef, or null if not bound.
      * @param pRefType the fixed value of pattern parameter refType, or null if not bound.
      * @return the (partial) match object.
      * 
      */
-    public Connection.Match newMatch(final edu.toronto.cs.se.mmint.productline.Class pPlClassSrc, final String pSrcType, final edu.toronto.cs.se.mmint.productline.Class pPlClassTgt, final String pTgtType, final Reference pPlReference, final String pRefType) {
-      return Connection.Match.newMatch(pPlClassSrc, pSrcType, pPlClassTgt, pTgtType, pPlReference, pRefType);
+    public Connection.Match newMatch(final edu.toronto.cs.se.mmint.productline.Class pPlSrc, final String pSrcType, final edu.toronto.cs.se.mmint.productline.Class pPlDst, final String pDstType, final Reference pPlRef, final String pRefType) {
+      return Connection.Match.newMatch(pPlSrc, pSrcType, pPlDst, pDstType, pPlRef, pRefType);
     }
     
     /**
-     * Retrieve the set of values that occur in matches for plClassSrc.
+     * Retrieve the set of values that occur in matches for plSrc.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    protected Stream<edu.toronto.cs.se.mmint.productline.Class> rawStreamAllValuesOfplClassSrc(final Object[] parameters) {
-      return rawStreamAllValues(POSITION_PLCLASSSRC, parameters).map(edu.toronto.cs.se.mmint.productline.Class.class::cast);
+    protected Stream<edu.toronto.cs.se.mmint.productline.Class> rawStreamAllValuesOfplSrc(final Object[] parameters) {
+      return rawStreamAllValues(POSITION_PLSRC, parameters).map(edu.toronto.cs.se.mmint.productline.Class.class::cast);
     }
     
     /**
-     * Retrieve the set of values that occur in matches for plClassSrc.
+     * Retrieve the set of values that occur in matches for plSrc.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<edu.toronto.cs.se.mmint.productline.Class> getAllValuesOfplClassSrc() {
-      return rawStreamAllValuesOfplClassSrc(emptyArray()).collect(Collectors.toSet());
+    public Set<edu.toronto.cs.se.mmint.productline.Class> getAllValuesOfplSrc() {
+      return rawStreamAllValuesOfplSrc(emptyArray()).collect(Collectors.toSet());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for plClassSrc.
+     * Retrieve the set of values that occur in matches for plSrc.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Stream<edu.toronto.cs.se.mmint.productline.Class> streamAllValuesOfplClassSrc() {
-      return rawStreamAllValuesOfplClassSrc(emptyArray());
+    public Stream<edu.toronto.cs.se.mmint.productline.Class> streamAllValuesOfplSrc() {
+      return rawStreamAllValuesOfplSrc(emptyArray());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for plClassSrc.
+     * Retrieve the set of values that occur in matches for plSrc.
      * </p>
      * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
      * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
@@ -567,12 +571,12 @@ public final class Connection extends BaseGeneratedEMFQuerySpecification<Connect
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<edu.toronto.cs.se.mmint.productline.Class> streamAllValuesOfplClassSrc(final Connection.Match partialMatch) {
-      return rawStreamAllValuesOfplClassSrc(partialMatch.toArray());
+    public Stream<edu.toronto.cs.se.mmint.productline.Class> streamAllValuesOfplSrc(final Connection.Match partialMatch) {
+      return rawStreamAllValuesOfplSrc(partialMatch.toArray());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for plClassSrc.
+     * Retrieve the set of values that occur in matches for plSrc.
      * </p>
      * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
      * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
@@ -581,26 +585,26 @@ public final class Connection extends BaseGeneratedEMFQuerySpecification<Connect
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<edu.toronto.cs.se.mmint.productline.Class> streamAllValuesOfplClassSrc(final String pSrcType, final edu.toronto.cs.se.mmint.productline.Class pPlClassTgt, final String pTgtType, final Reference pPlReference, final String pRefType) {
-      return rawStreamAllValuesOfplClassSrc(new Object[]{null, pSrcType, pPlClassTgt, pTgtType, pPlReference, pRefType});
+    public Stream<edu.toronto.cs.se.mmint.productline.Class> streamAllValuesOfplSrc(final String pSrcType, final edu.toronto.cs.se.mmint.productline.Class pPlDst, final String pDstType, final Reference pPlRef, final String pRefType) {
+      return rawStreamAllValuesOfplSrc(new Object[]{null, pSrcType, pPlDst, pDstType, pPlRef, pRefType});
     }
     
     /**
-     * Retrieve the set of values that occur in matches for plClassSrc.
+     * Retrieve the set of values that occur in matches for plSrc.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<edu.toronto.cs.se.mmint.productline.Class> getAllValuesOfplClassSrc(final Connection.Match partialMatch) {
-      return rawStreamAllValuesOfplClassSrc(partialMatch.toArray()).collect(Collectors.toSet());
+    public Set<edu.toronto.cs.se.mmint.productline.Class> getAllValuesOfplSrc(final Connection.Match partialMatch) {
+      return rawStreamAllValuesOfplSrc(partialMatch.toArray()).collect(Collectors.toSet());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for plClassSrc.
+     * Retrieve the set of values that occur in matches for plSrc.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<edu.toronto.cs.se.mmint.productline.Class> getAllValuesOfplClassSrc(final String pSrcType, final edu.toronto.cs.se.mmint.productline.Class pPlClassTgt, final String pTgtType, final Reference pPlReference, final String pRefType) {
-      return rawStreamAllValuesOfplClassSrc(new Object[]{null, pSrcType, pPlClassTgt, pTgtType, pPlReference, pRefType}).collect(Collectors.toSet());
+    public Set<edu.toronto.cs.se.mmint.productline.Class> getAllValuesOfplSrc(final String pSrcType, final edu.toronto.cs.se.mmint.productline.Class pPlDst, final String pDstType, final Reference pPlRef, final String pRefType) {
+      return rawStreamAllValuesOfplSrc(new Object[]{null, pSrcType, pPlDst, pDstType, pPlRef, pRefType}).collect(Collectors.toSet());
     }
     
     /**
@@ -654,8 +658,8 @@ public final class Connection extends BaseGeneratedEMFQuerySpecification<Connect
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<String> streamAllValuesOfsrcType(final edu.toronto.cs.se.mmint.productline.Class pPlClassSrc, final edu.toronto.cs.se.mmint.productline.Class pPlClassTgt, final String pTgtType, final Reference pPlReference, final String pRefType) {
-      return rawStreamAllValuesOfsrcType(new Object[]{pPlClassSrc, null, pPlClassTgt, pTgtType, pPlReference, pRefType});
+    public Stream<String> streamAllValuesOfsrcType(final edu.toronto.cs.se.mmint.productline.Class pPlSrc, final edu.toronto.cs.se.mmint.productline.Class pPlDst, final String pDstType, final Reference pPlRef, final String pRefType) {
+      return rawStreamAllValuesOfsrcType(new Object[]{pPlSrc, null, pPlDst, pDstType, pPlRef, pRefType});
     }
     
     /**
@@ -672,39 +676,39 @@ public final class Connection extends BaseGeneratedEMFQuerySpecification<Connect
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<String> getAllValuesOfsrcType(final edu.toronto.cs.se.mmint.productline.Class pPlClassSrc, final edu.toronto.cs.se.mmint.productline.Class pPlClassTgt, final String pTgtType, final Reference pPlReference, final String pRefType) {
-      return rawStreamAllValuesOfsrcType(new Object[]{pPlClassSrc, null, pPlClassTgt, pTgtType, pPlReference, pRefType}).collect(Collectors.toSet());
+    public Set<String> getAllValuesOfsrcType(final edu.toronto.cs.se.mmint.productline.Class pPlSrc, final edu.toronto.cs.se.mmint.productline.Class pPlDst, final String pDstType, final Reference pPlRef, final String pRefType) {
+      return rawStreamAllValuesOfsrcType(new Object[]{pPlSrc, null, pPlDst, pDstType, pPlRef, pRefType}).collect(Collectors.toSet());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for plClassTgt.
+     * Retrieve the set of values that occur in matches for plDst.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    protected Stream<edu.toronto.cs.se.mmint.productline.Class> rawStreamAllValuesOfplClassTgt(final Object[] parameters) {
-      return rawStreamAllValues(POSITION_PLCLASSTGT, parameters).map(edu.toronto.cs.se.mmint.productline.Class.class::cast);
+    protected Stream<edu.toronto.cs.se.mmint.productline.Class> rawStreamAllValuesOfplDst(final Object[] parameters) {
+      return rawStreamAllValues(POSITION_PLDST, parameters).map(edu.toronto.cs.se.mmint.productline.Class.class::cast);
     }
     
     /**
-     * Retrieve the set of values that occur in matches for plClassTgt.
+     * Retrieve the set of values that occur in matches for plDst.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<edu.toronto.cs.se.mmint.productline.Class> getAllValuesOfplClassTgt() {
-      return rawStreamAllValuesOfplClassTgt(emptyArray()).collect(Collectors.toSet());
+    public Set<edu.toronto.cs.se.mmint.productline.Class> getAllValuesOfplDst() {
+      return rawStreamAllValuesOfplDst(emptyArray()).collect(Collectors.toSet());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for plClassTgt.
+     * Retrieve the set of values that occur in matches for plDst.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Stream<edu.toronto.cs.se.mmint.productline.Class> streamAllValuesOfplClassTgt() {
-      return rawStreamAllValuesOfplClassTgt(emptyArray());
+    public Stream<edu.toronto.cs.se.mmint.productline.Class> streamAllValuesOfplDst() {
+      return rawStreamAllValuesOfplDst(emptyArray());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for plClassTgt.
+     * Retrieve the set of values that occur in matches for plDst.
      * </p>
      * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
      * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
@@ -713,12 +717,12 @@ public final class Connection extends BaseGeneratedEMFQuerySpecification<Connect
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<edu.toronto.cs.se.mmint.productline.Class> streamAllValuesOfplClassTgt(final Connection.Match partialMatch) {
-      return rawStreamAllValuesOfplClassTgt(partialMatch.toArray());
+    public Stream<edu.toronto.cs.se.mmint.productline.Class> streamAllValuesOfplDst(final Connection.Match partialMatch) {
+      return rawStreamAllValuesOfplDst(partialMatch.toArray());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for plClassTgt.
+     * Retrieve the set of values that occur in matches for plDst.
      * </p>
      * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
      * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
@@ -727,57 +731,57 @@ public final class Connection extends BaseGeneratedEMFQuerySpecification<Connect
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<edu.toronto.cs.se.mmint.productline.Class> streamAllValuesOfplClassTgt(final edu.toronto.cs.se.mmint.productline.Class pPlClassSrc, final String pSrcType, final String pTgtType, final Reference pPlReference, final String pRefType) {
-      return rawStreamAllValuesOfplClassTgt(new Object[]{pPlClassSrc, pSrcType, null, pTgtType, pPlReference, pRefType});
+    public Stream<edu.toronto.cs.se.mmint.productline.Class> streamAllValuesOfplDst(final edu.toronto.cs.se.mmint.productline.Class pPlSrc, final String pSrcType, final String pDstType, final Reference pPlRef, final String pRefType) {
+      return rawStreamAllValuesOfplDst(new Object[]{pPlSrc, pSrcType, null, pDstType, pPlRef, pRefType});
     }
     
     /**
-     * Retrieve the set of values that occur in matches for plClassTgt.
+     * Retrieve the set of values that occur in matches for plDst.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<edu.toronto.cs.se.mmint.productline.Class> getAllValuesOfplClassTgt(final Connection.Match partialMatch) {
-      return rawStreamAllValuesOfplClassTgt(partialMatch.toArray()).collect(Collectors.toSet());
+    public Set<edu.toronto.cs.se.mmint.productline.Class> getAllValuesOfplDst(final Connection.Match partialMatch) {
+      return rawStreamAllValuesOfplDst(partialMatch.toArray()).collect(Collectors.toSet());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for plClassTgt.
+     * Retrieve the set of values that occur in matches for plDst.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<edu.toronto.cs.se.mmint.productline.Class> getAllValuesOfplClassTgt(final edu.toronto.cs.se.mmint.productline.Class pPlClassSrc, final String pSrcType, final String pTgtType, final Reference pPlReference, final String pRefType) {
-      return rawStreamAllValuesOfplClassTgt(new Object[]{pPlClassSrc, pSrcType, null, pTgtType, pPlReference, pRefType}).collect(Collectors.toSet());
+    public Set<edu.toronto.cs.se.mmint.productline.Class> getAllValuesOfplDst(final edu.toronto.cs.se.mmint.productline.Class pPlSrc, final String pSrcType, final String pDstType, final Reference pPlRef, final String pRefType) {
+      return rawStreamAllValuesOfplDst(new Object[]{pPlSrc, pSrcType, null, pDstType, pPlRef, pRefType}).collect(Collectors.toSet());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for tgtType.
+     * Retrieve the set of values that occur in matches for dstType.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    protected Stream<String> rawStreamAllValuesOftgtType(final Object[] parameters) {
-      return rawStreamAllValues(POSITION_TGTTYPE, parameters).map(String.class::cast);
+    protected Stream<String> rawStreamAllValuesOfdstType(final Object[] parameters) {
+      return rawStreamAllValues(POSITION_DSTTYPE, parameters).map(String.class::cast);
     }
     
     /**
-     * Retrieve the set of values that occur in matches for tgtType.
+     * Retrieve the set of values that occur in matches for dstType.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<String> getAllValuesOftgtType() {
-      return rawStreamAllValuesOftgtType(emptyArray()).collect(Collectors.toSet());
+    public Set<String> getAllValuesOfdstType() {
+      return rawStreamAllValuesOfdstType(emptyArray()).collect(Collectors.toSet());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for tgtType.
+     * Retrieve the set of values that occur in matches for dstType.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Stream<String> streamAllValuesOftgtType() {
-      return rawStreamAllValuesOftgtType(emptyArray());
+    public Stream<String> streamAllValuesOfdstType() {
+      return rawStreamAllValuesOfdstType(emptyArray());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for tgtType.
+     * Retrieve the set of values that occur in matches for dstType.
      * </p>
      * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
      * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
@@ -786,12 +790,12 @@ public final class Connection extends BaseGeneratedEMFQuerySpecification<Connect
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<String> streamAllValuesOftgtType(final Connection.Match partialMatch) {
-      return rawStreamAllValuesOftgtType(partialMatch.toArray());
+    public Stream<String> streamAllValuesOfdstType(final Connection.Match partialMatch) {
+      return rawStreamAllValuesOfdstType(partialMatch.toArray());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for tgtType.
+     * Retrieve the set of values that occur in matches for dstType.
      * </p>
      * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
      * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
@@ -800,57 +804,57 @@ public final class Connection extends BaseGeneratedEMFQuerySpecification<Connect
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<String> streamAllValuesOftgtType(final edu.toronto.cs.se.mmint.productline.Class pPlClassSrc, final String pSrcType, final edu.toronto.cs.se.mmint.productline.Class pPlClassTgt, final Reference pPlReference, final String pRefType) {
-      return rawStreamAllValuesOftgtType(new Object[]{pPlClassSrc, pSrcType, pPlClassTgt, null, pPlReference, pRefType});
+    public Stream<String> streamAllValuesOfdstType(final edu.toronto.cs.se.mmint.productline.Class pPlSrc, final String pSrcType, final edu.toronto.cs.se.mmint.productline.Class pPlDst, final Reference pPlRef, final String pRefType) {
+      return rawStreamAllValuesOfdstType(new Object[]{pPlSrc, pSrcType, pPlDst, null, pPlRef, pRefType});
     }
     
     /**
-     * Retrieve the set of values that occur in matches for tgtType.
+     * Retrieve the set of values that occur in matches for dstType.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<String> getAllValuesOftgtType(final Connection.Match partialMatch) {
-      return rawStreamAllValuesOftgtType(partialMatch.toArray()).collect(Collectors.toSet());
+    public Set<String> getAllValuesOfdstType(final Connection.Match partialMatch) {
+      return rawStreamAllValuesOfdstType(partialMatch.toArray()).collect(Collectors.toSet());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for tgtType.
+     * Retrieve the set of values that occur in matches for dstType.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<String> getAllValuesOftgtType(final edu.toronto.cs.se.mmint.productline.Class pPlClassSrc, final String pSrcType, final edu.toronto.cs.se.mmint.productline.Class pPlClassTgt, final Reference pPlReference, final String pRefType) {
-      return rawStreamAllValuesOftgtType(new Object[]{pPlClassSrc, pSrcType, pPlClassTgt, null, pPlReference, pRefType}).collect(Collectors.toSet());
+    public Set<String> getAllValuesOfdstType(final edu.toronto.cs.se.mmint.productline.Class pPlSrc, final String pSrcType, final edu.toronto.cs.se.mmint.productline.Class pPlDst, final Reference pPlRef, final String pRefType) {
+      return rawStreamAllValuesOfdstType(new Object[]{pPlSrc, pSrcType, pPlDst, null, pPlRef, pRefType}).collect(Collectors.toSet());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for plReference.
+     * Retrieve the set of values that occur in matches for plRef.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    protected Stream<Reference> rawStreamAllValuesOfplReference(final Object[] parameters) {
-      return rawStreamAllValues(POSITION_PLREFERENCE, parameters).map(Reference.class::cast);
+    protected Stream<Reference> rawStreamAllValuesOfplRef(final Object[] parameters) {
+      return rawStreamAllValues(POSITION_PLREF, parameters).map(Reference.class::cast);
     }
     
     /**
-     * Retrieve the set of values that occur in matches for plReference.
+     * Retrieve the set of values that occur in matches for plRef.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<Reference> getAllValuesOfplReference() {
-      return rawStreamAllValuesOfplReference(emptyArray()).collect(Collectors.toSet());
+    public Set<Reference> getAllValuesOfplRef() {
+      return rawStreamAllValuesOfplRef(emptyArray()).collect(Collectors.toSet());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for plReference.
+     * Retrieve the set of values that occur in matches for plRef.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Stream<Reference> streamAllValuesOfplReference() {
-      return rawStreamAllValuesOfplReference(emptyArray());
+    public Stream<Reference> streamAllValuesOfplRef() {
+      return rawStreamAllValuesOfplRef(emptyArray());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for plReference.
+     * Retrieve the set of values that occur in matches for plRef.
      * </p>
      * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
      * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
@@ -859,12 +863,12 @@ public final class Connection extends BaseGeneratedEMFQuerySpecification<Connect
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<Reference> streamAllValuesOfplReference(final Connection.Match partialMatch) {
-      return rawStreamAllValuesOfplReference(partialMatch.toArray());
+    public Stream<Reference> streamAllValuesOfplRef(final Connection.Match partialMatch) {
+      return rawStreamAllValuesOfplRef(partialMatch.toArray());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for plReference.
+     * Retrieve the set of values that occur in matches for plRef.
      * </p>
      * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
      * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
@@ -873,26 +877,26 @@ public final class Connection extends BaseGeneratedEMFQuerySpecification<Connect
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<Reference> streamAllValuesOfplReference(final edu.toronto.cs.se.mmint.productline.Class pPlClassSrc, final String pSrcType, final edu.toronto.cs.se.mmint.productline.Class pPlClassTgt, final String pTgtType, final String pRefType) {
-      return rawStreamAllValuesOfplReference(new Object[]{pPlClassSrc, pSrcType, pPlClassTgt, pTgtType, null, pRefType});
+    public Stream<Reference> streamAllValuesOfplRef(final edu.toronto.cs.se.mmint.productline.Class pPlSrc, final String pSrcType, final edu.toronto.cs.se.mmint.productline.Class pPlDst, final String pDstType, final String pRefType) {
+      return rawStreamAllValuesOfplRef(new Object[]{pPlSrc, pSrcType, pPlDst, pDstType, null, pRefType});
     }
     
     /**
-     * Retrieve the set of values that occur in matches for plReference.
+     * Retrieve the set of values that occur in matches for plRef.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<Reference> getAllValuesOfplReference(final Connection.Match partialMatch) {
-      return rawStreamAllValuesOfplReference(partialMatch.toArray()).collect(Collectors.toSet());
+    public Set<Reference> getAllValuesOfplRef(final Connection.Match partialMatch) {
+      return rawStreamAllValuesOfplRef(partialMatch.toArray()).collect(Collectors.toSet());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for plReference.
+     * Retrieve the set of values that occur in matches for plRef.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<Reference> getAllValuesOfplReference(final edu.toronto.cs.se.mmint.productline.Class pPlClassSrc, final String pSrcType, final edu.toronto.cs.se.mmint.productline.Class pPlClassTgt, final String pTgtType, final String pRefType) {
-      return rawStreamAllValuesOfplReference(new Object[]{pPlClassSrc, pSrcType, pPlClassTgt, pTgtType, null, pRefType}).collect(Collectors.toSet());
+    public Set<Reference> getAllValuesOfplRef(final edu.toronto.cs.se.mmint.productline.Class pPlSrc, final String pSrcType, final edu.toronto.cs.se.mmint.productline.Class pPlDst, final String pDstType, final String pRefType) {
+      return rawStreamAllValuesOfplRef(new Object[]{pPlSrc, pSrcType, pPlDst, pDstType, null, pRefType}).collect(Collectors.toSet());
     }
     
     /**
@@ -946,8 +950,8 @@ public final class Connection extends BaseGeneratedEMFQuerySpecification<Connect
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<String> streamAllValuesOfrefType(final edu.toronto.cs.se.mmint.productline.Class pPlClassSrc, final String pSrcType, final edu.toronto.cs.se.mmint.productline.Class pPlClassTgt, final String pTgtType, final Reference pPlReference) {
-      return rawStreamAllValuesOfrefType(new Object[]{pPlClassSrc, pSrcType, pPlClassTgt, pTgtType, pPlReference, null});
+    public Stream<String> streamAllValuesOfrefType(final edu.toronto.cs.se.mmint.productline.Class pPlSrc, final String pSrcType, final edu.toronto.cs.se.mmint.productline.Class pPlDst, final String pDstType, final Reference pPlRef) {
+      return rawStreamAllValuesOfrefType(new Object[]{pPlSrc, pSrcType, pPlDst, pDstType, pPlRef, null});
     }
     
     /**
@@ -964,14 +968,14 @@ public final class Connection extends BaseGeneratedEMFQuerySpecification<Connect
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<String> getAllValuesOfrefType(final edu.toronto.cs.se.mmint.productline.Class pPlClassSrc, final String pSrcType, final edu.toronto.cs.se.mmint.productline.Class pPlClassTgt, final String pTgtType, final Reference pPlReference) {
-      return rawStreamAllValuesOfrefType(new Object[]{pPlClassSrc, pSrcType, pPlClassTgt, pTgtType, pPlReference, null}).collect(Collectors.toSet());
+    public Set<String> getAllValuesOfrefType(final edu.toronto.cs.se.mmint.productline.Class pPlSrc, final String pSrcType, final edu.toronto.cs.se.mmint.productline.Class pPlDst, final String pDstType, final Reference pPlRef) {
+      return rawStreamAllValuesOfrefType(new Object[]{pPlSrc, pSrcType, pPlDst, pDstType, pPlRef, null}).collect(Collectors.toSet());
     }
     
     @Override
     protected Connection.Match tupleToMatch(final Tuple t) {
       try {
-          return Connection.Match.newMatch((edu.toronto.cs.se.mmint.productline.Class) t.get(POSITION_PLCLASSSRC), (String) t.get(POSITION_SRCTYPE), (edu.toronto.cs.se.mmint.productline.Class) t.get(POSITION_PLCLASSTGT), (String) t.get(POSITION_TGTTYPE), (Reference) t.get(POSITION_PLREFERENCE), (String) t.get(POSITION_REFTYPE));
+          return Connection.Match.newMatch((edu.toronto.cs.se.mmint.productline.Class) t.get(POSITION_PLSRC), (String) t.get(POSITION_SRCTYPE), (edu.toronto.cs.se.mmint.productline.Class) t.get(POSITION_PLDST), (String) t.get(POSITION_DSTTYPE), (Reference) t.get(POSITION_PLREF), (String) t.get(POSITION_REFTYPE));
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in tuple not properly typed!",e);
           return null;
@@ -981,7 +985,7 @@ public final class Connection extends BaseGeneratedEMFQuerySpecification<Connect
     @Override
     protected Connection.Match arrayToMatch(final Object[] match) {
       try {
-          return Connection.Match.newMatch((edu.toronto.cs.se.mmint.productline.Class) match[POSITION_PLCLASSSRC], (String) match[POSITION_SRCTYPE], (edu.toronto.cs.se.mmint.productline.Class) match[POSITION_PLCLASSTGT], (String) match[POSITION_TGTTYPE], (Reference) match[POSITION_PLREFERENCE], (String) match[POSITION_REFTYPE]);
+          return Connection.Match.newMatch((edu.toronto.cs.se.mmint.productline.Class) match[POSITION_PLSRC], (String) match[POSITION_SRCTYPE], (edu.toronto.cs.se.mmint.productline.Class) match[POSITION_PLDST], (String) match[POSITION_DSTTYPE], (Reference) match[POSITION_PLREF], (String) match[POSITION_REFTYPE]);
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in array not properly typed!",e);
           return null;
@@ -991,7 +995,7 @@ public final class Connection extends BaseGeneratedEMFQuerySpecification<Connect
     @Override
     protected Connection.Match arrayToMatchMutable(final Object[] match) {
       try {
-          return Connection.Match.newMutableMatch((edu.toronto.cs.se.mmint.productline.Class) match[POSITION_PLCLASSSRC], (String) match[POSITION_SRCTYPE], (edu.toronto.cs.se.mmint.productline.Class) match[POSITION_PLCLASSTGT], (String) match[POSITION_TGTTYPE], (Reference) match[POSITION_PLREFERENCE], (String) match[POSITION_REFTYPE]);
+          return Connection.Match.newMutableMatch((edu.toronto.cs.se.mmint.productline.Class) match[POSITION_PLSRC], (String) match[POSITION_SRCTYPE], (edu.toronto.cs.se.mmint.productline.Class) match[POSITION_PLDST], (String) match[POSITION_DSTTYPE], (Reference) match[POSITION_PLREF], (String) match[POSITION_REFTYPE]);
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in array not properly typed!",e);
           return null;
@@ -1074,19 +1078,19 @@ public final class Connection extends BaseGeneratedEMFQuerySpecification<Connect
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private static final Connection.GeneratedPQuery INSTANCE = new GeneratedPQuery();
     
-    private final PParameter parameter_plClassSrc = new PParameter("plClassSrc", "edu.toronto.cs.se.mmint.productline.Class", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("model://edu.toronto.cs.se.mmint.productline", "Class")), PParameterDirection.INOUT);
+    private final PParameter parameter_plSrc = new PParameter("plSrc", "edu.toronto.cs.se.mmint.productline.Class", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("model://edu.toronto.cs.se.mmint.productline", "Class")), PParameterDirection.INOUT);
     
     private final PParameter parameter_srcType = new PParameter("srcType", "java.lang.String", new JavaTransitiveInstancesKey(java.lang.String.class), PParameterDirection.INOUT);
     
-    private final PParameter parameter_plClassTgt = new PParameter("plClassTgt", "edu.toronto.cs.se.mmint.productline.Class", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("model://edu.toronto.cs.se.mmint.productline", "Class")), PParameterDirection.INOUT);
+    private final PParameter parameter_plDst = new PParameter("plDst", "edu.toronto.cs.se.mmint.productline.Class", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("model://edu.toronto.cs.se.mmint.productline", "Class")), PParameterDirection.INOUT);
     
-    private final PParameter parameter_tgtType = new PParameter("tgtType", "java.lang.String", new JavaTransitiveInstancesKey(java.lang.String.class), PParameterDirection.INOUT);
+    private final PParameter parameter_dstType = new PParameter("dstType", "java.lang.String", new JavaTransitiveInstancesKey(java.lang.String.class), PParameterDirection.INOUT);
     
-    private final PParameter parameter_plReference = new PParameter("plReference", "edu.toronto.cs.se.mmint.productline.Reference", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("model://edu.toronto.cs.se.mmint.productline", "Reference")), PParameterDirection.INOUT);
+    private final PParameter parameter_plRef = new PParameter("plRef", "edu.toronto.cs.se.mmint.productline.Reference", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("model://edu.toronto.cs.se.mmint.productline", "Reference")), PParameterDirection.INOUT);
     
     private final PParameter parameter_refType = new PParameter("refType", "java.lang.String", new JavaTransitiveInstancesKey(java.lang.String.class), PParameterDirection.INOUT);
     
-    private final List<PParameter> parameters = Arrays.asList(parameter_plClassSrc, parameter_srcType, parameter_plClassTgt, parameter_tgtType, parameter_plReference, parameter_refType);
+    private final List<PParameter> parameters = Arrays.asList(parameter_plSrc, parameter_srcType, parameter_plDst, parameter_dstType, parameter_plRef, parameter_refType);
     
     private GeneratedPQuery() {
       super(PVisibility.PUBLIC);
@@ -1099,7 +1103,7 @@ public final class Connection extends BaseGeneratedEMFQuerySpecification<Connect
     
     @Override
     public List<String> getParameterNames() {
-      return Arrays.asList("plClassSrc","srcType","plClassTgt","tgtType","plReference","refType");
+      return Arrays.asList("plSrc","srcType","plDst","dstType","plRef","refType");
     }
     
     @Override
@@ -1113,44 +1117,51 @@ public final class Connection extends BaseGeneratedEMFQuerySpecification<Connect
       Set<PBody> bodies = new LinkedHashSet<>();
       {
           PBody body = new PBody(this);
-          PVariable var_plClassSrc = body.getOrCreateVariableByName("plClassSrc");
+          PVariable var_plSrc = body.getOrCreateVariableByName("plSrc");
           PVariable var_srcType = body.getOrCreateVariableByName("srcType");
-          PVariable var_plClassTgt = body.getOrCreateVariableByName("plClassTgt");
-          PVariable var_tgtType = body.getOrCreateVariableByName("tgtType");
-          PVariable var_plReference = body.getOrCreateVariableByName("plReference");
+          PVariable var_plDst = body.getOrCreateVariableByName("plDst");
+          PVariable var_dstType = body.getOrCreateVariableByName("dstType");
+          PVariable var_plRef = body.getOrCreateVariableByName("plRef");
           PVariable var_refType = body.getOrCreateVariableByName("refType");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_plClassSrc), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("model://edu.toronto.cs.se.mmint.productline", "Class")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_plSrc), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("model://edu.toronto.cs.se.mmint.productline", "Class")));
           new TypeFilterConstraint(body, Tuples.flatTupleOf(var_srcType), new JavaTransitiveInstancesKey(java.lang.String.class));
-          new TypeConstraint(body, Tuples.flatTupleOf(var_plClassTgt), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("model://edu.toronto.cs.se.mmint.productline", "Class")));
-          new TypeFilterConstraint(body, Tuples.flatTupleOf(var_tgtType), new JavaTransitiveInstancesKey(java.lang.String.class));
-          new TypeConstraint(body, Tuples.flatTupleOf(var_plReference), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("model://edu.toronto.cs.se.mmint.productline", "Reference")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_plDst), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("model://edu.toronto.cs.se.mmint.productline", "Class")));
+          new TypeFilterConstraint(body, Tuples.flatTupleOf(var_dstType), new JavaTransitiveInstancesKey(java.lang.String.class));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_plRef), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("model://edu.toronto.cs.se.mmint.productline", "Reference")));
           new TypeFilterConstraint(body, Tuples.flatTupleOf(var_refType), new JavaTransitiveInstancesKey(java.lang.String.class));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
-             new ExportedParameter(body, var_plClassSrc, parameter_plClassSrc),
+             new ExportedParameter(body, var_plSrc, parameter_plSrc),
              new ExportedParameter(body, var_srcType, parameter_srcType),
-             new ExportedParameter(body, var_plClassTgt, parameter_plClassTgt),
-             new ExportedParameter(body, var_tgtType, parameter_tgtType),
-             new ExportedParameter(body, var_plReference, parameter_plReference),
+             new ExportedParameter(body, var_plDst, parameter_plDst),
+             new ExportedParameter(body, var_dstType, parameter_dstType),
+             new ExportedParameter(body, var_plRef, parameter_plRef),
              new ExportedParameter(body, var_refType, parameter_refType)
           ));
-          //   find classType(plClassSrc, srcType)
-          new PositivePatternCall(body, Tuples.flatTupleOf(var_plClassSrc, var_srcType), ClassType.instance().getInternalQueryRepresentation());
-          //   Class.referencesAsSource(plClassSrc, plReference)
-          new TypeConstraint(body, Tuples.flatTupleOf(var_plClassSrc), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("model://edu.toronto.cs.se.mmint.productline", "Class")));
+          //   find classType(plSrc, srcType)
+          new PositivePatternCall(body, Tuples.flatTupleOf(var_plSrc, var_srcType), ClassType.instance().getInternalQueryRepresentation());
+          //   Class.referencesAsSource(plSrc, plRef)
+          new TypeConstraint(body, Tuples.flatTupleOf(var_plSrc), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("model://edu.toronto.cs.se.mmint.productline", "Class")));
           PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_plClassSrc, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("model://edu.toronto.cs.se.mmint.productline", "Class", "referencesAsSource")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_plSrc, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("model://edu.toronto.cs.se.mmint.productline", "Class", "referencesAsSource")));
           new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("model://edu.toronto.cs.se.mmint.productline", "Reference")));
-          new Equality(body, var__virtual_0_, var_plReference);
-          //   find referenceType(plReference, refType)
-          new PositivePatternCall(body, Tuples.flatTupleOf(var_plReference, var_refType), ReferenceType.instance().getInternalQueryRepresentation());
-          //   Reference.targets(plReference, plClassTgt)
-          new TypeConstraint(body, Tuples.flatTupleOf(var_plReference), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("model://edu.toronto.cs.se.mmint.productline", "Reference")));
+          new Equality(body, var__virtual_0_, var_plRef);
+          //   Reference.type.name(plRef, refType)
+          new TypeConstraint(body, Tuples.flatTupleOf(var_plRef), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("model://edu.toronto.cs.se.mmint.productline", "Reference")));
           PVariable var__virtual_1_ = body.getOrCreateVariableByName(".virtual{1}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_plReference, var__virtual_1_), new EStructuralFeatureInstancesKey(getFeatureLiteral("model://edu.toronto.cs.se.mmint.productline", "Reference", "targets")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_1_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("model://edu.toronto.cs.se.mmint.productline", "Class")));
-          new Equality(body, var__virtual_1_, var_plClassTgt);
-          //   find classType(plClassTgt, tgtType)
-          new PositivePatternCall(body, Tuples.flatTupleOf(var_plClassTgt, var_tgtType), ClassType.instance().getInternalQueryRepresentation());
+          new TypeConstraint(body, Tuples.flatTupleOf(var_plRef, var__virtual_1_), new EStructuralFeatureInstancesKey(getFeatureLiteral("model://edu.toronto.cs.se.mmint.productline", "Reference", "type")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_1_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.eclipse.org/emf/2002/Ecore", "EReference")));
+          PVariable var__virtual_2_ = body.getOrCreateVariableByName(".virtual{2}");
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_1_, var__virtual_2_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.eclipse.org/emf/2002/Ecore", "ENamedElement", "name")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_2_), new EDataTypeInSlotsKey((EDataType)getClassifierLiteral("http://www.eclipse.org/emf/2002/Ecore", "EString")));
+          new Equality(body, var__virtual_2_, var_refType);
+          //   Reference.targets(plRef, plDst)
+          new TypeConstraint(body, Tuples.flatTupleOf(var_plRef), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("model://edu.toronto.cs.se.mmint.productline", "Reference")));
+          PVariable var__virtual_3_ = body.getOrCreateVariableByName(".virtual{3}");
+          new TypeConstraint(body, Tuples.flatTupleOf(var_plRef, var__virtual_3_), new EStructuralFeatureInstancesKey(getFeatureLiteral("model://edu.toronto.cs.se.mmint.productline", "Reference", "targets")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_3_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("model://edu.toronto.cs.se.mmint.productline", "Class")));
+          new Equality(body, var__virtual_3_, var_plDst);
+          //   find classType(plDst, dstType)
+          new PositivePatternCall(body, Tuples.flatTupleOf(var_plDst, var_dstType), ClassType.instance().getInternalQueryRepresentation());
           bodies.add(body);
       }
       return bodies;

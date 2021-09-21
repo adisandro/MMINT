@@ -9,7 +9,8 @@ Bundle-Localization: plugin
 Export-Package: edu.toronto.cs.se.mmint.productline,
  edu.toronto.cs.se.mmint.productline.impl,
  edu.toronto.cs.se.mmint.productline.util,
- edu.toronto.cs.se.mmint.productline.viatra
+ edu.toronto.cs.se.mmint.productline.viatra,
+ edu.toronto.cs.se.mmint.productline.viatra.reasoning
 Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.core.runtime,
  org.apache.log4j,

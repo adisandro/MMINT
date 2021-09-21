@@ -19,10 +19,12 @@
       <type name="ProductLine" uri="model://edu.toronto.cs.se.mmint.productline"/>
     </modelType>
   </extension>
+  <extension point="edu.toronto.cs.se.mmint.reasoners">
+    <reasoner class="edu.toronto.cs.se.mmint.productline.viatra.reasoning.ProductLineViatraReasoner"/>
+  </extension>
   <extension id="edu.toronto.cs.se.mmint.productline.viatra.Pl" point="org.eclipse.viatra.query.runtime.queryspecification">
     <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:edu.toronto.cs.se.mmint.productline.viatra.Pl" id="edu.toronto.cs.se.mmint.productline.viatra.Pl">
       <query-specification fqn="edu.toronto.cs.se.mmint.productline.viatra.classType"/>
-      <query-specification fqn="edu.toronto.cs.se.mmint.productline.viatra.referenceType"/>
       <query-specification fqn="edu.toronto.cs.se.mmint.productline.viatra.connection"/>
     </group>
   </extension>

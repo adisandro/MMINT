@@ -11,6 +11,6 @@
  *     Alessio Di Sandro - Implementation
  *******************************************************************************/
 @NonNullByDefault
-package edu.toronto.cs.se.mmint.productline.viatra;
+package edu.toronto.cs.se.mmint.productline.viatra.reasoning;
 
 import org.eclipse.jdt.annotation.NonNullByDefault;
