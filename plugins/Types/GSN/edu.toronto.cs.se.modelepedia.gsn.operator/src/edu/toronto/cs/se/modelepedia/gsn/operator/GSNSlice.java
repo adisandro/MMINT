@@ -123,7 +123,7 @@ public class GSNSlice extends Slice {
    * State: visit supported (parent) elements, slice supported goals.
    */
   private SliceStep ruleSupports(Supporter modelObj, SliceInfo info) {
-    var newInfo = "supportsContent".equals(info.rule) ?
+    var newInfo = "supportsContent".equals(info.rule()) ?
       new SliceInfo(GSNSliceType.RECHECK_CONTENT, modelObj, "supportsContent") :
       new SliceInfo(GSNSliceType.RECHECK_STATE, modelObj, "supportsState");
     var visited = new HashMap<EObject, SliceInfo>();
@@ -135,12 +135,12 @@ public class GSNSlice extends Slice {
         continue;
       }
       if (!this.allVisited.containsKey(supported) && (
-            info.rule.equals("supportsState") || supported instanceof SupportConnector)) {
+            info.rule().equals("supportsState") || supported instanceof SupportConnector)) {
         visited.merge(supported, newInfo, this.typesOrder);
       }
       if (!this.allSliced.containsKey(supported) && (
-            (info.rule.equals("supportsState") && supported instanceof Goal) ||
-            info.rule.equals("supportsContent"))) {
+            (info.rule().equals("supportsState") && supported instanceof Goal) ||
+            info.rule().equals("supportsContent"))) {
         sliced.merge(supported, newInfo, this.typesOrder);
       }
     }
@@ -238,7 +238,7 @@ public class GSNSlice extends Slice {
 
   @Override
   protected SliceStep getDirectlySlicedElements(EObject modelObj, SliceInfo info) {
-    var sliceStep = switch (info.rule) {
+    var sliceStep = switch (info.rule()) {
       case "contextOf" -> ruleContextOf((ContextualElement) modelObj, info);
       case "inContextOf" -> ruleInContextOf((Strategy) modelObj, info);
       case "supportedBy" -> ruleSupportedBy((Supportable) modelObj, info);
@@ -274,42 +274,32 @@ public class GSNSlice extends Slice {
   @Override
   protected void sliceCriterionElement(EObject critObj, SliceInfo info) {
     // TODO: With ModelRelPropagation, we lose one step of the prevObj chain, can we even fix it?
-    var tempInfo = new SliceInfo(info);
     if (critObj instanceof Goal) {
-      if (SliceType.DEL.equals(info.typeId) ||
-          SliceType.REVISE.equals(info.typeId)) {
-        tempInfo.rule = "supportsContent";
-        sliceRule(critObj, tempInfo);
-        tempInfo.rule = "supportedBy";
-        sliceRule(critObj, tempInfo);
+      if (SliceType.DEL.equals(info.typeId()) ||
+          SliceType.REVISE.equals(info.typeId())) {
+        sliceRule(critObj, new SliceInfo(info.typeId(), info.prevObj(), "supportsContent"));
+        sliceRule(critObj, new SliceInfo(info.typeId(), info.prevObj(), "supportedBy"));
       }
-      tempInfo.rule = "supportsState";
-      sliceRule(critObj, tempInfo);
+      sliceRule(critObj, new SliceInfo(info.typeId(), info.prevObj(), "supportsState"));
     }
     else if (critObj instanceof Strategy && (
-               SliceType.DEL.equals(info.typeId) ||
-               SliceType.REVISE.equals(info.typeId))) {
-      tempInfo.rule = "supportedBy";
-      sliceRule(critObj, tempInfo);
-      tempInfo.rule = "inContextOf";
-      sliceRule(critObj, tempInfo);
-      tempInfo.rule = "supportsState";
-      sliceRule(critObj, tempInfo);
+               SliceType.DEL.equals(info.typeId()) ||
+               SliceType.REVISE.equals(info.typeId()))) {
+      sliceRule(critObj, new SliceInfo(info.typeId(), info.prevObj(), "supportedBy"));
+      sliceRule(critObj, new SliceInfo(info.typeId(), info.prevObj(), "inContextOf"));
+      sliceRule(critObj, new SliceInfo(info.typeId(), info.prevObj(), "supportsState"));
     }
     else if (critObj instanceof ContextualElement && (
-               SliceType.DEL.equals(info.typeId) ||
-               SliceType.REVISE.equals(info.typeId))) {
-      tempInfo.rule = "contextOf";
-      sliceRule(critObj, tempInfo);
+               SliceType.DEL.equals(info.typeId()) ||
+               SliceType.REVISE.equals(info.typeId()))) {
+      sliceRule(critObj, new SliceInfo(info.typeId(), info.prevObj(), "contextOf"));
     }
     else if (critObj instanceof Solution) {
-      if (SliceType.DEL.equals(info.typeId) ||
-          SliceType.REVISE.equals(info.typeId)) {
-        tempInfo.rule = "supportsContent";
-        sliceRule(critObj, tempInfo);
+      if (SliceType.DEL.equals(info.typeId()) ||
+          SliceType.REVISE.equals(info.typeId())) {
+        sliceRule(critObj, new SliceInfo(info.typeId(), info.prevObj(), "supportsContent"));
       }
-      tempInfo.rule = "supportsState";
-      sliceRule(critObj, tempInfo);
+      sliceRule(critObj, new SliceInfo(info.typeId(), info.prevObj(), "supportsState"));
     }
   }
 }

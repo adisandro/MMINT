@@ -15,6 +15,7 @@ package edu.toronto.cs.se.mmint.operator.slice;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.BinaryOperator;
 import java.util.stream.Collectors;
 
@@ -115,20 +116,15 @@ public class Slice extends OperatorImpl {
     }
   }
 
-  protected static class SliceInfo {
-    public String typeId;
-    public @Nullable EObject prevObj;
-    public @Nullable String rule;
+  protected record SliceInfo(String typeId, @Nullable EObject prevObj, @Nullable String rule) {
+    public SliceInfo {
+      Objects.requireNonNull(typeId);
+    }
+    public SliceInfo(String typeId) {
+      this(typeId, null, null);
+    }
     public SliceInfo(String typeId, @Nullable EObject prevObj) {
-      this.typeId = typeId;
-      this.prevObj = prevObj;
-    }
-    public SliceInfo(String typeId, @Nullable EObject prevObj, @Nullable String rule) {
-      this(typeId, prevObj);
-      this.rule = rule;
-    }
-    public SliceInfo(SliceInfo info) {
-      this(info.typeId, info.prevObj, info.rule);
+      this(typeId, prevObj, null);
     }
   }
 
