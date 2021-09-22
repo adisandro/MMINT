@@ -80,6 +80,8 @@
         <setting id="cleanup.single_used_field" value="false"/>
         <setting id="cleanup.collection_cloning" value="false"/>
         <setting id="cleanup.comparing_on_criteria" value="false"/>
+        <setting id="cleanup.stringbuffer_to_stringbuilder" value="false"/>
+        <setting id="cleanup.do_while_rather_than_while" value="true"/>
         <setting id="cleanup.remove_unused_private_types" value="true"/>
         <setting id="cleanup.make_variable_declarations_final" value="false"/>
         <setting id="cleanup.merge_conditional_blocks" value="false"/>
@@ -99,6 +101,7 @@
         <setting id="cleanup.never_use_blocks" value="false"/>
         <setting id="cleanup.organize_imports" value="true"/>
         <setting id="cleanup.switch" value="false"/>
+        <setting id="cleanup.stringbuilder_for_local_vars" value="true"/>
         <setting id="cleanup.make_parameters_final" value="false"/>
         <setting id="cleanup.ternary_operator" value="false"/>
         <setting id="cleanup.controlflow_merge" value="false"/>
