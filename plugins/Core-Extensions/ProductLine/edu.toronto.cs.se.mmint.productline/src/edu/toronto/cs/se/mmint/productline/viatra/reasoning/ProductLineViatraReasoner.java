@@ -73,9 +73,9 @@ public class ProductLineViatraReasoner extends ViatraReasoner {
     return plVarRef;
   }
 
-  private VariableReference liftVariableReference(VariableReference varRef, Map<Variable, Variable> varsMap)
+  private VariableReference liftVariableReference(VariableReference varRef, Map<String, Variable> plVarsMap)
                                                  throws MMINTException {
-    var plVar = varsMap.get(varRef.getVariable());
+    var plVar = plVarsMap.get(varRef.getVar());
     if (plVar == null) {
       throw new MMINTException("Variable " + varRef.getVar() + " not found");
     }
@@ -91,7 +91,7 @@ public class ProductLineViatraReasoner extends ViatraReasoner {
    */
   private List<PatternCompositionConstraint> liftPathExpressionConstraint(PathExpressionConstraint pathConstraint,
                                                                           EList<Variable> plVariables,
-                                                                          Map<Variable, Variable> varsMap,
+                                                                          Map<String, Variable> plVarsMap,
                                                                           Pattern libPattern, int addedVars)
                                                                          throws MMINTException {
     var plConstraints = new ArrayList<PatternCompositionConstraint>();
@@ -106,17 +106,18 @@ public class ProductLineViatraReasoner extends ViatraReasoner {
       plCall.setTransitive(ClosureType.ORIGINAL);
       if (i == 0) {
         // path source
-        var plSrc = liftVariableReference(pathConstraint.getSrc(), varsMap);
+        var plSrc = liftVariableReference(pathConstraint.getSrc(), plVarsMap);
         plCall.getParameters().add(plSrc);
         var plSrcType = PatternLanguageFactory.eINSTANCE.createStringValue();
         plSrcType.setValue(pathConstraint.getSourceType().getClassname().getName());
         plCall.getParameters().add(plSrcType);
       }
       else {
+        //TODO handle multiple edges
       }
       if (edgeFeature instanceof EReference edgeReference) {
         // path destination
-        var plDst = liftVariableReference((VariableReference) pathConstraint.getDst(), varsMap);
+        var plDst = liftVariableReference((VariableReference) pathConstraint.getDst(), plVarsMap);
         plCall.getParameters().add(plDst);
         var plDstType = PatternLanguageFactory.eINSTANCE.createStringValue();
         plDstType.setValue(edgeReference.getEReferenceType().getName());
@@ -141,14 +142,14 @@ public class ProductLineViatraReasoner extends ViatraReasoner {
   }
 
   private CompareConstraint liftCompareConstraint(CompareConstraint compareConstraint,
-                                                  Map<Variable, Variable> varsMap) throws MMINTException {
+                                                  Map<String, Variable> plVarsMap) throws MMINTException {
     var plConstraint = PatternLanguageFactory.eINSTANCE.createCompareConstraint();
     if (compareConstraint.getLeftOperand() instanceof VariableReference left) {
-      var plLeft = liftVariableReference(left, varsMap);
+      var plLeft = liftVariableReference(left, plVarsMap);
       plConstraint.setLeftOperand(plLeft);
     }
     if (compareConstraint.getRightOperand() instanceof VariableReference right) {
-      var plRight = liftVariableReference(right, varsMap);
+      var plRight = liftVariableReference(right, plVarsMap);
       plConstraint.setRightOperand(plRight);
     }
     //TODO implement value comparison?
@@ -158,41 +159,68 @@ public class ProductLineViatraReasoner extends ViatraReasoner {
   }
 
   private LiftedConstraint liftConstraint(Constraint constraint, EList<Variable> plVariables,
-                                          Map<Variable, Variable> varsMap, Pattern libPattern, int addedVars)
+                                          Map<String, Variable> plVarsMap, Pattern libPattern, int addedVars)
                                          throws MMINTException {
     if (constraint instanceof PathExpressionConstraint pathConstraint) {
-      var plConstraints = liftPathExpressionConstraint(pathConstraint, plVariables, varsMap, libPattern, addedVars);
+      var plConstraints = liftPathExpressionConstraint(pathConstraint, plVariables, plVarsMap, libPattern, addedVars);
       return new LiftedConstraint(plConstraints, plConstraints.size());
     }
     else if (constraint instanceof CompareConstraint compareConstraint) {
-      return new LiftedConstraint(List.of(liftCompareConstraint(compareConstraint, varsMap)), 0);
+      return new LiftedConstraint(List.of(liftCompareConstraint(compareConstraint, plVarsMap)), 0);
     }
     else {
       throw new MMINTException("Constraint type " + constraint.getClass().getName() + " not supported");
     }
   }
 
-  private void addPresenceConditions() {
-    
+  private PathExpressionConstraint createPathExpressionConstraint(Variable srcVar, Variable dstVar) {
+    var plPathConstraint = PatternLanguageFactory.eINSTANCE.createPathExpressionConstraint();
+    plPathConstraint.setTransitive(ClosureType.ORIGINAL);
+    plPathConstraint.setSourceType(null);
+    plPathConstraint.setSrc(null);
+    plPathConstraint.setDst(null);
+    plPathConstraint.getEdgeTypes().add(null);
+
+    return plPathConstraint;
+  }
+
+  private List<Constraint> addPresenceConditions(EList<Variable> plVariables) {
+    var plConstraints = new ArrayList<Constraint>();
+    // PL feature model
+    var plRootVar = PatternLanguageFactory.eINSTANCE.createVariable();
+    plRootVar.setName("pl");
+    plVariables.add(plRootVar);
+    var plFeatures1 = PatternLanguageFactory.eINSTANCE.createPathExpressionConstraint();
+    plFeatures1.setTransitive(ClosureType.ORIGINAL);
+    plConstraints.add(plFeatures1);
+    var plFeatures2 = PatternLanguageFactory.eINSTANCE.createPathExpressionConstraint();
+    plConstraints.add(plFeatures2);
+    // presence conditions
+    // Z3 call
+    var plSolver = PatternLanguageFactory.eINSTANCE.createCheckConstraint();
+    plConstraints.add(plSolver);
+
+    return plConstraints;
   }
 
   private PatternBody liftBody(PatternBody body, EList<Variable> plParameters, Pattern libPattern)
                               throws MMINTException {
     var plBody = PatternLanguageFactory.eINSTANCE.createPatternBody();
-    var varsMap = new HashMap<Variable, Variable>();
+    var plVarsMap = new HashMap<String, Variable>();
     var plVariables = plBody.getVariables();
     for (var variable : body.getVariables()) {
       var plVariable = liftVariable(variable, plParameters);
       plVariables.add(plVariable);
-      varsMap.put(variable, plVariable);
+      plVarsMap.put(variable.getName(), plVariable);
     }
     var addedVars = 0;
+    var plConstraints = plBody.getConstraints();
     for (var constraint : body.getConstraints()) {
-      var plConstraints = liftConstraint(constraint, plVariables, varsMap, libPattern, addedVars);
-      plBody.getConstraints().addAll(plConstraints.plConstraints());
-      addedVars += plConstraints.addedVars();
+      var plConstraint = liftConstraint(constraint, plVariables, plVarsMap, libPattern, addedVars);
+      plConstraints.addAll(plConstraint.plConstraints());
+      addedVars += plConstraint.addedVars();
     }
-    addPresenceConditions();
+    plConstraints.addAll(addPresenceConditions(plVariables));
 
     return plBody;
   }
