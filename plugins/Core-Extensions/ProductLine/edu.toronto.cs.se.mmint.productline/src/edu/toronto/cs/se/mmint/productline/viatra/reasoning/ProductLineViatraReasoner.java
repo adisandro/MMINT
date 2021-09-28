@@ -3,11 +3,15 @@ package edu.toronto.cs.se.mmint.productline.viatra.reasoning;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.viatra.query.patternlanguage.emf.vql.ClassType;
 import org.eclipse.viatra.query.patternlanguage.emf.vql.ClosureType;
 import org.eclipse.viatra.query.patternlanguage.emf.vql.CompareConstraint;
@@ -19,9 +23,13 @@ import org.eclipse.viatra.query.patternlanguage.emf.vql.Pattern;
 import org.eclipse.viatra.query.patternlanguage.emf.vql.PatternBody;
 import org.eclipse.viatra.query.patternlanguage.emf.vql.PatternCompositionConstraint;
 import org.eclipse.viatra.query.patternlanguage.emf.vql.PatternLanguageFactory;
+import org.eclipse.viatra.query.patternlanguage.emf.vql.PatternLanguagePackage;
+import org.eclipse.viatra.query.patternlanguage.emf.vql.StringValue;
 import org.eclipse.viatra.query.patternlanguage.emf.vql.Type;
 import org.eclipse.viatra.query.patternlanguage.emf.vql.Variable;
 import org.eclipse.viatra.query.patternlanguage.emf.vql.VariableReference;
+import org.eclipse.xtext.common.types.TypesFactory;
+import org.eclipse.xtext.xbase.XbaseFactory;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.productline.ProductLinePackage;
@@ -29,15 +37,47 @@ import edu.toronto.cs.se.mmint.viatra.reasoning.ViatraReasoner;
 
 @SuppressWarnings("restriction")
 public class ProductLineViatraReasoner extends ViatraReasoner {
+  public final static String EXTRA_VAR_NAME = "ref";
+  public final static String PC_VAR_SUFFIX = "PC";
 
-  private record LiftedConstraint(List<? extends Constraint> plConstraints, int addedVars) {}
+  private record LiftedConstraint(List<? extends Constraint> plConstraints, Set<Variable> pcVars, int extraVars) {}
 
   @Override
   public String getName() {
     return "Viatra for Product Lines";
   }
 
-  private Type liftType(Type type) {
+  private Variable createVariable(EClass varClass, String name) {
+    var plVariable = (Variable) PatternLanguageFactory.eINSTANCE.create(varClass);
+    plVariable.setName(name);
+
+    return plVariable;
+  }
+
+  private StringValue createStringValue(String value) {
+    var plStringValue = PatternLanguageFactory.eINSTANCE.createStringValue();
+    plStringValue.setValue(value);
+
+    return plStringValue;
+  }
+
+  private PathExpressionConstraint createPathExpressionConstraint(EClass srcType, Variable srcVar,
+                                                                  EStructuralFeature dstType, Variable dstVar) {
+    var plPathConstraint = PatternLanguageFactory.eINSTANCE.createPathExpressionConstraint();
+    plPathConstraint.setTransitive(ClosureType.ORIGINAL);
+    var plType = PatternLanguageFactory.eINSTANCE.createClassType();
+    plType.setClassname(srcType);
+    plPathConstraint.setSourceType(plType);
+    plPathConstraint.setSrc(createVariableReference(srcVar));
+    plPathConstraint.setDst(createVariableReference(dstVar));
+    var plEdge = PatternLanguageFactory.eINSTANCE.createReferenceType();
+    plEdge.setRefname(dstType);
+    plPathConstraint.getEdgeTypes().add(plEdge);
+
+    return plPathConstraint;
+  }
+
+  private Type liftParameterType(Type type) {
     var plType = (Type) PatternLanguageFactory.eINSTANCE.create(type.eClass());
     if (type instanceof ClassType classType) {
       ((ClassType) plType).setClassname(ProductLinePackage.eINSTANCE.getClass_());
@@ -47,10 +87,9 @@ public class ProductLineViatraReasoner extends ViatraReasoner {
   }
 
   private Variable liftVariable(Variable variable, List<Variable> plParameters) {
-    var plVariable = (Variable) PatternLanguageFactory.eINSTANCE.create(variable.eClass());
-    plVariable.setName(variable.getName());
+    var plVariable = createVariable(variable.eClass(), variable.getName());
     if (variable instanceof Parameter parameter) {
-      var plType = liftType(variable.getType());
+      var plType = liftParameterType(variable.getType());
       plVariable.setType(plType);
       ((Parameter) plVariable).setDirection(parameter.getDirection());
     }
@@ -89,12 +128,11 @@ public class ProductLineViatraReasoner extends ViatraReasoner {
    * into:
    * connection(child, "Class", parent, "Class", ref, "superclass");
    */
-  private List<PatternCompositionConstraint> liftPathExpressionConstraint(PathExpressionConstraint pathConstraint,
-                                                                          EList<Variable> plVariables,
-                                                                          Map<String, Variable> plVarsMap,
-                                                                          Pattern libPattern, int addedVars)
-                                                                         throws MMINTException {
+  private LiftedConstraint liftPathExpressionConstraint(PathExpressionConstraint pathConstraint,
+                                                        EList<Variable> plVariables, Map<String, Variable> plVarsMap,
+                                                        Pattern libPattern, int extraVars) throws MMINTException {
     var plConstraints = new ArrayList<PatternCompositionConstraint>();
+    var pcVars = new HashSet<Variable>();
     for (var i = 0; i < pathConstraint.getEdgeTypes().size(); i++) {
       var edgeFeature = pathConstraint.getEdgeTypes().get(i).getRefname();
       // PL library call
@@ -108,9 +146,8 @@ public class ProductLineViatraReasoner extends ViatraReasoner {
         // path source
         var plSrc = liftVariableReference(pathConstraint.getSrc(), plVarsMap);
         plCall.getParameters().add(plSrc);
-        var plSrcType = PatternLanguageFactory.eINSTANCE.createStringValue();
-        plSrcType.setValue(pathConstraint.getSourceType().getClassname().getName());
-        plCall.getParameters().add(plSrcType);
+        plCall.getParameters().add(createStringValue(pathConstraint.getSourceType().getClassname().getName()));
+        pcVars.add(plSrc.getVariable());
       }
       else {
         //TODO handle multiple edges
@@ -119,18 +156,15 @@ public class ProductLineViatraReasoner extends ViatraReasoner {
         // path destination
         var plDst = liftVariableReference((VariableReference) pathConstraint.getDst(), plVarsMap);
         plCall.getParameters().add(plDst);
-        var plDstType = PatternLanguageFactory.eINSTANCE.createStringValue();
-        plDstType.setValue(edgeReference.getEReferenceType().getName());
-        plCall.getParameters().add(plDstType);
+        plCall.getParameters().add(createStringValue(edgeReference.getEReferenceType().getName()));
+        pcVars.add(plDst.getVariable());
         // path edge (EReference)
-        var plRefVar = PatternLanguageFactory.eINSTANCE.createVariable();
-        plRefVar.setName("ref" + (i+addedVars));
-        plVariables.add(plRefVar);
-        var plRef = createVariableReference(plRefVar);
-        plCall.getParameters().add(plRef);
-        var plRefType = PatternLanguageFactory.eINSTANCE.createStringValue();
-        plRefType.setValue(edgeReference.getName());
-        plCall.getParameters().add(plRefType);
+        var plEdgeVar = createVariable(PatternLanguagePackage.eINSTANCE.getVariable(),
+                                       ProductLineViatraReasoner.EXTRA_VAR_NAME + (i+extraVars));
+        plVariables.add(plEdgeVar);
+        plCall.getParameters().add(createVariableReference(plEdgeVar));
+        plCall.getParameters().add(createStringValue(edgeReference.getName()));
+        pcVars.add(plEdgeVar);
       }
       else {
         //TODO implement a library pattern to lift attribute constraints and use it here
@@ -138,11 +172,11 @@ public class ProductLineViatraReasoner extends ViatraReasoner {
       plConstraints.add(plConstraint);
     }
 
-    return plConstraints;
+    return new LiftedConstraint(plConstraints, pcVars, plConstraints.size());
   }
 
-  private CompareConstraint liftCompareConstraint(CompareConstraint compareConstraint,
-                                                  Map<String, Variable> plVarsMap) throws MMINTException {
+  private LiftedConstraint liftCompareConstraint(CompareConstraint compareConstraint, Map<String, Variable> plVarsMap)
+                                                throws MMINTException {
     var plConstraint = PatternLanguageFactory.eINSTANCE.createCompareConstraint();
     if (compareConstraint.getLeftOperand() instanceof VariableReference left) {
       var plLeft = liftVariableReference(left, plVarsMap);
@@ -155,50 +189,63 @@ public class ProductLineViatraReasoner extends ViatraReasoner {
     //TODO implement value comparison?
     plConstraint.setFeature(compareConstraint.getFeature());
 
-    return plConstraint;
+    return new LiftedConstraint(List.of(plConstraint), Set.of(), 0);
   }
 
   private LiftedConstraint liftConstraint(Constraint constraint, EList<Variable> plVariables,
-                                          Map<String, Variable> plVarsMap, Pattern libPattern, int addedVars)
+                                          Map<String, Variable> plVarsMap, Pattern libPattern, int extraVars)
                                          throws MMINTException {
     if (constraint instanceof PathExpressionConstraint pathConstraint) {
-      var plConstraints = liftPathExpressionConstraint(pathConstraint, plVariables, plVarsMap, libPattern, addedVars);
-      return new LiftedConstraint(plConstraints, plConstraints.size());
+      return liftPathExpressionConstraint(pathConstraint, plVariables, plVarsMap, libPattern, extraVars);
     }
     else if (constraint instanceof CompareConstraint compareConstraint) {
-      return new LiftedConstraint(List.of(liftCompareConstraint(compareConstraint, plVarsMap)), 0);
+      return liftCompareConstraint(compareConstraint, plVarsMap);
     }
     else {
       throw new MMINTException("Constraint type " + constraint.getClass().getName() + " not supported");
     }
   }
 
-  private PathExpressionConstraint createPathExpressionConstraint(Variable srcVar, Variable dstVar) {
-    var plPathConstraint = PatternLanguageFactory.eINSTANCE.createPathExpressionConstraint();
-    plPathConstraint.setTransitive(ClosureType.ORIGINAL);
-    plPathConstraint.setSourceType(null);
-    plPathConstraint.setSrc(null);
-    plPathConstraint.setDst(null);
-    plPathConstraint.getEdgeTypes().add(null);
-
-    return plPathConstraint;
-  }
-
-  private List<Constraint> addPresenceConditions(EList<Variable> plVariables) {
+  private List<Constraint> addPresenceConditions(EList<Variable> plVariables, Set<Variable> pcVariables) {
     var plConstraints = new ArrayList<Constraint>();
     // PL feature model
-    var plRootVar = PatternLanguageFactory.eINSTANCE.createVariable();
-    plRootVar.setName("pl");
+    var varType = PatternLanguagePackage.eINSTANCE.getVariable();
+    var plRootType = ProductLinePackage.eINSTANCE.getProductLine();
+    var plRootVar = createVariable(varType, "pl");
     plVariables.add(plRootVar);
-    var plFeatures1 = PatternLanguageFactory.eINSTANCE.createPathExpressionConstraint();
-    plFeatures1.setTransitive(ClosureType.ORIGINAL);
-    plConstraints.add(plFeatures1);
-    var plFeatures2 = PatternLanguageFactory.eINSTANCE.createPathExpressionConstraint();
-    plConstraints.add(plFeatures2);
+    var plAnyClassVar = pcVariables.stream()
+      .filter(v -> !v.getName().contains(ProductLineViatraReasoner.EXTRA_VAR_NAME))
+      .findAny()
+      .get();
+    var plConstraint1 = createPathExpressionConstraint(plRootType, plRootVar,
+                                                       ProductLinePackage.eINSTANCE.getProductLine_Classes(),
+                                                       plAnyClassVar);
+    plConstraints.add(plConstraint1);
+    var plFeaturesVar = createVariable(varType, "features");
+    plVariables.add(plFeaturesVar);
+    var plConstraint2 = createPathExpressionConstraint(plRootType, plRootVar,
+                                                       ProductLinePackage.eINSTANCE.getProductLine_Features(),
+                                                       plFeaturesVar);
+    plConstraints.add(plConstraint2);
     // presence conditions
+    var plElemType = ProductLinePackage.eINSTANCE.getPLElement();
+    var plPCType = ProductLinePackage.eINSTANCE.getPLElement_PresenceCondition();
+    var pcValueVars = new ArrayList<Variable>();
+    for (var pcVar : pcVariables) {
+      var pcValueVar = createVariable(varType, pcVar.getName() + ProductLineViatraReasoner.PC_VAR_SUFFIX);
+      plVariables.add(pcValueVar);
+      pcValueVars.add(pcValueVar);
+      plConstraints.add(createPathExpressionConstraint(plElemType, pcVar, plPCType, pcValueVar));
+    }
     // Z3 call
     var plSolver = PatternLanguageFactory.eINSTANCE.createCheckConstraint();
-    plConstraints.add(plSolver);
+    var x = XbaseFactory.eINSTANCE.createXMemberFeatureCall();
+    x.setExplicitOperationCall(true);
+    x.setFeature(null); // JvmVoidImplCustom
+    x.getMemberCallArguments();
+    plSolver.setExpression(x);
+    var j = TypesFactory.eINSTANCE.createJvmVoid();
+    //plConstraints.add(plSolver);
 
     return plConstraints;
   }
@@ -213,14 +260,16 @@ public class ProductLineViatraReasoner extends ViatraReasoner {
       plVariables.add(plVariable);
       plVarsMap.put(variable.getName(), plVariable);
     }
-    var addedVars = 0;
+    var extraVariables = 0;
     var plConstraints = plBody.getConstraints();
+    var pcVariables = new HashSet<Variable>();
     for (var constraint : body.getConstraints()) {
-      var plConstraint = liftConstraint(constraint, plVariables, plVarsMap, libPattern, addedVars);
+      var plConstraint = liftConstraint(constraint, plVariables, plVarsMap, libPattern, extraVariables);
       plConstraints.addAll(plConstraint.plConstraints());
-      addedVars += plConstraint.addedVars();
+      extraVariables += plConstraint.extraVars();
+      pcVariables.addAll(plConstraint.pcVars());
     }
-    plConstraints.addAll(addPresenceConditions(plVariables));
+    plConstraints.addAll(addPresenceConditions(plVariables, pcVariables));
 
     return plBody;
   }
