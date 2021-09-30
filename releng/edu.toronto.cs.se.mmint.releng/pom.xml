@@ -5,7 +5,7 @@
   <version>2.10.99-SNAPSHOT</version>
   <packaging>pom</packaging>
   <properties>
-    <tycho-version>2.5.0-SNAPSHOT</tycho-version>
+    <tycho-version>2.5.0</tycho-version>
     <acceleo-version>3.6.4</acceleo-version>
     <ecj-version>3.28.0.v20210915-0524</ecj-version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -33,10 +33,10 @@
     </repository>
   </repositories>
   <pluginRepositories>
-    <pluginRepository>
+    <!--<pluginRepository>
       <id>Tycho</id>
       <url>https://repo.eclipse.org/content/repositories/tycho-snapshots</url>
-    </pluginRepository>
+    </pluginRepository>-->
     <pluginRepository>
       <id>Acceleo</id>
       <url>https://repo.eclipse.org/content/groups/releases</url>
