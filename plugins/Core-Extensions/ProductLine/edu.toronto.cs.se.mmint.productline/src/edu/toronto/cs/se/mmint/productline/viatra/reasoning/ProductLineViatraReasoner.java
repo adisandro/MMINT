@@ -2,21 +2,26 @@ package edu.toronto.cs.se.mmint.productline.viatra.reasoning;
 
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.viatra.query.patternlanguage.emf.vql.ClassType;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.viatra.query.patternlanguage.emf.vql.ClosureType;
 import org.eclipse.viatra.query.patternlanguage.emf.vql.CompareConstraint;
 import org.eclipse.viatra.query.patternlanguage.emf.vql.Constraint;
 import org.eclipse.viatra.query.patternlanguage.emf.vql.Parameter;
+import org.eclipse.viatra.query.patternlanguage.emf.vql.ParameterDirection;
 import org.eclipse.viatra.query.patternlanguage.emf.vql.ParameterRef;
 import org.eclipse.viatra.query.patternlanguage.emf.vql.PathExpressionConstraint;
 import org.eclipse.viatra.query.patternlanguage.emf.vql.Pattern;
@@ -25,13 +30,12 @@ import org.eclipse.viatra.query.patternlanguage.emf.vql.PatternCompositionConstr
 import org.eclipse.viatra.query.patternlanguage.emf.vql.PatternLanguageFactory;
 import org.eclipse.viatra.query.patternlanguage.emf.vql.PatternLanguagePackage;
 import org.eclipse.viatra.query.patternlanguage.emf.vql.StringValue;
-import org.eclipse.viatra.query.patternlanguage.emf.vql.Type;
 import org.eclipse.viatra.query.patternlanguage.emf.vql.Variable;
 import org.eclipse.viatra.query.patternlanguage.emf.vql.VariableReference;
-import org.eclipse.xtext.common.types.TypesFactory;
-import org.eclipse.xtext.xbase.XbaseFactory;
+import org.eclipse.viatra.query.runtime.api.GenericPatternMatch;
 
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.productline.ProductLinePackage;
 import edu.toronto.cs.se.mmint.viatra.reasoning.ViatraReasoner;
 
@@ -39,8 +43,9 @@ import edu.toronto.cs.se.mmint.viatra.reasoning.ViatraReasoner;
 public class ProductLineViatraReasoner extends ViatraReasoner {
   public final static String EXTRA_VAR_NAME = "ref";
   public final static String PC_VAR_SUFFIX = "PC";
-
+  public final static String FEATURES_VAR_NAME = "features";
   private record LiftedConstraint(List<? extends Constraint> plConstraints, Set<Variable> pcVars, int extraVars) {}
+  private Set<String> liftedPCParameters;
 
   @Override
   public String getName() {
@@ -52,6 +57,23 @@ public class ProductLineViatraReasoner extends ViatraReasoner {
     plVariable.setName(name);
 
     return plVariable;
+  }
+
+  private Parameter createParameter(String name, EClassifier typeClass, ParameterDirection direction) {
+    var plParameter = (Parameter) createVariable(PatternLanguagePackage.eINSTANCE.getParameter(), name);
+    var plType = PatternLanguageFactory.eINSTANCE.createClassType();
+    plType.setClassname(typeClass);
+    plParameter.setType(plType);
+    plParameter.setDirection(direction);
+
+    return plParameter;
+  }
+
+  private ParameterRef createParameterRef(String name, Parameter plParameter) {
+    var plParameterRef = (ParameterRef) createVariable(PatternLanguagePackage.eINSTANCE.getParameterRef(), name);
+    plParameterRef.setReferredParam(plParameter);
+
+    return plParameterRef;
   }
 
   private StringValue createStringValue(String value) {
@@ -77,30 +99,24 @@ public class ProductLineViatraReasoner extends ViatraReasoner {
     return plPathConstraint;
   }
 
-  private Type liftParameterType(Type type) {
-    var plType = (Type) PatternLanguageFactory.eINSTANCE.create(type.eClass());
-    if (type instanceof ClassType classType) {
-      ((ClassType) plType).setClassname(ProductLinePackage.eINSTANCE.getClass_());
-    }
-
-    return plType;
-  }
-
   private Variable liftVariable(Variable variable, List<Variable> plParameters) {
-    var plVariable = createVariable(variable.eClass(), variable.getName());
-    if (variable instanceof Parameter parameter) {
-      var plType = liftParameterType(variable.getType());
-      plVariable.setType(plType);
-      ((Parameter) plVariable).setDirection(parameter.getDirection());
-    }
-    else if (variable instanceof ParameterRef parameterRef) {
-      plParameters.stream()
+    Variable plVariable;
+    if (variable instanceof ParameterRef parameterRef) {
+      var plParameter = plParameters.stream()
         .filter(p -> p.getName().equals(parameterRef.getReferredParam().getName()))
         .findFirst()
-        .ifPresent(p -> ((ParameterRef) plVariable).setReferredParam(p));
+        .get();
+      plVariable = createParameterRef(variable.getName(), (Parameter) plParameter);
+    }
+    else {
+      plVariable = createVariable(variable.eClass(), variable.getName());
     }
 
     return plVariable;
+  }
+
+  private Parameter liftParameter(Parameter parameter) {
+    return createParameter(parameter.getName(), ProductLinePackage.eINSTANCE.getClass_(), parameter.getDirection());
   }
 
   private VariableReference createVariableReference(Variable plVar) {
@@ -206,9 +222,10 @@ public class ProductLineViatraReasoner extends ViatraReasoner {
     }
   }
 
-  private List<Constraint> addPresenceConditions(EList<Variable> plVariables, Set<Variable> pcVariables) {
+  private List<Constraint> addPresenceConditions(EList<Variable> plParameters, EList<Variable> plVariables,
+                                                 Set<Variable> pcVariables) {
     var plConstraints = new ArrayList<Constraint>();
-    // PL feature model
+    // feature model
     var varType = PatternLanguagePackage.eINSTANCE.getVariable();
     var plRootType = ProductLinePackage.eINSTANCE.getProductLine();
     var plRootVar = createVariable(varType, "pl");
@@ -221,7 +238,10 @@ public class ProductLineViatraReasoner extends ViatraReasoner {
                                                        ProductLinePackage.eINSTANCE.getProductLine_Classes(),
                                                        plAnyClassVar);
     plConstraints.add(plConstraint1);
-    var plFeaturesVar = createVariable(varType, "features");
+    var pcFeaturesPar = createParameter(ProductLineViatraReasoner.FEATURES_VAR_NAME,
+                                        EcorePackage.eINSTANCE.getEString(), ParameterDirection.OUT);
+    plParameters.add(pcFeaturesPar);
+    var plFeaturesVar = createParameterRef(ProductLineViatraReasoner.FEATURES_VAR_NAME, pcFeaturesPar);
     plVariables.add(plFeaturesVar);
     var plConstraint2 = createPathExpressionConstraint(plRootType, plRootVar,
                                                        ProductLinePackage.eINSTANCE.getProductLine_Features(),
@@ -230,22 +250,15 @@ public class ProductLineViatraReasoner extends ViatraReasoner {
     // presence conditions
     var plElemType = ProductLinePackage.eINSTANCE.getPLElement();
     var plPCType = ProductLinePackage.eINSTANCE.getPLElement_PresenceCondition();
-    var pcValueVars = new ArrayList<Variable>();
     for (var pcVar : pcVariables) {
-      var pcValueVar = createVariable(varType, pcVar.getName() + ProductLineViatraReasoner.PC_VAR_SUFFIX);
+      var pcName = pcVar.getName() + ProductLineViatraReasoner.PC_VAR_SUFFIX;
+      var pcValuePar = createParameter(pcName, EcorePackage.eINSTANCE.getEString(), ParameterDirection.OUT);
+      plParameters.add(pcValuePar);
+      var pcValueVar = createParameterRef(pcName, pcValuePar);
       plVariables.add(pcValueVar);
-      pcValueVars.add(pcValueVar);
+      this.liftedPCParameters.add(pcValueVar.getName());
       plConstraints.add(createPathExpressionConstraint(plElemType, pcVar, plPCType, pcValueVar));
     }
-    // Z3 call
-    var plSolver = PatternLanguageFactory.eINSTANCE.createCheckConstraint();
-    var x = XbaseFactory.eINSTANCE.createXMemberFeatureCall();
-    x.setExplicitOperationCall(true);
-    x.setFeature(null); // JvmVoidImplCustom
-    x.getMemberCallArguments();
-    plSolver.setExpression(x);
-    var j = TypesFactory.eINSTANCE.createJvmVoid();
-    //plConstraints.add(plSolver);
 
     return plConstraints;
   }
@@ -269,7 +282,7 @@ public class ProductLineViatraReasoner extends ViatraReasoner {
       extraVariables += plConstraint.extraVars();
       pcVariables.addAll(plConstraint.pcVars());
     }
-    plConstraints.addAll(addPresenceConditions(plVariables, pcVariables));
+    plConstraints.addAll(addPresenceConditions(plParameters, plVariables, pcVariables));
 
     return plBody;
   }
@@ -277,13 +290,14 @@ public class ProductLineViatraReasoner extends ViatraReasoner {
   @Override
   protected Pattern getPattern(String queryFilePath, String queryName) throws Exception {
     var pattern = super.getPattern(queryFilePath, queryName);
+    this.liftedPCParameters = new HashSet<>();
     var libFilePath = Paths.get(queryFilePath).getParent().getParent().resolve("library/pl.vql").toString();
     var libPattern = super.getPattern(libFilePath, "connection");
     var plPattern = PatternLanguageFactory.eINSTANCE.createPattern();
     plPattern.setName(pattern.getName());
     // i/o parameters
     for (var parameter : pattern.getParameters()) {
-      var plParameter = liftVariable(parameter, List.of());
+      var plParameter = liftParameter((Parameter) parameter);
       plPattern.getParameters().add(plParameter);
     }
     // body variables and constraints
@@ -294,5 +308,33 @@ public class ProductLineViatraReasoner extends ViatraReasoner {
     }
 
     return plPattern;
+  }
+
+  @Override
+  protected List<Object> getMatches(Collection<GenericPatternMatch> vMatches) {
+    // preserve order and remove duplicates:
+    // adding the presence conditions as query parameters may create spurious extra results
+    // that differ only in the order of presence conditions returned
+    var matches = new LinkedHashSet<>();
+    for (var vMatch : vMatches) {
+      var features = (String) vMatch.get(ProductLineViatraReasoner.FEATURES_VAR_NAME);
+      var presenceConditions = vMatch.parameterNames().stream()
+        .filter(p -> this.liftedPCParameters.contains(p))
+        .map(p -> (String) vMatch.get(p))
+        .collect(Collectors.toList());
+      if (!ProductLine.isQueryPattern(features, presenceConditions.toArray(new String[0]))) {
+        continue;
+      }
+      var match = (vMatch.parameterNames().size() == (this.liftedPCParameters.size() + 2)) ?
+        vMatch.get(0) :
+        vMatch.parameterNames().stream()
+          .filter(p -> !this.liftedPCParameters.contains(p) && !p.equals(ProductLineViatraReasoner.FEATURES_VAR_NAME))
+          .map(p -> vMatch.get(p))
+          .collect(Collectors.toList());
+      matches.add(match);
+    }
+    this.liftedPCParameters = null;
+
+    return new ArrayList<>(matches);
   }
 }

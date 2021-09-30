@@ -11,6 +11,7 @@ package edu.toronto.cs.se.mmint.viatra.reasoning;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -20,6 +21,7 @@ import org.eclipse.viatra.query.patternlanguage.emf.specification.SpecificationB
 import org.eclipse.viatra.query.patternlanguage.emf.vql.Pattern;
 import org.eclipse.viatra.query.patternlanguage.emf.vql.PatternModel;
 import org.eclipse.viatra.query.runtime.api.AdvancedViatraQueryEngine;
+import org.eclipse.viatra.query.runtime.api.GenericPatternMatch;
 import org.eclipse.viatra.query.runtime.api.GenericPatternMatcher;
 import org.eclipse.viatra.query.runtime.emf.EMFScope;
 
@@ -54,6 +56,18 @@ public class ViatraReasoner implements IQueryTrait {
       .orElseThrow(() -> new MMINTException(MessageFormat.format("Pattern {0} not found", queryName)));
 
     return pattern;
+  }
+
+  protected List<Object> getMatches(Collection<GenericPatternMatch> vMatches) {
+    var matches = new ArrayList<>();
+    for (var vMatch : vMatches) {
+      var match = (vMatch.parameterNames().size() == 1) ?
+        vMatch.get(0) :
+        vMatch.parameterNames().stream().map(p -> vMatch.get(p)).collect(Collectors.toList());
+      matches.add(match);
+    }
+
+    return matches;
   }
 
   @Override
@@ -101,14 +115,7 @@ public class ViatraReasoner implements IQueryTrait {
       var vMatches = (queryArgs.isEmpty()) ?
         matcher.getAllMatches() :
         matcher.getAllMatches(matcher.newMatch(queryArgs.toArray()));
-      var matches = new ArrayList<>();
-      for (var vMatch : vMatches) {
-        var match = (vMatch.parameterNames().size() == 1) ?
-          vMatch.get(0) :
-          vMatch.parameterNames().stream().map(p -> vMatch.get(p)).collect(Collectors.toList());
-        matches.add(match);
-      }
-      return matches;
+      return getMatches(vMatches);
     }
     finally {
       if (engine != null) {
