@@ -1,3 +1,15 @@
+/*******************************************************************************
+ * Copyright (c) 2021, 2021 Alessio Di Sandro.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *     Alessio Di Sandro - Implementation
+ *******************************************************************************/
 package edu.toronto.cs.se.mmint.productline.viatra.reasoning;
 
 import java.nio.file.Paths;
@@ -35,12 +47,17 @@ import org.eclipse.viatra.query.patternlanguage.emf.vql.VariableReference;
 import org.eclipse.viatra.query.runtime.api.GenericPatternMatch;
 
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.productline.Attribute;
+import edu.toronto.cs.se.mmint.productline.PLElement;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.productline.ProductLinePackage;
+import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineQueryTrait;
 import edu.toronto.cs.se.mmint.viatra.reasoning.ViatraReasoner;
+import edu.toronto.cs.se.modelepedia.z3.Z3Solver;
+import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
 
 @SuppressWarnings("restriction")
-public class ProductLineViatraReasoner extends ViatraReasoner {
+public class ProductLineViatraReasoner extends ViatraReasoner implements IProductLineQueryTrait {
   public final static String EXTRA_VAR_NAME = "ref";
   public final static String PC_VAR_SUFFIX = "PC";
   public final static String FEATURES_VAR_NAME = "features";
@@ -50,6 +67,44 @@ public class ProductLineViatraReasoner extends ViatraReasoner {
   @Override
   public String getName() {
     return "Viatra for Product Lines";
+  }
+
+  @Override
+  public boolean areInAProduct(Set<PLElement> plElements) {
+    if (plElements.isEmpty()) {
+      return false;
+    }
+
+    var anyPLElem = plElements.stream().findAny().get();
+    var pl = (ProductLine) ((anyPLElem instanceof Attribute) ?
+      anyPLElem.eContainer().eContainer() :
+      anyPLElem.eContainer());
+    var features = pl.getFeatures();
+    var presenceConditions = plElements.stream()
+      .map(e -> e.getPresenceCondition())
+      .filter(pc -> pc != null)
+      .collect(Collectors.toList());
+    var smtEncoding = "";
+    var variables = ProductLine.getVariables(features);
+    var smtBody = features + " ";
+    var allVariables = new HashSet<>(variables);
+    for (var variable : variables) {
+      smtEncoding += Z3Utils.constant(variable, Z3Utils.SMTLIB_TYPE_BOOL);
+    }
+    for (var presenceCondition : presenceConditions) {
+      smtBody += presenceCondition + " ";
+      variables = ProductLine.getVariables(presenceCondition);
+      for (var variable : variables) {
+        if (allVariables.contains(variable)) {
+          continue;
+        }
+        smtEncoding += Z3Utils.constant(variable, Z3Utils.SMTLIB_TYPE_BOOL);
+        allVariables.add(variable);
+      }
+    }
+    smtEncoding += Z3Utils.assertion(Z3Utils.and(smtBody));
+
+    return new Z3Solver().checkSat(smtEncoding).isSAT();
   }
 
   private Variable createVariable(EClass varClass, String name) {
@@ -291,6 +346,7 @@ public class ProductLineViatraReasoner extends ViatraReasoner {
   protected Pattern getPattern(String queryFilePath, String queryName) throws Exception {
     var pattern = super.getPattern(queryFilePath, queryName);
     this.liftedPCParameters = new HashSet<>();
+    //TODO Find the pl.vql library in the source/installed bundle
     var libFilePath = Paths.get(queryFilePath).getParent().getParent().resolve("library/pl.vql").toString();
     var libPattern = super.getPattern(libFilePath, "connection");
     var plPattern = PatternLanguageFactory.eINSTANCE.createPattern();
@@ -322,6 +378,8 @@ public class ProductLineViatraReasoner extends ViatraReasoner {
         .filter(p -> this.liftedPCParameters.contains(p))
         .map(p -> (String) vMatch.get(p))
         .collect(Collectors.toList());
+      //TODO Use areInAProduct instead, move ProductLine.getVariables into a utility class
+      //TODO Figure out how to require the IProductLineQueryTrait capability to be present in a product line query
       if (!ProductLine.isQueryPattern(features, presenceConditions.toArray(new String[0]))) {
         continue;
       }

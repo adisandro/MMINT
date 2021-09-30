@@ -8,8 +8,12 @@ Bundle-RequiredExecutionEnvironment: JavaSE-17
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.validation,
+ org.eclipse.viatra.query.runtime,
+ org.eclipse.viatra.query.patternlanguage.emf,
  org.eclipse.jdt.annotation;resolution:=optional,
  edu.toronto.cs.se.mmint,
  edu.toronto.cs.se.mmint.productline,
+ edu.toronto.cs.se.mmint.viatra,
  edu.toronto.cs.se.modelepedia.z3
 Bundle-Vendor: %providerName
+Export-Package: edu.toronto.cs.se.mmint.productline.viatra.reasoning
