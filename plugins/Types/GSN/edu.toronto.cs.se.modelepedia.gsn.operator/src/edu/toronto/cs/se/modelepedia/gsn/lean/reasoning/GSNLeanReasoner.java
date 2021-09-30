@@ -10,7 +10,7 @@
  * Contributors:
  *     Alessio Di Sandro - Implementation
  *******************************************************************************/
-package edu.toronto.cs.se.modelepedia.gsn.reasoning;
+package edu.toronto.cs.se.modelepedia.gsn.lean.reasoning;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -41,17 +41,17 @@ import edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionStrategy;
 import edu.toronto.cs.se.modelepedia.gsn.PropertyGoal;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
 import edu.toronto.cs.se.modelepedia.gsn.SupportedBy;
+import edu.toronto.cs.se.modelepedia.gsn.reasoning.IGSNDecompositionTrait;
+import edu.toronto.cs.se.modelepedia.gsn.reasoning.IGSNLeanEncoder;
 import edu.toronto.cs.se.modelepedia.gsn.reasoning.IGSNLeanEncoder.PropertyTemplate;
 import edu.toronto.cs.se.modelepedia.gsn.util.PropertyBuilder;
 
 public class GSNLeanReasoner extends LeanReasoner implements IGSNDecompositionTrait {
-
   private final static String FEEDBACK_PROPERTY_HINT = "HINT";
 
   @Override
   public String getName() {
-    //TODO MMINT[REASONER] Review whether we have to have different names for each reasoner
-    return "Lean/GSN";
+    return "Lean for GSN";
   }
 
   @Override

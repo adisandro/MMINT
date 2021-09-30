@@ -11,6 +11,6 @@
  *     Alessio Di Sandro - Implementation
  *******************************************************************************/
 @NonNullByDefault
-package edu.toronto.cs.se.modelepedia.gsn.reasoning;
+package edu.toronto.cs.se.modelepedia.gsn.lean.reasoning;
 
 import org.eclipse.jdt.annotation.NonNullByDefault;
