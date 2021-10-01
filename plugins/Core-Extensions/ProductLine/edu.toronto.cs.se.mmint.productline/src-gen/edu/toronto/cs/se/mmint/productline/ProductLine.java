@@ -12,19 +12,9 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.productline;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.xtext.xbase.lib.Pure;
-
-import edu.toronto.cs.se.modelepedia.z3.Z3Solver;
-import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
 
 /**
  * <!-- begin-user-doc -->
@@ -113,49 +103,5 @@ public interface ProductLine extends EObject {
    * @generated
    */
   void setMetamodel(EPackage value);
-
-  /**
-   * @generated NOT
-   */
-  @Pure
-  public static Set<String> getVariables(String formula) {
-    if (formula.isBlank()) {
-      return Set.of();
-    }
-    return Arrays.stream(formula.strip().split("[\\s\\(\\){or}{and}{not}{true}{false}]"))
-      .filter(v -> !v.isBlank())
-      .collect(Collectors.toSet());
-  }
-
-  /**
-   * @generated NOT
-   */
-  @Pure
-  public static boolean isQueryPattern(String features, @Nullable String... presenceConditions) {
-    var smtEncoding = "";
-    var variables = ProductLine.getVariables(features);
-    var smtBody = features + " ";
-    var allVariables = new HashSet<>(variables);
-    for (var variable : variables) {
-      smtEncoding += Z3Utils.constant(variable, Z3Utils.SMTLIB_TYPE_BOOL);
-    }
-    for (var presenceCondition : presenceConditions) {
-      if (presenceCondition == null) {
-        continue;
-      }
-      smtBody += presenceCondition + " ";
-      variables = ProductLine.getVariables(presenceCondition);
-      for (var variable : variables) {
-        if (allVariables.contains(variable)) {
-          continue;
-        }
-        smtEncoding += Z3Utils.constant(variable, Z3Utils.SMTLIB_TYPE_BOOL);
-        allVariables.add(variable);
-      }
-    }
-    smtEncoding += Z3Utils.assertion(Z3Utils.and(smtBody));
-
-    return new Z3Solver().checkSat(smtEncoding).isSAT();
-  }
 
 } // ProductLine

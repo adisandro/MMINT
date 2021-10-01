@@ -30,6 +30,7 @@ import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.productline.Class;
 import edu.toronto.cs.se.mmint.productline.PLElement;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
+import edu.toronto.cs.se.mmint.productline.viatra.reasoning.ProductLineViatraReasoner;
 import edu.toronto.cs.se.modelepedia.z3.Z3Solver;
 import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
 
@@ -86,7 +87,7 @@ public class ToProduct extends OperatorImpl {
   }
 
   private boolean isInProduct(String presenceCondition, Map<String, Boolean> varsValues) {
-    var variables = ProductLine.getVariables(presenceCondition);
+    var variables = ProductLineViatraReasoner.getVariables(presenceCondition);
     if (variables.isEmpty()) {
       return true;
     }
