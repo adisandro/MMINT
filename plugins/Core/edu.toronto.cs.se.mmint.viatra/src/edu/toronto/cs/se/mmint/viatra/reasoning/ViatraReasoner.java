@@ -43,9 +43,9 @@ public class ViatraReasoner implements IQueryTrait {
     return Set.of("vql");
   }
 
-  protected Pattern getPattern(String queryFilePath, String queryName) throws Exception {
+  protected Pattern getPattern(String queryFilePath, String queryName, boolean isWorkspaceRelative) throws Exception {
     // get model representation of query file
-    var queryRoot = FileUtils.readModelFile(queryFilePath, null, true);
+    var queryRoot = FileUtils.readModelFile(queryFilePath, null, isWorkspaceRelative);
     if (!(queryRoot instanceof PatternModel)) {
       throw new MMINTException("Bad query file");
     }
@@ -76,7 +76,7 @@ public class ViatraReasoner implements IQueryTrait {
     AdvancedViatraQueryEngine engine = null;
     try {
       // handle query arguments
-      var pattern = getPattern(queryFilePath, queryName);
+      var pattern = getPattern(queryFilePath, queryName, true);
       if (!queryArgs.isEmpty()) { // bound input arguments
         var numFormal = pattern.getParameters().size();
         var numActual = queryArgs.size();

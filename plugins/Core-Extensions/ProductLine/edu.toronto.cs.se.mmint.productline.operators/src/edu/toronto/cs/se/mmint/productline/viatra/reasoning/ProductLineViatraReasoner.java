@@ -12,7 +12,6 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.productline.viatra.reasoning;
 
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -44,7 +43,9 @@ import org.eclipse.viatra.query.patternlanguage.emf.vql.Variable;
 import org.eclipse.viatra.query.patternlanguage.emf.vql.VariableReference;
 import org.eclipse.viatra.query.runtime.api.GenericPatternMatch;
 
+import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.productline.Attribute;
 import edu.toronto.cs.se.mmint.productline.PLElement;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
@@ -56,6 +57,7 @@ import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
 
 @SuppressWarnings("restriction")
 public class ProductLineViatraReasoner extends ViatraReasoner implements IProductLineQueryTrait {
+  public final static String VIATTRA_LIB_PATH = "edu/toronto/cs/se/mmint/productline/viatra/pl.vql";
   public final static String EXTRA_VAR_NAME = "ref";
   private Set<String> origParameters;
 
@@ -323,12 +325,12 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
   }
 
   @Override
-  protected Pattern getPattern(String queryFilePath, String queryName) throws Exception {
-    var pattern = super.getPattern(queryFilePath, queryName);
+  protected Pattern getPattern(String queryFilePath, String queryName, boolean isWorkspaceRelative) throws Exception {
+    var pattern = super.getPattern(queryFilePath, queryName, true);
     this.origParameters = new HashSet<>();
-    //TODO Find the pl.vql library in the source/installed bundle
-    var libFilePath = Paths.get(queryFilePath).getParent().getParent().resolve("library/pl.vql").toString();
-    var libPattern = super.getPattern(libFilePath, "connection");
+    var plModelType = MIDTypeRegistry.<Model>getType(ProductLinePackage.eNS_URI);
+    var libFilePath = MIDTypeRegistry.getBundlePath(plModelType, ProductLineViatraReasoner.VIATTRA_LIB_PATH);
+    var libPattern = super.getPattern(libFilePath, "connection", false);
     var plPattern = PatternLanguageFactory.eINSTANCE.createPattern();
     plPattern.setName(pattern.getName());
     // i/o parameters
