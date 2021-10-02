@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.sequencediagram.editor;singleton:=true
 Automatic-Module-Name: edu.toronto.cs.se.modelepedia.sequencediagram.editor
-Bundle-Version: 2.10.99.qualifier
+Bundle-Version: 2.11.0.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: edu.toronto.cs.se.modelepedia.sequencediagram.presentation.SequenceDiagramEditorPlugin$Implementation
 Bundle-Vendor: %providerName
