@@ -1002,11 +1002,13 @@ public class MMINT implements MMINTConstants {
    * @return The set of reasoners that implement the trait.
    */
 	@SuppressWarnings("unchecked")
-  public static <T extends IReasoner> Set<? extends T> getReasonersForTrait(Class<T> traitClass) {
-	  return MMINT.reasoners.values().stream()
-	    .filter(r -> traitClass.isInstance(r))
-	    .map(r -> (T) r)
-	    .collect(Collectors.toSet());
+  public static <T extends IReasoner> Set<? extends T> getReasonersForTrait(Class<T> traitClass,
+                                                                            @Nullable Object traitData) {
+	  var traitReasoners = MMINT.reasoners.values().stream().filter(r -> traitClass.isInstance(r));
+	  if (traitData != null) {
+	    traitReasoners = traitReasoners.filter(r -> r.canUse(traitData));
+	  }
+	  return traitReasoners.map(r -> (T) r).collect(Collectors.toSet());
 	}
 
 	public static boolean isInitialized() {

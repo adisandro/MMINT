@@ -189,7 +189,7 @@ public class PropertyDecomposition extends GoalDecomposition {
       // ask for input
       var title = "Property Decomposition";
       var customMsg = "Insert a description for the custom property";
-      var reasoner = MIDDialogs.selectReasoner(IGSNDecompositionTrait.class, "GSN property decomposition");
+      var reasoner = MIDDialogs.selectReasoner(IGSNDecompositionTrait.class, "GSN property decomposition", null);
       var reasonerName = reasoner.getName();
       var relatedModelOpt = getRelatedModel();
       var templates = Map.<String, List<PropertyTemplate>>of();
@@ -230,7 +230,7 @@ public class PropertyDecomposition extends GoalDecomposition {
       Goal chainedGoal = null;
       String propStrategyId;
       var propStrategyDesc = "Decomposition over property ";
-      int goalCounter = 1;
+      var goalCounter = 1;
       if (this.decomposed instanceof PropertyGoal) { // decomposition chain, do not create formal argument level
         propStrategyId = "S1." + id;
         propStrategyDesc += informal;

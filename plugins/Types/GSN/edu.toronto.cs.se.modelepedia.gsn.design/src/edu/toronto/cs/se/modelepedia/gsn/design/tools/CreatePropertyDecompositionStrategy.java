@@ -36,7 +36,7 @@ public class CreatePropertyDecompositionStrategy extends CreateDecompositionElem
     @Override
     protected void create() throws Exception {
       var builder = (PropertyBuilder) this.builder;
-      var reasoner = MIDDialogs.selectReasoner(IGSNDecompositionTrait.class, "GSN property decomposition");
+      var reasoner = MIDDialogs.selectReasoner(IGSNDecompositionTrait.class, "GSN property decomposition", null);
       var reasonerName = reasoner.getName();
       var property = builder.createProperty("Create Property Decomposition Strategy",
                                             "Insert the " + reasonerName + " property",

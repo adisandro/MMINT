@@ -119,7 +119,7 @@ public class MAVODiagramContextRefineListener extends MIDContextMenuListener {
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
       try {
-        var reasoner = MIDDialogs.selectReasoner(IMAVOTrait.class, "MAVO refinement");
+        var reasoner = MIDDialogs.selectReasoner(IMAVOTrait.class, "MAVO refinement", null);
         var mavoFirstElemToRefine = MAVODiagramContextRefineListener.this.mavoElemsToRefine.get(0);
         if (mavoFirstElemToRefine instanceof MAVOCollection) {
           if (mavoFirstElemToRefine.eContainer() instanceof MayDecision) {

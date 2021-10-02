@@ -204,11 +204,7 @@ public class MIDDialogs {
 	    return (Operator) MIDDialogs.openTreeDialogWithDefault(dialog, title, message);
 	}
 
-  public static <T extends IReasoner> T selectReasoner(Class<T> traitClass, String traitDesc) throws MMINTException {
-    var reasoners = MMINT.getReasonersForTrait(traitClass);
-    if (reasoners.isEmpty()) {
-      throw new MMINTException("There are no reasoners installed that implement " + traitDesc);
-    }
+  public static <T extends IReasoner> T selectReasoner(Set<T> reasoners, String traitDesc) throws MMINTException {
     if (reasoners.size() == 1) {
       return reasoners.iterator().next();
     }
@@ -218,6 +214,16 @@ public class MIDDialogs {
     var labelProvider = LabelProvider.createTextProvider(e -> ((IReasoner) e).getName());
 
     return openListDialog(title, message, reasoners, contentProvider, labelProvider);
+  }
+
+  public static <T extends IReasoner> T selectReasoner(Class<T> traitClass, String traitDesc,
+                                                       @Nullable Object traitData) throws MMINTException {
+    var reasoners = MMINT.getReasonersForTrait(traitClass, traitData);
+    if (reasoners.isEmpty()) {
+      throw new MMINTException("There are no reasoners installed that implement " + traitDesc);
+    }
+
+    return selectReasoner(reasoners, traitDesc);
 	}
 
 	public static @NonNull String selectSiriusRepresentationsFileToContainModelDiagram(@NonNull String modelPath)

@@ -64,7 +64,7 @@ public class MAVOContextRefineByConstraintListener extends MIDContextMenuListene
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		  try {
-        var reasoner = MIDDialogs.selectReasoner(IMAVOTrait.class, "MAVO refinement");
+        var reasoner = MIDDialogs.selectReasoner(IMAVOTrait.class, "MAVO refinement", null);
         reasoner.refineModelByConstraint(MAVOContextRefineByConstraintListener.this.model);
         return CommandResult.newOKCommandResult();
       }

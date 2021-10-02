@@ -14,6 +14,7 @@ package edu.toronto.cs.se.mmint.mid.diagram.context;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -105,16 +106,21 @@ public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
   }
 
   public static void runUI(EObject context, List<? extends EObject> queryArgs) throws Exception {
-    var reasoners = MMINT.getReasonersForTrait(IQueryTrait.class);
-    if (reasoners.isEmpty()) {
+    var allReasoners = MMINT.getReasonersForTrait(IQueryTrait.class, context);
+    if (allReasoners.isEmpty()) {
       throw new MMINTException("There are no reasoners installed that implement querying");
     }
-    var fileExtToReasoner = new HashMap<String, IQueryTrait>();
-    for (var reasoner : reasoners) {
-      reasoner.getQueryFileExtensions().forEach(fe -> fileExtToReasoner.put(fe, reasoner));
+    var fileExtToReasoners = new HashMap<String, Set<IQueryTrait>>();
+    for (var reasoner : allReasoners) {
+      reasoner.getQueryFileExtensions().forEach(fe -> {
+        var reasoners = fileExtToReasoners.computeIfAbsent(fe, k -> new HashSet<>());
+        reasoners.add(reasoner);
+      });
     }
-    var queryFilePath = selectQueryFileToEvaluate(fileExtToReasoner.keySet());
-    var queryReasoner = fileExtToReasoner.get(FileUtils.getFileExtensionFromPath(queryFilePath));
+    var queryFilePath = selectQueryFileToEvaluate(fileExtToReasoners.keySet());
+    var fileExtension = FileUtils.getFileExtensionFromPath(queryFilePath);
+    var reasoners = fileExtToReasoners.get(fileExtension);
+    var queryReasoner = MIDDialogs.selectReasoner(reasoners, fileExtension + " queries");
     var queryName = MIDDialogs.getStringInput("Evaluate query", "Insert query name to run", null);
     var queryResults = queryReasoner.evaluateQuery(queryFilePath, queryName, context, queryArgs);
     var printResults = new ArrayList<String>();

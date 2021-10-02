@@ -43,9 +43,12 @@ import org.eclipse.viatra.query.patternlanguage.emf.vql.Variable;
 import org.eclipse.viatra.query.patternlanguage.emf.vql.VariableReference;
 import org.eclipse.viatra.query.runtime.api.GenericPatternMatch;
 
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.productline.Attribute;
 import edu.toronto.cs.se.mmint.productline.PLElement;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
@@ -64,6 +67,16 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
   @Override
   public String getName() {
     return "Viatra for Product Lines";
+  }
+
+  @Override
+  public boolean canUse(Object data) {
+    if (!(data instanceof MID mid)) {
+      return false;
+    }
+    return mid.getModels().stream()
+      .filter(m -> !(m instanceof ModelRel))
+      .anyMatch(m -> MIDTypeHierarchy.instanceOf(m, ProductLinePackage.eNS_URI, false));
   }
 
   public static Set<String> getVariables(String formula) {
@@ -376,7 +389,6 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
     }
     this.origParameters = null;
 
-    //TODO Figure out how to require the IProductLineQueryTrait capability to be present in a product line query
     return List.copyOf(matches);
   }
 }

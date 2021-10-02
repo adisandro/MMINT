@@ -25,4 +25,15 @@ public interface IReasoner {
    * @return The reasoner name.
    */
   String getName();
+
+  /**
+   * Checks whether this reasoner can be used, based on application-specific data.
+   *
+   * @param data
+   *          The relevant data.
+   * @return True if this reasoner can be used, false otherwise.
+   */
+  default boolean canUse(Object data) {
+    return true;
+  }
 }
