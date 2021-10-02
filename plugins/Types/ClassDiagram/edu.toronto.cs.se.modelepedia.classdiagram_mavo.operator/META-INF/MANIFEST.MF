@@ -3,7 +3,7 @@ Automatic-Module-Name: edu.toronto.cs.se.modelepedia.classdiagram_mavo.operator
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.classdiagram_mavo.operator;singleton:=true
-Bundle-Version: 2.11.0.qualifier
+Bundle-Version: 2.11.99.qualifier
 Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.uml2.uml,
  org.eclipse.m2m.atl.engine.emfvm,
