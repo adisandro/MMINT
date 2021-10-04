@@ -43,19 +43,22 @@ public class ViatraReasoner implements IQueryTrait {
     return Set.of("vql");
   }
 
-  protected Pattern getPattern(String queryFilePath, String queryName, boolean isWorkspaceRelative) throws Exception {
-    // get model representation of query file
-    var queryRoot = FileUtils.readModelFile(queryFilePath, null, isWorkspaceRelative);
-    if (!(queryRoot instanceof PatternModel)) {
-      throw new MMINTException("Bad query file");
-    }
+  protected Pattern getPattern(PatternModel vqlRoot, String queryName) throws Exception {
     // find named query
-    var pattern = ((PatternModel) queryRoot).getPatterns().stream()
+    return vqlRoot.getPatterns().stream()
       .filter(p -> queryName.equals(p.getName()))
       .findFirst()
       .orElseThrow(() -> new MMINTException(MessageFormat.format("Pattern {0} not found", queryName)));
+  }
 
-    return pattern;
+  protected Pattern getPattern(String queryFilePath, String queryName, boolean isWorkspaceRelative) throws Exception {
+    // get model representation of query file
+    var queryRoot = FileUtils.readModelFile(queryFilePath, null, isWorkspaceRelative);
+    if (!(queryRoot instanceof PatternModel vqlRoot)) {
+      throw new MMINTException("Bad query file");
+    }
+
+    return getPattern(vqlRoot, queryName);
   }
 
   protected List<Object> getMatches(Collection<GenericPatternMatch> vMatches) {

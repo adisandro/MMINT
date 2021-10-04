@@ -15,7 +15,8 @@ import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedPatternGroup;
  * 
  * <p> From package edu.toronto.cs.se.mmint.productline.viatra, the group contains the definition of the following patterns: <ul>
  * <li>classType</li>
- * <li>connection</li>
+ * <li>reference</li>
+ * <li>attribute</li>
  * </ul>
  * 
  * @see IQueryGroup
@@ -41,7 +42,8 @@ public final class Pl extends BaseGeneratedPatternGroup {
   
   private Pl() {
     querySpecifications.add(ClassType.instance());
-    querySpecifications.add(Connection.instance());
+    querySpecifications.add(Reference.instance());
+    querySpecifications.add(Attribute.instance());
   }
   
   public ClassType getClassType() {
@@ -52,11 +54,19 @@ public final class Pl extends BaseGeneratedPatternGroup {
     return ClassType.Matcher.on(engine);
   }
   
-  public Connection getConnection() {
-    return Connection.instance();
+  public Reference getReference() {
+    return Reference.instance();
   }
   
-  public Connection.Matcher getConnection(final ViatraQueryEngine engine) {
-    return Connection.Matcher.on(engine);
+  public Reference.Matcher getReference(final ViatraQueryEngine engine) {
+    return Reference.Matcher.on(engine);
+  }
+  
+  public Attribute getAttribute() {
+    return Attribute.instance();
+  }
+  
+  public Attribute.Matcher getAttribute(final ViatraQueryEngine engine) {
+    return Attribute.Matcher.on(engine);
   }
 }

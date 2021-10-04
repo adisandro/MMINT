@@ -22,7 +22,8 @@
   <extension id="edu.toronto.cs.se.mmint.productline.viatra.Pl" point="org.eclipse.viatra.query.runtime.queryspecification">
     <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:edu.toronto.cs.se.mmint.productline.viatra.Pl" id="edu.toronto.cs.se.mmint.productline.viatra.Pl">
       <query-specification fqn="edu.toronto.cs.se.mmint.productline.viatra.classType"/>
-      <query-specification fqn="edu.toronto.cs.se.mmint.productline.viatra.connection"/>
+      <query-specification fqn="edu.toronto.cs.se.mmint.productline.viatra.reference"/>
+      <query-specification fqn="edu.toronto.cs.se.mmint.productline.viatra.attribute"/>
     </group>
   </extension>
 </plugin>

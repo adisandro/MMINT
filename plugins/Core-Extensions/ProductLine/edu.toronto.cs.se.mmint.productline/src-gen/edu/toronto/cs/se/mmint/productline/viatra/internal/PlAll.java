@@ -3,8 +3,9 @@
  */
 package edu.toronto.cs.se.mmint.productline.viatra.internal;
 
+import edu.toronto.cs.se.mmint.productline.viatra.Attribute;
 import edu.toronto.cs.se.mmint.productline.viatra.ClassType;
-import edu.toronto.cs.se.mmint.productline.viatra.Connection;
+import edu.toronto.cs.se.mmint.productline.viatra.Reference;
 import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedPatternGroup;
 
 /**
@@ -15,7 +16,8 @@ import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedPatternGroup;
  * <p> From package edu.toronto.cs.se.mmint.productline.viatra, the group contains the definition of the following patterns: <ul>
  * <li>superType</li>
  * <li>classType</li>
- * <li>connection</li>
+ * <li>reference</li>
+ * <li>attribute</li>
  * </ul>
  * 
  * @see IQueryGroup
@@ -42,6 +44,7 @@ public final class PlAll extends BaseGeneratedPatternGroup {
   private PlAll() {
     querySpecifications.add(SuperType.instance());
     querySpecifications.add(ClassType.instance());
-    querySpecifications.add(Connection.instance());
+    querySpecifications.add(Reference.instance());
+    querySpecifications.add(Attribute.instance());
   }
 }

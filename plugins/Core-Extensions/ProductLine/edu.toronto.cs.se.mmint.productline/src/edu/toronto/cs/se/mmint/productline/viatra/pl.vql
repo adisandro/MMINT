@@ -14,11 +14,19 @@ pattern classType(plClass: Class, type: java String) {
   EClass.name(superClass, type);
 }
 
-pattern connection(plSrc: Class, srcType: java String, plDst: Class, dstType: java String,
-                   plRef: Reference, refType: java String) {
+pattern reference(plSrc: Class, srcType: java String, plDst: Class, dstType: java String,
+                  plRef: Reference, refType: java String) {
   find classType(plSrc, srcType);
   Class.referencesAsSource(plSrc, plRef);
   Reference.type.name(plRef, refType);
   Reference.targets(plRef, plDst);
   find classType(plDst, dstType);
+}
+
+pattern attribute(plElem: Class, elemType: java String,
+                  attrValue: java String, plAttr: Attribute, attrType: java String) {
+  find classType(plElem, elemType);
+  Class.attributes(plElem, plAttr);
+  Attribute.type.name(plAttr, attrType);
+  Attribute.value(plAttr, attrValue);
 }
