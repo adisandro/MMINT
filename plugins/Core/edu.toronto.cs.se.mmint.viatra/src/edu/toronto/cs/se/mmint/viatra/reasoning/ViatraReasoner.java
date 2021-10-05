@@ -43,21 +43,26 @@ public class ViatraReasoner implements IQueryTrait {
     return Set.of("vql");
   }
 
+  // finds named query
   protected Pattern getPattern(PatternModel vqlRoot, String queryName) throws Exception {
-    // find named query
     return vqlRoot.getPatterns().stream()
       .filter(p -> queryName.equals(p.getName()))
       .findFirst()
       .orElseThrow(() -> new MMINTException(MessageFormat.format("Pattern {0} not found", queryName)));
   }
 
-  protected Pattern getPattern(String queryFilePath, String queryName, boolean isWorkspaceRelative) throws Exception {
-    // get model representation of query file
+  // gets model representation of query file
+  protected PatternModel getVQLRoot(String queryFilePath, boolean isWorkspaceRelative) throws Exception {
     var queryRoot = FileUtils.readModelFile(queryFilePath, null, isWorkspaceRelative);
     if (!(queryRoot instanceof PatternModel vqlRoot)) {
-      throw new MMINTException("Bad query file");
+      throw new MMINTException("Malformed VQL query file '" + queryFilePath + "'");
     }
 
+    return vqlRoot;
+  }
+
+  protected Pattern getPattern(String queryFilePath, String queryName) throws Exception {
+    var vqlRoot = getVQLRoot(queryFilePath, true);
     return getPattern(vqlRoot, queryName);
   }
 
@@ -79,7 +84,7 @@ public class ViatraReasoner implements IQueryTrait {
     AdvancedViatraQueryEngine engine = null;
     try {
       // handle query arguments
-      var pattern = getPattern(queryFilePath, queryName, true);
+      var pattern = getPattern(queryFilePath, queryName);
       if (!queryArgs.isEmpty()) { // bound input arguments
         var numFormal = pattern.getParameters().size();
         var numActual = queryArgs.size();

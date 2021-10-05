@@ -39,7 +39,6 @@ import org.eclipse.viatra.query.patternlanguage.emf.vql.PatternBody;
 import org.eclipse.viatra.query.patternlanguage.emf.vql.PatternCompositionConstraint;
 import org.eclipse.viatra.query.patternlanguage.emf.vql.PatternLanguageFactory;
 import org.eclipse.viatra.query.patternlanguage.emf.vql.PatternLanguagePackage;
-import org.eclipse.viatra.query.patternlanguage.emf.vql.PatternModel;
 import org.eclipse.viatra.query.patternlanguage.emf.vql.StringValue;
 import org.eclipse.viatra.query.patternlanguage.emf.vql.Variable;
 import org.eclipse.viatra.query.patternlanguage.emf.vql.VariableReference;
@@ -51,7 +50,6 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.productline.Attribute;
 import edu.toronto.cs.se.mmint.productline.PLElement;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
@@ -347,17 +345,14 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
   }
 
   @Override
-  protected Pattern getPattern(String queryFilePath, String queryName, boolean isWorkspaceRelative) throws Exception {
-    var pattern = super.getPattern(queryFilePath, queryName, true);
+  protected Pattern getPattern(String queryFilePath, String queryName) throws Exception {
+    var pattern = super.getPattern(queryFilePath, queryName);
     this.origParameters = new HashSet<>();
     var plModelType = MIDTypeRegistry.<Model>getType(ProductLinePackage.eNS_URI);
     var libFilePath = MIDTypeRegistry.getBundlePath(plModelType, ProductLineViatraReasoner.VIATRA_LIB_PATH);
-    var libRoot = FileUtils.readModelFile(libFilePath, null, isWorkspaceRelative);
-    if (!(libRoot instanceof PatternModel vqlRoot)) {
-      throw new MMINTException("Bad PL library file");
-    }
-    var libRefPattern = super.getPattern(vqlRoot, ProductLineViatraReasoner.LIB_REFERENCE_PATTERN);
-    var libAttrPattern = super.getPattern(vqlRoot, ProductLineViatraReasoner.LIB_ATTRIBUTE_PATTERN);
+    var libVqlRoot = getVQLRoot(libFilePath, false);
+    var libRefPattern = super.getPattern(libVqlRoot, ProductLineViatraReasoner.LIB_REFERENCE_PATTERN);
+    var libAttrPattern = super.getPattern(libVqlRoot, ProductLineViatraReasoner.LIB_ATTRIBUTE_PATTERN);
     var plPattern = PatternLanguageFactory.eINSTANCE.createPattern();
     plPattern.setName(pattern.getName());
     // i/o parameters
