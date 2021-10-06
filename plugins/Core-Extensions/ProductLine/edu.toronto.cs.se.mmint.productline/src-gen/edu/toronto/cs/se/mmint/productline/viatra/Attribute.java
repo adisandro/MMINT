@@ -1,5 +1,16 @@
 /**
- * Generated from platform:/resource/edu.toronto.cs.se.mmint.productline/src/edu/toronto/cs/se/mmint/productline/viatra/pl.vql
+ * 
+ *   Copyright (c) 2021, 2021 Alessio Di Sandro.
+ *  
+ *   This program and the accompanying materials are made available under the
+ *   terms of the Eclipse Public License 2.0 which is available at
+ *   https://www.eclipse.org/legal/epl-2.0/
+ *  
+ *   SPDX-License-Identifier: EPL-2.0
+ *  
+ *   Contributors:
+ *       Alessio Di Sandro - Implementation
+ *  
  */
 package edu.toronto.cs.se.mmint.productline.viatra;
 
@@ -48,7 +59,7 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * <p>Original source:
  *         <code><pre>
  *         pattern attribute(plElem: Class, elemType: java String,
- *                           attrValue: java String, plAttr: Attribute, attrType: java String) {
+ *                           plAttr: Attribute, attrType: java String, attrValue: java String) {
  *           find classType(plElem, elemType);
  *           Class.attributes(plElem, plAttr);
  *           Attribute.type.name(plAttr, attrType);
@@ -79,20 +90,20 @@ public final class Attribute extends BaseGeneratedEMFQuerySpecification<Attribut
     
     private String fElemType;
     
-    private String fAttrValue;
-    
     private edu.toronto.cs.se.mmint.productline.Attribute fPlAttr;
     
     private String fAttrType;
     
-    private static List<String> parameterNames = makeImmutableList("plElem", "elemType", "attrValue", "plAttr", "attrType");
+    private String fAttrValue;
     
-    private Match(final edu.toronto.cs.se.mmint.productline.Class pPlElem, final String pElemType, final String pAttrValue, final edu.toronto.cs.se.mmint.productline.Attribute pPlAttr, final String pAttrType) {
+    private static List<String> parameterNames = makeImmutableList("plElem", "elemType", "plAttr", "attrType", "attrValue");
+    
+    private Match(final edu.toronto.cs.se.mmint.productline.Class pPlElem, final String pElemType, final edu.toronto.cs.se.mmint.productline.Attribute pPlAttr, final String pAttrType, final String pAttrValue) {
       this.fPlElem = pPlElem;
       this.fElemType = pElemType;
-      this.fAttrValue = pAttrValue;
       this.fPlAttr = pPlAttr;
       this.fAttrType = pAttrType;
+      this.fAttrValue = pAttrValue;
     }
     
     @Override
@@ -100,9 +111,9 @@ public final class Attribute extends BaseGeneratedEMFQuerySpecification<Attribut
       switch(parameterName) {
           case "plElem": return this.fPlElem;
           case "elemType": return this.fElemType;
-          case "attrValue": return this.fAttrValue;
           case "plAttr": return this.fPlAttr;
           case "attrType": return this.fAttrType;
+          case "attrValue": return this.fAttrValue;
           default: return null;
       }
     }
@@ -112,9 +123,9 @@ public final class Attribute extends BaseGeneratedEMFQuerySpecification<Attribut
       switch(index) {
           case 0: return this.fPlElem;
           case 1: return this.fElemType;
-          case 2: return this.fAttrValue;
-          case 3: return this.fPlAttr;
-          case 4: return this.fAttrType;
+          case 2: return this.fPlAttr;
+          case 3: return this.fAttrType;
+          case 4: return this.fAttrValue;
           default: return null;
       }
     }
@@ -127,16 +138,16 @@ public final class Attribute extends BaseGeneratedEMFQuerySpecification<Attribut
       return this.fElemType;
     }
     
-    public String getAttrValue() {
-      return this.fAttrValue;
-    }
-    
     public edu.toronto.cs.se.mmint.productline.Attribute getPlAttr() {
       return this.fPlAttr;
     }
     
     public String getAttrType() {
       return this.fAttrType;
+    }
+    
+    public String getAttrValue() {
+      return this.fAttrValue;
     }
     
     @Override
@@ -150,16 +161,16 @@ public final class Attribute extends BaseGeneratedEMFQuerySpecification<Attribut
           this.fElemType = (String) newValue;
           return true;
       }
-      if ("attrValue".equals(parameterName) ) {
-          this.fAttrValue = (String) newValue;
-          return true;
-      }
       if ("plAttr".equals(parameterName) ) {
           this.fPlAttr = (edu.toronto.cs.se.mmint.productline.Attribute) newValue;
           return true;
       }
       if ("attrType".equals(parameterName) ) {
           this.fAttrType = (String) newValue;
+          return true;
+      }
+      if ("attrValue".equals(parameterName) ) {
+          this.fAttrValue = (String) newValue;
           return true;
       }
       return false;
@@ -175,11 +186,6 @@ public final class Attribute extends BaseGeneratedEMFQuerySpecification<Attribut
       this.fElemType = pElemType;
     }
     
-    public void setAttrValue(final String pAttrValue) {
-      if (!isMutable()) throw new java.lang.UnsupportedOperationException();
-      this.fAttrValue = pAttrValue;
-    }
-    
     public void setPlAttr(final edu.toronto.cs.se.mmint.productline.Attribute pPlAttr) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
       this.fPlAttr = pPlAttr;
@@ -188,6 +194,11 @@ public final class Attribute extends BaseGeneratedEMFQuerySpecification<Attribut
     public void setAttrType(final String pAttrType) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
       this.fAttrType = pAttrType;
+    }
+    
+    public void setAttrValue(final String pAttrValue) {
+      if (!isMutable()) throw new java.lang.UnsupportedOperationException();
+      this.fAttrValue = pAttrValue;
     }
     
     @Override
@@ -202,12 +213,12 @@ public final class Attribute extends BaseGeneratedEMFQuerySpecification<Attribut
     
     @Override
     public Object[] toArray() {
-      return new Object[]{fPlElem, fElemType, fAttrValue, fPlAttr, fAttrType};
+      return new Object[]{fPlElem, fElemType, fPlAttr, fAttrType, fAttrValue};
     }
     
     @Override
     public Attribute.Match toImmutable() {
-      return isMutable() ? newMatch(fPlElem, fElemType, fAttrValue, fPlAttr, fAttrType) : this;
+      return isMutable() ? newMatch(fPlElem, fElemType, fPlAttr, fAttrType, fAttrValue) : this;
     }
     
     @Override
@@ -215,15 +226,15 @@ public final class Attribute extends BaseGeneratedEMFQuerySpecification<Attribut
       StringBuilder result = new StringBuilder();
       result.append("\"plElem\"=" + prettyPrintValue(fPlElem) + ", ");
       result.append("\"elemType\"=" + prettyPrintValue(fElemType) + ", ");
-      result.append("\"attrValue\"=" + prettyPrintValue(fAttrValue) + ", ");
       result.append("\"plAttr\"=" + prettyPrintValue(fPlAttr) + ", ");
-      result.append("\"attrType\"=" + prettyPrintValue(fAttrType));
+      result.append("\"attrType\"=" + prettyPrintValue(fAttrType) + ", ");
+      result.append("\"attrValue\"=" + prettyPrintValue(fAttrValue));
       return result.toString();
     }
     
     @Override
     public int hashCode() {
-      return Objects.hash(fPlElem, fElemType, fAttrValue, fPlAttr, fAttrType);
+      return Objects.hash(fPlElem, fElemType, fPlAttr, fAttrType, fAttrValue);
     }
     
     @Override
@@ -235,7 +246,7 @@ public final class Attribute extends BaseGeneratedEMFQuerySpecification<Attribut
       }
       if ((obj instanceof Attribute.Match)) {
           Attribute.Match other = (Attribute.Match) obj;
-          return Objects.equals(fPlElem, other.fPlElem) && Objects.equals(fElemType, other.fElemType) && Objects.equals(fAttrValue, other.fAttrValue) && Objects.equals(fPlAttr, other.fPlAttr) && Objects.equals(fAttrType, other.fAttrType);
+          return Objects.equals(fPlElem, other.fPlElem) && Objects.equals(fElemType, other.fElemType) && Objects.equals(fPlAttr, other.fPlAttr) && Objects.equals(fAttrType, other.fAttrType) && Objects.equals(fAttrValue, other.fAttrValue);
       } else {
           // this should be infrequent
           if (!(obj instanceof IPatternMatch)) {
@@ -268,14 +279,14 @@ public final class Attribute extends BaseGeneratedEMFQuerySpecification<Attribut
      * 
      * @param pPlElem the fixed value of pattern parameter plElem, or null if not bound.
      * @param pElemType the fixed value of pattern parameter elemType, or null if not bound.
-     * @param pAttrValue the fixed value of pattern parameter attrValue, or null if not bound.
      * @param pPlAttr the fixed value of pattern parameter plAttr, or null if not bound.
      * @param pAttrType the fixed value of pattern parameter attrType, or null if not bound.
+     * @param pAttrValue the fixed value of pattern parameter attrValue, or null if not bound.
      * @return the new, mutable (partial) match object.
      * 
      */
-    public static Attribute.Match newMutableMatch(final edu.toronto.cs.se.mmint.productline.Class pPlElem, final String pElemType, final String pAttrValue, final edu.toronto.cs.se.mmint.productline.Attribute pPlAttr, final String pAttrType) {
-      return new Mutable(pPlElem, pElemType, pAttrValue, pPlAttr, pAttrType);
+    public static Attribute.Match newMutableMatch(final edu.toronto.cs.se.mmint.productline.Class pPlElem, final String pElemType, final edu.toronto.cs.se.mmint.productline.Attribute pPlAttr, final String pAttrType, final String pAttrValue) {
+      return new Mutable(pPlElem, pElemType, pPlAttr, pAttrType, pAttrValue);
     }
     
     /**
@@ -284,19 +295,19 @@ public final class Attribute extends BaseGeneratedEMFQuerySpecification<Attribut
      * <p>The returned match will be immutable. Use {@link #newEmptyMatch()} to obtain a mutable match object.
      * @param pPlElem the fixed value of pattern parameter plElem, or null if not bound.
      * @param pElemType the fixed value of pattern parameter elemType, or null if not bound.
-     * @param pAttrValue the fixed value of pattern parameter attrValue, or null if not bound.
      * @param pPlAttr the fixed value of pattern parameter plAttr, or null if not bound.
      * @param pAttrType the fixed value of pattern parameter attrType, or null if not bound.
+     * @param pAttrValue the fixed value of pattern parameter attrValue, or null if not bound.
      * @return the (partial) match object.
      * 
      */
-    public static Attribute.Match newMatch(final edu.toronto.cs.se.mmint.productline.Class pPlElem, final String pElemType, final String pAttrValue, final edu.toronto.cs.se.mmint.productline.Attribute pPlAttr, final String pAttrType) {
-      return new Immutable(pPlElem, pElemType, pAttrValue, pPlAttr, pAttrType);
+    public static Attribute.Match newMatch(final edu.toronto.cs.se.mmint.productline.Class pPlElem, final String pElemType, final edu.toronto.cs.se.mmint.productline.Attribute pPlAttr, final String pAttrType, final String pAttrValue) {
+      return new Immutable(pPlElem, pElemType, pPlAttr, pAttrType, pAttrValue);
     }
     
     private static final class Mutable extends Attribute.Match {
-      Mutable(final edu.toronto.cs.se.mmint.productline.Class pPlElem, final String pElemType, final String pAttrValue, final edu.toronto.cs.se.mmint.productline.Attribute pPlAttr, final String pAttrType) {
-        super(pPlElem, pElemType, pAttrValue, pPlAttr, pAttrType);
+      Mutable(final edu.toronto.cs.se.mmint.productline.Class pPlElem, final String pElemType, final edu.toronto.cs.se.mmint.productline.Attribute pPlAttr, final String pAttrType, final String pAttrValue) {
+        super(pPlElem, pElemType, pPlAttr, pAttrType, pAttrValue);
       }
       
       @Override
@@ -306,8 +317,8 @@ public final class Attribute extends BaseGeneratedEMFQuerySpecification<Attribut
     }
     
     private static final class Immutable extends Attribute.Match {
-      Immutable(final edu.toronto.cs.se.mmint.productline.Class pPlElem, final String pElemType, final String pAttrValue, final edu.toronto.cs.se.mmint.productline.Attribute pPlAttr, final String pAttrType) {
-        super(pPlElem, pElemType, pAttrValue, pPlAttr, pAttrType);
+      Immutable(final edu.toronto.cs.se.mmint.productline.Class pPlElem, final String pElemType, final edu.toronto.cs.se.mmint.productline.Attribute pPlAttr, final String pAttrType, final String pAttrValue) {
+        super(pPlElem, pElemType, pPlAttr, pAttrType, pAttrValue);
       }
       
       @Override
@@ -329,7 +340,7 @@ public final class Attribute extends BaseGeneratedEMFQuerySpecification<Attribut
    * <p>Original source:
    * <code><pre>
    * pattern attribute(plElem: Class, elemType: java String,
-   *                   attrValue: java String, plAttr: Attribute, attrType: java String) {
+   *                   plAttr: Attribute, attrType: java String, attrValue: java String) {
    *   find classType(plElem, elemType);
    *   Class.attributes(plElem, plAttr);
    *   Attribute.type.name(plAttr, attrType);
@@ -373,11 +384,11 @@ public final class Attribute extends BaseGeneratedEMFQuerySpecification<Attribut
     
     private static final int POSITION_ELEMTYPE = 1;
     
-    private static final int POSITION_ATTRVALUE = 2;
+    private static final int POSITION_PLATTR = 2;
     
-    private static final int POSITION_PLATTR = 3;
+    private static final int POSITION_ATTRTYPE = 3;
     
-    private static final int POSITION_ATTRTYPE = 4;
+    private static final int POSITION_ATTRVALUE = 4;
     
     private static final Logger LOGGER = ViatraQueryLoggingUtil.getLogger(Attribute.Matcher.class);
     
@@ -397,14 +408,14 @@ public final class Attribute extends BaseGeneratedEMFQuerySpecification<Attribut
      * Returns the set of all matches of the pattern that conform to the given fixed values of some parameters.
      * @param pPlElem the fixed value of pattern parameter plElem, or null if not bound.
      * @param pElemType the fixed value of pattern parameter elemType, or null if not bound.
-     * @param pAttrValue the fixed value of pattern parameter attrValue, or null if not bound.
      * @param pPlAttr the fixed value of pattern parameter plAttr, or null if not bound.
      * @param pAttrType the fixed value of pattern parameter attrType, or null if not bound.
+     * @param pAttrValue the fixed value of pattern parameter attrValue, or null if not bound.
      * @return matches represented as a Match object.
      * 
      */
-    public Collection<Attribute.Match> getAllMatches(final edu.toronto.cs.se.mmint.productline.Class pPlElem, final String pElemType, final String pAttrValue, final edu.toronto.cs.se.mmint.productline.Attribute pPlAttr, final String pAttrType) {
-      return rawStreamAllMatches(new Object[]{pPlElem, pElemType, pAttrValue, pPlAttr, pAttrType}).collect(Collectors.toSet());
+    public Collection<Attribute.Match> getAllMatches(final edu.toronto.cs.se.mmint.productline.Class pPlElem, final String pElemType, final edu.toronto.cs.se.mmint.productline.Attribute pPlAttr, final String pAttrType, final String pAttrValue) {
+      return rawStreamAllMatches(new Object[]{pPlElem, pElemType, pPlAttr, pAttrType, pAttrValue}).collect(Collectors.toSet());
     }
     
     /**
@@ -415,14 +426,14 @@ public final class Attribute extends BaseGeneratedEMFQuerySpecification<Attribut
      * In such cases, either rely on {@link #getAllMatches()} or collect the results of the stream in end-user code.
      * @param pPlElem the fixed value of pattern parameter plElem, or null if not bound.
      * @param pElemType the fixed value of pattern parameter elemType, or null if not bound.
-     * @param pAttrValue the fixed value of pattern parameter attrValue, or null if not bound.
      * @param pPlAttr the fixed value of pattern parameter plAttr, or null if not bound.
      * @param pAttrType the fixed value of pattern parameter attrType, or null if not bound.
+     * @param pAttrValue the fixed value of pattern parameter attrValue, or null if not bound.
      * @return a stream of matches represented as a Match object.
      * 
      */
-    public Stream<Attribute.Match> streamAllMatches(final edu.toronto.cs.se.mmint.productline.Class pPlElem, final String pElemType, final String pAttrValue, final edu.toronto.cs.se.mmint.productline.Attribute pPlAttr, final String pAttrType) {
-      return rawStreamAllMatches(new Object[]{pPlElem, pElemType, pAttrValue, pPlAttr, pAttrType});
+    public Stream<Attribute.Match> streamAllMatches(final edu.toronto.cs.se.mmint.productline.Class pPlElem, final String pElemType, final edu.toronto.cs.se.mmint.productline.Attribute pPlAttr, final String pAttrType, final String pAttrValue) {
+      return rawStreamAllMatches(new Object[]{pPlElem, pElemType, pPlAttr, pAttrType, pAttrValue});
     }
     
     /**
@@ -430,14 +441,14 @@ public final class Attribute extends BaseGeneratedEMFQuerySpecification<Attribut
      * Neither determinism nor randomness of selection is guaranteed.
      * @param pPlElem the fixed value of pattern parameter plElem, or null if not bound.
      * @param pElemType the fixed value of pattern parameter elemType, or null if not bound.
-     * @param pAttrValue the fixed value of pattern parameter attrValue, or null if not bound.
      * @param pPlAttr the fixed value of pattern parameter plAttr, or null if not bound.
      * @param pAttrType the fixed value of pattern parameter attrType, or null if not bound.
+     * @param pAttrValue the fixed value of pattern parameter attrValue, or null if not bound.
      * @return a match represented as a Match object, or null if no match is found.
      * 
      */
-    public Optional<Attribute.Match> getOneArbitraryMatch(final edu.toronto.cs.se.mmint.productline.Class pPlElem, final String pElemType, final String pAttrValue, final edu.toronto.cs.se.mmint.productline.Attribute pPlAttr, final String pAttrType) {
-      return rawGetOneArbitraryMatch(new Object[]{pPlElem, pElemType, pAttrValue, pPlAttr, pAttrType});
+    public Optional<Attribute.Match> getOneArbitraryMatch(final edu.toronto.cs.se.mmint.productline.Class pPlElem, final String pElemType, final edu.toronto.cs.se.mmint.productline.Attribute pPlAttr, final String pAttrType, final String pAttrValue) {
+      return rawGetOneArbitraryMatch(new Object[]{pPlElem, pElemType, pPlAttr, pAttrType, pAttrValue});
     }
     
     /**
@@ -445,28 +456,28 @@ public final class Attribute extends BaseGeneratedEMFQuerySpecification<Attribut
      * under any possible substitution of the unspecified parameters (if any).
      * @param pPlElem the fixed value of pattern parameter plElem, or null if not bound.
      * @param pElemType the fixed value of pattern parameter elemType, or null if not bound.
-     * @param pAttrValue the fixed value of pattern parameter attrValue, or null if not bound.
      * @param pPlAttr the fixed value of pattern parameter plAttr, or null if not bound.
      * @param pAttrType the fixed value of pattern parameter attrType, or null if not bound.
+     * @param pAttrValue the fixed value of pattern parameter attrValue, or null if not bound.
      * @return true if the input is a valid (partial) match of the pattern.
      * 
      */
-    public boolean hasMatch(final edu.toronto.cs.se.mmint.productline.Class pPlElem, final String pElemType, final String pAttrValue, final edu.toronto.cs.se.mmint.productline.Attribute pPlAttr, final String pAttrType) {
-      return rawHasMatch(new Object[]{pPlElem, pElemType, pAttrValue, pPlAttr, pAttrType});
+    public boolean hasMatch(final edu.toronto.cs.se.mmint.productline.Class pPlElem, final String pElemType, final edu.toronto.cs.se.mmint.productline.Attribute pPlAttr, final String pAttrType, final String pAttrValue) {
+      return rawHasMatch(new Object[]{pPlElem, pElemType, pPlAttr, pAttrType, pAttrValue});
     }
     
     /**
      * Returns the number of all matches of the pattern that conform to the given fixed values of some parameters.
      * @param pPlElem the fixed value of pattern parameter plElem, or null if not bound.
      * @param pElemType the fixed value of pattern parameter elemType, or null if not bound.
-     * @param pAttrValue the fixed value of pattern parameter attrValue, or null if not bound.
      * @param pPlAttr the fixed value of pattern parameter plAttr, or null if not bound.
      * @param pAttrType the fixed value of pattern parameter attrType, or null if not bound.
+     * @param pAttrValue the fixed value of pattern parameter attrValue, or null if not bound.
      * @return the number of pattern matches found.
      * 
      */
-    public int countMatches(final edu.toronto.cs.se.mmint.productline.Class pPlElem, final String pElemType, final String pAttrValue, final edu.toronto.cs.se.mmint.productline.Attribute pPlAttr, final String pAttrType) {
-      return rawCountMatches(new Object[]{pPlElem, pElemType, pAttrValue, pPlAttr, pAttrType});
+    public int countMatches(final edu.toronto.cs.se.mmint.productline.Class pPlElem, final String pElemType, final edu.toronto.cs.se.mmint.productline.Attribute pPlAttr, final String pAttrType, final String pAttrValue) {
+      return rawCountMatches(new Object[]{pPlElem, pElemType, pPlAttr, pAttrType, pAttrValue});
     }
     
     /**
@@ -474,15 +485,15 @@ public final class Attribute extends BaseGeneratedEMFQuerySpecification<Attribut
      * Neither determinism nor randomness of selection is guaranteed.
      * @param pPlElem the fixed value of pattern parameter plElem, or null if not bound.
      * @param pElemType the fixed value of pattern parameter elemType, or null if not bound.
-     * @param pAttrValue the fixed value of pattern parameter attrValue, or null if not bound.
      * @param pPlAttr the fixed value of pattern parameter plAttr, or null if not bound.
      * @param pAttrType the fixed value of pattern parameter attrType, or null if not bound.
+     * @param pAttrValue the fixed value of pattern parameter attrValue, or null if not bound.
      * @param processor the action that will process the selected match.
      * @return true if the pattern has at least one match with the given parameter values, false if the processor was not invoked
      * 
      */
-    public boolean forOneArbitraryMatch(final edu.toronto.cs.se.mmint.productline.Class pPlElem, final String pElemType, final String pAttrValue, final edu.toronto.cs.se.mmint.productline.Attribute pPlAttr, final String pAttrType, final Consumer<? super Attribute.Match> processor) {
-      return rawForOneArbitraryMatch(new Object[]{pPlElem, pElemType, pAttrValue, pPlAttr, pAttrType}, processor);
+    public boolean forOneArbitraryMatch(final edu.toronto.cs.se.mmint.productline.Class pPlElem, final String pElemType, final edu.toronto.cs.se.mmint.productline.Attribute pPlAttr, final String pAttrType, final String pAttrValue, final Consumer<? super Attribute.Match> processor) {
+      return rawForOneArbitraryMatch(new Object[]{pPlElem, pElemType, pPlAttr, pAttrType, pAttrValue}, processor);
     }
     
     /**
@@ -491,14 +502,14 @@ public final class Attribute extends BaseGeneratedEMFQuerySpecification<Attribut
      * <p>The returned match will be immutable. Use {@link #newEmptyMatch()} to obtain a mutable match object.
      * @param pPlElem the fixed value of pattern parameter plElem, or null if not bound.
      * @param pElemType the fixed value of pattern parameter elemType, or null if not bound.
-     * @param pAttrValue the fixed value of pattern parameter attrValue, or null if not bound.
      * @param pPlAttr the fixed value of pattern parameter plAttr, or null if not bound.
      * @param pAttrType the fixed value of pattern parameter attrType, or null if not bound.
+     * @param pAttrValue the fixed value of pattern parameter attrValue, or null if not bound.
      * @return the (partial) match object.
      * 
      */
-    public Attribute.Match newMatch(final edu.toronto.cs.se.mmint.productline.Class pPlElem, final String pElemType, final String pAttrValue, final edu.toronto.cs.se.mmint.productline.Attribute pPlAttr, final String pAttrType) {
-      return Attribute.Match.newMatch(pPlElem, pElemType, pAttrValue, pPlAttr, pAttrType);
+    public Attribute.Match newMatch(final edu.toronto.cs.se.mmint.productline.Class pPlElem, final String pElemType, final edu.toronto.cs.se.mmint.productline.Attribute pPlAttr, final String pAttrType, final String pAttrValue) {
+      return Attribute.Match.newMatch(pPlElem, pElemType, pPlAttr, pAttrType, pAttrValue);
     }
     
     /**
@@ -552,8 +563,8 @@ public final class Attribute extends BaseGeneratedEMFQuerySpecification<Attribut
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<edu.toronto.cs.se.mmint.productline.Class> streamAllValuesOfplElem(final String pElemType, final String pAttrValue, final edu.toronto.cs.se.mmint.productline.Attribute pPlAttr, final String pAttrType) {
-      return rawStreamAllValuesOfplElem(new Object[]{null, pElemType, pAttrValue, pPlAttr, pAttrType});
+    public Stream<edu.toronto.cs.se.mmint.productline.Class> streamAllValuesOfplElem(final String pElemType, final edu.toronto.cs.se.mmint.productline.Attribute pPlAttr, final String pAttrType, final String pAttrValue) {
+      return rawStreamAllValuesOfplElem(new Object[]{null, pElemType, pPlAttr, pAttrType, pAttrValue});
     }
     
     /**
@@ -570,8 +581,8 @@ public final class Attribute extends BaseGeneratedEMFQuerySpecification<Attribut
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<edu.toronto.cs.se.mmint.productline.Class> getAllValuesOfplElem(final String pElemType, final String pAttrValue, final edu.toronto.cs.se.mmint.productline.Attribute pPlAttr, final String pAttrType) {
-      return rawStreamAllValuesOfplElem(new Object[]{null, pElemType, pAttrValue, pPlAttr, pAttrType}).collect(Collectors.toSet());
+    public Set<edu.toronto.cs.se.mmint.productline.Class> getAllValuesOfplElem(final String pElemType, final edu.toronto.cs.se.mmint.productline.Attribute pPlAttr, final String pAttrType, final String pAttrValue) {
+      return rawStreamAllValuesOfplElem(new Object[]{null, pElemType, pPlAttr, pAttrType, pAttrValue}).collect(Collectors.toSet());
     }
     
     /**
@@ -625,8 +636,8 @@ public final class Attribute extends BaseGeneratedEMFQuerySpecification<Attribut
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<String> streamAllValuesOfelemType(final edu.toronto.cs.se.mmint.productline.Class pPlElem, final String pAttrValue, final edu.toronto.cs.se.mmint.productline.Attribute pPlAttr, final String pAttrType) {
-      return rawStreamAllValuesOfelemType(new Object[]{pPlElem, null, pAttrValue, pPlAttr, pAttrType});
+    public Stream<String> streamAllValuesOfelemType(final edu.toronto.cs.se.mmint.productline.Class pPlElem, final edu.toronto.cs.se.mmint.productline.Attribute pPlAttr, final String pAttrType, final String pAttrValue) {
+      return rawStreamAllValuesOfelemType(new Object[]{pPlElem, null, pPlAttr, pAttrType, pAttrValue});
     }
     
     /**
@@ -643,8 +654,154 @@ public final class Attribute extends BaseGeneratedEMFQuerySpecification<Attribut
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<String> getAllValuesOfelemType(final edu.toronto.cs.se.mmint.productline.Class pPlElem, final String pAttrValue, final edu.toronto.cs.se.mmint.productline.Attribute pPlAttr, final String pAttrType) {
-      return rawStreamAllValuesOfelemType(new Object[]{pPlElem, null, pAttrValue, pPlAttr, pAttrType}).collect(Collectors.toSet());
+    public Set<String> getAllValuesOfelemType(final edu.toronto.cs.se.mmint.productline.Class pPlElem, final edu.toronto.cs.se.mmint.productline.Attribute pPlAttr, final String pAttrType, final String pAttrValue) {
+      return rawStreamAllValuesOfelemType(new Object[]{pPlElem, null, pPlAttr, pAttrType, pAttrValue}).collect(Collectors.toSet());
+    }
+    
+    /**
+     * Retrieve the set of values that occur in matches for plAttr.
+     * @return the Set of all values or empty set if there are no matches
+     * 
+     */
+    protected Stream<edu.toronto.cs.se.mmint.productline.Attribute> rawStreamAllValuesOfplAttr(final Object[] parameters) {
+      return rawStreamAllValues(POSITION_PLATTR, parameters).map(edu.toronto.cs.se.mmint.productline.Attribute.class::cast);
+    }
+    
+    /**
+     * Retrieve the set of values that occur in matches for plAttr.
+     * @return the Set of all values or empty set if there are no matches
+     * 
+     */
+    public Set<edu.toronto.cs.se.mmint.productline.Attribute> getAllValuesOfplAttr() {
+      return rawStreamAllValuesOfplAttr(emptyArray()).collect(Collectors.toSet());
+    }
+    
+    /**
+     * Retrieve the set of values that occur in matches for plAttr.
+     * @return the Set of all values or empty set if there are no matches
+     * 
+     */
+    public Stream<edu.toronto.cs.se.mmint.productline.Attribute> streamAllValuesOfplAttr() {
+      return rawStreamAllValuesOfplAttr(emptyArray());
+    }
+    
+    /**
+     * Retrieve the set of values that occur in matches for plAttr.
+     * </p>
+     * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
+     * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
+     * In such cases, either rely on {@link #getAllMatches()} or collect the results of the stream in end-user code.
+     *      
+     * @return the Stream of all values or empty set if there are no matches
+     * 
+     */
+    public Stream<edu.toronto.cs.se.mmint.productline.Attribute> streamAllValuesOfplAttr(final Attribute.Match partialMatch) {
+      return rawStreamAllValuesOfplAttr(partialMatch.toArray());
+    }
+    
+    /**
+     * Retrieve the set of values that occur in matches for plAttr.
+     * </p>
+     * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
+     * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
+     * In such cases, either rely on {@link #getAllMatches()} or collect the results of the stream in end-user code.
+     *      
+     * @return the Stream of all values or empty set if there are no matches
+     * 
+     */
+    public Stream<edu.toronto.cs.se.mmint.productline.Attribute> streamAllValuesOfplAttr(final edu.toronto.cs.se.mmint.productline.Class pPlElem, final String pElemType, final String pAttrType, final String pAttrValue) {
+      return rawStreamAllValuesOfplAttr(new Object[]{pPlElem, pElemType, null, pAttrType, pAttrValue});
+    }
+    
+    /**
+     * Retrieve the set of values that occur in matches for plAttr.
+     * @return the Set of all values or empty set if there are no matches
+     * 
+     */
+    public Set<edu.toronto.cs.se.mmint.productline.Attribute> getAllValuesOfplAttr(final Attribute.Match partialMatch) {
+      return rawStreamAllValuesOfplAttr(partialMatch.toArray()).collect(Collectors.toSet());
+    }
+    
+    /**
+     * Retrieve the set of values that occur in matches for plAttr.
+     * @return the Set of all values or empty set if there are no matches
+     * 
+     */
+    public Set<edu.toronto.cs.se.mmint.productline.Attribute> getAllValuesOfplAttr(final edu.toronto.cs.se.mmint.productline.Class pPlElem, final String pElemType, final String pAttrType, final String pAttrValue) {
+      return rawStreamAllValuesOfplAttr(new Object[]{pPlElem, pElemType, null, pAttrType, pAttrValue}).collect(Collectors.toSet());
+    }
+    
+    /**
+     * Retrieve the set of values that occur in matches for attrType.
+     * @return the Set of all values or empty set if there are no matches
+     * 
+     */
+    protected Stream<String> rawStreamAllValuesOfattrType(final Object[] parameters) {
+      return rawStreamAllValues(POSITION_ATTRTYPE, parameters).map(String.class::cast);
+    }
+    
+    /**
+     * Retrieve the set of values that occur in matches for attrType.
+     * @return the Set of all values or empty set if there are no matches
+     * 
+     */
+    public Set<String> getAllValuesOfattrType() {
+      return rawStreamAllValuesOfattrType(emptyArray()).collect(Collectors.toSet());
+    }
+    
+    /**
+     * Retrieve the set of values that occur in matches for attrType.
+     * @return the Set of all values or empty set if there are no matches
+     * 
+     */
+    public Stream<String> streamAllValuesOfattrType() {
+      return rawStreamAllValuesOfattrType(emptyArray());
+    }
+    
+    /**
+     * Retrieve the set of values that occur in matches for attrType.
+     * </p>
+     * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
+     * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
+     * In such cases, either rely on {@link #getAllMatches()} or collect the results of the stream in end-user code.
+     *      
+     * @return the Stream of all values or empty set if there are no matches
+     * 
+     */
+    public Stream<String> streamAllValuesOfattrType(final Attribute.Match partialMatch) {
+      return rawStreamAllValuesOfattrType(partialMatch.toArray());
+    }
+    
+    /**
+     * Retrieve the set of values that occur in matches for attrType.
+     * </p>
+     * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
+     * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
+     * In such cases, either rely on {@link #getAllMatches()} or collect the results of the stream in end-user code.
+     *      
+     * @return the Stream of all values or empty set if there are no matches
+     * 
+     */
+    public Stream<String> streamAllValuesOfattrType(final edu.toronto.cs.se.mmint.productline.Class pPlElem, final String pElemType, final edu.toronto.cs.se.mmint.productline.Attribute pPlAttr, final String pAttrValue) {
+      return rawStreamAllValuesOfattrType(new Object[]{pPlElem, pElemType, pPlAttr, null, pAttrValue});
+    }
+    
+    /**
+     * Retrieve the set of values that occur in matches for attrType.
+     * @return the Set of all values or empty set if there are no matches
+     * 
+     */
+    public Set<String> getAllValuesOfattrType(final Attribute.Match partialMatch) {
+      return rawStreamAllValuesOfattrType(partialMatch.toArray()).collect(Collectors.toSet());
+    }
+    
+    /**
+     * Retrieve the set of values that occur in matches for attrType.
+     * @return the Set of all values or empty set if there are no matches
+     * 
+     */
+    public Set<String> getAllValuesOfattrType(final edu.toronto.cs.se.mmint.productline.Class pPlElem, final String pElemType, final edu.toronto.cs.se.mmint.productline.Attribute pPlAttr, final String pAttrValue) {
+      return rawStreamAllValuesOfattrType(new Object[]{pPlElem, pElemType, pPlAttr, null, pAttrValue}).collect(Collectors.toSet());
     }
     
     /**
@@ -699,7 +856,7 @@ public final class Attribute extends BaseGeneratedEMFQuerySpecification<Attribut
      * 
      */
     public Stream<String> streamAllValuesOfattrValue(final edu.toronto.cs.se.mmint.productline.Class pPlElem, final String pElemType, final edu.toronto.cs.se.mmint.productline.Attribute pPlAttr, final String pAttrType) {
-      return rawStreamAllValuesOfattrValue(new Object[]{pPlElem, pElemType, null, pPlAttr, pAttrType});
+      return rawStreamAllValuesOfattrValue(new Object[]{pPlElem, pElemType, pPlAttr, pAttrType, null});
     }
     
     /**
@@ -717,159 +874,13 @@ public final class Attribute extends BaseGeneratedEMFQuerySpecification<Attribut
      * 
      */
     public Set<String> getAllValuesOfattrValue(final edu.toronto.cs.se.mmint.productline.Class pPlElem, final String pElemType, final edu.toronto.cs.se.mmint.productline.Attribute pPlAttr, final String pAttrType) {
-      return rawStreamAllValuesOfattrValue(new Object[]{pPlElem, pElemType, null, pPlAttr, pAttrType}).collect(Collectors.toSet());
-    }
-    
-    /**
-     * Retrieve the set of values that occur in matches for plAttr.
-     * @return the Set of all values or empty set if there are no matches
-     * 
-     */
-    protected Stream<edu.toronto.cs.se.mmint.productline.Attribute> rawStreamAllValuesOfplAttr(final Object[] parameters) {
-      return rawStreamAllValues(POSITION_PLATTR, parameters).map(edu.toronto.cs.se.mmint.productline.Attribute.class::cast);
-    }
-    
-    /**
-     * Retrieve the set of values that occur in matches for plAttr.
-     * @return the Set of all values or empty set if there are no matches
-     * 
-     */
-    public Set<edu.toronto.cs.se.mmint.productline.Attribute> getAllValuesOfplAttr() {
-      return rawStreamAllValuesOfplAttr(emptyArray()).collect(Collectors.toSet());
-    }
-    
-    /**
-     * Retrieve the set of values that occur in matches for plAttr.
-     * @return the Set of all values or empty set if there are no matches
-     * 
-     */
-    public Stream<edu.toronto.cs.se.mmint.productline.Attribute> streamAllValuesOfplAttr() {
-      return rawStreamAllValuesOfplAttr(emptyArray());
-    }
-    
-    /**
-     * Retrieve the set of values that occur in matches for plAttr.
-     * </p>
-     * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
-     * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
-     * In such cases, either rely on {@link #getAllMatches()} or collect the results of the stream in end-user code.
-     *      
-     * @return the Stream of all values or empty set if there are no matches
-     * 
-     */
-    public Stream<edu.toronto.cs.se.mmint.productline.Attribute> streamAllValuesOfplAttr(final Attribute.Match partialMatch) {
-      return rawStreamAllValuesOfplAttr(partialMatch.toArray());
-    }
-    
-    /**
-     * Retrieve the set of values that occur in matches for plAttr.
-     * </p>
-     * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
-     * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
-     * In such cases, either rely on {@link #getAllMatches()} or collect the results of the stream in end-user code.
-     *      
-     * @return the Stream of all values or empty set if there are no matches
-     * 
-     */
-    public Stream<edu.toronto.cs.se.mmint.productline.Attribute> streamAllValuesOfplAttr(final edu.toronto.cs.se.mmint.productline.Class pPlElem, final String pElemType, final String pAttrValue, final String pAttrType) {
-      return rawStreamAllValuesOfplAttr(new Object[]{pPlElem, pElemType, pAttrValue, null, pAttrType});
-    }
-    
-    /**
-     * Retrieve the set of values that occur in matches for plAttr.
-     * @return the Set of all values or empty set if there are no matches
-     * 
-     */
-    public Set<edu.toronto.cs.se.mmint.productline.Attribute> getAllValuesOfplAttr(final Attribute.Match partialMatch) {
-      return rawStreamAllValuesOfplAttr(partialMatch.toArray()).collect(Collectors.toSet());
-    }
-    
-    /**
-     * Retrieve the set of values that occur in matches for plAttr.
-     * @return the Set of all values or empty set if there are no matches
-     * 
-     */
-    public Set<edu.toronto.cs.se.mmint.productline.Attribute> getAllValuesOfplAttr(final edu.toronto.cs.se.mmint.productline.Class pPlElem, final String pElemType, final String pAttrValue, final String pAttrType) {
-      return rawStreamAllValuesOfplAttr(new Object[]{pPlElem, pElemType, pAttrValue, null, pAttrType}).collect(Collectors.toSet());
-    }
-    
-    /**
-     * Retrieve the set of values that occur in matches for attrType.
-     * @return the Set of all values or empty set if there are no matches
-     * 
-     */
-    protected Stream<String> rawStreamAllValuesOfattrType(final Object[] parameters) {
-      return rawStreamAllValues(POSITION_ATTRTYPE, parameters).map(String.class::cast);
-    }
-    
-    /**
-     * Retrieve the set of values that occur in matches for attrType.
-     * @return the Set of all values or empty set if there are no matches
-     * 
-     */
-    public Set<String> getAllValuesOfattrType() {
-      return rawStreamAllValuesOfattrType(emptyArray()).collect(Collectors.toSet());
-    }
-    
-    /**
-     * Retrieve the set of values that occur in matches for attrType.
-     * @return the Set of all values or empty set if there are no matches
-     * 
-     */
-    public Stream<String> streamAllValuesOfattrType() {
-      return rawStreamAllValuesOfattrType(emptyArray());
-    }
-    
-    /**
-     * Retrieve the set of values that occur in matches for attrType.
-     * </p>
-     * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
-     * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
-     * In such cases, either rely on {@link #getAllMatches()} or collect the results of the stream in end-user code.
-     *      
-     * @return the Stream of all values or empty set if there are no matches
-     * 
-     */
-    public Stream<String> streamAllValuesOfattrType(final Attribute.Match partialMatch) {
-      return rawStreamAllValuesOfattrType(partialMatch.toArray());
-    }
-    
-    /**
-     * Retrieve the set of values that occur in matches for attrType.
-     * </p>
-     * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
-     * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
-     * In such cases, either rely on {@link #getAllMatches()} or collect the results of the stream in end-user code.
-     *      
-     * @return the Stream of all values or empty set if there are no matches
-     * 
-     */
-    public Stream<String> streamAllValuesOfattrType(final edu.toronto.cs.se.mmint.productline.Class pPlElem, final String pElemType, final String pAttrValue, final edu.toronto.cs.se.mmint.productline.Attribute pPlAttr) {
-      return rawStreamAllValuesOfattrType(new Object[]{pPlElem, pElemType, pAttrValue, pPlAttr, null});
-    }
-    
-    /**
-     * Retrieve the set of values that occur in matches for attrType.
-     * @return the Set of all values or empty set if there are no matches
-     * 
-     */
-    public Set<String> getAllValuesOfattrType(final Attribute.Match partialMatch) {
-      return rawStreamAllValuesOfattrType(partialMatch.toArray()).collect(Collectors.toSet());
-    }
-    
-    /**
-     * Retrieve the set of values that occur in matches for attrType.
-     * @return the Set of all values or empty set if there are no matches
-     * 
-     */
-    public Set<String> getAllValuesOfattrType(final edu.toronto.cs.se.mmint.productline.Class pPlElem, final String pElemType, final String pAttrValue, final edu.toronto.cs.se.mmint.productline.Attribute pPlAttr) {
-      return rawStreamAllValuesOfattrType(new Object[]{pPlElem, pElemType, pAttrValue, pPlAttr, null}).collect(Collectors.toSet());
+      return rawStreamAllValuesOfattrValue(new Object[]{pPlElem, pElemType, pPlAttr, pAttrType, null}).collect(Collectors.toSet());
     }
     
     @Override
     protected Attribute.Match tupleToMatch(final Tuple t) {
       try {
-          return Attribute.Match.newMatch((edu.toronto.cs.se.mmint.productline.Class) t.get(POSITION_PLELEM), (String) t.get(POSITION_ELEMTYPE), (String) t.get(POSITION_ATTRVALUE), (edu.toronto.cs.se.mmint.productline.Attribute) t.get(POSITION_PLATTR), (String) t.get(POSITION_ATTRTYPE));
+          return Attribute.Match.newMatch((edu.toronto.cs.se.mmint.productline.Class) t.get(POSITION_PLELEM), (String) t.get(POSITION_ELEMTYPE), (edu.toronto.cs.se.mmint.productline.Attribute) t.get(POSITION_PLATTR), (String) t.get(POSITION_ATTRTYPE), (String) t.get(POSITION_ATTRVALUE));
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in tuple not properly typed!",e);
           return null;
@@ -879,7 +890,7 @@ public final class Attribute extends BaseGeneratedEMFQuerySpecification<Attribut
     @Override
     protected Attribute.Match arrayToMatch(final Object[] match) {
       try {
-          return Attribute.Match.newMatch((edu.toronto.cs.se.mmint.productline.Class) match[POSITION_PLELEM], (String) match[POSITION_ELEMTYPE], (String) match[POSITION_ATTRVALUE], (edu.toronto.cs.se.mmint.productline.Attribute) match[POSITION_PLATTR], (String) match[POSITION_ATTRTYPE]);
+          return Attribute.Match.newMatch((edu.toronto.cs.se.mmint.productline.Class) match[POSITION_PLELEM], (String) match[POSITION_ELEMTYPE], (edu.toronto.cs.se.mmint.productline.Attribute) match[POSITION_PLATTR], (String) match[POSITION_ATTRTYPE], (String) match[POSITION_ATTRVALUE]);
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in array not properly typed!",e);
           return null;
@@ -889,7 +900,7 @@ public final class Attribute extends BaseGeneratedEMFQuerySpecification<Attribut
     @Override
     protected Attribute.Match arrayToMatchMutable(final Object[] match) {
       try {
-          return Attribute.Match.newMutableMatch((edu.toronto.cs.se.mmint.productline.Class) match[POSITION_PLELEM], (String) match[POSITION_ELEMTYPE], (String) match[POSITION_ATTRVALUE], (edu.toronto.cs.se.mmint.productline.Attribute) match[POSITION_PLATTR], (String) match[POSITION_ATTRTYPE]);
+          return Attribute.Match.newMutableMatch((edu.toronto.cs.se.mmint.productline.Class) match[POSITION_PLELEM], (String) match[POSITION_ELEMTYPE], (edu.toronto.cs.se.mmint.productline.Attribute) match[POSITION_PLATTR], (String) match[POSITION_ATTRTYPE], (String) match[POSITION_ATTRVALUE]);
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in array not properly typed!",e);
           return null;
@@ -940,7 +951,7 @@ public final class Attribute extends BaseGeneratedEMFQuerySpecification<Attribut
   
   @Override
   public Attribute.Match newMatch(final Object... parameters) {
-    return Attribute.Match.newMatch((edu.toronto.cs.se.mmint.productline.Class) parameters[0], (java.lang.String) parameters[1], (java.lang.String) parameters[2], (edu.toronto.cs.se.mmint.productline.Attribute) parameters[3], (java.lang.String) parameters[4]);
+    return Attribute.Match.newMatch((edu.toronto.cs.se.mmint.productline.Class) parameters[0], (java.lang.String) parameters[1], (edu.toronto.cs.se.mmint.productline.Attribute) parameters[2], (java.lang.String) parameters[3], (java.lang.String) parameters[4]);
   }
   
   /**
@@ -976,13 +987,13 @@ public final class Attribute extends BaseGeneratedEMFQuerySpecification<Attribut
     
     private final PParameter parameter_elemType = new PParameter("elemType", "java.lang.String", new JavaTransitiveInstancesKey(java.lang.String.class), PParameterDirection.INOUT);
     
-    private final PParameter parameter_attrValue = new PParameter("attrValue", "java.lang.String", new JavaTransitiveInstancesKey(java.lang.String.class), PParameterDirection.INOUT);
-    
     private final PParameter parameter_plAttr = new PParameter("plAttr", "edu.toronto.cs.se.mmint.productline.Attribute", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("model://edu.toronto.cs.se.mmint.productline", "Attribute")), PParameterDirection.INOUT);
     
     private final PParameter parameter_attrType = new PParameter("attrType", "java.lang.String", new JavaTransitiveInstancesKey(java.lang.String.class), PParameterDirection.INOUT);
     
-    private final List<PParameter> parameters = Arrays.asList(parameter_plElem, parameter_elemType, parameter_attrValue, parameter_plAttr, parameter_attrType);
+    private final PParameter parameter_attrValue = new PParameter("attrValue", "java.lang.String", new JavaTransitiveInstancesKey(java.lang.String.class), PParameterDirection.INOUT);
+    
+    private final List<PParameter> parameters = Arrays.asList(parameter_plElem, parameter_elemType, parameter_plAttr, parameter_attrType, parameter_attrValue);
     
     private GeneratedPQuery() {
       super(PVisibility.PUBLIC);
@@ -995,7 +1006,7 @@ public final class Attribute extends BaseGeneratedEMFQuerySpecification<Attribut
     
     @Override
     public List<String> getParameterNames() {
-      return Arrays.asList("plElem","elemType","attrValue","plAttr","attrType");
+      return Arrays.asList("plElem","elemType","plAttr","attrType","attrValue");
     }
     
     @Override
@@ -1011,20 +1022,20 @@ public final class Attribute extends BaseGeneratedEMFQuerySpecification<Attribut
           PBody body = new PBody(this);
           PVariable var_plElem = body.getOrCreateVariableByName("plElem");
           PVariable var_elemType = body.getOrCreateVariableByName("elemType");
-          PVariable var_attrValue = body.getOrCreateVariableByName("attrValue");
           PVariable var_plAttr = body.getOrCreateVariableByName("plAttr");
           PVariable var_attrType = body.getOrCreateVariableByName("attrType");
+          PVariable var_attrValue = body.getOrCreateVariableByName("attrValue");
           new TypeConstraint(body, Tuples.flatTupleOf(var_plElem), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("model://edu.toronto.cs.se.mmint.productline", "Class")));
           new TypeFilterConstraint(body, Tuples.flatTupleOf(var_elemType), new JavaTransitiveInstancesKey(java.lang.String.class));
-          new TypeFilterConstraint(body, Tuples.flatTupleOf(var_attrValue), new JavaTransitiveInstancesKey(java.lang.String.class));
           new TypeConstraint(body, Tuples.flatTupleOf(var_plAttr), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("model://edu.toronto.cs.se.mmint.productline", "Attribute")));
           new TypeFilterConstraint(body, Tuples.flatTupleOf(var_attrType), new JavaTransitiveInstancesKey(java.lang.String.class));
+          new TypeFilterConstraint(body, Tuples.flatTupleOf(var_attrValue), new JavaTransitiveInstancesKey(java.lang.String.class));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
              new ExportedParameter(body, var_plElem, parameter_plElem),
              new ExportedParameter(body, var_elemType, parameter_elemType),
-             new ExportedParameter(body, var_attrValue, parameter_attrValue),
              new ExportedParameter(body, var_plAttr, parameter_plAttr),
-             new ExportedParameter(body, var_attrType, parameter_attrType)
+             new ExportedParameter(body, var_attrType, parameter_attrType),
+             new ExportedParameter(body, var_attrValue, parameter_attrValue)
           ));
           //   find classType(plElem, elemType)
           new PositivePatternCall(body, Tuples.flatTupleOf(var_plElem, var_elemType), ClassType.instance().getInternalQueryRepresentation());

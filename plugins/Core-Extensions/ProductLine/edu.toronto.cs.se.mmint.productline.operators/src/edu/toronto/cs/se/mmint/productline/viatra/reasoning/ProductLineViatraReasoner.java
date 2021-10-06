@@ -262,12 +262,6 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
         plCall.getParameters().add(plDst);
         plCall.getParameters().add(createStringValue(edgeReference.getEReferenceType().getName()));
       }
-      // attribute value
-      else if (edgeFeature instanceof EAttribute edgeAttribute) {
-        var value = ((StringValue) pathConstraint.getDst()).getValue();
-        plCall.getParameters().add(createStringValue(value));
-        //TODO add value as variable
-      }
       // path edge
       var edgeName = ProductLineViatraReasoner.EXTRA_VAR_NAME + (extraVars + v++);
       var plEdgeVar = createParameterAndRef(edgeName, plElemType, ParameterDirection.OUT);
@@ -276,6 +270,12 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
       plCall.getParameters().add(createVariableReference(plEdgeVar));
       plCall.getParameters().add(createStringValue(edgeFeature.getName()));
       plConstraints.add(plConstraint);
+      // attribute value
+      if (edgeFeature instanceof EAttribute edgeAttribute) {
+        var value = ((StringValue) pathConstraint.getDst()).getValue();
+        plCall.getParameters().add(createStringValue(value));
+        //TODO add value as variable
+      }
     }
 
     return plConstraints;
