@@ -219,6 +219,7 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
                                                  throws MMINTException {
     var plConstraints = new ArrayList<PatternCompositionConstraint>();
     var plElemType = ProductLinePackage.eINSTANCE.getPLElement();
+    var v = 0;
     for (var i = 0; i < pathConstraint.getEdgeTypes().size(); i++) {
       var edgeFeature = pathConstraint.getEdgeTypes().get(i).getRefname();
       // PL library call
@@ -228,26 +229,28 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
       plConstraint.setCall(plCall);
       plCall.setPatternRef((edgeFeature instanceof EReference) ? libRefPattern : libAttrPattern);
       plCall.setTransitive(ClosureType.ORIGINAL);
-      if (i == 0) {
-        // path source
-        var srcName = pathConstraint.getSrc().getVariable().getName();
-        var plSrcVar = plVarsMap.get(srcName);
-        if (plSrcVar == null) {
-          plSrcVar = createParameterAndRef(srcName, plElemType, ParameterDirection.OUT);
-          plVarsMap.put(srcName, plSrcVar);
-          plVariables.add(plSrcVar);
-          plParameters.add(((ParameterRef) plSrcVar).getReferredParam());
-        }
-        var plSrc = createVariableReference(plSrcVar);
-        plCall.getParameters().add(plSrc);
-        plCall.getParameters().add(createStringValue(pathConstraint.getSourceType().getClassname().getName()));
+      // path source
+      var srcName = (i == 0) ?
+        pathConstraint.getSrc().getVariable().getName() :
+        ProductLineViatraReasoner.EXTRA_VAR_NAME + (extraVars + v++);
+      var srcType = (i == 0) ?
+        pathConstraint.getSourceType().getClassname().getName() :
+        edgeFeature.getEContainingClass().getName();
+      var plSrcVar = plVarsMap.get(srcName);
+      if (plSrcVar == null) {
+        plSrcVar = createParameterAndRef(srcName, plElemType, ParameterDirection.OUT);
+        plVarsMap.put(srcName, plSrcVar);
+        plVariables.add(plSrcVar);
+        plParameters.add(((ParameterRef) plSrcVar).getReferredParam());
       }
-      else {
-        //TODO handle multiple edges
-      }
+      var plSrc = createVariableReference(plSrcVar);
+      plCall.getParameters().add(plSrc);
+      plCall.getParameters().add(createStringValue(srcType));
+      // reference destination
       if (edgeFeature instanceof EReference edgeReference) {
-        // reference destination
-        var dstName = ((VariableReference) pathConstraint.getDst()).getVariable().getName();
+        var dstName = (i == (pathConstraint.getEdgeTypes().size()-1)) ?
+          ((VariableReference) pathConstraint.getDst()).getVariable().getName() :
+          ProductLineViatraReasoner.EXTRA_VAR_NAME + (extraVars + v++);
         var plDstVar = plVarsMap.get(dstName);
         if (plDstVar == null) {
           plDstVar = createParameterAndRef(dstName, plElemType, ParameterDirection.OUT);
@@ -259,14 +262,14 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
         plCall.getParameters().add(plDst);
         plCall.getParameters().add(createStringValue(edgeReference.getEReferenceType().getName()));
       }
+      // attribute value
       else if (edgeFeature instanceof EAttribute edgeAttribute) {
-        // attribute value
         var value = ((StringValue) pathConstraint.getDst()).getValue();
         plCall.getParameters().add(createStringValue(value));
         //TODO add value as variable
       }
       // path edge
-      var edgeName = ProductLineViatraReasoner.EXTRA_VAR_NAME + (i+extraVars);
+      var edgeName = ProductLineViatraReasoner.EXTRA_VAR_NAME + (extraVars + v++);
       var plEdgeVar = createParameterAndRef(edgeName, plElemType, ParameterDirection.OUT);
       plVariables.add(plEdgeVar);
       plParameters.add(plEdgeVar.getReferredParam());
