@@ -39,6 +39,7 @@ public class ToProduct extends OperatorImpl {
   private Input input;
   private Output output;
   private Z3Solver solver;
+  private Map<String, Boolean> solverCache;
 
   private static class Input {
     public final static String MODEL = "productLine";
@@ -77,6 +78,7 @@ public class ToProduct extends OperatorImpl {
     this.input = new Input(inputsByName);
     this.output = new Output(outputMIDsByName, getWorkingPath(), this.input);
     this.solver = new Z3Solver();
+    this.solverCache = new HashMap<>();
   }
 
   private boolean isInProduct(PLElement plElement, Map<String, Boolean> varsValues) {
@@ -101,8 +103,10 @@ public class ToProduct extends OperatorImpl {
       }
       presenceCondition = presenceCondition.replaceAll("\\b" + variable + "\\b", value.toString());
     }
+    var result = this.solverCache.computeIfAbsent(presenceCondition,
+                                                  k -> this.solver.checkSat(Z3Utils.assertion(k)).isSAT());
 
-    return this.solver.checkSat(Z3Utils.assertion(presenceCondition)).isSAT();
+    return result;
   }
 
   private void toProduct() throws MMINTException {
