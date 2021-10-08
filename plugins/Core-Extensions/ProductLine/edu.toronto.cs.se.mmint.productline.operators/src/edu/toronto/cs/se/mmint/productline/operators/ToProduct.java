@@ -17,6 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
 
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
@@ -124,8 +125,21 @@ public class ToProduct extends OperatorImpl {
         if (!isInProduct(plAttribute, varsValues)) {
           continue;
         }
-        //TODO MMINT[PL] Convert string value to appropriate EAttribute data type
-        FileUtils.setModelObjectFeature(productModelObj, plAttribute.getType().getName(), plAttribute.getValue());
+        var emfType = plAttribute.getType().getEAttributeType();
+        Object value;
+        if (emfType instanceof EEnum) {
+          value = emfType.getEPackage().getEFactoryInstance().createFromString(emfType, plAttribute.getValue());
+        }
+        else {
+          value = switch(emfType.getName()) {
+            case "EInt"    -> Integer.parseInt(plAttribute.getValue());
+            case "EFloat"  -> Float.parseFloat(plAttribute.getValue());
+            case "EDouble" -> Double.parseDouble(plAttribute.getValue());
+            case "EString" -> plAttribute.getValue();
+            default        -> plAttribute.getValue();
+          };
+        }
+        FileUtils.setModelObjectFeature(productModelObj, plAttribute.getType().getName(), value);
       }
     }
     for (var plReference : this.input.pl.getReferences()) {
