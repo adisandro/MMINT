@@ -16,15 +16,17 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
+import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.productline.Attribute;
 import edu.toronto.cs.se.mmint.productline.PLElement;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.productline.ProductLineFactory;
 import edu.toronto.cs.se.mmint.productline.ProductLinePackage;
 import edu.toronto.cs.se.mmint.productline.Reference;
+import edu.toronto.cs.se.mmint.productline.mid.ProductLineMIDPackage;
+import edu.toronto.cs.se.mmint.productline.mid.impl.ProductLineMIDPackageImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -119,13 +121,21 @@ public class ProductLinePackageImpl extends EPackageImpl implements ProductLineP
     ProductLinePackageImpl.isInited = true;
 
     // Initialize simple dependencies
-    EcorePackage.eINSTANCE.eClass();
+    MIDPackage.eINSTANCE.eClass();
+
+    // Obtain or create and register interdependencies
+    Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(ProductLineMIDPackage.eNS_URI);
+    var theProductLineMIDPackage = (ProductLineMIDPackageImpl) (registeredPackage instanceof ProductLineMIDPackageImpl
+      ? registeredPackage
+      : ProductLineMIDPackage.eINSTANCE);
 
     // Create package meta-data objects
     theProductLinePackage.createPackageContents();
+    theProductLineMIDPackage.createPackageContents();
 
     // Initialize created meta-data
     theProductLinePackage.initializePackageContents();
+    theProductLineMIDPackage.initializePackageContents();
 
     // Mark meta-data to indicate it can't be changed
     theProductLinePackage.freeze();
@@ -405,7 +415,10 @@ public class ProductLinePackageImpl extends EPackageImpl implements ProductLineP
     setNsURI(ProductLinePackage.eNS_URI);
 
     // Obtain other dependent packages
-    var theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
+    var theProductLineMIDPackage = (ProductLineMIDPackage) EPackage.Registry.INSTANCE.getEPackage(ProductLineMIDPackage.eNS_URI);
+
+    // Add subpackages
+    getESubpackages().add(theProductLineMIDPackage);
 
     // Create type parameters
 
@@ -428,7 +441,7 @@ public class ProductLinePackageImpl extends EPackageImpl implements ProductLineP
     initEReference(getProductLine_References(), this.getReference(), null, "references", null, 0, -1, ProductLine.class,
                    !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, EPackageImpl.IS_COMPOSITE, !EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE,
                    EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
-    initEReference(getProductLine_Metamodel(), theEcorePackage.getEPackage(), null, "metamodel", null, 1, 1,
+    initEReference(getProductLine_Metamodel(), this.ecorePackage.getEPackage(), null, "metamodel", null, 1, 1,
                    ProductLine.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES,
                    !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
 
@@ -450,7 +463,7 @@ public class ProductLinePackageImpl extends EPackageImpl implements ProductLineP
     initEReference(getClass_Attributes(), this.getAttribute(), null, "attributes", null, 0, -1,
                    edu.toronto.cs.se.mmint.productline.Class.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE,
                    EPackageImpl.IS_COMPOSITE, !EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
-    initEReference(getClass_Type(), theEcorePackage.getEClass(), null, "type", null, 1, 1,
+    initEReference(getClass_Type(), this.ecorePackage.getEClass(), null, "type", null, 1, 1,
                    edu.toronto.cs.se.mmint.productline.Class.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE,
                    !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
 
@@ -461,14 +474,14 @@ public class ProductLinePackageImpl extends EPackageImpl implements ProductLineP
     initEReference(getReference_Targets(), this.getClass_(), this.getClass_ReferencesAsTargets(), "targets", null, 1,
                    -1, Reference.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES,
                    !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
-    initEReference(getReference_Type(), theEcorePackage.getEReference(), null, "type", null, 1, 1, Reference.class,
+    initEReference(getReference_Type(), this.ecorePackage.getEReference(), null, "type", null, 1, 1, Reference.class,
                    !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE,
                    EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
 
     initEClass(this.attributeEClass, Attribute.class, "Attribute", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getAttribute_Value(), this.ecorePackage.getEString(), "value", null, 1, 1, Attribute.class, !EPackageImpl.IS_TRANSIENT,
                    !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
-    initEReference(getAttribute_Type(), theEcorePackage.getEAttribute(), null, "type", null, 1, 1, Attribute.class,
+    initEReference(getAttribute_Type(), this.ecorePackage.getEAttribute(), null, "type", null, 1, 1, Attribute.class,
                    !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE,
                    EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
 
