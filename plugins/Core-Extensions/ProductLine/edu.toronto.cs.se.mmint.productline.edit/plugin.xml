@@ -27,4 +27,24 @@
                org.eclipse.emf.edit.provider.IItemPropertySource"/>
    </extension>
 
+   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <!-- @generated productline -->
+      <factory
+            uri="model://edu.toronto.cs.se.mmint.productline.mid"
+            class="edu.toronto.cs.se.mmint.productline.mid.provider.ProductLineMIDItemProviderAdapterFactory"
+            supportedTypes=
+              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
+               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
+               org.eclipse.emf.edit.provider.ITreeItemContentProvider
+               org.eclipse.emf.edit.provider.IItemLabelProvider
+               org.eclipse.emf.edit.provider.IItemPropertySource"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.edit.childCreationExtenders">
+      <!-- @generated productline -->
+      <extender
+            uri="http://se.cs.toronto.edu/mmint/MID/Relationship"
+            class="edu.toronto.cs.se.mmint.productline.mid.provider.ProductLineMIDItemProviderAdapterFactory$RelationshipChildCreationExtender"/>
+   </extension>
+
 </plugin>

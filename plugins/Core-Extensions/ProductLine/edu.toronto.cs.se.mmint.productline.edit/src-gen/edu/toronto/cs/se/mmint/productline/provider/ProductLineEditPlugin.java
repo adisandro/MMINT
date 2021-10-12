@@ -14,7 +14,8 @@ package edu.toronto.cs.se.mmint.productline.provider;
 
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
-import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
+
+import edu.toronto.cs.se.mmint.mid.provider.MIDEditPlugin;
 
 /**
  * This is the central singleton for the ProductLine edit plugin.
@@ -46,7 +47,7 @@ public final class ProductLineEditPlugin extends EMFPlugin {
    * @generated
    */
   public ProductLineEditPlugin() {
-    super(new ResourceLocator[] { EcoreEditPlugin.INSTANCE, });
+    super(new ResourceLocator[] { MIDEditPlugin.INSTANCE, });
   }
 
   /**
