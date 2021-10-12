@@ -211,4 +211,28 @@ public class PLMappingImpl extends MappingImpl implements PLMapping {
     return result.toString();
   }
 
+  /**
+   * @generated NOT
+   */
+  @Override
+  public String toMIDCustomPrintLabel() {
+    return "(" + getPresenceCondition() + ")";
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public String toMIDCustomEditLabel() {
+    return getPresenceCondition();
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public void updateMIDCustomLabel(String newLabel) {
+    setPresenceCondition(newLabel);
+  }
+
 } //PLMappingImpl

@@ -166,7 +166,7 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
    */
   protected void addHeavyModelType(Model newModelType, String newModelTypeUri, String modelTypeUri, String newModelTypeName, boolean isAbstract) throws MMINTException {
 
-    EPackage modelPackage = EPackage.Registry.INSTANCE.getEPackage(newModelTypeUri);
+    var modelPackage = EPackage.Registry.INSTANCE.getEPackage(newModelTypeUri);
     if (modelPackage == null) {
       throw new MMINTException("EPackage for URI " + newModelTypeUri + " is not registered");
     }
@@ -175,7 +175,7 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
     MIDTypeFactory.addModelType(newModelType, MMINT.cachedTypeMID);
     newModelType.setOrigin(ModelOrigin.IMPORTED);
 
-    String modelPackageName = (modelType == null) ?
+    var modelPackageName = (modelType == null) ?
       MIDTypeFactory.ECORE_REFLECTIVE_FILE_EXTENSION : // root model type
       modelPackage.getName();
     newModelType.setFileExtension(modelPackageName);
@@ -308,7 +308,7 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
     ModelEndpoint modelTypeEndpoint = getSupertype(newModelTypeEndpoint, newModelTypeEndpointUri, modelTypeEndpointUri);
     addHeavyType(newModelTypeEndpoint, modelTypeEndpoint, newModelTypeEndpointUri, newModelTypeEndpointName);
     addModelTypeEndpoint(newModelTypeEndpoint, targetModelType, isBinarySrc, containerModelRelType);
-    ModelEndpointReference newModelTypeEndpointRef = newModelTypeEndpoint.createTypeReference(true, containerModelRelType);
+    var newModelTypeEndpointRef = newModelTypeEndpoint.createTypeReference(true, containerModelRelType);
 
     return newModelTypeEndpointRef;
   }
@@ -333,13 +333,13 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
    *             If the uri of the new mapping type is already registered in
    *             the repository.
    */
-  protected @NonNull MappingReference addHeavyMappingTypeAndMappingTypeReference(@NonNull Mapping newMappingType, @NonNull String newMappingTypeUri, @Nullable String mappingTypeUri, @NonNull String newMappingTypeName, @NonNull ModelRel containerModelRelType) throws MMINTException {
+  protected MappingReference addHeavyMappingTypeAndMappingTypeReference(Mapping newMappingType, String newMappingTypeUri, @Nullable String mappingTypeUri, String newMappingTypeName, ModelRel containerModelRelType) throws MMINTException {
 
     Mapping mappingType = getSupertype(newMappingType, newMappingTypeUri, mappingTypeUri);
     addHeavyType(newMappingType, mappingType, newMappingTypeUri, newMappingTypeName);
     addMappingType(newMappingType, mappingType, containerModelRelType);
     MappingReference mappingTypeRef = MIDRegistry.getReference(mappingTypeUri, containerModelRelType.getMappingRefs());
-    MappingReference newMappingTypeRef = newMappingType.createTypeReference(mappingTypeRef, true, containerModelRelType);
+    var newMappingTypeRef = newMappingType.createTypeReference(mappingTypeRef, true, containerModelRelType);
 
     return newMappingTypeRef;
   }
@@ -355,7 +355,7 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
    */
   public ExtendibleElementConstraint createHeavyTypeConstraint(@NonNull String constraintLanguage, @NonNull String constraintImplementation, @NonNull ExtendibleElement constrainedType) {
 
-    ExtendibleElementConstraint newTypeConstraint = MIDFactory.eINSTANCE.createExtendibleElementConstraint();
+    var newTypeConstraint = MIDFactory.eINSTANCE.createExtendibleElementConstraint();
     MIDTypeFactory.addTypeConstraint(newTypeConstraint, constraintLanguage, constraintImplementation, constrainedType);
 
     return newTypeConstraint;
@@ -375,7 +375,7 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
    */
   public Model createHeavyModelType(@NonNull ExtensionPointType extensionType) throws MMINTException {
 
-    Model newModelType = (extensionType.getNewType() == null) ?
+    var newModelType = (extensionType.getNewType() == null) ?
       MIDFactory.eINSTANCE.createModel() :
       (Model) extensionType.getNewType();
     this.addHeavyModelType(newModelType, extensionType.getUri(), extensionType.getSupertypeUri(), extensionType.getName(), extensionType.isAbstract());
@@ -399,7 +399,7 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
    */
   public ModelElement createHeavyModelElementType(ExtensionPointType extensionType, EMFInfo eInfo, Model modelType) throws MMINTException {
 
-    ModelElement newModelElemType = (extensionType.getNewType() == null) ?
+    var newModelElemType = (extensionType.getNewType() == null) ?
       MIDFactory.eINSTANCE.createModelElement() :
       (ModelElement) extensionType.getNewType();
     ModelElement modelElemType = getSupertype(newModelElemType, extensionType.getUri(), extensionType.getSupertypeUri());
@@ -459,7 +459,7 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
    */
   public @NonNull ModelEndpointReference createHeavyModelTypeEndpointAndModelTypeEndpointReference(@NonNull ExtensionPointType extensionType, @NonNull Model targetModelType, boolean isBinarySrc, @NonNull ModelRel containerModelRelType) throws MMINTException {
 
-    ModelEndpoint newModelTypeEndpoint = (extensionType.getNewType() == null) ?
+    var newModelTypeEndpoint = (extensionType.getNewType() == null) ?
       MIDFactory.eINSTANCE.createModelEndpoint() :
       (ModelEndpoint) extensionType.getNewType();
     ModelEndpointReference newModelTypeEndpointRef = this.addHeavyModelTypeEndpointAndModelTypeEndpointReference(newModelTypeEndpoint, extensionType.getUri(), extensionType.getSupertypeUri(), extensionType.getName(), targetModelType, isBinarySrc, containerModelRelType);
@@ -484,11 +484,11 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
    */
   public @NonNull ModelEndpoint createHeavyModelTypeEndpoint(@NonNull ExtensionPointType extensionType, @NonNull Model targetModelType, @NonNull Operator containerOperatorType, @NonNull String containerFeatureName) throws MMINTException {
 
-    ModelEndpoint newModelTypeEndpoint = (extensionType.getNewType() == null) ?
+    var newModelTypeEndpoint = (extensionType.getNewType() == null) ?
       MIDFactory.eINSTANCE.createModelEndpoint() :
       (ModelEndpoint) extensionType.getNewType();
     //TODO MMINT[USABILITY] Put into default uri creator function
-    String newModelTypeEndpointUri = (extensionType.getUri() == null) ?
+    var newModelTypeEndpointUri = (extensionType.getUri() == null) ?
       containerOperatorType.getUri() + MMINTConstants.URI_SEPARATOR + extensionType.getName() :
       extensionType.getUri();
     this.addHeavyModelTypeEndpoint(newModelTypeEndpoint, newModelTypeEndpointUri, extensionType.getSupertypeUri(), extensionType.getName(), targetModelType, containerOperatorType, containerFeatureName);
@@ -511,10 +511,10 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
    */
   public @NonNull GenericEndpoint createHeavyGenericTypeEndpoint(@NonNull ExtensionPointType extensionType, @NonNull GenericElement targetGenericType, @NonNull Operator containerOperatorType) throws MMINTException {
 
-    GenericEndpoint newGenericTypeEndpoint = (extensionType.getNewType() == null) ?
+    var newGenericTypeEndpoint = (extensionType.getNewType() == null) ?
       OperatorFactory.eINSTANCE.createGenericEndpoint() :
       (GenericEndpoint) extensionType.getNewType();
-    String newGenericTypeEndpointUri = (extensionType.getUri() == null) ?
+    var newGenericTypeEndpointUri = (extensionType.getUri() == null) ?
       containerOperatorType.getUri() + MMINTConstants.URI_SEPARATOR + extensionType.getName() :
       extensionType.getUri();
     this.addHeavyGenericTypeEndpoint(newGenericTypeEndpoint, newGenericTypeEndpointUri, extensionType.getSupertypeUri(), extensionType.getName(), targetGenericType, containerOperatorType);
@@ -577,10 +577,10 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
    */
   public ModelElementEndpointReference createHeavyModelElementTypeEndpointAndModelElementTypeEndpointReference(ExtensionPointType extensionType, ModelElementReference targetModelElemTypeRef, boolean isBinarySrc, MappingReference containerMappingTypeRef) throws MMINTException {
 
-    ModelElementEndpoint newModelElemTypeEndpoint = (extensionType.getNewType() == null) ?
+    var newModelElemTypeEndpoint = (extensionType.getNewType() == null) ?
       RelationshipFactory.eINSTANCE.createModelElementEndpoint() :
       (ModelElementEndpoint) extensionType.getNewType();
-    Mapping containerMappingType = containerMappingTypeRef.getObject();
+    var containerMappingType = containerMappingTypeRef.getObject();
     newModelElemTypeEndpoint.setTarget(targetModelElemTypeRef.getObject()); // needed to get the right root uri
     ModelElementEndpoint modelElemTypeEndpoint = getSupertype(newModelElemTypeEndpoint, extensionType.getUri(), extensionType.getSupertypeUri());
     addHeavyType(newModelElemTypeEndpoint, modelElemTypeEndpoint, extensionType.getUri(), extensionType.getName());
@@ -592,10 +592,10 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
         modelElemTypeEndpointRef = MIDRegistry.getReference(modelElemTypeEndpoint.getUri(), newMappingTypeRefSuper.getModelElemEndpointRefs());
       }
     }
-    ModelElementEndpointReference newModelElemTypeEndpointRef = newModelElemTypeEndpoint.createTypeReference(modelElemTypeEndpointRef, targetModelElemTypeRef, true, isBinarySrc, containerMappingTypeRef);
+    var newModelElemTypeEndpointRef = newModelElemTypeEndpoint.createTypeReference(modelElemTypeEndpointRef, targetModelElemTypeRef, true, isBinarySrc, containerMappingTypeRef);
     addModelElementTypeEndpointReference(newModelElemTypeEndpointRef, containerMappingType);
     // copy from supertype
-    Mapping mappingTypeSuper = containerMappingType.getSupertype();
+    var mappingTypeSuper = containerMappingType.getSupertype();
     if (mappingTypeSuper != null && !MIDTypeHierarchy.isRootType(mappingTypeSuper)) {
       for (ModelElementEndpointReference modelElemTypeEndpointRefSuper : mappingTypeSuper.getModelElemEndpointRefs()) {
         addModelElementTypeEndpointReference(modelElemTypeEndpointRefSuper, containerMappingType);
@@ -642,17 +642,17 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
     addEditorType(newEditorType, modelTypeUri, editorId, wizardId, wizardDialogClassName, MMINT.cachedTypeMID);
 
     //TODO MMINT[MISC] this can be optimized to run once instead of for each editor, if needed
-    IExtensionRegistry registry = RegistryFactory.getRegistry();
+    var registry = RegistryFactory.getRegistry();
     if (registry != null) {
       // look for classic editors first..
-      IConfigurationElement[] config = registry.getConfigurationElementsFor(MMINTConstants.ECLIPSE_EDITORS_EXT_POINT);
+      var config = registry.getConfigurationElementsFor(MMINTConstants.ECLIPSE_EDITORS_EXT_POINT);
       for (IConfigurationElement elem : config) {
         var elemId = elem.getAttribute(MMINTConstants.ECLIPSE_EDITORS_ATTR_ID);
         if (elemId == null) {
           continue;
         }
         if (elemId.equals(editorId)) {
-          String fileExtensions = elem.getAttribute(MMINTConstants.ECLIPSE_EDITORS_ATTR_EXTENSIONS);
+          var fileExtensions = elem.getAttribute(MMINTConstants.ECLIPSE_EDITORS_ATTR_EXTENSIONS);
           if (fileExtensions != null) {
             for (String fileExtension : fileExtensions.split(",")) {
               newEditorType.getFileExtensions().add(fileExtension);
@@ -727,7 +727,7 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
       throw new MMINTException("Missing operator implementation for " + extensionType.getName());
     }
 
-    Operator newOperatorType = (Operator) extensionType.getNewType();
+    var newOperatorType = (Operator) extensionType.getNewType();
     Operator operatorType = getSupertypeWithoutRoot(newOperatorType, extensionType.getUri(), extensionType.getSupertypeUri());
     addHeavyGenericType(newOperatorType, operatorType, extensionType.getUri(), extensionType.getName(), extensionType.isAbstract());
     addOperatorType(newOperatorType, MMINT.cachedTypeMID);
