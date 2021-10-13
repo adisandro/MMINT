@@ -64,7 +64,7 @@
       <styles xmi:type="notation:RoutingStyle" xmi:id="_6OaqwdH1EeKkl5nuMDz74w"/>
       <styles xmi:type="notation:FontStyle" xmi:id="_6OaqwtH1EeKkl5nuMDz74w" fontName="Cantarell" fontHeight="10"/>
       <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_6ObR2NH1EeKkl5nuMDz74w" diagramLink="_FDjBQNH2EeKkl5nuMDz74w" hint="Relationship"/>
-      <element xmi:type="mavomid:BinaryMAVOModelRel" href="uncertainty.mid#//@models.2"/>
+      <element xmi:type="mavomid:MAVOBinaryModelRel" href="uncertainty.mid#//@models.2"/>
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_6Oaqw9H1EeKkl5nuMDz74w" points="[-1, -25, -3, 237]$[-145, -265, -147, -3]"/>
     </edges>
     <edges xmi:type="notation:Edge" xmi:id="_AuuccNH-EeKKm7pKmafeLQ" type="4002" source="_8JHjQNH9EeKKm7pKmafeLQ" target="_v3rgcNH1EeKkl5nuMDz74w">
@@ -97,7 +97,7 @@
       <styles xmi:type="notation:RoutingStyle" xmi:id="_FqVScdIMEeK2MMsWb62l6g"/>
       <styles xmi:type="notation:FontStyle" xmi:id="_FqVSctIMEeK2MMsWb62l6g" fontName="Cantarell" fontHeight="10"/>
       <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_FqWgldIMEeK2MMsWb62l6g" diagramLink="_UnLsQNIMEeK2MMsWb62l6g" hint="Relationship"/>
-      <element xmi:type="mavomid:BinaryMAVOModelRel" href="uncertainty.mid#//@models.5"/>
+      <element xmi:type="mavomid:MAVOBinaryModelRel" href="uncertainty.mid#//@models.5"/>
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_FqVSc9IMEeK2MMsWb62l6g" points="[23, -5, -98, 0]$[78, -7, -43, -2]"/>
       <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_FqiGwNIMEeK2MMsWb62l6g" id="(0.9217687074829932,0.48)"/>
       <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_FqiGwdIMEeK2MMsWb62l6g" id="(0.14285714285714285,0.42)"/>
@@ -334,7 +334,7 @@
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_FEn_WNH2EeKkl5nuMDz74w" x="636" y="204" height="469"/>
     </children>
     <styles xmi:type="notation:DiagramStyle" xmi:id="_FDjBQdH2EeKkl5nuMDz74w"/>
-    <element xmi:type="mavomid:BinaryMAVOModelRel" href="uncertainty.mid#//@models.2"/>
+    <element xmi:type="mavomid:MAVOBinaryModelRel" href="uncertainty.mid#//@models.2"/>
     <edges xmi:type="notation:Edge" xmi:id="_P-XeINH4EeKKm7pKmafeLQ" type="4003" source="_5FzyANH3EeKKm7pKmafeLQ" target="_9bNE8NH3EeKKm7pKmafeLQ">
       <children xmi:type="notation:DecorationNode" xmi:id="_P-XeJNH4EeKKm7pKmafeLQ" visible="false" type="6003">
         <layoutConstraint xmi:type="notation:Location" xmi:id="_P-XeJdH4EeKKm7pKmafeLQ" y="-12"/>
@@ -350,7 +350,7 @@
       </children>
       <styles xmi:type="notation:RoutingStyle" xmi:id="_P-XeIdH4EeKKm7pKmafeLQ"/>
       <styles xmi:type="notation:FontStyle" xmi:id="_P-XeItH4EeKKm7pKmafeLQ" fontName="Cantarell" fontHeight="10"/>
-      <element xmi:type="mavomid:BinaryMAVOMappingReference" href="uncertainty.mid#//@models.2/@mappingRefs.0"/>
+      <element xmi:type="mavomid:MAVOBinaryMappingReference" href="uncertainty.mid#//@models.2/@mappingRefs.0"/>
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_P-XeI9H4EeKKm7pKmafeLQ" points="[36, -2, -219, 0]$[144, -2, -111, 0]"/>
       <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_P-h2MNH4EeKKm7pKmafeLQ" id="(0.8928571428571429,0.54)"/>
       <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_kt5LwNH5EeKKm7pKmafeLQ" id="(0.036036036036036036,0.12)"/>
@@ -370,7 +370,7 @@
       </children>
       <styles xmi:type="notation:RoutingStyle" xmi:id="_UOvuMdH4EeKKm7pKmafeLQ"/>
       <styles xmi:type="notation:FontStyle" xmi:id="_UOvuMtH4EeKKm7pKmafeLQ" fontName="Cantarell" fontHeight="10"/>
-      <element xmi:type="mavomid:BinaryMAVOMappingReference" href="uncertainty.mid#//@models.2/@mappingRefs.1"/>
+      <element xmi:type="mavomid:MAVOBinaryMappingReference" href="uncertainty.mid#//@models.2/@mappingRefs.1"/>
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_UOvuM9H4EeKKm7pKmafeLQ" points="[23, -7, -148, 45]$[131, -52, -40, 0]"/>
       <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_UO1NwNH4EeKKm7pKmafeLQ" id="(0.9315476190476191,0.56)"/>
       <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_UO1NwdH4EeKKm7pKmafeLQ" id="(0.18018018018018017,0.52)"/>
@@ -390,7 +390,7 @@
       </children>
       <styles xmi:type="notation:RoutingStyle" xmi:id="_YeLjEdH4EeKKm7pKmafeLQ"/>
       <styles xmi:type="notation:FontStyle" xmi:id="_YeLjEtH4EeKKm7pKmafeLQ" fontName="Cantarell" fontHeight="10"/>
-      <element xmi:type="mavomid:BinaryMAVOMappingReference" href="uncertainty.mid#//@models.2/@mappingRefs.2"/>
+      <element xmi:type="mavomid:MAVOBinaryMappingReference" href="uncertainty.mid#//@models.2/@mappingRefs.2"/>
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_YeLjE9H4EeKKm7pKmafeLQ" points="[24, -15, -148, 89]$[132, -106, -40, -2]"/>
       <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_YeUF8NH4EeKKm7pKmafeLQ" id="(0.9285714285714286,0.54)"/>
       <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_YeUtANH4EeKKm7pKmafeLQ" id="(0.18018018018018017,0.46)"/>
@@ -410,7 +410,7 @@
       </children>
       <styles xmi:type="notation:RoutingStyle" xmi:id="_E3Z7UdH5EeKKm7pKmafeLQ"/>
       <styles xmi:type="notation:FontStyle" xmi:id="_E3Z7UtH5EeKKm7pKmafeLQ" fontName="Cantarell" fontHeight="10"/>
-      <element xmi:type="mavomid:BinaryMAVOMappingReference" href="uncertainty.mid#//@models.2/@mappingRefs.3"/>
+      <element xmi:type="mavomid:MAVOBinaryMappingReference" href="uncertainty.mid#//@models.2/@mappingRefs.3"/>
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_E3Z7U9H5EeKKm7pKmafeLQ" points="[21, -14, -147, 92]$[129, -108, -39, -2]"/>
       <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_E3ieMNH5EeKKm7pKmafeLQ" id="(0.9375,0.56)"/>
       <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_E3ieMdH5EeKKm7pKmafeLQ" id="(0.03153153153153153,0.28)"/>
@@ -430,7 +430,7 @@
       </children>
       <styles xmi:type="notation:RoutingStyle" xmi:id="_H6G3UdH5EeKKm7pKmafeLQ"/>
       <styles xmi:type="notation:FontStyle" xmi:id="_H6G3UtH5EeKKm7pKmafeLQ" fontName="Cantarell" fontHeight="10"/>
-      <element xmi:type="mavomid:BinaryMAVOMappingReference" href="uncertainty.mid#//@models.2/@mappingRefs.4"/>
+      <element xmi:type="mavomid:MAVOBinaryMappingReference" href="uncertainty.mid#//@models.2/@mappingRefs.4"/>
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_H6G3U9H5EeKKm7pKmafeLQ" points="[19, -15, -195, 153]$[191, -180, -23, -12]"/>
       <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_H6J6oNH5EeKKm7pKmafeLQ" id="(0.9434523809523809,0.6)"/>
       <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_H6J6odH5EeKKm7pKmafeLQ" id="(0.13513513513513514,0.44)"/>
@@ -450,7 +450,7 @@
       </children>
       <styles xmi:type="notation:RoutingStyle" xmi:id="_L5hTMdH5EeKKm7pKmafeLQ"/>
       <styles xmi:type="notation:FontStyle" xmi:id="_L5hTMtH5EeKKm7pKmafeLQ" fontName="Cantarell" fontHeight="10"/>
-      <element xmi:type="mavomid:BinaryMAVOMappingReference" href="uncertainty.mid#//@models.2/@mappingRefs.5"/>
+      <element xmi:type="mavomid:MAVOBinaryMappingReference" href="uncertainty.mid#//@models.2/@mappingRefs.5"/>
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_L5hTM9H5EeKKm7pKmafeLQ" points="[15, -9, -219, 100]$[123, -113, -111, -4]"/>
       <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_L5k9kNH5EeKKm7pKmafeLQ" id="(0.9553571428571429,0.68)"/>
       <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_S-g_8NH5EeKKm7pKmafeLQ" id="(0.05405405405405406,0.2)"/>
@@ -470,7 +470,7 @@
       </children>
       <styles xmi:type="notation:RoutingStyle" xmi:id="_YA4GkdH5EeKKm7pKmafeLQ"/>
       <styles xmi:type="notation:FontStyle" xmi:id="_YA4GktH5EeKKm7pKmafeLQ" fontName="Cantarell" fontHeight="10"/>
-      <element xmi:type="mavomid:BinaryMAVOMappingReference" href="uncertainty.mid#//@models.2/@mappingRefs.6"/>
+      <element xmi:type="mavomid:MAVOBinaryMappingReference" href="uncertainty.mid#//@models.2/@mappingRefs.6"/>
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_YA4Gk9H5EeKKm7pKmafeLQ" points="[12, -9, -219, 133]$[120, -141, -111, 1]"/>
       <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_YBApcNH5EeKKm7pKmafeLQ" id="(0.9642857142857143,0.34)"/>
       <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_bbyHMNH5EeKKm7pKmafeLQ" id="(0.27927927927927926,0.88)"/>
@@ -490,7 +490,7 @@
       </children>
       <styles xmi:type="notation:RoutingStyle" xmi:id="_dZ2WYdH5EeKKm7pKmafeLQ"/>
       <styles xmi:type="notation:FontStyle" xmi:id="_dZ2WYtH5EeKKm7pKmafeLQ" fontName="Cantarell" fontHeight="10"/>
-      <element xmi:type="mavomid:BinaryMAVOMappingReference" href="uncertainty.mid#//@models.2/@mappingRefs.7"/>
+      <element xmi:type="mavomid:MAVOBinaryMappingReference" href="uncertainty.mid#//@models.2/@mappingRefs.7"/>
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_dZ2WY9H5EeKKm7pKmafeLQ" points="[14, -8, -219, 140]$[344, -153, 111, -5]"/>
       <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_dZ9rINH5EeKKm7pKmafeLQ" id="(0.9583333333333334,0.46)"/>
       <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_iVhmMNH5EeKKm7pKmafeLQ" id="(0.05855855855855856,0.54)"/>
@@ -510,7 +510,7 @@
       </children>
       <styles xmi:type="notation:RoutingStyle" xmi:id="_ZknC0dH8EeKKm7pKmafeLQ"/>
       <styles xmi:type="notation:FontStyle" xmi:id="_ZknC0tH8EeKKm7pKmafeLQ" fontName="Cantarell" fontHeight="10"/>
-      <element xmi:type="mavomid:BinaryMAVOMappingReference" href="uncertainty.mid#//@models.2/@mappingRefs.8"/>
+      <element xmi:type="mavomid:MAVOBinaryMappingReference" href="uncertainty.mid#//@models.2/@mappingRefs.8"/>
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_ZknC09H8EeKKm7pKmafeLQ" points="[22, -12, -137, 71]$[121, -91, -38, -8]"/>
       <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_ZkuXkNH8EeKKm7pKmafeLQ" id="(0.9487179487179487,0.48)"/>
       <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_ZkuXkdH8EeKKm7pKmafeLQ" id="(0.17117117117117117,0.22)"/>
@@ -530,7 +530,7 @@
       </children>
       <styles xmi:type="notation:RoutingStyle" xmi:id="_iZQvUdH8EeKKm7pKmafeLQ"/>
       <styles xmi:type="notation:FontStyle" xmi:id="_iZQvUtH8EeKKm7pKmafeLQ" fontName="Cantarell" fontHeight="10"/>
-      <element xmi:type="mavomid:BinaryMAVOMappingReference" href="uncertainty.mid#//@models.2/@mappingRefs.9"/>
+      <element xmi:type="mavomid:MAVOBinaryMappingReference" href="uncertainty.mid#//@models.2/@mappingRefs.9"/>
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_iZQvU9H8EeKKm7pKmafeLQ" points="[23, -9, -131, 51]$[146, -60, -8, 0]"/>
       <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_iZXdANH8EeKKm7pKmafeLQ" id="(0.9463869463869464,0.6)"/>
       <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_iZXdAdH8EeKKm7pKmafeLQ" id="(0.036036036036036036,0.6)"/>
@@ -550,7 +550,7 @@
       </children>
       <styles xmi:type="notation:RoutingStyle" xmi:id="_n07t0dH8EeKKm7pKmafeLQ"/>
       <styles xmi:type="notation:FontStyle" xmi:id="_n07t0tH8EeKKm7pKmafeLQ" fontName="Cantarell" fontHeight="10"/>
-      <element xmi:type="mavomid:BinaryMAVOMappingReference" href="uncertainty.mid#//@models.2/@mappingRefs.10"/>
+      <element xmi:type="mavomid:MAVOBinaryMappingReference" href="uncertainty.mid#//@models.2/@mappingRefs.10"/>
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_n07t09H8EeKKm7pKmafeLQ" points="[22, -13, -161, 90]$[145, -101, -38, 2]"/>
       <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_n1CbgNH8EeKKm7pKmafeLQ" id="(0.9487179487179487,0.44)"/>
       <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_n1CbgdH8EeKKm7pKmafeLQ" id="(0.17117117117117117,0.58)"/>
@@ -570,7 +570,7 @@
       </children>
       <styles xmi:type="notation:RoutingStyle" xmi:id="_sdsBodH8EeKKm7pKmafeLQ"/>
       <styles xmi:type="notation:FontStyle" xmi:id="_sdsBotH8EeKKm7pKmafeLQ" fontName="Cantarell" fontHeight="10"/>
-      <element xmi:type="mavomid:BinaryMAVOMappingReference" href="uncertainty.mid#//@models.2/@mappingRefs.11"/>
+      <element xmi:type="mavomid:MAVOBinaryMappingReference" href="uncertainty.mid#//@models.2/@mappingRefs.11"/>
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_sdsBo9H8EeKKm7pKmafeLQ" points="[14, -5, -170, 54]$[137, -59, -47, 0]"/>
       <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_sdud4NH8EeKKm7pKmafeLQ" id="(0.9673659673659674,0.5)"/>
       <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_sdud4dH8EeKKm7pKmafeLQ" id="(0.21171171171171171,0.52)"/>
@@ -590,7 +590,7 @@
       </children>
       <styles xmi:type="notation:RoutingStyle" xmi:id="_vQxNQdH8EeKKm7pKmafeLQ"/>
       <styles xmi:type="notation:FontStyle" xmi:id="_vQxNQtH8EeKKm7pKmafeLQ" fontName="Cantarell" fontHeight="10"/>
-      <element xmi:type="mavomid:BinaryMAVOMappingReference" href="uncertainty.mid#//@models.2/@mappingRefs.12"/>
+      <element xmi:type="mavomid:MAVOBinaryMappingReference" href="uncertainty.mid#//@models.2/@mappingRefs.12"/>
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_vQxNQ9H8EeKKm7pKmafeLQ" points="[28, -21, -234, 140]$[151, -157, -111, 4]"/>
       <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_vQ368NH8EeKKm7pKmafeLQ" id="(0.9347319347319347,0.52)"/>
       <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4IO9MNH8EeKKm7pKmafeLQ" id="(0.05405405405405406,0.72)"/>
@@ -610,7 +610,7 @@
       </children>
       <styles xmi:type="notation:RoutingStyle" xmi:id="_xq7ikdH8EeKKm7pKmafeLQ"/>
       <styles xmi:type="notation:FontStyle" xmi:id="_xq7iktH8EeKKm7pKmafeLQ" fontName="Cantarell" fontHeight="10"/>
-      <element xmi:type="mavomid:BinaryMAVOMappingReference" href="uncertainty.mid#//@models.2/@mappingRefs.13"/>
+      <element xmi:type="mavomid:MAVOBinaryMappingReference" href="uncertainty.mid#//@models.2/@mappingRefs.13"/>
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_xq7ik9H8EeKKm7pKmafeLQ" points="[18, -9, -234, 102]$[182, -86, -70, 25]"/>
       <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_xq9-0NH8EeKKm7pKmafeLQ" id="(0.958041958041958,0.52)"/>
       <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4yNuUNH8EeKKm7pKmafeLQ" id="(0.21171171171171171,0.36)"/>
@@ -630,7 +630,7 @@
       </children>
       <styles xmi:type="notation:RoutingStyle" xmi:id="_9QzZgdH8EeKKm7pKmafeLQ"/>
       <styles xmi:type="notation:FontStyle" xmi:id="_9QzZgtH8EeKKm7pKmafeLQ" fontName="Cantarell" fontHeight="10"/>
-      <element xmi:type="mavomid:BinaryMAVOMappingReference" href="uncertainty.mid#//@models.2/@mappingRefs.14"/>
+      <element xmi:type="mavomid:MAVOBinaryMappingReference" href="uncertainty.mid#//@models.2/@mappingRefs.14"/>
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_9QzZg9H8EeKKm7pKmafeLQ" points="[18, -16, -174, 148]$[141, -159, -51, 5]"/>
       <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_9Q6HMNH8EeKKm7pKmafeLQ" id="(0.958041958041958,0.44)"/>
       <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_9Q6HMdH8EeKKm7pKmafeLQ" id="(0.02252252252252252,0.98)"/>
@@ -650,7 +650,7 @@
       </children>
       <styles xmi:type="notation:RoutingStyle" xmi:id="_-cS8QdH8EeKKm7pKmafeLQ"/>
       <styles xmi:type="notation:FontStyle" xmi:id="_-cS8QtH8EeKKm7pKmafeLQ" fontName="Cantarell" fontHeight="10"/>
-      <element xmi:type="mavomid:BinaryMAVOMappingReference" href="uncertainty.mid#//@models.2/@mappingRefs.15"/>
+      <element xmi:type="mavomid:MAVOBinaryMappingReference" href="uncertainty.mid#//@models.2/@mappingRefs.15"/>
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_-cS8Q9H8EeKKm7pKmafeLQ" points="[15, -7, -234, 115]$[360, -125, 111, -3]"/>
       <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_-cVYgNH8EeKKm7pKmafeLQ" id="(0.965034965034965,0.46)"/>
       <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_C2G1INH9EeKKm7pKmafeLQ" id="(0.05855855855855856,0.78)"/>
@@ -670,7 +670,7 @@
       </children>
       <styles xmi:type="notation:RoutingStyle" xmi:id="_UWtlIdH9EeKKm7pKmafeLQ"/>
       <styles xmi:type="notation:FontStyle" xmi:id="_UWtlItH9EeKKm7pKmafeLQ" fontName="Cantarell" fontHeight="10"/>
-      <element xmi:type="mavomid:BinaryMAVOMappingReference" href="uncertainty.mid#//@models.2/@mappingRefs.16"/>
+      <element xmi:type="mavomid:MAVOBinaryMappingReference" href="uncertainty.mid#//@models.2/@mappingRefs.16"/>
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_UWtlI9H9EeKKm7pKmafeLQ" points="[15, -18, -173, 199]$[138, -211, -50, 6]"/>
       <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_UW0S0NH9EeKKm7pKmafeLQ" id="(0.965034965034965,0.52)"/>
       <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_UW0S0dH9EeKKm7pKmafeLQ" id="(0.11261261261261261,0.58)"/>
@@ -690,7 +690,7 @@
       </children>
       <styles xmi:type="notation:RoutingStyle" xmi:id="_ZZ7AUdH9EeKKm7pKmafeLQ"/>
       <styles xmi:type="notation:FontStyle" xmi:id="_ZZ7AUtH9EeKKm7pKmafeLQ" fontName="Cantarell" fontHeight="10"/>
-      <element xmi:type="mavomid:BinaryMAVOMappingReference" href="uncertainty.mid#//@models.2/@mappingRefs.17"/>
+      <element xmi:type="mavomid:MAVOBinaryMappingReference" href="uncertainty.mid#//@models.2/@mappingRefs.17"/>
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_ZZ7AU9H9EeKKm7pKmafeLQ" points="[13, -9, -234, 163]$[358, -176, 111, -4]"/>
       <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_ZZ9ckNH9EeKKm7pKmafeLQ" id="(0.9696969696969697,0.46)"/>
       <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_fJMQQNH9EeKKm7pKmafeLQ" id="(0.10810810810810811,0.74)"/>
@@ -710,7 +710,7 @@
       </children>
       <styles xmi:type="notation:RoutingStyle" xmi:id="_m3-g4dH9EeKKm7pKmafeLQ"/>
       <styles xmi:type="notation:FontStyle" xmi:id="_m3-g4tH9EeKKm7pKmafeLQ" fontName="Cantarell" fontHeight="10"/>
-      <element xmi:type="mavomid:BinaryMAVOMappingReference" href="uncertainty.mid#//@models.2/@mappingRefs.18"/>
+      <element xmi:type="mavomid:MAVOBinaryMappingReference" href="uncertainty.mid#//@models.2/@mappingRefs.18"/>
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_m3-g49H9EeKKm7pKmafeLQ" points="[14, -12, -258, 188]$[161, -193, -111, 7]"/>
       <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_m4FOkNH9EeKKm7pKmafeLQ" id="(0.9673659673659674,0.5)"/>
       <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_p4pckNH9EeKKm7pKmafeLQ" id="(0.13963963963963963,0.72)"/>
@@ -730,7 +730,7 @@
       </children>
       <styles xmi:type="notation:RoutingStyle" xmi:id="_rrALAdH9EeKKm7pKmafeLQ"/>
       <styles xmi:type="notation:FontStyle" xmi:id="_rrALAtH9EeKKm7pKmafeLQ" fontName="Cantarell" fontHeight="10"/>
-      <element xmi:type="mavomid:BinaryMAVOMappingReference" href="uncertainty.mid#//@models.2/@mappingRefs.19"/>
+      <element xmi:type="mavomid:MAVOBinaryMappingReference" href="uncertainty.mid#//@models.2/@mappingRefs.19"/>
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_rrALA9H9EeKKm7pKmafeLQ" points="[21, -16, -258, 187]$[282, -228, 3, -25]"/>
       <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_rrGRoNH9EeKKm7pKmafeLQ" id="(0.951048951048951,0.56)"/>
     </edges>
@@ -749,7 +749,7 @@
       </children>
       <styles xmi:type="notation:RoutingStyle" xmi:id="_tp-ZIdH9EeKKm7pKmafeLQ"/>
       <styles xmi:type="notation:FontStyle" xmi:id="_tp-ZItH9EeKKm7pKmafeLQ" fontName="Cantarell" fontHeight="10"/>
-      <element xmi:type="mavomid:BinaryMAVOMappingReference" href="uncertainty.mid#//@models.2/@mappingRefs.20"/>
+      <element xmi:type="mavomid:MAVOBinaryMappingReference" href="uncertainty.mid#//@models.2/@mappingRefs.20"/>
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_tp-ZI9H9EeKKm7pKmafeLQ" points="[17, -14, -258, 234]$[386, -248, 111, 0]"/>
       <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_tqA1YNH9EeKKm7pKmafeLQ" id="(0.9603729603729604,0.46)"/>
     </edges>
@@ -768,7 +768,7 @@
       </children>
       <styles xmi:type="notation:RoutingStyle" xmi:id="_dV7HgdLcEeK5q4VTho87oQ"/>
       <styles xmi:type="notation:FontStyle" xmi:id="_dV7HgtLcEeK5q4VTho87oQ" fontName="Cantarell" fontHeight="10"/>
-      <element xmi:type="mavomid:BinaryMAVOMappingReference" href="uncertainty.mid#//@models.2/@mappingRefs.21"/>
+      <element xmi:type="mavomid:MAVOBinaryMappingReference" href="uncertainty.mid#//@models.2/@mappingRefs.21"/>
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_dV7Hg9LcEeK5q4VTho87oQ" points="[15, -26, -252, 401]$[236, -455, -31, -28]"/>
       <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_dWDqYNLcEeK5q4VTho87oQ" id="(0.9702380952380952,0.49122807017543857)"/>
       <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_kc7mcNLcEeK5q4VTho87oQ" id="(0.17012448132780084,0.6842105263157895)"/>
@@ -960,7 +960,7 @@
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_dlQ9Y9ITEeK2MMsWb62l6g" x="336" y="444"/>
     </children>
     <styles xmi:type="notation:DiagramStyle" xmi:id="_UnLsQdIMEeK2MMsWb62l6g"/>
-    <element xmi:type="mavomid:BinaryMAVOModelRel" href="uncertainty.mid#//@models.5"/>
+    <element xmi:type="mavomid:MAVOBinaryModelRel" href="uncertainty.mid#//@models.5"/>
     <edges xmi:type="notation:Edge" xmi:id="_5UERoNIREeK2MMsWb62l6g" type="4002" source="_y2WnUNIREeK2MMsWb62l6g" target="_uNEIANIREeK2MMsWb62l6g">
       <children xmi:type="notation:DecorationNode" xmi:id="_5UERpNIREeK2MMsWb62l6g" visible="false" type="6001">
         <layoutConstraint xmi:type="notation:Location" xmi:id="_5UERpdIREeK2MMsWb62l6g" y="40"/>

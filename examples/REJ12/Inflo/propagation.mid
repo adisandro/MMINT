@@ -166,94 +166,94 @@
       <eInfo className="Operation" featureName="ownedOperations" relatedClassName="Class"/>
     </modelElems>
   </models>
-  <models xsi:type="mavomid:BinaryMAVOModelRel" uri="" name="trace" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel" dynamic="true" origin="CREATED" fileExtension="" sourceModel="//@models.0" targetModel="//@models.1">
+  <models xsi:type="mavomid:MAVOBinaryModelRel" uri="" name="trace" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel" dynamic="true" origin="CREATED" fileExtension="" sourceModel="//@models.0" targetModel="//@models.1">
     <modelEndpoints xsi:type="mavomid:MAVOModelEndpoint" uri="" name="orig" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel-IStar_MAVO/IStarEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0"/>
     <modelEndpoints xsi:type="mavomid:MAVOModelEndpoint" uri="" name="related" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel-ClassDiagram_MAVO/ClassDiagramEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1"/>
-    <mappings xsi:type="mavomid:BinaryMAVOMapping" uri="" name="trace1" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ActorClassLink" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.0/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.0/@modelElemEndpointRefs.1">
+    <mappings xsi:type="mavomid:MAVOBinaryMapping" uri="" name="trace1" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ActorClassLink" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.0/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.0/@modelElemEndpointRefs.1">
       <modelElemEndpoints uri="" name="Actor Inflo User" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ActorClassLink-Actor/ActorEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.0"/>
       <modelElemEndpoints uri="" name="Class Inflo User" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ActorClassLink-Class/ClassEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.0"/>
     </mappings>
-    <mappings xsi:type="mavomid:BinaryMAVOMapping" uri="" name="trace2" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ActorClassLink" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.1/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.1/@modelElemEndpointRefs.1">
+    <mappings xsi:type="mavomid:MAVOBinaryMapping" uri="" name="trace2" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ActorClassLink" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.1/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.1/@modelElemEndpointRefs.1">
       <modelElemEndpoints uri="" name="Actor Inflo Manager Editors" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ActorClassLink-Actor/ActorEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.1"/>
       <modelElemEndpoints uri="" name="Class Inflo Manager/Editors" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ActorClassLink-Class/ClassEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.1"/>
     </mappings>
-    <mappings xsi:type="mavomid:BinaryMAVOMapping" uri="" name="trace3" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ActorClassLink" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.2/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.2/@modelElemEndpointRefs.1">
+    <mappings xsi:type="mavomid:MAVOBinaryMapping" uri="" name="trace3" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ActorClassLink" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.2/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.2/@modelElemEndpointRefs.1">
       <modelElemEndpoints uri="" name="Actor Inflo" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ActorClassLink-Actor/ActorEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.2"/>
       <modelElemEndpoints uri="" name="Class Inflo" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ActorClassLink-Class/ClassEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.2"/>
     </mappings>
-    <mappings xsi:type="mavomid:BinaryMAVOMapping" uri="" name="trace4" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ActorClassLink" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.3/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.3/@modelElemEndpointRefs.1">
+    <mappings xsi:type="mavomid:MAVOBinaryMapping" uri="" name="trace4" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ActorClassLink" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.3/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.3/@modelElemEndpointRefs.1">
       <modelElemEndpoints uri="" name="Actor Automated Reputation System" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ActorClassLink-Actor/ActorEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.3"/>
       <modelElemEndpoints uri="" name="Class Automated Reputation System" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ActorClassLink-Class/ClassEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.3"/>
     </mappings>
-    <mappings xsi:type="mavomid:BinaryMAVOMapping" uri="" name="trace5" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ActorClassLink" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.4/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.4/@modelElemEndpointRefs.1" set="true">
+    <mappings xsi:type="mavomid:MAVOBinaryMapping" uri="" name="trace5" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ActorClassLink" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.4/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.4/@modelElemEndpointRefs.1" set="true">
       <modelElemEndpoints uri="" name="Actor Source" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ActorClassLink-Actor/ActorEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.4"/>
       <modelElemEndpoints uri="" name="Class Source" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ActorClassLink-Class/ClassEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.4"/>
     </mappings>
-    <mappings xsi:type="mavomid:BinaryMAVOMapping" uri="" name="trace6" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceClassLink" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.5/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.5/@modelElemEndpointRefs.1" set="true">
+    <mappings xsi:type="mavomid:MAVOBinaryMapping" uri="" name="trace6" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceClassLink" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.5/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.5/@modelElemEndpointRefs.1" set="true">
       <modelElemEndpoints uri="" name="Resource Info" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceClassLink-Resource/ResourceEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.5"/>
       <modelElemEndpoints uri="" name="Class Info" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceClassLink-Class/ClassEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.5"/>
     </mappings>
-    <mappings xsi:type="mavomid:BinaryMAVOMapping" uri="" name="trace7" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceClassLink" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.6/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.6/@modelElemEndpointRefs.1">
+    <mappings xsi:type="mavomid:MAVOBinaryMapping" uri="" name="trace7" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceClassLink" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.6/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.6/@modelElemEndpointRefs.1">
       <modelElemEndpoints uri="" name="Resource Graphing" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceClassLink-Resource/ResourceEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.6"/>
       <modelElemEndpoints uri="" name="Class Graphing" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceClassLink-Class/ClassEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.6"/>
     </mappings>
-    <mappings xsi:type="mavomid:BinaryMAVOMapping" uri="" name="trace8" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceClassLink" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.7/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.7/@modelElemEndpointRefs.1" may="true">
+    <mappings xsi:type="mavomid:MAVOBinaryMapping" uri="" name="trace8" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceClassLink" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.7/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.7/@modelElemEndpointRefs.1" may="true">
       <modelElemEndpoints uri="" name="Resource Authorship" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceClassLink-Resource/ResourceEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.7"/>
       <modelElemEndpoints uri="" name="Class Authorship" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceClassLink-Class/ClassEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.7"/>
     </mappings>
-    <mappings xsi:type="mavomid:BinaryMAVOMapping" uri="" name="trace9" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceClassLink" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.8/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.8/@modelElemEndpointRefs.1">
+    <mappings xsi:type="mavomid:MAVOBinaryMapping" uri="" name="trace9" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceClassLink" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.8/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.8/@modelElemEndpointRefs.1">
       <modelElemEndpoints uri="" name="Resource Reputation Values" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceClassLink-Resource/ResourceEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.8"/>
       <modelElemEndpoints uri="" name="Class Reputation Values" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceClassLink-Class/ClassEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.8"/>
     </mappings>
-    <mappings xsi:type="mavomid:BinaryMAVOMapping" uri="" name="trace10" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceClassLink" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.9/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.9/@modelElemEndpointRefs.1">
+    <mappings xsi:type="mavomid:MAVOBinaryMapping" uri="" name="trace10" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceClassLink" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.9/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.9/@modelElemEndpointRefs.1">
       <modelElemEndpoints uri="" name="Resource Moderation" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceClassLink-Resource/ResourceEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.9"/>
       <modelElemEndpoints uri="" name="Class Moderation" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceClassLink-Class/ClassEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.9"/>
     </mappings>
-    <mappings xsi:type="mavomid:BinaryMAVOMapping" uri="" name="trace11" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceDependumDependencyLink" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.10/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.10/@modelElemEndpointRefs.1" set="true">
+    <mappings xsi:type="mavomid:MAVOBinaryMapping" uri="" name="trace11" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceDependumDependencyLink" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.10/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.10/@modelElemEndpointRefs.1" set="true">
       <modelElemEndpoints uri="" name="Resource Info" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceDependumDependencyLink-ResourceDependum/ResourceDependumEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.5"/>
       <modelElemEndpoints uri="" name="Dependency false" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceDependumDependencyLink-Dependency/DependencyEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.10"/>
     </mappings>
-    <mappings xsi:type="mavomid:BinaryMAVOMapping" uri="" name="trace12" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceDependumDependencyLink" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.11/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.11/@modelElemEndpointRefs.1">
+    <mappings xsi:type="mavomid:MAVOBinaryMapping" uri="" name="trace12" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceDependumDependencyLink" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.11/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.11/@modelElemEndpointRefs.1">
       <modelElemEndpoints uri="" name="Resource Graphing" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceDependumDependencyLink-ResourceDependum/ResourceDependumEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.6"/>
       <modelElemEndpoints uri="" name="Dependency false" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceDependumDependencyLink-Dependency/DependencyEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.11"/>
     </mappings>
-    <mappings xsi:type="mavomid:BinaryMAVOMapping" uri="" name="trace13" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceDependumDependencyLink" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.12/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.12/@modelElemEndpointRefs.1" may="true">
+    <mappings xsi:type="mavomid:MAVOBinaryMapping" uri="" name="trace13" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceDependumDependencyLink" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.12/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.12/@modelElemEndpointRefs.1" may="true">
       <modelElemEndpoints uri="" name="Resource Authorship" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceDependumDependencyLink-ResourceDependum/ResourceDependumEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.7"/>
       <modelElemEndpoints uri="" name="Dependency true" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceDependumDependencyLink-Dependency/DependencyEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.12"/>
     </mappings>
-    <mappings xsi:type="mavomid:BinaryMAVOMapping" uri="" name="trace14" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceDependumDependencyLink" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.13/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.13/@modelElemEndpointRefs.1">
+    <mappings xsi:type="mavomid:MAVOBinaryMapping" uri="" name="trace14" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceDependumDependencyLink" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.13/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.13/@modelElemEndpointRefs.1">
       <modelElemEndpoints uri="" name="Resource Reputation Values" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceDependumDependencyLink-ResourceDependum/ResourceDependumEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.8"/>
       <modelElemEndpoints uri="" name="Dependency false" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceDependumDependencyLink-Dependency/DependencyEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.13"/>
     </mappings>
-    <mappings xsi:type="mavomid:BinaryMAVOMapping" uri="" name="trace15" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceDependumDependencyLink" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.14/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.14/@modelElemEndpointRefs.1" may="true">
+    <mappings xsi:type="mavomid:MAVOBinaryMapping" uri="" name="trace15" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceDependumDependencyLink" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.14/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.14/@modelElemEndpointRefs.1" may="true">
       <modelElemEndpoints uri="" name="Resource Moderation" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceDependumDependencyLink-ResourceDependum/ResourceDependumEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.9"/>
       <modelElemEndpoints uri="" name="Dependency true" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceDependumDependencyLink-Dependency/DependencyEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.14"/>
     </mappings>
-    <mappings xsi:type="mavomid:BinaryMAVOMapping" uri="" name="trace16" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceDependumDependencyLink" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.15/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.15/@modelElemEndpointRefs.1" may="true">
+    <mappings xsi:type="mavomid:MAVOBinaryMapping" uri="" name="trace16" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceDependumDependencyLink" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.15/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.15/@modelElemEndpointRefs.1" may="true">
       <modelElemEndpoints uri="" name="Resource Moderation" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceDependumDependencyLink-ResourceDependum/ResourceDependumEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.9"/>
       <modelElemEndpoints uri="" name="Dependency true" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceDependumDependencyLink-Dependency/DependencyEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.15"/>
     </mappings>
-    <mappings xsi:type="mavomid:BinaryMAVOMapping" uri="" name="trace17" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceDependumDependencyLink" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.16/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.16/@modelElemEndpointRefs.1" may="true">
+    <mappings xsi:type="mavomid:MAVOBinaryMapping" uri="" name="trace17" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceDependumDependencyLink" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.16/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.16/@modelElemEndpointRefs.1" may="true">
       <modelElemEndpoints uri="" name="Resource Moderation" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceDependumDependencyLink-ResourceDependum/ResourceDependumEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.9"/>
       <modelElemEndpoints uri="" name="Dependency true" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceDependumDependencyLink-Dependency/DependencyEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.16"/>
     </mappings>
-    <mappings xsi:type="mavomid:BinaryMAVOMapping" uri="" name="trace18" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceDependumDependencyLink" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.17/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.17/@modelElemEndpointRefs.1" may="true">
+    <mappings xsi:type="mavomid:MAVOBinaryMapping" uri="" name="trace18" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceDependumDependencyLink" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.17/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.17/@modelElemEndpointRefs.1" may="true">
       <modelElemEndpoints uri="" name="Resource Moderation" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceDependumDependencyLink-ResourceDependum/ResourceDependumEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.9"/>
       <modelElemEndpoints uri="" name="Dependency true" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceDependumDependencyLink-Dependency/DependencyEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.17"/>
     </mappings>
-    <mappings xsi:type="mavomid:BinaryMAVOMapping" uri="" name="trace19" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/TaskOperationLink" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.18/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.18/@modelElemEndpointRefs.1" may="true" var="true">
+    <mappings xsi:type="mavomid:MAVOBinaryMapping" uri="" name="trace19" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/TaskOperationLink" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.18/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.18/@modelElemEndpointRefs.1" may="true" var="true">
       <modelElemEndpoints uri="" name="Task Create Discussions" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/TaskOperationLink-Task/TaskEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.10"/>
       <modelElemEndpoints uri="" name="Operation CreateDiscussions()" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/TaskOperationLink-Operation/OperationEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.18"/>
     </mappings>
-    <mappings xsi:type="mavomid:BinaryMAVOMapping" uri="" name="trace20" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/TaskOperationLink" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.19/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.19/@modelElemEndpointRefs.1" may="true" var="true">
+    <mappings xsi:type="mavomid:MAVOBinaryMapping" uri="" name="trace20" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/TaskOperationLink" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.19/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.19/@modelElemEndpointRefs.1" may="true" var="true">
       <modelElemEndpoints uri="" name="Task Less Extensive Moderation" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/TaskOperationLink-Task/TaskEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.11"/>
       <modelElemEndpoints uri="" name="Operation LessExtensiveModeration()" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/TaskOperationLink-Operation/OperationEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.19"/>
     </mappings>
-    <mappings xsi:type="mavomid:BinaryMAVOMapping" uri="" name="trace21" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/TaskOperationLink" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.20/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.20/@modelElemEndpointRefs.1" may="true" set="true">
+    <mappings xsi:type="mavomid:MAVOBinaryMapping" uri="" name="trace21" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/TaskOperationLink" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.20/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.20/@modelElemEndpointRefs.1" may="true" set="true">
       <modelElemEndpoints uri="" name="Task Moderation Tasks" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/TaskOperationLink-Task/TaskEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.12"/>
       <modelElemEndpoints uri="" name="Operation ModerationTasks()" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/TaskOperationLink-Operation/OperationEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.20"/>
     </mappings>
-    <mappings xsi:type="mavomid:BinaryMAVOMapping" uri="" name="trace22" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/TaskOperationLink" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.21/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.21/@modelElemEndpointRefs.1" may="true">
+    <mappings xsi:type="mavomid:MAVOBinaryMapping" uri="" name="trace22" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/TaskOperationLink" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.21/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.21/@modelElemEndpointRefs.1" may="true">
       <modelElemEndpoints uri="" name="Task Moderation ARS" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/TaskOperationLink-Task/TaskEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.13"/>
       <modelElemEndpoints uri="" name="Operation Moderation()" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/TaskOperationLink-Operation/OperationEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.21"/>
     </mappings>
@@ -297,91 +297,91 @@
       <modelElemRefs xsi:type="mavomid:MAVOModelElementReference" referencedObject="//@models.1/@modelElems.20" modifiable="true" modelElemEndpointRefs="//@models.2/@mappingRefs.20/@modelElemEndpointRefs.1"/>
       <modelElemRefs xsi:type="mavomid:MAVOModelElementReference" referencedObject="//@models.1/@modelElems.21" modifiable="true" modelElemEndpointRefs="//@models.2/@mappingRefs.21/@modelElemEndpointRefs.1"/>
     </modelEndpointRefs>
-    <mappingRefs xsi:type="mavomid:BinaryMAVOMappingReference" referencedObject="//@models.2/@mappings.0" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.0" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.0">
+    <mappingRefs xsi:type="mavomid:MAVOBinaryMappingReference" referencedObject="//@models.2/@mappings.0" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.0" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.0">
       <modelElemEndpointRefs referencedObject="//@models.2/@mappings.0/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.0"/>
       <modelElemEndpointRefs referencedObject="//@models.2/@mappings.0/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.0"/>
     </mappingRefs>
-    <mappingRefs xsi:type="mavomid:BinaryMAVOMappingReference" referencedObject="//@models.2/@mappings.1" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.1" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.1">
+    <mappingRefs xsi:type="mavomid:MAVOBinaryMappingReference" referencedObject="//@models.2/@mappings.1" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.1" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.1">
       <modelElemEndpointRefs referencedObject="//@models.2/@mappings.1/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.1"/>
       <modelElemEndpointRefs referencedObject="//@models.2/@mappings.1/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.1"/>
     </mappingRefs>
-    <mappingRefs xsi:type="mavomid:BinaryMAVOMappingReference" referencedObject="//@models.2/@mappings.2" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.2" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.2">
+    <mappingRefs xsi:type="mavomid:MAVOBinaryMappingReference" referencedObject="//@models.2/@mappings.2" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.2" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.2">
       <modelElemEndpointRefs referencedObject="//@models.2/@mappings.2/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.2"/>
       <modelElemEndpointRefs referencedObject="//@models.2/@mappings.2/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.2"/>
     </mappingRefs>
-    <mappingRefs xsi:type="mavomid:BinaryMAVOMappingReference" referencedObject="//@models.2/@mappings.3" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.3" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.3">
+    <mappingRefs xsi:type="mavomid:MAVOBinaryMappingReference" referencedObject="//@models.2/@mappings.3" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.3" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.3">
       <modelElemEndpointRefs referencedObject="//@models.2/@mappings.3/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.3"/>
       <modelElemEndpointRefs referencedObject="//@models.2/@mappings.3/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.3"/>
     </mappingRefs>
-    <mappingRefs xsi:type="mavomid:BinaryMAVOMappingReference" referencedObject="//@models.2/@mappings.4" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.4" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.4">
+    <mappingRefs xsi:type="mavomid:MAVOBinaryMappingReference" referencedObject="//@models.2/@mappings.4" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.4" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.4">
       <modelElemEndpointRefs referencedObject="//@models.2/@mappings.4/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.4"/>
       <modelElemEndpointRefs referencedObject="//@models.2/@mappings.4/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.4"/>
     </mappingRefs>
-    <mappingRefs xsi:type="mavomid:BinaryMAVOMappingReference" referencedObject="//@models.2/@mappings.5" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.5" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.5">
+    <mappingRefs xsi:type="mavomid:MAVOBinaryMappingReference" referencedObject="//@models.2/@mappings.5" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.5" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.5">
       <modelElemEndpointRefs referencedObject="//@models.2/@mappings.5/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.5"/>
       <modelElemEndpointRefs referencedObject="//@models.2/@mappings.5/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.5"/>
     </mappingRefs>
-    <mappingRefs xsi:type="mavomid:BinaryMAVOMappingReference" referencedObject="//@models.2/@mappings.6" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.6" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.6">
+    <mappingRefs xsi:type="mavomid:MAVOBinaryMappingReference" referencedObject="//@models.2/@mappings.6" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.6" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.6">
       <modelElemEndpointRefs referencedObject="//@models.2/@mappings.6/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.6"/>
       <modelElemEndpointRefs referencedObject="//@models.2/@mappings.6/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.6"/>
     </mappingRefs>
-    <mappingRefs xsi:type="mavomid:BinaryMAVOMappingReference" referencedObject="//@models.2/@mappings.7" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.7" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.7">
+    <mappingRefs xsi:type="mavomid:MAVOBinaryMappingReference" referencedObject="//@models.2/@mappings.7" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.7" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.7">
       <modelElemEndpointRefs referencedObject="//@models.2/@mappings.7/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.7"/>
       <modelElemEndpointRefs referencedObject="//@models.2/@mappings.7/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.7"/>
     </mappingRefs>
-    <mappingRefs xsi:type="mavomid:BinaryMAVOMappingReference" referencedObject="//@models.2/@mappings.8" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.8" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.8">
+    <mappingRefs xsi:type="mavomid:MAVOBinaryMappingReference" referencedObject="//@models.2/@mappings.8" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.8" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.8">
       <modelElemEndpointRefs referencedObject="//@models.2/@mappings.8/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.8"/>
       <modelElemEndpointRefs referencedObject="//@models.2/@mappings.8/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.8"/>
     </mappingRefs>
-    <mappingRefs xsi:type="mavomid:BinaryMAVOMappingReference" referencedObject="//@models.2/@mappings.9" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.9" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.9">
+    <mappingRefs xsi:type="mavomid:MAVOBinaryMappingReference" referencedObject="//@models.2/@mappings.9" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.9" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.9">
       <modelElemEndpointRefs referencedObject="//@models.2/@mappings.9/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.9"/>
       <modelElemEndpointRefs referencedObject="//@models.2/@mappings.9/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.9"/>
     </mappingRefs>
-    <mappingRefs xsi:type="mavomid:BinaryMAVOMappingReference" referencedObject="//@models.2/@mappings.10" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.5" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.10">
+    <mappingRefs xsi:type="mavomid:MAVOBinaryMappingReference" referencedObject="//@models.2/@mappings.10" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.5" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.10">
       <modelElemEndpointRefs referencedObject="//@models.2/@mappings.10/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.5"/>
       <modelElemEndpointRefs referencedObject="//@models.2/@mappings.10/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.10"/>
     </mappingRefs>
-    <mappingRefs xsi:type="mavomid:BinaryMAVOMappingReference" referencedObject="//@models.2/@mappings.11" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.6" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.11">
+    <mappingRefs xsi:type="mavomid:MAVOBinaryMappingReference" referencedObject="//@models.2/@mappings.11" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.6" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.11">
       <modelElemEndpointRefs referencedObject="//@models.2/@mappings.11/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.6"/>
       <modelElemEndpointRefs referencedObject="//@models.2/@mappings.11/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.11"/>
     </mappingRefs>
-    <mappingRefs xsi:type="mavomid:BinaryMAVOMappingReference" referencedObject="//@models.2/@mappings.12" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.7" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.12">
+    <mappingRefs xsi:type="mavomid:MAVOBinaryMappingReference" referencedObject="//@models.2/@mappings.12" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.7" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.12">
       <modelElemEndpointRefs referencedObject="//@models.2/@mappings.12/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.7"/>
       <modelElemEndpointRefs referencedObject="//@models.2/@mappings.12/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.12"/>
     </mappingRefs>
-    <mappingRefs xsi:type="mavomid:BinaryMAVOMappingReference" referencedObject="//@models.2/@mappings.13" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.8" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.13">
+    <mappingRefs xsi:type="mavomid:MAVOBinaryMappingReference" referencedObject="//@models.2/@mappings.13" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.8" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.13">
       <modelElemEndpointRefs referencedObject="//@models.2/@mappings.13/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.8"/>
       <modelElemEndpointRefs referencedObject="//@models.2/@mappings.13/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.13"/>
     </mappingRefs>
-    <mappingRefs xsi:type="mavomid:BinaryMAVOMappingReference" referencedObject="//@models.2/@mappings.14" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.9" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.14">
+    <mappingRefs xsi:type="mavomid:MAVOBinaryMappingReference" referencedObject="//@models.2/@mappings.14" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.9" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.14">
       <modelElemEndpointRefs referencedObject="//@models.2/@mappings.14/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.9"/>
       <modelElemEndpointRefs referencedObject="//@models.2/@mappings.14/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.14"/>
     </mappingRefs>
-    <mappingRefs xsi:type="mavomid:BinaryMAVOMappingReference" referencedObject="//@models.2/@mappings.15" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.9" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.15">
+    <mappingRefs xsi:type="mavomid:MAVOBinaryMappingReference" referencedObject="//@models.2/@mappings.15" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.9" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.15">
       <modelElemEndpointRefs referencedObject="//@models.2/@mappings.15/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.9"/>
       <modelElemEndpointRefs referencedObject="//@models.2/@mappings.15/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.15"/>
     </mappingRefs>
-    <mappingRefs xsi:type="mavomid:BinaryMAVOMappingReference" referencedObject="//@models.2/@mappings.16" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.9" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.16">
+    <mappingRefs xsi:type="mavomid:MAVOBinaryMappingReference" referencedObject="//@models.2/@mappings.16" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.9" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.16">
       <modelElemEndpointRefs referencedObject="//@models.2/@mappings.16/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.9"/>
       <modelElemEndpointRefs referencedObject="//@models.2/@mappings.16/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.16"/>
     </mappingRefs>
-    <mappingRefs xsi:type="mavomid:BinaryMAVOMappingReference" referencedObject="//@models.2/@mappings.17" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.9" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.17">
+    <mappingRefs xsi:type="mavomid:MAVOBinaryMappingReference" referencedObject="//@models.2/@mappings.17" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.9" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.17">
       <modelElemEndpointRefs referencedObject="//@models.2/@mappings.17/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.9"/>
       <modelElemEndpointRefs referencedObject="//@models.2/@mappings.17/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.17"/>
     </mappingRefs>
-    <mappingRefs xsi:type="mavomid:BinaryMAVOMappingReference" referencedObject="//@models.2/@mappings.18" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.10" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.18">
+    <mappingRefs xsi:type="mavomid:MAVOBinaryMappingReference" referencedObject="//@models.2/@mappings.18" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.10" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.18">
       <modelElemEndpointRefs referencedObject="//@models.2/@mappings.18/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.10"/>
       <modelElemEndpointRefs referencedObject="//@models.2/@mappings.18/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.18"/>
     </mappingRefs>
-    <mappingRefs xsi:type="mavomid:BinaryMAVOMappingReference" referencedObject="//@models.2/@mappings.19" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.11" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.19">
+    <mappingRefs xsi:type="mavomid:MAVOBinaryMappingReference" referencedObject="//@models.2/@mappings.19" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.11" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.19">
       <modelElemEndpointRefs referencedObject="//@models.2/@mappings.19/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.11"/>
       <modelElemEndpointRefs referencedObject="//@models.2/@mappings.19/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.19"/>
     </mappingRefs>
-    <mappingRefs xsi:type="mavomid:BinaryMAVOMappingReference" referencedObject="//@models.2/@mappings.20" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.12" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.20">
+    <mappingRefs xsi:type="mavomid:MAVOBinaryMappingReference" referencedObject="//@models.2/@mappings.20" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.12" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.20">
       <modelElemEndpointRefs referencedObject="//@models.2/@mappings.20/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.12"/>
       <modelElemEndpointRefs referencedObject="//@models.2/@mappings.20/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.20"/>
     </mappingRefs>
-    <mappingRefs xsi:type="mavomid:BinaryMAVOMappingReference" referencedObject="//@models.2/@mappings.21" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.13" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.21">
+    <mappingRefs xsi:type="mavomid:MAVOBinaryMappingReference" referencedObject="//@models.2/@mappings.21" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.13" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.21">
       <modelElemEndpointRefs referencedObject="//@models.2/@mappings.21/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.13"/>
       <modelElemEndpointRefs referencedObject="//@models.2/@mappings.21/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.21"/>
     </mappingRefs>
@@ -463,7 +463,7 @@
       <eInfo className="DependeeLink" featureName="dependeeLinks" relatedClassName="Resource"/>
     </modelElems>
   </models>
-  <models xsi:type="mavomid:BinaryMAVOModelRel" uri="" name="refinement" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel" dynamic="true" origin="CREATED" fileExtension="" sourceModel="//@models.0" targetModel="//@models.3">
+  <models xsi:type="mavomid:MAVOBinaryModelRel" uri="" name="refinement" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel" dynamic="true" origin="CREATED" fileExtension="" sourceModel="//@models.0" targetModel="//@models.3">
     <modelEndpoints xsi:type="mavomid:MAVOModelEndpoint" uri="" name="orig" metatypeUri="http://se.cs.toronto.edu/mmint/MAVOModelRel-MAVOModel/MAVOModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0"/>
     <modelEndpoints xsi:type="mavomid:MAVOModelEndpoint" uri="" name="refined" metatypeUri="http://se.cs.toronto.edu/mmint/MAVOModelRel-MAVOModel/MAVOModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3"/>
     <mappings xsi:type="mavomid:MAVOMapping" uri="" name="refine1" metatypeUri="http://se.cs.toronto.edu/mmint/MAVOModelRel/MAVOMapping" dynamic="true" modelElemEndpointRefs="//@models.4/@mappingRefs.0/@modelElemEndpointRefs.0 //@models.4/@mappingRefs.0/@modelElemEndpointRefs.1">
@@ -680,7 +680,7 @@
       <eInfo className="DependeeLink" featureName="dependeeLinks" relatedClassName="Resource"/>
     </modelElems>
   </models>
-  <models xsi:type="mavomid:BinaryMAVOModelRel" uri="" name="refinement2" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel" dynamic="true" origin="CREATED" fileExtension="" sourceModel="//@models.3" targetModel="//@models.5">
+  <models xsi:type="mavomid:MAVOBinaryModelRel" uri="" name="refinement2" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel" dynamic="true" origin="CREATED" fileExtension="" sourceModel="//@models.3" targetModel="//@models.5">
     <modelEndpoints xsi:type="mavomid:MAVOModelEndpoint" uri="" name="refined" metatypeUri="http://se.cs.toronto.edu/mmint/MAVOModelRel-MAVOModel/MAVOModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3"/>
     <modelEndpoints xsi:type="mavomid:MAVOModelEndpoint" uri="" name="refined2" metatypeUri="http://se.cs.toronto.edu/mmint/MAVOModelRel-MAVOModel/MAVOModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.5"/>
     <mappings xsi:type="mavomid:MAVOMapping" uri="" name="refine1" metatypeUri="http://se.cs.toronto.edu/mmint/MAVOModelRel/MAVOMapping" dynamic="true" modelElemEndpointRefs="//@models.6/@mappingRefs.0/@modelElemEndpointRefs.0">
