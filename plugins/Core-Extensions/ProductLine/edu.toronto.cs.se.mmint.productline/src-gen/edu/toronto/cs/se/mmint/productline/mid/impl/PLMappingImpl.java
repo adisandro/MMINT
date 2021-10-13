@@ -216,7 +216,8 @@ public class PLMappingImpl extends MappingImpl implements PLMapping {
    */
   @Override
   public String toMIDCustomPrintLabel() {
-    return "(" + getPresenceCondition() + ")";
+    var pc = getPresenceCondition();
+    return "(" + ((pc == null) ? "true" : pc) + ")";
   }
 
   /**
@@ -224,7 +225,8 @@ public class PLMappingImpl extends MappingImpl implements PLMapping {
    */
   @Override
   public String toMIDCustomEditLabel() {
-    return getPresenceCondition();
+    var pc = getPresenceCondition();
+    return (pc == null) ? "" : pc;
   }
 
   /**

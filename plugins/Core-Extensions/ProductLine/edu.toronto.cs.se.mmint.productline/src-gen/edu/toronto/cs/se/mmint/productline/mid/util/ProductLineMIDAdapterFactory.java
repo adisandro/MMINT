@@ -18,16 +18,22 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
+import edu.toronto.cs.se.mmint.mid.GenericElement;
+import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryMapping;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.productline.PLElement;
 import edu.toronto.cs.se.mmint.productline.mid.PLBinaryMapping;
 import edu.toronto.cs.se.mmint.productline.mid.PLBinaryMappingReference;
+import edu.toronto.cs.se.mmint.productline.mid.PLBinaryModelRel;
 import edu.toronto.cs.se.mmint.productline.mid.PLMapping;
 import edu.toronto.cs.se.mmint.productline.mid.PLMappingReference;
+import edu.toronto.cs.se.mmint.productline.mid.PLModelRel;
 import edu.toronto.cs.se.mmint.productline.mid.ProductLineMIDPackage;
 
 /**
@@ -86,6 +92,16 @@ public class ProductLineMIDAdapterFactory extends AdapterFactoryImpl {
    */
   protected ProductLineMIDSwitch<Adapter> modelSwitch = new ProductLineMIDSwitch<>() {
     @Override
+    public Adapter casePLModelRel(PLModelRel object) {
+      return createPLModelRelAdapter();
+    }
+
+    @Override
+    public Adapter casePLBinaryModelRel(PLBinaryModelRel object) {
+      return createPLBinaryModelRelAdapter();
+    }
+
+    @Override
     public Adapter casePLMapping(PLMapping object) {
       return createPLMappingAdapter();
     }
@@ -108,6 +124,26 @@ public class ProductLineMIDAdapterFactory extends AdapterFactoryImpl {
     @Override
     public Adapter caseExtendibleElement(ExtendibleElement object) {
       return createExtendibleElementAdapter();
+    }
+
+    @Override
+    public Adapter caseGenericElement(GenericElement object) {
+      return createGenericElementAdapter();
+    }
+
+    @Override
+    public Adapter caseModel(Model object) {
+      return createModelAdapter();
+    }
+
+    @Override
+    public Adapter caseModelRel(ModelRel object) {
+      return createModelRelAdapter();
+    }
+
+    @Override
+    public Adapter caseBinaryModelRel(BinaryModelRel object) {
+      return createBinaryModelRelAdapter();
     }
 
     @Override
@@ -157,6 +193,34 @@ public class ProductLineMIDAdapterFactory extends AdapterFactoryImpl {
   @Override
   public Adapter createAdapter(Notifier target) {
     return this.modelSwitch.doSwitch((EObject) target);
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.productline.mid.PLModelRel <em>PL Model Rel</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.toronto.cs.se.mmint.productline.mid.PLModelRel
+   * @generated
+   */
+  public Adapter createPLModelRelAdapter() {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.productline.mid.PLBinaryModelRel <em>PL Binary Model Rel</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.toronto.cs.se.mmint.productline.mid.PLBinaryModelRel
+   * @generated
+   */
+  public Adapter createPLBinaryModelRelAdapter() {
+    return null;
   }
 
   /**
@@ -226,6 +290,62 @@ public class ProductLineMIDAdapterFactory extends AdapterFactoryImpl {
    * @generated
    */
   public Adapter createExtendibleElementAdapter() {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.mid.GenericElement <em>Generic Element</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.toronto.cs.se.mmint.mid.GenericElement
+   * @generated
+   */
+  public Adapter createGenericElementAdapter() {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.mid.Model <em>Model</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.toronto.cs.se.mmint.mid.Model
+   * @generated
+   */
+  public Adapter createModelAdapter() {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.mid.relationship.ModelRel <em>Model Rel</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.toronto.cs.se.mmint.mid.relationship.ModelRel
+   * @generated
+   */
+  public Adapter createModelRelAdapter() {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel <em>Binary Model Rel</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel
+   * @generated
+   */
+  public Adapter createBinaryModelRelAdapter() {
     return null;
   }
 

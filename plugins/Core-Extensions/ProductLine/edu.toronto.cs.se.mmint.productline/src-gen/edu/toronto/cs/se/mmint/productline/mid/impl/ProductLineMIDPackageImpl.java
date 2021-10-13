@@ -13,6 +13,7 @@
 package edu.toronto.cs.se.mmint.productline.mid.impl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
@@ -22,8 +23,10 @@ import edu.toronto.cs.se.mmint.productline.ProductLinePackage;
 import edu.toronto.cs.se.mmint.productline.impl.ProductLinePackageImpl;
 import edu.toronto.cs.se.mmint.productline.mid.PLBinaryMapping;
 import edu.toronto.cs.se.mmint.productline.mid.PLBinaryMappingReference;
+import edu.toronto.cs.se.mmint.productline.mid.PLBinaryModelRel;
 import edu.toronto.cs.se.mmint.productline.mid.PLMapping;
 import edu.toronto.cs.se.mmint.productline.mid.PLMappingReference;
+import edu.toronto.cs.se.mmint.productline.mid.PLModelRel;
 import edu.toronto.cs.se.mmint.productline.mid.ProductLineMIDFactory;
 import edu.toronto.cs.se.mmint.productline.mid.ProductLineMIDPackage;
 
@@ -34,6 +37,20 @@ import edu.toronto.cs.se.mmint.productline.mid.ProductLineMIDPackage;
  * @generated
  */
 public class ProductLineMIDPackageImpl extends EPackageImpl implements ProductLineMIDPackage {
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass plModelRelEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass plBinaryModelRelEClass = null;
+
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -143,6 +160,26 @@ public class ProductLineMIDPackageImpl extends EPackageImpl implements ProductLi
    * @generated
    */
   @Override
+  public EClass getPLModelRel() {
+    return this.plModelRelEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getPLBinaryModelRel() {
+    return this.plBinaryModelRelEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EClass getPLMapping() {
     return this.plMappingEClass;
   }
@@ -207,6 +244,10 @@ public class ProductLineMIDPackageImpl extends EPackageImpl implements ProductLi
     this.isCreated = true;
 
     // Create classes and their features
+    this.plModelRelEClass = createEClass(ProductLineMIDPackage.PL_MODEL_REL);
+
+    this.plBinaryModelRelEClass = createEClass(ProductLineMIDPackage.PL_BINARY_MODEL_REL);
+
     this.plMappingEClass = createEClass(ProductLineMIDPackage.PL_MAPPING);
 
     this.plBinaryMappingEClass = createEClass(ProductLineMIDPackage.PL_BINARY_MAPPING);
@@ -249,6 +290,9 @@ public class ProductLineMIDPackageImpl extends EPackageImpl implements ProductLi
     // Set bounds for type parameters
 
     // Add supertypes to classes
+    this.plModelRelEClass.getESuperTypes().add(theRelationshipPackage.getModelRel());
+    this.plBinaryModelRelEClass.getESuperTypes().add(theRelationshipPackage.getBinaryModelRel());
+    this.plBinaryModelRelEClass.getESuperTypes().add(this.getPLModelRel());
     this.plMappingEClass.getESuperTypes().add(theRelationshipPackage.getMapping());
     this.plMappingEClass.getESuperTypes().add(theProductLinePackage.getPLElement());
     this.plBinaryMappingEClass.getESuperTypes().add(theRelationshipPackage.getBinaryMapping());
@@ -258,6 +302,12 @@ public class ProductLineMIDPackageImpl extends EPackageImpl implements ProductLi
     this.plBinaryMappingReferenceEClass.getESuperTypes().add(this.getPLMappingReference());
 
     // Initialize classes and features; add operations and parameters
+    initEClass(this.plModelRelEClass, PLModelRel.class, "PLModelRel", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE,
+               EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(this.plBinaryModelRelEClass, PLBinaryModelRel.class, "PLBinaryModelRel", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE,
+               EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+
     initEClass(this.plMappingEClass, PLMapping.class, "PLMapping", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 
     addEOperation(this.plMappingEClass, this.ecorePackage.getEString(), "toMIDCustomPrintLabel", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);

@@ -14,7 +14,6 @@ package edu.toronto.cs.se.mmint;
 import java.util.Map;
 
 import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.RegistryFactory;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -424,7 +423,7 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
    *             extension, or if the uri of the new model relationship type
    *             is already registered in the repository.
    */
-  public @NonNull ModelRel createHeavyModelRelType(@NonNull ExtensionPointType extensionType, boolean isBinary) throws MMINTException {
+  public ModelRel createHeavyModelRelType(ExtensionPointType extensionType, boolean isBinary) throws MMINTException {
 
     ModelRel newModelRelType;
     if (extensionType.getNewType() == null) {

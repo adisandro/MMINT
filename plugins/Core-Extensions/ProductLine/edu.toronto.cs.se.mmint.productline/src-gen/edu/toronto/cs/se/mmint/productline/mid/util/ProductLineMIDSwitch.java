@@ -17,16 +17,22 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
 
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
+import edu.toronto.cs.se.mmint.mid.GenericElement;
+import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryMapping;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.productline.PLElement;
 import edu.toronto.cs.se.mmint.productline.mid.PLBinaryMapping;
 import edu.toronto.cs.se.mmint.productline.mid.PLBinaryMappingReference;
+import edu.toronto.cs.se.mmint.productline.mid.PLBinaryModelRel;
 import edu.toronto.cs.se.mmint.productline.mid.PLMapping;
 import edu.toronto.cs.se.mmint.productline.mid.PLMappingReference;
+import edu.toronto.cs.se.mmint.productline.mid.PLModelRel;
 import edu.toronto.cs.se.mmint.productline.mid.ProductLineMIDPackage;
 
 /**
@@ -86,6 +92,40 @@ public class ProductLineMIDSwitch<T> extends Switch<T> {
   @Override
   protected T doSwitch(int classifierID, EObject theEObject) {
     switch (classifierID) {
+    case ProductLineMIDPackage.PL_MODEL_REL: {
+      var plModelRel = (PLModelRel) theEObject;
+      var result = casePLModelRel(plModelRel);
+      if (result == null)
+        result = caseModelRel(plModelRel);
+      if (result == null)
+        result = caseModel(plModelRel);
+      if (result == null)
+        result = caseGenericElement(plModelRel);
+      if (result == null)
+        result = caseExtendibleElement(plModelRel);
+      if (result == null)
+        result = defaultCase(theEObject);
+      return result;
+    }
+    case ProductLineMIDPackage.PL_BINARY_MODEL_REL: {
+      var plBinaryModelRel = (PLBinaryModelRel) theEObject;
+      var result = casePLBinaryModelRel(plBinaryModelRel);
+      if (result == null)
+        result = caseBinaryModelRel(plBinaryModelRel);
+      if (result == null)
+        result = casePLModelRel(plBinaryModelRel);
+      if (result == null)
+        result = caseModelRel(plBinaryModelRel);
+      if (result == null)
+        result = caseModel(plBinaryModelRel);
+      if (result == null)
+        result = caseGenericElement(plBinaryModelRel);
+      if (result == null)
+        result = caseExtendibleElement(plBinaryModelRel);
+      if (result == null)
+        result = defaultCase(theEObject);
+      return result;
+    }
     case ProductLineMIDPackage.PL_MAPPING: {
       var plMapping = (PLMapping) theEObject;
       var result = casePLMapping(plMapping);
@@ -145,6 +185,36 @@ public class ProductLineMIDSwitch<T> extends Switch<T> {
     default:
       return defaultCase(theEObject);
     }
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>PL Model Rel</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>PL Model Rel</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePLModelRel(PLModelRel object) {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>PL Binary Model Rel</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>PL Binary Model Rel</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePLBinaryModelRel(PLBinaryModelRel object) {
+    return null;
   }
 
   /**
@@ -219,6 +289,66 @@ public class ProductLineMIDSwitch<T> extends Switch<T> {
    * @generated
    */
   public T caseExtendibleElement(ExtendibleElement object) {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Generic Element</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Generic Element</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseGenericElement(GenericElement object) {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Model</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Model</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseModel(Model object) {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Model Rel</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Model Rel</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseModelRel(ModelRel object) {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Binary Model Rel</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Binary Model Rel</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseBinaryModelRel(BinaryModelRel object) {
     return null;
   }
 

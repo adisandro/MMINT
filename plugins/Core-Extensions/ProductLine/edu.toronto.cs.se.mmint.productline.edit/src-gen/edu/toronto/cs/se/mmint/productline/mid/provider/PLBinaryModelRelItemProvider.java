@@ -21,25 +21,25 @@ import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
-import edu.toronto.cs.se.mmint.mid.relationship.provider.BinaryMappingReferenceItemProvider;
-import edu.toronto.cs.se.mmint.productline.mid.PLBinaryMappingReference;
+import edu.toronto.cs.se.mmint.mid.relationship.provider.BinaryModelRelItemProvider;
+import edu.toronto.cs.se.mmint.productline.mid.PLBinaryModelRel;
 import edu.toronto.cs.se.mmint.productline.mid.ProductLineMIDFactory;
 import edu.toronto.cs.se.mmint.productline.provider.ProductLineEditPlugin;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.mmint.productline.mid.PLBinaryMappingReference} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.mmint.productline.mid.PLBinaryModelRel} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class PLBinaryMappingReferenceItemProvider extends BinaryMappingReferenceItemProvider {
+public class PLBinaryModelRelItemProvider extends BinaryModelRelItemProvider {
   /**
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  public PLBinaryMappingReferenceItemProvider(AdapterFactory adapterFactory) {
+  public PLBinaryModelRelItemProvider(AdapterFactory adapterFactory) {
     super(adapterFactory);
   }
 
@@ -59,14 +59,14 @@ public class PLBinaryMappingReferenceItemProvider extends BinaryMappingReference
   }
 
   /**
-   * This returns PLBinaryMappingReference.gif.
+   * This returns PLBinaryModelRel.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
   @Override
   public Object getImage(Object object) {
-    return overlayImage(object, getResourceLocator().getImage("full/obj16/PLBinaryMappingReference"));
+    return overlayImage(object, getResourceLocator().getImage("full/obj16/PLBinaryModelRel"));
   }
 
   /**
@@ -87,8 +87,9 @@ public class PLBinaryMappingReferenceItemProvider extends BinaryMappingReference
    */
   @Override
   public String getText(Object object) {
-    var plBinaryMappingReference = (PLBinaryMappingReference) object;
-    return getString("_UI_PLBinaryMappingReference_type") + " " + plBinaryMappingReference.isModifiable();
+    var label = ((PLBinaryModelRel) object).getName();
+    return label == null || label.length() == 0 ? getString("_UI_PLBinaryModelRel_type")
+      : getString("_UI_PLBinaryModelRel_type") + " " + label;
   }
 
   /**
@@ -115,17 +116,17 @@ public class PLBinaryMappingReferenceItemProvider extends BinaryMappingReference
   protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
     super.collectNewChildDescriptors(newChildDescriptors, object);
 
-    newChildDescriptors.add(createChildParameter(RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT,
-                                                 ProductLineMIDFactory.eINSTANCE.createPLModelRel()));
-
-    newChildDescriptors.add(createChildParameter(RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT,
-                                                 ProductLineMIDFactory.eINSTANCE.createPLBinaryModelRel()));
-
-    newChildDescriptors.add(createChildParameter(RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT,
+    newChildDescriptors.add(createChildParameter(RelationshipPackage.Literals.MODEL_REL__MAPPINGS,
                                                  ProductLineMIDFactory.eINSTANCE.createPLMapping()));
 
-    newChildDescriptors.add(createChildParameter(RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT,
+    newChildDescriptors.add(createChildParameter(RelationshipPackage.Literals.MODEL_REL__MAPPINGS,
                                                  ProductLineMIDFactory.eINSTANCE.createPLBinaryMapping()));
+
+    newChildDescriptors.add(createChildParameter(RelationshipPackage.Literals.MODEL_REL__MAPPING_REFS,
+                                                 ProductLineMIDFactory.eINSTANCE.createPLMappingReference()));
+
+    newChildDescriptors.add(createChildParameter(RelationshipPackage.Literals.MODEL_REL__MAPPING_REFS,
+                                                 ProductLineMIDFactory.eINSTANCE.createPLBinaryMappingReference()));
   }
 
   /**

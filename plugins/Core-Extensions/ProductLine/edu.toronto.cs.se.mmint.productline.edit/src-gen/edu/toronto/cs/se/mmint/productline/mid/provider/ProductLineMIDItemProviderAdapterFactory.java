@@ -36,10 +36,13 @@ import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
+import edu.toronto.cs.se.mmint.mid.MID;
+import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
 import edu.toronto.cs.se.mmint.mid.relationship.util.RelationshipSwitch;
+import edu.toronto.cs.se.mmint.mid.util.MIDSwitch;
 import edu.toronto.cs.se.mmint.productline.mid.ProductLineMIDFactory;
 import edu.toronto.cs.se.mmint.productline.mid.util.ProductLineMIDAdapterFactory;
 import edu.toronto.cs.se.mmint.productline.provider.ProductLineEditPlugin;
@@ -91,6 +94,52 @@ public class ProductLineMIDItemProviderAdapterFactory extends ProductLineMIDAdap
     this.supportedTypes.add(ITreeItemContentProvider.class);
     this.supportedTypes.add(IItemLabelProvider.class);
     this.supportedTypes.add(IItemPropertySource.class);
+  }
+
+  /**
+   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint.productline.mid.PLModelRel} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected PLModelRelItemProvider plModelRelItemProvider;
+
+  /**
+   * This creates an adapter for a {@link edu.toronto.cs.se.mmint.productline.mid.PLModelRel}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createPLModelRelAdapter() {
+    if (this.plModelRelItemProvider == null) {
+      this.plModelRelItemProvider = new PLModelRelItemProvider(this);
+    }
+
+    return this.plModelRelItemProvider;
+  }
+
+  /**
+   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint.productline.mid.PLBinaryModelRel} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected PLBinaryModelRelItemProvider plBinaryModelRelItemProvider;
+
+  /**
+   * This creates an adapter for a {@link edu.toronto.cs.se.mmint.productline.mid.PLBinaryModelRel}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createPLBinaryModelRelAdapter() {
+    if (this.plBinaryModelRelItemProvider == null) {
+      this.plBinaryModelRelItemProvider = new PLBinaryModelRelItemProvider(this);
+    }
+
+    return this.plBinaryModelRelItemProvider;
   }
 
   /**
@@ -290,6 +339,10 @@ public class ProductLineMIDItemProviderAdapterFactory extends ProductLineMIDAdap
    */
   @Override
   public void dispose() {
+    if (this.plModelRelItemProvider != null)
+      this.plModelRelItemProvider.dispose();
+    if (this.plBinaryModelRelItemProvider != null)
+      this.plBinaryModelRelItemProvider.dispose();
     if (this.plMappingItemProvider != null)
       this.plMappingItemProvider.dispose();
     if (this.plBinaryMappingItemProvider != null)
@@ -298,6 +351,97 @@ public class ProductLineMIDItemProviderAdapterFactory extends ProductLineMIDAdap
       this.plMappingReferenceItemProvider.dispose();
     if (this.plBinaryMappingReferenceItemProvider != null)
       this.plBinaryMappingReferenceItemProvider.dispose();
+  }
+
+  /**
+   * A child creation extender for the {@link MIDPackage}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public static class MIDChildCreationExtender implements IChildCreationExtender {
+    /**
+     * The switch for creating child descriptors specific to each extended class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected static class CreationSwitch extends MIDSwitch<Object> {
+      /**
+       * The child descriptors being populated.
+       * <!-- begin-user-doc -->
+       * <!-- end-user-doc -->
+       * @generated
+       */
+      protected List<Object> newChildDescriptors;
+
+      /**
+       * The domain in which to create the children.
+       * <!-- begin-user-doc -->
+       * <!-- end-user-doc -->
+       * @generated
+       */
+      protected EditingDomain editingDomain;
+
+      /**
+       * Creates the a switch for populating child descriptors in the given domain.
+       * <!-- begin-user-doc -->
+       * <!-- end-user-doc -->
+       * @generated
+       */
+      CreationSwitch(List<Object> newChildDescriptors, EditingDomain editingDomain) {
+        this.newChildDescriptors = newChildDescriptors;
+        this.editingDomain = editingDomain;
+      }
+
+      /**
+       * <!-- begin-user-doc -->
+       * <!-- end-user-doc -->
+       * @generated
+       */
+      @Override
+      public Object caseMID(MID object) {
+        this.newChildDescriptors.add(createChildParameter(MIDPackage.Literals.MID__MODELS, ProductLineMIDFactory.eINSTANCE
+                                                                                                                     .createPLModelRel()));
+
+        this.newChildDescriptors.add(createChildParameter(MIDPackage.Literals.MID__MODELS, ProductLineMIDFactory.eINSTANCE
+                                                                                                                     .createPLBinaryModelRel()));
+
+        return null;
+      }
+
+      /**
+       * <!-- begin-user-doc -->
+       * <!-- end-user-doc -->
+       * @generated
+       */
+      protected CommandParameter createChildParameter(Object feature, Object child) {
+        return new CommandParameter(null, feature, child);
+      }
+
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain) {
+      var result = new ArrayList<>();
+      new CreationSwitch(result, editingDomain).doSwitch((EObject) object);
+      return result;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public ResourceLocator getResourceLocator() {
+      return ProductLineEditPlugin.INSTANCE;
+    }
   }
 
   /**
@@ -370,6 +514,12 @@ public class ProductLineMIDItemProviderAdapterFactory extends ProductLineMIDAdap
        */
       @Override
       public Object caseExtendibleElementReference(ExtendibleElementReference object) {
+        this.newChildDescriptors.add(createChildParameter(RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT,
+                                                     ProductLineMIDFactory.eINSTANCE.createPLModelRel()));
+
+        this.newChildDescriptors.add(createChildParameter(RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT,
+                                                     ProductLineMIDFactory.eINSTANCE.createPLBinaryModelRel()));
+
         this.newChildDescriptors.add(createChildParameter(RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT,
                                                      ProductLineMIDFactory.eINSTANCE.createPLMapping()));
 

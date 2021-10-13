@@ -116,6 +116,12 @@ public class PLMappingReferenceItemProvider extends MappingReferenceItemProvider
     super.collectNewChildDescriptors(newChildDescriptors, object);
 
     newChildDescriptors.add(createChildParameter(RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT,
+                                                 ProductLineMIDFactory.eINSTANCE.createPLModelRel()));
+
+    newChildDescriptors.add(createChildParameter(RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT,
+                                                 ProductLineMIDFactory.eINSTANCE.createPLBinaryModelRel()));
+
+    newChildDescriptors.add(createChildParameter(RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT,
                                                  ProductLineMIDFactory.eINSTANCE.createPLMapping()));
 
     newChildDescriptors.add(createChildParameter(RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT,

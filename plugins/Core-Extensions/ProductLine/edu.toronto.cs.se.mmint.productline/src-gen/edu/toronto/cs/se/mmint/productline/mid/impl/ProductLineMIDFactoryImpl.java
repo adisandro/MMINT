@@ -20,8 +20,10 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 import edu.toronto.cs.se.mmint.productline.mid.PLBinaryMapping;
 import edu.toronto.cs.se.mmint.productline.mid.PLBinaryMappingReference;
+import edu.toronto.cs.se.mmint.productline.mid.PLBinaryModelRel;
 import edu.toronto.cs.se.mmint.productline.mid.PLMapping;
 import edu.toronto.cs.se.mmint.productline.mid.PLMappingReference;
+import edu.toronto.cs.se.mmint.productline.mid.PLModelRel;
 import edu.toronto.cs.se.mmint.productline.mid.ProductLineMIDFactory;
 import edu.toronto.cs.se.mmint.productline.mid.ProductLineMIDPackage;
 
@@ -69,6 +71,10 @@ public class ProductLineMIDFactoryImpl extends EFactoryImpl implements ProductLi
   @Override
   public EObject create(EClass eClass) {
     switch (eClass.getClassifierID()) {
+    case ProductLineMIDPackage.PL_MODEL_REL:
+      return createPLModelRel();
+    case ProductLineMIDPackage.PL_BINARY_MODEL_REL:
+      return createPLBinaryModelRel();
     case ProductLineMIDPackage.PL_MAPPING:
       return createPLMapping();
     case ProductLineMIDPackage.PL_BINARY_MAPPING:
@@ -80,6 +86,28 @@ public class ProductLineMIDFactoryImpl extends EFactoryImpl implements ProductLi
     default:
       throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public PLModelRel createPLModelRel() {
+    PLModelRelImpl plModelRel = new PLModelRelImpl();
+    return plModelRel;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public PLBinaryModelRel createPLBinaryModelRel() {
+    PLBinaryModelRelImpl plBinaryModelRel = new PLBinaryModelRelImpl();
+    return plBinaryModelRel;
   }
 
   /**

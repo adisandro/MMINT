@@ -2,6 +2,8 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="mid" nsURI="rel://edu.toronto.cs.se.mmint.productline.mid.PLModelRel"
     nsPrefix="productline.mid">
+  <eClassifiers xsi:type="ecore:EClass" name="PLModelRel" eSuperTypes="../../edu.toronto.cs.se.mmint/model/mid.ecore#//relationship/ModelRel"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PLBinaryModelRel" eSuperTypes="../../edu.toronto.cs.se.mmint/model/mid.ecore#//relationship/BinaryModelRel #//PLModelRel"/>
   <eClassifiers xsi:type="ecore:EClass" name="PLMapping" eSuperTypes="../../edu.toronto.cs.se.mmint/model/mid.ecore#//relationship/Mapping productline.ecore#//PLElement">
     <eOperations name="toMIDCustomPrintLabel" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eOperations name="toMIDCustomEditLabel" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

@@ -39,6 +39,8 @@
   </genPackages>
   <genPackages prefix="ProductLineMID" basePackage="edu.toronto.cs.se.mmint.productline"
       disposableProviderFactory="true" childCreationExtenders="true" ecorePackage="productline.mid.ecore#/">
+    <genClasses ecoreClass="productline.mid.ecore#//PLModelRel"/>
+    <genClasses ecoreClass="productline.mid.ecore#//PLBinaryModelRel"/>
     <genClasses ecoreClass="productline.mid.ecore#//PLMapping">
       <genOperations ecoreOperation="productline.mid.ecore#//PLMapping/toMIDCustomPrintLabel"/>
       <genOperations ecoreOperation="productline.mid.ecore#//PLMapping/toMIDCustomEditLabel"/>

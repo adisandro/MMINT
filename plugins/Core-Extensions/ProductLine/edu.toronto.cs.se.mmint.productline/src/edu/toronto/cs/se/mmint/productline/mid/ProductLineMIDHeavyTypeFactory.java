@@ -21,6 +21,17 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 public class ProductLineMIDHeavyTypeFactory extends MIDHeavyTypeFactory {
 
   @Override
+  public ModelRel createHeavyModelRelType(ExtensionPointType extensionType, boolean isBinary) throws MMINTException {
+    var newPLModelRelType = (isBinary) ?
+      ProductLineMIDFactory.eINSTANCE.createPLBinaryModelRel() :
+      ProductLineMIDFactory.eINSTANCE.createPLModelRel();
+    super.addHeavyModelRelType(newPLModelRelType, extensionType.getUri(), extensionType.getSupertypeUri(),
+                               extensionType.getName(), extensionType.isAbstract());
+
+    return newPLModelRelType;
+  }
+
+  @Override
   public MappingReference createHeavyMappingTypeAndMappingTypeReference(
                             ExtensionPointType extensionType, boolean isBinary, ModelRel containerModelRelType)
                               throws MMINTException {
@@ -28,8 +39,8 @@ public class ProductLineMIDHeavyTypeFactory extends MIDHeavyTypeFactory {
       ProductLineMIDFactory.eINSTANCE.createPLBinaryMapping() :
       ProductLineMIDFactory.eINSTANCE.createPLMapping();
 
-    return super.addHeavyMappingTypeAndMappingTypeReference(
-                   newPLMappingType, extensionType.getUri(), extensionType.getSupertypeUri(), extensionType.getName(),
-                   containerModelRelType);
+    return super.addHeavyMappingTypeAndMappingTypeReference(newPLMappingType, extensionType.getUri(),
+                                                            extensionType.getSupertypeUri(), extensionType.getName(),
+                                                            containerModelRelType);
   }
 }

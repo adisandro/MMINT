@@ -32,6 +32,24 @@ public interface ProductLineMIDFactory extends EFactory {
   ProductLineMIDFactory eINSTANCE = edu.toronto.cs.se.mmint.productline.mid.impl.ProductLineMIDFactoryImpl.init();
 
   /**
+   * Returns a new object of class '<em>PL Model Rel</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>PL Model Rel</em>'.
+   * @generated
+   */
+  PLModelRel createPLModelRel();
+
+  /**
+   * Returns a new object of class '<em>PL Binary Model Rel</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>PL Binary Model Rel</em>'.
+   * @generated
+   */
+  PLBinaryModelRel createPLBinaryModelRel();
+
+  /**
    * Returns a new object of class '<em>PL Mapping</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

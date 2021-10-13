@@ -43,6 +43,9 @@
    <extension point="org.eclipse.emf.edit.childCreationExtenders">
       <!-- @generated productline -->
       <extender
+            uri="http://se.cs.toronto.edu/mmint/MID"
+            class="edu.toronto.cs.se.mmint.productline.mid.provider.ProductLineMIDItemProviderAdapterFactory$MIDChildCreationExtender"/>
+      <extender
             uri="http://se.cs.toronto.edu/mmint/MID/Relationship"
             class="edu.toronto.cs.se.mmint.productline.mid.provider.ProductLineMIDItemProviderAdapterFactory$RelationshipChildCreationExtender"/>
    </extension>
