@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="mid" nsURI="rel://edu.toronto.cs.se.mmint.productline.mid.PLModelRel"
+    nsPrefix="productline.mid">
+  <eClassifiers xsi:type="ecore:EClass" name="PLMapping" eSuperTypes="../../edu.toronto.cs.se.mmint/model/mid.ecore#//relationship/Mapping productline.ecore#//PLElement">
+    <eOperations name="toMIDCustomPrintLabel" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eOperations name="toMIDCustomEditLabel" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eOperations name="updateMIDCustomLabel">
+      <eParameters name="newLabel" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PLBinaryMapping" eSuperTypes="../../edu.toronto.cs.se.mmint/model/mid.ecore#//relationship/BinaryMapping #//PLMapping"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PLMappingReference" eSuperTypes="../../edu.toronto.cs.se.mmint/model/mid.ecore#//relationship/MappingReference">
+    <eOperations name="getObject" lowerBound="1" eType="#//PLMapping">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="var object = super.getObject();&#xA;return (object == null) ? null : (PLMapping) object;"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PLBinaryMappingReference" eSuperTypes="../../edu.toronto.cs.se.mmint/model/mid.ecore#//relationship/BinaryMappingReference #//PLMappingReference">
+    <eOperations name="getObject" lowerBound="1" eType="#//PLBinaryMapping">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="var object = super.getObject();&#xA;return (object == null) ? null : (PLBinaryMapping) object;"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+</ecore:EPackage>

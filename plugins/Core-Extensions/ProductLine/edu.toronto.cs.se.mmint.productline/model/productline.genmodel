@@ -8,6 +8,7 @@
     copyrightFields="false" usedGenPackages="../../edu.toronto.cs.se.mmint/model/mid.genmodel#//mid"
     importOrganizing="true">
   <foreignModel>productline.ecore</foreignModel>
+  <foreignModel>productline.mid.ecore</foreignModel>
   <testsDirectory xsi:nil="true"/>
   <genPackages prefix="ProductLine" basePackage="edu.toronto.cs.se.mmint" disposableProviderFactory="true"
       ecorePackage="productline.ecore#/">
@@ -35,24 +36,24 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute productline.ecore#//Attribute/value"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference productline.ecore#//Attribute/type"/>
     </genClasses>
-    <nestedGenPackages prefix="ProductLineMID" basePackage="edu.toronto.cs.se.mmint.productline"
-        disposableProviderFactory="true" childCreationExtenders="true" ecorePackage="productline.ecore#//mid">
-      <genClasses ecoreClass="productline.ecore#//mid/PLMapping">
-        <genOperations ecoreOperation="productline.ecore#//mid/PLMapping/toMIDCustomPrintLabel"/>
-        <genOperations ecoreOperation="productline.ecore#//mid/PLMapping/toMIDCustomEditLabel"/>
-        <genOperations ecoreOperation="productline.ecore#//mid/PLMapping/updateMIDCustomLabel">
-          <genParameters ecoreParameter="productline.ecore#//mid/PLMapping/updateMIDCustomLabel/newLabel"/>
-        </genOperations>
-      </genClasses>
-      <genClasses ecoreClass="productline.ecore#//mid/PLBinaryMapping"/>
-      <genClasses ecoreClass="productline.ecore#//mid/PLMappingReference">
-        <genOperations ecoreOperation="productline.ecore#//mid/PLMappingReference/getObject"
-            body="var object = super.getObject();&#xA;return (object == null) ? null : (PLMapping) object;"/>
-      </genClasses>
-      <genClasses ecoreClass="productline.ecore#//mid/PLBinaryMappingReference">
-        <genOperations ecoreOperation="productline.ecore#//mid/PLBinaryMappingReference/getObject"
-            body="var object = super.getObject();&#xA;return (object == null) ? null : (PLBinaryMapping) object;"/>
-      </genClasses>
-    </nestedGenPackages>
+  </genPackages>
+  <genPackages prefix="ProductLineMID" basePackage="edu.toronto.cs.se.mmint.productline"
+      disposableProviderFactory="true" childCreationExtenders="true" ecorePackage="productline.mid.ecore#/">
+    <genClasses ecoreClass="productline.mid.ecore#//PLMapping">
+      <genOperations ecoreOperation="productline.mid.ecore#//PLMapping/toMIDCustomPrintLabel"/>
+      <genOperations ecoreOperation="productline.mid.ecore#//PLMapping/toMIDCustomEditLabel"/>
+      <genOperations ecoreOperation="productline.mid.ecore#//PLMapping/updateMIDCustomLabel">
+        <genParameters ecoreParameter="productline.mid.ecore#//PLMapping/updateMIDCustomLabel/newLabel"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="productline.mid.ecore#//PLBinaryMapping"/>
+    <genClasses ecoreClass="productline.mid.ecore#//PLMappingReference">
+      <genOperations ecoreOperation="productline.mid.ecore#//PLMappingReference/getObject"
+          body="var object = super.getObject();&#xA;return (object == null) ? null : (PLMapping) object;"/>
+    </genClasses>
+    <genClasses ecoreClass="productline.mid.ecore#//PLBinaryMappingReference">
+      <genOperations ecoreOperation="productline.mid.ecore#//PLBinaryMappingReference/getObject"
+          body="var object = super.getObject();&#xA;return (object == null) ? null : (PLBinaryMapping) object;"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

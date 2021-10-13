@@ -279,6 +279,9 @@ public class ProductLineMIDPackageImpl extends EPackageImpl implements ProductLi
                !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 
     addEOperation(this.plBinaryMappingReferenceEClass, this.getPLBinaryMapping(), "getObject", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+
+    // Create resource
+    createResource(ProductLineMIDPackage.eNS_URI);
   }
 
 } //ProductLineMIDPackageImpl

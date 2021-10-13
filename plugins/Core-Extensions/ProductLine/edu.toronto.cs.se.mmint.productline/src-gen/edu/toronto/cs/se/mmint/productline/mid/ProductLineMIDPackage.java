@@ -47,7 +47,7 @@ public interface ProductLineMIDPackage extends EPackage {
    * <!-- end-user-doc -->
    * @generated
    */
-  String eNS_URI = "model://edu.toronto.cs.se.mmint.productline.mid";
+  String eNS_URI = "rel://edu.toronto.cs.se.mmint.productline.mid.PLModelRel";
 
   /**
    * The package namespace name.

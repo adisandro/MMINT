@@ -30,7 +30,7 @@
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <!-- @generated productline -->
       <factory
-            uri="model://edu.toronto.cs.se.mmint.productline.mid"
+            uri="rel://edu.toronto.cs.se.mmint.productline.mid.PLModelRel"
             class="edu.toronto.cs.se.mmint.productline.mid.provider.ProductLineMIDItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider

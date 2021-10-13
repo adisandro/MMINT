@@ -414,12 +414,6 @@ public class ProductLinePackageImpl extends EPackageImpl implements ProductLineP
     setNsPrefix(ProductLinePackage.eNS_PREFIX);
     setNsURI(ProductLinePackage.eNS_URI);
 
-    // Obtain other dependent packages
-    var theProductLineMIDPackage = (ProductLineMIDPackage) EPackage.Registry.INSTANCE.getEPackage(ProductLineMIDPackage.eNS_URI);
-
-    // Add subpackages
-    getESubpackages().add(theProductLineMIDPackage);
-
     // Create type parameters
 
     // Set bounds for type parameters
