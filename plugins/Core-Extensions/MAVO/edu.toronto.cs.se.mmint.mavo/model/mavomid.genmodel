@@ -43,7 +43,7 @@
         <genParameters ecoreParameter="mavomid.ecore#//MAVOModelRel/copyInstance/instanceMID"/>
       </genOperations>
     </genClasses>
-    <genClasses ecoreClass="mavomid.ecore#//BinaryMAVOModelRel"/>
+    <genClasses ecoreClass="mavomid.ecore#//MAVOBinaryModelRel"/>
     <genClasses ecoreClass="mavomid.ecore#//MAVOModelEndpoint">
       <genOperations ecoreOperation="mavomid.ecore#//MAVOModelEndpoint/getTarget"
           body="ExtendibleElement target = super.getTarget();&#xA;return (target == null) ? null : (MAVOModel) target;"/>
@@ -55,7 +55,7 @@
         <genParameters ecoreParameter="mavomid.ecore#//MAVOMapping/updateMIDCustomLabel/newLabel"/>
       </genOperations>
     </genClasses>
-    <genClasses ecoreClass="mavomid.ecore#//BinaryMAVOMapping"/>
+    <genClasses ecoreClass="mavomid.ecore#//MAVOBinaryMapping"/>
     <genClasses ecoreClass="mavomid.ecore#//MAVOModelElementReference">
       <genOperations ecoreOperation="mavomid.ecore#//MAVOModelElementReference/getObject"
           body="ExtendibleElement object = super.getObject();&#xA;return (object == null) ? null : (MAVOModelElement) object;"/>
@@ -72,9 +72,9 @@
       <genOperations ecoreOperation="mavomid.ecore#//MAVOMappingReference/getObject"
           body="ExtendibleElement object = super.getObject();&#xA;return (object == null) ? null : (MAVOMapping) object;"/>
     </genClasses>
-    <genClasses ecoreClass="mavomid.ecore#//BinaryMAVOMappingReference">
-      <genOperations ecoreOperation="mavomid.ecore#//BinaryMAVOMappingReference/getObject"
-          body="ExtendibleElement object = super.getObject();&#xA;return (object == null) ? null : (BinaryMAVOMapping) object;"/>
+    <genClasses ecoreClass="mavomid.ecore#//MAVOBinaryMappingReference">
+      <genOperations ecoreOperation="mavomid.ecore#//MAVOBinaryMappingReference/getObject"
+          body="ExtendibleElement object = super.getObject();&#xA;return (object == null) ? null : (MAVOBinaryMapping) object;"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

@@ -126,15 +126,15 @@ public class MAVOMIDSwitch<T> extends Switch<T> {
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case MAVOMIDPackage.BINARY_MAVO_MODEL_REL: {
-        BinaryMAVOModelRel binaryMAVOModelRel = (BinaryMAVOModelRel)theEObject;
-        T result = caseBinaryMAVOModelRel(binaryMAVOModelRel);
-        if (result == null) result = caseBinaryModelRel(binaryMAVOModelRel);
-        if (result == null) result = caseMAVOModelRel(binaryMAVOModelRel);
-        if (result == null) result = caseModelRel(binaryMAVOModelRel);
-        if (result == null) result = caseModel(binaryMAVOModelRel);
-        if (result == null) result = caseGenericElement(binaryMAVOModelRel);
-        if (result == null) result = caseExtendibleElement(binaryMAVOModelRel);
+      case MAVOMIDPackage.MAVO_BINARY_MODEL_REL: {
+        MAVOBinaryModelRel mavoBinaryModelRel = (MAVOBinaryModelRel)theEObject;
+        T result = caseMAVOBinaryModelRel(mavoBinaryModelRel);
+        if (result == null) result = caseBinaryModelRel(mavoBinaryModelRel);
+        if (result == null) result = caseMAVOModelRel(mavoBinaryModelRel);
+        if (result == null) result = caseModelRel(mavoBinaryModelRel);
+        if (result == null) result = caseModel(mavoBinaryModelRel);
+        if (result == null) result = caseGenericElement(mavoBinaryModelRel);
+        if (result == null) result = caseExtendibleElement(mavoBinaryModelRel);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -157,15 +157,15 @@ public class MAVOMIDSwitch<T> extends Switch<T> {
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case MAVOMIDPackage.BINARY_MAVO_MAPPING: {
-        BinaryMAVOMapping binaryMAVOMapping = (BinaryMAVOMapping)theEObject;
-        T result = caseBinaryMAVOMapping(binaryMAVOMapping);
-        if (result == null) result = caseBinaryMapping(binaryMAVOMapping);
-        if (result == null) result = caseMAVOMapping(binaryMAVOMapping);
-        if (result == null) result = caseMapping(binaryMAVOMapping);
-        if (result == null) result = caseMAVOElement(binaryMAVOMapping);
-        if (result == null) result = caseExtendibleElement(binaryMAVOMapping);
-        if (result == null) result = caseLogicElement(binaryMAVOMapping);
+      case MAVOMIDPackage.MAVO_BINARY_MAPPING: {
+        MAVOBinaryMapping mavoBinaryMapping = (MAVOBinaryMapping)theEObject;
+        T result = caseMAVOBinaryMapping(mavoBinaryMapping);
+        if (result == null) result = caseBinaryMapping(mavoBinaryMapping);
+        if (result == null) result = caseMAVOMapping(mavoBinaryMapping);
+        if (result == null) result = caseMapping(mavoBinaryMapping);
+        if (result == null) result = caseMAVOElement(mavoBinaryMapping);
+        if (result == null) result = caseExtendibleElement(mavoBinaryMapping);
+        if (result == null) result = caseLogicElement(mavoBinaryMapping);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -194,13 +194,13 @@ public class MAVOMIDSwitch<T> extends Switch<T> {
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case MAVOMIDPackage.BINARY_MAVO_MAPPING_REFERENCE: {
-        BinaryMAVOMappingReference binaryMAVOMappingReference = (BinaryMAVOMappingReference)theEObject;
-        T result = caseBinaryMAVOMappingReference(binaryMAVOMappingReference);
-        if (result == null) result = caseBinaryMappingReference(binaryMAVOMappingReference);
-        if (result == null) result = caseMAVOMappingReference(binaryMAVOMappingReference);
-        if (result == null) result = caseMappingReference(binaryMAVOMappingReference);
-        if (result == null) result = caseExtendibleElementReference(binaryMAVOMappingReference);
+      case MAVOMIDPackage.MAVO_BINARY_MAPPING_REFERENCE: {
+        MAVOBinaryMappingReference mavoBinaryMappingReference = (MAVOBinaryMappingReference)theEObject;
+        T result = caseMAVOBinaryMappingReference(mavoBinaryMappingReference);
+        if (result == null) result = caseBinaryMappingReference(mavoBinaryMappingReference);
+        if (result == null) result = caseMAVOMappingReference(mavoBinaryMappingReference);
+        if (result == null) result = caseMappingReference(mavoBinaryMappingReference);
+        if (result == null) result = caseExtendibleElementReference(mavoBinaryMappingReference);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -264,7 +264,7 @@ public class MAVOMIDSwitch<T> extends Switch<T> {
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-	public T caseBinaryMAVOModelRel(BinaryMAVOModelRel object) {
+	public T caseMAVOBinaryModelRel(MAVOBinaryModelRel object) {
     return null;
   }
 
@@ -324,7 +324,7 @@ public class MAVOMIDSwitch<T> extends Switch<T> {
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-	public T caseBinaryMAVOMappingReference(BinaryMAVOMappingReference object) {
+	public T caseMAVOBinaryMappingReference(MAVOBinaryMappingReference object) {
     return null;
   }
 
@@ -354,7 +354,7 @@ public class MAVOMIDSwitch<T> extends Switch<T> {
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-	public T caseBinaryMAVOMapping(BinaryMAVOMapping object) {
+	public T caseMAVOBinaryMapping(MAVOBinaryMapping object) {
     return null;
   }
 

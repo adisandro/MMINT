@@ -65,7 +65,7 @@ public class MAVOMIDHeavyTypeFactory extends MIDHeavyTypeFactory {
 	public @NonNull ModelRel createHeavyModelRelType(@NonNull ExtensionPointType extensionType, boolean isBinary) throws MMINTException {
 
 		MAVOModelRel newMAVOModelRelType = (isBinary) ?
-			MAVOMIDFactory.eINSTANCE.createBinaryMAVOModelRel() :
+			MAVOMIDFactory.eINSTANCE.createMAVOBinaryModelRel() :
 			MAVOMIDFactory.eINSTANCE.createMAVOModelRel();
 		super.addHeavyModelRelType(newMAVOModelRelType, extensionType.getUri(), extensionType.getSupertypeUri(), extensionType.getName(), extensionType.isAbstract());
 
@@ -91,7 +91,7 @@ public class MAVOMIDHeavyTypeFactory extends MIDHeavyTypeFactory {
 	public @NonNull MappingReference createHeavyMappingTypeAndMappingTypeReference(@NonNull ExtensionPointType extensionType, boolean isBinary, @NonNull ModelRel containerModelRelType) throws MMINTException {
 
 		MAVOMapping newMAVOMappingType = (isBinary) ?
-			MAVOMIDFactory.eINSTANCE.createBinaryMAVOMapping() :
+			MAVOMIDFactory.eINSTANCE.createMAVOBinaryMapping() :
 			MAVOMIDFactory.eINSTANCE.createMAVOMapping();
 		MAVOMappingReference newMAVOMappingTypeRef = (MAVOMappingReference) super.addHeavyMappingTypeAndMappingTypeReference(newMAVOMappingType, extensionType.getUri(), extensionType.getSupertypeUri(), extensionType.getName(), containerModelRelType);
 

@@ -178,26 +178,26 @@ public class MAVOMIDItemProviderAdapterFactory extends MAVOMIDAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint.mavo.mavomid.BinaryMAVOModelRel} instances.
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint.mavo.mavomid.MAVOBinaryModelRel} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected BinaryMAVOModelRelItemProvider binaryMAVOModelRelItemProvider;
+	protected MAVOBinaryModelRelItemProvider mavoBinaryModelRelItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.mmint.mavo.mavomid.BinaryMAVOModelRel}.
+	 * This creates an adapter for a {@link edu.toronto.cs.se.mmint.mavo.mavomid.MAVOBinaryModelRel}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createBinaryMAVOModelRelAdapter() {
-		if (binaryMAVOModelRelItemProvider == null) {
-			binaryMAVOModelRelItemProvider = new BinaryMAVOModelRelItemProvider(this);
+	public Adapter createMAVOBinaryModelRelAdapter() {
+		if (mavoBinaryModelRelItemProvider == null) {
+			mavoBinaryModelRelItemProvider = new MAVOBinaryModelRelItemProvider(this);
 		}
 
-		return binaryMAVOModelRelItemProvider;
+		return mavoBinaryModelRelItemProvider;
 	}
 
 	/**
@@ -270,26 +270,26 @@ public class MAVOMIDItemProviderAdapterFactory extends MAVOMIDAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint.mavo.mavomid.BinaryMAVOMappingReference} instances.
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint.mavo.mavomid.MAVOBinaryMappingReference} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected BinaryMAVOMappingReferenceItemProvider binaryMAVOMappingReferenceItemProvider;
+	protected MAVOBinaryMappingReferenceItemProvider mavoBinaryMappingReferenceItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.mmint.mavo.mavomid.BinaryMAVOMappingReference}.
+	 * This creates an adapter for a {@link edu.toronto.cs.se.mmint.mavo.mavomid.MAVOBinaryMappingReference}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createBinaryMAVOMappingReferenceAdapter() {
-		if (binaryMAVOMappingReferenceItemProvider == null) {
-			binaryMAVOMappingReferenceItemProvider = new BinaryMAVOMappingReferenceItemProvider(this);
+	public Adapter createMAVOBinaryMappingReferenceAdapter() {
+		if (mavoBinaryMappingReferenceItemProvider == null) {
+			mavoBinaryMappingReferenceItemProvider = new MAVOBinaryMappingReferenceItemProvider(this);
 		}
 
-		return binaryMAVOMappingReferenceItemProvider;
+		return mavoBinaryMappingReferenceItemProvider;
 	}
 
 	/**
@@ -316,26 +316,26 @@ public class MAVOMIDItemProviderAdapterFactory extends MAVOMIDAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint.mavo.mavomid.BinaryMAVOMapping} instances.
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint.mavo.mavomid.MAVOBinaryMapping} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected BinaryMAVOMappingItemProvider binaryMAVOMappingItemProvider;
+	protected MAVOBinaryMappingItemProvider mavoBinaryMappingItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.mmint.mavo.mavomid.BinaryMAVOMapping}.
+	 * This creates an adapter for a {@link edu.toronto.cs.se.mmint.mavo.mavomid.MAVOBinaryMapping}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createBinaryMAVOMappingAdapter() {
-		if (binaryMAVOMappingItemProvider == null) {
-			binaryMAVOMappingItemProvider = new BinaryMAVOMappingItemProvider(this);
+	public Adapter createMAVOBinaryMappingAdapter() {
+		if (mavoBinaryMappingItemProvider == null) {
+			mavoBinaryMappingItemProvider = new MAVOBinaryMappingItemProvider(this);
 		}
 
-		return binaryMAVOMappingItemProvider;
+		return mavoBinaryMappingItemProvider;
 	}
 
 	/**
@@ -463,14 +463,14 @@ public class MAVOMIDItemProviderAdapterFactory extends MAVOMIDAdapterFactory imp
 		if (mavoModelItemProvider != null) mavoModelItemProvider.dispose();
 		if (mavoModelElementItemProvider != null) mavoModelElementItemProvider.dispose();
 		if (mavoModelRelItemProvider != null) mavoModelRelItemProvider.dispose();
-		if (binaryMAVOModelRelItemProvider != null) binaryMAVOModelRelItemProvider.dispose();
+		if (mavoBinaryModelRelItemProvider != null) mavoBinaryModelRelItemProvider.dispose();
 		if (mavoModelEndpointItemProvider != null) mavoModelEndpointItemProvider.dispose();
 		if (mavoMappingItemProvider != null) mavoMappingItemProvider.dispose();
-		if (binaryMAVOMappingItemProvider != null) binaryMAVOMappingItemProvider.dispose();
+		if (mavoBinaryMappingItemProvider != null) mavoBinaryMappingItemProvider.dispose();
 		if (mavoModelElementReferenceItemProvider != null) mavoModelElementReferenceItemProvider.dispose();
 		if (mavoModelEndpointReferenceItemProvider != null) mavoModelEndpointReferenceItemProvider.dispose();
 		if (mavoMappingReferenceItemProvider != null) mavoMappingReferenceItemProvider.dispose();
-		if (binaryMAVOMappingReferenceItemProvider != null) binaryMAVOMappingReferenceItemProvider.dispose();
+		if (mavoBinaryMappingReferenceItemProvider != null) mavoBinaryMappingReferenceItemProvider.dispose();
 	}
 
 	/**
@@ -533,7 +533,7 @@ public class MAVOMIDItemProviderAdapterFactory extends MAVOMIDAdapterFactory imp
 				newChildDescriptors.add
 					(createChildParameter
 						(MIDPackage.Literals.MID__MODELS,
-						 MAVOMIDFactory.eINSTANCE.createBinaryMAVOModelRel()));
+						 MAVOMIDFactory.eINSTANCE.createMAVOBinaryModelRel()));
 
 				return null;
 			}
@@ -645,7 +645,7 @@ public class MAVOMIDItemProviderAdapterFactory extends MAVOMIDAdapterFactory imp
 				newChildDescriptors.add
 					(createChildParameter
 						(RelationshipPackage.Literals.MODEL_REL__MAPPINGS,
-						 MAVOMIDFactory.eINSTANCE.createBinaryMAVOMapping()));
+						 MAVOMIDFactory.eINSTANCE.createMAVOBinaryMapping()));
 
 				newChildDescriptors.add
 					(createChildParameter
@@ -660,7 +660,7 @@ public class MAVOMIDItemProviderAdapterFactory extends MAVOMIDAdapterFactory imp
 				newChildDescriptors.add
 					(createChildParameter
 						(RelationshipPackage.Literals.MODEL_REL__MAPPING_REFS,
-						 MAVOMIDFactory.eINSTANCE.createBinaryMAVOMappingReference()));
+						 MAVOMIDFactory.eINSTANCE.createMAVOBinaryMappingReference()));
 
 				return null;
 			}
@@ -689,7 +689,7 @@ public class MAVOMIDItemProviderAdapterFactory extends MAVOMIDAdapterFactory imp
 				newChildDescriptors.add
 					(createChildParameter
 						(RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT,
-						 MAVOMIDFactory.eINSTANCE.createBinaryMAVOModelRel()));
+						 MAVOMIDFactory.eINSTANCE.createMAVOBinaryModelRel()));
 
 				newChildDescriptors.add
 					(createChildParameter
@@ -704,7 +704,7 @@ public class MAVOMIDItemProviderAdapterFactory extends MAVOMIDAdapterFactory imp
 				newChildDescriptors.add
 					(createChildParameter
 						(RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT,
-						 MAVOMIDFactory.eINSTANCE.createBinaryMAVOMapping()));
+						 MAVOMIDFactory.eINSTANCE.createMAVOBinaryMapping()));
 
 				return null;
 			}

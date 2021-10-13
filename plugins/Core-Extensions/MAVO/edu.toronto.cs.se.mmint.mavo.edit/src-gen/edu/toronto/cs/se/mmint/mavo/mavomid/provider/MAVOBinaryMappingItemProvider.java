@@ -14,7 +14,7 @@ package edu.toronto.cs.se.mmint.mavo.mavomid.provider;
 
 import edu.toronto.cs.se.mavo.MAVOPackage;
 
-import edu.toronto.cs.se.mmint.mavo.mavomid.BinaryMAVOMapping;
+import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOBinaryMapping;
 import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOMIDPackage;
 
 import edu.toronto.cs.se.mmint.mid.relationship.provider.BinaryMappingItemProvider;
@@ -33,19 +33,19 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.mmint.mavo.mavomid.BinaryMAVOMapping} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.mmint.mavo.mavomid.MAVOBinaryMapping} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class BinaryMAVOMappingItemProvider extends BinaryMappingItemProvider {
+public class MAVOBinaryMappingItemProvider extends BinaryMappingItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BinaryMAVOMappingItemProvider(AdapterFactory adapterFactory) {
+	public MAVOBinaryMappingItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -180,14 +180,14 @@ public class BinaryMAVOMappingItemProvider extends BinaryMappingItemProvider {
 	}
 
 	/**
-	 * This returns BinaryMAVOMapping.gif.
+	 * This returns MAVOBinaryMapping.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/BinaryMAVOMapping"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/MAVOBinaryMapping"));
 	}
 
 	/**
@@ -198,10 +198,10 @@ public class BinaryMAVOMappingItemProvider extends BinaryMappingItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((BinaryMAVOMapping)object).getName();
+		String label = ((MAVOBinaryMapping)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_BinaryMAVOMapping_type") :
-			getString("_UI_BinaryMAVOMapping_type") + " " + label;
+			getString("_UI_MAVOBinaryMapping_type") :
+			getString("_UI_MAVOBinaryMapping_type") + " " + label;
 	}
 	
 
@@ -216,11 +216,11 @@ public class BinaryMAVOMappingItemProvider extends BinaryMappingItemProvider {
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(BinaryMAVOMapping.class)) {
-			case MAVOMIDPackage.BINARY_MAVO_MAPPING__FORMULA_VARIABLE:
-			case MAVOMIDPackage.BINARY_MAVO_MAPPING__MAY:
-			case MAVOMIDPackage.BINARY_MAVO_MAPPING__SET:
-			case MAVOMIDPackage.BINARY_MAVO_MAPPING__VAR:
+		switch (notification.getFeatureID(MAVOBinaryMapping.class)) {
+			case MAVOMIDPackage.MAVO_BINARY_MAPPING__FORMULA_VARIABLE:
+			case MAVOMIDPackage.MAVO_BINARY_MAPPING__MAY:
+			case MAVOMIDPackage.MAVO_BINARY_MAPPING__SET:
+			case MAVOMIDPackage.MAVO_BINARY_MAPPING__VAR:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

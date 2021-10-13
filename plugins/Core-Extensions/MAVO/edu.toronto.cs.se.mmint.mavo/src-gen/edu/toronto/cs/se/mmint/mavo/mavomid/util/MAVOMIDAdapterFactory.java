@@ -110,8 +110,8 @@ public class MAVOMIDAdapterFactory extends AdapterFactoryImpl {
         return createMAVOModelRelAdapter();
       }
       @Override
-      public Adapter caseBinaryMAVOModelRel(BinaryMAVOModelRel object) {
-        return createBinaryMAVOModelRelAdapter();
+      public Adapter caseMAVOBinaryModelRel(MAVOBinaryModelRel object) {
+        return createMAVOBinaryModelRelAdapter();
       }
       @Override
       public Adapter caseMAVOModelEndpoint(MAVOModelEndpoint object) {
@@ -122,8 +122,8 @@ public class MAVOMIDAdapterFactory extends AdapterFactoryImpl {
         return createMAVOMappingAdapter();
       }
       @Override
-      public Adapter caseBinaryMAVOMapping(BinaryMAVOMapping object) {
-        return createBinaryMAVOMappingAdapter();
+      public Adapter caseMAVOBinaryMapping(MAVOBinaryMapping object) {
+        return createMAVOBinaryMappingAdapter();
       }
       @Override
       public Adapter caseMAVOModelElementReference(MAVOModelElementReference object) {
@@ -138,8 +138,8 @@ public class MAVOMIDAdapterFactory extends AdapterFactoryImpl {
         return createMAVOMappingReferenceAdapter();
       }
       @Override
-      public Adapter caseBinaryMAVOMappingReference(BinaryMAVOMappingReference object) {
-        return createBinaryMAVOMappingReferenceAdapter();
+      public Adapter caseMAVOBinaryMappingReference(MAVOBinaryMappingReference object) {
+        return createMAVOBinaryMappingReferenceAdapter();
       }
       @Override
       public Adapter caseExtendibleElement(ExtendibleElement object) {
@@ -280,16 +280,16 @@ public class MAVOMIDAdapterFactory extends AdapterFactoryImpl {
   }
 
 	/**
-   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.mavo.mavomid.BinaryMAVOModelRel <em>Binary MAVO Model Rel</em>}'.
+   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.mavo.mavomid.MAVOBinaryModelRel <em>Binary MAVO Model Rel</em>}'.
    * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see edu.toronto.cs.se.mmint.mavo.mavomid.BinaryMAVOModelRel
+   * @see edu.toronto.cs.se.mmint.mavo.mavomid.MAVOBinaryModelRel
    * @generated
    */
-	public Adapter createBinaryMAVOModelRelAdapter() {
+	public Adapter createMAVOBinaryModelRelAdapter() {
     return null;
   }
 
@@ -336,16 +336,16 @@ public class MAVOMIDAdapterFactory extends AdapterFactoryImpl {
   }
 
 	/**
-   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.mavo.mavomid.BinaryMAVOMappingReference <em>Binary MAVO Mapping Reference</em>}'.
+   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.mavo.mavomid.MAVOBinaryMappingReference <em>Binary MAVO Mapping Reference</em>}'.
    * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see edu.toronto.cs.se.mmint.mavo.mavomid.BinaryMAVOMappingReference
+   * @see edu.toronto.cs.se.mmint.mavo.mavomid.MAVOBinaryMappingReference
    * @generated
    */
-	public Adapter createBinaryMAVOMappingReferenceAdapter() {
+	public Adapter createMAVOBinaryMappingReferenceAdapter() {
     return null;
   }
 
@@ -364,16 +364,16 @@ public class MAVOMIDAdapterFactory extends AdapterFactoryImpl {
   }
 
 	/**
-   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.mavo.mavomid.BinaryMAVOMapping <em>Binary MAVO Mapping</em>}'.
+   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.mavo.mavomid.MAVOBinaryMapping <em>Binary MAVO Mapping</em>}'.
    * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see edu.toronto.cs.se.mmint.mavo.mavomid.BinaryMAVOMapping
+   * @see edu.toronto.cs.se.mmint.mavo.mavomid.MAVOBinaryMapping
    * @generated
    */
-	public Adapter createBinaryMAVOMappingAdapter() {
+	public Adapter createMAVOBinaryMappingAdapter() {
     return null;
   }
 

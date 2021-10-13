@@ -12,9 +12,9 @@
 package edu.toronto.cs.se.mmint.mavo.mavomid.impl;
 
 import edu.toronto.cs.se.mavo.MAVOPackage;
-import edu.toronto.cs.se.mmint.mavo.mavomid.BinaryMAVOMapping;
-import edu.toronto.cs.se.mmint.mavo.mavomid.BinaryMAVOMappingReference;
-import edu.toronto.cs.se.mmint.mavo.mavomid.BinaryMAVOModelRel;
+import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOBinaryMapping;
+import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOBinaryMappingReference;
+import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOBinaryModelRel;
 import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOMIDFactory;
 import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOMIDPackage;
 import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOMapping;
@@ -68,7 +68,7 @@ public class MAVOMIDPackageImpl extends EPackageImpl implements MAVOMIDPackage {
 	 * <!-- end-user-doc -->
    * @generated
    */
-	private EClass binaryMAVOModelRelEClass = null;
+	private EClass mavoBinaryModelRelEClass = null;
 
 	/**
    * <!-- begin-user-doc -->
@@ -96,7 +96,7 @@ public class MAVOMIDPackageImpl extends EPackageImpl implements MAVOMIDPackage {
 	 * <!-- end-user-doc -->
    * @generated
    */
-	private EClass binaryMAVOMappingReferenceEClass = null;
+	private EClass mavoBinaryMappingReferenceEClass = null;
 
 	/**
    * <!-- begin-user-doc -->
@@ -110,7 +110,7 @@ public class MAVOMIDPackageImpl extends EPackageImpl implements MAVOMIDPackage {
 	 * <!-- end-user-doc -->
    * @generated
    */
-	private EClass binaryMAVOMappingEClass = null;
+	private EClass mavoBinaryMappingEClass = null;
 
 	/**
    * <!-- begin-user-doc -->
@@ -320,8 +320,8 @@ public class MAVOMIDPackageImpl extends EPackageImpl implements MAVOMIDPackage {
    * @generated
    */
 	@Override
-  public EClass getBinaryMAVOModelRel() {
-    return binaryMAVOModelRelEClass;
+  public EClass getMAVOBinaryModelRel() {
+    return mavoBinaryModelRelEClass;
   }
 
 	/**
@@ -400,8 +400,8 @@ public class MAVOMIDPackageImpl extends EPackageImpl implements MAVOMIDPackage {
    * @generated
    */
 	@Override
-  public EClass getBinaryMAVOMappingReference() {
-    return binaryMAVOMappingReferenceEClass;
+  public EClass getMAVOBinaryMappingReference() {
+    return mavoBinaryMappingReferenceEClass;
   }
 
 	/**
@@ -410,8 +410,8 @@ public class MAVOMIDPackageImpl extends EPackageImpl implements MAVOMIDPackage {
    * @generated
    */
 	@Override
-  public EOperation getBinaryMAVOMappingReference__GetObject() {
-    return binaryMAVOMappingReferenceEClass.getEOperations().get(0);
+  public EOperation getMAVOBinaryMappingReference__GetObject() {
+    return mavoBinaryMappingReferenceEClass.getEOperations().get(0);
   }
 
 	/**
@@ -460,8 +460,8 @@ public class MAVOMIDPackageImpl extends EPackageImpl implements MAVOMIDPackage {
    * @generated
    */
 	@Override
-  public EClass getBinaryMAVOMapping() {
-    return binaryMAVOMappingEClass;
+  public EClass getMAVOBinaryMapping() {
+    return mavoBinaryMappingEClass;
   }
 
 	/**
@@ -529,7 +529,7 @@ public class MAVOMIDPackageImpl extends EPackageImpl implements MAVOMIDPackage {
     mavoModelRelEClass = createEClass(MAVO_MODEL_REL);
     createEOperation(mavoModelRelEClass, MAVO_MODEL_REL___COPY_INSTANCE__MODEL_STRING_MID);
 
-    binaryMAVOModelRelEClass = createEClass(BINARY_MAVO_MODEL_REL);
+    mavoBinaryModelRelEClass = createEClass(MAVO_BINARY_MODEL_REL);
 
     mavoModelEndpointEClass = createEClass(MAVO_MODEL_ENDPOINT);
     createEOperation(mavoModelEndpointEClass, MAVO_MODEL_ENDPOINT___GET_TARGET);
@@ -539,7 +539,7 @@ public class MAVOMIDPackageImpl extends EPackageImpl implements MAVOMIDPackage {
     createEOperation(mavoMappingEClass, MAVO_MAPPING___TO_MID_CUSTOM_EDIT_LABEL);
     createEOperation(mavoMappingEClass, MAVO_MAPPING___UPDATE_MID_CUSTOM_LABEL__STRING);
 
-    binaryMAVOMappingEClass = createEClass(BINARY_MAVO_MAPPING);
+    mavoBinaryMappingEClass = createEClass(MAVO_BINARY_MAPPING);
 
     mavoModelElementReferenceEClass = createEClass(MAVO_MODEL_ELEMENT_REFERENCE);
     createEOperation(mavoModelElementReferenceEClass, MAVO_MODEL_ELEMENT_REFERENCE___GET_OBJECT);
@@ -551,8 +551,8 @@ public class MAVOMIDPackageImpl extends EPackageImpl implements MAVOMIDPackage {
     mavoMappingReferenceEClass = createEClass(MAVO_MAPPING_REFERENCE);
     createEOperation(mavoMappingReferenceEClass, MAVO_MAPPING_REFERENCE___GET_OBJECT);
 
-    binaryMAVOMappingReferenceEClass = createEClass(BINARY_MAVO_MAPPING_REFERENCE);
-    createEOperation(binaryMAVOMappingReferenceEClass, BINARY_MAVO_MAPPING_REFERENCE___GET_OBJECT);
+    mavoBinaryMappingReferenceEClass = createEClass(MAVO_BINARY_MAPPING_REFERENCE);
+    createEOperation(mavoBinaryMappingReferenceEClass, MAVO_BINARY_MAPPING_REFERENCE___GET_OBJECT);
   }
 
 	/**
@@ -593,18 +593,18 @@ public class MAVOMIDPackageImpl extends EPackageImpl implements MAVOMIDPackage {
     mavoModelElementEClass.getESuperTypes().add(theMIDPackage.getModelElement());
     mavoModelElementEClass.getESuperTypes().add(theMAVOPackage.getMAVOElement());
     mavoModelRelEClass.getESuperTypes().add(theRelationshipPackage.getModelRel());
-    binaryMAVOModelRelEClass.getESuperTypes().add(theRelationshipPackage.getBinaryModelRel());
-    binaryMAVOModelRelEClass.getESuperTypes().add(this.getMAVOModelRel());
+    mavoBinaryModelRelEClass.getESuperTypes().add(theRelationshipPackage.getBinaryModelRel());
+    mavoBinaryModelRelEClass.getESuperTypes().add(this.getMAVOModelRel());
     mavoModelEndpointEClass.getESuperTypes().add(theMIDPackage.getModelEndpoint());
     mavoMappingEClass.getESuperTypes().add(theRelationshipPackage.getMapping());
     mavoMappingEClass.getESuperTypes().add(theMAVOPackage.getMAVOElement());
-    binaryMAVOMappingEClass.getESuperTypes().add(theRelationshipPackage.getBinaryMapping());
-    binaryMAVOMappingEClass.getESuperTypes().add(this.getMAVOMapping());
+    mavoBinaryMappingEClass.getESuperTypes().add(theRelationshipPackage.getBinaryMapping());
+    mavoBinaryMappingEClass.getESuperTypes().add(this.getMAVOMapping());
     mavoModelElementReferenceEClass.getESuperTypes().add(theRelationshipPackage.getModelElementReference());
     mavoModelEndpointReferenceEClass.getESuperTypes().add(theRelationshipPackage.getModelEndpointReference());
     mavoMappingReferenceEClass.getESuperTypes().add(theRelationshipPackage.getMappingReference());
-    binaryMAVOMappingReferenceEClass.getESuperTypes().add(theRelationshipPackage.getBinaryMappingReference());
-    binaryMAVOMappingReferenceEClass.getESuperTypes().add(this.getMAVOMappingReference());
+    mavoBinaryMappingReferenceEClass.getESuperTypes().add(theRelationshipPackage.getBinaryMappingReference());
+    mavoBinaryMappingReferenceEClass.getESuperTypes().add(this.getMAVOMappingReference());
 
     // Initialize classes, features, and operations; add parameters
     initEClass(mavoModelEClass, MAVOModel.class, "MAVOModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -649,7 +649,7 @@ public class MAVOMIDPackageImpl extends EPackageImpl implements MAVOMIDPackage {
     addEParameter(op, theMIDPackage.getMID(), "instanceMID", 1, 1, IS_UNIQUE, IS_ORDERED);
     addEException(op, theMIDPackage.getMMINTException());
 
-    initEClass(binaryMAVOModelRelEClass, BinaryMAVOModelRel.class, "BinaryMAVOModelRel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEClass(mavoBinaryModelRelEClass, MAVOBinaryModelRel.class, "MAVOBinaryModelRel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(mavoModelEndpointEClass, MAVOModelEndpoint.class, "MAVOModelEndpoint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -664,7 +664,7 @@ public class MAVOMIDPackageImpl extends EPackageImpl implements MAVOMIDPackage {
     op = initEOperation(getMAVOMapping__UpdateMIDCustomLabel__String(), null, "updateMIDCustomLabel", 0, 1, IS_UNIQUE, IS_ORDERED);
     addEParameter(op, ecorePackage.getEString(), "newLabel", 1, 1, IS_UNIQUE, IS_ORDERED);
 
-    initEClass(binaryMAVOMappingEClass, BinaryMAVOMapping.class, "BinaryMAVOMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEClass(mavoBinaryMappingEClass, MAVOBinaryMapping.class, "MAVOBinaryMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(mavoModelElementReferenceEClass, MAVOModelElementReference.class, "MAVOModelElementReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -683,9 +683,9 @@ public class MAVOMIDPackageImpl extends EPackageImpl implements MAVOMIDPackage {
 
     initEOperation(getMAVOMappingReference__GetObject(), this.getMAVOMapping(), "getObject", 1, 1, IS_UNIQUE, IS_ORDERED);
 
-    initEClass(binaryMAVOMappingReferenceEClass, BinaryMAVOMappingReference.class, "BinaryMAVOMappingReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEClass(mavoBinaryMappingReferenceEClass, MAVOBinaryMappingReference.class, "MAVOBinaryMappingReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-    initEOperation(getBinaryMAVOMappingReference__GetObject(), this.getBinaryMAVOMapping(), "getObject", 1, 1, IS_UNIQUE, IS_ORDERED);
+    initEOperation(getMAVOBinaryMappingReference__GetObject(), this.getMAVOBinaryMapping(), "getObject", 1, 1, IS_UNIQUE, IS_ORDERED);
 
     // Create resource
     createResource(eNS_URI);

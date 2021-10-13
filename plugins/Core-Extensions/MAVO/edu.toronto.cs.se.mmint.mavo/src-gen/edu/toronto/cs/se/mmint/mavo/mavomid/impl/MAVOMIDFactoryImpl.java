@@ -68,14 +68,14 @@ public class MAVOMIDFactoryImpl extends EFactoryImpl implements MAVOMIDFactory {
       case MAVOMIDPackage.MAVO_MODEL: return createMAVOModel();
       case MAVOMIDPackage.MAVO_MODEL_ELEMENT: return createMAVOModelElement();
       case MAVOMIDPackage.MAVO_MODEL_REL: return createMAVOModelRel();
-      case MAVOMIDPackage.BINARY_MAVO_MODEL_REL: return createBinaryMAVOModelRel();
+      case MAVOMIDPackage.MAVO_BINARY_MODEL_REL: return createMAVOBinaryModelRel();
       case MAVOMIDPackage.MAVO_MODEL_ENDPOINT: return createMAVOModelEndpoint();
       case MAVOMIDPackage.MAVO_MAPPING: return createMAVOMapping();
-      case MAVOMIDPackage.BINARY_MAVO_MAPPING: return createBinaryMAVOMapping();
+      case MAVOMIDPackage.MAVO_BINARY_MAPPING: return createMAVOBinaryMapping();
       case MAVOMIDPackage.MAVO_MODEL_ELEMENT_REFERENCE: return createMAVOModelElementReference();
       case MAVOMIDPackage.MAVO_MODEL_ENDPOINT_REFERENCE: return createMAVOModelEndpointReference();
       case MAVOMIDPackage.MAVO_MAPPING_REFERENCE: return createMAVOMappingReference();
-      case MAVOMIDPackage.BINARY_MAVO_MAPPING_REFERENCE: return createBinaryMAVOMappingReference();
+      case MAVOMIDPackage.MAVO_BINARY_MAPPING_REFERENCE: return createMAVOBinaryMappingReference();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -120,9 +120,9 @@ public class MAVOMIDFactoryImpl extends EFactoryImpl implements MAVOMIDFactory {
    * @generated
    */
 	@Override
-  public BinaryMAVOModelRel createBinaryMAVOModelRel() {
-    BinaryMAVOModelRelImpl binaryMAVOModelRel = new BinaryMAVOModelRelImpl();
-    return binaryMAVOModelRel;
+  public MAVOBinaryModelRel createMAVOBinaryModelRel() {
+    MAVOBinaryModelRelImpl mavoBinaryModelRel = new MAVOBinaryModelRelImpl();
+    return mavoBinaryModelRel;
   }
 
 	/**
@@ -164,9 +164,9 @@ public class MAVOMIDFactoryImpl extends EFactoryImpl implements MAVOMIDFactory {
    * @generated
    */
 	@Override
-  public BinaryMAVOMappingReference createBinaryMAVOMappingReference() {
-    BinaryMAVOMappingReferenceImpl binaryMAVOMappingReference = new BinaryMAVOMappingReferenceImpl();
-    return binaryMAVOMappingReference;
+  public MAVOBinaryMappingReference createMAVOBinaryMappingReference() {
+    MAVOBinaryMappingReferenceImpl mavoBinaryMappingReference = new MAVOBinaryMappingReferenceImpl();
+    return mavoBinaryMappingReference;
   }
 
 	/**
@@ -186,9 +186,9 @@ public class MAVOMIDFactoryImpl extends EFactoryImpl implements MAVOMIDFactory {
    * @generated
    */
 	@Override
-  public BinaryMAVOMapping createBinaryMAVOMapping() {
-    BinaryMAVOMappingImpl binaryMAVOMapping = new BinaryMAVOMappingImpl();
-    return binaryMAVOMapping;
+  public MAVOBinaryMapping createMAVOBinaryMapping() {
+    MAVOBinaryMappingImpl mavoBinaryMapping = new MAVOBinaryMappingImpl();
+    return mavoBinaryMapping;
   }
 
 	/**

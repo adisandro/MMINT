@@ -12,12 +12,14 @@
 package edu.toronto.cs.se.mmint.mavo.mavomid.provider;
 
 
-import edu.toronto.cs.se.mmint.mavo.mavomid.BinaryMAVOMappingReference;
+import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOBinaryModelRel;
 import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOMIDFactory;
+
+import edu.toronto.cs.se.mmint.mid.MIDPackage;
 
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
 
-import edu.toronto.cs.se.mmint.mid.relationship.provider.BinaryMappingReferenceItemProvider;
+import edu.toronto.cs.se.mmint.mid.relationship.provider.BinaryModelRelItemProvider;
 
 import java.util.Collection;
 import java.util.List;
@@ -30,19 +32,19 @@ import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.mmint.mavo.mavomid.BinaryMAVOMappingReference} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.mmint.mavo.mavomid.MAVOBinaryModelRel} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class BinaryMAVOMappingReferenceItemProvider extends BinaryMappingReferenceItemProvider {
+public class MAVOBinaryModelRelItemProvider extends BinaryModelRelItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BinaryMAVOMappingReferenceItemProvider(AdapterFactory adapterFactory) {
+	public MAVOBinaryModelRelItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -62,14 +64,14 @@ public class BinaryMAVOMappingReferenceItemProvider extends BinaryMappingReferen
 	}
 
 	/**
-	 * This returns BinaryMAVOMappingReference.gif.
+	 * This returns MAVOBinaryModelRel.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/BinaryMAVOMappingReference"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/MAVOBinaryModelRel"));
 	}
 
 	/**
@@ -80,8 +82,10 @@ public class BinaryMAVOMappingReferenceItemProvider extends BinaryMappingReferen
 	 */
 	@Override
 	public String getText(Object object) {
-		BinaryMAVOMappingReference binaryMAVOMappingReference = (BinaryMAVOMappingReference)object;
-		return getString("_UI_BinaryMAVOMappingReference_type") + " " + binaryMAVOMappingReference.isModifiable();
+		String label = ((MAVOBinaryModelRel)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_MAVOBinaryModelRel_type") :
+			getString("_UI_MAVOBinaryModelRel_type") + " " + label;
 	}
 	
 
@@ -111,38 +115,38 @@ public class BinaryMAVOMappingReferenceItemProvider extends BinaryMappingReferen
 
 		newChildDescriptors.add
 			(createChildParameter
-				(RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT,
-				 MAVOMIDFactory.eINSTANCE.createMAVOModel()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT,
+				(MIDPackage.Literals.MODEL__MODEL_ELEMS,
 				 MAVOMIDFactory.eINSTANCE.createMAVOModelElement()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT,
-				 MAVOMIDFactory.eINSTANCE.createMAVOModelRel()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT,
-				 MAVOMIDFactory.eINSTANCE.createBinaryMAVOModelRel()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT,
+				(RelationshipPackage.Literals.MODEL_REL__MODEL_ENDPOINTS,
 				 MAVOMIDFactory.eINSTANCE.createMAVOModelEndpoint()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT,
+				(RelationshipPackage.Literals.MODEL_REL__MAPPINGS,
 				 MAVOMIDFactory.eINSTANCE.createMAVOMapping()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT,
-				 MAVOMIDFactory.eINSTANCE.createBinaryMAVOMapping()));
+				(RelationshipPackage.Literals.MODEL_REL__MAPPINGS,
+				 MAVOMIDFactory.eINSTANCE.createMAVOBinaryMapping()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(RelationshipPackage.Literals.MODEL_REL__MODEL_ENDPOINT_REFS,
+				 MAVOMIDFactory.eINSTANCE.createMAVOModelEndpointReference()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(RelationshipPackage.Literals.MODEL_REL__MAPPING_REFS,
+				 MAVOMIDFactory.eINSTANCE.createMAVOMappingReference()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(RelationshipPackage.Literals.MODEL_REL__MAPPING_REFS,
+				 MAVOMIDFactory.eINSTANCE.createMAVOBinaryMappingReference()));
 	}
 
 	/**

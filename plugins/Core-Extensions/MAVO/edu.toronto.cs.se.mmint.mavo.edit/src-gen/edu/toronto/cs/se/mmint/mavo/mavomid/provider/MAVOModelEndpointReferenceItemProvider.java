@@ -127,7 +127,7 @@ public class MAVOModelEndpointReferenceItemProvider extends ModelEndpointReferen
 		newChildDescriptors.add
 			(createChildParameter
 				(RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT,
-				 MAVOMIDFactory.eINSTANCE.createBinaryMAVOModelRel()));
+				 MAVOMIDFactory.eINSTANCE.createMAVOBinaryModelRel()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -142,7 +142,7 @@ public class MAVOModelEndpointReferenceItemProvider extends ModelEndpointReferen
 		newChildDescriptors.add
 			(createChildParameter
 				(RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT,
-				 MAVOMIDFactory.eINSTANCE.createBinaryMAVOMapping()));
+				 MAVOMIDFactory.eINSTANCE.createMAVOBinaryMapping()));
 
 		newChildDescriptors.add
 			(createChildParameter

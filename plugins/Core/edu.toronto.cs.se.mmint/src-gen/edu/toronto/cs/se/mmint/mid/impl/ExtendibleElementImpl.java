@@ -732,7 +732,7 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
     protected <T extends ExtendibleElement> T createThisEClass() throws MMINTException {
 
         var eClass = this.eClass();
-        if (eClass.getName().startsWith("Binary")) {
+        if (eClass.getName().contains("Binary")) {
             eClass = searchEPackages(this.eClass().getEPackage(), this.eClass().getName().replace("Binary", "").replace("Impl", ""));
             if (eClass == null) {
                 throw new MMINTException("Non-binary EClass " + this.eClass().getName() + " not found");
@@ -755,8 +755,11 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
     protected <T extends ExtendibleElement> T createThisBinaryEClass() throws MMINTException {
 
         var binaryEClass = this.eClass();
-        if (!binaryEClass.getName().startsWith("Binary")) {
-            binaryEClass = searchEPackages(this.eClass().getEPackage(), "Binary" + this.eClass().getName().replace("Impl", ""));
+        if (!binaryEClass.getName().contains("Binary")) {
+            binaryEClass = searchEPackages(this.eClass().getEPackage(),
+                                           this.eClass().getName().replace("ModelRel", "BinaryModelRel")
+                                                                  .replace("Mapping", "BinaryMapping")
+                                                                  .replace("Impl", ""));
             if (binaryEClass == null) {
                 throw new MMINTException("Binary EClass " + this.eClass().getName() + " not found");
             }

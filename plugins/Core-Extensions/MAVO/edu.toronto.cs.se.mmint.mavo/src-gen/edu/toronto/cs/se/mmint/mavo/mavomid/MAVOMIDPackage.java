@@ -1530,14 +1530,14 @@ public interface MAVOMIDPackage extends EPackage {
 	int MAVO_MODEL_REL_OPERATION_COUNT = RelationshipPackage.MODEL_REL_OPERATION_COUNT + 1;
 
 	/**
-   * The meta object id for the '{@link edu.toronto.cs.se.mmint.mavo.mavomid.impl.BinaryMAVOModelRelImpl <em>Binary MAVO Model Rel</em>}' class.
+   * The meta object id for the '{@link edu.toronto.cs.se.mmint.mavo.mavomid.impl.MAVOBinaryModelRelImpl <em>Binary MAVO Model Rel</em>}' class.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @see edu.toronto.cs.se.mmint.mavo.mavomid.impl.BinaryMAVOModelRelImpl
-   * @see edu.toronto.cs.se.mmint.mavo.mavomid.impl.MAVOMIDPackageImpl#getBinaryMAVOModelRel()
+   * @see edu.toronto.cs.se.mmint.mavo.mavomid.impl.MAVOBinaryModelRelImpl
+   * @see edu.toronto.cs.se.mmint.mavo.mavomid.impl.MAVOMIDPackageImpl#getMAVOBinaryModelRel()
    * @generated
    */
-	int BINARY_MAVO_MODEL_REL = 3;
+	int MAVO_BINARY_MODEL_REL = 3;
 
 	/**
    * The feature id for the '<em><b>Supertype</b></em>' reference.
@@ -1546,7 +1546,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MODEL_REL__SUPERTYPE = RelationshipPackage.BINARY_MODEL_REL__SUPERTYPE;
+	int MAVO_BINARY_MODEL_REL__SUPERTYPE = RelationshipPackage.BINARY_MODEL_REL__SUPERTYPE;
 
 	/**
    * The feature id for the '<em><b>Uri</b></em>' attribute.
@@ -1555,7 +1555,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MODEL_REL__URI = RelationshipPackage.BINARY_MODEL_REL__URI;
+	int MAVO_BINARY_MODEL_REL__URI = RelationshipPackage.BINARY_MODEL_REL__URI;
 
 	/**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1564,7 +1564,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MODEL_REL__NAME = RelationshipPackage.BINARY_MODEL_REL__NAME;
+	int MAVO_BINARY_MODEL_REL__NAME = RelationshipPackage.BINARY_MODEL_REL__NAME;
 
 	/**
    * The feature id for the '<em><b>Level</b></em>' attribute.
@@ -1573,7 +1573,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MODEL_REL__LEVEL = RelationshipPackage.BINARY_MODEL_REL__LEVEL;
+	int MAVO_BINARY_MODEL_REL__LEVEL = RelationshipPackage.BINARY_MODEL_REL__LEVEL;
 
 	/**
    * The feature id for the '<em><b>Metatype Uri</b></em>' attribute.
@@ -1582,7 +1582,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MODEL_REL__METATYPE_URI = RelationshipPackage.BINARY_MODEL_REL__METATYPE_URI;
+	int MAVO_BINARY_MODEL_REL__METATYPE_URI = RelationshipPackage.BINARY_MODEL_REL__METATYPE_URI;
 
 	/**
    * The feature id for the '<em><b>Dynamic</b></em>' attribute.
@@ -1591,7 +1591,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MODEL_REL__DYNAMIC = RelationshipPackage.BINARY_MODEL_REL__DYNAMIC;
+	int MAVO_BINARY_MODEL_REL__DYNAMIC = RelationshipPackage.BINARY_MODEL_REL__DYNAMIC;
 
 	/**
    * The feature id for the '<em><b>Constraint</b></em>' containment reference.
@@ -1600,7 +1600,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MODEL_REL__CONSTRAINT = RelationshipPackage.BINARY_MODEL_REL__CONSTRAINT;
+	int MAVO_BINARY_MODEL_REL__CONSTRAINT = RelationshipPackage.BINARY_MODEL_REL__CONSTRAINT;
 
 	/**
    * The feature id for the '<em><b>Abstract</b></em>' attribute.
@@ -1609,7 +1609,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MODEL_REL__ABSTRACT = RelationshipPackage.BINARY_MODEL_REL__ABSTRACT;
+	int MAVO_BINARY_MODEL_REL__ABSTRACT = RelationshipPackage.BINARY_MODEL_REL__ABSTRACT;
 
 	/**
    * The feature id for the '<em><b>Origin</b></em>' attribute.
@@ -1618,7 +1618,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MODEL_REL__ORIGIN = RelationshipPackage.BINARY_MODEL_REL__ORIGIN;
+	int MAVO_BINARY_MODEL_REL__ORIGIN = RelationshipPackage.BINARY_MODEL_REL__ORIGIN;
 
 	/**
    * The feature id for the '<em><b>File Extension</b></em>' attribute.
@@ -1627,7 +1627,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MODEL_REL__FILE_EXTENSION = RelationshipPackage.BINARY_MODEL_REL__FILE_EXTENSION;
+	int MAVO_BINARY_MODEL_REL__FILE_EXTENSION = RelationshipPackage.BINARY_MODEL_REL__FILE_EXTENSION;
 
 	/**
    * The feature id for the '<em><b>Editors</b></em>' reference list.
@@ -1636,7 +1636,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MODEL_REL__EDITORS = RelationshipPackage.BINARY_MODEL_REL__EDITORS;
+	int MAVO_BINARY_MODEL_REL__EDITORS = RelationshipPackage.BINARY_MODEL_REL__EDITORS;
 
 	/**
    * The feature id for the '<em><b>Model Elems</b></em>' containment reference list.
@@ -1645,7 +1645,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MODEL_REL__MODEL_ELEMS = RelationshipPackage.BINARY_MODEL_REL__MODEL_ELEMS;
+	int MAVO_BINARY_MODEL_REL__MODEL_ELEMS = RelationshipPackage.BINARY_MODEL_REL__MODEL_ELEMS;
 
 	/**
    * The feature id for the '<em><b>Conversion Operators</b></em>' reference list.
@@ -1654,7 +1654,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MODEL_REL__CONVERSION_OPERATORS = RelationshipPackage.BINARY_MODEL_REL__CONVERSION_OPERATORS;
+	int MAVO_BINARY_MODEL_REL__CONVERSION_OPERATORS = RelationshipPackage.BINARY_MODEL_REL__CONVERSION_OPERATORS;
 
 	/**
    * The feature id for the '<em><b>EMF Instance Resource</b></em>' attribute.
@@ -1663,7 +1663,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int BINARY_MAVO_MODEL_REL__EMF_INSTANCE_RESOURCE = RelationshipPackage.BINARY_MODEL_REL__EMF_INSTANCE_RESOURCE;
+  int MAVO_BINARY_MODEL_REL__EMF_INSTANCE_RESOURCE = RelationshipPackage.BINARY_MODEL_REL__EMF_INSTANCE_RESOURCE;
 
   /**
    * The feature id for the '<em><b>EMF Instance Root</b></em>' reference.
@@ -1672,7 +1672,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int BINARY_MAVO_MODEL_REL__EMF_INSTANCE_ROOT = RelationshipPackage.BINARY_MODEL_REL__EMF_INSTANCE_ROOT;
+  int MAVO_BINARY_MODEL_REL__EMF_INSTANCE_ROOT = RelationshipPackage.BINARY_MODEL_REL__EMF_INSTANCE_ROOT;
 
   /**
    * The feature id for the '<em><b>Model Endpoints</b></em>' containment reference list.
@@ -1681,7 +1681,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MODEL_REL__MODEL_ENDPOINTS = RelationshipPackage.BINARY_MODEL_REL__MODEL_ENDPOINTS;
+	int MAVO_BINARY_MODEL_REL__MODEL_ENDPOINTS = RelationshipPackage.BINARY_MODEL_REL__MODEL_ENDPOINTS;
 
 	/**
    * The feature id for the '<em><b>Mappings</b></em>' containment reference list.
@@ -1690,7 +1690,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MODEL_REL__MAPPINGS = RelationshipPackage.BINARY_MODEL_REL__MAPPINGS;
+	int MAVO_BINARY_MODEL_REL__MAPPINGS = RelationshipPackage.BINARY_MODEL_REL__MAPPINGS;
 
 	/**
    * The feature id for the '<em><b>Model Endpoint Refs</b></em>' containment reference list.
@@ -1699,7 +1699,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MODEL_REL__MODEL_ENDPOINT_REFS = RelationshipPackage.BINARY_MODEL_REL__MODEL_ENDPOINT_REFS;
+	int MAVO_BINARY_MODEL_REL__MODEL_ENDPOINT_REFS = RelationshipPackage.BINARY_MODEL_REL__MODEL_ENDPOINT_REFS;
 
 	/**
    * The feature id for the '<em><b>Mapping Refs</b></em>' containment reference list.
@@ -1708,7 +1708,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MODEL_REL__MAPPING_REFS = RelationshipPackage.BINARY_MODEL_REL__MAPPING_REFS;
+	int MAVO_BINARY_MODEL_REL__MAPPING_REFS = RelationshipPackage.BINARY_MODEL_REL__MAPPING_REFS;
 
 	/**
    * The feature id for the '<em><b>Source Model</b></em>' reference.
@@ -1717,7 +1717,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MODEL_REL__SOURCE_MODEL = RelationshipPackage.BINARY_MODEL_REL__SOURCE_MODEL;
+	int MAVO_BINARY_MODEL_REL__SOURCE_MODEL = RelationshipPackage.BINARY_MODEL_REL__SOURCE_MODEL;
 
 	/**
    * The feature id for the '<em><b>Target Model</b></em>' reference.
@@ -1726,7 +1726,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MODEL_REL__TARGET_MODEL = RelationshipPackage.BINARY_MODEL_REL__TARGET_MODEL;
+	int MAVO_BINARY_MODEL_REL__TARGET_MODEL = RelationshipPackage.BINARY_MODEL_REL__TARGET_MODEL;
 
 	/**
    * The number of structural features of the '<em>Binary MAVO Model Rel</em>' class.
@@ -1735,7 +1735,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MODEL_REL_FEATURE_COUNT = RelationshipPackage.BINARY_MODEL_REL_FEATURE_COUNT + 0;
+	int MAVO_BINARY_MODEL_REL_FEATURE_COUNT = RelationshipPackage.BINARY_MODEL_REL_FEATURE_COUNT + 0;
 
 	/**
    * The operation id for the '<em>Is Level</em>' operation.
@@ -1744,7 +1744,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MODEL_REL___IS_LEVEL__MIDLEVEL = RelationshipPackage.BINARY_MODEL_REL___IS_LEVEL__MIDLEVEL;
+	int MAVO_BINARY_MODEL_REL___IS_LEVEL__MIDLEVEL = RelationshipPackage.BINARY_MODEL_REL___IS_LEVEL__MIDLEVEL;
 
 	/**
    * The operation id for the '<em>Is Types Level</em>' operation.
@@ -1753,7 +1753,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MODEL_REL___IS_TYPES_LEVEL = RelationshipPackage.BINARY_MODEL_REL___IS_TYPES_LEVEL;
+	int MAVO_BINARY_MODEL_REL___IS_TYPES_LEVEL = RelationshipPackage.BINARY_MODEL_REL___IS_TYPES_LEVEL;
 
 	/**
    * The operation id for the '<em>Create Subtype Uri</em>' operation.
@@ -1762,7 +1762,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MODEL_REL___CREATE_SUBTYPE_URI__STRING_STRING = RelationshipPackage.BINARY_MODEL_REL___CREATE_SUBTYPE_URI__STRING_STRING;
+	int MAVO_BINARY_MODEL_REL___CREATE_SUBTYPE_URI__STRING_STRING = RelationshipPackage.BINARY_MODEL_REL___CREATE_SUBTYPE_URI__STRING_STRING;
 
 	/**
    * The operation id for the '<em>Add Type Constraint</em>' operation.
@@ -1771,7 +1771,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MODEL_REL___ADD_TYPE_CONSTRAINT__STRING_STRING = RelationshipPackage.BINARY_MODEL_REL___ADD_TYPE_CONSTRAINT__STRING_STRING;
+	int MAVO_BINARY_MODEL_REL___ADD_TYPE_CONSTRAINT__STRING_STRING = RelationshipPackage.BINARY_MODEL_REL___ADD_TYPE_CONSTRAINT__STRING_STRING;
 
 	/**
    * The operation id for the '<em>Is Instances Level</em>' operation.
@@ -1780,7 +1780,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MODEL_REL___IS_INSTANCES_LEVEL = RelationshipPackage.BINARY_MODEL_REL___IS_INSTANCES_LEVEL;
+	int MAVO_BINARY_MODEL_REL___IS_INSTANCES_LEVEL = RelationshipPackage.BINARY_MODEL_REL___IS_INSTANCES_LEVEL;
 
 	/**
    * The operation id for the '<em>Get Runtime Types</em>' operation.
@@ -1789,7 +1789,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MODEL_REL___GET_RUNTIME_TYPES = RelationshipPackage.BINARY_MODEL_REL___GET_RUNTIME_TYPES;
+	int MAVO_BINARY_MODEL_REL___GET_RUNTIME_TYPES = RelationshipPackage.BINARY_MODEL_REL___GET_RUNTIME_TYPES;
 
 	/**
    * The operation id for the '<em>Get Closest Type Constraint</em>' operation.
@@ -1798,7 +1798,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MAVO_MODEL_REL___GET_CLOSEST_TYPE_CONSTRAINT = RelationshipPackage.BINARY_MODEL_REL___GET_CLOSEST_TYPE_CONSTRAINT;
+    int MAVO_BINARY_MODEL_REL___GET_CLOSEST_TYPE_CONSTRAINT = RelationshipPackage.BINARY_MODEL_REL___GET_CLOSEST_TYPE_CONSTRAINT;
 
     /**
    * The operation id for the '<em>Validate Instance Type</em>' operation.
@@ -1807,7 +1807,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MODEL_REL___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT = RelationshipPackage.BINARY_MODEL_REL___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT;
+	int MAVO_BINARY_MODEL_REL___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT = RelationshipPackage.BINARY_MODEL_REL___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT;
 
 	/**
    * The operation id for the '<em>Validate Instance</em>' operation.
@@ -1816,7 +1816,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MODEL_REL___VALIDATE_INSTANCE = RelationshipPackage.BINARY_MODEL_REL___VALIDATE_INSTANCE;
+	int MAVO_BINARY_MODEL_REL___VALIDATE_INSTANCE = RelationshipPackage.BINARY_MODEL_REL___VALIDATE_INSTANCE;
 
 	/**
    * The operation id for the '<em>Validate Instance In Editor</em>' operation.
@@ -1825,7 +1825,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MODEL_REL___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = RelationshipPackage.BINARY_MODEL_REL___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
+	int MAVO_BINARY_MODEL_REL___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = RelationshipPackage.BINARY_MODEL_REL___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
 
 	/**
    * The operation id for the '<em>Is Workflows Level</em>' operation.
@@ -1834,7 +1834,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MODEL_REL___IS_WORKFLOWS_LEVEL = RelationshipPackage.BINARY_MODEL_REL___IS_WORKFLOWS_LEVEL;
+	int MAVO_BINARY_MODEL_REL___IS_WORKFLOWS_LEVEL = RelationshipPackage.BINARY_MODEL_REL___IS_WORKFLOWS_LEVEL;
 
 	/**
    * The operation id for the '<em>Update Workflow Instance Id</em>' operation.
@@ -1843,7 +1843,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MODEL_REL___UPDATE_WORKFLOW_INSTANCE_ID__STRING = RelationshipPackage.BINARY_MODEL_REL___UPDATE_WORKFLOW_INSTANCE_ID__STRING;
+	int MAVO_BINARY_MODEL_REL___UPDATE_WORKFLOW_INSTANCE_ID__STRING = RelationshipPackage.BINARY_MODEL_REL___UPDATE_WORKFLOW_INSTANCE_ID__STRING;
 
 	/**
    * The operation id for the '<em>To MID Custom Print Label</em>' operation.
@@ -1852,7 +1852,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MODEL_REL___TO_MID_CUSTOM_PRINT_LABEL = RelationshipPackage.BINARY_MODEL_REL___TO_MID_CUSTOM_PRINT_LABEL;
+	int MAVO_BINARY_MODEL_REL___TO_MID_CUSTOM_PRINT_LABEL = RelationshipPackage.BINARY_MODEL_REL___TO_MID_CUSTOM_PRINT_LABEL;
 
 	/**
    * The operation id for the '<em>To MID Custom Edit Label</em>' operation.
@@ -1861,7 +1861,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MODEL_REL___TO_MID_CUSTOM_EDIT_LABEL = RelationshipPackage.BINARY_MODEL_REL___TO_MID_CUSTOM_EDIT_LABEL;
+	int MAVO_BINARY_MODEL_REL___TO_MID_CUSTOM_EDIT_LABEL = RelationshipPackage.BINARY_MODEL_REL___TO_MID_CUSTOM_EDIT_LABEL;
 
 	/**
    * The operation id for the '<em>Update MID Custom Label</em>' operation.
@@ -1870,7 +1870,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MODEL_REL___UPDATE_MID_CUSTOM_LABEL__STRING = RelationshipPackage.BINARY_MODEL_REL___UPDATE_MID_CUSTOM_LABEL__STRING;
+	int MAVO_BINARY_MODEL_REL___UPDATE_MID_CUSTOM_LABEL__STRING = RelationshipPackage.BINARY_MODEL_REL___UPDATE_MID_CUSTOM_LABEL__STRING;
 
 	/**
    * The operation id for the '<em>Create Subtype</em>' operation.
@@ -1879,7 +1879,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MODEL_REL___CREATE_SUBTYPE__STRING_BOOLEAN = RelationshipPackage.BINARY_MODEL_REL___CREATE_SUBTYPE__STRING_BOOLEAN;
+	int MAVO_BINARY_MODEL_REL___CREATE_SUBTYPE__STRING_BOOLEAN = RelationshipPackage.BINARY_MODEL_REL___CREATE_SUBTYPE__STRING_BOOLEAN;
 
 	/**
    * The operation id for the '<em>Delete Type</em>' operation.
@@ -1888,7 +1888,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MODEL_REL___DELETE_TYPE = RelationshipPackage.BINARY_MODEL_REL___DELETE_TYPE;
+	int MAVO_BINARY_MODEL_REL___DELETE_TYPE = RelationshipPackage.BINARY_MODEL_REL___DELETE_TYPE;
 
 	/**
    * The operation id for the '<em>Get EMF Type Root</em>' operation.
@@ -1897,7 +1897,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MODEL_REL___GET_EMF_TYPE_ROOT = RelationshipPackage.BINARY_MODEL_REL___GET_EMF_TYPE_ROOT;
+	int MAVO_BINARY_MODEL_REL___GET_EMF_TYPE_ROOT = RelationshipPackage.BINARY_MODEL_REL___GET_EMF_TYPE_ROOT;
 
 	/**
    * The operation id for the '<em>Open Type</em>' operation.
@@ -1906,7 +1906,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MODEL_REL___OPEN_TYPE = RelationshipPackage.BINARY_MODEL_REL___OPEN_TYPE;
+	int MAVO_BINARY_MODEL_REL___OPEN_TYPE = RelationshipPackage.BINARY_MODEL_REL___OPEN_TYPE;
 
 	/**
    * The operation id for the '<em>Create Instance</em>' operation.
@@ -1915,7 +1915,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MODEL_REL___CREATE_INSTANCE__EOBJECT_STRING_MID = RelationshipPackage.BINARY_MODEL_REL___CREATE_INSTANCE__EOBJECT_STRING_MID;
+	int MAVO_BINARY_MODEL_REL___CREATE_INSTANCE__EOBJECT_STRING_MID = RelationshipPackage.BINARY_MODEL_REL___CREATE_INSTANCE__EOBJECT_STRING_MID;
 
 	/**
    * The operation id for the '<em>Create Instance Editor</em>' operation.
@@ -1924,7 +1924,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MAVO_MODEL_REL___CREATE_INSTANCE_EDITOR__BOOLEAN = RelationshipPackage.BINARY_MODEL_REL___CREATE_INSTANCE_EDITOR__BOOLEAN;
+    int MAVO_BINARY_MODEL_REL___CREATE_INSTANCE_EDITOR__BOOLEAN = RelationshipPackage.BINARY_MODEL_REL___CREATE_INSTANCE_EDITOR__BOOLEAN;
 
     /**
    * The operation id for the '<em>Create Instance And Editor</em>' operation.
@@ -1933,7 +1933,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MODEL_REL___CREATE_INSTANCE_AND_EDITOR__EOBJECT_STRING_MID = RelationshipPackage.BINARY_MODEL_REL___CREATE_INSTANCE_AND_EDITOR__EOBJECT_STRING_MID;
+	int MAVO_BINARY_MODEL_REL___CREATE_INSTANCE_AND_EDITOR__EOBJECT_STRING_MID = RelationshipPackage.BINARY_MODEL_REL___CREATE_INSTANCE_AND_EDITOR__EOBJECT_STRING_MID;
 
 	/**
    * The operation id for the '<em>Import Instance</em>' operation.
@@ -1942,7 +1942,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MODEL_REL___IMPORT_INSTANCE__STRING_MID = RelationshipPackage.BINARY_MODEL_REL___IMPORT_INSTANCE__STRING_MID;
+	int MAVO_BINARY_MODEL_REL___IMPORT_INSTANCE__STRING_MID = RelationshipPackage.BINARY_MODEL_REL___IMPORT_INSTANCE__STRING_MID;
 
 	/**
    * The operation id for the '<em>Import Instance And Editor</em>' operation.
@@ -1951,7 +1951,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MODEL_REL___IMPORT_INSTANCE_AND_EDITOR__STRING_MID = RelationshipPackage.BINARY_MODEL_REL___IMPORT_INSTANCE_AND_EDITOR__STRING_MID;
+	int MAVO_BINARY_MODEL_REL___IMPORT_INSTANCE_AND_EDITOR__STRING_MID = RelationshipPackage.BINARY_MODEL_REL___IMPORT_INSTANCE_AND_EDITOR__STRING_MID;
 
 	/**
    * The operation id for the '<em>Copy Instance And Editor</em>' operation.
@@ -1960,7 +1960,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MODEL_REL___COPY_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MID = RelationshipPackage.BINARY_MODEL_REL___COPY_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MID;
+	int MAVO_BINARY_MODEL_REL___COPY_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MID = RelationshipPackage.BINARY_MODEL_REL___COPY_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MID;
 
 	/**
    * The operation id for the '<em>Delete Instance</em>' operation.
@@ -1969,7 +1969,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MODEL_REL___DELETE_INSTANCE = RelationshipPackage.BINARY_MODEL_REL___DELETE_INSTANCE;
+	int MAVO_BINARY_MODEL_REL___DELETE_INSTANCE = RelationshipPackage.BINARY_MODEL_REL___DELETE_INSTANCE;
 
 	/**
    * The operation id for the '<em>Delete Instance And File</em>' operation.
@@ -1978,7 +1978,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MODEL_REL___DELETE_INSTANCE_AND_FILE = RelationshipPackage.BINARY_MODEL_REL___DELETE_INSTANCE_AND_FILE;
+	int MAVO_BINARY_MODEL_REL___DELETE_INSTANCE_AND_FILE = RelationshipPackage.BINARY_MODEL_REL___DELETE_INSTANCE_AND_FILE;
 
 	/**
    * The operation id for the '<em>Open Instance</em>' operation.
@@ -1987,7 +1987,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MODEL_REL___OPEN_INSTANCE = RelationshipPackage.BINARY_MODEL_REL___OPEN_INSTANCE;
+	int MAVO_BINARY_MODEL_REL___OPEN_INSTANCE = RelationshipPackage.BINARY_MODEL_REL___OPEN_INSTANCE;
 
 	/**
    * The operation id for the '<em>Create Workflow Instance</em>' operation.
@@ -1996,7 +1996,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MODEL_REL___CREATE_WORKFLOW_INSTANCE__STRING_MID = RelationshipPackage.BINARY_MODEL_REL___CREATE_WORKFLOW_INSTANCE__STRING_MID;
+	int MAVO_BINARY_MODEL_REL___CREATE_WORKFLOW_INSTANCE__STRING_MID = RelationshipPackage.BINARY_MODEL_REL___CREATE_WORKFLOW_INSTANCE__STRING_MID;
 
 	/**
    * The operation id for the '<em>Delete Workflow Instance</em>' operation.
@@ -2005,7 +2005,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MODEL_REL___DELETE_WORKFLOW_INSTANCE = RelationshipPackage.BINARY_MODEL_REL___DELETE_WORKFLOW_INSTANCE;
+	int MAVO_BINARY_MODEL_REL___DELETE_WORKFLOW_INSTANCE = RelationshipPackage.BINARY_MODEL_REL___DELETE_WORKFLOW_INSTANCE;
 
 	/**
    * The operation id for the '<em>Get Metatype</em>' operation.
@@ -2014,7 +2014,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MODEL_REL___GET_METATYPE = RelationshipPackage.BINARY_MODEL_REL___GET_METATYPE;
+	int MAVO_BINARY_MODEL_REL___GET_METATYPE = RelationshipPackage.BINARY_MODEL_REL___GET_METATYPE;
 
 	/**
    * The operation id for the '<em>Get Supertype</em>' operation.
@@ -2023,7 +2023,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MODEL_REL___GET_SUPERTYPE = RelationshipPackage.BINARY_MODEL_REL___GET_SUPERTYPE;
+	int MAVO_BINARY_MODEL_REL___GET_SUPERTYPE = RelationshipPackage.BINARY_MODEL_REL___GET_SUPERTYPE;
 
 	/**
    * The operation id for the '<em>Get MID Container</em>' operation.
@@ -2032,7 +2032,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MODEL_REL___GET_MID_CONTAINER = RelationshipPackage.BINARY_MODEL_REL___GET_MID_CONTAINER;
+	int MAVO_BINARY_MODEL_REL___GET_MID_CONTAINER = RelationshipPackage.BINARY_MODEL_REL___GET_MID_CONTAINER;
 
 	/**
    * The operation id for the '<em>Create Binary Subtype</em>' operation.
@@ -2041,7 +2041,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MODEL_REL___CREATE_BINARY_SUBTYPE__STRING_BOOLEAN = RelationshipPackage.BINARY_MODEL_REL___CREATE_BINARY_SUBTYPE__STRING_BOOLEAN;
+	int MAVO_BINARY_MODEL_REL___CREATE_BINARY_SUBTYPE__STRING_BOOLEAN = RelationshipPackage.BINARY_MODEL_REL___CREATE_BINARY_SUBTYPE__STRING_BOOLEAN;
 
 	/**
    * The operation id for the '<em>Copy Subtype</em>' operation.
@@ -2050,7 +2050,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MODEL_REL___COPY_SUBTYPE__MODELREL = RelationshipPackage.BINARY_MODEL_REL___COPY_SUBTYPE__MODELREL;
+	int MAVO_BINARY_MODEL_REL___COPY_SUBTYPE__MODELREL = RelationshipPackage.BINARY_MODEL_REL___COPY_SUBTYPE__MODELREL;
 
 	/**
    * The operation id for the '<em>Get Outline Resource Types</em>' operation.
@@ -2059,7 +2059,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MODEL_REL___GET_OUTLINE_RESOURCE_TYPES = RelationshipPackage.BINARY_MODEL_REL___GET_OUTLINE_RESOURCE_TYPES;
+	int MAVO_BINARY_MODEL_REL___GET_OUTLINE_RESOURCE_TYPES = RelationshipPackage.BINARY_MODEL_REL___GET_OUTLINE_RESOURCE_TYPES;
 
 	/**
    * The operation id for the '<em>Create Instance And Endpoints</em>' operation.
@@ -2068,7 +2068,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS__EOBJECT_STRING_ELIST_MID = RelationshipPackage.BINARY_MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS__EOBJECT_STRING_ELIST_MID;
+	int MAVO_BINARY_MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS__EOBJECT_STRING_ELIST_MID = RelationshipPackage.BINARY_MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS__EOBJECT_STRING_ELIST_MID;
 
 	/**
    * The operation id for the '<em>Create Binary Instance</em>' operation.
@@ -2077,7 +2077,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MODEL_REL___CREATE_BINARY_INSTANCE__EOBJECT_STRING_MID = RelationshipPackage.BINARY_MODEL_REL___CREATE_BINARY_INSTANCE__EOBJECT_STRING_MID;
+	int MAVO_BINARY_MODEL_REL___CREATE_BINARY_INSTANCE__EOBJECT_STRING_MID = RelationshipPackage.BINARY_MODEL_REL___CREATE_BINARY_INSTANCE__EOBJECT_STRING_MID;
 
 	/**
    * The operation id for the '<em>Create Binary Instance And Endpoints</em>' operation.
@@ -2086,7 +2086,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MODEL_REL___CREATE_BINARY_INSTANCE_AND_ENDPOINTS__EOBJECT_STRING_MODEL_MODEL_MID = RelationshipPackage.BINARY_MODEL_REL___CREATE_BINARY_INSTANCE_AND_ENDPOINTS__EOBJECT_STRING_MODEL_MODEL_MID;
+	int MAVO_BINARY_MODEL_REL___CREATE_BINARY_INSTANCE_AND_ENDPOINTS__EOBJECT_STRING_MODEL_MODEL_MID = RelationshipPackage.BINARY_MODEL_REL___CREATE_BINARY_INSTANCE_AND_ENDPOINTS__EOBJECT_STRING_MODEL_MODEL_MID;
 
 	/**
    * The operation id for the '<em>Get Outline Resource Instances</em>' operation.
@@ -2095,7 +2095,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MODEL_REL___GET_OUTLINE_RESOURCE_INSTANCES = RelationshipPackage.BINARY_MODEL_REL___GET_OUTLINE_RESOURCE_INSTANCES;
+	int MAVO_BINARY_MODEL_REL___GET_OUTLINE_RESOURCE_INSTANCES = RelationshipPackage.BINARY_MODEL_REL___GET_OUTLINE_RESOURCE_INSTANCES;
 
 	/**
    * The operation id for the '<em>Create Workflow Instance And Endpoints</em>' operation.
@@ -2104,7 +2104,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MODEL_REL___CREATE_WORKFLOW_INSTANCE_AND_ENDPOINTS__STRING_ELIST_MID = RelationshipPackage.BINARY_MODEL_REL___CREATE_WORKFLOW_INSTANCE_AND_ENDPOINTS__STRING_ELIST_MID;
+	int MAVO_BINARY_MODEL_REL___CREATE_WORKFLOW_INSTANCE_AND_ENDPOINTS__STRING_ELIST_MID = RelationshipPackage.BINARY_MODEL_REL___CREATE_WORKFLOW_INSTANCE_AND_ENDPOINTS__STRING_ELIST_MID;
 
 	/**
    * The operation id for the '<em>Create Workflow Binary Instance</em>' operation.
@@ -2113,7 +2113,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MODEL_REL___CREATE_WORKFLOW_BINARY_INSTANCE__STRING_MID = RelationshipPackage.BINARY_MODEL_REL___CREATE_WORKFLOW_BINARY_INSTANCE__STRING_MID;
+	int MAVO_BINARY_MODEL_REL___CREATE_WORKFLOW_BINARY_INSTANCE__STRING_MID = RelationshipPackage.BINARY_MODEL_REL___CREATE_WORKFLOW_BINARY_INSTANCE__STRING_MID;
 
 	/**
    * The operation id for the '<em>Create Workflow Binary Instance And Endpoints</em>' operation.
@@ -2122,7 +2122,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MODEL_REL___CREATE_WORKFLOW_BINARY_INSTANCE_AND_ENDPOINTS__STRING_MODEL_MODEL_MID = RelationshipPackage.BINARY_MODEL_REL___CREATE_WORKFLOW_BINARY_INSTANCE_AND_ENDPOINTS__STRING_MODEL_MODEL_MID;
+	int MAVO_BINARY_MODEL_REL___CREATE_WORKFLOW_BINARY_INSTANCE_AND_ENDPOINTS__STRING_MODEL_MODEL_MID = RelationshipPackage.BINARY_MODEL_REL___CREATE_WORKFLOW_BINARY_INSTANCE_AND_ENDPOINTS__STRING_MODEL_MODEL_MID;
 
 	/**
    * The operation id for the '<em>Add Model Type</em>' operation.
@@ -2131,7 +2131,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MODEL_REL___ADD_MODEL_TYPE__MODEL_BOOLEAN = RelationshipPackage.BINARY_MODEL_REL___ADD_MODEL_TYPE__MODEL_BOOLEAN;
+	int MAVO_BINARY_MODEL_REL___ADD_MODEL_TYPE__MODEL_BOOLEAN = RelationshipPackage.BINARY_MODEL_REL___ADD_MODEL_TYPE__MODEL_BOOLEAN;
 
 	/**
    * The operation id for the '<em>Copy Instance</em>' operation.
@@ -2140,7 +2140,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MODEL_REL___COPY_INSTANCE__MODEL_STRING_MID = RelationshipPackage.BINARY_MODEL_REL_OPERATION_COUNT + 0;
+	int MAVO_BINARY_MODEL_REL___COPY_INSTANCE__MODEL_STRING_MID = RelationshipPackage.BINARY_MODEL_REL_OPERATION_COUNT + 0;
 
 	/**
    * The number of operations of the '<em>Binary MAVO Model Rel</em>' class.
@@ -2149,7 +2149,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MODEL_REL_OPERATION_COUNT = RelationshipPackage.BINARY_MODEL_REL_OPERATION_COUNT + 1;
+	int MAVO_BINARY_MODEL_REL_OPERATION_COUNT = RelationshipPackage.BINARY_MODEL_REL_OPERATION_COUNT + 1;
 
 	/**
    * The meta object id for the '{@link edu.toronto.cs.se.mmint.mavo.mavomid.impl.MAVOModelEndpointImpl <em>MAVO Model Endpoint</em>}' class.
@@ -2587,14 +2587,14 @@ public interface MAVOMIDPackage extends EPackage {
 	int MAVO_MAPPING_REFERENCE = 9;
 
 	/**
-   * The meta object id for the '{@link edu.toronto.cs.se.mmint.mavo.mavomid.impl.BinaryMAVOMappingReferenceImpl <em>Binary MAVO Mapping Reference</em>}' class.
+   * The meta object id for the '{@link edu.toronto.cs.se.mmint.mavo.mavomid.impl.MAVOBinaryMappingReferenceImpl <em>Binary MAVO Mapping Reference</em>}' class.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @see edu.toronto.cs.se.mmint.mavo.mavomid.impl.BinaryMAVOMappingReferenceImpl
-   * @see edu.toronto.cs.se.mmint.mavo.mavomid.impl.MAVOMIDPackageImpl#getBinaryMAVOMappingReference()
+   * @see edu.toronto.cs.se.mmint.mavo.mavomid.impl.MAVOBinaryMappingReferenceImpl
+   * @see edu.toronto.cs.se.mmint.mavo.mavomid.impl.MAVOMIDPackageImpl#getMAVOBinaryMappingReference()
    * @generated
    */
-	int BINARY_MAVO_MAPPING_REFERENCE = 10;
+	int MAVO_BINARY_MAPPING_REFERENCE = 10;
 
 	/**
    * The meta object id for the '{@link edu.toronto.cs.se.mmint.mavo.mavomid.impl.MAVOMappingImpl <em>MAVO Mapping</em>}' class.
@@ -2976,14 +2976,14 @@ public interface MAVOMIDPackage extends EPackage {
 	int MAVO_MAPPING_OPERATION_COUNT = RelationshipPackage.MAPPING_OPERATION_COUNT + 3;
 
 	/**
-   * The meta object id for the '{@link edu.toronto.cs.se.mmint.mavo.mavomid.impl.BinaryMAVOMappingImpl <em>Binary MAVO Mapping</em>}' class.
+   * The meta object id for the '{@link edu.toronto.cs.se.mmint.mavo.mavomid.impl.MAVOBinaryMappingImpl <em>Binary MAVO Mapping</em>}' class.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @see edu.toronto.cs.se.mmint.mavo.mavomid.impl.BinaryMAVOMappingImpl
-   * @see edu.toronto.cs.se.mmint.mavo.mavomid.impl.MAVOMIDPackageImpl#getBinaryMAVOMapping()
+   * @see edu.toronto.cs.se.mmint.mavo.mavomid.impl.MAVOBinaryMappingImpl
+   * @see edu.toronto.cs.se.mmint.mavo.mavomid.impl.MAVOMIDPackageImpl#getMAVOBinaryMapping()
    * @generated
    */
-	int BINARY_MAVO_MAPPING = 6;
+	int MAVO_BINARY_MAPPING = 6;
 
 	/**
    * The feature id for the '<em><b>Supertype</b></em>' reference.
@@ -2992,7 +2992,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MAPPING__SUPERTYPE = RelationshipPackage.BINARY_MAPPING__SUPERTYPE;
+	int MAVO_BINARY_MAPPING__SUPERTYPE = RelationshipPackage.BINARY_MAPPING__SUPERTYPE;
 
 	/**
    * The feature id for the '<em><b>Uri</b></em>' attribute.
@@ -3001,7 +3001,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MAPPING__URI = RelationshipPackage.BINARY_MAPPING__URI;
+	int MAVO_BINARY_MAPPING__URI = RelationshipPackage.BINARY_MAPPING__URI;
 
 	/**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3010,7 +3010,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MAPPING__NAME = RelationshipPackage.BINARY_MAPPING__NAME;
+	int MAVO_BINARY_MAPPING__NAME = RelationshipPackage.BINARY_MAPPING__NAME;
 
 	/**
    * The feature id for the '<em><b>Level</b></em>' attribute.
@@ -3019,7 +3019,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MAPPING__LEVEL = RelationshipPackage.BINARY_MAPPING__LEVEL;
+	int MAVO_BINARY_MAPPING__LEVEL = RelationshipPackage.BINARY_MAPPING__LEVEL;
 
 	/**
    * The feature id for the '<em><b>Metatype Uri</b></em>' attribute.
@@ -3028,7 +3028,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MAPPING__METATYPE_URI = RelationshipPackage.BINARY_MAPPING__METATYPE_URI;
+	int MAVO_BINARY_MAPPING__METATYPE_URI = RelationshipPackage.BINARY_MAPPING__METATYPE_URI;
 
 	/**
    * The feature id for the '<em><b>Dynamic</b></em>' attribute.
@@ -3037,7 +3037,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MAPPING__DYNAMIC = RelationshipPackage.BINARY_MAPPING__DYNAMIC;
+	int MAVO_BINARY_MAPPING__DYNAMIC = RelationshipPackage.BINARY_MAPPING__DYNAMIC;
 
 	/**
    * The feature id for the '<em><b>Constraint</b></em>' containment reference.
@@ -3046,7 +3046,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MAPPING__CONSTRAINT = RelationshipPackage.BINARY_MAPPING__CONSTRAINT;
+	int MAVO_BINARY_MAPPING__CONSTRAINT = RelationshipPackage.BINARY_MAPPING__CONSTRAINT;
 
 	/**
    * The feature id for the '<em><b>Model Elem Endpoints</b></em>' containment reference list.
@@ -3055,7 +3055,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MAPPING__MODEL_ELEM_ENDPOINTS = RelationshipPackage.BINARY_MAPPING__MODEL_ELEM_ENDPOINTS;
+	int MAVO_BINARY_MAPPING__MODEL_ELEM_ENDPOINTS = RelationshipPackage.BINARY_MAPPING__MODEL_ELEM_ENDPOINTS;
 
 	/**
    * The feature id for the '<em><b>Model Elem Endpoint Refs</b></em>' reference list.
@@ -3064,7 +3064,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MAPPING__MODEL_ELEM_ENDPOINT_REFS = RelationshipPackage.BINARY_MAPPING__MODEL_ELEM_ENDPOINT_REFS;
+	int MAVO_BINARY_MAPPING__MODEL_ELEM_ENDPOINT_REFS = RelationshipPackage.BINARY_MAPPING__MODEL_ELEM_ENDPOINT_REFS;
 
 	/**
    * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
@@ -3073,7 +3073,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MAPPING__FORMULA_VARIABLE = RelationshipPackage.BINARY_MAPPING_FEATURE_COUNT + 0;
+	int MAVO_BINARY_MAPPING__FORMULA_VARIABLE = RelationshipPackage.BINARY_MAPPING_FEATURE_COUNT + 0;
 
 	/**
    * The feature id for the '<em><b>May</b></em>' attribute.
@@ -3082,7 +3082,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MAPPING__MAY = RelationshipPackage.BINARY_MAPPING_FEATURE_COUNT + 1;
+	int MAVO_BINARY_MAPPING__MAY = RelationshipPackage.BINARY_MAPPING_FEATURE_COUNT + 1;
 
 	/**
    * The feature id for the '<em><b>Set</b></em>' attribute.
@@ -3091,7 +3091,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MAPPING__SET = RelationshipPackage.BINARY_MAPPING_FEATURE_COUNT + 2;
+	int MAVO_BINARY_MAPPING__SET = RelationshipPackage.BINARY_MAPPING_FEATURE_COUNT + 2;
 
 	/**
    * The feature id for the '<em><b>Var</b></em>' attribute.
@@ -3100,7 +3100,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MAPPING__VAR = RelationshipPackage.BINARY_MAPPING_FEATURE_COUNT + 3;
+	int MAVO_BINARY_MAPPING__VAR = RelationshipPackage.BINARY_MAPPING_FEATURE_COUNT + 3;
 
 	/**
    * The feature id for the '<em><b>Collections</b></em>' reference list.
@@ -3109,7 +3109,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MAPPING__COLLECTIONS = RelationshipPackage.BINARY_MAPPING_FEATURE_COUNT + 4;
+	int MAVO_BINARY_MAPPING__COLLECTIONS = RelationshipPackage.BINARY_MAPPING_FEATURE_COUNT + 4;
 
 	/**
    * The number of structural features of the '<em>Binary MAVO Mapping</em>' class.
@@ -3118,7 +3118,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MAPPING_FEATURE_COUNT = RelationshipPackage.BINARY_MAPPING_FEATURE_COUNT + 5;
+	int MAVO_BINARY_MAPPING_FEATURE_COUNT = RelationshipPackage.BINARY_MAPPING_FEATURE_COUNT + 5;
 
 	/**
    * The operation id for the '<em>Is Level</em>' operation.
@@ -3127,7 +3127,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MAPPING___IS_LEVEL__MIDLEVEL = RelationshipPackage.BINARY_MAPPING___IS_LEVEL__MIDLEVEL;
+	int MAVO_BINARY_MAPPING___IS_LEVEL__MIDLEVEL = RelationshipPackage.BINARY_MAPPING___IS_LEVEL__MIDLEVEL;
 
 	/**
    * The operation id for the '<em>Is Types Level</em>' operation.
@@ -3136,7 +3136,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MAPPING___IS_TYPES_LEVEL = RelationshipPackage.BINARY_MAPPING___IS_TYPES_LEVEL;
+	int MAVO_BINARY_MAPPING___IS_TYPES_LEVEL = RelationshipPackage.BINARY_MAPPING___IS_TYPES_LEVEL;
 
 	/**
    * The operation id for the '<em>Create Subtype Uri</em>' operation.
@@ -3145,7 +3145,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MAPPING___CREATE_SUBTYPE_URI__STRING_STRING = RelationshipPackage.BINARY_MAPPING___CREATE_SUBTYPE_URI__STRING_STRING;
+	int MAVO_BINARY_MAPPING___CREATE_SUBTYPE_URI__STRING_STRING = RelationshipPackage.BINARY_MAPPING___CREATE_SUBTYPE_URI__STRING_STRING;
 
 	/**
    * The operation id for the '<em>Add Type Constraint</em>' operation.
@@ -3154,7 +3154,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MAPPING___ADD_TYPE_CONSTRAINT__STRING_STRING = RelationshipPackage.BINARY_MAPPING___ADD_TYPE_CONSTRAINT__STRING_STRING;
+	int MAVO_BINARY_MAPPING___ADD_TYPE_CONSTRAINT__STRING_STRING = RelationshipPackage.BINARY_MAPPING___ADD_TYPE_CONSTRAINT__STRING_STRING;
 
 	/**
    * The operation id for the '<em>Is Instances Level</em>' operation.
@@ -3163,7 +3163,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MAPPING___IS_INSTANCES_LEVEL = RelationshipPackage.BINARY_MAPPING___IS_INSTANCES_LEVEL;
+	int MAVO_BINARY_MAPPING___IS_INSTANCES_LEVEL = RelationshipPackage.BINARY_MAPPING___IS_INSTANCES_LEVEL;
 
 	/**
    * The operation id for the '<em>Get Runtime Types</em>' operation.
@@ -3172,7 +3172,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MAPPING___GET_RUNTIME_TYPES = RelationshipPackage.BINARY_MAPPING___GET_RUNTIME_TYPES;
+	int MAVO_BINARY_MAPPING___GET_RUNTIME_TYPES = RelationshipPackage.BINARY_MAPPING___GET_RUNTIME_TYPES;
 
 	/**
    * The operation id for the '<em>Get Closest Type Constraint</em>' operation.
@@ -3181,7 +3181,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MAVO_MAPPING___GET_CLOSEST_TYPE_CONSTRAINT = RelationshipPackage.BINARY_MAPPING___GET_CLOSEST_TYPE_CONSTRAINT;
+    int MAVO_BINARY_MAPPING___GET_CLOSEST_TYPE_CONSTRAINT = RelationshipPackage.BINARY_MAPPING___GET_CLOSEST_TYPE_CONSTRAINT;
 
     /**
    * The operation id for the '<em>Validate Instance Type</em>' operation.
@@ -3190,7 +3190,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MAPPING___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT = RelationshipPackage.BINARY_MAPPING___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT;
+	int MAVO_BINARY_MAPPING___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT = RelationshipPackage.BINARY_MAPPING___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT;
 
 	/**
    * The operation id for the '<em>Validate Instance</em>' operation.
@@ -3199,7 +3199,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MAPPING___VALIDATE_INSTANCE = RelationshipPackage.BINARY_MAPPING___VALIDATE_INSTANCE;
+	int MAVO_BINARY_MAPPING___VALIDATE_INSTANCE = RelationshipPackage.BINARY_MAPPING___VALIDATE_INSTANCE;
 
 	/**
    * The operation id for the '<em>Validate Instance In Editor</em>' operation.
@@ -3208,7 +3208,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MAPPING___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = RelationshipPackage.BINARY_MAPPING___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
+	int MAVO_BINARY_MAPPING___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = RelationshipPackage.BINARY_MAPPING___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
 
 	/**
    * The operation id for the '<em>Is Workflows Level</em>' operation.
@@ -3217,7 +3217,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MAPPING___IS_WORKFLOWS_LEVEL = RelationshipPackage.BINARY_MAPPING___IS_WORKFLOWS_LEVEL;
+	int MAVO_BINARY_MAPPING___IS_WORKFLOWS_LEVEL = RelationshipPackage.BINARY_MAPPING___IS_WORKFLOWS_LEVEL;
 
 	/**
    * The operation id for the '<em>Update Workflow Instance Id</em>' operation.
@@ -3226,7 +3226,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MAPPING___UPDATE_WORKFLOW_INSTANCE_ID__STRING = RelationshipPackage.BINARY_MAPPING___UPDATE_WORKFLOW_INSTANCE_ID__STRING;
+	int MAVO_BINARY_MAPPING___UPDATE_WORKFLOW_INSTANCE_ID__STRING = RelationshipPackage.BINARY_MAPPING___UPDATE_WORKFLOW_INSTANCE_ID__STRING;
 
 	/**
    * The operation id for the '<em>Get Metatype</em>' operation.
@@ -3235,7 +3235,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MAPPING___GET_METATYPE = RelationshipPackage.BINARY_MAPPING___GET_METATYPE;
+	int MAVO_BINARY_MAPPING___GET_METATYPE = RelationshipPackage.BINARY_MAPPING___GET_METATYPE;
 
 	/**
    * The operation id for the '<em>Get Supertype</em>' operation.
@@ -3244,7 +3244,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MAPPING___GET_SUPERTYPE = RelationshipPackage.BINARY_MAPPING___GET_SUPERTYPE;
+	int MAVO_BINARY_MAPPING___GET_SUPERTYPE = RelationshipPackage.BINARY_MAPPING___GET_SUPERTYPE;
 
 	/**
    * The operation id for the '<em>Get MID Container</em>' operation.
@@ -3253,7 +3253,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MAPPING___GET_MID_CONTAINER = RelationshipPackage.BINARY_MAPPING___GET_MID_CONTAINER;
+	int MAVO_BINARY_MAPPING___GET_MID_CONTAINER = RelationshipPackage.BINARY_MAPPING___GET_MID_CONTAINER;
 
 	/**
    * The operation id for the '<em>Create Type Reference</em>' operation.
@@ -3262,7 +3262,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MAPPING___CREATE_TYPE_REFERENCE__MAPPINGREFERENCE_BOOLEAN_MODELREL = RelationshipPackage.BINARY_MAPPING___CREATE_TYPE_REFERENCE__MAPPINGREFERENCE_BOOLEAN_MODELREL;
+	int MAVO_BINARY_MAPPING___CREATE_TYPE_REFERENCE__MAPPINGREFERENCE_BOOLEAN_MODELREL = RelationshipPackage.BINARY_MAPPING___CREATE_TYPE_REFERENCE__MAPPINGREFERENCE_BOOLEAN_MODELREL;
 
 	/**
    * The operation id for the '<em>Create Subtype And Reference</em>' operation.
@@ -3271,7 +3271,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MAPPING___CREATE_SUBTYPE_AND_REFERENCE__MAPPINGREFERENCE_STRING_BOOLEAN_MODELREL = RelationshipPackage.BINARY_MAPPING___CREATE_SUBTYPE_AND_REFERENCE__MAPPINGREFERENCE_STRING_BOOLEAN_MODELREL;
+	int MAVO_BINARY_MAPPING___CREATE_SUBTYPE_AND_REFERENCE__MAPPINGREFERENCE_STRING_BOOLEAN_MODELREL = RelationshipPackage.BINARY_MAPPING___CREATE_SUBTYPE_AND_REFERENCE__MAPPINGREFERENCE_STRING_BOOLEAN_MODELREL;
 
 	/**
    * The operation id for the '<em>Delete Type</em>' operation.
@@ -3280,7 +3280,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MAPPING___DELETE_TYPE = RelationshipPackage.BINARY_MAPPING___DELETE_TYPE;
+	int MAVO_BINARY_MAPPING___DELETE_TYPE = RelationshipPackage.BINARY_MAPPING___DELETE_TYPE;
 
 	/**
    * The operation id for the '<em>Create Instance Reference</em>' operation.
@@ -3289,7 +3289,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MAPPING___CREATE_INSTANCE_REFERENCE__MODELREL = RelationshipPackage.BINARY_MAPPING___CREATE_INSTANCE_REFERENCE__MODELREL;
+	int MAVO_BINARY_MAPPING___CREATE_INSTANCE_REFERENCE__MODELREL = RelationshipPackage.BINARY_MAPPING___CREATE_INSTANCE_REFERENCE__MODELREL;
 
 	/**
    * The operation id for the '<em>Create Instance And Reference</em>' operation.
@@ -3298,7 +3298,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MAPPING___CREATE_INSTANCE_AND_REFERENCE__BOOLEAN_MODELREL = RelationshipPackage.BINARY_MAPPING___CREATE_INSTANCE_AND_REFERENCE__BOOLEAN_MODELREL;
+	int MAVO_BINARY_MAPPING___CREATE_INSTANCE_AND_REFERENCE__BOOLEAN_MODELREL = RelationshipPackage.BINARY_MAPPING___CREATE_INSTANCE_AND_REFERENCE__BOOLEAN_MODELREL;
 
 	/**
    * The operation id for the '<em>Create Instance And Reference And Endpoints And References</em>' operation.
@@ -3307,7 +3307,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MAPPING___CREATE_INSTANCE_AND_REFERENCE_AND_ENDPOINTS_AND_REFERENCES__BOOLEAN_ELIST = RelationshipPackage.BINARY_MAPPING___CREATE_INSTANCE_AND_REFERENCE_AND_ENDPOINTS_AND_REFERENCES__BOOLEAN_ELIST;
+	int MAVO_BINARY_MAPPING___CREATE_INSTANCE_AND_REFERENCE_AND_ENDPOINTS_AND_REFERENCES__BOOLEAN_ELIST = RelationshipPackage.BINARY_MAPPING___CREATE_INSTANCE_AND_REFERENCE_AND_ENDPOINTS_AND_REFERENCES__BOOLEAN_ELIST;
 
 	/**
    * The operation id for the '<em>Delete Instance</em>' operation.
@@ -3316,7 +3316,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MAPPING___DELETE_INSTANCE = RelationshipPackage.BINARY_MAPPING___DELETE_INSTANCE;
+	int MAVO_BINARY_MAPPING___DELETE_INSTANCE = RelationshipPackage.BINARY_MAPPING___DELETE_INSTANCE;
 
 	/**
    * The operation id for the '<em>To MID Custom Print Label</em>' operation.
@@ -3325,7 +3325,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MAPPING___TO_MID_CUSTOM_PRINT_LABEL = RelationshipPackage.BINARY_MAPPING_OPERATION_COUNT + 0;
+	int MAVO_BINARY_MAPPING___TO_MID_CUSTOM_PRINT_LABEL = RelationshipPackage.BINARY_MAPPING_OPERATION_COUNT + 0;
 
 	/**
    * The operation id for the '<em>To MID Custom Edit Label</em>' operation.
@@ -3334,7 +3334,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MAPPING___TO_MID_CUSTOM_EDIT_LABEL = RelationshipPackage.BINARY_MAPPING_OPERATION_COUNT + 1;
+	int MAVO_BINARY_MAPPING___TO_MID_CUSTOM_EDIT_LABEL = RelationshipPackage.BINARY_MAPPING_OPERATION_COUNT + 1;
 
 	/**
    * The operation id for the '<em>Update MID Custom Label</em>' operation.
@@ -3343,7 +3343,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MAPPING___UPDATE_MID_CUSTOM_LABEL__STRING = RelationshipPackage.BINARY_MAPPING_OPERATION_COUNT + 2;
+	int MAVO_BINARY_MAPPING___UPDATE_MID_CUSTOM_LABEL__STRING = RelationshipPackage.BINARY_MAPPING_OPERATION_COUNT + 2;
 
 	/**
    * The number of operations of the '<em>Binary MAVO Mapping</em>' class.
@@ -3352,7 +3352,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MAPPING_OPERATION_COUNT = RelationshipPackage.BINARY_MAPPING_OPERATION_COUNT + 3;
+	int MAVO_BINARY_MAPPING_OPERATION_COUNT = RelationshipPackage.BINARY_MAPPING_OPERATION_COUNT + 3;
 
 	/**
    * The meta object id for the '{@link edu.toronto.cs.se.mmint.mavo.mavomid.impl.MAVOModelElementReferenceImpl <em>MAVO Model Element Reference</em>}' class.
@@ -3848,7 +3848,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MAPPING_REFERENCE__REFERENCED_OBJECT = RelationshipPackage.BINARY_MAPPING_REFERENCE__REFERENCED_OBJECT;
+	int MAVO_BINARY_MAPPING_REFERENCE__REFERENCED_OBJECT = RelationshipPackage.BINARY_MAPPING_REFERENCE__REFERENCED_OBJECT;
 
 	/**
    * The feature id for the '<em><b>Contained Object</b></em>' containment reference.
@@ -3857,7 +3857,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MAPPING_REFERENCE__CONTAINED_OBJECT = RelationshipPackage.BINARY_MAPPING_REFERENCE__CONTAINED_OBJECT;
+	int MAVO_BINARY_MAPPING_REFERENCE__CONTAINED_OBJECT = RelationshipPackage.BINARY_MAPPING_REFERENCE__CONTAINED_OBJECT;
 
 	/**
    * The feature id for the '<em><b>Supertype Ref</b></em>' reference.
@@ -3866,7 +3866,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MAPPING_REFERENCE__SUPERTYPE_REF = RelationshipPackage.BINARY_MAPPING_REFERENCE__SUPERTYPE_REF;
+	int MAVO_BINARY_MAPPING_REFERENCE__SUPERTYPE_REF = RelationshipPackage.BINARY_MAPPING_REFERENCE__SUPERTYPE_REF;
 
 	/**
    * The feature id for the '<em><b>Modifiable</b></em>' attribute.
@@ -3875,7 +3875,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MAPPING_REFERENCE__MODIFIABLE = RelationshipPackage.BINARY_MAPPING_REFERENCE__MODIFIABLE;
+	int MAVO_BINARY_MAPPING_REFERENCE__MODIFIABLE = RelationshipPackage.BINARY_MAPPING_REFERENCE__MODIFIABLE;
 
 	/**
    * The feature id for the '<em><b>Model Elem Endpoint Refs</b></em>' containment reference list.
@@ -3884,7 +3884,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MAPPING_REFERENCE__MODEL_ELEM_ENDPOINT_REFS = RelationshipPackage.BINARY_MAPPING_REFERENCE__MODEL_ELEM_ENDPOINT_REFS;
+	int MAVO_BINARY_MAPPING_REFERENCE__MODEL_ELEM_ENDPOINT_REFS = RelationshipPackage.BINARY_MAPPING_REFERENCE__MODEL_ELEM_ENDPOINT_REFS;
 
 	/**
    * The feature id for the '<em><b>Source Model Elem Ref</b></em>' reference.
@@ -3893,7 +3893,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MAPPING_REFERENCE__SOURCE_MODEL_ELEM_REF = RelationshipPackage.BINARY_MAPPING_REFERENCE__SOURCE_MODEL_ELEM_REF;
+	int MAVO_BINARY_MAPPING_REFERENCE__SOURCE_MODEL_ELEM_REF = RelationshipPackage.BINARY_MAPPING_REFERENCE__SOURCE_MODEL_ELEM_REF;
 
 	/**
    * The feature id for the '<em><b>Target Model Elem Ref</b></em>' reference.
@@ -3902,7 +3902,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MAPPING_REFERENCE__TARGET_MODEL_ELEM_REF = RelationshipPackage.BINARY_MAPPING_REFERENCE__TARGET_MODEL_ELEM_REF;
+	int MAVO_BINARY_MAPPING_REFERENCE__TARGET_MODEL_ELEM_REF = RelationshipPackage.BINARY_MAPPING_REFERENCE__TARGET_MODEL_ELEM_REF;
 
 	/**
    * The number of structural features of the '<em>Binary MAVO Mapping Reference</em>' class.
@@ -3911,7 +3911,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MAPPING_REFERENCE_FEATURE_COUNT = RelationshipPackage.BINARY_MAPPING_REFERENCE_FEATURE_COUNT + 0;
+	int MAVO_BINARY_MAPPING_REFERENCE_FEATURE_COUNT = RelationshipPackage.BINARY_MAPPING_REFERENCE_FEATURE_COUNT + 0;
 
 	/**
    * The operation id for the '<em>Get Uri</em>' operation.
@@ -3920,7 +3920,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MAPPING_REFERENCE___GET_URI = RelationshipPackage.BINARY_MAPPING_REFERENCE___GET_URI;
+	int MAVO_BINARY_MAPPING_REFERENCE___GET_URI = RelationshipPackage.BINARY_MAPPING_REFERENCE___GET_URI;
 
 	/**
    * The operation id for the '<em>Get MID Container</em>' operation.
@@ -3929,7 +3929,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MAPPING_REFERENCE___GET_MID_CONTAINER = RelationshipPackage.BINARY_MAPPING_REFERENCE___GET_MID_CONTAINER;
+	int MAVO_BINARY_MAPPING_REFERENCE___GET_MID_CONTAINER = RelationshipPackage.BINARY_MAPPING_REFERENCE___GET_MID_CONTAINER;
 
 	/**
    * The operation id for the '<em>Is Types Level</em>' operation.
@@ -3938,7 +3938,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MAPPING_REFERENCE___IS_TYPES_LEVEL = RelationshipPackage.BINARY_MAPPING_REFERENCE___IS_TYPES_LEVEL;
+	int MAVO_BINARY_MAPPING_REFERENCE___IS_TYPES_LEVEL = RelationshipPackage.BINARY_MAPPING_REFERENCE___IS_TYPES_LEVEL;
 
 	/**
    * The operation id for the '<em>Is Instances Level</em>' operation.
@@ -3947,7 +3947,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MAPPING_REFERENCE___IS_INSTANCES_LEVEL = RelationshipPackage.BINARY_MAPPING_REFERENCE___IS_INSTANCES_LEVEL;
+	int MAVO_BINARY_MAPPING_REFERENCE___IS_INSTANCES_LEVEL = RelationshipPackage.BINARY_MAPPING_REFERENCE___IS_INSTANCES_LEVEL;
 
 	/**
    * The operation id for the '<em>Is Workflows Level</em>' operation.
@@ -3956,7 +3956,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MAPPING_REFERENCE___IS_WORKFLOWS_LEVEL = RelationshipPackage.BINARY_MAPPING_REFERENCE___IS_WORKFLOWS_LEVEL;
+	int MAVO_BINARY_MAPPING_REFERENCE___IS_WORKFLOWS_LEVEL = RelationshipPackage.BINARY_MAPPING_REFERENCE___IS_WORKFLOWS_LEVEL;
 
 	/**
    * The operation id for the '<em>Get Supertype Ref</em>' operation.
@@ -3965,7 +3965,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MAPPING_REFERENCE___GET_SUPERTYPE_REF = RelationshipPackage.BINARY_MAPPING_REFERENCE___GET_SUPERTYPE_REF;
+	int MAVO_BINARY_MAPPING_REFERENCE___GET_SUPERTYPE_REF = RelationshipPackage.BINARY_MAPPING_REFERENCE___GET_SUPERTYPE_REF;
 
 	/**
    * The operation id for the '<em>Delete Type Reference</em>' operation.
@@ -3974,7 +3974,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MAPPING_REFERENCE___DELETE_TYPE_REFERENCE = RelationshipPackage.BINARY_MAPPING_REFERENCE___DELETE_TYPE_REFERENCE;
+	int MAVO_BINARY_MAPPING_REFERENCE___DELETE_TYPE_REFERENCE = RelationshipPackage.BINARY_MAPPING_REFERENCE___DELETE_TYPE_REFERENCE;
 
 	/**
    * The operation id for the '<em>Delete Type And Reference</em>' operation.
@@ -3983,7 +3983,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MAPPING_REFERENCE___DELETE_TYPE_AND_REFERENCE = RelationshipPackage.BINARY_MAPPING_REFERENCE___DELETE_TYPE_AND_REFERENCE;
+	int MAVO_BINARY_MAPPING_REFERENCE___DELETE_TYPE_AND_REFERENCE = RelationshipPackage.BINARY_MAPPING_REFERENCE___DELETE_TYPE_AND_REFERENCE;
 
 	/**
    * The operation id for the '<em>Delete Instance Reference</em>' operation.
@@ -3992,7 +3992,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MAPPING_REFERENCE___DELETE_INSTANCE_REFERENCE = RelationshipPackage.BINARY_MAPPING_REFERENCE___DELETE_INSTANCE_REFERENCE;
+	int MAVO_BINARY_MAPPING_REFERENCE___DELETE_INSTANCE_REFERENCE = RelationshipPackage.BINARY_MAPPING_REFERENCE___DELETE_INSTANCE_REFERENCE;
 
 	/**
    * The operation id for the '<em>Delete Instance And Reference</em>' operation.
@@ -4001,7 +4001,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MAPPING_REFERENCE___DELETE_INSTANCE_AND_REFERENCE = RelationshipPackage.BINARY_MAPPING_REFERENCE___DELETE_INSTANCE_AND_REFERENCE;
+	int MAVO_BINARY_MAPPING_REFERENCE___DELETE_INSTANCE_AND_REFERENCE = RelationshipPackage.BINARY_MAPPING_REFERENCE___DELETE_INSTANCE_AND_REFERENCE;
 
 	/**
    * The operation id for the '<em>Add Model Element Type Reference</em>' operation.
@@ -4010,7 +4010,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MAPPING_REFERENCE___ADD_MODEL_ELEMENT_TYPE_REFERENCE__MODELELEMENTREFERENCE_BOOLEAN = RelationshipPackage.BINARY_MAPPING_REFERENCE___ADD_MODEL_ELEMENT_TYPE_REFERENCE__MODELELEMENTREFERENCE_BOOLEAN;
+	int MAVO_BINARY_MAPPING_REFERENCE___ADD_MODEL_ELEMENT_TYPE_REFERENCE__MODELELEMENTREFERENCE_BOOLEAN = RelationshipPackage.BINARY_MAPPING_REFERENCE___ADD_MODEL_ELEMENT_TYPE_REFERENCE__MODELELEMENTREFERENCE_BOOLEAN;
 
 	/**
    * The operation id for the '<em>Get Object</em>' operation.
@@ -4019,7 +4019,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MAPPING_REFERENCE___GET_OBJECT = RelationshipPackage.BINARY_MAPPING_REFERENCE_OPERATION_COUNT + 1;
+	int MAVO_BINARY_MAPPING_REFERENCE___GET_OBJECT = RelationshipPackage.BINARY_MAPPING_REFERENCE_OPERATION_COUNT + 1;
 
 	/**
    * The number of operations of the '<em>Binary MAVO Mapping Reference</em>' class.
@@ -4028,7 +4028,7 @@ public interface MAVOMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int BINARY_MAVO_MAPPING_REFERENCE_OPERATION_COUNT = RelationshipPackage.BINARY_MAPPING_REFERENCE_OPERATION_COUNT + 2;
+	int MAVO_BINARY_MAPPING_REFERENCE_OPERATION_COUNT = RelationshipPackage.BINARY_MAPPING_REFERENCE_OPERATION_COUNT + 2;
 
 	/**
    * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModel <em>MAVO Model</em>}'.
@@ -4161,14 +4161,14 @@ public interface MAVOMIDPackage extends EPackage {
 	EOperation getMAVOModelRel__CopyInstance__Model_String_MID();
 
 	/**
-   * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.mavo.mavomid.BinaryMAVOModelRel <em>Binary MAVO Model Rel</em>}'.
+   * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.mavo.mavomid.MAVOBinaryModelRel <em>Binary MAVO Model Rel</em>}'.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @return the meta object for class '<em>Binary MAVO Model Rel</em>'.
-   * @see edu.toronto.cs.se.mmint.mavo.mavomid.BinaryMAVOModelRel
+   * @see edu.toronto.cs.se.mmint.mavo.mavomid.MAVOBinaryModelRel
    * @generated
    */
-	EClass getBinaryMAVOModelRel();
+	EClass getMAVOBinaryModelRel();
 
 	/**
    * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModelEndpoint <em>MAVO Model Endpoint</em>}'.
@@ -4241,24 +4241,24 @@ public interface MAVOMIDPackage extends EPackage {
 	EOperation getMAVOMappingReference__GetObject();
 
 	/**
-   * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.mavo.mavomid.BinaryMAVOMappingReference <em>Binary MAVO Mapping Reference</em>}'.
+   * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.mavo.mavomid.MAVOBinaryMappingReference <em>Binary MAVO Mapping Reference</em>}'.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @return the meta object for class '<em>Binary MAVO Mapping Reference</em>'.
-   * @see edu.toronto.cs.se.mmint.mavo.mavomid.BinaryMAVOMappingReference
+   * @see edu.toronto.cs.se.mmint.mavo.mavomid.MAVOBinaryMappingReference
    * @generated
    */
-	EClass getBinaryMAVOMappingReference();
+	EClass getMAVOBinaryMappingReference();
 
 	/**
-   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mavo.mavomid.BinaryMAVOMappingReference#getObject() <em>Get Object</em>}' operation.
+   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mavo.mavomid.MAVOBinaryMappingReference#getObject() <em>Get Object</em>}' operation.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @return the meta object for the '<em>Get Object</em>' operation.
-   * @see edu.toronto.cs.se.mmint.mavo.mavomid.BinaryMAVOMappingReference#getObject()
+   * @see edu.toronto.cs.se.mmint.mavo.mavomid.MAVOBinaryMappingReference#getObject()
    * @generated
    */
-	EOperation getBinaryMAVOMappingReference__GetObject();
+	EOperation getMAVOBinaryMappingReference__GetObject();
 
 	/**
    * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.mavo.mavomid.MAVOMapping <em>MAVO Mapping</em>}'.
@@ -4301,14 +4301,14 @@ public interface MAVOMIDPackage extends EPackage {
 	EOperation getMAVOMapping__UpdateMIDCustomLabel__String();
 
 	/**
-   * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.mavo.mavomid.BinaryMAVOMapping <em>Binary MAVO Mapping</em>}'.
+   * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.mavo.mavomid.MAVOBinaryMapping <em>Binary MAVO Mapping</em>}'.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @return the meta object for class '<em>Binary MAVO Mapping</em>'.
-   * @see edu.toronto.cs.se.mmint.mavo.mavomid.BinaryMAVOMapping
+   * @see edu.toronto.cs.se.mmint.mavo.mavomid.MAVOBinaryMapping
    * @generated
    */
-	EClass getBinaryMAVOMapping();
+	EClass getMAVOBinaryMapping();
 
 	/**
    * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModelElementReference <em>MAVO Model Element Reference</em>}'.
@@ -4464,14 +4464,14 @@ public interface MAVOMIDPackage extends EPackage {
 		EOperation MAVO_MODEL_REL___COPY_INSTANCE__MODEL_STRING_MID = eINSTANCE.getMAVOModelRel__CopyInstance__Model_String_MID();
 
 		/**
-     * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mavo.mavomid.impl.BinaryMAVOModelRelImpl <em>Binary MAVO Model Rel</em>}' class.
+     * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mavo.mavomid.impl.MAVOBinaryModelRelImpl <em>Binary MAVO Model Rel</em>}' class.
      * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-     * @see edu.toronto.cs.se.mmint.mavo.mavomid.impl.BinaryMAVOModelRelImpl
-     * @see edu.toronto.cs.se.mmint.mavo.mavomid.impl.MAVOMIDPackageImpl#getBinaryMAVOModelRel()
+     * @see edu.toronto.cs.se.mmint.mavo.mavomid.impl.MAVOBinaryModelRelImpl
+     * @see edu.toronto.cs.se.mmint.mavo.mavomid.impl.MAVOMIDPackageImpl#getMAVOBinaryModelRel()
      * @generated
      */
-		EClass BINARY_MAVO_MODEL_REL = eINSTANCE.getBinaryMAVOModelRel();
+		EClass MAVO_BINARY_MODEL_REL = eINSTANCE.getMAVOBinaryModelRel();
 
 		/**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mavo.mavomid.impl.MAVOModelEndpointImpl <em>MAVO Model Endpoint</em>}' class.
@@ -4536,14 +4536,14 @@ public interface MAVOMIDPackage extends EPackage {
 		EOperation MAVO_MAPPING_REFERENCE___GET_OBJECT = eINSTANCE.getMAVOMappingReference__GetObject();
 
 		/**
-     * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mavo.mavomid.impl.BinaryMAVOMappingReferenceImpl <em>Binary MAVO Mapping Reference</em>}' class.
+     * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mavo.mavomid.impl.MAVOBinaryMappingReferenceImpl <em>Binary MAVO Mapping Reference</em>}' class.
      * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-     * @see edu.toronto.cs.se.mmint.mavo.mavomid.impl.BinaryMAVOMappingReferenceImpl
-     * @see edu.toronto.cs.se.mmint.mavo.mavomid.impl.MAVOMIDPackageImpl#getBinaryMAVOMappingReference()
+     * @see edu.toronto.cs.se.mmint.mavo.mavomid.impl.MAVOBinaryMappingReferenceImpl
+     * @see edu.toronto.cs.se.mmint.mavo.mavomid.impl.MAVOMIDPackageImpl#getMAVOBinaryMappingReference()
      * @generated
      */
-		EClass BINARY_MAVO_MAPPING_REFERENCE = eINSTANCE.getBinaryMAVOMappingReference();
+		EClass MAVO_BINARY_MAPPING_REFERENCE = eINSTANCE.getMAVOBinaryMappingReference();
 
 		/**
      * The meta object literal for the '<em><b>Get Object</b></em>' operation.
@@ -4551,7 +4551,7 @@ public interface MAVOMIDPackage extends EPackage {
 		 * <!-- end-user-doc -->
      * @generated
      */
-		EOperation BINARY_MAVO_MAPPING_REFERENCE___GET_OBJECT = eINSTANCE.getBinaryMAVOMappingReference__GetObject();
+		EOperation MAVO_BINARY_MAPPING_REFERENCE___GET_OBJECT = eINSTANCE.getMAVOBinaryMappingReference__GetObject();
 
 		/**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mavo.mavomid.impl.MAVOMappingImpl <em>MAVO Mapping</em>}' class.
@@ -4588,14 +4588,14 @@ public interface MAVOMIDPackage extends EPackage {
 		EOperation MAVO_MAPPING___UPDATE_MID_CUSTOM_LABEL__STRING = eINSTANCE.getMAVOMapping__UpdateMIDCustomLabel__String();
 
 		/**
-     * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mavo.mavomid.impl.BinaryMAVOMappingImpl <em>Binary MAVO Mapping</em>}' class.
+     * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mavo.mavomid.impl.MAVOBinaryMappingImpl <em>Binary MAVO Mapping</em>}' class.
      * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-     * @see edu.toronto.cs.se.mmint.mavo.mavomid.impl.BinaryMAVOMappingImpl
-     * @see edu.toronto.cs.se.mmint.mavo.mavomid.impl.MAVOMIDPackageImpl#getBinaryMAVOMapping()
+     * @see edu.toronto.cs.se.mmint.mavo.mavomid.impl.MAVOBinaryMappingImpl
+     * @see edu.toronto.cs.se.mmint.mavo.mavomid.impl.MAVOMIDPackageImpl#getMAVOBinaryMapping()
      * @generated
      */
-		EClass BINARY_MAVO_MAPPING = eINSTANCE.getBinaryMAVOMapping();
+		EClass MAVO_BINARY_MAPPING = eINSTANCE.getMAVOBinaryMapping();
 
 		/**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mavo.mavomid.impl.MAVOModelElementReferenceImpl <em>MAVO Model Element Reference</em>}' class.

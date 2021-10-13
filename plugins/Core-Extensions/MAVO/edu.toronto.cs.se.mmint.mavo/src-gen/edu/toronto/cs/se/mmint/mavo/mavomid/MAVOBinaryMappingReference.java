@@ -23,11 +23,11 @@ import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
  * <!-- end-model-doc -->
  *
  *
- * @see edu.toronto.cs.se.mmint.mavo.mavomid.MAVOMIDPackage#getBinaryMAVOMappingReference()
+ * @see edu.toronto.cs.se.mmint.mavo.mavomid.MAVOMIDPackage#getMAVOBinaryMappingReference()
  * @model
  * @generated
  */
-public interface BinaryMAVOMappingReference extends BinaryMappingReference, MAVOMappingReference {
+public interface MAVOBinaryMappingReference extends BinaryMappingReference, MAVOMappingReference {
 
 	/**
    * <!-- begin-user-doc -->
@@ -39,5 +39,5 @@ public interface BinaryMAVOMappingReference extends BinaryMappingReference, MAVO
    * @model kind="operation" required="true"
    * @generated
    */
-	BinaryMAVOMapping getObject();
-} // BinaryMAVOMappingReference
+	MAVOBinaryMapping getObject();
+} // MAVOBinaryMappingReference

@@ -64,7 +64,7 @@ public interface MAVOMIDFactory extends EFactory {
    * @return a new object of class '<em>Binary MAVO Model Rel</em>'.
    * @generated
    */
-	BinaryMAVOModelRel createBinaryMAVOModelRel();
+	MAVOBinaryModelRel createMAVOBinaryModelRel();
 
 	/**
    * Returns a new object of class '<em>MAVO Model Endpoint</em>'.
@@ -100,7 +100,7 @@ public interface MAVOMIDFactory extends EFactory {
    * @return a new object of class '<em>Binary MAVO Mapping Reference</em>'.
    * @generated
    */
-	BinaryMAVOMappingReference createBinaryMAVOMappingReference();
+	MAVOBinaryMappingReference createMAVOBinaryMappingReference();
 
 	/**
    * Returns a new object of class '<em>MAVO Mapping</em>'.
@@ -118,7 +118,7 @@ public interface MAVOMIDFactory extends EFactory {
    * @return a new object of class '<em>Binary MAVO Mapping</em>'.
    * @generated
    */
-	BinaryMAVOMapping createBinaryMAVOMapping();
+	MAVOBinaryMapping createMAVOBinaryMapping();
 
 	/**
    * Returns a new object of class '<em>MAVO Model Element Reference</em>'.

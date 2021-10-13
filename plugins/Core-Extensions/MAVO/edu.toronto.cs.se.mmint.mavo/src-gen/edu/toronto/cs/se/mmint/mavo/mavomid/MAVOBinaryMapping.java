@@ -11,11 +11,11 @@
  */
 package edu.toronto.cs.se.mmint.mavo.mavomid;
 
-import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryMapping;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>MAVO Binary Model Rel</b></em>'.
+ * A representation of the model object '<em><b>MAVO Binary Mapping</b></em>'.
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
@@ -23,9 +23,9 @@ import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
  * <!-- end-model-doc -->
  *
  *
- * @see edu.toronto.cs.se.mmint.mavo.mavomid.MAVOMIDPackage#getBinaryMAVOModelRel()
+ * @see edu.toronto.cs.se.mmint.mavo.mavomid.MAVOMIDPackage#getMAVOBinaryMapping()
  * @model
  * @generated
  */
-public interface BinaryMAVOModelRel extends BinaryModelRel, MAVOModelRel {
-} // MAVOBinaryModelRel
+public interface MAVOBinaryMapping extends BinaryMapping, MAVOMapping {
+} // MAVOBinaryMapping

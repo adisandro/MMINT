@@ -131,7 +131,7 @@ public class MAVOModelRelItemProvider extends ModelRelItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(RelationshipPackage.Literals.MODEL_REL__MAPPINGS,
-				 MAVOMIDFactory.eINSTANCE.createBinaryMAVOMapping()));
+				 MAVOMIDFactory.eINSTANCE.createMAVOBinaryMapping()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -146,7 +146,7 @@ public class MAVOModelRelItemProvider extends ModelRelItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(RelationshipPackage.Literals.MODEL_REL__MAPPING_REFS,
-				 MAVOMIDFactory.eINSTANCE.createBinaryMAVOMappingReference()));
+				 MAVOMIDFactory.eINSTANCE.createMAVOBinaryMappingReference()));
 	}
 
 	/**
