@@ -15,7 +15,9 @@ import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedPatternGroup;
  * 
  * <p> From package edu.toronto.cs.se.mmint.viatra.mid, the group contains the definition of the following patterns: <ul>
  * <li>connectedModels</li>
+ * <li>connectedModelElementsWithMapping</li>
  * <li>connectedModelElements</li>
+ * <li>connectedEMFObjectsWithMapping</li>
  * <li>connectedEMFObjects</li>
  * <li>allConnectedModels</li>
  * <li>allConnectedModelElements</li>
@@ -45,7 +47,9 @@ public final class Mid extends BaseGeneratedPatternGroup {
   
   private Mid() {
     querySpecifications.add(ConnectedModels.instance());
+    querySpecifications.add(ConnectedModelElementsWithMapping.instance());
     querySpecifications.add(ConnectedModelElements.instance());
+    querySpecifications.add(ConnectedEMFObjectsWithMapping.instance());
     querySpecifications.add(ConnectedEMFObjects.instance());
     querySpecifications.add(AllConnectedModels.instance());
     querySpecifications.add(AllConnectedModelElements.instance());
@@ -60,12 +64,28 @@ public final class Mid extends BaseGeneratedPatternGroup {
     return ConnectedModels.Matcher.on(engine);
   }
   
+  public ConnectedModelElementsWithMapping getConnectedModelElementsWithMapping() {
+    return ConnectedModelElementsWithMapping.instance();
+  }
+  
+  public ConnectedModelElementsWithMapping.Matcher getConnectedModelElementsWithMapping(final ViatraQueryEngine engine) {
+    return ConnectedModelElementsWithMapping.Matcher.on(engine);
+  }
+  
   public ConnectedModelElements getConnectedModelElements() {
     return ConnectedModelElements.instance();
   }
   
   public ConnectedModelElements.Matcher getConnectedModelElements(final ViatraQueryEngine engine) {
     return ConnectedModelElements.Matcher.on(engine);
+  }
+  
+  public ConnectedEMFObjectsWithMapping getConnectedEMFObjectsWithMapping() {
+    return ConnectedEMFObjectsWithMapping.instance();
+  }
+  
+  public ConnectedEMFObjectsWithMapping.Matcher getConnectedEMFObjectsWithMapping(final ViatraQueryEngine engine) {
+    return ConnectedEMFObjectsWithMapping.Matcher.on(engine);
   }
   
   public ConnectedEMFObjects getConnectedEMFObjects() {

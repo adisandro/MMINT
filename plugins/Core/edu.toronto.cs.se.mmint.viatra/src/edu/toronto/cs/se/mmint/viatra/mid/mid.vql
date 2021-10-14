@@ -10,7 +10,7 @@ pattern connectedModels(modelSrc: Model, modelTgt: Model) {
   ModelRel.modelEndpoints.target(rel, modelTgt);
 }
 
-pattern connectedModelElements(modelElemSrc: ModelElement, modelElemTgt: ModelElement) {
+pattern connectedModelElementsWithMapping(modelElemSrc: ModelElement, modelElemTgt: ModelElement, mapping: Mapping) {
   modelElemSrc != modelElemTgt;
   Model.modelElems(modelSrc, modelElemSrc);
   Model.modelElems(modelTgt, modelElemTgt);
@@ -19,11 +19,19 @@ pattern connectedModelElements(modelElemSrc: ModelElement, modelElemTgt: ModelEl
   Mapping.modelElemEndpoints.target(mapping, modelElemTgt);
 }
 
-pattern connectedEMFObjects(modelObjSrc: EObject, modelObjTgt: EObject) {
+pattern connectedModelElements(modelElemSrc: ModelElement, modelElemTgt: ModelElement) {
+  find connectedModelElementsWithMapping(modelElemSrc, modelElemTgt, _);
+}
+
+pattern connectedEMFObjectsWithMapping(modelObjSrc: EObject, modelObjTgt: EObject, mapping: Mapping) {
   modelObjSrc != modelObjTgt;
   ModelElement.EMFInstanceObject(modelElemSrc, modelObjSrc);
   ModelElement.EMFInstanceObject(modelElemTgt, modelObjTgt);
-  find connectedModelElements(modelElemSrc, modelElemTgt);
+  find connectedModelElementsWithMapping(modelElemSrc, modelElemTgt, mapping);
+}
+
+pattern connectedEMFObjects(modelObjSrc: EObject, modelObjTgt: EObject) {
+  find connectedEMFObjectsWithMapping(modelObjSrc, modelObjTgt, _);
 }
 
 pattern allConnectedModels(modelSrc: Model, modelTgt: Model) {
