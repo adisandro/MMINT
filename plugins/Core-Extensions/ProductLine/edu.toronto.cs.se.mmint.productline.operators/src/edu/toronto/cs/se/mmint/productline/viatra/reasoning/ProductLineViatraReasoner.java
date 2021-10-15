@@ -27,6 +27,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.viatra.query.patternlanguage.emf.vql.ClassType;
 import org.eclipse.viatra.query.patternlanguage.emf.vql.ClosureType;
@@ -42,6 +43,7 @@ import org.eclipse.viatra.query.patternlanguage.emf.vql.PatternCall;
 import org.eclipse.viatra.query.patternlanguage.emf.vql.PatternCompositionConstraint;
 import org.eclipse.viatra.query.patternlanguage.emf.vql.PatternLanguageFactory;
 import org.eclipse.viatra.query.patternlanguage.emf.vql.PatternLanguagePackage;
+import org.eclipse.viatra.query.patternlanguage.emf.vql.PatternModel;
 import org.eclipse.viatra.query.patternlanguage.emf.vql.StringValue;
 import org.eclipse.viatra.query.patternlanguage.emf.vql.ValueReference;
 import org.eclipse.viatra.query.patternlanguage.emf.vql.Variable;
@@ -54,6 +56,7 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
 import edu.toronto.cs.se.mmint.productline.Attribute;
 import edu.toronto.cs.se.mmint.productline.PLElement;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
@@ -70,7 +73,13 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
   public final static String LIB_ATTRIBUTE_PATTERN = "attribute";
   public final static String LIB_CLASSTYPE_PATTERN = "classType";
   public final static String EXTRA_VAR_NAME = "extra";
+  public final static Set<String> MID_LIB_PATTERNS_NOCHANGES =
+    Set.of("connectedModelElementsWithMapping", "connectedEMFObjectsWithMapping");
+  public final static Map<String, String> MID_LIB_PATTERNS_TOCHANGE =
+    Map.of("connectedModelElements", "connectedModelElementsWithMapping",
+           "connectedEMFObjects",    "connectedEMFObjectsWithMapping");
   private Set<String> origParameters;
+  private int extraVariables;
 
   @Override
   public String getName() {
@@ -220,11 +229,10 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
   private List<PatternCompositionConstraint> liftPathExpressionConstraint(
                                                PathExpressionConstraint pathConstraint, EList<Variable> plParameters,
                                                EList<Variable> plVariables, Map<String, Variable> plVarsMap,
-                                               Pattern libRefPattern, Pattern libAttrPattern, int extraVars)
+                                               Pattern libRefPattern, Pattern libAttrPattern)
                                                  throws MMINTException {
     var plConstraints = new ArrayList<PatternCompositionConstraint>();
     var plElemType = ProductLinePackage.eINSTANCE.getPLElement();
-    var v = 0;
     for (var i = 0; i < pathConstraint.getEdgeTypes().size(); i++) {
       var edgeFeature = pathConstraint.getEdgeTypes().get(i).getRefname();
       // PL library call
@@ -237,7 +245,7 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
       // path source
       var srcName = (i == 0) ?
         pathConstraint.getSrc().getVariable().getName() :
-        ProductLineViatraReasoner.EXTRA_VAR_NAME + (extraVars + v++);
+        ProductLineViatraReasoner.EXTRA_VAR_NAME + this.extraVariables++;
       var srcType = (i == 0) ?
         pathConstraint.getSourceType().getClassname().getName() :
         edgeFeature.getEContainingClass().getName();
@@ -255,7 +263,7 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
       if (edgeFeature instanceof EReference edgeReference) {
         var dstName = (i == (pathConstraint.getEdgeTypes().size()-1)) ?
           ((VariableReference) pathConstraint.getDst()).getVariable().getName() :
-          ProductLineViatraReasoner.EXTRA_VAR_NAME + (extraVars + v++);
+          ProductLineViatraReasoner.EXTRA_VAR_NAME + this.extraVariables++;
         var plDstVar = plVarsMap.get(dstName);
         if (plDstVar == null) {
           plDstVar = createParameterAndRef(dstName, plElemType, ParameterDirection.OUT);
@@ -268,7 +276,7 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
         plCall.getParameters().add(createStringValue(edgeReference.getEReferenceType().getName()));
       }
       // path edge
-      var edgeName = ProductLineViatraReasoner.EXTRA_VAR_NAME + (extraVars + v++);
+      var edgeName = ProductLineViatraReasoner.EXTRA_VAR_NAME + this.extraVariables++;
       var plEdgeVar = createParameterAndRef(edgeName, plElemType, ParameterDirection.OUT);
       plVariables.add(plEdgeVar);
       plParameters.add(plEdgeVar.getReferredParam());
@@ -314,16 +322,27 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
 
   private List<PatternCompositionConstraint> liftPatternCompositionConstraint(
                                                PatternCompositionConstraint patternConstraint,
+                                               EList<Variable> plParameters, EList<Variable> plVariables,
                                                Map<String, Variable> plVarsMap, Pattern libClassPattern)
-                                                 throws MMINTException {
+                                                 throws Exception {
+    // check for mid.vql calls
+    var patternCall = (PatternCall) patternConstraint.getCall();
+    var plPattern = patternCall.getPatternRef();
+    if (!ProductLineViatraReasoner.MID_LIB_PATTERNS_NOCHANGES.contains(plPattern.getName()) &&
+        !ProductLineViatraReasoner.MID_LIB_PATTERNS_TOCHANGE.containsKey(plPattern.getName())) {
+      throw new MMINTException("Pattern call not supported");
+    }
     var plConstraints = new ArrayList<PatternCompositionConstraint>();
     // convert pattern call to use lifted variables
     var plConstraint = PatternLanguageFactory.eINSTANCE.createPatternCompositionConstraint();
     plConstraint.setNegative(patternConstraint.isNegative());
     var plCall = PatternLanguageFactory.eINSTANCE.createPatternCall();
     plConstraint.setCall(plCall);
-    var patternCall = (PatternCall) patternConstraint.getCall();
-    plCall.setPatternRef(patternCall.getPatternRef());
+    var plPatternName = ProductLineViatraReasoner.MID_LIB_PATTERNS_TOCHANGE.get(plPattern.getName());
+    if (plPatternName != null) {
+      plPattern = getPattern((PatternModel) plPattern.eContainer(), plPatternName);
+    }
+    plCall.setPatternRef(plPattern);
     plCall.setTransitive(patternCall.getTransitive());
     var classTypes = new ArrayList<Parameter>();
     for (var patternPar : patternCall.getParameters()) {
@@ -342,6 +361,13 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
         throw new MMINTException("Pattern constraint type " + patternPar.getClass().getName() + " not supported");
       }
       plCall.getParameters().add(plPar);
+    }
+    if (plPatternName != null) {
+      var plMappingVar = createParameterAndRef(ProductLineViatraReasoner.EXTRA_VAR_NAME + this.extraVariables++,
+                                               RelationshipPackage.eINSTANCE.getMapping(), ParameterDirection.OUT);
+      plVariables.add(plMappingVar);
+      plParameters.add(plMappingVar.getReferredParam());
+      plCall.getParameters().add(createVariableReference(plMappingVar));
     }
     plConstraints.add(plConstraint);
     // type constraints
@@ -380,16 +406,14 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
       plVarsMap.put(plVariable.getName(), plVariable);
     }
     // constraints pass #1: lift all the path expressions, which generate extra parameters and variables
-    var extraVariables = 0;
     var plConstraints = plBody.getConstraints();
     for (var constraint : body.getConstraints()) {
       if (!(constraint instanceof PathExpressionConstraint pathConstraint)) {
         continue;
       }
       var liftedConstraints = liftPathExpressionConstraint(pathConstraint, plParameters, plVariables, plVarsMap,
-                                                           libRefPattern, libAttrPattern, extraVariables);
+                                                           libRefPattern, libAttrPattern);
       plConstraints.addAll(liftedConstraints);
-      extraVariables += liftedConstraints.size();
     }
     // variables pass #2: all other variables
     for (var variable : body.getVariables()) {
@@ -409,7 +433,8 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
         plConstraints.add(liftCompareConstraint(compareConstraint, plVarsMap));
       }
       else if (constraint instanceof PatternCompositionConstraint patternConstraint) {
-        plConstraints.addAll(liftPatternCompositionConstraint(patternConstraint, plVarsMap, libClassPattern));
+        plConstraints.addAll(liftPatternCompositionConstraint(patternConstraint, plParameters, plVariables, plVarsMap,
+                                                              libClassPattern));
       }
       else {
         throw new MMINTException("Constraint type " + constraint.getClass().getName() + " not supported");
@@ -420,9 +445,16 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
   }
 
   @Override
+  public List<Object> evaluateQuery(String queryFilePath, String queryName, EObject context,
+                                    List<? extends EObject> queryArgs) throws Exception {
+    this.origParameters = new HashSet<>();
+    this.extraVariables = 0;
+    return super.evaluateQuery(queryFilePath, queryName, context, queryArgs);
+  }
+
+  @Override
   protected Pattern getPattern(String queryFilePath, String queryName) throws Exception {
     var pattern = super.getPattern(queryFilePath, queryName);
-    this.origParameters = new HashSet<>();
     var plPattern = PatternLanguageFactory.eINSTANCE.createPattern();
     plPattern.setName(pattern.getName());
     // i/o parameters
