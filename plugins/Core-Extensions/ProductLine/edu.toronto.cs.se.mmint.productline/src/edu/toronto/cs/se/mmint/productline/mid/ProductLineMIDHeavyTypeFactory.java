@@ -17,8 +17,20 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.extensions.ExtensionPointType;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmint.productline.PLElement;
 
 public class ProductLineMIDHeavyTypeFactory extends MIDHeavyTypeFactory {
+
+  public static String getPLElementLabel(PLElement plElem, boolean withParenthesis) {
+    var pc = plElem.getPresenceCondition();
+    if (pc == null) {
+      return "";
+    }
+    if (!withParenthesis) {
+      return pc;
+    }
+    return "(" + pc + ")";
+  }
 
   @Override
   public ModelRel createHeavyModelRelType(ExtensionPointType extensionType, boolean isBinary) throws MMINTException {

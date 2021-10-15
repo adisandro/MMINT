@@ -26,7 +26,7 @@
   <extension point="edu.toronto.cs.se.mmint.relationships">
     <relationshipType>
       <modelType>
-        <type class="edu.toronto.cs.se.mmint.productline.mid.factory.ProductLineMIDHeavyTypeFactory" name="PLModelRel" uri="rel://edu.toronto.cs.se.mmint.productline.mid.PLModelRel"/>
+        <type class="edu.toronto.cs.se.mmint.productline.mid.ProductLineMIDHeavyTypeFactory" name="PLModelRel" uri="rel://edu.toronto.cs.se.mmint.productline.mid.PLModelRel"/>
       </modelType>
       <modelTypeEndpoint>
         <type name="PLModelEndpoint" uri="edu.toronto.cs.se.mmint.productline.mid.PLModelRel.PLModelEndpoint"/>

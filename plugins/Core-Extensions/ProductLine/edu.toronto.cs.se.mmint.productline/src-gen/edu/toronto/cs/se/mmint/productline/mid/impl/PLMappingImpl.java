@@ -20,6 +20,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.impl.MappingImpl;
 import edu.toronto.cs.se.mmint.productline.PLElement;
 import edu.toronto.cs.se.mmint.productline.ProductLinePackage;
 import edu.toronto.cs.se.mmint.productline.mid.PLMapping;
+import edu.toronto.cs.se.mmint.productline.mid.ProductLineMIDHeavyTypeFactory;
 import edu.toronto.cs.se.mmint.productline.mid.ProductLineMIDPackage;
 
 /**
@@ -216,8 +217,7 @@ public class PLMappingImpl extends MappingImpl implements PLMapping {
    */
   @Override
   public String toMIDCustomPrintLabel() {
-    var pc = getPresenceCondition();
-    return "(" + ((pc == null) ? "true" : pc) + ")";
+    return ProductLineMIDHeavyTypeFactory.getPLElementLabel(this, true);
   }
 
   /**
@@ -225,8 +225,7 @@ public class PLMappingImpl extends MappingImpl implements PLMapping {
    */
   @Override
   public String toMIDCustomEditLabel() {
-    var pc = getPresenceCondition();
-    return (pc == null) ? "" : pc;
+    return ProductLineMIDHeavyTypeFactory.getPLElementLabel(this, false);
   }
 
   /**

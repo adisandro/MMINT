@@ -21,6 +21,7 @@ import edu.toronto.cs.se.mmint.productline.PLElement;
 import edu.toronto.cs.se.mmint.productline.ProductLinePackage;
 import edu.toronto.cs.se.mmint.productline.mid.PLBinaryMapping;
 import edu.toronto.cs.se.mmint.productline.mid.PLMapping;
+import edu.toronto.cs.se.mmint.productline.mid.ProductLineMIDHeavyTypeFactory;
 import edu.toronto.cs.se.mmint.productline.mid.ProductLineMIDPackage;
 
 /**
@@ -222,6 +223,30 @@ public class PLBinaryMappingImpl extends BinaryMappingImpl implements PLBinaryMa
     result.append(this.presenceCondition);
     result.append(')');
     return result.toString();
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public String toMIDCustomPrintLabel() {
+    return ProductLineMIDHeavyTypeFactory.getPLElementLabel(this, true);
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public String toMIDCustomEditLabel() {
+    return ProductLineMIDHeavyTypeFactory.getPLElementLabel(this, false);
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public void updateMIDCustomLabel(String newLabel) {
+    setPresenceCondition(newLabel);
   }
 
 } //PLBinaryMappingImpl
