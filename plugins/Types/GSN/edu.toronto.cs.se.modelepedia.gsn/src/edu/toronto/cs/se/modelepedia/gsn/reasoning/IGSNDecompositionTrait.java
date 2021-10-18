@@ -30,7 +30,7 @@ public interface IGSNDecompositionTrait extends IReasoner {
 
   /**
    * Gets a set of predefined template properties that are available for the input model, to be used in a property
-   * decomposition, grouped by their category string.
+   * decomposition, grouped by categories.
    *
    * @param model
    *          The model for which template properties are applicable.
