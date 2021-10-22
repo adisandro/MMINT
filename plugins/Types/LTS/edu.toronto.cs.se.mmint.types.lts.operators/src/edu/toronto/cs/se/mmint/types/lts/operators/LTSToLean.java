@@ -83,7 +83,7 @@ public class LTSToLean extends ToLean implements IGSNLeanEncoder {
   }
 
   @Override
-  public List<PropertyTemplate> getTemplateProperties() {
+  public List<PropertyTemplate> getPropertyTemplates() {
     var validTypes = Map.<EClass, EStructuralFeature>of(LTSPackage.eINSTANCE.getLabeledElement(),
                                                         LTSPackage.eINSTANCE.getLabeledElement_Label());
     Replacer replacer = (modelNames) -> {

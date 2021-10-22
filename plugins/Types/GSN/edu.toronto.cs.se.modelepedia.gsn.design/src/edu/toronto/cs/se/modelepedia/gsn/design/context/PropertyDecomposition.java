@@ -203,7 +203,7 @@ public class PropertyDecomposition extends GoalDecomposition {
       else {
         var relatedModel = relatedModelOpt.get();
         try {
-          templates = reasoner.getTemplateProperties(relatedModel);
+          templates = reasoner.getPropertyTemplates(relatedModel);
           modelObjs = categorizeModelObjects(relatedModel, templates);
           relatedModelPath = relatedModel.getUri();
         }

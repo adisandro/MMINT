@@ -29,16 +29,16 @@ import edu.toronto.cs.se.modelepedia.gsn.reasoning.IGSNLeanEncoder.PropertyTempl
 public interface IGSNDecompositionTrait extends IReasoner {
 
   /**
-   * Gets a set of predefined template properties that are available for the input model, to be used in a property
+   * Gets a set of predefined property templates that are available for the input model, to be used in a property
    * decomposition, grouped by categories.
    *
    * @param model
-   *          The model for which template properties are applicable.
-   * @return A map of categories to lists of template properties.
+   *          The model for which property templates are applicable.
+   * @return A map of categories to lists of property templates.
    * @throws MMINTException
    *           If there is no encoder available for the input model.
    */
-  Map<String, List<PropertyTemplate>> getTemplateProperties(Model model) throws MMINTException;
+  Map<String, List<PropertyTemplate>> getPropertyTemplates(Model model) throws MMINTException;
 
   /**
    * Validates the correctness of a GSN property decomposition.
