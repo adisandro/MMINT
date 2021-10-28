@@ -33,16 +33,14 @@ import com.microsoft.z3.Z3Exception;
 import edu.toronto.cs.se.mmint.MMINTException;
 
 public class Z3IncrementalSolver {
-
 	public enum Z3IncrementalBehavior {NORMAL, PUSH, POP, POP_IF_UNSAT};
-
 	private Context context;
 	private Solver solver;
 	private Deque<Set<Sort>> sorts;
 	private Deque<Set<FuncDecl>> decls;
 
 	private void reset() {
-
+	  this.context.close();
 		this.context = null;
 		this.solver = null;
 		this.sorts.clear();

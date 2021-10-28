@@ -11,7 +11,6 @@
  */
 package edu.toronto.cs.se.modelepedia.z3;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.core.runtime.IStatus;
@@ -26,22 +25,21 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.modelepedia.z3.Z3Model.Z3Result;
 
 public class Z3Solver {
+  private Context context;
+  private Solver solver;
 
-	private Solver loadSMTLIBEncoding(Map<String, String> config, String smtEncoding) throws Z3Exception {
-		var context = new Context(config);
-		var solver = context.mkSolver();
-		var expr = context.parseSMTLIB2String(smtEncoding, null, null, null, null);
-		solver.add(expr);
-
-		return solver;
+	private void loadSMTLIBEncoding(Map<String, String> config, String smtEncoding) throws Z3Exception {
+		this.context = new Context(config);
+		this.solver = this.context.mkSolver();
+		var expr = this.context.parseSMTLIB2String(smtEncoding, null, null, null, null);
+		this.solver.add(expr);
 	}
 
 	// check sat, no incremental
 	public Z3Result checkSat(String smtEncoding) {
-		var config = new HashMap<String, String>();
 		try {
-			var solver = loadSMTLIBEncoding(config, smtEncoding);
-			var status = solver.check();
+			loadSMTLIBEncoding(Map.<String, String>of(), smtEncoding);
+			var status = this.solver.check();
 
 			return Z3Result.toZ3Result(status);
 		}
@@ -49,18 +47,19 @@ public class Z3Solver {
 			MMINTException.print(IStatus.WARNING, "Z3 problem, returning unknown result", e);
 			return Z3Result.UNKNOWN;
 		}
+		finally {
+		  this.context.close();
+		}
 	}
 
 	// check sat and get model, no incremental
 	public Z3Model checkSatAndGetModel(String smtEncoding) {
-		var config = new HashMap<String, String>();
-		config.put("model", "true");
 		try {
-			var solver = loadSMTLIBEncoding(config, smtEncoding);
-			var status = solver.check();
+			loadSMTLIBEncoding(Map.<String, String>of("model", "true"), smtEncoding);
+			var status = this.solver.check();
 			Model model = null;
 			if (status == Status.SATISFIABLE) {
-				model = solver.getModel();
+				model = this.solver.getModel();
 			}
 
 			return new Z3Model(status, model);
@@ -68,6 +67,9 @@ public class Z3Solver {
 		catch (Z3Exception e) {
 			MMINTException.print(IStatus.WARNING, "Z3 problem, returning unknown result", e);
 			return new Z3Model(Status.UNKNOWN, null);
+		}
+		finally {
+		  this.context.close();
 		}
 	}
 
