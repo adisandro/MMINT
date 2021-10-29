@@ -66,7 +66,7 @@ public class ViatraReasoner implements IQueryTrait {
     return getPattern(vqlRoot, queryName);
   }
 
-  protected List<Object> getMatches(Collection<GenericPatternMatch> vMatches) {
+  protected List<Object> getMatches(Collection<GenericPatternMatch> vMatches) throws Exception {
     var matches = new ArrayList<>();
     for (var vMatch : vMatches) {
       var match = (vMatch.parameterNames().size() == 1) ?

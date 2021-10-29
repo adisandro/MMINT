@@ -11,6 +11,7 @@
 package edu.toronto.cs.se.modelepedia.z3.reasoning;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -42,9 +43,11 @@ import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.reasoning.IModelConstraintTrait;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
+import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeatureConstraintTrait;
 import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver;
 import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver.Z3IncrementalBehavior;
 import edu.toronto.cs.se.modelepedia.z3.Z3Model;
+import edu.toronto.cs.se.modelepedia.z3.Z3Solver;
 import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
 import edu.toronto.cs.se.modelepedia.z3.mavo.EcoreMAVOToSMTLIB;
 import edu.toronto.cs.se.modelepedia.z3.mavo.MAVOConcretizationHighlighter;
@@ -53,15 +56,10 @@ import edu.toronto.cs.se.modelepedia.z3.mavo.Z3MAVOModelParser;
 import edu.toronto.cs.se.modelepedia.z3.mavo.Z3MAVOUtils;
 
 //TODO MMINT[Z3] Support refinement and highlighting for the complex full-MAVO encoding
-public class Z3Reasoner implements IModelConstraintTrait, IMAVOTrait {
+public class Z3Reasoner implements IModelConstraintTrait, IMAVOTrait, IProductLineFeatureConstraintTrait {
 
-	public enum MAVOCheckStrategy {
-
-		DOUBLE_CHECK, SINGLE_CHECK_IF_FALSE, SINGLE_CHECK
-	}
-
+	public enum MAVOCheckStrategy { DOUBLE_CHECK, SINGLE_CHECK_IF_FALSE, SINGLE_CHECK }
 	public final static String ECOREMAVOTOSMTLIB_OPERATOR_URI = "http://se.cs.toronto.edu/modelepedia/Operator_EcoreMAVOToSMTLIB";
-
 	private Z3Model z3ConstraintModel;
 	private Z3Model z3NotConstraintModel;
 
@@ -482,4 +480,44 @@ public class Z3Reasoner implements IModelConstraintTrait, IMAVOTrait {
 			MMINTException.print(IStatus.WARNING, "Can't highlight MAVO element, skipping it", e);
 		}
 	}
+
+	@Override
+  public Set<String> getFeatures(String plFormula) {
+    if (plFormula.isBlank()) {
+      return Set.of();
+    }
+    return Arrays.stream(plFormula.strip().split("[\\s\\(\\){or}{and}{not}{true}{false}]"))
+      .filter(v -> !v.isBlank())
+      .collect(Collectors.toSet());
+  }
+
+	@Override
+	public boolean checkConsistency(String featuresConstraint, Set<String> presenceConditions) {
+    var smtEncoding = "";
+    var features = getFeatures(featuresConstraint);
+    var smtBody = featuresConstraint + " ";
+    var allFeatures = new HashSet<>(features);
+    for (var feature : features) {
+      smtEncoding += Z3Utils.constant(feature, Z3Utils.SMTLIB_TYPE_BOOL);
+    }
+    for (var presenceCondition : presenceConditions) {
+      smtBody += presenceCondition + " ";
+      features = getFeatures(presenceCondition);
+      for (var feature : features) {
+        if (allFeatures.contains(feature)) {
+          continue;
+        }
+        smtEncoding += Z3Utils.constant(feature, Z3Utils.SMTLIB_TYPE_BOOL);
+        allFeatures.add(feature);
+      }
+    }
+    smtEncoding += Z3Utils.assertion(Z3Utils.and(smtBody));
+
+    return new Z3Solver().checkSat(smtEncoding).isSAT();
+	}
+
+  @Override
+  public boolean checkConsistency(String plInstantiatedFormula) {
+    return new Z3Solver().checkSat(Z3Utils.assertion(plInstantiatedFormula)).isSAT();
+  }
 }

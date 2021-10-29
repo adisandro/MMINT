@@ -14,6 +14,7 @@ package edu.toronto.cs.se.mmint.productline.reasoning;
 
 import java.util.Set;
 
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.reasoning.IQueryTrait;
 import edu.toronto.cs.se.mmint.productline.PLElement;
 
@@ -30,7 +31,9 @@ public interface IProductLineQueryTrait extends IQueryTrait {
    *
    * @param plElements
    *          The set of product line elements, within the same product line.
+   * @throws MMINTException
+   *           If a reasoner to check product line feature constraints is not available.
    * @return True if all the elements are in a same product, false otherwise.
    */
-  boolean areInAProduct(Set<PLElement> plElements);
+  boolean areInAProduct(Set<PLElement> plElements) throws MMINTException;
 }

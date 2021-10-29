@@ -17,6 +17,7 @@ Require-Bundle: org.junit;bundle-version="4.11.0",
  edu.toronto.cs.se.mmint,
  edu.toronto.cs.se.mmint.mavo,
  edu.toronto.cs.se.mmint.diagram,
+ edu.toronto.cs.se.mmint.productline,
  edu.toronto.cs.se.modelepedia.z3,
  edu.toronto.cs.se.modelepedia.kleisli
 Bundle-ActivationPolicy: lazy

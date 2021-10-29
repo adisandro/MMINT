@@ -25,8 +25,7 @@ Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.viatra.query.patternlanguage.emf,
  org.eclipse.jdt.annotation;resolution:=optional,
  edu.toronto.cs.se.mmint,
- edu.toronto.cs.se.mmint.viatra,
- edu.toronto.cs.se.modelepedia.z3
+ edu.toronto.cs.se.mmint.viatra
 Bundle-RequiredExecutionEnvironment: JavaSE-17
 Bundle-ActivationPolicy: lazy
 Automatic-Module-Name: edu.toronto.cs.se.mmint.productline

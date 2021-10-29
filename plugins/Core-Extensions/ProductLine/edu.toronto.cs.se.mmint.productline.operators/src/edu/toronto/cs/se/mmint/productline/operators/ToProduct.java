@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
 
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
+import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
@@ -31,15 +32,13 @@ import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.productline.Class;
 import edu.toronto.cs.se.mmint.productline.PLElement;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
-import edu.toronto.cs.se.mmint.productline.viatra.reasoning.ProductLineViatraReasoner;
-import edu.toronto.cs.se.modelepedia.z3.Z3Solver;
-import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
+import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeatureConstraintTrait;
 
 public class ToProduct extends OperatorImpl {
   private Input input;
   private Output output;
-  private Z3Solver solver;
-  private Map<String, Boolean> solverCache;
+  private IProductLineFeatureConstraintTrait featureReasoner;
+  private Map<String, Boolean> presenceConditionCache;
 
   private static class Input {
     public final static String MODEL = "productLine";
@@ -77,8 +76,12 @@ public class ToProduct extends OperatorImpl {
   private void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws Exception {
     this.input = new Input(inputsByName);
     this.output = new Output(outputMIDsByName, getWorkingPath(), this.input);
-    this.solver = new Z3Solver();
-    this.solverCache = new HashMap<>();
+    var reasonerName = "Z3"; //TODO read from pl root
+    if (!(MMINT.getReasoner(reasonerName) instanceof IProductLineFeatureConstraintTrait featureReasoner)) {
+      throw new MMINTException(reasonerName + " is not able to check product line feature constraints");
+    }
+    this.featureReasoner = featureReasoner;
+    this.presenceConditionCache = new HashMap<>();
   }
 
   private boolean isInProduct(PLElement plElement, Map<String, Boolean> varsValues) {
@@ -86,38 +89,37 @@ public class ToProduct extends OperatorImpl {
     if (presenceCondition == null) {
       return true;
     }
-    return isInProduct(presenceCondition, varsValues);
+    return canInstantiateFeatures(presenceCondition, varsValues);
   }
 
-  private boolean isInProduct(String presenceCondition, Map<String, Boolean> varsValues) {
-    var variables = ProductLineViatraReasoner.getVariables(presenceCondition);
-    if (variables.isEmpty()) {
+  private boolean canInstantiateFeatures(String plFormula, Map<String, Boolean> featureValues) {
+    var features = this.featureReasoner.getFeatures(plFormula);
+    if (features.isEmpty()) {
       return true;
     }
-    for (var variable : variables) {
-      var value = varsValues.get(variable);
+    for (var feature : features) {
+      var value = featureValues.get(feature);
       if (value == null) {
-        value = MIDDialogs.getBooleanInput("Variable '" + variable + "'",
-                                           "Assign true to variable '" + variable + "'?");
-        varsValues.put(variable, value);
+        value = MIDDialogs.getBooleanInput("Feature '" + feature + "'", "Assign true to feature '" + feature + "'?");
+        featureValues.put(feature, value);
       }
-      presenceCondition = presenceCondition.replaceAll("\\b" + variable + "\\b", value.toString());
+      plFormula = plFormula.replaceAll("\\b" + feature + "\\b", value.toString());
     }
-    var result = this.solverCache.computeIfAbsent(presenceCondition,
-                                                  k -> this.solver.checkSat(Z3Utils.assertion(k)).isSAT());
+    var result = this.presenceConditionCache.computeIfAbsent(plFormula,
+                                                  k -> this.featureReasoner.checkConsistency(k));
 
     return result;
   }
 
   private void toProduct() throws MMINTException {
-    var varsValues = new HashMap<String, Boolean>();
-    if (!isInProduct(this.input.pl.getFeatures(), varsValues)) {
-      throw new MMINTException("The boolean formula for features is not satisfiable");
+    var featureValues = new HashMap<String, Boolean>();
+    if (!canInstantiateFeatures(this.input.pl.getFeatures(), featureValues)) {
+      throw new MMINTException("The constraint on features is not satisfiable");
     }
     var productModelObjs = new HashMap<Class, EObject>();
     var productFactory = this.input.pl.getMetamodel().getEFactoryInstance();
     for (var plClass : this.input.pl.getClasses()) {
-      if (!isInProduct(plClass, varsValues)) {
+      if (!isInProduct(plClass, featureValues)) {
         continue;
       }
       var productModelObj = productFactory.create(plClass.getType());
@@ -126,7 +128,7 @@ public class ToProduct extends OperatorImpl {
         this.output.product = productModelObj;
       }
       for (var plAttribute : plClass.getAttributes()) {
-        if (!isInProduct(plAttribute, varsValues)) {
+        if (!isInProduct(plAttribute, featureValues)) {
           continue;
         }
         var emfType = plAttribute.getType().getEAttributeType();
@@ -147,7 +149,7 @@ public class ToProduct extends OperatorImpl {
       }
     }
     for (var plReference : this.input.pl.getReferences()) {
-      if (!isInProduct(plReference, varsValues)) {
+      if (!isInProduct(plReference, featureValues)) {
         continue;
       }
       var srcProductModelObj = productModelObjs.get(plReference.getSource());

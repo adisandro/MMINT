@@ -102,13 +102,15 @@ public class REJ15 extends FASE14 {
 
 		var startTime = System.nanoTime();
 
-		var z3Reasoner = (Z3Reasoner) MMINT.getReasoner("Z3");
-		if (z3Reasoner == null) {
+		try {
+	    var z3Reasoner = (Z3Reasoner) MMINT.getReasoner("Z3");
+	    this.numSolutions = z3Reasoner.allSATWithSolver(z3IncSolver, this.z3ModelParser, z3Model, new HashSet<>(this.mavoModelObjs.values()), this.istar).size();
+	    this.timeAllSAT = System.nanoTime() - startTime;
+		}
+		catch (MMINTException e) {
       MMINTException.print(IStatus.WARNING, "Skipping allSAT", null);
       return;
 		}
-    this.numSolutions = z3Reasoner.allSATWithSolver(z3IncSolver, this.z3ModelParser, z3Model, new HashSet<>(this.mavoModelObjs.values()), this.istar).size();
-		this.timeAllSAT = System.nanoTime() - startTime;
 	}
 
 //		private String[] getConcretization(IStar istar, Z3Model z3Model) {

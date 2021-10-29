@@ -990,8 +990,12 @@ public class MMINT implements MMINTConstants {
 		return MMINT.reasoners.keySet();
 	}
 
-  public static @Nullable IReasoner getReasoner(String reasonerName) {
-    return MMINT.reasoners.get(reasonerName);
+  public static IReasoner getReasoner(String reasonerName) throws MMINTException {
+    var reasoner = MMINT.reasoners.get(reasonerName);
+    if (reasoner == null) {
+      throw new MMINTException("Reasoner " + reasonerName + " not found");
+    }
+    return reasoner;
   }
 
   /**

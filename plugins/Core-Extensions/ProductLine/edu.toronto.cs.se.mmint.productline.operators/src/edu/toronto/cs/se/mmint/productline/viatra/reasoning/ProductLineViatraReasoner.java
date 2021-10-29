@@ -13,7 +13,6 @@
 package edu.toronto.cs.se.mmint.productline.viatra.reasoning;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -52,6 +51,7 @@ import org.eclipse.viatra.query.runtime.api.GenericPatternMatch;
 
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
+import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
@@ -61,10 +61,9 @@ import edu.toronto.cs.se.mmint.productline.Attribute;
 import edu.toronto.cs.se.mmint.productline.PLElement;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.productline.ProductLinePackage;
+import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeatureConstraintTrait;
 import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineQueryTrait;
 import edu.toronto.cs.se.mmint.viatra.reasoning.ViatraReasoner;
-import edu.toronto.cs.se.modelepedia.z3.Z3Solver;
-import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
 
 @SuppressWarnings("restriction")
 public class ProductLineViatraReasoner extends ViatraReasoner implements IProductLineQueryTrait {
@@ -96,52 +95,27 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
       .anyMatch(m -> MIDTypeHierarchy.instanceOf(m, ProductLinePackage.eNS_URI, false));
   }
 
-  public static Set<String> getVariables(String formula) {
-    if (formula.isBlank()) {
-      return Set.of();
-    }
-    return Arrays.stream(formula.strip().split("[\\s\\(\\){or}{and}{not}{true}{false}]"))
-      .filter(v -> !v.isBlank())
-      .collect(Collectors.toSet());
-  }
-
   @Override
-  public boolean areInAProduct(Set<PLElement> plElements) {
+  public boolean areInAProduct(Set<PLElement> plElements) throws MMINTException {
     if (plElements.isEmpty()) {
       return false;
     }
 
-    //TODO MMINT[REASONER] Make it independent from the Z3 solver
     var anyPLElem = plElements.stream().findAny().get();
     var pl = (ProductLine) ((anyPLElem instanceof Attribute) ?
       anyPLElem.eContainer().eContainer() :
       anyPLElem.eContainer());
-    var features = pl.getFeatures();
+    var featuresConstraint = pl.getFeatures();
     var presenceConditions = plElements.stream()
       .map(e -> e.getPresenceCondition())
       .filter(pc -> pc != null)
-      .collect(Collectors.toList());
-    var smtEncoding = "";
-    var variables = getVariables(features);
-    var smtBody = features + " ";
-    var allVariables = new HashSet<>(variables);
-    for (var variable : variables) {
-      smtEncoding += Z3Utils.constant(variable, Z3Utils.SMTLIB_TYPE_BOOL);
+      .collect(Collectors.toSet());
+    var reasonerName = "Z3"; //TODO read from pl root
+    if (!(MMINT.getReasoner(reasonerName) instanceof IProductLineFeatureConstraintTrait featureReasoner)) {
+      throw new MMINTException(reasonerName + " is not able to check product line feature constraints");
     }
-    for (var presenceCondition : presenceConditions) {
-      smtBody += presenceCondition + " ";
-      variables = getVariables(presenceCondition);
-      for (var variable : variables) {
-        if (allVariables.contains(variable)) {
-          continue;
-        }
-        smtEncoding += Z3Utils.constant(variable, Z3Utils.SMTLIB_TYPE_BOOL);
-        allVariables.add(variable);
-      }
-    }
-    smtEncoding += Z3Utils.assertion(Z3Utils.and(smtBody));
 
-    return new Z3Solver().checkSat(smtEncoding).isSAT();
+    return featureReasoner.checkConsistency(featuresConstraint, presenceConditions);
   }
 
   private Variable createVariable(EClass varClass, String name) {
@@ -474,7 +448,7 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
   }
 
   @Override
-  protected List<Object> getMatches(Collection<GenericPatternMatch> vMatches) {
+  protected List<Object> getMatches(Collection<GenericPatternMatch> vMatches) throws Exception {
     var matches = new LinkedHashSet<>();
     for (var vMatch : vMatches) {
       var matchAsList = new ArrayList<>();
