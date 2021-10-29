@@ -161,7 +161,7 @@ public class ProductLinePackageImpl extends EPackageImpl implements ProductLineP
    * @generated
    */
   @Override
-  public EAttribute getProductLine_Features() {
+  public EAttribute getProductLine_FeaturesConstraint() {
     return (EAttribute) this.productLineEClass.getEStructuralFeatures().get(0);
   }
 
@@ -171,8 +171,8 @@ public class ProductLinePackageImpl extends EPackageImpl implements ProductLineP
    * @generated
    */
   @Override
-  public EReference getProductLine_Classes() {
-    return (EReference) this.productLineEClass.getEStructuralFeatures().get(1);
+  public EAttribute getProductLine_ReasonerName() {
+    return (EAttribute) this.productLineEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -181,7 +181,7 @@ public class ProductLinePackageImpl extends EPackageImpl implements ProductLineP
    * @generated
    */
   @Override
-  public EReference getProductLine_References() {
+  public EReference getProductLine_Classes() {
     return (EReference) this.productLineEClass.getEStructuralFeatures().get(2);
   }
 
@@ -191,8 +191,18 @@ public class ProductLinePackageImpl extends EPackageImpl implements ProductLineP
    * @generated
    */
   @Override
-  public EReference getProductLine_Metamodel() {
+  public EReference getProductLine_References() {
     return (EReference) this.productLineEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getProductLine_Metamodel() {
+    return (EReference) this.productLineEClass.getEStructuralFeatures().get(4);
   }
 
   /**
@@ -366,7 +376,8 @@ public class ProductLinePackageImpl extends EPackageImpl implements ProductLineP
 
     // Create classes and their features
     this.productLineEClass = createEClass(ProductLinePackage.PRODUCT_LINE);
-    createEAttribute(this.productLineEClass, ProductLinePackage.PRODUCT_LINE__FEATURES);
+    createEAttribute(this.productLineEClass, ProductLinePackage.PRODUCT_LINE__FEATURES_CONSTRAINT);
+    createEAttribute(this.productLineEClass, ProductLinePackage.PRODUCT_LINE__REASONER_NAME);
     createEReference(this.productLineEClass, ProductLinePackage.PRODUCT_LINE__CLASSES);
     createEReference(this.productLineEClass, ProductLinePackage.PRODUCT_LINE__REFERENCES);
     createEReference(this.productLineEClass, ProductLinePackage.PRODUCT_LINE__METAMODEL);
@@ -426,9 +437,12 @@ public class ProductLinePackageImpl extends EPackageImpl implements ProductLineP
     // Initialize classes and features; add operations and parameters
     initEClass(this.productLineEClass, ProductLine.class, "ProductLine", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE,
                EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getProductLine_Features(), this.ecorePackage.getEString(), "features", null, 1, 1, ProductLine.class,
-                   !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED,
-                   EPackageImpl.IS_ORDERED);
+    initEAttribute(getProductLine_FeaturesConstraint(), this.ecorePackage.getEString(), "featuresConstraint", null, 1, 1,
+                   ProductLine.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE,
+                   !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
+    initEAttribute(getProductLine_ReasonerName(), this.ecorePackage.getEString(), "reasonerName", null, 1, 1,
+                   ProductLine.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE,
+                   !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
     initEReference(getProductLine_Classes(), this.getClass_(), null, "classes", null, 0, -1, ProductLine.class,
                    !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, EPackageImpl.IS_COMPOSITE, !EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE,
                    EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
@@ -440,7 +454,7 @@ public class ProductLinePackageImpl extends EPackageImpl implements ProductLineP
                    !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
 
     initEClass(this.plElementEClass, PLElement.class, "PLElement", EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getPLElement_PresenceCondition(), this.ecorePackage.getEString(), "presenceCondition", null, 0, 1,
+    initEAttribute(getPLElement_PresenceCondition(), this.ecorePackage.getEString(), "presenceCondition", "true", 0, 1,
                    PLElement.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE,
                    !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
 

@@ -76,7 +76,7 @@ public class ToProduct extends OperatorImpl {
   private void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws Exception {
     this.input = new Input(inputsByName);
     this.output = new Output(outputMIDsByName, getWorkingPath(), this.input);
-    var reasonerName = "Z3"; //TODO read from pl root
+    var reasonerName = this.input.pl.getReasonerName();
     if (!(MMINT.getReasoner(reasonerName) instanceof IProductLineFeatureConstraintTrait featureReasoner)) {
       throw new MMINTException(reasonerName + " is not able to check product line feature constraints");
     }
@@ -113,7 +113,7 @@ public class ToProduct extends OperatorImpl {
 
   private void toProduct() throws MMINTException {
     var featureValues = new HashMap<String, Boolean>();
-    if (!canInstantiateFeatures(this.input.pl.getFeatures(), featureValues)) {
+    if (!canInstantiateFeatures(this.input.pl.getFeaturesConstraint(), featureValues)) {
       throw new MMINTException("The constraint on features is not satisfiable");
     }
     var productModelObjs = new HashMap<Class, EObject>();

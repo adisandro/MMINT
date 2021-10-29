@@ -42,7 +42,7 @@ public abstract class PLElementImpl extends MinimalEObjectImpl.Container impleme
    * @generated
    * @ordered
    */
-  protected static final String PRESENCE_CONDITION_EDEFAULT = null;
+  protected static final String PRESENCE_CONDITION_EDEFAULT = "true";
 
   /**
    * The cached value of the '{@link #getPresenceCondition() <em>Presence Condition</em>}' attribute.

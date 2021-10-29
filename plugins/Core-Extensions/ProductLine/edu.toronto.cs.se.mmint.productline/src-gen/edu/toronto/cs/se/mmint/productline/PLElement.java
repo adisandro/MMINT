@@ -33,12 +33,13 @@ import org.eclipse.emf.ecore.EObject;
 public interface PLElement extends EObject {
   /**
    * Returns the value of the '<em><b>Presence Condition</b></em>' attribute.
+   * The default value is <code>"true"</code>.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Presence Condition</em>' attribute.
    * @see #setPresenceCondition(String)
    * @see edu.toronto.cs.se.mmint.productline.ProductLinePackage#getPLElement_PresenceCondition()
-   * @model
+   * @model default="true"
    * @generated
    */
   String getPresenceCondition();

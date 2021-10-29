@@ -105,12 +105,12 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
     var pl = (ProductLine) ((anyPLElem instanceof Attribute) ?
       anyPLElem.eContainer().eContainer() :
       anyPLElem.eContainer());
-    var featuresConstraint = pl.getFeatures();
+    var featuresConstraint = pl.getFeaturesConstraint();
     var presenceConditions = plElements.stream()
       .map(e -> e.getPresenceCondition())
       .filter(pc -> pc != null)
       .collect(Collectors.toSet());
-    var reasonerName = "Z3"; //TODO read from pl root
+    var reasonerName = pl.getReasonerName();
     if (!(MMINT.getReasoner(reasonerName) instanceof IProductLineFeatureConstraintTrait featureReasoner)) {
       throw new MMINTException(reasonerName + " is not able to check product line feature constraints");
     }

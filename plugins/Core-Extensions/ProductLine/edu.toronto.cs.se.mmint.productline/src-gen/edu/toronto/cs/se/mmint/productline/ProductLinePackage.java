@@ -76,13 +76,22 @@ public interface ProductLinePackage extends EPackage {
   int PRODUCT_LINE = 0;
 
   /**
-   * The feature id for the '<em><b>Features</b></em>' attribute.
+   * The feature id for the '<em><b>Features Constraint</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PRODUCT_LINE__FEATURES = 0;
+  int PRODUCT_LINE__FEATURES_CONSTRAINT = 0;
+
+  /**
+   * The feature id for the '<em><b>Reasoner Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PRODUCT_LINE__REASONER_NAME = 1;
 
   /**
    * The feature id for the '<em><b>Classes</b></em>' containment reference list.
@@ -91,7 +100,7 @@ public interface ProductLinePackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PRODUCT_LINE__CLASSES = 1;
+  int PRODUCT_LINE__CLASSES = 2;
 
   /**
    * The feature id for the '<em><b>References</b></em>' containment reference list.
@@ -100,7 +109,7 @@ public interface ProductLinePackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PRODUCT_LINE__REFERENCES = 2;
+  int PRODUCT_LINE__REFERENCES = 3;
 
   /**
    * The feature id for the '<em><b>Metamodel</b></em>' reference.
@@ -109,7 +118,7 @@ public interface ProductLinePackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PRODUCT_LINE__METAMODEL = 3;
+  int PRODUCT_LINE__METAMODEL = 4;
 
   /**
    * The number of structural features of the '<em>Product Line</em>' class.
@@ -118,7 +127,7 @@ public interface ProductLinePackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PRODUCT_LINE_FEATURE_COUNT = 4;
+  int PRODUCT_LINE_FEATURE_COUNT = 5;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.mmint.productline.impl.PLElementImpl <em>PL Element</em>}' class.
@@ -324,15 +333,26 @@ public interface ProductLinePackage extends EPackage {
   EClass getProductLine();
 
   /**
-   * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmint.productline.ProductLine#getFeatures <em>Features</em>}'.
+   * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmint.productline.ProductLine#getFeaturesConstraint <em>Features Constraint</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Features</em>'.
-   * @see edu.toronto.cs.se.mmint.productline.ProductLine#getFeatures()
+   * @return the meta object for the attribute '<em>Features Constraint</em>'.
+   * @see edu.toronto.cs.se.mmint.productline.ProductLine#getFeaturesConstraint()
    * @see #getProductLine()
    * @generated
    */
-  EAttribute getProductLine_Features();
+  EAttribute getProductLine_FeaturesConstraint();
+
+  /**
+   * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmint.productline.ProductLine#getReasonerName <em>Reasoner Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Reasoner Name</em>'.
+   * @see edu.toronto.cs.se.mmint.productline.ProductLine#getReasonerName()
+   * @see #getProductLine()
+   * @generated
+   */
+  EAttribute getProductLine_ReasonerName();
 
   /**
    * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.mmint.productline.ProductLine#getClasses <em>Classes</em>}'.
@@ -550,12 +570,20 @@ public interface ProductLinePackage extends EPackage {
     EClass PRODUCT_LINE = ProductLinePackage.eINSTANCE.getProductLine();
 
     /**
-     * The meta object literal for the '<em><b>Features</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Features Constraint</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute PRODUCT_LINE__FEATURES = ProductLinePackage.eINSTANCE.getProductLine_Features();
+    EAttribute PRODUCT_LINE__FEATURES_CONSTRAINT = ProductLinePackage.eINSTANCE.getProductLine_FeaturesConstraint();
+
+    /**
+     * The meta object literal for the '<em><b>Reasoner Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute PRODUCT_LINE__REASONER_NAME = ProductLinePackage.eINSTANCE.getProductLine_ReasonerName();
 
     /**
      * The meta object literal for the '<em><b>Classes</b></em>' containment reference list feature.

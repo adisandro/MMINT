@@ -25,7 +25,8 @@ import org.eclipse.emf.ecore.EPackage;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.mmint.productline.ProductLine#getFeatures <em>Features</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmint.productline.ProductLine#getFeaturesConstraint <em>Features Constraint</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmint.productline.ProductLine#getReasonerName <em>Reasoner Name</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.productline.ProductLine#getClasses <em>Classes</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.productline.ProductLine#getReferences <em>References</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.productline.ProductLine#getMetamodel <em>Metamodel</em>}</li>
@@ -37,26 +38,48 @@ import org.eclipse.emf.ecore.EPackage;
  */
 public interface ProductLine extends EObject {
   /**
-   * Returns the value of the '<em><b>Features</b></em>' attribute.
+   * Returns the value of the '<em><b>Features Constraint</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Features</em>' attribute.
-   * @see #setFeatures(String)
-   * @see edu.toronto.cs.se.mmint.productline.ProductLinePackage#getProductLine_Features()
+   * @return the value of the '<em>Features Constraint</em>' attribute.
+   * @see #setFeaturesConstraint(String)
+   * @see edu.toronto.cs.se.mmint.productline.ProductLinePackage#getProductLine_FeaturesConstraint()
    * @model required="true"
    * @generated
    */
-  String getFeatures();
+  String getFeaturesConstraint();
 
   /**
-   * Sets the value of the '{@link edu.toronto.cs.se.mmint.productline.ProductLine#getFeatures <em>Features</em>}' attribute.
+   * Sets the value of the '{@link edu.toronto.cs.se.mmint.productline.ProductLine#getFeaturesConstraint <em>Features Constraint</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Features</em>' attribute.
-   * @see #getFeatures()
+   * @param value the new value of the '<em>Features Constraint</em>' attribute.
+   * @see #getFeaturesConstraint()
    * @generated
    */
-  void setFeatures(String value);
+  void setFeaturesConstraint(String value);
+
+  /**
+   * Returns the value of the '<em><b>Reasoner Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Reasoner Name</em>' attribute.
+   * @see #setReasonerName(String)
+   * @see edu.toronto.cs.se.mmint.productline.ProductLinePackage#getProductLine_ReasonerName()
+   * @model required="true"
+   * @generated
+   */
+  String getReasonerName();
+
+  /**
+   * Sets the value of the '{@link edu.toronto.cs.se.mmint.productline.ProductLine#getReasonerName <em>Reasoner Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Reasoner Name</em>' attribute.
+   * @see #getReasonerName()
+   * @generated
+   */
+  void setReasonerName(String value);
 
   /**
    * Returns the value of the '<em><b>Classes</b></em>' containment reference list.

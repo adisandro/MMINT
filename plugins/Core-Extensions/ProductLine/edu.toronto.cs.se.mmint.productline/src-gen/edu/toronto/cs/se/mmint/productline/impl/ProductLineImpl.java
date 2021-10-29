@@ -37,7 +37,8 @@ import edu.toronto.cs.se.mmint.productline.Reference;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.mmint.productline.impl.ProductLineImpl#getFeatures <em>Features</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmint.productline.impl.ProductLineImpl#getFeaturesConstraint <em>Features Constraint</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmint.productline.impl.ProductLineImpl#getReasonerName <em>Reasoner Name</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.productline.impl.ProductLineImpl#getClasses <em>Classes</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.productline.impl.ProductLineImpl#getReferences <em>References</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.productline.impl.ProductLineImpl#getMetamodel <em>Metamodel</em>}</li>
@@ -47,24 +48,44 @@ import edu.toronto.cs.se.mmint.productline.Reference;
  */
 public class ProductLineImpl extends MinimalEObjectImpl.Container implements ProductLine {
   /**
-   * The default value of the '{@link #getFeatures() <em>Features</em>}' attribute.
+   * The default value of the '{@link #getFeaturesConstraint() <em>Features Constraint</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getFeatures()
+   * @see #getFeaturesConstraint()
    * @generated
    * @ordered
    */
-  protected static final String FEATURES_EDEFAULT = null;
+  protected static final String FEATURES_CONSTRAINT_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getFeatures() <em>Features</em>}' attribute.
+   * The cached value of the '{@link #getFeaturesConstraint() <em>Features Constraint</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getFeatures()
+   * @see #getFeaturesConstraint()
    * @generated
    * @ordered
    */
-  protected String features = ProductLineImpl.FEATURES_EDEFAULT;
+  protected String featuresConstraint = ProductLineImpl.FEATURES_CONSTRAINT_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getReasonerName() <em>Reasoner Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getReasonerName()
+   * @generated
+   * @ordered
+   */
+  protected static final String REASONER_NAME_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getReasonerName() <em>Reasoner Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getReasonerName()
+   * @generated
+   * @ordered
+   */
+  protected String reasonerName = ProductLineImpl.REASONER_NAME_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getClasses() <em>Classes</em>}' containment reference list.
@@ -121,8 +142,8 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
    * @generated
    */
   @Override
-  public String getFeatures() {
-    return this.features;
+  public String getFeaturesConstraint() {
+    return this.featuresConstraint;
   }
 
   /**
@@ -131,12 +152,36 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
    * @generated
    */
   @Override
-  public void setFeatures(String newFeatures) {
-    var oldFeatures = this.features;
-    this.features = newFeatures;
+  public void setFeaturesConstraint(String newFeaturesConstraint) {
+    var oldFeaturesConstraint = this.featuresConstraint;
+    this.featuresConstraint = newFeaturesConstraint;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProductLinePackage.PRODUCT_LINE__FEATURES, oldFeatures,
-                                    this.features));
+      eNotify(new ENotificationImpl(this, Notification.SET, ProductLinePackage.PRODUCT_LINE__FEATURES_CONSTRAINT,
+                                    oldFeaturesConstraint, this.featuresConstraint));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String getReasonerName() {
+    return this.reasonerName;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setReasonerName(String newReasonerName) {
+    var oldReasonerName = this.reasonerName;
+    this.reasonerName = newReasonerName;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProductLinePackage.PRODUCT_LINE__REASONER_NAME,
+                                    oldReasonerName, this.reasonerName));
   }
 
   /**
@@ -234,8 +279,10 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
-    case ProductLinePackage.PRODUCT_LINE__FEATURES:
-      return getFeatures();
+    case ProductLinePackage.PRODUCT_LINE__FEATURES_CONSTRAINT:
+      return getFeaturesConstraint();
+    case ProductLinePackage.PRODUCT_LINE__REASONER_NAME:
+      return getReasonerName();
     case ProductLinePackage.PRODUCT_LINE__CLASSES:
       return getClasses();
     case ProductLinePackage.PRODUCT_LINE__REFERENCES:
@@ -257,8 +304,11 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
-    case ProductLinePackage.PRODUCT_LINE__FEATURES:
-      setFeatures((String) newValue);
+    case ProductLinePackage.PRODUCT_LINE__FEATURES_CONSTRAINT:
+      setFeaturesConstraint((String) newValue);
+      return;
+    case ProductLinePackage.PRODUCT_LINE__REASONER_NAME:
+      setReasonerName((String) newValue);
       return;
     case ProductLinePackage.PRODUCT_LINE__CLASSES:
       getClasses().clear();
@@ -283,8 +333,11 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
-    case ProductLinePackage.PRODUCT_LINE__FEATURES:
-      setFeatures(ProductLineImpl.FEATURES_EDEFAULT);
+    case ProductLinePackage.PRODUCT_LINE__FEATURES_CONSTRAINT:
+      setFeaturesConstraint(ProductLineImpl.FEATURES_CONSTRAINT_EDEFAULT);
+      return;
+    case ProductLinePackage.PRODUCT_LINE__REASONER_NAME:
+      setReasonerName(ProductLineImpl.REASONER_NAME_EDEFAULT);
       return;
     case ProductLinePackage.PRODUCT_LINE__CLASSES:
       getClasses().clear();
@@ -307,8 +360,11 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
-    case ProductLinePackage.PRODUCT_LINE__FEATURES:
-      return ProductLineImpl.FEATURES_EDEFAULT == null ? this.features != null : !ProductLineImpl.FEATURES_EDEFAULT.equals(this.features);
+    case ProductLinePackage.PRODUCT_LINE__FEATURES_CONSTRAINT:
+      return ProductLineImpl.FEATURES_CONSTRAINT_EDEFAULT == null ? this.featuresConstraint != null
+        : !ProductLineImpl.FEATURES_CONSTRAINT_EDEFAULT.equals(this.featuresConstraint);
+    case ProductLinePackage.PRODUCT_LINE__REASONER_NAME:
+      return ProductLineImpl.REASONER_NAME_EDEFAULT == null ? this.reasonerName != null : !ProductLineImpl.REASONER_NAME_EDEFAULT.equals(this.reasonerName);
     case ProductLinePackage.PRODUCT_LINE__CLASSES:
       return this.classes != null && !this.classes.isEmpty();
     case ProductLinePackage.PRODUCT_LINE__REFERENCES:
@@ -330,8 +386,10 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
       return super.toString();
 
     var result = new StringBuilder(super.toString());
-    result.append(" (features: ");
-    result.append(this.features);
+    result.append(" (featuresConstraint: ");
+    result.append(this.featuresConstraint);
+    result.append(", reasonerName: ");
+    result.append(this.reasonerName);
     result.append(')');
     return result.toString();
   }

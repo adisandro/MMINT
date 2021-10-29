@@ -13,7 +13,6 @@
 package edu.toronto.cs.se.mmint.productline.mid.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 

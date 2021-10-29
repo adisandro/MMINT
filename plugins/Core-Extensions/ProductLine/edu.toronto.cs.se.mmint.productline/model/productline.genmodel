@@ -13,7 +13,8 @@
   <genPackages prefix="ProductLine" basePackage="edu.toronto.cs.se.mmint" disposableProviderFactory="true"
       ecorePackage="productline.ecore#/">
     <genClasses ecoreClass="productline.ecore#//ProductLine">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute productline.ecore#//ProductLine/features"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute productline.ecore#//ProductLine/featuresConstraint"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute productline.ecore#//ProductLine/reasonerName"/>
       <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference productline.ecore#//ProductLine/classes"/>
       <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference productline.ecore#//ProductLine/references"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference productline.ecore#//ProductLine/metamodel"/>

@@ -63,7 +63,8 @@ public class ProductLineItemProvider extends ItemProviderAdapter implements IEdi
     if (this.itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
-      addFeaturesPropertyDescriptor(object);
+      addFeaturesConstraintPropertyDescriptor(object);
+      addReasonerNamePropertyDescriptor(object);
       addClassesPropertyDescriptor(object);
       addReferencesPropertyDescriptor(object);
       addMetamodelPropertyDescriptor(object);
@@ -72,21 +73,39 @@ public class ProductLineItemProvider extends ItemProviderAdapter implements IEdi
   }
 
   /**
-   * This adds a property descriptor for the Features feature.
+   * This adds a property descriptor for the Features Constraint feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected void addFeaturesPropertyDescriptor(Object object) {
+  protected void addFeaturesConstraintPropertyDescriptor(Object object) {
     this.itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(),
                                                              getResourceLocator(), getString(
-                                                                                             "_UI_ProductLine_features_feature"),
+                                                                                             "_UI_ProductLine_featuresConstraint_feature"),
                                                              getString("_UI_PropertyDescriptor_description",
-                                                                       "_UI_ProductLine_features_feature",
+                                                                       "_UI_ProductLine_featuresConstraint_feature",
                                                                        "_UI_ProductLine_type"),
-                                                             ProductLinePackage.Literals.PRODUCT_LINE__FEATURES, true,
-                                                             false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-                                                             null, null));
+                                                             ProductLinePackage.Literals.PRODUCT_LINE__FEATURES_CONSTRAINT,
+                                                             true, false, false,
+                                                             ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+  }
+
+  /**
+   * This adds a property descriptor for the Reasoner Name feature.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected void addReasonerNamePropertyDescriptor(Object object) {
+    this.itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(),
+                                                             getResourceLocator(), getString(
+                                                                                             "_UI_ProductLine_reasonerName_feature"),
+                                                             getString("_UI_PropertyDescriptor_description",
+                                                                       "_UI_ProductLine_reasonerName_feature",
+                                                                       "_UI_ProductLine_type"),
+                                                             ProductLinePackage.Literals.PRODUCT_LINE__REASONER_NAME,
+                                                             true, false, false,
+                                                             ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
   }
 
   /**
@@ -200,7 +219,7 @@ public class ProductLineItemProvider extends ItemProviderAdapter implements IEdi
    */
   @Override
   public String getText(Object object) {
-    var label = ((ProductLine) object).getFeatures();
+    var label = ((ProductLine) object).getReasonerName();
     return label == null || label.length() == 0 ? getString("_UI_ProductLine_type")
       : getString("_UI_ProductLine_type") + " " + label;
   }
@@ -217,7 +236,8 @@ public class ProductLineItemProvider extends ItemProviderAdapter implements IEdi
     updateChildren(notification);
 
     switch (notification.getFeatureID(ProductLine.class)) {
-    case ProductLinePackage.PRODUCT_LINE__FEATURES:
+    case ProductLinePackage.PRODUCT_LINE__FEATURES_CONSTRAINT:
+    case ProductLinePackage.PRODUCT_LINE__REASONER_NAME:
       fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
       return;
     case ProductLinePackage.PRODUCT_LINE__CLASSES:
