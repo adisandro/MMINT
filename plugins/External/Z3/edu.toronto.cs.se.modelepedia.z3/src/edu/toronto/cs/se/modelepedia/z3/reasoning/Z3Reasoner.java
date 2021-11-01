@@ -486,7 +486,7 @@ public class Z3Reasoner implements IModelConstraintTrait, IMAVOTrait, IProductLi
     if (plFormula.isBlank()) {
       return Set.of();
     }
-    return Arrays.stream(plFormula.strip().split("[\\s\\(\\){or}{and}{not}{true}{false}]"))
+    return Arrays.stream(plFormula.strip().split("[\\s\\(\\)]|\\b(?:or|and|not|true|false)\\b"))
       .filter(v -> !v.isBlank())
       .collect(Collectors.toSet());
   }

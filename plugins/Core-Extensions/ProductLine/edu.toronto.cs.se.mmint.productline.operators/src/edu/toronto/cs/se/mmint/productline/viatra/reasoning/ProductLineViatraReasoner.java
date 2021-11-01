@@ -61,6 +61,7 @@ import edu.toronto.cs.se.mmint.productline.Attribute;
 import edu.toronto.cs.se.mmint.productline.PLElement;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.productline.ProductLinePackage;
+import edu.toronto.cs.se.mmint.productline.mid.PLMapping;
 import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeatureConstraintTrait;
 import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineQueryTrait;
 import edu.toronto.cs.se.mmint.viatra.reasoning.ViatraReasoner;
@@ -102,9 +103,22 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
     }
 
     var anyPLElem = plElements.stream().findAny().get();
-    var pl = (ProductLine) ((anyPLElem instanceof Attribute) ?
-      anyPLElem.eContainer().eContainer() :
-      anyPLElem.eContainer());
+    ProductLine pl;
+    // TODO MMINT[JAVA18] Use switch with pattern matching
+    if (anyPLElem instanceof PLMapping plMapping) {
+      pl = plMapping.getModelElemEndpoints().stream()
+        .map(mee -> (Model) mee.getTarget().eContainer())
+        .filter(m -> MIDTypeHierarchy.instanceOf(m, ProductLinePackage.eNS_URI, false))
+        .map(m -> (ProductLine) m.getEMFInstanceRoot())
+        .findAny() // assumption: all product line models connected by a rel share the same features and constraints
+        .get();
+    }
+    else if (anyPLElem instanceof Attribute) {
+      pl = (ProductLine) anyPLElem.eContainer().eContainer();
+    }
+    else {
+      pl = (ProductLine) anyPLElem.eContainer();
+    }
     var featuresConstraint = pl.getFeaturesConstraint();
     var presenceConditions = plElements.stream()
       .map(e -> e.getPresenceCondition())
