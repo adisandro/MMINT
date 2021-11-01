@@ -142,6 +142,7 @@
     <module>../../plugins/Core-Extensions/ProductLine/edu.toronto.cs.se.mmint.productline.editor</module>
     <module>../../plugins/Core-Extensions/ProductLine/edu.toronto.cs.se.mmint.productline.operators</module>
     <module>../../plugins/External/Lean/edu.toronto.cs.se.mmint.lean</module>
+    <module>../../plugins/External/LogicNG/edu.toronto.cs.se.mmint.logicng</module>
   	<module>../../plugins/External/Z3/edu.toronto.cs.se.modelepedia.z3</module>
   	<module>../../plugins/External/Z3/edu.toronto.cs.se.modelepedia.z3.operator</module>
   	<module>../../plugins/Types/ClassDiagram/edu.toronto.cs.se.modelepedia.classdiagram</module>
@@ -227,6 +228,7 @@
     <module>../../features/edu.toronto.cs.se.mminta.feature</module>
     <module>../../features/edu.toronto.cs.se.mummint.feature</module>
     <module>../../features/edu.toronto.cs.se.mmint.lean.feature</module>
+    <module>../../features/edu.toronto.cs.se.mmint.logicng.feature</module>
   	<module>../../features/edu.toronto.cs.se.modelepedia.feature</module>
   	<module>../../features/edu.toronto.cs.se.modelepedia.z3.feature</module>
   	<module>../../features/edu.toronto.cs.se.modelepedia.kleisli.feature</module>

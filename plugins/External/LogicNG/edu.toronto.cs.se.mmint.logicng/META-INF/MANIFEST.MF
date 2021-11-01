@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: edu.toronto.cs.se.mmint.logicng;singleton:=true
+Bundle-Version: 2.11.99.qualifier
+Automatic-Module-Name: edu.toronto.cs.se.mmint.logicng
+Bundle-RequiredExecutionEnvironment: JavaSE-17
+Bundle-Vendor: %providerName
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.jdt.annotation;resolution:=optional,
+ edu.toronto.cs.se.mmint,
+ edu.toronto.cs.se.mmint.productline

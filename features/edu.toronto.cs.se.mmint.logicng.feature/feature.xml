@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Copyright (c) 2021, 2021 Alessio Di Sandro.
+   
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License 2.0 which is available at
+    https://www.eclipse.org/legal/epl-2.0/
+   
+    SPDX-License-Identifier: EPL-2.0
+   
+    Contributors:
+        Alessio Di Sandro - Implementation
+ -->
+<feature
+      id="edu.toronto.cs.se.mmint.logicng.feature"
+      label="MMINT - LogicNG integration"
+      version="2.11.99.qualifier"
+      provider-name="Software Engineering Group, University of Toronto">
+
+   <description url="https://github.com/logic-ng/LogicNG">
+      MMINT integration with the LogicNG library for boolean formulas.
+   </description>
+
+   <copyright>
+      Copyright (c) 2021, 2021 Alessio Di Sandro.
+   </copyright>
+
+   <license url="https://www.eclipse.org/legal/epl-2.0/">
+      This program and the accompanying materials are made available under the terms of the Eclipse Public License 2.0 which is available at https://www.eclipse.org/legal/epl-2.0/
+   </license>
+
+   <requires>
+      <import feature="edu.toronto.cs.se.mmint.feature"/>
+      <import plugin="edu.toronto.cs.se.mmint"/>
+      <import plugin="edu.toronto.cs.se.mmint.productline"/>
+   </requires>
+
+   <plugin
+         id="edu.toronto.cs.se.mmint.logicng"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>
