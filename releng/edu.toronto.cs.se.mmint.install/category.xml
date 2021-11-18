@@ -15,6 +15,9 @@
    <feature url="features/edu.toronto.cs.se.mmint.lean.feature_2.11.99.qualifier.jar" id="edu.toronto.cs.se.mmint.lean.feature" version="2.11.99.qualifier">
       <category name="Modelepedia"/>
    </feature>
+   <feature url="features/edu.toronto.cs.se.mmint.logicng.feature_2.11.99.qualifier.jar" id="edu.toronto.cs.se.mmint.logicng.feature" version="2.11.99.qualifier">
+      <category name="Modelepedia"/>
+   </feature>
    <feature url="features/edu.toronto.cs.se.mmint.productline.feature_2.11.99.qualifier.jar" id="edu.toronto.cs.se.mmint.productline.feature" version="2.11.99.qualifier">
       <category name="Modelepedia"/>
    </feature>
