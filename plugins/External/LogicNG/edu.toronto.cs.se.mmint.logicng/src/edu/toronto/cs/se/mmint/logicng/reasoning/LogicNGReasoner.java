@@ -36,7 +36,7 @@ public class LogicNGReasoner implements IProductLineFeatureConstraintTrait {
     if (plFormula.isBlank()) {
       return Set.of();
     }
-    return Arrays.stream(plFormula.strip().split("[\\s\\(\\)\\|&~]"))
+    return Arrays.stream(plFormula.strip().split("[\\s\\(\\)\\|&~]|\\b(?:true)\\b"))
       .filter(v -> !v.isBlank())
       .collect(Collectors.toSet());
   }
@@ -47,6 +47,7 @@ public class LogicNGReasoner implements IProductLineFeatureConstraintTrait {
     var parser = new PropositionalParser(factory);
     var minisat = MiniSat.miniSat(factory);
     try {
+      var f = parser.parse(featuresConstraint);
       minisat.add(parser.parse(featuresConstraint));
       for (var presenceCondition : presenceConditions) {
         minisat.add(parser.parse(presenceCondition));
