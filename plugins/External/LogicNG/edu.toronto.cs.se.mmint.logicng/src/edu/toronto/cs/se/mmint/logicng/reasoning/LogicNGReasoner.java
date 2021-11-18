@@ -16,6 +16,12 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.logicng.datastructures.Tristate;
+import org.logicng.formulas.FormulaFactory;
+import org.logicng.io.parsers.ParserException;
+import org.logicng.io.parsers.PropositionalParser;
+import org.logicng.solvers.MiniSat;
+
 import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeatureConstraintTrait;
 
 public class LogicNGReasoner implements IProductLineFeatureConstraintTrait {
@@ -37,12 +43,32 @@ public class LogicNGReasoner implements IProductLineFeatureConstraintTrait {
 
   @Override
   public boolean checkConsistency(String featuresConstraint, Set<String> presenceConditions) {
-    return false;
+    var factory = new FormulaFactory();
+    var parser = new PropositionalParser(factory);
+    var minisat = MiniSat.miniSat(factory);
+    try {
+      minisat.add(parser.parse(featuresConstraint));
+      for (var presenceCondition : presenceConditions) {
+        minisat.add(parser.parse(presenceCondition));
+      }
+      return minisat.sat() == Tristate.TRUE;
+    }
+    catch (ParserException e) {
+      return false;
+    }
   }
 
   @Override
   public boolean checkConsistency(String plInstantiatedFormula) {
-    return false;
+    var factory = new FormulaFactory();
+    var parser = new PropositionalParser(factory);
+    var minisat = MiniSat.miniSat(factory);
+    try {
+      minisat.add(parser.parse(plInstantiatedFormula));
+      return minisat.sat() == Tristate.TRUE;
+    }
+    catch (ParserException e) {
+      return false;
+    }
   }
-
 }

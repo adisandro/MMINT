@@ -10,3 +10,5 @@ Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.jdt.annotation;resolution:=optional,
  edu.toronto.cs.se.mmint,
  edu.toronto.cs.se.mmint.productline
+Bundle-ClassPath: target/dependency/logicng.jar,
+ .
