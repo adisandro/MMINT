@@ -5,4 +5,9 @@ updates:
     target-branch: 'develop'
     schedule:
       interval: 'daily'
+  - package-ecosystem: 'maven'
+    directory: '/releng/edu.toronto.cs.se.mmint.releng'
+    target-branch: 'develop'
+    schedule:
+      interval: 'daily'
 
