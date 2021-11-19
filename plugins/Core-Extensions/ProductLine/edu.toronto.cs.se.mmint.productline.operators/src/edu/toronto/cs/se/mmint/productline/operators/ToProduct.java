@@ -84,42 +84,40 @@ public class ToProduct extends OperatorImpl {
     this.presenceConditionCache = new HashMap<>();
   }
 
-  private boolean isInProduct(PLElement plElement, Map<String, Boolean> varsValues) {
+  private boolean isInProduct(PLElement plElement, Map<String, Boolean> allFeatureValues) {
     var presenceCondition = plElement.getPresenceCondition();
     if (presenceCondition == null) {
       return true;
     }
-    return canInstantiateFeatures(presenceCondition, varsValues);
+    return canInstantiateFeatures(presenceCondition, allFeatureValues);
   }
 
-  private boolean canInstantiateFeatures(String plFormula, Map<String, Boolean> featureValues) {
+  private boolean canInstantiateFeatures(String plFormula, Map<String, Boolean> allFeatureValues) {
     var features = this.featureReasoner.getFeatures(plFormula);
     if (features.isEmpty()) {
       return true;
     }
-    for (var feature : features) {
-      var value = featureValues.get(feature);
-      if (value == null) {
-        value = MIDDialogs.getBooleanInput("Feature '" + feature + "'", "Assign true to feature '" + feature + "'?");
-        featureValues.put(feature, value);
-      }
-      plFormula = plFormula.replaceAll("\\b" + feature + "\\b", value.toString());
-    }
-    var result = this.presenceConditionCache.computeIfAbsent(plFormula,
-                                                  k -> this.featureReasoner.checkConsistency(k));
 
-    return result;
+    var featureValues = new HashMap<String, Boolean>();
+    features.forEach(feature -> {
+      var value = allFeatureValues.computeIfAbsent(
+        feature, k -> MIDDialogs.getBooleanInput("Feature '" + k + "'", "Assign true to feature '" + k + "'?"));
+      featureValues.put(feature, value);
+    });
+
+    return this.presenceConditionCache.computeIfAbsent(
+      plFormula, k -> this.featureReasoner.checkConsistency(k, featureValues));
   }
 
   private void toProduct() throws MMINTException {
-    var featureValues = new HashMap<String, Boolean>();
-    if (!canInstantiateFeatures(this.input.pl.getFeaturesConstraint(), featureValues)) {
+    var allFeatureValues = new HashMap<String, Boolean>();
+    if (!canInstantiateFeatures(this.input.pl.getFeaturesConstraint(), allFeatureValues)) {
       throw new MMINTException("The constraint on features is not satisfiable");
     }
     var productModelObjs = new HashMap<Class, EObject>();
     var productFactory = this.input.pl.getMetamodel().getEFactoryInstance();
     for (var plClass : this.input.pl.getClasses()) {
-      if (!isInProduct(plClass, featureValues)) {
+      if (!isInProduct(plClass, allFeatureValues)) {
         continue;
       }
       var productModelObj = productFactory.create(plClass.getType());
@@ -128,7 +126,7 @@ public class ToProduct extends OperatorImpl {
         this.output.product = productModelObj;
       }
       for (var plAttribute : plClass.getAttributes()) {
-        if (!isInProduct(plAttribute, featureValues)) {
+        if (!isInProduct(plAttribute, allFeatureValues)) {
           continue;
         }
         var emfType = plAttribute.getType().getEAttributeType();
@@ -149,7 +147,7 @@ public class ToProduct extends OperatorImpl {
       }
     }
     for (var plReference : this.input.pl.getReferences()) {
-      if (!isInProduct(plReference, featureValues)) {
+      if (!isInProduct(plReference, allFeatureValues)) {
         continue;
       }
       var srcProductModelObj = productModelObjs.get(plReference.getSource());

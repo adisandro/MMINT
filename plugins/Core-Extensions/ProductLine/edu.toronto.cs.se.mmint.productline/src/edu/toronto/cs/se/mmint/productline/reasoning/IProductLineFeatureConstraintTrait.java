@@ -12,6 +12,7 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.productline.reasoning;
 
+import java.util.Map;
 import java.util.Set;
 
 import edu.toronto.cs.se.mmint.mid.reasoning.IReasoner;
@@ -33,8 +34,8 @@ public interface IProductLineFeatureConstraintTrait extends IReasoner {
   Set<String> getFeatures(String plFormula);
 
   /**
-   * Checks whether a set of presence conditions are consistent with a constraint on features, i.e. can be in the same
-   * product.
+   * Checks whether a set of presence conditions are consistent with a constraint on features, i.e. if they can be in
+   * the same product.
    *
    * @param featuresConstraint
    *          The constraint on features.
@@ -45,12 +46,14 @@ public interface IProductLineFeatureConstraintTrait extends IReasoner {
   boolean checkConsistency(String featuresConstraint, Set<String> presenceConditions);
 
   /**
-   * Checks whether an instantiated product line formula is consistent, i.e. is logically satisfiable.
+   * Checks whether a product line formula is consistent when all features are replaced with a true or false value, i.e.
+   * if it is logically satisfiable.
    *
-   * @param plInstantiatedFormula
-   *          A feature constraint or a presence condition, where all features have been replaced with a true or false
-   *          value.
+   * @param plFormula
+   *          A feature constraint or a presence condition.
+   * @param featureValues
+   *          The features to be replaced with a true or false value.
    * @return True if the consistency check is satisfied, false otherwise.
    */
-  boolean checkConsistency(String plInstantiatedFormula);
+  boolean checkConsistency(String plFormula, Map<String, Boolean> featureValues);
 }

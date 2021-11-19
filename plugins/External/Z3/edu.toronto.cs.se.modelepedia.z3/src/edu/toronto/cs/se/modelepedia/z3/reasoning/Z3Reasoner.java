@@ -517,7 +517,11 @@ public class Z3Reasoner implements IModelConstraintTrait, IMAVOTrait, IProductLi
 	}
 
   @Override
-  public boolean checkConsistency(String plInstantiatedFormula) {
-    return new Z3Solver().checkSat(Z3Utils.assertion(plInstantiatedFormula)).isSAT();
+  public boolean checkConsistency(String plFormula, Map<String, Boolean> featureValues) {
+    for (var featureValue : featureValues.entrySet()) {
+      plFormula = plFormula.replaceAll("\\b" + featureValue.getKey() + "\\b", featureValue.getValue().toString());
+    }
+
+    return new Z3Solver().checkSat(Z3Utils.assertion(plFormula)).isSAT();
   }
 }

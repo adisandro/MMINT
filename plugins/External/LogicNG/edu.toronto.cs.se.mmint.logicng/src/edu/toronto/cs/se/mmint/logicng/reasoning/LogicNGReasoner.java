@@ -13,9 +13,11 @@
 package edu.toronto.cs.se.mmint.logicng.reasoning;
 
 import java.util.Arrays;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.logicng.datastructures.Substitution;
 import org.logicng.datastructures.Tristate;
 import org.logicng.formulas.FormulaFactory;
 import org.logicng.io.parsers.ParserException;
@@ -47,7 +49,6 @@ public class LogicNGReasoner implements IProductLineFeatureConstraintTrait {
     var parser = new PropositionalParser(factory);
     var minisat = MiniSat.miniSat(factory);
     try {
-      var f = parser.parse(featuresConstraint);
       minisat.add(parser.parse(featuresConstraint));
       for (var presenceCondition : presenceConditions) {
         minisat.add(parser.parse(presenceCondition));
@@ -60,12 +61,17 @@ public class LogicNGReasoner implements IProductLineFeatureConstraintTrait {
   }
 
   @Override
-  public boolean checkConsistency(String plInstantiatedFormula) {
+  public boolean checkConsistency(String plFormula, Map<String, Boolean> featureValues) {
     var factory = new FormulaFactory();
     var parser = new PropositionalParser(factory);
     var minisat = MiniSat.miniSat(factory);
     try {
-      minisat.add(parser.parse(plInstantiatedFormula));
+      var formula = parser.parse(plFormula);
+      var sub = new Substitution();
+      featureValues.forEach((k, v) -> sub.addMapping(factory.variable(k), factory.constant(v)));
+      formula = formula.substitute(sub);
+      minisat.add(formula);
+
       return minisat.sat() == Tristate.TRUE;
     }
     catch (ParserException e) {
