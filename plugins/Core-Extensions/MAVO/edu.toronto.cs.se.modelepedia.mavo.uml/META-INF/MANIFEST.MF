@@ -2,6 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.mavo.uml;singleton:=true
+Automatic-Module-Name: edu.toronto.cs.se.modelepedia.mavo.uml
 Bundle-Version: 2.11.99.qualifier
 Bundle-Vendor: %providerName
 Bundle-RequiredExecutionEnvironment: JavaSE-17

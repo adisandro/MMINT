@@ -2,6 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.istar_mavo.operator;singleton:=true
+Automatic-Module-Name: edu.toronto.cs.se.modelepedia.istar.mavo.operator
 Bundle-Version: 2.11.99.qualifier
 Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.core.runtime,
@@ -17,7 +18,5 @@ Require-Bundle: org.eclipse.core.runtime,
  edu.toronto.cs.se.modelepedia.z3
 Bundle-RequiredExecutionEnvironment: JavaSE-17
 Bundle-ActivationPolicy: lazy
-Eclipse-LazyStart: true
 Export-Package: edu.toronto.cs.se.modelepedia.istar_mavo.operator
 Bundle-ClassPath: .
-
