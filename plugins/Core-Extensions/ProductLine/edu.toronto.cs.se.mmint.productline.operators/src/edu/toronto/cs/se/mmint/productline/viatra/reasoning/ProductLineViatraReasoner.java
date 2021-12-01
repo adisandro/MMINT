@@ -342,7 +342,10 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
         var variable = varPar.getVariable();
         plPar = createVariableReference(plVarsMap.get(variable.getName()));
         if (variable instanceof ParameterRef parRef) {
-          classTypes.add((Parameter) parRef.getReferredParam());
+          var classType = (Parameter) parRef.getReferredParam();
+          if (!((ClassType) classType.getType()).getClassname().getName().equals("EObject")) {
+            classTypes.add(classType);
+          }
         }
       }
       else {
