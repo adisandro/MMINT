@@ -8,6 +8,7 @@ Bundle-RequiredExecutionEnvironment: JavaSE-17
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.validation,
+ org.eclipse.xtext.common.types,
  org.eclipse.viatra.query.runtime,
  org.eclipse.viatra.query.patternlanguage.emf,
  org.eclipse.jdt.annotation;resolution:=optional,

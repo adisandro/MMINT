@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.viatra.query.patternlanguage.emf.vql.AggregatedValue;
 import org.eclipse.viatra.query.patternlanguage.emf.vql.ClassType;
 import org.eclipse.viatra.query.patternlanguage.emf.vql.ClosureType;
@@ -81,9 +82,11 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
   public final static Map<String, String> MID_LIB_PATTERNS_TOCHANGE =
     Map.of("connectedModelElements", "connectedModelElementsWithMapping",
            "connectedEMFObjects",    "connectedEMFObjectsWithMapping");
+  private Pattern libRefPattern, libAttrPattern, libClassPattern;
   private Set<String> origParameters;
   private int extraVariables;
-  private Pattern libRefPattern, libAttrPattern, libClassPattern;
+  private @Nullable String aggregator, aggregatedVarName;
+  private Set<String> aggregatedGroupBy;
 
   public ProductLineViatraReasoner() throws Exception {
     var plModelType = MIDTypeRegistry.<Model>getType(ProductLinePackage.eNS_URI);
@@ -98,6 +101,9 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
   private void reset() {
     this.origParameters = new HashSet<>();
     this.extraVariables = 0;
+    this.aggregator = null;
+    this.aggregatedVarName = null;
+    this.aggregatedGroupBy = new HashSet<>();
   }
 
   private String getNextExtraVariableName() {
@@ -399,15 +405,20 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
       throw new MMINTException("Left operand type not supported");
     }
     if (compareConstraint.getRightOperand() instanceof AggregatedValue right) { // special case: aggregation
+      var aggregatedCall = (PatternCall) right.getCall();
       if (left.getVariable() instanceof ParameterRef leftParRef) {
-        var aggregatedName = leftParRef.getReferredParam().getName();
-        var plAggregatedVar = plVarsMap.remove(aggregatedName);
+        this.aggregator = right.getAggregator().getSimpleName();
+        this.aggregatedVarName = leftParRef.getReferredParam().getName();
+        this.aggregatedGroupBy = aggregatedCall.getParameters().stream()
+          .filter(p -> p instanceof VariableReference)
+          .map(p -> ((VariableReference) p).getVariable().getName())
+          .filter(n -> !n.startsWith(ProductLineViatraReasoner.DONTCARE_VAR_NAME))
+          .collect(Collectors.toSet());
+        var plAggregatedVar = plVarsMap.remove(this.aggregatedVarName);
         plVariables.remove(plAggregatedVar);
         plParameters.remove(((ParameterRef) plAggregatedVar).getReferredParam());
-        //TODO store hint that the aggreagated variable has to be computed in getMatches
       }
-      return createPatternCompositionConstraint((PatternCall) right.getCall(), false, plParameters, plVariables,
-                                                plVarsMap);
+      return createPatternCompositionConstraint(aggregatedCall, false, plParameters, plVariables, plVarsMap);
     }
     if (!(compareConstraint.getRightOperand() instanceof VariableReference right)) {
       throw new MMINTException("Right operand type not supported");
@@ -508,24 +519,70 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
     return plPattern;
   }
 
-  @Override
-  protected List<Object> getMatches(Collection<GenericPatternMatch> vMatches) throws Exception {
+  private List<Object> getAggregatedMatches(Collection<GenericPatternMatch> vMatches) throws Exception {
+    // first pass:
+    var aggregations = new HashMap<Set<Object>, Integer>();
+    for (var vMatch : vMatches) {
+      var matchAsList = new ArrayList<>();
+      var plElements = new HashSet<PLElement>();
+      var aggregationKey = new HashSet<>();
+      for (var parameterName : vMatch.parameterNames()) {
+        var parameter = vMatch.get(parameterName);
+        matchAsList.add(parameter);
+        if (this.aggregatedGroupBy.contains(parameterName)) {
+          aggregationKey.add(parameter);
+        }
+        if (parameter instanceof PLElement plElement) {
+          plElements.add(plElement);
+        }
+      }
+      if (!areInAProduct(plElements)) {
+        continue;
+      }
+      aggregations.compute(aggregationKey, (k, v) -> (v == null) ?
+        switch(this.aggregator) {
+          case "count" -> 1;
+          case "min", "max", "avg" -> 0;//TODO
+          default -> 0;
+        } :
+        switch(this.aggregator) {
+          case "count" -> v+1;
+          case "min", "max", "avg" -> v;//TODO
+          default -> v;
+        }
+      );
+    }
+
+    // second pass:
+    var matches = new ArrayList<>();
+    for (var aggregationEntry : aggregations.entrySet()) {
+      var match = new ArrayList<>(aggregationEntry.getKey());
+      match.add(aggregationEntry.getValue());
+      matches.add(match);
+    }
+
+    return matches;
+  }
+
+  private List<Object> getNormalMatches(Collection<GenericPatternMatch> vMatches) throws Exception {
     var matches = new LinkedHashSet<>();
     for (var vMatch : vMatches) {
       var matchAsList = new ArrayList<>();
       var plElements = new HashSet<PLElement>();
       for (var parameterName : vMatch.parameterNames()) {
         var parameter = vMatch.get(parameterName);
+        // the match only contains the parameters of the original query..
         if (this.origParameters.contains(parameterName)) {
           matchAsList.add(parameter);
         }
+        // ..but extra lifting parameters must still be considered for compatible presence conditions later
         if (parameter instanceof PLElement plElement) {
           plElements.add(plElement);
         }
       }
       // the inner list is redundant for one element
       var match = (matchAsList.size() == 1) ? matchAsList.get(0) : matchAsList;
-      // adding the product line elements as query parameters may create spurious extra results
+      // adding the product line elements as extra query parameters may create spurious extra results
       // that differ only in their parameter order
       // the real (expensive) check for compatible presence conditions is short-circuited in that case
       if (matches.contains(match) || !areInAProduct(plElements)) {
@@ -533,8 +590,12 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
       }
       matches.add(match);
     }
-    this.origParameters = null;
 
     return List.copyOf(matches);
+  }
+
+  @Override
+  protected List<Object> getMatches(Collection<GenericPatternMatch> vMatches) throws Exception {
+    return (this.aggregator != null) ? getAggregatedMatches(vMatches) : getNormalMatches(vMatches);
   }
 }
