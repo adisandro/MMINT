@@ -15,6 +15,7 @@
         eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EPackage"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PLElement" abstract="true">
+    <eOperations name="getProductLine" lowerBound="1" eType="#//ProductLine"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="presenceCondition" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         defaultValueLiteral="true"/>
   </eClassifiers>

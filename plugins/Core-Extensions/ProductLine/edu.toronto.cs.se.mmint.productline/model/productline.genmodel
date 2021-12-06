@@ -21,6 +21,7 @@
     </genClasses>
     <genClasses ecoreClass="productline.ecore#//PLElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute productline.ecore#//PLElement/presenceCondition"/>
+      <genOperations ecoreOperation="productline.ecore#//PLElement/getProductLine"/>
     </genClasses>
     <genClasses ecoreClass="productline.ecore#//Class">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference productline.ecore#//Class/referencesAsSource"/>

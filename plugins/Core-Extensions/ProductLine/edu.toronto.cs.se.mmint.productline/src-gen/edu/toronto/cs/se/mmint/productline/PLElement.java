@@ -54,4 +54,12 @@ public interface PLElement extends EObject {
    */
   void setPresenceCondition(String value);
 
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model kind="operation" required="true"
+   * @generated
+   */
+  ProductLine getProductLine();
+
 } // PLElement

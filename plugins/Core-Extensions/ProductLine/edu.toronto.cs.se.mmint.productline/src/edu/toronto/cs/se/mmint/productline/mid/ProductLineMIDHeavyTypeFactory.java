@@ -13,11 +13,15 @@
 package edu.toronto.cs.se.mmint.productline.mid;
 
 import edu.toronto.cs.se.mmint.MIDHeavyTypeFactory;
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.extensions.ExtensionPointType;
+import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.productline.PLElement;
+import edu.toronto.cs.se.mmint.productline.ProductLine;
+import edu.toronto.cs.se.mmint.productline.ProductLinePackage;
 
 public class ProductLineMIDHeavyTypeFactory extends MIDHeavyTypeFactory {
 
@@ -30,6 +34,15 @@ public class ProductLineMIDHeavyTypeFactory extends MIDHeavyTypeFactory {
       return pc;
     }
     return "(" + pc + ")";
+  }
+
+  public static ProductLine getProductLine(PLMapping plMapping) {
+    return plMapping.getModelElemEndpoints().stream()
+      .map(mee -> (Model) mee.getTarget().eContainer())
+      .filter(m -> MIDTypeHierarchy.instanceOf(m, ProductLinePackage.eNS_URI, false))
+      .map(m -> (ProductLine) m.getEMFInstanceRoot())
+      .findAny() // assumption: all product line models connected by a rel share the same features and constraints
+      .get();
   }
 
   @Override

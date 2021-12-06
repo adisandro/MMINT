@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import edu.toronto.cs.se.mmint.mid.relationship.impl.MappingImpl;
 import edu.toronto.cs.se.mmint.productline.PLElement;
+import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.productline.ProductLinePackage;
 import edu.toronto.cs.se.mmint.productline.mid.PLMapping;
 import edu.toronto.cs.se.mmint.productline.mid.ProductLineMIDHeavyTypeFactory;
@@ -45,7 +46,7 @@ public class PLMappingImpl extends MappingImpl implements PLMapping {
    * @generated
    * @ordered
    */
-  protected static final String PRESENCE_CONDITION_EDEFAULT = null;
+  protected static final String PRESENCE_CONDITION_EDEFAULT = "true";
 
   /**
    * The cached value of the '{@link #getPresenceCondition() <em>Presence Condition</em>}' attribute.
@@ -98,6 +99,14 @@ public class PLMappingImpl extends MappingImpl implements PLMapping {
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, ProductLineMIDPackage.PL_MAPPING__PRESENCE_CONDITION,
                                     oldPresenceCondition, this.presenceCondition));
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public ProductLine getProductLine() {
+    return ProductLineMIDHeavyTypeFactory.getProductLine(this);
   }
 
   /**

@@ -458,6 +458,8 @@ public class ProductLinePackageImpl extends EPackageImpl implements ProductLineP
                    PLElement.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE,
                    !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
 
+    addEOperation(this.plElementEClass, this.getProductLine(), "getProductLine", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+
     initEClass(this.classEClass, edu.toronto.cs.se.mmint.productline.Class.class, "Class", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE,
                EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
     initEReference(getClass_ReferencesAsSource(), this.getReference(), this.getReference_Source(), "referencesAsSource",

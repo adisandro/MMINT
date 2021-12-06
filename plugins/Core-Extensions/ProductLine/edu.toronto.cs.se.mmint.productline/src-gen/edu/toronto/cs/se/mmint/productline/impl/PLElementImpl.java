@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import edu.toronto.cs.se.mmint.productline.PLElement;
+import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.productline.ProductLinePackage;
 
 /**
@@ -98,6 +99,14 @@ public abstract class PLElementImpl extends MinimalEObjectImpl.Container impleme
   }
 
   /**
+   * @generated NOT
+   */
+  @Override
+  public ProductLine getProductLine() {
+    return (ProductLine) eContainer();
+  }
+
+  /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -166,7 +175,7 @@ public abstract class PLElementImpl extends MinimalEObjectImpl.Container impleme
     if (eIsProxy())
       return super.toString();
 
-    var result = new StringBuilder(super.toString());
+    StringBuilder result = new StringBuilder(super.toString());
     result.append(" (presenceCondition: ");
     result.append(this.presenceCondition);
     result.append(')');

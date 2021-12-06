@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import edu.toronto.cs.se.mmint.productline.Attribute;
+import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.productline.ProductLinePackage;
 
 /**
@@ -231,6 +232,14 @@ public class AttributeImpl extends PLElementImpl implements Attribute {
     result.append(this.value);
     result.append(')');
     return result.toString();
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public ProductLine getProductLine() {
+    return (ProductLine) eContainer().eContainer();
   }
 
 } //AttributeImpl

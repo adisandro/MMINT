@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import edu.toronto.cs.se.mmint.mid.relationship.impl.BinaryMappingImpl;
 import edu.toronto.cs.se.mmint.productline.PLElement;
+import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.productline.ProductLinePackage;
 import edu.toronto.cs.se.mmint.productline.mid.PLBinaryMapping;
 import edu.toronto.cs.se.mmint.productline.mid.PLMapping;
@@ -46,7 +47,7 @@ public class PLBinaryMappingImpl extends BinaryMappingImpl implements PLBinaryMa
    * @generated
    * @ordered
    */
-  protected static final String PRESENCE_CONDITION_EDEFAULT = null;
+  protected static final String PRESENCE_CONDITION_EDEFAULT = "true";
 
   /**
    * The cached value of the '{@link #getPresenceCondition() <em>Presence Condition</em>}' attribute.
@@ -99,6 +100,14 @@ public class PLBinaryMappingImpl extends BinaryMappingImpl implements PLBinaryMa
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, ProductLineMIDPackage.PL_BINARY_MAPPING__PRESENCE_CONDITION,
                                     oldPresenceCondition, this.presenceCondition));
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public ProductLine getProductLine() {
+    return ProductLineMIDHeavyTypeFactory.getProductLine(this);
   }
 
   /**
