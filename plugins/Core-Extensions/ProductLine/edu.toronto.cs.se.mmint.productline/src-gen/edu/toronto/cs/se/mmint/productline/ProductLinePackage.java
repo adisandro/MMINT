@@ -14,6 +14,7 @@ package edu.toronto.cs.se.mmint.productline;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -323,6 +324,26 @@ public interface ProductLinePackage extends EPackage {
   int ATTRIBUTE_FEATURE_COUNT = ProductLinePackage.PL_ELEMENT_FEATURE_COUNT + 2;
 
   /**
+   * The meta object id for the '<em>MMINT Exception</em>' data type.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.toronto.cs.se.mmint.MMINTException
+   * @see edu.toronto.cs.se.mmint.productline.impl.ProductLinePackageImpl#getMMINTException()
+   * @generated
+   */
+  int MMINT_EXCEPTION = 5;
+
+  /**
+   * The meta object id for the '<em>IProduct Line Feature Constraint Trait</em>' data type.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeatureConstraintTrait
+   * @see edu.toronto.cs.se.mmint.productline.impl.ProductLinePackageImpl#getIProductLineFeatureConstraintTrait()
+   * @generated
+   */
+  int IPRODUCT_LINE_FEATURE_CONSTRAINT_TRAIT = 6;
+
+  /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.productline.ProductLine <em>Product Line</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -538,6 +559,28 @@ public interface ProductLinePackage extends EPackage {
   EReference getAttribute_Type();
 
   /**
+   * Returns the meta object for data type '{@link edu.toronto.cs.se.mmint.MMINTException <em>MMINT Exception</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for data type '<em>MMINT Exception</em>'.
+   * @see edu.toronto.cs.se.mmint.MMINTException
+   * @model instanceClass="edu.toronto.cs.se.mmint.MMINTException" serializeable="false"
+   * @generated
+   */
+  EDataType getMMINTException();
+
+  /**
+   * Returns the meta object for data type '{@link edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeatureConstraintTrait <em>IProduct Line Feature Constraint Trait</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for data type '<em>IProduct Line Feature Constraint Trait</em>'.
+   * @see edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeatureConstraintTrait
+   * @model instanceClass="edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeatureConstraintTrait" serializeable="false"
+   * @generated
+   */
+  EDataType getIProductLineFeatureConstraintTrait();
+
+  /**
    * Returns the factory that creates the instances of the model.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -728,6 +771,26 @@ public interface ProductLinePackage extends EPackage {
      * @generated
      */
     EReference ATTRIBUTE__TYPE = ProductLinePackage.eINSTANCE.getAttribute_Type();
+
+    /**
+     * The meta object literal for the '<em>MMINT Exception</em>' data type.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.toronto.cs.se.mmint.MMINTException
+     * @see edu.toronto.cs.se.mmint.productline.impl.ProductLinePackageImpl#getMMINTException()
+     * @generated
+     */
+    EDataType MMINT_EXCEPTION = ProductLinePackage.eINSTANCE.getMMINTException();
+
+    /**
+     * The meta object literal for the '<em>IProduct Line Feature Constraint Trait</em>' data type.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeatureConstraintTrait
+     * @see edu.toronto.cs.se.mmint.productline.impl.ProductLinePackageImpl#getIProductLineFeatureConstraintTrait()
+     * @generated
+     */
+    EDataType IPRODUCT_LINE_FEATURE_CONSTRAINT_TRAIT = ProductLinePackage.eINSTANCE.getIProductLineFeatureConstraintTrait();
 
   }
 

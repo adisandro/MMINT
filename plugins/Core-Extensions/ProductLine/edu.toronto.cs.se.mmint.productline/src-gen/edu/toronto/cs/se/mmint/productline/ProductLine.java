@@ -16,6 +16,9 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
+import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeatureConstraintTrait;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Product Line</b></em>'.
@@ -126,5 +129,13 @@ public interface ProductLine extends EObject {
    * @generated
    */
   void setMetamodel(EPackage value);
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model kind="operation" dataType="edu.toronto.cs.se.mmint.productline.IProductLineFeatureConstraintTrait" required="true" exceptions="edu.toronto.cs.se.mmint.productline.MMINTException"
+   * @generated
+   */
+  IProductLineFeatureConstraintTrait getReasoner() throws MMINTException;
 
 } // ProductLine

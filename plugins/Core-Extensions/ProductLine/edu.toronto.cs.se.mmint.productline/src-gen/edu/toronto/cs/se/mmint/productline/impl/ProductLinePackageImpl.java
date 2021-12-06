@@ -14,10 +14,13 @@ package edu.toronto.cs.se.mmint.productline.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.productline.Attribute;
 import edu.toronto.cs.se.mmint.productline.PLElement;
@@ -27,6 +30,7 @@ import edu.toronto.cs.se.mmint.productline.ProductLinePackage;
 import edu.toronto.cs.se.mmint.productline.Reference;
 import edu.toronto.cs.se.mmint.productline.mid.ProductLineMIDPackage;
 import edu.toronto.cs.se.mmint.productline.mid.impl.ProductLineMIDPackageImpl;
+import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeatureConstraintTrait;
 
 /**
  * <!-- begin-user-doc -->
@@ -69,6 +73,20 @@ public class ProductLinePackageImpl extends EPackageImpl implements ProductLineP
    * @generated
    */
   private EClass attributeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EDataType mmintExceptionEDataType = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EDataType iProductLineFeatureConstraintTraitEDataType = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -351,6 +369,26 @@ public class ProductLinePackageImpl extends EPackageImpl implements ProductLineP
    * @generated
    */
   @Override
+  public EDataType getMMINTException() {
+    return this.mmintExceptionEDataType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EDataType getIProductLineFeatureConstraintTrait() {
+    return this.iProductLineFeatureConstraintTraitEDataType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public ProductLineFactory getProductLineFactory() {
     return (ProductLineFactory) getEFactoryInstance();
   }
@@ -399,6 +437,10 @@ public class ProductLinePackageImpl extends EPackageImpl implements ProductLineP
     this.attributeEClass = createEClass(ProductLinePackage.ATTRIBUTE);
     createEAttribute(this.attributeEClass, ProductLinePackage.ATTRIBUTE__VALUE);
     createEReference(this.attributeEClass, ProductLinePackage.ATTRIBUTE__TYPE);
+
+    // Create data types
+    this.mmintExceptionEDataType = createEDataType(ProductLinePackage.MMINT_EXCEPTION);
+    this.iProductLineFeatureConstraintTraitEDataType = createEDataType(ProductLinePackage.IPRODUCT_LINE_FEATURE_CONSTRAINT_TRAIT);
   }
 
   /**
@@ -453,6 +495,10 @@ public class ProductLinePackageImpl extends EPackageImpl implements ProductLineP
                    ProductLine.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES,
                    !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
 
+    var op = addEOperation(this.productLineEClass, this.getIProductLineFeatureConstraintTrait(), "getReasoner", 1, 1,
+                                  EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    addEException(op, this.getMMINTException());
+
     initEClass(this.plElementEClass, PLElement.class, "PLElement", EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getPLElement_PresenceCondition(), this.ecorePackage.getEString(), "presenceCondition", "true", 0, 1,
                    PLElement.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE,
@@ -494,6 +540,12 @@ public class ProductLinePackageImpl extends EPackageImpl implements ProductLineP
     initEReference(getAttribute_Type(), this.ecorePackage.getEAttribute(), null, "type", null, 1, 1, Attribute.class,
                    !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE,
                    EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
+
+    // Initialize data types
+    initEDataType(this.mmintExceptionEDataType, MMINTException.class, "MMINTException", !EPackageImpl.IS_SERIALIZABLE,
+                  !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+    initEDataType(this.iProductLineFeatureConstraintTraitEDataType, IProductLineFeatureConstraintTrait.class,
+                  "IProductLineFeatureConstraintTrait", !EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 
     // Create resource
     createResource(ProductLinePackage.eNS_URI);

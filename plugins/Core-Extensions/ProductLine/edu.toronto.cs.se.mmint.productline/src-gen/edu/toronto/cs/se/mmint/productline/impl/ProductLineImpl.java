@@ -25,9 +25,12 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import edu.toronto.cs.se.mmint.MMINT;
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.productline.ProductLinePackage;
 import edu.toronto.cs.se.mmint.productline.Reference;
+import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeatureConstraintTrait;
 
 /**
  * <!-- begin-user-doc -->
@@ -256,6 +259,18 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
   }
 
   /**
+   * @generated NOT
+   */
+  @Override
+  public IProductLineFeatureConstraintTrait getReasoner() throws MMINTException {
+    var reasonerName = getReasonerName();
+    if (!(MMINT.getReasoner(reasonerName) instanceof IProductLineFeatureConstraintTrait featureReasoner)) {
+      throw new MMINTException(reasonerName + " is not able to check product line feature constraints");
+    }
+    return featureReasoner;
+  }
+
+  /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -385,7 +400,7 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
     if (eIsProxy())
       return super.toString();
 
-    var result = new StringBuilder(super.toString());
+    StringBuilder result = new StringBuilder(super.toString());
     result.append(" (featuresConstraint: ");
     result.append(this.featuresConstraint);
     result.append(", reasonerName: ");
