@@ -13,6 +13,7 @@
 package edu.toronto.cs.se.mmint.productline.reasoning;
 
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.reasoning.IQueryTrait;
@@ -24,6 +25,13 @@ import edu.toronto.cs.se.mmint.productline.PLElement;
  * @author Alessio Di Sandro
  */
 public interface IProductLineQueryTrait extends IQueryTrait {
+
+  default Set<String> getPresenceConditions(Set<PLElement> plElements) {
+    return plElements.stream()
+      .map(e -> e.getPresenceCondition())
+      .filter(pc -> pc != null && !pc.strip().equals("true"))
+      .collect(Collectors.toSet());
+  }
 
   /**
    * Checks whether a set of product line elements are in a same product, according to their presence conditions and the

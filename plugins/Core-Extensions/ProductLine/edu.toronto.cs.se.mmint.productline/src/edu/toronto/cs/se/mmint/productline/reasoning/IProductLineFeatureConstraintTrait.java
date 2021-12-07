@@ -56,4 +56,10 @@ public interface IProductLineFeatureConstraintTrait extends IReasoner {
    * @return True if the consistency check is satisfied, false otherwise.
    */
   boolean checkConsistency(String plFormula, Map<String, Boolean> featureValues);
+
+  default Map<String, Map<Set<Object>, Integer>> aggregate(Set<String> presenceConditions, Set<Object> aggregationGroup,
+                                                           Map<String, Map<Set<Object>, Integer>> aggregations)
+                                                             throws Exception {
+    return Map.of();
+  }
 }

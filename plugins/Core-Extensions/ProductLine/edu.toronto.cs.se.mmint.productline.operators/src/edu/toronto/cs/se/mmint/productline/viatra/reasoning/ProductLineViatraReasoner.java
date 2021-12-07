@@ -54,18 +54,13 @@ import org.eclipse.viatra.query.runtime.api.GenericPatternMatch;
 
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
-import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
-import edu.toronto.cs.se.mmint.productline.Attribute;
 import edu.toronto.cs.se.mmint.productline.PLElement;
-import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.productline.ProductLinePackage;
-import edu.toronto.cs.se.mmint.productline.mid.PLMapping;
-import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeatureConstraintTrait;
 import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineQueryTrait;
 import edu.toronto.cs.se.mmint.viatra.reasoning.ViatraReasoner;
 
@@ -130,33 +125,10 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
     if (plElements.isEmpty()) {
       return false;
     }
-
-    var anyPLElem = plElements.stream().findAny().get();
-    ProductLine pl;
-    // TODO MMINT[JAVA18] Use switch with pattern matching
-    if (anyPLElem instanceof PLMapping plMapping) {
-      pl = plMapping.getModelElemEndpoints().stream()
-        .map(mee -> (Model) mee.getTarget().eContainer())
-        .filter(m -> MIDTypeHierarchy.instanceOf(m, ProductLinePackage.eNS_URI, false))
-        .map(m -> (ProductLine) m.getEMFInstanceRoot())
-        .findAny() // assumption: all product line models connected by a rel share the same features and constraints
-        .get();
-    }
-    else if (anyPLElem instanceof Attribute) {
-      pl = (ProductLine) anyPLElem.eContainer().eContainer();
-    }
-    else {
-      pl = (ProductLine) anyPLElem.eContainer();
-    }
+    var pl = plElements.stream().findAny().get().getProductLine();
+    var featureReasoner = pl.getReasoner();
     var featuresConstraint = pl.getFeaturesConstraint();
-    var presenceConditions = plElements.stream()
-      .map(e -> e.getPresenceCondition())
-      .filter(pc -> pc != null)
-      .collect(Collectors.toSet());
-    var reasonerName = pl.getReasonerName();
-    if (!(MMINT.getReasoner(reasonerName) instanceof IProductLineFeatureConstraintTrait featureReasoner)) {
-      throw new MMINTException(reasonerName + " is not able to check product line feature constraints");
-    }
+    var presenceConditions = getPresenceConditions(plElements);
 
     return featureReasoner.checkConsistency(featuresConstraint, presenceConditions);
   }
@@ -521,16 +493,16 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
 
   private List<Object> getAggregatedMatches(Collection<GenericPatternMatch> vMatches) throws Exception {
     // first pass:
-    var aggregations = new HashMap<Set<Object>, Integer>();
+    var aggregations = Map.<String, Map<Set<Object>, Integer>>of();
     for (var vMatch : vMatches) {
       var matchAsList = new ArrayList<>();
       var plElements = new HashSet<PLElement>();
-      var aggregationKey = new HashSet<>();
+      var aggregationGroup = new HashSet<>();
       for (var parameterName : vMatch.parameterNames()) {
         var parameter = vMatch.get(parameterName);
         matchAsList.add(parameter);
         if (this.aggregatedGroupBy.contains(parameterName)) {
-          aggregationKey.add(parameter);
+          aggregationGroup.add(parameter);
         }
         if (parameter instanceof PLElement plElement) {
           plElements.add(plElement);
@@ -539,32 +511,36 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
       if (!areInAProduct(plElements)) {
         continue;
       }
-      aggregations.compute(aggregationKey, (k, v) -> (v == null) ?
-        switch(this.aggregator) {
-          case "count" -> 1;
-          case "min", "max", "avg" -> 0;//TODO
-          default -> 0;
-        } :
-        switch(this.aggregator) {
-          case "count" -> v+1;
-          case "min", "max", "avg" -> v;//TODO
-          default -> v;
-        }
-      );
+
+      var presenceConditions = plElements.stream().map(e -> e.getPresenceCondition()).collect(Collectors.toSet());
+      var reasoner = plElements.stream().findAny().get().getProductLine().getReasoner();
+      aggregations = reasoner.aggregate(presenceConditions, aggregationGroup, aggregations);
+//      aggregations.compute(aggregationKey, (k, v) -> (v == null) ?
+//        switch(this.aggregator) {
+//          case "count" -> 1;
+//          case "min", "max", "avg" -> 0;//TODO
+//          default -> 0;
+//        } :
+//        switch(this.aggregator) {
+//          case "count" -> v+1;
+//          case "min", "max", "avg" -> v;//TODO
+//          default -> v;
+//        }
+//      );
     }
 
     // second pass:
     var matches = new ArrayList<>();
-    for (var aggregationEntry : aggregations.entrySet()) {
-      var match = new ArrayList<>(aggregationEntry.getKey());
-      match.add(aggregationEntry.getValue());
-      matches.add(match);
-    }
+//    for (var aggregationEntry : aggregations.entrySet()) {
+//      var match = new ArrayList<>(aggregationEntry.getKey());
+//      match.add(aggregationEntry.getValue());
+//      matches.add(match);
+//    }
 
     return matches;
   }
 
-  private List<Object> getNormalMatches(Collection<GenericPatternMatch> vMatches) throws Exception {
+  private List<Object> getStandardMatches(Collection<GenericPatternMatch> vMatches) throws Exception {
     var matches = new LinkedHashSet<>();
     for (var vMatch : vMatches) {
       var matchAsList = new ArrayList<>();
@@ -596,6 +572,6 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
 
   @Override
   protected List<Object> getMatches(Collection<GenericPatternMatch> vMatches) throws Exception {
-    return (this.aggregator != null) ? getAggregatedMatches(vMatches) : getNormalMatches(vMatches);
+    return (this.aggregator != null) ? getAggregatedMatches(vMatches) : getStandardMatches(vMatches);
   }
 }
