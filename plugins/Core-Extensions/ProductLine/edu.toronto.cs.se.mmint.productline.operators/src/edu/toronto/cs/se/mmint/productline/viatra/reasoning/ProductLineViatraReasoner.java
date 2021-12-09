@@ -61,6 +61,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
 import edu.toronto.cs.se.mmint.productline.PLElement;
 import edu.toronto.cs.se.mmint.productline.ProductLinePackage;
+import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeatureConstraintTrait;
 import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineQueryTrait;
 import edu.toronto.cs.se.mmint.viatra.reasoning.ViatraReasoner;
 
@@ -82,6 +83,8 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
   private int extraVariables;
   private @Nullable String aggregator, aggregatedVarName;
   private Set<String> aggregatedGroupBy;
+  private @Nullable IProductLineFeatureConstraintTrait featureReasoner;
+  private String featuresConstraint;
 
   public ProductLineViatraReasoner() throws Exception {
     var plModelType = MIDTypeRegistry.<Model>getType(ProductLinePackage.eNS_URI);
@@ -99,6 +102,8 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
     this.aggregator = null;
     this.aggregatedVarName = null;
     this.aggregatedGroupBy = new HashSet<>();
+    this.featureReasoner = null;
+    this.featuresConstraint = "";
   }
 
   private String getNextExtraVariableName() {
@@ -125,12 +130,8 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
     if (plElements.isEmpty()) {
       return false;
     }
-    var pl = plElements.stream().findAny().get().getProductLine();
-    var featureReasoner = pl.getReasoner();
-    var featuresConstraint = pl.getFeaturesConstraint();
     var presenceConditions = getPresenceConditions(plElements);
-
-    return featureReasoner.checkConsistency(featuresConstraint, presenceConditions);
+    return this.featureReasoner.checkConsistency(this.featuresConstraint, presenceConditions);
   }
 
   private Variable createVariable(EClass varClass, String name) {
@@ -494,7 +495,7 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
   private List<Object> getAggregatedMatches(Collection<GenericPatternMatch> vMatches) throws Exception {
     // first pass:
     var aggregations = Map.<String, Map<Set<Object>, Integer>>of();
-    for (var vMatch : vMatches) {
+     for (var vMatch : vMatches) {
       var matchAsList = new ArrayList<>();
       var plElements = new HashSet<PLElement>();
       var aggregationGroup = new HashSet<>();
@@ -506,36 +507,42 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
         }
         if (parameter instanceof PLElement plElement) {
           plElements.add(plElement);
+          if (this.featureReasoner == null) {
+            var pl = plElement.getProductLine();
+            this.featureReasoner = pl.getReasoner();
+            this.featuresConstraint = pl.getFeaturesConstraint();
+          }
         }
       }
       if (!areInAProduct(plElements)) {
         continue;
       }
 
-      var presenceConditions = plElements.stream().map(e -> e.getPresenceCondition()).collect(Collectors.toSet());
-      var reasoner = plElements.stream().findAny().get().getProductLine().getReasoner();
-      aggregations = reasoner.aggregate(presenceConditions, aggregationGroup, aggregations);
-//      aggregations.compute(aggregationKey, (k, v) -> (v == null) ?
-//        switch(this.aggregator) {
-//          case "count" -> 1;
-//          case "min", "max", "avg" -> 0;//TODO
-//          default -> 0;
-//        } :
-//        switch(this.aggregator) {
-//          case "count" -> v+1;
-//          case "min", "max", "avg" -> v;//TODO
-//          default -> v;
-//        }
-//      );
+      var presenceConditions = getPresenceConditions(plElements);
+      aggregations = this.featureReasoner.aggregate(presenceConditions, this.featuresConstraint, aggregationGroup, aggregations);
     }
 
     // second pass:
+    //TODO Generalize to all aggregators: initial value, predicate to execute, final filtering
     var matches = new ArrayList<>();
-//    for (var aggregationEntry : aggregations.entrySet()) {
-//      var match = new ArrayList<>(aggregationEntry.getKey());
-//      match.add(aggregationEntry.getValue());
-//      matches.add(match);
-//    }
+    for (var aggregationEntry : aggregations.entrySet()) {
+      var formulaList = new ArrayList<>();
+      formulaList.add(aggregationEntry.getKey()); // [formula, [match1, aggrValue1], ..., [matchN, aggrValueN]]
+      for (var matchEntry : aggregationEntry.getValue().entrySet()) {
+        var matchList = new ArrayList<>();
+        var aggregatedValue = matchEntry.getValue(); // aggregated value
+        if (aggregatedValue == 0) {
+          continue;
+        }
+        matchList.addAll(matchEntry.getKey()); // match
+        matchList.add(aggregatedValue);
+        formulaList.add(matchList);
+      }
+      if (formulaList.size() == 1) { // no matches for this formula
+        continue;
+      }
+      matches.add(formulaList);
+    }
 
     return matches;
   }
@@ -543,21 +550,26 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
   private List<Object> getStandardMatches(Collection<GenericPatternMatch> vMatches) throws Exception {
     var matches = new LinkedHashSet<>();
     for (var vMatch : vMatches) {
-      var matchAsList = new ArrayList<>();
+      var matchList = new ArrayList<>();
       var plElements = new HashSet<PLElement>();
       for (var parameterName : vMatch.parameterNames()) {
         var parameter = vMatch.get(parameterName);
         // the match only contains the parameters of the original query..
         if (this.origParameters.contains(parameterName)) {
-          matchAsList.add(parameter);
+          matchList.add(parameter);
         }
         // ..but extra lifting parameters must still be considered for compatible presence conditions later
         if (parameter instanceof PLElement plElement) {
           plElements.add(plElement);
+          if (this.featureReasoner == null) {
+            var pl = plElement.getProductLine();
+            this.featureReasoner = pl.getReasoner();
+            this.featuresConstraint = pl.getFeaturesConstraint();
+          }
         }
       }
       // the inner list is redundant for one element
-      var match = (matchAsList.size() == 1) ? matchAsList.get(0) : matchAsList;
+      var match = (matchList.size() == 1) ? matchList.get(0) : matchList;
       // adding the product line elements as extra query parameters may create spurious extra results
       // that differ only in their parameter order
       // the real (expensive) check for compatible presence conditions is short-circuited in that case

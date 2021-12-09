@@ -57,7 +57,8 @@ public interface IProductLineFeatureConstraintTrait extends IReasoner {
    */
   boolean checkConsistency(String plFormula, Map<String, Boolean> featureValues);
 
-  default Map<String, Map<Set<Object>, Integer>> aggregate(Set<String> presenceConditions, Set<Object> aggregationGroup,
+  default Map<String, Map<Set<Object>, Integer>> aggregate(Set<String> presenceConditions, String featuresConstraint,
+                                                           Set<Object> aggregationGroup,
                                                            Map<String, Map<Set<Object>, Integer>> aggregations)
                                                              throws Exception {
     return Map.of();

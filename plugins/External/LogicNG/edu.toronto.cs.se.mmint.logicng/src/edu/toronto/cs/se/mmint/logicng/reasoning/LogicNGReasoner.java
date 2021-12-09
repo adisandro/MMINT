@@ -81,13 +81,15 @@ public class LogicNGReasoner implements IProductLineFeatureConstraintTrait {
   }
 
   @Override
-  public Map<String, Map<Set<Object>, Integer>> aggregate(Set<String> presenceConditions, Set<Object> aggregationGroup,
+  public Map<String, Map<Set<Object>, Integer>> aggregate(Set<String> presenceConditions, String featuresConstraint,
+                                                          Set<Object> aggregationGroup,
                                                           Map<String, Map<Set<Object>, Integer>> aggregations)
                                                             throws ParserException {
     var plFormula = presenceConditions.stream().collect(Collectors.joining(" & "));
     var factory = new FormulaFactory();
     var parser = new PropositionalParser(factory);
     var minisat = MiniSat.miniSat(factory);
+    var featuresFormula = parser.parse(featuresConstraint);
     var formula = parser.parse(plFormula);
     var notFormula = factory.not(formula);
     //TODO formula and notFormula should be simplified here
@@ -97,12 +99,13 @@ public class LogicNGReasoner implements IProductLineFeatureConstraintTrait {
       newAggregations.put(notFormula.toString(), Map.of(aggregationGroup, 0));
       return newAggregations;
     }
-    for (var x : aggregations.entrySet()) {
-      var currFormula = parser.parse(x.getKey());
-      var currAggregation = x.getValue();
+    for (var aggregationEntry : aggregations.entrySet()) {
+      var currFormula = parser.parse(aggregationEntry.getKey());
+      var currAggregation = aggregationEntry.getValue();
       var formula2 = factory.and(formula, currFormula);
       var notFormula2 = factory.and(notFormula, currFormula);
       //TODO formula2 and notFormula2 should be simplified here
+      minisat.add(featuresFormula);
       minisat.add(formula2);
       if (minisat.sat() == Tristate.TRUE) {
         var newAggregation = new HashMap<>(currAggregation);
@@ -116,6 +119,7 @@ public class LogicNGReasoner implements IProductLineFeatureConstraintTrait {
         }
       }
       minisat.reset();
+      minisat.add(featuresFormula);
       minisat.add(notFormula2);
       if (minisat.sat() == Tristate.TRUE) {
         var newAggregation = new HashMap<>(currAggregation);

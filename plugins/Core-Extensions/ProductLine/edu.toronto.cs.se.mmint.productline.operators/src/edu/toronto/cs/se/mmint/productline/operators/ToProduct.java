@@ -21,7 +21,6 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
 
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
-import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
@@ -76,11 +75,7 @@ public class ToProduct extends OperatorImpl {
   private void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws Exception {
     this.input = new Input(inputsByName);
     this.output = new Output(outputMIDsByName, getWorkingPath(), this.input);
-    var reasonerName = this.input.pl.getReasonerName();
-    if (!(MMINT.getReasoner(reasonerName) instanceof IProductLineFeatureConstraintTrait featureReasoner)) {
-      throw new MMINTException(reasonerName + " is not able to check product line feature constraints");
-    }
-    this.featureReasoner = featureReasoner;
+    this.featureReasoner = this.input.pl.getReasoner();
     this.presenceConditionCache = new HashMap<>();
   }
 
