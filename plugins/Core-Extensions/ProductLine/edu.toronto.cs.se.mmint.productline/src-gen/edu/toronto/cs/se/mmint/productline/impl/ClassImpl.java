@@ -13,6 +13,7 @@
 package edu.toronto.cs.se.mmint.productline.impl;
 
 import java.util.Collection;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -27,6 +28,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import edu.toronto.cs.se.mmint.productline.Attribute;
 import edu.toronto.cs.se.mmint.productline.ProductLinePackage;
 import edu.toronto.cs.se.mmint.productline.Reference;
+import edu.toronto.cs.se.mmint.productline.mid.ProductLineMIDHeavyTypeFactory;
 
 /**
  * <!-- begin-user-doc -->
@@ -314,6 +316,19 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
       return this.type != null;
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public String toString() {
+    return getType().getName() + " " +
+           ProductLineMIDHeavyTypeFactory.getPLElementLabel(this, true) + " {" +
+           getAttributes().stream()
+             .map(a -> a.getType().getName() + ": " + a.getValue())
+             .collect(Collectors.joining(", ")) +
+           "}";
   }
 
 } //ClassImpl
