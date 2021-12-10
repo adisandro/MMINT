@@ -24,7 +24,6 @@ The easiest way of installing MMINT in Eclipse is using the [binary packages](#b
   * Papyrus for UML
   * Sirius Properties Views - Specifier Support
   * Sirius Specifier Environment
-  * Sirius Integration with Xtext
   * VIATRA Query and Transformation SDK
   * ATL SDK - ATL Transformation Language SDK _(Required for Modelepedia ClassDiagram)_
   * Massif Core _(Required for Modelepedia Simulink)_

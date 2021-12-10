@@ -93,7 +93,6 @@ sets of related models.
       <import feature="org.eclipse.acceleo"/>
       <import feature="org.eclipse.sirius.specifier"/>
       <import feature="org.eclipse.sirius.specifier.properties.feature"/>
-      <import feature="org.eclipse.sirius.runtime.ide.xtext"/>
       <import feature="org.eclipse.viatra.query.sdk.feature.source"/>
    </requires>
 
