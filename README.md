@@ -19,7 +19,7 @@ The easiest way of installing MMINT in Eclipse is using the [binary packages](#b
 ### Requirements
 
 * Java 17
-* Eclipse Modeling Tools 2021-09. Within Eclipse, use `Help > Install New Software` to add the following components:
+* Eclipse Modeling Tools 2021-12. Within Eclipse, use `Help > Install New Software` to add the following components:
   * Acceleo
   * Papyrus for UML
   * Sirius Properties Views - Specifier Support
@@ -84,7 +84,9 @@ MoDELS 15
 
 ### Using MMINT
 
-* A Lean Approach to Building Valid Model-Based Safety Arguments  
+* [Validating Safety Arguments with Lean](https://doi.org/10.1007/978-3-030-92124-8_2)  
+SEFM 21
+* [A Lean Approach to Building Valid Model-Based Safety Arguments](https://doi.org/10.1109/MODELS50736.2021.00028)  
 MODELS 21 | Install: `Examples > MMINT - MODELS21` | [Readme](examples/MODELS21/edu.toronto.cs.se.mmint.examples.models21/MODELS21/README.md)
 * Assurance case property checking with MMINT-A and OCL  
 CSER 20
