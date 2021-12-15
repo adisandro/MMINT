@@ -26,6 +26,12 @@ import edu.toronto.cs.se.mmint.productline.PLElement;
  */
 public interface IProductLineQueryTrait extends IQueryTrait {
 
+  interface AggregatorFunction {
+    int apply(int a, int b);
+  }
+
+  record Aggregator(int emptyValue, AggregatorFunction aggregate) {}
+
   default Set<String> getPresenceConditions(Set<PLElement> plElements) {
     return plElements.stream()
       .map(e -> e.getPresenceCondition())

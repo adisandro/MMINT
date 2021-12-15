@@ -81,7 +81,7 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
   private Pattern libRefPattern, libAttrPattern, libClassPattern;
   private Set<String> origParameters;
   private int extraVariables;
-  private @Nullable String aggregator, aggregatedVarName;
+  private @Nullable String aggregatorName, aggregatedVarName;
   private Set<String> aggregatedGroupBy;
   private @Nullable IProductLineFeatureConstraintTrait featureReasoner;
   private String featuresConstraint;
@@ -99,7 +99,7 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
   private void reset() {
     this.origParameters = new HashSet<>();
     this.extraVariables = 0;
-    this.aggregator = null;
+    this.aggregatorName = null;
     this.aggregatedVarName = null;
     this.aggregatedGroupBy = new HashSet<>();
     this.featureReasoner = null;
@@ -380,7 +380,7 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
     if (compareConstraint.getRightOperand() instanceof AggregatedValue right) { // special case: aggregation
       var aggregatedCall = (PatternCall) right.getCall();
       if (left.getVariable() instanceof ParameterRef leftParRef) {
-        this.aggregator = right.getAggregator().getSimpleName();
+        this.aggregatorName = right.getAggregator().getSimpleName();
         this.aggregatedVarName = leftParRef.getReferredParam().getName();
         this.aggregatedGroupBy = aggregatedCall.getParameters().stream()
           .filter(p -> p instanceof VariableReference)
@@ -517,30 +517,37 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
       if (!areInAProduct(plElements)) {
         continue;
       }
-
-      var presenceConditions = getPresenceConditions(plElements);
-      aggregations = this.featureReasoner.aggregate(presenceConditions, this.featuresConstraint, aggregationGroup, aggregations);
+      var aggregator = switch(this.aggregatorName) {
+        case "count" -> new Aggregator(0, (a, b) -> a + b);
+        case "sum"   -> new Aggregator(0, (a, b) -> a + b);
+        case "min"   -> new Aggregator(Integer.MIN_VALUE, (a, b) -> (a <= b) ? a : b);
+        case "max"   -> new Aggregator(Integer.MAX_VALUE, (a, b) -> (a >= b) ? a : b);
+        default      -> throw new MMINTException("Unsupported aggregator '" + this.aggregatorName + "'");
+      };
+      var aggregatedValue = 1;//TODO Fetch from the matches
+      var presenceConditions = getPresenceConditions(plElements);//TODO What happens if it's a true?
+      aggregations = this.featureReasoner.aggregate(presenceConditions, this.featuresConstraint, aggregationGroup,
+                                                    aggregatedValue, aggregator, aggregations);
     }
 
     // second pass:
-    //TODO Generalize to all aggregators: initial value, predicate to execute, final filtering
     var matches = new ArrayList<>();
     for (var aggregationEntry : aggregations.entrySet()) {
       var formulaList = new ArrayList<>();
       formulaList.add(aggregationEntry.getKey()); // [formula, [match1, aggrValue1], ..., [matchN, aggrValueN]]
       for (var matchEntry : aggregationEntry.getValue().entrySet()) {
         var matchList = new ArrayList<>();
-        var aggregatedValue = matchEntry.getValue(); // aggregated value
-        if (aggregatedValue == 0) {
-          continue;
-        }
+//        var aggregatedValue = matchEntry.getValue();
+//        if (aggregatedValue == 0) {
+//          continue;
+//        }
         matchList.addAll(matchEntry.getKey()); // match
-        matchList.add(aggregatedValue);
+        matchList.add(matchEntry.getValue()); // aggregated value
         formulaList.add(matchList);
       }
-      if (formulaList.size() == 1) { // no matches for this formula
-        continue;
-      }
+//      if (formulaList.size() == 1) { // no matches for this formula
+//        continue;
+//      }
       matches.add(formulaList);
     }
 
@@ -584,6 +591,6 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
 
   @Override
   protected List<Object> getMatches(Collection<GenericPatternMatch> vMatches) throws Exception {
-    return (this.aggregator != null) ? getAggregatedMatches(vMatches) : getStandardMatches(vMatches);
+    return (this.aggregatorName != null) ? getAggregatedMatches(vMatches) : getStandardMatches(vMatches);
   }
 }

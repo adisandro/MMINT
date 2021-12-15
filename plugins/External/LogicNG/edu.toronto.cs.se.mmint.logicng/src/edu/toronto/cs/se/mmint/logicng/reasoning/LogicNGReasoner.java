@@ -26,6 +26,7 @@ import org.logicng.io.parsers.PropositionalParser;
 import org.logicng.solvers.MiniSat;
 
 import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeatureConstraintTrait;
+import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineQueryTrait.Aggregator;
 
 public class LogicNGReasoner implements IProductLineFeatureConstraintTrait {
 
@@ -82,7 +83,8 @@ public class LogicNGReasoner implements IProductLineFeatureConstraintTrait {
 
   @Override
   public Map<String, Map<Set<Object>, Integer>> aggregate(Set<String> presenceConditions, String featuresConstraint,
-                                                          Set<Object> aggregationGroup,
+                                                          Set<Object> aggregationGroup, int aggregatedValue,
+                                                          Aggregator aggregator,
                                                           Map<String, Map<Set<Object>, Integer>> aggregations)
                                                             throws ParserException {
     var plFormula = presenceConditions.stream().collect(Collectors.joining(" & "));
@@ -92,11 +94,10 @@ public class LogicNGReasoner implements IProductLineFeatureConstraintTrait {
     var featuresFormula = parser.parse(featuresConstraint);
     var formula = parser.parse(plFormula);
     var notFormula = factory.not(formula);
-    //TODO formula and notFormula should be simplified here
     var newAggregations = new HashMap<String, Map<Set<Object>, Integer>>();
     if (aggregations.isEmpty()) {
-      newAggregations.put(formula.toString(), Map.of(aggregationGroup, 1));
-      newAggregations.put(notFormula.toString(), Map.of(aggregationGroup, 0));
+      newAggregations.put(formula.toString(), Map.of(aggregationGroup, aggregatedValue));
+      newAggregations.put(notFormula.toString(), Map.of(aggregationGroup, aggregator.emptyValue()));
       return newAggregations;
     }
     for (var aggregationEntry : aggregations.entrySet()) {
@@ -104,34 +105,37 @@ public class LogicNGReasoner implements IProductLineFeatureConstraintTrait {
       var currAggregation = aggregationEntry.getValue();
       var formula2 = factory.and(formula, currFormula);
       var notFormula2 = factory.and(notFormula, currFormula);
-      //TODO formula2 and notFormula2 should be simplified here
       minisat.add(featuresFormula);
       minisat.add(formula2);
       if (minisat.sat() == Tristate.TRUE) {
         var newAggregation = new HashMap<>(currAggregation);
-        newAggregation.compute(aggregationGroup, (k, v) -> (v == null) ? 1 : v+1);
+        newAggregation.compute(
+          aggregationGroup, (k, v) -> (v == null) ? aggregatedValue : aggregator.aggregate().apply(v, aggregatedValue));
         var otherAggregations = newAggregations.get(formula2.toString());
         if (otherAggregations == null) {
           newAggregations.put(formula2.toString(), newAggregation);
         }
         else {
-          newAggregation.forEach((k, v) -> otherAggregations.merge(k, v, (v1, v2) -> v1+v2));
+          newAggregation.forEach(
+            (k, v) -> otherAggregations.merge(k, v, (v1, v2) -> aggregator.aggregate().apply(v1, v2)));
         }
       }
-      minisat.reset();
-      minisat.add(featuresFormula);
-      minisat.add(notFormula2);
-      if (minisat.sat() == Tristate.TRUE) {
-        var newAggregation = new HashMap<>(currAggregation);
-        newAggregation.putIfAbsent(aggregationGroup, 0);
-        var otherAggregations = newAggregations.get(notFormula2.toString());
-        if (otherAggregations == null) {
-          newAggregations.put(notFormula2.toString(), newAggregation);
-        }
-        else {
-          newAggregation.forEach((k, v) -> otherAggregations.merge(k, v, (v1, v2) -> v1+v2));
-        }
-      }
+      //TODO Is the commented part necessary or is it always filtered out?
+//      minisat.reset();
+//      minisat.add(featuresFormula);
+//      minisat.add(notFormula2);
+//      if (minisat.sat() == Tristate.TRUE) {
+//        var newAggregation = new HashMap<>(currAggregation);
+//        newAggregation.putIfAbsent(aggregationGroup, aggregator.emptyValue());
+//        var otherAggregations = newAggregations.get(notFormula2.toString());
+//        if (otherAggregations == null) {
+//          newAggregations.put(notFormula2.toString(), newAggregation);
+//        }
+//        else {
+//          newAggregation.forEach(
+//            (k, v) -> otherAggregations.merge(k, v, (v1, v2) -> aggregator.aggregate().apply(v1, v2)));
+//        }
+//      }
       minisat.reset();
     }
 
