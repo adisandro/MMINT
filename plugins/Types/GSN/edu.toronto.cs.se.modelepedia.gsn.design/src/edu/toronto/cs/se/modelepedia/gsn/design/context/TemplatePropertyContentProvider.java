@@ -6,7 +6,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 /*******************************************************************************
- * Copyright (c) 2021, 2021 Alessio Di Sandro.
+ * Copyright (c) 2021, 2022 Alessio Di Sandro.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
