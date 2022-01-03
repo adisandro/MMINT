@@ -13,6 +13,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.viatra.query.patternlanguage.emf,
  org.eclipse.jdt.annotation;resolution:=optional,
  edu.toronto.cs.se.mmint,
+ edu.toronto.cs.se.mmint.java,
  edu.toronto.cs.se.mmint.productline,
  edu.toronto.cs.se.mmint.viatra
 Bundle-Vendor: %providerName

@@ -22,6 +22,10 @@
                uri="edu.toronto.cs.se.mmint.productline.operators.ToProductLine"
                class="edu.toronto.cs.se.mmint.productline.operators.ToProductLine">
          </type>
+         <constraint
+               implementation="edu.toronto.cs.se.mmint.productline.operators.ToProductLine$Constraint"
+               language="Java">
+         </constraint>
          <inputs>
             <parameter>
                <type

@@ -23,8 +23,10 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorConstraint;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
@@ -44,6 +46,22 @@ public class ToProductLine extends OperatorImpl {
 
     public Input(Map<String, Model> inputsByName) {
       this.productModel = inputsByName.get(Input.MODEL);
+      if (MIDTypeHierarchy.instanceOf(this.productModel, Output.MODEL_TYPE_ID, false)) {
+        throw new IllegalArgumentException();
+      }
+    }
+  }
+
+  public static class Constraint implements IJavaOperatorConstraint {
+    @Override
+    public boolean checkInputs(Map<String, Model> inputsByName) {
+      try {
+        new Input(inputsByName);
+        return true;
+      }
+      catch (IllegalArgumentException e) {
+        return false;
+      }
     }
   }
 
