@@ -26,6 +26,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.jdt.annotation.Nullable;
@@ -188,7 +189,11 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
   }
 
   private Parameter liftParameter(Parameter parameter) {
-    return createParameter(parameter.getName(), ProductLinePackage.eINSTANCE.getClass_(), parameter.getDirection());
+    var typeClass = ((ClassType) parameter.getType()).getClassname();
+    if (!(typeClass instanceof EDataType)) {
+      typeClass = ProductLinePackage.eINSTANCE.getClass_();
+    }
+    return createParameter(parameter.getName(), typeClass, parameter.getDirection());
   }
 
   private VariableReference createVariableReference(Variable plVar) {
@@ -274,18 +279,30 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
       // attribute value
       if (edgeFeature instanceof EAttribute edgeAttribute) {
         var dst = pathConstraint.getDst();
-        String value;
+        ValueReference plValue;
         //TODO MMINT[JAVA18] Convert to switch with pattern matching
         if (dst instanceof StringValue strDst) {
-          value = strDst.getValue();
+          plValue = createStringValue(strDst.getValue());
         }
         else if (dst instanceof EnumValue enumDst) {
-          value = enumDst.getLiteral().getLiteral();
+          plValue = createStringValue(enumDst.getLiteral().getLiteral());
+        }
+        else if (dst instanceof VariableReference varRefDst) {
+          var varDst = varRefDst.getVariable();
+          var valueName = varDst.getName();
+          var plValueVar = plVarsMap.get(valueName);
+          if (plValueVar == null) {
+            // primitive type with no presence condition, no need to create a parameter
+            plValueVar = createVariable(varDst.eClass(), valueName);
+            plVarsMap.put(valueName, plValueVar);
+            plVariables.add(plValueVar);
+          }
+          plValue = createVariableReference(plValueVar);
         }
         else {
           throw new MMINTException("Path constraint type " + dst.getClass().getName() + " not supported");
         }
-        plCall.getParameters().add(createStringValue(value));
+        plCall.getParameters().add(plValue);
       }
       plConstraints.add(plConstraint);
     }
