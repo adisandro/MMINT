@@ -165,6 +165,17 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
     return createParameterRef(name, plParameter);
   }
 
+  private ParameterRef createParameterAndRef(String name, EClass typeClass, ParameterDirection direction,
+                                             EList<Variable> plParameters, EList<Variable> plVariables,
+                                             Map<String, Variable> plVarsMap) {
+    var plParameterRef = createParameterAndRef(name, typeClass, direction);
+    plVarsMap.put(name, plParameterRef);
+    plVariables.add(plParameterRef);
+    plParameters.add(plParameterRef.getReferredParam());
+
+    return plParameterRef;
+  }
+
   private StringValue createStringValue(String value) {
     var plStringValue = PatternLanguageFactory.eINSTANCE.createStringValue();
     plStringValue.setValue(value);
@@ -215,13 +226,23 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
     return createVariableReference(plVar);
   }
 
+  // converts don't care var to extra par
+  private void liftDontCareVar(String varName, EList<Variable> plParameters, EList<Variable> plVariables,
+                               Map<String, Variable> plVarsMap) {
+    var plDontCareVar = plVarsMap.remove(varName);
+    plVariables.remove(plDontCareVar);
+    varName = getNextExtraVariableName();
+    createParameterAndRef(varName, ProductLinePackage.eINSTANCE.getClass_(), ParameterDirection.OUT, plParameters,
+                          plVariables, plVarsMap);
+  }
+
   /**
    * Lifts a path constraint, i.e.:
    * Class.superclass(child, parent);
    * into:
    * reference(child, "Class", parent, "Class", ref, "superclass");
    */
-  private List<PatternCompositionConstraint> liftPathExpressionConstraint(
+  private List<PatternCompositionConstraint> createPathExpressionConstraint(
                                                PathExpressionConstraint pathConstraint, EList<Variable> plParameters,
                                                EList<Variable> plVariables, Map<String, Variable> plVarsMap)
                                                  throws MMINTException {
@@ -245,10 +266,8 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
         edgeFeature.getEContainingClass().getName();
       var plSrcVar = plVarsMap.get(srcName);
       if (plSrcVar == null) {
-        plSrcVar = createParameterAndRef(srcName, plElemType, ParameterDirection.OUT);
-        plVarsMap.put(srcName, plSrcVar);
-        plVariables.add(plSrcVar);
-        plParameters.add(((ParameterRef) plSrcVar).getReferredParam());
+        plSrcVar = createParameterAndRef(srcName, plElemType, ParameterDirection.OUT, plParameters, plVariables,
+                                         plVarsMap);
       }
       var plSrc = createVariableReference(plSrcVar);
       plCall.getParameters().add(plSrc);
@@ -260,10 +279,8 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
           getNextExtraVariableName();
         var plDstVar = plVarsMap.get(dstName);
         if (plDstVar == null) {
-          plDstVar = createParameterAndRef(dstName, plElemType, ParameterDirection.OUT);
-          plVarsMap.put(dstName, plDstVar);
-          plVariables.add(plDstVar);
-          plParameters.add(((ParameterRef) plDstVar).getReferredParam());
+          plDstVar = createParameterAndRef(dstName, plElemType, ParameterDirection.OUT, plParameters, plVariables,
+                                           plVarsMap);
         }
         var plDst = createVariableReference(plDstVar);
         plCall.getParameters().add(plDst);
@@ -271,16 +288,15 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
       }
       // path edge
       var edgeName = getNextExtraVariableName();
-      var plEdgeVar = createParameterAndRef(edgeName, plElemType, ParameterDirection.OUT);
-      plVariables.add(plEdgeVar);
-      plParameters.add(plEdgeVar.getReferredParam());
+      var plEdgeVar = createParameterAndRef(edgeName, plElemType, ParameterDirection.OUT, plParameters, plVariables,
+                                            plVarsMap);
       plCall.getParameters().add(createVariableReference(plEdgeVar));
       plCall.getParameters().add(createStringValue(edgeFeature.getName()));
       // attribute value
       if (edgeFeature instanceof EAttribute edgeAttribute) {
         var dst = pathConstraint.getDst();
         ValueReference plValue;
-        //TODO MMINT[JAVA18] Convert to switch with pattern matching
+        //TODO MMINT[JAVA19] Convert to switch with pattern matching
         if (dst instanceof StringValue strDst) {
           plValue = createStringValue(strDst.getValue());
         }
@@ -308,6 +324,13 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
     }
 
     return plConstraints;
+  }
+
+  private List<PatternCompositionConstraint> liftPathExpressionConstraint(
+                                               PathExpressionConstraint pathConstraint, EList<Variable> plParameters,
+                                               EList<Variable> plVariables, Map<String, Variable> plVarsMap)
+                                                 throws MMINTException {
+    return createPathExpressionConstraint(pathConstraint, plParameters, plVariables, plVarsMap);
   }
 
   private List<PatternCompositionConstraint> createPatternCompositionConstraint(
@@ -341,15 +364,8 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
       else if (patternPar instanceof VariableReference varPar) {
         var variable = varPar.getVariable();
         var varName = variable.getName();
-        if (varName.startsWith(ProductLineViatraReasoner.DONTCARE_VAR_NAME)) { // convert don't care var to extra var
-          var plDontCareVar = plVarsMap.remove(varName);
-          plVariables.remove(plDontCareVar);
-          varName = getNextExtraVariableName();
-          var plDoCareVar = createParameterAndRef(varName, ProductLinePackage.eINSTANCE.getClass_(),
-                                                  ParameterDirection.OUT);
-          plVarsMap.put(varName, plDoCareVar);
-          plVariables.add(plDoCareVar);
-          plParameters.add(plDoCareVar.getReferredParam());
+        if (varName.startsWith(ProductLineViatraReasoner.DONTCARE_VAR_NAME)) {
+          liftDontCareVar(varName, plParameters, plVariables, plVarsMap);
         }
         plPar = createVariableReference(plVarsMap.get(varName));
         if (variable instanceof ParameterRef parRef) {
@@ -366,9 +382,7 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
     }
     if (plPatternName != null) {
       var plMappingVar = createParameterAndRef(getNextExtraVariableName(), RelationshipPackage.eINSTANCE.getMapping(),
-                                               ParameterDirection.OUT);
-      plVariables.add(plMappingVar);
-      plParameters.add(plMappingVar.getReferredParam());
+                                               ParameterDirection.OUT, plParameters, plVariables, plVarsMap);
       plCall.getParameters().add(createVariableReference(plMappingVar));
     }
     plConstraints.add(plConstraint);
@@ -391,33 +405,50 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
   private List<? extends Constraint> liftCompareConstraint(CompareConstraint compareConstraint,
                                                            EList<Variable> plParameters, EList<Variable> plVariables,
                                                            Map<String, Variable> plVarsMap) throws Exception {
-    if (!(compareConstraint.getLeftOperand() instanceof VariableReference left)) {
-      throw new MMINTException("Left operand type not supported");
+    //TODO MMINT[JAVA19] Convert to switch with pattern matching
+    var left = compareConstraint.getLeftOperand();
+    if (!(left instanceof VariableReference leftVarRef)) {
+      throw new MMINTException("Left operand type " + left.getClass().getName() + " not supported");
     }
-    if (compareConstraint.getRightOperand() instanceof AggregatedValue right) { // special case: aggregation
-      var aggregatedCall = (PatternCall) right.getCall();
-      if (left.getVariable() instanceof ParameterRef leftParRef) {
-        this.aggregatorName = right.getAggregator().getSimpleName();
+    var right = compareConstraint.getRightOperand();
+    // special case: aggregation
+    if (right instanceof AggregatedValue rightAgg) {
+      if (leftVarRef.getVariable() instanceof ParameterRef leftParRef) {
+        this.aggregatorName = rightAgg.getAggregator().getSimpleName();
         this.aggregatedVarName = leftParRef.getReferredParam().getName();
-        this.aggregatedGroupBy = aggregatedCall.getParameters().stream()
-          .filter(p -> p instanceof VariableReference)
-          .map(p -> ((VariableReference) p).getVariable().getName())
-          .filter(n -> !n.startsWith(ProductLineViatraReasoner.DONTCARE_VAR_NAME))
-          .collect(Collectors.toSet());
-        var plAggregatedVar = plVarsMap.remove(this.aggregatedVarName);
-        plVariables.remove(plAggregatedVar);
-        plParameters.remove(((ParameterRef) plAggregatedVar).getReferredParam());
+        if (this.aggregatorName.equals("count")) { // remove from parameters
+          var plAggVar = plVarsMap.remove(this.aggregatedVarName);
+          plVariables.remove(plAggVar);
+          plParameters.remove(((ParameterRef) plAggVar).getReferredParam());
+        }
       }
-      return createPatternCompositionConstraint(aggregatedCall, false, plParameters, plVariables, plVarsMap);
+      var aggCall = rightAgg.getCall();
+      // aggregation with pattern call
+      if (aggCall instanceof PatternCall aggPatternCall) {
+        if (leftVarRef.getVariable() instanceof ParameterRef leftParRef) {
+          this.aggregatedGroupBy = aggPatternCall.getParameters().stream()
+            .filter(p -> p instanceof VariableReference)
+            .map(p -> ((VariableReference) p).getVariable().getName())
+            .filter(n -> !n.startsWith(ProductLineViatraReasoner.DONTCARE_VAR_NAME))
+            .collect(Collectors.toSet());
+        }
+        return createPatternCompositionConstraint(aggPatternCall, false, plParameters, plVariables, plVarsMap);
+      }
+      // aggregation with path expression
+      else if (aggCall instanceof PathExpressionConstraint aggPathExpr) {
+        this.aggregatedGroupBy = Set.of(((VariableReference) aggPathExpr.getDst()).getVariable().getName());
+        return createPathExpressionConstraint(aggPathExpr, plParameters, plVariables, plVarsMap);
+      }
     }
-    if (!(compareConstraint.getRightOperand() instanceof VariableReference right)) {
-      throw new MMINTException("Right operand type not supported");
+    // normal case: var comparison
+    if (!(right instanceof VariableReference rightVarRef)) {
+      throw new MMINTException("Right operand type " + right.getClass().getName() + " not supported");
     }
     var plConstraint = PatternLanguageFactory.eINSTANCE.createCompareConstraint();
-    var plLeft = liftVariableReference(left, plVarsMap);
-    plConstraint.setLeftOperand(plLeft);
-    var plRight = liftVariableReference(right, plVarsMap);
-    plConstraint.setRightOperand(plRight);
+    var plLeftVarRef = liftVariableReference(leftVarRef, plVarsMap);
+    plConstraint.setLeftOperand(plLeftVarRef);
+    var plRightVarRef = liftVariableReference(rightVarRef, plVarsMap);
+    plConstraint.setRightOperand(plRightVarRef);
     plConstraint.setFeature(compareConstraint.getFeature());
 
     return List.of(plConstraint);
