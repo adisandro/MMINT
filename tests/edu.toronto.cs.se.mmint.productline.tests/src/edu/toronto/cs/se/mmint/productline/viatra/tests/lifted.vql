@@ -1,0 +1,48 @@
+package edu.toronto.cs.se.mmint.productline.viatra.tests
+
+import "http://www.eclipse.org/emf/2002/Ecore"
+import "http://se.cs.toronto.edu/mmint/MID/Relationship"
+import "model://edu.toronto.cs.se.mmint.productline"
+import edu.toronto.cs.se.mmint.productline.viatra.reference;
+import edu.toronto.cs.se.mmint.productline.viatra.attribute;
+import edu.toronto.cs.se.mmint.productline.viatra.classType;
+import edu.toronto.cs.se.mmint.viatra.mid.connectedEMFObjectsWithMapping;
+
+pattern multipleInheritancePL(child: Class, parent1: PLElement, parent2: PLElement, ref1: PLElement, ref2: PLElement) {
+  find reference(child, "Class", parent1, "Class", ref1, "superclass");
+  find reference(child, "Class", parent2, "Class", ref2, "superclass");
+  parent1 != parent2;
+}
+
+pattern testAttributePL(clazz: Class, attr: PLElement) {
+  find attribute(clazz, "Class", attr, "name", "parent2");
+}
+
+pattern testAttribute2PL(clazz: Class, attr: PLElement, name: EString) {
+  find attribute(clazz, "Class", attr, "name", name);
+}
+
+pattern testMultipleEdgesPL(clazz: Class, parent: PLElement, ref: PLElement, attr: PLElement) {
+  find reference(clazz, "Class", parent, "Class", ref, "superclass");
+  find attribute(parent, "NamedElement", attr, "name", "parent2");
+}
+
+pattern asilBConnectedClassesPL(goal: Class, clazz: Class, asil: PLElement, ref: PLElement, attr: PLElement, mapping: Mapping) {
+  find reference(goal, "Goal", asil, "ASIL", ref, "asil");
+  find attribute(asil, "ASIL", attr, "value", "B");
+  find connectedEMFObjectsWithMapping(goal, clazz, mapping);
+  find classType(goal, "Goal");
+  find classType(clazz, "Class");
+}
+
+pattern highlyConnectedModelObjsPL(modelObj: Class, otherModelObj: Class, mapping: Mapping) {
+  find connectedEMFObjectsWithMapping(modelObj, otherModelObj, mapping);
+}
+
+pattern testMinPL(clazz: PLElement, attr: PLElement, name: EString) {
+  find attribute(clazz, "Class", attr, "name", name);
+}
+
+pattern testMaxPL(clazz: PLElement, attr: PLElement, name: EString) {
+  find attribute(clazz, "Class", attr, "name", name);
+}

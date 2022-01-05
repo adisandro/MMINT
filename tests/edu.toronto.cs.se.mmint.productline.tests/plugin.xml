@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?><plugin>
+  <extension id="edu.toronto.cs.se.mmint.productline.viatra.Pl" point="org.eclipse.viatra.query.runtime.queryspecification">
+    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:edu.toronto.cs.se.mmint.productline.viatra.Pl" id="edu.toronto.cs.se.mmint.productline.viatra.Pl">
+      <query-specification fqn="edu.toronto.cs.se.mmint.productline.viatra.classType"/>
+      <query-specification fqn="edu.toronto.cs.se.mmint.productline.viatra.reference"/>
+      <query-specification fqn="edu.toronto.cs.se.mmint.productline.viatra.attribute"/>
+    </group>
+  </extension>
+  <extension id="edu.toronto.cs.se.mmint.productline.viatra.tests.Lifted" point="org.eclipse.viatra.query.runtime.queryspecification">
+    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:edu.toronto.cs.se.mmint.productline.viatra.tests.Lifted" id="edu.toronto.cs.se.mmint.productline.viatra.tests.Lifted">
+      <query-specification fqn="edu.toronto.cs.se.mmint.productline.viatra.tests.multipleInheritancePL"/>
+      <query-specification fqn="edu.toronto.cs.se.mmint.productline.viatra.tests.testAttributePL"/>
+      <query-specification fqn="edu.toronto.cs.se.mmint.productline.viatra.tests.testAttribute2PL"/>
+      <query-specification fqn="edu.toronto.cs.se.mmint.productline.viatra.tests.testMultipleEdgesPL"/>
+      <query-specification fqn="edu.toronto.cs.se.mmint.productline.viatra.tests.asilBConnectedClassesPL"/>
+      <query-specification fqn="edu.toronto.cs.se.mmint.productline.viatra.tests.highlyConnectedModelObjsPL"/>
+      <query-specification fqn="edu.toronto.cs.se.mmint.productline.viatra.tests.testMinPL"/>
+      <query-specification fqn="edu.toronto.cs.se.mmint.productline.viatra.tests.testMaxPL"/>
+    </group>
+  </extension>
+  <extension id="edu.toronto.cs.se.mmint.productline.viatra.tests.Orig" point="org.eclipse.viatra.query.runtime.queryspecification">
+    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:edu.toronto.cs.se.mmint.productline.viatra.tests.Orig" id="edu.toronto.cs.se.mmint.productline.viatra.tests.Orig">
+      <query-specification fqn="edu.toronto.cs.se.mmint.productline.viatra.tests.multipleInheritanceCD"/>
+      <query-specification fqn="edu.toronto.cs.se.mmint.productline.viatra.tests.testAttributeCD"/>
+      <query-specification fqn="edu.toronto.cs.se.mmint.productline.viatra.tests.testAttribute2CD"/>
+      <query-specification fqn="edu.toronto.cs.se.mmint.productline.viatra.tests.testMultipleEdgesCD"/>
+      <query-specification fqn="edu.toronto.cs.se.mmint.productline.viatra.tests.asilBConnectedClassesCD"/>
+      <query-specification fqn="edu.toronto.cs.se.mmint.productline.viatra.tests.highlyConnectedModelObjsCD"/>
+      <query-specification fqn="edu.toronto.cs.se.mmint.productline.viatra.tests.testMinCD"/>
+      <query-specification fqn="edu.toronto.cs.se.mmint.productline.viatra.tests.testMaxCD"/>
+    </group>
+  </extension>
+  <extension id="edu.toronto.cs.se.mmint.viatra.mid.Mid" point="org.eclipse.viatra.query.runtime.queryspecification">
+    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:edu.toronto.cs.se.mmint.viatra.mid.Mid" id="edu.toronto.cs.se.mmint.viatra.mid.Mid">
+      <query-specification fqn="edu.toronto.cs.se.mmint.viatra.mid.connectedModels"/>
+      <query-specification fqn="edu.toronto.cs.se.mmint.viatra.mid.connectedModelElementsWithMapping"/>
+      <query-specification fqn="edu.toronto.cs.se.mmint.viatra.mid.connectedModelElements"/>
+      <query-specification fqn="edu.toronto.cs.se.mmint.viatra.mid.connectedEMFObjectsWithMapping"/>
+      <query-specification fqn="edu.toronto.cs.se.mmint.viatra.mid.connectedEMFObjects"/>
+      <query-specification fqn="edu.toronto.cs.se.mmint.viatra.mid.allConnectedModels"/>
+      <query-specification fqn="edu.toronto.cs.se.mmint.viatra.mid.allConnectedModelElements"/>
+      <query-specification fqn="edu.toronto.cs.se.mmint.viatra.mid.allConnectedEMFObjects"/>
+    </group>
+  </extension>
+</plugin>

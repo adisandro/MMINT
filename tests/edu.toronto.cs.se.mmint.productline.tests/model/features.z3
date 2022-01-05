@@ -1,0 +1,1 @@
+(or (and f1 (not f2)) (and (not f1) f2))

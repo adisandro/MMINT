@@ -1,0 +1,42 @@
+package edu.toronto.cs.se.mmint.productline.viatra.tests
+
+import "http://www.eclipse.org/emf/2002/Ecore"
+import "http://se.cs.toronto.edu/modelepedia/ClassDiagram"
+import "http://se.cs.toronto.edu/modelepedia/GSN"
+import edu.toronto.cs.se.mmint.viatra.mid.connectedEMFObjects;
+
+pattern multipleInheritanceCD(child: Class) {
+  Class.superclass(child, parent1);
+  Class.superclass(child, parent2);
+  parent1 != parent2;
+}
+
+pattern testAttributeCD(clazz: Class) {
+  Class.name(clazz, "parent2");
+}
+
+pattern testAttribute2CD(clazz: Class, name: EString) {
+  Class.name(clazz, name);
+}
+
+pattern testMultipleEdgesCD(clazz: Class) {
+  Class.superclass.name(clazz, "parent2");
+}
+
+pattern asilBConnectedClassesCD(goal: Goal, clazz: Class) {
+  Goal.asil.value(goal, ASILLevel::B);
+  find connectedEMFObjects(goal, clazz);
+}
+
+pattern highlyConnectedModelObjsCD(modelObj: EObject, connections: java Integer) {
+  connections == count find connectedEMFObjects(modelObj, _);
+//  check(connections > 0);
+}
+
+pattern testMinCD(minName: EString) {
+  minName == min Class.name(_, #name);
+}
+
+pattern testMaxCD(maxName: EString) {
+  maxName == max Class.name(_, #name);
+}

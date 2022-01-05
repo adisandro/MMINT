@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mid:MID xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editor="http://se.cs.toronto.edu/mmint/MID/Editor" xmlns:mid="http://se.cs.toronto.edu/mmint/MID" xmlns:productline.mid="rel://edu.toronto.cs.se.mmint.productline.mid.PLModelRel">
+  <models uri="/edu.toronto.cs.se.mmint.productline.tests/model/cd.productline" name="cd" metatypeUri="model://edu.toronto.cs.se.mmint.productline" dynamic="true" origin="CREATED" fileExtension="productline" editors="//@editors.0">
+    <modelElems uri="/edu.toronto.cs.se.mmint.productline.tests/model/cd.productline#//@classes.2_AS_model://edu.toronto.cs.se.mmint.productline#//PLElement" name="Class p1" metatypeUri="model://edu.toronto.cs.se.mmint.productline#//PLElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/edu.toronto.cs.se.mmint.productline.tests/model/cd.productline#//@classes.3_AS_model://edu.toronto.cs.se.mmint.productline#//PLElement" name="Class p2" metatypeUri="model://edu.toronto.cs.se.mmint.productline#//PLElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/edu.toronto.cs.se.mmint.productline.tests/model/cd.productline#//@classes.1_AS_model://edu.toronto.cs.se.mmint.productline#//PLElement" name="Class true" metatypeUri="model://edu.toronto.cs.se.mmint.productline#//PLElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/edu.toronto.cs.se.mmint.productline.tests/model/cd.productline#//@classes.1_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/edu.toronto.cs.se.mmint.productline.tests/model/cd.productline#//@classes.3_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class f2" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/edu.toronto.cs.se.mmint.productline.tests/model/cd.productline#//@classes.2_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class f1" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+  </models>
+  <models uri="/edu.toronto.cs.se.mmint.productline.tests/model/gsn.productline" name="gsn" metatypeUri="model://edu.toronto.cs.se.mmint.productline" dynamic="true" origin="CREATED" fileExtension="productline" editors="//@editors.1">
+    <modelElems uri="/edu.toronto.cs.se.mmint.productline.tests/model/gsn.productline#//@classes.1_AS_model://edu.toronto.cs.se.mmint.productline#//PLElement" name="Class p1" metatypeUri="model://edu.toronto.cs.se.mmint.productline#//PLElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/edu.toronto.cs.se.mmint.productline.tests/model/gsn.productline#//@classes.2_AS_model://edu.toronto.cs.se.mmint.productline#//PLElement" name="Class p2" metatypeUri="model://edu.toronto.cs.se.mmint.productline#//PLElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/edu.toronto.cs.se.mmint.productline.tests/model/gsn.productline#//@classes.2_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class f2" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/edu.toronto.cs.se.mmint.productline.tests/model/gsn.productline#//@classes.1_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class f1" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+  </models>
+  <models xsi:type="productline.mid:PLModelRel" uri="" name="trace" metatypeUri="rel://edu.toronto.cs.se.mmint.productline.mid.PLModelRel" dynamic="true" origin="CREATED" fileExtension="">
+    <modelEndpoints uri="" name="cd" metatypeUri="edu.toronto.cs.se.mmint.productline.mid.PLModelRel.PLModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0"/>
+    <modelEndpoints uri="" name="gsn" metatypeUri="edu.toronto.cs.se.mmint.productline.mid.PLModelRel.PLModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1"/>
+    <mappings xsi:type="productline.mid:PLMapping" uri="" name="" metatypeUri="edu.toronto.cs.se.mmint.productline.mid.PLModelRel.PLMapping" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.0/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.0/@modelElemEndpointRefs.1" presenceCondition="f1">
+      <modelElemEndpoints uri="" name="Class p1" metatypeUri="edu.toronto.cs.se.mmint.productline.mid.PLModelRel.PLMapping.PLModelElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.0"/>
+      <modelElemEndpoints uri="" name="Class p1" metatypeUri="edu.toronto.cs.se.mmint.productline.mid.PLModelRel.PLMapping.PLModelElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.0"/>
+    </mappings>
+    <mappings xsi:type="productline.mid:PLMapping" uri="" name="" metatypeUri="edu.toronto.cs.se.mmint.productline.mid.PLModelRel.PLMapping" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.1/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.1/@modelElemEndpointRefs.1" presenceCondition="f2">
+      <modelElemEndpoints uri="" name="Class p2" metatypeUri="edu.toronto.cs.se.mmint.productline.mid.PLModelRel.PLMapping.PLModelElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.1"/>
+      <modelElemEndpoints uri="" name="Class p2" metatypeUri="edu.toronto.cs.se.mmint.productline.mid.PLModelRel.PLMapping.PLModelElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.1"/>
+    </mappings>
+    <mappings xsi:type="productline.mid:PLMapping" uri="" name="" metatypeUri="edu.toronto.cs.se.mmint.productline.mid.PLModelRel.PLMapping" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.2/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.2/@modelElemEndpointRefs.1" presenceCondition="f1">
+      <modelElemEndpoints uri="" name="Class true" metatypeUri="edu.toronto.cs.se.mmint.productline.mid.PLModelRel.PLMapping.PLModelElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.2"/>
+      <modelElemEndpoints uri="" name="Class p1" metatypeUri="edu.toronto.cs.se.mmint.productline.mid.PLModelRel.PLMapping.PLModelElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.0"/>
+    </mappings>
+    <mappings xsi:type="productline.mid:PLMapping" uri="" name="" metatypeUri="edu.toronto.cs.se.mmint.productline.mid.PLModelRel.PLMapping" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.3/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.3/@modelElemEndpointRefs.1" presenceCondition="f2">
+      <modelElemEndpoints uri="" name="Class true" metatypeUri="edu.toronto.cs.se.mmint.productline.mid.PLModelRel.PLMapping.PLModelElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.2"/>
+      <modelElemEndpoints uri="" name="Class p2" metatypeUri="edu.toronto.cs.se.mmint.productline.mid.PLModelRel.PLMapping.PLModelElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.1"/>
+    </mappings>
+    <modelEndpointRefs referencedObject="//@models.2/@modelEndpoints.0" modifiable="true">
+      <modelElemRefs referencedObject="//@models.0/@modelElems.0" modifiable="true" modelElemEndpointRefs="//@models.2/@mappingRefs.0/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.0/@modelElems.1" modifiable="true" modelElemEndpointRefs="//@models.2/@mappingRefs.1/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.0/@modelElems.2" modifiable="true" modelElemEndpointRefs="//@models.2/@mappingRefs.2/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.3/@modelElemEndpointRefs.0"/>
+    </modelEndpointRefs>
+    <modelEndpointRefs referencedObject="//@models.2/@modelEndpoints.1" modifiable="true">
+      <modelElemRefs referencedObject="//@models.1/@modelElems.0" modifiable="true" modelElemEndpointRefs="//@models.2/@mappingRefs.0/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.2/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.1/@modelElems.1" modifiable="true" modelElemEndpointRefs="//@models.2/@mappingRefs.1/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.3/@modelElemEndpointRefs.1"/>
+    </modelEndpointRefs>
+    <mappingRefs xsi:type="productline.mid:PLMappingReference" referencedObject="//@models.2/@mappings.0" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.0/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.0"/>
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.0/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.0"/>
+    </mappingRefs>
+    <mappingRefs xsi:type="productline.mid:PLMappingReference" referencedObject="//@models.2/@mappings.1" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.1/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.1"/>
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.1/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.1"/>
+    </mappingRefs>
+    <mappingRefs xsi:type="productline.mid:PLMappingReference" referencedObject="//@models.2/@mappings.2" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.2/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.2"/>
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.2/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.0"/>
+    </mappingRefs>
+    <mappingRefs xsi:type="productline.mid:PLMappingReference" referencedObject="//@models.2/@mappings.3" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.3/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.2"/>
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.3/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.1"/>
+    </mappingRefs>
+  </models>
+  <editors xsi:type="editor:Diagram" uri="/edu.toronto.cs.se.mmint.productline.tests/representations.aird#_lRqLMAwEEeyMLqHNYQjbCA" name="ProductLine Sirius Diagram for model /edu.toronto.cs.se.mmint.productline.tests/model/cd.productline" metatypeUri="edu.toronto.cs.se.mmint.productline.design" dynamic="true" modelUri="/edu.toronto.cs.se.mmint.productline.tests/model/cd.productline" id="edu.toronto.cs.se.mmint.productline.design" wizardId="edu.toronto.cs.se.mmint.productline.presentation.ProductLineModelWizardID">
+    <fileExtensions>aird#_lRqLMAwEEeyMLqHNYQjbCA</fileExtensions>
+  </editors>
+  <editors xsi:type="editor:Diagram" uri="/edu.toronto.cs.se.mmint.productline.tests/representations.aird#_1HLvECcDEeyoxNi2IcQHPg" name="ProductLine Sirius Diagram for model /edu.toronto.cs.se.mmint.productline.tests/model/gsn.productline" metatypeUri="edu.toronto.cs.se.mmint.productline.design" dynamic="true" modelUri="/edu.toronto.cs.se.mmint.productline.tests/model/gsn.productline" id="edu.toronto.cs.se.mmint.productline.design" wizardId="edu.toronto.cs.se.mmint.productline.presentation.ProductLineModelWizardID">
+    <fileExtensions>aird#_1HLvECcDEeyoxNi2IcQHPg</fileExtensions>
+  </editors>
+  <extendibleTable key="/edu.toronto.cs.se.mmint.productline.tests/model/cd.productline" value="//@models.0"/>
+  <extendibleTable key="/edu.toronto.cs.se.mmint.productline.tests/model/gsn.productline" value="//@models.1"/>
+  <extendibleTable key="/edu.toronto.cs.se.mmint.productline.tests/model/gsn.productline#//@classes.1_AS_model://edu.toronto.cs.se.mmint.productline#//PLElement" value="//@models.1/@modelElems.0"/>
+  <extendibleTable key="/edu.toronto.cs.se.mmint.productline.tests/model/gsn.productline#//@classes.2_AS_model://edu.toronto.cs.se.mmint.productline#//PLElement" value="//@models.1/@modelElems.1"/>
+  <extendibleTable key="/edu.toronto.cs.se.mmint.productline.tests/model/cd.productline#//@classes.2_AS_model://edu.toronto.cs.se.mmint.productline#//PLElement" value="//@models.0/@modelElems.0"/>
+  <extendibleTable key="/edu.toronto.cs.se.mmint.productline.tests/model/cd.productline#//@classes.3_AS_model://edu.toronto.cs.se.mmint.productline#//PLElement" value="//@models.0/@modelElems.1"/>
+  <extendibleTable key="/edu.toronto.cs.se.mmint.productline.tests/model/cd.productline#//@classes.1_AS_model://edu.toronto.cs.se.mmint.productline#//PLElement" value="//@models.0/@modelElems.2"/>
+  <extendibleTable key="/edu.toronto.cs.se.mmint.productline.tests/model/cd.productline#//@classes.1_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.3"/>
+  <extendibleTable key="/edu.toronto.cs.se.mmint.productline.tests/model/gsn.productline#//@classes.2_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.2"/>
+  <extendibleTable key="/edu.toronto.cs.se.mmint.productline.tests/model/cd.productline#//@classes.3_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.4"/>
+  <extendibleTable key="/edu.toronto.cs.se.mmint.productline.tests/model/cd.productline#//@classes.2_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.5"/>
+  <extendibleTable key="/edu.toronto.cs.se.mmint.productline.tests/model/gsn.productline#//@classes.1_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.3"/>
+</mid:MID>
