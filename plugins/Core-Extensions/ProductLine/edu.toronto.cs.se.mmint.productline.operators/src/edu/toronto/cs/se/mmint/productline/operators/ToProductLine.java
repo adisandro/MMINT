@@ -73,9 +73,10 @@ public class ToProductLine extends OperatorImpl {
     public String plPath;
     public MID mid;
 
-    public Output(Map<String, MID> outputMIDsByName, String workingPath, Input input) {
+    public Output(Map<String, MID> outputMIDsByName, String workingPath, Input input) throws MMINTException {
       this.plModelType = MIDTypeRegistry.<Model>getType(Output.MODEL_TYPE_ID);
       this.productLine = ProductLineFactory.eINSTANCE.createProductLine();
+      this.productLine.setMetamodel(input.productModel.getMetatype().getEMFTypeRoot());
       this.plPath = workingPath + IPath.SEPARATOR + input.productModel.getName() + "." +
                     this.plModelType.getFileExtension();
       this.mid = outputMIDsByName.get(Output.MODEL);
