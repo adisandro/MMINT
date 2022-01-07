@@ -554,7 +554,14 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
   private List<Object> getAggregatedMatches(Collection<GenericPatternMatch> vMatches) throws Exception {
     // first pass:
     var aggregations = Map.<String, Map<Set<Object>, Integer>>of();
-     for (var vMatch : vMatches) {
+    var aggregator = switch(this.aggregatorName) {
+      case "count" -> new Aggregator(0, (a, b) -> a + b);
+      case "sum"   -> new Aggregator(0, (a, b) -> a + b);
+      case "min"   -> new Aggregator(Integer.MIN_VALUE, (a, b) -> (a <= b) ? a : b);
+      case "max"   -> new Aggregator(Integer.MAX_VALUE, (a, b) -> (a >= b) ? a : b);
+      default      -> throw new MMINTException("Unsupported aggregator '" + this.aggregatorName + "'");
+    };
+    for (var vMatch : vMatches) {
       var matchAsList = new ArrayList<>();
       var plElements = new HashSet<PLElement>();
       var aggregationGroup = new HashSet<>();
@@ -576,17 +583,10 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
       if (!areInAProduct(plElements)) {
         continue;
       }
-      var aggregator = switch(this.aggregatorName) {
-        case "count" -> new Aggregator(0, (a, b) -> a + b);
-        case "sum"   -> new Aggregator(0, (a, b) -> a + b);
-        case "min"   -> new Aggregator(Integer.MIN_VALUE, (a, b) -> (a <= b) ? a : b);
-        case "max"   -> new Aggregator(Integer.MAX_VALUE, (a, b) -> (a >= b) ? a : b);
-        default      -> throw new MMINTException("Unsupported aggregator '" + this.aggregatorName + "'");
-      };
-      var aggregatedValue = 1;//TODO Fetch from the matches
+      var aggregatedValue = 1;//TODO Fetch from the matches (default for count, look for # syntax for min/max)
       var presenceConditions = getPresenceConditions(plElements);//TODO What happens if it's a true?
       aggregations = this.featureReasoner.aggregate(presenceConditions, this.featuresConstraint, aggregationGroup,
-                                                    aggregatedValue, aggregator, aggregations);
+                                                  aggregatedValue, aggregator, aggregations);
     }
 
     // second pass:
@@ -596,10 +596,11 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
       formulaList.add(aggregationEntry.getKey()); // [formula, [match1, aggrValue1], ..., [matchN, aggrValueN]]
       for (var matchEntry : aggregationEntry.getValue().entrySet()) {
         var matchList = new ArrayList<>();
-//        var aggregatedValue = matchEntry.getValue();
-//        if (aggregatedValue == 0) {
-//          continue;
-//        }
+        var aggregatedValue = matchEntry.getValue();
+        //TODO Remove them later, or try not to put them in in the first place?
+        if (aggregatedValue == aggregator.emptyValue()) {
+          continue;
+        }
         matchList.addAll(matchEntry.getKey()); // match
         matchList.add(matchEntry.getValue()); // aggregated value
         formulaList.add(matchList);

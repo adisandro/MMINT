@@ -20,6 +20,7 @@ import java.util.stream.Collectors;
 
 import org.logicng.datastructures.Substitution;
 import org.logicng.datastructures.Tristate;
+import org.logicng.formulas.Formula;
 import org.logicng.formulas.FormulaFactory;
 import org.logicng.io.parsers.ParserException;
 import org.logicng.io.parsers.PropositionalParser;
@@ -81,6 +82,33 @@ public class LogicNGReasoner implements IProductLineFeatureConstraintTrait {
     }
   }
 
+  private void aggregate2(MiniSat minisat, Formula featuresFormula, Formula formula,
+                          Map<Set<Object>, Integer> currAggregation, Set<Object> aggregationGroup, int aggregatedValue,
+                          Aggregator aggregator, Map<String, Map<Set<Object>, Integer>> newAggregations,
+                          boolean positive) {
+    minisat.add(featuresFormula);
+    minisat.add(formula);
+    if (minisat.sat() == Tristate.TRUE) {
+      var newAggregation = new HashMap<>(currAggregation);
+      if (positive) {
+        newAggregation.compute(
+          aggregationGroup, (k, v) -> (v == null) ? aggregatedValue : aggregator.aggregate().apply(v, aggregatedValue));
+      }
+      else {
+        newAggregation.putIfAbsent(aggregationGroup, aggregator.emptyValue());
+      }
+      var otherAggregations = newAggregations.get(formula.toString());
+      if (otherAggregations == null) {
+        newAggregations.put(formula.toString(), newAggregation);
+      }
+      else {
+        newAggregation.forEach(
+          (k, v) -> otherAggregations.merge(k, v, (v1, v2) -> aggregator.aggregate().apply(v1, v2)));
+      }
+    }
+    minisat.reset();
+  }
+
   @Override
   public Map<String, Map<Set<Object>, Integer>> aggregate(Set<String> presenceConditions, String featuresConstraint,
                                                           Set<Object> aggregationGroup, int aggregatedValue,
@@ -105,38 +133,10 @@ public class LogicNGReasoner implements IProductLineFeatureConstraintTrait {
       var currAggregation = aggregationEntry.getValue();
       var formula2 = factory.and(formula, currFormula);
       var notFormula2 = factory.and(notFormula, currFormula);
-      minisat.add(featuresFormula);
-      minisat.add(formula2);
-      if (minisat.sat() == Tristate.TRUE) {
-        var newAggregation = new HashMap<>(currAggregation);
-        newAggregation.compute(
-          aggregationGroup, (k, v) -> (v == null) ? aggregatedValue : aggregator.aggregate().apply(v, aggregatedValue));
-        var otherAggregations = newAggregations.get(formula2.toString());
-        if (otherAggregations == null) {
-          newAggregations.put(formula2.toString(), newAggregation);
-        }
-        else {
-          newAggregation.forEach(
-            (k, v) -> otherAggregations.merge(k, v, (v1, v2) -> aggregator.aggregate().apply(v1, v2)));
-        }
-      }
-      //TODO Is the commented part necessary or is it always filtered out?
-//      minisat.reset();
-//      minisat.add(featuresFormula);
-//      minisat.add(notFormula2);
-//      if (minisat.sat() == Tristate.TRUE) {
-//        var newAggregation = new HashMap<>(currAggregation);
-//        newAggregation.putIfAbsent(aggregationGroup, aggregator.emptyValue());
-//        var otherAggregations = newAggregations.get(notFormula2.toString());
-//        if (otherAggregations == null) {
-//          newAggregations.put(notFormula2.toString(), newAggregation);
-//        }
-//        else {
-//          newAggregation.forEach(
-//            (k, v) -> otherAggregations.merge(k, v, (v1, v2) -> aggregator.aggregate().apply(v1, v2)));
-//        }
-//      }
-      minisat.reset();
+      aggregate2(minisat, featuresFormula, formula2, currAggregation, aggregationGroup, aggregatedValue, aggregator,
+                 newAggregations, true);
+      aggregate2(minisat, featuresFormula, notFormula2, currAggregation, aggregationGroup, aggregatedValue, aggregator,
+                 newAggregations, false);
     }
 
     return newAggregations;
