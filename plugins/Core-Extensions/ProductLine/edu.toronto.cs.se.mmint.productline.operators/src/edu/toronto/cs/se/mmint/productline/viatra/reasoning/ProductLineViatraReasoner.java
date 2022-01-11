@@ -68,6 +68,27 @@ import edu.toronto.cs.se.mmint.viatra.reasoning.ViatraReasoner;
 
 @SuppressWarnings("restriction")
 public class ProductLineViatraReasoner extends ViatraReasoner implements IProductLineQueryTrait {
+  public enum Aggregator {
+    COUNT((a, b) -> (int) a + (int) b),
+    MIN((a, b) -> {
+      if (!(a instanceof Comparable aa) || !(b instanceof Comparable bb)) {
+        throw new IllegalArgumentException(a + " and " + b + " are not comparable");
+      }
+      return (aa.compareTo(bb) <= 0) ? aa : bb;
+    }),
+    MAX((a, b) -> {
+      if (!(a instanceof Comparable aa) || !(b instanceof Comparable bb)) {
+        throw new IllegalArgumentException(a + " and " + b + " are not comparable");
+      }
+      return (aa.compareTo(bb) >= 0) ? aa : bb;
+    }),
+    SUM((a, b) -> (int) a + (int) b);
+    private AggregatorLambda aggregatorLambda;
+    Aggregator(AggregatorLambda aggregatorLambda) {
+      this.aggregatorLambda = aggregatorLambda;
+    }
+  }
+
   public final static String VIATRA_LIB_PATH = "edu/toronto/cs/se/mmint/productline/viatra/pl.vql";
   public final static String LIB_REFERENCE_PATTERN = "reference";
   public final static String LIB_ATTRIBUTE_PATTERN = "attribute";
@@ -79,10 +100,12 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
   public final static Map<String, String> MID_LIB_PATTERNS_TOCHANGE =
     Map.of("connectedModelElements", "connectedModelElementsWithMapping",
            "connectedEMFObjects",    "connectedEMFObjectsWithMapping");
+
   private Pattern libRefPattern, libAttrPattern, libClassPattern;
   private Set<String> origParameters;
   private int extraVariables;
-  private @Nullable String aggregatorName, aggregatedVarName;
+  private @Nullable String aggregatedVarName;
+  private @Nullable Aggregator aggregator;
   private Set<String> aggregatedGroupBy;
   private @Nullable IProductLineFeatureConstraintTrait featureReasoner;
   private String featuresConstraint;
@@ -100,7 +123,7 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
   private void reset() {
     this.origParameters = new HashSet<>();
     this.extraVariables = 0;
-    this.aggregatorName = null;
+    this.aggregator = null;
     this.aggregatedVarName = null;
     this.aggregatedGroupBy = new HashSet<>();
     this.featureReasoner = null;
@@ -427,20 +450,23 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
     var right = compareConstraint.getRightOperand();
     // special case: aggregation
     if (right instanceof AggregatedValue rightAgg) {
-      if (leftVarRef.getVariable() instanceof ParameterRef leftParRef) {
-        this.aggregatorName = rightAgg.getAggregator().getSimpleName();
-        this.aggregatedVarName = leftParRef.getReferredParam().getName();
+      if (!(leftVarRef.getVariable() instanceof ParameterRef leftParRef)) {
+        throw new MMINTException("Left operand type " + left.getClass().getName() + " not supported in aggregations");
       }
+      this.aggregator = Aggregator.valueOf(rightAgg.getAggregator().getSimpleName().toUpperCase());
+      this.aggregatedVarName = leftParRef.getReferredParam().getName();
       var aggCall = rightAgg.getCall();
       // aggregation with pattern call
       if (aggCall instanceof PatternCall aggPatternCall) {
-        if (leftVarRef.getVariable() instanceof ParameterRef leftParRef) {
-          this.aggregatedGroupBy = aggPatternCall.getParameters().stream()
-            .filter(p -> p instanceof VariableReference)
-            .map(p -> ((VariableReference) p).getVariable().getName())
-            .filter(n -> !n.startsWith(ProductLineViatraReasoner.DONTCARE_VAR_NAME))
-            .collect(Collectors.toSet());
+        var aggVars = aggPatternCall.getParameters().stream()
+          .filter(p -> p instanceof VariableReference);
+        if (this.aggregator != Aggregator.COUNT) {
+          aggVars = aggVars.filter(p -> ((VariableReference) p).isAggregator());
         }
+        this.aggregatedGroupBy = aggVars
+          .map(p -> ((VariableReference) p).getVariable().getName())
+          .filter(n -> !n.startsWith(ProductLineViatraReasoner.DONTCARE_VAR_NAME))
+          .collect(Collectors.toSet());
         return createPatternCompositionConstraint(aggPatternCall, false, plParameters, plVariables, plVarsMap);
       }
       // aggregation with path expression
@@ -553,25 +579,16 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
 
   private List<Object> getAggregatedMatches(Collection<GenericPatternMatch> vMatches) throws Exception {
     // first pass:
-    var aggregations = Map.<String, Map<Set<Object>, Integer>>of();
-    var aggregator = switch(this.aggregatorName) {
-      case "count" -> new Aggregator(0, (a, b) -> a + b);
-      case "sum"   -> new Aggregator(0, (a, b) -> a + b);
-      case "min"   -> new Aggregator(Integer.MIN_VALUE, (a, b) -> (a <= b) ? a : b);
-      case "max"   -> new Aggregator(Integer.MAX_VALUE, (a, b) -> (a >= b) ? a : b);
-      default      -> throw new MMINTException("Unsupported aggregator '" + this.aggregatorName + "'");
-    };
+    var aggregations = Map.<String, Map<Set<Object>, Object>>of();
     for (var vMatch : vMatches) {
-      var matchAsList = new ArrayList<>();
       var plElements = new HashSet<PLElement>();
-      var aggregationGroup = new HashSet<>();
+      Set<Object> aggregatedMatch = new LinkedHashSet<>();
       for (var parameterName : vMatch.parameterNames()) {
-        var parameter = vMatch.get(parameterName);
-        matchAsList.add(parameter);
+        var parameterValue = vMatch.get(parameterName);
         if (this.aggregatedGroupBy.contains(parameterName)) {
-          aggregationGroup.add(parameter);
+          aggregatedMatch.add(parameterValue);
         }
-        if (parameter instanceof PLElement plElement) {
+        if (parameterValue instanceof PLElement plElement) {
           plElements.add(plElement);
           if (this.featureReasoner == null) {
             var pl = plElement.getProductLine();
@@ -583,10 +600,18 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
       if (!areInAProduct(plElements)) {
         continue;
       }
-      var aggregatedValue = 1;//TODO Fetch from the matches (default for count, look for # syntax for min/max)
+      // aggregatedMatch has 1 value for min/max/sum, 1+ for count
+      Object aggregatedValue;
+      if (this.aggregator == Aggregator.COUNT) {
+        aggregatedValue = 1;
+      }
+      else {
+        aggregatedValue = aggregatedMatch.iterator().next();
+        aggregatedMatch = Set.of();
+      }
       var presenceConditions = getPresenceConditions(plElements);//TODO What happens if it's a true?
-      aggregations = this.featureReasoner.aggregate(presenceConditions, this.featuresConstraint, aggregationGroup,
-                                                  aggregatedValue, aggregator, aggregations);
+      aggregations = this.featureReasoner.aggregate(presenceConditions, this.featuresConstraint, aggregatedMatch,
+                                                    aggregatedValue, this.aggregator.aggregatorLambda, aggregations);
     }
 
     // second pass:
@@ -597,17 +622,13 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
       for (var matchEntry : aggregationEntry.getValue().entrySet()) {
         var matchList = new ArrayList<>();
         var aggregatedValue = matchEntry.getValue();
-        //TODO Remove them later, or try not to put them in in the first place?
-        if (aggregatedValue == aggregator.emptyValue()) {
+        if (aggregatedValue == null) { // no matches for this formula
           continue;
         }
-        matchList.addAll(matchEntry.getKey()); // match
+        matchList.addAll(matchEntry.getKey()); // match (can be empty for min/max/sum)
         matchList.add(matchEntry.getValue()); // aggregated value
         formulaList.add(matchList);
       }
-//      if (formulaList.size() == 1) { // no matches for this formula
-//        continue;
-//      }
       matches.add(formulaList);
     }
 
@@ -620,13 +641,13 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
       var matchList = new ArrayList<>();
       var plElements = new HashSet<PLElement>();
       for (var parameterName : vMatch.parameterNames()) {
-        var parameter = vMatch.get(parameterName);
+        var parameterValue = vMatch.get(parameterName);
         // the match only contains the parameters of the original query..
         if (this.origParameters.contains(parameterName)) {
-          matchList.add(parameter);
+          matchList.add(parameterValue);
         }
-        // ..but extra lifting parameters must still be considered for compatible presence conditions later
-        if (parameter instanceof PLElement plElement) {
+        // ..but extra lifting parameters must still be considered for compatible presence conditions
+        if (parameterValue instanceof PLElement plElement) {
           plElements.add(plElement);
           if (this.featureReasoner == null) {
             var pl = plElement.getProductLine();
@@ -651,6 +672,6 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
 
   @Override
   protected List<Object> getMatches(Collection<GenericPatternMatch> vMatches) throws Exception {
-    return (this.aggregatorName != null) ? getAggregatedMatches(vMatches) : getStandardMatches(vMatches);
+    return (this.aggregator != null) ? getAggregatedMatches(vMatches) : getStandardMatches(vMatches);
   }
 }

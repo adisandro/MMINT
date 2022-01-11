@@ -16,7 +16,7 @@ import java.util.Map;
 import java.util.Set;
 
 import edu.toronto.cs.se.mmint.mid.reasoning.IReasoner;
-import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineQueryTrait.Aggregator;
+import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineQueryTrait.AggregatorLambda;
 
 /**
  * The specification of a reasoning trait to check product line feature constraints.
@@ -58,11 +58,11 @@ public interface IProductLineFeatureConstraintTrait extends IReasoner {
    */
   boolean checkConsistency(String plFormula, Map<String, Boolean> featureValues);
 
-  default Map<String, Map<Set<Object>, Integer>> aggregate(Set<String> presenceConditions, String featuresConstraint,
-                                                           Set<Object> aggregationGroup, int aggregatedValue,
-                                                           Aggregator aggregator,
-                                                           Map<String, Map<Set<Object>, Integer>> aggregations)
-                                                             throws Exception {
+  default Map<String, Map<Set<Object>, Object>> aggregate(Set<String> presenceConditions, String featuresConstraint,
+                                                          Set<Object> aggregatedMatch, Object aggregatedValue,
+                                                          AggregatorLambda aggregator,
+                                                          Map<String, Map<Set<Object>, Object>> aggregations)
+                                                            throws Exception {
     return Map.of();
   }
 }
