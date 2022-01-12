@@ -188,7 +188,7 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
     return createParameterRef(name, plParameter);
   }
 
-  private ParameterRef createParameterAndRef(String name, EClass typeClass, ParameterDirection direction,
+  private ParameterRef createParameterAndRef(String name, EClassifier typeClass, ParameterDirection direction,
                                              EList<Variable> plParameters, EList<Variable> plVariables,
                                              Map<String, Variable> plVarsMap) {
     var plParameterRef = createParameterAndRef(name, typeClass, direction);
@@ -471,7 +471,12 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
       }
       // aggregation with path expression
       else if (aggCall instanceof PathExpressionConstraint aggPathExpr) {
-        this.aggregatedGroupBy = Set.of(((VariableReference) aggPathExpr.getDst()).getVariable().getName());
+        var aggName = ((VariableReference) aggPathExpr.getDst()).getVariable().getName();
+        this.aggregatedGroupBy = Set.of(aggName);
+        if (this.aggregator != Aggregator.COUNT) {
+          createParameterAndRef(aggName, aggPathExpr.getEdgeTypes().get(0).getRefname().getEType(),
+                                ParameterDirection.OUT, plParameters, plVariables, plVarsMap);
+        }
         return createPathExpressionConstraint(aggPathExpr, plParameters, plVariables, plVarsMap);
       }
     }
