@@ -33,10 +33,10 @@ pattern highlyConnectedModelObjsCD(modelObj: EObject, connections: java Integer)
 //  check(connections > 0);
 }
 
-pattern testMinCD(minName: EString) {
+pattern testMinCD(minName: java String) {
   minName == min Class.name(_, #name);
 }
 
-pattern testMaxCD(maxName: EString) {
+pattern testMaxCD(maxName: java String) {
   maxName == max Class.name(_, #name);
 }

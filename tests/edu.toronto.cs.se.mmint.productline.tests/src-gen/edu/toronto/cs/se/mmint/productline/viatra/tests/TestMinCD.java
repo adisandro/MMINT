@@ -29,11 +29,13 @@ import org.eclipse.viatra.query.runtime.emf.types.EDataTypeInSlotsKey;
 import org.eclipse.viatra.query.runtime.emf.types.EStructuralFeatureInstancesKey;
 import org.eclipse.viatra.query.runtime.matchers.aggregators.min;
 import org.eclipse.viatra.query.runtime.matchers.backend.QueryEvaluationHint;
+import org.eclipse.viatra.query.runtime.matchers.context.common.JavaTransitiveInstancesKey;
 import org.eclipse.viatra.query.runtime.matchers.psystem.PBody;
 import org.eclipse.viatra.query.runtime.matchers.psystem.PVariable;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.AggregatorConstraint;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.Equality;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.ExportedParameter;
+import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.TypeFilterConstraint;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicenumerables.TypeConstraint;
 import org.eclipse.viatra.query.runtime.matchers.psystem.queries.PParameter;
 import org.eclipse.viatra.query.runtime.matchers.psystem.queries.PParameterDirection;
@@ -47,7 +49,7 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 
  * <p>Original source:
  *         <code><pre>
- *         pattern testMinCD(minName: EString) {
+ *         pattern testMinCD(minName: java String) {
  *           minName == min Class.name(_, #name);
  *         }
  * </pre></code>
@@ -240,7 +242,7 @@ public final class TestMinCD extends BaseGeneratedEMFQuerySpecification<TestMinC
    * 
    * <p>Original source:
    * <code><pre>
-   * pattern testMinCD(minName: EString) {
+   * pattern testMinCD(minName: java String) {
    *   minName == min Class.name(_, #name);
    * }
    * </pre></code>
@@ -506,7 +508,7 @@ public final class TestMinCD extends BaseGeneratedEMFQuerySpecification<TestMinC
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private static final TestMinCD.GeneratedPQuery INSTANCE = new GeneratedPQuery();
     
-    private final PParameter parameter_minName = new PParameter("minName", "java.lang.String", new EDataTypeInSlotsKey((EDataType)getClassifierLiteralSafe("http://www.eclipse.org/emf/2002/Ecore", "EString")), PParameterDirection.INOUT);
+    private final PParameter parameter_minName = new PParameter("minName", "java.lang.String", new JavaTransitiveInstancesKey(java.lang.String.class), PParameterDirection.INOUT);
     
     private final List<PParameter> parameters = Arrays.asList(parameter_minName);
     
@@ -578,7 +580,7 @@ public final class TestMinCD extends BaseGeneratedEMFQuerySpecification<TestMinC
           PVariable var_minName = body.getOrCreateVariableByName("minName");
           PVariable var___0_ = body.getOrCreateVariableByName("_<0>");
           PVariable var__name = body.getOrCreateVariableByName("#name");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_minName), new EDataTypeInSlotsKey((EDataType)getClassifierLiteral("http://www.eclipse.org/emf/2002/Ecore", "EString")));
+          new TypeFilterConstraint(body, Tuples.flatTupleOf(var_minName), new JavaTransitiveInstancesKey(java.lang.String.class));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
              new ExportedParameter(body, var_minName, parameter_minName)
           ));
