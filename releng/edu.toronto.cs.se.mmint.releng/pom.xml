@@ -8,7 +8,7 @@
     <tycho-version>2.7.0-SNAPSHOT</tycho-version>
     <acceleo-version>3.6.4</acceleo-version>
     <mavendeps-version>3.2.0</mavendeps-version>
-    <ecj-version>3.28.0.v20211117-1416</ecj-version>
+    <ecj-version>3.29.0.v20211225-2158</ecj-version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
   <repositories>
@@ -37,10 +37,10 @@
       <id>Acceleo</id>
       <url>https://repo.eclipse.org/content/groups/releases</url>
     </pluginRepository>
-    <!--<pluginRepository>
+    <pluginRepository>
       <id>Ecj</id>
       <url>https://repo.eclipse.org/content/repositories/eclipse-staging</url>
-    </pluginRepository>-->
+    </pluginRepository>
   </pluginRepositories>
   <build>
     <pluginManagement>
@@ -64,7 +64,7 @@
       </plugins>
     </pluginManagement>
     <plugins>
-      <!--<plugin>
+      <plugin>
         <groupId>org.eclipse.tycho</groupId>
         <artifactId>tycho-compiler-plugin</artifactId>
         <version>${tycho-version}</version>
@@ -75,7 +75,7 @@
             <version>${ecj-version}</version>
           </dependency>
         </dependencies>
-      </plugin>-->
+      </plugin>
       <plugin>
         <groupId>org.eclipse.tycho</groupId>
         <artifactId>tycho-maven-plugin</artifactId>
