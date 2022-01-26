@@ -1,4 +1,4 @@
-import LTS property_catalogue.LTL.patterns tactic
+import LTS.defs property_catalogue.LTL.patterns tactic
 
 open tactic
 

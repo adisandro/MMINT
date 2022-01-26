@@ -41,6 +41,7 @@ public class LTSToLean extends ToLean implements IGSNLeanEncoder {
   private final static String LEAN_OUT_FILE = "evidence" + ToLean.LEAN_EXT;
   private final static String LEAN_BUNDLE_DIR = "lean/";
   private final static List<String> LEAN_BUNDLE_IMPORTS = List.of("LTS", "property_catalogue");
+  private final static int GROUP_THRESHOLD = 100;
 
   @Override
   public void createWorkflowInstanceOutputs(Operator newOperator, Map<String, GenericElement> genericsByName,

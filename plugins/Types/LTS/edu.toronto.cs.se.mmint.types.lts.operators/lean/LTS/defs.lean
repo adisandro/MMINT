@@ -1,9 +1,14 @@
-import data.set data.stream.basic
+import data.set 
+import data.stream.defs data.stream.init
+import data.pnat.basic
+import tactic 
 open stream 
 
-structure LTS:= (S : Type) (Act : Type)(TR : set (S × Act × S))
+structure LTS:= (S : Type) (Act : Type)
+(TR : set (S × Act × S))
 --structure LTS:= (S : Type) (A : Type) (Δ : set (S × Act × S))
 
+@[ext]
 structure path (M : LTS) := 
 (init : M.S)
 (s : stream (M.Act × M.S))
@@ -16,6 +21,12 @@ namespace path
 
 def index (π : path M) : ℕ+ → (M.Act × M.S)
 | (n) := (π.s (n-1))
+
+def action (π : path M) (n : ℕ) : M.Act := 
+(π.index (⟨n+1, by {exact nat.succ_pos n,}⟩)).1
+
+def state (π : path M) (n : ℕ) : M.S := 
+(π.index (⟨n+1, by {exact nat.succ_pos n,}⟩)).2
 
 lemma drop_aux (π : path M) (n : ℕ) : 
     ((π.s n).snd, (drop (n+1) π.s 0).fst, (drop (n+1) π.s 0).snd) ∈ M.TR ∧ ∀ (i : ℕ), ((drop (n+1) π.s i).snd, (stream.drop (n+1) π.s (i + 1)).fst, (drop (n+1) π.s (i + 1)).snd) ∈ M.TR := 
@@ -37,21 +48,53 @@ def drop (π : path M) : ℕ → path M
 | (nat.succ n) := 
     path.mk (π.s n).2 (π.s.drop n.succ) (drop_aux π n)
 
+@[simp]
+lemma foo {s0 : M.S} {σ : stream (M.Act × M.S)} {pf : ((s0, (σ 0).1, (σ 0).2) ∈ M.TR) ∧ ∀ i : ℕ, ((σ i).2, (σ (i+1)).1, (σ (i+1)).2) ∈ M.TR} {i : ℕ} : (path.drop {path. init := s0, s := σ, sound := pf} i).s = (σ.drop i) := 
+begin
+    cases i,
+    refl,
+    refl, 
+end 
+
 lemma drop_drop  (π : path M) {i j : ℕ} : 
     (π.drop i).drop j = π.drop (i+j) := 
     begin
-        cases i, {rw drop, simp}, 
-        cases j, rw [drop,drop],
-        rw drop, rw drop, rw drop, simp,
-        rw drop_drop, 
-         split,
-        rw stream.drop,
-        simp, rw add_comm,
+        induction j with j IH,
+        refl,
+        cases π with s0 σ prf,
+        cases prf with L R,
+        unfold path.drop,
+        simp,
+        ext,
+        unfold stream.drop,
+        simp,
         rw nat.add_succ,
-        rw add_comm, rw nat.add_succ,
-        rw add_comm i.succ,
-        rw nat.add_succ, rw add_comm,
+        rw path.drop,
+        simp [add_comm],
+        simp, rw stream.drop_drop,
+        rw add_comm,
+        rw nat.add_succ,
+        rw path.drop,
+        simp,
+        rw stream.drop_drop,
+        rw add_comm, rw ← nat.add_succ,
     end  
+
+-- lemma drop_drop  (π : path M) {i j : ℕ} : 
+--     (π.drop i).drop j = π.drop (i+j) := 
+--     begin
+--         cases i, {rw drop, simp}, 
+--         cases j, rw [drop,drop],
+--         rw drop, rw drop, simp,
+--         rw stream.drop_drop, 
+--          split,
+--         rw stream.drop,
+--         simp, rw add_comm,
+--         rw nat.add_succ,
+--         rw add_comm, rw nat.add_succ,
+--         rw add_comm i.succ,
+--         rw nat.add_succ, rw add_comm,
+--     end  
 
 end path 
 

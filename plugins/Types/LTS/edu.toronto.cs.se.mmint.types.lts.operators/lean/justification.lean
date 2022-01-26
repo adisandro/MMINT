@@ -4,13 +4,18 @@ variables {α β: Type}
 
 def Property (α : Type) : Type := α → Prop 
 
-structure Claim (α : Type) :=
-(X : set α)
-(P : Property α)
+structure Claim (α : Type) := make :: (X : set α) (P : Property α)
 
 @[instance] def claim_default {α : Type} : inhabited (Claim α) := 
-⟨Claim.mk ∅ (λ x, true)⟩ 
+⟨Claim.make ∅ (λ x, true)⟩ 
 
+namespace list 
+
+def All {α : Type} (pred : α → Prop) : list α → Prop
+| [] := true 
+| (h::t) := pred h ∧ All t
+
+end list 
 
 @[reducible]
 def meaning {α : Type} (C : Claim α) : Prop := 
@@ -22,7 +27,7 @@ structure Strategy (α : Type) :=
 (parent : Claim α) (decomp : Claim α → list (Claim α))
 
 @[instance] def strat_default {α : Type} : inhabited (Strategy α) := 
-⟨Strategy.mk (default (Claim α)) (λ c, [])⟩
+⟨Strategy.mk default (λ c, [])⟩
 
 
 
@@ -36,14 +41,14 @@ namespace property
 def decomposition 
 (Ps : list (Property α)) 
 (Clm : Claim α) : list (Claim α) := 
-list.map (Claim.mk Clm.X) Ps
+list.map (Claim.make Clm.X) Ps
 
 structure input (α : Type) :=
 (Clm : Claim α)
 (Props : list (Property α))
 
 @[instance] def input_default {α : Type} : inhabited (input α) := 
-⟨input.mk (default (Claim α)) []⟩
+⟨input.mk default []⟩
 
 namespace input 
 
@@ -60,14 +65,17 @@ def subsets (Γ : input α) : fin (Γ.length) → set α :=
 
 end input
 
+
+
 def justified
 (Γ : input α) : Prop :=
 (⋂ i, Γ.subsets i) ⊆ {x | Γ.Clm.P x}
 
+
 @[reducible]
 def strategy (Γ : input α) : Strategy α := 
 { parent := Γ.Clm, 
-  decomp := property.decomposition Γ.Props }  
+  decomp := λ C, list.map (Claim.make C.X)  Γ.Props }  
 
 
 
@@ -82,9 +90,15 @@ begin
   simp only [set.mem_Inter, set.mem_set_of_eq],
   intro i, 
   replace H2 := H2 ((decomposition Γ.Props Γ.Clm).nth_le i.1 (fin.cast (input.len_decomp Γ) i).2),
-  simp at H2, apply H2, 
-  apply list.nth_le_mem, assumption,
+  have bar :  i.val < (decomposition Γ.Props Γ.Clm).length := by {cases i,
+ unfold input.length at i_property, unfold decomposition, simp, assumption,},
+  have key : (decomposition Γ.Props Γ.Clm).nth_le i.1 bar ∈ list.map (Claim.make Γ.Clm.X) Γ.Props := by { unfold decomposition, apply list.nth_le_mem,},
+  replace H2 := H2 key,
+  rw list.nth_le_map' at H2,
+  apply H2,
+  apply xMem,
 end 
+-- simp only [true_and, list.mem_map, fin.val_eq_coe, eq_self_iff_true, exists_eq_right, list.nth_le_map'] at H2
 
 end property 
 

@@ -8,38 +8,38 @@
 [template private encodeMain(modelName : String)]
 import justification common_meta property_catalogue.LTL
 import [modelName/]
-open interactive S A
+open interactive
 
 variable {α : Type}
 
 set_option pp.structure_instances_qualifier true
 
+def strategy_subject_t := "path [modelName/]"
+
 def local_input_name : string := "[modelName/]_input_1"
 def local_strat_name : string := "[modelName/]_strat_1"
 def local_prf_name : string := "[modelName/]_prf_1"
-
 def preamble : string := "import justification [modelName/] common_meta property_catalogue.LTL \n open S A"
 
 meta def proof_template (p₁ p₂ : string) : string :=
 "\n\n
 theorem " ++ local_prf_name ++ " : " ++ p₁ ++ " := \nbegin \n" ++ p₂ ++ "\nend" ++ "\n\n\n"
 
-meta def evidence_file_template (ps : PROOF_STATE α) : string :=
+meta def evidence_file_template (ps : proofState α) : string :=
 preamble
 ++ "\n\n @['['/]reducible[']'/] def " ++ local_input_name
 ++ " : property.input (path [modelName/]) := "++ ps.input_string
 ++ "\n\n @['['/]reducible[']'/] def "++ local_strat_name
 ++ " : Strategy (path [modelName/]) := property.strategy " ++ local_input_name
 ++ proof_template ("deductive (path [modelName/]) " ++ local_strat_name) (tscript_string ps.tscript)
-++ ps.unused ++ hints_string ps.hints
+++ ps.unused ++ "/-" ++ hints_string ps.hints
 
 meta def output (s : string) : io unit := do
   of ← io.mk_file_handle "evidence.lean" io.mode.write,
   io.fs.write of s.to_char_buffer
 
-meta def driver (input : pexpr) : tactic unit :=
-let α := path [modelName/] in
-let ps : PROOF_STATE α := {} in
+meta def driver (input : pexpr) (α : Type) ['['/]reflected α[']'/] : tactic unit :=
+let ps : proofState α := {} in
 do
   STRAT ← tactic.to_expr input,
   match STRAT with
@@ -53,11 +53,11 @@ do
               strat_expr := STRAT,
               PROPS := PROPS,
               -- TODO : Clean this
-              init_goal := `(deductive (path [modelName/]) (property.strategy %%STRAT)),
+              init_goal := `(deductive (%%(reflect α)) (property.strategy %%STRAT)),
               ..ps},
               -- And this
   let ps := get_originals ps,
-  let goal_str := "deductive (path [modelName/]) " ++ local_strat_name,
+  let goal_str := "deductive " ++ strategy_subject_t ++ local_strat_name,
   set_goal ps.init_goal,
   ps ← SOLVE (ps),
   str ← get_unused ps,
@@ -69,52 +69,60 @@ do
 | _ := return ()
 end
 
-
 @['['/]user_command[']'/]
-meta def main
-(meta_info : decl_meta_info)
-(_ : parse (lean.parser.tk "main")) : lean.parser unit :=
+meta def main (meta_info : decl_meta_info) (_ : parse (lean.parser.tk "BEGIN")) : lean.parser unit :=
 do
    F ← read "property.lean" types.texpr,
-   lean.parser.of_tactic $ driver F
+   lean.parser.of_tactic $ driver F (path [modelName/])
 .
-main
+--
+BEGIN
 [/template]
 
-[template private encodeModel(lts : LTS, modelName : String)]
-import LTS
+[template private encodeModel(lts : LTS, modelName : String, group : Integer)]
+import LTS.defs
 
-inductive S
   [for (state : State | lts.states)]
+    [if ((i-1).mod(group) = 0)]
+inductive state[(i-1).div(group)/]
+    [/if]
 | [sanitize(state.label)/]
   [/for]
-open S
 
-inductive A
   [for (transition : Transition | lts.transitions)]
+    [if ((i-1).mod(group) = 0)]
+inductive action[(i-1).div(group)/]
+    [/if]
 | [sanitize(transition.label)/]
   [/for]
-open A
 
-def TR : set (S × A × S) :=
-{
+inductive STATES
+  [for (state : State | lts.states)]
+    [if ((i-1).mod(group) = 0)]
+| cons[(i-1).div(group)/] : state[(i-1).div(group)/] → STATES
+    [/if]
+  [/for]
+
+inductive ACTION
   [for (transition : Transition | lts.transitions)]
-  ([sanitize(transition.from.label)/], [sanitize(transition.label)/], [sanitize(transition.to.label)/])[if (i < lts.transitions->size())],[/if]
+    [if ((i-1).mod(group) = 0)]
+| cons[(i-1).div(group)/] : action[(i-1).div(group)/] → ACTION
+    [/if]
+  [/for]
+
+def TR : set (STATES × ACTION × STATES) := {
+  [for (transition : Transition | lts.transitions)]
+    [let a : Integer = (i-1).div(group)]
+  (STATES.cons state.[sanitize(transition.from.label)/], ACTION.cons[a/] action[a/].[sanitize(transition.label)/], STATES.cons state.[sanitize(transition.to.label)/])[if (i < lts.transitions->size())],[/if]
+    [/let]
   [/for]
 }
 
-def [modelName/] : LTS := LTS.mk S A TR
-
-@['['/]instance[']'/] def S_to_[modelName/]S : has_coe S ([modelName/].S) :=⟨id⟩
-
-@['['/]instance[']'/] def S_to_form : has_coe [modelName/].S (formula [modelName/]) :=
-⟨λ s, formula.state s⟩
-
-@['['/]instance[']'/] def S_to_form' : has_coe S (formula [modelName/]) :=
-⟨λ s, formula.state s⟩
-
-@['['/]instance[']'/] def Act_to_form : has_coe A (formula [modelName/]) :=
-⟨λ a, formula.act a⟩
+def [modelName/] : LTS := LTS.mk STATES ACTION TR 
+@['['/]instance[']'/] def S_to_[modelName/]S : has_coe STATES ([modelName/].S) :=⟨id⟩
+@['['/]instance[']'/] def S_to_form : has_coe [modelName/].S (formula [modelName/]) := ⟨λ s, formula.state s⟩
+@['['/]instance[']'/] def S_to_formp : has_coe STATES (formula [modelName/]) :=⟨λ s, formula.state s⟩
+@['['/]instance[']'/] def Act_to_form : has_coe ACTION (formula [modelName/]) := ⟨λ a, formula.act a⟩
 [/template]
 
 [template public LTSToLean(lts : LTS, modelName : String)]
@@ -123,6 +131,6 @@ def [modelName/] : LTS := LTS.mk S A TR
 [encodeMain(sanitize(modelName))/]
   [/file]
   [file (modelName + '.lean', false, 'UTF-8')]
-[encodeModel(lts, sanitize(modelName))/]
+[encodeModel(lts, sanitize(modelName), 100)/]
   [/file]
 [/template]

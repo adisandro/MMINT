@@ -1,4 +1,4 @@
-import system.io tactic justification LTS property_catalogue.LTL.patterns property_catalogue.LTL.pattern_meta
+import system.io tactic justification LTS.defs property_catalogue.LTL.patterns property_catalogue.LTL.pattern_meta
 
 open io list lean.parser tactic interactive.types
 
@@ -17,8 +17,8 @@ def unused_string : list string → string
 | (h::t) :="\n-- " ++ h ++ unused_string t 
 
 def hints_string : list string → string 
-| [] := string.empty 
-| (h::t) := "\n--HINT " ++ h ++ hints_string t 
+| [] := "-/" 
+| (h::t) := h ++ hints_string t 
 
 
 meta def foo  : list string → list (string × expr) →  list expr
@@ -37,7 +37,7 @@ meta def stringify : list expr → tactic string
                return ("--" ++ h.to_string ++"\n")
 
 
-meta def get_unused (ps : PROOF_STATE α) : tactic string := 
+meta def get_unused (ps : proofState α) : tactic string := 
  let l := foo ps.used ps.originals in 
  stringify (list.diff ps.originals.unzip.2 l)
  
@@ -82,7 +82,7 @@ meta def load_properties : list expr → tactic (list expr)
             else load_properties l 
              
 
-meta def analyze (ps : PROOF_STATE α) : tactic (PROOF_STATE α) := 
+meta def analyze (ps : proofState α) : tactic (proofState α) := 
  do 
    tactic.interactive.apply ``(property.deductive_of_justfd _),
  `[rw property.justified], `[rw set.Inter], 
@@ -94,23 +94,37 @@ meta def analyze (ps : PROOF_STATE α) : tactic (PROOF_STATE α) :=
    return ps 
 
 
-meta def base_case (ps : PROOF_STATE α) (tgt : expr) : list expr → tactic (PROOF_STATE α)
+meta def base_case (ps : proofState α) (tgt : expr) : list expr → tactic (proofState α)
 | [] := return ps
 | (h::t) := do 
    h_t ← infer_type h,
-  (unify h_t tgt) >> (do `[exact %%h], 
+  (unify h_t tgt) >> 
+          (do `[exact %%h], 
            h' ← tactic_format_expr h,
            ps ← ps.log $ "base_case " ++ h'.to_string,
             return { used := ps.used ++ [h'.to_string] ..ps})
   <|> base_case t
 
+namespace proofState 
 
-meta def Inductive_hyp (tgt : expr) : list expr → tactic unit
-| [] := return ()
-| (h::t) := do 
-   h_t ← infer_type h,
-  (unify h_t tgt) >> (do `[exact %%h], return ())
-  <|> Inductive_hyp t
+meta def try_resolve_IH (Γ : proofState α) (subclaim : string)  : tactic (proofState α) := 
+do 
+   result ← try_or_report_error (`[exact IH]),
+   match result with 
+   | sum.inl () := 
+      Γ.log_used_tactic_subclaim "inductive_case" subclaim  
+   | sum.inr data := 
+      Γ.log_hint data
+   end 
+end proofState
+-- meta def check_remaining_prems (tgt : expr) (subclaim : string) (Γ : proofState α) : list expr → tactic (proofState α × bool)
+-- | [] := return ⟨Γ, false⟩
+-- | (h::t) := do 
+--    h_t ← infer_type h,
+--   (unify h_t tgt) >> (
+--    do `[exact %%h],
+--    Γ.log_used_tactic_subclaim "inductive_case " subclaim, return ⟨Γ,true⟩ )
+--   <|> check_remaining_prems t
 
 
 meta def get_index_expr : list expr → tactic  expr
@@ -120,26 +134,38 @@ meta def get_index_expr : list expr → tactic  expr
             nnat ← to_expr ``(ℕ),
             unify nnat h_t >> 
             return h <|> get_index_expr t
-            
 
-meta def inductive_case  (ps : PROOF_STATE α)  : list expr → tactic (PROOF_STATE α)
-| [] := return ps 
+
+meta def stringifyFmt :  format → tactic string := 
+λ f, do return (format.to_string f)
+
+meta def stringOfFormatExpr : expr → tactic string := 
+λ e, do 
+   fmt ← (tactic_format_expr e >>= stringifyFmt),
+   return fmt
+
+
+
+meta def inductive_case  (Γ : proofState α)  : list expr → tactic (proofState α)
+| [] := return Γ 
 | (h ::t) := do 
-       h_t ← infer_type h,
-       match h_t with 
+       τ ← infer_type h,
+       match τ with 
        | `(∀ i : ℕ, %%body) := 
-        (do 
-           ii ← local_context >>= get_index_expr,
-           let e := expr.mk_app h [ii],
-           `[apply %%e], 
-           h' ← tactic_format_expr h,
-           ps ← ps.log $ "inductive_case " ++ h'.to_string,
-           return {used := ps.used ++ [h'.to_string] ..ps})
-         <|> inductive_case t
+        do 
+            index_expr ← local_context >>= get_index_expr,
+            let e := expr.mk_app h [index_expr],
+            tactic.apply e,
+            tgt ← target,
+            subclaim ← (stringOfFormatExpr h),
+            Γ ← Γ.try_resolve_IH subclaim, 
+            return Γ
+            -- Try remaining premises.
+        <|> inductive_case t
        | _ := inductive_case t
-end
+      end
 
-meta def by_induction (ps : PROOF_STATE α) : tactic (PROOF_STATE α) := 
+meta def by_induction (ps : proofState α) : tactic (proofState α) := 
 do  
    `[repeat {rw sat at *}], 
    i ← get_unused_name `i,  
@@ -149,14 +175,12 @@ do
    tgt ← target,
    p₁ ← local_context >>= base_case ps tgt,
    p₂ ← local_context >>= inductive_case p₁,
-   tgt ← target,
-   local_context >>= Inductive_hyp tgt ,
    `[repeat {rw sat at *}],
    return p₂
 
 
 
-meta def solve_inductive (ps : PROOF_STATE α) : tactic (PROOF_STATE α) := 
+meta def solve_inductive (ps : proofState α) : tactic (proofState α) := 
 do 
    p ← by_induction ps,
    b ← is_solved, 
@@ -166,16 +190,16 @@ do
    return {solved := b, ..p} 
 
 
-meta def Switch (ps : PROOF_STATE α) : tactic (PROOF_STATE α) := 
+meta def Switch (ps : proofState α) : tactic (proofState α) := 
 do
    let n := ps.input.length,
    let chr := repr n,
    ps ← ps.log ("analyze " ++ chr),
-   ps ← switch ps,
+   ps ← @switch α ps,
    b ← is_solved, 
    return {solved := b, ..ps}
 
-meta def SOLVE (ps : PROOF_STATE α ) : tactic (PROOF_STATE α) := 
+meta def SOLVE (ps : proofState α ) : tactic (proofState α) := 
 do 
    analyze ps,
    l ← local_context >>= load_properties,
@@ -228,4 +252,4 @@ do
     `[repeat {rw sat at *}], 
      try `[simp at *],
     intro i, 
-   `[induction i with i IH] -- fix this, logan!
+   `[induction i with i IH] -- TODO: fix this to avoid name capture!

@@ -1,17 +1,17 @@
-import justification tactic LTS
+import justification tactic LTS.defs
 
 variable {α : Type}
 
-meta structure PROOF_STATE (α : Type) := 
-(init_goal : expr := default expr)
-(input : property.input α := default (property.input α))
+meta structure proofState (α : Type) := 
+(init_goal : expr := default)
+(input : property.input α := default)
 (input_string : string := string.empty)
-(strat_expr : expr := default expr)
+(strat_expr : expr := default)
 (solved : bool := ff)
 (originals : list (string × expr) := [])
 (total : list expr := [])
 (used : list string := [])
-(PROPS : expr := default expr)
+(PROPS : expr := default)
 (tscript : list string := [])
 (hints : list string := [])
 (unused : string := string.empty)
@@ -23,17 +23,26 @@ meta def originals_aux : expr → list expr
    end 
 | _ := []
 
-meta def get_originals (ps : PROOF_STATE α) : (PROOF_STATE α) := 
+meta def get_originals (ps : proofState α) : (proofState α) := 
  let l := originals_aux ps.PROPS in 
  let l':= (list.range l.length).map 
  (λ i, ("P" ++ to_string (i+1) : string)) in 
  {originals := list.zip l' l ..ps}
 
-namespace PROOF_STATE 
+namespace proofState 
 
-
-meta def log (ps : PROOF_STATE α) (s : string) : tactic (PROOF_STATE α):= 
+meta def log (ps : proofState α) (s : string) : tactic (proofState α):= 
 return { tscript := ps.tscript ++ [s] ..ps}
+
+
+meta def log_hint (ps : proofState α) (s : string) : tactic (proofState α):= 
+return { hints := ps.hints ++ [s] ..ps}
+
+
+meta def log_used_tactic_subclaim (ps : proofState α) (s c : string) : tactic (proofState α) := 
+return {
+   tscript := ps.tscript.concat(s ++ c), 
+   used := ps.used ++ [c], ..ps}
 
 meta def fill_props : list expr → tactic (list expr)
 | [] := return []
@@ -44,4 +53,4 @@ meta def fill_props : list expr → tactic (list expr)
             | _ := fill_props t  
             end 
 
-end PROOF_STATE
+end proofState
