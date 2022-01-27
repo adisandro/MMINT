@@ -77,7 +77,7 @@ public class LTSToLean extends ToLean implements IGSNLeanEncoder {
     this.output.leanPaths.add(workingPath + LTSToLean.LEAN_MAIN_FILE);
     this.output.leanPaths.add(workingPath + this.input.model.getName() + ToLean.LEAN_EXT);
     this.leanGenerator = new LTSToLeanAcceleo(this.input.model.getEMFInstanceRoot(), this.output.leanFolder,
-                                              List.of(this.input.model.getName()));
+                                              List.of(this.input.model.getName(), LTSToLean.GROUP_THRESHOLD));
     // static lean files from this bundle
     var bundlePath = MIDTypeRegistry.getBundlePath(this.getMetatype(), LTSToLean.LEAN_BUNDLE_DIR);
     FileUtils.copyDirectory(bundlePath, false, workingPath, true);

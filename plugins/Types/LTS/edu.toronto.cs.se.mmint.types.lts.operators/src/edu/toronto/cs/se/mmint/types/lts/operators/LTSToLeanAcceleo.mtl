@@ -5,6 +5,11 @@
 [name.replaceAll('[\\s=<>?!]', '_')/]
 [/template]
 
+[query private getStateIndex(lts : LTS, state : State) : Integer =
+  lts.states->indexOf(state) - 1
+/]
+
+
 [template private encodeMain(modelName : String)]
 import justification common_meta property_catalogue.LTL
 import [modelName/]
@@ -79,41 +84,45 @@ do
 BEGIN
 [/template]
 
-[template private encodeModel(lts : LTS, modelName : String, group : Integer)]
+[template private encodeModel(lts : LTS, modelName : String, groupThreshold : Integer)]
 import LTS.defs
 
   [for (state : State | lts.states)]
-    [if ((i-1).mod(group) = 0)]
-inductive state[(i-1).div(group)/]
+    [if ((i-1).mod(groupThreshold) = 0)]
+inductive state[(i-1).div(groupThreshold)/]
     [/if]
 | [sanitize(state.label)/]
   [/for]
 
   [for (transition : Transition | lts.transitions)]
-    [if ((i-1).mod(group) = 0)]
-inductive action[(i-1).div(group)/]
+    [if ((i-1).mod(groupThreshold) = 0)]
+inductive action[(i-1).div(groupThreshold)/]
     [/if]
 | [sanitize(transition.label)/]
   [/for]
 
 inductive STATES
   [for (state : State | lts.states)]
-    [if ((i-1).mod(group) = 0)]
-| cons[(i-1).div(group)/] : state[(i-1).div(group)/] → STATES
+    [if ((i-1).mod(groupThreshold) = 0)]
+| cons[(i-1).div(groupThreshold)/] : state[(i-1).div(groupThreshold)/] → STATES
     [/if]
   [/for]
 
 inductive ACTION
   [for (transition : Transition | lts.transitions)]
-    [if ((i-1).mod(group) = 0)]
-| cons[(i-1).div(group)/] : action[(i-1).div(group)/] → ACTION
+    [if ((i-1).mod(groupThreshold) = 0)]
+| cons[(i-1).div(groupThreshold)/] : action[(i-1).div(groupThreshold)/] → ACTION
     [/if]
   [/for]
 
 def TR : set (STATES × ACTION × STATES) := {
   [for (transition : Transition | lts.transitions)]
-    [let a : Integer = (i-1).div(group)]
-  (STATES.cons state.[sanitize(transition.from.label)/], ACTION.cons[a/] action[a/].[sanitize(transition.label)/], STATES.cons state.[sanitize(transition.to.label)/])[if (i < lts.transitions->size())],[/if]
+    [let a : Integer = (i-1).div(groupThreshold)]
+    [let s1 : Integer = getStateIndex(lts, transition.from).div(groupThreshold)]
+    [let s2 : Integer = getStateIndex(lts, transition.to).div(groupThreshold)]
+  (STATES.cons[s1/] state[s1/].[sanitize(transition.from.label)/], ACTION.cons[a/] action[a/].[sanitize(transition.label)/], STATES.cons[s2/] state[s2/].[sanitize(transition.to.label)/])[if (i < lts.transitions->size())],[/if]
+    [/let]
+    [/let]
     [/let]
   [/for]
 }
@@ -125,12 +134,12 @@ def [modelName/] : LTS := LTS.mk STATES ACTION TR
 @['['/]instance[']'/] def Act_to_form : has_coe ACTION (formula [modelName/]) := ⟨λ a, formula.act a⟩
 [/template]
 
-[template public LTSToLean(lts : LTS, modelName : String)]
+[template public LTSToLean(lts : LTS, modelName : String, groupThreshold : Integer)]
   [comment @main /]
   [file ('main.lean', false, 'UTF-8')]
 [encodeMain(sanitize(modelName))/]
   [/file]
   [file (modelName + '.lean', false, 'UTF-8')]
-[encodeModel(lts, sanitize(modelName), 100)/]
+[encodeModel(lts, sanitize(modelName), groupThreshold)/]
   [/file]
 [/template]
