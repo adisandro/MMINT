@@ -71,7 +71,7 @@ public class PropertyDecomposition extends GoalDecomposition {
       var validClasses = templates.values().stream()
         .flatMap(l -> l.stream())
         .flatMap(t -> t.variables.stream())
-        .flatMap(v -> v.validTypes.keySet().stream())
+        .flatMap(v -> v.validTypes.stream())
         .collect(Collectors.toSet());
       if (validClasses.isEmpty()) {
         return new HashMap<>();

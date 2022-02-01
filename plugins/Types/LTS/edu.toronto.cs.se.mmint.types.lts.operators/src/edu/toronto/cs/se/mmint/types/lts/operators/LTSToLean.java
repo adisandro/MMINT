@@ -12,14 +12,15 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.types.lts.operators;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
 
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.MMINTException;
@@ -31,7 +32,11 @@ import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
+import edu.toronto.cs.se.mmint.types.lts.LTS;
 import edu.toronto.cs.se.mmint.types.lts.LTSPackage;
+import edu.toronto.cs.se.mmint.types.lts.LabeledElement;
+import edu.toronto.cs.se.mmint.types.lts.State;
+import edu.toronto.cs.se.mmint.types.lts.Transition;
 import edu.toronto.cs.se.modelepedia.gsn.reasoning.IGSNLeanEncoder;
 import edu.toronto.cs.se.modelepedia.gsn.reasoning.IGSNLeanEncoder.PropertyVariable.Replacer;
 
@@ -85,19 +90,28 @@ public class LTSToLean extends ToLean implements IGSNLeanEncoder {
 
   @Override
   public List<PropertyTemplate> getPropertyTemplates() {
-    var validTypes = Map.<EClass, EStructuralFeature>of(LTSPackage.eINSTANCE.getLabeledElement(),
-                                                        LTSPackage.eINSTANCE.getLabeledElement_Label());
-    Replacer replacer = (modelNames) -> {
-      var regexp = "[\\s=<>?!]";
-      if (modelNames.size() == 1) {
-        return "(coe " + modelNames.get(0).replaceAll(regexp, "_") + ")";
+    var validTypes = Set.<EClass>of(LTSPackage.eINSTANCE.getLabeledElement());
+    Replacer replacer = (modelObjs) -> {
+      var regexp = "[\\s\\.=<>?!]";
+      var modelNames = modelObjs.stream()
+        .map(o -> ((LabeledElement) o).getLabel().replaceAll(regexp, "_"))
+        .collect(Collectors.toList());
+      var informals = new ArrayList<String>();
+      var formals = new ArrayList<String>();
+      for (var modelObj : modelObjs) {
+        var modelName = ((LabeledElement) modelObj).getLabel().replaceAll(regexp, "_");
+        informals.add(modelName);
+        if (modelObj instanceof State state) {
+          var i = ((LTS) state.eContainer()).getStates().indexOf(state) / LTSToLean.GROUP_THRESHOLD;
+          formals.add("STATES.cons" + i + "state" + i + "." + modelName);
+        }
+        else if (modelObj instanceof Transition transition) {
+          var i = ((LTS) transition.eContainer()).getTransitions().indexOf(transition) / LTSToLean.GROUP_THRESHOLD;
+          formals.add("ACTION.cons" + i + "action" + i + "." + modelName);
+        }
       }
-      else {
-        var sanitizedNames = modelNames.stream()
-          .map(n -> n.replaceAll(regexp, "_"))
-          .collect(Collectors.joining(", "));
-        return "(coe " + modelNames.get(0).replaceAll(regexp, "_") + ")";
-      }
+      String.join(",", informals);
+      return "(coe (" + formals.get(0) + "))"; //TODO MMINT[Lean] Encode multiple objs at once + return record
     };
     var x = new PropertyVariable("$X", validTypes, replacer);
     var y = new PropertyVariable("$Y", validTypes, replacer);

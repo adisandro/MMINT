@@ -16,11 +16,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.stream.Stream;
+import java.util.Set;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jdt.annotation.Nullable;
 
@@ -40,12 +39,12 @@ public interface IGSNLeanEncoder {
 
   static class PropertyVariable {
     public interface Replacer {
-      public String replace(List<String> modelNames);
+      public String replace(List<EObject> modelObjs);
     }
     public String name;
-    public Map<EClass, EStructuralFeature> validTypes;
+    public Set<EClass> validTypes;
     public Replacer replacer;
-    public PropertyVariable(String name, Map<EClass, EStructuralFeature> validTypes, Replacer replacer) {
+    public PropertyVariable(String name, Set<EClass> validTypes, Replacer replacer) {
       this.name = Objects.requireNonNull(name);
       this.validTypes = Objects.requireNonNull(validTypes);
       this.replacer = replacer;
@@ -80,20 +79,12 @@ public interface IGSNLeanEncoder {
       var boundInformal = this.informal;
       for (var variable : this.variables) {
         var validModelObjs = new ArrayList<EObject>();
-        variable.validTypes.keySet().forEach(t -> validModelObjs.addAll(modelObjs.getOrDefault(t, List.of())));
+        variable.validTypes.forEach(t -> validModelObjs.addAll(modelObjs.getOrDefault(t, List.of())));
         var boundModelObjs = MIDDialogs.<EObject>openListMultipleDialog(title, boundInformal + message + variable.name,
                                                                         validModelObjs, labelProvider);
-        var boundVariables = new ArrayList<String>();
-        for (var modelObj : boundModelObjs) {
-          var modelObjClass = modelObj.eClass();
-          var feature = Stream.concat(Stream.of(modelObjClass), modelObjClass.getEAllSuperTypes().stream())
-            .filter(c -> variable.validTypes.containsKey(c))
-            .map(c -> variable.validTypes.get(c))
-            .findFirst();
-          boundVariables.add(feature.map(f -> (String) modelObj.eGet(f)).orElse(modelObj.toString()));
-        }
-        boundFormal = boundFormal.replace(variable.name, variable.replacer.replace(boundVariables));
-        boundInformal = boundInformal.replace(variable.name, String.join(",", boundVariables));
+        var replaced = variable.replacer.replace(boundModelObjs);
+        boundFormal = boundFormal.replace(variable.name, replaced);
+        boundInformal = boundInformal.replace(variable.name, replaced);
       }
       property.setFormal(boundFormal);
       property.setInformal(boundInformal);
