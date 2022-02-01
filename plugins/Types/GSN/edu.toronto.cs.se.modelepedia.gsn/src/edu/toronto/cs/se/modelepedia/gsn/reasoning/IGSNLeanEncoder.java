@@ -38,16 +38,17 @@ import edu.toronto.cs.se.modelepedia.gsn.Property;
 public interface IGSNLeanEncoder {
 
   static class PropertyVariable {
-    public interface Replacer {
-      public String replace(List<EObject> modelObjs);
+    public record VariableEncoding(String formal, String informal) {}
+    public interface VariableEncoder {
+      public VariableEncoding encode(List<EObject> modelObjs);
     }
     public String name;
     public Set<EClass> validTypes;
-    public Replacer replacer;
-    public PropertyVariable(String name, Set<EClass> validTypes, Replacer replacer) {
+    public VariableEncoder encoder;
+    public PropertyVariable(String name, Set<EClass> validTypes, VariableEncoder encoder) {
       this.name = Objects.requireNonNull(name);
       this.validTypes = Objects.requireNonNull(validTypes);
-      this.replacer = replacer;
+      this.encoder = encoder;
     }
   }
   static class PropertyTemplate {
@@ -82,9 +83,9 @@ public interface IGSNLeanEncoder {
         variable.validTypes.forEach(t -> validModelObjs.addAll(modelObjs.getOrDefault(t, List.of())));
         var boundModelObjs = MIDDialogs.<EObject>openListMultipleDialog(title, boundInformal + message + variable.name,
                                                                         validModelObjs, labelProvider);
-        var replaced = variable.replacer.replace(boundModelObjs);
-        boundFormal = boundFormal.replace(variable.name, replaced);
-        boundInformal = boundInformal.replace(variable.name, replaced);
+        var encoded = variable.encoder.encode(boundModelObjs);
+        boundFormal = boundFormal.replace(variable.name, encoded.formal());
+        boundInformal = boundInformal.replace(variable.name, encoded.informal());
       }
       property.setFormal(boundFormal);
       property.setInformal(boundInformal);

@@ -38,7 +38,8 @@ import edu.toronto.cs.se.mmint.types.lts.LabeledElement;
 import edu.toronto.cs.se.mmint.types.lts.State;
 import edu.toronto.cs.se.mmint.types.lts.Transition;
 import edu.toronto.cs.se.modelepedia.gsn.reasoning.IGSNLeanEncoder;
-import edu.toronto.cs.se.modelepedia.gsn.reasoning.IGSNLeanEncoder.PropertyVariable.Replacer;
+import edu.toronto.cs.se.modelepedia.gsn.reasoning.IGSNLeanEncoder.PropertyVariable.VariableEncoder;
+import edu.toronto.cs.se.modelepedia.gsn.reasoning.IGSNLeanEncoder.PropertyVariable.VariableEncoding;
 
 public class LTSToLean extends ToLean implements IGSNLeanEncoder {
 
@@ -91,11 +92,8 @@ public class LTSToLean extends ToLean implements IGSNLeanEncoder {
   @Override
   public List<PropertyTemplate> getPropertyTemplates() {
     var validTypes = Set.<EClass>of(LTSPackage.eINSTANCE.getLabeledElement());
-    Replacer replacer = (modelObjs) -> {
+    VariableEncoder encoder = (modelObjs) -> {
       var regexp = "[\\s\\.=<>?!]";
-      var modelNames = modelObjs.stream()
-        .map(o -> ((LabeledElement) o).getLabel().replaceAll(regexp, "_"))
-        .collect(Collectors.toList());
       var informals = new ArrayList<String>();
       var formals = new ArrayList<String>();
       for (var modelObj : modelObjs) {
@@ -103,20 +101,20 @@ public class LTSToLean extends ToLean implements IGSNLeanEncoder {
         informals.add(modelName);
         if (modelObj instanceof State state) {
           var i = ((LTS) state.eContainer()).getStates().indexOf(state) / LTSToLean.GROUP_THRESHOLD;
-          formals.add("STATES.cons" + i + "state" + i + "." + modelName);
+          formals.add("STATES.cons" + i + " state" + i + "." + modelName);
         }
         else if (modelObj instanceof Transition transition) {
           var i = ((LTS) transition.eContainer()).getTransitions().indexOf(transition) / LTSToLean.GROUP_THRESHOLD;
-          formals.add("ACTION.cons" + i + "action" + i + "." + modelName);
+          formals.add("ACTION.cons" + i + " action" + i + "." + modelName);
         }
       }
-      String.join(",", informals);
-      return "(coe (" + formals.get(0) + "))"; //TODO MMINT[Lean] Encode multiple objs at once + return record
+    //TODO MMINT[Lean] Encode multiple formal objs at once
+      return new VariableEncoding("(coe (" + formals.get(0) + "))", String.join(",", informals));
     };
-    var x = new PropertyVariable("$X", validTypes, replacer);
-    var y = new PropertyVariable("$Y", validTypes, replacer);
-    var a = new PropertyVariable("$A", validTypes, replacer);
-    var b = new PropertyVariable("$B", validTypes, replacer);
+    var x = new PropertyVariable("$X", validTypes, encoder);
+    var y = new PropertyVariable("$Y", validTypes, encoder);
+    var a = new PropertyVariable("$A", validTypes, encoder);
+    var b = new PropertyVariable("$B", validTypes, encoder);
     var absent1 = new PropertyTemplate("absent.globally $X",
                                        "$X is not reached",
                                        "Absence", List.of(x));
@@ -213,8 +211,8 @@ public class LTSToLean extends ToLean implements IGSNLeanEncoder {
                    misc1,   misc2,   misc3,   misc4);
   }
 
-  private String encodeProperty(String modelName, String property) {
-    return "(fun p : path " + modelName + ", sat (" + property + ") p)";
+  private String encodeProperty(String property) {
+    return "(λ π, π ⊨ " + property + ")";
   }
 
   @Override
@@ -222,13 +220,13 @@ public class LTSToLean extends ToLean implements IGSNLeanEncoder {
     var modelName = model.getName();
     var encoding =
       "property.input.mk\n" +
-      "(Claim.mk\n" +
+      "(Claim.make\n" +
         "{x : path " + modelName + " | true}\n" +
-        encodeProperty(modelName, property) + "\n" +
+        encodeProperty(property) + "\n" +
       ")\n" +
       "([\n";
     encoding += subProperties.stream()
-      .map(p -> encodeProperty(modelName, p))
+      .map(p -> encodeProperty(p))
       .collect(Collectors.joining(",\n"));
     encoding += "\n])\n";
 
