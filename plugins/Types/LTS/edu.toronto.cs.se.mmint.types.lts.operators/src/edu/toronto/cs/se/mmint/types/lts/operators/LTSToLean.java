@@ -21,6 +21,7 @@ import java.util.stream.Collectors;
 
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.MMINTException;
@@ -32,7 +33,6 @@ import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
-import edu.toronto.cs.se.mmint.types.lts.LTS;
 import edu.toronto.cs.se.mmint.types.lts.LTSPackage;
 import edu.toronto.cs.se.mmint.types.lts.LabeledElement;
 import edu.toronto.cs.se.mmint.types.lts.State;
@@ -89,22 +89,26 @@ public class LTSToLean extends ToLean implements IGSNLeanEncoder {
     FileUtils.copyDirectory(bundlePath, false, workingPath, true);
   }
 
+  public static int getIndex(LabeledElement labeled) {
+    var emfUri = EcoreUtil.getURI(labeled).toString();
+    return Integer.valueOf(emfUri.substring(emfUri.lastIndexOf('.') + 1));
+  }
+
   @Override
   public List<PropertyTemplate> getPropertyTemplates() {
     var validTypes = Set.<EClass>of(LTSPackage.eINSTANCE.getLabeledElement());
     VariableEncoder encoder = (modelObjs) -> {
-      var regexp = "[\\s\\.=<>?!]";
+      var regexp = "[\\s\\.\\-=<>?!]";
       var informals = new ArrayList<String>();
       var formals = new ArrayList<String>();
       for (var modelObj : modelObjs) {
         var modelName = ((LabeledElement) modelObj).getLabel().replaceAll(regexp, "_");
         informals.add(modelName);
-        if (modelObj instanceof State state) {
-          var i = ((LTS) state.eContainer()).getStates().indexOf(state) / LTSToLean.GROUP_THRESHOLD;
+        var i = getIndex((LabeledElement) modelObj) / LTSToLean.GROUP_THRESHOLD;
+        if (modelObj instanceof State) {
           formals.add("STATES.cons" + i + " state" + i + "." + modelName);
         }
-        else if (modelObj instanceof Transition transition) {
-          var i = ((LTS) transition.eContainer()).getTransitions().indexOf(transition) / LTSToLean.GROUP_THRESHOLD;
+        else if (modelObj instanceof Transition) {
           formals.add("ACTION.cons" + i + " action" + i + "." + modelName);
         }
       }
