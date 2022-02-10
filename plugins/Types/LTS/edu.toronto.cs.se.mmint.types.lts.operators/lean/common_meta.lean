@@ -153,6 +153,9 @@ meta def inductive_case  (Γ : proofState α)  : list expr → tactic (proofStat
        match τ with 
        | `(∀ i : ℕ, %%body) := 
         do 
+         -- try `[replace P2 := P2 i,rw stream.drop_drop at P2, rw add_comm at P2, apply P2, exact IH], 
+         -- b ← is_solved, 
+         -- if b then return Γ else do
             index_expr ← local_context >>= get_index_expr,
             let e := expr.mk_app h [index_expr],
             tactic.apply e,
@@ -167,15 +170,19 @@ meta def inductive_case  (Γ : proofState α)  : list expr → tactic (proofStat
 
 meta def by_induction (ps : proofState α) : tactic (proofState α) := 
 do  
-   `[repeat {rw sat at *}], 
+   try `[repeat {rw sat at *}], 
+   -- try `[repeat {rw fSat at *}], 
+   -- try `[repeat {rw FLTLsat at *}],
+   try `[simp at *],
    i ← get_unused_name `i,  
    IH ← get_unused_name `IH,
    intro i, `[induction i with i IH], -- fix this, logan!
+   tactic.all_goals (do try `[repeat {rw sat at *}], try `[simp at *]), 
    ps ← ps.log "by_induction",
    tgt ← target,
    p₁ ← local_context >>= base_case ps tgt,
    p₂ ← local_context >>= inductive_case p₁,
-   `[repeat {rw sat at *}],
+   try `[repeat {rw sat at *}],
    return p₂
 
 

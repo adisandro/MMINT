@@ -21,7 +21,7 @@
 [template private encodeMain(modelName : String)]
 import justification common_meta property_catalogue.LTL
 import [modelName/]
-open interactive
+open interactive STATES ACTIONS
 
 variable {α : Type}
 
@@ -32,8 +32,7 @@ def strategy_subject_t := "path [modelName/]"
 def local_input_name : string := "[modelName/]_input_1"
 def local_strat_name : string := "[modelName/]_strat_1"
 def local_prf_name : string := "[modelName/]_prf_1"
-def preamble : string := "import justification [modelName/] common_meta property_catalogue.LTL \n open S A"
-
+def preamble : string := "import justification [modelName/] common_meta property_catalogue.LTL \n open STATES ACTIONS "
 meta def proof_template (p₁ p₂ : string) : string :=
 "\n\n
 theorem " ++ local_prf_name ++ " : " ++ p₁ ++ " := \nbegin \n" ++ p₂ ++ "\nend" ++ "\n\n\n"
@@ -119,10 +118,10 @@ inductive STATES
     [/if]
   [/for]
 
-inductive ACTION
+inductive ACTIONS
   [for (transition : Transition | lts.transitions)]
     [if (mod(i-1, groupThreshold) = 0)]
-| cons[div(i-1, groupThreshold)/] : action[div(i-1, groupThreshold)/] → ACTION
+| cons[div(i-1, groupThreshold)/] : action[div(i-1, groupThreshold)/] → ACTIONS
     [/if]
   [/for]
 
@@ -132,9 +131,9 @@ inductive ACTION
     [let s2 : Integer = div(getIndex(transition.to), groupThreshold)]
     [if (mod(i-1, groupThreshold) = 0)]
 
-def TR[div(i-1, groupThreshold)/] : set (STATES × ACTION × STATES) := {
+def TR[div(i-1, groupThreshold)/] : set (STATES × ACTIONS × STATES) := {
     [/if]
-  (STATES.cons[s1/] state[s1/].[sanitize(transition.from.label)/], ACTION.cons[a/] action[a/].[sanitize(transition.label)/], STATES.cons[s2/] state[s2/].[sanitize(transition.to.label)/])[if (i < lts.transitions->size())],[/if]
+  (STATES.cons[s1/] state[s1/].[sanitize(transition.from.label)/], ACTIONS.cons[a/] action[a/].[sanitize(transition.label)/], STATES.cons[s2/] state[s2/].[sanitize(transition.to.label)/])[if (i < lts.transitions->size())],[/if]
     [if (mod(i-1, groupThreshold) = (groupThreshold-1) or i = lts.transitions->size())]
 }
     [/if]
@@ -143,13 +142,13 @@ def TR[div(i-1, groupThreshold)/] : set (STATES × ACTION × STATES) := {
     [/let]
   [/for]
 
-def TR : set (STATES × ACTION × STATES) := [for (j : Integer | Sequence{0..div(lts.transitions->size()-1, groupThreshold)}) separator(' ∪ ')]TR[j/][/for]
+def TR : set (STATES × ACTIONS × STATES) := [for (j : Integer | Sequence{0..div(lts.transitions->size()-1, groupThreshold)}) separator(' ∪ ')]TR[j/][/for]
 
-def [modelName/] : LTS := LTS.mk STATES ACTION TR 
+def [modelName/] : LTS := LTS.mk STATES ACTIONS TR 
 @['['/]instance[']'/] def S_to_[modelName/]S : has_coe STATES ([modelName/].S) := ⟨id⟩
-@['['/]instance[']'/] def S_to_form : has_coe [modelName/].S (formula [modelName/]) := ⟨λ s, formula.state s⟩
-@['['/]instance[']'/] def S_to_formp : has_coe STATES (formula [modelName/]) := ⟨λ s, formula.state s⟩
-@['['/]instance[']'/] def Act_to_form : has_coe ACTION (formula [modelName/]) := ⟨λ a, formula.act a⟩
+@['['/]instance[']'/] def S_to_form : has_coe [modelName/].S (formula [modelName/]) := ⟨λ s, formula.states {s}⟩
+@['['/]instance[']'/] def S_to_form' : has_coe STATES (formula [modelName/]) := ⟨λ s, formula.states {s}⟩
+@['['/]instance[']'/] def Act_to_form : has_coe ACTIONS (formula [modelName/]) := ⟨λ a, formula.acts {a}⟩
 [/template]
 
 [template public LTSToLean(lts : LTS, modelName : String, groupThreshold : Integer)]

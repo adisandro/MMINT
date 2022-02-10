@@ -103,8 +103,8 @@ inductive formula (M : LTS)
 | T : formula 
 | state_predicate (p : M.S → Prop) : formula
 | act_predicate (p : M.Act → Prop) : formula
-| state (s : M.S) : formula  
-| act (a : M.Act) : formula 
+| states (s : set M.S) : formula  
+| acts (a : set M.Act) : formula 
 | neg (x : formula) : formula 
 | conj (φ₁ φ₂ : formula) : formula 
 | disj (φ₁ φ₂ : formula) : formula 
@@ -116,8 +116,8 @@ inductive formula (M : LTS)
 
 def sat {M : LTS} : formula M → path M → Prop 
 | formula.T := λ _, true 
-| (formula.state s) :=  λ π, π.init = s 
-| (formula.act a)  := λ π, (path.index π 1).1 = a 
+| (formula.states s) :=  λ π, π.init ∈  s 
+| (formula.acts a)  := λ π, (path.index π 1).1 ∈ a 
 | (formula.neg φ) := λ π, ¬ (sat φ) π
 | (formula.conj φ₁ φ₂) := λ π, sat φ₁ π ∧ sat φ₂ π
 | (formula.disj φ₁ φ₂) := λ π, sat φ₁ π ∨ sat φ₂ π

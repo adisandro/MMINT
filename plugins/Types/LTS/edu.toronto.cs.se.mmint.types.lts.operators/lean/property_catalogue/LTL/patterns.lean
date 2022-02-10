@@ -4,7 +4,6 @@ variable {M : LTS}
 
 set_option pp.beta true 
 
-
 @[reducible]
 def init_state (s : M.S) [has_coe M.S (formula M)] : formula M := ↑s
 
@@ -15,12 +14,12 @@ def holds_over_transition (s : M.S) [has_coe M.S (formula M)] : formula M :=
  
 
 @[reducible]
-def not_init (s : M.S) [has_coe M.S (formula M)] : formula M := !↑s
+def not_init (s : formula M) : formula M := !s
 
 
 @[reducible]
-def transitions_safe  (s : M.S) [has_coe M.S (formula M)]  : formula M := 
-◾(!↑s ⇒ ! formula.next ↑s)
+def transitions_safe  (s : formula M) : formula M := 
+◾(!s ⇒ ! formula.next s)
 
 
 namespace absent 

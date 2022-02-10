@@ -106,14 +106,15 @@ public class LTSToLean extends ToLean implements IGSNLeanEncoder {
         informals.add(modelName);
         var i = getIndex((LabeledElement) modelObj) / LTSToLean.GROUP_THRESHOLD;
         if (modelObj instanceof State) {
-          formals.add("STATES.cons" + i + " state" + i + "." + modelName);
+          formals.add("(STATES.cons" + i + " state" + i + "." + modelName + ")");
         }
         else if (modelObj instanceof Transition) {
-          formals.add("ACTION.cons" + i + " action" + i + "." + modelName);
+          formals.add("(ACTIONS.cons" + i + " action" + i + "." + modelName + ")");
         }
       }
-    //TODO MMINT[Lean] Encode multiple formal objs at once
-      return new VariableEncoding("(coe (" + formals.get(0) + "))", String.join(", ", informals));
+      var type = (modelObjs.get(0) instanceof State) ? "states" : "acts";
+      return new VariableEncoding("(formula." + type + " {" + String.join(", ", formals) + "})",
+                                  String.join(", ", informals));
     };
     var x = new PropertyVariable("$X", validTypes, encoder);
     var y = new PropertyVariable("$Y", validTypes, encoder);
