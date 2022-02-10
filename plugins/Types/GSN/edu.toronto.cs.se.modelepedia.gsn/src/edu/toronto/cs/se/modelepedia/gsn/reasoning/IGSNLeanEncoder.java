@@ -17,13 +17,18 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jdt.annotation.Nullable;
 
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.diagram.context.SiriusEvaluateQuery;
+import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
 import edu.toronto.cs.se.mmint.mid.ui.GMFUtils;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.modelepedia.gsn.GSNFactory;
@@ -74,30 +79,50 @@ public interface IGSNLeanEncoder {
       }
 
       var message = ":\nSelect one or more model elements corresponding to variable ";
-      var labelProvider = new AdapterFactoryLabelProvider(GMFUtils.getAdapterFactory());
+      var labelProvider = new AdapterFactoryLabelProvider(GMFUtils.getAdapterFactory()) {
+        @Override
+        public String getText(Object object) {
+          if (object instanceof String queryLabel) {
+            // special case to run a query
+            return queryLabel;
+          }
+          return super.getText(object);
+        }
+      };
       var boundFormal = this.formal;
       var boundInformal = this.informal;
       for (var variable : this.variables) {
         var validModelObjs = new LinkedHashSet<EObject>();
         variable.validTypes.forEach(t -> validModelObjs.addAll(modelObjs.getOrDefault(t, List.of())));
-        var boundModelObjs = MIDDialogs.<EObject>openListMultipleDialog(title, boundInformal + message + variable.name,
-                                                                        validModelObjs.toArray(new EObject[0]),
-                                                                        labelProvider);
-//        var model = MIDDiagramUtils.getInstanceMIDModelFromModelEditor(modelObjs.values().iterator().next().get(0));
-//        var instanceMID = model.getMIDContainer();
-//        var querySpec = SiriusEvaluateQuery.selectQuery(instanceMID);
-//        var queryResults = querySpec.reasoner().evaluateQuery(querySpec.filePath(), querySpec.name(), instanceMID,
-//                                                              List.<EObject>of());
-//        var boundModelObjs = queryResults.stream()
-//          .filter(o -> validModelObjs.contains(o))
-//          .map(o -> (EObject) o)
-//          .collect(Collectors.toList());
-//        if (boundModelObjs.isEmpty()) {
-//          throw new MMINTException("The query '" + querySpec.name() + "' returned zero valid model objects");
-//        }
+        var input = Stream.concat(Stream.of("Select with query"), validModelObjs.stream()).toArray();
+        var selectedObjs = MIDDialogs.openListMultipleDialog(title, boundInformal + message + variable.name, input,
+                                                             labelProvider);
+        List<EObject> boundModelObjs;
+        String queryInformal = null;
+        if (selectedObjs.get(0) instanceof String) { // model element selection with query
+          var model = MIDDiagramUtils.getInstanceMIDModelFromModelEditor(modelObjs.values().iterator().next().get(0));
+          var instanceMID = model.getMIDContainer();
+          var querySpec = SiriusEvaluateQuery.selectQuery(instanceMID);
+          selectedObjs = querySpec.reasoner().evaluateQuery(querySpec.filePath(), querySpec.name(), instanceMID,
+                                                            List.<EObject>of());
+          boundModelObjs = selectedObjs.stream()
+            .filter(o -> validModelObjs.contains(o))
+            .map(o -> (EObject) o)
+            .collect(Collectors.toList());
+          if (boundModelObjs.isEmpty()) {
+            throw new MMINTException("The query '" + querySpec.name() + "' returned zero valid model objects");
+          }
+          queryInformal = "<elements resulting from query \"" + querySpec.name() + "\">";
+        }
+        else { // direct model element selection
+          boundModelObjs = selectedObjs.stream()
+            .map(o -> (EObject) o)
+            .collect(Collectors.toList());
+        }
         var encoded = variable.encoder.encode(boundModelObjs);
         boundFormal = boundFormal.replace(variable.name, encoded.formal());
-        boundInformal = boundInformal.replace(variable.name, encoded.informal());
+        boundInformal = boundInformal.replace(variable.name,
+                                              (queryInformal == null) ? encoded.informal() : queryInformal);
       }
       property.setFormal(boundFormal);
       property.setInformal(boundInformal);
