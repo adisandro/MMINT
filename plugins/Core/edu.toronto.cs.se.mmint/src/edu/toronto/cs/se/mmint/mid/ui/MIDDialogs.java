@@ -117,14 +117,14 @@ public class MIDDialogs {
 	}
 
   @SuppressWarnings("unchecked")
-  public static <T> List<T> openListMultipleDialog(String title, String message, List<T> input,
+  public static <T> List<T> openListMultipleDialog(String title, String message, T[] input,
                                                    ILabelProvider labelProvider) throws MIDDialogCancellation {
     var dialog = new ElementListSelectionDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),
                                                 labelProvider);
     dialog.setTitle(title);
     dialog.setMessage(message);
     dialog.setMultipleSelection(true);
-    dialog.setElements(input.toArray());
+    dialog.setElements(input);
     if (dialog.open() == Window.CANCEL) {
       throw new MIDDialogCancellation();
     }

@@ -50,18 +50,7 @@ import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
 public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
 
-  private static String prettyPrint(Object result) {
-    if (result instanceof EObject) {
-      try {
-        var name = FileUtils.getModelObjectFeature((EObject) result, "name");
-        if (name != null) {
-          result = name;
-        }
-      }
-      catch (MMINTException e) {}
-    }
-    return result.toString();
-  }
+  public record QuerySpec(IQueryTrait reasoner, String filePath, String name) {}
 
   private static String selectQueryFileToEvaluate(Set<String> fileExtensions) throws MIDDialogCancellation {
     var dialog = new MIDTreeSelectionDialog(new WorkbenchLabelProvider(), new BaseWorkbenchContentProvider(),
@@ -75,7 +64,41 @@ public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
     return queryFile.getFullPath().toString();
   }
 
-  private static void storeAsRels(String queryName, List<Object> queryResults, MID instanceMID) {
+  public static QuerySpec selectQuery(EObject context) throws MMINTException {
+    var allReasoners = MMINT.getReasonersForTrait(IQueryTrait.class, context);
+    if (allReasoners.isEmpty()) {
+      throw new MMINTException("There are no reasoners installed that implement querying");
+    }
+    var fileExtToReasoners = new HashMap<String, Set<IQueryTrait>>();
+    for (var reasoner : allReasoners) {
+      reasoner.getQueryFileExtensions().forEach(fe -> {
+        var reasoners = fileExtToReasoners.computeIfAbsent(fe, k -> new HashSet<>());
+        reasoners.add(reasoner);
+      });
+    }
+    var queryFilePath = selectQueryFileToEvaluate(fileExtToReasoners.keySet());
+    var fileExtension = FileUtils.getFileExtensionFromPath(queryFilePath);
+    var reasoners = fileExtToReasoners.get(fileExtension);
+    var queryReasoner = MIDDialogs.selectReasoner(reasoners, fileExtension + " queries");
+    var queryName = MIDDialogs.getStringInput("Evaluate query", "Insert query name to run", null);
+
+    return new QuerySpec(queryReasoner, queryFilePath, queryName);
+  }
+
+  private static String queryResultToString(Object queryResult) {
+    if (queryResult instanceof EObject) {
+      try {
+        var name = FileUtils.getModelObjectFeature((EObject) queryResult, "name");
+        if (name != null) {
+          queryResult = name;
+        }
+      }
+      catch (MMINTException e) {}
+    }
+    return queryResult.toString();
+  }
+
+  private static void storeQueryResultsAsModelRel(String queryName, List<Object> queryResults, MID instanceMID) {
     var rels = new HashMap<String, ModelRel>();
     var relType = MIDTypeHierarchy.getRootModelRelType();
     for (var queryResult : queryResults) {
@@ -105,29 +128,12 @@ public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
     }
   }
 
-  public static void runUI(EObject context, List<? extends EObject> queryArgs) throws Exception {
-    var allReasoners = MMINT.getReasonersForTrait(IQueryTrait.class, context);
-    if (allReasoners.isEmpty()) {
-      throw new MMINTException("There are no reasoners installed that implement querying");
-    }
-    var fileExtToReasoners = new HashMap<String, Set<IQueryTrait>>();
-    for (var reasoner : allReasoners) {
-      reasoner.getQueryFileExtensions().forEach(fe -> {
-        var reasoners = fileExtToReasoners.computeIfAbsent(fe, k -> new HashSet<>());
-        reasoners.add(reasoner);
-      });
-    }
-    var queryFilePath = selectQueryFileToEvaluate(fileExtToReasoners.keySet());
-    var fileExtension = FileUtils.getFileExtensionFromPath(queryFilePath);
-    var reasoners = fileExtToReasoners.get(fileExtension);
-    var queryReasoner = MIDDialogs.selectReasoner(reasoners, fileExtension + " queries");
-    var queryName = MIDDialogs.getStringInput("Evaluate query", "Insert query name to run", null);
-    var queryResults = queryReasoner.evaluateQuery(queryFilePath, queryName, context, queryArgs);
+  public static void displayQueryResults(EObject context, List<Object> queryResults, String queryName) {
     var printResults = new ArrayList<String>();
     for (var result : queryResults) {
       var printResult = (result instanceof Collection) ?
-        ((Collection) result).stream().map(o -> prettyPrint(o)).collect(Collectors.toList()).toString() :
-        prettyPrint(result);
+        ((Collection) result).stream().map(o -> queryResultToString(o)).collect(Collectors.toList()).toString() :
+        queryResultToString(result);
       printResults.add(printResult);
     }
     var shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
@@ -137,7 +143,7 @@ public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
       message += "\n\nDo you want to store the results as model relationships for future use?";
       var store = MessageDialog.openQuestion(shell, title, message);
       if (store) {
-        storeAsRels(queryName, queryResults, (MID) context);
+        storeQueryResultsAsModelRel(queryName, queryResults, (MID) context);
       }
     }
     else {
@@ -171,7 +177,10 @@ public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
         .map(obj -> modelElems.get(MIDRegistry.getModelElementUri(obj)))
         .filter(elem -> elem != null)
         .collect(Collectors.toList());
-      runUI(instanceMID, queryArgs);
+      var querySpec = selectQuery(instanceMID);
+      var queryResults = querySpec.reasoner().evaluateQuery(querySpec.filePath(), querySpec.name(), instanceMID,
+                                                            queryArgs);
+      displayQueryResults(instanceMID, queryResults, querySpec.name());
     }
     catch (Exception e) {
       MMINTException.print(IStatus.ERROR, "Query error", e);

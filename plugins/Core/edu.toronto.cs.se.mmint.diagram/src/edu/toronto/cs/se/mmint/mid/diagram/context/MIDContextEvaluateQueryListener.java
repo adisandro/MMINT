@@ -60,8 +60,12 @@ public class MIDContextEvaluateQueryListener extends MIDContextMenuListener {
     @Override
     protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
       try {
-        SiriusEvaluateQuery.runUI(MIDContextEvaluateQueryListener.this.context,
-                                  MIDContextEvaluateQueryListener.this.queryArgs);
+        var querySpec = SiriusEvaluateQuery.selectQuery(MIDContextEvaluateQueryListener.this.context);
+        var queryResults = querySpec.reasoner().evaluateQuery(querySpec.filePath(), querySpec.name(),
+                                                              MIDContextEvaluateQueryListener.this.context,
+                                                              MIDContextEvaluateQueryListener.this.queryArgs);
+        SiriusEvaluateQuery.displayQueryResults(MIDContextEvaluateQueryListener.this.context, queryResults,
+                                                querySpec.name());
         return CommandResult.newOKCommandResult();
       }
       catch (MIDDialogCancellation e) {

@@ -12,7 +12,7 @@
  *******************************************************************************/
 package edu.toronto.cs.se.modelepedia.gsn.reasoning;
 
-import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -25,7 +25,6 @@ import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ui.GMFUtils;
-import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.modelepedia.gsn.GSNFactory;
 import edu.toronto.cs.se.modelepedia.gsn.Property;
@@ -66,7 +65,7 @@ public interface IGSNLeanEncoder {
       this.variables = Objects.requireNonNull(variables);
     }
 
-    public Property bindVariables(String title, Map<EClass, List<EObject>> modelObjs) throws MIDDialogCancellation {
+    public Property bindVariables(String title, Map<EClass, List<EObject>> modelObjs) throws Exception {
       var property = GSNFactory.eINSTANCE.createProperty();
       if (this.variables.isEmpty()) {
         property.setFormal(this.formal);
@@ -79,10 +78,23 @@ public interface IGSNLeanEncoder {
       var boundFormal = this.formal;
       var boundInformal = this.informal;
       for (var variable : this.variables) {
-        var validModelObjs = new ArrayList<EObject>();
+        var validModelObjs = new LinkedHashSet<EObject>();
         variable.validTypes.forEach(t -> validModelObjs.addAll(modelObjs.getOrDefault(t, List.of())));
         var boundModelObjs = MIDDialogs.<EObject>openListMultipleDialog(title, boundInformal + message + variable.name,
-                                                                        validModelObjs, labelProvider);
+                                                                        validModelObjs.toArray(new EObject[0]),
+                                                                        labelProvider);
+//        var model = MIDDiagramUtils.getInstanceMIDModelFromModelEditor(modelObjs.values().iterator().next().get(0));
+//        var instanceMID = model.getMIDContainer();
+//        var querySpec = SiriusEvaluateQuery.selectQuery(instanceMID);
+//        var queryResults = querySpec.reasoner().evaluateQuery(querySpec.filePath(), querySpec.name(), instanceMID,
+//                                                              List.<EObject>of());
+//        var boundModelObjs = queryResults.stream()
+//          .filter(o -> validModelObjs.contains(o))
+//          .map(o -> (EObject) o)
+//          .collect(Collectors.toList());
+//        if (boundModelObjs.isEmpty()) {
+//          throw new MMINTException("The query '" + querySpec.name() + "' returned zero valid model objects");
+//        }
         var encoded = variable.encoder.encode(boundModelObjs);
         boundFormal = boundFormal.replace(variable.name, encoded.formal());
         boundInformal = boundInformal.replace(variable.name, encoded.informal());

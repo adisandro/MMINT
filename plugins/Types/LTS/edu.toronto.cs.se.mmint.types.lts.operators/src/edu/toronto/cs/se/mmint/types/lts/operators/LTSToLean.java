@@ -113,7 +113,7 @@ public class LTSToLean extends ToLean implements IGSNLeanEncoder {
         }
       }
     //TODO MMINT[Lean] Encode multiple formal objs at once
-      return new VariableEncoding("(coe (" + formals.get(0) + "))", String.join(",", informals));
+      return new VariableEncoding("(coe (" + formals.get(0) + "))", String.join(", ", informals));
     };
     var x = new PropertyVariable("$X", validTypes, encoder);
     var y = new PropertyVariable("$Y", validTypes, encoder);
