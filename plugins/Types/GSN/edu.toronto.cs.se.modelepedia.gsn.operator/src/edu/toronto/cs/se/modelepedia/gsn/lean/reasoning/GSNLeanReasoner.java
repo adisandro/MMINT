@@ -132,8 +132,8 @@ public class GSNLeanReasoner extends LeanReasoner implements IGSNDecompositionTr
       valid = checkProperty(encoder, propEncoding, workingPath);
       var outputFile = encoder.operator().getOutputFileName().filter(f -> FileUtils.isFile(workingPath + f, true));
       justDesc = (outputFile.isPresent()) ?
-        "see output file '" + timestampPath + outputFile.get() + "'" :
-        "see directory '" + timestampPath + "'";
+        "see output file '" + workingPath + outputFile.get() + "'" :
+        "see directory '" + workingPath + "'";
       if (!valid && outputFile.isPresent()) {
         // parse failed proof to find the bad sub-properties
         var outputPath = workingPath2.resolve(outputFile.get());
