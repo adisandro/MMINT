@@ -373,7 +373,7 @@ public interface Operator extends GenericElement {
 
     /**
    * <!-- begin-user-doc --> Reads the input properties of this operator instance. Used by
-     * {@link #start(EList, Map, MID)}, may be overridden.
+     * {@link #startInstance}, may be overridden.
      *
      * @param inputProperties
      *            The input properties of this operator.
