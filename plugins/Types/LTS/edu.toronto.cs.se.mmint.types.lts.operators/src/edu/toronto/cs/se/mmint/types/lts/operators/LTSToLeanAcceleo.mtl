@@ -1,8 +1,8 @@
 [comment encoding = UTF-8 /]
 [module LTSToLeanAcceleo('model://edu.toronto.cs.se.mmint.types.lts')/]
 
-[query private sanitize(name : String) : String =
-  name.replaceAll('[\\s\\.\\-=<>?!]', '_')
+[query private sanitize(name : String, regexp : String) : String =
+  name.replaceAll(regexp, '_')
 /]
 
 [query private getIndex(state : State) : Integer =
@@ -19,7 +19,7 @@
 /]
 
 [template private encodeMain(modelName : String)]
-import justification common_meta property_catalogue.LTL
+import justification common_meta aux property_catalogue.LTL
 import [modelName/]
 open interactive STATES ACTIONS
 
@@ -32,7 +32,7 @@ def strategy_subject_t := "path [modelName/]"
 def local_input_name : string := "[modelName/]_input_1"
 def local_strat_name : string := "[modelName/]_strat_1"
 def local_prf_name : string := "[modelName/]_prf_1"
-def preamble : string := "import justification [modelName/] common_meta property_catalogue.LTL \n open STATES ACTIONS "
+def preamble : string := "import justification [modelName/] common_meta aux property_catalogue.LTL \n open STATES ACTIONS "
 meta def proof_template (p₁ p₂ : string) : string :=
 "\n\n
 theorem " ++ local_prf_name ++ " : " ++ p₁ ++ " := \nbegin \n" ++ p₂ ++ "\nend" ++ "\n\n\n"
@@ -91,7 +91,7 @@ do
 BEGIN
 [/template]
 
-[template private encodeModel(lts : LTS, modelName : String, groupThreshold : Integer)]
+[template private encodeModel(lts : LTS, modelName : String, sanitizeRegexp : String, groupThreshold : Integer)]
 import LTS.defs
 import data.set.basic
 
@@ -100,7 +100,7 @@ import data.set.basic
 
 inductive state[div(i-1, groupThreshold)/]
     [/if]
-| [sanitize(state.label)/]
+| [sanitize(state.label, sanitizeRegexp)/]
   [/for]
 
   [for (transition : Transition | lts.transitions)]
@@ -108,7 +108,7 @@ inductive state[div(i-1, groupThreshold)/]
 
 inductive action[div(i-1, groupThreshold)/]
     [/if]
-| [sanitize(transition.label)/]
+| [sanitize(transition.label, sanitizeRegexp)/]
   [/for]
 
 inductive STATES
@@ -133,7 +133,7 @@ inductive ACTIONS
 
 def TR[div(i-1, groupThreshold)/] : set (STATES × ACTIONS × STATES) := {
     [/if]
-  (STATES.cons[s1/] state[s1/].[sanitize(transition.from.label)/], ACTIONS.cons[a/] action[a/].[sanitize(transition.label)/], STATES.cons[s2/] state[s2/].[sanitize(transition.to.label)/])[if (i < lts.transitions->size())],[/if]
+  (STATES.cons[s1/] state[s1/].[sanitize(transition.from.label, sanitizeRegexp)/], ACTIONS.cons[a/] action[a/].[sanitize(transition.label, sanitizeRegexp)/], STATES.cons[s2/] state[s2/].[sanitize(transition.to.label, sanitizeRegexp)/])[if (i < lts.transitions->size())],[/if]
     [if (mod(i-1, groupThreshold) = (groupThreshold-1) or i = lts.transitions->size())]
 }
     [/if]
@@ -151,12 +151,12 @@ def [modelName/] : LTS := LTS.mk STATES ACTIONS TR
 @['['/]instance[']'/] def Act_to_form : has_coe ACTIONS (formula [modelName/]) := ⟨λ a, formula.acts {a}⟩
 [/template]
 
-[template public LTSToLean(lts : LTS, modelName : String, groupThreshold : Integer)]
+[template public LTSToLean(lts : LTS, modelName : String, sanitizeRegexp : String, groupThreshold : Integer)]
   [comment @main /]
   [file ('main.lean', false, 'UTF-8')]
-[encodeMain(sanitize(modelName))/]
+[encodeMain(sanitize(modelName, sanitizeRegexp))/]
   [/file]
   [file (modelName + '.lean', false, 'UTF-8')]
-[encodeModel(lts, sanitize(modelName), groupThreshold)/]
+[encodeModel(lts, sanitize(modelName, sanitizeRegexp), sanitizeRegexp, groupThreshold)/]
   [/file]
 [/template]

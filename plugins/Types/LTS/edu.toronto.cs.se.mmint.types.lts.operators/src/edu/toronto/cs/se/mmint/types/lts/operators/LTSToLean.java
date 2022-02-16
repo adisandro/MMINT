@@ -12,6 +12,9 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.types.lts.operators;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -44,9 +47,11 @@ import edu.toronto.cs.se.modelepedia.gsn.reasoning.IGSNLeanEncoder.PropertyVaria
 public class LTSToLean extends ToLean implements IGSNLeanEncoder {
 
   private final static String LEAN_MAIN_FILE = "main" + ToLean.LEAN_EXT;
+  private final static String LEAN_AUX_FILE = "aux" + ToLean.LEAN_EXT;
   private final static String LEAN_OUT_FILE = "evidence" + ToLean.LEAN_EXT;
   private final static String LEAN_BUNDLE_DIR = "lean/";
   private final static List<String> LEAN_BUNDLE_IMPORTS = List.of("LTS", "property_catalogue");
+  private final static String LEAN_SANITIZE_REGEXP = "[\\s\\.\\-=<>?!]";
   private final static int GROUP_THRESHOLD = 100;
 
   @Override
@@ -83,10 +88,19 @@ public class LTSToLean extends ToLean implements IGSNLeanEncoder {
     this.output.leanPaths.add(workingPath + LTSToLean.LEAN_MAIN_FILE);
     this.output.leanPaths.add(workingPath + this.input.model.getName() + ToLean.LEAN_EXT);
     this.leanGenerator = new LTSToLeanAcceleo(this.input.model.getEMFInstanceRoot(), this.output.leanFolder,
-                                              List.of(this.input.model.getName(), LTSToLean.GROUP_THRESHOLD));
+                                              List.of(this.input.model.getName(), LTSToLean.LEAN_SANITIZE_REGEXP,
+                                                      LTSToLean.GROUP_THRESHOLD));
     // static lean files from this bundle
     var bundlePath = MIDTypeRegistry.getBundlePath(this.getMetatype(), LTSToLean.LEAN_BUNDLE_DIR);
     FileUtils.copyDirectory(bundlePath, false, workingPath, true);
+    // auxiliary declarations
+    //TODO MMINT[LEAN] Split model+property into model+libs+property, where libs is gsn stuff and aux belongs there
+    var auxPath = FileUtils.replaceLastSegmentInPath(this.input.model.getUri(), LTSToLean.LEAN_AUX_FILE);
+    if (FileUtils.isFile(auxPath, true)) {
+      Files.move(Path.of(FileUtils.prependWorkspacePath(auxPath)),
+                 Path.of(FileUtils.prependWorkspacePath(workingPath) + LTSToLean.LEAN_AUX_FILE),
+                 StandardCopyOption.REPLACE_EXISTING);
+    }
   }
 
   public static int getIndex(LabeledElement labeled) {
@@ -98,21 +112,26 @@ public class LTSToLean extends ToLean implements IGSNLeanEncoder {
   public List<PropertyTemplate> getPropertyTemplates() {
     var validTypes = Set.<EClass>of(LTSPackage.eINSTANCE.getLabeledElement());
     VariableEncoder encoder = (modelObjs) -> {
-      var regexp = "[\\s\\.\\-=<>?!]";
+      var useAux = modelObjs.size() > LTSToLean.GROUP_THRESHOLD;
       var informals = new ArrayList<String>();
       var formals = new ArrayList<String>();
-      for (var modelObj : modelObjs) {
-        var sanitizedLabel = ((LabeledElement) modelObj).getLabel().replaceAll(regexp, "_");
+      var auxFormals = new ArrayList<List<String>>();
+      for (var i = 0; i < modelObjs.size(); i++) {
+        var modelObj = modelObjs.get(i);
+        var sanitizedLabel = ((LabeledElement) modelObj).getLabel().replaceAll(LTSToLean.LEAN_SANITIZE_REGEXP, "_");
         informals.add(sanitizedLabel);
-        var i = getIndex((LabeledElement) modelObj) / LTSToLean.GROUP_THRESHOLD;
+        var j = getIndex((LabeledElement) modelObj) / LTSToLean.GROUP_THRESHOLD;
         if (modelObj instanceof State) {
-          formals.add("(STATES.cons" + i + " state" + i + "." + sanitizedLabel + ")");
+          formals.add("(STATES.cons" + j + " state" + j + "." + sanitizedLabel + ")");
         }
         else if (modelObj instanceof Transition) {
-          formals.add("(ACTIONS.cons" + i + " action" + i + "." + sanitizedLabel + ")");
+          formals.add("(ACTIONS.cons" + j + " action" + j + "." + sanitizedLabel + ")");
         }
       }
       var type = (modelObjs.get(0) instanceof State) ? "states" : "acts";
+      if (useAux) {
+        var modelPath = MIDRegistry.getModelUri(modelObjs.get(0));
+      }
       return new VariableEncoding("(formula." + type + " {" + String.join(", ", formals) + "})",
                                   String.join(", ", informals));
     };

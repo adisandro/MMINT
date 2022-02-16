@@ -94,6 +94,9 @@ public interface IGSNLeanEncoder {
       for (var variable : this.variables) {
         var validModelObjs = new LinkedHashSet<EObject>();
         variable.validTypes.forEach(t -> validModelObjs.addAll(modelObjs.getOrDefault(t, List.of())));
+        if (validModelObjs.isEmpty()) {
+          throw new MMINTException("There are no valid model object to bind variable " + variable.name);
+        }
         var input = Stream.concat(Stream.of("Select with query"), validModelObjs.stream()).toArray();
         var selectedObjs = MIDDialogs.openListMultipleDialog(title, boundInformal + message + variable.name, input,
                                                              labelProvider);
