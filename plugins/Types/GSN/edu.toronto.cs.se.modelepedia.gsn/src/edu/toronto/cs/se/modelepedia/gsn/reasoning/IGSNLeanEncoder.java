@@ -97,7 +97,7 @@ public interface IGSNLeanEncoder {
         if (validModelObjs.isEmpty()) {
           throw new MMINTException("There are no valid model object to bind variable " + variable.name);
         }
-        var input = Stream.concat(Stream.of("Select with query"), validModelObjs.stream()).toArray();
+        var input = Stream.concat(Stream.of(" Run query to select elements"), validModelObjs.stream()).toArray();
         var selectedObjs = MIDDialogs.openListMultipleDialog(title, boundInformal + message + variable.name, input,
                                                              labelProvider);
         List<EObject> boundModelObjs;
@@ -115,7 +115,7 @@ public interface IGSNLeanEncoder {
           if (boundModelObjs.isEmpty()) {
             throw new MMINTException("The query '" + querySpec.name() + "' returned zero valid model objects");
           }
-          queryInformal = "<elements resulting from query \"" + querySpec.name() + "\">";
+          queryInformal = "<elements selected by query \"" + querySpec.name() + "\">";
         }
         else { // direct model element selection
           boundModelObjs = selectedObjs.stream()
