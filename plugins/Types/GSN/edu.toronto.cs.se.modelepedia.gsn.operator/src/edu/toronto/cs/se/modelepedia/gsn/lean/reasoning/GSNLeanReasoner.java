@@ -59,7 +59,7 @@ public class GSNLeanReasoner extends LeanReasoner implements IGSNDecompositionTr
     var templates = new LinkedHashMap<String, List<PropertyTemplate>>();
     var encoder = MIDTypeHierarchy.<ToLean>getPolyOperator(LeanReasoner.ENCODER_ID, ECollections.newBasicEList(model));
     if (encoder.operator() instanceof IGSNLeanEncoder gsnEncoder) {
-      gsnEncoder.getPropertyTemplates()
+      gsnEncoder.getPropertyTemplates(model)
         .forEach(t -> templates.computeIfAbsent(t.category, k -> new ArrayList<>()).add(t));
     }
     templates.computeIfAbsent(PropertyTemplate.CUSTOM.category, k -> new ArrayList<>()).add(PropertyTemplate.CUSTOM);

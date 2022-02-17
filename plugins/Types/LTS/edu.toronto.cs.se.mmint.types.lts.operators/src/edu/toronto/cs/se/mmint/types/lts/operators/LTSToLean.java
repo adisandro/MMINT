@@ -110,8 +110,7 @@ public class LTSToLean extends ToLean implements IGSNLeanEncoder {
   }
 
   @Override
-  public List<PropertyTemplate> getPropertyTemplates() {
-    var validTypes = Set.<EClass>of(LTSPackage.eINSTANCE.getLabeledElement());
+  public List<PropertyTemplate> getPropertyTemplates(Model model) {
     VariableEncoder encoder = (modelObjs) -> {
       var formals = new ArrayList<List<String>>();
       var informals = new ArrayList<String>();
@@ -132,15 +131,16 @@ public class LTSToLean extends ToLean implements IGSNLeanEncoder {
       }
       var useAux = modelObjs.size() > LTSToLean.GROUP_THRESHOLD;
       if (useAux) {
+        var modelName = model.getName();
         var auxType = (modelObjs.get(0) instanceof State) ? "S" : "Act";
-        var aux = "import XXX\n\n";//TODO need model name
+        var aux = "import " + modelName;
         var auxSets = new ArrayList<String>();
         for (var i = 0; i < formals.size(); i++) {
-          var auxSet = "def aux_set" + (i+1);
+          var auxSet = "aux_set" + (i+1);
           auxSets.add(auxSet);
-          aux += auxSet + " : set XXX." + auxType + " := {\n" + String.join(",\n", formals.get(i)) + "}";
+          aux += "\n\ndef " + auxSet + " : set " + modelName + "." + auxType + " := {\n" + String.join(",\n", formals.get(i)) + "}";
         }
-        aux += "def aux_set : set XXX." + auxType + " := " + String.join(" ∪ ", auxSets);
+        aux += "\n\ndef aux_set : set " + modelName + "." + auxType + " := " + String.join(" ∪ ", auxSets);
         var modelPath = MIDRegistry.getModelUri(modelObjs.get(0));
         var auxPath = FileUtils.replaceLastSegmentInPath(modelPath, LTSToLean.LEAN_AUX_FILE);
         try {
@@ -148,12 +148,16 @@ public class LTSToLean extends ToLean implements IGSNLeanEncoder {
         }
         catch (IOException e) {
           useAux = false;
+          for (var i = 1; i < formals.size(); i++) {
+            formals.get(0).addAll(formals.get(i));
+          }
         }
       }
       var type = (modelObjs.get(0) instanceof State) ? "states" : "acts";
       var formula = (useAux) ? "aux_set" : "{" + String.join(", ", formals.get(0)) + "}";
       return new VariableEncoding("(formula." + type + " " + formula + ")", String.join(", ", informals));
     };
+    var validTypes = Set.<EClass>of(LTSPackage.eINSTANCE.getLabeledElement());
     var x = new PropertyVariable("$X", validTypes, encoder);
     var y = new PropertyVariable("$Y", validTypes, encoder);
     var a = new PropertyVariable("$A", validTypes, encoder);

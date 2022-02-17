@@ -134,7 +134,7 @@ public interface IGSNLeanEncoder {
     }
   }
 
-  default List<PropertyTemplate> getPropertyTemplates() {
+  default List<PropertyTemplate> getPropertyTemplates(Model model) {
     return List.of();
   }
 
