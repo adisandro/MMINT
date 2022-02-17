@@ -133,10 +133,7 @@ inductive ACTIONS
 
 def TR[div(i-1, groupThreshold)/] : set (STATES × ACTIONS × STATES) := {
     [/if]
-  (STATES.cons[s1/] state[s1/].[sanitize(transition.from.label, sanitizeRegexp)/], ACTIONS.cons[a/] action[a/].[sanitize(transition.label, sanitizeRegexp)/], STATES.cons[s2/] state[s2/].[sanitize(transition.to.label, sanitizeRegexp)/])[if (i < lts.transitions->size())],[/if]
-    [if (mod(i-1, groupThreshold) = (groupThreshold-1) or i = lts.transitions->size())]
-}
-    [/if]
+  (STATES.cons[s1/] state[s1/].[sanitize(transition.from.label, sanitizeRegexp)/], ACTIONS.cons[a/] action[a/].[sanitize(transition.label, sanitizeRegexp)/], STATES.cons[s2/] state[s2/].[sanitize(transition.to.label, sanitizeRegexp)/])[if (mod(i-1, groupThreshold) = (groupThreshold-1) or i = lts.transitions->size())]}[else],[/if]
     [/let]
     [/let]
     [/let]

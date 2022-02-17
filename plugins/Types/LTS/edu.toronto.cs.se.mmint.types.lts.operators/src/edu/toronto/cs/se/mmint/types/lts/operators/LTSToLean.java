@@ -12,9 +12,11 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.types.lts.operators;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -39,7 +41,6 @@ import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 import edu.toronto.cs.se.mmint.types.lts.LTSPackage;
 import edu.toronto.cs.se.mmint.types.lts.LabeledElement;
 import edu.toronto.cs.se.mmint.types.lts.State;
-import edu.toronto.cs.se.mmint.types.lts.Transition;
 import edu.toronto.cs.se.modelepedia.gsn.reasoning.IGSNLeanEncoder;
 import edu.toronto.cs.se.modelepedia.gsn.reasoning.IGSNLeanEncoder.PropertyVariable.VariableEncoder;
 import edu.toronto.cs.se.modelepedia.gsn.reasoning.IGSNLeanEncoder.PropertyVariable.VariableEncoding;
@@ -112,28 +113,46 @@ public class LTSToLean extends ToLean implements IGSNLeanEncoder {
   public List<PropertyTemplate> getPropertyTemplates() {
     var validTypes = Set.<EClass>of(LTSPackage.eINSTANCE.getLabeledElement());
     VariableEncoder encoder = (modelObjs) -> {
-      var useAux = modelObjs.size() > LTSToLean.GROUP_THRESHOLD;
+      var formals = new ArrayList<List<String>>();
       var informals = new ArrayList<String>();
-      var formals = new ArrayList<String>();
-      var auxFormals = new ArrayList<List<String>>();
+      List<String> currFormals = null;
       for (var i = 0; i < modelObjs.size(); i++) {
         var modelObj = modelObjs.get(i);
-        var sanitizedLabel = ((LabeledElement) modelObj).getLabel().replaceAll(LTSToLean.LEAN_SANITIZE_REGEXP, "_");
-        informals.add(sanitizedLabel);
-        var j = getIndex((LabeledElement) modelObj) / LTSToLean.GROUP_THRESHOLD;
-        if (modelObj instanceof State) {
-          formals.add("(STATES.cons" + j + " state" + j + "." + sanitizedLabel + ")");
+        if (i % LTSToLean.GROUP_THRESHOLD == 0) {
+          currFormals = new ArrayList<>();
+          formals.add(currFormals);
         }
-        else if (modelObj instanceof Transition) {
-          formals.add("(ACTIONS.cons" + j + " action" + j + "." + sanitizedLabel + ")");
+        var sanitizedLabel = ((LabeledElement) modelObj).getLabel().replaceAll(LTSToLean.LEAN_SANITIZE_REGEXP, "_");
+        var j = getIndex((LabeledElement) modelObj) / LTSToLean.GROUP_THRESHOLD;
+        var formal = (modelObj instanceof State) ?
+          "(STATES.cons" + j + " state" + j + "." + sanitizedLabel + ")" :
+          "(ACTIONS.cons" + j + " action" + j + "." + sanitizedLabel + ")";
+        currFormals.add(formal);
+        informals.add(sanitizedLabel);
+      }
+      var useAux = modelObjs.size() > LTSToLean.GROUP_THRESHOLD;
+      if (useAux) {
+        var auxType = (modelObjs.get(0) instanceof State) ? "S" : "Act";
+        var aux = "import XXX\n\n";//TODO need model name
+        var auxSets = new ArrayList<String>();
+        for (var i = 0; i < formals.size(); i++) {
+          var auxSet = "def aux_set" + (i+1);
+          auxSets.add(auxSet);
+          aux += auxSet + " : set XXX." + auxType + " := {\n" + String.join(",\n", formals.get(i)) + "}";
+        }
+        aux += "def aux_set : set XXX." + auxType + " := " + String.join(" ∪ ", auxSets);
+        var modelPath = MIDRegistry.getModelUri(modelObjs.get(0));
+        var auxPath = FileUtils.replaceLastSegmentInPath(modelPath, LTSToLean.LEAN_AUX_FILE);
+        try {
+          Files.writeString(Path.of(FileUtils.prependWorkspacePath(auxPath)), aux, StandardOpenOption.CREATE);
+        }
+        catch (IOException e) {
+          useAux = false;
         }
       }
       var type = (modelObjs.get(0) instanceof State) ? "states" : "acts";
-      if (useAux) {
-        var modelPath = MIDRegistry.getModelUri(modelObjs.get(0));
-      }
-      return new VariableEncoding("(formula." + type + " {" + String.join(", ", formals) + "})",
-                                  String.join(", ", informals));
+      var formula = (useAux) ? "aux_set" : "{" + String.join(", ", formals.get(0)) + "}";
+      return new VariableEncoding("(formula." + type + " " + formula + ")", String.join(", ", informals));
     };
     var x = new PropertyVariable("$X", validTypes, encoder);
     var y = new PropertyVariable("$Y", validTypes, encoder);
