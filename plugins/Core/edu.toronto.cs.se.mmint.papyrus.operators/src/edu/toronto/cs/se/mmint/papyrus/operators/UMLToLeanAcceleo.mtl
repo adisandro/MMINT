@@ -1,0 +1,25 @@
+[comment encoding = UTF-8 /]
+[module UMLToLeanAcceleo('http://www.eclipse.org/uml2/5.0.0/UML')/]
+
+[query private sanitize(name : String, regexp : String) : String =
+  name.replaceAll(regexp, '_')
+/]
+
+[template private encodeMain(modelName : String)]
+[/template]
+
+[template private encodeModel(umlRoot : Model, modelName : String, sanitizeRegexp : String)]
+  [for (elem : PackageableElement | umlRoot.packagedElement)]
+  	[elem.name/]
+  [/for]
+[/template]
+
+[template public UMLToLean(umlRoot : Model, modelName : String, sanitizeRegexp : String)]
+  [comment @main /]
+  [file ('main.lean', false, 'UTF-8')]
+[encodeMain(sanitize(modelName, sanitizeRegexp))/]
+  [/file]
+  [file (modelName + '.lean', false, 'UTF-8')]
+[encodeModel(umlRoot, sanitize(modelName, sanitizeRegexp), sanitizeRegexp)/]
+  [/file]
+[/template]
