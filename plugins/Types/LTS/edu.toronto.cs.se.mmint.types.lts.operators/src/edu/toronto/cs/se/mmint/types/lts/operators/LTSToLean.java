@@ -52,7 +52,6 @@ public class LTSToLean extends ToLean implements IGSNLeanEncoder {
   private final static String LEAN_OUT_FILE = "evidence" + ToLean.LEAN_EXT;
   private final static String LEAN_BUNDLE_DIR = "lean/";
   private final static List<String> LEAN_BUNDLE_IMPORTS = List.of("LTS", "property_catalogue");
-  private final static String LEAN_SANITIZE_REGEXP = "[\\s\\.\\-=<>?!]";
   private final static int GROUP_THRESHOLD = 100;
 
   @Override
@@ -89,7 +88,7 @@ public class LTSToLean extends ToLean implements IGSNLeanEncoder {
     this.output.leanPaths.add(workingPath + LTSToLean.LEAN_MAIN_FILE);
     this.output.leanPaths.add(workingPath + this.input.model.getName() + ToLean.LEAN_EXT);
     this.leanGenerator = new LTSToLeanAcceleo(this.input.model.getEMFInstanceRoot(), this.output.leanFolder,
-                                              List.of(this.input.model.getName(), LTSToLean.LEAN_SANITIZE_REGEXP,
+                                              List.of(this.input.model.getName(), ToLean.LEAN_SANITIZE_REGEXP,
                                                       LTSToLean.GROUP_THRESHOLD));
     // static lean files from this bundle
     var bundlePath = MIDTypeRegistry.getBundlePath(this.getMetatype(), LTSToLean.LEAN_BUNDLE_DIR);
@@ -121,7 +120,7 @@ public class LTSToLean extends ToLean implements IGSNLeanEncoder {
           currFormals = new ArrayList<>();
           formals.add(currFormals);
         }
-        var sanitizedLabel = ((LabeledElement) modelObj).getLabel().replaceAll(LTSToLean.LEAN_SANITIZE_REGEXP, "_");
+        var sanitizedLabel = ((LabeledElement) modelObj).getLabel().replaceAll(ToLean.LEAN_SANITIZE_REGEXP, "_");
         var j = getIndex((LabeledElement) modelObj) / LTSToLean.GROUP_THRESHOLD;
         var formal = (modelObj instanceof State) ?
           "(STATES.cons" + j + " state" + j + "." + sanitizedLabel + ")" :

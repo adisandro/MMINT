@@ -34,6 +34,7 @@ import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 public class ToLean extends OperatorImpl {
 
   protected final static String LEAN_EXT = ".lean";
+  protected final static String LEAN_SANITIZE_REGEXP = "[\\s\\.\\-=<>?!]";
   protected Input input;
   protected Output output;
   protected AbstractAcceleoGenerator leanGenerator;
