@@ -14,7 +14,7 @@
  */
 package sosym22;
 
-import edu.toronto.cs.se.mmint.types.lts.Transition;
+import edu.toronto.cs.se.mmint.types.lts.State;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedHashSet;
@@ -59,9 +59,10 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 
  * <p>Original source:
  *         <code><pre>
- *         pattern dbLockTransitions(transition: Transition) {
+ *         pattern dbLockStates(state: State) {
  *           Transition.label(transition, label);
  *           check(label.startsWith("dbMonitor.condDB.lock"));
+ *           Transition.to(transition, state);
  *         }
  * </pre></code>
  * 
@@ -70,9 +71,9 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 
  */
 @SuppressWarnings("all")
-public final class DbLockTransitions extends BaseGeneratedEMFQuerySpecification<DbLockTransitions.Matcher> {
+public final class DbLockStates extends BaseGeneratedEMFQuerySpecification<DbLockStates.Matcher> {
   /**
-   * Pattern-specific match representation of the sosym22.dbLockTransitions pattern,
+   * Pattern-specific match representation of the sosym22.dbLockStates pattern,
    * to be used in conjunction with {@link Matcher}.
    * 
    * <p>Class fields correspond to parameters of the pattern. Fields with value null are considered unassigned.
@@ -84,18 +85,18 @@ public final class DbLockTransitions extends BaseGeneratedEMFQuerySpecification<
    * 
    */
   public static abstract class Match extends BasePatternMatch {
-    private Transition fTransition;
+    private State fState;
     
-    private static List<String> parameterNames = makeImmutableList("transition");
+    private static List<String> parameterNames = makeImmutableList("state");
     
-    private Match(final Transition pTransition) {
-      this.fTransition = pTransition;
+    private Match(final State pState) {
+      this.fState = pState;
     }
     
     @Override
     public Object get(final String parameterName) {
       switch(parameterName) {
-          case "transition": return this.fTransition;
+          case "state": return this.fState;
           default: return null;
       }
     }
@@ -103,60 +104,60 @@ public final class DbLockTransitions extends BaseGeneratedEMFQuerySpecification<
     @Override
     public Object get(final int index) {
       switch(index) {
-          case 0: return this.fTransition;
+          case 0: return this.fState;
           default: return null;
       }
     }
     
-    public Transition getTransition() {
-      return this.fTransition;
+    public State getState() {
+      return this.fState;
     }
     
     @Override
     public boolean set(final String parameterName, final Object newValue) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
-      if ("transition".equals(parameterName) ) {
-          this.fTransition = (Transition) newValue;
+      if ("state".equals(parameterName) ) {
+          this.fState = (State) newValue;
           return true;
       }
       return false;
     }
     
-    public void setTransition(final Transition pTransition) {
+    public void setState(final State pState) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
-      this.fTransition = pTransition;
+      this.fState = pState;
     }
     
     @Override
     public String patternName() {
-      return "sosym22.dbLockTransitions";
+      return "sosym22.dbLockStates";
     }
     
     @Override
     public List<String> parameterNames() {
-      return DbLockTransitions.Match.parameterNames;
+      return DbLockStates.Match.parameterNames;
     }
     
     @Override
     public Object[] toArray() {
-      return new Object[]{fTransition};
+      return new Object[]{fState};
     }
     
     @Override
-    public DbLockTransitions.Match toImmutable() {
-      return isMutable() ? newMatch(fTransition) : this;
+    public DbLockStates.Match toImmutable() {
+      return isMutable() ? newMatch(fState) : this;
     }
     
     @Override
     public String prettyPrint() {
       StringBuilder result = new StringBuilder();
-      result.append("\"transition\"=" + prettyPrintValue(fTransition));
+      result.append("\"state\"=" + prettyPrintValue(fState));
       return result.toString();
     }
     
     @Override
     public int hashCode() {
-      return Objects.hash(fTransition);
+      return Objects.hash(fState);
     }
     
     @Override
@@ -166,9 +167,9 @@ public final class DbLockTransitions extends BaseGeneratedEMFQuerySpecification<
       if (obj == null) {
           return false;
       }
-      if ((obj instanceof DbLockTransitions.Match)) {
-          DbLockTransitions.Match other = (DbLockTransitions.Match) obj;
-          return Objects.equals(fTransition, other.fTransition);
+      if ((obj instanceof DbLockStates.Match)) {
+          DbLockStates.Match other = (DbLockStates.Match) obj;
+          return Objects.equals(fState, other.fState);
       } else {
           // this should be infrequent
           if (!(obj instanceof IPatternMatch)) {
@@ -180,8 +181,8 @@ public final class DbLockTransitions extends BaseGeneratedEMFQuerySpecification<
     }
     
     @Override
-    public DbLockTransitions specification() {
-      return DbLockTransitions.instance();
+    public DbLockStates specification() {
+      return DbLockStates.instance();
     }
     
     /**
@@ -191,7 +192,7 @@ public final class DbLockTransitions extends BaseGeneratedEMFQuerySpecification<
      * @return the empty match.
      * 
      */
-    public static DbLockTransitions.Match newEmptyMatch() {
+    public static DbLockStates.Match newEmptyMatch() {
       return new Mutable(null);
     }
     
@@ -199,29 +200,29 @@ public final class DbLockTransitions extends BaseGeneratedEMFQuerySpecification<
      * Returns a mutable (partial) match.
      * Fields of the mutable match can be filled to create a partial match, usable as matcher input.
      * 
-     * @param pTransition the fixed value of pattern parameter transition, or null if not bound.
+     * @param pState the fixed value of pattern parameter state, or null if not bound.
      * @return the new, mutable (partial) match object.
      * 
      */
-    public static DbLockTransitions.Match newMutableMatch(final Transition pTransition) {
-      return new Mutable(pTransition);
+    public static DbLockStates.Match newMutableMatch(final State pState) {
+      return new Mutable(pState);
     }
     
     /**
      * Returns a new (partial) match.
      * This can be used e.g. to call the matcher with a partial match.
      * <p>The returned match will be immutable. Use {@link #newEmptyMatch()} to obtain a mutable match object.
-     * @param pTransition the fixed value of pattern parameter transition, or null if not bound.
+     * @param pState the fixed value of pattern parameter state, or null if not bound.
      * @return the (partial) match object.
      * 
      */
-    public static DbLockTransitions.Match newMatch(final Transition pTransition) {
-      return new Immutable(pTransition);
+    public static DbLockStates.Match newMatch(final State pState) {
+      return new Immutable(pState);
     }
     
-    private static final class Mutable extends DbLockTransitions.Match {
-      Mutable(final Transition pTransition) {
-        super(pTransition);
+    private static final class Mutable extends DbLockStates.Match {
+      Mutable(final State pState) {
+        super(pState);
       }
       
       @Override
@@ -230,9 +231,9 @@ public final class DbLockTransitions extends BaseGeneratedEMFQuerySpecification<
       }
     }
     
-    private static final class Immutable extends DbLockTransitions.Match {
-      Immutable(final Transition pTransition) {
-        super(pTransition);
+    private static final class Immutable extends DbLockStates.Match {
+      Immutable(final State pState) {
+        super(pState);
       }
       
       @Override
@@ -243,7 +244,7 @@ public final class DbLockTransitions extends BaseGeneratedEMFQuerySpecification<
   }
   
   /**
-   * Generated pattern matcher API of the sosym22.dbLockTransitions pattern,
+   * Generated pattern matcher API of the sosym22.dbLockStates pattern,
    * providing pattern-specific query methods.
    * 
    * <p>Use the pattern matcher on a given model via {@link #on(ViatraQueryEngine)},
@@ -253,17 +254,18 @@ public final class DbLockTransitions extends BaseGeneratedEMFQuerySpecification<
    * 
    * <p>Original source:
    * <code><pre>
-   * pattern dbLockTransitions(transition: Transition) {
+   * pattern dbLockStates(state: State) {
    *   Transition.label(transition, label);
    *   check(label.startsWith("dbMonitor.condDB.lock"));
+   *   Transition.to(transition, state);
    * }
    * </pre></code>
    * 
    * @see Match
-   * @see DbLockTransitions
+   * @see DbLockStates
    * 
    */
-  public static class Matcher extends BaseMatcher<DbLockTransitions.Match> {
+  public static class Matcher extends BaseMatcher<DbLockStates.Match> {
     /**
      * Initializes the pattern matcher within an existing VIATRA Query engine.
      * If the pattern matcher is already constructed in the engine, only a light-weight reference is returned.
@@ -272,7 +274,7 @@ public final class DbLockTransitions extends BaseGeneratedEMFQuerySpecification<
      * @throws ViatraQueryRuntimeException if an error occurs during pattern matcher creation
      * 
      */
-    public static DbLockTransitions.Matcher on(final ViatraQueryEngine engine) {
+    public static DbLockStates.Matcher on(final ViatraQueryEngine engine) {
       // check if matcher already exists
       Matcher matcher = engine.getExistingMatcher(querySpecification());
       if (matcher == null) {
@@ -287,13 +289,13 @@ public final class DbLockTransitions extends BaseGeneratedEMFQuerySpecification<
      * @noreference This method is for internal matcher initialization by the framework, do not call it manually.
      * 
      */
-    public static DbLockTransitions.Matcher create() {
+    public static DbLockStates.Matcher create() {
       return new Matcher();
     }
     
-    private static final int POSITION_TRANSITION = 0;
+    private static final int POSITION_STATE = 0;
     
-    private static final Logger LOGGER = ViatraQueryLoggingUtil.getLogger(DbLockTransitions.Matcher.class);
+    private static final Logger LOGGER = ViatraQueryLoggingUtil.getLogger(DbLockStates.Matcher.class);
     
     /**
      * Initializes the pattern matcher within an existing VIATRA Query engine.
@@ -309,12 +311,12 @@ public final class DbLockTransitions extends BaseGeneratedEMFQuerySpecification<
     
     /**
      * Returns the set of all matches of the pattern that conform to the given fixed values of some parameters.
-     * @param pTransition the fixed value of pattern parameter transition, or null if not bound.
+     * @param pState the fixed value of pattern parameter state, or null if not bound.
      * @return matches represented as a Match object.
      * 
      */
-    public Collection<DbLockTransitions.Match> getAllMatches(final Transition pTransition) {
-      return rawStreamAllMatches(new Object[]{pTransition}).collect(Collectors.toSet());
+    public Collection<DbLockStates.Match> getAllMatches(final State pState) {
+      return rawStreamAllMatches(new Object[]{pState}).collect(Collectors.toSet());
     }
     
     /**
@@ -323,101 +325,101 @@ public final class DbLockTransitions extends BaseGeneratedEMFQuerySpecification<
      * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
      * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
      * In such cases, either rely on {@link #getAllMatches()} or collect the results of the stream in end-user code.
-     * @param pTransition the fixed value of pattern parameter transition, or null if not bound.
+     * @param pState the fixed value of pattern parameter state, or null if not bound.
      * @return a stream of matches represented as a Match object.
      * 
      */
-    public Stream<DbLockTransitions.Match> streamAllMatches(final Transition pTransition) {
-      return rawStreamAllMatches(new Object[]{pTransition});
+    public Stream<DbLockStates.Match> streamAllMatches(final State pState) {
+      return rawStreamAllMatches(new Object[]{pState});
     }
     
     /**
      * Returns an arbitrarily chosen match of the pattern that conforms to the given fixed values of some parameters.
      * Neither determinism nor randomness of selection is guaranteed.
-     * @param pTransition the fixed value of pattern parameter transition, or null if not bound.
+     * @param pState the fixed value of pattern parameter state, or null if not bound.
      * @return a match represented as a Match object, or null if no match is found.
      * 
      */
-    public Optional<DbLockTransitions.Match> getOneArbitraryMatch(final Transition pTransition) {
-      return rawGetOneArbitraryMatch(new Object[]{pTransition});
+    public Optional<DbLockStates.Match> getOneArbitraryMatch(final State pState) {
+      return rawGetOneArbitraryMatch(new Object[]{pState});
     }
     
     /**
      * Indicates whether the given combination of specified pattern parameters constitute a valid pattern match,
      * under any possible substitution of the unspecified parameters (if any).
-     * @param pTransition the fixed value of pattern parameter transition, or null if not bound.
+     * @param pState the fixed value of pattern parameter state, or null if not bound.
      * @return true if the input is a valid (partial) match of the pattern.
      * 
      */
-    public boolean hasMatch(final Transition pTransition) {
-      return rawHasMatch(new Object[]{pTransition});
+    public boolean hasMatch(final State pState) {
+      return rawHasMatch(new Object[]{pState});
     }
     
     /**
      * Returns the number of all matches of the pattern that conform to the given fixed values of some parameters.
-     * @param pTransition the fixed value of pattern parameter transition, or null if not bound.
+     * @param pState the fixed value of pattern parameter state, or null if not bound.
      * @return the number of pattern matches found.
      * 
      */
-    public int countMatches(final Transition pTransition) {
-      return rawCountMatches(new Object[]{pTransition});
+    public int countMatches(final State pState) {
+      return rawCountMatches(new Object[]{pState});
     }
     
     /**
      * Executes the given processor on an arbitrarily chosen match of the pattern that conforms to the given fixed values of some parameters.
      * Neither determinism nor randomness of selection is guaranteed.
-     * @param pTransition the fixed value of pattern parameter transition, or null if not bound.
+     * @param pState the fixed value of pattern parameter state, or null if not bound.
      * @param processor the action that will process the selected match.
      * @return true if the pattern has at least one match with the given parameter values, false if the processor was not invoked
      * 
      */
-    public boolean forOneArbitraryMatch(final Transition pTransition, final Consumer<? super DbLockTransitions.Match> processor) {
-      return rawForOneArbitraryMatch(new Object[]{pTransition}, processor);
+    public boolean forOneArbitraryMatch(final State pState, final Consumer<? super DbLockStates.Match> processor) {
+      return rawForOneArbitraryMatch(new Object[]{pState}, processor);
     }
     
     /**
      * Returns a new (partial) match.
      * This can be used e.g. to call the matcher with a partial match.
      * <p>The returned match will be immutable. Use {@link #newEmptyMatch()} to obtain a mutable match object.
-     * @param pTransition the fixed value of pattern parameter transition, or null if not bound.
+     * @param pState the fixed value of pattern parameter state, or null if not bound.
      * @return the (partial) match object.
      * 
      */
-    public DbLockTransitions.Match newMatch(final Transition pTransition) {
-      return DbLockTransitions.Match.newMatch(pTransition);
+    public DbLockStates.Match newMatch(final State pState) {
+      return DbLockStates.Match.newMatch(pState);
     }
     
     /**
-     * Retrieve the set of values that occur in matches for transition.
+     * Retrieve the set of values that occur in matches for state.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    protected Stream<Transition> rawStreamAllValuesOftransition(final Object[] parameters) {
-      return rawStreamAllValues(POSITION_TRANSITION, parameters).map(Transition.class::cast);
+    protected Stream<State> rawStreamAllValuesOfstate(final Object[] parameters) {
+      return rawStreamAllValues(POSITION_STATE, parameters).map(State.class::cast);
     }
     
     /**
-     * Retrieve the set of values that occur in matches for transition.
+     * Retrieve the set of values that occur in matches for state.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<Transition> getAllValuesOftransition() {
-      return rawStreamAllValuesOftransition(emptyArray()).collect(Collectors.toSet());
+    public Set<State> getAllValuesOfstate() {
+      return rawStreamAllValuesOfstate(emptyArray()).collect(Collectors.toSet());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for transition.
+     * Retrieve the set of values that occur in matches for state.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Stream<Transition> streamAllValuesOftransition() {
-      return rawStreamAllValuesOftransition(emptyArray());
+    public Stream<State> streamAllValuesOfstate() {
+      return rawStreamAllValuesOfstate(emptyArray());
     }
     
     @Override
-    protected DbLockTransitions.Match tupleToMatch(final Tuple t) {
+    protected DbLockStates.Match tupleToMatch(final Tuple t) {
       try {
-          return DbLockTransitions.Match.newMatch((Transition) t.get(POSITION_TRANSITION));
+          return DbLockStates.Match.newMatch((State) t.get(POSITION_STATE));
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in tuple not properly typed!",e);
           return null;
@@ -425,9 +427,9 @@ public final class DbLockTransitions extends BaseGeneratedEMFQuerySpecification<
     }
     
     @Override
-    protected DbLockTransitions.Match arrayToMatch(final Object[] match) {
+    protected DbLockStates.Match arrayToMatch(final Object[] match) {
       try {
-          return DbLockTransitions.Match.newMatch((Transition) match[POSITION_TRANSITION]);
+          return DbLockStates.Match.newMatch((State) match[POSITION_STATE]);
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in array not properly typed!",e);
           return null;
@@ -435,9 +437,9 @@ public final class DbLockTransitions extends BaseGeneratedEMFQuerySpecification<
     }
     
     @Override
-    protected DbLockTransitions.Match arrayToMatchMutable(final Object[] match) {
+    protected DbLockStates.Match arrayToMatchMutable(final Object[] match) {
       try {
-          return DbLockTransitions.Match.newMutableMatch((Transition) match[POSITION_TRANSITION]);
+          return DbLockStates.Match.newMutableMatch((State) match[POSITION_STATE]);
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in array not properly typed!",e);
           return null;
@@ -449,12 +451,12 @@ public final class DbLockTransitions extends BaseGeneratedEMFQuerySpecification<
      * @throws ViatraQueryRuntimeException if the pattern definition could not be loaded
      * 
      */
-    public static IQuerySpecification<DbLockTransitions.Matcher> querySpecification() {
-      return DbLockTransitions.instance();
+    public static IQuerySpecification<DbLockStates.Matcher> querySpecification() {
+      return DbLockStates.instance();
     }
   }
   
-  private DbLockTransitions() {
+  private DbLockStates() {
     super(GeneratedPQuery.INSTANCE);
   }
   
@@ -463,7 +465,7 @@ public final class DbLockTransitions extends BaseGeneratedEMFQuerySpecification<
    * @throws ViatraQueryRuntimeException if the pattern definition could not be loaded
    * 
    */
-  public static DbLockTransitions instance() {
+  public static DbLockStates instance() {
     try{
         return LazyHolder.INSTANCE;
     } catch (ExceptionInInitializerError err) {
@@ -472,35 +474,35 @@ public final class DbLockTransitions extends BaseGeneratedEMFQuerySpecification<
   }
   
   @Override
-  protected DbLockTransitions.Matcher instantiate(final ViatraQueryEngine engine) {
-    return DbLockTransitions.Matcher.on(engine);
+  protected DbLockStates.Matcher instantiate(final ViatraQueryEngine engine) {
+    return DbLockStates.Matcher.on(engine);
   }
   
   @Override
-  public DbLockTransitions.Matcher instantiate() {
-    return DbLockTransitions.Matcher.create();
+  public DbLockStates.Matcher instantiate() {
+    return DbLockStates.Matcher.create();
   }
   
   @Override
-  public DbLockTransitions.Match newEmptyMatch() {
-    return DbLockTransitions.Match.newEmptyMatch();
+  public DbLockStates.Match newEmptyMatch() {
+    return DbLockStates.Match.newEmptyMatch();
   }
   
   @Override
-  public DbLockTransitions.Match newMatch(final Object... parameters) {
-    return DbLockTransitions.Match.newMatch((edu.toronto.cs.se.mmint.types.lts.Transition) parameters[0]);
+  public DbLockStates.Match newMatch(final Object... parameters) {
+    return DbLockStates.Match.newMatch((edu.toronto.cs.se.mmint.types.lts.State) parameters[0]);
   }
   
   /**
-   * Inner class allowing the singleton instance of {@link DbLockTransitions} to be created 
+   * Inner class allowing the singleton instance of {@link DbLockStates} to be created 
    *     <b>not</b> at the class load time of the outer class, 
-   *     but rather at the first call to {@link DbLockTransitions#instance()}.
+   *     but rather at the first call to {@link DbLockStates#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 
    */
   private static class LazyHolder {
-    private static final DbLockTransitions INSTANCE = new DbLockTransitions();
+    private static final DbLockStates INSTANCE = new DbLockStates();
     
     /**
      * Statically initializes the query specification <b>after</b> the field {@link #INSTANCE} is assigned.
@@ -518,11 +520,11 @@ public final class DbLockTransitions extends BaseGeneratedEMFQuerySpecification<
   }
   
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
-    private static final DbLockTransitions.GeneratedPQuery INSTANCE = new GeneratedPQuery();
+    private static final DbLockStates.GeneratedPQuery INSTANCE = new GeneratedPQuery();
     
-    private final PParameter parameter_transition = new PParameter("transition", "edu.toronto.cs.se.mmint.types.lts.Transition", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("model://edu.toronto.cs.se.mmint.types.lts", "Transition")), PParameterDirection.INOUT);
+    private final PParameter parameter_state = new PParameter("state", "edu.toronto.cs.se.mmint.types.lts.State", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("model://edu.toronto.cs.se.mmint.types.lts", "State")), PParameterDirection.INOUT);
     
-    private final List<PParameter> parameters = Arrays.asList(parameter_transition);
+    private final List<PParameter> parameters = Arrays.asList(parameter_state);
     
     private GeneratedPQuery() {
       super(PVisibility.PUBLIC);
@@ -530,12 +532,12 @@ public final class DbLockTransitions extends BaseGeneratedEMFQuerySpecification<
     
     @Override
     public String getFullyQualifiedName() {
-      return "sosym22.dbLockTransitions";
+      return "sosym22.dbLockStates";
     }
     
     @Override
     public List<String> getParameterNames() {
-      return Arrays.asList("transition");
+      return Arrays.asList("state");
     }
     
     @Override
@@ -549,11 +551,12 @@ public final class DbLockTransitions extends BaseGeneratedEMFQuerySpecification<
       Set<PBody> bodies = new LinkedHashSet<>();
       {
           PBody body = new PBody(this);
+          PVariable var_state = body.getOrCreateVariableByName("state");
           PVariable var_transition = body.getOrCreateVariableByName("transition");
           PVariable var_label = body.getOrCreateVariableByName("label");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_transition), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("model://edu.toronto.cs.se.mmint.types.lts", "Transition")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_state), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("model://edu.toronto.cs.se.mmint.types.lts", "State")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
-             new ExportedParameter(body, var_transition, parameter_transition)
+             new ExportedParameter(body, var_state, parameter_state)
           ));
           //   Transition.label(transition, label)
           new TypeConstraint(body, Tuples.flatTupleOf(var_transition), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("model://edu.toronto.cs.se.mmint.types.lts", "Transition")));
@@ -566,7 +569,7 @@ public final class DbLockTransitions extends BaseGeneratedEMFQuerySpecification<
           
               @Override
               public String getShortDescription() {
-                  return "Expression evaluation from pattern dbLockTransitions";
+                  return "Expression evaluation from pattern dbLockStates";
               }
               
               @Override
@@ -579,6 +582,12 @@ public final class DbLockTransitions extends BaseGeneratedEMFQuerySpecification<
                   return evaluateExpression_1_1(label);
               }
           },  null); 
+          //   Transition.to(transition, state)
+          new TypeConstraint(body, Tuples.flatTupleOf(var_transition), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("model://edu.toronto.cs.se.mmint.types.lts", "Transition")));
+          PVariable var__virtual_1_ = body.getOrCreateVariableByName(".virtual{1}");
+          new TypeConstraint(body, Tuples.flatTupleOf(var_transition, var__virtual_1_), new EStructuralFeatureInstancesKey(getFeatureLiteral("model://edu.toronto.cs.se.mmint.types.lts", "Transition", "to")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_1_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("model://edu.toronto.cs.se.mmint.types.lts", "State")));
+          new Equality(body, var__virtual_1_, var_state);
           bodies.add(body);
       }
       return bodies;

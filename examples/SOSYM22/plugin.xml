@@ -12,7 +12,7 @@
  --><plugin>
   <extension id="sosym22.Query" point="org.eclipse.viatra.query.runtime.queryspecification">
     <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:sosym22.Query" id="sosym22.Query">
-      <query-specification fqn="sosym22.dbLockTransitions"/>
+      <query-specification fqn="sosym22.dbLockStates"/>
     </group>
   </extension>
 </plugin>

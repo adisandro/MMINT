@@ -14,7 +14,8 @@ package sosym22
 
 import "model://edu.toronto.cs.se.mmint.types.lts"
 
-pattern dbLockTransitions(transition: Transition) {
+pattern dbLockStates(state: State) {
   Transition.label(transition, label);
   check(label.startsWith("dbMonitor.condDB.lock"));
+  Transition.to(transition, state);
 }

@@ -2,7 +2,6 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: SOSYM22;singleton:=true
-Automatic-Module-Name: SOSYM22
 Bundle-Version: 2.12.99.qualifier
 Bundle-Vendor: %providerName
 Export-Package: sosym22
@@ -14,5 +13,6 @@ Require-Bundle: org.eclipse.emf.ecore,
  edu.toronto.cs.se.mmint,
  edu.toronto.cs.se.mmint.types.lts
 Bundle-RequiredExecutionEnvironment: JavaSE-17
+Automatic-Module-Name: SOSYM22
 Import-Package: org.apache.log4j
 Bundle-ActivationPolicy: lazy

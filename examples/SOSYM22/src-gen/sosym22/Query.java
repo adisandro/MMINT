@@ -25,7 +25,7 @@ import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedPatternGroup;
  * in order to achieve better performance than one-by-one on-demand matcher initialization.
  * 
  * <p> From package sosym22, the group contains the definition of the following patterns: <ul>
- * <li>dbLockTransitions</li>
+ * <li>dbLockStates</li>
  * </ul>
  * 
  * @see IQueryGroup
@@ -50,14 +50,14 @@ public final class Query extends BaseGeneratedPatternGroup {
   private static Query INSTANCE;
   
   private Query() {
-    querySpecifications.add(DbLockTransitions.instance());
+    querySpecifications.add(DbLockStates.instance());
   }
   
-  public DbLockTransitions getDbLockTransitions() {
-    return DbLockTransitions.instance();
+  public DbLockStates getDbLockStates() {
+    return DbLockStates.instance();
   }
   
-  public DbLockTransitions.Matcher getDbLockTransitions(final ViatraQueryEngine engine) {
-    return DbLockTransitions.Matcher.on(engine);
+  public DbLockStates.Matcher getDbLockStates(final ViatraQueryEngine engine) {
+    return DbLockStates.Matcher.on(engine);
   }
 }
