@@ -119,7 +119,6 @@
   	<module>../../plugins/Core/edu.toronto.cs.se.mmint.operator</module>
     <module>../../plugins/Core/edu.toronto.cs.se.mmint.papyrus</module>
     <module>../../plugins/Core/edu.toronto.cs.se.mmint.papyrus.edit</module>
-    <module>../../plugins/Core/edu.toronto.cs.se.mmint.papyrus.operators</module>
     <module>../../plugins/Core/edu.toronto.cs.se.mmint.primitive</module>
     <module>../../plugins/Core/edu.toronto.cs.se.mmint.primitive.edit</module>
     <module>../../plugins/Core/edu.toronto.cs.se.mmint.primitive.editor</module>
@@ -203,6 +202,7 @@
   	<module>../../plugins/Types/StateMachine/edu.toronto.cs.se.modelepedia.statemachine_mavo.edit</module>
   	<module>../../plugins/Types/StateMachine/edu.toronto.cs.se.modelepedia.statemachine_mavo.editor</module>
   	<module>../../plugins/Types/StateMachine/edu.toronto.cs.se.modelepedia.statemachine_mavo.operator</module>
+    <module>../../plugins/Types/UML/edu.toronto.cs.se.mmint.types.uml.operators</module>
   	<module>../../examples/ICSE15/edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo</module>
   	<module>../../examples/ICSE15/edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram</module>
   	<module>../../examples/ICSE15/edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.edit</module>

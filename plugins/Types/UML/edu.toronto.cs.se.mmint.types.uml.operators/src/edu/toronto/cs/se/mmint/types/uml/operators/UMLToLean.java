@@ -10,7 +10,7 @@
  * Contributors:
  *     Alessio Di Sandro - Implementation
  *******************************************************************************/
-package edu.toronto.cs.se.mmint.papyrus.operators;
+package edu.toronto.cs.se.mmint.types.uml.operators;
 
 import java.util.List;
 import java.util.Map;

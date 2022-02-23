@@ -11,6 +11,6 @@
  *     Alessio Di Sandro - Implementation
  *******************************************************************************/
 @NonNullByDefault
-package edu.toronto.cs.se.mmint.papyrus.operators;
+package edu.toronto.cs.se.mmint.types.uml.operators;
 
 import org.eclipse.jdt.annotation.NonNullByDefault;

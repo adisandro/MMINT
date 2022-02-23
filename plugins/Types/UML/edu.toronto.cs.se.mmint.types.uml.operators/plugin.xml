@@ -19,8 +19,8 @@
       <operatorType>
          <type
                name="ToLean"
-               uri="edu.toronto.cs.se.mmint.papyrus.operators.UMLToLean"
-               class="edu.toronto.cs.se.mmint.papyrus.operators.UMLToLean">
+               uri="edu.toronto.cs.se.mmint.types.uml.operators.UMLToLean"
+               class="edu.toronto.cs.se.mmint.types.uml.operators.UMLToLean">
             <superType
                   uri="edu.toronto.cs.se.mmint.lean.operators.ToLean">
             </superType>
@@ -29,7 +29,7 @@
             <parameter>
                <type
                      name="model"
-                     uri="edu.toronto.cs.se.mmint.papyrus.operators.UMLToLean/model">
+                     uri="edu.toronto.cs.se.mmint.types.uml.operators.UMLToLean/model">
                   <superType
                         uri="edu.toronto.cs.se.mmint.lean.operators.ToLean/model">
                   </superType>
@@ -43,7 +43,7 @@
             <parameter>
                <type
                      name="encoding"
-                     uri="edu.toronto.cs.se.mmint.papyrus.operators.UMLToLean/encoding">
+                     uri="edu.toronto.cs.se.mmint.types.uml.operators.UMLToLean/encoding">
                   <superType
                         uri="edu.toronto.cs.se.mmint.lean.operators.ToLean/encoding">
                   </superType>

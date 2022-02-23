@@ -8,7 +8,7 @@
  * Contributors:
  *     Obeo - initial API and implementation
  *******************************************************************************/
-package edu.toronto.cs.se.mmint.papyrus.operators;
+package edu.toronto.cs.se.mmint.types.uml.operators;
 
 import java.io.File;
 import java.io.IOException;
@@ -35,7 +35,7 @@ public class UMLToLeanAcceleo extends AbstractAcceleoGenerator {
      *
      * @generated
      */
-    public static final String MODULE_FILE_NAME = "/edu/toronto/cs/se/mmint/papyrus/operators/UMLToLeanAcceleo";
+    public static final String MODULE_FILE_NAME = "/edu/toronto/cs/se/mmint/types/uml/operators/UMLToLeanAcceleo";
     
     /**
      * The name of the templates that are to be generated.

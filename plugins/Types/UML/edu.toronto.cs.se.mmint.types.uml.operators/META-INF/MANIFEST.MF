@@ -1,10 +1,10 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
-Bundle-SymbolicName: edu.toronto.cs.se.mmint.papyrus.operators;singleton:=true
+Bundle-SymbolicName: edu.toronto.cs.se.mmint.types.uml.operators;singleton:=true
 Bundle-Version: 2.12.99.qualifier
 Bundle-Vendor: %providerName
-Automatic-Module-Name: edu.toronto.cs.se.mmint.papyrus.operators
+Automatic-Module-Name: edu.toronto.cs.se.mmint.types.uml.operators
 Bundle-RequiredExecutionEnvironment: JavaSE-17
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.core.runtime,
@@ -17,4 +17,4 @@ Require-Bundle: org.eclipse.core.runtime,
  edu.toronto.cs.se.mmint.primitive,
  edu.toronto.cs.se.mmint.lean,
  edu.toronto.cs.se.modelepedia.gsn
-Export-Package: edu.toronto.cs.se.mmint.papyrus.operators
+Export-Package: edu.toronto.cs.se.mmint.types.uml.operators
