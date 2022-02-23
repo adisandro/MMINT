@@ -14,6 +14,9 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
+
 /**
  * The specification of a reasoning trait to query megamodels.
  *
@@ -27,6 +30,19 @@ public interface IQueryTrait extends IReasoner {
    * @return The query file extensions.
    */
   Set<String> getQueryFileExtensions();
+
+  /**
+   * Selects a query name from a query file.
+   *
+   * @param queryFilePath
+   *          The path to the query file.
+   * @return The selected query name.
+   * @throws MIDDialogCancellation
+   *           If the query name selection is cancelled.
+   */
+  default String selectQueryName(String queryFilePath) throws MIDDialogCancellation {
+    return MIDDialogs.getStringInput("Evaluate query", "Insert query name to run", null);
+  }
 
   /**
    * Evaluates a query to find elements within a megamodel.
@@ -45,5 +61,4 @@ public interface IQueryTrait extends IReasoner {
    */
   List<Object> evaluateQuery(String queryFilePath, String queryName, EObject context,
                              List<? extends EObject> queryArgs) throws Exception;
-
 }

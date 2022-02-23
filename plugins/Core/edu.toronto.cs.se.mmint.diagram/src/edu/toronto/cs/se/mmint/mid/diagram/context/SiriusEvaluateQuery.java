@@ -80,7 +80,7 @@ public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
     var fileExtension = FileUtils.getFileExtensionFromPath(queryFilePath);
     var reasoners = fileExtToReasoners.get(fileExtension);
     var queryReasoner = MIDDialogs.selectReasoner(reasoners, fileExtension + " queries");
-    var queryName = MIDDialogs.getStringInput("Evaluate query", "Insert query name to run", null);
+    var queryName = queryReasoner.selectQueryName(queryFilePath);
 
     return new QuerySpec(queryReasoner, queryFilePath, queryName);
   }
