@@ -84,6 +84,9 @@
    <feature url="features/edu.toronto.cs.se.mmmint.examples.models21.feature_2.12.99.qualifier.jar" id="edu.toronto.cs.se.mmint.examples.models21.feature" version="2.12.99.qualifier">
       <category name="Examples"/>
    </feature>
+   <feature url="features/edu.toronto.cs.se.mmmint.examples.sosym22.feature_2.12.99.qualifier.jar" id="edu.toronto.cs.se.mmint.examples.sosym22.feature" version="2.12.99.qualifier">
+      <category name="Examples"/>
+   </feature>
    <category-def name="Modeling" label="Modeling"/>
    <category-def name="Modelepedia" label="Modelepedia"/>
    <category-def name="Examples" label="Examples"/>
