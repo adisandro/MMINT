@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lts:LTS xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:lts="model://edu.toronto.cs.se.mmint.types.lts">
+  <states xsi:type="lts:InitialState" label="Init" incoming="//@transitions.51" outgoing="//@transitions.0"/>
+  <states label="Infusion_NormalOperation" incoming="//@transitions.0 //@transitions.2 //@transitions.3 //@transitions.5 //@transitions.8 //@transitions.10 //@transitions.11 //@transitions.17 //@transitions.19 //@transitions.24 //@transitions.28 //@transitions.34" outgoing="//@transitions.1 //@transitions.4 //@transitions.6 //@transitions.7 //@transitions.16 //@transitions.18 //@transitions.27 //@transitions.47"/>
+  <states label="BolusRequest" incoming="//@transitions.1" outgoing="//@transitions.2 //@transitions.3"/>
+  <states label="Wrn_LowReservoir" incoming="//@transitions.4" outgoing="//@transitions.5"/>
+  <states label="Alrm_EmptyReservoir" incoming="//@transitions.6" outgoing="//@transitions.21 //@transitions.50"/>
+  <states label="ConfirmPause" incoming="//@transitions.7" outgoing="//@transitions.8 //@transitions.9 //@transitions.15 //@transitions.45"/>
+  <states label="InfusionPaused" incoming="//@transitions.9 //@transitions.12" outgoing="//@transitions.10 //@transitions.13 //@transitions.14"/>
+  <states label="PausedStopConfirm" incoming="//@transitions.13" outgoing="//@transitions.12 //@transitions.42"/>
+  <states label="Alrm_TooLongInfusionPause" incoming="//@transitions.14" outgoing="//@transitions.11 //@transitions.43 //@transitions.44"/>
+  <states label="Alrm_LevelTwoHardwareFailure" incoming="//@transitions.15 //@transitions.16 //@transitions.20 //@transitions.29 //@transitions.35 //@transitions.39" outgoing="//@transitions.17 //@transitions.40 //@transitions.41"/>
+  <states label="ConfirmStop" incoming="//@transitions.18" outgoing="//@transitions.19 //@transitions.20 //@transitions.37 //@transitions.38"/>
+  <states label="CheckDrug" incoming="//@transitions.21 //@transitions.23" outgoing="//@transitions.22 //@transitions.24 //@transitions.48"/>
+  <states label="Alrm_WrongDrug" incoming="//@transitions.22" outgoing="//@transitions.23 //@transitions.49"/>
+  <states label="ChangeRate" incoming="//@transitions.25 //@transitions.27 //@transitions.30 //@transitions.33" outgoing="//@transitions.26 //@transitions.28 //@transitions.29 //@transitions.31 //@transitions.46"/>
+  <states label="Alrm_LongWait_ChangeDoseRate" incoming="//@transitions.26" outgoing="//@transitions.25"/>
+  <states label="CheckNewRate" incoming="//@transitions.31" outgoing="//@transitions.30 //@transitions.32"/>
+  <states label="Alrm_UnsafeNewRate" incoming="//@transitions.32" outgoing="//@transitions.33 //@transitions.34 //@transitions.35 //@transitions.36"/>
+  <states label="InfusionStopped" incoming="//@transitions.36 //@transitions.37 //@transitions.38 //@transitions.40 //@transitions.41 //@transitions.42 //@transitions.43 //@transitions.44 //@transitions.45 //@transitions.46 //@transitions.47 //@transitions.48 //@transitions.49 //@transitions.50" outgoing="//@transitions.39 //@transitions.51"/>
+  <transitions label="Cond_2?" from="//@states.0" to="//@states.1"/>
+  <transitions label="E_RequestBolus?" from="//@states.1" to="//@states.2"/>
+  <transitions label="Cond_7_1?" from="//@states.2" to="//@states.1"/>
+  <transitions label="Cond_7_2?" from="//@states.2" to="//@states.1"/>
+  <transitions label="MCond_6_6?" from="//@states.1" to="//@states.3"/>
+  <transitions label="No_Label_1" from="//@states.3" to="//@states.1"/>
+  <transitions label="Cond_6_3?" from="//@states.1" to="//@states.4"/>
+  <transitions label="E_PauseInfusion?" from="//@states.1" to="//@states.5"/>
+  <transitions label="E_Cancel?_1" from="//@states.5" to="//@states.1"/>
+  <transitions label="E_ConfirmPauseInfusion?" from="//@states.5" to="//@states.6"/>
+  <transitions label="E_Cancel?_2" from="//@states.6" to="//@states.1"/>
+  <transitions label="E_ClearAlarm?_1" from="//@states.8" to="//@states.1"/>
+  <transitions label="E_Cancel?_3" from="//@states.7" to="//@states.6"/>
+  <transitions label="E_StopInfusion?_1" from="//@states.6" to="//@states.7"/>
+  <transitions label="x1 >= MAX_PAUSED_T" from="//@states.6" to="//@states.8"/>
+  <transitions label="Level_Two_Alarm?_1" from="//@states.5" to="//@states.9"/>
+  <transitions label="Level_Two_Alarm?_2" from="//@states.1" to="//@states.9"/>
+  <transitions label="E_ClearAlarm?_2" from="//@states.9" to="//@states.1"/>
+  <transitions label="E_StopInfusion?_2" from="//@states.1" to="//@states.10"/>
+  <transitions label="E_Cancel?_4" from="//@states.10" to="//@states.1"/>
+  <transitions label="Level_Two_Alarm?_3" from="//@states.10" to="//@states.9"/>
+  <transitions label="E_CheckDrug?_1" from="//@states.4" to="//@states.11"/>
+  <transitions label="Cond_6_5?" from="//@states.11" to="//@states.12"/>
+  <transitions label="E_CheckDrug?_2" from="//@states.12" to="//@states.11"/>
+  <transitions label="Cond_6_4?" from="//@states.11" to="//@states.1"/>
+  <transitions label="No_Label_2" from="//@states.14" to="//@states.13"/>
+  <transitions label="x1 >= MAX_WAIT_INPUT_T" from="//@states.13" to="//@states.14"/>
+  <transitions label="E_ChangeDoseRate?_1" from="//@states.1" to="//@states.13"/>
+  <transitions label="E_Cancel?_5" from="//@states.13" to="//@states.1"/>
+  <transitions label="Level_Two_Alarm?_4" from="//@states.13" to="//@states.9"/>
+  <transitions label="Cond_7_4?" from="//@states.15" to="//@states.13"/>
+  <transitions label="E_ConfirmDoseRate?" from="//@states.13" to="//@states.15"/>
+  <transitions label="Cond_7_3?" from="//@states.15" to="//@states.16"/>
+  <transitions label="E_ChangeDoseRate?_2" from="//@states.16" to="//@states.13"/>
+  <transitions label="E_Cancel?_6" from="//@states.16" to="//@states.1"/>
+  <transitions label="Level_Two_Alarm?_5" from="//@states.16" to="//@states.9"/>
+  <transitions label="Cond_6_2?_1" from="//@states.16" to="//@states.17"/>
+  <transitions label="Cond_6_2?_2" from="//@states.10" to="//@states.17"/>
+  <transitions label="E_ConfirmStopInfusion?_1" from="//@states.10" to="//@states.17"/>
+  <transitions label="Level_Two_Alarm?_6" from="//@states.17" to="//@states.9"/>
+  <transitions label="E_StopInfusion?_3" from="//@states.9" to="//@states.17"/>
+  <transitions label="x1 >= MAX_ALRM_T_1" from="//@states.9" to="//@states.17"/>
+  <transitions label="E_ConfirmStopInfusion?_2" from="//@states.7" to="//@states.17"/>
+  <transitions label="E_StopInfusion?_4" from="//@states.8" to="//@states.17"/>
+  <transitions label="x1 >= MAX_ALRM_T_2" from="//@states.8" to="//@states.17"/>
+  <transitions label="Cond_6_2?_3" from="//@states.5" to="//@states.17"/>
+  <transitions label="Cond_6_2?_4" from="//@states.13" to="//@states.17"/>
+  <transitions label="Cond_6_2?_5" from="//@states.1" to="//@states.17"/>
+  <transitions label="x1 >= MAX_CHECK_DRUG_T" from="//@states.11" to="//@states.17"/>
+  <transitions label="E_StopInfusion?_5" from="//@states.12" to="//@states.17"/>
+  <transitions label="E_StopInfusion?_6" from="//@states.4" to="//@states.17"/>
+  <transitions label="E_NewInfusion?" from="//@states.17" to="//@states.0"/>
+</lts:LTS>

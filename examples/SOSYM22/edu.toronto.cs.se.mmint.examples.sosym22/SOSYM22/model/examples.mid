@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mid:MID xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editor="http://se.cs.toronto.edu/mmint/MID/Editor" xmlns:mid="http://se.cs.toronto.edu/mmint/MID" xmlns:relationship="http://se.cs.toronto.edu/mmint/MID/Relationship">
+  <models uri="/SOSYM22/model/fcs.lts" name="fcs" metatypeUri="model://edu.toronto.cs.se.mmint.types.lts" dynamic="true" origin="CREATED" fileExtension="lts" editors="//@editors.0">
+    <modelElems uri="/SOSYM22/model/fcs.lts#/_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="LTS" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="LTS" featureName="root"/>
+    </modelElems>
+  </models>
+  <models uri="/SOSYM22/model/sc.gsn" name="sc" metatypeUri="http://se.cs.toronto.edu/modelepedia/GSN" dynamic="true" origin="CREATED" fileExtension="gsn" editors="//@editors.1">
+    <modelElems uri="/SOSYM22/model/sc.gsn#//@goals.0_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Basic Goal C1" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="BasicGoal" featureName="goals" relatedClassName="SafetyCase"/>
+    </modelElems>
+    <modelElems uri="/SOSYM22/model/sc.gsn#//@goals.1_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Basic Goal C2" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="BasicGoal" featureName="goals" relatedClassName="SafetyCase"/>
+    </modelElems>
+  </models>
+  <models xsi:type="relationship:ModelRel" uri="" name="trace1" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel" dynamic="true" origin="CREATED" fileExtension="">
+    <modelEndpoints uri="" name="fcs" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0"/>
+    <modelEndpoints uri="" name="sc" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1"/>
+    <mappings uri="" name="m" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.0/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.0/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="LTS" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping-ModelElem/ModelElemEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.0"/>
+      <modelElemEndpoints uri="" name="Basic Goal C1" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping-ModelElem/ModelElemEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.0"/>
+    </mappings>
+    <modelEndpointRefs referencedObject="//@models.2/@modelEndpoints.0" modifiable="true">
+      <modelElemRefs referencedObject="//@models.0/@modelElems.0" modifiable="true" modelElemEndpointRefs="//@models.2/@mappingRefs.0/@modelElemEndpointRefs.0"/>
+    </modelEndpointRefs>
+    <modelEndpointRefs referencedObject="//@models.2/@modelEndpoints.1" modifiable="true">
+      <modelElemRefs referencedObject="//@models.1/@modelElems.0" modifiable="true" modelElemEndpointRefs="//@models.2/@mappingRefs.0/@modelElemEndpointRefs.1"/>
+    </modelEndpointRefs>
+    <mappingRefs referencedObject="//@models.2/@mappings.0" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.0/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.0"/>
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.0/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.0"/>
+    </mappingRefs>
+  </models>
+  <models uri="/SOSYM22/model/pump.lts" name="pump" metatypeUri="model://edu.toronto.cs.se.mmint.types.lts" dynamic="true" origin="CREATED" fileExtension="lts" editors="//@editors.2">
+    <modelElems uri="/SOSYM22/model/pump.lts#/_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="LTS" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="LTS" featureName="root"/>
+    </modelElems>
+  </models>
+  <models xsi:type="relationship:ModelRel" uri="" name="trace2" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel" dynamic="true" origin="CREATED" fileExtension="">
+    <modelEndpoints uri="" name="sc" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1"/>
+    <modelEndpoints uri="" name="pump" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3"/>
+    <mappings uri="" name="m" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping" dynamic="true" modelElemEndpointRefs="//@models.4/@mappingRefs.0/@modelElemEndpointRefs.0 //@models.4/@mappingRefs.0/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="Basic Goal C2" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping-ModelElem/ModelElemEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.1"/>
+      <modelElemEndpoints uri="" name="LTS" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping-ModelElem/ModelElemEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.0"/>
+    </mappings>
+    <modelEndpointRefs referencedObject="//@models.4/@modelEndpoints.0" modifiable="true">
+      <modelElemRefs referencedObject="//@models.1/@modelElems.1" modifiable="true" modelElemEndpointRefs="//@models.4/@mappingRefs.0/@modelElemEndpointRefs.0"/>
+    </modelEndpointRefs>
+    <modelEndpointRefs referencedObject="//@models.4/@modelEndpoints.1" modifiable="true">
+      <modelElemRefs referencedObject="//@models.3/@modelElems.0" modifiable="true" modelElemEndpointRefs="//@models.4/@mappingRefs.0/@modelElemEndpointRefs.1"/>
+    </modelEndpointRefs>
+    <mappingRefs referencedObject="//@models.4/@mappings.0" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.4/@mappings.0/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.0/@modelElemRefs.0"/>
+      <modelElemEndpointRefs referencedObject="//@models.4/@mappings.0/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.1/@modelElemRefs.0"/>
+    </mappingRefs>
+  </models>
+  <editors xsi:type="editor:Diagram" uri="/SOSYM22/representations.aird#_ec3Q4F6dEeuzRqps9eyyPw" name="LTS Sirius Diagram for model /SOSYM22/model/fcs.lts" metatypeUri="edu.toronto.cs.se.mmint.types.lts.design" dynamic="true" modelUri="/SOSYM22/model/fcs.lts" id="edu.toronto.cs.se.mmint.types.lts.design" wizardId="edu.toronto.cs.se.mmint.types.lts.presentation.LTSModelWizardID">
+    <fileExtensions>aird#_ec3Q4F6dEeuzRqps9eyyPw</fileExtensions>
+  </editors>
+  <editors xsi:type="editor:Diagram" uri="/SOSYM22/representations.aird#_o6VmQF6mEeuYfq7XakckNg" name="GSN Representation for model /SOSYM22/model/sc.gsn" metatypeUri="http://se.cs.toronto.edu/modelepedia/Representation_GSN" dynamic="true" modelUri="/SOSYM22/model/sc.gsn" id="edu.toronto.cs.se.modelepedia.gsn.design" wizardId="edu.toronto.cs.se.modelepedia.gsn.presentation.GSNModelWizardID">
+    <fileExtensions>aird#_o6VmQF6mEeuYfq7XakckNg</fileExtensions>
+  </editors>
+  <editors xsi:type="editor:Diagram" uri="/SOSYM22/representations.aird#_fmElkLGoEeudEakJBW0CPw" name="LTS Sirius Diagram for model /SOSYM22/model/pump.lts" metatypeUri="edu.toronto.cs.se.mmint.types.lts.design" dynamic="true" modelUri="/SOSYM22/model/pump.lts" id="edu.toronto.cs.se.mmint.types.lts.design" wizardId="edu.toronto.cs.se.mmint.types.lts.presentation.LTSModelWizardID">
+    <fileExtensions>aird#_fmElkLGoEeudEakJBW0CPw</fileExtensions>
+  </editors>
+  <extendibleTable key="/SOSYM22/model/fcs.lts" value="//@models.0"/>
+  <extendibleTable key="/SOSYM22/model/sc.gsn" value="//@models.1"/>
+  <extendibleTable key="/SOSYM22/model/fcs.lts#/_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.0"/>
+  <extendibleTable key="/SOSYM22/model/sc.gsn#//@goals.0_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.0"/>
+  <extendibleTable key="/SOSYM22/model/pump.lts" value="//@models.3"/>
+  <extendibleTable key="/SOSYM22/model/sc.gsn#//@goals.1_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.1"/>
+  <extendibleTable key="/SOSYM22/model/pump.lts#/_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.3/@modelElems.0"/>
+</mid:MID>
