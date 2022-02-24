@@ -50,7 +50,7 @@ def [sanitize(class.name, sanitizeRegexp)/]_ARCH_MODEL : Architecture [sanitize(
       [/for]
   [']'/],
   no_dup := by {simp, dec_trivial},
-  size := by_dec_trivial,
+  size := by dec_trivial,
   vars := by {intros U H, simp at *, repeat {my_arch_tac}}
 }
     [/if]
