@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mid:MID xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editor="http://se.cs.toronto.edu/mmint/MID/Editor" xmlns:mid="http://se.cs.toronto.edu/mmint/MID" xmlns:relationship="http://se.cs.toronto.edu/mmint/MID/Relationship">
+<mid:MID xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editor="http://se.cs.toronto.edu/mmint/MID/Editor" xmlns:mid="http://se.cs.toronto.edu/mmint/MID" xmlns:papyrus="model://edu.toronto.cs.se.mmint.papyrus" xmlns:relationship="http://se.cs.toronto.edu/mmint/MID/Relationship">
   <models uri="/SOSYM22/model/fcs.lts" name="fcs" metatypeUri="model://edu.toronto.cs.se.mmint.types.lts" dynamic="true" origin="CREATED" fileExtension="lts" editors="//@editors.0">
     <modelElems uri="/SOSYM22/model/fcs.lts#/_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="LTS" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="LTS" featureName="root"/>
@@ -10,6 +10,9 @@
       <eInfo className="BasicGoal" featureName="goals" relatedClassName="SafetyCase"/>
     </modelElems>
     <modelElems uri="/SOSYM22/model/sc.gsn#//@goals.1_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Basic Goal C2" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="BasicGoal" featureName="goals" relatedClassName="SafetyCase"/>
+    </modelElems>
+    <modelElems uri="/SOSYM22/model/sc.gsn#//@goals.2_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Basic Goal C3" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="BasicGoal" featureName="goals" relatedClassName="SafetyCase"/>
     </modelElems>
   </models>
@@ -54,6 +57,29 @@
       <modelElemEndpointRefs referencedObject="//@models.4/@mappings.0/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.1/@modelElemRefs.0"/>
     </mappingRefs>
   </models>
+  <models xsi:type="papyrus:UMLModel" uri="/SOSYM22/model/lacu.uml" name="lacu" metatypeUri="http://www.eclipse.org/uml2/5.0.0/UML" dynamic="true" fileExtension="uml" editors="//@editors.3">
+    <modelElems uri="/SOSYM22/model/lacu.uml#_3LqMYJMsEeyoYr_v8A8d5A_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="&lt;Model> lacu" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Model" featureName="root"/>
+    </modelElems>
+  </models>
+  <models xsi:type="relationship:ModelRel" uri="" name="trace3" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel" dynamic="true" origin="CREATED" fileExtension="">
+    <modelEndpoints uri="" name="lacu" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.5"/>
+    <modelEndpoints uri="" name="sc" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1"/>
+    <mappings uri="" name="m" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping" dynamic="true" modelElemEndpointRefs="//@models.6/@mappingRefs.0/@modelElemEndpointRefs.0 //@models.6/@mappingRefs.0/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="&lt;Model> lacu" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping-ModelElem/ModelElemEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.5/@modelElems.0"/>
+      <modelElemEndpoints uri="" name="Basic Goal C3" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping-ModelElem/ModelElemEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.2"/>
+    </mappings>
+    <modelEndpointRefs referencedObject="//@models.6/@modelEndpoints.0" modifiable="true">
+      <modelElemRefs referencedObject="//@models.5/@modelElems.0" modifiable="true" modelElemEndpointRefs="//@models.6/@mappingRefs.0/@modelElemEndpointRefs.0"/>
+    </modelEndpointRefs>
+    <modelEndpointRefs referencedObject="//@models.6/@modelEndpoints.1" modifiable="true">
+      <modelElemRefs referencedObject="//@models.1/@modelElems.2" modifiable="true" modelElemEndpointRefs="//@models.6/@mappingRefs.0/@modelElemEndpointRefs.1"/>
+    </modelEndpointRefs>
+    <mappingRefs referencedObject="//@models.6/@mappings.0" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.6/@mappings.0/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.6/@modelEndpointRefs.0/@modelElemRefs.0"/>
+      <modelElemEndpointRefs referencedObject="//@models.6/@mappings.0/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.6/@modelEndpointRefs.1/@modelElemRefs.0"/>
+    </mappingRefs>
+  </models>
   <editors xsi:type="editor:Diagram" uri="/SOSYM22/representations.aird#_ec3Q4F6dEeuzRqps9eyyPw" name="LTS Sirius Diagram for model /SOSYM22/model/fcs.lts" metatypeUri="edu.toronto.cs.se.mmint.types.lts.design" dynamic="true" modelUri="/SOSYM22/model/fcs.lts" id="edu.toronto.cs.se.mmint.types.lts.design" wizardId="edu.toronto.cs.se.mmint.types.lts.presentation.LTSModelWizardID">
     <fileExtensions>aird#_ec3Q4F6dEeuzRqps9eyyPw</fileExtensions>
   </editors>
@@ -63,6 +89,9 @@
   <editors xsi:type="editor:Diagram" uri="/SOSYM22/representations.aird#_fmElkLGoEeudEakJBW0CPw" name="LTS Sirius Diagram for model /SOSYM22/model/pump.lts" metatypeUri="edu.toronto.cs.se.mmint.types.lts.design" dynamic="true" modelUri="/SOSYM22/model/pump.lts" id="edu.toronto.cs.se.mmint.types.lts.design" wizardId="edu.toronto.cs.se.mmint.types.lts.presentation.LTSModelWizardID">
     <fileExtensions>aird#_fmElkLGoEeudEakJBW0CPw</fileExtensions>
   </editors>
+  <editors xsi:type="editor:Diagram" uri="/SOSYM22/model/lacu.di" name="UML diagram for model /SOSYM22/model/lacu.uml" metatypeUri="http://www.eclipse.org/uml2/5.0.0/UML_diagram" dynamic="true" modelUri="/SOSYM22/model/lacu.uml" id="org.eclipse.papyrus.infra.core.papyrusEditor" wizardId="org.eclipse.papyrus.uml.diagram.wizards.createmodel">
+    <fileExtensions>di</fileExtensions>
+  </editors>
   <extendibleTable key="/SOSYM22/model/fcs.lts" value="//@models.0"/>
   <extendibleTable key="/SOSYM22/model/sc.gsn" value="//@models.1"/>
   <extendibleTable key="/SOSYM22/model/fcs.lts#/_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.0"/>
@@ -70,4 +99,7 @@
   <extendibleTable key="/SOSYM22/model/pump.lts" value="//@models.3"/>
   <extendibleTable key="/SOSYM22/model/sc.gsn#//@goals.1_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.1"/>
   <extendibleTable key="/SOSYM22/model/pump.lts#/_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.3/@modelElems.0"/>
+  <extendibleTable key="/SOSYM22/model/lacu.uml" value="//@models.5"/>
+  <extendibleTable key="/SOSYM22/model/sc.gsn#//@goals.2_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.2"/>
+  <extendibleTable key="/SOSYM22/model/lacu.uml#_3LqMYJMsEeyoYr_v8A8d5A_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.5/@modelElems.0"/>
 </mid:MID>
