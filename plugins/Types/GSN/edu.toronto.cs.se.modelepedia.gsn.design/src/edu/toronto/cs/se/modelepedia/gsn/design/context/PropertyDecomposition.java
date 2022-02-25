@@ -15,7 +15,6 @@ package edu.toronto.cs.se.modelepedia.gsn.design.context;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -43,6 +42,7 @@ import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.mid.ui.MIDTreeSelectionDialog;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
+import edu.toronto.cs.se.modelepedia.gsn.Context;
 import edu.toronto.cs.se.modelepedia.gsn.DecompositionStrategy;
 import edu.toronto.cs.se.modelepedia.gsn.Goal;
 import edu.toronto.cs.se.modelepedia.gsn.Property;
@@ -196,9 +196,10 @@ public class PropertyDecomposition extends GoalDecomposition {
       var templates = Map.<String, List<PropertyTemplate>>of();
       var modelObjs = Map.<EClass, List<EObject>>of();
       var queryCache = new HashMap<String, List<Object>>();
-      var propQueries = new HashSet<String>();
+      var queryContexts = new HashMap<String, Context>();
       String relatedModelPath;
       Property property;
+      List<String> propQueries = List.of();
       var encodingMsg = ", please manually select a " + reasonerName + " file";
       if (relatedModelOpt.isEmpty()) { // no related model: ask to manually provide an encoding
         relatedModelPath = getEncodingFile(title, "No related model found" + encodingMsg);
@@ -227,7 +228,7 @@ public class PropertyDecomposition extends GoalDecomposition {
         else {
           var info = template.bindVariables(title, modelObjs, queryCache);
           property = info.property();
-          propQueries.addAll(info.queries());
+          propQueries = info.queries();
         }
       }
       var numProperties = Integer.parseInt(MIDDialogs.getStringInput(title, "Insert the number of sub-properties",
@@ -239,7 +240,8 @@ public class PropertyDecomposition extends GoalDecomposition {
       Goal chainedGoal = null;
       String propStrategyId;
       var propStrategyDesc = "Decomposition over property ";
-      var goalCounter = 1;
+      var numGoals = 1;
+      var numCtx = 0;
       if (this.decomposed instanceof PropertyGoal) { // decomposition chain, do not create formal argument level
         propStrategyId = "S1." + id;
         propStrategyDesc += informal;
@@ -267,7 +269,8 @@ public class PropertyDecomposition extends GoalDecomposition {
         builder.addSupporter(chainedStrategy, chainedGoal);
         propStrategyId = "S2." + id;
         propStrategyDesc += "in " + propContextId;
-        goalCounter = 4;
+        numGoals = 4;
+        numCtx = 1;
       }
       var modelContextId = "Ctx2." + id;
       var subGoalId = id + ".";
@@ -280,10 +283,12 @@ public class PropertyDecomposition extends GoalDecomposition {
       }
       var modelContext = builder.createContext(modelContextId, relatedModelPath);
       builder.addInContextOf(propStrategy, modelContext);
-      propQueries.stream().forEach(q -> {
-        var queryContext = builder.createContext("XXX", q);
+      numCtx++;
+      for (var propQuery : propQueries) {
+        var queryContext = builder.createContext("Ctx" + ++numCtx + "." + id, propQuery);
         builder.addInContextOf(propStrategy, queryContext);
-      });
+        queryContexts.put(propQuery, queryContext);
+      }
       for (var i = 0; i < numProperties; i++) {
         var subTemplate = selectTemplate(title, "Select the sub-property #" + (i+1), templates);
         Property subProperty;
@@ -297,12 +302,19 @@ public class PropertyDecomposition extends GoalDecomposition {
           subPropQueries = subInfo.queries();
         }
         var subGoalDesc = "The property '" + subProperty.getInformal() + "' holds";
-        var subGoal = builder.createPropertyGoal(subGoalId + (i+goalCounter), subGoalDesc, reasonerName, subProperty);
+        var subGoal = builder.createPropertyGoal(subGoalId + (i+numGoals), subGoalDesc, reasonerName, subProperty);
         builder.addSupporter(propStrategy, subGoal);
-        subPropQueries.stream().forEach(q -> {
-          var subQueryContext = builder.createContext("XXX", q);
+        for (var subPropQuery : subPropQueries) {
+          Context subQueryContext;
+          if (queryContexts.containsKey(subPropQuery)) {
+            subQueryContext = queryContexts.get(subPropQuery);
+          }
+          else {
+            subQueryContext = builder.createContext("Ctx" + ++numCtx + "." + id, subPropQuery);
+            queryContexts.put(subPropQuery, subQueryContext);
+          }
           builder.addInContextOf(subGoal, subQueryContext);
-        });
+        }
       }
       builder.addSupporter(this.decomposed, chainedStrategy);
 
