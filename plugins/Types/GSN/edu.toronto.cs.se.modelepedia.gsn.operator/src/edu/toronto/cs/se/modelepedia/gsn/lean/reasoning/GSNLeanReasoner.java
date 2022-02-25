@@ -184,7 +184,8 @@ public class GSNLeanReasoner extends LeanReasoner implements IGSNDecompositionTr
     var builder = new PropertyBuilder((SafetyCase) strategy.eContainer());
     var justId = "J." + strategy.getId().split("\\.", 2)[1];
     justDesc = "Decomposition validity " + proof + " in " + getName() + ": " + justDesc;
-    builder.createJustification(strategy, justId, justDesc);
+    var just = builder.createJustification(justId, justDesc);
+    builder.addInContextOf(strategy, just);
     builder.commitChanges();
     WorkspaceSynchronizer.getFile(instanceMID.eResource()).getParent()
       .refreshLocal(IResource.DEPTH_ONE, new NullProgressMonitor());

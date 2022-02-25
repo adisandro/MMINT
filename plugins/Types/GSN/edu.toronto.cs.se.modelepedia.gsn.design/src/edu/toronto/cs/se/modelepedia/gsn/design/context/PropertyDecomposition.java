@@ -15,6 +15,7 @@ package edu.toronto.cs.se.modelepedia.gsn.design.context;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -194,6 +195,8 @@ public class PropertyDecomposition extends GoalDecomposition {
       var relatedModelOpt = getRelatedModel();
       var templates = Map.<String, List<PropertyTemplate>>of();
       var modelObjs = Map.<EClass, List<EObject>>of();
+      var queryCache = new HashMap<String, List<Object>>();
+      var propQueries = new HashSet<String>();
       String relatedModelPath;
       Property property;
       var encodingMsg = ", please manually select a " + reasonerName + " file";
@@ -217,12 +220,18 @@ public class PropertyDecomposition extends GoalDecomposition {
       }
       else {
         var template = selectTemplate(title, "Select the property to be decomposed", templates);
-        property = (template == PropertyTemplate.CUSTOM) ?
-          builder.createProperty(title, "Insert the " + reasonerName + " property to be decomposed", customMsg) :
-          template.bindVariables(title, modelObjs);
+        if (template == PropertyTemplate.CUSTOM) {
+          property = builder.createProperty(title, "Insert the " + reasonerName + " property to be decomposed",
+                                            customMsg);
+        }
+        else {
+          var info = template.bindVariables(title, modelObjs, queryCache);
+          property = info.property();
+          propQueries.addAll(info.queries());
+        }
       }
       var numProperties = Integer.parseInt(MIDDialogs.getStringInput(title, "Insert the number of sub-properties",
-                                                                     null));
+                                                                     null).strip());
       // create decomposition template
       var id = this.decomposed.getId();
       var informal = "'" + property.getInformal() + "'";
@@ -248,7 +257,8 @@ public class PropertyDecomposition extends GoalDecomposition {
         var formalGoalId = id + ".3";
         var formalGoalDesc = "The property in " + propContextId + " holds";
         chainedStrategy = builder.createBasicStrategy(formalStrategyId, formalStrategyDesc);
-        builder.createContext(chainedStrategy, propContextId, propContextDesc);
+        var propContext = builder.createContext(propContextId, propContextDesc);
+        builder.addInContextOf(chainedStrategy, propContext);
         var modelGoal = builder.createBasicGoal(modelGoalId, modelGoalDesc);
         builder.addSupporter(chainedStrategy, modelGoal);
         var propGoal = builder.createBasicGoal(propGoalId, propGoalDesc);
@@ -268,15 +278,31 @@ public class PropertyDecomposition extends GoalDecomposition {
       else {
         builder.addSupporter(chainedGoal, propStrategy);
       }
-      builder.createContext(propStrategy, modelContextId, relatedModelPath);
+      var modelContext = builder.createContext(modelContextId, relatedModelPath);
+      builder.addInContextOf(propStrategy, modelContext);
+      propQueries.stream().forEach(q -> {
+        var queryContext = builder.createContext("XXX", q);
+        builder.addInContextOf(propStrategy, queryContext);
+      });
       for (var i = 0; i < numProperties; i++) {
         var subTemplate = selectTemplate(title, "Select the sub-property #" + (i+1), templates);
-        var subProperty = (subTemplate == PropertyTemplate.CUSTOM) ?
-          builder.createProperty(title, "Insert the sub-property #" + (i+1), customMsg) :
-          subTemplate.bindVariables(title, modelObjs);
+        Property subProperty;
+        List<String> subPropQueries = List.of();
+        if (subTemplate == PropertyTemplate.CUSTOM) {
+          subProperty = builder.createProperty(title, "Insert the sub-property #" + (i+1), customMsg);
+        }
+        else {
+          var subInfo = subTemplate.bindVariables(title, modelObjs, queryCache);
+          subProperty = subInfo.property();
+          subPropQueries = subInfo.queries();
+        }
         var subGoalDesc = "The property '" + subProperty.getInformal() + "' holds";
         var subGoal = builder.createPropertyGoal(subGoalId + (i+goalCounter), subGoalDesc, reasonerName, subProperty);
         builder.addSupporter(propStrategy, subGoal);
+        subPropQueries.stream().forEach(q -> {
+          var subQueryContext = builder.createContext("XXX", q);
+          builder.addInContextOf(subGoal, subQueryContext);
+        });
       }
       builder.addSupporter(this.decomposed, chainedStrategy);
 

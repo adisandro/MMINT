@@ -46,6 +46,12 @@ public class GSNBuilder {
     support.setTarget(supporter);
   }
 
+  public void addInContextOf(DecomposableCoreElement decomposable, ContextualElement context) {
+    var inContext = this.factory.createInContextOf();
+    inContext.setContextOf(decomposable);
+    inContext.setContext(context);
+  }
+
   public void addArgumentElement(ArgumentElement argument, String id, String description) {
     argument.setId(id);
     argument.setDescription(description);
@@ -75,25 +81,21 @@ public class GSNBuilder {
     return strategy;
   }
 
-  public void addContext(DecomposableCoreElement decomposable, ContextualElement contextual, String id,
-                         String description) {
-    addArgumentElement(contextual, id, description);
-    var context = this.factory.createInContextOf();
-    context.setContextOf(decomposable);
-    context.setContext(contextual);
-    this.gsnElements.add(contextual);
+  public void addContext(ContextualElement context, String id, String description) {
+    addArgumentElement(context, id, description);
+    this.gsnElements.add(context);
   }
 
-  public Justification createJustification(DecomposableCoreElement decomposable, String id, String description) {
+  public Justification createJustification(String id, String description) {
     var justification = this.factory.createJustification();
-    addContext(decomposable, justification, id, description);
+    addContext(justification, id, description);
 
     return justification;
   }
 
-  public Context createContext(DecomposableCoreElement decomposable, String id, String description) {
+  public Context createContext(String id, String description) {
     var context = this.factory.createContext();
-    addContext(decomposable, context, id, description);
+    addContext(context, id, description);
 
     return context;
   }

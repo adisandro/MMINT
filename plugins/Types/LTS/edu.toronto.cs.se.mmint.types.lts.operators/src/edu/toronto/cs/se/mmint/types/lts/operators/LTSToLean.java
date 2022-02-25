@@ -110,7 +110,7 @@ public class LTSToLean extends ToLean implements IGSNLeanEncoder {
 
   @Override
   public List<PropertyTemplate> getPropertyTemplates(Model model) {
-    VariableEncoder encoder = (modelObjs) -> {
+    final VariableEncoder encoder = (modelObjs) -> {
       var formals = new ArrayList<List<String>>();
       var informals = new ArrayList<String>();
       List<String> currFormals = null;

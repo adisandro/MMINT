@@ -12,6 +12,7 @@
  *******************************************************************************/
 package edu.toronto.cs.se.modelepedia.gsn.reasoning;
 
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
@@ -30,6 +31,7 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.diagram.context.SiriusEvaluateQuery;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
 import edu.toronto.cs.se.mmint.mid.ui.GMFUtils;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.modelepedia.gsn.GSNFactory;
 import edu.toronto.cs.se.modelepedia.gsn.Property;
@@ -55,6 +57,7 @@ public interface IGSNLeanEncoder {
       this.encoder = encoder;
     }
   }
+
   static class PropertyTemplate {
     public String formal;
     public String informal;
@@ -70,12 +73,15 @@ public interface IGSNLeanEncoder {
       this.variables = Objects.requireNonNull(variables);
     }
 
-    public Property bindVariables(String title, Map<EClass, List<EObject>> modelObjs) throws Exception {
+    public record BindingInfo(Property property, List<String> queries) {}
+    public BindingInfo bindVariables(String title, Map<EClass, List<EObject>> modelObjs,
+                                     Map<String, List<Object>> queryCache) throws Exception {
       var property = GSNFactory.eINSTANCE.createProperty();
+      var result = new BindingInfo(property, new ArrayList<String>());
       if (this.variables.isEmpty()) {
         property.setFormal(this.formal);
         property.setInformal(this.informal);
-        return property;
+        return result;
       }
 
       var message = ":\nSelect one or more model elements corresponding to variable ";
@@ -106,8 +112,16 @@ public interface IGSNLeanEncoder {
           var model = MIDDiagramUtils.getInstanceMIDModelFromModelEditor(modelObjs.values().iterator().next().get(0));
           var instanceMID = model.getMIDContainer();
           var querySpec = SiriusEvaluateQuery.selectQuery(instanceMID);
-          selectedObjs = querySpec.reasoner().evaluateQuery(querySpec.filePath(), querySpec.name(), instanceMID,
-                                                            List.<EObject>of());
+          var queryId = querySpec.filePath() + "#" + querySpec.name();
+          String queryRes = null;
+          selectedObjs = queryCache.get(queryId);
+          if (selectedObjs == null) { // run query and cache result
+            selectedObjs = querySpec.reasoner().evaluateQuery(querySpec.filePath(), querySpec.name(), instanceMID,
+                                                              List.of());
+            queryCache.put(queryId, selectedObjs);
+            queryRes = "Query '" + queryId + "'";
+          }
+          //TODO MMINT[GSN] validModelObjs and selectedObjs come from different roots when it runs for the first time
           boundModelObjs = selectedObjs.stream()
             .filter(o -> validModelObjs.contains(o))
             .map(o -> (EObject) o)
@@ -115,7 +129,18 @@ public interface IGSNLeanEncoder {
           if (boundModelObjs.isEmpty()) {
             throw new MMINTException("The query '" + querySpec.name() + "' returned zero valid model objects");
           }
-          queryInformal = "<elements selected by query \"" + querySpec.name() + "\">";
+          if (queryRes != null) { // query was not from cache, add to return info
+            try {
+              message = "The query returned " + boundModelObjs.size() +
+                        " model objects, you may enter a description for documentation purposes";
+              queryRes += ": " + MIDDialogs.getStringInput(title, message, null);
+            }
+            catch (MIDDialogCancellation e) {
+              // continue without description
+            }
+            result.queries().add(queryRes);
+          }
+          queryInformal = "[elements from query \"" + querySpec.name() + "\"]";
         }
         else { // direct model element selection
           boundModelObjs = selectedObjs.stream()
@@ -130,7 +155,7 @@ public interface IGSNLeanEncoder {
       property.setFormal(boundFormal);
       property.setInformal(boundInformal);
 
-      return property;
+      return result;
     }
   }
 

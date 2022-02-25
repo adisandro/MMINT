@@ -76,7 +76,8 @@ public class DomainDecomposition extends GoalDecomposition {
       var subGoalDesc = desc + " for sub-domain ";
       var compGoalDesc = "Every possible value in the domain " + domain.toString() + " is covered by sub-domains ";
       var strategy = builder.createDomainStrategy(strategyId, strategyDesc, domain);
-      builder.createJustification(strategy, justId, justDesc);
+      var just = builder.createJustification(justId, justDesc);
+      builder.addInContextOf(strategy, just);
       var subDomains = new ArrayList<String>();
       for (var i = 0; i < numDomains; i++) {
         var subDomain = builder.createDomain(title, "Insert the sub-domain #" + (i+1), subDomainTypes);
