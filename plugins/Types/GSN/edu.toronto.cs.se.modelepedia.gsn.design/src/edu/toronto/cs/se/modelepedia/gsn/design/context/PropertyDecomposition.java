@@ -272,7 +272,7 @@ public class PropertyDecomposition extends GoalDecomposition {
         numGoals = 4;
         numCtx = 1;
       }
-      var modelContextId = "Ctx2." + id;
+      var modelContextId = "Ctx" + ++numCtx + "." + id;
       var subGoalId = id + ".";
       var propStrategy = builder.createPropertyStrategy(propStrategyId, propStrategyDesc, reasonerName, property);
       if (chainedGoal == null) {
@@ -283,7 +283,6 @@ public class PropertyDecomposition extends GoalDecomposition {
       }
       var modelContext = builder.createContext(modelContextId, relatedModelPath);
       builder.addInContextOf(propStrategy, modelContext);
-      numCtx++;
       for (var propQuery : propQueries) {
         var queryContext = builder.createContext("Ctx" + ++numCtx + "." + id, propQuery);
         builder.addInContextOf(propStrategy, queryContext);
