@@ -46,9 +46,9 @@ public class GSNBuilder {
     support.setTarget(supporter);
   }
 
-  public void addInContextOf(DecomposableCoreElement decomposable, ContextualElement context) {
+  public void addInContextOf(DecomposableCoreElement contextualized, ContextualElement context) {
     var inContext = this.factory.createInContextOf();
-    inContext.setContextOf(decomposable);
+    inContext.setContextOf(contextualized);
     inContext.setContext(context);
   }
 

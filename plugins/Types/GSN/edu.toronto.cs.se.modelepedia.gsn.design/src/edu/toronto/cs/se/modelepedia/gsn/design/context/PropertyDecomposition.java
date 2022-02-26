@@ -43,6 +43,7 @@ import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.mid.ui.MIDTreeSelectionDialog;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 import edu.toronto.cs.se.modelepedia.gsn.Context;
+import edu.toronto.cs.se.modelepedia.gsn.DecomposableCoreElement;
 import edu.toronto.cs.se.modelepedia.gsn.DecompositionStrategy;
 import edu.toronto.cs.se.modelepedia.gsn.Goal;
 import edu.toronto.cs.se.modelepedia.gsn.Property;
@@ -184,6 +185,24 @@ public class PropertyDecomposition extends GoalDecomposition {
       return (PropertyTemplate) MIDDialogs.openTreeDialogWithDefault(dialog, title, message);
     }
 
+    private void createQueryContext(DecomposableCoreElement contextualized, String query, String id, int numCtx,
+                                    Map<String, Context> contexts) {
+      var context = contexts.get(query);
+      if (context == null) {
+        var desc = "Query '" + query + "'";
+        try {
+          var message = "You may enter a description for query '" + query + "' for documentation purposes";
+          desc += ": " + MIDDialogs.getStringInput("Property Decomposition", message, null);
+        }
+        catch (MIDDialogCancellation e) {
+          // continue without user description
+        }
+        context = this.builder.createContext("Ctx" + (numCtx+1+contexts.size()) + "." + id, desc);
+        contexts.put(query, context);
+      }
+      this.builder.addInContextOf(contextualized, context);
+    }
+
     @Override
     protected DecompositionStrategy decompose() throws Exception {
       var builder = (PropertyBuilder) this.builder;
@@ -226,13 +245,11 @@ public class PropertyDecomposition extends GoalDecomposition {
                                             customMsg);
         }
         else {
-          var info = template.bindVariables(title, modelObjs, queryCache);
-          property = info.property();
-          propQueries = info.queries();
+          var result = template.bindVariables(title, modelObjs, queryCache);
+          property = result.property();
+          propQueries = result.queries();
         }
       }
-      var numProperties = Integer.parseInt(MIDDialogs.getStringInput(title, "Insert the number of sub-properties",
-                                                                     null).strip());
       // create decomposition template
       var id = this.decomposed.getId();
       var informal = "'" + property.getInformal() + "'";
@@ -284,10 +301,10 @@ public class PropertyDecomposition extends GoalDecomposition {
       var modelContext = builder.createContext(modelContextId, relatedModelPath);
       builder.addInContextOf(propStrategy, modelContext);
       for (var propQuery : propQueries) {
-        var queryContext = builder.createContext("Ctx" + ++numCtx + "." + id, propQuery);
-        builder.addInContextOf(propStrategy, queryContext);
-        queryContexts.put(propQuery, queryContext);
+        createQueryContext(propStrategy, propQuery, id, numCtx, queryContexts);
       }
+      var numProperties = Integer.parseInt(MIDDialogs.getStringInput(title, "Insert the number of sub-properties",
+                                                                     null).strip());
       for (var i = 0; i < numProperties; i++) {
         var subTemplate = selectTemplate(title, "Select the sub-property #" + (i+1), templates);
         Property subProperty;
@@ -296,23 +313,15 @@ public class PropertyDecomposition extends GoalDecomposition {
           subProperty = builder.createProperty(title, "Insert the sub-property #" + (i+1), customMsg);
         }
         else {
-          var subInfo = subTemplate.bindVariables(title, modelObjs, queryCache);
-          subProperty = subInfo.property();
-          subPropQueries = subInfo.queries();
+          var subResult = subTemplate.bindVariables(title, modelObjs, queryCache);
+          subProperty = subResult.property();
+          subPropQueries = subResult.queries();
         }
         var subGoalDesc = "The property '" + subProperty.getInformal() + "' holds";
         var subGoal = builder.createPropertyGoal(subGoalId + (i+numGoals), subGoalDesc, reasonerName, subProperty);
         builder.addSupporter(propStrategy, subGoal);
         for (var subPropQuery : subPropQueries) {
-          Context subQueryContext;
-          if (queryContexts.containsKey(subPropQuery)) {
-            subQueryContext = queryContexts.get(subPropQuery);
-          }
-          else {
-            subQueryContext = builder.createContext("Ctx" + ++numCtx + "." + id, subPropQuery);
-            queryContexts.put(subPropQuery, subQueryContext);
-          }
-          builder.addInContextOf(subGoal, subQueryContext);
+          createQueryContext(subGoal, subPropQuery, id, numCtx, queryContexts);
         }
       }
       builder.addSupporter(this.decomposed, chainedStrategy);

@@ -31,7 +31,6 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.diagram.context.SiriusEvaluateQuery;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
 import edu.toronto.cs.se.mmint.mid.ui.GMFUtils;
-import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.modelepedia.gsn.GSNFactory;
 import edu.toronto.cs.se.modelepedia.gsn.Property;
@@ -73,11 +72,11 @@ public interface IGSNLeanEncoder {
       this.variables = Objects.requireNonNull(variables);
     }
 
-    public record BindingInfo(Property property, List<String> queries) {}
-    public BindingInfo bindVariables(String title, Map<EClass, List<EObject>> modelObjs,
+    public record BindingResult(Property property, List<String> queries) {}
+    public BindingResult bindVariables(String title, Map<EClass, List<EObject>> modelObjs,
                                      Map<String, List<Object>> queryCache) throws Exception {
       var property = GSNFactory.eINSTANCE.createProperty();
-      var result = new BindingInfo(property, new ArrayList<String>());
+      var result = new BindingResult(property, new ArrayList<String>());
       if (this.variables.isEmpty()) {
         property.setFormal(this.formal);
         property.setInformal(this.informal);
@@ -113,13 +112,11 @@ public interface IGSNLeanEncoder {
           var instanceMID = model.getMIDContainer();
           var querySpec = SiriusEvaluateQuery.selectQuery(instanceMID);
           var queryId = querySpec.filePath() + "#" + querySpec.name();
-          String queryRes = null;
           selectedObjs = queryCache.get(queryId);
           if (selectedObjs == null) { // run query and cache result
             selectedObjs = querySpec.reasoner().evaluateQuery(querySpec.filePath(), querySpec.name(), instanceMID,
                                                               List.of());
             queryCache.put(queryId, selectedObjs);
-            queryRes = "Query '" + queryId + "'";
           }
           //TODO MMINT[GSN] validModelObjs and selectedObjs come from different roots when it runs for the first time
           boundModelObjs = selectedObjs.stream()
@@ -129,17 +126,7 @@ public interface IGSNLeanEncoder {
           if (boundModelObjs.isEmpty()) {
             throw new MMINTException("The query '" + querySpec.name() + "' returned zero valid model objects");
           }
-          if (queryRes != null) { // query was not from cache, add to return info
-            try {
-              message = "The query returned " + boundModelObjs.size() +
-                        " model objects, you may enter a description for documentation purposes";
-              queryRes += ": " + MIDDialogs.getStringInput(title, message, null);
-            }
-            catch (MIDDialogCancellation e) {
-              // continue without description
-            }
-            result.queries().add(queryRes);
-          }
+          result.queries().add(queryId);
           queryInformal = "[elements from query \"" + querySpec.name() + "\"]";
         }
         else { // direct model element selection
