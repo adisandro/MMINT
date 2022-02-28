@@ -92,8 +92,7 @@ public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
     var fileExtToReasoners = new HashMap<String, Set<IQueryTrait>>();
     for (var reasoner : allReasoners) {
       reasoner.getQueryFileExtensions().forEach(fe -> {
-        var reasoners = fileExtToReasoners.computeIfAbsent(fe, k -> new HashSet<>());
-        reasoners.add(reasoner);
+        fileExtToReasoners.computeIfAbsent(fe, k -> new HashSet<>()).add(reasoner);
       });
     }
     var queryFilePath = selectQueryFileToEvaluate(fileExtToReasoners.keySet());

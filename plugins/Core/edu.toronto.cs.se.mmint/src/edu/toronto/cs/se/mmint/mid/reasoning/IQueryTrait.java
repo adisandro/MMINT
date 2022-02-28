@@ -40,7 +40,7 @@ public interface IQueryTrait extends IReasoner {
    * @throws MIDDialogCancellation
    *           If the query name selection is cancelled.
    */
-  default String selectQueryName(String queryFilePath) throws MIDDialogCancellation {
+  default String selectQueryName(String queryFilePath) throws Exception {
     return MIDDialogs.getStringInput("Evaluate query", "Insert query name to run", null);
   }
 

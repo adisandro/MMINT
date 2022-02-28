@@ -17,6 +17,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jface.viewers.ArrayContentProvider;
+import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.viatra.query.patternlanguage.emf.specification.SpecificationBuilder;
 import org.eclipse.viatra.query.patternlanguage.emf.vql.Pattern;
 import org.eclipse.viatra.query.patternlanguage.emf.vql.PatternModel;
@@ -29,6 +31,7 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.reasoning.IQueryTrait;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 
 public class ViatraReasoner implements IQueryTrait {
@@ -43,14 +46,6 @@ public class ViatraReasoner implements IQueryTrait {
     return Set.of("vql");
   }
 
-  // finds named query
-  protected Pattern getPattern(PatternModel vqlRoot, String queryName) throws Exception {
-    return vqlRoot.getPatterns().stream()
-      .filter(p -> queryName.equals(p.getName()))
-      .findFirst()
-      .orElseThrow(() -> new MMINTException(MessageFormat.format("Pattern {0} not found", queryName)));
-  }
-
   // gets model representation of query file
   protected PatternModel getVQLRoot(String queryFilePath, boolean isWorkspaceRelative) throws Exception {
     var queryRoot = FileUtils.readModelFile(queryFilePath, null, isWorkspaceRelative);
@@ -59,6 +54,26 @@ public class ViatraReasoner implements IQueryTrait {
     }
 
     return vqlRoot;
+  }
+
+  @Override
+  public String selectQueryName(String queryFilePath) throws Exception {
+    var queryNames = getVQLRoot(queryFilePath, true).getPatterns().stream()
+      .map(Pattern::getName)
+      .collect(Collectors.toList());
+    var title = "Evaluate query";
+    var message = "Select query";
+
+    return MIDDialogs.<String>openListDialog(title, message, queryNames, new ArrayContentProvider(),
+                                             new LabelProvider());
+  }
+
+  // finds named query
+  protected Pattern getPattern(PatternModel vqlRoot, String queryName) throws Exception {
+    return vqlRoot.getPatterns().stream()
+      .filter(p -> queryName.equals(p.getName()))
+      .findFirst()
+      .orElseThrow(() -> new MMINTException(MessageFormat.format("Pattern {0} not found", queryName)));
   }
 
   protected Pattern getPattern(String queryFilePath, String queryName) throws Exception {
