@@ -21,16 +21,23 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IFolder;
+import org.eclipse.core.resources.IResourceVisitor;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.Adapters;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.resource.JFaceResources;
+import org.eclipse.jface.resource.LocalResourceManager;
+import org.eclipse.jface.viewers.ArrayContentProvider;
+import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.sirius.business.api.action.AbstractExternalJavaAction;
 import org.eclipse.sirius.viewpoint.DSemanticDecorator;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.model.BaseWorkbenchContentProvider;
-import org.eclipse.ui.model.WorkbenchLabelProvider;
+import org.eclipse.ui.model.IWorkbenchAdapter;
 
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MMINT;
@@ -40,11 +47,7 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
 import edu.toronto.cs.se.mmint.mid.reasoning.IQueryTrait;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmint.mid.ui.FileExtensionsDialogFilter;
-import edu.toronto.cs.se.mmint.mid.ui.FilesOnlyDialogSelectionValidator;
-import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
-import edu.toronto.cs.se.mmint.mid.ui.MIDTreeSelectionDialog;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
@@ -52,19 +55,36 @@ public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
 
   public record QuerySpec(IQueryTrait reasoner, String filePath, String name) {}
 
-  private static String selectQueryFileToEvaluate(Set<String> fileExtensions) throws MIDDialogCancellation {
-    var dialog = new MIDTreeSelectionDialog(new WorkbenchLabelProvider(), new BaseWorkbenchContentProvider(),
-                                            ResourcesPlugin.getWorkspace().getRoot());
-    dialog.addFilter(new FileExtensionsDialogFilter(fileExtensions));
-    dialog.setValidator(new FilesOnlyDialogSelectionValidator());
+  private static String selectQueryFileToEvaluate(Set<String> fileExtensions) throws Exception {
+    var queryFiles = new ArrayList<IFile>();
+    IResourceVisitor visitor = (var resource) -> {
+      var binFolders = Set.of("bin", "target");
+      if (resource instanceof IFolder folder && binFolders.contains(folder.getName())) {
+        return false;
+      }
+      if (resource instanceof IFile file && fileExtensions.contains(file.getFileExtension())) {
+        queryFiles.add(file);
+      }
+      return true;
+    };
+    ResourcesPlugin.getWorkspace().getRoot().accept(visitor);
+    if (queryFiles.isEmpty()) {
+      throw new MMINTException("There are no query files in the workspace");
+    }
     var title = "Evaluate query";
     var message = "Select query file";
-    var queryFile = (IFile) MIDDialogs.openTreeDialog(dialog, title, message);
+    var imageManager = new LocalResourceManager(JFaceResources.getResources());
+    var labelProvider = LabelProvider.createTextImageProvider(
+      f -> ((IFile) f).getFullPath().toString(),
+      f -> (Image) imageManager.get(Adapters.adapt(f, IWorkbenchAdapter.class).getImageDescriptor(f)));
+    var queryFile = MIDDialogs.<IFile>openListDialog(title, message, queryFiles, new ArrayContentProvider(),
+                                                     labelProvider);
+    imageManager.dispose(); // images are not automatically garbage collected
 
     return queryFile.getFullPath().toString();
   }
 
-  public static QuerySpec selectQuery(EObject context) throws MMINTException {
+  public static QuerySpec selectQuery(EObject context) throws Exception {
     var allReasoners = MMINT.getReasonersForTrait(IQueryTrait.class, context);
     if (allReasoners.isEmpty()) {
       throw new MMINTException("There are no reasoners installed that implement querying");
