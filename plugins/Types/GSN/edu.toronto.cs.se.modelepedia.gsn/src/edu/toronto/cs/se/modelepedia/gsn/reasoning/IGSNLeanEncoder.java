@@ -111,11 +111,10 @@ public interface IGSNLeanEncoder {
           var model = MIDDiagramUtils.getInstanceMIDModelFromModelEditor(modelObjs.values().iterator().next().get(0));
           var instanceMID = model.getMIDContainer();
           var querySpec = SiriusEvaluateQuery.selectQuery(instanceMID);
-          var queryId = querySpec.filePath() + "#" + querySpec.name();
+          var queryId = querySpec.filePath() + "#" + querySpec.query();
           selectedObjs = queryCache.get(queryId);
           if (selectedObjs == null) { // run query and cache result
-            selectedObjs = querySpec.reasoner().evaluateQuery(querySpec.filePath(), querySpec.name(), instanceMID,
-                                                              List.of());
+            selectedObjs = querySpec.evaluateQuery(instanceMID, List.of());
             queryCache.put(queryId, selectedObjs);
           }
           //TODO MMINT[GSN] validModelObjs and selectedObjs come from different roots when it runs for the first time
@@ -124,10 +123,10 @@ public interface IGSNLeanEncoder {
             .map(o -> (EObject) o)
             .collect(Collectors.toList());
           if (boundModelObjs.isEmpty()) {
-            throw new MMINTException("The query '" + querySpec.name() + "' returned zero valid model objects");
+            throw new MMINTException("The query '" + querySpec.query() + "' returned zero valid model objects");
           }
           result.queries().add(queryId);
-          queryInformal = "[elements from query \"" + querySpec.name() + "\"]";
+          queryInformal = "[elements from query \"" + querySpec.query() + "\"]";
         }
         else { // direct model element selection
           boundModelObjs = selectedObjs.stream()

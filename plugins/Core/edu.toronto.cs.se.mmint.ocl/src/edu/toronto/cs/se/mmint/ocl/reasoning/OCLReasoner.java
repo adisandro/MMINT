@@ -188,12 +188,15 @@ public class OCLReasoner implements IQueryTrait, IModelConstraintTrait {
   }
 
   @Override
-  public List<Object> evaluateQuery(String queryFilePath, String queryName, EObject context,
-                                    List<? extends EObject> queryArgs) throws Exception {
+  public List<Object> evaluateQuery(String filePath, Object name, EObject context, List<? extends EObject> args)
+                                   throws Exception {
+    if (!(name instanceof String queryName)) {
+      throw new MMINTException("Argument #2 should be a query name of type String");
+    }
     var ocl = OCL.newInstance();
     try {
       // get model representation of query
-      var queryFileUri = FileUtils.createEMFUri(queryFilePath, true);
+      var queryFileUri = FileUtils.createEMFUri(filePath, true);
       var queryRoot = ocl.parse(queryFileUri).getContents().get(0);
       if (!(queryRoot instanceof org.eclipse.ocl.pivot.Model)) {
         throw new MMINTException("Bad query file");
@@ -210,7 +213,7 @@ public class OCLReasoner implements IQueryTrait, IModelConstraintTrait {
         (ExpressionInOCL) ((Property) feat).getOwnedExpression() :
         (ExpressionInOCL) ((Operation) feat).getBodyExpression();
       var numFormal = featExpression.getOwnedParameters().size();
-      var numActual = queryArgs.size();
+      var numActual = args.size();
       var diffArgs = numFormal - numActual;
       if (diffArgs != 0) { // actuals not matching formals
         throw new MMINTException(MessageFormat.format("Def {0} has {1} parameters but {2} were passed", queryName,
@@ -223,7 +226,7 @@ public class OCLReasoner implements IQueryTrait, IModelConstraintTrait {
         throw new MMINTException(MessageFormat.format("Def {0} is defined in a {1} context, but a {2} was used instead",
                                                       queryName, formalContext, actualContext));
       }
-      return evaluateOCLExpression2(ocl, featExpression, context, queryArgs);
+      return evaluateOCLExpression2(ocl, featExpression, context, args);
     }
     finally {
       ocl.dispose();

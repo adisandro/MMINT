@@ -46,14 +46,13 @@ import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
 import edu.toronto.cs.se.mmint.mid.reasoning.IQueryTrait;
+import edu.toronto.cs.se.mmint.mid.reasoning.IQueryTrait.QuerySpec;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
 public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
-
-  public record QuerySpec(IQueryTrait reasoner, String filePath, String name) {}
 
   private static String selectQueryFileToEvaluate(Set<String> fileExtensions) throws Exception {
     var queryFiles = new ArrayList<IFile>();
@@ -99,9 +98,9 @@ public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
     var fileExtension = FileUtils.getFileExtensionFromPath(queryFilePath);
     var reasoners = fileExtToReasoners.get(fileExtension);
     var queryReasoner = MIDDialogs.selectReasoner(reasoners, fileExtension + " queries");
-    var queryName = queryReasoner.selectQueryName(queryFilePath);
+    var query = queryReasoner.selectQuery(queryFilePath);
 
-    return new QuerySpec(queryReasoner, queryFilePath, queryName);
+    return new QuerySpec(queryReasoner, queryFilePath, query);
   }
 
   private static String queryResultToString(Object queryResult) {
@@ -147,7 +146,7 @@ public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
     }
   }
 
-  public static void displayQueryResults(EObject context, List<Object> queryResults, String queryName) {
+  public static void displayQueryResults(EObject context, List<Object> queryResults, Object query) {
     var printResults = new ArrayList<String>();
     for (var result : queryResults) {
       var printResult = (result instanceof Collection) ?
@@ -162,7 +161,7 @@ public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
       message += "\n\nDo you want to store the results as model relationships for future use?";
       var store = MessageDialog.openQuestion(shell, title, message);
       if (store) {
-        storeQueryResultsAsModelRel(queryName, queryResults, (MID) context);
+        storeQueryResultsAsModelRel(query.toString(), queryResults, (MID) context);
       }
     }
     else {
@@ -197,9 +196,8 @@ public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
         .filter(elem -> elem != null)
         .collect(Collectors.toList());
       var querySpec = selectQuery(instanceMID);
-      var queryResults = querySpec.reasoner().evaluateQuery(querySpec.filePath(), querySpec.name(), instanceMID,
-                                                            queryArgs);
-      displayQueryResults(instanceMID, queryResults, querySpec.name());
+      var queryResults = querySpec.evaluateQuery(instanceMID, queryArgs);
+      displayQueryResults(instanceMID, queryResults, querySpec.query());
     }
     catch (Exception e) {
       MMINTException.print(IStatus.ERROR, "Query error", e);

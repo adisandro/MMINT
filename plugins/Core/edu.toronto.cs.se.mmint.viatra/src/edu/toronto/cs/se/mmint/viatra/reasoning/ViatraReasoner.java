@@ -57,15 +57,13 @@ public class ViatraReasoner implements IQueryTrait {
   }
 
   @Override
-  public String selectQueryName(String queryFilePath) throws Exception {
-    var queryNames = getVQLRoot(queryFilePath, true).getPatterns().stream()
-      .map(Pattern::getName)
-      .collect(Collectors.toList());
+  public Pattern selectQuery(String filePath) throws Exception {
+    var patterns = getVQLRoot(filePath, true).getPatterns();
     var title = "Evaluate query";
     var message = "Select query";
+    var labelProvider = LabelProvider.createTextProvider(p -> ((Pattern) p).getName());
 
-    return MIDDialogs.<String>openListDialog(title, message, queryNames, new ArrayContentProvider(),
-                                             new LabelProvider());
+    return MIDDialogs.<Pattern>openListDialog(title, message, patterns, new ArrayContentProvider(), labelProvider);
   }
 
   // finds named query
@@ -76,8 +74,8 @@ public class ViatraReasoner implements IQueryTrait {
       .orElseThrow(() -> new MMINTException(MessageFormat.format("Pattern {0} not found", queryName)));
   }
 
-  protected Pattern getPattern(String queryFilePath, String queryName) throws Exception {
-    var vqlRoot = getVQLRoot(queryFilePath, true);
+  protected Pattern getPattern(String filePath, String queryName) throws Exception {
+    var vqlRoot = getVQLRoot(filePath, true);
     return getPattern(vqlRoot, queryName);
   }
 
@@ -94,19 +92,28 @@ public class ViatraReasoner implements IQueryTrait {
   }
 
   @Override
-  public List<Object> evaluateQuery(String queryFilePath, String queryName, EObject context,
+  public List<Object> evaluateQuery(String filePath, Object queryObj, EObject context,
                                     List<? extends EObject> queryArgs) throws Exception {
     AdvancedViatraQueryEngine engine = null;
     try {
       // handle query arguments
-      var pattern = getPattern(queryFilePath, queryName);
+      Pattern pattern;
+      if (queryObj instanceof Pattern vqlPattern) {
+        pattern = vqlPattern;
+      }
+      else if (queryObj instanceof String queryName) {
+        pattern = getPattern(filePath, queryName);
+      }
+      else {
+        throw new MMINTException("Argument #2 should be a query name of type String or a VQL query of type Pattern");
+      }
       if (!queryArgs.isEmpty()) { // bound input arguments
         var numFormal = pattern.getParameters().size();
         var numActual = queryArgs.size();
         var diffArgs = numFormal - numActual;
         if (diffArgs < 0) { // too many actual
-          throw new MMINTException(MessageFormat.format("Pattern {0} has {1} parameters but {2} were passed", queryName,
-                                                        numFormal, numActual));
+          throw new MMINTException(MessageFormat.format("Pattern {0} has {1} parameters but {2} were passed",
+                                                        pattern.getName(), numFormal, numActual));
         }
         if (diffArgs > 0) { // partially bound, add extra null arguments
           for (var i = 0; i < diffArgs; i++) {

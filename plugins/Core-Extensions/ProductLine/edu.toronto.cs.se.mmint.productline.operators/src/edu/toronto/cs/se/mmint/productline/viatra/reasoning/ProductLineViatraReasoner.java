@@ -66,7 +66,6 @@ import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeatureConstrai
 import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineQueryTrait;
 import edu.toronto.cs.se.mmint.viatra.reasoning.ViatraReasoner;
 
-@SuppressWarnings("restriction")
 public class ProductLineViatraReasoner extends ViatraReasoner implements IProductLineQueryTrait {
   public enum Aggregator {
     COUNT((a, b) -> (int) a + (int) b),
@@ -553,10 +552,10 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
   }
 
   @Override
-  public List<Object> evaluateQuery(String queryFilePath, String queryName, EObject context,
+  public List<Object> evaluateQuery(String filePath, Object queryObj, EObject context,
                                     List<? extends EObject> queryArgs) throws Exception {
     reset();
-    return super.evaluateQuery(queryFilePath, queryName, context, queryArgs);
+    return super.evaluateQuery(filePath, queryObj, context, queryArgs);
   }
 
   @Override
