@@ -581,7 +581,7 @@ public final class DbLockStates extends BaseGeneratedEMFQuerySpecification<DbLoc
                   String label = (String) provider.getValue("label");
                   return evaluateExpression_1_1(label);
               }
-          },  null); 
+          },  null, false);
           //   Transition.to(transition, state)
           new TypeConstraint(body, Tuples.flatTupleOf(var_transition), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("model://edu.toronto.cs.se.mmint.types.lts", "Transition")));
           PVariable var__virtual_1_ = body.getOrCreateVariableByName(".virtual{1}");
