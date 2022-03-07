@@ -14,7 +14,7 @@ Alternatively, a virtual machine image for VirtualBox with all the required depe
 2. MMINT
     1. Add `https://adisandro.github.io/mmint/release` to the list of software sites in Eclipse (`Help > Install New Software > Available Software Sites`) unless MMINT is already installed.
     2. From the top menu select `Help > Install New Software` and install `Examples > MMINT - MODELS21 paper`.
-    3. From the top menu select `MMINT > Lean > Change Lean Mathlib Path` and insert /path_to_lean_folder/mathlib.
+    3. From the top menu select `MMINT > Lean > Change Lean Mathlib Path` and insert `/path_to_lean_folder/mathlib`.
     4. From the top menu select `File > New > Example > MMINT Examples > MODELS21`.
     5. Open `/MODELS21/examples.middiag`.
     6. Double-click on the yellow box named `sc : GSN` to open the GSN safety case.
