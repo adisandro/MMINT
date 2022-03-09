@@ -58,4 +58,18 @@ public class UMLToLean extends ToLean implements IGSNLeanEncoder {
     this.leanGenerator = new UMLToLeanAcceleo(this.input.model.getEMFInstanceRoot(), this.output.leanFolder,
                                               List.of(this.input.model.getName(), ToLean.LEAN_SANITIZE_REGEXP));
   }
+
+  @Override
+  public String encodePropertyDecomposition(Model model, String property, List<String> subProperties) {
+    var modelName = model.getName();
+    var encoding =
+      "ArchitectureWithContracts.mk\n" +
+      modelName + "_ARCH_MODEL\n" +
+      property + "\n" +
+      "(toMap [\n" +
+      String.join(",\n", subProperties) + "\n" +
+      "]) (by {auto_all_comps})\n";
+
+    return encoding;
+  }
 }
