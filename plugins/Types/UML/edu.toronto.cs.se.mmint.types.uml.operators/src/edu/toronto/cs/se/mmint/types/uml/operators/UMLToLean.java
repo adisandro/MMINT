@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.uml2.uml.PackageableElement;
 
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.MMINTException;
@@ -61,7 +62,14 @@ public class UMLToLean extends ToLean implements IGSNLeanEncoder {
 
   @Override
   public String encodePropertyDecomposition(Model model, String property, List<String> subProperties) {
-    var modelName = model.getName();
+    var modelName = ((org.eclipse.uml2.uml.Model) model.getEMFInstanceRoot()).getPackagedElements().stream()
+      .filter(pe -> pe instanceof org.eclipse.uml2.uml.Class clazz &&
+                    clazz.getOwnedAttributes().stream()
+                      .filter(a -> a instanceof org.eclipse.uml2.uml.Property)
+                      .count() > 0)
+      .map(PackageableElement::getName)
+      .findFirst()
+      .orElse(model.getName());
     var encoding =
       "ArchitectureWithContracts.mk\n" +
       modelName + "_ARCH_MODEL\n" +
