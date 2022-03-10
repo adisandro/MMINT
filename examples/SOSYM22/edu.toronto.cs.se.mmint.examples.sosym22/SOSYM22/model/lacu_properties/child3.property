@@ -1,0 +1,4 @@
+(LAAP, {
+  A := always (neg (atom fault_LAAPActive_LAAP)) & (neg (atom fault_operatorControlLever_LAAP)),
+  G := always (neg (atom fault_LAAPFlow_LAAP)) & (neg (atom fault_LAAPActive_LAAP))
+})

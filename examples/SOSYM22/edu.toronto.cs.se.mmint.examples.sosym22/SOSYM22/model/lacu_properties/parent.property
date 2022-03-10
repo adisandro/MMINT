@@ -1,0 +1,8 @@
+{
+  A := always
+    ((neg (atom fault_armPositionAngle1_LACU)) OR (neg (atom fault_armPositionAngle2_LACU))) &
+    (neg (atom fault_LAAPRequest_LACU)) &
+    (neg (atom fault_operatorControlLever_LACU)) &
+    (neg (atom fault_groundSpeed_LACU)),
+  G := always (neg (atom fault_PWMFlow_LACU))
+}

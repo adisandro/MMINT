@@ -17,7 +17,7 @@
     </ownedViews>
     <ownedViews xmi:type="viewpoint:DView" uid="_clvBEF6mEeuYfq7XakckNg">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']"/>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_o6YCgF6mEeuYfq7XakckNg" name="sc" repPath="#_o6VmQF6mEeuYfq7XakckNg" changeId="87e5b364-3efb-42fa-befb-9e9b53d3dbd8">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_o6YCgF6mEeuYfq7XakckNg" name="sc" repPath="#_o6VmQF6mEeuYfq7XakckNg" changeId="af9c07bb-7781-4a1c-8a25-d1dd6664a573">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']"/>
         <target xmi:type="gsn:SafetyCase" href="model/sc.gsn#/"/>
       </ownedRepresentationDescriptors>
@@ -370,7 +370,7 @@
             <layoutConstraint xmi:type="notation:Bounds" xmi:id="_1jZ9orNrEeuul7ll43xBrg"/>
           </children>
           <styles xmi:type="notation:ShapeStyle" xmi:id="_1jBjIbNrEeuul7ll43xBrg" fontName="Cantarell" fontHeight="10"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_1jBjIrNrEeuul7ll43xBrg" x="368" y="64" width="209" height="107"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_1jBjIrNrEeuul7ll43xBrg" x="368" y="61" width="209" height="110"/>
         </children>
         <children xmi:type="notation:Node" xmi:id="_zNBg8JULEeyCb7jDzvzUDw" type="2001" element="_zM4XAJULEeyCb7jDzvzUDw">
           <children xmi:type="notation:Node" xmi:id="_zNHnkJULEeyCb7jDzvzUDw" type="5002">
@@ -381,7 +381,7 @@
             <layoutConstraint xmi:type="notation:Bounds" xmi:id="_zNXfMpULEeyCb7jDzvzUDw"/>
           </children>
           <styles xmi:type="notation:ShapeStyle" xmi:id="_zNBg8ZULEeyCb7jDzvzUDw" fontName="Cantarell" fontHeight="10"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_zNBg8pULEeyCb7jDzvzUDw" x="640" y="58" width="177" height="119"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_zNBg8pULEeyCb7jDzvzUDw" x="624" y="58" width="193" height="116"/>
         </children>
         <children xmi:type="notation:Node" xmi:id="_9yvicJULEeyCb7jDzvzUDw" type="2001" element="_9yttQpULEeyCb7jDzvzUDw">
           <children xmi:type="notation:Node" xmi:id="_9ywJgJULEeyCb7jDzvzUDw" type="5002">
@@ -392,7 +392,7 @@
             <layoutConstraint xmi:type="notation:Bounds" xmi:id="_9y0a8pULEeyCb7jDzvzUDw"/>
           </children>
           <styles xmi:type="notation:ShapeStyle" xmi:id="_9yvicZULEeyCb7jDzvzUDw" fontName="Cantarell" fontHeight="10"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_9yvicpULEeyCb7jDzvzUDw" x="880" y="64" width="177" height="113"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_9yvicpULEeyCb7jDzvzUDw" x="864" y="61" width="193" height="110"/>
         </children>
         <styles xmi:type="notation:DiagramStyle" xmi:id="_o6Z3sl6mEeuYfq7XakckNg"/>
       </data>
@@ -424,7 +424,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DNode" uid="_zM4XAJULEeyCb7jDzvzUDw" name="C3 " width="-1" height="-1" resizeKind="NSEW">
+    <ownedDiagramElements xmi:type="diagram:DNode" uid="_zM4XAJULEeyCb7jDzvzUDw" name="C3 The LACU architecture is correct with respect to its contract" width="-1" height="-1" resizeKind="NSEW">
       <target xmi:type="gsn:BasicGoal" href="model/sc.gsn#//@goals.2"/>
       <semanticElements xmi:type="gsn:BasicGoal" href="model/sc.gsn#//@goals.2"/>
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>

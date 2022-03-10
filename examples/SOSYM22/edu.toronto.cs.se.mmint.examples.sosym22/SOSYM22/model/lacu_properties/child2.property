@@ -1,0 +1,8 @@
+(armController, {
+  A := always 
+    (neg (atom fault_angleSensor_armController)) &
+    (neg (atom fault_LAAPActive_armController)) &
+    (neg (atom fault_LAAPFlow_armController)) &
+    (neg (atom fault_operatorConstrolLever_armController)),
+  G := always (neg (atom fault_armFlow_armController))
+})
