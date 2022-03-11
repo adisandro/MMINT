@@ -38,7 +38,7 @@ Alternatively, a virtual machine image for VirtualBox with all the required depe
     1. Right-click on the claim named `C3` and select `MMINT > Property Decomposition`.
     2. Copy and paste the contents of file `/SOSYM22/model/lacu_properties/parent.property` as the property to be decomposed, then insert `The subcontracts induce a correct decomposition of the LACU contract` as description.
     3. Insert `3` as the number of sub-properties.
-    4. Copy and paste the contents of file `/SOSYM22/model/lacu_properties/child1.property` as the first sub-property, then insert `armPosition correctly implements its contract` as description.
-    5. Copy and paste the contents of file `/SOSYM22/model/lacu_properties/child2.property` as the second sub-property, then insert `armController correctly implements its contract` as description.
-    6. Copy and paste the contents of file `/SOSYM22/model/lacu_properties/child3.property` as the third sub-property, then insert `LAAP correctly implements its contract` as description.
+    4. Copy and paste the contents of file `/SOSYM22/model/lacu_properties/child1.property` as the first sub-property, then insert `The armPosition component correctly implements its contract` as description.
+    5. Copy and paste the contents of file `/SOSYM22/model/lacu_properties/child2.property` as the second sub-property, then insert `The armController component correctly implements its contract` as description.
+    6. Copy and paste the contents of file `/SOSYM22/model/lacu_properties/child3.property` as the third sub-property, then insert `The LAAP component correctly implements its contract` as description.
     7. The decomposition succeeds and the GSN justification node `J.C3` points to the results.
