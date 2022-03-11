@@ -40,7 +40,7 @@ public class CreatePropertyGoal extends CreateDecompositionElement {
       var reasonerName = reasoner.getName();
       var property = builder.createProperty("Create Property Goal", "Insert the " + reasonerName + " property",
                                             "Insert a description for the custom property");
-      builder.createPropertyGoal("", "'" + property.getInformal() + "'", reasonerName, property);
+      builder.createPropertyGoal("", property.getInformal(), reasonerName, property);
     }
   }
 }

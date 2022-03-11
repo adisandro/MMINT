@@ -252,7 +252,6 @@ public class PropertyDecomposition extends GoalDecomposition {
       }
       // create decomposition template
       var id = this.decomposed.getId();
-      var informal = "'" + property.getInformal() + "'";
       Strategy chainedStrategy = null;
       Goal chainedGoal = null;
       String propStrategyId;
@@ -261,13 +260,12 @@ public class PropertyDecomposition extends GoalDecomposition {
       var numCtx = 0;
       if (this.decomposed instanceof PropertyGoal) { // decomposition chain, do not create formal argument level
         propStrategyId = "S1." + id;
-        propStrategyDesc += informal;
+        propStrategyDesc += "'" + property.getInformal() + "'";
       }
       else {
         var formalStrategyId = "S1." + id;
         var formalStrategyDesc = "Argument by " + reasonerName + " formalization";
         var propContextId = "Ctx1." + id;
-        var propContextDesc = "Property " + informal;
         var modelGoalId = id + ".1";
         var modelGoalDesc = "The related model correctly models all aspects of the system for the property in " +
                             propContextId;
@@ -276,7 +274,7 @@ public class PropertyDecomposition extends GoalDecomposition {
         var formalGoalId = id + ".3";
         var formalGoalDesc = "The property in " + propContextId + " holds";
         chainedStrategy = builder.createBasicStrategy(formalStrategyId, formalStrategyDesc);
-        var propContext = builder.createContext(propContextId, propContextDesc);
+        var propContext = builder.createContext(propContextId, property.getInformal());
         builder.addInContextOf(chainedStrategy, propContext);
         var modelGoal = builder.createBasicGoal(modelGoalId, modelGoalDesc);
         builder.addSupporter(chainedStrategy, modelGoal);
@@ -317,8 +315,8 @@ public class PropertyDecomposition extends GoalDecomposition {
           subProperty = subResult.property();
           subPropQueries = subResult.queries();
         }
-        var subGoalDesc = "The property '" + subProperty.getInformal() + "' holds";
-        var subGoal = builder.createPropertyGoal(subGoalId + (i+numGoals), subGoalDesc, reasonerName, subProperty);
+        var subGoal = builder.createPropertyGoal(subGoalId + (i+numGoals), subProperty.getInformal(), reasonerName,
+                                                 subProperty);
         builder.addSupporter(propStrategy, subGoal);
         for (var subPropQuery : subPropQueries) {
           createQueryContext(subGoal, subPropQuery, id, numCtx, queryContexts);
