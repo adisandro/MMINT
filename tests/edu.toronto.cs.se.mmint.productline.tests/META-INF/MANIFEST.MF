@@ -18,7 +18,7 @@ Require-Bundle: org.eclipse.emf.ecore,
  edu.toronto.cs.se.modelepedia.classdiagram,
  edu.toronto.cs.se.modelepedia.gsn,
  edu.toronto.cs.se.modelepedia.z3
-Bundle-RequiredExecutionEnvironment: JavaSE-18
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Automatic-Module-Name: edu.toronto.cs.se.mmint.productline.tests
 Import-Package: org.apache.log4j
 Bundle-ActivationPolicy: lazy

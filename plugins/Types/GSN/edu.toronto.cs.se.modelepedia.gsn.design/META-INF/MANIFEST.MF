@@ -17,5 +17,5 @@ Require-Bundle: org.eclipse.ui,
  edu.toronto.cs.se.mmint.diagram,
  edu.toronto.cs.se.modelepedia.gsn
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: JavaSE-18
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Bundle-Vendor: %providerName
