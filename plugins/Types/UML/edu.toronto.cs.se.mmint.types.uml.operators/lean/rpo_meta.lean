@@ -1,7 +1,6 @@
 import Architectural.proofObligations
-import Architectural.LACU
+import lacu
 import Architectural.lang
-import common_meta
 import tactic 
 
 open LANG PORTS 

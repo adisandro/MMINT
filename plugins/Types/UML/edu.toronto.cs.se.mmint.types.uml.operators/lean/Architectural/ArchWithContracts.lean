@@ -1,4 +1,4 @@
-import Architectural.Architecture common_meta
+import Architectural.Architecture
 import Architectural.Map
 variables {Var : Type} [fintype Var] [decidable_eq Var] 
 

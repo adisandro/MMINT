@@ -1,4 +1,4 @@
-import Architectural.LACU
+import lacu
 
 inductive LANG
 | T : LANG

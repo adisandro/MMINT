@@ -11,7 +11,7 @@
 
 
 [template private encodeMain(modelName : String, mainClassName : String)]
-import justification common_meta
+import justification
 import [modelName/]
 import Architectural.lang Architectural.proofObligations
 import rpo_meta
