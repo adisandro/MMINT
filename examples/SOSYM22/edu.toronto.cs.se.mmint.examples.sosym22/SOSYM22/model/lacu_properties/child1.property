@@ -1,4 +1,4 @@
-(armPosition, {
-  A := always (neg (atom fault_input2_armPosition)) OR (neg (LANG.atom fault_input1_armPosition)),
-  G := always (neg (atom fault_output_armPosition))
+(armPosition, {Contract .
+  A := ((atom fault_input2_armPosition).neg OR (atom fault_input1_armPosition).neg).always,
+  G := (atom fault_output_armPosition).neg.always
 })

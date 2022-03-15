@@ -1,8 +1,9 @@
-{
-  A := always
-    ((neg (atom fault_armPositionAngle1_LACU)) OR (neg (atom fault_armPositionAngle2_LACU))) &
-    (neg (atom fault_LAAPRequest_LACU)) &
-    (neg (atom fault_operatorControlLever_LACU)) &
-    (neg (atom fault_groundSpeed_LACU)),
-  G := always (neg (atom fault_PWMFlow_LACU))
+{Contract .
+  A := (
+    (atom fault_armPositionAngle1_LACU).neg OR (atom fault_armPositionAngle2_LACU).neg &
+    (atom fault_LAAPRequest_LACU).neg &
+    (atom fault_operatorControlLever_LACU).neg &
+    (atom fault_groundSpeed_LACU).neg
+  ).always,
+  G := (atom fault_PWMFlow_LACU).neg.always
 }
