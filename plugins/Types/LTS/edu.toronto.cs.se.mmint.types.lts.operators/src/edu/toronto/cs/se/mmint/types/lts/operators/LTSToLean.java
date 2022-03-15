@@ -20,7 +20,6 @@ import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -28,14 +27,9 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
-import edu.toronto.cs.se.mmint.MIDTypeRegistry;
-import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.lean.operators.ToLean;
-import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.operator.Operator;
-import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 import edu.toronto.cs.se.mmint.types.lts.LTSPackage;
@@ -47,58 +41,26 @@ import edu.toronto.cs.se.modelepedia.gsn.reasoning.IGSNLeanEncoder.PropertyVaria
 
 public class LTSToLean extends ToLean implements IGSNLeanEncoder {
 
-  private final static String LEAN_MAIN_FILE = "main" + ToLean.LEAN_EXT;
   private final static String LEAN_AUX_FILE = "aux" + ToLean.LEAN_EXT;
-  private final static String LEAN_OUT_FILE = "evidence" + ToLean.LEAN_EXT;
-  private final static String LEAN_BUNDLE_DIR = "lean/";
-  private final static List<String> LEAN_BUNDLE_IMPORTS = List.of("LTS", "property_catalogue");
   private final static int GROUP_THRESHOLD = 100;
 
   @Override
-  public void createWorkflowInstanceOutputs(Operator newOperator, Map<String, GenericElement> genericsByName,
-                                            Map<String, Model> inputsByName, MID workflowMID) throws MMINTException {
-    var fileModelType = MIDTypeRegistry.<Model>getType(Output.MODEL_TYPE_ID);
-    // dynamic lean files as varargs
-    for (var i = 0; i < 2; i++) {
-      var outputModelId = MIDRegistry.getNextWorkflowID(workflowMID);
-      var outputModel = fileModelType.createWorkflowInstance(outputModelId, workflowMID);
-      var outputModelEndpoint = this.getOutputs().get(0).createWorkflowInstance(
-        outputModel, newOperator, OperatorPackage.eINSTANCE.getOperator_Outputs().getName());
-      var fileName = (i == 0) ? LTSToLean.LEAN_MAIN_FILE : inputsByName.get(Input.MODEL).getName();
-      var outputName = outputModelEndpoint.getName() + fileName.substring(0, 1).toUpperCase() + fileName.substring(1);
-      outputModelEndpoint.setName(outputName);
-    }
-  }
-
-  @Override
   public List<String> getImportPaths() {
-    return LTSToLean.LEAN_BUNDLE_IMPORTS;
-  }
-
-  @Override
-  public Optional<String> getOutputFileName() {
-    return Optional.of(LTSToLean.LEAN_OUT_FILE);
+    return List.of("LTS", "property_catalogue");
   }
 
   @Override
   protected void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws Exception {
     super.init(inputsByName, outputMIDsByName);
-    var workingPath = getWorkingPath() + IPath.SEPARATOR;
-    // dynamic lean files generated from the input model
-    this.output.leanPaths.add(workingPath + LTSToLean.LEAN_MAIN_FILE);
-    this.output.leanPaths.add(workingPath + this.input.model.getName() + ToLean.LEAN_EXT);
     this.leanGenerator = new LTSToLeanAcceleo(this.input.model.getEMFInstanceRoot(), this.output.leanFolder,
                                               List.of(this.input.model.getName(), ToLean.LEAN_SANITIZE_REGEXP,
                                                       LTSToLean.GROUP_THRESHOLD));
-    // static lean files from this bundle
-    var bundlePath = MIDTypeRegistry.getBundlePath(this.getMetatype(), LTSToLean.LEAN_BUNDLE_DIR);
-    FileUtils.copyDirectory(bundlePath, false, workingPath, true);
     // auxiliary declarations
     //TODO MMINT[LEAN] Split model+property into model+libs+property, where libs is gsn stuff and aux belongs there
     var auxPath = FileUtils.replaceLastSegmentInPath(this.input.model.getUri(), LTSToLean.LEAN_AUX_FILE);
     if (FileUtils.isFile(auxPath, true)) {
       Files.move(Path.of(FileUtils.prependWorkspacePath(auxPath)),
-                 Path.of(FileUtils.prependWorkspacePath(workingPath) + LTSToLean.LEAN_AUX_FILE),
+                 Path.of(FileUtils.prependWorkspacePath(getWorkingPath()) + IPath.SEPARATOR + LTSToLean.LEAN_AUX_FILE),
                  StandardCopyOption.REPLACE_EXISTING);
     }
   }

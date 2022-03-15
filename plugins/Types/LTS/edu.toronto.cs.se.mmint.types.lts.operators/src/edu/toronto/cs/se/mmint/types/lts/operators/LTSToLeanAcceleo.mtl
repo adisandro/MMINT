@@ -153,7 +153,7 @@ def [modelName/] : LTS := LTS.mk STATES ACTIONS TR
   [file ('main.lean', false, 'UTF-8')]
 [encodeMain(sanitize(modelName, sanitizeRegexp))/]
   [/file]
-  [file (modelName + '.lean', false, 'UTF-8')]
+  [file (sanitize(modelName, sanitizeRegexp) + '.lean', false, 'UTF-8')]
 [encodeModel(lts, sanitize(modelName, sanitizeRegexp), sanitizeRegexp, groupThreshold)/]
   [/file]
 [/template]
