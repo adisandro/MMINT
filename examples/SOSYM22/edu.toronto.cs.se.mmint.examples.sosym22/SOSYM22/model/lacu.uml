@@ -145,7 +145,6 @@
   </uml:Model>
   <Blocks:Block xmi:id="_3POdwJMsEeyoYr_v8A8d5A" base_Class="_3O8J4JMsEeyoYr_v8A8d5A"/>
   <Blocks:Block xmi:id="_bJvkUJMtEeyN6vUpA7jb5Q" base_Class="_bJj-IJMtEeyN6vUpA7jb5Q"/>
-  <PortsAndFlows:ItemFlow xmi:id="_2QfvMJMtEeyN6vUpA7jb5Q"/>
   <PortsAndFlows:ItemFlow xmi:id="_5sdfwJMtEeyN6vUpA7jb5Q" base_InformationFlow="_5sbDgJMtEeyN6vUpA7jb5Q"/>
   <PortsAndFlows:ItemFlow xmi:id="_xWHqcJMuEeyN6vUpA7jb5Q" base_InformationFlow="_xWEAEJMuEeyN6vUpA7jb5Q"/>
   <Blocks:Block xmi:id="_qhxMUJMvEeyN6vUpA7jb5Q" base_Class="_qhth8JMvEeyN6vUpA7jb5Q"/>
