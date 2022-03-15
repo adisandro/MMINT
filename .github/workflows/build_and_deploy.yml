@@ -21,7 +21,7 @@ jobs:
           key: ${{ runner.os }}-${{ hashFiles('releng/edu.toronto.cs.se.mmint.releng/pom.xml') }}
 
       - name: Build MMINT
-        run: mvn -T 1C -f releng/edu.toronto.cs.se.mmint.releng/pom.xml clean install
+        run: mvn -f releng/edu.toronto.cs.se.mmint.releng/pom.xml clean install
 
       - name: Checkout update site
         if: github.event_name == 'push'
