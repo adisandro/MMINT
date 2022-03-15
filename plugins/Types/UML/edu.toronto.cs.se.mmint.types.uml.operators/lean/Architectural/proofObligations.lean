@@ -1,6 +1,6 @@
 import Architectural.ArchWithContracts
 import Architectural.ArchitectureDecomp
-import tactic 
+import tactic
 
 variables {Φ Var : Type} [fintype Var] [decidable_eq Var] [AssertionLang Φ Var]
 
@@ -227,10 +227,6 @@ begin
     rw isCorrectImplementation at H₄,
     rw meaning at H₄, simp at H₄,
     replace H₃ := H₃ S' S',
-    unfold set.Inter at H₃,
-    unfold infi at H₃,
-    unfold Inf at H₃,
-    simp at H₃,
     replace H₄ := H₄ σ (H₃ Hmem),
     have further : (Map.find_val S' A.contracts).iget = C, by {exact (congr_arg option.iget H₆).trans rfl,},
     simp [further] at *, clear further,

@@ -81,10 +81,10 @@ do
       solve_rpo,
       b ← is_solved,
       match b with
-      | tt := do tactic.trace "tt",
+      | tt := do tactic.trace "True",
          input_string ← stringOfFormatExpr STRAT,
           tactic.unsafe_run_io $ Output $ evidence_file_template input_string "apply via_rpo,\n solve_rpo,"
-      | ff := do tactic.trace "ff"
+      | ff := do tactic.trace "False"
       end
   | _ := return ()
 end
