@@ -116,9 +116,7 @@ open PORTS
 def [sanitize(class.name, sanitizeRegexp)/] : Component PORTS := {
   ports := {
     val := ['['/]
-    [for (port : Port | class.ownedAttribute->selectByType(Port))]
-      [portName(port, sanitizeRegexp)/],
-    [/for]
+    [for (port : Port | class.ownedAttribute->selectByType(Port)) separator(',\n')]      [portName(port, sanitizeRegexp)/][/for]
     [']'/],
     nodup := by {dec_trivial}
   }
@@ -126,32 +124,15 @@ def [sanitize(class.name, sanitizeRegexp)/] : Component PORTS := {
 
   [/for]
 
+@['['/]reducible[']'/]
 def [sanitize(mainClass.name, sanitizeRegexp)/]_ARCH_MODEL : Architecture [sanitize(mainClass.name, sanitizeRegexp)/] := {
   subs := ['['/]
-  [for (property : Property | mainClass.ownedAttribute->selectByType(Property))]
-    [sanitize(property.type.name, sanitizeRegexp)/],
-  [/for]
+  [for (property : Property | mainClass.ownedAttribute->selectByType(Property)) separator(',\n')]    [sanitize(property.type.name, sanitizeRegexp)/][/for]
   [']'/],
   delegation := ['['/]
-  [for (flow : InformationFlow | umlRoot.packagedElement->selectByType(InformationFlow))]
-    [for (inPort : Port | flow.informationSource->filter(Port))]
-      [for (outPort : Port | flow.informationTarget->filter(Port))]
-    ([portName(inPort, sanitizeRegexp)/], [portName(outPort, sanitizeRegexp)/]),
-      [/for]
-    [/for]
-  [/for]
+  [for (flow : InformationFlow | umlRoot.packagedElement->selectByType(InformationFlow)) separator(',\n')][for (inPort : Port | flow.informationSource->filter(Port))][for (outPort : Port | flow.informationTarget->filter(Port))]    ([portName(inPort, sanitizeRegexp)/], [portName(outPort, sanitizeRegexp)/])[/for][/for][/for]
   [']'/]
 }
-
-  [for (class1 : Class | umlRoot.packagedElement->selectByType(Class))]
-    [let ii : Integer = i]
-    [for (class2 : Class | umlRoot.packagedElement->selectByType(Class))]
-      [if (class1 <> class2 and class1 <> mainClass and class2 <> mainClass)]
-theorem distinct_[(ii-1)*umlRoot.packagedElement->selectByType(Class)->size() + i/] : [sanitize(class1.name, sanitizeRegexp)/] ≠ [sanitize(class2.name, sanitizeRegexp)/] := by {exact of_to_bool_ff rfl}
-      [/if]
-    [/for]
-    [/let]
-  [/for]
 [/template]
 
 [template public UMLToLean(umlRoot : Model, modelName : String, sanitizeRegexp : String)]

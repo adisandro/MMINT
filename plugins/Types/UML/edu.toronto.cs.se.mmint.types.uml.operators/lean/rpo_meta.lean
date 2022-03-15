@@ -2,11 +2,44 @@ import Architectural.proofObligations
 import lacu
 import Architectural.lang
 import tactic 
+import system.io
 
-open LANG PORTS 
+open LANG PORTS tactic 
+open io list lean.parser interactive.types
+
+open lean.parser (ident)
 
 local infix ` OR `:50 := LANG.disj 
 local infix ` & `:50 := LANG.conj 
+
+meta def set_goal (goal : expr) : tactic unit :=
+do
+   v <- mk_meta_var goal,
+   set_goals (list.cons v list.nil),
+   return ()
+
+
+meta def is_solved : tactic bool :=
+done >> return tt <|> return ff
+
+meta def stringifyFmt :  format → tactic string := 
+λ f, do return (format.to_string f)
+
+meta def stringOfFormatExpr : expr → tactic string := 
+λ e, do 
+   fmt ← (tactic_format_expr e >>= stringifyFmt),
+   return fmt
+
+
+meta def read {α : Type}
+(f : string)
+(p : lean.parser α) : lean.parser α :=
+do
+  buf ← unsafe_run_io (io.fs.read_file f),
+  (a, s) ← with_input p buf.to_string,
+  return a
+
+
 
 meta def solve_rpo_fst : tactic unit := do 
   x ← tactic.get_unused_name `x,
@@ -18,7 +51,10 @@ meta def solve_rpo_fst : tactic unit := do
   `[rw [list_conj_iff, get_nfs] at H, simp at H, rw toMap at H],
   `[rcases H with ⟨H1,H2,H3⟩],
   tactic.repeat `[rw Map.find_val at H1 H2 H3],
-  `[  repeat {simp [distinct_1, distinct_2, distinct_3] at *,},
+  `[have  distinct1 : armPosition ≠ LAAP, by {dec_trivial,},
+  have  distinct2 : armPosition ≠ armController, by {dec_trivial},
+  have  distinct3 : armController ≠ LAAP, by {dec_trivial},
+  repeat {simp [distinct1, distinct2, distinct3] at *,},
   rw nf_def at *, intro A, simp at *,
   apply (@synchronize (atom fault_PWMFlow_LACU).neg.always x fault_PWMFlow_LACU fault_armFlow_armController).mpr,
   simp,
@@ -97,7 +133,7 @@ apply (@synchronize (atom fault_operatorControlLever_LAAP).neg.always x fault_op
   cases A1 with A1 A3,
   rw @forall_conj_distrib_mem' x _ _  at A1,
   cases A1 with A1 A4,
-  apply (@synchronize (atom fault_operatorConstrolLever_armController).neg.always x fault_operatorConstrolLever_armController fault_operatorControlLever_LACU).mpr,
+  apply (@synchronize (atom fault_operatorControlLever_armController).neg.always x fault_operatorControlLever_armController fault_operatorControlLever_LACU).mpr,
   simp,
   intro i,
   apply A3 i,  unfold LACU_ARCH_MODEL, dsimp, dec_trivial,
@@ -127,8 +163,10 @@ rw Map.find_val at *,
 rw Map.find_val at *,
 simp at *,
 rw H,
- repeat {simp [distinct_1, distinct_2, distinct_3] at *}]
-
+have  distinct1 : armPosition ≠ LAAP, by {dec_trivial,},
+  have  distinct2 : armPosition ≠ armController, by {dec_trivial},
+  have  distinct3 : armController ≠ LAAP, by {dec_trivial},
+  repeat {simp [distinct1, distinct2, distinct3] at *,}]
 
 meta def tac2 : tactic unit := 
 `[rw AssertionLang.impl_def,
@@ -144,7 +182,10 @@ simp at *,
 rw Map.find_val at *,
 rw Map.find_val at *,
 rw Map.find_val at *,
-simp at *, repeat {simp [distinct_1, distinct_2, distinct_3] at *}]
+have  distinct1 : armPosition ≠ LAAP, by {dec_trivial,},
+  have  distinct2 : armPosition ≠ armController, by {dec_trivial},
+  have  distinct3 : armController ≠ LAAP, by {dec_trivial},
+  repeat {simp [distinct1, distinct2, distinct3] at *,}]
 
 meta def tac3 : tactic unit := 
 `[rw AssertionLang.impl_def,
@@ -160,7 +201,10 @@ simp at *,
 rw Map.find_val at *,
 rw Map.find_val at *,
 rw Map.find_val at *,
-simp at *, repeat {simp [distinct_1, distinct_2, distinct_3] at *}]
+have  distinct1 : armPosition ≠ LAAP, by {dec_trivial,},
+  have  distinct2 : armPosition ≠ armController, by {dec_trivial},
+  have  distinct3 : armController ≠ LAAP, by {dec_trivial},
+  repeat {simp [distinct1, distinct2, distinct3] at *,}]
 
 
 
@@ -189,7 +233,11 @@ work_on_goal 0 { tac1,
 
   }, 
 
-cases H, tac2, rw H, simp [distinct_1, distinct_2, distinct_3] at *,
+cases H, tac2, rw H,
+  have  distinct1 : armPosition ≠ LAAP, by {dec_trivial,},
+  have  distinct2 : armPosition ≠ armController, by {dec_trivial},
+  have  distinct3 : armController ≠ LAAP, by {dec_trivial},
+  repeat {simp [distinct1, distinct2, distinct3] at *,},
   rw @forall_conj_distrib_mem s _ _  at Ha,
   cases Ha with Ha Ha2,
   rw @forall_conj_distrib_mem' s _ _  at Ha,
@@ -205,7 +253,11 @@ apply (@synchronize (atom fault_operatorControlLever_LAAP).neg.always s fault_op
 simp, assumption,   unfold LACU_ARCH_MODEL, dsimp, dec_trivial,
 
 tac3,
-rw H, simp [distinct_1, distinct_2, distinct_3] at *,
+rw H, 
+  have  distinct1 : armPosition ≠ LAAP, by {dec_trivial,},
+  have  distinct2 : armPosition ≠ armController, by {dec_trivial},
+  have  distinct3 : armController ≠ LAAP, by {dec_trivial},
+  repeat {simp [distinct1, distinct2, distinct3] at *,},
   rw @forall_conj_distrib_mem s _ _ ,
   split,
   rw @forall_conj_distrib_mem' s _ _ ,
@@ -290,7 +342,7 @@ apply Hb1,
   cases Ha with Ha Ha3,
    rw @forall_conj_distrib_mem' s _ _  at Ha,
   cases Ha with Ha Ha4,
-  apply (@synchronize (atom fault_operatorConstrolLever_armController).neg.always s fault_operatorConstrolLever_armController fault_operatorControlLever_LACU).mpr,
+  apply (@synchronize (atom fault_operatorControlLever_armController).neg.always s fault_operatorControlLever_armController fault_operatorControlLever_LACU).mpr,
  simp,
       apply Ha3,
       unfold LACU_ARCH_MODEL, dsimp, dec_trivial]
@@ -298,8 +350,6 @@ apply Hb1,
 
 meta def solve_rpo : tactic unit := do 
 `[split], solve_rpo_fst, solve_rpo_snd
-
-
 
 
 example : RPO
@@ -318,12 +368,12 @@ example : RPO
                        {Contract .
                         A := ((atom fault_angleSensor_armController).neg&(atom fault_LAAPActive_armController).neg&(atom
                                      fault_LAAPFlow_armController).neg&(atom
-                                   fault_operatorConstrolLever_armController).neg).always,
+                                   fault_operatorControlLever_armController).neg).always,
                         G := (atom fault_armFlow_armController).neg.always}), (LAAP,
                        {Contract .
                         A := ((atom fault_LAAPRequest_LAAP).neg&(atom fault_operatorControlLever_LAAP).neg).always,
                         G := ((atom fault_LAAPFlow_LAAP).neg&(atom fault_LAAPActive_LAAP).neg).always})],
-     all_components := by {auto_all_comps}}:= 
+     all_components := by {unfold LACU_ARCH_MODEL, auto_all_comps,}}:= 
 begin 
 solve_rpo,
 end 
