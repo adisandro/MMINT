@@ -17,7 +17,7 @@
     </ownedViews>
     <ownedViews xmi:type="viewpoint:DView" uid="_clvBEF6mEeuYfq7XakckNg">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']"/>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_o6YCgF6mEeuYfq7XakckNg" name="sc" repPath="#_o6VmQF6mEeuYfq7XakckNg" changeId="af9c07bb-7781-4a1c-8a25-d1dd6664a573">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_o6YCgF6mEeuYfq7XakckNg" name="sc" repPath="#_o6VmQF6mEeuYfq7XakckNg" changeId="f595373c-a008-41f8-8aa5-d17a14432bad">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']"/>
         <target xmi:type="gsn:SafetyCase" href="model/sc.gsn#/"/>
       </ownedRepresentationDescriptors>
@@ -436,7 +436,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DNode" uid="_9yttQpULEeyCb7jDzvzUDw" name="C4 " width="-1" height="-1" resizeKind="NSEW">
+    <ownedDiagramElements xmi:type="diagram:DNode" uid="_9yttQpULEeyCb7jDzvzUDw" name="C4 The DbMonitor thread never locks the shared database" width="-1" height="-1" resizeKind="NSEW">
       <target xmi:type="gsn:BasicGoal" href="model/sc.gsn#//@goals.3"/>
       <semanticElements xmi:type="gsn:BasicGoal" href="model/sc.gsn#//@goals.3"/>
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>

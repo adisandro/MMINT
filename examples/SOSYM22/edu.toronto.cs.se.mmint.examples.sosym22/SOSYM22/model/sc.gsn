@@ -3,5 +3,5 @@
   <goals xsi:type="gsn:BasicGoal" id="C1" description="The FCS never reaches a damaged state"/>
   <goals xsi:type="gsn:BasicGoal" id="C2" description="Normal bolus doses are not administered whenever an error state is reached"/>
   <goals xsi:type="gsn:BasicGoal" id="C3" description="The LACU architecture is correct with respect to its contract"/>
-  <goals xsi:type="gsn:BasicGoal" id="C4"/>
+  <goals xsi:type="gsn:BasicGoal" id="C4" description="The DbMonitor thread never locks the shared database"/>
 </gsn:SafetyCase>
