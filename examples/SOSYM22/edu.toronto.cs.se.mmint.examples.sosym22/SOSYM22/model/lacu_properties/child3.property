@@ -1,4 +1,4 @@
 (LAAP, {Contract .
-  A := ((atom fault_LAAPActive_LAAP).neg & (atom fault_operatorControlLever_LAAP).neg).always,
+  A := ((atom fault_LAAPRequest_LAAP).neg & (atom fault_operatorControlLever_LAAP).neg).always,
   G := ((atom fault_LAAPFlow_LAAP).neg & (atom fault_LAAPActive_LAAP).neg).always
 })

@@ -60,7 +60,7 @@
       <ownedAttribute xmi:type="uml:Port" xmi:id="_Kkk6IJMzEeyN6vUpA7jb5Q" name="fault_angleSensor" type="_LYJB4JMvEeyN6vUpA7jb5Q" aggregation="composite"/>
       <ownedAttribute xmi:type="uml:Port" xmi:id="_igbH4JM2EeyN6vUpA7jb5Q" name="fault_LAAPFlow" type="_LYJB4JMvEeyN6vUpA7jb5Q" aggregation="composite"/>
       <ownedAttribute xmi:type="uml:Port" xmi:id="_jF0T8JM2EeyN6vUpA7jb5Q" name="fault_LAAPActive" type="_LYJB4JMvEeyN6vUpA7jb5Q" aggregation="composite"/>
-      <ownedAttribute xmi:type="uml:Port" xmi:id="_p4YM4JM2EeyN6vUpA7jb5Q" name="fault_operatorConstrolLever" type="_LYJB4JMvEeyN6vUpA7jb5Q" aggregation="composite"/>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_p4YM4JM2EeyN6vUpA7jb5Q" name="fault_operatorControlLever" type="_LYJB4JMvEeyN6vUpA7jb5Q" aggregation="composite"/>
       <ownedAttribute xmi:type="uml:Port" xmi:id="_qOFXIJM2EeyN6vUpA7jb5Q" name="fault_groundSpeed" type="_LYJB4JMvEeyN6vUpA7jb5Q" aggregation="composite"/>
       <ownedAttribute xmi:type="uml:Port" xmi:id="_s2BpwJM2EeyN6vUpA7jb5Q" name="fault_armDeactivated" type="_LYJB4JMvEeyN6vUpA7jb5Q" aggregation="composite"/>
       <ownedAttribute xmi:type="uml:Port" xmi:id="_tUKXQJM2EeyN6vUpA7jb5Q" name="fault_armFlow" type="_LYJB4JMvEeyN6vUpA7jb5Q" aggregation="composite"/>
