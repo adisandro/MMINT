@@ -24,9 +24,8 @@ We can't share the K9 Mars Rover case study (Sec. 6.2). To illustrate the use of
     2. Select `Absence > $X is not reached` as the property to be decomposed, then select `State Damaged` for variable `$X`.
     3. Insert `2` as the number of sub-properties.
     4. Select `Transitions > Do not begin from $X` as the first sub-property, then select `State Damaged` for variable `$X`.
-    5. Select `Transitions > Never transition out of $X` as the second sub-property, then select `State Damaged` for variable `$X`. The decomposition fails, the user is notified about possible corrective actions, and the GSN justification node `J.C1` points to the results.
-    6. Repeat FCS steps 1 to 4, then select `Transitions > Never transition into $X` as the second sub-property, then select `State Damaged` for variable `$X`.
-    7. The decomposition succeeds and the GSN justification node `J.C1` points to the results.
+    5. Select `Transitions > Never transition into $X` as the second sub-property, then select `State Damaged` for variable `$X`.
+    6. The decomposition succeeds and the GSN justification node `J.C1` points to the results.
 4. FCS example (alternative with query):
     1. Right-click on the claim named `C1` and select `MMINT > Property Decomposition`.
     2. Select `Absence > $X is not reached` as the property to be decomposed, then select `Run query to select elements`, `/SOSYM22/src/sosym22/query.vql` as query file, `damaged` as query, and insert `Selects the state named Damaged` as description.
