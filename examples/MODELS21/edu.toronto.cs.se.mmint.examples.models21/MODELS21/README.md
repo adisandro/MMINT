@@ -4,8 +4,7 @@ A Lean Approach to Building Valid Model-Based Safety Arguments
 
 ## Instructions to reproduce the examples
 
-This example runs natively on Linux only.
-
+This example runs natively on Linux only.  
 Alternatively, a virtual machine image for VirtualBox with all the required dependencies is available at <https://doi.org/10.5281/zenodo.5110436>, letting you skip to step 2.4.
 
 1. Lean

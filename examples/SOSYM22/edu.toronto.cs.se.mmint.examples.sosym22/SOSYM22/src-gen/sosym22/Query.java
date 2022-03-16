@@ -26,6 +26,7 @@ import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedPatternGroup;
  * 
  * <p> From package sosym22, the group contains the definition of the following patterns: <ul>
  * <li>dbLockStates</li>
+ * <li>damaged</li>
  * </ul>
  * 
  * @see IQueryGroup
@@ -51,6 +52,7 @@ public final class Query extends BaseGeneratedPatternGroup {
   
   private Query() {
     querySpecifications.add(DbLockStates.instance());
+    querySpecifications.add(Damaged.instance());
   }
   
   public DbLockStates getDbLockStates() {
@@ -59,5 +61,13 @@ public final class Query extends BaseGeneratedPatternGroup {
   
   public DbLockStates.Matcher getDbLockStates(final ViatraQueryEngine engine) {
     return DbLockStates.Matcher.on(engine);
+  }
+  
+  public Damaged getDamaged() {
+    return Damaged.instance();
+  }
+  
+  public Damaged.Matcher getDamaged(final ViatraQueryEngine engine) {
+    return Damaged.Matcher.on(engine);
   }
 }

@@ -19,3 +19,7 @@ pattern dbLockStates(state: State) {
   check(label.startsWith("dbMonitor.condDB.lock"));
   Transition.to(transition, state);
 }
+
+pattern damaged(state: State) {
+  State.label(state, "Damaged");
+}
