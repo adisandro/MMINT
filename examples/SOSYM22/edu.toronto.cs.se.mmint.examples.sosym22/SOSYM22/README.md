@@ -5,7 +5,7 @@ The ForeMoSt Approach to Building Valid Model-Based Safety Arguments
 ## Instructions to reproduce the examples
 
 This example runs natively on Linux only.  
-Alternatively, a virtual machine image for VirtualBox with all the required dependencies is available at Zenodo, letting you skip to step 2.4.
+Alternatively, a virtual machine image for VirtualBox with all the required dependencies is available at <https://doi.org/10.5281/zenodo.6360844>, letting you skip to step 2.4.
 
 We can't share the K9 Mars Rover case study (Sec. 6.2). To illustrate the use of queries, we provide an alternative FCS example.
 
