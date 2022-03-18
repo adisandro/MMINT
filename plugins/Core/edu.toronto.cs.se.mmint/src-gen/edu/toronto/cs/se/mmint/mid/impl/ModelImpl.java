@@ -311,7 +311,8 @@ public class ModelImpl extends GenericElementImpl implements Model {
       MMINTException.mustBeInstance(this);
       var emfResource = getEMFInstanceResourceGen();
       if (emfResource == null) {
-        emfResource = FileUtils.getEMFResource(getUri(), null, true);
+        // load resource within the container MID's resource set
+        emfResource = FileUtils.getEMFResource(getUri(), eResource().getResourceSet(), true);
         // bypass EMF notifications and the need for a write transaction
         this.emfInstanceResource = emfResource;
       }

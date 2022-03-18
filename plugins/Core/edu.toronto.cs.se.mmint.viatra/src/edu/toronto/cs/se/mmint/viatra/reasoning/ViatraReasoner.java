@@ -121,18 +121,11 @@ public class ViatraReasoner implements IQueryTrait {
           }
         }
       }
-      // if context is a MID, preload all model roots into the same resource set
       var resourceSet = context.eResource().getResourceSet();
-      if (context instanceof MID) {
-        for (var model : ((MID) context).getModels()) {
-          if (model instanceof ModelRel) {
-            continue;
-          }
-          var rootModelObj = FileUtils.readModelFile(model.getUri(), resourceSet, true);
-          model.eSetDeliver(false); // we are not making a real model change, bypass the need for a write transaction
-          model.setEMFInstanceRoot(rootModelObj);
-          model.setEMFInstanceResource(rootModelObj.eResource());
-        }
+      if (context instanceof MID instanceMID) {
+        // if context is a MID, preload all model roots into the same resource set
+        // as a side effect of getEMFInstanceRoot()
+        instanceMID.getModels().stream().filter(m -> !(m instanceof ModelRel)).forEach(m -> m.getEMFInstanceRoot());
       }
       // find query matches within context
       engine = AdvancedViatraQueryEngine.createUnmanagedEngine(new EMFScope(resourceSet));

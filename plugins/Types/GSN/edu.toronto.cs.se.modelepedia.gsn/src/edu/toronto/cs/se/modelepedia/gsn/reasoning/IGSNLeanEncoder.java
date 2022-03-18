@@ -74,7 +74,7 @@ public interface IGSNLeanEncoder {
 
     public record BindingResult(Property property, List<String> queries) {}
     public BindingResult bindVariables(String title, Map<EClass, List<EObject>> modelObjs,
-                                     Map<String, List<Object>> queryCache) throws Exception {
+                                       Map<String, List<Object>> queryCache) throws Exception {
       var property = GSNFactory.eINSTANCE.createProperty();
       var result = new BindingResult(property, new ArrayList<String>());
       if (this.variables.isEmpty()) {
@@ -117,7 +117,6 @@ public interface IGSNLeanEncoder {
             selectedObjs = querySpec.evaluateQuery(instanceMID, List.of());
             queryCache.put(queryId, selectedObjs);
           }
-          //TODO MMINT[GSN] validModelObjs and selectedObjs come from different roots when it runs for the first time
           boundModelObjs = selectedObjs.stream()
             .filter(o -> validModelObjs.contains(o))
             .map(o -> (EObject) o)
