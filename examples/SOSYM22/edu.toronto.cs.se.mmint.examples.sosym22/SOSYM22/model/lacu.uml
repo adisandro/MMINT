@@ -8,24 +8,6 @@
       <importedPackage xmi:type="uml:Package" href="pathmap://SysML16_LIBRARIES/SysML-Standard-Library.uml#SysML.package_packagedElement_Libraries"/>
     </packageImport>
     <packagedElement xmi:type="uml:Class" xmi:id="_3O8J4JMsEeyoYr_v8A8d5A" name="LACU">
-      <ownedRule xmi:type="uml:Constraint" xmi:id="_JuI20JMyEeyN6vUpA7jb5Q" name="DelegationConstraint1" constrainedElement="_xRudMJMvEeyN6vUpA7jb5Q">
-        <specification xmi:type="uml:OpaqueExpression" xmi:id="_JuKsAJMyEeyN6vUpA7jb5Q" name="constraintSpec">
-          <language>JAVA</language>
-          <body>laap_1.LAAPSetpointStatic = true;</body>
-        </specification>
-      </ownedRule>
-      <ownedRule xmi:type="uml:Constraint" xmi:id="_Q3vZ8JM2EeyN6vUpA7jb5Q" name="DelegationConstraint3" constrainedElement="_y5OmgJMvEeyN6vUpA7jb5Q">
-        <specification xmi:type="uml:OpaqueExpression" xmi:id="_Q3woEJM2EeyN6vUpA7jb5Q" name="constraintSpec">
-          <language>JAVA</language>
-          <body>laap_1.maxGroundSpeed = 70;</body>
-        </specification>
-      </ownedRule>
-      <ownedRule xmi:type="uml:Constraint" xmi:id="_a8_LoJM2EeyN6vUpA7jb5Q" name="DelegationConstraint2" constrainedElement="_y5OmgJMvEeyN6vUpA7jb5Q">
-        <specification xmi:type="uml:OpaqueExpression" xmi:id="_a9AZwJM2EeyN6vUpA7jb5Q" name="constraintSpec">
-          <language>JAVA</language>
-          <body>laap_1.groundSpeedLimit = 20;</body>
-        </specification>
-      </ownedRule>
       <ownedAttribute xmi:type="uml:Property" xmi:id="_ZxBd4JMtEeyN6vUpA7jb5Q" name="armposition_1" type="_bJj-IJMtEeyN6vUpA7jb5Q" aggregation="composite"/>
       <ownedAttribute xmi:type="uml:Port" xmi:id="_fmNIkJMtEeyN6vUpA7jb5Q" name="fault_armPositionAngle1" visibility="public" type="_LYJB4JMvEeyN6vUpA7jb5Q" aggregation="composite"/>
       <ownedAttribute xmi:type="uml:Port" xmi:id="_pUPesJMuEeyN6vUpA7jb5Q" name="fault_armPositionAngle2" type="_LYJB4JMvEeyN6vUpA7jb5Q" aggregation="composite"/>
