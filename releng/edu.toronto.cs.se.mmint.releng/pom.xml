@@ -27,6 +27,11 @@
       <layout>p2</layout>
       <url>https://static.incquerylabs.com/projects/massif/release/0.7.0/repository</url>
     </repository>
+    <repository>
+      <id>SysML</id>
+      <layout>p2</layout>
+      <url>https://download.eclipse.org/modeling/mdt/papyrus/components/sysml16/2021-12</url>
+    </repository>
   </repositories>
   <pluginRepositories>
     <pluginRepository>
