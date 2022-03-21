@@ -92,4 +92,5 @@
    <category-def name="Examples" label="Examples"/>
    <repository-reference location="http://download.eclipse.org/modeling/emft/henshin/updates/release" enabled="true" />
    <repository-reference location="https://static.incquerylabs.com/projects/massif/release/0.7.0/repository" enabled="true" />
+   <repository-reference location="https://download.eclipse.org/modeling/mdt/papyrus/components/sysml16/2021-12" enabled="true" />
 </site>
