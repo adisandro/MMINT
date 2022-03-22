@@ -35,6 +35,7 @@ import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.sirius.business.api.action.AbstractExternalJavaAction;
 import org.eclipse.sirius.viewpoint.DSemanticDecorator;
+import org.eclipse.sirius.viewpoint.RGBValues;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.model.IWorkbenchAdapter;
@@ -148,20 +149,40 @@ public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
 
   public static void displayQueryResults(EObject context, List<Object> queryResults, Object query) {
     var printResults = new ArrayList<String>();
+    var resultUris = new HashSet<String>();
+    Model model = null;
     for (var result : queryResults) {
       var printResult = (result instanceof Collection) ?
         ((Collection) result).stream().map(o -> queryResultToString(o)).collect(Collectors.toList()).toString() :
         queryResultToString(result);
       printResults.add(printResult);
+      if (result instanceof EObject resultObj) {
+        resultUris.add(MIDRegistry.getModelElementUri(resultObj));
+        if (model == null) {
+          try {
+            model = MIDDiagramUtils.getInstanceMIDModelFromModelEditor(resultObj);
+          }
+          catch (MMINTException e) {
+          }
+        }
+      }
+    }
+    /* TODO Refine:
+     * 1) Extend to multiple models
+     * 2) If collection, loop one result at a time, both highlight and text (e.g. res x out of y + different color)
+     *    (how can I show ui blocking text if there are multiple models?)
+     */
+    if (model != null) {
+      SiriusHighlighter.highlight(model, resultUris, RGBValues.create(255, 0, 0));
     }
     var shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
     var title = "Query Results";
     var message = (queryResults.isEmpty()) ? "No Results" : String.join("\n", printResults);
-    if (!queryResults.isEmpty() && context instanceof MID) {
+    if (!queryResults.isEmpty() && context instanceof MID mid) {
       message += "\n\nDo you want to store the results as model relationships for future use?";
       var store = MessageDialog.openQuestion(shell, title, message);
       if (store) {
-        storeQueryResultsAsModelRel(query.toString(), queryResults, (MID) context);
+        storeQueryResultsAsModelRel(query.toString(), queryResults, mid);
       }
     }
     else {

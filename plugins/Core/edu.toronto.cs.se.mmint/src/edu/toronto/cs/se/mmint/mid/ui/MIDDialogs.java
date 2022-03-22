@@ -16,7 +16,6 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
@@ -226,41 +225,40 @@ public class MIDDialogs {
     return selectReasoner(reasoners, traitDesc);
 	}
 
-	public static @NonNull String selectSiriusRepresentationsFileToContainModelDiagram(@NonNull String modelPath)
-	                              throws MIDDialogCancellation {
+  public static String selectSiriusRepresentationsFileToContainModelDiagram(String modelPath)
+                         throws MIDDialogCancellation {
+    // try a default representations file next to the model first..
+    var sAirdPath = FileUtils.replaceLastSegmentInPath(modelPath, SiriusUtils.DEFAULT_REPRESENTATIONS_FILE);
+    if (FileUtils.isFile(sAirdPath, true)) {
+      return sAirdPath;
+    }
+    // ..then a default representations file at the top level..
+    Object dialogRoot;
+    var project = FileUtils.getWorkspaceProject(modelPath);
+    if (project == null) {
+      dialogRoot = ResourcesPlugin.getWorkspace().getRoot();
+      sAirdPath = SiriusUtils.DEFAULT_REPRESENTATIONS_FILE;
+    }
+    else {
+      dialogRoot = project;
+      sAirdPath = project.getFullPath().toString() + IPath.SEPARATOR + SiriusUtils.DEFAULT_REPRESENTATIONS_FILE;
+    }
+    if (FileUtils.isFile(sAirdPath, true)) {
+      return sAirdPath;
+    }
+    // ..or let the user choose otherwise
+    var dialog = new MIDTreeSelectionDialog(new WorkbenchLabelProvider(), new BaseWorkbenchContentProvider(),
+                                            dialogRoot);
+    dialog.addFilter(new FileExtensionsDialogFilter(Set.of(SiriusUtil.SESSION_RESOURCE_EXTENSION)));
+    dialog.setValidator(new FilesOnlyDialogSelectionValidator());
 
-	    // try a default representations file next to the model first..
-	    String sAirdPath = FileUtils.replaceLastSegmentInPath(modelPath, SiriusUtils.DEFAULT_REPRESENTATIONS_FILE);
-	    if (FileUtils.isFile(sAirdPath, true)) {
-	        return sAirdPath;
-	    }
-	    // ..then a default representations file at the top level..
-	    Object dialogRoot;
-        IProject project = FileUtils.getWorkspaceProject(modelPath);
-        if (project == null) {
-            dialogRoot = ResourcesPlugin.getWorkspace().getRoot();
-            sAirdPath = SiriusUtils.DEFAULT_REPRESENTATIONS_FILE;
-        }
-        else {
-            dialogRoot = project;
-            sAirdPath = project.getFullPath().toString() + IPath.SEPARATOR + SiriusUtils.DEFAULT_REPRESENTATIONS_FILE;
-        }
-        if (FileUtils.isFile(sAirdPath, true)) {
-            return sAirdPath;
-        }
-	    // ..or let the user choose otherwise
-        var dialog = new MIDTreeSelectionDialog(new WorkbenchLabelProvider(),
-                                                                   new BaseWorkbenchContentProvider(), dialogRoot);
-        dialog.addFilter(new FileExtensionsDialogFilter(Set.of(SiriusUtil.SESSION_RESOURCE_EXTENSION)));
-        dialog.setValidator(new FilesOnlyDialogSelectionValidator());
+    var title = "Model with Sirius Representation";
+    var message = "Select Sirius representations file";
+    var sAirdFile = (IFile) MIDDialogs.openTreeDialogWithDefault(dialog, title, message);
+    sAirdPath = sAirdFile.getFullPath().toString();
 
-        var title = "Model with Sirius Representation";
-        var message = "Select Sirius representations file";
-        var sAirdFile = (IFile) MIDDialogs.openTreeDialogWithDefault(dialog, title, message);
-        sAirdPath = sAirdFile.getFullPath().toString();
-
-        return sAirdPath;
-	}
+    return sAirdPath;
+  }
 
 	/**
 	 * Shows a tree dialog to create a model choosing from the registered model
