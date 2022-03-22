@@ -18,4 +18,4 @@ Require-Bundle: org.eclipse.core.runtime,
  edu.toronto.cs.se.mmint.types.lts,
  edu.toronto.cs.se.mmint.types.lts.edit
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: JavaSE-17
+Bundle-RequiredExecutionEnvironment: JavaSE-18
