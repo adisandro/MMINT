@@ -35,7 +35,6 @@ import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.sirius.business.api.action.AbstractExternalJavaAction;
 import org.eclipse.sirius.viewpoint.DSemanticDecorator;
-import org.eclipse.sirius.viewpoint.RGBValues;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.model.IWorkbenchAdapter;
@@ -45,6 +44,7 @@ import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.diagram.context.SiriusHighlighter.Color;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
 import edu.toronto.cs.se.mmint.mid.reasoning.IQueryTrait;
 import edu.toronto.cs.se.mmint.mid.reasoning.IQueryTrait.QuerySpec;
@@ -171,9 +171,10 @@ public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
      * 1) Extend to multiple models
      * 2) If collection, loop one result at a time, both highlight and text (e.g. res x out of y + different color)
      *    (how can I show ui blocking text if there are multiple models?)
+     * 3) Check if models have a sirius diagram attached
      */
     if (model != null) {
-      SiriusHighlighter.highlight(model, resultUris, RGBValues.create(255, 0, 0));
+      SiriusHighlighter.highlight(model, resultUris, Color.RED);
     }
     var shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
     var title = "Query Results";

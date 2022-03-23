@@ -14,23 +14,23 @@ package edu.toronto.cs.se.mmint.mid.relationship.diagram.context;
 
 import java.util.stream.Collectors;
 
-import org.eclipse.sirius.viewpoint.RGBValues;
 import org.eclipse.swt.events.SelectionEvent;
 
 import edu.toronto.cs.se.mmint.mid.diagram.context.SiriusHighlighter;
+import edu.toronto.cs.se.mmint.mid.diagram.context.SiriusHighlighter.Color;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
 public class RelContextHighlightModelEndpointListener extends MIDContextMenuListener {
   private ModelEndpointReference modelEndpointRef;
-  private RGBValues highlightColor;
+  private Color color;
 
   public RelContextHighlightModelEndpointListener(String menuLabel, ModelEndpointReference modelEndpointRef,
-                                                  RGBValues highlightColor) {
+                                                  Color color) {
     super(menuLabel);
     this.modelEndpointRef = modelEndpointRef;
-    this.highlightColor = highlightColor;
+    this.color = color;
   }
 
   @Override
@@ -39,6 +39,6 @@ public class RelContextHighlightModelEndpointListener extends MIDContextMenuList
     var modelObjUris = this.modelEndpointRef.getModelElemRefs().stream()
       .map(mer -> MIDRegistry.getModelObjectUri(mer.getObject()))
       .collect(Collectors.toSet());
-    SiriusHighlighter.highlight(model, modelObjUris, this.highlightColor);
+    SiriusHighlighter.highlight(model, modelObjUris, this.color);
   }
 }

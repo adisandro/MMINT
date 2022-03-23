@@ -35,7 +35,30 @@ import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
 public class SiriusHighlighter {
 
-  private static void highlight(DDiagramElement sDiagramElem, Set<String> modelObjUris, RGBValues color) {
+  public enum Color {
+    BLACK   (RGBValues.create(0, 0, 0)),
+    GRAY    (RGBValues.create(128, 128, 128)),
+    SILVER  (RGBValues.create(192, 192, 192)),
+    WHITE   (RGBValues.create(255, 255, 255)),
+    MAROON  (RGBValues.create(128, 0, 0)),
+    RED     (RGBValues.create(255, 0, 0)),
+    OLIVE   (RGBValues.create(128, 128, 0)),
+    YELLOW  (RGBValues.create(255, 255, 0)),
+    GREEN   (RGBValues.create(0, 128, 0)),
+    LIME    (RGBValues.create(0, 255, 0)),
+    TEAL    (RGBValues.create(0, 128, 128)),
+    AQUA    (RGBValues.create(0, 255, 255)),
+    NAVY    (RGBValues.create(0, 0, 128)),
+    BLUE    (RGBValues.create(0, 0, 255)),
+    PURPLE  (RGBValues.create(128, 0, 128)),
+    FUCHSIA (RGBValues.create(255, 0, 255));
+    public final RGBValues rgb;
+    Color(RGBValues rgb) {
+      this.rgb = rgb;
+    }
+  }
+
+  private static void highlight(DDiagramElement sDiagramElem, Set<String> modelObjUris, Color color) {
     if (sDiagramElem instanceof DNodeContainer sContainerElem) {
       for (var sContainedElem : sContainerElem.getOwnedDiagramElements()) {
         highlight(sContainedElem, modelObjUris, color);
@@ -46,17 +69,17 @@ public class SiriusHighlighter {
     }
     var style = sDiagramElem.getStyle();
     if (style instanceof NodeStyle nodeStyle) {
-      nodeStyle.setLabelColor(color);
+      nodeStyle.setLabelColor(color.rgb);
     }
     else if (style instanceof ContainerStyle containerStyle) {
-      containerStyle.setLabelColor(color);
+      containerStyle.setLabelColor(color.rgb);
     }
     else if (style instanceof EdgeStyle edgeStyle) {
-      edgeStyle.setStrokeColor(color);
+      edgeStyle.setStrokeColor(color.rgb);
     }
   }
 
-  public static void highlight(Model model, Set<String> modelObjUris, RGBValues color) {
+  public static void highlight(Model model, Set<String> modelObjUris, Color color) {
     try {
       model.openInstance();
       var sAirdPath = MIDDialogs.selectSiriusRepresentationsFileToContainModelDiagram(model.getUri());
