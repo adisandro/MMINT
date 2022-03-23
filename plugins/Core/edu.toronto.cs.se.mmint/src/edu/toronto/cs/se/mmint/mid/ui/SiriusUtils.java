@@ -33,7 +33,9 @@ import org.eclipse.sirius.viewpoint.DRepresentationDescriptor;
 import org.eclipse.sirius.viewpoint.DView;
 
 import edu.toronto.cs.se.mmint.MMINT;
+import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
+import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
@@ -138,4 +140,12 @@ public class SiriusUtils {
         sSession.getTransactionalEditingDomain().getCommandStack().execute(sCmd);
     }
 
+    public static boolean isSirius(Editor editor) {
+      return editor instanceof Diagram diagram &&
+             diagram.getFileExtensions().get(0).equals(SiriusUtil.SESSION_RESOURCE_EXTENSION);
+    }
+
+    public static boolean hasSiriusDiagram(Model model) {
+      return model.getEditors().stream().anyMatch(e -> isSirius(e));
+    }
 }

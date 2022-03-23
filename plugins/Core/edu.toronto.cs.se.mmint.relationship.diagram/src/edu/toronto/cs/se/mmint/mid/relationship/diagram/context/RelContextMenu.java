@@ -35,6 +35,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ModelElementReferenceEditPart;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ModelEndpointReferenceEditPart;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ModelRelEditPart;
+import edu.toronto.cs.se.mmint.mid.ui.SiriusUtils;
 
 /**
  * The handler for the dynamic construction of a context menu within a relationship diagram.
@@ -61,6 +62,9 @@ public class RelContextMenu extends ContributionItem {
     }
     var objects = ((StructuredSelection) selection).toArray();
     boolean doQuery = true, doHighlight = true;
+    if (objects.length > 1) { // actions that don't work on multiple objects
+      doHighlight = false;
+    }
 
     // get model selection
     ModelRel rel = null;
@@ -82,6 +86,9 @@ public class RelContextMenu extends ContributionItem {
       }
       else if (editPartElement instanceof ModelEndpointReference) {
         modelEndpointRef = (ModelEndpointReference) editPartElement;
+        if (!SiriusUtils.hasSiriusDiagram(modelEndpointRef.getObject().getTarget())) {
+          doHighlight = false;
+        }
         doQuery = false;
       }
       else {

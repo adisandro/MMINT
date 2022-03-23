@@ -22,7 +22,6 @@ import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.window.Window;
-import org.eclipse.sirius.business.api.helper.SiriusUtil;
 import org.eclipse.sirius.viewpoint.DRepresentation;
 import org.eclipse.ui.PlatformUI;
 
@@ -91,7 +90,7 @@ public class DiagramImpl extends EditorImpl implements Diagram {
 
         String diagramUri = null;
         if (createDiagramFile) { // model created programmatically
-            if (this.getFileExtensions().get(0).equals(SiriusUtil.SESSION_RESOURCE_EXTENSION)) { // Sirius
+            if (SiriusUtils.isSirius(this)) { // Sirius
                 var sAirdPath = MIDDialogs.selectSiriusRepresentationsFileToContainModelDiagram(modelPath);
                 DRepresentation sRepr;
                 try {
@@ -117,7 +116,7 @@ public class DiagramImpl extends EditorImpl implements Diagram {
             }
         }
         else { // model created or imported through an Instance MID
-            if (this.getFileExtensions().get(0).equals(SiriusUtil.SESSION_RESOURCE_EXTENSION)) { // Sirius
+            if (SiriusUtils.isSirius(this)) { // Sirius
                 //TODO MMINT[SIRIUS] Delete does not work sometimes
                 //TODO MMINT[SIRIUS] Open the modeling project if not open
                 //TODO MMINT[SIRIUS] Create the representation file if it does not exist

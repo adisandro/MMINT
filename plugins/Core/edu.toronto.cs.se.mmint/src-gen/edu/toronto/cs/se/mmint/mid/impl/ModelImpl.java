@@ -36,7 +36,6 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.sirius.business.api.helper.SiriusUtil;
 import org.osgi.framework.Bundle;
 
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
@@ -1099,7 +1098,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
         var instanceMID = this.getMIDContainer();
         Editor newEditor = null;
         MMINTException lastException = null;
-        List<Editor> sortedEditors = new ArrayList<>(this.getMetatype().getEditors());
+        var sortedEditors = new ArrayList<>(this.getMetatype().getEditors());
         sortedEditors.sort(new Comparator<Editor>() {
             @Override
             public int compare(Editor e1, Editor e2) {
@@ -1115,7 +1114,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
                 return 1;
             }
         });
-        for (Editor editorType : sortedEditors) {
+        for (var editorType : sortedEditors) {
             try {
                 newEditor = editorType.createInstance(this.getUri(), createEditorFile, instanceMID);
                 break;
@@ -1342,7 +1341,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
         }
          */
         for (Editor editor : this.getEditors()) {
-            if (editor.getFileExtensions().get(0).equals(SiriusUtil.SESSION_RESOURCE_EXTENSION)) { // Sirius
+            if (SiriusUtils.isSirius(editor)) { // Sirius
                 SiriusUtils.deleteRepresentation((Diagram) editor);
             }
             else {
