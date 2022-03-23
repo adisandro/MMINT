@@ -107,13 +107,13 @@
     </mappingRefs>
   </models>
   <editors xsi:type="editor:Diagram" uri="/SOSYM22/representations.aird#_ec3Q4F6dEeuzRqps9eyyPw" name="LTS Sirius Diagram for model /SOSYM22/model/fcs.lts" metatypeUri="edu.toronto.cs.se.mmint.types.lts.design" dynamic="true" modelUri="/SOSYM22/model/fcs.lts" id="edu.toronto.cs.se.mmint.types.lts.design" wizardId="edu.toronto.cs.se.mmint.types.lts.presentation.LTSModelWizardID">
-    <fileExtensions>aird#_ec3Q4F6dEeuzRqps9eyyPw</fileExtensions>
+    <fileExtensions>aird</fileExtensions>
   </editors>
   <editors xsi:type="editor:Diagram" uri="/SOSYM22/representations.aird#_o6VmQF6mEeuYfq7XakckNg" name="GSN Representation for model /SOSYM22/model/sc.gsn" metatypeUri="http://se.cs.toronto.edu/modelepedia/Representation_GSN" dynamic="true" modelUri="/SOSYM22/model/sc.gsn" id="edu.toronto.cs.se.modelepedia.gsn.design" wizardId="edu.toronto.cs.se.modelepedia.gsn.presentation.GSNModelWizardID">
-    <fileExtensions>aird#_o6VmQF6mEeuYfq7XakckNg</fileExtensions>
+    <fileExtensions>aird</fileExtensions>
   </editors>
   <editors xsi:type="editor:Diagram" uri="/SOSYM22/representations.aird#_fmElkLGoEeudEakJBW0CPw" name="LTS Sirius Diagram for model /SOSYM22/model/pump.lts" metatypeUri="edu.toronto.cs.se.mmint.types.lts.design" dynamic="true" modelUri="/SOSYM22/model/pump.lts" id="edu.toronto.cs.se.mmint.types.lts.design" wizardId="edu.toronto.cs.se.mmint.types.lts.presentation.LTSModelWizardID">
-    <fileExtensions>aird#_fmElkLGoEeudEakJBW0CPw</fileExtensions>
+    <fileExtensions>aird</fileExtensions>
   </editors>
   <editors xsi:type="editor:Diagram" uri="/SOSYM22/model/lacu.di" name="UML diagram for model /SOSYM22/model/lacu.uml" metatypeUri="http://www.eclipse.org/uml2/5.0.0/UML_diagram" dynamic="true" modelUri="/SOSYM22/model/lacu.uml" id="org.eclipse.papyrus.infra.core.papyrusEditor" wizardId="org.eclipse.papyrus.uml.diagram.wizards.createmodel">
     <fileExtensions>di</fileExtensions>

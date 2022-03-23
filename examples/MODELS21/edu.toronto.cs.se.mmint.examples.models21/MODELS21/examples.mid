@@ -55,13 +55,13 @@
     </mappingRefs>
   </models>
   <editors xsi:type="editor:Diagram" uri="/MODELS21/representations.aird#_ec3Q4F6dEeuzRqps9eyyPw" name="LTS Sirius Diagram for model /MODELS21/fcs.lts" metatypeUri="edu.toronto.cs.se.mmint.types.lts.design" dynamic="true" modelUri="/MODELS21/fcs.lts" id="edu.toronto.cs.se.mmint.types.lts.design" wizardId="edu.toronto.cs.se.mmint.types.lts.presentation.LTSModelWizardID">
-    <fileExtensions>aird#_ec3Q4F6dEeuzRqps9eyyPw</fileExtensions>
+    <fileExtensions>aird</fileExtensions>
   </editors>
   <editors xsi:type="editor:Diagram" uri="/MODELS21/representations.aird#_o6VmQF6mEeuYfq7XakckNg" name="GSN Representation for model /MODELS21/sc.gsn" metatypeUri="http://se.cs.toronto.edu/modelepedia/Representation_GSN" dynamic="true" modelUri="/MODELS21/sc.gsn" id="edu.toronto.cs.se.modelepedia.gsn.design" wizardId="edu.toronto.cs.se.modelepedia.gsn.presentation.GSNModelWizardID">
-    <fileExtensions>aird#_o6VmQF6mEeuYfq7XakckNg</fileExtensions>
+    <fileExtensions>aird</fileExtensions>
   </editors>
   <editors xsi:type="editor:Diagram" uri="/MODELS21/representations.aird#_fmElkLGoEeudEakJBW0CPw" name="LTS Sirius Diagram for model /MODELS21/pump.lts" metatypeUri="edu.toronto.cs.se.mmint.types.lts.design" dynamic="true" modelUri="/MODELS21/pump.lts" id="edu.toronto.cs.se.mmint.types.lts.design" wizardId="edu.toronto.cs.se.mmint.types.lts.presentation.LTSModelWizardID">
-    <fileExtensions>aird#_fmElkLGoEeudEakJBW0CPw</fileExtensions>
+    <fileExtensions>aird</fileExtensions>
   </editors>
   <extendibleTable key="/MODELS21/fcs.lts" value="//@models.0"/>
   <extendibleTable key="/MODELS21/sc.gsn" value="//@models.1"/>

@@ -27,10 +27,10 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.IWizard;
 import org.eclipse.ui.IWorkbenchWizard;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.wizards.IWizardDescriptor;
 
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
+import edu.toronto.cs.se.mmint.MMINTConstants;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.MID;
@@ -42,6 +42,7 @@ import edu.toronto.cs.se.mmint.mid.editor.EditorPackage;
 import edu.toronto.cs.se.mmint.mid.impl.ExtendibleElementImpl;
 import edu.toronto.cs.se.mmint.mid.ui.EditorCreationWizardDialog;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.utils.MIDTypeFactory;
 
 /**
@@ -188,7 +189,7 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
    */
     @Override
     public void setModelUri(String newModelUri) {
-    String oldModelUri = this.modelUri;
+    var oldModelUri = this.modelUri;
     this.modelUri = newModelUri;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, EditorPackage.EDITOR__MODEL_URI, oldModelUri, this.modelUri));
@@ -211,7 +212,7 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
    */
     @Override
     public void setId(String newId) {
-    String oldId = this.id;
+    var oldId = this.id;
     this.id = newId;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, EditorPackage.EDITOR__ID, oldId, this.id));
@@ -234,7 +235,7 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
    */
     @Override
     public void setWizardId(String newWizardId) {
-    String oldWizardId = this.wizardId;
+    var oldWizardId = this.wizardId;
     this.wizardId = newWizardId;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, EditorPackage.EDITOR__WIZARD_ID, oldWizardId, this.wizardId));
@@ -248,7 +249,7 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
     @Override
     public EList<String> getFileExtensions() {
     if (this.fileExtensions == null) {
-      this.fileExtensions = new EDataTypeUniqueEList<String>(String.class, this, EditorPackage.EDITOR__FILE_EXTENSIONS);
+      this.fileExtensions = new EDataTypeUniqueEList<>(String.class, this, EditorPackage.EDITOR__FILE_EXTENSIONS);
     }
     return this.fileExtensions;
   }
@@ -270,7 +271,7 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
    */
     @Override
     public void setWizardDialogClass(String newWizardDialogClass) {
-    String oldWizardDialogClass = this.wizardDialogClass;
+    var oldWizardDialogClass = this.wizardDialogClass;
     this.wizardDialogClass = newWizardDialogClass;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, EditorPackage.EDITOR__WIZARD_DIALOG_CLASS, oldWizardDialogClass, this.wizardDialogClass));
@@ -283,7 +284,7 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
    */
     @Override
     public Editor getMetatype() {
-    ExtendibleElement metatype = super.getMetatype();
+    var metatype = super.getMetatype();
     return (metatype == null) ? null : (Editor) metatype;
   }
 
@@ -294,7 +295,7 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
    */
     @Override
     public Editor getSupertype() {
-    ExtendibleElement supertype = super.getSupertype();
+    var supertype = super.getSupertype();
     return (supertype == null) ? null : (Editor) supertype;
   }
 
@@ -531,7 +532,7 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
      */
     protected void addSubtype(Editor newEditorType, String newEditorTypeFragmentUri, String newEditorTypeName, String modelTypeUri, String editorId, String wizardId, String wizardDialogClassName) throws MMINTException {
 
-        MID typeMID = this.getMIDContainer();
+        var typeMID = this.getMIDContainer();
         super.addSubtype(newEditorType, this, newEditorTypeFragmentUri, newEditorTypeName);
         MIDTypeFactory.addEditorType(newEditorType, modelTypeUri, editorId, wizardId, wizardDialogClassName, typeMID);
 
@@ -548,7 +549,7 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
 
         MMINTException.mustBeType(this);
 
-        Editor newEditorType = super.createThisEClass();
+        var newEditorType = super.<Editor>createThisEClass();
         this.addSubtype(newEditorType, newEditorTypeFragmentUri, newEditorTypeName, modelTypeUri, editorId, wizardId, wizardDialogClassName);
 
         return newEditorType;
@@ -562,9 +563,9 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
 
         MMINTException.mustBeType(this);
 
-        MID typeMID = this.getMIDContainer();
+        var typeMID = this.getMIDContainer();
         super.delete();
-        Model modelType = typeMID.getExtendibleElement(this.getModelUri());
+        var modelType = typeMID.<Model>getExtendibleElement(this.getModelUri());
         if (modelType != null) {
             modelType.getEditors().remove(this);
         }
@@ -591,14 +592,17 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
      */
     protected void addInstance(Editor newEditor, String editorPath, String modelPath, MID instanceMID) {
 
-        String newEditorName = this.getName() + " for model " + modelPath;
+        var newEditorName = this.getName() + " for model " + modelPath;
         super.addBasicInstance(newEditor, editorPath, newEditorName, MIDLevel.INSTANCES);
         newEditor.setModelUri(modelPath);
         newEditor.setId(this.getId());
         newEditor.setWizardId(this.getWizardId());
+        if (editorPath.contains(MMINTConstants.MODEL_URI_SEPARATOR)) { // Sirius
+          editorPath = MIDRegistry.getModelUri(editorPath);
+        }
         newEditor.getFileExtensions().add(FileUtils.getFileExtensionFromPath(editorPath));
         if (instanceMID != null) {
-            instanceMID.getEditors().add(newEditor);
+          instanceMID.getEditors().add(newEditor);
         }
     }
 
@@ -610,7 +614,7 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
 
         MMINTException.mustBeType(this);
 
-        Editor newEditor = super.createThisEClass();
+        var newEditor = super.<Editor>createThisEClass();
         this.addInstance(newEditor, modelPath, modelPath, instanceMID);
         // an editor is an EMF tree editor, so it never needs to create the editor file, which is the model itself
 
@@ -633,11 +637,11 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
         Model modelType = MIDTypeRegistry.<Model>getType(this.getModelUri());
         IWorkbenchWizard wizard;
         if (this.getWizardId() == null) {
-            EClass rootEClass = (EClass) modelType.getEMFTypeRoot().getEClassifiers().get(0);
+            var rootEClass = (EClass) modelType.getEMFTypeRoot().getEClassifiers().get(0);
             wizard = new DynamicModelWizard(rootEClass);
         }
         else {
-            IWizardDescriptor descriptor = PlatformUI.getWorkbench().getNewWizardRegistry().findWizard(this.getWizardId());
+            var descriptor = PlatformUI.getWorkbench().getNewWizardRegistry().findWizard(this.getWizardId());
             if (descriptor == null) {
                 throw new MMINTException("Wizard " + this.getId() + " not found");
             }
@@ -665,7 +669,7 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
     protected EditorCreationWizardDialog createCustomInstanceWizard(IWorkbenchWizard wizard) {
 
         EditorCreationWizardDialog wizDialog;
-        String wizardDialogClassName = this.getWizardDialogClass();
+        var wizardDialogClassName = this.getWizardDialogClass();
         try {
             wizDialog = (EditorCreationWizardDialog)
                 MIDTypeRegistry.getTypeBundle(this.getUri()).
@@ -689,7 +693,7 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
 
         MMINTException.mustBeType(this);
 
-        IWorkbenchWizard wizard = this.getInstanceWizard(initialSelection);
+        var wizard = this.getInstanceWizard(initialSelection);
         EditorCreationWizardDialog wizDialog;
         wizDialog = (this.getWizardDialogClass() == null) ?
             new EditorCreationWizardDialog(wizard) :
