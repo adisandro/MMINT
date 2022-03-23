@@ -50,6 +50,7 @@ import edu.toronto.cs.se.mmint.mid.reasoning.IQueryTrait;
 import edu.toronto.cs.se.mmint.mid.reasoning.IQueryTrait.QuerySpec;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
+import edu.toronto.cs.se.mmint.mid.ui.SiriusUtils;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
@@ -171,9 +172,8 @@ public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
      * 1) Extend to multiple models
      * 2) If collection, loop one result at a time, both highlight and text (e.g. res x out of y + different color)
      *    (how can I show ui blocking text if there are multiple models?)
-     * 3) Check if models have a sirius diagram attached
      */
-    if (model != null) {
+    if (model != null && SiriusUtils.hasSiriusDiagram(model)) {
       SiriusHighlighter.highlight(model, resultUris, Color.RED);
     }
     var shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
