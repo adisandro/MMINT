@@ -34,8 +34,10 @@ import org.eclipse.jface.resource.LocalResourceManager;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.sirius.business.api.action.AbstractExternalJavaAction;
+import org.eclipse.sirius.ui.business.api.dialect.DialectUIManager;
 import org.eclipse.sirius.viewpoint.DSemanticDecorator;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.model.IWorkbenchAdapter;
 
@@ -196,11 +198,20 @@ public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
           }
         }
       }
+      IEditorPart highlighted = null;
       if (model != null && SiriusUtils.hasSiriusDiagram(model)) {
-        SiriusHighlighter.highlight(model, highlightUris, Color.RED);
+        try {
+          highlighted = SiriusHighlighter.highlight(model, highlightUris, Color.RED);
+        }
+        catch (Exception e) {
+          MMINTException.print(IStatus.WARNING, "Query result highlighting failed", e);
+        }
       }
       var title = "Query Results (" + (i+1) + " out of " + numResults + ")";
-      MessageDialog.openInformation(shell, title + " (" + (i+1) + " out of " + numResults + ")", message);
+      MessageDialog.openInformation(shell, title, message);
+      if (highlighted != null) {
+        DialectUIManager.INSTANCE.closeEditor(highlighted, false);
+      }
     }
 
     if (context instanceof MID mid) {

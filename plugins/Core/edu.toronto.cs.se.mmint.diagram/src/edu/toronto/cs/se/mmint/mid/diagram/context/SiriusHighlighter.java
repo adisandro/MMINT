@@ -14,7 +14,6 @@ package edu.toronto.cs.se.mmint.mid.diagram.context;
 
 import java.util.Set;
 
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.sirius.business.api.session.SessionManager;
@@ -25,10 +24,9 @@ import org.eclipse.sirius.diagram.DSemanticDiagram;
 import org.eclipse.sirius.diagram.EdgeStyle;
 import org.eclipse.sirius.diagram.NodeStyle;
 import org.eclipse.sirius.viewpoint.RGBValues;
+import org.eclipse.ui.IEditorPart;
 
-import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
@@ -79,36 +77,31 @@ public class SiriusHighlighter {
     }
   }
 
-  public static void highlight(Model model, Set<String> modelObjUris, Color color) {
-    try {
-      model.openInstance();
-      var sAirdPath = MIDDialogs.selectSiriusRepresentationsFileToContainModelDiagram(model.getUri());
-      var sSession = SessionManager.INSTANCE.getSession(FileUtils.createEMFUri(sAirdPath, true),
-                                                        new NullProgressMonitor());
-      var sSessionResource = sSession.getSessionResource();
-      sSession.getTransactionalEditingDomain().getCommandStack().execute(
-        new RecordingCommand(sSession.getTransactionalEditingDomain()) {
-          @Override
-          protected void doExecute() {
-            for (var sView : sSession.getOwnedViews()) {
-              for (var sRepr : sView.getOwnedRepresentationDescriptors()) {
-                if (!model.getUri().equals(MIDRegistry.getModelUri(sRepr.getTarget()))) {
-                  continue;
-                }
-                var sDiag = (DSemanticDiagram)
-                  sSessionResource.getEObject(sRepr.getRepPath().getResourceURI().fragment());
-                for (var sDiagElem : sDiag.getOwnedDiagramElements()) {
-                  highlight(sDiagElem, modelObjUris, color);
-                }
+  public static IEditorPart highlight(Model model, Set<String> modelObjUris, Color color) throws Exception {
+    var editorPart = model.openInstance();
+    var sAirdPath = MIDDialogs.selectSiriusRepresentationsFileToContainModelDiagram(model.getUri());
+    var sSession = SessionManager.INSTANCE.getSession(FileUtils.createEMFUri(sAirdPath, true),
+                                                      new NullProgressMonitor());
+    var sSessionResource = sSession.getSessionResource();
+    sSession.getTransactionalEditingDomain().getCommandStack().execute(
+      new RecordingCommand(sSession.getTransactionalEditingDomain()) {
+        @Override
+        protected void doExecute() {
+          for (var sView : sSession.getOwnedViews()) {
+            for (var sRepr : sView.getOwnedRepresentationDescriptors()) {
+              if (!model.getUri().equals(MIDRegistry.getModelUri(sRepr.getTarget()))) {
+                continue;
+              }
+              var sDiag = (DSemanticDiagram)
+                sSessionResource.getEObject(sRepr.getRepPath().getResourceURI().fragment());
+              for (var sDiagElem : sDiag.getOwnedDiagramElements()) {
+                highlight(sDiagElem, modelObjUris, color);
               }
             }
           }
-        });
-    }
-    catch (MIDDialogCancellation e) {
-    }
-    catch (Exception e) {
-      MMINTException.print(IStatus.ERROR, "Highlighting failed", e);
-    }
+        }
+      });
+
+    return editorPart;
   }
 }
