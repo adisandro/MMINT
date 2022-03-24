@@ -16,6 +16,7 @@ Export-Package: edu.toronto.cs.se.mmint.productline,
  edu.toronto.cs.se.mmint.productline.viatra
 Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.emf.validation,
+ org.eclipse.ui,
  org.eclipse.core.runtime,
  org.apache.log4j,
  org.eclipse.xtext.xbase.lib,

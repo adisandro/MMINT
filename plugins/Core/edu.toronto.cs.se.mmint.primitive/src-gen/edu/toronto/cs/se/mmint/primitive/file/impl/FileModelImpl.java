@@ -19,6 +19,7 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.ide.IDE;
 
@@ -61,13 +62,12 @@ public class FileModelImpl extends ModelImpl implements FileModel {
 	 * @generated NOT
 	 */
 	@Override
-	public void openInstance() throws Exception {
-
+	public IEditorPart openInstance() throws Exception {
 		MMINTException.mustBeInstance(this);
-
 		IPath path = new Path(this.getUri());
 		var file = ResourcesPlugin.getWorkspace().getRoot().getFile(path);
-		IDE.openEditor(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage(), file);
+
+		return IDE.openEditor(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage(), file);
 	}
 
   /**

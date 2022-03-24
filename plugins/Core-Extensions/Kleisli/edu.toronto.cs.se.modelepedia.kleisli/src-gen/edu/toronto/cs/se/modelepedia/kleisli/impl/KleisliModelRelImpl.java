@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ui.IEditorPart;
 
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.MMINTException;
@@ -394,19 +395,17 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 	 * @generated NOT
 	 */
 	@Override
-	public void openInstance() throws Exception {
-
-		super.openInstance();
+	public IEditorPart openInstance() throws Exception {
+		var editorPart = super.openInstance();
 
 		// extend models (doing it at every open is robust against model change)
 		var oclReasoner = new OCLReasoner();
 		var kReasoner = new KleisliReasoner();
 		for (ModelEndpoint modelEndpoint : getModelEndpoints()) {
 			var modelTypeEndpoint = modelEndpoint.getMetatype();
-			if (!(modelTypeEndpoint instanceof KleisliModelEndpoint)) {
+			if (!(modelTypeEndpoint instanceof KleisliModelEndpoint kModelTypeEndpoint)) {
 				continue;
 			}
-			var kModelTypeEndpoint = (KleisliModelEndpoint) modelTypeEndpoint;
 			var kModelEndpoint = (KleisliModelEndpoint) modelEndpoint;
 			try {
 				var kModelTypePackage = kModelTypeEndpoint.getExtendedTarget().getEMFTypeRoot();
@@ -505,6 +504,8 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 				MMINTException.print(IStatus.WARNING, "Error creating extended model file, fallback to no extension", e);
 			}
 		}
+
+		return editorPart;
 	}
 
 } //KleisliModelRelImpl

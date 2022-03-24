@@ -16,8 +16,9 @@ import java.io.IOException;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.ui.IEditorPart;
+
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
@@ -473,13 +474,14 @@ public interface Model extends GenericElement {
 
     /**
    * <!-- begin-user-doc --> Opens the editor associated with this model instance.
+     * @return The Eclipse editor object.
      *
      * @throws Exception
      *             If this is not a model instance, or if the editor can't be opened.<!-- end-user-doc -->
    * @model exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception"
    * @generated
    */
-    void openInstance() throws Exception;
+    IEditorPart openInstance() throws Exception;
 
     /**
    * <!-- begin-user-doc --> Creates and possibly adds a model instance of this model type to a Workflow MID.

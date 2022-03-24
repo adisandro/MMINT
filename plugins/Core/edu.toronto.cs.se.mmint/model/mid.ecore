@@ -310,7 +310,7 @@
     </eOperations>
     <eOperations name="deleteInstance" eExceptions="#//MMINTException"/>
     <eOperations name="deleteInstanceAndFile" eExceptions="#//MMINTException"/>
-    <eOperations name="openInstance" eExceptions="#//operator/Exception"/>
+    <eOperations name="openInstance" eType="#//IEditorPart" eExceptions="#//operator/Exception"/>
     <eOperations name="createWorkflowInstance" lowerBound="1" eType="#//Model" eExceptions="#//MMINTException">
       <eParameters name="newModelId" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eParameters name="workflowMID" eType="#//MID"/>
@@ -590,6 +590,8 @@
       <details key="documentation" value="The wrapper for org.eclipse.emf.validation.IValidationContext."/>
     </eAnnotations>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="IEditorPart" instanceClassName="org.eclipse.ui.IEditorPart"
+      serializable="false"/>
   <eSubpackages name="relationship" nsURI="http://se.cs.toronto.edu/mmint/MID/Relationship"
       nsPrefix="relationship">
     <eClassifiers xsi:type="ecore:EClass" name="ModelRel" eSuperTypes="#//Model">

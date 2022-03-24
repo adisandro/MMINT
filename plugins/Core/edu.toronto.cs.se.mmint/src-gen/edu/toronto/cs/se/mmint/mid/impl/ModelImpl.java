@@ -36,6 +36,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ui.IEditorPart;
 import org.osgi.framework.Bundle;
 
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
@@ -1356,12 +1357,11 @@ public class ModelImpl extends GenericElementImpl implements Model {
      * @generated NOT
      */
     @Override
-    public void openInstance() throws Exception {
-
+    public IEditorPart openInstance() throws Exception {
         MMINTException.mustBeInstance(this);
-
         var editor = this.getEditors().get(0);
-        FileUtils.openEclipseEditor(editor.getUri(), editor.getId(), true);
+
+        return FileUtils.openEclipseEditor(editor.getUri(), editor.getId(), true);
     }
 
     /**

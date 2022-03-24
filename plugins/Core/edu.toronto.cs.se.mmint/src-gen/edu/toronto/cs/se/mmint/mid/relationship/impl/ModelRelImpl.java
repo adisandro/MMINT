@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ui.IEditorPart;
 
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
@@ -969,9 +970,10 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
      * @generated NOT
      */
     @Override
-    public void openInstance() throws Exception {
-
+    public IEditorPart openInstance() throws Exception {
         MMINTException.mustBeInstance(this);
+
+        return null;
     }
 
     /**

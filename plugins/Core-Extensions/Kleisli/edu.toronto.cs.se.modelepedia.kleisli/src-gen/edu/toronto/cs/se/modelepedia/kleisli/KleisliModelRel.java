@@ -12,6 +12,7 @@
 package edu.toronto.cs.se.modelepedia.kleisli;
 
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.ui.IEditorPart;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
@@ -123,6 +124,6 @@ public interface KleisliModelRel extends ModelRel {
    * @model exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception"
    * @generated
    */
-	void openInstance() throws Exception;
+	IEditorPart openInstance() throws Exception;
 
 } // KleisliModelRel

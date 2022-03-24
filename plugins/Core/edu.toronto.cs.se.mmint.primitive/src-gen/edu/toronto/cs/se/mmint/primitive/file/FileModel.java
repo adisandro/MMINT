@@ -11,6 +11,8 @@
  */
 package edu.toronto.cs.se.mmint.primitive.file;
 
+import org.eclipse.ui.IEditorPart;
+
 import edu.toronto.cs.se.mmint.mid.Model;
 
 /**
@@ -36,6 +38,6 @@ public interface FileModel extends Model {
    * @model exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception"
    * @generated
    */
-	void openInstance() throws Exception;
+	IEditorPart openInstance() throws Exception;
 
 } // FileModel
