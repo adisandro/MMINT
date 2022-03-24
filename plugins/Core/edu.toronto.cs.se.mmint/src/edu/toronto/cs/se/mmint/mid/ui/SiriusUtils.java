@@ -31,6 +31,7 @@ import org.eclipse.sirius.viewpoint.DAnalysis;
 import org.eclipse.sirius.viewpoint.DRepresentation;
 import org.eclipse.sirius.viewpoint.DRepresentationDescriptor;
 import org.eclipse.sirius.viewpoint.DView;
+import org.eclipse.ui.IEditorPart;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.mid.Model;
@@ -116,13 +117,13 @@ public class SiriusUtils {
         return sCmd2.getCreatedRepresentation();
     }
 
-    public static void openRepresentation(@NonNull String sReprUri) throws Exception {
-
+    public static IEditorPart openRepresentation(String sReprUri) throws Exception {
         String sAirdPath = MIDRegistry.getModelUri(sReprUri);
         var sSession = SessionManager.INSTANCE.getSession(FileUtils.createEMFUri(sAirdPath, true),
                                                               new NullProgressMonitor());
         var sRepr = (DRepresentation) FileUtils.readModelObject(sReprUri, sSession.getSessionResource());
-        DialectUIManager.INSTANCE.openEditor(sSession, sRepr, new NullProgressMonitor());
+
+        return DialectUIManager.INSTANCE.openEditor(sSession, sRepr, new NullProgressMonitor());
     }
 
     public static void deleteRepresentation(@NonNull Diagram diagram) {

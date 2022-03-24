@@ -105,28 +105,28 @@ public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
     return new QuerySpec(queryReasoner, queryFilePath, query);
   }
 
-  private static String queryResultToString(Object queryResult) {
-    if (queryResult instanceof EObject) {
+  private static String queryResultToString(Object result) {
+    if (result instanceof EObject resultObj) {
       try {
-        var name = FileUtils.getModelObjectFeature((EObject) queryResult, "name");
+        var name = FileUtils.getModelObjectFeature(resultObj, "name");
         if (name != null) {
-          queryResult = name;
+          result = name;
         }
       }
       catch (MMINTException e) {}
     }
-    return queryResult.toString();
+    return result.toString();
   }
 
-  private static void storeQueryResultsAsModelRel(String queryName, List<Object> queryResults, MID instanceMID) {
+  private static void storeQueryResultsAsModelRel(String queryName, List<Object> results, MID instanceMID) {
     var rels = new HashMap<String, ModelRel>();
     var relType = MIDTypeHierarchy.getRootModelRelType();
-    for (var queryResult : queryResults) {
+    for (var result : results) {
       //TODO MMINT[QUERY] Handle tuples/collections as results
-      if (!(queryResult instanceof EObject)) {
+      if (!(result instanceof EObject resultObj)) {
         continue;
       }
-      var modelPath = MIDRegistry.getModelUri((EObject) queryResult);
+      var modelPath = MIDRegistry.getModelUri(resultObj);
       var rel = rels.get(modelPath);
       try {
         if (rel == null) {
@@ -138,28 +138,57 @@ public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
                                                    instanceMID);
           rels.put(modelPath, rel);
         }
-        rel.getModelEndpointRefs().get(0).createModelElementInstanceAndReference((EObject) queryResult, null);
+        rel.getModelEndpointRefs().get(0).createModelElementInstanceAndReference((EObject) result, null);
       }
       catch (MMINTException e) {
-        MMINTException.print(IStatus.WARNING, "Failed to store query result " + queryResult + " for model " +
+        MMINTException.print(IStatus.WARNING, "Failed to store query result " + result + " for model " +
                              modelPath, e);
         continue;
       }
     }
   }
 
-  public static void displayQueryResults(EObject context, List<Object> queryResults, Object query) {
-    var printResults = new ArrayList<String>();
-    var resultUris = new HashSet<String>();
-    Model model = null;
-    for (var result : queryResults) {
-      var printResult = (result instanceof Collection) ?
-        ((Collection) result).stream().map(o -> queryResultToString(o)).collect(Collectors.toList()).toString() :
-        queryResultToString(result);
-      printResults.add(printResult);
-      if (result instanceof EObject resultObj) {
-        resultUris.add(MIDRegistry.getModelElementUri(resultObj));
-        if (model == null) {
+  public static void displayQueryResults(EObject context, List<Object> results, Object query) {
+    var shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+    if (results.isEmpty()) {
+      MessageDialog.openInformation(shell, "Query Results", "No Results");
+      return;
+    }
+
+    /* TODO Refine:
+     * 1) Extend to multiple models
+     * 2) Use dialogs that do not block
+     */
+    var numResults = results.size();
+    for (var i = 0; i < numResults; i++) {
+      var result = results.get(i);
+      String message;
+      var highlightUris = new HashSet<String>();
+      Model model = null;
+      if (result instanceof Collection multiResult) {
+        message = "[";
+        for (var innerResult : multiResult) {
+          if (message.length() > 1) {
+            message += " ,";
+          }
+          message += queryResultToString(innerResult);
+          if (innerResult instanceof EObject innerObj) {
+            highlightUris.add(MIDRegistry.getModelElementUri(innerObj));
+            if (model == null) {
+              try {
+                model = MIDDiagramUtils.getInstanceMIDModelFromModelEditor(innerObj);
+              }
+              catch (MMINTException e) {
+              }
+            }
+          }
+        }
+        message += "]";
+      }
+      else {
+        message = queryResultToString(result);
+        if (result instanceof EObject resultObj) {
+          highlightUris.add(MIDRegistry.getModelElementUri(resultObj));
           try {
             model = MIDDiagramUtils.getInstanceMIDModelFromModelEditor(resultObj);
           }
@@ -167,27 +196,19 @@ public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
           }
         }
       }
-    }
-    /* TODO Refine:
-     * 1) Extend to multiple models
-     * 2) If collection, loop one result at a time, both highlight and text (e.g. res x out of y + different color)
-     *    (how can I show ui blocking text if there are multiple models?)
-     */
-    if (model != null && SiriusUtils.hasSiriusDiagram(model)) {
-      SiriusHighlighter.highlight(model, resultUris, Color.RED);
-    }
-    var shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-    var title = "Query Results";
-    var message = (queryResults.isEmpty()) ? "No Results" : String.join("\n", printResults);
-    if (!queryResults.isEmpty() && context instanceof MID mid) {
-      message += "\n\nDo you want to store the results as model relationships for future use?";
-      var store = MessageDialog.openQuestion(shell, title, message);
-      if (store) {
-        storeQueryResultsAsModelRel(query.toString(), queryResults, mid);
+      if (model != null && SiriusUtils.hasSiriusDiagram(model)) {
+        SiriusHighlighter.highlight(model, highlightUris, Color.RED);
       }
+      var title = "Query Results (" + (i+1) + " out of " + numResults + ")";
+      MessageDialog.openInformation(shell, title + " (" + (i+1) + " out of " + numResults + ")", message);
     }
-    else {
-      MessageDialog.openInformation(shell, title, message);
+
+    if (context instanceof MID mid) {
+      var title = "Query Results";
+      var message = "Do you want to store the results as model relationships for future use?";
+      if (MessageDialog.openQuestion(shell, title, message)) {
+        storeQueryResultsAsModelRel(query.toString(), results, mid);
+      }
     }
   }
 

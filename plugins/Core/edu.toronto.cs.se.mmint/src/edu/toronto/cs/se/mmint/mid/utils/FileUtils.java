@@ -40,6 +40,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.ide.IDE;
 
@@ -438,8 +439,8 @@ public class FileUtils {
 		}
 	}
 
-	public static void openEclipseEditor(String filePath, @Nullable String editorId, boolean isWorkspaceRelative)
-	                                    throws MMINTException {
+	public static IEditorPart openEclipseEditor(String filePath, @Nullable String editorId, boolean isWorkspaceRelative)
+	                                           throws MMINTException {
     //TODO MMINT[OO] Move all into Editor/Diagram
     String sReprUri = null;
     if (filePath.contains(MMINTConstants.MODEL_URI_SEPARATOR)) { // Sirius
@@ -452,7 +453,7 @@ public class FileUtils {
 
 		try {
 		    if (sReprUri != null) {
-		        SiriusUtils.openRepresentation(sReprUri);
+		      return SiriusUtils.openRepresentation(sReprUri);
 		    }
 		    else {
     			var activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
@@ -460,27 +461,27 @@ public class FileUtils {
     				var file = ResourcesPlugin.getWorkspace().getRoot().getFile(
     					new org.eclipse.core.runtime.Path(filePath));
     				if (editorId != null) {
-    					IDE.openEditor(activePage, file, editorId);
+    					return IDE.openEditor(activePage, file, editorId);
     				}
     				else {
-    					IDE.openEditor(activePage, file);
+    					return IDE.openEditor(activePage, file);
     				}
     			}
     			else {
     				if (editorId != null) {
     					if (filePath.endsWith(GMFUtils.DIAGRAM_SUFFIX)) {
     						URI emfUri = FileUtils.createEMFUri(filePath, false);
-    						IDE.openEditor(activePage, new URIEditorInput(emfUri), editorId);
+    						return IDE.openEditor(activePage, new URIEditorInput(emfUri), editorId);
     					}
     					else {
     						var fileUri = new File(filePath).toURI();
-    						IDE.openEditor(activePage, fileUri, editorId, true);
+    						return IDE.openEditor(activePage, fileUri, editorId, true);
     					}
     				}
     				else {
     					var fileUri = new File(filePath).toURI();
     					var file = EFS.getStore(fileUri);
-    					IDE.openEditorOnFileStore(activePage, file);
+    					return IDE.openEditorOnFileStore(activePage, file);
     				}
     			}
 		    }
