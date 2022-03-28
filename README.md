@@ -90,7 +90,7 @@ SoSyM (submitted for review) | Install: `Examples > MMINT - SOSYM22` | [Readme](
 SEFM 21
 * [A Lean Approach to Building Valid Model-Based Safety Arguments](https://doi.org/10.1109/MODELS50736.2021.00028)  
 MODELS 21 | Install: `Examples > MMINT - MODELS21` | [Readme](examples/MODELS21/edu.toronto.cs.se.mmint.examples.models21/MODELS21/README.md)
-* Assurance case property checking with MMINT-A and OCL  
+* [Assurance Case Property Checking with MMINT-A and OCL](https://doi.org/10.1007/978-3-030-82083-1_30)  
 CSER 20
 * [Querying Automotive System Models and Safety Artifacts: Tool Support and Case Study](https://doi.org/10.2991/jase.d.200912.001)  
 JASE Vol. 1-1 | Install: `Examples > MMINT - JASE20` | [Readme](examples/JASE20/edu.toronto.cs.se.mmint.example.jase20/JASE20/README.md)
