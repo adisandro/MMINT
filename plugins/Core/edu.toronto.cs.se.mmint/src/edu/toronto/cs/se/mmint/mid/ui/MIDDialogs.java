@@ -228,7 +228,7 @@ public class MIDDialogs {
   public static String selectSiriusRepresentationsFileToContainModelDiagram(String modelPath)
                          throws MIDDialogCancellation {
     // try a default representations file next to the model first..
-    var sAirdPath = FileUtils.replaceLastSegmentInPath(modelPath, SiriusUtils.DEFAULT_REPRESENTATIONS_FILE);
+    var sAirdPath = FileUtils.replaceLastSegmentInPath(modelPath, SiriusUtils.DEFAULT_REPR_FILE);
     if (FileUtils.isFile(sAirdPath, true)) {
       return sAirdPath;
     }
@@ -237,11 +237,11 @@ public class MIDDialogs {
     var project = FileUtils.getWorkspaceProject(modelPath);
     if (project == null) {
       dialogRoot = ResourcesPlugin.getWorkspace().getRoot();
-      sAirdPath = SiriusUtils.DEFAULT_REPRESENTATIONS_FILE;
+      sAirdPath = SiriusUtils.DEFAULT_REPR_FILE;
     }
     else {
       dialogRoot = project;
-      sAirdPath = project.getFullPath().toString() + IPath.SEPARATOR + SiriusUtils.DEFAULT_REPRESENTATIONS_FILE;
+      sAirdPath = project.getFullPath().toString() + IPath.SEPARATOR + SiriusUtils.DEFAULT_REPR_FILE;
     }
     if (FileUtils.isFile(sAirdPath, true)) {
       return sAirdPath;

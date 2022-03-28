@@ -36,6 +36,7 @@ import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.sirius.business.api.action.AbstractExternalJavaAction;
 import org.eclipse.sirius.ui.business.api.dialect.DialectUIManager;
 import org.eclipse.sirius.viewpoint.DSemanticDecorator;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PlatformUI;
@@ -208,7 +209,7 @@ public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
         }
       }
       var title = "Query Results (" + (i+1) + " out of " + numResults + ")";
-      MessageDialog.openInformation(shell, title, message);
+      MessageDialog.open(MessageDialog.INFORMATION, shell, title, message, SWT.NONE, "Next");
       if (highlighted != null) {
         DialectUIManager.INSTANCE.closeEditor(highlighted, false);
       }
