@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -493,7 +493,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int EXTENDIBLE_ELEMENT_ENDPOINT__SUPERTYPE = EXTENDIBLE_ELEMENT__SUPERTYPE;
+    int EXTENDIBLE_ELEMENT_ENDPOINT__SUPERTYPE = MIDPackage.EXTENDIBLE_ELEMENT__SUPERTYPE;
 
     /**
    * The feature id for the '<em><b>Uri</b></em>' attribute.
@@ -502,7 +502,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int EXTENDIBLE_ELEMENT_ENDPOINT__URI = EXTENDIBLE_ELEMENT__URI;
+    int EXTENDIBLE_ELEMENT_ENDPOINT__URI = MIDPackage.EXTENDIBLE_ELEMENT__URI;
 
     /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -511,7 +511,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int EXTENDIBLE_ELEMENT_ENDPOINT__NAME = EXTENDIBLE_ELEMENT__NAME;
+    int EXTENDIBLE_ELEMENT_ENDPOINT__NAME = MIDPackage.EXTENDIBLE_ELEMENT__NAME;
 
     /**
    * The feature id for the '<em><b>Level</b></em>' attribute.
@@ -520,7 +520,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int EXTENDIBLE_ELEMENT_ENDPOINT__LEVEL = EXTENDIBLE_ELEMENT__LEVEL;
+    int EXTENDIBLE_ELEMENT_ENDPOINT__LEVEL = MIDPackage.EXTENDIBLE_ELEMENT__LEVEL;
 
     /**
    * The feature id for the '<em><b>Metatype Uri</b></em>' attribute.
@@ -529,7 +529,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int EXTENDIBLE_ELEMENT_ENDPOINT__METATYPE_URI = EXTENDIBLE_ELEMENT__METATYPE_URI;
+    int EXTENDIBLE_ELEMENT_ENDPOINT__METATYPE_URI = MIDPackage.EXTENDIBLE_ELEMENT__METATYPE_URI;
 
     /**
    * The feature id for the '<em><b>Dynamic</b></em>' attribute.
@@ -538,7 +538,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int EXTENDIBLE_ELEMENT_ENDPOINT__DYNAMIC = EXTENDIBLE_ELEMENT__DYNAMIC;
+    int EXTENDIBLE_ELEMENT_ENDPOINT__DYNAMIC = MIDPackage.EXTENDIBLE_ELEMENT__DYNAMIC;
 
     /**
    * The feature id for the '<em><b>Constraint</b></em>' containment reference.
@@ -547,7 +547,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int EXTENDIBLE_ELEMENT_ENDPOINT__CONSTRAINT = EXTENDIBLE_ELEMENT__CONSTRAINT;
+    int EXTENDIBLE_ELEMENT_ENDPOINT__CONSTRAINT = MIDPackage.EXTENDIBLE_ELEMENT__CONSTRAINT;
 
     /**
    * The feature id for the '<em><b>Lower Bound</b></em>' attribute.
@@ -556,7 +556,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int EXTENDIBLE_ELEMENT_ENDPOINT__LOWER_BOUND = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 0;
+    int EXTENDIBLE_ELEMENT_ENDPOINT__LOWER_BOUND = MIDPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 0;
 
     /**
    * The feature id for the '<em><b>Upper Bound</b></em>' attribute.
@@ -565,7 +565,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int EXTENDIBLE_ELEMENT_ENDPOINT__UPPER_BOUND = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 1;
+    int EXTENDIBLE_ELEMENT_ENDPOINT__UPPER_BOUND = MIDPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 1;
 
     /**
    * The feature id for the '<em><b>Target</b></em>' reference.
@@ -574,7 +574,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int EXTENDIBLE_ELEMENT_ENDPOINT__TARGET = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 2;
+    int EXTENDIBLE_ELEMENT_ENDPOINT__TARGET = MIDPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 2;
 
     /**
    * The number of structural features of the '<em>Extendible Element Endpoint</em>' class.
@@ -583,7 +583,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int EXTENDIBLE_ELEMENT_ENDPOINT_FEATURE_COUNT = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 3;
+    int EXTENDIBLE_ELEMENT_ENDPOINT_FEATURE_COUNT = MIDPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 3;
 
     /**
    * The operation id for the '<em>Get MID Container</em>' operation.
@@ -592,7 +592,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int EXTENDIBLE_ELEMENT_ENDPOINT___GET_MID_CONTAINER = EXTENDIBLE_ELEMENT___GET_MID_CONTAINER;
+    int EXTENDIBLE_ELEMENT_ENDPOINT___GET_MID_CONTAINER = MIDPackage.EXTENDIBLE_ELEMENT___GET_MID_CONTAINER;
 
     /**
    * The operation id for the '<em>Is Level</em>' operation.
@@ -601,7 +601,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int EXTENDIBLE_ELEMENT_ENDPOINT___IS_LEVEL__MIDLEVEL = EXTENDIBLE_ELEMENT___IS_LEVEL__MIDLEVEL;
+    int EXTENDIBLE_ELEMENT_ENDPOINT___IS_LEVEL__MIDLEVEL = MIDPackage.EXTENDIBLE_ELEMENT___IS_LEVEL__MIDLEVEL;
 
     /**
    * The operation id for the '<em>Is Types Level</em>' operation.
@@ -610,7 +610,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int EXTENDIBLE_ELEMENT_ENDPOINT___IS_TYPES_LEVEL = EXTENDIBLE_ELEMENT___IS_TYPES_LEVEL;
+    int EXTENDIBLE_ELEMENT_ENDPOINT___IS_TYPES_LEVEL = MIDPackage.EXTENDIBLE_ELEMENT___IS_TYPES_LEVEL;
 
     /**
    * The operation id for the '<em>Create Subtype Uri</em>' operation.
@@ -619,7 +619,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int EXTENDIBLE_ELEMENT_ENDPOINT___CREATE_SUBTYPE_URI__STRING_STRING = EXTENDIBLE_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING;
+    int EXTENDIBLE_ELEMENT_ENDPOINT___CREATE_SUBTYPE_URI__STRING_STRING = MIDPackage.EXTENDIBLE_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING;
 
     /**
    * The operation id for the '<em>Add Type Constraint</em>' operation.
@@ -628,7 +628,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int EXTENDIBLE_ELEMENT_ENDPOINT___ADD_TYPE_CONSTRAINT__STRING_STRING = EXTENDIBLE_ELEMENT___ADD_TYPE_CONSTRAINT__STRING_STRING;
+    int EXTENDIBLE_ELEMENT_ENDPOINT___ADD_TYPE_CONSTRAINT__STRING_STRING = MIDPackage.EXTENDIBLE_ELEMENT___ADD_TYPE_CONSTRAINT__STRING_STRING;
 
     /**
    * The operation id for the '<em>Is Instances Level</em>' operation.
@@ -637,7 +637,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int EXTENDIBLE_ELEMENT_ENDPOINT___IS_INSTANCES_LEVEL = EXTENDIBLE_ELEMENT___IS_INSTANCES_LEVEL;
+    int EXTENDIBLE_ELEMENT_ENDPOINT___IS_INSTANCES_LEVEL = MIDPackage.EXTENDIBLE_ELEMENT___IS_INSTANCES_LEVEL;
 
     /**
    * The operation id for the '<em>Get Runtime Types</em>' operation.
@@ -646,7 +646,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int EXTENDIBLE_ELEMENT_ENDPOINT___GET_RUNTIME_TYPES = EXTENDIBLE_ELEMENT___GET_RUNTIME_TYPES;
+    int EXTENDIBLE_ELEMENT_ENDPOINT___GET_RUNTIME_TYPES = MIDPackage.EXTENDIBLE_ELEMENT___GET_RUNTIME_TYPES;
 
     /**
    * The operation id for the '<em>Get Closest Type Constraint</em>' operation.
@@ -655,7 +655,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int EXTENDIBLE_ELEMENT_ENDPOINT___GET_CLOSEST_TYPE_CONSTRAINT = EXTENDIBLE_ELEMENT___GET_CLOSEST_TYPE_CONSTRAINT;
+    int EXTENDIBLE_ELEMENT_ENDPOINT___GET_CLOSEST_TYPE_CONSTRAINT = MIDPackage.EXTENDIBLE_ELEMENT___GET_CLOSEST_TYPE_CONSTRAINT;
 
     /**
    * The operation id for the '<em>Validate Instance Type</em>' operation.
@@ -664,7 +664,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int EXTENDIBLE_ELEMENT_ENDPOINT___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT = EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT;
+    int EXTENDIBLE_ELEMENT_ENDPOINT___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT = MIDPackage.EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT;
 
     /**
    * The operation id for the '<em>Validate Instance</em>' operation.
@@ -673,7 +673,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int EXTENDIBLE_ELEMENT_ENDPOINT___VALIDATE_INSTANCE = EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE;
+    int EXTENDIBLE_ELEMENT_ENDPOINT___VALIDATE_INSTANCE = MIDPackage.EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE;
 
     /**
    * The operation id for the '<em>Validate Instance In Editor</em>' operation.
@@ -682,7 +682,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int EXTENDIBLE_ELEMENT_ENDPOINT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
+    int EXTENDIBLE_ELEMENT_ENDPOINT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = MIDPackage.EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
 
     /**
    * The operation id for the '<em>Is Workflows Level</em>' operation.
@@ -691,7 +691,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int EXTENDIBLE_ELEMENT_ENDPOINT___IS_WORKFLOWS_LEVEL = EXTENDIBLE_ELEMENT___IS_WORKFLOWS_LEVEL;
+    int EXTENDIBLE_ELEMENT_ENDPOINT___IS_WORKFLOWS_LEVEL = MIDPackage.EXTENDIBLE_ELEMENT___IS_WORKFLOWS_LEVEL;
 
     /**
    * The operation id for the '<em>Update Workflow Instance Id</em>' operation.
@@ -700,7 +700,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int EXTENDIBLE_ELEMENT_ENDPOINT___UPDATE_WORKFLOW_INSTANCE_ID__STRING = EXTENDIBLE_ELEMENT___UPDATE_WORKFLOW_INSTANCE_ID__STRING;
+    int EXTENDIBLE_ELEMENT_ENDPOINT___UPDATE_WORKFLOW_INSTANCE_ID__STRING = MIDPackage.EXTENDIBLE_ELEMENT___UPDATE_WORKFLOW_INSTANCE_ID__STRING;
 
     /**
    * The operation id for the '<em>To MID Custom Print Label</em>' operation.
@@ -709,7 +709,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int EXTENDIBLE_ELEMENT_ENDPOINT___TO_MID_CUSTOM_PRINT_LABEL = EXTENDIBLE_ELEMENT___TO_MID_CUSTOM_PRINT_LABEL;
+    int EXTENDIBLE_ELEMENT_ENDPOINT___TO_MID_CUSTOM_PRINT_LABEL = MIDPackage.EXTENDIBLE_ELEMENT___TO_MID_CUSTOM_PRINT_LABEL;
 
     /**
    * The operation id for the '<em>To MID Custom Edit Label</em>' operation.
@@ -718,7 +718,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int EXTENDIBLE_ELEMENT_ENDPOINT___TO_MID_CUSTOM_EDIT_LABEL = EXTENDIBLE_ELEMENT___TO_MID_CUSTOM_EDIT_LABEL;
+    int EXTENDIBLE_ELEMENT_ENDPOINT___TO_MID_CUSTOM_EDIT_LABEL = MIDPackage.EXTENDIBLE_ELEMENT___TO_MID_CUSTOM_EDIT_LABEL;
 
     /**
    * The operation id for the '<em>Update MID Custom Label</em>' operation.
@@ -727,7 +727,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int EXTENDIBLE_ELEMENT_ENDPOINT___UPDATE_MID_CUSTOM_LABEL__STRING = EXTENDIBLE_ELEMENT___UPDATE_MID_CUSTOM_LABEL__STRING;
+    int EXTENDIBLE_ELEMENT_ENDPOINT___UPDATE_MID_CUSTOM_LABEL__STRING = MIDPackage.EXTENDIBLE_ELEMENT___UPDATE_MID_CUSTOM_LABEL__STRING;
 
     /**
    * The operation id for the '<em>Get Metatype</em>' operation.
@@ -736,7 +736,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int EXTENDIBLE_ELEMENT_ENDPOINT___GET_METATYPE = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 0;
+    int EXTENDIBLE_ELEMENT_ENDPOINT___GET_METATYPE = MIDPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 0;
 
     /**
    * The operation id for the '<em>Get Supertype</em>' operation.
@@ -745,7 +745,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int EXTENDIBLE_ELEMENT_ENDPOINT___GET_SUPERTYPE = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 1;
+    int EXTENDIBLE_ELEMENT_ENDPOINT___GET_SUPERTYPE = MIDPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 1;
 
     /**
    * The operation id for the '<em>Get Target Uri</em>' operation.
@@ -754,7 +754,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int EXTENDIBLE_ELEMENT_ENDPOINT___GET_TARGET_URI = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 2;
+    int EXTENDIBLE_ELEMENT_ENDPOINT___GET_TARGET_URI = MIDPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 2;
 
     /**
    * The number of operations of the '<em>Extendible Element Endpoint</em>' class.
@@ -763,7 +763,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 3;
+    int EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT = MIDPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 3;
 
     /**
    * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.impl.GenericElementImpl <em>Generic Element</em>}' class.
@@ -782,7 +782,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int GENERIC_ELEMENT__SUPERTYPE = EXTENDIBLE_ELEMENT__SUPERTYPE;
+    int GENERIC_ELEMENT__SUPERTYPE = MIDPackage.EXTENDIBLE_ELEMENT__SUPERTYPE;
 
     /**
    * The feature id for the '<em><b>Uri</b></em>' attribute.
@@ -791,7 +791,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int GENERIC_ELEMENT__URI = EXTENDIBLE_ELEMENT__URI;
+    int GENERIC_ELEMENT__URI = MIDPackage.EXTENDIBLE_ELEMENT__URI;
 
     /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -800,7 +800,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int GENERIC_ELEMENT__NAME = EXTENDIBLE_ELEMENT__NAME;
+    int GENERIC_ELEMENT__NAME = MIDPackage.EXTENDIBLE_ELEMENT__NAME;
 
     /**
    * The feature id for the '<em><b>Level</b></em>' attribute.
@@ -809,7 +809,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int GENERIC_ELEMENT__LEVEL = EXTENDIBLE_ELEMENT__LEVEL;
+    int GENERIC_ELEMENT__LEVEL = MIDPackage.EXTENDIBLE_ELEMENT__LEVEL;
 
     /**
    * The feature id for the '<em><b>Metatype Uri</b></em>' attribute.
@@ -818,7 +818,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int GENERIC_ELEMENT__METATYPE_URI = EXTENDIBLE_ELEMENT__METATYPE_URI;
+    int GENERIC_ELEMENT__METATYPE_URI = MIDPackage.EXTENDIBLE_ELEMENT__METATYPE_URI;
 
     /**
    * The feature id for the '<em><b>Dynamic</b></em>' attribute.
@@ -827,7 +827,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int GENERIC_ELEMENT__DYNAMIC = EXTENDIBLE_ELEMENT__DYNAMIC;
+    int GENERIC_ELEMENT__DYNAMIC = MIDPackage.EXTENDIBLE_ELEMENT__DYNAMIC;
 
     /**
    * The feature id for the '<em><b>Constraint</b></em>' containment reference.
@@ -836,7 +836,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int GENERIC_ELEMENT__CONSTRAINT = EXTENDIBLE_ELEMENT__CONSTRAINT;
+    int GENERIC_ELEMENT__CONSTRAINT = MIDPackage.EXTENDIBLE_ELEMENT__CONSTRAINT;
 
     /**
    * The feature id for the '<em><b>Abstract</b></em>' attribute.
@@ -845,7 +845,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int GENERIC_ELEMENT__ABSTRACT = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 0;
+    int GENERIC_ELEMENT__ABSTRACT = MIDPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 0;
 
     /**
    * The number of structural features of the '<em>Generic Element</em>' class.
@@ -854,7 +854,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int GENERIC_ELEMENT_FEATURE_COUNT = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 1;
+    int GENERIC_ELEMENT_FEATURE_COUNT = MIDPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 1;
 
     /**
    * The operation id for the '<em>Get Metatype</em>' operation.
@@ -863,7 +863,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int GENERIC_ELEMENT___GET_METATYPE = EXTENDIBLE_ELEMENT___GET_METATYPE;
+    int GENERIC_ELEMENT___GET_METATYPE = MIDPackage.EXTENDIBLE_ELEMENT___GET_METATYPE;
 
     /**
    * The operation id for the '<em>Get MID Container</em>' operation.
@@ -872,7 +872,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int GENERIC_ELEMENT___GET_MID_CONTAINER = EXTENDIBLE_ELEMENT___GET_MID_CONTAINER;
+    int GENERIC_ELEMENT___GET_MID_CONTAINER = MIDPackage.EXTENDIBLE_ELEMENT___GET_MID_CONTAINER;
 
     /**
    * The operation id for the '<em>Is Level</em>' operation.
@@ -881,7 +881,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int GENERIC_ELEMENT___IS_LEVEL__MIDLEVEL = EXTENDIBLE_ELEMENT___IS_LEVEL__MIDLEVEL;
+    int GENERIC_ELEMENT___IS_LEVEL__MIDLEVEL = MIDPackage.EXTENDIBLE_ELEMENT___IS_LEVEL__MIDLEVEL;
 
     /**
    * The operation id for the '<em>Is Types Level</em>' operation.
@@ -890,7 +890,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int GENERIC_ELEMENT___IS_TYPES_LEVEL = EXTENDIBLE_ELEMENT___IS_TYPES_LEVEL;
+    int GENERIC_ELEMENT___IS_TYPES_LEVEL = MIDPackage.EXTENDIBLE_ELEMENT___IS_TYPES_LEVEL;
 
     /**
    * The operation id for the '<em>Create Subtype Uri</em>' operation.
@@ -899,7 +899,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int GENERIC_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING = EXTENDIBLE_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING;
+    int GENERIC_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING = MIDPackage.EXTENDIBLE_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING;
 
     /**
    * The operation id for the '<em>Add Type Constraint</em>' operation.
@@ -908,7 +908,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int GENERIC_ELEMENT___ADD_TYPE_CONSTRAINT__STRING_STRING = EXTENDIBLE_ELEMENT___ADD_TYPE_CONSTRAINT__STRING_STRING;
+    int GENERIC_ELEMENT___ADD_TYPE_CONSTRAINT__STRING_STRING = MIDPackage.EXTENDIBLE_ELEMENT___ADD_TYPE_CONSTRAINT__STRING_STRING;
 
     /**
    * The operation id for the '<em>Is Instances Level</em>' operation.
@@ -917,7 +917,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int GENERIC_ELEMENT___IS_INSTANCES_LEVEL = EXTENDIBLE_ELEMENT___IS_INSTANCES_LEVEL;
+    int GENERIC_ELEMENT___IS_INSTANCES_LEVEL = MIDPackage.EXTENDIBLE_ELEMENT___IS_INSTANCES_LEVEL;
 
     /**
    * The operation id for the '<em>Get Runtime Types</em>' operation.
@@ -926,7 +926,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int GENERIC_ELEMENT___GET_RUNTIME_TYPES = EXTENDIBLE_ELEMENT___GET_RUNTIME_TYPES;
+    int GENERIC_ELEMENT___GET_RUNTIME_TYPES = MIDPackage.EXTENDIBLE_ELEMENT___GET_RUNTIME_TYPES;
 
     /**
    * The operation id for the '<em>Get Closest Type Constraint</em>' operation.
@@ -935,7 +935,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int GENERIC_ELEMENT___GET_CLOSEST_TYPE_CONSTRAINT = EXTENDIBLE_ELEMENT___GET_CLOSEST_TYPE_CONSTRAINT;
+    int GENERIC_ELEMENT___GET_CLOSEST_TYPE_CONSTRAINT = MIDPackage.EXTENDIBLE_ELEMENT___GET_CLOSEST_TYPE_CONSTRAINT;
 
     /**
    * The operation id for the '<em>Validate Instance Type</em>' operation.
@@ -944,7 +944,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int GENERIC_ELEMENT___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT = EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT;
+    int GENERIC_ELEMENT___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT = MIDPackage.EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT;
 
     /**
    * The operation id for the '<em>Validate Instance</em>' operation.
@@ -953,7 +953,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int GENERIC_ELEMENT___VALIDATE_INSTANCE = EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE;
+    int GENERIC_ELEMENT___VALIDATE_INSTANCE = MIDPackage.EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE;
 
     /**
    * The operation id for the '<em>Validate Instance In Editor</em>' operation.
@@ -962,7 +962,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int GENERIC_ELEMENT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
+    int GENERIC_ELEMENT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = MIDPackage.EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
 
     /**
    * The operation id for the '<em>Is Workflows Level</em>' operation.
@@ -971,7 +971,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int GENERIC_ELEMENT___IS_WORKFLOWS_LEVEL = EXTENDIBLE_ELEMENT___IS_WORKFLOWS_LEVEL;
+    int GENERIC_ELEMENT___IS_WORKFLOWS_LEVEL = MIDPackage.EXTENDIBLE_ELEMENT___IS_WORKFLOWS_LEVEL;
 
     /**
    * The operation id for the '<em>Update Workflow Instance Id</em>' operation.
@@ -980,7 +980,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int GENERIC_ELEMENT___UPDATE_WORKFLOW_INSTANCE_ID__STRING = EXTENDIBLE_ELEMENT___UPDATE_WORKFLOW_INSTANCE_ID__STRING;
+    int GENERIC_ELEMENT___UPDATE_WORKFLOW_INSTANCE_ID__STRING = MIDPackage.EXTENDIBLE_ELEMENT___UPDATE_WORKFLOW_INSTANCE_ID__STRING;
 
     /**
    * The operation id for the '<em>To MID Custom Print Label</em>' operation.
@@ -989,7 +989,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int GENERIC_ELEMENT___TO_MID_CUSTOM_PRINT_LABEL = EXTENDIBLE_ELEMENT___TO_MID_CUSTOM_PRINT_LABEL;
+    int GENERIC_ELEMENT___TO_MID_CUSTOM_PRINT_LABEL = MIDPackage.EXTENDIBLE_ELEMENT___TO_MID_CUSTOM_PRINT_LABEL;
 
     /**
    * The operation id for the '<em>To MID Custom Edit Label</em>' operation.
@@ -998,7 +998,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int GENERIC_ELEMENT___TO_MID_CUSTOM_EDIT_LABEL = EXTENDIBLE_ELEMENT___TO_MID_CUSTOM_EDIT_LABEL;
+    int GENERIC_ELEMENT___TO_MID_CUSTOM_EDIT_LABEL = MIDPackage.EXTENDIBLE_ELEMENT___TO_MID_CUSTOM_EDIT_LABEL;
 
     /**
    * The operation id for the '<em>Update MID Custom Label</em>' operation.
@@ -1007,7 +1007,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int GENERIC_ELEMENT___UPDATE_MID_CUSTOM_LABEL__STRING = EXTENDIBLE_ELEMENT___UPDATE_MID_CUSTOM_LABEL__STRING;
+    int GENERIC_ELEMENT___UPDATE_MID_CUSTOM_LABEL__STRING = MIDPackage.EXTENDIBLE_ELEMENT___UPDATE_MID_CUSTOM_LABEL__STRING;
 
     /**
    * The number of operations of the '<em>Generic Element</em>' class.
@@ -1016,7 +1016,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int GENERIC_ELEMENT_OPERATION_COUNT = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 0;
+    int GENERIC_ELEMENT_OPERATION_COUNT = MIDPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 0;
 
     /**
    * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.impl.ModelImpl <em>Model</em>}' class.
@@ -1035,7 +1035,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL__SUPERTYPE = GENERIC_ELEMENT__SUPERTYPE;
+    int MODEL__SUPERTYPE = MIDPackage.GENERIC_ELEMENT__SUPERTYPE;
 
     /**
    * The feature id for the '<em><b>Uri</b></em>' attribute.
@@ -1044,7 +1044,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL__URI = GENERIC_ELEMENT__URI;
+    int MODEL__URI = MIDPackage.GENERIC_ELEMENT__URI;
 
     /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1053,7 +1053,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL__NAME = GENERIC_ELEMENT__NAME;
+    int MODEL__NAME = MIDPackage.GENERIC_ELEMENT__NAME;
 
     /**
    * The feature id for the '<em><b>Level</b></em>' attribute.
@@ -1062,7 +1062,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL__LEVEL = GENERIC_ELEMENT__LEVEL;
+    int MODEL__LEVEL = MIDPackage.GENERIC_ELEMENT__LEVEL;
 
     /**
    * The feature id for the '<em><b>Metatype Uri</b></em>' attribute.
@@ -1071,7 +1071,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL__METATYPE_URI = GENERIC_ELEMENT__METATYPE_URI;
+    int MODEL__METATYPE_URI = MIDPackage.GENERIC_ELEMENT__METATYPE_URI;
 
     /**
    * The feature id for the '<em><b>Dynamic</b></em>' attribute.
@@ -1080,7 +1080,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL__DYNAMIC = GENERIC_ELEMENT__DYNAMIC;
+    int MODEL__DYNAMIC = MIDPackage.GENERIC_ELEMENT__DYNAMIC;
 
     /**
    * The feature id for the '<em><b>Constraint</b></em>' containment reference.
@@ -1089,7 +1089,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL__CONSTRAINT = GENERIC_ELEMENT__CONSTRAINT;
+    int MODEL__CONSTRAINT = MIDPackage.GENERIC_ELEMENT__CONSTRAINT;
 
     /**
    * The feature id for the '<em><b>Abstract</b></em>' attribute.
@@ -1098,7 +1098,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL__ABSTRACT = GENERIC_ELEMENT__ABSTRACT;
+    int MODEL__ABSTRACT = MIDPackage.GENERIC_ELEMENT__ABSTRACT;
 
     /**
    * The feature id for the '<em><b>Origin</b></em>' attribute.
@@ -1107,7 +1107,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL__ORIGIN = GENERIC_ELEMENT_FEATURE_COUNT + 0;
+    int MODEL__ORIGIN = MIDPackage.GENERIC_ELEMENT_FEATURE_COUNT + 0;
 
     /**
    * The feature id for the '<em><b>File Extension</b></em>' attribute.
@@ -1116,7 +1116,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL__FILE_EXTENSION = GENERIC_ELEMENT_FEATURE_COUNT + 1;
+    int MODEL__FILE_EXTENSION = MIDPackage.GENERIC_ELEMENT_FEATURE_COUNT + 1;
 
     /**
    * The feature id for the '<em><b>Editors</b></em>' reference list.
@@ -1125,7 +1125,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL__EDITORS = GENERIC_ELEMENT_FEATURE_COUNT + 2;
+    int MODEL__EDITORS = MIDPackage.GENERIC_ELEMENT_FEATURE_COUNT + 2;
 
     /**
    * The feature id for the '<em><b>Model Elems</b></em>' containment reference list.
@@ -1134,7 +1134,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL__MODEL_ELEMS = GENERIC_ELEMENT_FEATURE_COUNT + 3;
+    int MODEL__MODEL_ELEMS = MIDPackage.GENERIC_ELEMENT_FEATURE_COUNT + 3;
 
     /**
    * The feature id for the '<em><b>Conversion Operators</b></em>' reference list.
@@ -1143,7 +1143,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL__CONVERSION_OPERATORS = GENERIC_ELEMENT_FEATURE_COUNT + 4;
+    int MODEL__CONVERSION_OPERATORS = MIDPackage.GENERIC_ELEMENT_FEATURE_COUNT + 4;
 
     /**
    * The feature id for the '<em><b>EMF Instance Resource</b></em>' attribute.
@@ -1152,7 +1152,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int MODEL__EMF_INSTANCE_RESOURCE = GENERIC_ELEMENT_FEATURE_COUNT + 5;
+  int MODEL__EMF_INSTANCE_RESOURCE = MIDPackage.GENERIC_ELEMENT_FEATURE_COUNT + 5;
 
     /**
    * The feature id for the '<em><b>EMF Instance Root</b></em>' reference.
@@ -1161,7 +1161,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int MODEL__EMF_INSTANCE_ROOT = GENERIC_ELEMENT_FEATURE_COUNT + 6;
+  int MODEL__EMF_INSTANCE_ROOT = MIDPackage.GENERIC_ELEMENT_FEATURE_COUNT + 6;
 
     /**
    * The number of structural features of the '<em>Model</em>' class.
@@ -1170,7 +1170,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_FEATURE_COUNT = GENERIC_ELEMENT_FEATURE_COUNT + 7;
+    int MODEL_FEATURE_COUNT = MIDPackage.GENERIC_ELEMENT_FEATURE_COUNT + 7;
 
     /**
    * The operation id for the '<em>Is Level</em>' operation.
@@ -1179,7 +1179,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL___IS_LEVEL__MIDLEVEL = GENERIC_ELEMENT___IS_LEVEL__MIDLEVEL;
+    int MODEL___IS_LEVEL__MIDLEVEL = MIDPackage.GENERIC_ELEMENT___IS_LEVEL__MIDLEVEL;
 
     /**
    * The operation id for the '<em>Is Types Level</em>' operation.
@@ -1188,7 +1188,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL___IS_TYPES_LEVEL = GENERIC_ELEMENT___IS_TYPES_LEVEL;
+    int MODEL___IS_TYPES_LEVEL = MIDPackage.GENERIC_ELEMENT___IS_TYPES_LEVEL;
 
     /**
    * The operation id for the '<em>Create Subtype Uri</em>' operation.
@@ -1197,7 +1197,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL___CREATE_SUBTYPE_URI__STRING_STRING = GENERIC_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING;
+    int MODEL___CREATE_SUBTYPE_URI__STRING_STRING = MIDPackage.GENERIC_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING;
 
     /**
    * The operation id for the '<em>Add Type Constraint</em>' operation.
@@ -1206,7 +1206,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL___ADD_TYPE_CONSTRAINT__STRING_STRING = GENERIC_ELEMENT___ADD_TYPE_CONSTRAINT__STRING_STRING;
+    int MODEL___ADD_TYPE_CONSTRAINT__STRING_STRING = MIDPackage.GENERIC_ELEMENT___ADD_TYPE_CONSTRAINT__STRING_STRING;
 
     /**
    * The operation id for the '<em>Is Instances Level</em>' operation.
@@ -1215,7 +1215,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL___IS_INSTANCES_LEVEL = GENERIC_ELEMENT___IS_INSTANCES_LEVEL;
+    int MODEL___IS_INSTANCES_LEVEL = MIDPackage.GENERIC_ELEMENT___IS_INSTANCES_LEVEL;
 
     /**
    * The operation id for the '<em>Get Runtime Types</em>' operation.
@@ -1224,7 +1224,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL___GET_RUNTIME_TYPES = GENERIC_ELEMENT___GET_RUNTIME_TYPES;
+    int MODEL___GET_RUNTIME_TYPES = MIDPackage.GENERIC_ELEMENT___GET_RUNTIME_TYPES;
 
     /**
    * The operation id for the '<em>Get Closest Type Constraint</em>' operation.
@@ -1233,7 +1233,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL___GET_CLOSEST_TYPE_CONSTRAINT = GENERIC_ELEMENT___GET_CLOSEST_TYPE_CONSTRAINT;
+    int MODEL___GET_CLOSEST_TYPE_CONSTRAINT = MIDPackage.GENERIC_ELEMENT___GET_CLOSEST_TYPE_CONSTRAINT;
 
     /**
    * The operation id for the '<em>Validate Instance Type</em>' operation.
@@ -1242,7 +1242,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT = GENERIC_ELEMENT___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT;
+    int MODEL___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT = MIDPackage.GENERIC_ELEMENT___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT;
 
     /**
    * The operation id for the '<em>Validate Instance</em>' operation.
@@ -1251,7 +1251,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL___VALIDATE_INSTANCE = GENERIC_ELEMENT___VALIDATE_INSTANCE;
+    int MODEL___VALIDATE_INSTANCE = MIDPackage.GENERIC_ELEMENT___VALIDATE_INSTANCE;
 
     /**
    * The operation id for the '<em>Validate Instance In Editor</em>' operation.
@@ -1260,7 +1260,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = GENERIC_ELEMENT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
+    int MODEL___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = MIDPackage.GENERIC_ELEMENT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
 
     /**
    * The operation id for the '<em>Is Workflows Level</em>' operation.
@@ -1269,7 +1269,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL___IS_WORKFLOWS_LEVEL = GENERIC_ELEMENT___IS_WORKFLOWS_LEVEL;
+    int MODEL___IS_WORKFLOWS_LEVEL = MIDPackage.GENERIC_ELEMENT___IS_WORKFLOWS_LEVEL;
 
     /**
    * The operation id for the '<em>Update Workflow Instance Id</em>' operation.
@@ -1278,7 +1278,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL___UPDATE_WORKFLOW_INSTANCE_ID__STRING = GENERIC_ELEMENT___UPDATE_WORKFLOW_INSTANCE_ID__STRING;
+    int MODEL___UPDATE_WORKFLOW_INSTANCE_ID__STRING = MIDPackage.GENERIC_ELEMENT___UPDATE_WORKFLOW_INSTANCE_ID__STRING;
 
     /**
    * The operation id for the '<em>To MID Custom Print Label</em>' operation.
@@ -1287,7 +1287,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL___TO_MID_CUSTOM_PRINT_LABEL = GENERIC_ELEMENT___TO_MID_CUSTOM_PRINT_LABEL;
+    int MODEL___TO_MID_CUSTOM_PRINT_LABEL = MIDPackage.GENERIC_ELEMENT___TO_MID_CUSTOM_PRINT_LABEL;
 
     /**
    * The operation id for the '<em>To MID Custom Edit Label</em>' operation.
@@ -1296,7 +1296,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL___TO_MID_CUSTOM_EDIT_LABEL = GENERIC_ELEMENT___TO_MID_CUSTOM_EDIT_LABEL;
+    int MODEL___TO_MID_CUSTOM_EDIT_LABEL = MIDPackage.GENERIC_ELEMENT___TO_MID_CUSTOM_EDIT_LABEL;
 
     /**
    * The operation id for the '<em>Update MID Custom Label</em>' operation.
@@ -1305,7 +1305,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL___UPDATE_MID_CUSTOM_LABEL__STRING = GENERIC_ELEMENT___UPDATE_MID_CUSTOM_LABEL__STRING;
+    int MODEL___UPDATE_MID_CUSTOM_LABEL__STRING = MIDPackage.GENERIC_ELEMENT___UPDATE_MID_CUSTOM_LABEL__STRING;
 
     /**
    * The operation id for the '<em>Get Metatype</em>' operation.
@@ -1314,7 +1314,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL___GET_METATYPE = GENERIC_ELEMENT_OPERATION_COUNT + 0;
+    int MODEL___GET_METATYPE = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 0;
 
     /**
    * The operation id for the '<em>Get Supertype</em>' operation.
@@ -1323,7 +1323,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL___GET_SUPERTYPE = GENERIC_ELEMENT_OPERATION_COUNT + 1;
+    int MODEL___GET_SUPERTYPE = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 1;
 
     /**
    * The operation id for the '<em>Get MID Container</em>' operation.
@@ -1332,7 +1332,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL___GET_MID_CONTAINER = GENERIC_ELEMENT_OPERATION_COUNT + 2;
+    int MODEL___GET_MID_CONTAINER = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 2;
 
     /**
    * The operation id for the '<em>Create Subtype</em>' operation.
@@ -1341,7 +1341,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL___CREATE_SUBTYPE__STRING_BOOLEAN = GENERIC_ELEMENT_OPERATION_COUNT + 3;
+    int MODEL___CREATE_SUBTYPE__STRING_BOOLEAN = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 3;
 
     /**
    * The operation id for the '<em>Delete Type</em>' operation.
@@ -1350,7 +1350,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL___DELETE_TYPE = GENERIC_ELEMENT_OPERATION_COUNT + 4;
+    int MODEL___DELETE_TYPE = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 4;
 
     /**
    * The operation id for the '<em>Get EMF Type Root</em>' operation.
@@ -1359,7 +1359,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL___GET_EMF_TYPE_ROOT = GENERIC_ELEMENT_OPERATION_COUNT + 5;
+    int MODEL___GET_EMF_TYPE_ROOT = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 5;
 
     /**
    * The operation id for the '<em>Open Type</em>' operation.
@@ -1368,7 +1368,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL___OPEN_TYPE = GENERIC_ELEMENT_OPERATION_COUNT + 6;
+    int MODEL___OPEN_TYPE = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 6;
 
     /**
    * The operation id for the '<em>Create Instance</em>' operation.
@@ -1377,7 +1377,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL___CREATE_INSTANCE__EOBJECT_STRING_MID = GENERIC_ELEMENT_OPERATION_COUNT + 7;
+    int MODEL___CREATE_INSTANCE__EOBJECT_STRING_MID = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 7;
 
     /**
    * The operation id for the '<em>Create Instance Editor</em>' operation.
@@ -1386,7 +1386,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL___CREATE_INSTANCE_EDITOR__BOOLEAN = GENERIC_ELEMENT_OPERATION_COUNT + 8;
+    int MODEL___CREATE_INSTANCE_EDITOR__BOOLEAN = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 8;
 
     /**
    * The operation id for the '<em>Create Instance And Editor</em>' operation.
@@ -1395,7 +1395,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL___CREATE_INSTANCE_AND_EDITOR__EOBJECT_STRING_MID = GENERIC_ELEMENT_OPERATION_COUNT + 9;
+    int MODEL___CREATE_INSTANCE_AND_EDITOR__EOBJECT_STRING_MID = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 9;
 
     /**
    * The operation id for the '<em>Import Instance</em>' operation.
@@ -1404,7 +1404,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL___IMPORT_INSTANCE__STRING_MID = GENERIC_ELEMENT_OPERATION_COUNT + 10;
+    int MODEL___IMPORT_INSTANCE__STRING_MID = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 10;
 
     /**
    * The operation id for the '<em>Import Instance And Editor</em>' operation.
@@ -1413,7 +1413,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL___IMPORT_INSTANCE_AND_EDITOR__STRING_MID = GENERIC_ELEMENT_OPERATION_COUNT + 11;
+    int MODEL___IMPORT_INSTANCE_AND_EDITOR__STRING_MID = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 11;
 
     /**
    * The operation id for the '<em>Copy Instance</em>' operation.
@@ -1422,7 +1422,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL___COPY_INSTANCE__MODEL_STRING_MID = GENERIC_ELEMENT_OPERATION_COUNT + 12;
+    int MODEL___COPY_INSTANCE__MODEL_STRING_MID = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 12;
 
     /**
    * The operation id for the '<em>Copy Instance And Editor</em>' operation.
@@ -1431,7 +1431,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL___COPY_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MID = GENERIC_ELEMENT_OPERATION_COUNT + 13;
+    int MODEL___COPY_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MID = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 13;
 
     /**
    * The operation id for the '<em>Delete Instance</em>' operation.
@@ -1440,7 +1440,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL___DELETE_INSTANCE = GENERIC_ELEMENT_OPERATION_COUNT + 14;
+    int MODEL___DELETE_INSTANCE = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 14;
 
     /**
    * The operation id for the '<em>Delete Instance And File</em>' operation.
@@ -1449,7 +1449,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL___DELETE_INSTANCE_AND_FILE = GENERIC_ELEMENT_OPERATION_COUNT + 15;
+    int MODEL___DELETE_INSTANCE_AND_FILE = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 15;
 
     /**
    * The operation id for the '<em>Open Instance</em>' operation.
@@ -1458,7 +1458,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL___OPEN_INSTANCE = GENERIC_ELEMENT_OPERATION_COUNT + 16;
+    int MODEL___OPEN_INSTANCE = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 16;
 
     /**
    * The operation id for the '<em>Create Workflow Instance</em>' operation.
@@ -1467,7 +1467,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL___CREATE_WORKFLOW_INSTANCE__STRING_MID = GENERIC_ELEMENT_OPERATION_COUNT + 17;
+    int MODEL___CREATE_WORKFLOW_INSTANCE__STRING_MID = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 17;
 
     /**
    * The operation id for the '<em>Delete Workflow Instance</em>' operation.
@@ -1476,7 +1476,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL___DELETE_WORKFLOW_INSTANCE = GENERIC_ELEMENT_OPERATION_COUNT + 18;
+    int MODEL___DELETE_WORKFLOW_INSTANCE = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 18;
 
     /**
    * The number of operations of the '<em>Model</em>' class.
@@ -1485,7 +1485,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_OPERATION_COUNT = GENERIC_ELEMENT_OPERATION_COUNT + 19;
+    int MODEL_OPERATION_COUNT = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 19;
 
     /**
    * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.impl.ExtendibleElementConstraintImpl <em>Extendible Element Constraint</em>}' class.
@@ -1550,7 +1550,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ELEMENT__SUPERTYPE = EXTENDIBLE_ELEMENT__SUPERTYPE;
+    int MODEL_ELEMENT__SUPERTYPE = MIDPackage.EXTENDIBLE_ELEMENT__SUPERTYPE;
 
     /**
    * The feature id for the '<em><b>Uri</b></em>' attribute.
@@ -1559,7 +1559,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ELEMENT__URI = EXTENDIBLE_ELEMENT__URI;
+    int MODEL_ELEMENT__URI = MIDPackage.EXTENDIBLE_ELEMENT__URI;
 
     /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1568,7 +1568,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ELEMENT__NAME = EXTENDIBLE_ELEMENT__NAME;
+    int MODEL_ELEMENT__NAME = MIDPackage.EXTENDIBLE_ELEMENT__NAME;
 
     /**
    * The feature id for the '<em><b>Level</b></em>' attribute.
@@ -1577,7 +1577,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ELEMENT__LEVEL = EXTENDIBLE_ELEMENT__LEVEL;
+    int MODEL_ELEMENT__LEVEL = MIDPackage.EXTENDIBLE_ELEMENT__LEVEL;
 
     /**
    * The feature id for the '<em><b>Metatype Uri</b></em>' attribute.
@@ -1586,7 +1586,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ELEMENT__METATYPE_URI = EXTENDIBLE_ELEMENT__METATYPE_URI;
+    int MODEL_ELEMENT__METATYPE_URI = MIDPackage.EXTENDIBLE_ELEMENT__METATYPE_URI;
 
     /**
    * The feature id for the '<em><b>Dynamic</b></em>' attribute.
@@ -1595,7 +1595,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ELEMENT__DYNAMIC = EXTENDIBLE_ELEMENT__DYNAMIC;
+    int MODEL_ELEMENT__DYNAMIC = MIDPackage.EXTENDIBLE_ELEMENT__DYNAMIC;
 
     /**
    * The feature id for the '<em><b>Constraint</b></em>' containment reference.
@@ -1604,7 +1604,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ELEMENT__CONSTRAINT = EXTENDIBLE_ELEMENT__CONSTRAINT;
+    int MODEL_ELEMENT__CONSTRAINT = MIDPackage.EXTENDIBLE_ELEMENT__CONSTRAINT;
 
     /**
    * The feature id for the '<em><b>EInfo</b></em>' containment reference.
@@ -1613,7 +1613,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ELEMENT__EINFO = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 0;
+    int MODEL_ELEMENT__EINFO = MIDPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 0;
 
     /**
    * The feature id for the '<em><b>EMF Instance Object</b></em>' reference.
@@ -1622,7 +1622,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int MODEL_ELEMENT__EMF_INSTANCE_OBJECT = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 1;
+  int MODEL_ELEMENT__EMF_INSTANCE_OBJECT = MIDPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 1;
 
     /**
    * The number of structural features of the '<em>Model Element</em>' class.
@@ -1631,7 +1631,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ELEMENT_FEATURE_COUNT = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 2;
+    int MODEL_ELEMENT_FEATURE_COUNT = MIDPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 2;
 
     /**
    * The operation id for the '<em>Is Level</em>' operation.
@@ -1640,7 +1640,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ELEMENT___IS_LEVEL__MIDLEVEL = EXTENDIBLE_ELEMENT___IS_LEVEL__MIDLEVEL;
+    int MODEL_ELEMENT___IS_LEVEL__MIDLEVEL = MIDPackage.EXTENDIBLE_ELEMENT___IS_LEVEL__MIDLEVEL;
 
     /**
    * The operation id for the '<em>Is Types Level</em>' operation.
@@ -1649,7 +1649,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ELEMENT___IS_TYPES_LEVEL = EXTENDIBLE_ELEMENT___IS_TYPES_LEVEL;
+    int MODEL_ELEMENT___IS_TYPES_LEVEL = MIDPackage.EXTENDIBLE_ELEMENT___IS_TYPES_LEVEL;
 
     /**
    * The operation id for the '<em>Create Subtype Uri</em>' operation.
@@ -1658,7 +1658,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING = EXTENDIBLE_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING;
+    int MODEL_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING = MIDPackage.EXTENDIBLE_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING;
 
     /**
    * The operation id for the '<em>Add Type Constraint</em>' operation.
@@ -1667,7 +1667,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ELEMENT___ADD_TYPE_CONSTRAINT__STRING_STRING = EXTENDIBLE_ELEMENT___ADD_TYPE_CONSTRAINT__STRING_STRING;
+    int MODEL_ELEMENT___ADD_TYPE_CONSTRAINT__STRING_STRING = MIDPackage.EXTENDIBLE_ELEMENT___ADD_TYPE_CONSTRAINT__STRING_STRING;
 
     /**
    * The operation id for the '<em>Is Instances Level</em>' operation.
@@ -1676,7 +1676,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ELEMENT___IS_INSTANCES_LEVEL = EXTENDIBLE_ELEMENT___IS_INSTANCES_LEVEL;
+    int MODEL_ELEMENT___IS_INSTANCES_LEVEL = MIDPackage.EXTENDIBLE_ELEMENT___IS_INSTANCES_LEVEL;
 
     /**
    * The operation id for the '<em>Get Runtime Types</em>' operation.
@@ -1685,7 +1685,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ELEMENT___GET_RUNTIME_TYPES = EXTENDIBLE_ELEMENT___GET_RUNTIME_TYPES;
+    int MODEL_ELEMENT___GET_RUNTIME_TYPES = MIDPackage.EXTENDIBLE_ELEMENT___GET_RUNTIME_TYPES;
 
     /**
    * The operation id for the '<em>Get Closest Type Constraint</em>' operation.
@@ -1694,7 +1694,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ELEMENT___GET_CLOSEST_TYPE_CONSTRAINT = EXTENDIBLE_ELEMENT___GET_CLOSEST_TYPE_CONSTRAINT;
+    int MODEL_ELEMENT___GET_CLOSEST_TYPE_CONSTRAINT = MIDPackage.EXTENDIBLE_ELEMENT___GET_CLOSEST_TYPE_CONSTRAINT;
 
     /**
    * The operation id for the '<em>Validate Instance Type</em>' operation.
@@ -1703,7 +1703,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ELEMENT___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT = EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT;
+    int MODEL_ELEMENT___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT = MIDPackage.EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT;
 
     /**
    * The operation id for the '<em>Validate Instance</em>' operation.
@@ -1712,7 +1712,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ELEMENT___VALIDATE_INSTANCE = EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE;
+    int MODEL_ELEMENT___VALIDATE_INSTANCE = MIDPackage.EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE;
 
     /**
    * The operation id for the '<em>Validate Instance In Editor</em>' operation.
@@ -1721,7 +1721,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ELEMENT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
+    int MODEL_ELEMENT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = MIDPackage.EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
 
     /**
    * The operation id for the '<em>Is Workflows Level</em>' operation.
@@ -1730,7 +1730,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ELEMENT___IS_WORKFLOWS_LEVEL = EXTENDIBLE_ELEMENT___IS_WORKFLOWS_LEVEL;
+    int MODEL_ELEMENT___IS_WORKFLOWS_LEVEL = MIDPackage.EXTENDIBLE_ELEMENT___IS_WORKFLOWS_LEVEL;
 
     /**
    * The operation id for the '<em>Update Workflow Instance Id</em>' operation.
@@ -1739,7 +1739,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ELEMENT___UPDATE_WORKFLOW_INSTANCE_ID__STRING = EXTENDIBLE_ELEMENT___UPDATE_WORKFLOW_INSTANCE_ID__STRING;
+    int MODEL_ELEMENT___UPDATE_WORKFLOW_INSTANCE_ID__STRING = MIDPackage.EXTENDIBLE_ELEMENT___UPDATE_WORKFLOW_INSTANCE_ID__STRING;
 
     /**
    * The operation id for the '<em>To MID Custom Print Label</em>' operation.
@@ -1748,7 +1748,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ELEMENT___TO_MID_CUSTOM_PRINT_LABEL = EXTENDIBLE_ELEMENT___TO_MID_CUSTOM_PRINT_LABEL;
+    int MODEL_ELEMENT___TO_MID_CUSTOM_PRINT_LABEL = MIDPackage.EXTENDIBLE_ELEMENT___TO_MID_CUSTOM_PRINT_LABEL;
 
     /**
    * The operation id for the '<em>To MID Custom Edit Label</em>' operation.
@@ -1757,7 +1757,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ELEMENT___TO_MID_CUSTOM_EDIT_LABEL = EXTENDIBLE_ELEMENT___TO_MID_CUSTOM_EDIT_LABEL;
+    int MODEL_ELEMENT___TO_MID_CUSTOM_EDIT_LABEL = MIDPackage.EXTENDIBLE_ELEMENT___TO_MID_CUSTOM_EDIT_LABEL;
 
     /**
    * The operation id for the '<em>Update MID Custom Label</em>' operation.
@@ -1766,7 +1766,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ELEMENT___UPDATE_MID_CUSTOM_LABEL__STRING = EXTENDIBLE_ELEMENT___UPDATE_MID_CUSTOM_LABEL__STRING;
+    int MODEL_ELEMENT___UPDATE_MID_CUSTOM_LABEL__STRING = MIDPackage.EXTENDIBLE_ELEMENT___UPDATE_MID_CUSTOM_LABEL__STRING;
 
     /**
    * The operation id for the '<em>Get Metatype</em>' operation.
@@ -1775,7 +1775,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ELEMENT___GET_METATYPE = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 0;
+    int MODEL_ELEMENT___GET_METATYPE = MIDPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 0;
 
     /**
    * The operation id for the '<em>Get Supertype</em>' operation.
@@ -1784,7 +1784,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ELEMENT___GET_SUPERTYPE = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 1;
+    int MODEL_ELEMENT___GET_SUPERTYPE = MIDPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 1;
 
     /**
    * The operation id for the '<em>Get MID Container</em>' operation.
@@ -1793,7 +1793,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ELEMENT___GET_MID_CONTAINER = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 2;
+    int MODEL_ELEMENT___GET_MID_CONTAINER = MIDPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 2;
 
     /**
    * The operation id for the '<em>Create Type Reference</em>' operation.
@@ -1802,7 +1802,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ELEMENT___CREATE_TYPE_REFERENCE__MODELELEMENTREFERENCE_BOOLEAN_MODELENDPOINTREFERENCE = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 3;
+    int MODEL_ELEMENT___CREATE_TYPE_REFERENCE__MODELELEMENTREFERENCE_BOOLEAN_MODELENDPOINTREFERENCE = MIDPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 3;
 
     /**
    * The operation id for the '<em>Create Subtype And Reference</em>' operation.
@@ -1811,7 +1811,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ELEMENT___CREATE_SUBTYPE_AND_REFERENCE__MODELELEMENTREFERENCE_STRING_STRING_EMFINFO_MODELENDPOINTREFERENCE = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 4;
+    int MODEL_ELEMENT___CREATE_SUBTYPE_AND_REFERENCE__MODELELEMENTREFERENCE_STRING_STRING_EMFINFO_MODELENDPOINTREFERENCE = MIDPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 4;
 
     /**
    * The operation id for the '<em>Delete Type</em>' operation.
@@ -1820,7 +1820,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ELEMENT___DELETE_TYPE = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 5;
+    int MODEL_ELEMENT___DELETE_TYPE = MIDPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 5;
 
     /**
    * The operation id for the '<em>Get EMF Type Object</em>' operation.
@@ -1829,7 +1829,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ELEMENT___GET_EMF_TYPE_OBJECT = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 6;
+    int MODEL_ELEMENT___GET_EMF_TYPE_OBJECT = MIDPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 6;
 
     /**
    * The operation id for the '<em>Create Instance Reference</em>' operation.
@@ -1838,7 +1838,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ELEMENT___CREATE_INSTANCE_REFERENCE__MODELENDPOINTREFERENCE = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 7;
+    int MODEL_ELEMENT___CREATE_INSTANCE_REFERENCE__MODELENDPOINTREFERENCE = MIDPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 7;
 
     /**
    * The operation id for the '<em>Create Instance And Reference</em>' operation.
@@ -1847,7 +1847,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ELEMENT___CREATE_INSTANCE_AND_REFERENCE__STRING_STRING_EMFINFO_MODELENDPOINTREFERENCE = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 8;
+    int MODEL_ELEMENT___CREATE_INSTANCE_AND_REFERENCE__STRING_STRING_EMFINFO_MODELENDPOINTREFERENCE = MIDPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 8;
 
     /**
    * The operation id for the '<em>Delete Instance</em>' operation.
@@ -1856,7 +1856,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ELEMENT___DELETE_INSTANCE = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 9;
+    int MODEL_ELEMENT___DELETE_INSTANCE = MIDPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 9;
 
     /**
    * The number of operations of the '<em>Model Element</em>' class.
@@ -1865,7 +1865,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ELEMENT_OPERATION_COUNT = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 10;
+    int MODEL_ELEMENT_OPERATION_COUNT = MIDPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 10;
 
     /**
    * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.impl.ModelEndpointImpl <em>Model Endpoint</em>}' class.
@@ -1884,7 +1884,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ENDPOINT__SUPERTYPE = EXTENDIBLE_ELEMENT_ENDPOINT__SUPERTYPE;
+    int MODEL_ENDPOINT__SUPERTYPE = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__SUPERTYPE;
 
     /**
    * The feature id for the '<em><b>Uri</b></em>' attribute.
@@ -1893,7 +1893,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ENDPOINT__URI = EXTENDIBLE_ELEMENT_ENDPOINT__URI;
+    int MODEL_ENDPOINT__URI = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__URI;
 
     /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1902,7 +1902,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ENDPOINT__NAME = EXTENDIBLE_ELEMENT_ENDPOINT__NAME;
+    int MODEL_ENDPOINT__NAME = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__NAME;
 
     /**
    * The feature id for the '<em><b>Level</b></em>' attribute.
@@ -1911,7 +1911,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ENDPOINT__LEVEL = EXTENDIBLE_ELEMENT_ENDPOINT__LEVEL;
+    int MODEL_ENDPOINT__LEVEL = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__LEVEL;
 
     /**
    * The feature id for the '<em><b>Metatype Uri</b></em>' attribute.
@@ -1920,7 +1920,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ENDPOINT__METATYPE_URI = EXTENDIBLE_ELEMENT_ENDPOINT__METATYPE_URI;
+    int MODEL_ENDPOINT__METATYPE_URI = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__METATYPE_URI;
 
     /**
    * The feature id for the '<em><b>Dynamic</b></em>' attribute.
@@ -1929,7 +1929,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ENDPOINT__DYNAMIC = EXTENDIBLE_ELEMENT_ENDPOINT__DYNAMIC;
+    int MODEL_ENDPOINT__DYNAMIC = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__DYNAMIC;
 
     /**
    * The feature id for the '<em><b>Constraint</b></em>' containment reference.
@@ -1938,7 +1938,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ENDPOINT__CONSTRAINT = EXTENDIBLE_ELEMENT_ENDPOINT__CONSTRAINT;
+    int MODEL_ENDPOINT__CONSTRAINT = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__CONSTRAINT;
 
     /**
    * The feature id for the '<em><b>Lower Bound</b></em>' attribute.
@@ -1947,7 +1947,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ENDPOINT__LOWER_BOUND = EXTENDIBLE_ELEMENT_ENDPOINT__LOWER_BOUND;
+    int MODEL_ENDPOINT__LOWER_BOUND = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__LOWER_BOUND;
 
     /**
    * The feature id for the '<em><b>Upper Bound</b></em>' attribute.
@@ -1956,7 +1956,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ENDPOINT__UPPER_BOUND = EXTENDIBLE_ELEMENT_ENDPOINT__UPPER_BOUND;
+    int MODEL_ENDPOINT__UPPER_BOUND = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__UPPER_BOUND;
 
     /**
    * The feature id for the '<em><b>Target</b></em>' reference.
@@ -1965,7 +1965,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ENDPOINT__TARGET = EXTENDIBLE_ELEMENT_ENDPOINT__TARGET;
+    int MODEL_ENDPOINT__TARGET = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__TARGET;
 
     /**
    * The number of structural features of the '<em>Model Endpoint</em>' class.
@@ -1974,7 +1974,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ENDPOINT_FEATURE_COUNT = EXTENDIBLE_ELEMENT_ENDPOINT_FEATURE_COUNT + 0;
+    int MODEL_ENDPOINT_FEATURE_COUNT = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT_FEATURE_COUNT + 0;
 
     /**
    * The operation id for the '<em>Is Level</em>' operation.
@@ -1983,7 +1983,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ENDPOINT___IS_LEVEL__MIDLEVEL = EXTENDIBLE_ELEMENT_ENDPOINT___IS_LEVEL__MIDLEVEL;
+    int MODEL_ENDPOINT___IS_LEVEL__MIDLEVEL = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___IS_LEVEL__MIDLEVEL;
 
     /**
    * The operation id for the '<em>Is Types Level</em>' operation.
@@ -1992,7 +1992,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ENDPOINT___IS_TYPES_LEVEL = EXTENDIBLE_ELEMENT_ENDPOINT___IS_TYPES_LEVEL;
+    int MODEL_ENDPOINT___IS_TYPES_LEVEL = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___IS_TYPES_LEVEL;
 
     /**
    * The operation id for the '<em>Create Subtype Uri</em>' operation.
@@ -2001,7 +2001,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ENDPOINT___CREATE_SUBTYPE_URI__STRING_STRING = EXTENDIBLE_ELEMENT_ENDPOINT___CREATE_SUBTYPE_URI__STRING_STRING;
+    int MODEL_ENDPOINT___CREATE_SUBTYPE_URI__STRING_STRING = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___CREATE_SUBTYPE_URI__STRING_STRING;
 
     /**
    * The operation id for the '<em>Add Type Constraint</em>' operation.
@@ -2010,7 +2010,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ENDPOINT___ADD_TYPE_CONSTRAINT__STRING_STRING = EXTENDIBLE_ELEMENT_ENDPOINT___ADD_TYPE_CONSTRAINT__STRING_STRING;
+    int MODEL_ENDPOINT___ADD_TYPE_CONSTRAINT__STRING_STRING = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___ADD_TYPE_CONSTRAINT__STRING_STRING;
 
     /**
    * The operation id for the '<em>Is Instances Level</em>' operation.
@@ -2019,7 +2019,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ENDPOINT___IS_INSTANCES_LEVEL = EXTENDIBLE_ELEMENT_ENDPOINT___IS_INSTANCES_LEVEL;
+    int MODEL_ENDPOINT___IS_INSTANCES_LEVEL = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___IS_INSTANCES_LEVEL;
 
     /**
    * The operation id for the '<em>Get Runtime Types</em>' operation.
@@ -2028,7 +2028,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ENDPOINT___GET_RUNTIME_TYPES = EXTENDIBLE_ELEMENT_ENDPOINT___GET_RUNTIME_TYPES;
+    int MODEL_ENDPOINT___GET_RUNTIME_TYPES = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___GET_RUNTIME_TYPES;
 
     /**
    * The operation id for the '<em>Get Closest Type Constraint</em>' operation.
@@ -2037,7 +2037,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ENDPOINT___GET_CLOSEST_TYPE_CONSTRAINT = EXTENDIBLE_ELEMENT_ENDPOINT___GET_CLOSEST_TYPE_CONSTRAINT;
+    int MODEL_ENDPOINT___GET_CLOSEST_TYPE_CONSTRAINT = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___GET_CLOSEST_TYPE_CONSTRAINT;
 
     /**
    * The operation id for the '<em>Validate Instance Type</em>' operation.
@@ -2046,7 +2046,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ENDPOINT___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT = EXTENDIBLE_ELEMENT_ENDPOINT___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT;
+    int MODEL_ENDPOINT___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT;
 
     /**
    * The operation id for the '<em>Validate Instance</em>' operation.
@@ -2055,7 +2055,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ENDPOINT___VALIDATE_INSTANCE = EXTENDIBLE_ELEMENT_ENDPOINT___VALIDATE_INSTANCE;
+    int MODEL_ENDPOINT___VALIDATE_INSTANCE = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___VALIDATE_INSTANCE;
 
     /**
    * The operation id for the '<em>Validate Instance In Editor</em>' operation.
@@ -2064,7 +2064,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ENDPOINT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = EXTENDIBLE_ELEMENT_ENDPOINT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
+    int MODEL_ENDPOINT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
 
     /**
    * The operation id for the '<em>Is Workflows Level</em>' operation.
@@ -2073,7 +2073,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ENDPOINT___IS_WORKFLOWS_LEVEL = EXTENDIBLE_ELEMENT_ENDPOINT___IS_WORKFLOWS_LEVEL;
+    int MODEL_ENDPOINT___IS_WORKFLOWS_LEVEL = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___IS_WORKFLOWS_LEVEL;
 
     /**
    * The operation id for the '<em>Update Workflow Instance Id</em>' operation.
@@ -2082,7 +2082,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ENDPOINT___UPDATE_WORKFLOW_INSTANCE_ID__STRING = EXTENDIBLE_ELEMENT_ENDPOINT___UPDATE_WORKFLOW_INSTANCE_ID__STRING;
+    int MODEL_ENDPOINT___UPDATE_WORKFLOW_INSTANCE_ID__STRING = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___UPDATE_WORKFLOW_INSTANCE_ID__STRING;
 
     /**
    * The operation id for the '<em>To MID Custom Print Label</em>' operation.
@@ -2091,7 +2091,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ENDPOINT___TO_MID_CUSTOM_PRINT_LABEL = EXTENDIBLE_ELEMENT_ENDPOINT___TO_MID_CUSTOM_PRINT_LABEL;
+    int MODEL_ENDPOINT___TO_MID_CUSTOM_PRINT_LABEL = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___TO_MID_CUSTOM_PRINT_LABEL;
 
     /**
    * The operation id for the '<em>To MID Custom Edit Label</em>' operation.
@@ -2100,7 +2100,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ENDPOINT___TO_MID_CUSTOM_EDIT_LABEL = EXTENDIBLE_ELEMENT_ENDPOINT___TO_MID_CUSTOM_EDIT_LABEL;
+    int MODEL_ENDPOINT___TO_MID_CUSTOM_EDIT_LABEL = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___TO_MID_CUSTOM_EDIT_LABEL;
 
     /**
    * The operation id for the '<em>Update MID Custom Label</em>' operation.
@@ -2109,7 +2109,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ENDPOINT___UPDATE_MID_CUSTOM_LABEL__STRING = EXTENDIBLE_ELEMENT_ENDPOINT___UPDATE_MID_CUSTOM_LABEL__STRING;
+    int MODEL_ENDPOINT___UPDATE_MID_CUSTOM_LABEL__STRING = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___UPDATE_MID_CUSTOM_LABEL__STRING;
 
     /**
    * The operation id for the '<em>Get Target Uri</em>' operation.
@@ -2118,7 +2118,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ENDPOINT___GET_TARGET_URI = EXTENDIBLE_ELEMENT_ENDPOINT___GET_TARGET_URI;
+    int MODEL_ENDPOINT___GET_TARGET_URI = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___GET_TARGET_URI;
 
     /**
    * The operation id for the '<em>Get Metatype</em>' operation.
@@ -2127,7 +2127,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ENDPOINT___GET_METATYPE = EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 0;
+    int MODEL_ENDPOINT___GET_METATYPE = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 0;
 
     /**
    * The operation id for the '<em>Get Supertype</em>' operation.
@@ -2136,7 +2136,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ENDPOINT___GET_SUPERTYPE = EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 1;
+    int MODEL_ENDPOINT___GET_SUPERTYPE = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 1;
 
     /**
    * The operation id for the '<em>Get MID Container</em>' operation.
@@ -2145,7 +2145,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ENDPOINT___GET_MID_CONTAINER = EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 2;
+    int MODEL_ENDPOINT___GET_MID_CONTAINER = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 2;
 
     /**
    * The operation id for the '<em>Get Target</em>' operation.
@@ -2154,7 +2154,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ENDPOINT___GET_TARGET = EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 3;
+    int MODEL_ENDPOINT___GET_TARGET = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 3;
 
     /**
    * The operation id for the '<em>Create Type Reference</em>' operation.
@@ -2163,7 +2163,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ENDPOINT___CREATE_TYPE_REFERENCE__BOOLEAN_MODELREL = EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 4;
+    int MODEL_ENDPOINT___CREATE_TYPE_REFERENCE__BOOLEAN_MODELREL = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 4;
 
     /**
    * The operation id for the '<em>Create Subtype</em>' operation.
@@ -2172,7 +2172,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ENDPOINT___CREATE_SUBTYPE__STRING_MODEL_BOOLEAN_MODELREL = EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 5;
+    int MODEL_ENDPOINT___CREATE_SUBTYPE__STRING_MODEL_BOOLEAN_MODELREL = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 5;
 
     /**
    * The operation id for the '<em>Replace Subtype</em>' operation.
@@ -2181,7 +2181,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ENDPOINT___REPLACE_SUBTYPE__MODELENDPOINT_STRING_MODEL = EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 6;
+    int MODEL_ENDPOINT___REPLACE_SUBTYPE__MODELENDPOINT_STRING_MODEL = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 6;
 
     /**
    * The operation id for the '<em>Delete Type</em>' operation.
@@ -2190,7 +2190,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ENDPOINT___DELETE_TYPE__BOOLEAN = EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 7;
+    int MODEL_ENDPOINT___DELETE_TYPE__BOOLEAN = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 7;
 
     /**
    * The operation id for the '<em>Create Instance Reference</em>' operation.
@@ -2199,7 +2199,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ENDPOINT___CREATE_INSTANCE_REFERENCE__MODELREL = EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 8;
+    int MODEL_ENDPOINT___CREATE_INSTANCE_REFERENCE__MODELREL = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 8;
 
     /**
    * The operation id for the '<em>Create Instance</em>' operation.
@@ -2208,7 +2208,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ENDPOINT___CREATE_INSTANCE__MODEL_MODELREL = EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 9;
+    int MODEL_ENDPOINT___CREATE_INSTANCE__MODEL_MODELREL = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 9;
 
     /**
    * The operation id for the '<em>Create Instance</em>' operation.
@@ -2217,7 +2217,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ENDPOINT___CREATE_INSTANCE__MODEL_OPERATOR_STRING = EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 10;
+    int MODEL_ENDPOINT___CREATE_INSTANCE__MODEL_OPERATOR_STRING = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 10;
 
     /**
    * The operation id for the '<em>Replace Instance</em>' operation.
@@ -2226,7 +2226,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ENDPOINT___REPLACE_INSTANCE__MODELENDPOINT_MODEL = EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 11;
+    int MODEL_ENDPOINT___REPLACE_INSTANCE__MODELENDPOINT_MODEL = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 11;
 
     /**
    * The operation id for the '<em>Delete Instance</em>' operation.
@@ -2235,7 +2235,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ENDPOINT___DELETE_INSTANCE__BOOLEAN = EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 12;
+    int MODEL_ENDPOINT___DELETE_INSTANCE__BOOLEAN = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 12;
 
     /**
    * The operation id for the '<em>Create Workflow Instance</em>' operation.
@@ -2244,7 +2244,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ENDPOINT___CREATE_WORKFLOW_INSTANCE__MODEL_MODELREL = EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 13;
+    int MODEL_ENDPOINT___CREATE_WORKFLOW_INSTANCE__MODEL_MODELREL = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 13;
 
     /**
    * The operation id for the '<em>Create Workflow Instance</em>' operation.
@@ -2253,7 +2253,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ENDPOINT___CREATE_WORKFLOW_INSTANCE__MODEL_OPERATOR_STRING = EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 14;
+    int MODEL_ENDPOINT___CREATE_WORKFLOW_INSTANCE__MODEL_OPERATOR_STRING = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 14;
 
     /**
    * The operation id for the '<em>Replace Workflow Instance</em>' operation.
@@ -2262,7 +2262,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ENDPOINT___REPLACE_WORKFLOW_INSTANCE__MODELENDPOINT_MODEL = EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 15;
+    int MODEL_ENDPOINT___REPLACE_WORKFLOW_INSTANCE__MODELENDPOINT_MODEL = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 15;
 
     /**
    * The operation id for the '<em>Delete Workflow Instance</em>' operation.
@@ -2271,7 +2271,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ENDPOINT___DELETE_WORKFLOW_INSTANCE = EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 16;
+    int MODEL_ENDPOINT___DELETE_WORKFLOW_INSTANCE = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 16;
 
     /**
    * The number of operations of the '<em>Model Endpoint</em>' class.
@@ -2280,7 +2280,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ENDPOINT_OPERATION_COUNT = EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 17;
+    int MODEL_ENDPOINT_OPERATION_COUNT = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 17;
 
     /**
    * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.impl.EMFInfoImpl <em>EMF Info</em>}' class.
@@ -2424,6 +2424,17 @@ public interface MIDPackage extends EPackage {
    * @generated
    */
     int IVALIDATION_CONTEXT = 15;
+
+
+    /**
+   * The meta object id for the '<em>IEditor Part</em>' data type.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.eclipse.ui.IEditorPart
+   * @see edu.toronto.cs.se.mmint.mid.impl.MIDPackageImpl#getIEditorPart()
+   * @generated
+   */
+  int IEDITOR_PART = 16;
 
 
     /**
@@ -3698,6 +3709,17 @@ public interface MIDPackage extends EPackage {
     EDataType getIValidationContext();
 
     /**
+   * Returns the meta object for data type '{@link org.eclipse.ui.IEditorPart <em>IEditor Part</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for data type '<em>IEditor Part</em>'.
+   * @see org.eclipse.ui.IEditorPart
+   * @model instanceClass="org.eclipse.ui.IEditorPart" serializeable="false"
+   * @generated
+   */
+  EDataType getIEditorPart();
+
+    /**
    * Returns the factory that creates the instances of the model.
    * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -3728,7 +3750,7 @@ public interface MIDPackage extends EPackage {
      * @see edu.toronto.cs.se.mmint.mid.impl.MIDPackageImpl#getMID()
      * @generated
      */
-        EClass MID = eINSTANCE.getMID();
+        EClass MID = MIDPackage.eINSTANCE.getMID();
 
         /**
      * The meta object literal for the '<em><b>Models</b></em>' containment reference list feature.
@@ -3736,7 +3758,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EReference MID__MODELS = eINSTANCE.getMID_Models();
+        EReference MID__MODELS = MIDPackage.eINSTANCE.getMID_Models();
 
         /**
      * The meta object literal for the '<em><b>Editors</b></em>' containment reference list feature.
@@ -3744,7 +3766,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EReference MID__EDITORS = eINSTANCE.getMID_Editors();
+        EReference MID__EDITORS = MIDPackage.eINSTANCE.getMID_Editors();
 
         /**
      * The meta object literal for the '<em><b>Operators</b></em>' containment reference list feature.
@@ -3752,7 +3774,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EReference MID__OPERATORS = eINSTANCE.getMID_Operators();
+        EReference MID__OPERATORS = MIDPackage.eINSTANCE.getMID_Operators();
 
         /**
      * The meta object literal for the '<em><b>Extendible Table</b></em>' map feature.
@@ -3760,7 +3782,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EReference MID__EXTENDIBLE_TABLE = eINSTANCE.getMID_ExtendibleTable();
+        EReference MID__EXTENDIBLE_TABLE = MIDPackage.eINSTANCE.getMID_ExtendibleTable();
 
         /**
      * The meta object literal for the '<em><b>Level</b></em>' attribute feature.
@@ -3768,7 +3790,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EAttribute MID__LEVEL = eINSTANCE.getMID_Level();
+        EAttribute MID__LEVEL = MIDPackage.eINSTANCE.getMID_Level();
 
         /**
      * The meta object literal for the '<em><b>Is Types Level</b></em>' operation.
@@ -3776,7 +3798,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MID___IS_TYPES_LEVEL = eINSTANCE.getMID__IsTypesLevel();
+        EOperation MID___IS_TYPES_LEVEL = MIDPackage.eINSTANCE.getMID__IsTypesLevel();
 
         /**
      * The meta object literal for the '<em><b>Is Instances Level</b></em>' operation.
@@ -3784,7 +3806,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MID___IS_INSTANCES_LEVEL = eINSTANCE.getMID__IsInstancesLevel();
+        EOperation MID___IS_INSTANCES_LEVEL = MIDPackage.eINSTANCE.getMID__IsInstancesLevel();
 
         /**
      * The meta object literal for the '<em><b>Is Workflows Level</b></em>' operation.
@@ -3792,7 +3814,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MID___IS_WORKFLOWS_LEVEL = eINSTANCE.getMID__IsWorkflowsLevel();
+        EOperation MID___IS_WORKFLOWS_LEVEL = MIDPackage.eINSTANCE.getMID__IsWorkflowsLevel();
 
         /**
      * The meta object literal for the '<em><b>Get Extendible Element</b></em>' operation.
@@ -3800,7 +3822,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MID___GET_EXTENDIBLE_ELEMENT__STRING = eINSTANCE.getMID__GetExtendibleElement__String();
+        EOperation MID___GET_EXTENDIBLE_ELEMENT__STRING = MIDPackage.eINSTANCE.getMID__GetExtendibleElement__String();
 
         /**
      * The meta object literal for the '<em><b>Get Model Rels</b></em>' operation.
@@ -3808,7 +3830,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MID___GET_MODEL_RELS = eINSTANCE.getMID__GetModelRels();
+        EOperation MID___GET_MODEL_RELS = MIDPackage.eINSTANCE.getMID__GetModelRels();
 
         /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.impl.EStringToExtendibleElementMapImpl <em>EString To Extendible Element Map</em>}' class.
@@ -3818,7 +3840,7 @@ public interface MIDPackage extends EPackage {
      * @see edu.toronto.cs.se.mmint.mid.impl.MIDPackageImpl#getEStringToExtendibleElementMap()
      * @generated
      */
-        EClass ESTRING_TO_EXTENDIBLE_ELEMENT_MAP = eINSTANCE.getEStringToExtendibleElementMap();
+        EClass ESTRING_TO_EXTENDIBLE_ELEMENT_MAP = MIDPackage.eINSTANCE.getEStringToExtendibleElementMap();
 
         /**
      * The meta object literal for the '<em><b>Key</b></em>' attribute feature.
@@ -3826,7 +3848,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EAttribute ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__KEY = eINSTANCE.getEStringToExtendibleElementMap_Key();
+        EAttribute ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__KEY = MIDPackage.eINSTANCE.getEStringToExtendibleElementMap_Key();
 
         /**
      * The meta object literal for the '<em><b>Value</b></em>' reference feature.
@@ -3834,7 +3856,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EReference ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__VALUE = eINSTANCE.getEStringToExtendibleElementMap_Value();
+        EReference ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__VALUE = MIDPackage.eINSTANCE.getEStringToExtendibleElementMap_Value();
 
         /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.impl.ExtendibleElementImpl <em>Extendible Element</em>}' class.
@@ -3844,7 +3866,7 @@ public interface MIDPackage extends EPackage {
      * @see edu.toronto.cs.se.mmint.mid.impl.MIDPackageImpl#getExtendibleElement()
      * @generated
      */
-        EClass EXTENDIBLE_ELEMENT = eINSTANCE.getExtendibleElement();
+        EClass EXTENDIBLE_ELEMENT = MIDPackage.eINSTANCE.getExtendibleElement();
 
         /**
      * The meta object literal for the '<em><b>Supertype</b></em>' reference feature.
@@ -3852,7 +3874,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EReference EXTENDIBLE_ELEMENT__SUPERTYPE = eINSTANCE.getExtendibleElement_Supertype();
+        EReference EXTENDIBLE_ELEMENT__SUPERTYPE = MIDPackage.eINSTANCE.getExtendibleElement_Supertype();
 
         /**
      * The meta object literal for the '<em><b>Uri</b></em>' attribute feature.
@@ -3860,7 +3882,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EAttribute EXTENDIBLE_ELEMENT__URI = eINSTANCE.getExtendibleElement_Uri();
+        EAttribute EXTENDIBLE_ELEMENT__URI = MIDPackage.eINSTANCE.getExtendibleElement_Uri();
 
         /**
      * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
@@ -3868,7 +3890,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EAttribute EXTENDIBLE_ELEMENT__NAME = eINSTANCE.getExtendibleElement_Name();
+        EAttribute EXTENDIBLE_ELEMENT__NAME = MIDPackage.eINSTANCE.getExtendibleElement_Name();
 
         /**
      * The meta object literal for the '<em><b>Level</b></em>' attribute feature.
@@ -3876,7 +3898,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EAttribute EXTENDIBLE_ELEMENT__LEVEL = eINSTANCE.getExtendibleElement_Level();
+        EAttribute EXTENDIBLE_ELEMENT__LEVEL = MIDPackage.eINSTANCE.getExtendibleElement_Level();
 
         /**
      * The meta object literal for the '<em><b>Metatype Uri</b></em>' attribute feature.
@@ -3884,7 +3906,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EAttribute EXTENDIBLE_ELEMENT__METATYPE_URI = eINSTANCE.getExtendibleElement_MetatypeUri();
+        EAttribute EXTENDIBLE_ELEMENT__METATYPE_URI = MIDPackage.eINSTANCE.getExtendibleElement_MetatypeUri();
 
         /**
      * The meta object literal for the '<em><b>Dynamic</b></em>' attribute feature.
@@ -3892,7 +3914,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EAttribute EXTENDIBLE_ELEMENT__DYNAMIC = eINSTANCE.getExtendibleElement_Dynamic();
+        EAttribute EXTENDIBLE_ELEMENT__DYNAMIC = MIDPackage.eINSTANCE.getExtendibleElement_Dynamic();
 
         /**
      * The meta object literal for the '<em><b>Constraint</b></em>' containment reference feature.
@@ -3900,7 +3922,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EReference EXTENDIBLE_ELEMENT__CONSTRAINT = eINSTANCE.getExtendibleElement_Constraint();
+        EReference EXTENDIBLE_ELEMENT__CONSTRAINT = MIDPackage.eINSTANCE.getExtendibleElement_Constraint();
 
         /**
      * The meta object literal for the '<em><b>Get Metatype</b></em>' operation.
@@ -3908,7 +3930,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation EXTENDIBLE_ELEMENT___GET_METATYPE = eINSTANCE.getExtendibleElement__GetMetatype();
+        EOperation EXTENDIBLE_ELEMENT___GET_METATYPE = MIDPackage.eINSTANCE.getExtendibleElement__GetMetatype();
 
         /**
      * The meta object literal for the '<em><b>Get MID Container</b></em>' operation.
@@ -3916,7 +3938,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation EXTENDIBLE_ELEMENT___GET_MID_CONTAINER = eINSTANCE.getExtendibleElement__GetMIDContainer();
+        EOperation EXTENDIBLE_ELEMENT___GET_MID_CONTAINER = MIDPackage.eINSTANCE.getExtendibleElement__GetMIDContainer();
 
         /**
      * The meta object literal for the '<em><b>Is Level</b></em>' operation.
@@ -3924,7 +3946,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation EXTENDIBLE_ELEMENT___IS_LEVEL__MIDLEVEL = eINSTANCE.getExtendibleElement__IsLevel__MIDLevel();
+        EOperation EXTENDIBLE_ELEMENT___IS_LEVEL__MIDLEVEL = MIDPackage.eINSTANCE.getExtendibleElement__IsLevel__MIDLevel();
 
         /**
      * The meta object literal for the '<em><b>Is Types Level</b></em>' operation.
@@ -3932,7 +3954,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation EXTENDIBLE_ELEMENT___IS_TYPES_LEVEL = eINSTANCE.getExtendibleElement__IsTypesLevel();
+        EOperation EXTENDIBLE_ELEMENT___IS_TYPES_LEVEL = MIDPackage.eINSTANCE.getExtendibleElement__IsTypesLevel();
 
         /**
      * The meta object literal for the '<em><b>Get Runtime Types</b></em>' operation.
@@ -3940,7 +3962,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation EXTENDIBLE_ELEMENT___GET_RUNTIME_TYPES = eINSTANCE.getExtendibleElement__GetRuntimeTypes();
+        EOperation EXTENDIBLE_ELEMENT___GET_RUNTIME_TYPES = MIDPackage.eINSTANCE.getExtendibleElement__GetRuntimeTypes();
 
         /**
      * The meta object literal for the '<em><b>Get Closest Type Constraint</b></em>' operation.
@@ -3948,7 +3970,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation EXTENDIBLE_ELEMENT___GET_CLOSEST_TYPE_CONSTRAINT = eINSTANCE.getExtendibleElement__GetClosestTypeConstraint();
+        EOperation EXTENDIBLE_ELEMENT___GET_CLOSEST_TYPE_CONSTRAINT = MIDPackage.eINSTANCE.getExtendibleElement__GetClosestTypeConstraint();
 
         /**
      * The meta object literal for the '<em><b>Validate Instance Type</b></em>' operation.
@@ -3956,7 +3978,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT = eINSTANCE.getExtendibleElement__ValidateInstanceType__ExtendibleElement();
+        EOperation EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT = MIDPackage.eINSTANCE.getExtendibleElement__ValidateInstanceType__ExtendibleElement();
 
         /**
      * The meta object literal for the '<em><b>Validate Instance</b></em>' operation.
@@ -3964,7 +3986,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE = eINSTANCE.getExtendibleElement__ValidateInstance();
+        EOperation EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE = MIDPackage.eINSTANCE.getExtendibleElement__ValidateInstance();
 
         /**
      * The meta object literal for the '<em><b>Validate Instance In Editor</b></em>' operation.
@@ -3972,7 +3994,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = eINSTANCE.getExtendibleElement__ValidateInstanceInEditor__IValidationContext();
+        EOperation EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = MIDPackage.eINSTANCE.getExtendibleElement__ValidateInstanceInEditor__IValidationContext();
 
         /**
      * The meta object literal for the '<em><b>Is Workflows Level</b></em>' operation.
@@ -3980,7 +4002,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation EXTENDIBLE_ELEMENT___IS_WORKFLOWS_LEVEL = eINSTANCE.getExtendibleElement__IsWorkflowsLevel();
+        EOperation EXTENDIBLE_ELEMENT___IS_WORKFLOWS_LEVEL = MIDPackage.eINSTANCE.getExtendibleElement__IsWorkflowsLevel();
 
         /**
      * The meta object literal for the '<em><b>Update Workflow Instance Id</b></em>' operation.
@@ -3988,7 +4010,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation EXTENDIBLE_ELEMENT___UPDATE_WORKFLOW_INSTANCE_ID__STRING = eINSTANCE.getExtendibleElement__UpdateWorkflowInstanceId__String();
+        EOperation EXTENDIBLE_ELEMENT___UPDATE_WORKFLOW_INSTANCE_ID__STRING = MIDPackage.eINSTANCE.getExtendibleElement__UpdateWorkflowInstanceId__String();
 
         /**
      * The meta object literal for the '<em><b>To MID Custom Print Label</b></em>' operation.
@@ -3996,7 +4018,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation EXTENDIBLE_ELEMENT___TO_MID_CUSTOM_PRINT_LABEL = eINSTANCE.getExtendibleElement__ToMIDCustomPrintLabel();
+        EOperation EXTENDIBLE_ELEMENT___TO_MID_CUSTOM_PRINT_LABEL = MIDPackage.eINSTANCE.getExtendibleElement__ToMIDCustomPrintLabel();
 
         /**
      * The meta object literal for the '<em><b>To MID Custom Edit Label</b></em>' operation.
@@ -4004,7 +4026,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation EXTENDIBLE_ELEMENT___TO_MID_CUSTOM_EDIT_LABEL = eINSTANCE.getExtendibleElement__ToMIDCustomEditLabel();
+        EOperation EXTENDIBLE_ELEMENT___TO_MID_CUSTOM_EDIT_LABEL = MIDPackage.eINSTANCE.getExtendibleElement__ToMIDCustomEditLabel();
 
         /**
      * The meta object literal for the '<em><b>Update MID Custom Label</b></em>' operation.
@@ -4012,7 +4034,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation EXTENDIBLE_ELEMENT___UPDATE_MID_CUSTOM_LABEL__STRING = eINSTANCE.getExtendibleElement__UpdateMIDCustomLabel__String();
+        EOperation EXTENDIBLE_ELEMENT___UPDATE_MID_CUSTOM_LABEL__STRING = MIDPackage.eINSTANCE.getExtendibleElement__UpdateMIDCustomLabel__String();
 
         /**
      * The meta object literal for the '<em><b>Create Subtype Uri</b></em>' operation.
@@ -4020,7 +4042,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation EXTENDIBLE_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING = eINSTANCE.getExtendibleElement__CreateSubtypeUri__String_String();
+        EOperation EXTENDIBLE_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING = MIDPackage.eINSTANCE.getExtendibleElement__CreateSubtypeUri__String_String();
 
         /**
      * The meta object literal for the '<em><b>Add Type Constraint</b></em>' operation.
@@ -4028,7 +4050,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation EXTENDIBLE_ELEMENT___ADD_TYPE_CONSTRAINT__STRING_STRING = eINSTANCE.getExtendibleElement__AddTypeConstraint__String_String();
+        EOperation EXTENDIBLE_ELEMENT___ADD_TYPE_CONSTRAINT__STRING_STRING = MIDPackage.eINSTANCE.getExtendibleElement__AddTypeConstraint__String_String();
 
         /**
      * The meta object literal for the '<em><b>Is Instances Level</b></em>' operation.
@@ -4036,7 +4058,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation EXTENDIBLE_ELEMENT___IS_INSTANCES_LEVEL = eINSTANCE.getExtendibleElement__IsInstancesLevel();
+        EOperation EXTENDIBLE_ELEMENT___IS_INSTANCES_LEVEL = MIDPackage.eINSTANCE.getExtendibleElement__IsInstancesLevel();
 
         /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.impl.ExtendibleElementEndpointImpl <em>Extendible Element Endpoint</em>}' class.
@@ -4046,7 +4068,7 @@ public interface MIDPackage extends EPackage {
      * @see edu.toronto.cs.se.mmint.mid.impl.MIDPackageImpl#getExtendibleElementEndpoint()
      * @generated
      */
-        EClass EXTENDIBLE_ELEMENT_ENDPOINT = eINSTANCE.getExtendibleElementEndpoint();
+        EClass EXTENDIBLE_ELEMENT_ENDPOINT = MIDPackage.eINSTANCE.getExtendibleElementEndpoint();
 
         /**
      * The meta object literal for the '<em><b>Lower Bound</b></em>' attribute feature.
@@ -4054,7 +4076,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EAttribute EXTENDIBLE_ELEMENT_ENDPOINT__LOWER_BOUND = eINSTANCE.getExtendibleElementEndpoint_LowerBound();
+        EAttribute EXTENDIBLE_ELEMENT_ENDPOINT__LOWER_BOUND = MIDPackage.eINSTANCE.getExtendibleElementEndpoint_LowerBound();
 
         /**
      * The meta object literal for the '<em><b>Upper Bound</b></em>' attribute feature.
@@ -4062,7 +4084,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EAttribute EXTENDIBLE_ELEMENT_ENDPOINT__UPPER_BOUND = eINSTANCE.getExtendibleElementEndpoint_UpperBound();
+        EAttribute EXTENDIBLE_ELEMENT_ENDPOINT__UPPER_BOUND = MIDPackage.eINSTANCE.getExtendibleElementEndpoint_UpperBound();
 
         /**
      * The meta object literal for the '<em><b>Target</b></em>' reference feature.
@@ -4070,7 +4092,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EReference EXTENDIBLE_ELEMENT_ENDPOINT__TARGET = eINSTANCE.getExtendibleElementEndpoint_Target();
+        EReference EXTENDIBLE_ELEMENT_ENDPOINT__TARGET = MIDPackage.eINSTANCE.getExtendibleElementEndpoint_Target();
 
         /**
      * The meta object literal for the '<em><b>Get Metatype</b></em>' operation.
@@ -4078,7 +4100,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation EXTENDIBLE_ELEMENT_ENDPOINT___GET_METATYPE = eINSTANCE.getExtendibleElementEndpoint__GetMetatype();
+        EOperation EXTENDIBLE_ELEMENT_ENDPOINT___GET_METATYPE = MIDPackage.eINSTANCE.getExtendibleElementEndpoint__GetMetatype();
 
         /**
      * The meta object literal for the '<em><b>Get Supertype</b></em>' operation.
@@ -4086,7 +4108,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation EXTENDIBLE_ELEMENT_ENDPOINT___GET_SUPERTYPE = eINSTANCE.getExtendibleElementEndpoint__GetSupertype();
+        EOperation EXTENDIBLE_ELEMENT_ENDPOINT___GET_SUPERTYPE = MIDPackage.eINSTANCE.getExtendibleElementEndpoint__GetSupertype();
 
         /**
      * The meta object literal for the '<em><b>Get Target Uri</b></em>' operation.
@@ -4094,7 +4116,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation EXTENDIBLE_ELEMENT_ENDPOINT___GET_TARGET_URI = eINSTANCE.getExtendibleElementEndpoint__GetTargetUri();
+        EOperation EXTENDIBLE_ELEMENT_ENDPOINT___GET_TARGET_URI = MIDPackage.eINSTANCE.getExtendibleElementEndpoint__GetTargetUri();
 
         /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.impl.ModelImpl <em>Model</em>}' class.
@@ -4104,7 +4126,7 @@ public interface MIDPackage extends EPackage {
      * @see edu.toronto.cs.se.mmint.mid.impl.MIDPackageImpl#getModel()
      * @generated
      */
-        EClass MODEL = eINSTANCE.getModel();
+        EClass MODEL = MIDPackage.eINSTANCE.getModel();
 
         /**
      * The meta object literal for the '<em><b>Origin</b></em>' attribute feature.
@@ -4112,7 +4134,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EAttribute MODEL__ORIGIN = eINSTANCE.getModel_Origin();
+        EAttribute MODEL__ORIGIN = MIDPackage.eINSTANCE.getModel_Origin();
 
         /**
      * The meta object literal for the '<em><b>File Extension</b></em>' attribute feature.
@@ -4120,7 +4142,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EAttribute MODEL__FILE_EXTENSION = eINSTANCE.getModel_FileExtension();
+        EAttribute MODEL__FILE_EXTENSION = MIDPackage.eINSTANCE.getModel_FileExtension();
 
         /**
      * The meta object literal for the '<em><b>Editors</b></em>' reference list feature.
@@ -4128,7 +4150,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EReference MODEL__EDITORS = eINSTANCE.getModel_Editors();
+        EReference MODEL__EDITORS = MIDPackage.eINSTANCE.getModel_Editors();
 
         /**
      * The meta object literal for the '<em><b>Model Elems</b></em>' containment reference list feature.
@@ -4136,7 +4158,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EReference MODEL__MODEL_ELEMS = eINSTANCE.getModel_ModelElems();
+        EReference MODEL__MODEL_ELEMS = MIDPackage.eINSTANCE.getModel_ModelElems();
 
         /**
      * The meta object literal for the '<em><b>Conversion Operators</b></em>' reference list feature.
@@ -4144,7 +4166,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EReference MODEL__CONVERSION_OPERATORS = eINSTANCE.getModel_ConversionOperators();
+        EReference MODEL__CONVERSION_OPERATORS = MIDPackage.eINSTANCE.getModel_ConversionOperators();
 
         /**
      * The meta object literal for the '<em><b>EMF Instance Resource</b></em>' attribute feature.
@@ -4152,7 +4174,7 @@ public interface MIDPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute MODEL__EMF_INSTANCE_RESOURCE = eINSTANCE.getModel_EMFInstanceResource();
+    EAttribute MODEL__EMF_INSTANCE_RESOURCE = MIDPackage.eINSTANCE.getModel_EMFInstanceResource();
 
         /**
      * The meta object literal for the '<em><b>EMF Instance Root</b></em>' reference feature.
@@ -4160,7 +4182,7 @@ public interface MIDPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference MODEL__EMF_INSTANCE_ROOT = eINSTANCE.getModel_EMFInstanceRoot();
+    EReference MODEL__EMF_INSTANCE_ROOT = MIDPackage.eINSTANCE.getModel_EMFInstanceRoot();
 
         /**
      * The meta object literal for the '<em><b>Get Metatype</b></em>' operation.
@@ -4168,7 +4190,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL___GET_METATYPE = eINSTANCE.getModel__GetMetatype();
+        EOperation MODEL___GET_METATYPE = MIDPackage.eINSTANCE.getModel__GetMetatype();
 
         /**
      * The meta object literal for the '<em><b>Get Supertype</b></em>' operation.
@@ -4176,7 +4198,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL___GET_SUPERTYPE = eINSTANCE.getModel__GetSupertype();
+        EOperation MODEL___GET_SUPERTYPE = MIDPackage.eINSTANCE.getModel__GetSupertype();
 
         /**
      * The meta object literal for the '<em><b>Get MID Container</b></em>' operation.
@@ -4184,7 +4206,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL___GET_MID_CONTAINER = eINSTANCE.getModel__GetMIDContainer();
+        EOperation MODEL___GET_MID_CONTAINER = MIDPackage.eINSTANCE.getModel__GetMIDContainer();
 
         /**
      * The meta object literal for the '<em><b>Create Subtype</b></em>' operation.
@@ -4192,7 +4214,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL___CREATE_SUBTYPE__STRING_BOOLEAN = eINSTANCE.getModel__CreateSubtype__String_boolean();
+        EOperation MODEL___CREATE_SUBTYPE__STRING_BOOLEAN = MIDPackage.eINSTANCE.getModel__CreateSubtype__String_boolean();
 
         /**
      * The meta object literal for the '<em><b>Delete Type</b></em>' operation.
@@ -4200,7 +4222,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL___DELETE_TYPE = eINSTANCE.getModel__DeleteType();
+        EOperation MODEL___DELETE_TYPE = MIDPackage.eINSTANCE.getModel__DeleteType();
 
         /**
      * The meta object literal for the '<em><b>Get EMF Type Root</b></em>' operation.
@@ -4208,7 +4230,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL___GET_EMF_TYPE_ROOT = eINSTANCE.getModel__GetEMFTypeRoot();
+        EOperation MODEL___GET_EMF_TYPE_ROOT = MIDPackage.eINSTANCE.getModel__GetEMFTypeRoot();
 
         /**
      * The meta object literal for the '<em><b>Create Instance</b></em>' operation.
@@ -4216,7 +4238,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL___CREATE_INSTANCE__EOBJECT_STRING_MID = eINSTANCE.getModel__CreateInstance__EObject_String_MID();
+        EOperation MODEL___CREATE_INSTANCE__EOBJECT_STRING_MID = MIDPackage.eINSTANCE.getModel__CreateInstance__EObject_String_MID();
 
         /**
      * The meta object literal for the '<em><b>Create Instance Editor</b></em>' operation.
@@ -4224,7 +4246,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL___CREATE_INSTANCE_EDITOR__BOOLEAN = eINSTANCE.getModel__CreateInstanceEditor__boolean();
+        EOperation MODEL___CREATE_INSTANCE_EDITOR__BOOLEAN = MIDPackage.eINSTANCE.getModel__CreateInstanceEditor__boolean();
 
         /**
      * The meta object literal for the '<em><b>Create Instance And Editor</b></em>' operation.
@@ -4232,7 +4254,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL___CREATE_INSTANCE_AND_EDITOR__EOBJECT_STRING_MID = eINSTANCE.getModel__CreateInstanceAndEditor__EObject_String_MID();
+        EOperation MODEL___CREATE_INSTANCE_AND_EDITOR__EOBJECT_STRING_MID = MIDPackage.eINSTANCE.getModel__CreateInstanceAndEditor__EObject_String_MID();
 
         /**
      * The meta object literal for the '<em><b>Import Instance</b></em>' operation.
@@ -4240,7 +4262,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL___IMPORT_INSTANCE__STRING_MID = eINSTANCE.getModel__ImportInstance__String_MID();
+        EOperation MODEL___IMPORT_INSTANCE__STRING_MID = MIDPackage.eINSTANCE.getModel__ImportInstance__String_MID();
 
         /**
      * The meta object literal for the '<em><b>Import Instance And Editor</b></em>' operation.
@@ -4248,7 +4270,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL___IMPORT_INSTANCE_AND_EDITOR__STRING_MID = eINSTANCE.getModel__ImportInstanceAndEditor__String_MID();
+        EOperation MODEL___IMPORT_INSTANCE_AND_EDITOR__STRING_MID = MIDPackage.eINSTANCE.getModel__ImportInstanceAndEditor__String_MID();
 
         /**
      * The meta object literal for the '<em><b>Copy Instance</b></em>' operation.
@@ -4256,7 +4278,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL___COPY_INSTANCE__MODEL_STRING_MID = eINSTANCE.getModel__CopyInstance__Model_String_MID();
+        EOperation MODEL___COPY_INSTANCE__MODEL_STRING_MID = MIDPackage.eINSTANCE.getModel__CopyInstance__Model_String_MID();
 
         /**
      * The meta object literal for the '<em><b>Copy Instance And Editor</b></em>' operation.
@@ -4264,7 +4286,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL___COPY_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MID = eINSTANCE.getModel__CopyInstanceAndEditor__Model_String_boolean_MID();
+        EOperation MODEL___COPY_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MID = MIDPackage.eINSTANCE.getModel__CopyInstanceAndEditor__Model_String_boolean_MID();
 
         /**
      * The meta object literal for the '<em><b>Delete Instance</b></em>' operation.
@@ -4272,7 +4294,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL___DELETE_INSTANCE = eINSTANCE.getModel__DeleteInstance();
+        EOperation MODEL___DELETE_INSTANCE = MIDPackage.eINSTANCE.getModel__DeleteInstance();
 
         /**
      * The meta object literal for the '<em><b>Delete Instance And File</b></em>' operation.
@@ -4280,7 +4302,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL___DELETE_INSTANCE_AND_FILE = eINSTANCE.getModel__DeleteInstanceAndFile();
+        EOperation MODEL___DELETE_INSTANCE_AND_FILE = MIDPackage.eINSTANCE.getModel__DeleteInstanceAndFile();
 
         /**
      * The meta object literal for the '<em><b>Open Type</b></em>' operation.
@@ -4288,7 +4310,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL___OPEN_TYPE = eINSTANCE.getModel__OpenType();
+        EOperation MODEL___OPEN_TYPE = MIDPackage.eINSTANCE.getModel__OpenType();
 
         /**
      * The meta object literal for the '<em><b>Open Instance</b></em>' operation.
@@ -4296,7 +4318,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL___OPEN_INSTANCE = eINSTANCE.getModel__OpenInstance();
+        EOperation MODEL___OPEN_INSTANCE = MIDPackage.eINSTANCE.getModel__OpenInstance();
 
         /**
      * The meta object literal for the '<em><b>Create Workflow Instance</b></em>' operation.
@@ -4304,7 +4326,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL___CREATE_WORKFLOW_INSTANCE__STRING_MID = eINSTANCE.getModel__CreateWorkflowInstance__String_MID();
+        EOperation MODEL___CREATE_WORKFLOW_INSTANCE__STRING_MID = MIDPackage.eINSTANCE.getModel__CreateWorkflowInstance__String_MID();
 
         /**
      * The meta object literal for the '<em><b>Delete Workflow Instance</b></em>' operation.
@@ -4312,7 +4334,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL___DELETE_WORKFLOW_INSTANCE = eINSTANCE.getModel__DeleteWorkflowInstance();
+        EOperation MODEL___DELETE_WORKFLOW_INSTANCE = MIDPackage.eINSTANCE.getModel__DeleteWorkflowInstance();
 
         /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.impl.ExtendibleElementConstraintImpl <em>Extendible Element Constraint</em>}' class.
@@ -4322,7 +4344,7 @@ public interface MIDPackage extends EPackage {
      * @see edu.toronto.cs.se.mmint.mid.impl.MIDPackageImpl#getExtendibleElementConstraint()
      * @generated
      */
-        EClass EXTENDIBLE_ELEMENT_CONSTRAINT = eINSTANCE.getExtendibleElementConstraint();
+        EClass EXTENDIBLE_ELEMENT_CONSTRAINT = MIDPackage.eINSTANCE.getExtendibleElementConstraint();
 
         /**
      * The meta object literal for the '<em><b>Implementation</b></em>' attribute feature.
@@ -4330,7 +4352,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EAttribute EXTENDIBLE_ELEMENT_CONSTRAINT__IMPLEMENTATION = eINSTANCE.getExtendibleElementConstraint_Implementation();
+        EAttribute EXTENDIBLE_ELEMENT_CONSTRAINT__IMPLEMENTATION = MIDPackage.eINSTANCE.getExtendibleElementConstraint_Implementation();
 
         /**
      * The meta object literal for the '<em><b>Language</b></em>' attribute feature.
@@ -4338,7 +4360,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EAttribute EXTENDIBLE_ELEMENT_CONSTRAINT__LANGUAGE = eINSTANCE.getExtendibleElementConstraint_Language();
+        EAttribute EXTENDIBLE_ELEMENT_CONSTRAINT__LANGUAGE = MIDPackage.eINSTANCE.getExtendibleElementConstraint_Language();
 
         /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.impl.ModelElementImpl <em>Model Element</em>}' class.
@@ -4348,7 +4370,7 @@ public interface MIDPackage extends EPackage {
      * @see edu.toronto.cs.se.mmint.mid.impl.MIDPackageImpl#getModelElement()
      * @generated
      */
-        EClass MODEL_ELEMENT = eINSTANCE.getModelElement();
+        EClass MODEL_ELEMENT = MIDPackage.eINSTANCE.getModelElement();
 
         /**
      * The meta object literal for the '<em><b>EInfo</b></em>' containment reference feature.
@@ -4356,7 +4378,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EReference MODEL_ELEMENT__EINFO = eINSTANCE.getModelElement_EInfo();
+        EReference MODEL_ELEMENT__EINFO = MIDPackage.eINSTANCE.getModelElement_EInfo();
 
         /**
      * The meta object literal for the '<em><b>EMF Instance Object</b></em>' reference feature.
@@ -4364,7 +4386,7 @@ public interface MIDPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference MODEL_ELEMENT__EMF_INSTANCE_OBJECT = eINSTANCE.getModelElement_EMFInstanceObject();
+    EReference MODEL_ELEMENT__EMF_INSTANCE_OBJECT = MIDPackage.eINSTANCE.getModelElement_EMFInstanceObject();
 
         /**
      * The meta object literal for the '<em><b>Get Metatype</b></em>' operation.
@@ -4372,7 +4394,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL_ELEMENT___GET_METATYPE = eINSTANCE.getModelElement__GetMetatype();
+        EOperation MODEL_ELEMENT___GET_METATYPE = MIDPackage.eINSTANCE.getModelElement__GetMetatype();
 
         /**
      * The meta object literal for the '<em><b>Get Supertype</b></em>' operation.
@@ -4380,7 +4402,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL_ELEMENT___GET_SUPERTYPE = eINSTANCE.getModelElement__GetSupertype();
+        EOperation MODEL_ELEMENT___GET_SUPERTYPE = MIDPackage.eINSTANCE.getModelElement__GetSupertype();
 
         /**
      * The meta object literal for the '<em><b>Get MID Container</b></em>' operation.
@@ -4388,7 +4410,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL_ELEMENT___GET_MID_CONTAINER = eINSTANCE.getModelElement__GetMIDContainer();
+        EOperation MODEL_ELEMENT___GET_MID_CONTAINER = MIDPackage.eINSTANCE.getModelElement__GetMIDContainer();
 
         /**
      * The meta object literal for the '<em><b>Create Type Reference</b></em>' operation.
@@ -4396,7 +4418,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL_ELEMENT___CREATE_TYPE_REFERENCE__MODELELEMENTREFERENCE_BOOLEAN_MODELENDPOINTREFERENCE = eINSTANCE.getModelElement__CreateTypeReference__ModelElementReference_boolean_ModelEndpointReference();
+        EOperation MODEL_ELEMENT___CREATE_TYPE_REFERENCE__MODELELEMENTREFERENCE_BOOLEAN_MODELENDPOINTREFERENCE = MIDPackage.eINSTANCE.getModelElement__CreateTypeReference__ModelElementReference_boolean_ModelEndpointReference();
 
         /**
      * The meta object literal for the '<em><b>Create Subtype And Reference</b></em>' operation.
@@ -4404,7 +4426,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL_ELEMENT___CREATE_SUBTYPE_AND_REFERENCE__MODELELEMENTREFERENCE_STRING_STRING_EMFINFO_MODELENDPOINTREFERENCE = eINSTANCE.getModelElement__CreateSubtypeAndReference__ModelElementReference_String_String_EMFInfo_ModelEndpointReference();
+        EOperation MODEL_ELEMENT___CREATE_SUBTYPE_AND_REFERENCE__MODELELEMENTREFERENCE_STRING_STRING_EMFINFO_MODELENDPOINTREFERENCE = MIDPackage.eINSTANCE.getModelElement__CreateSubtypeAndReference__ModelElementReference_String_String_EMFInfo_ModelEndpointReference();
 
         /**
      * The meta object literal for the '<em><b>Delete Type</b></em>' operation.
@@ -4412,7 +4434,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL_ELEMENT___DELETE_TYPE = eINSTANCE.getModelElement__DeleteType();
+        EOperation MODEL_ELEMENT___DELETE_TYPE = MIDPackage.eINSTANCE.getModelElement__DeleteType();
 
         /**
      * The meta object literal for the '<em><b>Get EMF Type Object</b></em>' operation.
@@ -4420,7 +4442,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL_ELEMENT___GET_EMF_TYPE_OBJECT = eINSTANCE.getModelElement__GetEMFTypeObject();
+        EOperation MODEL_ELEMENT___GET_EMF_TYPE_OBJECT = MIDPackage.eINSTANCE.getModelElement__GetEMFTypeObject();
 
         /**
      * The meta object literal for the '<em><b>Create Instance Reference</b></em>' operation.
@@ -4428,7 +4450,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL_ELEMENT___CREATE_INSTANCE_REFERENCE__MODELENDPOINTREFERENCE = eINSTANCE.getModelElement__CreateInstanceReference__ModelEndpointReference();
+        EOperation MODEL_ELEMENT___CREATE_INSTANCE_REFERENCE__MODELENDPOINTREFERENCE = MIDPackage.eINSTANCE.getModelElement__CreateInstanceReference__ModelEndpointReference();
 
         /**
      * The meta object literal for the '<em><b>Create Instance And Reference</b></em>' operation.
@@ -4436,7 +4458,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL_ELEMENT___CREATE_INSTANCE_AND_REFERENCE__STRING_STRING_EMFINFO_MODELENDPOINTREFERENCE = eINSTANCE.getModelElement__CreateInstanceAndReference__String_String_EMFInfo_ModelEndpointReference();
+        EOperation MODEL_ELEMENT___CREATE_INSTANCE_AND_REFERENCE__STRING_STRING_EMFINFO_MODELENDPOINTREFERENCE = MIDPackage.eINSTANCE.getModelElement__CreateInstanceAndReference__String_String_EMFInfo_ModelEndpointReference();
 
         /**
      * The meta object literal for the '<em><b>Delete Instance</b></em>' operation.
@@ -4444,7 +4466,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL_ELEMENT___DELETE_INSTANCE = eINSTANCE.getModelElement__DeleteInstance();
+        EOperation MODEL_ELEMENT___DELETE_INSTANCE = MIDPackage.eINSTANCE.getModelElement__DeleteInstance();
 
         /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.impl.ModelEndpointImpl <em>Model Endpoint</em>}' class.
@@ -4454,7 +4476,7 @@ public interface MIDPackage extends EPackage {
      * @see edu.toronto.cs.se.mmint.mid.impl.MIDPackageImpl#getModelEndpoint()
      * @generated
      */
-        EClass MODEL_ENDPOINT = eINSTANCE.getModelEndpoint();
+        EClass MODEL_ENDPOINT = MIDPackage.eINSTANCE.getModelEndpoint();
 
         /**
      * The meta object literal for the '<em><b>Get Supertype</b></em>' operation.
@@ -4462,7 +4484,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL_ENDPOINT___GET_SUPERTYPE = eINSTANCE.getModelEndpoint__GetSupertype();
+        EOperation MODEL_ENDPOINT___GET_SUPERTYPE = MIDPackage.eINSTANCE.getModelEndpoint__GetSupertype();
 
         /**
      * The meta object literal for the '<em><b>Get MID Container</b></em>' operation.
@@ -4470,7 +4492,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL_ENDPOINT___GET_MID_CONTAINER = eINSTANCE.getModelEndpoint__GetMIDContainer();
+        EOperation MODEL_ENDPOINT___GET_MID_CONTAINER = MIDPackage.eINSTANCE.getModelEndpoint__GetMIDContainer();
 
         /**
      * The meta object literal for the '<em><b>Get Target</b></em>' operation.
@@ -4478,7 +4500,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL_ENDPOINT___GET_TARGET = eINSTANCE.getModelEndpoint__GetTarget();
+        EOperation MODEL_ENDPOINT___GET_TARGET = MIDPackage.eINSTANCE.getModelEndpoint__GetTarget();
 
         /**
      * The meta object literal for the '<em><b>Get Metatype</b></em>' operation.
@@ -4486,7 +4508,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL_ENDPOINT___GET_METATYPE = eINSTANCE.getModelEndpoint__GetMetatype();
+        EOperation MODEL_ENDPOINT___GET_METATYPE = MIDPackage.eINSTANCE.getModelEndpoint__GetMetatype();
 
         /**
      * The meta object literal for the '<em><b>Create Type Reference</b></em>' operation.
@@ -4494,7 +4516,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL_ENDPOINT___CREATE_TYPE_REFERENCE__BOOLEAN_MODELREL = eINSTANCE.getModelEndpoint__CreateTypeReference__boolean_ModelRel();
+        EOperation MODEL_ENDPOINT___CREATE_TYPE_REFERENCE__BOOLEAN_MODELREL = MIDPackage.eINSTANCE.getModelEndpoint__CreateTypeReference__boolean_ModelRel();
 
         /**
      * The meta object literal for the '<em><b>Create Subtype</b></em>' operation.
@@ -4502,7 +4524,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL_ENDPOINT___CREATE_SUBTYPE__STRING_MODEL_BOOLEAN_MODELREL = eINSTANCE.getModelEndpoint__CreateSubtype__String_Model_boolean_ModelRel();
+        EOperation MODEL_ENDPOINT___CREATE_SUBTYPE__STRING_MODEL_BOOLEAN_MODELREL = MIDPackage.eINSTANCE.getModelEndpoint__CreateSubtype__String_Model_boolean_ModelRel();
 
         /**
      * The meta object literal for the '<em><b>Replace Subtype</b></em>' operation.
@@ -4510,7 +4532,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL_ENDPOINT___REPLACE_SUBTYPE__MODELENDPOINT_STRING_MODEL = eINSTANCE.getModelEndpoint__ReplaceSubtype__ModelEndpoint_String_Model();
+        EOperation MODEL_ENDPOINT___REPLACE_SUBTYPE__MODELENDPOINT_STRING_MODEL = MIDPackage.eINSTANCE.getModelEndpoint__ReplaceSubtype__ModelEndpoint_String_Model();
 
         /**
      * The meta object literal for the '<em><b>Delete Type</b></em>' operation.
@@ -4518,7 +4540,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL_ENDPOINT___DELETE_TYPE__BOOLEAN = eINSTANCE.getModelEndpoint__DeleteType__boolean();
+        EOperation MODEL_ENDPOINT___DELETE_TYPE__BOOLEAN = MIDPackage.eINSTANCE.getModelEndpoint__DeleteType__boolean();
 
         /**
      * The meta object literal for the '<em><b>Create Instance Reference</b></em>' operation.
@@ -4526,7 +4548,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL_ENDPOINT___CREATE_INSTANCE_REFERENCE__MODELREL = eINSTANCE.getModelEndpoint__CreateInstanceReference__ModelRel();
+        EOperation MODEL_ENDPOINT___CREATE_INSTANCE_REFERENCE__MODELREL = MIDPackage.eINSTANCE.getModelEndpoint__CreateInstanceReference__ModelRel();
 
         /**
      * The meta object literal for the '<em><b>Create Instance</b></em>' operation.
@@ -4534,7 +4556,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL_ENDPOINT___CREATE_INSTANCE__MODEL_MODELREL = eINSTANCE.getModelEndpoint__CreateInstance__Model_ModelRel();
+        EOperation MODEL_ENDPOINT___CREATE_INSTANCE__MODEL_MODELREL = MIDPackage.eINSTANCE.getModelEndpoint__CreateInstance__Model_ModelRel();
 
         /**
      * The meta object literal for the '<em><b>Create Instance</b></em>' operation.
@@ -4542,7 +4564,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL_ENDPOINT___CREATE_INSTANCE__MODEL_OPERATOR_STRING = eINSTANCE.getModelEndpoint__CreateInstance__Model_Operator_String();
+        EOperation MODEL_ENDPOINT___CREATE_INSTANCE__MODEL_OPERATOR_STRING = MIDPackage.eINSTANCE.getModelEndpoint__CreateInstance__Model_Operator_String();
 
         /**
      * The meta object literal for the '<em><b>Replace Instance</b></em>' operation.
@@ -4550,7 +4572,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL_ENDPOINT___REPLACE_INSTANCE__MODELENDPOINT_MODEL = eINSTANCE.getModelEndpoint__ReplaceInstance__ModelEndpoint_Model();
+        EOperation MODEL_ENDPOINT___REPLACE_INSTANCE__MODELENDPOINT_MODEL = MIDPackage.eINSTANCE.getModelEndpoint__ReplaceInstance__ModelEndpoint_Model();
 
         /**
      * The meta object literal for the '<em><b>Delete Instance</b></em>' operation.
@@ -4558,7 +4580,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL_ENDPOINT___DELETE_INSTANCE__BOOLEAN = eINSTANCE.getModelEndpoint__DeleteInstance__boolean();
+        EOperation MODEL_ENDPOINT___DELETE_INSTANCE__BOOLEAN = MIDPackage.eINSTANCE.getModelEndpoint__DeleteInstance__boolean();
 
         /**
      * The meta object literal for the '<em><b>Create Workflow Instance</b></em>' operation.
@@ -4566,7 +4588,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL_ENDPOINT___CREATE_WORKFLOW_INSTANCE__MODEL_MODELREL = eINSTANCE.getModelEndpoint__CreateWorkflowInstance__Model_ModelRel();
+        EOperation MODEL_ENDPOINT___CREATE_WORKFLOW_INSTANCE__MODEL_MODELREL = MIDPackage.eINSTANCE.getModelEndpoint__CreateWorkflowInstance__Model_ModelRel();
 
         /**
      * The meta object literal for the '<em><b>Create Workflow Instance</b></em>' operation.
@@ -4574,7 +4596,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL_ENDPOINT___CREATE_WORKFLOW_INSTANCE__MODEL_OPERATOR_STRING = eINSTANCE.getModelEndpoint__CreateWorkflowInstance__Model_Operator_String();
+        EOperation MODEL_ENDPOINT___CREATE_WORKFLOW_INSTANCE__MODEL_OPERATOR_STRING = MIDPackage.eINSTANCE.getModelEndpoint__CreateWorkflowInstance__Model_Operator_String();
 
         /**
      * The meta object literal for the '<em><b>Replace Workflow Instance</b></em>' operation.
@@ -4582,7 +4604,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL_ENDPOINT___REPLACE_WORKFLOW_INSTANCE__MODELENDPOINT_MODEL = eINSTANCE.getModelEndpoint__ReplaceWorkflowInstance__ModelEndpoint_Model();
+        EOperation MODEL_ENDPOINT___REPLACE_WORKFLOW_INSTANCE__MODELENDPOINT_MODEL = MIDPackage.eINSTANCE.getModelEndpoint__ReplaceWorkflowInstance__ModelEndpoint_Model();
 
         /**
      * The meta object literal for the '<em><b>Delete Workflow Instance</b></em>' operation.
@@ -4590,7 +4612,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL_ENDPOINT___DELETE_WORKFLOW_INSTANCE = eINSTANCE.getModelEndpoint__DeleteWorkflowInstance();
+        EOperation MODEL_ENDPOINT___DELETE_WORKFLOW_INSTANCE = MIDPackage.eINSTANCE.getModelEndpoint__DeleteWorkflowInstance();
 
         /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.impl.EMFInfoImpl <em>EMF Info</em>}' class.
@@ -4600,7 +4622,7 @@ public interface MIDPackage extends EPackage {
      * @see edu.toronto.cs.se.mmint.mid.impl.MIDPackageImpl#getEMFInfo()
      * @generated
      */
-        EClass EMF_INFO = eINSTANCE.getEMFInfo();
+        EClass EMF_INFO = MIDPackage.eINSTANCE.getEMFInfo();
 
         /**
      * The meta object literal for the '<em><b>Class Name</b></em>' attribute feature.
@@ -4608,7 +4630,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EAttribute EMF_INFO__CLASS_NAME = eINSTANCE.getEMFInfo_ClassName();
+        EAttribute EMF_INFO__CLASS_NAME = MIDPackage.eINSTANCE.getEMFInfo_ClassName();
 
         /**
      * The meta object literal for the '<em><b>Feature Name</b></em>' attribute feature.
@@ -4616,7 +4638,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EAttribute EMF_INFO__FEATURE_NAME = eINSTANCE.getEMFInfo_FeatureName();
+        EAttribute EMF_INFO__FEATURE_NAME = MIDPackage.eINSTANCE.getEMFInfo_FeatureName();
 
         /**
      * The meta object literal for the '<em><b>Attribute</b></em>' attribute feature.
@@ -4624,7 +4646,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EAttribute EMF_INFO__ATTRIBUTE = eINSTANCE.getEMFInfo_Attribute();
+        EAttribute EMF_INFO__ATTRIBUTE = MIDPackage.eINSTANCE.getEMFInfo_Attribute();
 
         /**
      * The meta object literal for the '<em><b>Related Class Name</b></em>' attribute feature.
@@ -4632,7 +4654,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EAttribute EMF_INFO__RELATED_CLASS_NAME = eINSTANCE.getEMFInfo_RelatedClassName();
+        EAttribute EMF_INFO__RELATED_CLASS_NAME = MIDPackage.eINSTANCE.getEMFInfo_RelatedClassName();
 
         /**
      * The meta object literal for the '<em><b>To Type String</b></em>' operation.
@@ -4640,7 +4662,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation EMF_INFO___TO_TYPE_STRING = eINSTANCE.getEMFInfo__ToTypeString();
+        EOperation EMF_INFO___TO_TYPE_STRING = MIDPackage.eINSTANCE.getEMFInfo__ToTypeString();
 
         /**
      * The meta object literal for the '<em><b>To Instance String</b></em>' operation.
@@ -4648,7 +4670,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation EMF_INFO___TO_INSTANCE_STRING = eINSTANCE.getEMFInfo__ToInstanceString();
+        EOperation EMF_INFO___TO_INSTANCE_STRING = MIDPackage.eINSTANCE.getEMFInfo__ToInstanceString();
 
         /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.impl.GenericElementImpl <em>Generic Element</em>}' class.
@@ -4658,7 +4680,7 @@ public interface MIDPackage extends EPackage {
      * @see edu.toronto.cs.se.mmint.mid.impl.MIDPackageImpl#getGenericElement()
      * @generated
      */
-        EClass GENERIC_ELEMENT = eINSTANCE.getGenericElement();
+        EClass GENERIC_ELEMENT = MIDPackage.eINSTANCE.getGenericElement();
 
         /**
      * The meta object literal for the '<em><b>Abstract</b></em>' attribute feature.
@@ -4666,7 +4688,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EAttribute GENERIC_ELEMENT__ABSTRACT = eINSTANCE.getGenericElement_Abstract();
+        EAttribute GENERIC_ELEMENT__ABSTRACT = MIDPackage.eINSTANCE.getGenericElement_Abstract();
 
         /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.MIDLevel <em>Level</em>}' enum.
@@ -4676,7 +4698,7 @@ public interface MIDPackage extends EPackage {
      * @see edu.toronto.cs.se.mmint.mid.impl.MIDPackageImpl#getMIDLevel()
      * @generated
      */
-        EEnum MID_LEVEL = eINSTANCE.getMIDLevel();
+        EEnum MID_LEVEL = MIDPackage.eINSTANCE.getMIDLevel();
 
         /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.ModelOrigin <em>Model Origin</em>}' enum.
@@ -4686,7 +4708,7 @@ public interface MIDPackage extends EPackage {
      * @see edu.toronto.cs.se.mmint.mid.impl.MIDPackageImpl#getModelOrigin()
      * @generated
      */
-        EEnum MODEL_ORIGIN = eINSTANCE.getModelOrigin();
+        EEnum MODEL_ORIGIN = MIDPackage.eINSTANCE.getModelOrigin();
 
         /**
      * The meta object literal for the '<em>MMINT Exception</em>' data type.
@@ -4696,7 +4718,7 @@ public interface MIDPackage extends EPackage {
      * @see edu.toronto.cs.se.mmint.mid.impl.MIDPackageImpl#getMMINTException()
      * @generated
      */
-        EDataType MMINT_EXCEPTION = eINSTANCE.getMMINTException();
+        EDataType MMINT_EXCEPTION = MIDPackage.eINSTANCE.getMMINTException();
 
         /**
      * The meta object literal for the '<em>IO Exception</em>' data type.
@@ -4706,7 +4728,7 @@ public interface MIDPackage extends EPackage {
      * @see edu.toronto.cs.se.mmint.mid.impl.MIDPackageImpl#getIOException()
      * @generated
      */
-        EDataType IO_EXCEPTION = eINSTANCE.getIOException();
+        EDataType IO_EXCEPTION = MIDPackage.eINSTANCE.getIOException();
 
         /**
      * The meta object literal for the '<em>IStatus</em>' data type.
@@ -4716,7 +4738,7 @@ public interface MIDPackage extends EPackage {
      * @see edu.toronto.cs.se.mmint.mid.impl.MIDPackageImpl#getIStatus()
      * @generated
      */
-        EDataType ISTATUS = eINSTANCE.getIStatus();
+        EDataType ISTATUS = MIDPackage.eINSTANCE.getIStatus();
 
         /**
      * The meta object literal for the '<em>IValidation Context</em>' data type.
@@ -4726,7 +4748,17 @@ public interface MIDPackage extends EPackage {
      * @see edu.toronto.cs.se.mmint.mid.impl.MIDPackageImpl#getIValidationContext()
      * @generated
      */
-        EDataType IVALIDATION_CONTEXT = eINSTANCE.getIValidationContext();
+        EDataType IVALIDATION_CONTEXT = MIDPackage.eINSTANCE.getIValidationContext();
+
+        /**
+     * The meta object literal for the '<em>IEditor Part</em>' data type.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.ui.IEditorPart
+     * @see edu.toronto.cs.se.mmint.mid.impl.MIDPackageImpl#getIEditorPart()
+     * @generated
+     */
+    EDataType IEDITOR_PART = MIDPackage.eINSTANCE.getIEditorPart();
 
     }
 

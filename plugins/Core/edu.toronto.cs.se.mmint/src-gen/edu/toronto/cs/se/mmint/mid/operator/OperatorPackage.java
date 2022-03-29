@@ -5,13 +5,11 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.mmint.mid.operator;
-
-import java.util.Map;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -552,11 +550,11 @@ public interface OperatorPackage extends EPackage {
     /**
    * The operation id for the '<em>Create Workflow Instance Outputs</em>' operation.
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-    int OPERATOR___CREATE_WORKFLOW_INSTANCE_OUTPUTS__OPERATOR_MAP_MID = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 22;
+  int OPERATOR___CREATE_WORKFLOW_INSTANCE_OUTPUTS__OPERATOR_MAP_MAP_MID = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 22;
 
     /**
    * The operation id for the '<em>Start Workflow Instance</em>' operation.
@@ -602,7 +600,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int CONVERSION_OPERATOR__SUPERTYPE = OPERATOR__SUPERTYPE;
+    int CONVERSION_OPERATOR__SUPERTYPE = OperatorPackage.OPERATOR__SUPERTYPE;
 
     /**
    * The feature id for the '<em><b>Uri</b></em>' attribute.
@@ -611,7 +609,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int CONVERSION_OPERATOR__URI = OPERATOR__URI;
+    int CONVERSION_OPERATOR__URI = OperatorPackage.OPERATOR__URI;
 
     /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -620,7 +618,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int CONVERSION_OPERATOR__NAME = OPERATOR__NAME;
+    int CONVERSION_OPERATOR__NAME = OperatorPackage.OPERATOR__NAME;
 
     /**
    * The feature id for the '<em><b>Level</b></em>' attribute.
@@ -629,7 +627,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int CONVERSION_OPERATOR__LEVEL = OPERATOR__LEVEL;
+    int CONVERSION_OPERATOR__LEVEL = OperatorPackage.OPERATOR__LEVEL;
 
     /**
    * The feature id for the '<em><b>Metatype Uri</b></em>' attribute.
@@ -638,7 +636,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int CONVERSION_OPERATOR__METATYPE_URI = OPERATOR__METATYPE_URI;
+    int CONVERSION_OPERATOR__METATYPE_URI = OperatorPackage.OPERATOR__METATYPE_URI;
 
     /**
    * The feature id for the '<em><b>Dynamic</b></em>' attribute.
@@ -647,7 +645,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int CONVERSION_OPERATOR__DYNAMIC = OPERATOR__DYNAMIC;
+    int CONVERSION_OPERATOR__DYNAMIC = OperatorPackage.OPERATOR__DYNAMIC;
 
     /**
    * The feature id for the '<em><b>Constraint</b></em>' containment reference.
@@ -656,7 +654,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int CONVERSION_OPERATOR__CONSTRAINT = OPERATOR__CONSTRAINT;
+    int CONVERSION_OPERATOR__CONSTRAINT = OperatorPackage.OPERATOR__CONSTRAINT;
 
     /**
    * The feature id for the '<em><b>Abstract</b></em>' attribute.
@@ -665,7 +663,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int CONVERSION_OPERATOR__ABSTRACT = OPERATOR__ABSTRACT;
+    int CONVERSION_OPERATOR__ABSTRACT = OperatorPackage.OPERATOR__ABSTRACT;
 
     /**
    * The feature id for the '<em><b>Inputs</b></em>' containment reference list.
@@ -674,7 +672,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int CONVERSION_OPERATOR__INPUTS = OPERATOR__INPUTS;
+    int CONVERSION_OPERATOR__INPUTS = OperatorPackage.OPERATOR__INPUTS;
 
     /**
    * The feature id for the '<em><b>Outputs</b></em>' containment reference list.
@@ -683,7 +681,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int CONVERSION_OPERATOR__OUTPUTS = OPERATOR__OUTPUTS;
+    int CONVERSION_OPERATOR__OUTPUTS = OperatorPackage.OPERATOR__OUTPUTS;
 
     /**
    * The feature id for the '<em><b>Generics</b></em>' containment reference list.
@@ -692,7 +690,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int CONVERSION_OPERATOR__GENERICS = OPERATOR__GENERICS;
+    int CONVERSION_OPERATOR__GENERICS = OperatorPackage.OPERATOR__GENERICS;
 
     /**
    * The feature id for the '<em><b>Working Path</b></em>' attribute.
@@ -701,7 +699,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CONVERSION_OPERATOR__WORKING_PATH = OPERATOR__WORKING_PATH;
+  int CONVERSION_OPERATOR__WORKING_PATH = OperatorPackage.OPERATOR__WORKING_PATH;
 
     /**
    * The feature id for the '<em><b>Execution Time</b></em>' attribute.
@@ -710,7 +708,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int CONVERSION_OPERATOR__EXECUTION_TIME = OPERATOR__EXECUTION_TIME;
+    int CONVERSION_OPERATOR__EXECUTION_TIME = OperatorPackage.OPERATOR__EXECUTION_TIME;
 
     /**
    * The feature id for the '<em><b>Commutative</b></em>' attribute.
@@ -719,7 +717,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int CONVERSION_OPERATOR__COMMUTATIVE = OPERATOR__COMMUTATIVE;
+    int CONVERSION_OPERATOR__COMMUTATIVE = OperatorPackage.OPERATOR__COMMUTATIVE;
 
     /**
    * The number of structural features of the '<em>Conversion Operator</em>' class.
@@ -728,7 +726,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int CONVERSION_OPERATOR_FEATURE_COUNT = OPERATOR_FEATURE_COUNT + 0;
+    int CONVERSION_OPERATOR_FEATURE_COUNT = OperatorPackage.OPERATOR_FEATURE_COUNT + 0;
 
     /**
    * The operation id for the '<em>Is Level</em>' operation.
@@ -737,7 +735,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int CONVERSION_OPERATOR___IS_LEVEL__MIDLEVEL = OPERATOR___IS_LEVEL__MIDLEVEL;
+    int CONVERSION_OPERATOR___IS_LEVEL__MIDLEVEL = OperatorPackage.OPERATOR___IS_LEVEL__MIDLEVEL;
 
     /**
    * The operation id for the '<em>Is Types Level</em>' operation.
@@ -746,7 +744,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int CONVERSION_OPERATOR___IS_TYPES_LEVEL = OPERATOR___IS_TYPES_LEVEL;
+    int CONVERSION_OPERATOR___IS_TYPES_LEVEL = OperatorPackage.OPERATOR___IS_TYPES_LEVEL;
 
     /**
    * The operation id for the '<em>Create Subtype Uri</em>' operation.
@@ -755,7 +753,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int CONVERSION_OPERATOR___CREATE_SUBTYPE_URI__STRING_STRING = OPERATOR___CREATE_SUBTYPE_URI__STRING_STRING;
+    int CONVERSION_OPERATOR___CREATE_SUBTYPE_URI__STRING_STRING = OperatorPackage.OPERATOR___CREATE_SUBTYPE_URI__STRING_STRING;
 
     /**
    * The operation id for the '<em>Add Type Constraint</em>' operation.
@@ -764,7 +762,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int CONVERSION_OPERATOR___ADD_TYPE_CONSTRAINT__STRING_STRING = OPERATOR___ADD_TYPE_CONSTRAINT__STRING_STRING;
+    int CONVERSION_OPERATOR___ADD_TYPE_CONSTRAINT__STRING_STRING = OperatorPackage.OPERATOR___ADD_TYPE_CONSTRAINT__STRING_STRING;
 
     /**
    * The operation id for the '<em>Is Instances Level</em>' operation.
@@ -773,7 +771,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int CONVERSION_OPERATOR___IS_INSTANCES_LEVEL = OPERATOR___IS_INSTANCES_LEVEL;
+    int CONVERSION_OPERATOR___IS_INSTANCES_LEVEL = OperatorPackage.OPERATOR___IS_INSTANCES_LEVEL;
 
     /**
    * The operation id for the '<em>Get Runtime Types</em>' operation.
@@ -782,7 +780,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int CONVERSION_OPERATOR___GET_RUNTIME_TYPES = OPERATOR___GET_RUNTIME_TYPES;
+    int CONVERSION_OPERATOR___GET_RUNTIME_TYPES = OperatorPackage.OPERATOR___GET_RUNTIME_TYPES;
 
     /**
    * The operation id for the '<em>Get Closest Type Constraint</em>' operation.
@@ -791,7 +789,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int CONVERSION_OPERATOR___GET_CLOSEST_TYPE_CONSTRAINT = OPERATOR___GET_CLOSEST_TYPE_CONSTRAINT;
+    int CONVERSION_OPERATOR___GET_CLOSEST_TYPE_CONSTRAINT = OperatorPackage.OPERATOR___GET_CLOSEST_TYPE_CONSTRAINT;
 
     /**
    * The operation id for the '<em>Validate Instance Type</em>' operation.
@@ -800,7 +798,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int CONVERSION_OPERATOR___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT = OPERATOR___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT;
+    int CONVERSION_OPERATOR___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT = OperatorPackage.OPERATOR___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT;
 
     /**
    * The operation id for the '<em>Validate Instance</em>' operation.
@@ -809,7 +807,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int CONVERSION_OPERATOR___VALIDATE_INSTANCE = OPERATOR___VALIDATE_INSTANCE;
+    int CONVERSION_OPERATOR___VALIDATE_INSTANCE = OperatorPackage.OPERATOR___VALIDATE_INSTANCE;
 
     /**
    * The operation id for the '<em>Validate Instance In Editor</em>' operation.
@@ -818,7 +816,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int CONVERSION_OPERATOR___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = OPERATOR___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
+    int CONVERSION_OPERATOR___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = OperatorPackage.OPERATOR___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
 
     /**
    * The operation id for the '<em>Is Workflows Level</em>' operation.
@@ -827,7 +825,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int CONVERSION_OPERATOR___IS_WORKFLOWS_LEVEL = OPERATOR___IS_WORKFLOWS_LEVEL;
+    int CONVERSION_OPERATOR___IS_WORKFLOWS_LEVEL = OperatorPackage.OPERATOR___IS_WORKFLOWS_LEVEL;
 
     /**
    * The operation id for the '<em>Update Workflow Instance Id</em>' operation.
@@ -836,7 +834,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int CONVERSION_OPERATOR___UPDATE_WORKFLOW_INSTANCE_ID__STRING = OPERATOR___UPDATE_WORKFLOW_INSTANCE_ID__STRING;
+    int CONVERSION_OPERATOR___UPDATE_WORKFLOW_INSTANCE_ID__STRING = OperatorPackage.OPERATOR___UPDATE_WORKFLOW_INSTANCE_ID__STRING;
 
     /**
    * The operation id for the '<em>To MID Custom Print Label</em>' operation.
@@ -845,7 +843,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int CONVERSION_OPERATOR___TO_MID_CUSTOM_PRINT_LABEL = OPERATOR___TO_MID_CUSTOM_PRINT_LABEL;
+    int CONVERSION_OPERATOR___TO_MID_CUSTOM_PRINT_LABEL = OperatorPackage.OPERATOR___TO_MID_CUSTOM_PRINT_LABEL;
 
     /**
    * The operation id for the '<em>To MID Custom Edit Label</em>' operation.
@@ -854,7 +852,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int CONVERSION_OPERATOR___TO_MID_CUSTOM_EDIT_LABEL = OPERATOR___TO_MID_CUSTOM_EDIT_LABEL;
+    int CONVERSION_OPERATOR___TO_MID_CUSTOM_EDIT_LABEL = OperatorPackage.OPERATOR___TO_MID_CUSTOM_EDIT_LABEL;
 
     /**
    * The operation id for the '<em>Update MID Custom Label</em>' operation.
@@ -863,7 +861,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int CONVERSION_OPERATOR___UPDATE_MID_CUSTOM_LABEL__STRING = OPERATOR___UPDATE_MID_CUSTOM_LABEL__STRING;
+    int CONVERSION_OPERATOR___UPDATE_MID_CUSTOM_LABEL__STRING = OperatorPackage.OPERATOR___UPDATE_MID_CUSTOM_LABEL__STRING;
 
     /**
    * The operation id for the '<em>Get Metatype</em>' operation.
@@ -872,7 +870,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int CONVERSION_OPERATOR___GET_METATYPE = OPERATOR___GET_METATYPE;
+    int CONVERSION_OPERATOR___GET_METATYPE = OperatorPackage.OPERATOR___GET_METATYPE;
 
     /**
    * The operation id for the '<em>Get Supertype</em>' operation.
@@ -881,7 +879,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int CONVERSION_OPERATOR___GET_SUPERTYPE = OPERATOR___GET_SUPERTYPE;
+    int CONVERSION_OPERATOR___GET_SUPERTYPE = OperatorPackage.OPERATOR___GET_SUPERTYPE;
 
     /**
    * The operation id for the '<em>Get MID Container</em>' operation.
@@ -890,7 +888,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int CONVERSION_OPERATOR___GET_MID_CONTAINER = OPERATOR___GET_MID_CONTAINER;
+    int CONVERSION_OPERATOR___GET_MID_CONTAINER = OperatorPackage.OPERATOR___GET_MID_CONTAINER;
 
     /**
    * The operation id for the '<em>Get Type Signature</em>' operation.
@@ -899,7 +897,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int CONVERSION_OPERATOR___GET_TYPE_SIGNATURE__ELIST = OPERATOR___GET_TYPE_SIGNATURE__ELIST;
+    int CONVERSION_OPERATOR___GET_TYPE_SIGNATURE__ELIST = OperatorPackage.OPERATOR___GET_TYPE_SIGNATURE__ELIST;
 
     /**
    * The operation id for the '<em>Create Subtype</em>' operation.
@@ -908,7 +906,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int CONVERSION_OPERATOR___CREATE_SUBTYPE__STRING_STRING = OPERATOR___CREATE_SUBTYPE__STRING_STRING;
+    int CONVERSION_OPERATOR___CREATE_SUBTYPE__STRING_STRING = OperatorPackage.OPERATOR___CREATE_SUBTYPE__STRING_STRING;
 
     /**
    * The operation id for the '<em>Open Type</em>' operation.
@@ -917,7 +915,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int CONVERSION_OPERATOR___OPEN_TYPE = OPERATOR___OPEN_TYPE;
+    int CONVERSION_OPERATOR___OPEN_TYPE = OperatorPackage.OPERATOR___OPEN_TYPE;
 
     /**
    * The operation id for the '<em>Find Allowed Inputs</em>' operation.
@@ -926,7 +924,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int CONVERSION_OPERATOR___FIND_ALLOWED_INPUTS__ELIST_ELIST = OPERATOR___FIND_ALLOWED_INPUTS__ELIST_ELIST;
+    int CONVERSION_OPERATOR___FIND_ALLOWED_INPUTS__ELIST_ELIST = OperatorPackage.OPERATOR___FIND_ALLOWED_INPUTS__ELIST_ELIST;
 
     /**
    * The operation id for the '<em>Find First Allowed Input</em>' operation.
@@ -935,7 +933,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int CONVERSION_OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST_ELIST = OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST_ELIST;
+    int CONVERSION_OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST_ELIST = OperatorPackage.OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST_ELIST;
 
     /**
    * The operation id for the '<em>Check Allowed Inputs</em>' operation.
@@ -944,7 +942,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int CONVERSION_OPERATOR___CHECK_ALLOWED_INPUTS__ELIST = OPERATOR___CHECK_ALLOWED_INPUTS__ELIST;
+    int CONVERSION_OPERATOR___CHECK_ALLOWED_INPUTS__ELIST = OperatorPackage.OPERATOR___CHECK_ALLOWED_INPUTS__ELIST;
 
     /**
    * The operation id for the '<em>Get Outputs By Name</em>' operation.
@@ -953,7 +951,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int CONVERSION_OPERATOR___GET_OUTPUTS_BY_NAME = OPERATOR___GET_OUTPUTS_BY_NAME;
+    int CONVERSION_OPERATOR___GET_OUTPUTS_BY_NAME = OperatorPackage.OPERATOR___GET_OUTPUTS_BY_NAME;
 
     /**
    * The operation id for the '<em>Get Output Models</em>' operation.
@@ -962,7 +960,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int CONVERSION_OPERATOR___GET_OUTPUT_MODELS = OPERATOR___GET_OUTPUT_MODELS;
+    int CONVERSION_OPERATOR___GET_OUTPUT_MODELS = OperatorPackage.OPERATOR___GET_OUTPUT_MODELS;
 
     /**
    * The operation id for the '<em>Create Instance</em>' operation.
@@ -971,7 +969,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int CONVERSION_OPERATOR___CREATE_INSTANCE__MID = OPERATOR___CREATE_INSTANCE__MID;
+    int CONVERSION_OPERATOR___CREATE_INSTANCE__MID = OperatorPackage.OPERATOR___CREATE_INSTANCE__MID;
 
     /**
    * The operation id for the '<em>Delete Instance</em>' operation.
@@ -980,7 +978,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int CONVERSION_OPERATOR___DELETE_INSTANCE = OPERATOR___DELETE_INSTANCE;
+    int CONVERSION_OPERATOR___DELETE_INSTANCE = OperatorPackage.OPERATOR___DELETE_INSTANCE;
 
     /**
    * The operation id for the '<em>Select Allowed Generics</em>' operation.
@@ -989,7 +987,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int CONVERSION_OPERATOR___SELECT_ALLOWED_GENERICS__ELIST = OPERATOR___SELECT_ALLOWED_GENERICS__ELIST;
+    int CONVERSION_OPERATOR___SELECT_ALLOWED_GENERICS__ELIST = OperatorPackage.OPERATOR___SELECT_ALLOWED_GENERICS__ELIST;
 
     /**
    * The operation id for the '<em>Get Input Properties</em>' operation.
@@ -998,7 +996,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int CONVERSION_OPERATOR___GET_INPUT_PROPERTIES = OPERATOR___GET_INPUT_PROPERTIES;
+    int CONVERSION_OPERATOR___GET_INPUT_PROPERTIES = OperatorPackage.OPERATOR___GET_INPUT_PROPERTIES;
 
     /**
    * The operation id for the '<em>Read Input Properties</em>' operation.
@@ -1007,7 +1005,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int CONVERSION_OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES = OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES;
+    int CONVERSION_OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES = OperatorPackage.OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES;
 
     /**
    * The operation id for the '<em>Run</em>' operation.
@@ -1016,7 +1014,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int CONVERSION_OPERATOR___RUN__MAP_MAP_MAP = OPERATOR___RUN__MAP_MAP_MAP;
+    int CONVERSION_OPERATOR___RUN__MAP_MAP_MAP = OperatorPackage.OPERATOR___RUN__MAP_MAP_MAP;
 
     /**
    * The operation id for the '<em>Start Instance</em>' operation.
@@ -1025,7 +1023,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int CONVERSION_OPERATOR___START_INSTANCE__ELIST_PROPERTIES_ELIST_MAP_MID = OPERATOR___START_INSTANCE__ELIST_PROPERTIES_ELIST_MAP_MID;
+    int CONVERSION_OPERATOR___START_INSTANCE__ELIST_PROPERTIES_ELIST_MAP_MID = OperatorPackage.OPERATOR___START_INSTANCE__ELIST_PROPERTIES_ELIST_MAP_MID;
 
     /**
    * The operation id for the '<em>Open Instance</em>' operation.
@@ -1034,7 +1032,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int CONVERSION_OPERATOR___OPEN_INSTANCE = OPERATOR___OPEN_INSTANCE;
+    int CONVERSION_OPERATOR___OPEN_INSTANCE = OperatorPackage.OPERATOR___OPEN_INSTANCE;
 
     /**
    * The operation id for the '<em>Create Workflow Instance</em>' operation.
@@ -1043,7 +1041,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int CONVERSION_OPERATOR___CREATE_WORKFLOW_INSTANCE__MID = OPERATOR___CREATE_WORKFLOW_INSTANCE__MID;
+    int CONVERSION_OPERATOR___CREATE_WORKFLOW_INSTANCE__MID = OperatorPackage.OPERATOR___CREATE_WORKFLOW_INSTANCE__MID;
 
     /**
    * The operation id for the '<em>Delete Workflow Instance</em>' operation.
@@ -1052,16 +1050,16 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int CONVERSION_OPERATOR___DELETE_WORKFLOW_INSTANCE = OPERATOR___DELETE_WORKFLOW_INSTANCE;
+    int CONVERSION_OPERATOR___DELETE_WORKFLOW_INSTANCE = OperatorPackage.OPERATOR___DELETE_WORKFLOW_INSTANCE;
 
     /**
    * The operation id for the '<em>Create Workflow Instance Outputs</em>' operation.
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-    int CONVERSION_OPERATOR___CREATE_WORKFLOW_INSTANCE_OUTPUTS__OPERATOR_MAP_MID = OPERATOR___CREATE_WORKFLOW_INSTANCE_OUTPUTS__OPERATOR_MAP_MID;
+  int CONVERSION_OPERATOR___CREATE_WORKFLOW_INSTANCE_OUTPUTS__OPERATOR_MAP_MAP_MID = OperatorPackage.OPERATOR___CREATE_WORKFLOW_INSTANCE_OUTPUTS__OPERATOR_MAP_MAP_MID;
 
     /**
    * The operation id for the '<em>Start Workflow Instance</em>' operation.
@@ -1070,7 +1068,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int CONVERSION_OPERATOR___START_WORKFLOW_INSTANCE__ELIST_ELIST_MID = OPERATOR___START_WORKFLOW_INSTANCE__ELIST_ELIST_MID;
+    int CONVERSION_OPERATOR___START_WORKFLOW_INSTANCE__ELIST_ELIST_MID = OperatorPackage.OPERATOR___START_WORKFLOW_INSTANCE__ELIST_ELIST_MID;
 
     /**
    * The operation id for the '<em>Open Workflow Instance</em>' operation.
@@ -1079,7 +1077,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int CONVERSION_OPERATOR___OPEN_WORKFLOW_INSTANCE = OPERATOR___OPEN_WORKFLOW_INSTANCE;
+    int CONVERSION_OPERATOR___OPEN_WORKFLOW_INSTANCE = OperatorPackage.OPERATOR___OPEN_WORKFLOW_INSTANCE;
 
     /**
    * The operation id for the '<em>Delete Type</em>' operation.
@@ -1088,7 +1086,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int CONVERSION_OPERATOR___DELETE_TYPE = OPERATOR_OPERATION_COUNT + 0;
+    int CONVERSION_OPERATOR___DELETE_TYPE = OperatorPackage.OPERATOR_OPERATION_COUNT + 0;
 
     /**
    * The operation id for the '<em>Cleanup</em>' operation.
@@ -1097,7 +1095,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int CONVERSION_OPERATOR___CLEANUP = OPERATOR_OPERATION_COUNT + 1;
+    int CONVERSION_OPERATOR___CLEANUP = OperatorPackage.OPERATOR_OPERATION_COUNT + 1;
 
     /**
    * The number of operations of the '<em>Conversion Operator</em>' class.
@@ -1106,7 +1104,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int CONVERSION_OPERATOR_OPERATION_COUNT = OPERATOR_OPERATION_COUNT + 2;
+    int CONVERSION_OPERATOR_OPERATION_COUNT = OperatorPackage.OPERATOR_OPERATION_COUNT + 2;
 
     /**
    * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.RandomOperatorImpl <em>Random Operator</em>}' class.
@@ -1125,7 +1123,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int RANDOM_OPERATOR__SUPERTYPE = OPERATOR__SUPERTYPE;
+    int RANDOM_OPERATOR__SUPERTYPE = OperatorPackage.OPERATOR__SUPERTYPE;
 
     /**
    * The feature id for the '<em><b>Uri</b></em>' attribute.
@@ -1134,7 +1132,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int RANDOM_OPERATOR__URI = OPERATOR__URI;
+    int RANDOM_OPERATOR__URI = OperatorPackage.OPERATOR__URI;
 
     /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1143,7 +1141,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int RANDOM_OPERATOR__NAME = OPERATOR__NAME;
+    int RANDOM_OPERATOR__NAME = OperatorPackage.OPERATOR__NAME;
 
     /**
    * The feature id for the '<em><b>Level</b></em>' attribute.
@@ -1152,7 +1150,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int RANDOM_OPERATOR__LEVEL = OPERATOR__LEVEL;
+    int RANDOM_OPERATOR__LEVEL = OperatorPackage.OPERATOR__LEVEL;
 
     /**
    * The feature id for the '<em><b>Metatype Uri</b></em>' attribute.
@@ -1161,7 +1159,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int RANDOM_OPERATOR__METATYPE_URI = OPERATOR__METATYPE_URI;
+    int RANDOM_OPERATOR__METATYPE_URI = OperatorPackage.OPERATOR__METATYPE_URI;
 
     /**
    * The feature id for the '<em><b>Dynamic</b></em>' attribute.
@@ -1170,7 +1168,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int RANDOM_OPERATOR__DYNAMIC = OPERATOR__DYNAMIC;
+    int RANDOM_OPERATOR__DYNAMIC = OperatorPackage.OPERATOR__DYNAMIC;
 
     /**
    * The feature id for the '<em><b>Constraint</b></em>' containment reference.
@@ -1179,7 +1177,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int RANDOM_OPERATOR__CONSTRAINT = OPERATOR__CONSTRAINT;
+    int RANDOM_OPERATOR__CONSTRAINT = OperatorPackage.OPERATOR__CONSTRAINT;
 
     /**
    * The feature id for the '<em><b>Abstract</b></em>' attribute.
@@ -1188,7 +1186,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int RANDOM_OPERATOR__ABSTRACT = OPERATOR__ABSTRACT;
+    int RANDOM_OPERATOR__ABSTRACT = OperatorPackage.OPERATOR__ABSTRACT;
 
     /**
    * The feature id for the '<em><b>Inputs</b></em>' containment reference list.
@@ -1197,7 +1195,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int RANDOM_OPERATOR__INPUTS = OPERATOR__INPUTS;
+    int RANDOM_OPERATOR__INPUTS = OperatorPackage.OPERATOR__INPUTS;
 
     /**
    * The feature id for the '<em><b>Outputs</b></em>' containment reference list.
@@ -1206,7 +1204,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int RANDOM_OPERATOR__OUTPUTS = OPERATOR__OUTPUTS;
+    int RANDOM_OPERATOR__OUTPUTS = OperatorPackage.OPERATOR__OUTPUTS;
 
     /**
    * The feature id for the '<em><b>Generics</b></em>' containment reference list.
@@ -1215,7 +1213,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int RANDOM_OPERATOR__GENERICS = OPERATOR__GENERICS;
+    int RANDOM_OPERATOR__GENERICS = OperatorPackage.OPERATOR__GENERICS;
 
     /**
    * The feature id for the '<em><b>Working Path</b></em>' attribute.
@@ -1224,7 +1222,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int RANDOM_OPERATOR__WORKING_PATH = OPERATOR__WORKING_PATH;
+  int RANDOM_OPERATOR__WORKING_PATH = OperatorPackage.OPERATOR__WORKING_PATH;
 
     /**
    * The feature id for the '<em><b>Execution Time</b></em>' attribute.
@@ -1233,7 +1231,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int RANDOM_OPERATOR__EXECUTION_TIME = OPERATOR__EXECUTION_TIME;
+    int RANDOM_OPERATOR__EXECUTION_TIME = OperatorPackage.OPERATOR__EXECUTION_TIME;
 
     /**
    * The feature id for the '<em><b>Commutative</b></em>' attribute.
@@ -1242,7 +1240,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int RANDOM_OPERATOR__COMMUTATIVE = OPERATOR__COMMUTATIVE;
+    int RANDOM_OPERATOR__COMMUTATIVE = OperatorPackage.OPERATOR__COMMUTATIVE;
 
     /**
    * The feature id for the '<em><b>State</b></em>' attribute.
@@ -1251,7 +1249,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int RANDOM_OPERATOR__STATE = OPERATOR_FEATURE_COUNT + 0;
+    int RANDOM_OPERATOR__STATE = OperatorPackage.OPERATOR_FEATURE_COUNT + 0;
 
     /**
    * The number of structural features of the '<em>Random Operator</em>' class.
@@ -1260,7 +1258,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int RANDOM_OPERATOR_FEATURE_COUNT = OPERATOR_FEATURE_COUNT + 1;
+    int RANDOM_OPERATOR_FEATURE_COUNT = OperatorPackage.OPERATOR_FEATURE_COUNT + 1;
 
     /**
    * The operation id for the '<em>Is Level</em>' operation.
@@ -1269,7 +1267,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int RANDOM_OPERATOR___IS_LEVEL__MIDLEVEL = OPERATOR___IS_LEVEL__MIDLEVEL;
+    int RANDOM_OPERATOR___IS_LEVEL__MIDLEVEL = OperatorPackage.OPERATOR___IS_LEVEL__MIDLEVEL;
 
     /**
    * The operation id for the '<em>Is Types Level</em>' operation.
@@ -1278,7 +1276,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int RANDOM_OPERATOR___IS_TYPES_LEVEL = OPERATOR___IS_TYPES_LEVEL;
+    int RANDOM_OPERATOR___IS_TYPES_LEVEL = OperatorPackage.OPERATOR___IS_TYPES_LEVEL;
 
     /**
    * The operation id for the '<em>Create Subtype Uri</em>' operation.
@@ -1287,7 +1285,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int RANDOM_OPERATOR___CREATE_SUBTYPE_URI__STRING_STRING = OPERATOR___CREATE_SUBTYPE_URI__STRING_STRING;
+    int RANDOM_OPERATOR___CREATE_SUBTYPE_URI__STRING_STRING = OperatorPackage.OPERATOR___CREATE_SUBTYPE_URI__STRING_STRING;
 
     /**
    * The operation id for the '<em>Add Type Constraint</em>' operation.
@@ -1296,7 +1294,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int RANDOM_OPERATOR___ADD_TYPE_CONSTRAINT__STRING_STRING = OPERATOR___ADD_TYPE_CONSTRAINT__STRING_STRING;
+    int RANDOM_OPERATOR___ADD_TYPE_CONSTRAINT__STRING_STRING = OperatorPackage.OPERATOR___ADD_TYPE_CONSTRAINT__STRING_STRING;
 
     /**
    * The operation id for the '<em>Is Instances Level</em>' operation.
@@ -1305,7 +1303,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int RANDOM_OPERATOR___IS_INSTANCES_LEVEL = OPERATOR___IS_INSTANCES_LEVEL;
+    int RANDOM_OPERATOR___IS_INSTANCES_LEVEL = OperatorPackage.OPERATOR___IS_INSTANCES_LEVEL;
 
     /**
    * The operation id for the '<em>Get Runtime Types</em>' operation.
@@ -1314,7 +1312,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int RANDOM_OPERATOR___GET_RUNTIME_TYPES = OPERATOR___GET_RUNTIME_TYPES;
+    int RANDOM_OPERATOR___GET_RUNTIME_TYPES = OperatorPackage.OPERATOR___GET_RUNTIME_TYPES;
 
     /**
    * The operation id for the '<em>Get Closest Type Constraint</em>' operation.
@@ -1323,7 +1321,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int RANDOM_OPERATOR___GET_CLOSEST_TYPE_CONSTRAINT = OPERATOR___GET_CLOSEST_TYPE_CONSTRAINT;
+    int RANDOM_OPERATOR___GET_CLOSEST_TYPE_CONSTRAINT = OperatorPackage.OPERATOR___GET_CLOSEST_TYPE_CONSTRAINT;
 
     /**
    * The operation id for the '<em>Validate Instance Type</em>' operation.
@@ -1332,7 +1330,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int RANDOM_OPERATOR___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT = OPERATOR___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT;
+    int RANDOM_OPERATOR___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT = OperatorPackage.OPERATOR___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT;
 
     /**
    * The operation id for the '<em>Validate Instance</em>' operation.
@@ -1341,7 +1339,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int RANDOM_OPERATOR___VALIDATE_INSTANCE = OPERATOR___VALIDATE_INSTANCE;
+    int RANDOM_OPERATOR___VALIDATE_INSTANCE = OperatorPackage.OPERATOR___VALIDATE_INSTANCE;
 
     /**
    * The operation id for the '<em>Validate Instance In Editor</em>' operation.
@@ -1350,7 +1348,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int RANDOM_OPERATOR___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = OPERATOR___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
+    int RANDOM_OPERATOR___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = OperatorPackage.OPERATOR___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
 
     /**
    * The operation id for the '<em>Is Workflows Level</em>' operation.
@@ -1359,7 +1357,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int RANDOM_OPERATOR___IS_WORKFLOWS_LEVEL = OPERATOR___IS_WORKFLOWS_LEVEL;
+    int RANDOM_OPERATOR___IS_WORKFLOWS_LEVEL = OperatorPackage.OPERATOR___IS_WORKFLOWS_LEVEL;
 
     /**
    * The operation id for the '<em>Update Workflow Instance Id</em>' operation.
@@ -1368,7 +1366,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int RANDOM_OPERATOR___UPDATE_WORKFLOW_INSTANCE_ID__STRING = OPERATOR___UPDATE_WORKFLOW_INSTANCE_ID__STRING;
+    int RANDOM_OPERATOR___UPDATE_WORKFLOW_INSTANCE_ID__STRING = OperatorPackage.OPERATOR___UPDATE_WORKFLOW_INSTANCE_ID__STRING;
 
     /**
    * The operation id for the '<em>To MID Custom Print Label</em>' operation.
@@ -1377,7 +1375,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int RANDOM_OPERATOR___TO_MID_CUSTOM_PRINT_LABEL = OPERATOR___TO_MID_CUSTOM_PRINT_LABEL;
+    int RANDOM_OPERATOR___TO_MID_CUSTOM_PRINT_LABEL = OperatorPackage.OPERATOR___TO_MID_CUSTOM_PRINT_LABEL;
 
     /**
    * The operation id for the '<em>To MID Custom Edit Label</em>' operation.
@@ -1386,7 +1384,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int RANDOM_OPERATOR___TO_MID_CUSTOM_EDIT_LABEL = OPERATOR___TO_MID_CUSTOM_EDIT_LABEL;
+    int RANDOM_OPERATOR___TO_MID_CUSTOM_EDIT_LABEL = OperatorPackage.OPERATOR___TO_MID_CUSTOM_EDIT_LABEL;
 
     /**
    * The operation id for the '<em>Update MID Custom Label</em>' operation.
@@ -1395,7 +1393,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int RANDOM_OPERATOR___UPDATE_MID_CUSTOM_LABEL__STRING = OPERATOR___UPDATE_MID_CUSTOM_LABEL__STRING;
+    int RANDOM_OPERATOR___UPDATE_MID_CUSTOM_LABEL__STRING = OperatorPackage.OPERATOR___UPDATE_MID_CUSTOM_LABEL__STRING;
 
     /**
    * The operation id for the '<em>Get Metatype</em>' operation.
@@ -1404,7 +1402,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int RANDOM_OPERATOR___GET_METATYPE = OPERATOR___GET_METATYPE;
+    int RANDOM_OPERATOR___GET_METATYPE = OperatorPackage.OPERATOR___GET_METATYPE;
 
     /**
    * The operation id for the '<em>Get Supertype</em>' operation.
@@ -1413,7 +1411,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int RANDOM_OPERATOR___GET_SUPERTYPE = OPERATOR___GET_SUPERTYPE;
+    int RANDOM_OPERATOR___GET_SUPERTYPE = OperatorPackage.OPERATOR___GET_SUPERTYPE;
 
     /**
    * The operation id for the '<em>Get MID Container</em>' operation.
@@ -1422,7 +1420,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int RANDOM_OPERATOR___GET_MID_CONTAINER = OPERATOR___GET_MID_CONTAINER;
+    int RANDOM_OPERATOR___GET_MID_CONTAINER = OperatorPackage.OPERATOR___GET_MID_CONTAINER;
 
     /**
    * The operation id for the '<em>Get Type Signature</em>' operation.
@@ -1431,7 +1429,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int RANDOM_OPERATOR___GET_TYPE_SIGNATURE__ELIST = OPERATOR___GET_TYPE_SIGNATURE__ELIST;
+    int RANDOM_OPERATOR___GET_TYPE_SIGNATURE__ELIST = OperatorPackage.OPERATOR___GET_TYPE_SIGNATURE__ELIST;
 
     /**
    * The operation id for the '<em>Create Subtype</em>' operation.
@@ -1440,7 +1438,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int RANDOM_OPERATOR___CREATE_SUBTYPE__STRING_STRING = OPERATOR___CREATE_SUBTYPE__STRING_STRING;
+    int RANDOM_OPERATOR___CREATE_SUBTYPE__STRING_STRING = OperatorPackage.OPERATOR___CREATE_SUBTYPE__STRING_STRING;
 
     /**
    * The operation id for the '<em>Delete Type</em>' operation.
@@ -1449,7 +1447,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int RANDOM_OPERATOR___DELETE_TYPE = OPERATOR___DELETE_TYPE;
+    int RANDOM_OPERATOR___DELETE_TYPE = OperatorPackage.OPERATOR___DELETE_TYPE;
 
     /**
    * The operation id for the '<em>Open Type</em>' operation.
@@ -1458,7 +1456,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int RANDOM_OPERATOR___OPEN_TYPE = OPERATOR___OPEN_TYPE;
+    int RANDOM_OPERATOR___OPEN_TYPE = OperatorPackage.OPERATOR___OPEN_TYPE;
 
     /**
    * The operation id for the '<em>Find Allowed Inputs</em>' operation.
@@ -1467,7 +1465,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int RANDOM_OPERATOR___FIND_ALLOWED_INPUTS__ELIST_ELIST = OPERATOR___FIND_ALLOWED_INPUTS__ELIST_ELIST;
+    int RANDOM_OPERATOR___FIND_ALLOWED_INPUTS__ELIST_ELIST = OperatorPackage.OPERATOR___FIND_ALLOWED_INPUTS__ELIST_ELIST;
 
     /**
    * The operation id for the '<em>Find First Allowed Input</em>' operation.
@@ -1476,7 +1474,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int RANDOM_OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST_ELIST = OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST_ELIST;
+    int RANDOM_OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST_ELIST = OperatorPackage.OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST_ELIST;
 
     /**
    * The operation id for the '<em>Check Allowed Inputs</em>' operation.
@@ -1485,7 +1483,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int RANDOM_OPERATOR___CHECK_ALLOWED_INPUTS__ELIST = OPERATOR___CHECK_ALLOWED_INPUTS__ELIST;
+    int RANDOM_OPERATOR___CHECK_ALLOWED_INPUTS__ELIST = OperatorPackage.OPERATOR___CHECK_ALLOWED_INPUTS__ELIST;
 
     /**
    * The operation id for the '<em>Get Outputs By Name</em>' operation.
@@ -1494,7 +1492,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int RANDOM_OPERATOR___GET_OUTPUTS_BY_NAME = OPERATOR___GET_OUTPUTS_BY_NAME;
+    int RANDOM_OPERATOR___GET_OUTPUTS_BY_NAME = OperatorPackage.OPERATOR___GET_OUTPUTS_BY_NAME;
 
     /**
    * The operation id for the '<em>Get Output Models</em>' operation.
@@ -1503,7 +1501,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int RANDOM_OPERATOR___GET_OUTPUT_MODELS = OPERATOR___GET_OUTPUT_MODELS;
+    int RANDOM_OPERATOR___GET_OUTPUT_MODELS = OperatorPackage.OPERATOR___GET_OUTPUT_MODELS;
 
     /**
    * The operation id for the '<em>Create Instance</em>' operation.
@@ -1512,7 +1510,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int RANDOM_OPERATOR___CREATE_INSTANCE__MID = OPERATOR___CREATE_INSTANCE__MID;
+    int RANDOM_OPERATOR___CREATE_INSTANCE__MID = OperatorPackage.OPERATOR___CREATE_INSTANCE__MID;
 
     /**
    * The operation id for the '<em>Delete Instance</em>' operation.
@@ -1521,7 +1519,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int RANDOM_OPERATOR___DELETE_INSTANCE = OPERATOR___DELETE_INSTANCE;
+    int RANDOM_OPERATOR___DELETE_INSTANCE = OperatorPackage.OPERATOR___DELETE_INSTANCE;
 
     /**
    * The operation id for the '<em>Select Allowed Generics</em>' operation.
@@ -1530,7 +1528,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int RANDOM_OPERATOR___SELECT_ALLOWED_GENERICS__ELIST = OPERATOR___SELECT_ALLOWED_GENERICS__ELIST;
+    int RANDOM_OPERATOR___SELECT_ALLOWED_GENERICS__ELIST = OperatorPackage.OPERATOR___SELECT_ALLOWED_GENERICS__ELIST;
 
     /**
    * The operation id for the '<em>Get Input Properties</em>' operation.
@@ -1539,7 +1537,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int RANDOM_OPERATOR___GET_INPUT_PROPERTIES = OPERATOR___GET_INPUT_PROPERTIES;
+    int RANDOM_OPERATOR___GET_INPUT_PROPERTIES = OperatorPackage.OPERATOR___GET_INPUT_PROPERTIES;
 
     /**
    * The operation id for the '<em>Read Input Properties</em>' operation.
@@ -1548,7 +1546,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int RANDOM_OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES = OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES;
+    int RANDOM_OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES = OperatorPackage.OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES;
 
     /**
    * The operation id for the '<em>Run</em>' operation.
@@ -1557,7 +1555,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int RANDOM_OPERATOR___RUN__MAP_MAP_MAP = OPERATOR___RUN__MAP_MAP_MAP;
+    int RANDOM_OPERATOR___RUN__MAP_MAP_MAP = OperatorPackage.OPERATOR___RUN__MAP_MAP_MAP;
 
     /**
    * The operation id for the '<em>Start Instance</em>' operation.
@@ -1566,7 +1564,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int RANDOM_OPERATOR___START_INSTANCE__ELIST_PROPERTIES_ELIST_MAP_MID = OPERATOR___START_INSTANCE__ELIST_PROPERTIES_ELIST_MAP_MID;
+    int RANDOM_OPERATOR___START_INSTANCE__ELIST_PROPERTIES_ELIST_MAP_MID = OperatorPackage.OPERATOR___START_INSTANCE__ELIST_PROPERTIES_ELIST_MAP_MID;
 
     /**
    * The operation id for the '<em>Open Instance</em>' operation.
@@ -1575,7 +1573,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int RANDOM_OPERATOR___OPEN_INSTANCE = OPERATOR___OPEN_INSTANCE;
+    int RANDOM_OPERATOR___OPEN_INSTANCE = OperatorPackage.OPERATOR___OPEN_INSTANCE;
 
     /**
    * The operation id for the '<em>Create Workflow Instance</em>' operation.
@@ -1584,7 +1582,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int RANDOM_OPERATOR___CREATE_WORKFLOW_INSTANCE__MID = OPERATOR___CREATE_WORKFLOW_INSTANCE__MID;
+    int RANDOM_OPERATOR___CREATE_WORKFLOW_INSTANCE__MID = OperatorPackage.OPERATOR___CREATE_WORKFLOW_INSTANCE__MID;
 
     /**
    * The operation id for the '<em>Delete Workflow Instance</em>' operation.
@@ -1593,16 +1591,16 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int RANDOM_OPERATOR___DELETE_WORKFLOW_INSTANCE = OPERATOR___DELETE_WORKFLOW_INSTANCE;
+    int RANDOM_OPERATOR___DELETE_WORKFLOW_INSTANCE = OperatorPackage.OPERATOR___DELETE_WORKFLOW_INSTANCE;
 
     /**
    * The operation id for the '<em>Create Workflow Instance Outputs</em>' operation.
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-    int RANDOM_OPERATOR___CREATE_WORKFLOW_INSTANCE_OUTPUTS__OPERATOR_MAP_MID = OPERATOR___CREATE_WORKFLOW_INSTANCE_OUTPUTS__OPERATOR_MAP_MID;
+  int RANDOM_OPERATOR___CREATE_WORKFLOW_INSTANCE_OUTPUTS__OPERATOR_MAP_MAP_MID = OperatorPackage.OPERATOR___CREATE_WORKFLOW_INSTANCE_OUTPUTS__OPERATOR_MAP_MAP_MID;
 
     /**
    * The operation id for the '<em>Start Workflow Instance</em>' operation.
@@ -1611,7 +1609,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int RANDOM_OPERATOR___START_WORKFLOW_INSTANCE__ELIST_ELIST_MID = OPERATOR___START_WORKFLOW_INSTANCE__ELIST_ELIST_MID;
+    int RANDOM_OPERATOR___START_WORKFLOW_INSTANCE__ELIST_ELIST_MID = OperatorPackage.OPERATOR___START_WORKFLOW_INSTANCE__ELIST_ELIST_MID;
 
     /**
    * The operation id for the '<em>Open Workflow Instance</em>' operation.
@@ -1620,7 +1618,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int RANDOM_OPERATOR___OPEN_WORKFLOW_INSTANCE = OPERATOR___OPEN_WORKFLOW_INSTANCE;
+    int RANDOM_OPERATOR___OPEN_WORKFLOW_INSTANCE = OperatorPackage.OPERATOR___OPEN_WORKFLOW_INSTANCE;
 
     /**
    * The number of operations of the '<em>Random Operator</em>' class.
@@ -1629,7 +1627,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int RANDOM_OPERATOR_OPERATION_COUNT = OPERATOR_OPERATION_COUNT + 0;
+    int RANDOM_OPERATOR_OPERATION_COUNT = OperatorPackage.OPERATOR_OPERATION_COUNT + 0;
 
     /**
    * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.NestingOperatorImpl <em>Nesting Operator</em>}' class.
@@ -1648,7 +1646,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int NESTING_OPERATOR__SUPERTYPE = OPERATOR__SUPERTYPE;
+    int NESTING_OPERATOR__SUPERTYPE = OperatorPackage.OPERATOR__SUPERTYPE;
 
     /**
    * The feature id for the '<em><b>Uri</b></em>' attribute.
@@ -1657,7 +1655,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int NESTING_OPERATOR__URI = OPERATOR__URI;
+    int NESTING_OPERATOR__URI = OperatorPackage.OPERATOR__URI;
 
     /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1666,7 +1664,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int NESTING_OPERATOR__NAME = OPERATOR__NAME;
+    int NESTING_OPERATOR__NAME = OperatorPackage.OPERATOR__NAME;
 
     /**
    * The feature id for the '<em><b>Level</b></em>' attribute.
@@ -1675,7 +1673,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int NESTING_OPERATOR__LEVEL = OPERATOR__LEVEL;
+    int NESTING_OPERATOR__LEVEL = OperatorPackage.OPERATOR__LEVEL;
 
     /**
    * The feature id for the '<em><b>Metatype Uri</b></em>' attribute.
@@ -1684,7 +1682,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int NESTING_OPERATOR__METATYPE_URI = OPERATOR__METATYPE_URI;
+    int NESTING_OPERATOR__METATYPE_URI = OperatorPackage.OPERATOR__METATYPE_URI;
 
     /**
    * The feature id for the '<em><b>Dynamic</b></em>' attribute.
@@ -1693,7 +1691,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int NESTING_OPERATOR__DYNAMIC = OPERATOR__DYNAMIC;
+    int NESTING_OPERATOR__DYNAMIC = OperatorPackage.OPERATOR__DYNAMIC;
 
     /**
    * The feature id for the '<em><b>Constraint</b></em>' containment reference.
@@ -1702,7 +1700,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int NESTING_OPERATOR__CONSTRAINT = OPERATOR__CONSTRAINT;
+    int NESTING_OPERATOR__CONSTRAINT = OperatorPackage.OPERATOR__CONSTRAINT;
 
     /**
    * The feature id for the '<em><b>Abstract</b></em>' attribute.
@@ -1711,7 +1709,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int NESTING_OPERATOR__ABSTRACT = OPERATOR__ABSTRACT;
+    int NESTING_OPERATOR__ABSTRACT = OperatorPackage.OPERATOR__ABSTRACT;
 
     /**
    * The feature id for the '<em><b>Inputs</b></em>' containment reference list.
@@ -1720,7 +1718,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int NESTING_OPERATOR__INPUTS = OPERATOR__INPUTS;
+    int NESTING_OPERATOR__INPUTS = OperatorPackage.OPERATOR__INPUTS;
 
     /**
    * The feature id for the '<em><b>Outputs</b></em>' containment reference list.
@@ -1729,7 +1727,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int NESTING_OPERATOR__OUTPUTS = OPERATOR__OUTPUTS;
+    int NESTING_OPERATOR__OUTPUTS = OperatorPackage.OPERATOR__OUTPUTS;
 
     /**
    * The feature id for the '<em><b>Generics</b></em>' containment reference list.
@@ -1738,7 +1736,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int NESTING_OPERATOR__GENERICS = OPERATOR__GENERICS;
+    int NESTING_OPERATOR__GENERICS = OperatorPackage.OPERATOR__GENERICS;
 
     /**
    * The feature id for the '<em><b>Working Path</b></em>' attribute.
@@ -1747,7 +1745,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int NESTING_OPERATOR__WORKING_PATH = OPERATOR__WORKING_PATH;
+  int NESTING_OPERATOR__WORKING_PATH = OperatorPackage.OPERATOR__WORKING_PATH;
 
     /**
    * The feature id for the '<em><b>Execution Time</b></em>' attribute.
@@ -1756,7 +1754,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int NESTING_OPERATOR__EXECUTION_TIME = OPERATOR__EXECUTION_TIME;
+    int NESTING_OPERATOR__EXECUTION_TIME = OperatorPackage.OPERATOR__EXECUTION_TIME;
 
     /**
    * The feature id for the '<em><b>Commutative</b></em>' attribute.
@@ -1765,7 +1763,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int NESTING_OPERATOR__COMMUTATIVE = OPERATOR__COMMUTATIVE;
+    int NESTING_OPERATOR__COMMUTATIVE = OperatorPackage.OPERATOR__COMMUTATIVE;
 
     /**
    * The feature id for the '<em><b>Nested MID Path</b></em>' attribute.
@@ -1774,7 +1772,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int NESTING_OPERATOR__NESTED_MID_PATH = OPERATOR_FEATURE_COUNT + 0;
+    int NESTING_OPERATOR__NESTED_MID_PATH = OperatorPackage.OPERATOR_FEATURE_COUNT + 0;
 
     /**
    * The number of structural features of the '<em>Nesting Operator</em>' class.
@@ -1783,7 +1781,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int NESTING_OPERATOR_FEATURE_COUNT = OPERATOR_FEATURE_COUNT + 1;
+    int NESTING_OPERATOR_FEATURE_COUNT = OperatorPackage.OPERATOR_FEATURE_COUNT + 1;
 
     /**
    * The operation id for the '<em>Is Level</em>' operation.
@@ -1792,7 +1790,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int NESTING_OPERATOR___IS_LEVEL__MIDLEVEL = OPERATOR___IS_LEVEL__MIDLEVEL;
+    int NESTING_OPERATOR___IS_LEVEL__MIDLEVEL = OperatorPackage.OPERATOR___IS_LEVEL__MIDLEVEL;
 
     /**
    * The operation id for the '<em>Is Types Level</em>' operation.
@@ -1801,7 +1799,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int NESTING_OPERATOR___IS_TYPES_LEVEL = OPERATOR___IS_TYPES_LEVEL;
+    int NESTING_OPERATOR___IS_TYPES_LEVEL = OperatorPackage.OPERATOR___IS_TYPES_LEVEL;
 
     /**
    * The operation id for the '<em>Create Subtype Uri</em>' operation.
@@ -1810,7 +1808,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int NESTING_OPERATOR___CREATE_SUBTYPE_URI__STRING_STRING = OPERATOR___CREATE_SUBTYPE_URI__STRING_STRING;
+    int NESTING_OPERATOR___CREATE_SUBTYPE_URI__STRING_STRING = OperatorPackage.OPERATOR___CREATE_SUBTYPE_URI__STRING_STRING;
 
     /**
    * The operation id for the '<em>Add Type Constraint</em>' operation.
@@ -1819,7 +1817,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int NESTING_OPERATOR___ADD_TYPE_CONSTRAINT__STRING_STRING = OPERATOR___ADD_TYPE_CONSTRAINT__STRING_STRING;
+    int NESTING_OPERATOR___ADD_TYPE_CONSTRAINT__STRING_STRING = OperatorPackage.OPERATOR___ADD_TYPE_CONSTRAINT__STRING_STRING;
 
     /**
    * The operation id for the '<em>Is Instances Level</em>' operation.
@@ -1828,7 +1826,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int NESTING_OPERATOR___IS_INSTANCES_LEVEL = OPERATOR___IS_INSTANCES_LEVEL;
+    int NESTING_OPERATOR___IS_INSTANCES_LEVEL = OperatorPackage.OPERATOR___IS_INSTANCES_LEVEL;
 
     /**
    * The operation id for the '<em>Get Runtime Types</em>' operation.
@@ -1837,7 +1835,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int NESTING_OPERATOR___GET_RUNTIME_TYPES = OPERATOR___GET_RUNTIME_TYPES;
+    int NESTING_OPERATOR___GET_RUNTIME_TYPES = OperatorPackage.OPERATOR___GET_RUNTIME_TYPES;
 
     /**
    * The operation id for the '<em>Get Closest Type Constraint</em>' operation.
@@ -1846,7 +1844,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int NESTING_OPERATOR___GET_CLOSEST_TYPE_CONSTRAINT = OPERATOR___GET_CLOSEST_TYPE_CONSTRAINT;
+    int NESTING_OPERATOR___GET_CLOSEST_TYPE_CONSTRAINT = OperatorPackage.OPERATOR___GET_CLOSEST_TYPE_CONSTRAINT;
 
     /**
    * The operation id for the '<em>Validate Instance Type</em>' operation.
@@ -1855,7 +1853,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int NESTING_OPERATOR___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT = OPERATOR___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT;
+    int NESTING_OPERATOR___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT = OperatorPackage.OPERATOR___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT;
 
     /**
    * The operation id for the '<em>Validate Instance</em>' operation.
@@ -1864,7 +1862,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int NESTING_OPERATOR___VALIDATE_INSTANCE = OPERATOR___VALIDATE_INSTANCE;
+    int NESTING_OPERATOR___VALIDATE_INSTANCE = OperatorPackage.OPERATOR___VALIDATE_INSTANCE;
 
     /**
    * The operation id for the '<em>Validate Instance In Editor</em>' operation.
@@ -1873,7 +1871,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int NESTING_OPERATOR___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = OPERATOR___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
+    int NESTING_OPERATOR___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = OperatorPackage.OPERATOR___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
 
     /**
    * The operation id for the '<em>Is Workflows Level</em>' operation.
@@ -1882,7 +1880,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int NESTING_OPERATOR___IS_WORKFLOWS_LEVEL = OPERATOR___IS_WORKFLOWS_LEVEL;
+    int NESTING_OPERATOR___IS_WORKFLOWS_LEVEL = OperatorPackage.OPERATOR___IS_WORKFLOWS_LEVEL;
 
     /**
    * The operation id for the '<em>Update Workflow Instance Id</em>' operation.
@@ -1891,7 +1889,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int NESTING_OPERATOR___UPDATE_WORKFLOW_INSTANCE_ID__STRING = OPERATOR___UPDATE_WORKFLOW_INSTANCE_ID__STRING;
+    int NESTING_OPERATOR___UPDATE_WORKFLOW_INSTANCE_ID__STRING = OperatorPackage.OPERATOR___UPDATE_WORKFLOW_INSTANCE_ID__STRING;
 
     /**
    * The operation id for the '<em>To MID Custom Print Label</em>' operation.
@@ -1900,7 +1898,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int NESTING_OPERATOR___TO_MID_CUSTOM_PRINT_LABEL = OPERATOR___TO_MID_CUSTOM_PRINT_LABEL;
+    int NESTING_OPERATOR___TO_MID_CUSTOM_PRINT_LABEL = OperatorPackage.OPERATOR___TO_MID_CUSTOM_PRINT_LABEL;
 
     /**
    * The operation id for the '<em>To MID Custom Edit Label</em>' operation.
@@ -1909,7 +1907,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int NESTING_OPERATOR___TO_MID_CUSTOM_EDIT_LABEL = OPERATOR___TO_MID_CUSTOM_EDIT_LABEL;
+    int NESTING_OPERATOR___TO_MID_CUSTOM_EDIT_LABEL = OperatorPackage.OPERATOR___TO_MID_CUSTOM_EDIT_LABEL;
 
     /**
    * The operation id for the '<em>Update MID Custom Label</em>' operation.
@@ -1918,7 +1916,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int NESTING_OPERATOR___UPDATE_MID_CUSTOM_LABEL__STRING = OPERATOR___UPDATE_MID_CUSTOM_LABEL__STRING;
+    int NESTING_OPERATOR___UPDATE_MID_CUSTOM_LABEL__STRING = OperatorPackage.OPERATOR___UPDATE_MID_CUSTOM_LABEL__STRING;
 
     /**
    * The operation id for the '<em>Get Metatype</em>' operation.
@@ -1927,7 +1925,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int NESTING_OPERATOR___GET_METATYPE = OPERATOR___GET_METATYPE;
+    int NESTING_OPERATOR___GET_METATYPE = OperatorPackage.OPERATOR___GET_METATYPE;
 
     /**
    * The operation id for the '<em>Get Supertype</em>' operation.
@@ -1936,7 +1934,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int NESTING_OPERATOR___GET_SUPERTYPE = OPERATOR___GET_SUPERTYPE;
+    int NESTING_OPERATOR___GET_SUPERTYPE = OperatorPackage.OPERATOR___GET_SUPERTYPE;
 
     /**
    * The operation id for the '<em>Get MID Container</em>' operation.
@@ -1945,7 +1943,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int NESTING_OPERATOR___GET_MID_CONTAINER = OPERATOR___GET_MID_CONTAINER;
+    int NESTING_OPERATOR___GET_MID_CONTAINER = OperatorPackage.OPERATOR___GET_MID_CONTAINER;
 
     /**
    * The operation id for the '<em>Get Type Signature</em>' operation.
@@ -1954,7 +1952,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int NESTING_OPERATOR___GET_TYPE_SIGNATURE__ELIST = OPERATOR___GET_TYPE_SIGNATURE__ELIST;
+    int NESTING_OPERATOR___GET_TYPE_SIGNATURE__ELIST = OperatorPackage.OPERATOR___GET_TYPE_SIGNATURE__ELIST;
 
     /**
    * The operation id for the '<em>Create Subtype</em>' operation.
@@ -1963,7 +1961,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int NESTING_OPERATOR___CREATE_SUBTYPE__STRING_STRING = OPERATOR___CREATE_SUBTYPE__STRING_STRING;
+    int NESTING_OPERATOR___CREATE_SUBTYPE__STRING_STRING = OperatorPackage.OPERATOR___CREATE_SUBTYPE__STRING_STRING;
 
     /**
    * The operation id for the '<em>Delete Type</em>' operation.
@@ -1972,7 +1970,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int NESTING_OPERATOR___DELETE_TYPE = OPERATOR___DELETE_TYPE;
+    int NESTING_OPERATOR___DELETE_TYPE = OperatorPackage.OPERATOR___DELETE_TYPE;
 
     /**
    * The operation id for the '<em>Open Type</em>' operation.
@@ -1981,7 +1979,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int NESTING_OPERATOR___OPEN_TYPE = OPERATOR___OPEN_TYPE;
+    int NESTING_OPERATOR___OPEN_TYPE = OperatorPackage.OPERATOR___OPEN_TYPE;
 
     /**
    * The operation id for the '<em>Find Allowed Inputs</em>' operation.
@@ -1990,7 +1988,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int NESTING_OPERATOR___FIND_ALLOWED_INPUTS__ELIST_ELIST = OPERATOR___FIND_ALLOWED_INPUTS__ELIST_ELIST;
+    int NESTING_OPERATOR___FIND_ALLOWED_INPUTS__ELIST_ELIST = OperatorPackage.OPERATOR___FIND_ALLOWED_INPUTS__ELIST_ELIST;
 
     /**
    * The operation id for the '<em>Find First Allowed Input</em>' operation.
@@ -1999,7 +1997,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int NESTING_OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST_ELIST = OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST_ELIST;
+    int NESTING_OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST_ELIST = OperatorPackage.OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST_ELIST;
 
     /**
    * The operation id for the '<em>Check Allowed Inputs</em>' operation.
@@ -2008,7 +2006,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int NESTING_OPERATOR___CHECK_ALLOWED_INPUTS__ELIST = OPERATOR___CHECK_ALLOWED_INPUTS__ELIST;
+    int NESTING_OPERATOR___CHECK_ALLOWED_INPUTS__ELIST = OperatorPackage.OPERATOR___CHECK_ALLOWED_INPUTS__ELIST;
 
     /**
    * The operation id for the '<em>Get Outputs By Name</em>' operation.
@@ -2017,7 +2015,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int NESTING_OPERATOR___GET_OUTPUTS_BY_NAME = OPERATOR___GET_OUTPUTS_BY_NAME;
+    int NESTING_OPERATOR___GET_OUTPUTS_BY_NAME = OperatorPackage.OPERATOR___GET_OUTPUTS_BY_NAME;
 
     /**
    * The operation id for the '<em>Get Output Models</em>' operation.
@@ -2026,7 +2024,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int NESTING_OPERATOR___GET_OUTPUT_MODELS = OPERATOR___GET_OUTPUT_MODELS;
+    int NESTING_OPERATOR___GET_OUTPUT_MODELS = OperatorPackage.OPERATOR___GET_OUTPUT_MODELS;
 
     /**
    * The operation id for the '<em>Create Instance</em>' operation.
@@ -2035,7 +2033,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int NESTING_OPERATOR___CREATE_INSTANCE__MID = OPERATOR___CREATE_INSTANCE__MID;
+    int NESTING_OPERATOR___CREATE_INSTANCE__MID = OperatorPackage.OPERATOR___CREATE_INSTANCE__MID;
 
     /**
    * The operation id for the '<em>Delete Instance</em>' operation.
@@ -2044,7 +2042,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int NESTING_OPERATOR___DELETE_INSTANCE = OPERATOR___DELETE_INSTANCE;
+    int NESTING_OPERATOR___DELETE_INSTANCE = OperatorPackage.OPERATOR___DELETE_INSTANCE;
 
     /**
    * The operation id for the '<em>Select Allowed Generics</em>' operation.
@@ -2053,7 +2051,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int NESTING_OPERATOR___SELECT_ALLOWED_GENERICS__ELIST = OPERATOR___SELECT_ALLOWED_GENERICS__ELIST;
+    int NESTING_OPERATOR___SELECT_ALLOWED_GENERICS__ELIST = OperatorPackage.OPERATOR___SELECT_ALLOWED_GENERICS__ELIST;
 
     /**
    * The operation id for the '<em>Get Input Properties</em>' operation.
@@ -2062,7 +2060,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int NESTING_OPERATOR___GET_INPUT_PROPERTIES = OPERATOR___GET_INPUT_PROPERTIES;
+    int NESTING_OPERATOR___GET_INPUT_PROPERTIES = OperatorPackage.OPERATOR___GET_INPUT_PROPERTIES;
 
     /**
    * The operation id for the '<em>Read Input Properties</em>' operation.
@@ -2071,7 +2069,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int NESTING_OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES = OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES;
+    int NESTING_OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES = OperatorPackage.OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES;
 
     /**
    * The operation id for the '<em>Run</em>' operation.
@@ -2080,7 +2078,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int NESTING_OPERATOR___RUN__MAP_MAP_MAP = OPERATOR___RUN__MAP_MAP_MAP;
+    int NESTING_OPERATOR___RUN__MAP_MAP_MAP = OperatorPackage.OPERATOR___RUN__MAP_MAP_MAP;
 
     /**
    * The operation id for the '<em>Start Instance</em>' operation.
@@ -2089,7 +2087,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int NESTING_OPERATOR___START_INSTANCE__ELIST_PROPERTIES_ELIST_MAP_MID = OPERATOR___START_INSTANCE__ELIST_PROPERTIES_ELIST_MAP_MID;
+    int NESTING_OPERATOR___START_INSTANCE__ELIST_PROPERTIES_ELIST_MAP_MID = OperatorPackage.OPERATOR___START_INSTANCE__ELIST_PROPERTIES_ELIST_MAP_MID;
 
     /**
    * The operation id for the '<em>Open Instance</em>' operation.
@@ -2098,7 +2096,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int NESTING_OPERATOR___OPEN_INSTANCE = OPERATOR___OPEN_INSTANCE;
+    int NESTING_OPERATOR___OPEN_INSTANCE = OperatorPackage.OPERATOR___OPEN_INSTANCE;
 
     /**
    * The operation id for the '<em>Create Workflow Instance</em>' operation.
@@ -2107,7 +2105,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int NESTING_OPERATOR___CREATE_WORKFLOW_INSTANCE__MID = OPERATOR___CREATE_WORKFLOW_INSTANCE__MID;
+    int NESTING_OPERATOR___CREATE_WORKFLOW_INSTANCE__MID = OperatorPackage.OPERATOR___CREATE_WORKFLOW_INSTANCE__MID;
 
     /**
    * The operation id for the '<em>Delete Workflow Instance</em>' operation.
@@ -2116,16 +2114,16 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int NESTING_OPERATOR___DELETE_WORKFLOW_INSTANCE = OPERATOR___DELETE_WORKFLOW_INSTANCE;
+    int NESTING_OPERATOR___DELETE_WORKFLOW_INSTANCE = OperatorPackage.OPERATOR___DELETE_WORKFLOW_INSTANCE;
 
     /**
    * The operation id for the '<em>Create Workflow Instance Outputs</em>' operation.
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-    int NESTING_OPERATOR___CREATE_WORKFLOW_INSTANCE_OUTPUTS__OPERATOR_MAP_MID = OPERATOR___CREATE_WORKFLOW_INSTANCE_OUTPUTS__OPERATOR_MAP_MID;
+  int NESTING_OPERATOR___CREATE_WORKFLOW_INSTANCE_OUTPUTS__OPERATOR_MAP_MAP_MID = OperatorPackage.OPERATOR___CREATE_WORKFLOW_INSTANCE_OUTPUTS__OPERATOR_MAP_MAP_MID;
 
     /**
    * The operation id for the '<em>Start Workflow Instance</em>' operation.
@@ -2134,7 +2132,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int NESTING_OPERATOR___START_WORKFLOW_INSTANCE__ELIST_ELIST_MID = OPERATOR___START_WORKFLOW_INSTANCE__ELIST_ELIST_MID;
+    int NESTING_OPERATOR___START_WORKFLOW_INSTANCE__ELIST_ELIST_MID = OperatorPackage.OPERATOR___START_WORKFLOW_INSTANCE__ELIST_ELIST_MID;
 
     /**
    * The operation id for the '<em>Open Workflow Instance</em>' operation.
@@ -2143,7 +2141,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int NESTING_OPERATOR___OPEN_WORKFLOW_INSTANCE = OPERATOR___OPEN_WORKFLOW_INSTANCE;
+    int NESTING_OPERATOR___OPEN_WORKFLOW_INSTANCE = OperatorPackage.OPERATOR___OPEN_WORKFLOW_INSTANCE;
 
     /**
    * The operation id for the '<em>Get Nested Instance MID</em>' operation.
@@ -2152,7 +2150,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int NESTING_OPERATOR___GET_NESTED_INSTANCE_MID = OPERATOR_OPERATION_COUNT + 0;
+    int NESTING_OPERATOR___GET_NESTED_INSTANCE_MID = OperatorPackage.OPERATOR_OPERATION_COUNT + 0;
 
     /**
    * The operation id for the '<em>Start Nested Instance</em>' operation.
@@ -2161,7 +2159,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int NESTING_OPERATOR___START_NESTED_INSTANCE__OPERATOR_ELIST_PROPERTIES_ELIST_MAP = OPERATOR_OPERATION_COUNT + 1;
+    int NESTING_OPERATOR___START_NESTED_INSTANCE__OPERATOR_ELIST_PROPERTIES_ELIST_MAP = OperatorPackage.OPERATOR_OPERATION_COUNT + 1;
 
     /**
    * The number of operations of the '<em>Nesting Operator</em>' class.
@@ -2170,7 +2168,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int NESTING_OPERATOR_OPERATION_COUNT = OPERATOR_OPERATION_COUNT + 2;
+    int NESTING_OPERATOR_OPERATION_COUNT = OperatorPackage.OPERATOR_OPERATION_COUNT + 2;
 
     /**
    * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.WorkflowOperatorImpl <em>Workflow Operator</em>}' class.
@@ -2189,7 +2187,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int WORKFLOW_OPERATOR__SUPERTYPE = NESTING_OPERATOR__SUPERTYPE;
+    int WORKFLOW_OPERATOR__SUPERTYPE = OperatorPackage.NESTING_OPERATOR__SUPERTYPE;
 
     /**
    * The feature id for the '<em><b>Uri</b></em>' attribute.
@@ -2198,7 +2196,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int WORKFLOW_OPERATOR__URI = NESTING_OPERATOR__URI;
+    int WORKFLOW_OPERATOR__URI = OperatorPackage.NESTING_OPERATOR__URI;
 
     /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2207,7 +2205,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int WORKFLOW_OPERATOR__NAME = NESTING_OPERATOR__NAME;
+    int WORKFLOW_OPERATOR__NAME = OperatorPackage.NESTING_OPERATOR__NAME;
 
     /**
    * The feature id for the '<em><b>Level</b></em>' attribute.
@@ -2216,7 +2214,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int WORKFLOW_OPERATOR__LEVEL = NESTING_OPERATOR__LEVEL;
+    int WORKFLOW_OPERATOR__LEVEL = OperatorPackage.NESTING_OPERATOR__LEVEL;
 
     /**
    * The feature id for the '<em><b>Metatype Uri</b></em>' attribute.
@@ -2225,7 +2223,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int WORKFLOW_OPERATOR__METATYPE_URI = NESTING_OPERATOR__METATYPE_URI;
+    int WORKFLOW_OPERATOR__METATYPE_URI = OperatorPackage.NESTING_OPERATOR__METATYPE_URI;
 
     /**
    * The feature id for the '<em><b>Dynamic</b></em>' attribute.
@@ -2234,7 +2232,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int WORKFLOW_OPERATOR__DYNAMIC = NESTING_OPERATOR__DYNAMIC;
+    int WORKFLOW_OPERATOR__DYNAMIC = OperatorPackage.NESTING_OPERATOR__DYNAMIC;
 
     /**
    * The feature id for the '<em><b>Constraint</b></em>' containment reference.
@@ -2243,7 +2241,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int WORKFLOW_OPERATOR__CONSTRAINT = NESTING_OPERATOR__CONSTRAINT;
+    int WORKFLOW_OPERATOR__CONSTRAINT = OperatorPackage.NESTING_OPERATOR__CONSTRAINT;
 
     /**
    * The feature id for the '<em><b>Abstract</b></em>' attribute.
@@ -2252,7 +2250,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int WORKFLOW_OPERATOR__ABSTRACT = NESTING_OPERATOR__ABSTRACT;
+    int WORKFLOW_OPERATOR__ABSTRACT = OperatorPackage.NESTING_OPERATOR__ABSTRACT;
 
     /**
    * The feature id for the '<em><b>Inputs</b></em>' containment reference list.
@@ -2261,7 +2259,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int WORKFLOW_OPERATOR__INPUTS = NESTING_OPERATOR__INPUTS;
+    int WORKFLOW_OPERATOR__INPUTS = OperatorPackage.NESTING_OPERATOR__INPUTS;
 
     /**
    * The feature id for the '<em><b>Outputs</b></em>' containment reference list.
@@ -2270,7 +2268,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int WORKFLOW_OPERATOR__OUTPUTS = NESTING_OPERATOR__OUTPUTS;
+    int WORKFLOW_OPERATOR__OUTPUTS = OperatorPackage.NESTING_OPERATOR__OUTPUTS;
 
     /**
    * The feature id for the '<em><b>Generics</b></em>' containment reference list.
@@ -2279,7 +2277,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int WORKFLOW_OPERATOR__GENERICS = NESTING_OPERATOR__GENERICS;
+    int WORKFLOW_OPERATOR__GENERICS = OperatorPackage.NESTING_OPERATOR__GENERICS;
 
     /**
    * The feature id for the '<em><b>Working Path</b></em>' attribute.
@@ -2288,7 +2286,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int WORKFLOW_OPERATOR__WORKING_PATH = NESTING_OPERATOR__WORKING_PATH;
+  int WORKFLOW_OPERATOR__WORKING_PATH = OperatorPackage.NESTING_OPERATOR__WORKING_PATH;
 
     /**
    * The feature id for the '<em><b>Execution Time</b></em>' attribute.
@@ -2297,7 +2295,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int WORKFLOW_OPERATOR__EXECUTION_TIME = NESTING_OPERATOR__EXECUTION_TIME;
+    int WORKFLOW_OPERATOR__EXECUTION_TIME = OperatorPackage.NESTING_OPERATOR__EXECUTION_TIME;
 
     /**
    * The feature id for the '<em><b>Commutative</b></em>' attribute.
@@ -2306,7 +2304,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int WORKFLOW_OPERATOR__COMMUTATIVE = NESTING_OPERATOR__COMMUTATIVE;
+    int WORKFLOW_OPERATOR__COMMUTATIVE = OperatorPackage.NESTING_OPERATOR__COMMUTATIVE;
 
     /**
    * The feature id for the '<em><b>Nested MID Path</b></em>' attribute.
@@ -2315,7 +2313,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int WORKFLOW_OPERATOR__NESTED_MID_PATH = NESTING_OPERATOR__NESTED_MID_PATH;
+    int WORKFLOW_OPERATOR__NESTED_MID_PATH = OperatorPackage.NESTING_OPERATOR__NESTED_MID_PATH;
 
     /**
    * The number of structural features of the '<em>Workflow Operator</em>' class.
@@ -2324,7 +2322,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int WORKFLOW_OPERATOR_FEATURE_COUNT = NESTING_OPERATOR_FEATURE_COUNT + 0;
+    int WORKFLOW_OPERATOR_FEATURE_COUNT = OperatorPackage.NESTING_OPERATOR_FEATURE_COUNT + 0;
 
     /**
    * The operation id for the '<em>Is Level</em>' operation.
@@ -2333,7 +2331,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int WORKFLOW_OPERATOR___IS_LEVEL__MIDLEVEL = NESTING_OPERATOR___IS_LEVEL__MIDLEVEL;
+    int WORKFLOW_OPERATOR___IS_LEVEL__MIDLEVEL = OperatorPackage.NESTING_OPERATOR___IS_LEVEL__MIDLEVEL;
 
     /**
    * The operation id for the '<em>Is Types Level</em>' operation.
@@ -2342,7 +2340,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int WORKFLOW_OPERATOR___IS_TYPES_LEVEL = NESTING_OPERATOR___IS_TYPES_LEVEL;
+    int WORKFLOW_OPERATOR___IS_TYPES_LEVEL = OperatorPackage.NESTING_OPERATOR___IS_TYPES_LEVEL;
 
     /**
    * The operation id for the '<em>Create Subtype Uri</em>' operation.
@@ -2351,7 +2349,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int WORKFLOW_OPERATOR___CREATE_SUBTYPE_URI__STRING_STRING = NESTING_OPERATOR___CREATE_SUBTYPE_URI__STRING_STRING;
+    int WORKFLOW_OPERATOR___CREATE_SUBTYPE_URI__STRING_STRING = OperatorPackage.NESTING_OPERATOR___CREATE_SUBTYPE_URI__STRING_STRING;
 
     /**
    * The operation id for the '<em>Add Type Constraint</em>' operation.
@@ -2360,7 +2358,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int WORKFLOW_OPERATOR___ADD_TYPE_CONSTRAINT__STRING_STRING = NESTING_OPERATOR___ADD_TYPE_CONSTRAINT__STRING_STRING;
+    int WORKFLOW_OPERATOR___ADD_TYPE_CONSTRAINT__STRING_STRING = OperatorPackage.NESTING_OPERATOR___ADD_TYPE_CONSTRAINT__STRING_STRING;
 
     /**
    * The operation id for the '<em>Is Instances Level</em>' operation.
@@ -2369,7 +2367,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int WORKFLOW_OPERATOR___IS_INSTANCES_LEVEL = NESTING_OPERATOR___IS_INSTANCES_LEVEL;
+    int WORKFLOW_OPERATOR___IS_INSTANCES_LEVEL = OperatorPackage.NESTING_OPERATOR___IS_INSTANCES_LEVEL;
 
     /**
    * The operation id for the '<em>Get Runtime Types</em>' operation.
@@ -2378,7 +2376,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int WORKFLOW_OPERATOR___GET_RUNTIME_TYPES = NESTING_OPERATOR___GET_RUNTIME_TYPES;
+    int WORKFLOW_OPERATOR___GET_RUNTIME_TYPES = OperatorPackage.NESTING_OPERATOR___GET_RUNTIME_TYPES;
 
     /**
    * The operation id for the '<em>Get Closest Type Constraint</em>' operation.
@@ -2387,7 +2385,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int WORKFLOW_OPERATOR___GET_CLOSEST_TYPE_CONSTRAINT = NESTING_OPERATOR___GET_CLOSEST_TYPE_CONSTRAINT;
+    int WORKFLOW_OPERATOR___GET_CLOSEST_TYPE_CONSTRAINT = OperatorPackage.NESTING_OPERATOR___GET_CLOSEST_TYPE_CONSTRAINT;
 
     /**
    * The operation id for the '<em>Validate Instance Type</em>' operation.
@@ -2396,7 +2394,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int WORKFLOW_OPERATOR___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT = NESTING_OPERATOR___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT;
+    int WORKFLOW_OPERATOR___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT = OperatorPackage.NESTING_OPERATOR___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT;
 
     /**
    * The operation id for the '<em>Validate Instance</em>' operation.
@@ -2405,7 +2403,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int WORKFLOW_OPERATOR___VALIDATE_INSTANCE = NESTING_OPERATOR___VALIDATE_INSTANCE;
+    int WORKFLOW_OPERATOR___VALIDATE_INSTANCE = OperatorPackage.NESTING_OPERATOR___VALIDATE_INSTANCE;
 
     /**
    * The operation id for the '<em>Validate Instance In Editor</em>' operation.
@@ -2414,7 +2412,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int WORKFLOW_OPERATOR___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = NESTING_OPERATOR___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
+    int WORKFLOW_OPERATOR___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = OperatorPackage.NESTING_OPERATOR___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
 
     /**
    * The operation id for the '<em>Is Workflows Level</em>' operation.
@@ -2423,7 +2421,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int WORKFLOW_OPERATOR___IS_WORKFLOWS_LEVEL = NESTING_OPERATOR___IS_WORKFLOWS_LEVEL;
+    int WORKFLOW_OPERATOR___IS_WORKFLOWS_LEVEL = OperatorPackage.NESTING_OPERATOR___IS_WORKFLOWS_LEVEL;
 
     /**
    * The operation id for the '<em>Update Workflow Instance Id</em>' operation.
@@ -2432,7 +2430,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int WORKFLOW_OPERATOR___UPDATE_WORKFLOW_INSTANCE_ID__STRING = NESTING_OPERATOR___UPDATE_WORKFLOW_INSTANCE_ID__STRING;
+    int WORKFLOW_OPERATOR___UPDATE_WORKFLOW_INSTANCE_ID__STRING = OperatorPackage.NESTING_OPERATOR___UPDATE_WORKFLOW_INSTANCE_ID__STRING;
 
     /**
    * The operation id for the '<em>To MID Custom Print Label</em>' operation.
@@ -2441,7 +2439,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int WORKFLOW_OPERATOR___TO_MID_CUSTOM_PRINT_LABEL = NESTING_OPERATOR___TO_MID_CUSTOM_PRINT_LABEL;
+    int WORKFLOW_OPERATOR___TO_MID_CUSTOM_PRINT_LABEL = OperatorPackage.NESTING_OPERATOR___TO_MID_CUSTOM_PRINT_LABEL;
 
     /**
    * The operation id for the '<em>To MID Custom Edit Label</em>' operation.
@@ -2450,7 +2448,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int WORKFLOW_OPERATOR___TO_MID_CUSTOM_EDIT_LABEL = NESTING_OPERATOR___TO_MID_CUSTOM_EDIT_LABEL;
+    int WORKFLOW_OPERATOR___TO_MID_CUSTOM_EDIT_LABEL = OperatorPackage.NESTING_OPERATOR___TO_MID_CUSTOM_EDIT_LABEL;
 
     /**
    * The operation id for the '<em>Update MID Custom Label</em>' operation.
@@ -2459,7 +2457,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int WORKFLOW_OPERATOR___UPDATE_MID_CUSTOM_LABEL__STRING = NESTING_OPERATOR___UPDATE_MID_CUSTOM_LABEL__STRING;
+    int WORKFLOW_OPERATOR___UPDATE_MID_CUSTOM_LABEL__STRING = OperatorPackage.NESTING_OPERATOR___UPDATE_MID_CUSTOM_LABEL__STRING;
 
     /**
    * The operation id for the '<em>Get Metatype</em>' operation.
@@ -2468,7 +2466,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int WORKFLOW_OPERATOR___GET_METATYPE = NESTING_OPERATOR___GET_METATYPE;
+    int WORKFLOW_OPERATOR___GET_METATYPE = OperatorPackage.NESTING_OPERATOR___GET_METATYPE;
 
     /**
    * The operation id for the '<em>Get Supertype</em>' operation.
@@ -2477,7 +2475,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int WORKFLOW_OPERATOR___GET_SUPERTYPE = NESTING_OPERATOR___GET_SUPERTYPE;
+    int WORKFLOW_OPERATOR___GET_SUPERTYPE = OperatorPackage.NESTING_OPERATOR___GET_SUPERTYPE;
 
     /**
    * The operation id for the '<em>Get MID Container</em>' operation.
@@ -2486,7 +2484,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int WORKFLOW_OPERATOR___GET_MID_CONTAINER = NESTING_OPERATOR___GET_MID_CONTAINER;
+    int WORKFLOW_OPERATOR___GET_MID_CONTAINER = OperatorPackage.NESTING_OPERATOR___GET_MID_CONTAINER;
 
     /**
    * The operation id for the '<em>Get Type Signature</em>' operation.
@@ -2495,7 +2493,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int WORKFLOW_OPERATOR___GET_TYPE_SIGNATURE__ELIST = NESTING_OPERATOR___GET_TYPE_SIGNATURE__ELIST;
+    int WORKFLOW_OPERATOR___GET_TYPE_SIGNATURE__ELIST = OperatorPackage.NESTING_OPERATOR___GET_TYPE_SIGNATURE__ELIST;
 
     /**
    * The operation id for the '<em>Create Subtype</em>' operation.
@@ -2504,7 +2502,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int WORKFLOW_OPERATOR___CREATE_SUBTYPE__STRING_STRING = NESTING_OPERATOR___CREATE_SUBTYPE__STRING_STRING;
+    int WORKFLOW_OPERATOR___CREATE_SUBTYPE__STRING_STRING = OperatorPackage.NESTING_OPERATOR___CREATE_SUBTYPE__STRING_STRING;
 
     /**
    * The operation id for the '<em>Delete Type</em>' operation.
@@ -2513,7 +2511,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int WORKFLOW_OPERATOR___DELETE_TYPE = NESTING_OPERATOR___DELETE_TYPE;
+    int WORKFLOW_OPERATOR___DELETE_TYPE = OperatorPackage.NESTING_OPERATOR___DELETE_TYPE;
 
     /**
    * The operation id for the '<em>Open Type</em>' operation.
@@ -2522,7 +2520,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int WORKFLOW_OPERATOR___OPEN_TYPE = NESTING_OPERATOR___OPEN_TYPE;
+    int WORKFLOW_OPERATOR___OPEN_TYPE = OperatorPackage.NESTING_OPERATOR___OPEN_TYPE;
 
     /**
    * The operation id for the '<em>Find Allowed Inputs</em>' operation.
@@ -2531,7 +2529,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int WORKFLOW_OPERATOR___FIND_ALLOWED_INPUTS__ELIST_ELIST = NESTING_OPERATOR___FIND_ALLOWED_INPUTS__ELIST_ELIST;
+    int WORKFLOW_OPERATOR___FIND_ALLOWED_INPUTS__ELIST_ELIST = OperatorPackage.NESTING_OPERATOR___FIND_ALLOWED_INPUTS__ELIST_ELIST;
 
     /**
    * The operation id for the '<em>Find First Allowed Input</em>' operation.
@@ -2540,7 +2538,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int WORKFLOW_OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST_ELIST = NESTING_OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST_ELIST;
+    int WORKFLOW_OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST_ELIST = OperatorPackage.NESTING_OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST_ELIST;
 
     /**
    * The operation id for the '<em>Check Allowed Inputs</em>' operation.
@@ -2549,7 +2547,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int WORKFLOW_OPERATOR___CHECK_ALLOWED_INPUTS__ELIST = NESTING_OPERATOR___CHECK_ALLOWED_INPUTS__ELIST;
+    int WORKFLOW_OPERATOR___CHECK_ALLOWED_INPUTS__ELIST = OperatorPackage.NESTING_OPERATOR___CHECK_ALLOWED_INPUTS__ELIST;
 
     /**
    * The operation id for the '<em>Get Outputs By Name</em>' operation.
@@ -2558,7 +2556,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int WORKFLOW_OPERATOR___GET_OUTPUTS_BY_NAME = NESTING_OPERATOR___GET_OUTPUTS_BY_NAME;
+    int WORKFLOW_OPERATOR___GET_OUTPUTS_BY_NAME = OperatorPackage.NESTING_OPERATOR___GET_OUTPUTS_BY_NAME;
 
     /**
    * The operation id for the '<em>Get Output Models</em>' operation.
@@ -2567,7 +2565,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int WORKFLOW_OPERATOR___GET_OUTPUT_MODELS = NESTING_OPERATOR___GET_OUTPUT_MODELS;
+    int WORKFLOW_OPERATOR___GET_OUTPUT_MODELS = OperatorPackage.NESTING_OPERATOR___GET_OUTPUT_MODELS;
 
     /**
    * The operation id for the '<em>Create Instance</em>' operation.
@@ -2576,7 +2574,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int WORKFLOW_OPERATOR___CREATE_INSTANCE__MID = NESTING_OPERATOR___CREATE_INSTANCE__MID;
+    int WORKFLOW_OPERATOR___CREATE_INSTANCE__MID = OperatorPackage.NESTING_OPERATOR___CREATE_INSTANCE__MID;
 
     /**
    * The operation id for the '<em>Delete Instance</em>' operation.
@@ -2585,7 +2583,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int WORKFLOW_OPERATOR___DELETE_INSTANCE = NESTING_OPERATOR___DELETE_INSTANCE;
+    int WORKFLOW_OPERATOR___DELETE_INSTANCE = OperatorPackage.NESTING_OPERATOR___DELETE_INSTANCE;
 
     /**
    * The operation id for the '<em>Select Allowed Generics</em>' operation.
@@ -2594,7 +2592,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int WORKFLOW_OPERATOR___SELECT_ALLOWED_GENERICS__ELIST = NESTING_OPERATOR___SELECT_ALLOWED_GENERICS__ELIST;
+    int WORKFLOW_OPERATOR___SELECT_ALLOWED_GENERICS__ELIST = OperatorPackage.NESTING_OPERATOR___SELECT_ALLOWED_GENERICS__ELIST;
 
     /**
    * The operation id for the '<em>Get Input Properties</em>' operation.
@@ -2603,7 +2601,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int WORKFLOW_OPERATOR___GET_INPUT_PROPERTIES = NESTING_OPERATOR___GET_INPUT_PROPERTIES;
+    int WORKFLOW_OPERATOR___GET_INPUT_PROPERTIES = OperatorPackage.NESTING_OPERATOR___GET_INPUT_PROPERTIES;
 
     /**
    * The operation id for the '<em>Read Input Properties</em>' operation.
@@ -2612,7 +2610,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int WORKFLOW_OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES = NESTING_OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES;
+    int WORKFLOW_OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES = OperatorPackage.NESTING_OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES;
 
     /**
    * The operation id for the '<em>Run</em>' operation.
@@ -2621,7 +2619,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int WORKFLOW_OPERATOR___RUN__MAP_MAP_MAP = NESTING_OPERATOR___RUN__MAP_MAP_MAP;
+    int WORKFLOW_OPERATOR___RUN__MAP_MAP_MAP = OperatorPackage.NESTING_OPERATOR___RUN__MAP_MAP_MAP;
 
     /**
    * The operation id for the '<em>Start Instance</em>' operation.
@@ -2630,7 +2628,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int WORKFLOW_OPERATOR___START_INSTANCE__ELIST_PROPERTIES_ELIST_MAP_MID = NESTING_OPERATOR___START_INSTANCE__ELIST_PROPERTIES_ELIST_MAP_MID;
+    int WORKFLOW_OPERATOR___START_INSTANCE__ELIST_PROPERTIES_ELIST_MAP_MID = OperatorPackage.NESTING_OPERATOR___START_INSTANCE__ELIST_PROPERTIES_ELIST_MAP_MID;
 
     /**
    * The operation id for the '<em>Open Instance</em>' operation.
@@ -2639,7 +2637,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int WORKFLOW_OPERATOR___OPEN_INSTANCE = NESTING_OPERATOR___OPEN_INSTANCE;
+    int WORKFLOW_OPERATOR___OPEN_INSTANCE = OperatorPackage.NESTING_OPERATOR___OPEN_INSTANCE;
 
     /**
    * The operation id for the '<em>Create Workflow Instance</em>' operation.
@@ -2648,7 +2646,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int WORKFLOW_OPERATOR___CREATE_WORKFLOW_INSTANCE__MID = NESTING_OPERATOR___CREATE_WORKFLOW_INSTANCE__MID;
+    int WORKFLOW_OPERATOR___CREATE_WORKFLOW_INSTANCE__MID = OperatorPackage.NESTING_OPERATOR___CREATE_WORKFLOW_INSTANCE__MID;
 
     /**
    * The operation id for the '<em>Delete Workflow Instance</em>' operation.
@@ -2657,16 +2655,16 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int WORKFLOW_OPERATOR___DELETE_WORKFLOW_INSTANCE = NESTING_OPERATOR___DELETE_WORKFLOW_INSTANCE;
+    int WORKFLOW_OPERATOR___DELETE_WORKFLOW_INSTANCE = OperatorPackage.NESTING_OPERATOR___DELETE_WORKFLOW_INSTANCE;
 
     /**
    * The operation id for the '<em>Create Workflow Instance Outputs</em>' operation.
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-    int WORKFLOW_OPERATOR___CREATE_WORKFLOW_INSTANCE_OUTPUTS__OPERATOR_MAP_MID = NESTING_OPERATOR___CREATE_WORKFLOW_INSTANCE_OUTPUTS__OPERATOR_MAP_MID;
+  int WORKFLOW_OPERATOR___CREATE_WORKFLOW_INSTANCE_OUTPUTS__OPERATOR_MAP_MAP_MID = OperatorPackage.NESTING_OPERATOR___CREATE_WORKFLOW_INSTANCE_OUTPUTS__OPERATOR_MAP_MAP_MID;
 
     /**
    * The operation id for the '<em>Start Workflow Instance</em>' operation.
@@ -2675,7 +2673,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int WORKFLOW_OPERATOR___START_WORKFLOW_INSTANCE__ELIST_ELIST_MID = NESTING_OPERATOR___START_WORKFLOW_INSTANCE__ELIST_ELIST_MID;
+    int WORKFLOW_OPERATOR___START_WORKFLOW_INSTANCE__ELIST_ELIST_MID = OperatorPackage.NESTING_OPERATOR___START_WORKFLOW_INSTANCE__ELIST_ELIST_MID;
 
     /**
    * The operation id for the '<em>Open Workflow Instance</em>' operation.
@@ -2684,7 +2682,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int WORKFLOW_OPERATOR___OPEN_WORKFLOW_INSTANCE = NESTING_OPERATOR___OPEN_WORKFLOW_INSTANCE;
+    int WORKFLOW_OPERATOR___OPEN_WORKFLOW_INSTANCE = OperatorPackage.NESTING_OPERATOR___OPEN_WORKFLOW_INSTANCE;
 
     /**
    * The operation id for the '<em>Get Nested Instance MID</em>' operation.
@@ -2693,7 +2691,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int WORKFLOW_OPERATOR___GET_NESTED_INSTANCE_MID = NESTING_OPERATOR___GET_NESTED_INSTANCE_MID;
+    int WORKFLOW_OPERATOR___GET_NESTED_INSTANCE_MID = OperatorPackage.NESTING_OPERATOR___GET_NESTED_INSTANCE_MID;
 
     /**
    * The operation id for the '<em>Start Nested Instance</em>' operation.
@@ -2702,7 +2700,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int WORKFLOW_OPERATOR___START_NESTED_INSTANCE__OPERATOR_ELIST_PROPERTIES_ELIST_MAP = NESTING_OPERATOR___START_NESTED_INSTANCE__OPERATOR_ELIST_PROPERTIES_ELIST_MAP;
+    int WORKFLOW_OPERATOR___START_NESTED_INSTANCE__OPERATOR_ELIST_PROPERTIES_ELIST_MAP = OperatorPackage.NESTING_OPERATOR___START_NESTED_INSTANCE__OPERATOR_ELIST_PROPERTIES_ELIST_MAP;
 
     /**
    * The operation id for the '<em>Get Nested Workflow MID</em>' operation.
@@ -2711,7 +2709,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int WORKFLOW_OPERATOR___GET_NESTED_WORKFLOW_MID = NESTING_OPERATOR_OPERATION_COUNT + 0;
+    int WORKFLOW_OPERATOR___GET_NESTED_WORKFLOW_MID = OperatorPackage.NESTING_OPERATOR_OPERATION_COUNT + 0;
 
     /**
    * The number of operations of the '<em>Workflow Operator</em>' class.
@@ -2720,7 +2718,7 @@ public interface OperatorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int WORKFLOW_OPERATOR_OPERATION_COUNT = NESTING_OPERATOR_OPERATION_COUNT + 1;
+    int WORKFLOW_OPERATOR_OPERATION_COUNT = OperatorPackage.NESTING_OPERATOR_OPERATION_COUNT + 1;
 
     /**
    * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.GenericEndpointImpl <em>Generic Endpoint</em>}' class.
@@ -3498,14 +3496,14 @@ public interface OperatorPackage extends EPackage {
     EOperation getOperator__DeleteWorkflowInstance();
 
     /**
-   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#createWorkflowInstanceOutputs(edu.toronto.cs.se.mmint.mid.operator.Operator, Map, java.util.Map, edu.toronto.cs.se.mmint.mid.MID) <em>Create Workflow Instance Outputs</em>}' operation.
+   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#createWorkflowInstanceOutputs(edu.toronto.cs.se.mmint.mid.operator.Operator, java.util.Map, java.util.Map, edu.toronto.cs.se.mmint.mid.MID) <em>Create Workflow Instance Outputs</em>}' operation.
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @return the meta object for the '<em>Create Workflow Instance Outputs</em>' operation.
-   * @see edu.toronto.cs.se.mmint.mid.operator.Operator#createWorkflowInstanceOutputs(edu.toronto.cs.se.mmint.mid.operator.Operator, Map, java.util.Map, edu.toronto.cs.se.mmint.mid.MID)
+   * @see edu.toronto.cs.se.mmint.mid.operator.Operator#createWorkflowInstanceOutputs(edu.toronto.cs.se.mmint.mid.operator.Operator, java.util.Map, java.util.Map, edu.toronto.cs.se.mmint.mid.MID)
    * @generated
    */
-    EOperation getOperator__CreateWorkflowInstanceOutputs__Operator_Map_MID();
+  EOperation getOperator__CreateWorkflowInstanceOutputs__Operator_Map_Map_MID();
 
     /**
    * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#startWorkflowInstance(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList, edu.toronto.cs.se.mmint.mid.MID) <em>Start Workflow Instance</em>}' operation.
@@ -3882,7 +3880,7 @@ public interface OperatorPackage extends EPackage {
      * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getOperator()
      * @generated
      */
-        EClass OPERATOR = eINSTANCE.getOperator();
+        EClass OPERATOR = OperatorPackage.eINSTANCE.getOperator();
 
         /**
      * The meta object literal for the '<em><b>Inputs</b></em>' containment reference list feature.
@@ -3890,7 +3888,7 @@ public interface OperatorPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EReference OPERATOR__INPUTS = eINSTANCE.getOperator_Inputs();
+        EReference OPERATOR__INPUTS = OperatorPackage.eINSTANCE.getOperator_Inputs();
 
         /**
      * The meta object literal for the '<em><b>Outputs</b></em>' containment reference list feature.
@@ -3898,7 +3896,7 @@ public interface OperatorPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EReference OPERATOR__OUTPUTS = eINSTANCE.getOperator_Outputs();
+        EReference OPERATOR__OUTPUTS = OperatorPackage.eINSTANCE.getOperator_Outputs();
 
         /**
      * The meta object literal for the '<em><b>Generics</b></em>' containment reference list feature.
@@ -3906,7 +3904,7 @@ public interface OperatorPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EReference OPERATOR__GENERICS = eINSTANCE.getOperator_Generics();
+        EReference OPERATOR__GENERICS = OperatorPackage.eINSTANCE.getOperator_Generics();
 
         /**
      * The meta object literal for the '<em><b>Working Path</b></em>' attribute feature.
@@ -3914,7 +3912,7 @@ public interface OperatorPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute OPERATOR__WORKING_PATH = eINSTANCE.getOperator_WorkingPath();
+    EAttribute OPERATOR__WORKING_PATH = OperatorPackage.eINSTANCE.getOperator_WorkingPath();
 
         /**
      * The meta object literal for the '<em><b>Execution Time</b></em>' attribute feature.
@@ -3922,7 +3920,7 @@ public interface OperatorPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EAttribute OPERATOR__EXECUTION_TIME = eINSTANCE.getOperator_ExecutionTime();
+        EAttribute OPERATOR__EXECUTION_TIME = OperatorPackage.eINSTANCE.getOperator_ExecutionTime();
 
         /**
      * The meta object literal for the '<em><b>Commutative</b></em>' attribute feature.
@@ -3930,7 +3928,7 @@ public interface OperatorPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EAttribute OPERATOR__COMMUTATIVE = eINSTANCE.getOperator_Commutative();
+        EAttribute OPERATOR__COMMUTATIVE = OperatorPackage.eINSTANCE.getOperator_Commutative();
 
         /**
      * The meta object literal for the '<em><b>Get Metatype</b></em>' operation.
@@ -3938,7 +3936,7 @@ public interface OperatorPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation OPERATOR___GET_METATYPE = eINSTANCE.getOperator__GetMetatype();
+        EOperation OPERATOR___GET_METATYPE = OperatorPackage.eINSTANCE.getOperator__GetMetatype();
 
         /**
      * The meta object literal for the '<em><b>Get Supertype</b></em>' operation.
@@ -3946,7 +3944,7 @@ public interface OperatorPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation OPERATOR___GET_SUPERTYPE = eINSTANCE.getOperator__GetSupertype();
+        EOperation OPERATOR___GET_SUPERTYPE = OperatorPackage.eINSTANCE.getOperator__GetSupertype();
 
         /**
      * The meta object literal for the '<em><b>Get MID Container</b></em>' operation.
@@ -3954,7 +3952,7 @@ public interface OperatorPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation OPERATOR___GET_MID_CONTAINER = eINSTANCE.getOperator__GetMIDContainer();
+        EOperation OPERATOR___GET_MID_CONTAINER = OperatorPackage.eINSTANCE.getOperator__GetMIDContainer();
 
         /**
      * The meta object literal for the '<em><b>Get Type Signature</b></em>' operation.
@@ -3962,7 +3960,7 @@ public interface OperatorPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation OPERATOR___GET_TYPE_SIGNATURE__ELIST = eINSTANCE.getOperator__GetTypeSignature__EList();
+        EOperation OPERATOR___GET_TYPE_SIGNATURE__ELIST = OperatorPackage.eINSTANCE.getOperator__GetTypeSignature__EList();
 
         /**
      * The meta object literal for the '<em><b>Create Subtype</b></em>' operation.
@@ -3970,7 +3968,7 @@ public interface OperatorPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation OPERATOR___CREATE_SUBTYPE__STRING_STRING = eINSTANCE.getOperator__CreateSubtype__String_String();
+        EOperation OPERATOR___CREATE_SUBTYPE__STRING_STRING = OperatorPackage.eINSTANCE.getOperator__CreateSubtype__String_String();
 
         /**
      * The meta object literal for the '<em><b>Delete Type</b></em>' operation.
@@ -3978,7 +3976,7 @@ public interface OperatorPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation OPERATOR___DELETE_TYPE = eINSTANCE.getOperator__DeleteType();
+        EOperation OPERATOR___DELETE_TYPE = OperatorPackage.eINSTANCE.getOperator__DeleteType();
 
         /**
      * The meta object literal for the '<em><b>Open Type</b></em>' operation.
@@ -3986,7 +3984,7 @@ public interface OperatorPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation OPERATOR___OPEN_TYPE = eINSTANCE.getOperator__OpenType();
+        EOperation OPERATOR___OPEN_TYPE = OperatorPackage.eINSTANCE.getOperator__OpenType();
 
         /**
      * The meta object literal for the '<em><b>Find Allowed Inputs</b></em>' operation.
@@ -3994,7 +3992,7 @@ public interface OperatorPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation OPERATOR___FIND_ALLOWED_INPUTS__ELIST_ELIST = eINSTANCE.getOperator__FindAllowedInputs__EList_EList();
+        EOperation OPERATOR___FIND_ALLOWED_INPUTS__ELIST_ELIST = OperatorPackage.eINSTANCE.getOperator__FindAllowedInputs__EList_EList();
 
         /**
      * The meta object literal for the '<em><b>Find First Allowed Input</b></em>' operation.
@@ -4002,7 +4000,7 @@ public interface OperatorPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST_ELIST = eINSTANCE.getOperator__FindFirstAllowedInput__EList_EList();
+        EOperation OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST_ELIST = OperatorPackage.eINSTANCE.getOperator__FindFirstAllowedInput__EList_EList();
 
         /**
      * The meta object literal for the '<em><b>Check Allowed Inputs</b></em>' operation.
@@ -4010,7 +4008,7 @@ public interface OperatorPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation OPERATOR___CHECK_ALLOWED_INPUTS__ELIST = eINSTANCE.getOperator__CheckAllowedInputs__EList();
+        EOperation OPERATOR___CHECK_ALLOWED_INPUTS__ELIST = OperatorPackage.eINSTANCE.getOperator__CheckAllowedInputs__EList();
 
         /**
      * The meta object literal for the '<em><b>Get Outputs By Name</b></em>' operation.
@@ -4018,7 +4016,7 @@ public interface OperatorPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation OPERATOR___GET_OUTPUTS_BY_NAME = eINSTANCE.getOperator__GetOutputsByName();
+        EOperation OPERATOR___GET_OUTPUTS_BY_NAME = OperatorPackage.eINSTANCE.getOperator__GetOutputsByName();
 
         /**
      * The meta object literal for the '<em><b>Get Output Models</b></em>' operation.
@@ -4026,7 +4024,7 @@ public interface OperatorPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation OPERATOR___GET_OUTPUT_MODELS = eINSTANCE.getOperator__GetOutputModels();
+        EOperation OPERATOR___GET_OUTPUT_MODELS = OperatorPackage.eINSTANCE.getOperator__GetOutputModels();
 
         /**
      * The meta object literal for the '<em><b>Create Instance</b></em>' operation.
@@ -4034,7 +4032,7 @@ public interface OperatorPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation OPERATOR___CREATE_INSTANCE__MID = eINSTANCE.getOperator__CreateInstance__MID();
+        EOperation OPERATOR___CREATE_INSTANCE__MID = OperatorPackage.eINSTANCE.getOperator__CreateInstance__MID();
 
         /**
      * The meta object literal for the '<em><b>Delete Instance</b></em>' operation.
@@ -4042,7 +4040,7 @@ public interface OperatorPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation OPERATOR___DELETE_INSTANCE = eINSTANCE.getOperator__DeleteInstance();
+        EOperation OPERATOR___DELETE_INSTANCE = OperatorPackage.eINSTANCE.getOperator__DeleteInstance();
 
         /**
      * The meta object literal for the '<em><b>Select Allowed Generics</b></em>' operation.
@@ -4050,7 +4048,7 @@ public interface OperatorPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation OPERATOR___SELECT_ALLOWED_GENERICS__ELIST = eINSTANCE.getOperator__SelectAllowedGenerics__EList();
+        EOperation OPERATOR___SELECT_ALLOWED_GENERICS__ELIST = OperatorPackage.eINSTANCE.getOperator__SelectAllowedGenerics__EList();
 
         /**
      * The meta object literal for the '<em><b>Get Input Properties</b></em>' operation.
@@ -4058,7 +4056,7 @@ public interface OperatorPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation OPERATOR___GET_INPUT_PROPERTIES = eINSTANCE.getOperator__GetInputProperties();
+        EOperation OPERATOR___GET_INPUT_PROPERTIES = OperatorPackage.eINSTANCE.getOperator__GetInputProperties();
 
         /**
      * The meta object literal for the '<em><b>Read Input Properties</b></em>' operation.
@@ -4066,7 +4064,7 @@ public interface OperatorPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES = eINSTANCE.getOperator__ReadInputProperties__Properties();
+        EOperation OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES = OperatorPackage.eINSTANCE.getOperator__ReadInputProperties__Properties();
 
         /**
      * The meta object literal for the '<em><b>Run</b></em>' operation.
@@ -4074,7 +4072,7 @@ public interface OperatorPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation OPERATOR___RUN__MAP_MAP_MAP = eINSTANCE.getOperator__Run__Map_Map_Map();
+        EOperation OPERATOR___RUN__MAP_MAP_MAP = OperatorPackage.eINSTANCE.getOperator__Run__Map_Map_Map();
 
         /**
      * The meta object literal for the '<em><b>Start Instance</b></em>' operation.
@@ -4082,7 +4080,7 @@ public interface OperatorPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation OPERATOR___START_INSTANCE__ELIST_PROPERTIES_ELIST_MAP_MID = eINSTANCE.getOperator__StartInstance__EList_Properties_EList_Map_MID();
+        EOperation OPERATOR___START_INSTANCE__ELIST_PROPERTIES_ELIST_MAP_MID = OperatorPackage.eINSTANCE.getOperator__StartInstance__EList_Properties_EList_Map_MID();
 
         /**
      * The meta object literal for the '<em><b>Open Instance</b></em>' operation.
@@ -4090,7 +4088,7 @@ public interface OperatorPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation OPERATOR___OPEN_INSTANCE = eINSTANCE.getOperator__OpenInstance();
+        EOperation OPERATOR___OPEN_INSTANCE = OperatorPackage.eINSTANCE.getOperator__OpenInstance();
 
         /**
      * The meta object literal for the '<em><b>Create Workflow Instance</b></em>' operation.
@@ -4098,7 +4096,7 @@ public interface OperatorPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation OPERATOR___CREATE_WORKFLOW_INSTANCE__MID = eINSTANCE.getOperator__CreateWorkflowInstance__MID();
+        EOperation OPERATOR___CREATE_WORKFLOW_INSTANCE__MID = OperatorPackage.eINSTANCE.getOperator__CreateWorkflowInstance__MID();
 
         /**
      * The meta object literal for the '<em><b>Delete Workflow Instance</b></em>' operation.
@@ -4106,15 +4104,15 @@ public interface OperatorPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation OPERATOR___DELETE_WORKFLOW_INSTANCE = eINSTANCE.getOperator__DeleteWorkflowInstance();
+        EOperation OPERATOR___DELETE_WORKFLOW_INSTANCE = OperatorPackage.eINSTANCE.getOperator__DeleteWorkflowInstance();
 
         /**
      * The meta object literal for the '<em><b>Create Workflow Instance Outputs</b></em>' operation.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        EOperation OPERATOR___CREATE_WORKFLOW_INSTANCE_OUTPUTS__OPERATOR_MAP_MID = eINSTANCE.getOperator__CreateWorkflowInstanceOutputs__Operator_Map_MID();
+    EOperation OPERATOR___CREATE_WORKFLOW_INSTANCE_OUTPUTS__OPERATOR_MAP_MAP_MID = OperatorPackage.eINSTANCE.getOperator__CreateWorkflowInstanceOutputs__Operator_Map_Map_MID();
 
         /**
      * The meta object literal for the '<em><b>Start Workflow Instance</b></em>' operation.
@@ -4122,7 +4120,7 @@ public interface OperatorPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation OPERATOR___START_WORKFLOW_INSTANCE__ELIST_ELIST_MID = eINSTANCE.getOperator__StartWorkflowInstance__EList_EList_MID();
+        EOperation OPERATOR___START_WORKFLOW_INSTANCE__ELIST_ELIST_MID = OperatorPackage.eINSTANCE.getOperator__StartWorkflowInstance__EList_EList_MID();
 
         /**
      * The meta object literal for the '<em><b>Open Workflow Instance</b></em>' operation.
@@ -4130,7 +4128,7 @@ public interface OperatorPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation OPERATOR___OPEN_WORKFLOW_INSTANCE = eINSTANCE.getOperator__OpenWorkflowInstance();
+        EOperation OPERATOR___OPEN_WORKFLOW_INSTANCE = OperatorPackage.eINSTANCE.getOperator__OpenWorkflowInstance();
 
         /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.ConversionOperatorImpl <em>Conversion Operator</em>}' class.
@@ -4140,7 +4138,7 @@ public interface OperatorPackage extends EPackage {
      * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getConversionOperator()
      * @generated
      */
-        EClass CONVERSION_OPERATOR = eINSTANCE.getConversionOperator();
+        EClass CONVERSION_OPERATOR = OperatorPackage.eINSTANCE.getConversionOperator();
 
         /**
      * The meta object literal for the '<em><b>Delete Type</b></em>' operation.
@@ -4148,7 +4146,7 @@ public interface OperatorPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation CONVERSION_OPERATOR___DELETE_TYPE = eINSTANCE.getConversionOperator__DeleteType();
+        EOperation CONVERSION_OPERATOR___DELETE_TYPE = OperatorPackage.eINSTANCE.getConversionOperator__DeleteType();
 
         /**
      * The meta object literal for the '<em><b>Cleanup</b></em>' operation.
@@ -4156,7 +4154,7 @@ public interface OperatorPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation CONVERSION_OPERATOR___CLEANUP = eINSTANCE.getConversionOperator__Cleanup();
+        EOperation CONVERSION_OPERATOR___CLEANUP = OperatorPackage.eINSTANCE.getConversionOperator__Cleanup();
 
         /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.RandomOperatorImpl <em>Random Operator</em>}' class.
@@ -4166,7 +4164,7 @@ public interface OperatorPackage extends EPackage {
      * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getRandomOperator()
      * @generated
      */
-        EClass RANDOM_OPERATOR = eINSTANCE.getRandomOperator();
+        EClass RANDOM_OPERATOR = OperatorPackage.eINSTANCE.getRandomOperator();
 
         /**
      * The meta object literal for the '<em><b>State</b></em>' attribute feature.
@@ -4174,7 +4172,7 @@ public interface OperatorPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EAttribute RANDOM_OPERATOR__STATE = eINSTANCE.getRandomOperator_State();
+        EAttribute RANDOM_OPERATOR__STATE = OperatorPackage.eINSTANCE.getRandomOperator_State();
 
         /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.NestingOperatorImpl <em>Nesting Operator</em>}' class.
@@ -4184,7 +4182,7 @@ public interface OperatorPackage extends EPackage {
      * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getNestingOperator()
      * @generated
      */
-        EClass NESTING_OPERATOR = eINSTANCE.getNestingOperator();
+        EClass NESTING_OPERATOR = OperatorPackage.eINSTANCE.getNestingOperator();
 
         /**
      * The meta object literal for the '<em><b>Nested MID Path</b></em>' attribute feature.
@@ -4192,7 +4190,7 @@ public interface OperatorPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EAttribute NESTING_OPERATOR__NESTED_MID_PATH = eINSTANCE.getNestingOperator_NestedMIDPath();
+        EAttribute NESTING_OPERATOR__NESTED_MID_PATH = OperatorPackage.eINSTANCE.getNestingOperator_NestedMIDPath();
 
         /**
      * The meta object literal for the '<em><b>Get Nested Instance MID</b></em>' operation.
@@ -4200,7 +4198,7 @@ public interface OperatorPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation NESTING_OPERATOR___GET_NESTED_INSTANCE_MID = eINSTANCE.getNestingOperator__GetNestedInstanceMID();
+        EOperation NESTING_OPERATOR___GET_NESTED_INSTANCE_MID = OperatorPackage.eINSTANCE.getNestingOperator__GetNestedInstanceMID();
 
         /**
      * The meta object literal for the '<em><b>Start Nested Instance</b></em>' operation.
@@ -4208,7 +4206,7 @@ public interface OperatorPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation NESTING_OPERATOR___START_NESTED_INSTANCE__OPERATOR_ELIST_PROPERTIES_ELIST_MAP = eINSTANCE.getNestingOperator__StartNestedInstance__Operator_EList_Properties_EList_Map();
+        EOperation NESTING_OPERATOR___START_NESTED_INSTANCE__OPERATOR_ELIST_PROPERTIES_ELIST_MAP = OperatorPackage.eINSTANCE.getNestingOperator__StartNestedInstance__Operator_EList_Properties_EList_Map();
 
         /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.WorkflowOperatorImpl <em>Workflow Operator</em>}' class.
@@ -4218,7 +4216,7 @@ public interface OperatorPackage extends EPackage {
      * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getWorkflowOperator()
      * @generated
      */
-        EClass WORKFLOW_OPERATOR = eINSTANCE.getWorkflowOperator();
+        EClass WORKFLOW_OPERATOR = OperatorPackage.eINSTANCE.getWorkflowOperator();
 
         /**
      * The meta object literal for the '<em><b>Get Nested Workflow MID</b></em>' operation.
@@ -4226,7 +4224,7 @@ public interface OperatorPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation WORKFLOW_OPERATOR___GET_NESTED_WORKFLOW_MID = eINSTANCE.getWorkflowOperator__GetNestedWorkflowMID();
+        EOperation WORKFLOW_OPERATOR___GET_NESTED_WORKFLOW_MID = OperatorPackage.eINSTANCE.getWorkflowOperator__GetNestedWorkflowMID();
 
         /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.GenericEndpointImpl <em>Generic Endpoint</em>}' class.
@@ -4236,7 +4234,7 @@ public interface OperatorPackage extends EPackage {
      * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getGenericEndpoint()
      * @generated
      */
-        EClass GENERIC_ENDPOINT = eINSTANCE.getGenericEndpoint();
+        EClass GENERIC_ENDPOINT = OperatorPackage.eINSTANCE.getGenericEndpoint();
 
         /**
      * The meta object literal for the '<em><b>Metatarget Uri</b></em>' attribute feature.
@@ -4244,7 +4242,7 @@ public interface OperatorPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EAttribute GENERIC_ENDPOINT__METATARGET_URI = eINSTANCE.getGenericEndpoint_MetatargetUri();
+        EAttribute GENERIC_ENDPOINT__METATARGET_URI = OperatorPackage.eINSTANCE.getGenericEndpoint_MetatargetUri();
 
         /**
      * The meta object literal for the '<em><b>Get Supertype</b></em>' operation.
@@ -4252,7 +4250,7 @@ public interface OperatorPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation GENERIC_ENDPOINT___GET_SUPERTYPE = eINSTANCE.getGenericEndpoint__GetSupertype();
+        EOperation GENERIC_ENDPOINT___GET_SUPERTYPE = OperatorPackage.eINSTANCE.getGenericEndpoint__GetSupertype();
 
         /**
      * The meta object literal for the '<em><b>Get Target</b></em>' operation.
@@ -4260,7 +4258,7 @@ public interface OperatorPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation GENERIC_ENDPOINT___GET_TARGET = eINSTANCE.getGenericEndpoint__GetTarget();
+        EOperation GENERIC_ENDPOINT___GET_TARGET = OperatorPackage.eINSTANCE.getGenericEndpoint__GetTarget();
 
         /**
      * The meta object literal for the '<em><b>Set Target</b></em>' operation.
@@ -4268,7 +4266,7 @@ public interface OperatorPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation GENERIC_ENDPOINT___SET_TARGET__EXTENDIBLEELEMENT = eINSTANCE.getGenericEndpoint__SetTarget__ExtendibleElement();
+        EOperation GENERIC_ENDPOINT___SET_TARGET__EXTENDIBLEELEMENT = OperatorPackage.eINSTANCE.getGenericEndpoint__SetTarget__ExtendibleElement();
 
         /**
      * The meta object literal for the '<em><b>Get Metatype</b></em>' operation.
@@ -4276,7 +4274,7 @@ public interface OperatorPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation GENERIC_ENDPOINT___GET_METATYPE = eINSTANCE.getGenericEndpoint__GetMetatype();
+        EOperation GENERIC_ENDPOINT___GET_METATYPE = OperatorPackage.eINSTANCE.getGenericEndpoint__GetMetatype();
 
         /**
      * The meta object literal for the '<em><b>Create Instance</b></em>' operation.
@@ -4284,7 +4282,7 @@ public interface OperatorPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation GENERIC_ENDPOINT___CREATE_INSTANCE__GENERICELEMENT_OPERATOR = eINSTANCE.getGenericEndpoint__CreateInstance__GenericElement_Operator();
+        EOperation GENERIC_ENDPOINT___CREATE_INSTANCE__GENERICELEMENT_OPERATOR = OperatorPackage.eINSTANCE.getGenericEndpoint__CreateInstance__GenericElement_Operator();
 
         /**
      * The meta object literal for the '<em><b>Create Workflow Instance</b></em>' operation.
@@ -4292,7 +4290,7 @@ public interface OperatorPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation GENERIC_ENDPOINT___CREATE_WORKFLOW_INSTANCE__GENERICELEMENT_OPERATOR = eINSTANCE.getGenericEndpoint__CreateWorkflowInstance__GenericElement_Operator();
+        EOperation GENERIC_ENDPOINT___CREATE_WORKFLOW_INSTANCE__GENERICELEMENT_OPERATOR = OperatorPackage.eINSTANCE.getGenericEndpoint__CreateWorkflowInstance__GenericElement_Operator();
 
         /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorInputImpl <em>Input</em>}' class.
@@ -4302,7 +4300,7 @@ public interface OperatorPackage extends EPackage {
      * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getOperatorInput()
      * @generated
      */
-        EClass OPERATOR_INPUT = eINSTANCE.getOperatorInput();
+        EClass OPERATOR_INPUT = OperatorPackage.eINSTANCE.getOperatorInput();
 
         /**
      * The meta object literal for the '<em><b>Model</b></em>' reference feature.
@@ -4310,7 +4308,7 @@ public interface OperatorPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EReference OPERATOR_INPUT__MODEL = eINSTANCE.getOperatorInput_Model();
+        EReference OPERATOR_INPUT__MODEL = OperatorPackage.eINSTANCE.getOperatorInput_Model();
 
         /**
      * The meta object literal for the '<em><b>Conversions</b></em>' reference list feature.
@@ -4318,7 +4316,7 @@ public interface OperatorPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EReference OPERATOR_INPUT__CONVERSIONS = eINSTANCE.getOperatorInput_Conversions();
+        EReference OPERATOR_INPUT__CONVERSIONS = OperatorPackage.eINSTANCE.getOperatorInput_Conversions();
 
         /**
      * The meta object literal for the '<em><b>Model Type Endpoint</b></em>' reference feature.
@@ -4326,7 +4324,7 @@ public interface OperatorPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EReference OPERATOR_INPUT__MODEL_TYPE_ENDPOINT = eINSTANCE.getOperatorInput_ModelTypeEndpoint();
+        EReference OPERATOR_INPUT__MODEL_TYPE_ENDPOINT = OperatorPackage.eINSTANCE.getOperatorInput_ModelTypeEndpoint();
 
         /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorGenericImpl <em>Generic</em>}' class.
@@ -4336,7 +4334,7 @@ public interface OperatorPackage extends EPackage {
      * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getOperatorGeneric()
      * @generated
      */
-        EClass OPERATOR_GENERIC = eINSTANCE.getOperatorGeneric();
+        EClass OPERATOR_GENERIC = OperatorPackage.eINSTANCE.getOperatorGeneric();
 
         /**
      * The meta object literal for the '<em><b>Generic</b></em>' reference feature.
@@ -4344,7 +4342,7 @@ public interface OperatorPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EReference OPERATOR_GENERIC__GENERIC = eINSTANCE.getOperatorGeneric_Generic();
+        EReference OPERATOR_GENERIC__GENERIC = OperatorPackage.eINSTANCE.getOperatorGeneric_Generic();
 
         /**
      * The meta object literal for the '<em><b>Generic Super Type Endpoint</b></em>' reference feature.
@@ -4352,7 +4350,7 @@ public interface OperatorPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EReference OPERATOR_GENERIC__GENERIC_SUPER_TYPE_ENDPOINT = eINSTANCE.getOperatorGeneric_GenericSuperTypeEndpoint();
+        EReference OPERATOR_GENERIC__GENERIC_SUPER_TYPE_ENDPOINT = OperatorPackage.eINSTANCE.getOperatorGeneric_GenericSuperTypeEndpoint();
 
         /**
      * The meta object literal for the '<em>Random</em>' data type.
@@ -4362,7 +4360,7 @@ public interface OperatorPackage extends EPackage {
      * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getRandom()
      * @generated
      */
-        EDataType RANDOM = eINSTANCE.getRandom();
+        EDataType RANDOM = OperatorPackage.eINSTANCE.getRandom();
 
         /**
      * The meta object literal for the '<em>Exception</em>' data type.
@@ -4372,7 +4370,7 @@ public interface OperatorPackage extends EPackage {
      * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getException()
      * @generated
      */
-        EDataType EXCEPTION = eINSTANCE.getException();
+        EDataType EXCEPTION = OperatorPackage.eINSTANCE.getException();
 
         /**
      * The meta object literal for the '<em>Properties</em>' data type.
@@ -4382,7 +4380,7 @@ public interface OperatorPackage extends EPackage {
      * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getProperties()
      * @generated
      */
-        EDataType PROPERTIES = eINSTANCE.getProperties();
+        EDataType PROPERTIES = OperatorPackage.eINSTANCE.getProperties();
 
         /**
      * The meta object literal for the '<em>Set</em>' data type.
@@ -4392,7 +4390,7 @@ public interface OperatorPackage extends EPackage {
      * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getSet()
      * @generated
      */
-        EDataType SET = eINSTANCE.getSet();
+        EDataType SET = OperatorPackage.eINSTANCE.getSet();
 
     }
 

@@ -606,9 +606,9 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
         catch (Throwable throwable) {
           throw new InvocationTargetException(throwable);
         }
-      case OperatorPackage.OPERATOR___CREATE_WORKFLOW_INSTANCE_OUTPUTS__OPERATOR_MAP_MID:
+      case OperatorPackage.OPERATOR___CREATE_WORKFLOW_INSTANCE_OUTPUTS__OPERATOR_MAP_MAP_MID:
         try {
-          createWorkflowInstanceOutputs((Operator)arguments.get(0), null, (Map<String, Model>)arguments.get(1), (MID)arguments.get(2));
+          createWorkflowInstanceOutputs((Operator)arguments.get(0), (Map<String, GenericElement>)arguments.get(1), (Map<String, Model>)arguments.get(2), (MID)arguments.get(3));
           return null;
         }
         catch (Throwable throwable) {
@@ -642,7 +642,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
     public String toStringGen() {
     if (eIsProxy()) return super.toString();
 
-    var result = new StringBuilder(super.toString());
+    StringBuilder result = new StringBuilder(super.toString());
     result.append(" (workingPath: ");
     result.append(this.workingPath);
     result.append(", executionTime: ");

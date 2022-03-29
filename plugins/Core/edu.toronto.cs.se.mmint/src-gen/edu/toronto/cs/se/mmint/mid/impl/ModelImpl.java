@@ -705,8 +705,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
         }
       case MIDPackage.MODEL___OPEN_INSTANCE:
         try {
-          openInstance();
-          return null;
+          return openInstance();
         }
         catch (Throwable throwable) {
           throw new InvocationTargetException(throwable);

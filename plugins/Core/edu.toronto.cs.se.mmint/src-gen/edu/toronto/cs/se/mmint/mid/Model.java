@@ -478,7 +478,7 @@ public interface Model extends GenericElement {
      *
      * @throws Exception
      *             If this is not a model instance, or if the editor can't be opened.<!-- end-user-doc -->
-   * @model exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception"
+   * @model dataType="edu.toronto.cs.se.mmint.mid.IEditorPart" exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception"
    * @generated
    */
     IEditorPart openInstance() throws Exception;

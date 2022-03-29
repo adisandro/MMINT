@@ -335,7 +335,7 @@ public interface ExtendibleElement extends EObject {
     void updateWorkflowInstanceId(String newInstanceId) throws MMINTException;
 
     /**
-     * <!-- begin-user-doc --> Validates this instance against a type.
+   * <!-- begin-user-doc --> Validates this instance against a type.
      *
      * @param type
      *          The type to be validated against.
@@ -343,24 +343,24 @@ public interface ExtendibleElement extends EObject {
      * @throws Exception
      *           If this is not an instance, if the type to be validated aganst is not a type, or if there is a
      *           validation error.<!-- end-user-doc -->
-     * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.Exception" typeRequired="true"
-     * @generated
-     */
+   * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception" typeRequired="true"
+   * @generated
+   */
     boolean validateInstanceType(ExtendibleElement type) throws Exception;
 
     /**
-     * <!-- begin-user-doc --> Validates this instance against its static type.
+   * <!-- begin-user-doc --> Validates this instance against its static type.
      *
      * @return True if the validation is successful, false otherwise.
      * @throws Exception
      *           If this is not an instance, or if there is a validation error.<!-- end-user-doc -->
-     * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
-     * @generated
-     */
+   * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception"
+   * @generated
+   */
     boolean validateInstance() throws Exception;
 
     /**
-     * <!-- begin-user-doc --> Validates this instance against its static type within an editor that suports EMF
+   * <!-- begin-user-doc --> Validates this instance against its static type within an editor that suports EMF
      * validation.
      *
      * @param context
@@ -368,11 +368,9 @@ public interface ExtendibleElement extends EObject {
      * @return A status representing the validation result.
      * @throws Exception
      *           If this is not an instance, or if there is a validation error.<!-- end-user-doc -->
-     * @model dataType="edu.toronto.cs.se.mmint.mid.IStatus" required="true"
-     *        exceptions="edu.toronto.cs.se.mmint.mid.Exception"
-     *        contextDataType="edu.toronto.cs.se.mmint.mid.IValidationContext" contextRequired="true"
-     * @generated
-     */
+   * @model dataType="edu.toronto.cs.se.mmint.mid.IStatus" required="true" exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception" contextDataType="edu.toronto.cs.se.mmint.mid.IValidationContext" contextRequired="true"
+   * @generated
+   */
     IStatus validateInstanceInEditor(IValidationContext context) throws Exception;
 
     /**
