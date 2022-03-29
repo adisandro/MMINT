@@ -152,7 +152,8 @@ public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
   }
 
   public static void displayQueryResults(EObject context, List<Object> results, Object query) {
-    var shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+    var window = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+    var shell = window.getShell();
     if (results.isEmpty()) {
       MessageDialog.openInformation(shell, "Query Results", "No Results");
       return;
@@ -212,6 +213,13 @@ public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
       MessageDialog.open(MessageDialog.INFORMATION, shell, title, message, SWT.NONE, "Next");
       if (highlighted != null) {
         DialectUIManager.INSTANCE.closeEditor(highlighted, false);
+        // closing the sirius editor is not done yet on return
+        // wait in a ui loop like in org.eclipse.jface.window.Window#runEventLoop
+        while (highlighted == window.getActivePage().getActivePart()) {
+          if (!shell.getDisplay().readAndDispatch()) {
+            shell.getDisplay().sleep();
+          }
+        }
       }
     }
 
