@@ -159,10 +159,6 @@ public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
       return;
     }
 
-    /* TODO Refine:
-     * 1) Extend to multiple models
-     * 2) Use dialogs that do not block
-     */
     var numResults = results.size();
     for (var i = 0; i < numResults; i++) {
       var result = results.get(i);

@@ -559,8 +559,8 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
   }
 
   @Override
-  protected Pattern getPattern(String queryFilePath, String queryName) throws Exception {
-    var pattern = super.getPattern(queryFilePath, queryName);
+  protected Pattern getPattern(String queryFilePath, Object queryObj) throws Exception {
+    var pattern = super.getPattern(queryFilePath, queryObj);
     var plPattern = PatternLanguageFactory.eINSTANCE.createPattern();
     plPattern.setName(pattern.getName());
     var plParameters = plPattern.getParameters();

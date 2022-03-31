@@ -74,9 +74,20 @@ public class ViatraReasoner implements IQueryTrait {
       .orElseThrow(() -> new MMINTException(MessageFormat.format("Pattern {0} not found", queryName)));
   }
 
-  protected Pattern getPattern(String filePath, String queryName) throws Exception {
-    var vqlRoot = getVQLRoot(filePath, true);
-    return getPattern(vqlRoot, queryName);
+  protected Pattern getPattern(String filePath, Object queryObj) throws Exception {
+    Pattern pattern;
+    if (queryObj instanceof Pattern vqlPattern) {
+      pattern = vqlPattern;
+    }
+    else if (queryObj instanceof String queryName) {
+      var vqlRoot = getVQLRoot(filePath, true);
+      pattern = getPattern(vqlRoot, queryName);
+    }
+    else {
+      throw new MMINTException("Parameter 'query' must be a query name of type String or a VQL query of type Pattern");
+    }
+
+    return pattern;
   }
 
   protected List<Object> getMatches(Collection<GenericPatternMatch> vMatches) throws Exception {
@@ -97,16 +108,7 @@ public class ViatraReasoner implements IQueryTrait {
     AdvancedViatraQueryEngine engine = null;
     try {
       // handle query arguments
-      Pattern pattern;
-      if (queryObj instanceof Pattern vqlPattern) {
-        pattern = vqlPattern;
-      }
-      else if (queryObj instanceof String queryName) {
-        pattern = getPattern(filePath, queryName);
-      }
-      else {
-        throw new MMINTException("Argument #2 should be a query name of type String or a VQL query of type Pattern");
-      }
+      var pattern = getPattern(filePath, queryObj);
       if (!queryArgs.isEmpty()) { // bound input arguments
         var numFormal = pattern.getParameters().size();
         var numActual = queryArgs.size();
