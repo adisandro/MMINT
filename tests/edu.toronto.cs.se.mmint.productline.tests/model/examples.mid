@@ -80,10 +80,10 @@
     </mappingRefs>
   </models>
   <editors xsi:type="editor:Diagram" uri="/edu.toronto.cs.se.mmint.productline.tests/representations.aird#_lRqLMAwEEeyMLqHNYQjbCA" name="ProductLine Sirius Diagram for model /edu.toronto.cs.se.mmint.productline.tests/model/cd.productline" metatypeUri="edu.toronto.cs.se.mmint.productline.design" dynamic="true" modelUri="/edu.toronto.cs.se.mmint.productline.tests/model/cd.productline" id="edu.toronto.cs.se.mmint.productline.design" wizardId="edu.toronto.cs.se.mmint.productline.presentation.ProductLineModelWizardID">
-    <fileExtensions>aird#_lRqLMAwEEeyMLqHNYQjbCA</fileExtensions>
+    <fileExtensions>aird</fileExtensions>
   </editors>
   <editors xsi:type="editor:Diagram" uri="/edu.toronto.cs.se.mmint.productline.tests/representations.aird#_1HLvECcDEeyoxNi2IcQHPg" name="ProductLine Sirius Diagram for model /edu.toronto.cs.se.mmint.productline.tests/model/gsn.productline" metatypeUri="edu.toronto.cs.se.mmint.productline.design" dynamic="true" modelUri="/edu.toronto.cs.se.mmint.productline.tests/model/gsn.productline" id="edu.toronto.cs.se.mmint.productline.design" wizardId="edu.toronto.cs.se.mmint.productline.presentation.ProductLineModelWizardID">
-    <fileExtensions>aird#_1HLvECcDEeyoxNi2IcQHPg</fileExtensions>
+    <fileExtensions>aird</fileExtensions>
   </editors>
   <extendibleTable key="/edu.toronto.cs.se.mmint.productline.tests/model/cd.productline" value="//@models.0"/>
   <extendibleTable key="/edu.toronto.cs.se.mmint.productline.tests/model/gsn.productline" value="//@models.1"/>
