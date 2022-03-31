@@ -19,7 +19,7 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.sirius.business.api.session.SessionManager;
 import org.eclipse.sirius.diagram.ContainerStyle;
 import org.eclipse.sirius.diagram.DDiagramElement;
-import org.eclipse.sirius.diagram.DNodeContainer;
+import org.eclipse.sirius.diagram.DDiagramElementContainer;
 import org.eclipse.sirius.diagram.DSemanticDiagram;
 import org.eclipse.sirius.diagram.EdgeStyle;
 import org.eclipse.sirius.diagram.NodeStyle;
@@ -57,8 +57,8 @@ public class SiriusHighlighter {
   }
 
   private static void highlight(DDiagramElement sDiagramElem, Set<String> modelObjUris, Color color) {
-    if (sDiagramElem instanceof DNodeContainer sContainerElem) {
-      for (var sContainedElem : sContainerElem.getOwnedDiagramElements()) {
+    if (sDiagramElem instanceof DDiagramElementContainer sContainerElem) {
+      for (var sContainedElem : sContainerElem.getElements()) {
         highlight(sContainedElem, modelObjUris, color);
       }
     }

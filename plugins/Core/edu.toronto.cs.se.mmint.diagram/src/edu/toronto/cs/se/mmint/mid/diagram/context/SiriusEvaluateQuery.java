@@ -164,7 +164,7 @@ public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
       var result = results.get(i);
       String message;
       var highlightUris = new HashSet<String>();
-      Model model = null;
+      var models = new HashSet<Model>();
       if (result instanceof Collection multiResult) {
         message = "[";
         for (var innerResult : multiResult) {
@@ -174,9 +174,13 @@ public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
           message += queryResultToString(innerResult);
           if (innerResult instanceof EObject innerObj) {
             highlightUris.add(MIDRegistry.getModelElementUri(innerObj));
-            if (model == null) {
+            var modelUri = MIDRegistry.getModelUri(innerObj);
+            if (models.stream().noneMatch(m -> m.getUri().equals(modelUri))) {
               try {
-                model = MIDDiagramUtils.getInstanceMIDModelFromModelEditor(innerObj);
+                var model = MIDDiagramUtils.getInstanceMIDModelFromModelEditor(innerObj);
+                if (SiriusUtils.hasSiriusDiagram(model)) {
+                  models.add(model);
+                }
               }
               catch (MMINTException e) {
               }
@@ -190,28 +194,31 @@ public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
         if (result instanceof EObject resultObj) {
           highlightUris.add(MIDRegistry.getModelElementUri(resultObj));
           try {
-            model = MIDDiagramUtils.getInstanceMIDModelFromModelEditor(resultObj);
+            var model = MIDDiagramUtils.getInstanceMIDModelFromModelEditor(resultObj);
+            if (SiriusUtils.hasSiriusDiagram(model)) {
+              models.add(model);
+            }
           }
           catch (MMINTException e) {
           }
         }
       }
-      IEditorPart highlighted = null;
-      if (model != null && SiriusUtils.hasSiriusDiagram(model)) {
+      var highlighted = new HashSet<IEditorPart>();
+      for (var model : models) {
         try {
-          highlighted = SiriusHighlighter.highlight(model, highlightUris, Color.RED);
+          highlighted.add(SiriusHighlighter.highlight(model, highlightUris, Color.RED));
         }
         catch (Exception e) {
           MMINTException.print(IStatus.WARNING, "Query result highlighting failed", e);
         }
+        var title = "Query Results (" + (i+1) + " out of " + numResults + ")";
+        MessageDialog.open(MessageDialog.INFORMATION, shell, title, message, SWT.NONE, "Next");
       }
-      var title = "Query Results (" + (i+1) + " out of " + numResults + ")";
-      MessageDialog.open(MessageDialog.INFORMATION, shell, title, message, SWT.NONE, "Next");
-      if (highlighted != null) {
-        DialectUIManager.INSTANCE.closeEditor(highlighted, false);
+      if (!highlighted.isEmpty()) {
+        highlighted.forEach(h -> DialectUIManager.INSTANCE.closeEditor(h, false));
         // closing the sirius editor is not done yet on return
         // wait in a ui loop like in org.eclipse.jface.window.Window#runEventLoop
-        while (highlighted == window.getActivePage().getActivePart()) {
+        while (highlighted.contains(window.getActivePage().getActivePart())) {
           if (!shell.getDisplay().readAndDispatch()) {
             shell.getDisplay().sleep();
           }
