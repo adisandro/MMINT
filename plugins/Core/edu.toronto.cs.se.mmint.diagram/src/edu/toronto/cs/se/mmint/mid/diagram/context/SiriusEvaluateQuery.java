@@ -159,6 +159,7 @@ public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
       return;
     }
 
+    // collect results
     var numResults = results.size();
     for (var i = 0; i < numResults; i++) {
       var result = results.get(i);
@@ -169,7 +170,7 @@ public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
         message = "[";
         for (var innerResult : multiResult) {
           if (message.length() > 1) {
-            message += " ,";
+            message += ", ";
           }
           message += queryResultToString(innerResult);
           if (innerResult instanceof EObject innerObj) {
@@ -203,18 +204,29 @@ public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
           }
         }
       }
-      var highlighted = new HashSet<IEditorPart>();
-      for (var model : models) {
-        try {
-          highlighted.add(SiriusHighlighter.highlight(model, highlightUris, Color.RED));
-        }
-        catch (Exception e) {
-          MMINTException.print(IStatus.WARNING, "Query result highlighting failed", e);
-        }
-        var title = "Query Results (" + (i+1) + " out of " + numResults + ")";
-        MessageDialog.open(MessageDialog.INFORMATION, shell, title, message, SWT.NONE, "Next");
+
+      // display results
+      var title = "Query Results (" + (i+1) + " out of " + numResults + ")";
+      if (models.isEmpty()) {
+        var button = ((i+1) == numResults) ? "Done" : "Next Result";
+        MessageDialog.open(MessageDialog.INFORMATION, shell, title, message, SWT.NONE, button);
       }
-      if (!highlighted.isEmpty()) {
+      else {
+        var highlighted = new HashSet<IEditorPart>();
+        var j = 1;
+        for (var model : models) {
+          try {
+            highlighted.add(SiriusHighlighter.highlight(model, highlightUris, Color.RED));
+          }
+          catch (Exception e) {
+            MMINTException.print(IStatus.WARNING, "Query result highlighting failed", e);
+          }
+          var button = (j < models.size()) ?
+            "Same Result, Next Model" :
+            ((i+1) == numResults) ? "Done" : "Next Result";
+          MessageDialog.open(MessageDialog.INFORMATION, shell, title, message, SWT.NONE, button);
+          j++;
+        }
         highlighted.forEach(h -> DialectUIManager.INSTANCE.closeEditor(h, false));
         // closing the sirius editor is not done yet on return
         // wait in a ui loop like in org.eclipse.jface.window.Window#runEventLoop
@@ -226,9 +238,10 @@ public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
       }
     }
 
+    // store results
     if (context instanceof MID mid) {
       var title = "Query Results";
-      var message = "Do you want to store the results as model relationships for future use?";
+      var message = "Do you want to store the results?";
       if (MessageDialog.openQuestion(shell, title, message)) {
         storeQueryResultsAsModelRel(query.toString(), results, mid);
       }
