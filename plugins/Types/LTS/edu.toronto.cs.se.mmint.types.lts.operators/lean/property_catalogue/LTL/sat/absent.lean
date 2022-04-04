@@ -1,4 +1,4 @@
-import LTS.defs property_catalogue.LTL.patterns tactic proof_state
+import LTS.defs property_catalogue.LTL.patterns tactic proof_data
 
 open tactic
 
@@ -8,7 +8,7 @@ variable {α : Type}
 namespace absent
 namespace globally 
 
-lemma by_partition_before_aft {π : path M} (P S : formula M) : 
+lemma by_partition_before_after {π : path M} (P S : formula M) : 
     (sat (exist.globally S) π ) → (sat (absent.before P S) π) → (sat (absent.after P S) π) → (sat (absent.globally P) π) :=
 begin
     intros H1 H2 H3,
@@ -37,15 +37,15 @@ begin
     assumption,
 end 
 
-meta def solve_by_partition (tok1 tok2 : expr) (ps : proofState α ): tactic (proofState α) := 
+meta def solve_by_partition (tok1 tok2 : expr) (ps : property_proof_data α ): tactic (property_proof_data α) := 
 do 
-  tactic.interactive.apply ``(by_partition_before_aft %%tok1 %%tok2),
+  tactic.interactive.apply ``(by_partition_before_after %%tok1 %%tok2),
   return ps 
 -- t1 ← tok1.log_format, t2 ← tok2.log_format,
 --  s.log $ "apply by_partition_before_aft" ++ t1 ++ t2 ++ "\n"
 
 
-meta def solve (tok : expr) (ps : proofState α) : list expr → tactic (proofState α)
+meta def solve (tok : expr) (ps : property_proof_data α) : list expr → tactic (property_proof_data α)
 | [] :=  return ps
 | (h::t) := 
    do typ ← infer_type h,
@@ -177,13 +177,13 @@ end
 
 
 
-meta def solve_by_absent_between_response (A : expr) (ps : proofState α): tactic (proofState α) := 
+meta def solve_by_absent_between_response (A : expr) (ps : property_proof_data α): tactic (property_proof_data α) := 
 do 
   tactic.interactive.apply ``(absent_between_response %%A),
   repeat1 (applyc `and.intro), `[repeat {assumption}],
   return ps 
 
-meta def solve  (ps : proofState α) : list expr → tactic (proofState α) 
+meta def solve  (ps : property_proof_data α) : list expr → tactic (property_proof_data α) 
 | [] :=  return ps
 | (h::t) := 
    do typ ← infer_type h,
@@ -226,7 +226,7 @@ begin
 end 
 
 
-meta def solve_by_absent_between_response (A : expr) (ps : proofState α): tactic (proofState α) := 
+meta def solve_by_absent_between_response (A : expr) (ps : property_proof_data α): tactic (property_proof_data α) := 
 do 
   tactic.interactive.apply ``(from_absent_between_response %%A),
   ps ← ps.log "apply absent.after_until.from_absent_between_response",
@@ -235,7 +235,7 @@ do
   ps ← ps.log "match_premises",
   return {used := ps.used ++ ["match_premises"], ..ps}
 
-meta def solve  (ps : proofState α) : list expr → tactic (proofState α) 
+meta def solve  (ps : property_proof_data α) : list expr → tactic (property_proof_data α) 
 | [] :=  return ps
 | (h::t) := 
    do typ ← infer_type h,

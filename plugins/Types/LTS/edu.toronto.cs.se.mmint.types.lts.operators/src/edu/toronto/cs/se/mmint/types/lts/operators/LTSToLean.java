@@ -85,8 +85,8 @@ public class LTSToLean extends ToLean implements IGSNLeanEncoder {
         var sanitizedLabel = ((LabeledElement) modelObj).getLabel().replaceAll(ToLean.LEAN_SANITIZE_REGEXP, "_");
         var j = getIndex((LabeledElement) modelObj) / LTSToLean.GROUP_THRESHOLD;
         var formal = (modelObj instanceof State) ?
-          "(STATES.cons" + j + " state" + j + "." + sanitizedLabel + ")" :
-          "(ACTIONS.cons" + j + " action" + j + "." + sanitizedLabel + ")";
+          "(S.cons" + j + " state" + j + "." + sanitizedLabel + ")" :
+          "(A.cons" + j + " action" + j + "." + sanitizedLabel + ")";
         currFormals.add(formal);
         informals.add(sanitizedLabel);
       }

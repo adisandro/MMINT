@@ -36,7 +36,6 @@ import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.modelepedia.gsn.Context;
 import edu.toronto.cs.se.modelepedia.gsn.ContextualElement;
 import edu.toronto.cs.se.modelepedia.gsn.InContextOf;
-import edu.toronto.cs.se.modelepedia.gsn.Property;
 import edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionStrategy;
 import edu.toronto.cs.se.modelepedia.gsn.PropertyGoal;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
@@ -47,7 +46,8 @@ import edu.toronto.cs.se.modelepedia.gsn.reasoning.IGSNLeanEncoder.PropertyTempl
 import edu.toronto.cs.se.modelepedia.gsn.util.PropertyBuilder;
 
 public class GSNLeanReasoner extends LeanReasoner implements IGSNDecompositionTrait {
-  private final static String FEEDBACK_PROPERTY_HINT = "HINT";
+  private final static String FEEDBACK_BAD_PROPERTY = "P";
+  private final static String FEEDBACK_HINT_PROPERTY = "HINT";
 
   @Override
   public String getName() {
@@ -146,35 +146,37 @@ public class GSNLeanReasoner extends LeanReasoner implements IGSNDecompositionTr
         var hintProperties = new ArrayList<String>();
         List<String> properties;
         for (var feedback : feedbackLines) {
-          if (feedback.startsWith(GSNLeanReasoner.FEEDBACK_PROPERTY_HINT)) {
-            properties = hintProperties;
-            feedback = feedback.substring(GSNLeanReasoner.FEEDBACK_PROPERTY_HINT.length()).stripLeading();
+          if (feedback.startsWith(GSNLeanReasoner.FEEDBACK_BAD_PROPERTY)) {
+            try {
+              var i = Integer.parseInt(feedback.substring(GSNLeanReasoner.FEEDBACK_BAD_PROPERTY.length()).strip()) - 1;
+              if (i < 0 || i >= strategy.getSupportedBy().size()) {
+                continue;
+              }
+              var badGoal = strategy.getSupportedBy().get(i).getTarget();
+              if (!(badGoal instanceof PropertyGoal badPropGoal)) {
+                continue;
+              }
+              badProperties.add(badPropGoal.getProperty().getInformal());
+            }
+            catch (NumberFormatException e) {
+              // ignore feedback
+            }
           }
-          else {
-            properties = badProperties;
-          }
-          var token = feedback.indexOf(" ");
-          feedback = (token == -1) ? feedback : feedback.substring(0, token);
-          if (!feedback.isBlank()) {
-            properties.add(feedback);
+          else if (feedback.startsWith(GSNLeanReasoner.FEEDBACK_HINT_PROPERTY)) {
+            var hint = feedback.substring(GSNLeanReasoner.FEEDBACK_HINT_PROPERTY.length()).strip();
+            if (hint.isBlank()) {
+              continue;
+            }
+            hintProperties.add(hint);
           }
         }
         if (!badProperties.isEmpty()) {
-          var badInformals = strategy.getSupportedBy().stream()
-            .map(SupportedBy::getTarget)
-            .filter(g -> g instanceof PropertyGoal)
-            .map(g -> ((PropertyGoal) g).getProperty())
-            .filter(p -> badProperties.stream().anyMatch(bp -> p.getFormal().startsWith(bp)))
-            .map(Property::getInformal)
-            .collect(Collectors.toList());
-          if (!badInformals.isEmpty()) {
-            var propertyWord = (badInformals.size() > 1) ? "properties" : "property";
-            var objWord = (badInformals.size() > 1) ? "them" : "it";
-            invalidMsg += " because of the " + propertyWord + " '" + String.join(", ", badInformals) +
-                          "'. Consider changing " + objWord + " and validating the decomposition again.";
-            if (!hintProperties.isEmpty()) {
-              invalidMsg += "\n(hint: using '" + String.join(", ", hintProperties) + "' instead may work)";
-            }
+          var propertyWord = (badProperties.size() > 1) ? "properties" : "property";
+          var objWord = (badProperties.size() > 1) ? "them" : "it";
+          invalidMsg += " because of the " + propertyWord + " '" + String.join(", ", badProperties) +
+                        "'. Consider changing " + objWord + " and validating the decomposition again.";
+          if (!hintProperties.isEmpty()) {
+            invalidMsg += "\n(hint: using '" + String.join(", ", hintProperties) + "' instead may work)";
           }
         }
       }

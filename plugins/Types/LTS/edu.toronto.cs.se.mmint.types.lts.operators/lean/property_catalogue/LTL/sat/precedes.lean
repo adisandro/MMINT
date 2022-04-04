@@ -1,138 +1,253 @@
-import LTS.defs property_catalogue.LTL.patterns tactic
+-- import LTS.defs property_catalogue.LTL.patterns tactic proof_state
 
-open tactic
+-- open tactic
 
-variable {M : LTS}
+-- variable {M : LTS}
+-- variable {α : Type}
 
-namespace precedes 
+-- namespace absent
+-- namespace globally 
 
-namespace globally
+-- lemma by_partition_before_after {π : path M} (P S : formula M) : 
+--     (sat (exist.globally S) π ) → (sat (absent.before P S) π) → (sat (absent.after P S) π) → (sat (absent.globally P) π) :=
+-- begin
+--     intros H1 H2 H3,
+--     rw absent.globally, rw sat,
+--     rw exist.globally at H1, rw sat at H1,
+--     rw absent.before at H2, iterate 3 {rw sat at H2},
+--     rw absent.after at H3, iterate 3 {rw sat at H3},
+--     simp at *,
+--     cases H1 with k H1,
+--     intro i,
+--     replace H2 := H2 k,
+--     replace H2 := H2 H1,
+--     cases H2 with w H2,
+--     have EM : (i < w) ∨ ¬ (i < w), from em (i<w),
+--     cases EM,
+--     apply H2.2,
+--     assumption,
+--     simp at EM,
+--     replace H3 := H3 w,
+--     cases H2 with L R,
+--     replace H3 := H3 L,
+--     have : ∃ j, i = w + j, from le_iff_exists_add.mp EM,
+--     cases this with j H4, rw H4,
+--     replace H3 := H3 j,
+--     rw path.drop_drop at H3,
+--     assumption,
+-- end 
 
-
--- Proof 1 : Because S never happens 
-lemma vacuous (P S : formula M) (π : path M) : 
- (sat (absent.globally S) π) → sat (precedes.globally P S) π 
-:= λ s, or.inl s  
-
--- Proof 2 : P precedes S because S can't happen before P
-
-local notation π `⊨ `P := sat P π 
-
-variables (P Q R : formula M) (π : path M)
-
-lemma by_absent_before (P Q : formula M) (π : path M) : 
- (π ⊨ absent.before Q P) ∧ (π ⊨ exist.globally P ) → 
- (π ⊨ precedes.globally P Q)  := 
-begin 
- rintros ⟨H1,H2⟩,
- rw precedes.globally, 
- rw [absent.before, sat, imp_iff_not_or] at H1,
- cases H1,
- left, rw always_eventually_dual, contradiction,
- right, assumption,
-end 
-
--- Proof 3 : P precedes R because P precedes Q and Q precedes R 
-
-
-lemma by_transitive (P Q R : formula M) (π : path M) : 
-    (π ⊨ precedes.globally P R) ∧ (π ⊨ precedes.globally R Q) → 
-    (π ⊨ precedes.globally P Q) := 
-begin
-    rintros ⟨H1, H2⟩,
-    cases H2, left, assumption,
-    cases H1,
-    cases H2 with k H2, replace H1 := (H1 k), replace H2:= H2.1, 
-    have := sat_em R (π.drop k),replace this := this H2,
-    contradiction,
-    rcases H1 with ⟨k,Hk1,Hk2⟩,
-    rcases H2 with ⟨w, Hw1, Hw2⟩,
-    right, use k,
-    split, assumption,
-    intros i Hi, apply Hw2,
-    have EM : (k < w) ∨ ¬ (k < w), from em (k < w),
-    cases EM,
-    apply lt_trans Hi, assumption,
-    simp at EM,
-     have EM2 : (k = w) ∨ ¬ (k = w), from em (k = w),
-    cases EM2,
-    rw ← EM2, assumption,
-    have : w < k, by omega,
-    replace Hk2 := Hk2 w this,
-    have := sat_em R (π.drop w),replace this := this Hw1,
-    contradiction,
-end 
-
-meta def solve_by_transitive (e₁ e₂ e₃ : expr) (s : string): tactic unit := 
-do
-  tactic.interactive.apply ``(by_transitive %%e₁  %%e₂  %%e₃) 
- -- e₁ ← tactic_format_expr e₁,
-  --  e₂ ← tactic_format_expr e₂,
- --   e₃ ← tactic_format_expr e₃,
-
---  return $  s.append $
- -- "apply precedes.globally.by_transitive " ++ 
- --  e₁.to_string  ++ " " ++ e₂.to_string  ++ " " ++ e₃.to_string  ++ ",\n"
-
-meta def solve_by_absent_before (e₁ e₂ : expr) (s : string) : 
-tactic unit := 
-do  
-  tactic.interactive.apply ``(by_absent_before %%e₁ %%e₂)
---  e₁ ← e₁.log_format,
---  e₂ ← e₂.log_format,
---  s.log $ 
---  "apply precedes.globally.by_absent_before " ++ 
---  e₁ ++ " " ++ e₂ ++ ",\n"
-
-meta def solve (e₁  e₂ : expr) (s : string) : list expr → tactic unit
-| [] :=  return ()
-| (h::t) := 
-do typ ← infer_type h,
-   match typ with 
-   | `(sat (precedes.globally _ %%new) _) := 
-       solve_by_transitive e₁ e₂ new s <|> solve t
-   | `(sat (absent.before _ _) _) := 
-      solve_by_absent_before e₁ e₂ s  <|> solve t 
-   | _ := solve t 
-end 
-
-end globally
-
-namespace before 
-
--- (◆R) ⇒ ((!P) U (S ⅋ R)) 
-
-lemma vacuous (P R S: formula M) (π : path M) : 
-  sat (absent.globally S) π → sat (precedes.before P R S) π := 
-by {intro H, rw [precedes.before,sat,imp_iff_not_or, 
-    ← always_eventually_dual], left, assumption}
+-- meta def solve_by_partition (tok1 tok2 : expr) (ps : proof_data α ): tactic (proof_data α) := 
+-- do 
+--   tactic.interactive.apply ``(by_partition_before_aft %%tok1 %%tok2),
+--   return ps 
+-- -- t1 ← tok1.log_format, t2 ← tok2.log_format,
+-- --  s.log $ "apply by_partition_before_aft" ++ t1 ++ t2 ++ "\n"
 
 
-lemma by_absent_before (P R S: formula M) (π : path M) : 
-    sat (exist.globally (P ⅋ S)) π 
-    ∧ sat (absent.before R (P ⅋ S)) π → sat (precedes.before P R S) π 
-:= 
-begin
-    rintros ⟨L,R⟩,
-    replace R := R L, 
-    rw [precedes.before, sat, imp_iff_not_or], 
-    exact or.inr R,
-end 
+-- meta def solve (tok : expr) (ps : proof_data α) : list expr → tactic (proof_data α)
+-- | [] :=  return ps
+-- | (h::t) := 
+--    do typ ← infer_type h,
+--    match typ with 
+--    | `(sat (absent.before %%tok %%new) %%path):= 
+--    do {ps ←  solve_by_partition tok new ps, return ps }<|> solve t
+--    | `(sat (absent.after %%tok %%new) %%path) := 
+--    do {ps ← solve_by_partition tok new ps, return ps }<|> solve t 
+--    | _ := do solve t 
+--    end 
 
-end before 
+
+-- end globally 
+
+
+-- namespace between
 
 
 
-namespace after
---  (◾!Q) ⅋ ◆(Q & ((!P) W S)) 
+-- theorem absent_between_response {M : LTS} {p : path M} { B I C : formula M} ( A : formula M) : 
+-- (sat (responds.globally  (C) (A) ) p) ∧ 
+-- (sat (absent.between (B) (C) (A)) p) ∧  
+-- (sat (absent.between (B) (A) (I)) p)→ (sat (absent.between (B) (C) (I)) p) := 
+-- begin rintros ⟨ H1, H2, H3⟩,
+-- intro i,
+-- replace H1 := H1 i,
+-- intro Hcond, cases Hcond with L R,
+-- replace H1 := H1 L,
+-- rw absent.between at H2,
+-- have : ((p.drop i) ⊨ (C &  ◆A)), by {rw sat, split,assumption,assumption},
+-- replace H2 := H2 (i) this,
+-- cases H1 with w Hw,
+-- cases R with k Hk,
+-- clear this,
+-- cases H2 with z Hz,
+-- cases Hz with z1 z2,
+-- have : k < z ∨ ¬ (k < z), from or_not,
+-- cases this, 
+-- use k,
+-- split, assumption,
+-- intros j Hj,
+-- have fact : j < z, by omega,
+-- replace z2 := z2 j fact, assumption,
+-- simp at this,
+-- have EM : z = k ∨ z < k, by omega,
+-- clear this,
+-- cases EM, use k,
+-- split, assumption, rw ← EM, assumption,
+-- replace H3 := H3 (i+z),
+-- rw ← path.drop_drop at H3,
+-- have help : (((p.drop i).drop z) ⊨ ◆(I)), by {use (k-z),
+-- rw path.drop_drop, rw path.drop_drop,have : i + (z + (k - z)) = i+k, by omega, rw this, rw ← path.drop_drop, assumption,},
+-- have : ( ((p.drop i).drop z) ⊨  (A &  ◆I)), by {rw sat, split, assumption, assumption,},
+-- clear help, replace H3 := H3 this,
+-- cases H3 with t Ht,
+-- clear this,
+-- cases Ht with Ht Ht',
+-- rw path.drop_drop at *,
+-- use (z+t),split,
+-- assumption,
+-- intros j Hj,
+-- have : j < z ∨ ¬ (j < z), from or_not,
+-- cases this, replace z2 := z2 j this,
+-- assumption,
+-- simp at this,
+-- have EM' : z = j ∨ z < j, by omega,
+-- cases EM', rw EM' at Hj,
+-- replace Ht' := Ht' 0 _,
+-- rw path.drop_drop at Ht',
+-- rw← EM',
+-- simp at Ht', rw path.drop_drop,assumption,
+-- omega,
+-- clear this,
+-- replace Ht' := Ht' (j-z),
+-- rw path.drop_drop at Ht',
+-- have : (i + z + (j - z)) = (i + j), by omega,
+-- rw this at Ht',
+-- rw path.drop_drop,
+--  apply Ht', omega,
+-- end 
 
-end after 
 
 
-namespace between 
--- ◾((Q & (!R) & ◆R) ⇒ (!P U (S ⅋ R)))
+-- theorem foo {M : LTS} {P Q R : formula M} {x : path M} : (x ⊨ R ⇒ (P W Q)) ↔ (x ⊨ R ⇒ (P U Q)) ∨ (x ⊨ R ⇒ ◾ P) := 
+-- begin 
+-- split,
+-- intro H,
+-- rw sat at H,
+-- rw sat.weak_until at H,
+-- rw imp_or_distrib at H,
+-- cases H,
+-- right, assumption,
+-- left, assumption,
+-- intro H,
+-- rw sat,
+-- rw sat.weak_until,
+-- cases H,
+-- intro Hr, replace H := H Hr,
+-- right, assumption,
+-- intro Hr, replace H := H Hr,left, assumption,
+-- end 
+
+-- theorem absent_after_between_response {M : LTS} {p : path M} { B I C : formula M} ( A : formula M) : 
+-- (sat (responds.globally  (C) (A) ) p) ∧ 
+-- (sat (absent.between (B) (C) (A)) p) ∧  
+-- (sat (absent.after_until (B) (A) (I)) p)→ (sat (absent.after_until (B) (C) (I)) p) := 
+-- begin
+--   rintros ⟨H1, H2, H3⟩,
+--   rw after_until, 
+--   intro i,
+--   rw foo, 
+--   left,
+--   apply absent_between_response A,split,assumption,
+--   split,assumption,
+--   clear H2, clear H1,clear i,
+--   rw after_until at H3,
+--   rw between,
+--   intros i H,
+--   replace H3 := H3 i H,
+--   cases H with L R,
+--   cases H3,
+--   cases R with w Hw, use w, split, assumption,
+--   intros i _,
+--   replace H3 := H3 i, assumption, assumption, 
+-- end 
 
 
 
-end between 
-end precedes 
+
+
+
+-- meta def solve_by_absent_between_response (A : expr) (ps : proof_data α): tactic (proof_data α) := 
+-- do 
+--   tactic.interactive.apply ``(absent_between_response %%A),
+--   repeat1 (applyc `and.intro), `[repeat {assumption}],
+--   return ps 
+
+-- meta def solve  (ps : proof_data α) : list expr → tactic (proof_data α) 
+-- | [] :=  return ps
+-- | (h::t) := 
+--    do typ ← infer_type h,
+--    match typ with 
+--    | `(sat (responds.globally %%C %%A) _):=
+--     do {ps ← solve_by_absent_between_response A ps, return ps} <|> solve t
+--    | _ := do solve t 
+--    end 
+
+
+
+-- end between 
+
+
+-- namespace after_until
+
+
+-- theorem from_absent_between_response {M : LTS} {p : path M} { B I C : formula M} ( A : formula M) : 
+-- (sat (responds.globally  (C) (A) ) p) ∧ 
+-- (sat (absent.between (B) (C) (A)) p) ∧  
+-- (sat (absent.after_until (B) (A) (I)) p)→ (sat (absent.after_until (B) (C) (I)) p) := 
+-- begin
+--   rintros ⟨H1, H2, H3⟩,
+--   rw after_until, 
+--   intro i,
+--   rw between.foo, 
+--   left,
+--   apply between.absent_between_response A,split,assumption,
+--   split,assumption,
+--   clear H2, clear H1,clear i,
+--   rw after_until at H3,
+--   rw between,
+--   intros i H,
+--   replace H3 := H3 i H,
+--   cases H with L R,
+--   cases H3,
+--   cases R with w Hw, use w, split, assumption,
+--   intros i _,
+--   replace H3 := H3 i, assumption, assumption, 
+-- end 
+
+
+-- meta def solve_by_absent_between_response (A : expr) (ps : proof_data α): tactic (proof_data α) := 
+-- do 
+--   tactic.interactive.apply ``(from_absent_between_response %%A),
+--   ps ← ps.log "apply absent.after_until.from_absent_between_response",
+--   let ps := {used := ps.used ++ ["apply absent.after_until.from_absent_between_response"], ..ps},
+--   repeat1 (applyc `and.intro), `[repeat {assumption}],
+--   ps ← ps.log "match_premises",
+--   return {used := ps.used ++ ["match_premises"], ..ps}
+
+-- meta def solve  (ps : proof_data α) : list expr → tactic (proof_data α) 
+-- | [] :=  return ps
+-- | (h::t) := 
+--    do typ ← infer_type h,
+--    match typ with 
+--    | `(sat (responds.globally %%C %%A) _):=
+--      do {ps ← solve_by_absent_between_response A ps, return ps} <|> solve t
+--    | _ := do solve t 
+--    end 
+
+
+-- end after_until 
+
+-- end absent 
+
+
