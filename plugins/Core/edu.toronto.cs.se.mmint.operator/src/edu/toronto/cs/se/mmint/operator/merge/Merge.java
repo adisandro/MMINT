@@ -277,7 +277,7 @@ public class Merge extends OperatorImpl {
     }
 
     // store merged model
-    FileUtils.writeModelFile(rootMergedModelObj, this.output.merged.getUri(), true);
+    FileUtils.writeModelFile(rootMergedModelObj, this.output.merged.getUri(), null, true);
 
     // merge rel
     for (var overlapMapping : this.input.overlap.getMappings()) {

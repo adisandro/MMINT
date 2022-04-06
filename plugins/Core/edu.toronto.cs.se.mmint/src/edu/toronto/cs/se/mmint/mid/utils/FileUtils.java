@@ -356,16 +356,21 @@ public class FileUtils {
 	 * @throws IOException
 	 *             If the ECore model file could not be created or overwritten.
 	 */
-	public static void writeModelFile(EObject rootModelObj, String filePath, boolean isWorkspaceRelative)
-	                                 throws IOException {
+	public static Resource writeModelFile(EObject rootModelObj, String filePath, @Nullable ResourceSet resourceSet,
+	                                      boolean isWorkspaceRelative) throws IOException {
+	  if (resourceSet == null) {
+	    resourceSet = new ResourceSetImpl();
+	  }
 		var emfUri = FileUtils.createEMFUri(filePath, isWorkspaceRelative);
-		var resource = new ResourceSetImpl().createResource(emfUri);
+		var resource = resourceSet.createResource(emfUri);
 		resource.getContents().add(rootModelObj);
 		resource.save(Map.of(XMLResource.OPTION_SCHEMA_LOCATION, true));
+
+		return resource;
 	}
 
-	public static void writeModelFileInState(EObject rootModelObj, String relativeFilePath) throws IOException {
-		FileUtils.writeModelFile(rootModelObj, FileUtils.prependStatePath(relativeFilePath), false);
+	public static Resource writeModelFileInState(EObject rootModelObj, String relativeFilePath) throws IOException {
+		return writeModelFile(rootModelObj, FileUtils.prependStatePath(relativeFilePath), null, false);
 	}
 
   public static Resource getEMFResource(URI emfUri, @Nullable ResourceSet resourceSet) throws Exception {
@@ -386,7 +391,7 @@ public class FileUtils {
   }
 
   public static Resource getEMFResource(String filePath, @Nullable ResourceSet resourceSet, boolean isWorkspaceRelative)
-                                    throws Exception {
+                                       throws Exception {
     var emfUri = FileUtils.createEMFUri(filePath, isWorkspaceRelative);
     return FileUtils.getEMFResource(emfUri, resourceSet);
   }

@@ -19,12 +19,9 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.uml2.uml.NamedElement;
-import org.eclipse.uml2.uml.Stereotype;
 
 import edu.toronto.cs.se.mavo.MAVOCollection;
 import edu.toronto.cs.se.mavo.MAVOElement;
@@ -56,7 +53,7 @@ public class MAVOUtils {
 
 	public static String getMAVORootLabel(MAVORoot rootMavoModelObj, boolean withParenthesis) {
 
-		String label = "";
+		var label = "";
 
 		if (rootMavoModelObj.isInc()) {
 			label =
@@ -70,11 +67,11 @@ public class MAVOUtils {
 
 	public static String getMAVOElementLabel(MAVOElement mavoModelObj, boolean withParenthesis) {
 
-		String label = "";
-		boolean mavo = mavoModelObj.isMay() || mavoModelObj.isSet() || mavoModelObj.isVar();
+		var label = "";
+		var mavo = mavoModelObj.isMay() || mavoModelObj.isSet() || mavoModelObj.isVar();
 
 		if (mavo) {
-			String collectionsLabel = mavoModelObj.getCollections().stream()
+			var collectionsLabel = mavoModelObj.getCollections().stream()
 				.map(MAVOCollection::getFormulaVariable)
 				.collect(Collectors.joining(", "));
 			label =
@@ -154,9 +151,8 @@ public class MAVOUtils {
 			return true;
 		}
 		// UML
-		if (modelObj instanceof NamedElement) {
-			NamedElement umlModelObj = (NamedElement) modelObj;
-			Stereotype stereotype = umlModelObj.getApplicableStereotype(MAVOUtils.UML_MAY_STEREOTYPE);
+		if (modelObj instanceof NamedElement umlModelObj) {
+			var stereotype = umlModelObj.getApplicableStereotype(MAVOUtils.UML_MAY_STEREOTYPE);
 			if (stereotype != null) {
 				return true;
 			}
@@ -181,7 +177,7 @@ public class MAVOUtils {
 
 	private static void initializeMAVOModel(org.eclipse.uml2.uml.Model rootUmlModelObj, MAVOModel mavoModel) {
 
-		Stereotype stereotype = rootUmlModelObj.getAppliedStereotype(MAVOUtils.UML_INC_STEREOTYPE);
+		var stereotype = rootUmlModelObj.getAppliedStereotype(MAVOUtils.UML_INC_STEREOTYPE);
 		if (stereotype != null) {
 			mavoModel.setInc(true);
 		}
@@ -209,7 +205,7 @@ public class MAVOUtils {
 
 	private static void initializeMAVOModelElement(NamedElement umlModelObj, MAVOModelElement mavoModelElem) {
 
-		Stereotype stereotype = umlModelObj.getAppliedStereotype(MAVOUtils.UML_MAY_STEREOTYPE);
+		var stereotype = umlModelObj.getAppliedStereotype(MAVOUtils.UML_MAY_STEREOTYPE);
 		if (stereotype != null) {
 			mavoModelElem.setMay(true);
 		}
@@ -248,9 +244,8 @@ public class MAVOUtils {
 			((MAVORoot) rootModelObj).setInc(inc);
 		}
 		// UML
-		else if (rootModelObj instanceof org.eclipse.uml2.uml.Model) {
-			org.eclipse.uml2.uml.Model umlRootModelObj = (org.eclipse.uml2.uml.Model) rootModelObj;
-			Stereotype stereotype = umlRootModelObj.getApplicableStereotype(MAVOUtils.UML_INC_STEREOTYPE);
+		else if (rootModelObj instanceof org.eclipse.uml2.uml.Model umlRootModelObj) {
+			var stereotype = umlRootModelObj.getApplicableStereotype(MAVOUtils.UML_INC_STEREOTYPE);
 			if (stereotype != null) {
 				if (inc && !umlRootModelObj.isStereotypeApplied(stereotype)) {
 					umlRootModelObj.applyStereotype(stereotype);
@@ -269,9 +264,8 @@ public class MAVOUtils {
 			((MAVOElement) modelObj).setMay(may);
 		}
 		// UML
-		else if (modelObj instanceof NamedElement) {
-			NamedElement umlModelObj = (NamedElement) modelObj;
-			Stereotype stereotype = umlModelObj.getApplicableStereotype(MAVOUtils.UML_MAY_STEREOTYPE);
+		else if (modelObj instanceof NamedElement umlModelObj) {
+			var stereotype = umlModelObj.getApplicableStereotype(MAVOUtils.UML_MAY_STEREOTYPE);
 			if (stereotype != null) {
 				if (may && !umlModelObj.isStereotypeApplied(stereotype)) {
 					umlModelObj.applyStereotype(stereotype);
@@ -290,9 +284,8 @@ public class MAVOUtils {
 			((MAVOElement) modelObj).setSet(set);
 		}
 		// UML
-		else if (modelObj instanceof NamedElement) {
-			NamedElement umlModelObj = (NamedElement) modelObj;
-			Stereotype stereotype = umlModelObj.getApplicableStereotype(MAVOUtils.UML_SET_STEREOTYPE);
+		else if (modelObj instanceof NamedElement umlModelObj) {
+			var stereotype = umlModelObj.getApplicableStereotype(MAVOUtils.UML_SET_STEREOTYPE);
 			if (stereotype != null) {
 				if (set && !umlModelObj.isStereotypeApplied(stereotype)) {
 					umlModelObj.applyStereotype(stereotype);
@@ -311,9 +304,8 @@ public class MAVOUtils {
 			((MAVOElement) modelObj).setVar(var);
 		}
 		// UML
-		else if (modelObj instanceof NamedElement) {
-			NamedElement umlModelObj = (NamedElement) modelObj;
-			Stereotype stereotype = umlModelObj.getApplicableStereotype(MAVOUtils.UML_VAR_STEREOTYPE);
+		else if (modelObj instanceof NamedElement umlModelObj) {
+			var stereotype = umlModelObj.getApplicableStereotype(MAVOUtils.UML_VAR_STEREOTYPE);
 			if (stereotype != null) {
 				if (var && !umlModelObj.isStereotypeApplied(stereotype)) {
 					umlModelObj.applyStereotype(stereotype);
@@ -336,17 +328,16 @@ public class MAVOUtils {
 	public static Map<String, MAVOElement> createFormulaVars(Model mavoModel) throws Exception {
 
 		Map<String, MAVOElement> mavoModelObjs = new HashMap<>();
-		boolean modified = false;
-		MAVORoot mavoRootModelObj = (MAVORoot) mavoModel.getEMFInstanceRoot();
-		TreeIterator<EObject> iterator = mavoRootModelObj.eAllContents();
+		var modified = false;
+		var mavoRootModelObj = (MAVORoot) mavoModel.getEMFInstanceRoot();
+		var iterator = mavoRootModelObj.eAllContents();
 		while (iterator.hasNext()) {
-			EObject modelObj = iterator.next();
-			if (!(modelObj instanceof MAVOElement)) {
+			var modelObj = iterator.next();
+			if (!(modelObj instanceof MAVOElement mavoModelObj)) {
 				continue;
 			}
-			MAVOElement mavoModelObj = (MAVOElement) modelObj;
 			if (mavoModelObj.getFormulaVariable() == null || mavoModelObj.getFormulaVariable().equals("")) {
-				EStructuralFeature nameFeature = mavoModelObj.eClass().getEStructuralFeature(MAVOUtils.NAME_FEATURE);
+				var nameFeature = mavoModelObj.eClass().getEStructuralFeature(MAVOUtils.NAME_FEATURE);
 				if (nameFeature != null) {
 					mavoModelObj.setFormulaVariable(((String) mavoModelObj.eGet(nameFeature)).replace(" ", ""));
 					modified = true;
@@ -356,7 +347,7 @@ public class MAVOUtils {
 		}
 		// overwrite
 		if (modified) {
-			FileUtils.writeModelFile(mavoRootModelObj, mavoModel.getUri(), true);
+			FileUtils.writeModelFile(mavoRootModelObj, mavoModel.getUri(), null, true);
 		}
 
 		return mavoModelObjs;
@@ -370,10 +361,10 @@ public class MAVOUtils {
 	private static @NonNull Set<String> getVFormulaVars(@NonNull MAVORoot mavoModel, @NonNull MAVOElement mavoModelObj, boolean whichFormulaVars) {
 
 		Set<String> formulaVars = new HashSet<>();
-		EObject modelObjContainer = mavoModelObj.eContainer();
-		TreeIterator<EObject> iterator = mavoModel.eAllContents();
+		var modelObjContainer = mavoModelObj.eContainer();
+		var iterator = mavoModel.eAllContents();
 		while (iterator.hasNext()) {
-			EObject otherModelObj = iterator.next();
+			var otherModelObj = iterator.next();
 			if (
 				!(otherModelObj instanceof MAVOElement) || // skip non-MAVO element
 				!(mavoModelObj.eClass().getName().equals(otherModelObj.eClass().getName())) || // skip different type
@@ -381,8 +372,8 @@ public class MAVOUtils {
 			) {
 				continue;
 			}
-			EObject otherModelObjContainer = otherModelObj.eContainer();
-			boolean isMergeable = (mavoModelObj.isVar() || ((MAVOElement) otherModelObj).isVar()) && ( // ok one is V
+			var otherModelObjContainer = otherModelObj.eContainer();
+			var isMergeable = (mavoModelObj.isVar() || ((MAVOElement) otherModelObj).isVar()) && ( // ok one is V
 				(modelObjContainer == otherModelObjContainer) || ( // ok same container (also recursion closure when containers are root)
 					modelObjContainer instanceof MAVOElement && // ok different container: MAVO element
 					modelObjContainer.eClass().getName().equals(otherModelObjContainer.eClass().getName()) && // ok different container: same type
@@ -430,7 +421,7 @@ public class MAVOUtils {
 
 	public static @NonNull Map<String, MAVOElement> getAllMAVOModelObjects(@NonNull Model model) throws MMINTException {
 
-		EObject rootModelObj = model.getEMFInstanceRoot();
+		var rootModelObj = model.getEMFInstanceRoot();
 		if (!(rootModelObj instanceof MAVORoot)) {
 			throw new MMINTException("Not a MAVO model");
 		}
@@ -452,7 +443,7 @@ public class MAVOUtils {
 
 	public static @NonNull Map<String, MAVOElement> getAnnotatedMAVOModelObjects(@NonNull Model model) throws MMINTException {
 
-		EObject rootModelObj = model.getEMFInstanceRoot();
+		var rootModelObj = model.getEMFInstanceRoot();
 		if (!(rootModelObj instanceof MAVORoot)) {
 			throw new MMINTException("Not a MAVO model");
 		}

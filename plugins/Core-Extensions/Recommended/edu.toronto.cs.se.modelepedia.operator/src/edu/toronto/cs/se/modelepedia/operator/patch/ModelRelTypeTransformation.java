@@ -20,17 +20,15 @@ import java.util.Map;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
 
-import edu.toronto.cs.se.mmint.MMINT;
+import edu.toronto.cs.se.mmint.MMINTConstants;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorConstraint;
-import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
@@ -67,12 +65,12 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 		@Override
 		public boolean checkGeneric(GenericEndpoint genericTypeEndpoint, GenericElement genericType, List<OperatorInput> inputs) {
 
-			ModelRel modelRelType = (ModelRel) genericType;
+			var modelRelType = (ModelRel) genericType;
 			// check 1: satisfies transformation constraint
 			if (!(new ModelRelTypeTransformationConstraint().check(modelRelType))) {
 				return false;
 			}
-			Model srcModel = inputs.get(0).getModel();
+			var srcModel = inputs.get(0).getModel();
 			// check 2: allowed source model
 			if (
 				!MIDConstraintChecker.isAllowedModelEndpoint(modelRelType.getModelEndpointRefs().get(0), srcModel, new HashMap<String, Integer>()) && (
@@ -96,15 +94,15 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 	@SuppressWarnings("unchecked")
 	protected EObject transformModelObj(ModelEndpointReference srcModelTypeEndpointRef, EObject srcModelObj, Map<EObject, ModelElementReference> srcModelObjs, ModelEndpointReference tgtModelTypeEndpointRef, Map<EObject, EObject> tgtModelObjs) throws MMINTException {
 
-		ModelElementReference tgtModelElemTypeRef = srcModelObjs.get(srcModelObj);
-		EClass tgtModelTypeObj = (EClass) tgtModelElemTypeRef.getObject().getEMFTypeObject();
-		EObject tgtModelObj = tgtModelTypeObj.getEPackage().getEFactoryInstance().create(tgtModelTypeObj);
-		EObject srcContainerModelObj = srcModelObj.eContainer();
+		var tgtModelElemTypeRef = srcModelObjs.get(srcModelObj);
+		var tgtModelTypeObj = (EClass) tgtModelElemTypeRef.getObject().getEMFTypeObject();
+		var tgtModelObj = tgtModelTypeObj.getEPackage().getEFactoryInstance().create(tgtModelTypeObj);
+		var srcContainerModelObj = srcModelObj.eContainer();
 		if (srcContainerModelObj == null) { // root found
 			this.tgtRootModelObj = tgtModelObj;
 		}
 		else {
-			EObject tgtContainerModelObj = tgtModelObjs.get(srcContainerModelObj);
+			var tgtContainerModelObj = tgtModelObjs.get(srcContainerModelObj);
 			if (tgtContainerModelObj == null) {
 				// recursion
 				tgtContainerModelObj = transformModelObj(srcModelTypeEndpointRef, srcContainerModelObj, srcModelObjs, tgtModelTypeEndpointRef, tgtModelObjs);
@@ -133,7 +131,7 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 			if (containmentReference == null) {
 				containmentReference = fallbackContainmentReference;
 			}
-			Object containment = tgtContainerModelObj.eGet(containmentReference);
+			var containment = tgtContainerModelObj.eGet(containmentReference);
 			if (containment instanceof EList) {
 				((EList<EObject>) containment).add(tgtModelObj);
 			}
@@ -154,11 +152,11 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 			return;
 		}
 		try {
-			Object value = srcModelObj.eGet(srcFeature);
+			var value = srcModelObj.eGet(srcFeature);
 			if (srcFeature instanceof EReference) {
 				if (value instanceof EList<?>) {
 					for (EObject srcRefModelObj : (EList<EObject>) value) {
-						EObject tgtRefModelObj = tgtModelObjs.get(srcRefModelObj);
+						var tgtRefModelObj = tgtModelObjs.get(srcRefModelObj);
 						if (tgtRefModelObj == null) {
 							continue;
 						}
@@ -166,8 +164,8 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 					}
 				}
 				else {
-					EObject srcRefModelObj = (EObject) value;
-					EObject tgtRefModelObj = tgtModelObjs.get(srcRefModelObj);
+					var srcRefModelObj = (EObject) value;
+					var tgtRefModelObj = tgtModelObjs.get(srcRefModelObj);
 					if (tgtRefModelObj != null) {
 						FileUtils.setModelObjectFeature(tgtModelObj, tgtFeatureName, tgtRefModelObj);
 					}
@@ -186,20 +184,20 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 
 	protected void transform(BinaryModelRel traceModelRel, Model srcModel, int srcIndex, int tgtIndex) throws Exception {
 
-		ModelRel traceModelRelType = traceModelRel.getMetatype();
-		ModelEndpointReference srcModelTypeEndpointRef = traceModelRelType.getModelEndpointRefs().get(srcIndex);
-		ModelEndpointReference tgtModelTypeEndpointRef = traceModelRelType.getModelEndpointRefs().get(tgtIndex);
+		var traceModelRelType = traceModelRel.getMetatype();
+		var srcModelTypeEndpointRef = traceModelRelType.getModelEndpointRefs().get(srcIndex);
+		var tgtModelTypeEndpointRef = traceModelRelType.getModelEndpointRefs().get(tgtIndex);
 		Map<EObject, ModelElementReference> srcModelObjs = new LinkedHashMap<>();
-		TreeIterator<EObject> srcModelObjsIter = srcModel.getEMFInstanceRoot().eResource().getAllContents();
+		var srcModelObjsIter = srcModel.getEMFInstanceRoot().eResource().getAllContents();
 		// first pass: get model objects to be transformed
 		while (srcModelObjsIter.hasNext()) {
-			EObject srcModelObj = srcModelObjsIter.next();
+			var srcModelObj = srcModelObjsIter.next();
 			ModelElement srcModelElemType = MIDConstraintChecker.getAllowedModelElementType(traceModelRel.getModelEndpointRefs().get(0), srcModelObj);
 			if (srcModelElemType == null) {
 				continue;
 			}
 			ModelElementReference srcModelElemTypeRef = MIDRegistry.getReference(srcModelElemType.getUri(), srcModelTypeEndpointRef.getModelElemRefs());
-			ModelElementReference tgtModelElemTypeRef = ((MappingReference) srcModelElemTypeRef.getModelElemEndpointRefs().get(0).eContainer()).getModelElemEndpointRefs().get(tgtIndex).getModelElemRef();
+			var tgtModelElemTypeRef = ((MappingReference) srcModelElemTypeRef.getModelElemEndpointRefs().get(0).eContainer()).getModelElemEndpointRefs().get(tgtIndex).getModelElemRef();
 			srcModelObjs.put(srcModelObj, tgtModelElemTypeRef);
 		}
 		// second pass: transform
@@ -215,32 +213,32 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 		for (Map.Entry<EObject, EObject> tgtModelObjsEntry : tgtModelObjs.entrySet()) {
 			EObject srcModelObj = tgtModelObjsEntry.getKey(), tgtModelObj = tgtModelObjsEntry.getValue();
 			for (ModelElementReference srcModelElemTypeRef : srcModelTypeEndpointRef.getModelElemRefs()) {
-				EMFInfo srcModelElemTypeEInfo = srcModelElemTypeRef.getObject().getEInfo();
+				var srcModelElemTypeEInfo = srcModelElemTypeRef.getObject().getEInfo();
 				if (
 					srcModelElemTypeEInfo.getFeatureName() == null ||
 					!MIDConstraintChecker.instanceofEMFClass(srcModelObj, srcModelElemTypeEInfo.getClassName())
 				) {
 					continue;
 				}
-				ModelElementReference tgtModelElemTypeRef = ((MappingReference) srcModelElemTypeRef.getModelElemEndpointRefs().get(0).eContainer()).getModelElemEndpointRefs().get(tgtIndex).getModelElemRef();
-				EMFInfo tgtModelElemTypeEInfo = tgtModelElemTypeRef.getObject().getEInfo();
+				var tgtModelElemTypeRef = ((MappingReference) srcModelElemTypeRef.getModelElemEndpointRefs().get(0).eContainer()).getModelElemEndpointRefs().get(tgtIndex).getModelElemRef();
+				var tgtModelElemTypeEInfo = tgtModelElemTypeRef.getObject().getEInfo();
 				transformModelObjFeature(srcModelObj, srcModelElemTypeEInfo.getFeatureName(), tgtModelObj, tgtModelElemTypeEInfo.getFeatureName(), primitiveSrcModelObjs, primitiveTgtModelObjs, tgtModelObjs);
 			}
 		}
-		for (int i = 0; i < primitiveSrcModelObjs.size(); i++) { // needed to avoid concurrent modification of tgtModelObjs
+		for (var i = 0; i < primitiveSrcModelObjs.size(); i++) { // needed to avoid concurrent modification of tgtModelObjs
 			tgtModelObjs.put(primitiveSrcModelObjs.get(i), primitiveTgtModelObjs.get(i));
 		}
 		// fourth pass: create model elements and links
-		FileUtils.writeModelFile(this.tgtRootModelObj, this.tgtModelPath, true);
+		FileUtils.writeModelFile(this.tgtRootModelObj, this.tgtModelPath, null, true);
 		for (Map.Entry<EObject, EObject> tgtModelObjEntry : tgtModelObjs.entrySet()) {
 			EList<ModelElementReference> targetModelElemRefs = new BasicEList<>();
-			ModelElementReference srcModelElemRef = traceModelRel.getModelEndpointRefs().get(0).createModelElementInstanceAndReference(tgtModelObjEntry.getKey(), null);
+			var srcModelElemRef = traceModelRel.getModelEndpointRefs().get(0).createModelElementInstanceAndReference(tgtModelObjEntry.getKey(), null);
 			targetModelElemRefs.add(srcModelElemRef);
-			ModelElementReference tgtModelElemRef = traceModelRel.getModelEndpointRefs().get(1).createModelElementInstanceAndReference(tgtModelObjEntry.getValue(), null);
+			var tgtModelElemRef = traceModelRel.getModelEndpointRefs().get(1).createModelElementInstanceAndReference(tgtModelObjEntry.getValue(), null);
 			targetModelElemRefs.add(tgtModelElemRef);
 			Mapping mappingType = MIDConstraintChecker.getAllowedMappingTypes(traceModelRelType, srcModelElemRef, tgtModelElemRef).get(0);
-			MappingReference newMappingRef = mappingType.createInstanceAndReferenceAndEndpointsAndReferences(true, targetModelElemRefs);
-			newMappingRef.getObject().setName(srcModelElemRef.getObject().getName() + MMINT.BINARY_MODELREL_SEPARATOR + tgtModelElemRef.getObject().getName());
+			var newMappingRef = mappingType.createInstanceAndReferenceAndEndpointsAndReferences(true, targetModelElemRefs);
+			newMappingRef.getObject().setName(srcModelElemRef.getObject().getName() + MMINTConstants.BINARY_MODELREL_SEPARATOR + tgtModelElemRef.getObject().getName());
 		}
 	}
 
@@ -250,28 +248,28 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 		throws Exception {
 
 		// input
-		ModelRel traceModelRelType = (ModelRel) genericsByName.get(GENERIC_MODELRELTYPE);
-		Model srcModel = inputsByName.get(IN_MODEL);
+		var traceModelRelType = (ModelRel) genericsByName.get(ModelRelTypeTransformation.GENERIC_MODELRELTYPE);
+		var srcModel = inputsByName.get(ModelRelTypeTransformation.IN_MODEL);
 		this.init();
 
-		int srcIndex = (
+		var srcIndex = (
 			traceModelRelType instanceof BinaryModelRel ||
 			MIDConstraintChecker.isAllowedModelEndpoint(traceModelRelType.getModelEndpointRefs().get(0), srcModel, new HashMap<String, Integer>())
 		) ?
 			0 : 1;
-		int tgtIndex = 1 - srcIndex;
-		Model tgtModelType = traceModelRelType.getModelEndpointRefs().get(tgtIndex).getObject().getTarget();
+		var tgtIndex = 1 - srcIndex;
+		var tgtModelType = traceModelRelType.getModelEndpointRefs().get(tgtIndex).getObject().getTarget();
 		this.tgtModelPath = FileUtils.getUniquePath(
 			FileUtils.replaceFileExtensionInPath(
-				FileUtils.addFileNameSuffixInPath(srcModel.getUri(), TRANSFORMATION_SUFFIX),
+				FileUtils.addFileNameSuffixInPath(srcModel.getUri(), ModelRelTypeTransformation.TRANSFORMATION_SUFFIX),
 				tgtModelType.getFileExtension()),
 			true,
 			false);
-		Model tgtModel = tgtModelType.createInstance(null, this.tgtModelPath, outputMIDsByName.get(OUT_MODEL));
-		BinaryModelRel traceModelRel = traceModelRelType.createBinaryInstance(
+		var tgtModel = tgtModelType.createInstance(null, this.tgtModelPath, outputMIDsByName.get(ModelRelTypeTransformation.OUT_MODEL));
+		var traceModelRel = traceModelRelType.createBinaryInstance(
 			null,
-			srcModel.getName() + MMINT.BINARY_MODELREL_SEPARATOR + tgtModel.getName(),
-			outputMIDsByName.get(OUT_MODELREL));
+			srcModel.getName() + MMINTConstants.BINARY_MODELREL_SEPARATOR + tgtModel.getName(),
+			outputMIDsByName.get(ModelRelTypeTransformation.OUT_MODELREL));
 		traceModelRelType.getModelEndpointRefs().get(srcIndex).getObject().createInstance(srcModel, traceModelRel);
 		traceModelRelType.getModelEndpointRefs().get(tgtIndex).getObject().createInstance(tgtModel, traceModelRel);
 		transform(traceModelRel, srcModel, srcIndex, tgtIndex);
@@ -279,8 +277,8 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 
 		// output
 		Map<String, Model> outputsByName = new HashMap<>();
-		outputsByName.put(OUT_MODEL, tgtModel);
-		outputsByName.put(OUT_MODELREL, traceModelRel);
+		outputsByName.put(ModelRelTypeTransformation.OUT_MODEL, tgtModel);
+		outputsByName.put(ModelRelTypeTransformation.OUT_MODELREL, traceModelRel);
 
 		return outputsByName;
 	}

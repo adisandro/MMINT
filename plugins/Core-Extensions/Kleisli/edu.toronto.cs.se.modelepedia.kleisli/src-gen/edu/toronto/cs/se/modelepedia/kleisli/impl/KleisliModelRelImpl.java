@@ -498,7 +498,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 					kReasoner.evaluateEAttributeQuery(kConstraint.getImplementation(), oclReasoner, kRootModelObj, kModelElemTypeEInfo);
 				}
 				// save the derived model
-				FileUtils.writeModelFile(kRootModelObj, kModelUri, true);
+				FileUtils.writeModelFile(kRootModelObj, kModelUri, null, true);
 			}
 			catch (Exception e) {
 				MMINTException.print(IStatus.WARNING, "Error creating extended model file, fallback to no extension", e);

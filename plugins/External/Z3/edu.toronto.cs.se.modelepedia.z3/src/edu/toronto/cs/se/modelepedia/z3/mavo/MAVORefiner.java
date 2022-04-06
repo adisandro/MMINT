@@ -228,12 +228,12 @@ public class MAVORefiner {
 		this.populateRefinementRel(refinementRel, refinementMap);
 
 		// write refinement to file
-		FileUtils.writeModelFile(refinedRootModelObj, refinedModelPath, true);
+		FileUtils.writeModelFile(refinedRootModelObj, refinedModelPath, null, true);
 		if (modelDiagram != null) {
 			var refinedDiagram = (org.eclipse.gmf.runtime.notation.Diagram) FileUtils.readModelFile(modelDiagram.getUri(), null, true);
 			this.refineDiagram(refinedDiagram, refinedRootModelObj, refinementMap);
 			String refinedModelDiagramUri = FileUtils.replaceFileExtensionInPath(refinedModelPath, modelDiagram.getFileExtensions().get(0));
-			FileUtils.writeModelFile(refinedDiagram, refinedModelDiagramUri, true);
+			FileUtils.writeModelFile(refinedDiagram, refinedModelDiagramUri, null, true);
 			FileUtils.openEclipseEditor(refinedModelDiagramUri, modelDiagram.getId(), true);
 		}
 		refinedModel.createInstanceEditor(false);

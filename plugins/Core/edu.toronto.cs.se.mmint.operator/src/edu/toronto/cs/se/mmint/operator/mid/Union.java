@@ -114,7 +114,7 @@ public class Union extends OperatorImpl {
       }
     }
     if (unionMIDDiagramPath != null) { // store the gmf diagram
-      FileUtils.writeModelFile(unionMIDDiagramRoot, unionMIDDiagramPath, true);
+      FileUtils.writeModelFile(unionMIDDiagramRoot, unionMIDDiagramPath, null, true);
     }
   }
 

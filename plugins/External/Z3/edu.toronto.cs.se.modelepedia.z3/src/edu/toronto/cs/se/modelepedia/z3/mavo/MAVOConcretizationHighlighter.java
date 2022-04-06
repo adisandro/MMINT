@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Naama Ben-David - Implementation.
  *    Alessio Di Sandro - Generalization to all metamodels.
@@ -62,7 +62,7 @@ public class MAVOConcretizationHighlighter {
 
 	private Set<String> separateExampleElements(@NonNull Map<String, Set<String>> z3ModelObjs, @NonNull Map<String, View> diagramViews) {
 
-		Set<String> notInExampleFormulaVars = new HashSet<String>(diagramViews.keySet());
+		Set<String> notInExampleFormulaVars = new HashSet<>(diagramViews.keySet());
 		z3ModelObjs.values().forEach(formulaVars -> notInExampleFormulaVars.removeAll(formulaVars));
 
 		return notInExampleFormulaVars;
@@ -71,25 +71,25 @@ public class MAVOConcretizationHighlighter {
 	public void highlightMAVOCounterExample(@NonNull Diagram modelDiagram, @NonNull Map<String, Set<String>> z3ModelObjs) throws Exception {
 
 		// get view elements from diagram
-		org.eclipse.gmf.runtime.notation.Diagram exampleDiagram = (org.eclipse.gmf.runtime.notation.Diagram) FileUtils.readModelFile(modelDiagram.getUri(), null, true);
+		var exampleDiagram = (org.eclipse.gmf.runtime.notation.Diagram) FileUtils.readModelFile(modelDiagram.getUri(), null, true);
 		Map<String, View> diagramViews = MAVOGMFDiagramUtils.getDiagramViews(exampleDiagram);
 
 		// grey out model objects that are not in the example
-		Set<String> notInExampleFormulaVars = separateExampleElements(z3ModelObjs, diagramViews);
+		var notInExampleFormulaVars = separateExampleElements(z3ModelObjs, diagramViews);
 		for (String notInExampleFormulaVar : notInExampleFormulaVars) {
-			highlightMAVOElement(diagramViews, notInExampleFormulaVar, GREYOUT_COLOR, FONT_GREYOUT_COLOR);
+			highlightMAVOElement(diagramViews, notInExampleFormulaVar, MAVOConcretizationHighlighter.GREYOUT_COLOR, MAVOConcretizationHighlighter.FONT_GREYOUT_COLOR);
 		}
 
 		// write diagram to file
-		String exampleDiagramUri = FileUtils.addFileNameSuffixInPath(modelDiagram.getUri(), EXAMPLE_MODEL_SUFFIX);
-		FileUtils.writeModelFile(exampleDiagram, exampleDiagramUri, true);
+		String exampleDiagramUri = FileUtils.addFileNameSuffixInPath(modelDiagram.getUri(), MAVOConcretizationHighlighter.EXAMPLE_MODEL_SUFFIX);
+		FileUtils.writeModelFile(exampleDiagram, exampleDiagramUri, null, true);
 		FileUtils.openEclipseEditor(exampleDiagramUri, modelDiagram.getId(), true);
 	}
 
 	private void highlightMAVODecision(@NonNull Map<String, View> diagramViews, @NonNull MAVODecision mavoDecision) {
 
 		// highlight collections within the decision with different colors
-		List<MAVOCollection> mavoCollections = new ArrayList<MAVOCollection>();
+		List<MAVOCollection> mavoCollections = new ArrayList<>();
 		if (mavoDecision instanceof MayDecision) {
 			mavoCollections.addAll(((MayDecision) mavoDecision).getAlternatives());
 		}
@@ -99,10 +99,10 @@ public class MAVOConcretizationHighlighter {
 		else if (mavoDecision instanceof SetDecision) {
 			mavoCollections.add(((SetDecision) mavoDecision).getEntity());
 		}
-		for (int i = 0; i < mavoCollections.size(); i++) {
-			MAVOCollection mavoCollection = mavoCollections.get(i);
+		for (var i = 0; i < mavoCollections.size(); i++) {
+			var mavoCollection = mavoCollections.get(i);
 			for (MAVOElement mavoModelObj : mavoCollection.getMavoElements()) {
-				highlightMAVOElement(diagramViews, mavoModelObj, DIFFERENT_COLORS[i], FONT_DIFFERENT_COLORS[i]);
+				highlightMAVOElement(diagramViews, mavoModelObj, MAVOConcretizationHighlighter.DIFFERENT_COLORS[i], MAVOConcretizationHighlighter.FONT_DIFFERENT_COLORS[i]);
 			}
 		}
 	}
@@ -111,19 +111,19 @@ public class MAVOConcretizationHighlighter {
 
 		// (May) grey out may model objects in other alternatives for the same decision, highlight may model objects in the alternative
 		// (Var) highlight var model objects in the domain
-		MAVODecision mavoDecision = (MAVODecision) mavoCollection.eContainer();
+		var mavoDecision = (MAVODecision) mavoCollection.eContainer();
 		if (mavoDecision instanceof MayDecision && ((MayDecision) mavoDecision).getLogic() == MayDecisionLogic.XOR) {
 			for (MAVOCollection otherMayAlternative : ((MayDecision) mavoDecision).getAlternatives()) {
 				if (otherMayAlternative == mavoCollection) {
 					continue;
 				}
 				for (MAVOElement otherMayModelObj : otherMayAlternative.getMavoElements()) {
-					highlightMAVOElement(diagramViews, otherMayModelObj, GREYOUT_COLOR, FONT_GREYOUT_COLOR);
+					highlightMAVOElement(diagramViews, otherMayModelObj, MAVOConcretizationHighlighter.GREYOUT_COLOR, MAVOConcretizationHighlighter.FONT_GREYOUT_COLOR);
 				}
 			}
 		}
 		for (MAVOElement mavoModelObj : mavoCollection.getMavoElements()) {
-			highlightMAVOElement(diagramViews, mavoModelObj, HIGHLIGHT_COLOR, FONT_HIGHLIGHT_COLOR);
+			highlightMAVOElement(diagramViews, mavoModelObj, MAVOConcretizationHighlighter.HIGHLIGHT_COLOR, MAVOConcretizationHighlighter.FONT_HIGHLIGHT_COLOR);
 		}
 	}
 
@@ -140,7 +140,7 @@ public class MAVOConcretizationHighlighter {
 
 		// highlight model object
 		try {
-			View diagramView = diagramViews.get(mavoModelObjFormulaVar);
+			var diagramView = diagramViews.get(mavoModelObjFormulaVar);
 			if (diagramView == null) {
 				throw new MMINTException("Can't find " + mavoModelObjFormulaVar + " in diagram");
 			}
@@ -154,7 +154,7 @@ public class MAVOConcretizationHighlighter {
 	public void highlight(@NonNull Diagram modelDiagram, @NonNull LogicElement mavoElemToHighlight) throws Exception {
 
 		// get view elements from diagram
-		org.eclipse.gmf.runtime.notation.Diagram exampleDiagram = (org.eclipse.gmf.runtime.notation.Diagram) FileUtils.readModelFile(modelDiagram.getUri(), null, true);
+		var exampleDiagram = (org.eclipse.gmf.runtime.notation.Diagram) FileUtils.readModelFile(modelDiagram.getUri(), null, true);
 		Map<String, View> diagramViews = MAVOGMFDiagramUtils.getDiagramViews(exampleDiagram);
 
 		// highlight
@@ -165,12 +165,12 @@ public class MAVOConcretizationHighlighter {
 			highlightMAVOCollection(diagramViews, (MAVOCollection) mavoElemToHighlight);
 		}
 		else if (mavoElemToHighlight instanceof MAVOElement) {
-			highlightMAVOElement(diagramViews, (MAVOElement) mavoElemToHighlight, HIGHLIGHT_COLOR, FONT_HIGHLIGHT_COLOR);
+			highlightMAVOElement(diagramViews, (MAVOElement) mavoElemToHighlight, MAVOConcretizationHighlighter.HIGHLIGHT_COLOR, MAVOConcretizationHighlighter.FONT_HIGHLIGHT_COLOR);
 		}
 
 		// write diagram to file
-		String exampleDiagramUri = FileUtils.addFileNameSuffixInPath(modelDiagram.getUri(), EXAMPLE_MODEL_SUFFIX);
-		FileUtils.writeModelFile(exampleDiagram, exampleDiagramUri, true);
+		String exampleDiagramUri = FileUtils.addFileNameSuffixInPath(modelDiagram.getUri(), MAVOConcretizationHighlighter.EXAMPLE_MODEL_SUFFIX);
+		FileUtils.writeModelFile(exampleDiagram, exampleDiagramUri, null, true);
 		FileUtils.openEclipseEditor(exampleDiagramUri, modelDiagram.getId(), true);
 	}
 

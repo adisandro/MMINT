@@ -1058,7 +1058,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 
         MMINTException.mustBeType(this);
         if (this.isAbstract()) {
-            throw new MMINTException("Can't instanciate an abstract model type");
+            throw new MMINTException("Can't instantiate an abstract model type");
         }
 
         var newModel = super.<Model>createThisEClass();
@@ -1075,13 +1075,11 @@ public class ModelImpl extends GenericElementImpl implements Model {
          */
         if (rootModelObj != null) {
             if (instanceMID != null) {
-                FileUtils.writeModelFile(rootModelObj, newModelPath, true);
+                var resource = FileUtils.writeModelFile(rootModelObj, newModelPath,
+                                                        instanceMID.eResource().getResourceSet(), true);
+                newModel.setEMFInstanceResource(resource);
             }
-            /* TODO MMINT[OPERATOR] Will it consume too much memory?
-             * (find the cases where it really stays in memory, which shouldn't happen when working with a MID diagram, only in a workflow)
-             */
             newModel.setEMFInstanceRoot(rootModelObj);
-            newModel.setEMFInstanceResource(rootModelObj.eResource());
         }
 
         return newModel;

@@ -30,7 +30,6 @@ import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.core.services.ViewService;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 
@@ -86,7 +85,7 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
    * @generated
    * @ordered
    */
-    protected String nestedMIDPath = NESTED_MID_PATH_EDEFAULT;
+    protected String nestedMIDPath = NestingOperatorImpl.NESTED_MID_PATH_EDEFAULT;
 
     /**
      * The nested MID, kept in memory for performance reasons (different from
@@ -132,7 +131,7 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
    */
     @Override
     public String getNestedMIDPath() {
-    return nestedMIDPath;
+    return this.nestedMIDPath;
   }
 
     /**
@@ -142,10 +141,10 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
    */
     @Override
     public void setNestedMIDPath(String newNestedMIDPath) {
-    String oldNestedMIDPath = nestedMIDPath;
-    nestedMIDPath = newNestedMIDPath;
+    var oldNestedMIDPath = this.nestedMIDPath;
+    this.nestedMIDPath = newNestedMIDPath;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.NESTING_OPERATOR__NESTED_MID_PATH, oldNestedMIDPath, nestedMIDPath));
+      eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.NESTING_OPERATOR__NESTED_MID_PATH, oldNestedMIDPath, this.nestedMIDPath));
   }
 
     /**
@@ -186,7 +185,7 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
     public void eUnset(int featureID) {
     switch (featureID) {
       case OperatorPackage.NESTING_OPERATOR__NESTED_MID_PATH:
-        setNestedMIDPath(NESTED_MID_PATH_EDEFAULT);
+        setNestedMIDPath(NestingOperatorImpl.NESTED_MID_PATH_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -201,7 +200,7 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
     public boolean eIsSet(int featureID) {
     switch (featureID) {
       case OperatorPackage.NESTING_OPERATOR__NESTED_MID_PATH:
-        return NESTED_MID_PATH_EDEFAULT == null ? nestedMIDPath != null : !NESTED_MID_PATH_EDEFAULT.equals(nestedMIDPath);
+        return NestingOperatorImpl.NESTED_MID_PATH_EDEFAULT == null ? this.nestedMIDPath != null : !NestingOperatorImpl.NESTED_MID_PATH_EDEFAULT.equals(this.nestedMIDPath);
     }
     return super.eIsSet(featureID);
   }
@@ -244,7 +243,7 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
 
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (nestedMIDPath: ");
-    result.append(nestedMIDPath);
+    result.append(this.nestedMIDPath);
     result.append(')');
     return result.toString();
   }
@@ -262,11 +261,11 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
         }
 
         try {
-            String nestedMIDPath = this.getNestedMIDPath();
+            var nestedMIDPath = this.getNestedMIDPath();
             if (nestedMIDPath == null) {
                 return null;
             }
-            MID nestedMID = (MID) FileUtils.readModelFile(nestedMIDPath, null, true);
+            var nestedMID = (MID) FileUtils.readModelFile(nestedMIDPath, null, true);
             this.inMemoryNestedMID = nestedMID;
             return nestedMID;
         }
@@ -288,12 +287,12 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
         }
 
         try {
-            String nestedMIDPath = this.getNestedMIDPath();
+            var nestedMIDPath = this.getNestedMIDPath();
             if (nestedMIDPath == null) {
                 return null;
             }
-            String nestedMIDDiagramPath = nestedMIDPath + GMFUtils.DIAGRAM_SUFFIX;
-            Diagram nestedMIDDiagramRoot = (Diagram) FileUtils.readModelFile(nestedMIDDiagramPath, null, true);
+            var nestedMIDDiagramPath = nestedMIDPath + GMFUtils.DIAGRAM_SUFFIX;
+            var nestedMIDDiagramRoot = (Diagram) FileUtils.readModelFile(nestedMIDDiagramPath, null, true);
             this.inMemoryNestedMIDDiagramRoot = nestedMIDDiagramRoot;
             return nestedMIDDiagramRoot;
         }
@@ -324,10 +323,10 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
                 newOperator.getName()),
             true,
             false);
-        MID nestedMID = MIDFactory.eINSTANCE.createMID();
+        var nestedMID = MIDFactory.eINSTANCE.createMID();
         nestedMID.setLevel(MIDLevel.INSTANCES);
         try {
-            FileUtils.writeModelFile(nestedMID, nestedMIDPath, true);
+            FileUtils.writeModelFile(nestedMID, nestedMIDPath, null, true);
             Diagram nestedMIDDiagramRoot = GMFUtils.createGMFDiagramAndFile(
                 nestedMIDPath,
                 nestedMIDPath + GMFUtils.DIAGRAM_SUFFIX,
@@ -393,7 +392,7 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
             if (modelRel instanceof BinaryModelRel) {
                 // gmf shortcuts can't be created for links, fake the shortcut as an nary rel
                 String gmfTypeHint = GMFUtils.getGMFRegistryType(RelationshipFactory.eINSTANCE.createModelRel(), midDiagramPluginId + ".TypeContext");
-                Node gmfNode = (midViewProvider == null) ?
+                var gmfNode = (midViewProvider == null) ?
                     ViewService.createNode(nestedMIDDiagramRoot, modelRel, gmfTypeHint, new PreferencesHint(midDiagramPluginId)) :
                     midViewProvider.createNode(new EObjectAdapter(modelRel), nestedMIDDiagramRoot, gmfTypeHint, -1, true, new PreferencesHint(midDiagramPluginId));
                 GMFUtils.addGMFShortcut(gmfNode, midModelType.getName());
@@ -413,17 +412,17 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
 
         MMINTException.mustBeInstance(this);
 
-        MID nestedMID = this.getNestedInstanceMID();
+        var nestedMID = this.getNestedInstanceMID();
         Map<Model, Model> nestedToCopiedModels = new HashMap<>();
         // models first
-        for (int i = 0; i < operator.getOutputs().size(); i++) {
-            ModelEndpoint nestedOutput = operator.getOutputs().get(i);
-            Model nestedModel = nestedOutput.getTarget();
+        for (var i = 0; i < operator.getOutputs().size(); i++) {
+            var nestedOutput = operator.getOutputs().get(i);
+            var nestedModel = nestedOutput.getTarget();
             if (nestedModel instanceof ModelRel) {
                 continue;
             }
             try {
-                Model copiedModel = nestedModel.getMetatype().importInstanceAndEditor(
+                var copiedModel = nestedModel.getMetatype().importInstanceAndEditor(
                     nestedModel.getUri(), instanceMIDsByOperatorOutputs.get(nestedOutput.getName()));
                 nestedOutput.setTarget(copiedModel);
                 if (nestedMID != null) {
@@ -436,14 +435,14 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
             catch (MMINTException e) {}
         }
         // model rels now
-        for (int i = 0; i < operator.getOutputs().size(); i++) {
-            ModelEndpoint nestedOutput = operator.getOutputs().get(i);
+        for (var i = 0; i < operator.getOutputs().size(); i++) {
+            var nestedOutput = operator.getOutputs().get(i);
             if (!(nestedOutput.getTarget() instanceof ModelRel)) {
                 continue;
             }
-            ModelRel nestedModelRel = (ModelRel) nestedOutput.getTarget();
+            var nestedModelRel = (ModelRel) nestedOutput.getTarget();
             try {
-                ModelRel copiedModelRel = (ModelRel) nestedModelRel.getMetatype().copyInstance(
+                var copiedModelRel = (ModelRel) nestedModelRel.getMetatype().copyInstance(
                     nestedModelRel, nestedModelRel.getName(), instanceMIDsByOperatorOutputs.get(nestedOutput.getName()));
                 nestedOutput.setTarget(copiedModelRel);
                 if (nestedMID != null) {
@@ -475,14 +474,14 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
 
         MMINTException.mustBeInstance(this);
 
-        String nestedMIDPath = this.getNestedMIDPath();
+        var nestedMIDPath = this.getNestedMIDPath();
         if (nestedMIDPath == null) {
             throw new MMINTException("The nested MID is not serialized");
         }
 
-        String nestedMIDDiagramPath = nestedMIDPath + GMFUtils.DIAGRAM_SUFFIX;
-        FileUtils.writeModelFile(this.getNestedInstanceMID(), nestedMIDPath, true);
-        FileUtils.writeModelFile(this.getNestedInstanceMIDDiagramRoot(), nestedMIDDiagramPath, true);
+        var nestedMIDDiagramPath = nestedMIDPath + GMFUtils.DIAGRAM_SUFFIX;
+        FileUtils.writeModelFile(this.getNestedInstanceMID(), nestedMIDPath, null, true);
+        FileUtils.writeModelFile(this.getNestedInstanceMIDDiagramRoot(), nestedMIDDiagramPath, null, true);
         this.inMemoryNestedMID = null;
         this.inMemoryNestedMIDDiagramRoot = null;
     }
@@ -497,7 +496,7 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
         MMINTException.mustBeInstance(this);
 
         // create shortcuts to input models
-        String nestedMIDPath = this.getNestedMIDPath();
+        var nestedMIDPath = this.getNestedMIDPath();
         if (nestedMIDPath != null) {
             var inputModels = inputs.stream()
                 .map(OperatorInput::getModel)
@@ -505,12 +504,12 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
             this.createNestedInstanceMIDModelShortcuts(inputModels);
         }
         // run nested operator
-        MID nestedMID = this.getNestedInstanceMID();
+        var nestedMID = this.getNestedInstanceMID();
         Map<String, MID> nestedOutputMIDsByName = MIDOperatorIOUtils.mixOutputMIDsByName(
             nestedOperatorType,
             nestedMID,
             outputMIDsByName);
-        Operator newNestedOperator = nestedOperatorType.startInstance(
+        var newNestedOperator = nestedOperatorType.startInstance(
             inputs,
             inputProperties,
             generics,
@@ -531,9 +530,9 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
     public void deleteInstance() throws MMINTException {
 
         super.deleteInstance();
-        String nestedMIDPath = this.getNestedMIDPath();
+        var nestedMIDPath = this.getNestedMIDPath();
         if (nestedMIDPath != null) {
-            MID nestedMID = this.getNestedInstanceMID();
+            var nestedMID = this.getNestedInstanceMID();
             for (Model nestedModel : new ArrayList<>(nestedMID.getModels())) {
                 nestedModel.deleteInstanceAndFile();
             }
@@ -557,7 +556,7 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
 
         MMINTException.mustBeInstance(this);
 
-        String nestedMIDPath = this.getNestedMIDPath();
+        var nestedMIDPath = this.getNestedMIDPath();
         if (nestedMIDPath != null) {
             FileUtils.openEclipseEditor(nestedMIDPath + GMFUtils.DIAGRAM_SUFFIX, MIDTypeRegistry.getMIDDiagramType().getId(), true);
         }

@@ -68,10 +68,10 @@ public class Map extends NestingOperatorImpl {
     @Override
     public boolean checkGeneric(@NonNull GenericEndpoint genericTypeEndpoint, @NonNull GenericElement genericType, @NonNull List<OperatorInput> inputs) {
 
-      final String FILTER_URI = "http://se.cs.toronto.edu/mmint/Operator_Filter";
-      final String FILTERNOT_URI = "http://se.cs.toronto.edu/mmint/Operator_FilterNot";
-      final String MAP_URI = "http://se.cs.toronto.edu/mmint/Operator_Map";
-      final String REDUCE_URI = "http://se.cs.toronto.edu/mmint/Operator_Reduce";
+      final var FILTER_URI = "http://se.cs.toronto.edu/mmint/Operator_Filter";
+      final var FILTERNOT_URI = "http://se.cs.toronto.edu/mmint/Operator_FilterNot";
+      final var MAP_URI = "http://se.cs.toronto.edu/mmint/Operator_Map";
+      final var REDUCE_URI = "http://se.cs.toronto.edu/mmint/Operator_Reduce";
       if (genericType.getUri().equals(FILTER_URI) || genericType.getUri().equals(FILTERNOT_URI) ||
           genericType.getUri().equals(MAP_URI) || genericType.getUri().equals(REDUCE_URI)) {
         return false;
@@ -122,7 +122,7 @@ public class Map extends NestingOperatorImpl {
       GMFUtils.createGMFNodeShortcut(midrelEndpointModel, gmfDiagram, midDiagramPluginId, midModelType.getName(),
                                      MIDTypeRegistry.getCachedMIDViewProvider());
     }
-    FileUtils.writeModelFile(gmfDiagram, outputMIDModelDiagram.getUri(), true);
+    FileUtils.writeModelFile(gmfDiagram, outputMIDModelDiagram.getUri(), null, true);
   }
 
   private java.util.@NonNull Map<String, Model> map(@NonNull List<Model> inputMIDModels, @NonNull EList<MID> inputMIDs,
@@ -147,7 +147,7 @@ public class Map extends NestingOperatorImpl {
                                                   false);
       mapperOutputMIDPathsByName.put(outputName, outputMIDPath);
       if (instanceMID != null) {
-        FileUtils.writeModelFile(outputMID, outputMIDPath, true);
+        FileUtils.writeModelFile(outputMID, outputMIDPath, null, true);
       }
     }
 
@@ -245,7 +245,7 @@ public class Map extends NestingOperatorImpl {
     // pass 4: input MIDs and endpoint MIDs of input MIDRels, since model elements can be created there
     var inputMIDsToSerialize = new HashMap<String, MID>();
     var inputMIDRels = new HashSet<MID>();
-    for (int i = 0; i < inputMIDModels.size(); i++) {
+    for (var i = 0; i < inputMIDModels.size(); i++) {
       var inputMID = inputMIDs.get(i);
       if (MIDTypeHierarchy.instanceOf(inputMIDModels.get(i), midrelModelType.getUri(), false)) {
         inputMIDRels.add(inputMID);
@@ -262,7 +262,7 @@ public class Map extends NestingOperatorImpl {
       inputMIDsToSerialize.putAll(endpointMIDs);
     }
     for (var inputMIDToSerialize : inputMIDsToSerialize.entrySet()) {
-      FileUtils.writeModelFile(inputMIDToSerialize.getValue(), inputMIDToSerialize.getKey(), true);
+      FileUtils.writeModelFile(inputMIDToSerialize.getValue(), inputMIDToSerialize.getKey(), null, true);
     }
 
     return MIDOperatorIOUtils.setVarargs(outputMIDModels, Map.OUT_MIDS);
@@ -300,7 +300,7 @@ public class Map extends NestingOperatorImpl {
       inputMIDs.add((MID) inputMIDModel.getEMFInstanceRoot());
       modelBlacklists.add(new HashSet<>());
     }
-    Operator mapperOperatorType = (Operator) genericsByName.get(Map.GENERIC_OPERATORTYPE);
+    var mapperOperatorType = (Operator) genericsByName.get(Map.GENERIC_OPERATORTYPE);
     java.util.Map<String, MID> instanceMIDsByMapperOutput = MIDOperatorIOUtils.getVarargOutputMIDsByOtherName(outputMIDsByName, Map.OUT_MIDS, mapperOperatorType.getOutputs());
 
     // find all possible combinations of inputs and execute them
