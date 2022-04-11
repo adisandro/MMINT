@@ -2,7 +2,7 @@
 <feature
       id="edu.toronto.cs.se.modelepedia.classdiagram_mavo.feature"
       label="Modelepedia ClassDiagramMAVO"
-      version="2.13.0.qualifier"
+      version="2.13.99.qualifier"
       provider-name="Software Engineering Group, University of Toronto">
 
    <description>

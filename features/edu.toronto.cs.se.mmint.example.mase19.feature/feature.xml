@@ -15,7 +15,7 @@
 <feature
       id="edu.toronto.cs.se.mmint.example.mase19.feature"
       label="MMINT - MASE19 paper"
-      version="2.13.0.qualifier"
+      version="2.13.99.qualifier"
       provider-name="Software Engineering Group, University of Toronto">
 
    <description url="https://doi.org/10.1109/MODELS-C.2019.00008">
