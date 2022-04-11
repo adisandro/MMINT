@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.statemachine.editor;singleton:=true
 Automatic-Module-Name: edu.toronto.cs.se.modelepedia.statemachine.editor
-Bundle-Version: 2.12.99.qualifier
+Bundle-Version: 2.13.0.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: edu.toronto.cs.se.modelepedia.statemachine.presentation.StateMachineEditorPlugin$Implementation
 Bundle-Vendor: %providerName
