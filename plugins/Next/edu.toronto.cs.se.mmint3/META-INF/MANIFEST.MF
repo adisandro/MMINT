@@ -15,6 +15,6 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ui.workbench,
  org.eclipse.jdt.annotation;resolution:=optional,
  edu.toronto.cs.se.mmint
-Bundle-RequiredExecutionEnvironment: JavaSE-17
+Bundle-RequiredExecutionEnvironment: JavaSE-18
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: edu.toronto.cs.se.mmint3.MMINTActivator
