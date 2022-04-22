@@ -96,7 +96,7 @@ public class ToProduct extends OperatorImpl {
     var featureValues = new HashMap<String, Boolean>();
     features.forEach(feature -> {
       var value = allFeatureValues.computeIfAbsent(
-        feature, k -> MIDDialogs.getBooleanInput("Feature '" + k + "'", "Assign true to feature '" + k + "'?"));
+        feature, k -> MIDDialogs.getBooleanInput("Feature '" + k + "'", "Enable feature '" + k + "'?"));
       featureValues.put(feature, value);
     });
 
