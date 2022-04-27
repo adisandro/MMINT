@@ -115,6 +115,7 @@ public interface IGSNLeanEncoder {
           selectedObjs = queryCache.get(queryId);
           if (selectedObjs == null) { // run query and cache result
             selectedObjs = querySpec.evaluateQuery(instanceMID, List.of());
+            //SiriusEvaluateQuery.displayQueryResults(instanceMID, selectedObjs);
             queryCache.put(queryId, selectedObjs);
           }
           boundModelObjs = selectedObjs.stream()

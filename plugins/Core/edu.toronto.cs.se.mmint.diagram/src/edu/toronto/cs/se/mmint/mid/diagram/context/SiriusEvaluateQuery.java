@@ -121,37 +121,7 @@ public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
     return result.toString();
   }
 
-  private static void storeQueryResultsAsModelRel(String queryName, List<Object> results, MID instanceMID) {
-    var rels = new HashMap<String, ModelRel>();
-    var relType = MIDTypeHierarchy.getRootModelRelType();
-    for (var result : results) {
-      //TODO MMINT[QUERY] Handle tuples/collections as results
-      if (!(result instanceof EObject resultObj)) {
-        continue;
-      }
-      var modelPath = MIDRegistry.getModelUri(resultObj);
-      var rel = rels.get(modelPath);
-      try {
-        if (rel == null) {
-          var model = instanceMID.<Model>getExtendibleElement(modelPath);
-          if (model == null) {
-            continue;
-          }
-          rel = relType.createInstanceAndEndpoints(null, "query_" + queryName, ECollections.asEList(model),
-                                                   instanceMID);
-          rels.put(modelPath, rel);
-        }
-        rel.getModelEndpointRefs().get(0).createModelElementInstanceAndReference((EObject) result, null);
-      }
-      catch (MMINTException e) {
-        MMINTException.print(IStatus.WARNING, "Failed to store query result " + result + " for model " +
-                             modelPath, e);
-        continue;
-      }
-    }
-  }
-
-  public static void displayQueryResults(EObject context, List<Object> results, Object query) {
+  public static void displayQueryResults(EObject context, List<Object> results) {
     var window = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
     var shell = window.getShell();
     if (results.isEmpty()) {
@@ -237,13 +207,41 @@ public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
         }
       }
     }
+  }
 
-    // store results
-    if (context instanceof MID mid) {
-      var title = "Query Results";
-      var message = "Do you want to store the results?";
-      if (MessageDialog.openQuestion(shell, title, message)) {
-        storeQueryResultsAsModelRel(query.toString(), results, mid);
+  public static void storeQueryResults(String queryName, List<Object> results, MID instanceMID) {
+    var shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+    var title = "Query Results";
+    var message = "Do you want to store the results?";
+    if (!MessageDialog.openQuestion(shell, title, message)) {
+      return;
+    }
+
+    var rels = new HashMap<String, ModelRel>();
+    var relType = MIDTypeHierarchy.getRootModelRelType();
+    for (var result : results) {
+      //TODO MMINT[QUERY] Handle tuples/collections as results
+      if (!(result instanceof EObject resultObj)) {
+        continue;
+      }
+      var modelPath = MIDRegistry.getModelUri(resultObj);
+      var rel = rels.get(modelPath);
+      try {
+        if (rel == null) {
+          var model = instanceMID.<Model>getExtendibleElement(modelPath);
+          if (model == null) {
+            continue;
+          }
+          rel = relType.createInstanceAndEndpoints(null, "query_" + queryName, ECollections.asEList(model),
+                                                   instanceMID);
+          rels.put(modelPath, rel);
+        }
+        rel.getModelEndpointRefs().get(0).createModelElementInstanceAndReference((EObject) result, null);
+      }
+      catch (MMINTException e) {
+        MMINTException.print(IStatus.WARNING, "Failed to store query result " + result + " for model " +
+                             modelPath, e);
+        continue;
       }
     }
   }
@@ -276,7 +274,8 @@ public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
         .collect(Collectors.toList());
       var querySpec = selectQuery(instanceMID);
       var queryResults = querySpec.evaluateQuery(instanceMID, queryArgs);
-      displayQueryResults(instanceMID, queryResults, querySpec.query());
+      displayQueryResults(instanceMID, queryResults);
+      storeQueryResults(querySpec.query().toString(), queryResults, instanceMID);
     }
     catch (Exception e) {
       MMINTException.print(IStatus.ERROR, "Query error", e);
