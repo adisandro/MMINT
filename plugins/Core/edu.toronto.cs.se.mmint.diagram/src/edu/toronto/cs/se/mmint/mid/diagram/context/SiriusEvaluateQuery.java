@@ -34,7 +34,6 @@ import org.eclipse.jface.resource.LocalResourceManager;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.sirius.business.api.action.AbstractExternalJavaAction;
-import org.eclipse.sirius.ui.business.api.dialect.DialectUIManager;
 import org.eclipse.sirius.viewpoint.DSemanticDecorator;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
@@ -131,6 +130,7 @@ public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
 
     // collect results
     var numResults = results.size();
+results:
     for (var i = 0; i < numResults; i++) {
       var result = results.get(i);
       String message;
@@ -178,8 +178,11 @@ public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
       // display results
       var title = "Query Results (" + (i+1) + " out of " + numResults + ")";
       if (models.isEmpty()) {
-        var button = ((i+1) == numResults) ? "Done" : "Next Result";
-        MessageDialog.open(MessageDialog.INFORMATION, shell, title, message, SWT.NONE, button);
+        var buttons = ((i+1) == numResults) ? new String[] {"Done"} : new String[] {"Done", "Next Result"};
+        var button = MessageDialog.open(MessageDialog.INFORMATION, shell, title, message, SWT.NONE, buttons);
+        if (button == 0) {
+          break;
+        }
       }
       else {
         var highlighted = new HashSet<IEditorPart>();
@@ -191,20 +194,18 @@ public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
           catch (Exception e) {
             MMINTException.print(IStatus.WARNING, "Query result highlighting failed", e);
           }
-          var button = (j < models.size()) ?
-            "Same Result, Next Model" :
-            ((i+1) == numResults) ? "Done" : "Next Result";
-          MessageDialog.open(MessageDialog.INFORMATION, shell, title, message, SWT.NONE, button);
+          var next = (j < models.size()) ? "Same Result, Next Model" : "Next Result";
+          var buttons = ((i+1) == numResults && j == models.size()) ?
+            new String[] {"Done"} :
+            new String[] {"Done", next};
+          var button = MessageDialog.open(MessageDialog.INFORMATION, shell, title, message, SWT.NONE, buttons);
+          if (button == 0) {
+            SiriusUtils.closeRepresentations(window, highlighted);
+            break results;
+          }
           j++;
         }
-        highlighted.forEach(h -> DialectUIManager.INSTANCE.closeEditor(h, false));
-        // closing the sirius editor is not done yet on return
-        // wait in a ui loop like in org.eclipse.jface.window.Window#runEventLoop
-        while (highlighted.contains(window.getActivePage().getActivePart())) {
-          if (!shell.getDisplay().readAndDispatch()) {
-            shell.getDisplay().sleep();
-          }
-        }
+        SiriusUtils.closeRepresentations(window, highlighted);
       }
     }
   }

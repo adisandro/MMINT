@@ -31,6 +31,8 @@ import org.eclipse.sirius.viewpoint.DAnalysis;
 import org.eclipse.sirius.viewpoint.DRepresentation;
 import org.eclipse.sirius.viewpoint.DRepresentationDescriptor;
 import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.IWorkbenchWindow;
+import org.eclipse.ui.PlatformUI;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.mid.Model;
@@ -120,6 +122,21 @@ public class SiriusUtils {
     var sRepr = (DRepresentation) FileUtils.readModelObject(sReprUri, sSession.getSessionResource());
 
     return DialectUIManager.INSTANCE.openEditor(sSession, sRepr, new NullProgressMonitor());
+  }
+
+  public static void closeRepresentations(@Nullable IWorkbenchWindow window, Set<IEditorPart> editorParts) {
+    if (window == null) {
+      window = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+    }
+    var shell = window.getShell();
+    editorParts.forEach(h -> DialectUIManager.INSTANCE.closeEditor(h, false));
+    // closing the sirius editor is not done yet on return
+    // wait in a ui loop like in org.eclipse.jface.window.Window#runEventLoop
+    while (editorParts.contains(window.getActivePage().getActivePart())) {
+      if (!shell.getDisplay().readAndDispatch()) {
+        shell.getDisplay().sleep();
+      }
+    }
   }
 
   public static void deleteRepresentation(Diagram diagram) {
