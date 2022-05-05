@@ -14,18 +14,24 @@ package edu.toronto.cs.se.mmint.productline.operators;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
 
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorConstraint;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.productline.Class;
@@ -34,48 +40,78 @@ import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeatureConstraintTrait;
 
 public class ToProduct extends OperatorImpl {
-  private Input input;
-  private Output output;
+  private In in;
+  private Out out;
   private IProductLineFeatureConstraintTrait featureReasoner;
   private Map<String, Boolean> presenceConditionCache;
 
-  private static class Input {
+  private static class In {
     public final static String MODEL = "productLine";
     public Model plModel;
     public ProductLine pl;
 
-    public Input(Map<String, Model> inputsByName) {
-      this.plModel = inputsByName.get(Input.MODEL);
+    public In(Map<String, Model> inputsByName) {
+      this.plModel = inputsByName.get(In.MODEL);
       this.pl = (ProductLine) this.plModel.getEMFInstanceRoot();
     }
   }
 
-  private static class Output {
-    public final static String MODEL = "product";
-    public Model productModelType;
-    public EObject product;
-    public String productPath;
-    public MID mid;
+  public static class Constraint implements IJavaOperatorConstraint {
+    @Override
+    public Map<ModelRel, List<Model>> getOutputModelRelEndpoints(Map<String, GenericElement> genericsByName,
+                                                                 Map<String, Model> inputsByName,
+                                                                 Map<String, Model> outputsByName) {
+      var plModel = inputsByName.get(In.MODEL);
+      var productModel = outputsByName.get(Out.MODEL);
+      var traceRel = (ModelRel) outputsByName.get(Out.MODELREL);
 
-    public Output(Map<String, MID> outputMIDsByName, String workingPath, Input input) {
-      this.productModelType = MIDTypeRegistry.<Model>getType(input.pl.getMetamodel().getNsURI());
-      this.productPath = workingPath + IPath.SEPARATOR + input.plModel.getName() + "." +
+      return Map.of(traceRel, List.of(plModel, productModel));
+    }
+  }
+
+  private static class Out {
+    public final static String MODEL = "product";
+    public final static String MODELREL = "trace";
+    public In in;
+    public Model productModelType;
+    public String productPath;
+    public MID productMID;
+    public MID traceMID;
+    public EObject product;
+    public Map<Class, EObject> traceLinks;
+
+    public Out(Map<String, MID> outputMIDsByName, String workingPath, In in) {
+      this.in = in;
+      this.productModelType = MIDTypeRegistry.<Model>getType(in.pl.getMetamodel().getNsURI());
+      this.productPath = workingPath + IPath.SEPARATOR + in.plModel.getName() + "." +
                          this.productModelType.getFileExtension();
       this.productPath = FileUtils.getUniquePath(this.productPath, true, false);
-      this.mid = outputMIDsByName.get(Output.MODEL);
+      this.productMID = outputMIDsByName.get(Out.MODEL);
+      this.traceMID = outputMIDsByName.get(Out.MODELREL);
+      this.traceLinks = new LinkedHashMap<>();
     }
 
     public Map<String, Model> packed() throws MMINTException, IOException {
-      var plModel = this.productModelType.createInstanceAndEditor(this.product, this.productPath, this.mid);
+      var productModel = this.productModelType.createInstanceAndEditor(this.product, this.productPath, this.productMID);
+      var traceRel = MIDTypeHierarchy.getRootModelRelType()
+        .createBinaryInstanceAndEndpoints(null, Out.MODELREL, this.in.plModel, productModel, this.traceMID);
+      var tracePl = traceRel.getModelEndpointRefs().get(0);
+      var traceProduct = traceRel.getModelEndpointRefs().get(1);
+      var mappingType = MIDTypeHierarchy.getRootMappingType();
+      for (var traceLink : this.traceLinks.entrySet()) {
+        mappingType.createInstanceAndReferenceAndEndpointsAndReferences(true, ECollections.asEList(
+          tracePl.createModelElementInstanceAndReference(traceLink.getKey(), null),
+          traceProduct.createModelElementInstanceAndReference(traceLink.getValue(), null)));
+      }
 
-      return Map.of(Output.MODEL, plModel);
+      return Map.of(Out.MODEL, productModel, Out.MODELREL, traceRel);
     }
   }
 
   private void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws Exception {
-    this.input = new Input(inputsByName);
-    this.output = new Output(outputMIDsByName, getWorkingPath(), this.input);
-    this.featureReasoner = this.input.pl.getReasoner();
+    this.in = new In(inputsByName);
+    this.out = new Out(outputMIDsByName, getWorkingPath(), this.in);
+    this.featureReasoner = this.in.pl.getReasoner();
     this.presenceConditionCache = new HashMap<>();
   }
 
@@ -106,19 +142,18 @@ public class ToProduct extends OperatorImpl {
 
   private void toProduct() throws MMINTException {
     var allFeatureValues = new HashMap<String, Boolean>();
-    if (!canInstantiateFeatures(this.input.pl.getFeaturesConstraint(), allFeatureValues)) {
+    if (!canInstantiateFeatures(this.in.pl.getFeaturesConstraint(), allFeatureValues)) {
       throw new MMINTException("The constraint on features is not satisfiable");
     }
-    var productModelObjs = new HashMap<Class, EObject>();
-    var productFactory = this.input.pl.getMetamodel().getEFactoryInstance();
-    for (var plClass : this.input.pl.getClasses()) {
+    var productFactory = this.in.pl.getMetamodel().getEFactoryInstance();
+    for (var plClass : this.in.pl.getClasses()) {
       if (!isInProduct(plClass, allFeatureValues)) {
         continue;
       }
       var productModelObj = productFactory.create(plClass.getType());
-      productModelObjs.put(plClass, productModelObj);
-      if (this.output.product == null) {
-        this.output.product = productModelObj;
+      this.out.traceLinks.put(plClass, productModelObj);
+      if (this.out.product == null) {
+        this.out.product = productModelObj;
       }
       for (var plAttribute : plClass.getAttributes()) {
         if (!isInProduct(plAttribute, allFeatureValues)) {
@@ -141,16 +176,16 @@ public class ToProduct extends OperatorImpl {
         FileUtils.setModelObjectFeature(productModelObj, plAttribute.getType().getName(), value);
       }
     }
-    for (var plReference : this.input.pl.getReferences()) {
+    for (var plReference : this.in.pl.getReferences()) {
       if (!isInProduct(plReference, allFeatureValues)) {
         continue;
       }
-      var srcProductModelObj = productModelObjs.get(plReference.getSource());
+      var srcProductModelObj = this.out.traceLinks.get(plReference.getSource());
       if (srcProductModelObj == null) {
         continue;
       }
       for (var target : plReference.getTargets()) {
-        var tgtProductModelObj = productModelObjs.get(target);
+        var tgtProductModelObj = this.out.traceLinks.get(target);
         if (tgtProductModelObj == null) {
           continue;
         }
@@ -165,7 +200,7 @@ public class ToProduct extends OperatorImpl {
     init(inputsByName, outputMIDsByName);
     toProduct();
 
-    return this.output.packed();
+    return this.out.packed();
   }
 
 }

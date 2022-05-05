@@ -80,6 +80,15 @@
                      targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
                </typeEndpoint>
             </parameter>
+            <parameter>
+               <type
+                     name="trace"
+                     uri="edu.toronto.cs.se.mmint.productline.operators.ToProduct/trace">
+               </type>
+               <typeEndpoint
+                     targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
+               </typeEndpoint>
+            </parameter>
          </outputs>
       </operatorType>
    </extension>
