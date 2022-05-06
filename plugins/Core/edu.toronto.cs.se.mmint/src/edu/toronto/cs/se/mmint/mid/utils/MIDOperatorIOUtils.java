@@ -102,18 +102,11 @@ public class MIDOperatorIOUtils {
 	public static void writeTextFile(Operator operator, Model anyOperatorParameter, String subdirName, String suffix, StringBuilder fileContent) throws IOException {
 
 		var outputTextFile = getPropertiesUri(operator, anyOperatorParameter, subdirName, false) + suffix;
-		BufferedWriter writer = null;
-		try {
-			writer = new BufferedWriter(new FileWriter(outputTextFile));
+		try (BufferedWriter writer = new BufferedWriter(new FileWriter(outputTextFile))) {
 			writer.append(fileContent);
 		}
 		catch (IOException e) {
 			throw e;
-		}
-		finally {
-			if (writer != null) {
-				writer.close();
-			}
 		}
 	}
 
@@ -242,9 +235,8 @@ public class MIDOperatorIOUtils {
 		}
 	}
 
-	public static @NonNull <T> List<T> getVarargs(@NonNull Map<String, T> varargsByName, @NonNull String varargName) {
-
-		List<T> varargs = new ArrayList<>();
+	public static <T> List<T> getVarargs(Map<String, T> varargsByName, String varargName) {
+		var varargs = new ArrayList<T>();
 		var i = 0;
 		T elem;
 		while ((elem = varargsByName.get(varargName + i)) != null) {
@@ -255,9 +247,8 @@ public class MIDOperatorIOUtils {
 		return varargs;
 	}
 
-	public static @NonNull Map<String, Model> setVarargs(@NonNull List<Model> models, @NonNull String varargName) {
-
-		Map<String, Model> modelsByName = new HashMap<>();
+	public static Map<String, Model> setVarargs(List<Model> models, String varargName) {
+		var modelsByName = new HashMap<String, Model>();
 		for (var i = 0; i < models.size(); i++) {
 			modelsByName.put(varargName + i, models.get(i));
 		}
@@ -265,8 +256,8 @@ public class MIDOperatorIOUtils {
 		return modelsByName;
 	}
 
-	public static @NonNull Map<String, MID> getVarargOutputMIDsByOtherName(@NonNull Map<String, MID> outputMIDsByName, @NonNull String varargName, @NonNull List<? extends ExtendibleElement> nameElements) {
-
+	public static Map<String, MID> getVarargOutputMIDsByOtherName(Map<String, MID> outputMIDsByName, String varargName,
+	                                                              List<? extends ExtendibleElement> nameElements) {
 		Map<String, MID> outputMIDsByOtherName = new HashMap<>();
 		if (outputMIDsByName.containsKey(varargName)) {
 			var outputMID = outputMIDsByName.get(varargName);

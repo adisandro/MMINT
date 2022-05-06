@@ -485,6 +485,50 @@
          point="edu.toronto.cs.se.mmint.operators">
       <operatorType>
          <type
+               name="ModelRelPropagation2"
+               uri="http://se.cs.toronto.edu/mmint/Operator_ModelRelPropagation2"
+               class="edu.toronto.cs.se.mmint.operator.propagate.ModelRelPropagation2">
+         </type>
+         <constraint
+               implementation="edu.toronto.cs.se.mmint.operator.propagate.ModelRelPropagation2$Constraint"
+               language="Java">
+         </constraint>
+         <inputs>
+            <parameter>
+             <type
+                   name="original">
+             </type>
+             <typeEndpoint
+                   targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
+             </typeEndpoint>
+            </parameter>
+            <parameter>
+             <type
+                   name="traces">
+             </type>
+             <typeEndpoint
+                   upperBound="-1"
+                   targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
+             </typeEndpoint>
+            </parameter>
+         </inputs>
+         <outputs>
+            <parameter>
+             <type
+                   name="propagated">
+             </type>
+             <typeEndpoint
+                   targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
+             </typeEndpoint>
+            </parameter>
+         </outputs>
+      </operatorType>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.operators">
+      <operatorType>
+         <type
                name="Identity"
                uri="http://se.cs.toronto.edu/mmint/Operator_Identity"
                class="edu.toronto.cs.se.mmint.operator.propagate.Identity">

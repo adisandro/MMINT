@@ -204,15 +204,14 @@ public class MIDRegistry {
 		return false;
 	}
 
-	public static @NonNull String getModelUri(@NonNull String modelObjUri) {
+  public static String getModelUri(String modelObjUri) {
+    var sep = modelObjUri.lastIndexOf(MMINTConstants.MODEL_URI_SEPARATOR);
+    if (sep == -1) {
+      return modelObjUri;
+    }
 
-	    var sep = modelObjUri.lastIndexOf(MMINTConstants.MODEL_URI_SEPARATOR);
-	    if (sep == -1) {
-	        return modelObjUri;
-	    }
-
-        return modelObjUri.substring(0, sep);
-	}
+    return modelObjUri.substring(0, sep);
+  }
 
 	public static @NonNull String getModelUri(@NonNull EObject modelObj) {
 
@@ -261,8 +260,7 @@ public class MIDRegistry {
 	}
 
 	//TODO MMINT[OO] Remove when switching to ModelElementIntermediate owned by ModelElementReference
-    public static @NonNull String getModelObjectUri(@NonNull ModelElement modelElem) {
-
+    public static String getModelObjectUri(ModelElement modelElem) {
         return modelElem.getUri().substring(0, modelElem.getUri().indexOf(MMINTConstants.ROLE_SEPARATOR));
     }
 
