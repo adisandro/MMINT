@@ -13,8 +13,6 @@
 package edu.toronto.cs.se.mmint.operator.propagate;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -23,6 +21,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.ECollections;
+
+import com.google.common.collect.Sets;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorConstraint;
@@ -149,14 +149,16 @@ public class ModelRelPropagation2 extends OperatorImpl {
   }
 
   private void propagate() throws MMINTException {
-    var origToProp = new HashMap<String, Set<Set<ModelElementReference>>>();
+    // each trace is a set of orig elems pointing to a set of prop elems
+    // there can be some with the same orig elems but different prop elems
+    var traces = new HashMap<Set<String>, Set<Set<ModelElementReference>>>();
     for (var i = 0; i < this.in.traceRels.size(); i++) {
       var traceRel = this.in.traceRels.get(i);
       var propModelPath = this.in.propModels.get(i).getUri();
       var sharedModelPath = this.in.sharedModels.get(i).getUri();
       var propModelEndpointRef = this.out.propRel.getModelEndpointRefs().get(i);
       // get only the sharedModel elems that are in origRel, in case there are traces for other sharedModel elems
-      var origModelObjUris = this.in.origRel.getModelEndpointRefs().stream()
+      var allOrigModelObjUris = this.in.origRel.getModelEndpointRefs().stream()
         .filter(mer -> mer.getTargetUri().equals(sharedModelPath))
         .flatMap(mer -> mer.getModelElemRefs().stream())
         .map(mer -> MIDRegistry.getModelObjectUri(mer.getObject()))
@@ -172,29 +174,32 @@ public class ModelRelPropagation2 extends OperatorImpl {
 //          // if trace mapping is binary, the direction must be from sharedModel to propModel
 //          continue;
 //        }
+        Set<String> origModelObjUris = null;
         Set<ModelElement> propModelElems = null;
-        Set<ModelElementReference> propModelElemRefs = null;
         for (var traceModelElemEndpoint : traceMapping.getModelElemEndpoints()) {
           var traceModelElem = traceModelElemEndpoint.getTarget();
           var traceModelObjUri = MIDRegistry.getModelObjectUri(traceModelElem);
-          if (propModelPath.equals(MIDRegistry.getModelUri(traceModelObjUri))) {
+          if (allOrigModelObjUris.contains(traceModelObjUri)) {
+            // collect model elems from sharedModel to propagate from
+            if (origModelObjUris == null) {
+              origModelObjUris = new HashSet<>();
+            }
+            origModelObjUris.add(traceModelObjUri);
+          }
+          else if (propModelPath.equals(MIDRegistry.getModelUri(traceModelObjUri))) {
             // collect model elems from propModel to propagate to
             if (propModelElems == null) {
               propModelElems = new HashSet<>();
             }
             propModelElems.add(traceModelElem);
           }
-          else if (origModelObjUris.contains(traceModelObjUri)) {
-            // collect model elems from sharedModel to propagate from
-            //TODO MMINT[SLICE] handle n-ary with multiple from sharedModel
-            propModelElemRefs = new HashSet<>();
-            origToProp.computeIfAbsent(traceModelObjUri, k -> new HashSet<>()).add(propModelElemRefs);
-          }
         }
         // no model elems in either sharedModel or propModel == no propagation for this trace mapping
-        if (propModelElems == null || propModelElemRefs == null) {
+        if (origModelObjUris == null || propModelElems == null) {
           continue;
         }
+        var propModelElemRefs = new HashSet<ModelElementReference>();
+        traces.computeIfAbsent(origModelObjUris, k -> new HashSet<>()).add(propModelElemRefs);
         // propagate model elems
         for (var propModelElem : propModelElems) {
           var propModelObjUri = MIDRegistry.getModelObjectUri(propModelElem);
@@ -211,43 +216,39 @@ public class ModelRelPropagation2 extends OperatorImpl {
     }
 
     // propagate orig mappings to prop
+origMappings:
     for (var origMapping : this.in.origRel.getMappings()) {
-      var allTraces = new ArrayList<Set<Set<ModelElementReference>>>();
+      var origModelObjUrisByModel = new HashMap<String, Set<String>>();
+      // split orig elems by model
       for (var origModelElemEndpoint : origMapping.getModelElemEndpoints()) {
-        var origModelElem = origModelElemEndpoint.getTarget();
-        var origModelObjUri = MIDRegistry.getModelObjectUri(origModelElem);
-        var trace = origToProp.get(origModelObjUri);
-        if (trace != null) {
-          allTraces.add(trace);
+        var origModelObjUri = MIDRegistry.getModelObjectUri(origModelElemEndpoint.getTarget());
+        var origModelPath = MIDRegistry.getModelUri(origModelObjUri);
+        origModelObjUrisByModel.computeIfAbsent(origModelPath, k -> new HashSet<>()).add(origModelObjUri);
+      }
+      // split traces by model
+      var tracesByModel = new ArrayList<Set<Set<ModelElementReference>>>();
+      for (var origModelObjUris : origModelObjUrisByModel.values()) {
+        var traceSet = traces.get(origModelObjUris);
+        if (traceSet == null) {
+          // all orig elems must be in the trace for the orig mapping to be propagated
+          continue origMappings;
         }
+        tracesByModel.add(traceSet);
       }
-      if (allTraces.isEmpty()) { // nothing to propagate
-        continue;
-      }
-      // the pivot trace is the one with the most trace mappings
-      // it has meaning for binary/nary orig mappings, where there are other traces
-      // while a unary orig mapping has a single trace
-      var pivotTrace = Collections.max(allTraces, Comparator.comparingInt(Set::size));
-      var propModelElemRefs = new ArrayList<ModelElementReference>();
-      for (var trace : allTraces) {
-        if (trace == pivotTrace) {
-          continue;
-        }
-        trace.forEach(t -> propModelElemRefs.addAll(t));
-      }
-      for (var pivotPropModelElemRefs : pivotTrace) {
-        var allPropModelElemRefs = ECollections.asEList(propModelElemRefs);
-        allPropModelElemRefs.addAll(pivotPropModelElemRefs);
-        if (allPropModelElemRefs.isEmpty()) { // nothing to propagate
-          continue;
+      // do cartesian product (for traces with same orig elems and different prop elems)
+      var cartesianTraces = Sets.cartesianProduct(tracesByModel);
+      for (var cartesianEntry : cartesianTraces) {
+        var allPropModelElemRefs = new ArrayList<ModelElementReference>();
+        for (var propModelElemRefs : cartesianEntry) {
+          allPropModelElemRefs.addAll(propModelElemRefs);
         }
         // propagate to the same mapping type if possible, or fallback to the closest supertype
-        //TODO Something's off here if the rel type got downgraded
         var propMappingType = origMapping.getMetatype();
         while (propMappingType != null) {
           try {
             var propMappingRef = propMappingType.createInstanceAndReferenceAndEndpointsAndReferences(
-              origMapping instanceof BinaryMapping && allPropModelElemRefs.size() == 2, allPropModelElemRefs);
+              origMapping instanceof BinaryMapping && allPropModelElemRefs.size() == 2,
+              ECollections.asEList(allPropModelElemRefs));
             propMappingRef.getObject().setName(origMapping.getName());
             break;
           }
