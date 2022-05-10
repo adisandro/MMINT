@@ -185,7 +185,7 @@ public class MIDRegistry {
 		cardinalityTable.put(uri, value-1);
 	}
 
-	public static boolean checkNewEndpointUpperCardinality(ExtendibleElementEndpoint typeEndpoint, Map<String, Integer> cardinalityTable) {
+	public static boolean checkEndpointUpperCardinality(ExtendibleElementEndpoint typeEndpoint, Map<String, Integer> cardinalityTable) {
 		var upperBound = typeEndpoint.getUpperBound();
 		if (upperBound == -1) {
 			return true;
@@ -195,11 +195,22 @@ public class MIDRegistry {
 		if (numEndpoints < upperBound) {
 			return true;
 		}
-
 		return false;
 	}
 
-  public static String getModelUri(String modelObjUri) {
+	public static boolean checkEndpointLowerCardinality(ExtendibleElementEndpoint typeEndpoint, Map<String, Integer> cardinalityTable) {
+    var lowerBound = typeEndpoint.getLowerBound();
+    if (lowerBound <= 0) {
+      return true;
+    }
+    var cardinality = cardinalityTable.get(typeEndpoint.getUri());
+    if (cardinality != null && cardinality >= lowerBound) {
+      return true;
+    }
+    return false;
+	}
+
+	public static String getModelUri(String modelObjUri) {
     var sep = modelObjUri.lastIndexOf(MMINTConstants.MODEL_URI_SEPARATOR);
     if (sep == -1) {
       return modelObjUri;

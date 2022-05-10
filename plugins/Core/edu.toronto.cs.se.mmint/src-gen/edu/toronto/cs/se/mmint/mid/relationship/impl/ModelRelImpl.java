@@ -752,7 +752,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
       }
       // run the following check only to detect lower bound problems
       if (!MIDConstraintChecker.areAllowedModelEndpoints(modelRel, modelRel.getMetatype())) {
-        throw new MMINTException("One or more model type endpoint lower bound is not met");
+        throw new MMINTException("One or more model type endpoint lower bounds are not satisfied");
       }
     }
 

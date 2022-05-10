@@ -210,7 +210,7 @@ public class MIDConstraintChecker {
 		// check if the type is allowed
 		if (modelTypeEndpointRef.getTargetUri().equals(targetModelTypeUri) || MIDTypeHierarchy.isSubtypeOf(targetModelTypeUri, modelTypeEndpointRef.getTargetUri())) {
 			// check if the cardinality is allowed
-			if (MIDRegistry.checkNewEndpointUpperCardinality(modelTypeEndpointRef.getObject(), cardinalityTable)) {
+			if (MIDRegistry.checkEndpointUpperCardinality(modelTypeEndpointRef.getObject(), cardinalityTable)) {
 				return true;
 			}
 		}
@@ -279,9 +279,7 @@ public class MIDConstraintChecker {
 		}
 		// check lower bounds
     for (var modelTypeEndpointRef : nonOverriddenModelTypeEndpointRefs) {
-      var lowerBound = modelTypeEndpointRef.getObject().getLowerBound();
-      var cardinality = cardinalityTable.get(modelTypeEndpointRef.getUri());
-      if (lowerBound > 0 && (cardinality == null || cardinality < lowerBound)) {
+      if (!MIDRegistry.checkEndpointLowerCardinality(modelTypeEndpointRef.getObject(), cardinalityTable)) {
         return false;
       }
     }
@@ -296,7 +294,7 @@ public class MIDConstraintChecker {
 		// check if the type is allowed
 		if (modelElemTypeEndpointRef.getTargetUri().equals(targetModelElemTypeUri) || MIDTypeHierarchy.isSubtypeOf(targetModelElemTypeUri, modelElemTypeEndpointRef.getTargetUri())) {
 			// check if the cardinality is allowed
-			if (MIDRegistry.checkNewEndpointUpperCardinality(modelElemTypeEndpointRef.getObject(), cardinalityTable)) {
+			if (MIDRegistry.checkEndpointUpperCardinality(modelElemTypeEndpointRef.getObject(), cardinalityTable)) {
 				return true;
 			}
 		}
