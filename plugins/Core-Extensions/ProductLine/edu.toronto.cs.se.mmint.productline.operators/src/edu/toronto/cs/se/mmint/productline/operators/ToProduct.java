@@ -43,6 +43,7 @@ public class ToProduct extends OperatorImpl {
   private In in;
   private Out out;
   private IProductLineFeatureConstraintTrait featureReasoner;
+  private Map<String, Boolean> allFeatureValues;
   private Map<String, Boolean> presenceConditionCache;
 
   private static class In {
@@ -112,18 +113,11 @@ public class ToProduct extends OperatorImpl {
     this.in = new In(inputsByName);
     this.out = new Out(outputMIDsByName, getWorkingPath(), this.in);
     this.featureReasoner = this.in.pl.getReasoner();
+    this.allFeatureValues = new HashMap<>();
     this.presenceConditionCache = new HashMap<>();
   }
 
-  private boolean isInProduct(PLElement plElement, Map<String, Boolean> allFeatureValues) {
-    var presenceCondition = plElement.getPresenceCondition();
-    if (presenceCondition == null) {
-      return true;
-    }
-    return canInstantiateFeatures(presenceCondition, allFeatureValues);
-  }
-
-  private boolean canInstantiateFeatures(String plFormula, Map<String, Boolean> allFeatureValues) {
+  private boolean canInstantiateFeatures(String plFormula) {
     var features = this.featureReasoner.getFeatures(plFormula);
     if (features.isEmpty()) {
       return true;
@@ -131,7 +125,7 @@ public class ToProduct extends OperatorImpl {
 
     var featureValues = new HashMap<String, Boolean>();
     features.forEach(feature -> {
-      var value = allFeatureValues.computeIfAbsent(
+      var value = this.allFeatureValues.computeIfAbsent(
         feature, k -> MIDDialogs.getBooleanInput("Feature '" + k + "'", "Enable feature '" + k + "'?"));
       featureValues.put(feature, value);
     });
@@ -140,14 +134,21 @@ public class ToProduct extends OperatorImpl {
       plFormula, k -> this.featureReasoner.checkConsistency(k, featureValues));
   }
 
+  private boolean isInProduct(PLElement plElement) {
+    var presenceCondition = plElement.getPresenceCondition();
+    if (presenceCondition == null) {
+      return true;
+    }
+    return canInstantiateFeatures(presenceCondition);
+  }
+
   private void toProduct() throws MMINTException {
-    var allFeatureValues = new HashMap<String, Boolean>();
-    if (!canInstantiateFeatures(this.in.pl.getFeaturesConstraint(), allFeatureValues)) {
+    if (!canInstantiateFeatures(this.in.pl.getFeaturesConstraint())) {
       throw new MMINTException("The constraint on features is not satisfiable");
     }
     var productFactory = this.in.pl.getMetamodel().getEFactoryInstance();
     for (var plClass : this.in.pl.getClasses()) {
-      if (!isInProduct(plClass, allFeatureValues)) {
+      if (!isInProduct(plClass)) {
         continue;
       }
       var productModelObj = productFactory.create(plClass.getType());
@@ -156,7 +157,7 @@ public class ToProduct extends OperatorImpl {
         this.out.product = productModelObj;
       }
       for (var plAttribute : plClass.getAttributes()) {
-        if (!isInProduct(plAttribute, allFeatureValues)) {
+        if (!isInProduct(plAttribute)) {
           continue;
         }
         var emfType = plAttribute.getType().getEAttributeType();
@@ -177,7 +178,7 @@ public class ToProduct extends OperatorImpl {
       }
     }
     for (var plReference : this.in.pl.getReferences()) {
-      if (!isInProduct(plReference, allFeatureValues)) {
+      if (!isInProduct(plReference)) {
         continue;
       }
       var srcProductModelObj = this.out.traceLinks.get(plReference.getSource());

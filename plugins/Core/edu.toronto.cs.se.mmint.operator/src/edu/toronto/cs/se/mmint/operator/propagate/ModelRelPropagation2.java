@@ -39,8 +39,8 @@ import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
 public class ModelRelPropagation2 extends OperatorImpl {
-  private In in;
-  private Out out;
+  protected In in;
+  protected Out out;
 
   private static class In {
     private final static String IN_MODELREL = "original";

@@ -486,7 +486,7 @@
       <operatorType>
          <type
                name="ModelRelPropagation2"
-               uri="http://se.cs.toronto.edu/mmint/Operator_ModelRelPropagation2"
+               uri="edu.toronto.cs.se.mmint.operator.propagate.ModelRelPropagation2"
                class="edu.toronto.cs.se.mmint.operator.propagate.ModelRelPropagation2">
          </type>
          <constraint
@@ -496,7 +496,8 @@
          <inputs>
             <parameter>
              <type
-                   name="original">
+                   name="original"
+                   uri="edu.toronto.cs.se.mmint.operator.propagate.ModelRelPropagation2/original">
              </type>
              <typeEndpoint
                    targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
@@ -504,7 +505,8 @@
             </parameter>
             <parameter>
              <type
-                   name="traces">
+                   name="traces"
+                   uri="edu.toronto.cs.se.mmint.operator.propagate.ModelRelPropagation2/traces">
              </type>
              <typeEndpoint
                    upperBound="-1"
@@ -515,7 +517,8 @@
          <outputs>
             <parameter>
              <type
-                   name="propagated">
+                   name="propagated"
+                   uri="edu.toronto.cs.se.mmint.operator.propagate.ModelRelPropagation2/propagated">
              </type>
              <typeEndpoint
                    targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
