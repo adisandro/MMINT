@@ -258,15 +258,14 @@ public class MIDConstraintChecker {
 		return modelTypeEndpointUris;
 	}
 
-	public static boolean areAllowedModelEndpoints(ModelRel modelRel, ModelRel newModelRelType) {
-
+	public static boolean areAllowedModelEndpoints(ModelRel modelRel, ModelRel modelRelType) {
 		var cardinalityTable = new HashMap<String, Integer>();
+    var modelTypeEndpointRefs = modelRelType.getModelEndpointRefs();
+    var nonOverriddenModelTypeEndpointRefs = modelTypeEndpointRefs.stream()
+      .filter(mer -> modelTypeEndpointRefs.stream().noneMatch(overriding -> overriding.getSupertypeRef() == mer))
+      .collect(Collectors.toList());
 		for (ModelEndpoint modelEndpoint : modelRel.getModelEndpoints()) {
 			var isAllowed = false;
-			var nonOverriddenModelTypeEndpointRefs = newModelRelType.getModelEndpointRefs().stream()
-			  .filter(mer -> newModelRelType.getModelEndpointRefs().stream()
-			                   .noneMatch(overriding -> overriding.getSupertypeRef() == mer))
-			  .collect(Collectors.toList());
       //TODO MMINT[INTROSPECTION] order of visit might affect the result, should be from the most specific to the less
 			for (ModelEndpointReference modelTypeEndpointRef : nonOverriddenModelTypeEndpointRefs) {
 				if (isAllowed = MIDConstraintChecker.isAllowedModelEndpoint(modelTypeEndpointRef, modelEndpoint.getTarget(), cardinalityTable)) {
@@ -278,6 +277,14 @@ public class MIDConstraintChecker {
 				return false;
 			}
 		}
+		// check lower bounds
+    for (var modelTypeEndpointRef : nonOverriddenModelTypeEndpointRefs) {
+      var lowerBound = modelTypeEndpointRef.getObject().getLowerBound();
+      var cardinality = cardinalityTable.get(modelTypeEndpointRef.getUri());
+      if (lowerBound > 0 && (cardinality == null || cardinality < lowerBound)) {
+        return false;
+      }
+    }
 
 		return true;
 	}

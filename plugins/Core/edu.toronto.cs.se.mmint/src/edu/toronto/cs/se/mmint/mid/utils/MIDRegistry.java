@@ -172,25 +172,20 @@ public class MIDRegistry {
 	}
 
 	public static void addEndpointCardinality(String uri, Map<String, Integer> cardinalityTable) {
-
 		var value = cardinalityTable.get(uri);
-		Integer newValue = (value == null) ?
-			new Integer(1) :
-			new Integer(value.intValue()+1);
+		Integer newValue = (value == null) ? 1 : value+1;
 		cardinalityTable.put(uri, newValue);
 	}
 
 	public static void subtractEndpointCardinality(String uri, Map<String, Integer> cardinalityTable) throws MMINTException {
-
 		var value = cardinalityTable.get(uri);
 		if (value == null) {
 			throw new MMINTException("Uri " + uri + " doesn't exist in the cardinality table");
 		}
-		cardinalityTable.put(uri, new Integer(value.intValue()-1));
+		cardinalityTable.put(uri, value-1);
 	}
 
 	public static boolean checkNewEndpointUpperCardinality(ExtendibleElementEndpoint typeEndpoint, Map<String, Integer> cardinalityTable) {
-
 		var upperBound = typeEndpoint.getUpperBound();
 		if (upperBound == -1) {
 			return true;

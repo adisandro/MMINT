@@ -740,17 +740,20 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
      * @generated NOT
      */
     protected void addInstanceEndpoints(ModelRel modelRel, EList<Model> endpointModels) throws MMINTException {
-
-        for (var endpointModel : endpointModels) {
-            var modelTypeEndpointIds = MIDConstraintChecker.getAllowedModelEndpoints(modelRel, null, endpointModel);
-            if (modelTypeEndpointIds == null) {
-                throw new MMINTException("Can't find allowed model type endpoints");
-            }
-            //TODO MMINT[TYPES] Should either select the most specific through inverse type hierarchy, or ask for a choice
-            var modelTypeEndpointId = modelTypeEndpointIds.get(0);
-            var modelTypeEndpoint = MIDTypeRegistry.<ModelEndpoint>getType(modelTypeEndpointId);
-            modelTypeEndpoint.createInstance(endpointModel, modelRel);
+      for (var endpointModel : endpointModels) {
+        var modelTypeEndpointIds = MIDConstraintChecker.getAllowedModelEndpoints(modelRel, null, endpointModel);
+        if (modelTypeEndpointIds == null) {
+            throw new MMINTException("Can't find allowed model type endpoints");
         }
+        //TODO MMINT[TYPES] Should either select the most specific through inverse type hierarchy, or ask for a choice
+        var modelTypeEndpointId = modelTypeEndpointIds.get(0);
+        var modelTypeEndpoint = MIDTypeRegistry.<ModelEndpoint>getType(modelTypeEndpointId);
+        modelTypeEndpoint.createInstance(endpointModel, modelRel);
+      }
+      // run the following check only to detect lower bound problems
+      if (!MIDConstraintChecker.areAllowedModelEndpoints(modelRel, modelRel.getMetatype())) {
+        throw new MMINTException("One or more model type endpoint lower bound is not met");
+      }
     }
 
     /**
