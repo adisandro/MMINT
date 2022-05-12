@@ -1041,9 +1041,9 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
         MMINTException.mustBeType(this);
 
         // check actual parameters
-        EList<OperatorInput> inputs = new BasicEList<>();
+        var inputs = ECollections.<OperatorInput>newBasicEList();
         var i = 0;
-        for (ModelEndpoint inputModelTypeEndpoint : this.getInputs()) {
+        for (var inputModelTypeEndpoint : this.getInputs()) {
             // check 1: not enough actual parameters, excluding optional ones (lower bound == 0)
             if (i >= inputModels.size() && inputModelTypeEndpoint.getLowerBound() > 0) {
                 return null;
