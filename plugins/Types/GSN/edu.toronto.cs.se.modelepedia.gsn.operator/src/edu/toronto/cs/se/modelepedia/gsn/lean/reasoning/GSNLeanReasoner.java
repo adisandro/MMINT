@@ -192,6 +192,13 @@ public class GSNLeanReasoner extends LeanReasoner implements IGSNDecompositionTr
     WorkspaceSynchronizer.getFile(instanceMID.eResource()).getParent()
       .refreshLocal(IResource.DEPTH_ONE, new NullProgressMonitor());
     if (!valid) {
+      for (var i = 0; i < badGoals.size(); i++) {
+        var badGoal = badGoals.get(i);
+        badGoal.setValid(false);
+        if (i < hintProperties.size()) {
+          badGoal.setHint(hintProperties.get(i));
+        }
+      }
       /* TODO tentative repair plan:
        * 1) Create a PropertyRepair object for each bad goal, containing an optional hint
        * 2) Highlight somehow -> new diagram shape/color?

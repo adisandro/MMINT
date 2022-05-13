@@ -45,6 +45,7 @@ public class PropertyBuilder extends GSNBuilder {
     var goal = this.factory.createPropertyGoal();
     addGoal(goal, id, description);
     addPropertyElement(goal, property);
+    goal.setValid(true);
 
     return goal;
   }
