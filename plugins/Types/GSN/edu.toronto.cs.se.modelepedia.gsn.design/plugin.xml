@@ -66,6 +66,10 @@
             actionClass="edu.toronto.cs.se.modelepedia.gsn.design.context.GoalDecompositionCheck"
             id="edu.toronto.cs.se.modelepedia.gsn.design.context.GoalDecompositionCheck">
       </javaActions>
+      <javaActions
+            actionClass="edu.toronto.cs.se.modelepedia.gsn.design.context.PropertyDecompositionRepair"
+            id="edu.toronto.cs.se.modelepedia.gsn.design.context.PropertyDecompositionRepair">
+      </javaActions>
    </extension>
 
 </plugin>

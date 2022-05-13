@@ -17,7 +17,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -34,14 +33,11 @@ import org.eclipse.ui.model.WorkbenchLabelProvider;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.ModelElement;
-import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
 import edu.toronto.cs.se.mmint.mid.ui.FileExtensionsDialogFilter;
 import edu.toronto.cs.se.mmint.mid.ui.FilesOnlyDialogSelectionValidator;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.mid.ui.MIDTreeSelectionDialog;
-import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 import edu.toronto.cs.se.modelepedia.gsn.Context;
 import edu.toronto.cs.se.modelepedia.gsn.DecomposableCoreElement;
 import edu.toronto.cs.se.modelepedia.gsn.DecompositionStrategy;
@@ -93,69 +89,6 @@ public class PropertyDecomposition extends GoalDecomposition {
       }
 
       return modelObjs;
-    }
-
-    private Goal moveOneDecompositionUp(Goal goal) throws MMINTException {
-      if (goal.getSupports().size() > 1) {
-        throw new MMINTException("Goal '" + goal.getId() + "' should not support more than one GSN element");
-      }
-      var supported = goal.getSupports().get(0).getSource();
-      if (!(supported instanceof Strategy strategy)) {
-        throw new MMINTException("Goal '" + goal.getId() + "' should support a strategy");
-      }
-      if (strategy.getSupports().size() > 1) {
-        throw new MMINTException("Strategy '" + strategy.getId() + "' should not support more than one GSN element");
-      }
-      supported = strategy.getSupports().get(0).getSource();
-      if (!(supported instanceof Goal parentGoal)) {
-        throw new MMINTException("Strategy '" + strategy.getId() + "' should support a goal");
-      }
-
-      return parentGoal;
-    }
-
-    private Optional<Model> getRelatedModel() throws MMINTException {
-      // detect if this is a decomposition chain
-      var relatedGoal = this.decomposed;
-      if (relatedGoal instanceof PropertyGoal) {
-        try {
-          while (relatedGoal instanceof PropertyGoal) {
-            relatedGoal = moveOneDecompositionUp(relatedGoal);
-          }
-          relatedGoal = moveOneDecompositionUp(relatedGoal); // formal argument level
-        }
-        catch (MMINTException e) {
-          MMINTException.print(IStatus.WARNING, "Bad structure for assisted decomposition", e);
-          return Optional.empty();
-        }
-      }
-      // find the goals in connected rels
-      var gsnModel = MIDDiagramUtils.getInstanceMIDModelFromModelEditor(relatedGoal);
-      var modelRels = MIDRegistry.getConnectedModelRels(gsnModel, gsnModel.getMIDContainer());
-      var decomposedUri = MIDRegistry.getModelElementUri(relatedGoal);
-      //TODO MMINT[GSN]: Ask if there are multiple matches instead of getting the first
-      for (var modelRel : modelRels) {
-        if (modelRel.getModelEndpoints().size() != 2) { // exclude non-binary
-          continue;
-        }
-        for (var mapping : modelRel.getMappings()) {
-          var endpoints = mapping.getModelElemEndpoints();
-          if (endpoints.size() != 2) { // exclude non-binary
-            continue;
-          }
-          ModelElement relatedModelElem;
-          var uri0 = MIDRegistry.getModelObjectUri(endpoints.get(0).getTarget());
-          var uri1 = MIDRegistry.getModelObjectUri(endpoints.get(1).getTarget());
-          if (decomposedUri.equals(uri0)) {
-            return Optional.of((Model) endpoints.get(1).getTarget().eContainer());
-          }
-          else if (decomposedUri.equals(uri1)) {
-            return Optional.of((Model) endpoints.get(0).getTarget().eContainer());
-          }
-        }
-      }
-
-      return Optional.empty();
     }
 
     private String getEncodingFile(String title, String message) throws MIDDialogCancellation {
@@ -211,7 +144,7 @@ public class PropertyDecomposition extends GoalDecomposition {
       var customMsg = "Insert a description for the custom property";
       var reasoner = MIDDialogs.selectReasoner(IGSNDecompositionTrait.class, "GSN property decomposition", null);
       var reasonerName = reasoner.getName();
-      var relatedModelOpt = getRelatedModel();
+      var relatedModelOpt = DecompositionUtils.getRelatedModel(this.decomposed);
       var templates = Map.<String, List<PropertyTemplate>>of();
       var modelObjs = Map.<EClass, List<EObject>>of();
       var queryCache = new HashMap<String, List<Object>>();

@@ -199,13 +199,6 @@ public class GSNLeanReasoner extends LeanReasoner implements IGSNDecompositionTr
           badGoal.setHint(hintProperties.get(i));
         }
       }
-      /* TODO tentative repair plan:
-       * 1) Create a PropertyRepair object for each bad goal, containing an optional hint
-       * 2) Highlight somehow -> new diagram shape/color?
-       * 3) Create a new context action on PropertyGoals with PropertyRepair, to launch a repair
-       * 4) Repair replaces the old property with the hint, or asks the user for a new property,
-       *    then deletes the previous 'disproven' context and revalidates
-       */
       throw new MMINTException(invalidMsg);
     }
   }

@@ -369,6 +369,7 @@
             <menuItemDescription xsi:type="tool_1:ExternalJavaAction" name="DomainDecomposition" label="Domain Decomposition" id="edu.toronto.cs.se.modelepedia.gsn.design.context.DomainDecomposition"/>
             <menuItemDescription xsi:type="tool_1:ExternalJavaAction" name="PropertyDecomposition" label="Property Decomposition" id="edu.toronto.cs.se.modelepedia.gsn.design.context.PropertyDecomposition"/>
             <menuItemDescription xsi:type="tool_1:ExternalJavaAction" name="GoalDecompositionCheck" label="Goal Decomposition Check" id="edu.toronto.cs.se.modelepedia.gsn.design.context.GoalDecompositionCheck"/>
+            <menuItemDescription xsi:type="tool_1:ExternalJavaAction" name="PropertyDecompositionRepair" label="Property Decomposition Repair" id="edu.toronto.cs.se.modelepedia.gsn.design.context.PropertyDecompositionRepair"/>
           </ownedTools>
         </toolSections>
       </defaultLayer>
