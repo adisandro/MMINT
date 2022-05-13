@@ -1,14 +1,16 @@
-/**
- * Copyright (c) 2012-2022 Alessio Di Sandro, Marsha Chechik, Nick Fung.
- * All rights reserved. This program and the accompanying materials are made available under the terms
- * of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+/*******************************************************************************
+ * Copyright (c) 2017, 2022 Alessio Di Sandro, Nick Fung.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *   Alessio Di Sandro - Implementation
- *   Nick Fung - Implementation.
- *
- */
+ *     Alessio Di Sandro - Implementation
+ *     Nick Fung - Implementation
+ *******************************************************************************/
 package edu.toronto.cs.se.modelepedia.gsn;
 
 import org.eclipse.emf.ecore.EObject;
@@ -30,10 +32,10 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface ASILfulElement extends EObject {
   /**
-   * Returns the value of the '<em><b>Asil</b></em>' containment reference. It is bidirectional and its opposite is
-   * '{@link edu.toronto.cs.se.modelepedia.gsn.ASIL#getTarget <em>Target</em>}'. <!-- begin-user-doc --> <!--
+   * Returns the value of the '<em><b>Asil</b></em>' containment reference.
+   * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.gsn.ASIL#getTarget <em>Target</em>}'.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @return the value of the '<em>Asil</em>' containment reference.
    * @see #setAsil(ASIL)
    * @see edu.toronto.cs.se.modelepedia.gsn.GSNPackage#getASILfulElement_Asil()
@@ -44,11 +46,9 @@ public interface ASILfulElement extends EObject {
   ASIL getAsil();
 
   /**
-   * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.gsn.ASILfulElement#getAsil <em>Asil</em>}' containment
-   * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
-   * @param value
-   *          the new value of the '<em>Asil</em>' containment reference.
+   * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.gsn.ASILfulElement#getAsil <em>Asil</em>}' containment reference.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * @param value the new value of the '<em>Asil</em>' containment reference.
    * @see #getAsil()
    * @generated
    */

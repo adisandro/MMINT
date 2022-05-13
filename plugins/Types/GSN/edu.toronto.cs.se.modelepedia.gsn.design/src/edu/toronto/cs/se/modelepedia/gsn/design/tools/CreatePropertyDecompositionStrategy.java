@@ -39,8 +39,7 @@ public class CreatePropertyDecompositionStrategy extends CreateDecompositionElem
       var reasoner = MIDDialogs.selectReasoner(IGSNDecompositionTrait.class, "GSN property decomposition", null);
       var reasonerName = reasoner.getName();
       var property = builder.createProperty("Create Property Decomposition Strategy",
-                                            "Insert the " + reasonerName + " property",
-                                            "Insert a description for the custom property");
+                                            "Insert the property", "Insert a description for the custom property");
       builder.createPropertyStrategy("", "'" + property.getInformal() + "'", reasonerName, property);
     }
   }

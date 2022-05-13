@@ -14,9 +14,7 @@ package edu.toronto.cs.se.modelepedia.gsn.design.tools;
 
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
-import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
-import edu.toronto.cs.se.modelepedia.gsn.reasoning.IGSNDecompositionTrait;
 import edu.toronto.cs.se.modelepedia.gsn.util.PropertyBuilder;
 
 public class CreatePropertyGoal extends CreateDecompositionElement {
@@ -36,11 +34,9 @@ public class CreatePropertyGoal extends CreateDecompositionElement {
     @Override
     protected void create() throws Exception {
       var builder = (PropertyBuilder) this.builder;
-      var reasoner = MIDDialogs.selectReasoner(IGSNDecompositionTrait.class, "GSN property decomposition", null);
-      var reasonerName = reasoner.getName();
-      var property = builder.createProperty("Create Property Goal", "Insert the " + reasonerName + " property",
+      var property = builder.createProperty("Create Property Goal", "Insert the property",
                                             "Insert a description for the custom property");
-      builder.createPropertyGoal("", property.getInformal(), reasonerName, property);
+      builder.createPropertyGoal("", property.getInformal(), property);
     }
   }
 }

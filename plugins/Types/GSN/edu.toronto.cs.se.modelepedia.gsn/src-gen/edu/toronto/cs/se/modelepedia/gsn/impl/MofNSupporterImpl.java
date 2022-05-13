@@ -1,14 +1,16 @@
-/**
- * Copyright (c) 2012-2022 Alessio Di Sandro, Marsha Chechik, Nick Fung.
- * All rights reserved. This program and the accompanying materials are made available under the terms
- * of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+/*******************************************************************************
+ * Copyright (c) 2017, 2022 Alessio Di Sandro, Nick Fung.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *   Alessio Di Sandro - Implementation
- *   Nick Fung - Implementation.
- *
- */
+ *     Alessio Di Sandro - Implementation
+ *     Nick Fung - Implementation
+ *******************************************************************************/
 package edu.toronto.cs.se.modelepedia.gsn.impl;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -24,16 +26,16 @@ import edu.toronto.cs.se.modelepedia.gsn.MofNSupporter;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.MofNSupporterImpl#getTarget <em>Target</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.MofNSupporterImpl#getTarget <em>Target</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class MofNSupporterImpl extends SupportConnectorImpl implements MofNSupporter {
   /**
-   * The default value of the '{@link #getTarget() <em>Target</em>}' attribute. <!-- begin-user-doc --> <!--
+   * The default value of the '{@link #getTarget() <em>Target</em>}' attribute.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @see #getTarget()
    * @generated
    * @ordered
@@ -43,16 +45,15 @@ public class MofNSupporterImpl extends SupportConnectorImpl implements MofNSuppo
   /**
    * The cached value of the '{@link #getTarget() <em>Target</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
    * -->
-   * 
+   *
    * @see #getTarget()
    * @generated
    * @ordered
    */
-  protected long target = TARGET_EDEFAULT;
+  protected long target = MofNSupporterImpl.TARGET_EDEFAULT;
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected MofNSupporterImpl() {
@@ -61,7 +62,6 @@ public class MofNSupporterImpl extends SupportConnectorImpl implements MofNSuppo
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -71,98 +71,90 @@ public class MofNSupporterImpl extends SupportConnectorImpl implements MofNSuppo
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
   public long getTarget() {
-    return target;
+    return this.target;
   }
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
   public void setTarget(long newTarget) {
-    long oldTarget = target;
-    target = newTarget;
+    var oldTarget = this.target;
+    this.target = newTarget;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.MOF_NSUPPORTER__TARGET, oldTarget, target));
+      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.MOF_NSUPPORTER__TARGET, oldTarget, this.target));
   }
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
-    case GSNPackage.MOF_NSUPPORTER__TARGET:
-      return getTarget();
+      case GSNPackage.MOF_NSUPPORTER__TARGET:
+        return getTarget();
     }
     return super.eGet(featureID, resolve, coreType);
   }
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
-    case GSNPackage.MOF_NSUPPORTER__TARGET:
-      setTarget((Long) newValue);
-      return;
+      case GSNPackage.MOF_NSUPPORTER__TARGET:
+        setTarget((Long)newValue);
+        return;
     }
     super.eSet(featureID, newValue);
   }
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
-    case GSNPackage.MOF_NSUPPORTER__TARGET:
-      setTarget(TARGET_EDEFAULT);
-      return;
+      case GSNPackage.MOF_NSUPPORTER__TARGET:
+        setTarget(MofNSupporterImpl.TARGET_EDEFAULT);
+        return;
     }
     super.eUnset(featureID);
   }
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
-    case GSNPackage.MOF_NSUPPORTER__TARGET:
-      return target != TARGET_EDEFAULT;
+      case GSNPackage.MOF_NSUPPORTER__TARGET:
+        return this.target != MofNSupporterImpl.TARGET_EDEFAULT;
     }
     return super.eIsSet(featureID);
   }
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
   public String toString() {
-    if (eIsProxy())
-      return super.toString();
+    if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (target: ");
-    result.append(target);
+    result.append(this.target);
     result.append(')');
     return result.toString();
   }

@@ -1,14 +1,16 @@
-/**
- * Copyright (c) 2012-2022 Alessio Di Sandro, Marsha Chechik, Nick Fung.
- * All rights reserved. This program and the accompanying materials are made available under the terms
- * of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+/*******************************************************************************
+ * Copyright (c) 2017, 2022 Alessio Di Sandro, Nick Fung.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *   Alessio Di Sandro - Implementation
- *   Nick Fung - Implementation.
- *
- */
+ *     Alessio Di Sandro - Implementation
+ *     Nick Fung - Implementation
+ *******************************************************************************/
 package edu.toronto.cs.se.modelepedia.gsn.impl;
 
 import java.util.Collection;
@@ -31,16 +33,16 @@ import edu.toronto.cs.se.modelepedia.gsn.Supporter;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.SupporterImpl#getSupports <em>Supports</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.SupporterImpl#getSupports <em>Supports</em>}</li>
  * </ul>
  *
  * @generated
  */
 public abstract class SupporterImpl extends MinimalEObjectImpl.Container implements Supporter {
   /**
-   * The cached value of the '{@link #getSupports() <em>Supports</em>}' reference list. <!-- begin-user-doc --> <!--
+   * The cached value of the '{@link #getSupports() <em>Supports</em>}' reference list.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @see #getSupports()
    * @generated
    * @ordered
@@ -49,7 +51,6 @@ public abstract class SupporterImpl extends MinimalEObjectImpl.Container impleme
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected SupporterImpl() {
@@ -58,7 +59,6 @@ public abstract class SupporterImpl extends MinimalEObjectImpl.Container impleme
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -68,104 +68,95 @@ public abstract class SupporterImpl extends MinimalEObjectImpl.Container impleme
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
   public EList<SupportedBy> getSupports() {
-    if (supports == null) {
-      supports = new EObjectWithInverseResolvingEList<SupportedBy>(SupportedBy.class, this,
-                                                                   GSNPackage.SUPPORTER__SUPPORTS,
-                                                                   GSNPackage.SUPPORTED_BY__TARGET);
+    if (this.supports == null) {
+      this.supports = new EObjectWithInverseResolvingEList<>(SupportedBy.class, this, GSNPackage.SUPPORTER__SUPPORTS, GSNPackage.SUPPORTED_BY__TARGET);
     }
-    return supports;
+    return this.supports;
   }
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
   @Override
   public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
-    case GSNPackage.SUPPORTER__SUPPORTS:
-      return ((InternalEList<InternalEObject>) (InternalEList<?>) getSupports()).basicAdd(otherEnd, msgs);
+      case GSNPackage.SUPPORTER__SUPPORTS:
+        return ((InternalEList<InternalEObject>)(InternalEList<?>)getSupports()).basicAdd(otherEnd, msgs);
     }
     return super.eInverseAdd(otherEnd, featureID, msgs);
   }
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
-    case GSNPackage.SUPPORTER__SUPPORTS:
-      return ((InternalEList<?>) getSupports()).basicRemove(otherEnd, msgs);
+      case GSNPackage.SUPPORTER__SUPPORTS:
+        return ((InternalEList<?>)getSupports()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
-    case GSNPackage.SUPPORTER__SUPPORTS:
-      return getSupports();
+      case GSNPackage.SUPPORTER__SUPPORTS:
+        return getSupports();
     }
     return super.eGet(featureID, resolve, coreType);
   }
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
-    case GSNPackage.SUPPORTER__SUPPORTS:
-      getSupports().clear();
-      getSupports().addAll((Collection<? extends SupportedBy>) newValue);
-      return;
+      case GSNPackage.SUPPORTER__SUPPORTS:
+        getSupports().clear();
+        getSupports().addAll((Collection<? extends SupportedBy>)newValue);
+        return;
     }
     super.eSet(featureID, newValue);
   }
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
-    case GSNPackage.SUPPORTER__SUPPORTS:
-      getSupports().clear();
-      return;
+      case GSNPackage.SUPPORTER__SUPPORTS:
+        getSupports().clear();
+        return;
     }
     super.eUnset(featureID);
   }
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
-    case GSNPackage.SUPPORTER__SUPPORTS:
-      return supports != null && !supports.isEmpty();
+      case GSNPackage.SUPPORTER__SUPPORTS:
+        return this.supports != null && !this.supports.isEmpty();
     }
     return super.eIsSet(featureID);
   }

@@ -1,14 +1,15 @@
-/**
- * Copyright (c) 2012-2022 Alessio Di Sandro, Marsha Chechik, Nick Fung.
- * All rights reserved. This program and the accompanying materials are made available under the terms
- * of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+/*******************************************************************************
+ * Copyright (c) 2020, 2022 Alessio Di Sandro.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *   Alessio Di Sandro - Implementation
- *   Nick Fung - Implementation.
- *
- */
+ *     Alessio Di Sandro - Implementation
+ *******************************************************************************/
 package edu.toronto.cs.se.modelepedia.gsn.impl;
 
 import java.lang.reflect.InvocationTargetException;
@@ -28,7 +29,6 @@ import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 public abstract class DecompositionStrategyImpl extends StrategyImpl implements DecompositionStrategy {
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected DecompositionStrategyImpl() {
@@ -37,7 +37,6 @@ public abstract class DecompositionStrategyImpl extends StrategyImpl implements 
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -47,7 +46,6 @@ public abstract class DecompositionStrategyImpl extends StrategyImpl implements 
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -59,20 +57,19 @@ public abstract class DecompositionStrategyImpl extends StrategyImpl implements 
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
   public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
     switch (operationID) {
-    case GSNPackage.DECOMPOSITION_STRATEGY___VALIDATE:
-      try {
-        validate();
-        return null;
-      }
-      catch (Throwable throwable) {
-        throw new InvocationTargetException(throwable);
-      }
+      case GSNPackage.DECOMPOSITION_STRATEGY___VALIDATE:
+        try {
+          validate();
+          return null;
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
     }
     return super.eInvoke(operationID, arguments);
   }

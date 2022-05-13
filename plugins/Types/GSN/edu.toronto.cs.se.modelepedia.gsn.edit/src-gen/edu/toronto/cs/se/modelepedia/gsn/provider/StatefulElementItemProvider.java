@@ -1,14 +1,16 @@
-/**
- * Copyright (c) 2012-2022 Alessio Di Sandro, Marsha Chechik, Nick Fung.
- * All rights reserved. This program and the accompanying materials are made available under the terms
- * of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+/*******************************************************************************
+ * Copyright (c) 2017, 2022 Alessio Di Sandro, Nick Fung.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *   Alessio Di Sandro - Implementation
- *   Nick Fung - Implementation.
- *
- */
+ *     Alessio Di Sandro - Implementation
+ *     Nick Fung - Implementation
+ *******************************************************************************/
 package edu.toronto.cs.se.modelepedia.gsn.provider;
 
 import java.util.Collection;
@@ -30,19 +32,18 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.StatefulElement;
-import edu.toronto.cs.se.modelepedia.gsn.ValidityValue;
 
 /**
  * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.gsn.StatefulElement} object. <!--
  * begin-user-doc --> <!-- end-user-doc -->
- * 
+ *
  * @generated
  */
 public class StatefulElementItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
   IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
   /**
-   * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * This constructs an instance from a factory and a notifier.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   public StatefulElementItemProvider(AdapterFactory adapterFactory) {
@@ -50,54 +51,59 @@ public class StatefulElementItemProvider extends ItemProviderAdapter implements 
   }
 
   /**
-   * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * This returns the property descriptors for the adapted class.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   @Override
   public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-    if (itemPropertyDescriptors == null) {
+    if (this.itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
       addStateValidityPropertyDescriptor(object);
     }
-    return itemPropertyDescriptors;
+    return this.itemPropertyDescriptors;
   }
 
   /**
-   * This adds a property descriptor for the State Validity feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * This adds a property descriptor for the State Validity feature.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   protected void addStateValidityPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-                                                             getResourceLocator(), getString(
-                                                                                             "_UI_StatefulElement_stateValidity_feature"),
-                                                             getString("_UI_PropertyDescriptor_description",
-                                                                       "_UI_StatefulElement_stateValidity_feature",
-                                                                       "_UI_StatefulElement_type"),
-                                                             GSNPackage.Literals.STATEFUL_ELEMENT__STATE_VALIDITY, true,
-                                                             false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-                                                             null, null));
+    this.itemPropertyDescriptors.add
+      (createItemPropertyDescriptor
+        (((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
+         getResourceLocator(),
+         getString("_UI_StatefulElement_stateValidity_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_StatefulElement_stateValidity_feature", "_UI_StatefulElement_type"),
+         GSNPackage.Literals.STATEFUL_ELEMENT__STATE_VALIDITY,
+         true,
+         false,
+         false,
+         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+         null,
+         null));
   }
 
   /**
-   * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * This returns the label text for the adapted class.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   @Override
   public String getText(Object object) {
-    ValidityValue labelValue = ((StatefulElement) object).getStateValidity();
-    String label = labelValue == null ? null : labelValue.toString();
-    return label == null || label.length() == 0 ? getString("_UI_StatefulElement_type")
-      : getString("_UI_StatefulElement_type") + " " + label;
+    var labelValue = ((StatefulElement)object).getStateValidity();
+    var label = labelValue == null ? null : labelValue.toString();
+    return label == null || label.length() == 0 ?
+      getString("_UI_StatefulElement_type") :
+      getString("_UI_StatefulElement_type") + " " + label;
   }
 
   /**
-   * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating a
-   * viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * This handles model notifications by calling {@link #updateChildren} to update any cached
+   * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   @Override
@@ -105,17 +111,17 @@ public class StatefulElementItemProvider extends ItemProviderAdapter implements 
     updateChildren(notification);
 
     switch (notification.getFeatureID(StatefulElement.class)) {
-    case GSNPackage.STATEFUL_ELEMENT__STATE_VALIDITY:
-      fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-      return;
+      case GSNPackage.STATEFUL_ELEMENT__STATE_VALIDITY:
+        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+        return;
     }
     super.notifyChanged(notification);
   }
 
   /**
-   * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created under
-   * this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+   * that can be created under this object.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   @Override
@@ -124,8 +130,8 @@ public class StatefulElementItemProvider extends ItemProviderAdapter implements 
   }
 
   /**
-   * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * Return the resource locator for this item provider's resources.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   @Override

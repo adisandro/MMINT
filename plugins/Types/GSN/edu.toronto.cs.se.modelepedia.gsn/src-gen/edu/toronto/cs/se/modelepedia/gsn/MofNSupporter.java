@@ -1,14 +1,16 @@
-/**
- * Copyright (c) 2012-2022 Alessio Di Sandro, Marsha Chechik, Nick Fung.
- * All rights reserved. This program and the accompanying materials are made available under the terms
- * of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+/*******************************************************************************
+ * Copyright (c) 2017, 2022 Alessio Di Sandro, Nick Fung.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *   Alessio Di Sandro - Implementation
- *   Nick Fung - Implementation.
- *
- */
+ *     Alessio Di Sandro - Implementation
+ *     Nick Fung - Implementation
+ *******************************************************************************/
 package edu.toronto.cs.se.modelepedia.gsn;
 
 /**
@@ -18,7 +20,7 @@ package edu.toronto.cs.se.modelepedia.gsn;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link edu.toronto.cs.se.modelepedia.gsn.MofNSupporter#getTarget <em>Target</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.MofNSupporter#getTarget <em>Target</em>}</li>
  * </ul>
  *
  * @see edu.toronto.cs.se.modelepedia.gsn.GSNPackage#getMofNSupporter()
@@ -29,7 +31,7 @@ public interface MofNSupporter extends SupportConnector {
   /**
    * Returns the value of the '<em><b>Target</b></em>' attribute. The default value is <code>"1"</code>. <!--
    * begin-user-doc --> <!-- end-user-doc -->
-   * 
+   *
    * @return the value of the '<em>Target</em>' attribute.
    * @see #setTarget(long)
    * @see edu.toronto.cs.se.modelepedia.gsn.GSNPackage#getMofNSupporter_Target()
@@ -39,11 +41,9 @@ public interface MofNSupporter extends SupportConnector {
   long getTarget();
 
   /**
-   * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.gsn.MofNSupporter#getTarget <em>Target</em>}'
-   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
-   * @param value
-   *          the new value of the '<em>Target</em>' attribute.
+   * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.gsn.MofNSupporter#getTarget <em>Target</em>}' attribute.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * @param value the new value of the '<em>Target</em>' attribute.
    * @see #getTarget()
    * @generated
    */

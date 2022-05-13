@@ -1,14 +1,15 @@
-/**
- * Copyright (c) 2012-2022 Alessio Di Sandro, Marsha Chechik, Nick Fung.
- * All rights reserved. This program and the accompanying materials are made available under the terms
- * of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+/*******************************************************************************
+ * Copyright (c) 2020, 2022 Alessio Di Sandro.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *   Alessio Di Sandro - Implementation
- *   Nick Fung - Implementation.
- *
- */
+ *     Alessio Di Sandro - Implementation
+ *******************************************************************************/
 package edu.toronto.cs.se.modelepedia.gsn;
 
 import org.eclipse.emf.common.util.EList;
@@ -20,7 +21,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link edu.toronto.cs.se.modelepedia.gsn.EnumDomain#getValues <em>Values</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.EnumDomain#getValues <em>Values</em>}</li>
  * </ul>
  *
  * @see edu.toronto.cs.se.modelepedia.gsn.GSNPackage#getEnumDomain()
@@ -29,9 +30,9 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface EnumDomain extends Domain {
   /**
-   * Returns the value of the '<em><b>Values</b></em>' attribute list. The list contents are of type
-   * {@link java.lang.String}. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * Returns the value of the '<em><b>Values</b></em>' attribute list.
+   * The list contents are of type {@link java.lang.String}.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @return the value of the '<em>Values</em>' attribute list.
    * @see edu.toronto.cs.se.modelepedia.gsn.GSNPackage#getEnumDomain_Values()
    * @model lower="2"

@@ -26,8 +26,7 @@ public class PropertyBuilder extends GSNBuilder {
     super(gsnRootModelObj);
   }
 
-  public void addPropertyElement(PropertyDecompositionElement propertyElem, String reasonerName, Property property) {
-    propertyElem.setReasonerName(reasonerName);
+  public void addPropertyElement(PropertyDecompositionElement propertyElem, Property property) {
     propertyElem.setProperty(property);
   }
 
@@ -42,10 +41,10 @@ public class PropertyBuilder extends GSNBuilder {
     return property;
   }
 
-  public PropertyGoal createPropertyGoal(String id, String description, String reasonerName, Property property) {
+  public PropertyGoal createPropertyGoal(String id, String description, Property property) {
     var goal = this.factory.createPropertyGoal();
     addGoal(goal, id, description);
-    addPropertyElement(goal, reasonerName, property);
+    addPropertyElement(goal, property);
 
     return goal;
   }
@@ -54,7 +53,8 @@ public class PropertyBuilder extends GSNBuilder {
                                                               Property property) {
     var strategy = this.factory.createPropertyDecompositionStrategy();
     addStrategy(strategy, id, description);
-    addPropertyElement(strategy, reasonerName, property);
+    addPropertyElement(strategy, property);
+    strategy.setReasonerName(reasonerName);
 
     return strategy;
   }

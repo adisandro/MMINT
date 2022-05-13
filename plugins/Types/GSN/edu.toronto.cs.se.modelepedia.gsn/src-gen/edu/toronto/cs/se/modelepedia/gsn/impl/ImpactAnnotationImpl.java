@@ -1,14 +1,16 @@
-/**
- * Copyright (c) 2012-2022 Alessio Di Sandro, Marsha Chechik, Nick Fung.
- * All rights reserved. This program and the accompanying materials are made available under the terms
- * of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+/*******************************************************************************
+ * Copyright (c) 2017, 2022 Alessio Di Sandro, Nick Fung.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *   Alessio Di Sandro - Implementation
- *   Nick Fung - Implementation.
- *
- */
+ *     Alessio Di Sandro - Implementation
+ *     Nick Fung - Implementation
+ *******************************************************************************/
 package edu.toronto.cs.se.modelepedia.gsn.impl;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -37,7 +39,7 @@ public class ImpactAnnotationImpl extends MinimalEObjectImpl.Container implement
   /**
    * The default value of the '{@link #getType() <em>Type</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
    * -->
-   * 
+   *
    * @see #getType()
    * @generated
    * @ordered
@@ -45,18 +47,18 @@ public class ImpactAnnotationImpl extends MinimalEObjectImpl.Container implement
   protected static final ImpactType TYPE_EDEFAULT = ImpactType.REVISE;
 
   /**
-   * The cached value of the '{@link #getType() <em>Type</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @see #getType()
    * @generated
    * @ordered
    */
-  protected ImpactType type = TYPE_EDEFAULT;
+  protected ImpactType type = ImpactAnnotationImpl.TYPE_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getSource() <em>Source</em>}' attribute. <!-- begin-user-doc --> <!--
+   * The default value of the '{@link #getSource() <em>Source</em>}' attribute.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @see #getSource()
    * @generated
    * @ordered
@@ -66,16 +68,15 @@ public class ImpactAnnotationImpl extends MinimalEObjectImpl.Container implement
   /**
    * The cached value of the '{@link #getSource() <em>Source</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
    * -->
-   * 
+   *
    * @see #getSource()
    * @generated
    * @ordered
    */
-  protected String source = SOURCE_EDEFAULT;
+  protected String source = ImpactAnnotationImpl.SOURCE_EDEFAULT;
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected ImpactAnnotationImpl() {
@@ -84,7 +85,6 @@ public class ImpactAnnotationImpl extends MinimalEObjectImpl.Container implement
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -94,133 +94,123 @@ public class ImpactAnnotationImpl extends MinimalEObjectImpl.Container implement
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
   public ImpactType getType() {
-    return type;
+    return this.type;
   }
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
   public void setType(ImpactType newType) {
-    ImpactType oldType = type;
-    type = newType == null ? TYPE_EDEFAULT : newType;
+    var oldType = this.type;
+    this.type = newType == null ? ImpactAnnotationImpl.TYPE_EDEFAULT : newType;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.IMPACT_ANNOTATION__TYPE, oldType, type));
+      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.IMPACT_ANNOTATION__TYPE, oldType, this.type));
   }
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
   public String getSource() {
-    return source;
+    return this.source;
   }
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
   public void setSource(String newSource) {
-    String oldSource = source;
-    source = newSource;
+    var oldSource = this.source;
+    this.source = newSource;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.IMPACT_ANNOTATION__SOURCE, oldSource, source));
+      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.IMPACT_ANNOTATION__SOURCE, oldSource, this.source));
   }
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
-    case GSNPackage.IMPACT_ANNOTATION__TYPE:
-      return getType();
-    case GSNPackage.IMPACT_ANNOTATION__SOURCE:
-      return getSource();
+      case GSNPackage.IMPACT_ANNOTATION__TYPE:
+        return getType();
+      case GSNPackage.IMPACT_ANNOTATION__SOURCE:
+        return getSource();
     }
     return super.eGet(featureID, resolve, coreType);
   }
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
-    case GSNPackage.IMPACT_ANNOTATION__TYPE:
-      setType((ImpactType) newValue);
-      return;
-    case GSNPackage.IMPACT_ANNOTATION__SOURCE:
-      setSource((String) newValue);
-      return;
+      case GSNPackage.IMPACT_ANNOTATION__TYPE:
+        setType((ImpactType)newValue);
+        return;
+      case GSNPackage.IMPACT_ANNOTATION__SOURCE:
+        setSource((String)newValue);
+        return;
     }
     super.eSet(featureID, newValue);
   }
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
-    case GSNPackage.IMPACT_ANNOTATION__TYPE:
-      setType(TYPE_EDEFAULT);
-      return;
-    case GSNPackage.IMPACT_ANNOTATION__SOURCE:
-      setSource(SOURCE_EDEFAULT);
-      return;
+      case GSNPackage.IMPACT_ANNOTATION__TYPE:
+        setType(ImpactAnnotationImpl.TYPE_EDEFAULT);
+        return;
+      case GSNPackage.IMPACT_ANNOTATION__SOURCE:
+        setSource(ImpactAnnotationImpl.SOURCE_EDEFAULT);
+        return;
     }
     super.eUnset(featureID);
   }
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
-    case GSNPackage.IMPACT_ANNOTATION__TYPE:
-      return type != TYPE_EDEFAULT;
-    case GSNPackage.IMPACT_ANNOTATION__SOURCE:
-      return SOURCE_EDEFAULT == null ? source != null : !SOURCE_EDEFAULT.equals(source);
+      case GSNPackage.IMPACT_ANNOTATION__TYPE:
+        return this.type != ImpactAnnotationImpl.TYPE_EDEFAULT;
+      case GSNPackage.IMPACT_ANNOTATION__SOURCE:
+        return ImpactAnnotationImpl.SOURCE_EDEFAULT == null ? this.source != null : !ImpactAnnotationImpl.SOURCE_EDEFAULT.equals(this.source);
     }
     return super.eIsSet(featureID);
   }
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
   public String toString() {
-    if (eIsProxy())
-      return super.toString();
+    if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (type: ");
-    result.append(type);
+    result.append(this.type);
     result.append(", source: ");
-    result.append(source);
+    result.append(this.source);
     result.append(')');
     return result.toString();
   }

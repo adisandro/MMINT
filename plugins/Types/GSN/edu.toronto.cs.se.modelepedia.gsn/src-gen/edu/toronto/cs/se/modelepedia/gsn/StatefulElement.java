@@ -1,14 +1,16 @@
-/**
- * Copyright (c) 2012-2022 Alessio Di Sandro, Marsha Chechik, Nick Fung.
- * All rights reserved. This program and the accompanying materials are made available under the terms
- * of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+/*******************************************************************************
+ * Copyright (c) 2017, 2022 Alessio Di Sandro, Nick Fung.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *   Alessio Di Sandro - Implementation
- *   Nick Fung - Implementation.
- *
- */
+ *     Alessio Di Sandro - Implementation
+ *     Nick Fung - Implementation
+ *******************************************************************************/
 package edu.toronto.cs.se.modelepedia.gsn;
 
 import org.eclipse.emf.ecore.EObject;
@@ -30,9 +32,9 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface StatefulElement extends EObject {
   /**
-   * Returns the value of the '<em><b>State Validity</b></em>' attribute. The literals are from the enumeration
-   * {@link edu.toronto.cs.se.modelepedia.gsn.ValidityValue}. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * Returns the value of the '<em><b>State Validity</b></em>' attribute.
+   * The literals are from the enumeration {@link edu.toronto.cs.se.modelepedia.gsn.ValidityValue}.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @return the value of the '<em>State Validity</em>' attribute.
    * @see edu.toronto.cs.se.modelepedia.gsn.ValidityValue
    * @see #setStateValidity(ValidityValue)
@@ -43,11 +45,9 @@ public interface StatefulElement extends EObject {
   ValidityValue getStateValidity();
 
   /**
-   * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.gsn.StatefulElement#getStateValidity <em>State
-   * Validity</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
-   * @param value
-   *          the new value of the '<em>State Validity</em>' attribute.
+   * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.gsn.StatefulElement#getStateValidity <em>State Validity</em>}' attribute.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * @param value the new value of the '<em>State Validity</em>' attribute.
    * @see edu.toronto.cs.se.modelepedia.gsn.ValidityValue
    * @see #getStateValidity()
    * @generated

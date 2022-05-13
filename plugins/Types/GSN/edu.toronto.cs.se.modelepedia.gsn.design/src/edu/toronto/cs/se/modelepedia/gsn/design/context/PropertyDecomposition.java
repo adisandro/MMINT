@@ -315,8 +315,7 @@ public class PropertyDecomposition extends GoalDecomposition {
           subProperty = subResult.property();
           subPropQueries = subResult.queries();
         }
-        var subGoal = builder.createPropertyGoal(subGoalId + (i+numGoals), subProperty.getInformal(), reasonerName,
-                                                 subProperty);
+        var subGoal = builder.createPropertyGoal(subGoalId + (i+numGoals), subProperty.getInformal(), subProperty);
         builder.addSupporter(propStrategy, subGoal);
         for (var subPropQuery : subPropQueries) {
           createQueryContext(subGoal, subPropQuery, id, numCtx, queryContexts);

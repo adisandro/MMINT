@@ -1,14 +1,16 @@
-/**
- * Copyright (c) 2012-2022 Alessio Di Sandro, Marsha Chechik, Nick Fung.
- * All rights reserved. This program and the accompanying materials are made available under the terms
- * of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+/*******************************************************************************
+ * Copyright (c) 2017, 2022 Alessio Di Sandro, Nick Fung.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *   Alessio Di Sandro - Implementation
- *   Nick Fung - Implementation.
- *
- */
+ *     Alessio Di Sandro - Implementation
+ *     Nick Fung - Implementation
+ *******************************************************************************/
 package edu.toronto.cs.se.modelepedia.gsn;
 
 import org.eclipse.emf.ecore.EObject;
@@ -33,8 +35,8 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface ArgumentElement extends EObject {
   /**
-   * Returns the value of the '<em><b>Id</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * Returns the value of the '<em><b>Id</b></em>' attribute.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @return the value of the '<em>Id</em>' attribute.
    * @see #setId(String)
    * @see edu.toronto.cs.se.modelepedia.gsn.GSNPackage#getArgumentElement_Id()
@@ -46,7 +48,7 @@ public interface ArgumentElement extends EObject {
   /**
    * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.gsn.ArgumentElement#getId <em>Id</em>}' attribute. <!--
    * begin-user-doc --> <!-- end-user-doc -->
-   * 
+   *
    * @param value
    *          the new value of the '<em>Id</em>' attribute.
    * @see #getId()
@@ -55,8 +57,8 @@ public interface ArgumentElement extends EObject {
   void setId(String value);
 
   /**
-   * Returns the value of the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * Returns the value of the '<em><b>Description</b></em>' attribute.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @return the value of the '<em>Description</em>' attribute.
    * @see #setDescription(String)
    * @see edu.toronto.cs.se.modelepedia.gsn.GSNPackage#getArgumentElement_Description()
@@ -66,20 +68,18 @@ public interface ArgumentElement extends EObject {
   String getDescription();
 
   /**
-   * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.gsn.ArgumentElement#getDescription
-   * <em>Description</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
-   * @param value
-   *          the new value of the '<em>Description</em>' attribute.
+   * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.gsn.ArgumentElement#getDescription <em>Description</em>}' attribute.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * @param value the new value of the '<em>Description</em>' attribute.
    * @see #getDescription()
    * @generated
    */
   void setDescription(String value);
 
   /**
-   * Returns the value of the '<em><b>Content Validity</b></em>' attribute. The literals are from the enumeration
-   * {@link edu.toronto.cs.se.modelepedia.gsn.ValidityValue}. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * Returns the value of the '<em><b>Content Validity</b></em>' attribute.
+   * The literals are from the enumeration {@link edu.toronto.cs.se.modelepedia.gsn.ValidityValue}.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @return the value of the '<em>Content Validity</em>' attribute.
    * @see edu.toronto.cs.se.modelepedia.gsn.ValidityValue
    * @see #setContentValidity(ValidityValue)
@@ -90,11 +90,9 @@ public interface ArgumentElement extends EObject {
   ValidityValue getContentValidity();
 
   /**
-   * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.gsn.ArgumentElement#getContentValidity <em>Content
-   * Validity</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
-   * @param value
-   *          the new value of the '<em>Content Validity</em>' attribute.
+   * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.gsn.ArgumentElement#getContentValidity <em>Content Validity</em>}' attribute.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * @param value the new value of the '<em>Content Validity</em>' attribute.
    * @see edu.toronto.cs.se.modelepedia.gsn.ValidityValue
    * @see #getContentValidity()
    * @generated
@@ -104,7 +102,7 @@ public interface ArgumentElement extends EObject {
   /**
    * Returns the value of the '<em><b>Status</b></em>' containment reference. <!-- begin-user-doc --> <!-- end-user-doc
    * -->
-   * 
+   *
    * @return the value of the '<em>Status</em>' containment reference.
    * @see #setStatus(ImpactAnnotation)
    * @see edu.toronto.cs.se.modelepedia.gsn.GSNPackage#getArgumentElement_Status()
@@ -114,11 +112,9 @@ public interface ArgumentElement extends EObject {
   ImpactAnnotation getStatus();
 
   /**
-   * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.gsn.ArgumentElement#getStatus <em>Status</em>}'
-   * containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
-   * @param value
-   *          the new value of the '<em>Status</em>' containment reference.
+   * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.gsn.ArgumentElement#getStatus <em>Status</em>}' containment reference.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * @param value the new value of the '<em>Status</em>' containment reference.
    * @see #getStatus()
    * @generated
    */

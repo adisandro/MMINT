@@ -1,14 +1,16 @@
-/**
- * Copyright (c) 2012-2022 Alessio Di Sandro, Marsha Chechik, Nick Fung.
- * All rights reserved. This program and the accompanying materials are made available under the terms
- * of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+/*******************************************************************************
+ * Copyright (c) 2017, 2022 Alessio Di Sandro, Nick Fung.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *   Alessio Di Sandro - Implementation
- *   Nick Fung - Implementation.
- *
- */
+ *     Alessio Di Sandro - Implementation
+ *     Nick Fung - Implementation
+ *******************************************************************************/
 package edu.toronto.cs.se.modelepedia.gsn.impl;
 
 import java.util.Collection;
@@ -38,9 +40,9 @@ import edu.toronto.cs.se.modelepedia.gsn.InContextOf;
  */
 public abstract class ContextualElementImpl extends ArgumentElementImpl implements ContextualElement {
   /**
-   * The cached value of the '{@link #getContextOf() <em>Context Of</em>}' reference list. <!-- begin-user-doc --> <!--
+   * The cached value of the '{@link #getContextOf() <em>Context Of</em>}' reference list.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @see #getContextOf()
    * @generated
    * @ordered
@@ -49,7 +51,6 @@ public abstract class ContextualElementImpl extends ArgumentElementImpl implemen
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected ContextualElementImpl() {
@@ -58,7 +59,6 @@ public abstract class ContextualElementImpl extends ArgumentElementImpl implemen
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -68,104 +68,95 @@ public abstract class ContextualElementImpl extends ArgumentElementImpl implemen
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
   public EList<InContextOf> getContextOf() {
-    if (contextOf == null) {
-      contextOf = new EObjectWithInverseResolvingEList<InContextOf>(InContextOf.class, this,
-                                                                    GSNPackage.CONTEXTUAL_ELEMENT__CONTEXT_OF,
-                                                                    GSNPackage.IN_CONTEXT_OF__CONTEXT);
+    if (this.contextOf == null) {
+      this.contextOf = new EObjectWithInverseResolvingEList<>(InContextOf.class, this, GSNPackage.CONTEXTUAL_ELEMENT__CONTEXT_OF, GSNPackage.IN_CONTEXT_OF__CONTEXT);
     }
-    return contextOf;
+    return this.contextOf;
   }
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
   @Override
   public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
-    case GSNPackage.CONTEXTUAL_ELEMENT__CONTEXT_OF:
-      return ((InternalEList<InternalEObject>) (InternalEList<?>) getContextOf()).basicAdd(otherEnd, msgs);
+      case GSNPackage.CONTEXTUAL_ELEMENT__CONTEXT_OF:
+        return ((InternalEList<InternalEObject>)(InternalEList<?>)getContextOf()).basicAdd(otherEnd, msgs);
     }
     return super.eInverseAdd(otherEnd, featureID, msgs);
   }
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
-    case GSNPackage.CONTEXTUAL_ELEMENT__CONTEXT_OF:
-      return ((InternalEList<?>) getContextOf()).basicRemove(otherEnd, msgs);
+      case GSNPackage.CONTEXTUAL_ELEMENT__CONTEXT_OF:
+        return ((InternalEList<?>)getContextOf()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
-    case GSNPackage.CONTEXTUAL_ELEMENT__CONTEXT_OF:
-      return getContextOf();
+      case GSNPackage.CONTEXTUAL_ELEMENT__CONTEXT_OF:
+        return getContextOf();
     }
     return super.eGet(featureID, resolve, coreType);
   }
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
-    case GSNPackage.CONTEXTUAL_ELEMENT__CONTEXT_OF:
-      getContextOf().clear();
-      getContextOf().addAll((Collection<? extends InContextOf>) newValue);
-      return;
+      case GSNPackage.CONTEXTUAL_ELEMENT__CONTEXT_OF:
+        getContextOf().clear();
+        getContextOf().addAll((Collection<? extends InContextOf>)newValue);
+        return;
     }
     super.eSet(featureID, newValue);
   }
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
-    case GSNPackage.CONTEXTUAL_ELEMENT__CONTEXT_OF:
-      getContextOf().clear();
-      return;
+      case GSNPackage.CONTEXTUAL_ELEMENT__CONTEXT_OF:
+        getContextOf().clear();
+        return;
     }
     super.eUnset(featureID);
   }
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
-    case GSNPackage.CONTEXTUAL_ELEMENT__CONTEXT_OF:
-      return contextOf != null && !contextOf.isEmpty();
+      case GSNPackage.CONTEXTUAL_ELEMENT__CONTEXT_OF:
+        return this.contextOf != null && !this.contextOf.isEmpty();
     }
     return super.eIsSet(featureID);
   }

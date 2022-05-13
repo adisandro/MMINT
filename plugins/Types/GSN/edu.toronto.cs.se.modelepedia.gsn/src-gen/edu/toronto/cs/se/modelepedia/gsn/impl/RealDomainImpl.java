@@ -1,14 +1,15 @@
-/**
- * Copyright (c) 2012-2022 Alessio Di Sandro, Marsha Chechik, Nick Fung.
- * All rights reserved. This program and the accompanying materials are made available under the terms
- * of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+/*******************************************************************************
+ * Copyright (c) 2020, 2022 Alessio Di Sandro.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *   Alessio Di Sandro - Implementation
- *   Nick Fung - Implementation.
- *
- */
+ *     Alessio Di Sandro - Implementation
+ *******************************************************************************/
 package edu.toronto.cs.se.modelepedia.gsn.impl;
 
 import java.util.ArrayList;
@@ -33,17 +34,17 @@ import edu.toronto.cs.se.modelepedia.gsn.ValueDomain;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.RealDomainImpl#getLowerBound <em>Lower Bound</em>}</li>
- * <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.RealDomainImpl#getUpperBound <em>Upper Bound</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.RealDomainImpl#getLowerBound <em>Lower Bound</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.RealDomainImpl#getUpperBound <em>Upper Bound</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class RealDomainImpl extends DomainImpl implements RealDomain {
   /**
-   * The default value of the '{@link #getLowerBound() <em>Lower Bound</em>}' attribute. <!-- begin-user-doc --> <!--
+   * The default value of the '{@link #getLowerBound() <em>Lower Bound</em>}' attribute.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @see #getLowerBound()
    * @generated
    * @ordered
@@ -51,19 +52,19 @@ public class RealDomainImpl extends DomainImpl implements RealDomain {
   protected static final double LOWER_BOUND_EDEFAULT = 0.0;
 
   /**
-   * The cached value of the '{@link #getLowerBound() <em>Lower Bound</em>}' attribute. <!-- begin-user-doc --> <!--
+   * The cached value of the '{@link #getLowerBound() <em>Lower Bound</em>}' attribute.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @see #getLowerBound()
    * @generated
    * @ordered
    */
-  protected double lowerBound = LOWER_BOUND_EDEFAULT;
+  protected double lowerBound = RealDomainImpl.LOWER_BOUND_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getUpperBound() <em>Upper Bound</em>}' attribute. <!-- begin-user-doc --> <!--
+   * The default value of the '{@link #getUpperBound() <em>Upper Bound</em>}' attribute.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @see #getUpperBound()
    * @generated
    * @ordered
@@ -71,18 +72,17 @@ public class RealDomainImpl extends DomainImpl implements RealDomain {
   protected static final double UPPER_BOUND_EDEFAULT = 0.0;
 
   /**
-   * The cached value of the '{@link #getUpperBound() <em>Upper Bound</em>}' attribute. <!-- begin-user-doc --> <!--
+   * The cached value of the '{@link #getUpperBound() <em>Upper Bound</em>}' attribute.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @see #getUpperBound()
    * @generated
    * @ordered
    */
-  protected double upperBound = UPPER_BOUND_EDEFAULT;
+  protected double upperBound = RealDomainImpl.UPPER_BOUND_EDEFAULT;
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected RealDomainImpl() {
@@ -91,7 +91,6 @@ public class RealDomainImpl extends DomainImpl implements RealDomain {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -101,134 +100,122 @@ public class RealDomainImpl extends DomainImpl implements RealDomain {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
   public double getLowerBound() {
-    return lowerBound;
+    return this.lowerBound;
   }
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
   public void setLowerBound(double newLowerBound) {
-    double oldLowerBound = lowerBound;
-    lowerBound = newLowerBound;
+    var oldLowerBound = this.lowerBound;
+    this.lowerBound = newLowerBound;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.REAL_DOMAIN__LOWER_BOUND, oldLowerBound,
-                                    lowerBound));
+      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.REAL_DOMAIN__LOWER_BOUND, oldLowerBound, this.lowerBound));
   }
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
   public double getUpperBound() {
-    return upperBound;
+    return this.upperBound;
   }
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
   public void setUpperBound(double newUpperBound) {
-    double oldUpperBound = upperBound;
-    upperBound = newUpperBound;
+    var oldUpperBound = this.upperBound;
+    this.upperBound = newUpperBound;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.REAL_DOMAIN__UPPER_BOUND, oldUpperBound,
-                                    upperBound));
+      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.REAL_DOMAIN__UPPER_BOUND, oldUpperBound, this.upperBound));
   }
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
-    case GSNPackage.REAL_DOMAIN__LOWER_BOUND:
-      return getLowerBound();
-    case GSNPackage.REAL_DOMAIN__UPPER_BOUND:
-      return getUpperBound();
+      case GSNPackage.REAL_DOMAIN__LOWER_BOUND:
+        return getLowerBound();
+      case GSNPackage.REAL_DOMAIN__UPPER_BOUND:
+        return getUpperBound();
     }
     return super.eGet(featureID, resolve, coreType);
   }
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
-    case GSNPackage.REAL_DOMAIN__LOWER_BOUND:
-      setLowerBound((Double) newValue);
-      return;
-    case GSNPackage.REAL_DOMAIN__UPPER_BOUND:
-      setUpperBound((Double) newValue);
-      return;
+      case GSNPackage.REAL_DOMAIN__LOWER_BOUND:
+        setLowerBound((Double)newValue);
+        return;
+      case GSNPackage.REAL_DOMAIN__UPPER_BOUND:
+        setUpperBound((Double)newValue);
+        return;
     }
     super.eSet(featureID, newValue);
   }
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
-    case GSNPackage.REAL_DOMAIN__LOWER_BOUND:
-      setLowerBound(LOWER_BOUND_EDEFAULT);
-      return;
-    case GSNPackage.REAL_DOMAIN__UPPER_BOUND:
-      setUpperBound(UPPER_BOUND_EDEFAULT);
-      return;
+      case GSNPackage.REAL_DOMAIN__LOWER_BOUND:
+        setLowerBound(RealDomainImpl.LOWER_BOUND_EDEFAULT);
+        return;
+      case GSNPackage.REAL_DOMAIN__UPPER_BOUND:
+        setUpperBound(RealDomainImpl.UPPER_BOUND_EDEFAULT);
+        return;
     }
     super.eUnset(featureID);
   }
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
-    case GSNPackage.REAL_DOMAIN__LOWER_BOUND:
-      return lowerBound != LOWER_BOUND_EDEFAULT;
-    case GSNPackage.REAL_DOMAIN__UPPER_BOUND:
-      return upperBound != UPPER_BOUND_EDEFAULT;
+      case GSNPackage.REAL_DOMAIN__LOWER_BOUND:
+        return this.lowerBound != RealDomainImpl.LOWER_BOUND_EDEFAULT;
+      case GSNPackage.REAL_DOMAIN__UPPER_BOUND:
+        return this.upperBound != RealDomainImpl.UPPER_BOUND_EDEFAULT;
     }
     return super.eIsSet(featureID);
   }
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public String toStringGen() {
-    if (eIsProxy())
-      return super.toString();
+    if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (lowerBound: ");
-    result.append(lowerBound);
+    result.append(this.lowerBound);
     result.append(", upperBound: ");
-    result.append(upperBound);
+    result.append(this.upperBound);
     result.append(')');
     return result.toString();
   }

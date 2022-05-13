@@ -221,12 +221,16 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PropertyDecompositionElement" abstract="true">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="reasonerName" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="property" lowerBound="1"
         eType="#//Property" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PropertyDecompositionStrategy" eSuperTypes="#//DecompositionStrategy #//PropertyDecompositionElement"/>
-  <eClassifiers xsi:type="ecore:EClass" name="PropertyGoal" eSuperTypes="#//Goal #//PropertyDecompositionElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PropertyDecompositionStrategy" eSuperTypes="#//DecompositionStrategy #//PropertyDecompositionElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="reasonerName" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PropertyGoal" eSuperTypes="#//Goal #//PropertyDecompositionElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="valid" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="hint" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="Exception" instanceClassName="java.lang.Exception"/>
 </ecore:EPackage>

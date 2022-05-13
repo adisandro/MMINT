@@ -1,14 +1,15 @@
-/**
- * Copyright (c) 2012-2022 Alessio Di Sandro, Marsha Chechik, Nick Fung.
- * All rights reserved. This program and the accompanying materials are made available under the terms
- * of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+/*******************************************************************************
+ * Copyright (c) 2020, 2022 Alessio Di Sandro.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *   Alessio Di Sandro - Implementation
- *   Nick Fung - Implementation.
- *
- */
+ *     Alessio Di Sandro - Implementation
+ *******************************************************************************/
 package edu.toronto.cs.se.modelepedia.gsn.provider;
 
 import java.util.Collection;
@@ -27,13 +28,13 @@ import edu.toronto.cs.se.modelepedia.gsn.RealDomain;
 /**
  * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.gsn.RealDomain} object. <!--
  * begin-user-doc --> <!-- end-user-doc -->
- * 
+ *
  * @generated
  */
 public class RealDomainItemProvider extends DomainItemProvider {
   /**
-   * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * This constructs an instance from a factory and a notifier.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   public RealDomainItemProvider(AdapterFactory adapterFactory) {
@@ -41,58 +42,66 @@ public class RealDomainItemProvider extends DomainItemProvider {
   }
 
   /**
-   * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * This returns the property descriptors for the adapted class.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   @Override
   public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-    if (itemPropertyDescriptors == null) {
+    if (this.itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
       addLowerBoundPropertyDescriptor(object);
       addUpperBoundPropertyDescriptor(object);
     }
-    return itemPropertyDescriptors;
+    return this.itemPropertyDescriptors;
   }
 
   /**
-   * This adds a property descriptor for the Lower Bound feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * This adds a property descriptor for the Lower Bound feature.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   protected void addLowerBoundPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-                                                             getResourceLocator(), getString(
-                                                                                             "_UI_RealDomain_lowerBound_feature"),
-                                                             getString("_UI_PropertyDescriptor_description",
-                                                                       "_UI_RealDomain_lowerBound_feature",
-                                                                       "_UI_RealDomain_type"),
-                                                             GSNPackage.Literals.REAL_DOMAIN__LOWER_BOUND, true, false,
-                                                             false, ItemPropertyDescriptor.REAL_VALUE_IMAGE, null,
-                                                             null));
+    this.itemPropertyDescriptors.add
+      (createItemPropertyDescriptor
+        (((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
+         getResourceLocator(),
+         getString("_UI_RealDomain_lowerBound_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_RealDomain_lowerBound_feature", "_UI_RealDomain_type"),
+         GSNPackage.Literals.REAL_DOMAIN__LOWER_BOUND,
+         true,
+         false,
+         false,
+         ItemPropertyDescriptor.REAL_VALUE_IMAGE,
+         null,
+         null));
   }
 
   /**
-   * This adds a property descriptor for the Upper Bound feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * This adds a property descriptor for the Upper Bound feature.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   protected void addUpperBoundPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-                                                             getResourceLocator(), getString(
-                                                                                             "_UI_RealDomain_upperBound_feature"),
-                                                             getString("_UI_PropertyDescriptor_description",
-                                                                       "_UI_RealDomain_upperBound_feature",
-                                                                       "_UI_RealDomain_type"),
-                                                             GSNPackage.Literals.REAL_DOMAIN__UPPER_BOUND, true, false,
-                                                             false, ItemPropertyDescriptor.REAL_VALUE_IMAGE, null,
-                                                             null));
+    this.itemPropertyDescriptors.add
+      (createItemPropertyDescriptor
+        (((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
+         getResourceLocator(),
+         getString("_UI_RealDomain_upperBound_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_RealDomain_upperBound_feature", "_UI_RealDomain_type"),
+         GSNPackage.Literals.REAL_DOMAIN__UPPER_BOUND,
+         true,
+         false,
+         false,
+         ItemPropertyDescriptor.REAL_VALUE_IMAGE,
+         null,
+         null));
   }
 
   /**
-   * This returns RealDomain.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * This returns RealDomain.gif.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   @Override
@@ -101,20 +110,20 @@ public class RealDomainItemProvider extends DomainItemProvider {
   }
 
   /**
-   * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * This returns the label text for the adapted class.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   @Override
   public String getText(Object object) {
-    RealDomain realDomain = (RealDomain) object;
+    var realDomain = (RealDomain)object;
     return getString("_UI_RealDomain_type") + " " + realDomain.getLowerBound();
   }
 
   /**
-   * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating a
-   * viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * This handles model notifications by calling {@link #updateChildren} to update any cached
+   * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   @Override
@@ -122,18 +131,18 @@ public class RealDomainItemProvider extends DomainItemProvider {
     updateChildren(notification);
 
     switch (notification.getFeatureID(RealDomain.class)) {
-    case GSNPackage.REAL_DOMAIN__LOWER_BOUND:
-    case GSNPackage.REAL_DOMAIN__UPPER_BOUND:
-      fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-      return;
+      case GSNPackage.REAL_DOMAIN__LOWER_BOUND:
+      case GSNPackage.REAL_DOMAIN__UPPER_BOUND:
+        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+        return;
     }
     super.notifyChanged(notification);
   }
 
   /**
-   * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created under
-   * this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+   * that can be created under this object.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   @Override

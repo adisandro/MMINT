@@ -219,7 +219,7 @@ public class MIDRegistry {
     return modelObjUri.substring(0, sep);
   }
 
-	public static @NonNull String getModelUri(@NonNull EObject modelObj) {
+	public static String getModelUri(EObject modelObj) {
 
 		String modelUri;
 		if (modelObj instanceof EClass || modelObj instanceof EStructuralFeature) { // MIDLevel.TYPES
@@ -239,7 +239,7 @@ public class MIDRegistry {
 		return modelUri;
 	}
 
-	public static @NonNull String getModelElementUri(@NonNull EObject modelObj) {
+	public static String getModelElementUri(EObject modelObj) {
 
 		String modelElemUri;
 		var emfUri = EcoreUtil.getURI(modelObj).toString();

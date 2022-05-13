@@ -71,7 +71,6 @@ public class GSNLeanReasoner extends LeanReasoner implements IGSNDecompositionTr
     var subProperties = strategy.getSupportedBy().stream()
       .map(SupportedBy::getTarget)
       .filter(g -> g instanceof PropertyGoal)
-      .filter(g -> ((PropertyGoal) g).getReasonerName().equals(getName()))
       .map(g -> ((PropertyGoal) g).getProperty().getFormal())
       .filter(p -> p != null)
       .collect(Collectors.toList());
@@ -106,6 +105,8 @@ public class GSNLeanReasoner extends LeanReasoner implements IGSNDecompositionTr
     var instanceMID = gsnModel.getMIDContainer();
     var relatedModel = instanceMID.<Model>getExtendibleElement(relatedModelPath);
     var invalidMsg = "The property decomposition is not valid";
+    var badGoals = new ArrayList<PropertyGoal>();
+    var hintProperties = new ArrayList<String>();
     boolean valid;
     String justDesc;
     if (relatedModel == null) { // custom Lean encoding file
@@ -142,8 +143,6 @@ public class GSNLeanReasoner extends LeanReasoner implements IGSNDecompositionTr
           .filter(l -> l.startsWith(LeanReasoner.LEAN_COMMENT))
           .map(l -> l.substring(LeanReasoner.LEAN_COMMENT.length()).stripLeading())
           .collect(Collectors.toList());
-        var badProperties = new ArrayList<String>();
-        var hintProperties = new ArrayList<String>();
         List<String> properties;
         for (var feedback : feedbackLines) {
           if (feedback.startsWith(GSNLeanReasoner.FEEDBACK_BAD_PROPERTY)) {
@@ -156,7 +155,7 @@ public class GSNLeanReasoner extends LeanReasoner implements IGSNDecompositionTr
               if (!(badGoal instanceof PropertyGoal badPropGoal)) {
                 continue;
               }
-              badProperties.add(badPropGoal.getProperty().getInformal());
+              badGoals.add(badPropGoal);
             }
             catch (NumberFormatException e) {
               // ignore feedback
@@ -170,7 +169,8 @@ public class GSNLeanReasoner extends LeanReasoner implements IGSNDecompositionTr
             hintProperties.add(hint);
           }
         }
-        if (!badProperties.isEmpty()) {
+        if (!badGoals.isEmpty()) {
+          var badProperties = badGoals.stream().map(g -> g.getProperty().getInformal()).collect(Collectors.toList());
           var propertyWord = (badProperties.size() > 1) ? "properties" : "property";
           var objWord = (badProperties.size() > 1) ? "them" : "it";
           invalidMsg += " because of the " + propertyWord + " '" + String.join(", ", badProperties) +
@@ -192,6 +192,13 @@ public class GSNLeanReasoner extends LeanReasoner implements IGSNDecompositionTr
     WorkspaceSynchronizer.getFile(instanceMID.eResource()).getParent()
       .refreshLocal(IResource.DEPTH_ONE, new NullProgressMonitor());
     if (!valid) {
+      /* TODO tentative repair plan:
+       * 1) Create a PropertyRepair object for each bad goal, containing an optional hint
+       * 2) Highlight somehow -> new diagram shape/color?
+       * 3) Create a new context action on PropertyGoals with PropertyRepair, to launch a repair
+       * 4) Repair replaces the old property with the hint, or asks the user for a new property,
+       *    then deletes the previous 'disproven' context and revalidates
+       */
       throw new MMINTException(invalidMsg);
     }
   }

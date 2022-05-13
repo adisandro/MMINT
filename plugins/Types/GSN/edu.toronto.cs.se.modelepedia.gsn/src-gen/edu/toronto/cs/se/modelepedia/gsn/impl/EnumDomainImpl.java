@@ -1,14 +1,15 @@
-/**
- * Copyright (c) 2012-2022 Alessio Di Sandro, Marsha Chechik, Nick Fung.
- * All rights reserved. This program and the accompanying materials are made available under the terms
- * of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+/*******************************************************************************
+ * Copyright (c) 2020, 2022 Alessio Di Sandro.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *   Alessio Di Sandro - Implementation
- *   Nick Fung - Implementation.
- *
- */
+ *     Alessio Di Sandro - Implementation
+ *******************************************************************************/
 package edu.toronto.cs.se.modelepedia.gsn.impl;
 
 import java.util.Collection;
@@ -32,16 +33,16 @@ import edu.toronto.cs.se.modelepedia.gsn.ValueDomain;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.EnumDomainImpl#getValues <em>Values</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.EnumDomainImpl#getValues <em>Values</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class EnumDomainImpl extends DomainImpl implements EnumDomain {
   /**
-   * The cached value of the '{@link #getValues() <em>Values</em>}' attribute list. <!-- begin-user-doc --> <!--
+   * The cached value of the '{@link #getValues() <em>Values</em>}' attribute list.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @see #getValues()
    * @generated
    * @ordered
@@ -50,7 +51,6 @@ public class EnumDomainImpl extends DomainImpl implements EnumDomain {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected EnumDomainImpl() {
@@ -59,7 +59,6 @@ public class EnumDomainImpl extends DomainImpl implements EnumDomain {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -69,89 +68,82 @@ public class EnumDomainImpl extends DomainImpl implements EnumDomain {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
   public EList<String> getValues() {
-    if (values == null) {
-      values = new EDataTypeUniqueEList<String>(String.class, this, GSNPackage.ENUM_DOMAIN__VALUES);
+    if (this.values == null) {
+      this.values = new EDataTypeUniqueEList<>(String.class, this, GSNPackage.ENUM_DOMAIN__VALUES);
     }
-    return values;
+    return this.values;
   }
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
-    case GSNPackage.ENUM_DOMAIN__VALUES:
-      return getValues();
+      case GSNPackage.ENUM_DOMAIN__VALUES:
+        return getValues();
     }
     return super.eGet(featureID, resolve, coreType);
   }
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
-    case GSNPackage.ENUM_DOMAIN__VALUES:
-      getValues().clear();
-      getValues().addAll((Collection<? extends String>) newValue);
-      return;
+      case GSNPackage.ENUM_DOMAIN__VALUES:
+        getValues().clear();
+        getValues().addAll((Collection<? extends String>)newValue);
+        return;
     }
     super.eSet(featureID, newValue);
   }
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
-    case GSNPackage.ENUM_DOMAIN__VALUES:
-      getValues().clear();
-      return;
+      case GSNPackage.ENUM_DOMAIN__VALUES:
+        getValues().clear();
+        return;
     }
     super.eUnset(featureID);
   }
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
-    case GSNPackage.ENUM_DOMAIN__VALUES:
-      return values != null && !values.isEmpty();
+      case GSNPackage.ENUM_DOMAIN__VALUES:
+        return this.values != null && !this.values.isEmpty();
     }
     return super.eIsSet(featureID);
   }
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public String toStringGen() {
-    if (eIsProxy())
-      return super.toString();
+    if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (values: ");
-    result.append(values);
+    result.append(this.values);
     result.append(')');
     return result.toString();
   }
