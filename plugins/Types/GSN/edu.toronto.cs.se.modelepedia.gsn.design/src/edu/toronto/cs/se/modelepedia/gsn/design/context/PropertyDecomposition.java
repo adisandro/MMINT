@@ -12,27 +12,20 @@
  *******************************************************************************/
 package edu.toronto.cs.se.modelepedia.gsn.design.context;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.ui.model.BaseWorkbenchContentProvider;
 import org.eclipse.ui.model.WorkbenchLabelProvider;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ui.FileExtensionsDialogFilter;
 import edu.toronto.cs.se.mmint.mid.ui.FilesOnlyDialogSelectionValidator;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
@@ -46,7 +39,6 @@ import edu.toronto.cs.se.modelepedia.gsn.Property;
 import edu.toronto.cs.se.modelepedia.gsn.PropertyGoal;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
 import edu.toronto.cs.se.modelepedia.gsn.Strategy;
-import edu.toronto.cs.se.modelepedia.gsn.design.Activator;
 import edu.toronto.cs.se.modelepedia.gsn.reasoning.IGSNDecompositionTrait;
 import edu.toronto.cs.se.modelepedia.gsn.reasoning.IGSNLeanEncoder.PropertyTemplate;
 import edu.toronto.cs.se.modelepedia.gsn.util.PropertyBuilder;
@@ -64,33 +56,6 @@ public class PropertyDecomposition extends GoalDecomposition {
       super(domain, decomposed, new PropertyBuilder((SafetyCase) decomposed.eContainer()));
     }
 
-    private Map<EClass, List<EObject>> categorizeModelObjects(Model model,
-                                                              Map<String, List<PropertyTemplate>> templates) {
-      var validClasses = templates.values().stream()
-        .flatMap(l -> l.stream())
-        .flatMap(t -> t.variables.stream())
-        .flatMap(v -> v.validTypes.stream())
-        .collect(Collectors.toSet());
-      if (validClasses.isEmpty()) {
-        return new HashMap<>();
-      }
-      var modelObjs = new HashMap<EClass, List<EObject>>();
-      for (var iter = model.getEMFInstanceRoot().eAllContents(); iter.hasNext();) {
-        var modelObj = iter.next();
-        var modelObjClass = modelObj.eClass();
-        if (validClasses.contains(modelObjClass)) {
-          modelObjs.computeIfAbsent(modelObjClass, k -> new ArrayList<>()).add(modelObj);
-        }
-        for (var modelObjSuperclass : modelObjClass.getEAllSuperTypes()) {
-          if (validClasses.contains(modelObjSuperclass)) {
-            modelObjs.computeIfAbsent(modelObjSuperclass, k -> new ArrayList<>()).add(modelObj);
-          }
-        }
-      }
-
-      return modelObjs;
-    }
-
     private String getEncodingFile(String title, String message) throws MIDDialogCancellation {
       var dialog = new MIDTreeSelectionDialog(new WorkbenchLabelProvider(), new BaseWorkbenchContentProvider(),
                                               ResourcesPlugin.getWorkspace().getRoot());
@@ -99,23 +64,6 @@ public class PropertyDecomposition extends GoalDecomposition {
       var encodingFile = (IFile) MIDDialogs.openTreeDialog(dialog, title, message);
 
       return encodingFile.getFullPath().toString();
-    }
-
-    private PropertyTemplate selectTemplate(String title, String message, Map<String, List<PropertyTemplate>> templates)
-                                           throws MIDDialogCancellation {
-      if (templates.isEmpty()) {
-        return PropertyTemplate.CUSTOM;
-      }
-      var labelProvider = LabelProvider.createTextProvider(t -> {
-        return (t instanceof PropertyTemplate) ? ((PropertyTemplate) t).informal : (String) t;
-      });
-      var contentProvider = new TemplatePropertyContentProvider(templates);
-      var dialog = new MIDTreeSelectionDialog(labelProvider, contentProvider, templates);
-      dialog.setValidator(selection -> (Arrays.stream(selection).anyMatch(s -> s instanceof String)) ?
-                                         new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Property not selected") :
-                                         new Status(IStatus.OK, Activator.PLUGIN_ID, ""));
-
-      return (PropertyTemplate) MIDDialogs.openTreeDialogWithDefault(dialog, title, message);
     }
 
     private void createQueryContext(DecomposableCoreElement contextualized, String query, String id, int numCtx,
@@ -160,7 +108,7 @@ public class PropertyDecomposition extends GoalDecomposition {
         var relatedModel = relatedModelOpt.get();
         try {
           templates = reasoner.getPropertyTemplates(relatedModel);
-          modelObjs = categorizeModelObjects(relatedModel, templates);
+          modelObjs = DecompositionUtils.categorizeModelObjects(relatedModel, templates);
           relatedModelPath = relatedModel.getUri();
         }
         catch (MMINTException e) { // no model encoder: ask to manually provide an encoding
@@ -172,7 +120,7 @@ public class PropertyDecomposition extends GoalDecomposition {
         property = propDecomposed.getProperty();
       }
       else {
-        var template = selectTemplate(title, "Select the property to be decomposed", templates);
+        var template = DecompositionUtils.selectTemplate(title, "Select the property to be decomposed", templates);
         if (template == PropertyTemplate.CUSTOM) {
           property = builder.createProperty(title, "Insert the " + reasonerName + " property to be decomposed",
                                             customMsg);
@@ -237,7 +185,7 @@ public class PropertyDecomposition extends GoalDecomposition {
       var numProperties = Integer.parseInt(MIDDialogs.getStringInput(title, "Insert the number of sub-properties",
                                                                      null).strip());
       for (var i = 0; i < numProperties; i++) {
-        var subTemplate = selectTemplate(title, "Select the sub-property #" + (i+1), templates);
+        var subTemplate = DecompositionUtils.selectTemplate(title, "Select the sub-property #" + (i+1), templates);
         Property subProperty;
         List<String> subPropQueries = List.of();
         if (subTemplate == PropertyTemplate.CUSTOM) {

@@ -12,18 +12,33 @@
  *******************************************************************************/
 package edu.toronto.cs.se.modelepedia.gsn.design.context;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jface.viewers.LabelProvider;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
+import edu.toronto.cs.se.mmint.mid.ui.MIDTreeSelectionDialog;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 import edu.toronto.cs.se.modelepedia.gsn.Goal;
 import edu.toronto.cs.se.modelepedia.gsn.PropertyGoal;
 import edu.toronto.cs.se.modelepedia.gsn.Strategy;
+import edu.toronto.cs.se.modelepedia.gsn.design.Activator;
+import edu.toronto.cs.se.modelepedia.gsn.reasoning.IGSNLeanEncoder.PropertyTemplate;
 
 public class DecompositionUtils {
 
@@ -94,5 +109,50 @@ public class DecompositionUtils {
     }
 
     return Optional.empty();
+  }
+
+  public static Map<EClass, List<EObject>> categorizeModelObjects(Model model,
+                                                            Map<String, List<PropertyTemplate>> templates) {
+    var validClasses = templates.values().stream()
+      .flatMap(l -> l.stream())
+      .flatMap(t -> t.variables.stream())
+      .flatMap(v -> v.validTypes.stream())
+      .collect(Collectors.toSet());
+    if (validClasses.isEmpty()) {
+      return new HashMap<>();
+    }
+    var modelObjs = new HashMap<EClass, List<EObject>>();
+    for (var iter = model.getEMFInstanceRoot().eAllContents(); iter.hasNext();) {
+      var modelObj = iter.next();
+      var modelObjClass = modelObj.eClass();
+      if (validClasses.contains(modelObjClass)) {
+        modelObjs.computeIfAbsent(modelObjClass, k -> new ArrayList<>()).add(modelObj);
+      }
+      for (var modelObjSuperclass : modelObjClass.getEAllSuperTypes()) {
+        if (validClasses.contains(modelObjSuperclass)) {
+          modelObjs.computeIfAbsent(modelObjSuperclass, k -> new ArrayList<>()).add(modelObj);
+        }
+      }
+    }
+
+    return modelObjs;
+  }
+
+  public static PropertyTemplate selectTemplate(String title, String message,
+                                                Map<String, List<PropertyTemplate>> templates)
+                                                  throws MIDDialogCancellation {
+    if (templates.isEmpty()) {
+      return PropertyTemplate.CUSTOM;
+    }
+    var labelProvider = LabelProvider.createTextProvider(t -> {
+      return (t instanceof PropertyTemplate) ? ((PropertyTemplate) t).informal : (String) t;
+    });
+    var contentProvider = new TemplatePropertyContentProvider(templates);
+    var dialog = new MIDTreeSelectionDialog(labelProvider, contentProvider, templates);
+    dialog.setValidator(selection -> (Arrays.stream(selection).anyMatch(s -> s instanceof String)) ?
+                                       new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Property not selected") :
+                                       new Status(IStatus.OK, Activator.PLUGIN_ID, ""));
+
+    return (PropertyTemplate) MIDDialogs.openTreeDialogWithDefault(dialog, title, message);
   }
 }
