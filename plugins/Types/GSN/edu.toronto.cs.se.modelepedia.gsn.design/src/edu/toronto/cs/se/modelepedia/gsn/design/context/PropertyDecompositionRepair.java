@@ -13,7 +13,6 @@
 package edu.toronto.cs.se.modelepedia.gsn.design.context;
 
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -95,17 +94,19 @@ public class PropertyDecompositionRepair extends AbstractExternalJavaAction {
                                               customMsg);
       }
       else {
-        var queryCache = new HashMap<String, List<Object>>();
-        var result = template.bindVariables(title, modelObjs, queryCache);
+        var result = template.bindVariables(title, modelObjs, Map.of());
         property = result.property();
         propQueries = result.queries();
       }
       this.invalidGoal.setProperty(property);
+      this.invalidGoal.setDescription(property.getInformal());
+      //TODO MMINT[GSN] Manage query context nodes (previous and repair)
     }
 
     private void repairWithHint(String hint) {
       this.invalidGoal.getProperty().setFormal(hint);
       this.invalidGoal.setHint(null);
+      //TODO MMINT[GSN] Create interface to figure out goal description from hint
     }
 
     @Override
