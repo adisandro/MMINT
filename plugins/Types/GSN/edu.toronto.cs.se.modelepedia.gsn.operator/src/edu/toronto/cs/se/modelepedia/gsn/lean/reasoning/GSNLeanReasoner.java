@@ -104,7 +104,7 @@ public class GSNLeanReasoner extends LeanReasoner implements IGSNDecompositionTr
     var gsnModel = MIDDiagramUtils.getInstanceMIDModelFromModelEditor(strategy);
     var instanceMID = gsnModel.getMIDContainer();
     var relatedModel = instanceMID.<Model>getExtendibleElement(relatedModelPath);
-    var invalidMsg = "The property decomposition is not valid";
+    var invalidMsg = "The property decomposition cannot be proven";
     var badGoals = new ArrayList<PropertyGoal>();
     var hintProperties = new ArrayList<String>();
     boolean valid;
@@ -182,10 +182,10 @@ public class GSNLeanReasoner extends LeanReasoner implements IGSNDecompositionTr
       }
     }
     // create justification
-    var proof = (valid) ? "proven" : "disproven";
+    var proof = (valid) ? "proven" : "cannot be proven";
     var builder = new PropertyBuilder((SafetyCase) strategy.eContainer());
     var justId = "J." + strategy.getId().split("\\.", 2)[1];
-    justDesc = "Decomposition validity " + proof + " in " + getName() + ": " + justDesc;
+    justDesc = "Decomposition " + proof + " in " + getName() + ": " + justDesc;
     var just = builder.createJustification(justId, justDesc);
     builder.addInContextOf(strategy, just);
     builder.commitChanges();
