@@ -15,6 +15,7 @@ package edu.toronto.cs.se.modelepedia.gsn.design.context;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import org.eclipse.core.runtime.IStatus;
@@ -68,9 +69,9 @@ public class PropertyDecompositionRepair extends AbstractExternalJavaAction {
       this.invalidGoal = invalidGoal;
     }
 
-    private void repairWithNewProperty(PropertyDecompositionStrategy strategy, IGSNDecompositionTrait reasoner, String title) throws Exception {
+    private void repairWithNewProperty(PropertyDecompositionStrategy strategy, IGSNDecompositionTrait reasoner,
+                                       String title) throws Exception {
       var reasonerName = reasoner.getName();
-      var encodingMsg = ", please manually select a " + reasonerName + " file";
       var templates = Map.<String, List<PropertyTemplate>>of();
       var modelObjs = Map.<EClass, List<EObject>>of();
       var relatedModelOpt = DecompositionUtils.getRelatedModel(this.invalidGoal);
@@ -88,10 +89,9 @@ public class PropertyDecompositionRepair extends AbstractExternalJavaAction {
       Property property;
       List<String> propQueries = List.of();
       if (template == PropertyTemplate.CUSTOM) {
-        var customMsg = "Insert a description for the custom property";
         var builder = new PropertyBuilder((SafetyCase) this.invalidGoal.eContainer());
         property = builder.createProperty(title, "Insert the " + reasonerName + " property to be decomposed",
-                                              customMsg);
+                                          "Insert a description for the custom property");
       }
       else {
         var result = template.bindVariables(title, modelObjs, Map.of());
@@ -111,14 +111,15 @@ public class PropertyDecompositionRepair extends AbstractExternalJavaAction {
 
     @Override
     protected void doExecute() {
-      var shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
       try {
+        var shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
         var title = "Property Decomposition Repair";
         var strategy = (PropertyDecompositionStrategy) DecompositionUtils.moveOneStrategyUp(this.invalidGoal);
         var reasonerName = strategy.getReasonerName();
-        var reasoner = MMINT.getReasoner(reasonerName);
+        var reasoner = Objects.requireNonNull(MMINT.getReasoner(reasonerName),
+                                              "The reasoner '" + reasonerName + "' is not installed");
         if (!(reasoner instanceof IGSNDecompositionTrait gsnReasoner)) {
-          throw new MMINTException("");
+          throw new MMINTException("The reasoner '" + reasonerName + "' does not support GSN property decompositions");
         }
         var hint = this.invalidGoal.getHint();
         if (hint == null || hint.isBlank()) {

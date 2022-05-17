@@ -172,13 +172,13 @@ public class PropertyDecompositionStrategyImpl extends DecompositionStrategyImpl
   @Override
   public void validate() throws Exception {
     var reasonerName = Objects.requireNonNull(getReasonerName(), "Reasoner not specified");
-    var reasoner = Objects.requireNonNull(MMINT.getReasoner(reasonerName), "The reasoner '" + reasonerName
-      + "' is not installed");
-    if (!(reasoner instanceof IGSNDecompositionTrait)) {
+    var reasoner = Objects.requireNonNull(MMINT.getReasoner(reasonerName),
+                                          "The reasoner '" + reasonerName + "' is not installed");
+    if (!(reasoner instanceof IGSNDecompositionTrait gsnReasoner)) {
       throw new MMINTException("The reasoner '" + reasonerName + "' does not support GSN property decompositions");
     }
     Objects.requireNonNull(getProperty(), "Property not specified");
-    ((IGSNDecompositionTrait) reasoner).validatePropertyDecomposition(this);
+    gsnReasoner.validatePropertyDecomposition(this);
   }
 
   /**
