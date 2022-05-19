@@ -124,8 +124,7 @@ public interface IGSNLeanEncoder {
           if (boundModelObjs.isEmpty()) {
             throw new MMINTException("The query '" + querySpec.query() + "' returned zero valid model objects");
           }
-          //TODO MMINT[GSN] Figure out why displayQueryResults does not work
-          //SiriusEvaluateQuery.displayQueryResults(instanceMID, selectedObjs);
+          SiriusEvaluateQuery.displayQueryResults(instanceMID, selectedObjs);
           result.queries().add(queryId);
           queryInformal = "[elements from query \"" + querySpec.query() + "\"]";
         }

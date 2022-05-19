@@ -31,7 +31,7 @@ import edu.toronto.cs.se.modelepedia.gsn.util.GSNBuilder;
 
 public abstract class GoalDecomposition extends AbstractExternalJavaAction {
 
-  protected abstract GoalDecompositionCommand createCommand(TransactionalEditingDomain domain, Goal goal);
+  protected abstract GSNBuilder createGSNBuilder(Goal goal);
 
   @Override
   public boolean canExecute(Collection<? extends EObject> arg0) {
@@ -45,43 +45,44 @@ public abstract class GoalDecomposition extends AbstractExternalJavaAction {
     return false;
   }
 
+  protected abstract DecompositionStrategy decompose(Goal decomposed, GSNBuilder builder) throws Exception;
+
   @Override
   public void execute(Collection<? extends EObject> arg0, Map<String, Object> arg1) {
     var goal = (Goal) ((DSemanticDecorator) arg0.iterator().next()).getTarget();
-    var sSession = SessionManager.INSTANCE.getSession(goal);
-    var sDomain = sSession.getTransactionalEditingDomain();
-    sDomain.getCommandStack().execute(createCommand(sDomain, goal));
+    var builder = createGSNBuilder(goal);
+    try {
+      var strategy = decompose(goal, builder);
+      var sSession = SessionManager.INSTANCE.getSession(goal);
+      var sDomain = sSession.getTransactionalEditingDomain();
+      sDomain.getCommandStack().execute(new GoalDecompositionCommand(sDomain, strategy, builder));
+    }
+    catch (MIDDialogCancellation e) {
+      // do nothing
+    }
+    catch (Exception e) {
+      MMINTException.print(IStatus.ERROR, "Goal decomposition error", e);
+    }
   }
 
-  protected abstract class GoalDecompositionCommand extends RecordingCommand {
-    protected Goal decomposed;
+  protected class GoalDecompositionCommand extends RecordingCommand {
+    protected DecompositionStrategy strategy;
     protected GSNBuilder builder;
 
-    public GoalDecompositionCommand(TransactionalEditingDomain domain, Goal decomposed, GSNBuilder builder) {
+    public GoalDecompositionCommand(TransactionalEditingDomain domain, DecompositionStrategy strategy, GSNBuilder builder) {
       super(domain);
-      this.decomposed = decomposed;
+      this.strategy = strategy;
       this.builder = builder;
     }
 
-    protected abstract DecompositionStrategy decompose() throws Exception;
-
     @Override
     protected void doExecute() {
+      this.builder.commitChanges();
       try {
-        var strategy = decompose();
-        this.builder.commitChanges();
-        try {
-          strategy.validate();
-        }
-        catch (Exception e) {
-          MMINTException.print(IStatus.ERROR, "The goal decomposition is not valid", e);
-        }
-      }
-      catch (MIDDialogCancellation e) {
-        // do nothing
+        this.strategy.validate();
       }
       catch (Exception e) {
-        MMINTException.print(IStatus.ERROR, "Goal decomposition error", e);
+        MMINTException.print(IStatus.ERROR, "The goal decomposition is not valid", e);
       }
     }
   }
