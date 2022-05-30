@@ -8,6 +8,7 @@ Bundle-RequiredExecutionEnvironment: JavaSE-18
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore,
  org.eclipse.ocl.pivot,
+ com.google.inject,
  org.eclipse.jdt.annotation;resolution:=optional,
  edu.toronto.cs.se.mmint
 Bundle-Vendor: %providerName
