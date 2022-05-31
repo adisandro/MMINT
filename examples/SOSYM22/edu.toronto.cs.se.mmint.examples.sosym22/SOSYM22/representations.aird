@@ -17,7 +17,7 @@
     </ownedViews>
     <ownedViews xmi:type="viewpoint:DView" uid="_clvBEF6mEeuYfq7XakckNg">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']"/>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_o6YCgF6mEeuYfq7XakckNg" name="sc" repPath="#_o6VmQF6mEeuYfq7XakckNg" changeId="f595373c-a008-41f8-8aa5-d17a14432bad">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_o6YCgF6mEeuYfq7XakckNg" name="sc" repPath="#_o6VmQF6mEeuYfq7XakckNg" changeId="035aaca6-5407-4c1f-b408-53409fa87cc3">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']"/>
         <target xmi:type="gsn:SafetyCase" href="model/sc.gsn#/"/>
       </ownedRepresentationDescriptors>
@@ -354,9 +354,9 @@
           <children xmi:type="notation:Node" xmi:id="_CIG2QF6nEeuYfq7XakckNg" type="5002">
             <layoutConstraint xmi:type="notation:Location" xmi:id="_CIG2QV6nEeuYfq7XakckNg" y="5"/>
           </children>
-          <children xmi:type="notation:Node" xmi:id="_CMxT0F6nEeuYfq7XakckNg" type="3005" element="_CIAIkF6nEeuYfq7XakckNg">
-            <styles xmi:type="notation:ShapeStyle" xmi:id="_CMxT0V6nEeuYfq7XakckNg" fontName="Cantarell"/>
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_CMxT0l6nEeuYfq7XakckNg"/>
+          <children xmi:type="notation:Node" xmi:id="_SCkZgOECEeyVkN1BXMpYWQ" type="3005" element="_SCaogOECEeyVkN1BXMpYWQ">
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_SCkZgeECEeyVkN1BXMpYWQ" fontName="Cantarell"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_SCkZguECEeyVkN1BXMpYWQ"/>
           </children>
           <styles xmi:type="notation:ShapeStyle" xmi:id="_CIGPMV6nEeuYfq7XakckNg" fontName="Cantarell" fontHeight="10"/>
           <layoutConstraint xmi:type="notation:Bounds" xmi:id="_CIGPMl6nEeuYfq7XakckNg" x="112" y="61" width="193" height="113"/>
@@ -365,9 +365,9 @@
           <children xmi:type="notation:Node" xmi:id="_1jO-gLNrEeuul7ll43xBrg" type="5002">
             <layoutConstraint xmi:type="notation:Location" xmi:id="_1jO-gbNrEeuul7ll43xBrg" y="5"/>
           </children>
-          <children xmi:type="notation:Node" xmi:id="_1jZ9oLNrEeuul7ll43xBrg" type="3005" element="_1i61cLNrEeuul7ll43xBrg">
-            <styles xmi:type="notation:ShapeStyle" xmi:id="_1jZ9obNrEeuul7ll43xBrg" fontName="Cantarell"/>
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_1jZ9orNrEeuul7ll43xBrg"/>
+          <children xmi:type="notation:Node" xmi:id="_SCm1wOECEeyVkN1BXMpYWQ" type="3005" element="_SCb2ouECEeyVkN1BXMpYWQ">
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_SCm1weECEeyVkN1BXMpYWQ" fontName="Cantarell"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_SCm1wuECEeyVkN1BXMpYWQ"/>
           </children>
           <styles xmi:type="notation:ShapeStyle" xmi:id="_1jBjIbNrEeuul7ll43xBrg" fontName="Cantarell" fontHeight="10"/>
           <layoutConstraint xmi:type="notation:Bounds" xmi:id="_1jBjIrNrEeuul7ll43xBrg" x="368" y="61" width="209" height="110"/>
@@ -376,9 +376,9 @@
           <children xmi:type="notation:Node" xmi:id="_zNHnkJULEeyCb7jDzvzUDw" type="5002">
             <layoutConstraint xmi:type="notation:Location" xmi:id="_zNHnkZULEeyCb7jDzvzUDw" y="5"/>
           </children>
-          <children xmi:type="notation:Node" xmi:id="_zNXfMJULEeyCb7jDzvzUDw" type="3005" element="_zM4-EJULEeyCb7jDzvzUDw">
-            <styles xmi:type="notation:ShapeStyle" xmi:id="_zNXfMZULEeyCb7jDzvzUDw" fontName="Cantarell"/>
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_zNXfMpULEeyCb7jDzvzUDw"/>
+          <children xmi:type="notation:Node" xmi:id="_SCm1w-ECEeyVkN1BXMpYWQ" type="3005" element="_SCcdsuECEeyVkN1BXMpYWQ">
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_SCm1xOECEeyVkN1BXMpYWQ" fontName="Cantarell"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_SCm1xeECEeyVkN1BXMpYWQ"/>
           </children>
           <styles xmi:type="notation:ShapeStyle" xmi:id="_zNBg8ZULEeyCb7jDzvzUDw" fontName="Cantarell" fontHeight="10"/>
           <layoutConstraint xmi:type="notation:Bounds" xmi:id="_zNBg8pULEeyCb7jDzvzUDw" x="624" y="58" width="193" height="116"/>
@@ -387,9 +387,9 @@
           <children xmi:type="notation:Node" xmi:id="_9ywJgJULEeyCb7jDzvzUDw" type="5002">
             <layoutConstraint xmi:type="notation:Location" xmi:id="_9ywJgZULEeyCb7jDzvzUDw" y="5"/>
           </children>
-          <children xmi:type="notation:Node" xmi:id="_9y0a8JULEeyCb7jDzvzUDw" type="3005" element="_9yttQ5ULEeyCb7jDzvzUDw">
-            <styles xmi:type="notation:ShapeStyle" xmi:id="_9y0a8ZULEeyCb7jDzvzUDw" fontName="Cantarell"/>
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_9y0a8pULEeyCb7jDzvzUDw"/>
+          <children xmi:type="notation:Node" xmi:id="_SCnc0OECEeyVkN1BXMpYWQ" type="3005" element="_SCdEwuECEeyVkN1BXMpYWQ">
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_SCnc0eECEeyVkN1BXMpYWQ" fontName="Cantarell"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_SCnc0uECEeyVkN1BXMpYWQ"/>
           </children>
           <styles xmi:type="notation:ShapeStyle" xmi:id="_9yvicZULEeyCb7jDzvzUDw" fontName="Cantarell" fontHeight="10"/>
           <layoutConstraint xmi:type="notation:Bounds" xmi:id="_9yvicpULEeyCb7jDzvzUDw" x="864" y="61" width="193" height="110"/>
@@ -406,9 +406,9 @@
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
       <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
       <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
-      <ownedStyle xmi:type="diagram:WorkspaceImage" uid="_CIAIkF6nEeuYfq7XakckNg" labelSize="10" showIcon="false" labelPosition="node" workspacePath="/edu.toronto.cs.se.modelepedia.gsn.design/icons/Goal.svg">
+      <ownedStyle xmi:type="diagram:WorkspaceImage" uid="_SCaogOECEeyVkN1BXMpYWQ" labelSize="10" showIcon="false" labelPosition="node" workspacePath="/edu.toronto.cs.se.modelepedia.gsn.design/icons/Goal.svg">
         <customFeatures>labelSize</customFeatures>
-        <description xmi:type="style:WorkspaceImageDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']/@style"/>
+        <description xmi:type="style:WorkspaceImageDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']/@conditionnalStyles.0/@style"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']"/>
     </ownedDiagramElements>
@@ -418,9 +418,9 @@
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
       <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
       <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
-      <ownedStyle xmi:type="diagram:WorkspaceImage" uid="_1i61cLNrEeuul7ll43xBrg" labelSize="10" showIcon="false" labelPosition="node" workspacePath="/edu.toronto.cs.se.modelepedia.gsn.design/icons/Goal.svg">
+      <ownedStyle xmi:type="diagram:WorkspaceImage" uid="_SCb2ouECEeyVkN1BXMpYWQ" labelSize="10" showIcon="false" labelPosition="node" workspacePath="/edu.toronto.cs.se.modelepedia.gsn.design/icons/Goal.svg">
         <customFeatures>labelSize</customFeatures>
-        <description xmi:type="style:WorkspaceImageDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']/@style"/>
+        <description xmi:type="style:WorkspaceImageDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']/@conditionnalStyles.0/@style"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']"/>
     </ownedDiagramElements>
@@ -430,9 +430,9 @@
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
       <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
       <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
-      <ownedStyle xmi:type="diagram:WorkspaceImage" uid="_zM4-EJULEeyCb7jDzvzUDw" labelSize="10" showIcon="false" labelPosition="node" workspacePath="/edu.toronto.cs.se.modelepedia.gsn.design/icons/Goal.svg">
+      <ownedStyle xmi:type="diagram:WorkspaceImage" uid="_SCcdsuECEeyVkN1BXMpYWQ" labelSize="10" showIcon="false" labelPosition="node" workspacePath="/edu.toronto.cs.se.modelepedia.gsn.design/icons/Goal.svg">
         <customFeatures>labelSize</customFeatures>
-        <description xmi:type="style:WorkspaceImageDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']/@style"/>
+        <description xmi:type="style:WorkspaceImageDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']/@conditionnalStyles.0/@style"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']"/>
     </ownedDiagramElements>
@@ -442,9 +442,9 @@
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
       <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
       <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
-      <ownedStyle xmi:type="diagram:WorkspaceImage" uid="_9yttQ5ULEeyCb7jDzvzUDw" labelSize="10" showIcon="false" labelPosition="node" workspacePath="/edu.toronto.cs.se.modelepedia.gsn.design/icons/Goal.svg">
+      <ownedStyle xmi:type="diagram:WorkspaceImage" uid="_SCdEwuECEeyVkN1BXMpYWQ" labelSize="10" showIcon="false" labelPosition="node" workspacePath="/edu.toronto.cs.se.modelepedia.gsn.design/icons/Goal.svg">
         <customFeatures>labelSize</customFeatures>
-        <description xmi:type="style:WorkspaceImageDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']/@style"/>
+        <description xmi:type="style:WorkspaceImageDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']/@conditionnalStyles.0/@style"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']"/>
     </ownedDiagramElements>
