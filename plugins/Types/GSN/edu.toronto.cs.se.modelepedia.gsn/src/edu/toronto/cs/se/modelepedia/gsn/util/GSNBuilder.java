@@ -30,12 +30,12 @@ import edu.toronto.cs.se.modelepedia.gsn.Supportable;
 import edu.toronto.cs.se.modelepedia.gsn.Supporter;
 
 public class GSNBuilder {
-  protected SafetyCase gsnRootModelObj;
+  protected SafetyCase safetyCase;
   protected GSNFactory factory;
   protected List<ArgumentElement> gsnElements;
 
-  public GSNBuilder(SafetyCase gsnRootModelObj) {
-    this.gsnRootModelObj = gsnRootModelObj;
+  public GSNBuilder(SafetyCase safetyCase) {
+    this.safetyCase = safetyCase;
     this.factory = GSNFactory.eINSTANCE;
     this.gsnElements = new ArrayList<>();
   }
@@ -102,17 +102,17 @@ public class GSNBuilder {
 
   public void commitChanges() {
     for (var gsnElement : this.gsnElements) {
-      if (gsnElement instanceof Strategy) {
-        this.gsnRootModelObj.getStrategies().add((Strategy) gsnElement);
+      if (gsnElement instanceof Strategy strategy) {
+        this.safetyCase.getStrategies().add(strategy);
       }
-      else if (gsnElement instanceof Justification) {
-        this.gsnRootModelObj.getJustifications().add((Justification) gsnElement);
+      else if (gsnElement instanceof Justification justification) {
+        this.safetyCase.getJustifications().add(justification);
       }
-      else if (gsnElement instanceof Context) {
-        this.gsnRootModelObj.getContexts().add((Context) gsnElement);
+      else if (gsnElement instanceof Context context) {
+        this.safetyCase.getContexts().add(context);
       }
-      else if (gsnElement instanceof Goal) {
-        this.gsnRootModelObj.getGoals().add((Goal) gsnElement);
+      else if (gsnElement instanceof Goal goal) {
+        this.safetyCase.getGoals().add(goal);
       }
     }
   }

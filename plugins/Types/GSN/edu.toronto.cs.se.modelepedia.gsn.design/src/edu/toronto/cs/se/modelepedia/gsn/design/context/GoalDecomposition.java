@@ -31,8 +31,6 @@ import edu.toronto.cs.se.modelepedia.gsn.util.GSNBuilder;
 
 public abstract class GoalDecomposition extends AbstractExternalJavaAction {
 
-  protected abstract GSNBuilder createGSNBuilder(Goal goal);
-
   @Override
   public boolean canExecute(Collection<? extends EObject> arg0) {
     if (arg0.size() != 1) {
@@ -44,6 +42,8 @@ public abstract class GoalDecomposition extends AbstractExternalJavaAction {
     }
     return false;
   }
+
+  protected abstract GSNBuilder createGSNBuilder(Goal goal);
 
   protected abstract DecompositionStrategy decompose(Goal decomposed, GSNBuilder builder) throws Exception;
 
