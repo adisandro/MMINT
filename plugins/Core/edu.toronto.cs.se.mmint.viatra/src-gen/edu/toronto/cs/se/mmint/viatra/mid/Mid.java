@@ -42,9 +42,9 @@ public final class Mid extends BaseGeneratedPatternGroup {
     }
     return INSTANCE;
   }
-  
+
   private static Mid INSTANCE;
-  
+
   private Mid() {
     querySpecifications.add(ConnectedModels.instance());
     querySpecifications.add(ConnectedModelElementsWithMapping.instance());
@@ -55,67 +55,67 @@ public final class Mid extends BaseGeneratedPatternGroup {
     querySpecifications.add(AllConnectedModelElements.instance());
     querySpecifications.add(AllConnectedEMFObjects.instance());
   }
-  
+
   public ConnectedModels getConnectedModels() {
     return ConnectedModels.instance();
   }
-  
+
   public ConnectedModels.Matcher getConnectedModels(final ViatraQueryEngine engine) {
     return ConnectedModels.Matcher.on(engine);
   }
-  
+
   public ConnectedModelElementsWithMapping getConnectedModelElementsWithMapping() {
     return ConnectedModelElementsWithMapping.instance();
   }
-  
+
   public ConnectedModelElementsWithMapping.Matcher getConnectedModelElementsWithMapping(final ViatraQueryEngine engine) {
     return ConnectedModelElementsWithMapping.Matcher.on(engine);
   }
-  
+
   public ConnectedModelElements getConnectedModelElements() {
     return ConnectedModelElements.instance();
   }
-  
+
   public ConnectedModelElements.Matcher getConnectedModelElements(final ViatraQueryEngine engine) {
     return ConnectedModelElements.Matcher.on(engine);
   }
-  
+
   public ConnectedEMFObjectsWithMapping getConnectedEMFObjectsWithMapping() {
     return ConnectedEMFObjectsWithMapping.instance();
   }
-  
+
   public ConnectedEMFObjectsWithMapping.Matcher getConnectedEMFObjectsWithMapping(final ViatraQueryEngine engine) {
     return ConnectedEMFObjectsWithMapping.Matcher.on(engine);
   }
-  
+
   public ConnectedEMFObjects getConnectedEMFObjects() {
     return ConnectedEMFObjects.instance();
   }
-  
+
   public ConnectedEMFObjects.Matcher getConnectedEMFObjects(final ViatraQueryEngine engine) {
     return ConnectedEMFObjects.Matcher.on(engine);
   }
-  
+
   public AllConnectedModels getAllConnectedModels() {
     return AllConnectedModels.instance();
   }
-  
+
   public AllConnectedModels.Matcher getAllConnectedModels(final ViatraQueryEngine engine) {
     return AllConnectedModels.Matcher.on(engine);
   }
-  
+
   public AllConnectedModelElements getAllConnectedModelElements() {
     return AllConnectedModelElements.instance();
   }
-  
+
   public AllConnectedModelElements.Matcher getAllConnectedModelElements(final ViatraQueryEngine engine) {
     return AllConnectedModelElements.Matcher.on(engine);
   }
-  
+
   public AllConnectedEMFObjects getAllConnectedEMFObjects() {
     return AllConnectedEMFObjects.instance();
   }
-  
+
   public AllConnectedEMFObjects.Matcher getAllConnectedEMFObjects(final ViatraQueryEngine engine) {
     return AllConnectedEMFObjects.Matcher.on(engine);
   }

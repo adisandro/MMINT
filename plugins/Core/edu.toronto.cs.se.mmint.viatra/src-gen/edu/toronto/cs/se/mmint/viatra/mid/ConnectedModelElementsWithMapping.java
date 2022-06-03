@@ -75,19 +75,19 @@ public final class ConnectedModelElementsWithMapping extends BaseGeneratedEMFQue
    */
   public static abstract class Match extends BasePatternMatch {
     private ModelElement fModelElemSrc;
-    
+
     private ModelElement fModelElemTgt;
-    
+
     private Mapping fMapping;
-    
+
     private static List<String> parameterNames = makeImmutableList("modelElemSrc", "modelElemTgt", "mapping");
-    
+
     private Match(final ModelElement pModelElemSrc, final ModelElement pModelElemTgt, final Mapping pMapping) {
       this.fModelElemSrc = pModelElemSrc;
       this.fModelElemTgt = pModelElemTgt;
       this.fMapping = pMapping;
     }
-    
+
     @Override
     public Object get(final String parameterName) {
       switch(parameterName) {
@@ -97,7 +97,7 @@ public final class ConnectedModelElementsWithMapping extends BaseGeneratedEMFQue
           default: return null;
       }
     }
-    
+
     @Override
     public Object get(final int index) {
       switch(index) {
@@ -107,19 +107,19 @@ public final class ConnectedModelElementsWithMapping extends BaseGeneratedEMFQue
           default: return null;
       }
     }
-    
+
     public ModelElement getModelElemSrc() {
       return this.fModelElemSrc;
     }
-    
+
     public ModelElement getModelElemTgt() {
       return this.fModelElemTgt;
     }
-    
+
     public Mapping getMapping() {
       return this.fMapping;
     }
-    
+
     @Override
     public boolean set(final String parameterName, final Object newValue) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
@@ -137,42 +137,42 @@ public final class ConnectedModelElementsWithMapping extends BaseGeneratedEMFQue
       }
       return false;
     }
-    
+
     public void setModelElemSrc(final ModelElement pModelElemSrc) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
       this.fModelElemSrc = pModelElemSrc;
     }
-    
+
     public void setModelElemTgt(final ModelElement pModelElemTgt) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
       this.fModelElemTgt = pModelElemTgt;
     }
-    
+
     public void setMapping(final Mapping pMapping) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
       this.fMapping = pMapping;
     }
-    
+
     @Override
     public String patternName() {
       return "edu.toronto.cs.se.mmint.viatra.mid.connectedModelElementsWithMapping";
     }
-    
+
     @Override
     public List<String> parameterNames() {
       return ConnectedModelElementsWithMapping.Match.parameterNames;
     }
-    
+
     @Override
     public Object[] toArray() {
       return new Object[]{fModelElemSrc, fModelElemTgt, fMapping};
     }
-    
+
     @Override
     public ConnectedModelElementsWithMapping.Match toImmutable() {
       return isMutable() ? newMatch(fModelElemSrc, fModelElemTgt, fMapping) : this;
     }
-    
+
     @Override
     public String prettyPrint() {
       StringBuilder result = new StringBuilder();
@@ -181,12 +181,12 @@ public final class ConnectedModelElementsWithMapping extends BaseGeneratedEMFQue
       result.append("\"mapping\"=" + prettyPrintValue(fMapping));
       return result.toString();
     }
-    
+
     @Override
     public int hashCode() {
       return Objects.hash(fModelElemSrc, fModelElemTgt, fMapping);
     }
-    
+
     @Override
     public boolean equals(final Object obj) {
       if (this == obj)
@@ -206,12 +206,12 @@ public final class ConnectedModelElementsWithMapping extends BaseGeneratedEMFQue
           return Objects.equals(specification(), otherSig.specification()) && Arrays.deepEquals(toArray(), otherSig.toArray());
       }
     }
-    
+
     @Override
     public ConnectedModelElementsWithMapping specification() {
       return ConnectedModelElementsWithMapping.instance();
     }
-    
+
     /**
      * Returns an empty, mutable match.
      * Fields of the mutable match can be filled to create a partial match, usable as matcher input.
@@ -222,7 +222,7 @@ public final class ConnectedModelElementsWithMapping extends BaseGeneratedEMFQue
     public static ConnectedModelElementsWithMapping.Match newEmptyMatch() {
       return new Mutable(null, null, null);
     }
-    
+
     /**
      * Returns a mutable (partial) match.
      * Fields of the mutable match can be filled to create a partial match, usable as matcher input.
@@ -236,7 +236,7 @@ public final class ConnectedModelElementsWithMapping extends BaseGeneratedEMFQue
     public static ConnectedModelElementsWithMapping.Match newMutableMatch(final ModelElement pModelElemSrc, final ModelElement pModelElemTgt, final Mapping pMapping) {
       return new Mutable(pModelElemSrc, pModelElemTgt, pMapping);
     }
-    
+
     /**
      * Returns a new (partial) match.
      * This can be used e.g. to call the matcher with a partial match.
@@ -250,30 +250,30 @@ public final class ConnectedModelElementsWithMapping extends BaseGeneratedEMFQue
     public static ConnectedModelElementsWithMapping.Match newMatch(final ModelElement pModelElemSrc, final ModelElement pModelElemTgt, final Mapping pMapping) {
       return new Immutable(pModelElemSrc, pModelElemTgt, pMapping);
     }
-    
+
     private static final class Mutable extends ConnectedModelElementsWithMapping.Match {
       Mutable(final ModelElement pModelElemSrc, final ModelElement pModelElemTgt, final Mapping pMapping) {
         super(pModelElemSrc, pModelElemTgt, pMapping);
       }
-      
+
       @Override
       public boolean isMutable() {
         return true;
       }
     }
-    
+
     private static final class Immutable extends ConnectedModelElementsWithMapping.Match {
       Immutable(final ModelElement pModelElemSrc, final ModelElement pModelElemTgt, final Mapping pMapping) {
         super(pModelElemSrc, pModelElemTgt, pMapping);
       }
-      
+
       @Override
       public boolean isMutable() {
         return false;
       }
     }
   }
-  
+
   /**
    * Generated pattern matcher API of the edu.toronto.cs.se.mmint.viatra.mid.connectedModelElementsWithMapping pattern,
    * providing pattern-specific query methods.
@@ -316,7 +316,7 @@ public final class ConnectedModelElementsWithMapping extends BaseGeneratedEMFQue
       }
       return matcher;
     }
-    
+
     /**
      * @throws ViatraQueryRuntimeException if an error occurs during pattern matcher creation
      * @return an initialized matcher
@@ -326,15 +326,15 @@ public final class ConnectedModelElementsWithMapping extends BaseGeneratedEMFQue
     public static ConnectedModelElementsWithMapping.Matcher create() {
       return new Matcher();
     }
-    
+
     private static final int POSITION_MODELELEMSRC = 0;
-    
+
     private static final int POSITION_MODELELEMTGT = 1;
-    
+
     private static final int POSITION_MAPPING = 2;
-    
+
     private static final Logger LOGGER = ViatraQueryLoggingUtil.getLogger(ConnectedModelElementsWithMapping.Matcher.class);
-    
+
     /**
      * Initializes the pattern matcher within an existing VIATRA Query engine.
      * If the pattern matcher is already constructed in the engine, only a light-weight reference is returned.
@@ -346,7 +346,7 @@ public final class ConnectedModelElementsWithMapping extends BaseGeneratedEMFQue
     private Matcher() {
       super(querySpecification());
     }
-    
+
     /**
      * Returns the set of all matches of the pattern that conform to the given fixed values of some parameters.
      * @param pModelElemSrc the fixed value of pattern parameter modelElemSrc, or null if not bound.
@@ -358,7 +358,7 @@ public final class ConnectedModelElementsWithMapping extends BaseGeneratedEMFQue
     public Collection<ConnectedModelElementsWithMapping.Match> getAllMatches(final ModelElement pModelElemSrc, final ModelElement pModelElemTgt, final Mapping pMapping) {
       return rawStreamAllMatches(new Object[]{pModelElemSrc, pModelElemTgt, pMapping}).collect(Collectors.toSet());
     }
-    
+
     /**
      * Returns a stream of all matches of the pattern that conform to the given fixed values of some parameters.
      * </p>
@@ -374,7 +374,7 @@ public final class ConnectedModelElementsWithMapping extends BaseGeneratedEMFQue
     public Stream<ConnectedModelElementsWithMapping.Match> streamAllMatches(final ModelElement pModelElemSrc, final ModelElement pModelElemTgt, final Mapping pMapping) {
       return rawStreamAllMatches(new Object[]{pModelElemSrc, pModelElemTgt, pMapping});
     }
-    
+
     /**
      * Returns an arbitrarily chosen match of the pattern that conforms to the given fixed values of some parameters.
      * Neither determinism nor randomness of selection is guaranteed.
@@ -387,7 +387,7 @@ public final class ConnectedModelElementsWithMapping extends BaseGeneratedEMFQue
     public Optional<ConnectedModelElementsWithMapping.Match> getOneArbitraryMatch(final ModelElement pModelElemSrc, final ModelElement pModelElemTgt, final Mapping pMapping) {
       return rawGetOneArbitraryMatch(new Object[]{pModelElemSrc, pModelElemTgt, pMapping});
     }
-    
+
     /**
      * Indicates whether the given combination of specified pattern parameters constitute a valid pattern match,
      * under any possible substitution of the unspecified parameters (if any).
@@ -400,7 +400,7 @@ public final class ConnectedModelElementsWithMapping extends BaseGeneratedEMFQue
     public boolean hasMatch(final ModelElement pModelElemSrc, final ModelElement pModelElemTgt, final Mapping pMapping) {
       return rawHasMatch(new Object[]{pModelElemSrc, pModelElemTgt, pMapping});
     }
-    
+
     /**
      * Returns the number of all matches of the pattern that conform to the given fixed values of some parameters.
      * @param pModelElemSrc the fixed value of pattern parameter modelElemSrc, or null if not bound.
@@ -412,7 +412,7 @@ public final class ConnectedModelElementsWithMapping extends BaseGeneratedEMFQue
     public int countMatches(final ModelElement pModelElemSrc, final ModelElement pModelElemTgt, final Mapping pMapping) {
       return rawCountMatches(new Object[]{pModelElemSrc, pModelElemTgt, pMapping});
     }
-    
+
     /**
      * Executes the given processor on an arbitrarily chosen match of the pattern that conforms to the given fixed values of some parameters.
      * Neither determinism nor randomness of selection is guaranteed.
@@ -426,7 +426,7 @@ public final class ConnectedModelElementsWithMapping extends BaseGeneratedEMFQue
     public boolean forOneArbitraryMatch(final ModelElement pModelElemSrc, final ModelElement pModelElemTgt, final Mapping pMapping, final Consumer<? super ConnectedModelElementsWithMapping.Match> processor) {
       return rawForOneArbitraryMatch(new Object[]{pModelElemSrc, pModelElemTgt, pMapping}, processor);
     }
-    
+
     /**
      * Returns a new (partial) match.
      * This can be used e.g. to call the matcher with a partial match.
@@ -440,7 +440,7 @@ public final class ConnectedModelElementsWithMapping extends BaseGeneratedEMFQue
     public ConnectedModelElementsWithMapping.Match newMatch(final ModelElement pModelElemSrc, final ModelElement pModelElemTgt, final Mapping pMapping) {
       return ConnectedModelElementsWithMapping.Match.newMatch(pModelElemSrc, pModelElemTgt, pMapping);
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for modelElemSrc.
      * @return the Set of all values or empty set if there are no matches
@@ -449,7 +449,7 @@ public final class ConnectedModelElementsWithMapping extends BaseGeneratedEMFQue
     protected Stream<ModelElement> rawStreamAllValuesOfmodelElemSrc(final Object[] parameters) {
       return rawStreamAllValues(POSITION_MODELELEMSRC, parameters).map(ModelElement.class::cast);
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for modelElemSrc.
      * @return the Set of all values or empty set if there are no matches
@@ -458,7 +458,7 @@ public final class ConnectedModelElementsWithMapping extends BaseGeneratedEMFQue
     public Set<ModelElement> getAllValuesOfmodelElemSrc() {
       return rawStreamAllValuesOfmodelElemSrc(emptyArray()).collect(Collectors.toSet());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for modelElemSrc.
      * @return the Set of all values or empty set if there are no matches
@@ -467,7 +467,7 @@ public final class ConnectedModelElementsWithMapping extends BaseGeneratedEMFQue
     public Stream<ModelElement> streamAllValuesOfmodelElemSrc() {
       return rawStreamAllValuesOfmodelElemSrc(emptyArray());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for modelElemSrc.
      * </p>
@@ -481,7 +481,7 @@ public final class ConnectedModelElementsWithMapping extends BaseGeneratedEMFQue
     public Stream<ModelElement> streamAllValuesOfmodelElemSrc(final ConnectedModelElementsWithMapping.Match partialMatch) {
       return rawStreamAllValuesOfmodelElemSrc(partialMatch.toArray());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for modelElemSrc.
      * </p>
@@ -495,7 +495,7 @@ public final class ConnectedModelElementsWithMapping extends BaseGeneratedEMFQue
     public Stream<ModelElement> streamAllValuesOfmodelElemSrc(final ModelElement pModelElemTgt, final Mapping pMapping) {
       return rawStreamAllValuesOfmodelElemSrc(new Object[]{null, pModelElemTgt, pMapping});
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for modelElemSrc.
      * @return the Set of all values or empty set if there are no matches
@@ -504,7 +504,7 @@ public final class ConnectedModelElementsWithMapping extends BaseGeneratedEMFQue
     public Set<ModelElement> getAllValuesOfmodelElemSrc(final ConnectedModelElementsWithMapping.Match partialMatch) {
       return rawStreamAllValuesOfmodelElemSrc(partialMatch.toArray()).collect(Collectors.toSet());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for modelElemSrc.
      * @return the Set of all values or empty set if there are no matches
@@ -513,7 +513,7 @@ public final class ConnectedModelElementsWithMapping extends BaseGeneratedEMFQue
     public Set<ModelElement> getAllValuesOfmodelElemSrc(final ModelElement pModelElemTgt, final Mapping pMapping) {
       return rawStreamAllValuesOfmodelElemSrc(new Object[]{null, pModelElemTgt, pMapping}).collect(Collectors.toSet());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for modelElemTgt.
      * @return the Set of all values or empty set if there are no matches
@@ -522,7 +522,7 @@ public final class ConnectedModelElementsWithMapping extends BaseGeneratedEMFQue
     protected Stream<ModelElement> rawStreamAllValuesOfmodelElemTgt(final Object[] parameters) {
       return rawStreamAllValues(POSITION_MODELELEMTGT, parameters).map(ModelElement.class::cast);
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for modelElemTgt.
      * @return the Set of all values or empty set if there are no matches
@@ -531,7 +531,7 @@ public final class ConnectedModelElementsWithMapping extends BaseGeneratedEMFQue
     public Set<ModelElement> getAllValuesOfmodelElemTgt() {
       return rawStreamAllValuesOfmodelElemTgt(emptyArray()).collect(Collectors.toSet());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for modelElemTgt.
      * @return the Set of all values or empty set if there are no matches
@@ -540,7 +540,7 @@ public final class ConnectedModelElementsWithMapping extends BaseGeneratedEMFQue
     public Stream<ModelElement> streamAllValuesOfmodelElemTgt() {
       return rawStreamAllValuesOfmodelElemTgt(emptyArray());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for modelElemTgt.
      * </p>
@@ -554,7 +554,7 @@ public final class ConnectedModelElementsWithMapping extends BaseGeneratedEMFQue
     public Stream<ModelElement> streamAllValuesOfmodelElemTgt(final ConnectedModelElementsWithMapping.Match partialMatch) {
       return rawStreamAllValuesOfmodelElemTgt(partialMatch.toArray());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for modelElemTgt.
      * </p>
@@ -568,7 +568,7 @@ public final class ConnectedModelElementsWithMapping extends BaseGeneratedEMFQue
     public Stream<ModelElement> streamAllValuesOfmodelElemTgt(final ModelElement pModelElemSrc, final Mapping pMapping) {
       return rawStreamAllValuesOfmodelElemTgt(new Object[]{pModelElemSrc, null, pMapping});
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for modelElemTgt.
      * @return the Set of all values or empty set if there are no matches
@@ -577,7 +577,7 @@ public final class ConnectedModelElementsWithMapping extends BaseGeneratedEMFQue
     public Set<ModelElement> getAllValuesOfmodelElemTgt(final ConnectedModelElementsWithMapping.Match partialMatch) {
       return rawStreamAllValuesOfmodelElemTgt(partialMatch.toArray()).collect(Collectors.toSet());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for modelElemTgt.
      * @return the Set of all values or empty set if there are no matches
@@ -586,7 +586,7 @@ public final class ConnectedModelElementsWithMapping extends BaseGeneratedEMFQue
     public Set<ModelElement> getAllValuesOfmodelElemTgt(final ModelElement pModelElemSrc, final Mapping pMapping) {
       return rawStreamAllValuesOfmodelElemTgt(new Object[]{pModelElemSrc, null, pMapping}).collect(Collectors.toSet());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for mapping.
      * @return the Set of all values or empty set if there are no matches
@@ -595,7 +595,7 @@ public final class ConnectedModelElementsWithMapping extends BaseGeneratedEMFQue
     protected Stream<Mapping> rawStreamAllValuesOfmapping(final Object[] parameters) {
       return rawStreamAllValues(POSITION_MAPPING, parameters).map(Mapping.class::cast);
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for mapping.
      * @return the Set of all values or empty set if there are no matches
@@ -604,7 +604,7 @@ public final class ConnectedModelElementsWithMapping extends BaseGeneratedEMFQue
     public Set<Mapping> getAllValuesOfmapping() {
       return rawStreamAllValuesOfmapping(emptyArray()).collect(Collectors.toSet());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for mapping.
      * @return the Set of all values or empty set if there are no matches
@@ -613,7 +613,7 @@ public final class ConnectedModelElementsWithMapping extends BaseGeneratedEMFQue
     public Stream<Mapping> streamAllValuesOfmapping() {
       return rawStreamAllValuesOfmapping(emptyArray());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for mapping.
      * </p>
@@ -627,7 +627,7 @@ public final class ConnectedModelElementsWithMapping extends BaseGeneratedEMFQue
     public Stream<Mapping> streamAllValuesOfmapping(final ConnectedModelElementsWithMapping.Match partialMatch) {
       return rawStreamAllValuesOfmapping(partialMatch.toArray());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for mapping.
      * </p>
@@ -641,7 +641,7 @@ public final class ConnectedModelElementsWithMapping extends BaseGeneratedEMFQue
     public Stream<Mapping> streamAllValuesOfmapping(final ModelElement pModelElemSrc, final ModelElement pModelElemTgt) {
       return rawStreamAllValuesOfmapping(new Object[]{pModelElemSrc, pModelElemTgt, null});
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for mapping.
      * @return the Set of all values or empty set if there are no matches
@@ -650,7 +650,7 @@ public final class ConnectedModelElementsWithMapping extends BaseGeneratedEMFQue
     public Set<Mapping> getAllValuesOfmapping(final ConnectedModelElementsWithMapping.Match partialMatch) {
       return rawStreamAllValuesOfmapping(partialMatch.toArray()).collect(Collectors.toSet());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for mapping.
      * @return the Set of all values or empty set if there are no matches
@@ -659,7 +659,7 @@ public final class ConnectedModelElementsWithMapping extends BaseGeneratedEMFQue
     public Set<Mapping> getAllValuesOfmapping(final ModelElement pModelElemSrc, final ModelElement pModelElemTgt) {
       return rawStreamAllValuesOfmapping(new Object[]{pModelElemSrc, pModelElemTgt, null}).collect(Collectors.toSet());
     }
-    
+
     @Override
     protected ConnectedModelElementsWithMapping.Match tupleToMatch(final Tuple t) {
       try {
@@ -669,7 +669,7 @@ public final class ConnectedModelElementsWithMapping extends BaseGeneratedEMFQue
           return null;
       }
     }
-    
+
     @Override
     protected ConnectedModelElementsWithMapping.Match arrayToMatch(final Object[] match) {
       try {
@@ -679,7 +679,7 @@ public final class ConnectedModelElementsWithMapping extends BaseGeneratedEMFQue
           return null;
       }
     }
-    
+
     @Override
     protected ConnectedModelElementsWithMapping.Match arrayToMatchMutable(final Object[] match) {
       try {
@@ -689,7 +689,7 @@ public final class ConnectedModelElementsWithMapping extends BaseGeneratedEMFQue
           return null;
       }
     }
-    
+
     /**
      * @return the singleton instance of the query specification of this pattern
      * @throws ViatraQueryRuntimeException if the pattern definition could not be loaded
@@ -699,11 +699,11 @@ public final class ConnectedModelElementsWithMapping extends BaseGeneratedEMFQue
       return ConnectedModelElementsWithMapping.instance();
     }
   }
-  
+
   private ConnectedModelElementsWithMapping() {
     super(GeneratedPQuery.INSTANCE);
   }
-  
+
   /**
    * @return the singleton instance of the query specification
    * @throws ViatraQueryRuntimeException if the pattern definition could not be loaded
@@ -716,27 +716,27 @@ public final class ConnectedModelElementsWithMapping extends BaseGeneratedEMFQue
         throw processInitializerError(err);
     }
   }
-  
+
   @Override
   protected ConnectedModelElementsWithMapping.Matcher instantiate(final ViatraQueryEngine engine) {
     return ConnectedModelElementsWithMapping.Matcher.on(engine);
   }
-  
+
   @Override
   public ConnectedModelElementsWithMapping.Matcher instantiate() {
     return ConnectedModelElementsWithMapping.Matcher.create();
   }
-  
+
   @Override
   public ConnectedModelElementsWithMapping.Match newEmptyMatch() {
     return ConnectedModelElementsWithMapping.Match.newEmptyMatch();
   }
-  
+
   @Override
   public ConnectedModelElementsWithMapping.Match newMatch(final Object... parameters) {
     return ConnectedModelElementsWithMapping.Match.newMatch((edu.toronto.cs.se.mmint.mid.ModelElement) parameters[0], (edu.toronto.cs.se.mmint.mid.ModelElement) parameters[1], (edu.toronto.cs.se.mmint.mid.relationship.Mapping) parameters[2]);
   }
-  
+
   /**
    * Inner class allowing the singleton instance of {@link ConnectedModelElementsWithMapping} to be created 
    *     <b>not</b> at the class load time of the outer class, 
@@ -747,7 +747,7 @@ public final class ConnectedModelElementsWithMapping extends BaseGeneratedEMFQue
    */
   private static class LazyHolder {
     private static final ConnectedModelElementsWithMapping INSTANCE = new ConnectedModelElementsWithMapping();
-    
+
     /**
      * Statically initializes the query specification <b>after</b> the field {@link #INSTANCE} is assigned.
      * This initialization order is required to support indirect recursion.
@@ -756,43 +756,43 @@ public final class ConnectedModelElementsWithMapping extends BaseGeneratedEMFQue
      * 
      */
     private static final Object STATIC_INITIALIZER = ensureInitialized();
-    
+
     public static Object ensureInitialized() {
       INSTANCE.ensureInitializedInternal();
       return null;
     }
   }
-  
+
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private static final ConnectedModelElementsWithMapping.GeneratedPQuery INSTANCE = new GeneratedPQuery();
-    
+
     private final PParameter parameter_modelElemSrc = new PParameter("modelElemSrc", "edu.toronto.cs.se.mmint.mid.ModelElement", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://se.cs.toronto.edu/mmint/MID", "ModelElement")), PParameterDirection.INOUT);
-    
+
     private final PParameter parameter_modelElemTgt = new PParameter("modelElemTgt", "edu.toronto.cs.se.mmint.mid.ModelElement", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://se.cs.toronto.edu/mmint/MID", "ModelElement")), PParameterDirection.INOUT);
-    
+
     private final PParameter parameter_mapping = new PParameter("mapping", "edu.toronto.cs.se.mmint.mid.relationship.Mapping", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://se.cs.toronto.edu/mmint/MID/Relationship", "Mapping")), PParameterDirection.INOUT);
-    
+
     private final List<PParameter> parameters = Arrays.asList(parameter_modelElemSrc, parameter_modelElemTgt, parameter_mapping);
-    
+
     private GeneratedPQuery() {
       super(PVisibility.PUBLIC);
     }
-    
+
     @Override
     public String getFullyQualifiedName() {
       return "edu.toronto.cs.se.mmint.viatra.mid.connectedModelElementsWithMapping";
     }
-    
+
     @Override
     public List<String> getParameterNames() {
       return Arrays.asList("modelElemSrc","modelElemTgt","mapping");
     }
-    
+
     @Override
     public List<PParameter> getParameters() {
       return parameters;
     }
-    
+
     @Override
     public Set<PBody> doGetContainedBodies() {
       setEvaluationHints(new QueryEvaluationHint(null, QueryEvaluationHint.BackendRequirement.UNSPECIFIED));

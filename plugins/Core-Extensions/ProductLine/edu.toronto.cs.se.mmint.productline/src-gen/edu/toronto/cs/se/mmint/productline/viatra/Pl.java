@@ -48,35 +48,35 @@ public final class Pl extends BaseGeneratedPatternGroup {
     }
     return INSTANCE;
   }
-  
+
   private static Pl INSTANCE;
-  
+
   private Pl() {
     querySpecifications.add(ClassType.instance());
     querySpecifications.add(Reference.instance());
     querySpecifications.add(Attribute.instance());
   }
-  
+
   public ClassType getClassType() {
     return ClassType.instance();
   }
-  
+
   public ClassType.Matcher getClassType(final ViatraQueryEngine engine) {
     return ClassType.Matcher.on(engine);
   }
-  
+
   public Reference getReference() {
     return Reference.instance();
   }
-  
+
   public Reference.Matcher getReference(final ViatraQueryEngine engine) {
     return Reference.Matcher.on(engine);
   }
-  
+
   public Attribute getAttribute() {
     return Attribute.instance();
   }
-  
+
   public Attribute.Matcher getAttribute(final ViatraQueryEngine engine) {
     return Attribute.Matcher.on(engine);
   }
