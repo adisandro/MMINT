@@ -28,8 +28,8 @@ import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.diagram.context.SiriusEvaluateQuery;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
+import edu.toronto.cs.se.mmint.mid.diagram.library.SiriusEvaluateQuery;
 import edu.toronto.cs.se.mmint.mid.ui.GMFUtils;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.modelepedia.gsn.GSNFactory;

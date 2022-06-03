@@ -953,7 +953,7 @@ Contributors:
    <extension
          point="org.eclipse.sirius.externalJavaAction">
       <javaActions
-            actionClass="edu.toronto.cs.se.mmint.mid.diagram.context.SiriusEvaluateQuery"
+            actionClass="edu.toronto.cs.se.mmint.mid.diagram.library.SiriusEvaluateQuery"
             id="edu.toronto.cs.se.mmint.mid.diagram.context.SiriusEvaluateQuery">
       </javaActions>
    </extension>

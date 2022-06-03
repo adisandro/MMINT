@@ -10,7 +10,7 @@
  * Contributors:
  *     Alessio Di Sandro - Implementation
  *******************************************************************************/
-package edu.toronto.cs.se.mmint.mid.diagram.context;
+package edu.toronto.cs.se.mmint.mid.diagram.library;
 
 import java.util.Set;
 

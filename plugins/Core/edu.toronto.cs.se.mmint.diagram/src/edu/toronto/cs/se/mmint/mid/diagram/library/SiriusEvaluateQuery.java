@@ -9,7 +9,7 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.mmint.mid.diagram.context;
+package edu.toronto.cs.se.mmint.mid.diagram.library;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -46,8 +46,7 @@ import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.diagram.context.SiriusHighlighter.Color;
-import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
+import edu.toronto.cs.se.mmint.mid.diagram.library.SiriusHighlighter.Color;
 import edu.toronto.cs.se.mmint.mid.reasoning.IQueryTrait;
 import edu.toronto.cs.se.mmint.mid.reasoning.IQueryTrait.QuerySpec;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;

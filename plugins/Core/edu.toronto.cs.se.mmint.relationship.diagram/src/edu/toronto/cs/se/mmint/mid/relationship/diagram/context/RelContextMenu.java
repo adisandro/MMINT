@@ -27,7 +27,7 @@ import org.eclipse.ui.PlatformUI;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.mid.diagram.context.MIDContextEvaluateQueryListener;
 import edu.toronto.cs.se.mmint.mid.diagram.context.MIDContextMenu;
-import edu.toronto.cs.se.mmint.mid.diagram.context.SiriusHighlighter.Color;
+import edu.toronto.cs.se.mmint.mid.diagram.library.SiriusHighlighter.Color;
 import edu.toronto.cs.se.mmint.mid.provider.MIDEditPlugin;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;

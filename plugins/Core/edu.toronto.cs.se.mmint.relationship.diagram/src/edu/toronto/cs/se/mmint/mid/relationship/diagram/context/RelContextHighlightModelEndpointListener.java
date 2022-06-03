@@ -18,9 +18,9 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.swt.events.SelectionEvent;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.mid.diagram.context.SiriusHighlighter;
-import edu.toronto.cs.se.mmint.mid.diagram.context.SiriusHighlighter.Color;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
+import edu.toronto.cs.se.mmint.mid.diagram.library.SiriusHighlighter;
+import edu.toronto.cs.se.mmint.mid.diagram.library.SiriusHighlighter.Color;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 

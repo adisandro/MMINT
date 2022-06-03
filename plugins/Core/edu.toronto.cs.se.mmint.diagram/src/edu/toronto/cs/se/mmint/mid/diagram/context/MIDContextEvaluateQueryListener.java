@@ -31,6 +31,7 @@ import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
+import edu.toronto.cs.se.mmint.mid.diagram.library.SiriusEvaluateQuery;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 
 public class MIDContextEvaluateQueryListener extends MIDContextMenuListener {
