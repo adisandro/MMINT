@@ -27,9 +27,10 @@
         <setting id="cleanup.return_expression" value="false"/>
         <setting id="cleanup.remove_unnecessary_casts" value="true"/>
         <setting id="cleanup.redundant_falling_through_block_end" value="false"/>
+        <setting id="cleanup.overridden_assignment_move_decl" value="true"/>
         <setting id="cleanup.always_use_parentheses_in_expressions" value="false"/>
         <setting id="cleanup.use_parentheses_in_expressions" value="false"/>
-        <setting id="cleanup.multi_catch" value="false"/>
+        <setting id="cleanup.multi_catch" value="true"/>
         <setting id="cleanup.if_condition" value="false"/>
         <setting id="cleanup.comparison_statement" value="false"/>
         <setting id="cleanup.use_this_for_non_static_method_access_only_if_necessary" value="false"/>
@@ -45,6 +46,7 @@
         <setting id="cleanup.add_missing_override_annotations_interface_methods" value="true"/>
         <setting id="cleanup.substring" value="false"/>
         <setting id="cleanup.lazy_logical_operator" value="false"/>
+        <setting id="cleanup.remove_unused_method_parameters" value="false"/>
         <setting id="cleanup.valueof_rather_than_instantiation" value="false"/>
         <setting id="cleanup.qualify_static_field_accesses_with_declaring_class" value="true"/>
         <setting id="cleanup.pull_out_if_from_if_else" value="false"/>
