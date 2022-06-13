@@ -70,13 +70,13 @@ public final class TestAttributeCD extends BaseGeneratedEMFQuerySpecification<Te
    */
   public static abstract class Match extends BasePatternMatch {
     private edu.toronto.cs.se.modelepedia.classdiagram.Class fClazz;
-    
+
     private static List<String> parameterNames = makeImmutableList("clazz");
-    
+
     private Match(final edu.toronto.cs.se.modelepedia.classdiagram.Class pClazz) {
       this.fClazz = pClazz;
     }
-    
+
     @Override
     public Object get(final String parameterName) {
       switch(parameterName) {
@@ -84,7 +84,7 @@ public final class TestAttributeCD extends BaseGeneratedEMFQuerySpecification<Te
           default: return null;
       }
     }
-    
+
     @Override
     public Object get(final int index) {
       switch(index) {
@@ -92,11 +92,11 @@ public final class TestAttributeCD extends BaseGeneratedEMFQuerySpecification<Te
           default: return null;
       }
     }
-    
+
     public edu.toronto.cs.se.modelepedia.classdiagram.Class getClazz() {
       return this.fClazz;
     }
-    
+
     @Override
     public boolean set(final String parameterName, final Object newValue) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
@@ -106,44 +106,44 @@ public final class TestAttributeCD extends BaseGeneratedEMFQuerySpecification<Te
       }
       return false;
     }
-    
+
     public void setClazz(final edu.toronto.cs.se.modelepedia.classdiagram.Class pClazz) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
       this.fClazz = pClazz;
     }
-    
+
     @Override
     public String patternName() {
       return "edu.toronto.cs.se.mmint.productline.viatra.tests.testAttributeCD";
     }
-    
+
     @Override
     public List<String> parameterNames() {
       return TestAttributeCD.Match.parameterNames;
     }
-    
+
     @Override
     public Object[] toArray() {
       return new Object[]{fClazz};
     }
-    
+
     @Override
     public TestAttributeCD.Match toImmutable() {
       return isMutable() ? newMatch(fClazz) : this;
     }
-    
+
     @Override
     public String prettyPrint() {
       StringBuilder result = new StringBuilder();
       result.append("\"clazz\"=" + prettyPrintValue(fClazz));
       return result.toString();
     }
-    
+
     @Override
     public int hashCode() {
       return Objects.hash(fClazz);
     }
-    
+
     @Override
     public boolean equals(final Object obj) {
       if (this == obj)
@@ -163,12 +163,12 @@ public final class TestAttributeCD extends BaseGeneratedEMFQuerySpecification<Te
           return Objects.equals(specification(), otherSig.specification()) && Arrays.deepEquals(toArray(), otherSig.toArray());
       }
     }
-    
+
     @Override
     public TestAttributeCD specification() {
       return TestAttributeCD.instance();
     }
-    
+
     /**
      * Returns an empty, mutable match.
      * Fields of the mutable match can be filled to create a partial match, usable as matcher input.
@@ -179,7 +179,7 @@ public final class TestAttributeCD extends BaseGeneratedEMFQuerySpecification<Te
     public static TestAttributeCD.Match newEmptyMatch() {
       return new Mutable(null);
     }
-    
+
     /**
      * Returns a mutable (partial) match.
      * Fields of the mutable match can be filled to create a partial match, usable as matcher input.
@@ -191,7 +191,7 @@ public final class TestAttributeCD extends BaseGeneratedEMFQuerySpecification<Te
     public static TestAttributeCD.Match newMutableMatch(final edu.toronto.cs.se.modelepedia.classdiagram.Class pClazz) {
       return new Mutable(pClazz);
     }
-    
+
     /**
      * Returns a new (partial) match.
      * This can be used e.g. to call the matcher with a partial match.
@@ -203,30 +203,30 @@ public final class TestAttributeCD extends BaseGeneratedEMFQuerySpecification<Te
     public static TestAttributeCD.Match newMatch(final edu.toronto.cs.se.modelepedia.classdiagram.Class pClazz) {
       return new Immutable(pClazz);
     }
-    
+
     private static final class Mutable extends TestAttributeCD.Match {
       Mutable(final edu.toronto.cs.se.modelepedia.classdiagram.Class pClazz) {
         super(pClazz);
       }
-      
+
       @Override
       public boolean isMutable() {
         return true;
       }
     }
-    
+
     private static final class Immutable extends TestAttributeCD.Match {
       Immutable(final edu.toronto.cs.se.modelepedia.classdiagram.Class pClazz) {
         super(pClazz);
       }
-      
+
       @Override
       public boolean isMutable() {
         return false;
       }
     }
   }
-  
+
   /**
    * Generated pattern matcher API of the edu.toronto.cs.se.mmint.productline.viatra.tests.testAttributeCD pattern,
    * providing pattern-specific query methods.
@@ -264,7 +264,7 @@ public final class TestAttributeCD extends BaseGeneratedEMFQuerySpecification<Te
       }
       return matcher;
     }
-    
+
     /**
      * @throws ViatraQueryRuntimeException if an error occurs during pattern matcher creation
      * @return an initialized matcher
@@ -274,11 +274,11 @@ public final class TestAttributeCD extends BaseGeneratedEMFQuerySpecification<Te
     public static TestAttributeCD.Matcher create() {
       return new Matcher();
     }
-    
+
     private static final int POSITION_CLAZZ = 0;
-    
+
     private static final Logger LOGGER = ViatraQueryLoggingUtil.getLogger(TestAttributeCD.Matcher.class);
-    
+
     /**
      * Initializes the pattern matcher within an existing VIATRA Query engine.
      * If the pattern matcher is already constructed in the engine, only a light-weight reference is returned.
@@ -290,7 +290,7 @@ public final class TestAttributeCD extends BaseGeneratedEMFQuerySpecification<Te
     private Matcher() {
       super(querySpecification());
     }
-    
+
     /**
      * Returns the set of all matches of the pattern that conform to the given fixed values of some parameters.
      * @param pClazz the fixed value of pattern parameter clazz, or null if not bound.
@@ -300,7 +300,7 @@ public final class TestAttributeCD extends BaseGeneratedEMFQuerySpecification<Te
     public Collection<TestAttributeCD.Match> getAllMatches(final edu.toronto.cs.se.modelepedia.classdiagram.Class pClazz) {
       return rawStreamAllMatches(new Object[]{pClazz}).collect(Collectors.toSet());
     }
-    
+
     /**
      * Returns a stream of all matches of the pattern that conform to the given fixed values of some parameters.
      * </p>
@@ -314,7 +314,7 @@ public final class TestAttributeCD extends BaseGeneratedEMFQuerySpecification<Te
     public Stream<TestAttributeCD.Match> streamAllMatches(final edu.toronto.cs.se.modelepedia.classdiagram.Class pClazz) {
       return rawStreamAllMatches(new Object[]{pClazz});
     }
-    
+
     /**
      * Returns an arbitrarily chosen match of the pattern that conforms to the given fixed values of some parameters.
      * Neither determinism nor randomness of selection is guaranteed.
@@ -325,7 +325,7 @@ public final class TestAttributeCD extends BaseGeneratedEMFQuerySpecification<Te
     public Optional<TestAttributeCD.Match> getOneArbitraryMatch(final edu.toronto.cs.se.modelepedia.classdiagram.Class pClazz) {
       return rawGetOneArbitraryMatch(new Object[]{pClazz});
     }
-    
+
     /**
      * Indicates whether the given combination of specified pattern parameters constitute a valid pattern match,
      * under any possible substitution of the unspecified parameters (if any).
@@ -336,7 +336,7 @@ public final class TestAttributeCD extends BaseGeneratedEMFQuerySpecification<Te
     public boolean hasMatch(final edu.toronto.cs.se.modelepedia.classdiagram.Class pClazz) {
       return rawHasMatch(new Object[]{pClazz});
     }
-    
+
     /**
      * Returns the number of all matches of the pattern that conform to the given fixed values of some parameters.
      * @param pClazz the fixed value of pattern parameter clazz, or null if not bound.
@@ -346,7 +346,7 @@ public final class TestAttributeCD extends BaseGeneratedEMFQuerySpecification<Te
     public int countMatches(final edu.toronto.cs.se.modelepedia.classdiagram.Class pClazz) {
       return rawCountMatches(new Object[]{pClazz});
     }
-    
+
     /**
      * Executes the given processor on an arbitrarily chosen match of the pattern that conforms to the given fixed values of some parameters.
      * Neither determinism nor randomness of selection is guaranteed.
@@ -358,7 +358,7 @@ public final class TestAttributeCD extends BaseGeneratedEMFQuerySpecification<Te
     public boolean forOneArbitraryMatch(final edu.toronto.cs.se.modelepedia.classdiagram.Class pClazz, final Consumer<? super TestAttributeCD.Match> processor) {
       return rawForOneArbitraryMatch(new Object[]{pClazz}, processor);
     }
-    
+
     /**
      * Returns a new (partial) match.
      * This can be used e.g. to call the matcher with a partial match.
@@ -370,7 +370,7 @@ public final class TestAttributeCD extends BaseGeneratedEMFQuerySpecification<Te
     public TestAttributeCD.Match newMatch(final edu.toronto.cs.se.modelepedia.classdiagram.Class pClazz) {
       return TestAttributeCD.Match.newMatch(pClazz);
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for clazz.
      * @return the Set of all values or empty set if there are no matches
@@ -379,7 +379,7 @@ public final class TestAttributeCD extends BaseGeneratedEMFQuerySpecification<Te
     protected Stream<edu.toronto.cs.se.modelepedia.classdiagram.Class> rawStreamAllValuesOfclazz(final Object[] parameters) {
       return rawStreamAllValues(POSITION_CLAZZ, parameters).map(edu.toronto.cs.se.modelepedia.classdiagram.Class.class::cast);
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for clazz.
      * @return the Set of all values or empty set if there are no matches
@@ -388,7 +388,7 @@ public final class TestAttributeCD extends BaseGeneratedEMFQuerySpecification<Te
     public Set<edu.toronto.cs.se.modelepedia.classdiagram.Class> getAllValuesOfclazz() {
       return rawStreamAllValuesOfclazz(emptyArray()).collect(Collectors.toSet());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for clazz.
      * @return the Set of all values or empty set if there are no matches
@@ -397,7 +397,7 @@ public final class TestAttributeCD extends BaseGeneratedEMFQuerySpecification<Te
     public Stream<edu.toronto.cs.se.modelepedia.classdiagram.Class> streamAllValuesOfclazz() {
       return rawStreamAllValuesOfclazz(emptyArray());
     }
-    
+
     @Override
     protected TestAttributeCD.Match tupleToMatch(final Tuple t) {
       try {
@@ -407,7 +407,7 @@ public final class TestAttributeCD extends BaseGeneratedEMFQuerySpecification<Te
           return null;
       }
     }
-    
+
     @Override
     protected TestAttributeCD.Match arrayToMatch(final Object[] match) {
       try {
@@ -417,7 +417,7 @@ public final class TestAttributeCD extends BaseGeneratedEMFQuerySpecification<Te
           return null;
       }
     }
-    
+
     @Override
     protected TestAttributeCD.Match arrayToMatchMutable(final Object[] match) {
       try {
@@ -427,7 +427,7 @@ public final class TestAttributeCD extends BaseGeneratedEMFQuerySpecification<Te
           return null;
       }
     }
-    
+
     /**
      * @return the singleton instance of the query specification of this pattern
      * @throws ViatraQueryRuntimeException if the pattern definition could not be loaded
@@ -437,11 +437,11 @@ public final class TestAttributeCD extends BaseGeneratedEMFQuerySpecification<Te
       return TestAttributeCD.instance();
     }
   }
-  
+
   private TestAttributeCD() {
     super(GeneratedPQuery.INSTANCE);
   }
-  
+
   /**
    * @return the singleton instance of the query specification
    * @throws ViatraQueryRuntimeException if the pattern definition could not be loaded
@@ -454,27 +454,27 @@ public final class TestAttributeCD extends BaseGeneratedEMFQuerySpecification<Te
         throw processInitializerError(err);
     }
   }
-  
+
   @Override
   protected TestAttributeCD.Matcher instantiate(final ViatraQueryEngine engine) {
     return TestAttributeCD.Matcher.on(engine);
   }
-  
+
   @Override
   public TestAttributeCD.Matcher instantiate() {
     return TestAttributeCD.Matcher.create();
   }
-  
+
   @Override
   public TestAttributeCD.Match newEmptyMatch() {
     return TestAttributeCD.Match.newEmptyMatch();
   }
-  
+
   @Override
   public TestAttributeCD.Match newMatch(final Object... parameters) {
     return TestAttributeCD.Match.newMatch((edu.toronto.cs.se.modelepedia.classdiagram.Class) parameters[0]);
   }
-  
+
   /**
    * Inner class allowing the singleton instance of {@link TestAttributeCD} to be created 
    *     <b>not</b> at the class load time of the outer class, 
@@ -485,7 +485,7 @@ public final class TestAttributeCD extends BaseGeneratedEMFQuerySpecification<Te
    */
   private static class LazyHolder {
     private static final TestAttributeCD INSTANCE = new TestAttributeCD();
-    
+
     /**
      * Statically initializes the query specification <b>after</b> the field {@link #INSTANCE} is assigned.
      * This initialization order is required to support indirect recursion.
@@ -494,39 +494,39 @@ public final class TestAttributeCD extends BaseGeneratedEMFQuerySpecification<Te
      * 
      */
     private static final Object STATIC_INITIALIZER = ensureInitialized();
-    
+
     public static Object ensureInitialized() {
       INSTANCE.ensureInitializedInternal();
       return null;
     }
   }
-  
+
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private static final TestAttributeCD.GeneratedPQuery INSTANCE = new GeneratedPQuery();
-    
+
     private final PParameter parameter_clazz = new PParameter("clazz", "edu.toronto.cs.se.modelepedia.classdiagram.Class", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://se.cs.toronto.edu/modelepedia/ClassDiagram", "Class")), PParameterDirection.INOUT);
-    
+
     private final List<PParameter> parameters = Arrays.asList(parameter_clazz);
-    
+
     private GeneratedPQuery() {
       super(PVisibility.PUBLIC);
     }
-    
+
     @Override
     public String getFullyQualifiedName() {
       return "edu.toronto.cs.se.mmint.productline.viatra.tests.testAttributeCD";
     }
-    
+
     @Override
     public List<String> getParameterNames() {
       return Arrays.asList("clazz");
     }
-    
+
     @Override
     public List<PParameter> getParameters() {
       return parameters;
     }
-    
+
     @Override
     public Set<PBody> doGetContainedBodies() {
       setEvaluationHints(new QueryEvaluationHint(null, QueryEvaluationHint.BackendRequirement.UNSPECIFIED));

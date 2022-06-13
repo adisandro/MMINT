@@ -86,13 +86,13 @@ public final class DbLockStates extends BaseGeneratedEMFQuerySpecification<DbLoc
    */
   public static abstract class Match extends BasePatternMatch {
     private State fState;
-    
+
     private static List<String> parameterNames = makeImmutableList("state");
-    
+
     private Match(final State pState) {
       this.fState = pState;
     }
-    
+
     @Override
     public Object get(final String parameterName) {
       switch(parameterName) {
@@ -100,7 +100,7 @@ public final class DbLockStates extends BaseGeneratedEMFQuerySpecification<DbLoc
           default: return null;
       }
     }
-    
+
     @Override
     public Object get(final int index) {
       switch(index) {
@@ -108,11 +108,11 @@ public final class DbLockStates extends BaseGeneratedEMFQuerySpecification<DbLoc
           default: return null;
       }
     }
-    
+
     public State getState() {
       return this.fState;
     }
-    
+
     @Override
     public boolean set(final String parameterName, final Object newValue) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
@@ -122,44 +122,44 @@ public final class DbLockStates extends BaseGeneratedEMFQuerySpecification<DbLoc
       }
       return false;
     }
-    
+
     public void setState(final State pState) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
       this.fState = pState;
     }
-    
+
     @Override
     public String patternName() {
       return "sosym22.dbLockStates";
     }
-    
+
     @Override
     public List<String> parameterNames() {
       return DbLockStates.Match.parameterNames;
     }
-    
+
     @Override
     public Object[] toArray() {
       return new Object[]{fState};
     }
-    
+
     @Override
     public DbLockStates.Match toImmutable() {
       return isMutable() ? newMatch(fState) : this;
     }
-    
+
     @Override
     public String prettyPrint() {
       StringBuilder result = new StringBuilder();
       result.append("\"state\"=" + prettyPrintValue(fState));
       return result.toString();
     }
-    
+
     @Override
     public int hashCode() {
       return Objects.hash(fState);
     }
-    
+
     @Override
     public boolean equals(final Object obj) {
       if (this == obj)
@@ -179,12 +179,12 @@ public final class DbLockStates extends BaseGeneratedEMFQuerySpecification<DbLoc
           return Objects.equals(specification(), otherSig.specification()) && Arrays.deepEquals(toArray(), otherSig.toArray());
       }
     }
-    
+
     @Override
     public DbLockStates specification() {
       return DbLockStates.instance();
     }
-    
+
     /**
      * Returns an empty, mutable match.
      * Fields of the mutable match can be filled to create a partial match, usable as matcher input.
@@ -195,7 +195,7 @@ public final class DbLockStates extends BaseGeneratedEMFQuerySpecification<DbLoc
     public static DbLockStates.Match newEmptyMatch() {
       return new Mutable(null);
     }
-    
+
     /**
      * Returns a mutable (partial) match.
      * Fields of the mutable match can be filled to create a partial match, usable as matcher input.
@@ -207,7 +207,7 @@ public final class DbLockStates extends BaseGeneratedEMFQuerySpecification<DbLoc
     public static DbLockStates.Match newMutableMatch(final State pState) {
       return new Mutable(pState);
     }
-    
+
     /**
      * Returns a new (partial) match.
      * This can be used e.g. to call the matcher with a partial match.
@@ -219,30 +219,30 @@ public final class DbLockStates extends BaseGeneratedEMFQuerySpecification<DbLoc
     public static DbLockStates.Match newMatch(final State pState) {
       return new Immutable(pState);
     }
-    
+
     private static final class Mutable extends DbLockStates.Match {
       Mutable(final State pState) {
         super(pState);
       }
-      
+
       @Override
       public boolean isMutable() {
         return true;
       }
     }
-    
+
     private static final class Immutable extends DbLockStates.Match {
       Immutable(final State pState) {
         super(pState);
       }
-      
+
       @Override
       public boolean isMutable() {
         return false;
       }
     }
   }
-  
+
   /**
    * Generated pattern matcher API of the sosym22.dbLockStates pattern,
    * providing pattern-specific query methods.
@@ -282,7 +282,7 @@ public final class DbLockStates extends BaseGeneratedEMFQuerySpecification<DbLoc
       }
       return matcher;
     }
-    
+
     /**
      * @throws ViatraQueryRuntimeException if an error occurs during pattern matcher creation
      * @return an initialized matcher
@@ -292,11 +292,11 @@ public final class DbLockStates extends BaseGeneratedEMFQuerySpecification<DbLoc
     public static DbLockStates.Matcher create() {
       return new Matcher();
     }
-    
+
     private static final int POSITION_STATE = 0;
-    
+
     private static final Logger LOGGER = ViatraQueryLoggingUtil.getLogger(DbLockStates.Matcher.class);
-    
+
     /**
      * Initializes the pattern matcher within an existing VIATRA Query engine.
      * If the pattern matcher is already constructed in the engine, only a light-weight reference is returned.
@@ -308,7 +308,7 @@ public final class DbLockStates extends BaseGeneratedEMFQuerySpecification<DbLoc
     private Matcher() {
       super(querySpecification());
     }
-    
+
     /**
      * Returns the set of all matches of the pattern that conform to the given fixed values of some parameters.
      * @param pState the fixed value of pattern parameter state, or null if not bound.
@@ -318,7 +318,7 @@ public final class DbLockStates extends BaseGeneratedEMFQuerySpecification<DbLoc
     public Collection<DbLockStates.Match> getAllMatches(final State pState) {
       return rawStreamAllMatches(new Object[]{pState}).collect(Collectors.toSet());
     }
-    
+
     /**
      * Returns a stream of all matches of the pattern that conform to the given fixed values of some parameters.
      * </p>
@@ -332,7 +332,7 @@ public final class DbLockStates extends BaseGeneratedEMFQuerySpecification<DbLoc
     public Stream<DbLockStates.Match> streamAllMatches(final State pState) {
       return rawStreamAllMatches(new Object[]{pState});
     }
-    
+
     /**
      * Returns an arbitrarily chosen match of the pattern that conforms to the given fixed values of some parameters.
      * Neither determinism nor randomness of selection is guaranteed.
@@ -343,7 +343,7 @@ public final class DbLockStates extends BaseGeneratedEMFQuerySpecification<DbLoc
     public Optional<DbLockStates.Match> getOneArbitraryMatch(final State pState) {
       return rawGetOneArbitraryMatch(new Object[]{pState});
     }
-    
+
     /**
      * Indicates whether the given combination of specified pattern parameters constitute a valid pattern match,
      * under any possible substitution of the unspecified parameters (if any).
@@ -354,7 +354,7 @@ public final class DbLockStates extends BaseGeneratedEMFQuerySpecification<DbLoc
     public boolean hasMatch(final State pState) {
       return rawHasMatch(new Object[]{pState});
     }
-    
+
     /**
      * Returns the number of all matches of the pattern that conform to the given fixed values of some parameters.
      * @param pState the fixed value of pattern parameter state, or null if not bound.
@@ -364,7 +364,7 @@ public final class DbLockStates extends BaseGeneratedEMFQuerySpecification<DbLoc
     public int countMatches(final State pState) {
       return rawCountMatches(new Object[]{pState});
     }
-    
+
     /**
      * Executes the given processor on an arbitrarily chosen match of the pattern that conforms to the given fixed values of some parameters.
      * Neither determinism nor randomness of selection is guaranteed.
@@ -376,7 +376,7 @@ public final class DbLockStates extends BaseGeneratedEMFQuerySpecification<DbLoc
     public boolean forOneArbitraryMatch(final State pState, final Consumer<? super DbLockStates.Match> processor) {
       return rawForOneArbitraryMatch(new Object[]{pState}, processor);
     }
-    
+
     /**
      * Returns a new (partial) match.
      * This can be used e.g. to call the matcher with a partial match.
@@ -388,7 +388,7 @@ public final class DbLockStates extends BaseGeneratedEMFQuerySpecification<DbLoc
     public DbLockStates.Match newMatch(final State pState) {
       return DbLockStates.Match.newMatch(pState);
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for state.
      * @return the Set of all values or empty set if there are no matches
@@ -397,7 +397,7 @@ public final class DbLockStates extends BaseGeneratedEMFQuerySpecification<DbLoc
     protected Stream<State> rawStreamAllValuesOfstate(final Object[] parameters) {
       return rawStreamAllValues(POSITION_STATE, parameters).map(State.class::cast);
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for state.
      * @return the Set of all values or empty set if there are no matches
@@ -406,7 +406,7 @@ public final class DbLockStates extends BaseGeneratedEMFQuerySpecification<DbLoc
     public Set<State> getAllValuesOfstate() {
       return rawStreamAllValuesOfstate(emptyArray()).collect(Collectors.toSet());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for state.
      * @return the Set of all values or empty set if there are no matches
@@ -415,7 +415,7 @@ public final class DbLockStates extends BaseGeneratedEMFQuerySpecification<DbLoc
     public Stream<State> streamAllValuesOfstate() {
       return rawStreamAllValuesOfstate(emptyArray());
     }
-    
+
     @Override
     protected DbLockStates.Match tupleToMatch(final Tuple t) {
       try {
@@ -425,7 +425,7 @@ public final class DbLockStates extends BaseGeneratedEMFQuerySpecification<DbLoc
           return null;
       }
     }
-    
+
     @Override
     protected DbLockStates.Match arrayToMatch(final Object[] match) {
       try {
@@ -435,7 +435,7 @@ public final class DbLockStates extends BaseGeneratedEMFQuerySpecification<DbLoc
           return null;
       }
     }
-    
+
     @Override
     protected DbLockStates.Match arrayToMatchMutable(final Object[] match) {
       try {
@@ -445,7 +445,7 @@ public final class DbLockStates extends BaseGeneratedEMFQuerySpecification<DbLoc
           return null;
       }
     }
-    
+
     /**
      * @return the singleton instance of the query specification of this pattern
      * @throws ViatraQueryRuntimeException if the pattern definition could not be loaded
@@ -455,11 +455,11 @@ public final class DbLockStates extends BaseGeneratedEMFQuerySpecification<DbLoc
       return DbLockStates.instance();
     }
   }
-  
+
   private DbLockStates() {
     super(GeneratedPQuery.INSTANCE);
   }
-  
+
   /**
    * @return the singleton instance of the query specification
    * @throws ViatraQueryRuntimeException if the pattern definition could not be loaded
@@ -472,27 +472,27 @@ public final class DbLockStates extends BaseGeneratedEMFQuerySpecification<DbLoc
         throw processInitializerError(err);
     }
   }
-  
+
   @Override
   protected DbLockStates.Matcher instantiate(final ViatraQueryEngine engine) {
     return DbLockStates.Matcher.on(engine);
   }
-  
+
   @Override
   public DbLockStates.Matcher instantiate() {
     return DbLockStates.Matcher.create();
   }
-  
+
   @Override
   public DbLockStates.Match newEmptyMatch() {
     return DbLockStates.Match.newEmptyMatch();
   }
-  
+
   @Override
   public DbLockStates.Match newMatch(final Object... parameters) {
     return DbLockStates.Match.newMatch((edu.toronto.cs.se.mmint.types.lts.State) parameters[0]);
   }
-  
+
   /**
    * Inner class allowing the singleton instance of {@link DbLockStates} to be created 
    *     <b>not</b> at the class load time of the outer class, 
@@ -503,7 +503,7 @@ public final class DbLockStates extends BaseGeneratedEMFQuerySpecification<DbLoc
    */
   private static class LazyHolder {
     private static final DbLockStates INSTANCE = new DbLockStates();
-    
+
     /**
      * Statically initializes the query specification <b>after</b> the field {@link #INSTANCE} is assigned.
      * This initialization order is required to support indirect recursion.
@@ -512,39 +512,39 @@ public final class DbLockStates extends BaseGeneratedEMFQuerySpecification<DbLoc
      * 
      */
     private static final Object STATIC_INITIALIZER = ensureInitialized();
-    
+
     public static Object ensureInitialized() {
       INSTANCE.ensureInitializedInternal();
       return null;
     }
   }
-  
+
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private static final DbLockStates.GeneratedPQuery INSTANCE = new GeneratedPQuery();
-    
+
     private final PParameter parameter_state = new PParameter("state", "edu.toronto.cs.se.mmint.types.lts.State", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("model://edu.toronto.cs.se.mmint.types.lts", "State")), PParameterDirection.INOUT);
-    
+
     private final List<PParameter> parameters = Arrays.asList(parameter_state);
-    
+
     private GeneratedPQuery() {
       super(PVisibility.PUBLIC);
     }
-    
+
     @Override
     public String getFullyQualifiedName() {
       return "sosym22.dbLockStates";
     }
-    
+
     @Override
     public List<String> getParameterNames() {
       return Arrays.asList("state");
     }
-    
+
     @Override
     public List<PParameter> getParameters() {
       return parameters;
     }
-    
+
     @Override
     public Set<PBody> doGetContainedBodies() {
       setEvaluationHints(new QueryEvaluationHint(null, QueryEvaluationHint.BackendRequirement.UNSPECIFIED));
@@ -593,7 +593,7 @@ public final class DbLockStates extends BaseGeneratedEMFQuerySpecification<DbLoc
       return bodies;
     }
   }
-  
+
   private static boolean evaluateExpression_1_1(final String label) {
     boolean _startsWith = label.startsWith("dbMonitor.condDB.lock");
     return _startsWith;

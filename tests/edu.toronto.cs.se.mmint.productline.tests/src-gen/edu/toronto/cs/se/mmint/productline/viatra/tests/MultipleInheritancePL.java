@@ -72,17 +72,17 @@ public final class MultipleInheritancePL extends BaseGeneratedEMFQuerySpecificat
    */
   public static abstract class Match extends BasePatternMatch {
     private edu.toronto.cs.se.mmint.productline.Class fChild;
-    
+
     private PLElement fParent1;
-    
+
     private PLElement fParent2;
-    
+
     private PLElement fRef1;
-    
+
     private PLElement fRef2;
-    
+
     private static List<String> parameterNames = makeImmutableList("child", "parent1", "parent2", "ref1", "ref2");
-    
+
     private Match(final edu.toronto.cs.se.mmint.productline.Class pChild, final PLElement pParent1, final PLElement pParent2, final PLElement pRef1, final PLElement pRef2) {
       this.fChild = pChild;
       this.fParent1 = pParent1;
@@ -90,7 +90,7 @@ public final class MultipleInheritancePL extends BaseGeneratedEMFQuerySpecificat
       this.fRef1 = pRef1;
       this.fRef2 = pRef2;
     }
-    
+
     @Override
     public Object get(final String parameterName) {
       switch(parameterName) {
@@ -102,7 +102,7 @@ public final class MultipleInheritancePL extends BaseGeneratedEMFQuerySpecificat
           default: return null;
       }
     }
-    
+
     @Override
     public Object get(final int index) {
       switch(index) {
@@ -114,27 +114,27 @@ public final class MultipleInheritancePL extends BaseGeneratedEMFQuerySpecificat
           default: return null;
       }
     }
-    
+
     public edu.toronto.cs.se.mmint.productline.Class getChild() {
       return this.fChild;
     }
-    
+
     public PLElement getParent1() {
       return this.fParent1;
     }
-    
+
     public PLElement getParent2() {
       return this.fParent2;
     }
-    
+
     public PLElement getRef1() {
       return this.fRef1;
     }
-    
+
     public PLElement getRef2() {
       return this.fRef2;
     }
-    
+
     @Override
     public boolean set(final String parameterName, final Object newValue) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
@@ -160,52 +160,52 @@ public final class MultipleInheritancePL extends BaseGeneratedEMFQuerySpecificat
       }
       return false;
     }
-    
+
     public void setChild(final edu.toronto.cs.se.mmint.productline.Class pChild) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
       this.fChild = pChild;
     }
-    
+
     public void setParent1(final PLElement pParent1) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
       this.fParent1 = pParent1;
     }
-    
+
     public void setParent2(final PLElement pParent2) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
       this.fParent2 = pParent2;
     }
-    
+
     public void setRef1(final PLElement pRef1) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
       this.fRef1 = pRef1;
     }
-    
+
     public void setRef2(final PLElement pRef2) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
       this.fRef2 = pRef2;
     }
-    
+
     @Override
     public String patternName() {
       return "edu.toronto.cs.se.mmint.productline.viatra.tests.multipleInheritancePL";
     }
-    
+
     @Override
     public List<String> parameterNames() {
       return MultipleInheritancePL.Match.parameterNames;
     }
-    
+
     @Override
     public Object[] toArray() {
       return new Object[]{fChild, fParent1, fParent2, fRef1, fRef2};
     }
-    
+
     @Override
     public MultipleInheritancePL.Match toImmutable() {
       return isMutable() ? newMatch(fChild, fParent1, fParent2, fRef1, fRef2) : this;
     }
-    
+
     @Override
     public String prettyPrint() {
       StringBuilder result = new StringBuilder();
@@ -216,12 +216,12 @@ public final class MultipleInheritancePL extends BaseGeneratedEMFQuerySpecificat
       result.append("\"ref2\"=" + prettyPrintValue(fRef2));
       return result.toString();
     }
-    
+
     @Override
     public int hashCode() {
       return Objects.hash(fChild, fParent1, fParent2, fRef1, fRef2);
     }
-    
+
     @Override
     public boolean equals(final Object obj) {
       if (this == obj)
@@ -241,12 +241,12 @@ public final class MultipleInheritancePL extends BaseGeneratedEMFQuerySpecificat
           return Objects.equals(specification(), otherSig.specification()) && Arrays.deepEquals(toArray(), otherSig.toArray());
       }
     }
-    
+
     @Override
     public MultipleInheritancePL specification() {
       return MultipleInheritancePL.instance();
     }
-    
+
     /**
      * Returns an empty, mutable match.
      * Fields of the mutable match can be filled to create a partial match, usable as matcher input.
@@ -257,7 +257,7 @@ public final class MultipleInheritancePL extends BaseGeneratedEMFQuerySpecificat
     public static MultipleInheritancePL.Match newEmptyMatch() {
       return new Mutable(null, null, null, null, null);
     }
-    
+
     /**
      * Returns a mutable (partial) match.
      * Fields of the mutable match can be filled to create a partial match, usable as matcher input.
@@ -273,7 +273,7 @@ public final class MultipleInheritancePL extends BaseGeneratedEMFQuerySpecificat
     public static MultipleInheritancePL.Match newMutableMatch(final edu.toronto.cs.se.mmint.productline.Class pChild, final PLElement pParent1, final PLElement pParent2, final PLElement pRef1, final PLElement pRef2) {
       return new Mutable(pChild, pParent1, pParent2, pRef1, pRef2);
     }
-    
+
     /**
      * Returns a new (partial) match.
      * This can be used e.g. to call the matcher with a partial match.
@@ -289,30 +289,30 @@ public final class MultipleInheritancePL extends BaseGeneratedEMFQuerySpecificat
     public static MultipleInheritancePL.Match newMatch(final edu.toronto.cs.se.mmint.productline.Class pChild, final PLElement pParent1, final PLElement pParent2, final PLElement pRef1, final PLElement pRef2) {
       return new Immutable(pChild, pParent1, pParent2, pRef1, pRef2);
     }
-    
+
     private static final class Mutable extends MultipleInheritancePL.Match {
       Mutable(final edu.toronto.cs.se.mmint.productline.Class pChild, final PLElement pParent1, final PLElement pParent2, final PLElement pRef1, final PLElement pRef2) {
         super(pChild, pParent1, pParent2, pRef1, pRef2);
       }
-      
+
       @Override
       public boolean isMutable() {
         return true;
       }
     }
-    
+
     private static final class Immutable extends MultipleInheritancePL.Match {
       Immutable(final edu.toronto.cs.se.mmint.productline.Class pChild, final PLElement pParent1, final PLElement pParent2, final PLElement pRef1, final PLElement pRef2) {
         super(pChild, pParent1, pParent2, pRef1, pRef2);
       }
-      
+
       @Override
       public boolean isMutable() {
         return false;
       }
     }
   }
-  
+
   /**
    * Generated pattern matcher API of the edu.toronto.cs.se.mmint.productline.viatra.tests.multipleInheritancePL pattern,
    * providing pattern-specific query methods.
@@ -352,7 +352,7 @@ public final class MultipleInheritancePL extends BaseGeneratedEMFQuerySpecificat
       }
       return matcher;
     }
-    
+
     /**
      * @throws ViatraQueryRuntimeException if an error occurs during pattern matcher creation
      * @return an initialized matcher
@@ -362,19 +362,19 @@ public final class MultipleInheritancePL extends BaseGeneratedEMFQuerySpecificat
     public static MultipleInheritancePL.Matcher create() {
       return new Matcher();
     }
-    
+
     private static final int POSITION_CHILD = 0;
-    
+
     private static final int POSITION_PARENT1 = 1;
-    
+
     private static final int POSITION_PARENT2 = 2;
-    
+
     private static final int POSITION_REF1 = 3;
-    
+
     private static final int POSITION_REF2 = 4;
-    
+
     private static final Logger LOGGER = ViatraQueryLoggingUtil.getLogger(MultipleInheritancePL.Matcher.class);
-    
+
     /**
      * Initializes the pattern matcher within an existing VIATRA Query engine.
      * If the pattern matcher is already constructed in the engine, only a light-weight reference is returned.
@@ -386,7 +386,7 @@ public final class MultipleInheritancePL extends BaseGeneratedEMFQuerySpecificat
     private Matcher() {
       super(querySpecification());
     }
-    
+
     /**
      * Returns the set of all matches of the pattern that conform to the given fixed values of some parameters.
      * @param pChild the fixed value of pattern parameter child, or null if not bound.
@@ -400,7 +400,7 @@ public final class MultipleInheritancePL extends BaseGeneratedEMFQuerySpecificat
     public Collection<MultipleInheritancePL.Match> getAllMatches(final edu.toronto.cs.se.mmint.productline.Class pChild, final PLElement pParent1, final PLElement pParent2, final PLElement pRef1, final PLElement pRef2) {
       return rawStreamAllMatches(new Object[]{pChild, pParent1, pParent2, pRef1, pRef2}).collect(Collectors.toSet());
     }
-    
+
     /**
      * Returns a stream of all matches of the pattern that conform to the given fixed values of some parameters.
      * </p>
@@ -418,7 +418,7 @@ public final class MultipleInheritancePL extends BaseGeneratedEMFQuerySpecificat
     public Stream<MultipleInheritancePL.Match> streamAllMatches(final edu.toronto.cs.se.mmint.productline.Class pChild, final PLElement pParent1, final PLElement pParent2, final PLElement pRef1, final PLElement pRef2) {
       return rawStreamAllMatches(new Object[]{pChild, pParent1, pParent2, pRef1, pRef2});
     }
-    
+
     /**
      * Returns an arbitrarily chosen match of the pattern that conforms to the given fixed values of some parameters.
      * Neither determinism nor randomness of selection is guaranteed.
@@ -433,7 +433,7 @@ public final class MultipleInheritancePL extends BaseGeneratedEMFQuerySpecificat
     public Optional<MultipleInheritancePL.Match> getOneArbitraryMatch(final edu.toronto.cs.se.mmint.productline.Class pChild, final PLElement pParent1, final PLElement pParent2, final PLElement pRef1, final PLElement pRef2) {
       return rawGetOneArbitraryMatch(new Object[]{pChild, pParent1, pParent2, pRef1, pRef2});
     }
-    
+
     /**
      * Indicates whether the given combination of specified pattern parameters constitute a valid pattern match,
      * under any possible substitution of the unspecified parameters (if any).
@@ -448,7 +448,7 @@ public final class MultipleInheritancePL extends BaseGeneratedEMFQuerySpecificat
     public boolean hasMatch(final edu.toronto.cs.se.mmint.productline.Class pChild, final PLElement pParent1, final PLElement pParent2, final PLElement pRef1, final PLElement pRef2) {
       return rawHasMatch(new Object[]{pChild, pParent1, pParent2, pRef1, pRef2});
     }
-    
+
     /**
      * Returns the number of all matches of the pattern that conform to the given fixed values of some parameters.
      * @param pChild the fixed value of pattern parameter child, or null if not bound.
@@ -462,7 +462,7 @@ public final class MultipleInheritancePL extends BaseGeneratedEMFQuerySpecificat
     public int countMatches(final edu.toronto.cs.se.mmint.productline.Class pChild, final PLElement pParent1, final PLElement pParent2, final PLElement pRef1, final PLElement pRef2) {
       return rawCountMatches(new Object[]{pChild, pParent1, pParent2, pRef1, pRef2});
     }
-    
+
     /**
      * Executes the given processor on an arbitrarily chosen match of the pattern that conforms to the given fixed values of some parameters.
      * Neither determinism nor randomness of selection is guaranteed.
@@ -478,7 +478,7 @@ public final class MultipleInheritancePL extends BaseGeneratedEMFQuerySpecificat
     public boolean forOneArbitraryMatch(final edu.toronto.cs.se.mmint.productline.Class pChild, final PLElement pParent1, final PLElement pParent2, final PLElement pRef1, final PLElement pRef2, final Consumer<? super MultipleInheritancePL.Match> processor) {
       return rawForOneArbitraryMatch(new Object[]{pChild, pParent1, pParent2, pRef1, pRef2}, processor);
     }
-    
+
     /**
      * Returns a new (partial) match.
      * This can be used e.g. to call the matcher with a partial match.
@@ -494,7 +494,7 @@ public final class MultipleInheritancePL extends BaseGeneratedEMFQuerySpecificat
     public MultipleInheritancePL.Match newMatch(final edu.toronto.cs.se.mmint.productline.Class pChild, final PLElement pParent1, final PLElement pParent2, final PLElement pRef1, final PLElement pRef2) {
       return MultipleInheritancePL.Match.newMatch(pChild, pParent1, pParent2, pRef1, pRef2);
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for child.
      * @return the Set of all values or empty set if there are no matches
@@ -503,7 +503,7 @@ public final class MultipleInheritancePL extends BaseGeneratedEMFQuerySpecificat
     protected Stream<edu.toronto.cs.se.mmint.productline.Class> rawStreamAllValuesOfchild(final Object[] parameters) {
       return rawStreamAllValues(POSITION_CHILD, parameters).map(edu.toronto.cs.se.mmint.productline.Class.class::cast);
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for child.
      * @return the Set of all values or empty set if there are no matches
@@ -512,7 +512,7 @@ public final class MultipleInheritancePL extends BaseGeneratedEMFQuerySpecificat
     public Set<edu.toronto.cs.se.mmint.productline.Class> getAllValuesOfchild() {
       return rawStreamAllValuesOfchild(emptyArray()).collect(Collectors.toSet());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for child.
      * @return the Set of all values or empty set if there are no matches
@@ -521,7 +521,7 @@ public final class MultipleInheritancePL extends BaseGeneratedEMFQuerySpecificat
     public Stream<edu.toronto.cs.se.mmint.productline.Class> streamAllValuesOfchild() {
       return rawStreamAllValuesOfchild(emptyArray());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for child.
      * </p>
@@ -535,7 +535,7 @@ public final class MultipleInheritancePL extends BaseGeneratedEMFQuerySpecificat
     public Stream<edu.toronto.cs.se.mmint.productline.Class> streamAllValuesOfchild(final MultipleInheritancePL.Match partialMatch) {
       return rawStreamAllValuesOfchild(partialMatch.toArray());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for child.
      * </p>
@@ -549,7 +549,7 @@ public final class MultipleInheritancePL extends BaseGeneratedEMFQuerySpecificat
     public Stream<edu.toronto.cs.se.mmint.productline.Class> streamAllValuesOfchild(final PLElement pParent1, final PLElement pParent2, final PLElement pRef1, final PLElement pRef2) {
       return rawStreamAllValuesOfchild(new Object[]{null, pParent1, pParent2, pRef1, pRef2});
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for child.
      * @return the Set of all values or empty set if there are no matches
@@ -558,7 +558,7 @@ public final class MultipleInheritancePL extends BaseGeneratedEMFQuerySpecificat
     public Set<edu.toronto.cs.se.mmint.productline.Class> getAllValuesOfchild(final MultipleInheritancePL.Match partialMatch) {
       return rawStreamAllValuesOfchild(partialMatch.toArray()).collect(Collectors.toSet());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for child.
      * @return the Set of all values or empty set if there are no matches
@@ -567,7 +567,7 @@ public final class MultipleInheritancePL extends BaseGeneratedEMFQuerySpecificat
     public Set<edu.toronto.cs.se.mmint.productline.Class> getAllValuesOfchild(final PLElement pParent1, final PLElement pParent2, final PLElement pRef1, final PLElement pRef2) {
       return rawStreamAllValuesOfchild(new Object[]{null, pParent1, pParent2, pRef1, pRef2}).collect(Collectors.toSet());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for parent1.
      * @return the Set of all values or empty set if there are no matches
@@ -576,7 +576,7 @@ public final class MultipleInheritancePL extends BaseGeneratedEMFQuerySpecificat
     protected Stream<PLElement> rawStreamAllValuesOfparent1(final Object[] parameters) {
       return rawStreamAllValues(POSITION_PARENT1, parameters).map(PLElement.class::cast);
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for parent1.
      * @return the Set of all values or empty set if there are no matches
@@ -585,7 +585,7 @@ public final class MultipleInheritancePL extends BaseGeneratedEMFQuerySpecificat
     public Set<PLElement> getAllValuesOfparent1() {
       return rawStreamAllValuesOfparent1(emptyArray()).collect(Collectors.toSet());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for parent1.
      * @return the Set of all values or empty set if there are no matches
@@ -594,7 +594,7 @@ public final class MultipleInheritancePL extends BaseGeneratedEMFQuerySpecificat
     public Stream<PLElement> streamAllValuesOfparent1() {
       return rawStreamAllValuesOfparent1(emptyArray());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for parent1.
      * </p>
@@ -608,7 +608,7 @@ public final class MultipleInheritancePL extends BaseGeneratedEMFQuerySpecificat
     public Stream<PLElement> streamAllValuesOfparent1(final MultipleInheritancePL.Match partialMatch) {
       return rawStreamAllValuesOfparent1(partialMatch.toArray());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for parent1.
      * </p>
@@ -622,7 +622,7 @@ public final class MultipleInheritancePL extends BaseGeneratedEMFQuerySpecificat
     public Stream<PLElement> streamAllValuesOfparent1(final edu.toronto.cs.se.mmint.productline.Class pChild, final PLElement pParent2, final PLElement pRef1, final PLElement pRef2) {
       return rawStreamAllValuesOfparent1(new Object[]{pChild, null, pParent2, pRef1, pRef2});
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for parent1.
      * @return the Set of all values or empty set if there are no matches
@@ -631,7 +631,7 @@ public final class MultipleInheritancePL extends BaseGeneratedEMFQuerySpecificat
     public Set<PLElement> getAllValuesOfparent1(final MultipleInheritancePL.Match partialMatch) {
       return rawStreamAllValuesOfparent1(partialMatch.toArray()).collect(Collectors.toSet());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for parent1.
      * @return the Set of all values or empty set if there are no matches
@@ -640,7 +640,7 @@ public final class MultipleInheritancePL extends BaseGeneratedEMFQuerySpecificat
     public Set<PLElement> getAllValuesOfparent1(final edu.toronto.cs.se.mmint.productline.Class pChild, final PLElement pParent2, final PLElement pRef1, final PLElement pRef2) {
       return rawStreamAllValuesOfparent1(new Object[]{pChild, null, pParent2, pRef1, pRef2}).collect(Collectors.toSet());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for parent2.
      * @return the Set of all values or empty set if there are no matches
@@ -649,7 +649,7 @@ public final class MultipleInheritancePL extends BaseGeneratedEMFQuerySpecificat
     protected Stream<PLElement> rawStreamAllValuesOfparent2(final Object[] parameters) {
       return rawStreamAllValues(POSITION_PARENT2, parameters).map(PLElement.class::cast);
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for parent2.
      * @return the Set of all values or empty set if there are no matches
@@ -658,7 +658,7 @@ public final class MultipleInheritancePL extends BaseGeneratedEMFQuerySpecificat
     public Set<PLElement> getAllValuesOfparent2() {
       return rawStreamAllValuesOfparent2(emptyArray()).collect(Collectors.toSet());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for parent2.
      * @return the Set of all values or empty set if there are no matches
@@ -667,7 +667,7 @@ public final class MultipleInheritancePL extends BaseGeneratedEMFQuerySpecificat
     public Stream<PLElement> streamAllValuesOfparent2() {
       return rawStreamAllValuesOfparent2(emptyArray());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for parent2.
      * </p>
@@ -681,7 +681,7 @@ public final class MultipleInheritancePL extends BaseGeneratedEMFQuerySpecificat
     public Stream<PLElement> streamAllValuesOfparent2(final MultipleInheritancePL.Match partialMatch) {
       return rawStreamAllValuesOfparent2(partialMatch.toArray());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for parent2.
      * </p>
@@ -695,7 +695,7 @@ public final class MultipleInheritancePL extends BaseGeneratedEMFQuerySpecificat
     public Stream<PLElement> streamAllValuesOfparent2(final edu.toronto.cs.se.mmint.productline.Class pChild, final PLElement pParent1, final PLElement pRef1, final PLElement pRef2) {
       return rawStreamAllValuesOfparent2(new Object[]{pChild, pParent1, null, pRef1, pRef2});
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for parent2.
      * @return the Set of all values or empty set if there are no matches
@@ -704,7 +704,7 @@ public final class MultipleInheritancePL extends BaseGeneratedEMFQuerySpecificat
     public Set<PLElement> getAllValuesOfparent2(final MultipleInheritancePL.Match partialMatch) {
       return rawStreamAllValuesOfparent2(partialMatch.toArray()).collect(Collectors.toSet());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for parent2.
      * @return the Set of all values or empty set if there are no matches
@@ -713,7 +713,7 @@ public final class MultipleInheritancePL extends BaseGeneratedEMFQuerySpecificat
     public Set<PLElement> getAllValuesOfparent2(final edu.toronto.cs.se.mmint.productline.Class pChild, final PLElement pParent1, final PLElement pRef1, final PLElement pRef2) {
       return rawStreamAllValuesOfparent2(new Object[]{pChild, pParent1, null, pRef1, pRef2}).collect(Collectors.toSet());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for ref1.
      * @return the Set of all values or empty set if there are no matches
@@ -722,7 +722,7 @@ public final class MultipleInheritancePL extends BaseGeneratedEMFQuerySpecificat
     protected Stream<PLElement> rawStreamAllValuesOfref1(final Object[] parameters) {
       return rawStreamAllValues(POSITION_REF1, parameters).map(PLElement.class::cast);
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for ref1.
      * @return the Set of all values or empty set if there are no matches
@@ -731,7 +731,7 @@ public final class MultipleInheritancePL extends BaseGeneratedEMFQuerySpecificat
     public Set<PLElement> getAllValuesOfref1() {
       return rawStreamAllValuesOfref1(emptyArray()).collect(Collectors.toSet());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for ref1.
      * @return the Set of all values or empty set if there are no matches
@@ -740,7 +740,7 @@ public final class MultipleInheritancePL extends BaseGeneratedEMFQuerySpecificat
     public Stream<PLElement> streamAllValuesOfref1() {
       return rawStreamAllValuesOfref1(emptyArray());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for ref1.
      * </p>
@@ -754,7 +754,7 @@ public final class MultipleInheritancePL extends BaseGeneratedEMFQuerySpecificat
     public Stream<PLElement> streamAllValuesOfref1(final MultipleInheritancePL.Match partialMatch) {
       return rawStreamAllValuesOfref1(partialMatch.toArray());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for ref1.
      * </p>
@@ -768,7 +768,7 @@ public final class MultipleInheritancePL extends BaseGeneratedEMFQuerySpecificat
     public Stream<PLElement> streamAllValuesOfref1(final edu.toronto.cs.se.mmint.productline.Class pChild, final PLElement pParent1, final PLElement pParent2, final PLElement pRef2) {
       return rawStreamAllValuesOfref1(new Object[]{pChild, pParent1, pParent2, null, pRef2});
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for ref1.
      * @return the Set of all values or empty set if there are no matches
@@ -777,7 +777,7 @@ public final class MultipleInheritancePL extends BaseGeneratedEMFQuerySpecificat
     public Set<PLElement> getAllValuesOfref1(final MultipleInheritancePL.Match partialMatch) {
       return rawStreamAllValuesOfref1(partialMatch.toArray()).collect(Collectors.toSet());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for ref1.
      * @return the Set of all values or empty set if there are no matches
@@ -786,7 +786,7 @@ public final class MultipleInheritancePL extends BaseGeneratedEMFQuerySpecificat
     public Set<PLElement> getAllValuesOfref1(final edu.toronto.cs.se.mmint.productline.Class pChild, final PLElement pParent1, final PLElement pParent2, final PLElement pRef2) {
       return rawStreamAllValuesOfref1(new Object[]{pChild, pParent1, pParent2, null, pRef2}).collect(Collectors.toSet());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for ref2.
      * @return the Set of all values or empty set if there are no matches
@@ -795,7 +795,7 @@ public final class MultipleInheritancePL extends BaseGeneratedEMFQuerySpecificat
     protected Stream<PLElement> rawStreamAllValuesOfref2(final Object[] parameters) {
       return rawStreamAllValues(POSITION_REF2, parameters).map(PLElement.class::cast);
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for ref2.
      * @return the Set of all values or empty set if there are no matches
@@ -804,7 +804,7 @@ public final class MultipleInheritancePL extends BaseGeneratedEMFQuerySpecificat
     public Set<PLElement> getAllValuesOfref2() {
       return rawStreamAllValuesOfref2(emptyArray()).collect(Collectors.toSet());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for ref2.
      * @return the Set of all values or empty set if there are no matches
@@ -813,7 +813,7 @@ public final class MultipleInheritancePL extends BaseGeneratedEMFQuerySpecificat
     public Stream<PLElement> streamAllValuesOfref2() {
       return rawStreamAllValuesOfref2(emptyArray());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for ref2.
      * </p>
@@ -827,7 +827,7 @@ public final class MultipleInheritancePL extends BaseGeneratedEMFQuerySpecificat
     public Stream<PLElement> streamAllValuesOfref2(final MultipleInheritancePL.Match partialMatch) {
       return rawStreamAllValuesOfref2(partialMatch.toArray());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for ref2.
      * </p>
@@ -841,7 +841,7 @@ public final class MultipleInheritancePL extends BaseGeneratedEMFQuerySpecificat
     public Stream<PLElement> streamAllValuesOfref2(final edu.toronto.cs.se.mmint.productline.Class pChild, final PLElement pParent1, final PLElement pParent2, final PLElement pRef1) {
       return rawStreamAllValuesOfref2(new Object[]{pChild, pParent1, pParent2, pRef1, null});
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for ref2.
      * @return the Set of all values or empty set if there are no matches
@@ -850,7 +850,7 @@ public final class MultipleInheritancePL extends BaseGeneratedEMFQuerySpecificat
     public Set<PLElement> getAllValuesOfref2(final MultipleInheritancePL.Match partialMatch) {
       return rawStreamAllValuesOfref2(partialMatch.toArray()).collect(Collectors.toSet());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for ref2.
      * @return the Set of all values or empty set if there are no matches
@@ -859,7 +859,7 @@ public final class MultipleInheritancePL extends BaseGeneratedEMFQuerySpecificat
     public Set<PLElement> getAllValuesOfref2(final edu.toronto.cs.se.mmint.productline.Class pChild, final PLElement pParent1, final PLElement pParent2, final PLElement pRef1) {
       return rawStreamAllValuesOfref2(new Object[]{pChild, pParent1, pParent2, pRef1, null}).collect(Collectors.toSet());
     }
-    
+
     @Override
     protected MultipleInheritancePL.Match tupleToMatch(final Tuple t) {
       try {
@@ -869,7 +869,7 @@ public final class MultipleInheritancePL extends BaseGeneratedEMFQuerySpecificat
           return null;
       }
     }
-    
+
     @Override
     protected MultipleInheritancePL.Match arrayToMatch(final Object[] match) {
       try {
@@ -879,7 +879,7 @@ public final class MultipleInheritancePL extends BaseGeneratedEMFQuerySpecificat
           return null;
       }
     }
-    
+
     @Override
     protected MultipleInheritancePL.Match arrayToMatchMutable(final Object[] match) {
       try {
@@ -889,7 +889,7 @@ public final class MultipleInheritancePL extends BaseGeneratedEMFQuerySpecificat
           return null;
       }
     }
-    
+
     /**
      * @return the singleton instance of the query specification of this pattern
      * @throws ViatraQueryRuntimeException if the pattern definition could not be loaded
@@ -899,11 +899,11 @@ public final class MultipleInheritancePL extends BaseGeneratedEMFQuerySpecificat
       return MultipleInheritancePL.instance();
     }
   }
-  
+
   private MultipleInheritancePL() {
     super(GeneratedPQuery.INSTANCE);
   }
-  
+
   /**
    * @return the singleton instance of the query specification
    * @throws ViatraQueryRuntimeException if the pattern definition could not be loaded
@@ -916,27 +916,27 @@ public final class MultipleInheritancePL extends BaseGeneratedEMFQuerySpecificat
         throw processInitializerError(err);
     }
   }
-  
+
   @Override
   protected MultipleInheritancePL.Matcher instantiate(final ViatraQueryEngine engine) {
     return MultipleInheritancePL.Matcher.on(engine);
   }
-  
+
   @Override
   public MultipleInheritancePL.Matcher instantiate() {
     return MultipleInheritancePL.Matcher.create();
   }
-  
+
   @Override
   public MultipleInheritancePL.Match newEmptyMatch() {
     return MultipleInheritancePL.Match.newEmptyMatch();
   }
-  
+
   @Override
   public MultipleInheritancePL.Match newMatch(final Object... parameters) {
     return MultipleInheritancePL.Match.newMatch((edu.toronto.cs.se.mmint.productline.Class) parameters[0], (edu.toronto.cs.se.mmint.productline.PLElement) parameters[1], (edu.toronto.cs.se.mmint.productline.PLElement) parameters[2], (edu.toronto.cs.se.mmint.productline.PLElement) parameters[3], (edu.toronto.cs.se.mmint.productline.PLElement) parameters[4]);
   }
-  
+
   /**
    * Inner class allowing the singleton instance of {@link MultipleInheritancePL} to be created 
    *     <b>not</b> at the class load time of the outer class, 
@@ -947,7 +947,7 @@ public final class MultipleInheritancePL extends BaseGeneratedEMFQuerySpecificat
    */
   private static class LazyHolder {
     private static final MultipleInheritancePL INSTANCE = new MultipleInheritancePL();
-    
+
     /**
      * Statically initializes the query specification <b>after</b> the field {@link #INSTANCE} is assigned.
      * This initialization order is required to support indirect recursion.
@@ -956,47 +956,47 @@ public final class MultipleInheritancePL extends BaseGeneratedEMFQuerySpecificat
      * 
      */
     private static final Object STATIC_INITIALIZER = ensureInitialized();
-    
+
     public static Object ensureInitialized() {
       INSTANCE.ensureInitializedInternal();
       return null;
     }
   }
-  
+
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private static final MultipleInheritancePL.GeneratedPQuery INSTANCE = new GeneratedPQuery();
-    
+
     private final PParameter parameter_child = new PParameter("child", "edu.toronto.cs.se.mmint.productline.Class", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("model://edu.toronto.cs.se.mmint.productline", "Class")), PParameterDirection.INOUT);
-    
+
     private final PParameter parameter_parent1 = new PParameter("parent1", "edu.toronto.cs.se.mmint.productline.PLElement", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("model://edu.toronto.cs.se.mmint.productline", "PLElement")), PParameterDirection.INOUT);
-    
+
     private final PParameter parameter_parent2 = new PParameter("parent2", "edu.toronto.cs.se.mmint.productline.PLElement", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("model://edu.toronto.cs.se.mmint.productline", "PLElement")), PParameterDirection.INOUT);
-    
+
     private final PParameter parameter_ref1 = new PParameter("ref1", "edu.toronto.cs.se.mmint.productline.PLElement", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("model://edu.toronto.cs.se.mmint.productline", "PLElement")), PParameterDirection.INOUT);
-    
+
     private final PParameter parameter_ref2 = new PParameter("ref2", "edu.toronto.cs.se.mmint.productline.PLElement", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("model://edu.toronto.cs.se.mmint.productline", "PLElement")), PParameterDirection.INOUT);
-    
+
     private final List<PParameter> parameters = Arrays.asList(parameter_child, parameter_parent1, parameter_parent2, parameter_ref1, parameter_ref2);
-    
+
     private GeneratedPQuery() {
       super(PVisibility.PUBLIC);
     }
-    
+
     @Override
     public String getFullyQualifiedName() {
       return "edu.toronto.cs.se.mmint.productline.viatra.tests.multipleInheritancePL";
     }
-    
+
     @Override
     public List<String> getParameterNames() {
       return Arrays.asList("child","parent1","parent2","ref1","ref2");
     }
-    
+
     @Override
     public List<PParameter> getParameters() {
       return parameters;
     }
-    
+
     @Override
     public Set<PBody> doGetContainedBodies() {
       setEvaluationHints(new QueryEvaluationHint(null, QueryEvaluationHint.BackendRequirement.UNSPECIFIED));

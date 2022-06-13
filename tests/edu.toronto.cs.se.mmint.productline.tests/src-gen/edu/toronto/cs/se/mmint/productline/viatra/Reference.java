@@ -88,19 +88,19 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
    */
   public static abstract class Match extends BasePatternMatch {
     private edu.toronto.cs.se.mmint.productline.Class fPlSrc;
-    
+
     private String fSrcType;
-    
+
     private edu.toronto.cs.se.mmint.productline.Class fPlDst;
-    
+
     private String fDstType;
-    
+
     private edu.toronto.cs.se.mmint.productline.Reference fPlRef;
-    
+
     private String fRefType;
-    
+
     private static List<String> parameterNames = makeImmutableList("plSrc", "srcType", "plDst", "dstType", "plRef", "refType");
-    
+
     private Match(final edu.toronto.cs.se.mmint.productline.Class pPlSrc, final String pSrcType, final edu.toronto.cs.se.mmint.productline.Class pPlDst, final String pDstType, final edu.toronto.cs.se.mmint.productline.Reference pPlRef, final String pRefType) {
       this.fPlSrc = pPlSrc;
       this.fSrcType = pSrcType;
@@ -109,7 +109,7 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
       this.fPlRef = pPlRef;
       this.fRefType = pRefType;
     }
-    
+
     @Override
     public Object get(final String parameterName) {
       switch(parameterName) {
@@ -122,7 +122,7 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
           default: return null;
       }
     }
-    
+
     @Override
     public Object get(final int index) {
       switch(index) {
@@ -135,31 +135,31 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
           default: return null;
       }
     }
-    
+
     public edu.toronto.cs.se.mmint.productline.Class getPlSrc() {
       return this.fPlSrc;
     }
-    
+
     public String getSrcType() {
       return this.fSrcType;
     }
-    
+
     public edu.toronto.cs.se.mmint.productline.Class getPlDst() {
       return this.fPlDst;
     }
-    
+
     public String getDstType() {
       return this.fDstType;
     }
-    
+
     public edu.toronto.cs.se.mmint.productline.Reference getPlRef() {
       return this.fPlRef;
     }
-    
+
     public String getRefType() {
       return this.fRefType;
     }
-    
+
     @Override
     public boolean set(final String parameterName, final Object newValue) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
@@ -189,57 +189,57 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
       }
       return false;
     }
-    
+
     public void setPlSrc(final edu.toronto.cs.se.mmint.productline.Class pPlSrc) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
       this.fPlSrc = pPlSrc;
     }
-    
+
     public void setSrcType(final String pSrcType) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
       this.fSrcType = pSrcType;
     }
-    
+
     public void setPlDst(final edu.toronto.cs.se.mmint.productline.Class pPlDst) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
       this.fPlDst = pPlDst;
     }
-    
+
     public void setDstType(final String pDstType) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
       this.fDstType = pDstType;
     }
-    
+
     public void setPlRef(final edu.toronto.cs.se.mmint.productline.Reference pPlRef) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
       this.fPlRef = pPlRef;
     }
-    
+
     public void setRefType(final String pRefType) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
       this.fRefType = pRefType;
     }
-    
+
     @Override
     public String patternName() {
       return "edu.toronto.cs.se.mmint.productline.viatra.reference";
     }
-    
+
     @Override
     public List<String> parameterNames() {
       return Reference.Match.parameterNames;
     }
-    
+
     @Override
     public Object[] toArray() {
       return new Object[]{fPlSrc, fSrcType, fPlDst, fDstType, fPlRef, fRefType};
     }
-    
+
     @Override
     public Reference.Match toImmutable() {
       return isMutable() ? newMatch(fPlSrc, fSrcType, fPlDst, fDstType, fPlRef, fRefType) : this;
     }
-    
+
     @Override
     public String prettyPrint() {
       StringBuilder result = new StringBuilder();
@@ -251,12 +251,12 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
       result.append("\"refType\"=" + prettyPrintValue(fRefType));
       return result.toString();
     }
-    
+
     @Override
     public int hashCode() {
       return Objects.hash(fPlSrc, fSrcType, fPlDst, fDstType, fPlRef, fRefType);
     }
-    
+
     @Override
     public boolean equals(final Object obj) {
       if (this == obj)
@@ -276,12 +276,12 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
           return Objects.equals(specification(), otherSig.specification()) && Arrays.deepEquals(toArray(), otherSig.toArray());
       }
     }
-    
+
     @Override
     public Reference specification() {
       return Reference.instance();
     }
-    
+
     /**
      * Returns an empty, mutable match.
      * Fields of the mutable match can be filled to create a partial match, usable as matcher input.
@@ -292,7 +292,7 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
     public static Reference.Match newEmptyMatch() {
       return new Mutable(null, null, null, null, null, null);
     }
-    
+
     /**
      * Returns a mutable (partial) match.
      * Fields of the mutable match can be filled to create a partial match, usable as matcher input.
@@ -309,7 +309,7 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
     public static Reference.Match newMutableMatch(final edu.toronto.cs.se.mmint.productline.Class pPlSrc, final String pSrcType, final edu.toronto.cs.se.mmint.productline.Class pPlDst, final String pDstType, final edu.toronto.cs.se.mmint.productline.Reference pPlRef, final String pRefType) {
       return new Mutable(pPlSrc, pSrcType, pPlDst, pDstType, pPlRef, pRefType);
     }
-    
+
     /**
      * Returns a new (partial) match.
      * This can be used e.g. to call the matcher with a partial match.
@@ -326,30 +326,30 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
     public static Reference.Match newMatch(final edu.toronto.cs.se.mmint.productline.Class pPlSrc, final String pSrcType, final edu.toronto.cs.se.mmint.productline.Class pPlDst, final String pDstType, final edu.toronto.cs.se.mmint.productline.Reference pPlRef, final String pRefType) {
       return new Immutable(pPlSrc, pSrcType, pPlDst, pDstType, pPlRef, pRefType);
     }
-    
+
     private static final class Mutable extends Reference.Match {
       Mutable(final edu.toronto.cs.se.mmint.productline.Class pPlSrc, final String pSrcType, final edu.toronto.cs.se.mmint.productline.Class pPlDst, final String pDstType, final edu.toronto.cs.se.mmint.productline.Reference pPlRef, final String pRefType) {
         super(pPlSrc, pSrcType, pPlDst, pDstType, pPlRef, pRefType);
       }
-      
+
       @Override
       public boolean isMutable() {
         return true;
       }
     }
-    
+
     private static final class Immutable extends Reference.Match {
       Immutable(final edu.toronto.cs.se.mmint.productline.Class pPlSrc, final String pSrcType, final edu.toronto.cs.se.mmint.productline.Class pPlDst, final String pDstType, final edu.toronto.cs.se.mmint.productline.Reference pPlRef, final String pRefType) {
         super(pPlSrc, pSrcType, pPlDst, pDstType, pPlRef, pRefType);
       }
-      
+
       @Override
       public boolean isMutable() {
         return false;
       }
     }
   }
-  
+
   /**
    * Generated pattern matcher API of the edu.toronto.cs.se.mmint.productline.viatra.reference pattern,
    * providing pattern-specific query methods.
@@ -392,7 +392,7 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
       }
       return matcher;
     }
-    
+
     /**
      * @throws ViatraQueryRuntimeException if an error occurs during pattern matcher creation
      * @return an initialized matcher
@@ -402,21 +402,21 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
     public static Reference.Matcher create() {
       return new Matcher();
     }
-    
+
     private static final int POSITION_PLSRC = 0;
-    
+
     private static final int POSITION_SRCTYPE = 1;
-    
+
     private static final int POSITION_PLDST = 2;
-    
+
     private static final int POSITION_DSTTYPE = 3;
-    
+
     private static final int POSITION_PLREF = 4;
-    
+
     private static final int POSITION_REFTYPE = 5;
-    
+
     private static final Logger LOGGER = ViatraQueryLoggingUtil.getLogger(Reference.Matcher.class);
-    
+
     /**
      * Initializes the pattern matcher within an existing VIATRA Query engine.
      * If the pattern matcher is already constructed in the engine, only a light-weight reference is returned.
@@ -428,7 +428,7 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
     private Matcher() {
       super(querySpecification());
     }
-    
+
     /**
      * Returns the set of all matches of the pattern that conform to the given fixed values of some parameters.
      * @param pPlSrc the fixed value of pattern parameter plSrc, or null if not bound.
@@ -443,7 +443,7 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
     public Collection<Reference.Match> getAllMatches(final edu.toronto.cs.se.mmint.productline.Class pPlSrc, final String pSrcType, final edu.toronto.cs.se.mmint.productline.Class pPlDst, final String pDstType, final edu.toronto.cs.se.mmint.productline.Reference pPlRef, final String pRefType) {
       return rawStreamAllMatches(new Object[]{pPlSrc, pSrcType, pPlDst, pDstType, pPlRef, pRefType}).collect(Collectors.toSet());
     }
-    
+
     /**
      * Returns a stream of all matches of the pattern that conform to the given fixed values of some parameters.
      * </p>
@@ -462,7 +462,7 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
     public Stream<Reference.Match> streamAllMatches(final edu.toronto.cs.se.mmint.productline.Class pPlSrc, final String pSrcType, final edu.toronto.cs.se.mmint.productline.Class pPlDst, final String pDstType, final edu.toronto.cs.se.mmint.productline.Reference pPlRef, final String pRefType) {
       return rawStreamAllMatches(new Object[]{pPlSrc, pSrcType, pPlDst, pDstType, pPlRef, pRefType});
     }
-    
+
     /**
      * Returns an arbitrarily chosen match of the pattern that conforms to the given fixed values of some parameters.
      * Neither determinism nor randomness of selection is guaranteed.
@@ -478,7 +478,7 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
     public Optional<Reference.Match> getOneArbitraryMatch(final edu.toronto.cs.se.mmint.productline.Class pPlSrc, final String pSrcType, final edu.toronto.cs.se.mmint.productline.Class pPlDst, final String pDstType, final edu.toronto.cs.se.mmint.productline.Reference pPlRef, final String pRefType) {
       return rawGetOneArbitraryMatch(new Object[]{pPlSrc, pSrcType, pPlDst, pDstType, pPlRef, pRefType});
     }
-    
+
     /**
      * Indicates whether the given combination of specified pattern parameters constitute a valid pattern match,
      * under any possible substitution of the unspecified parameters (if any).
@@ -494,7 +494,7 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
     public boolean hasMatch(final edu.toronto.cs.se.mmint.productline.Class pPlSrc, final String pSrcType, final edu.toronto.cs.se.mmint.productline.Class pPlDst, final String pDstType, final edu.toronto.cs.se.mmint.productline.Reference pPlRef, final String pRefType) {
       return rawHasMatch(new Object[]{pPlSrc, pSrcType, pPlDst, pDstType, pPlRef, pRefType});
     }
-    
+
     /**
      * Returns the number of all matches of the pattern that conform to the given fixed values of some parameters.
      * @param pPlSrc the fixed value of pattern parameter plSrc, or null if not bound.
@@ -509,7 +509,7 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
     public int countMatches(final edu.toronto.cs.se.mmint.productline.Class pPlSrc, final String pSrcType, final edu.toronto.cs.se.mmint.productline.Class pPlDst, final String pDstType, final edu.toronto.cs.se.mmint.productline.Reference pPlRef, final String pRefType) {
       return rawCountMatches(new Object[]{pPlSrc, pSrcType, pPlDst, pDstType, pPlRef, pRefType});
     }
-    
+
     /**
      * Executes the given processor on an arbitrarily chosen match of the pattern that conforms to the given fixed values of some parameters.
      * Neither determinism nor randomness of selection is guaranteed.
@@ -526,7 +526,7 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
     public boolean forOneArbitraryMatch(final edu.toronto.cs.se.mmint.productline.Class pPlSrc, final String pSrcType, final edu.toronto.cs.se.mmint.productline.Class pPlDst, final String pDstType, final edu.toronto.cs.se.mmint.productline.Reference pPlRef, final String pRefType, final Consumer<? super Reference.Match> processor) {
       return rawForOneArbitraryMatch(new Object[]{pPlSrc, pSrcType, pPlDst, pDstType, pPlRef, pRefType}, processor);
     }
-    
+
     /**
      * Returns a new (partial) match.
      * This can be used e.g. to call the matcher with a partial match.
@@ -543,7 +543,7 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
     public Reference.Match newMatch(final edu.toronto.cs.se.mmint.productline.Class pPlSrc, final String pSrcType, final edu.toronto.cs.se.mmint.productline.Class pPlDst, final String pDstType, final edu.toronto.cs.se.mmint.productline.Reference pPlRef, final String pRefType) {
       return Reference.Match.newMatch(pPlSrc, pSrcType, pPlDst, pDstType, pPlRef, pRefType);
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for plSrc.
      * @return the Set of all values or empty set if there are no matches
@@ -552,7 +552,7 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
     protected Stream<edu.toronto.cs.se.mmint.productline.Class> rawStreamAllValuesOfplSrc(final Object[] parameters) {
       return rawStreamAllValues(POSITION_PLSRC, parameters).map(edu.toronto.cs.se.mmint.productline.Class.class::cast);
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for plSrc.
      * @return the Set of all values or empty set if there are no matches
@@ -561,7 +561,7 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
     public Set<edu.toronto.cs.se.mmint.productline.Class> getAllValuesOfplSrc() {
       return rawStreamAllValuesOfplSrc(emptyArray()).collect(Collectors.toSet());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for plSrc.
      * @return the Set of all values or empty set if there are no matches
@@ -570,7 +570,7 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
     public Stream<edu.toronto.cs.se.mmint.productline.Class> streamAllValuesOfplSrc() {
       return rawStreamAllValuesOfplSrc(emptyArray());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for plSrc.
      * </p>
@@ -584,7 +584,7 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
     public Stream<edu.toronto.cs.se.mmint.productline.Class> streamAllValuesOfplSrc(final Reference.Match partialMatch) {
       return rawStreamAllValuesOfplSrc(partialMatch.toArray());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for plSrc.
      * </p>
@@ -598,7 +598,7 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
     public Stream<edu.toronto.cs.se.mmint.productline.Class> streamAllValuesOfplSrc(final String pSrcType, final edu.toronto.cs.se.mmint.productline.Class pPlDst, final String pDstType, final edu.toronto.cs.se.mmint.productline.Reference pPlRef, final String pRefType) {
       return rawStreamAllValuesOfplSrc(new Object[]{null, pSrcType, pPlDst, pDstType, pPlRef, pRefType});
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for plSrc.
      * @return the Set of all values or empty set if there are no matches
@@ -607,7 +607,7 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
     public Set<edu.toronto.cs.se.mmint.productline.Class> getAllValuesOfplSrc(final Reference.Match partialMatch) {
       return rawStreamAllValuesOfplSrc(partialMatch.toArray()).collect(Collectors.toSet());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for plSrc.
      * @return the Set of all values or empty set if there are no matches
@@ -616,7 +616,7 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
     public Set<edu.toronto.cs.se.mmint.productline.Class> getAllValuesOfplSrc(final String pSrcType, final edu.toronto.cs.se.mmint.productline.Class pPlDst, final String pDstType, final edu.toronto.cs.se.mmint.productline.Reference pPlRef, final String pRefType) {
       return rawStreamAllValuesOfplSrc(new Object[]{null, pSrcType, pPlDst, pDstType, pPlRef, pRefType}).collect(Collectors.toSet());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for srcType.
      * @return the Set of all values or empty set if there are no matches
@@ -625,7 +625,7 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
     protected Stream<String> rawStreamAllValuesOfsrcType(final Object[] parameters) {
       return rawStreamAllValues(POSITION_SRCTYPE, parameters).map(String.class::cast);
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for srcType.
      * @return the Set of all values or empty set if there are no matches
@@ -634,7 +634,7 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
     public Set<String> getAllValuesOfsrcType() {
       return rawStreamAllValuesOfsrcType(emptyArray()).collect(Collectors.toSet());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for srcType.
      * @return the Set of all values or empty set if there are no matches
@@ -643,7 +643,7 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
     public Stream<String> streamAllValuesOfsrcType() {
       return rawStreamAllValuesOfsrcType(emptyArray());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for srcType.
      * </p>
@@ -657,7 +657,7 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
     public Stream<String> streamAllValuesOfsrcType(final Reference.Match partialMatch) {
       return rawStreamAllValuesOfsrcType(partialMatch.toArray());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for srcType.
      * </p>
@@ -671,7 +671,7 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
     public Stream<String> streamAllValuesOfsrcType(final edu.toronto.cs.se.mmint.productline.Class pPlSrc, final edu.toronto.cs.se.mmint.productline.Class pPlDst, final String pDstType, final edu.toronto.cs.se.mmint.productline.Reference pPlRef, final String pRefType) {
       return rawStreamAllValuesOfsrcType(new Object[]{pPlSrc, null, pPlDst, pDstType, pPlRef, pRefType});
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for srcType.
      * @return the Set of all values or empty set if there are no matches
@@ -680,7 +680,7 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
     public Set<String> getAllValuesOfsrcType(final Reference.Match partialMatch) {
       return rawStreamAllValuesOfsrcType(partialMatch.toArray()).collect(Collectors.toSet());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for srcType.
      * @return the Set of all values or empty set if there are no matches
@@ -689,7 +689,7 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
     public Set<String> getAllValuesOfsrcType(final edu.toronto.cs.se.mmint.productline.Class pPlSrc, final edu.toronto.cs.se.mmint.productline.Class pPlDst, final String pDstType, final edu.toronto.cs.se.mmint.productline.Reference pPlRef, final String pRefType) {
       return rawStreamAllValuesOfsrcType(new Object[]{pPlSrc, null, pPlDst, pDstType, pPlRef, pRefType}).collect(Collectors.toSet());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for plDst.
      * @return the Set of all values or empty set if there are no matches
@@ -698,7 +698,7 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
     protected Stream<edu.toronto.cs.se.mmint.productline.Class> rawStreamAllValuesOfplDst(final Object[] parameters) {
       return rawStreamAllValues(POSITION_PLDST, parameters).map(edu.toronto.cs.se.mmint.productline.Class.class::cast);
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for plDst.
      * @return the Set of all values or empty set if there are no matches
@@ -707,7 +707,7 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
     public Set<edu.toronto.cs.se.mmint.productline.Class> getAllValuesOfplDst() {
       return rawStreamAllValuesOfplDst(emptyArray()).collect(Collectors.toSet());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for plDst.
      * @return the Set of all values or empty set if there are no matches
@@ -716,7 +716,7 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
     public Stream<edu.toronto.cs.se.mmint.productline.Class> streamAllValuesOfplDst() {
       return rawStreamAllValuesOfplDst(emptyArray());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for plDst.
      * </p>
@@ -730,7 +730,7 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
     public Stream<edu.toronto.cs.se.mmint.productline.Class> streamAllValuesOfplDst(final Reference.Match partialMatch) {
       return rawStreamAllValuesOfplDst(partialMatch.toArray());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for plDst.
      * </p>
@@ -744,7 +744,7 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
     public Stream<edu.toronto.cs.se.mmint.productline.Class> streamAllValuesOfplDst(final edu.toronto.cs.se.mmint.productline.Class pPlSrc, final String pSrcType, final String pDstType, final edu.toronto.cs.se.mmint.productline.Reference pPlRef, final String pRefType) {
       return rawStreamAllValuesOfplDst(new Object[]{pPlSrc, pSrcType, null, pDstType, pPlRef, pRefType});
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for plDst.
      * @return the Set of all values or empty set if there are no matches
@@ -753,7 +753,7 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
     public Set<edu.toronto.cs.se.mmint.productline.Class> getAllValuesOfplDst(final Reference.Match partialMatch) {
       return rawStreamAllValuesOfplDst(partialMatch.toArray()).collect(Collectors.toSet());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for plDst.
      * @return the Set of all values or empty set if there are no matches
@@ -762,7 +762,7 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
     public Set<edu.toronto.cs.se.mmint.productline.Class> getAllValuesOfplDst(final edu.toronto.cs.se.mmint.productline.Class pPlSrc, final String pSrcType, final String pDstType, final edu.toronto.cs.se.mmint.productline.Reference pPlRef, final String pRefType) {
       return rawStreamAllValuesOfplDst(new Object[]{pPlSrc, pSrcType, null, pDstType, pPlRef, pRefType}).collect(Collectors.toSet());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for dstType.
      * @return the Set of all values or empty set if there are no matches
@@ -771,7 +771,7 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
     protected Stream<String> rawStreamAllValuesOfdstType(final Object[] parameters) {
       return rawStreamAllValues(POSITION_DSTTYPE, parameters).map(String.class::cast);
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for dstType.
      * @return the Set of all values or empty set if there are no matches
@@ -780,7 +780,7 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
     public Set<String> getAllValuesOfdstType() {
       return rawStreamAllValuesOfdstType(emptyArray()).collect(Collectors.toSet());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for dstType.
      * @return the Set of all values or empty set if there are no matches
@@ -789,7 +789,7 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
     public Stream<String> streamAllValuesOfdstType() {
       return rawStreamAllValuesOfdstType(emptyArray());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for dstType.
      * </p>
@@ -803,7 +803,7 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
     public Stream<String> streamAllValuesOfdstType(final Reference.Match partialMatch) {
       return rawStreamAllValuesOfdstType(partialMatch.toArray());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for dstType.
      * </p>
@@ -817,7 +817,7 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
     public Stream<String> streamAllValuesOfdstType(final edu.toronto.cs.se.mmint.productline.Class pPlSrc, final String pSrcType, final edu.toronto.cs.se.mmint.productline.Class pPlDst, final edu.toronto.cs.se.mmint.productline.Reference pPlRef, final String pRefType) {
       return rawStreamAllValuesOfdstType(new Object[]{pPlSrc, pSrcType, pPlDst, null, pPlRef, pRefType});
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for dstType.
      * @return the Set of all values or empty set if there are no matches
@@ -826,7 +826,7 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
     public Set<String> getAllValuesOfdstType(final Reference.Match partialMatch) {
       return rawStreamAllValuesOfdstType(partialMatch.toArray()).collect(Collectors.toSet());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for dstType.
      * @return the Set of all values or empty set if there are no matches
@@ -835,7 +835,7 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
     public Set<String> getAllValuesOfdstType(final edu.toronto.cs.se.mmint.productline.Class pPlSrc, final String pSrcType, final edu.toronto.cs.se.mmint.productline.Class pPlDst, final edu.toronto.cs.se.mmint.productline.Reference pPlRef, final String pRefType) {
       return rawStreamAllValuesOfdstType(new Object[]{pPlSrc, pSrcType, pPlDst, null, pPlRef, pRefType}).collect(Collectors.toSet());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for plRef.
      * @return the Set of all values or empty set if there are no matches
@@ -844,7 +844,7 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
     protected Stream<edu.toronto.cs.se.mmint.productline.Reference> rawStreamAllValuesOfplRef(final Object[] parameters) {
       return rawStreamAllValues(POSITION_PLREF, parameters).map(edu.toronto.cs.se.mmint.productline.Reference.class::cast);
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for plRef.
      * @return the Set of all values or empty set if there are no matches
@@ -853,7 +853,7 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
     public Set<edu.toronto.cs.se.mmint.productline.Reference> getAllValuesOfplRef() {
       return rawStreamAllValuesOfplRef(emptyArray()).collect(Collectors.toSet());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for plRef.
      * @return the Set of all values or empty set if there are no matches
@@ -862,7 +862,7 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
     public Stream<edu.toronto.cs.se.mmint.productline.Reference> streamAllValuesOfplRef() {
       return rawStreamAllValuesOfplRef(emptyArray());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for plRef.
      * </p>
@@ -876,7 +876,7 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
     public Stream<edu.toronto.cs.se.mmint.productline.Reference> streamAllValuesOfplRef(final Reference.Match partialMatch) {
       return rawStreamAllValuesOfplRef(partialMatch.toArray());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for plRef.
      * </p>
@@ -890,7 +890,7 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
     public Stream<edu.toronto.cs.se.mmint.productline.Reference> streamAllValuesOfplRef(final edu.toronto.cs.se.mmint.productline.Class pPlSrc, final String pSrcType, final edu.toronto.cs.se.mmint.productline.Class pPlDst, final String pDstType, final String pRefType) {
       return rawStreamAllValuesOfplRef(new Object[]{pPlSrc, pSrcType, pPlDst, pDstType, null, pRefType});
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for plRef.
      * @return the Set of all values or empty set if there are no matches
@@ -899,7 +899,7 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
     public Set<edu.toronto.cs.se.mmint.productline.Reference> getAllValuesOfplRef(final Reference.Match partialMatch) {
       return rawStreamAllValuesOfplRef(partialMatch.toArray()).collect(Collectors.toSet());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for plRef.
      * @return the Set of all values or empty set if there are no matches
@@ -908,7 +908,7 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
     public Set<edu.toronto.cs.se.mmint.productline.Reference> getAllValuesOfplRef(final edu.toronto.cs.se.mmint.productline.Class pPlSrc, final String pSrcType, final edu.toronto.cs.se.mmint.productline.Class pPlDst, final String pDstType, final String pRefType) {
       return rawStreamAllValuesOfplRef(new Object[]{pPlSrc, pSrcType, pPlDst, pDstType, null, pRefType}).collect(Collectors.toSet());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for refType.
      * @return the Set of all values or empty set if there are no matches
@@ -917,7 +917,7 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
     protected Stream<String> rawStreamAllValuesOfrefType(final Object[] parameters) {
       return rawStreamAllValues(POSITION_REFTYPE, parameters).map(String.class::cast);
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for refType.
      * @return the Set of all values or empty set if there are no matches
@@ -926,7 +926,7 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
     public Set<String> getAllValuesOfrefType() {
       return rawStreamAllValuesOfrefType(emptyArray()).collect(Collectors.toSet());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for refType.
      * @return the Set of all values or empty set if there are no matches
@@ -935,7 +935,7 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
     public Stream<String> streamAllValuesOfrefType() {
       return rawStreamAllValuesOfrefType(emptyArray());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for refType.
      * </p>
@@ -949,7 +949,7 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
     public Stream<String> streamAllValuesOfrefType(final Reference.Match partialMatch) {
       return rawStreamAllValuesOfrefType(partialMatch.toArray());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for refType.
      * </p>
@@ -963,7 +963,7 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
     public Stream<String> streamAllValuesOfrefType(final edu.toronto.cs.se.mmint.productline.Class pPlSrc, final String pSrcType, final edu.toronto.cs.se.mmint.productline.Class pPlDst, final String pDstType, final edu.toronto.cs.se.mmint.productline.Reference pPlRef) {
       return rawStreamAllValuesOfrefType(new Object[]{pPlSrc, pSrcType, pPlDst, pDstType, pPlRef, null});
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for refType.
      * @return the Set of all values or empty set if there are no matches
@@ -972,7 +972,7 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
     public Set<String> getAllValuesOfrefType(final Reference.Match partialMatch) {
       return rawStreamAllValuesOfrefType(partialMatch.toArray()).collect(Collectors.toSet());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for refType.
      * @return the Set of all values or empty set if there are no matches
@@ -981,7 +981,7 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
     public Set<String> getAllValuesOfrefType(final edu.toronto.cs.se.mmint.productline.Class pPlSrc, final String pSrcType, final edu.toronto.cs.se.mmint.productline.Class pPlDst, final String pDstType, final edu.toronto.cs.se.mmint.productline.Reference pPlRef) {
       return rawStreamAllValuesOfrefType(new Object[]{pPlSrc, pSrcType, pPlDst, pDstType, pPlRef, null}).collect(Collectors.toSet());
     }
-    
+
     @Override
     protected Reference.Match tupleToMatch(final Tuple t) {
       try {
@@ -991,7 +991,7 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
           return null;
       }
     }
-    
+
     @Override
     protected Reference.Match arrayToMatch(final Object[] match) {
       try {
@@ -1001,7 +1001,7 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
           return null;
       }
     }
-    
+
     @Override
     protected Reference.Match arrayToMatchMutable(final Object[] match) {
       try {
@@ -1011,7 +1011,7 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
           return null;
       }
     }
-    
+
     /**
      * @return the singleton instance of the query specification of this pattern
      * @throws ViatraQueryRuntimeException if the pattern definition could not be loaded
@@ -1021,11 +1021,11 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
       return Reference.instance();
     }
   }
-  
+
   private Reference() {
     super(GeneratedPQuery.INSTANCE);
   }
-  
+
   /**
    * @return the singleton instance of the query specification
    * @throws ViatraQueryRuntimeException if the pattern definition could not be loaded
@@ -1038,27 +1038,27 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
         throw processInitializerError(err);
     }
   }
-  
+
   @Override
   protected Reference.Matcher instantiate(final ViatraQueryEngine engine) {
     return Reference.Matcher.on(engine);
   }
-  
+
   @Override
   public Reference.Matcher instantiate() {
     return Reference.Matcher.create();
   }
-  
+
   @Override
   public Reference.Match newEmptyMatch() {
     return Reference.Match.newEmptyMatch();
   }
-  
+
   @Override
   public Reference.Match newMatch(final Object... parameters) {
     return Reference.Match.newMatch((edu.toronto.cs.se.mmint.productline.Class) parameters[0], (java.lang.String) parameters[1], (edu.toronto.cs.se.mmint.productline.Class) parameters[2], (java.lang.String) parameters[3], (edu.toronto.cs.se.mmint.productline.Reference) parameters[4], (java.lang.String) parameters[5]);
   }
-  
+
   /**
    * Inner class allowing the singleton instance of {@link Reference} to be created 
    *     <b>not</b> at the class load time of the outer class, 
@@ -1069,7 +1069,7 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
    */
   private static class LazyHolder {
     private static final Reference INSTANCE = new Reference();
-    
+
     /**
      * Statically initializes the query specification <b>after</b> the field {@link #INSTANCE} is assigned.
      * This initialization order is required to support indirect recursion.
@@ -1078,49 +1078,49 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
      * 
      */
     private static final Object STATIC_INITIALIZER = ensureInitialized();
-    
+
     public static Object ensureInitialized() {
       INSTANCE.ensureInitializedInternal();
       return null;
     }
   }
-  
+
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private static final Reference.GeneratedPQuery INSTANCE = new GeneratedPQuery();
-    
+
     private final PParameter parameter_plSrc = new PParameter("plSrc", "edu.toronto.cs.se.mmint.productline.Class", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("model://edu.toronto.cs.se.mmint.productline", "Class")), PParameterDirection.INOUT);
-    
+
     private final PParameter parameter_srcType = new PParameter("srcType", "java.lang.String", new JavaTransitiveInstancesKey(java.lang.String.class), PParameterDirection.INOUT);
-    
+
     private final PParameter parameter_plDst = new PParameter("plDst", "edu.toronto.cs.se.mmint.productline.Class", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("model://edu.toronto.cs.se.mmint.productline", "Class")), PParameterDirection.INOUT);
-    
+
     private final PParameter parameter_dstType = new PParameter("dstType", "java.lang.String", new JavaTransitiveInstancesKey(java.lang.String.class), PParameterDirection.INOUT);
-    
+
     private final PParameter parameter_plRef = new PParameter("plRef", "edu.toronto.cs.se.mmint.productline.Reference", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("model://edu.toronto.cs.se.mmint.productline", "Reference")), PParameterDirection.INOUT);
-    
+
     private final PParameter parameter_refType = new PParameter("refType", "java.lang.String", new JavaTransitiveInstancesKey(java.lang.String.class), PParameterDirection.INOUT);
-    
+
     private final List<PParameter> parameters = Arrays.asList(parameter_plSrc, parameter_srcType, parameter_plDst, parameter_dstType, parameter_plRef, parameter_refType);
-    
+
     private GeneratedPQuery() {
       super(PVisibility.PUBLIC);
     }
-    
+
     @Override
     public String getFullyQualifiedName() {
       return "edu.toronto.cs.se.mmint.productline.viatra.reference";
     }
-    
+
     @Override
     public List<String> getParameterNames() {
       return Arrays.asList("plSrc","srcType","plDst","dstType","plRef","refType");
     }
-    
+
     @Override
     public List<PParameter> getParameters() {
       return parameters;
     }
-    
+
     @Override
     public Set<PBody> doGetContainedBodies() {
       setEvaluationHints(new QueryEvaluationHint(null, QueryEvaluationHint.BackendRequirement.UNSPECIFIED));

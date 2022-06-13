@@ -55,7 +55,7 @@ public final class SuperType extends BaseGeneratedEMFQuerySpecificationWithGener
   private SuperType() {
     super(GeneratedPQuery.INSTANCE);
   }
-  
+
   /**
    * @return the singleton instance of the query specification
    * @throws ViatraQueryRuntimeException if the pattern definition could not be loaded
@@ -68,7 +68,7 @@ public final class SuperType extends BaseGeneratedEMFQuerySpecificationWithGener
         throw processInitializerError(err);
     }
   }
-  
+
   /**
    * Inner class allowing the singleton instance of {@link SuperType} to be created 
    *     <b>not</b> at the class load time of the outer class, 
@@ -79,7 +79,7 @@ public final class SuperType extends BaseGeneratedEMFQuerySpecificationWithGener
    */
   private static class LazyHolder {
     private static final SuperType INSTANCE = new SuperType();
-    
+
     /**
      * Statically initializes the query specification <b>after</b> the field {@link #INSTANCE} is assigned.
      * This initialization order is required to support indirect recursion.
@@ -88,41 +88,41 @@ public final class SuperType extends BaseGeneratedEMFQuerySpecificationWithGener
      * 
      */
     private static final Object STATIC_INITIALIZER = ensureInitialized();
-    
+
     public static Object ensureInitialized() {
       INSTANCE.ensureInitializedInternal();
       return null;
     }
   }
-  
+
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private static final SuperType.GeneratedPQuery INSTANCE = new GeneratedPQuery();
-    
+
     private final PParameter parameter_class = new PParameter("class", "org.eclipse.emf.ecore.EClass", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.eclipse.org/emf/2002/Ecore", "EClass")), PParameterDirection.INOUT);
-    
+
     private final PParameter parameter_superClass = new PParameter("superClass", "org.eclipse.emf.ecore.EClass", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.eclipse.org/emf/2002/Ecore", "EClass")), PParameterDirection.INOUT);
-    
+
     private final List<PParameter> parameters = Arrays.asList(parameter_class, parameter_superClass);
-    
+
     private GeneratedPQuery() {
       super(PVisibility.PRIVATE);
     }
-    
+
     @Override
     public String getFullyQualifiedName() {
       return "edu.toronto.cs.se.mmint.productline.viatra.superType";
     }
-    
+
     @Override
     public List<String> getParameterNames() {
       return Arrays.asList("class","superClass");
     }
-    
+
     @Override
     public List<PParameter> getParameters() {
       return parameters;
     }
-    
+
     @Override
     public Set<PBody> doGetContainedBodies() {
       setEvaluationHints(new QueryEvaluationHint(null, QueryEvaluationHint.BackendRequirement.UNSPECIFIED));

@@ -49,9 +49,9 @@ public final class PlAll extends BaseGeneratedPatternGroup {
     }
     return INSTANCE;
   }
-  
+
   private static PlAll INSTANCE;
-  
+
   private PlAll() {
     querySpecifications.add(SuperType.instance());
     querySpecifications.add(ClassType.instance());

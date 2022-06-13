@@ -42,9 +42,9 @@ public final class Orig extends BaseGeneratedPatternGroup {
     }
     return INSTANCE;
   }
-  
+
   private static Orig INSTANCE;
-  
+
   private Orig() {
     querySpecifications.add(MultipleInheritanceCD.instance());
     querySpecifications.add(TestAttributeCD.instance());
@@ -55,67 +55,67 @@ public final class Orig extends BaseGeneratedPatternGroup {
     querySpecifications.add(TestMinCD.instance());
     querySpecifications.add(TestMaxCD.instance());
   }
-  
+
   public MultipleInheritanceCD getMultipleInheritanceCD() {
     return MultipleInheritanceCD.instance();
   }
-  
+
   public MultipleInheritanceCD.Matcher getMultipleInheritanceCD(final ViatraQueryEngine engine) {
     return MultipleInheritanceCD.Matcher.on(engine);
   }
-  
+
   public TestAttributeCD getTestAttributeCD() {
     return TestAttributeCD.instance();
   }
-  
+
   public TestAttributeCD.Matcher getTestAttributeCD(final ViatraQueryEngine engine) {
     return TestAttributeCD.Matcher.on(engine);
   }
-  
+
   public TestAttribute2CD getTestAttribute2CD() {
     return TestAttribute2CD.instance();
   }
-  
+
   public TestAttribute2CD.Matcher getTestAttribute2CD(final ViatraQueryEngine engine) {
     return TestAttribute2CD.Matcher.on(engine);
   }
-  
+
   public TestMultipleEdgesCD getTestMultipleEdgesCD() {
     return TestMultipleEdgesCD.instance();
   }
-  
+
   public TestMultipleEdgesCD.Matcher getTestMultipleEdgesCD(final ViatraQueryEngine engine) {
     return TestMultipleEdgesCD.Matcher.on(engine);
   }
-  
+
   public AsilBConnectedClassesCD getAsilBConnectedClassesCD() {
     return AsilBConnectedClassesCD.instance();
   }
-  
+
   public AsilBConnectedClassesCD.Matcher getAsilBConnectedClassesCD(final ViatraQueryEngine engine) {
     return AsilBConnectedClassesCD.Matcher.on(engine);
   }
-  
+
   public HighlyConnectedModelObjsCD getHighlyConnectedModelObjsCD() {
     return HighlyConnectedModelObjsCD.instance();
   }
-  
+
   public HighlyConnectedModelObjsCD.Matcher getHighlyConnectedModelObjsCD(final ViatraQueryEngine engine) {
     return HighlyConnectedModelObjsCD.Matcher.on(engine);
   }
-  
+
   public TestMinCD getTestMinCD() {
     return TestMinCD.instance();
   }
-  
+
   public TestMinCD.Matcher getTestMinCD(final ViatraQueryEngine engine) {
     return TestMinCD.Matcher.on(engine);
   }
-  
+
   public TestMaxCD getTestMaxCD() {
     return TestMaxCD.instance();
   }
-  
+
   public TestMaxCD.Matcher getTestMaxCD(final ViatraQueryEngine engine) {
     return TestMaxCD.Matcher.on(engine);
   }

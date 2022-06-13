@@ -72,16 +72,16 @@ public final class HighlyConnectedModelObjsCD extends BaseGeneratedEMFQuerySpeci
    */
   public static abstract class Match extends BasePatternMatch {
     private EObject fModelObj;
-    
+
     private Integer fConnections;
-    
+
     private static List<String> parameterNames = makeImmutableList("modelObj", "connections");
-    
+
     private Match(final EObject pModelObj, final Integer pConnections) {
       this.fModelObj = pModelObj;
       this.fConnections = pConnections;
     }
-    
+
     @Override
     public Object get(final String parameterName) {
       switch(parameterName) {
@@ -90,7 +90,7 @@ public final class HighlyConnectedModelObjsCD extends BaseGeneratedEMFQuerySpeci
           default: return null;
       }
     }
-    
+
     @Override
     public Object get(final int index) {
       switch(index) {
@@ -99,15 +99,15 @@ public final class HighlyConnectedModelObjsCD extends BaseGeneratedEMFQuerySpeci
           default: return null;
       }
     }
-    
+
     public EObject getModelObj() {
       return this.fModelObj;
     }
-    
+
     public Integer getConnections() {
       return this.fConnections;
     }
-    
+
     @Override
     public boolean set(final String parameterName, final Object newValue) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
@@ -121,37 +121,37 @@ public final class HighlyConnectedModelObjsCD extends BaseGeneratedEMFQuerySpeci
       }
       return false;
     }
-    
+
     public void setModelObj(final EObject pModelObj) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
       this.fModelObj = pModelObj;
     }
-    
+
     public void setConnections(final Integer pConnections) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
       this.fConnections = pConnections;
     }
-    
+
     @Override
     public String patternName() {
       return "edu.toronto.cs.se.mmint.productline.viatra.tests.highlyConnectedModelObjsCD";
     }
-    
+
     @Override
     public List<String> parameterNames() {
       return HighlyConnectedModelObjsCD.Match.parameterNames;
     }
-    
+
     @Override
     public Object[] toArray() {
       return new Object[]{fModelObj, fConnections};
     }
-    
+
     @Override
     public HighlyConnectedModelObjsCD.Match toImmutable() {
       return isMutable() ? newMatch(fModelObj, fConnections) : this;
     }
-    
+
     @Override
     public String prettyPrint() {
       StringBuilder result = new StringBuilder();
@@ -159,12 +159,12 @@ public final class HighlyConnectedModelObjsCD extends BaseGeneratedEMFQuerySpeci
       result.append("\"connections\"=" + prettyPrintValue(fConnections));
       return result.toString();
     }
-    
+
     @Override
     public int hashCode() {
       return Objects.hash(fModelObj, fConnections);
     }
-    
+
     @Override
     public boolean equals(final Object obj) {
       if (this == obj)
@@ -184,12 +184,12 @@ public final class HighlyConnectedModelObjsCD extends BaseGeneratedEMFQuerySpeci
           return Objects.equals(specification(), otherSig.specification()) && Arrays.deepEquals(toArray(), otherSig.toArray());
       }
     }
-    
+
     @Override
     public HighlyConnectedModelObjsCD specification() {
       return HighlyConnectedModelObjsCD.instance();
     }
-    
+
     /**
      * Returns an empty, mutable match.
      * Fields of the mutable match can be filled to create a partial match, usable as matcher input.
@@ -200,7 +200,7 @@ public final class HighlyConnectedModelObjsCD extends BaseGeneratedEMFQuerySpeci
     public static HighlyConnectedModelObjsCD.Match newEmptyMatch() {
       return new Mutable(null, null);
     }
-    
+
     /**
      * Returns a mutable (partial) match.
      * Fields of the mutable match can be filled to create a partial match, usable as matcher input.
@@ -213,7 +213,7 @@ public final class HighlyConnectedModelObjsCD extends BaseGeneratedEMFQuerySpeci
     public static HighlyConnectedModelObjsCD.Match newMutableMatch(final EObject pModelObj, final Integer pConnections) {
       return new Mutable(pModelObj, pConnections);
     }
-    
+
     /**
      * Returns a new (partial) match.
      * This can be used e.g. to call the matcher with a partial match.
@@ -226,30 +226,30 @@ public final class HighlyConnectedModelObjsCD extends BaseGeneratedEMFQuerySpeci
     public static HighlyConnectedModelObjsCD.Match newMatch(final EObject pModelObj, final Integer pConnections) {
       return new Immutable(pModelObj, pConnections);
     }
-    
+
     private static final class Mutable extends HighlyConnectedModelObjsCD.Match {
       Mutable(final EObject pModelObj, final Integer pConnections) {
         super(pModelObj, pConnections);
       }
-      
+
       @Override
       public boolean isMutable() {
         return true;
       }
     }
-    
+
     private static final class Immutable extends HighlyConnectedModelObjsCD.Match {
       Immutable(final EObject pModelObj, final Integer pConnections) {
         super(pModelObj, pConnections);
       }
-      
+
       @Override
       public boolean isMutable() {
         return false;
       }
     }
   }
-  
+
   /**
    * Generated pattern matcher API of the edu.toronto.cs.se.mmint.productline.viatra.tests.highlyConnectedModelObjsCD pattern,
    * providing pattern-specific query methods.
@@ -288,7 +288,7 @@ public final class HighlyConnectedModelObjsCD extends BaseGeneratedEMFQuerySpeci
       }
       return matcher;
     }
-    
+
     /**
      * @throws ViatraQueryRuntimeException if an error occurs during pattern matcher creation
      * @return an initialized matcher
@@ -298,13 +298,13 @@ public final class HighlyConnectedModelObjsCD extends BaseGeneratedEMFQuerySpeci
     public static HighlyConnectedModelObjsCD.Matcher create() {
       return new Matcher();
     }
-    
+
     private static final int POSITION_MODELOBJ = 0;
-    
+
     private static final int POSITION_CONNECTIONS = 1;
-    
+
     private static final Logger LOGGER = ViatraQueryLoggingUtil.getLogger(HighlyConnectedModelObjsCD.Matcher.class);
-    
+
     /**
      * Initializes the pattern matcher within an existing VIATRA Query engine.
      * If the pattern matcher is already constructed in the engine, only a light-weight reference is returned.
@@ -316,7 +316,7 @@ public final class HighlyConnectedModelObjsCD extends BaseGeneratedEMFQuerySpeci
     private Matcher() {
       super(querySpecification());
     }
-    
+
     /**
      * Returns the set of all matches of the pattern that conform to the given fixed values of some parameters.
      * @param pModelObj the fixed value of pattern parameter modelObj, or null if not bound.
@@ -327,7 +327,7 @@ public final class HighlyConnectedModelObjsCD extends BaseGeneratedEMFQuerySpeci
     public Collection<HighlyConnectedModelObjsCD.Match> getAllMatches(final EObject pModelObj, final Integer pConnections) {
       return rawStreamAllMatches(new Object[]{pModelObj, pConnections}).collect(Collectors.toSet());
     }
-    
+
     /**
      * Returns a stream of all matches of the pattern that conform to the given fixed values of some parameters.
      * </p>
@@ -342,7 +342,7 @@ public final class HighlyConnectedModelObjsCD extends BaseGeneratedEMFQuerySpeci
     public Stream<HighlyConnectedModelObjsCD.Match> streamAllMatches(final EObject pModelObj, final Integer pConnections) {
       return rawStreamAllMatches(new Object[]{pModelObj, pConnections});
     }
-    
+
     /**
      * Returns an arbitrarily chosen match of the pattern that conforms to the given fixed values of some parameters.
      * Neither determinism nor randomness of selection is guaranteed.
@@ -354,7 +354,7 @@ public final class HighlyConnectedModelObjsCD extends BaseGeneratedEMFQuerySpeci
     public Optional<HighlyConnectedModelObjsCD.Match> getOneArbitraryMatch(final EObject pModelObj, final Integer pConnections) {
       return rawGetOneArbitraryMatch(new Object[]{pModelObj, pConnections});
     }
-    
+
     /**
      * Indicates whether the given combination of specified pattern parameters constitute a valid pattern match,
      * under any possible substitution of the unspecified parameters (if any).
@@ -366,7 +366,7 @@ public final class HighlyConnectedModelObjsCD extends BaseGeneratedEMFQuerySpeci
     public boolean hasMatch(final EObject pModelObj, final Integer pConnections) {
       return rawHasMatch(new Object[]{pModelObj, pConnections});
     }
-    
+
     /**
      * Returns the number of all matches of the pattern that conform to the given fixed values of some parameters.
      * @param pModelObj the fixed value of pattern parameter modelObj, or null if not bound.
@@ -377,7 +377,7 @@ public final class HighlyConnectedModelObjsCD extends BaseGeneratedEMFQuerySpeci
     public int countMatches(final EObject pModelObj, final Integer pConnections) {
       return rawCountMatches(new Object[]{pModelObj, pConnections});
     }
-    
+
     /**
      * Executes the given processor on an arbitrarily chosen match of the pattern that conforms to the given fixed values of some parameters.
      * Neither determinism nor randomness of selection is guaranteed.
@@ -390,7 +390,7 @@ public final class HighlyConnectedModelObjsCD extends BaseGeneratedEMFQuerySpeci
     public boolean forOneArbitraryMatch(final EObject pModelObj, final Integer pConnections, final Consumer<? super HighlyConnectedModelObjsCD.Match> processor) {
       return rawForOneArbitraryMatch(new Object[]{pModelObj, pConnections}, processor);
     }
-    
+
     /**
      * Returns a new (partial) match.
      * This can be used e.g. to call the matcher with a partial match.
@@ -403,7 +403,7 @@ public final class HighlyConnectedModelObjsCD extends BaseGeneratedEMFQuerySpeci
     public HighlyConnectedModelObjsCD.Match newMatch(final EObject pModelObj, final Integer pConnections) {
       return HighlyConnectedModelObjsCD.Match.newMatch(pModelObj, pConnections);
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for modelObj.
      * @return the Set of all values or empty set if there are no matches
@@ -412,7 +412,7 @@ public final class HighlyConnectedModelObjsCD extends BaseGeneratedEMFQuerySpeci
     protected Stream<EObject> rawStreamAllValuesOfmodelObj(final Object[] parameters) {
       return rawStreamAllValues(POSITION_MODELOBJ, parameters).map(EObject.class::cast);
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for modelObj.
      * @return the Set of all values or empty set if there are no matches
@@ -421,7 +421,7 @@ public final class HighlyConnectedModelObjsCD extends BaseGeneratedEMFQuerySpeci
     public Set<EObject> getAllValuesOfmodelObj() {
       return rawStreamAllValuesOfmodelObj(emptyArray()).collect(Collectors.toSet());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for modelObj.
      * @return the Set of all values or empty set if there are no matches
@@ -430,7 +430,7 @@ public final class HighlyConnectedModelObjsCD extends BaseGeneratedEMFQuerySpeci
     public Stream<EObject> streamAllValuesOfmodelObj() {
       return rawStreamAllValuesOfmodelObj(emptyArray());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for modelObj.
      * </p>
@@ -444,7 +444,7 @@ public final class HighlyConnectedModelObjsCD extends BaseGeneratedEMFQuerySpeci
     public Stream<EObject> streamAllValuesOfmodelObj(final HighlyConnectedModelObjsCD.Match partialMatch) {
       return rawStreamAllValuesOfmodelObj(partialMatch.toArray());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for modelObj.
      * </p>
@@ -458,7 +458,7 @@ public final class HighlyConnectedModelObjsCD extends BaseGeneratedEMFQuerySpeci
     public Stream<EObject> streamAllValuesOfmodelObj(final Integer pConnections) {
       return rawStreamAllValuesOfmodelObj(new Object[]{null, pConnections});
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for modelObj.
      * @return the Set of all values or empty set if there are no matches
@@ -467,7 +467,7 @@ public final class HighlyConnectedModelObjsCD extends BaseGeneratedEMFQuerySpeci
     public Set<EObject> getAllValuesOfmodelObj(final HighlyConnectedModelObjsCD.Match partialMatch) {
       return rawStreamAllValuesOfmodelObj(partialMatch.toArray()).collect(Collectors.toSet());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for modelObj.
      * @return the Set of all values or empty set if there are no matches
@@ -476,7 +476,7 @@ public final class HighlyConnectedModelObjsCD extends BaseGeneratedEMFQuerySpeci
     public Set<EObject> getAllValuesOfmodelObj(final Integer pConnections) {
       return rawStreamAllValuesOfmodelObj(new Object[]{null, pConnections}).collect(Collectors.toSet());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for connections.
      * @return the Set of all values or empty set if there are no matches
@@ -485,7 +485,7 @@ public final class HighlyConnectedModelObjsCD extends BaseGeneratedEMFQuerySpeci
     protected Stream<Integer> rawStreamAllValuesOfconnections(final Object[] parameters) {
       return rawStreamAllValues(POSITION_CONNECTIONS, parameters).map(Integer.class::cast);
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for connections.
      * @return the Set of all values or empty set if there are no matches
@@ -494,7 +494,7 @@ public final class HighlyConnectedModelObjsCD extends BaseGeneratedEMFQuerySpeci
     public Set<Integer> getAllValuesOfconnections() {
       return rawStreamAllValuesOfconnections(emptyArray()).collect(Collectors.toSet());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for connections.
      * @return the Set of all values or empty set if there are no matches
@@ -503,7 +503,7 @@ public final class HighlyConnectedModelObjsCD extends BaseGeneratedEMFQuerySpeci
     public Stream<Integer> streamAllValuesOfconnections() {
       return rawStreamAllValuesOfconnections(emptyArray());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for connections.
      * </p>
@@ -517,7 +517,7 @@ public final class HighlyConnectedModelObjsCD extends BaseGeneratedEMFQuerySpeci
     public Stream<Integer> streamAllValuesOfconnections(final HighlyConnectedModelObjsCD.Match partialMatch) {
       return rawStreamAllValuesOfconnections(partialMatch.toArray());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for connections.
      * </p>
@@ -531,7 +531,7 @@ public final class HighlyConnectedModelObjsCD extends BaseGeneratedEMFQuerySpeci
     public Stream<Integer> streamAllValuesOfconnections(final EObject pModelObj) {
       return rawStreamAllValuesOfconnections(new Object[]{pModelObj, null});
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for connections.
      * @return the Set of all values or empty set if there are no matches
@@ -540,7 +540,7 @@ public final class HighlyConnectedModelObjsCD extends BaseGeneratedEMFQuerySpeci
     public Set<Integer> getAllValuesOfconnections(final HighlyConnectedModelObjsCD.Match partialMatch) {
       return rawStreamAllValuesOfconnections(partialMatch.toArray()).collect(Collectors.toSet());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for connections.
      * @return the Set of all values or empty set if there are no matches
@@ -549,7 +549,7 @@ public final class HighlyConnectedModelObjsCD extends BaseGeneratedEMFQuerySpeci
     public Set<Integer> getAllValuesOfconnections(final EObject pModelObj) {
       return rawStreamAllValuesOfconnections(new Object[]{pModelObj, null}).collect(Collectors.toSet());
     }
-    
+
     @Override
     protected HighlyConnectedModelObjsCD.Match tupleToMatch(final Tuple t) {
       try {
@@ -559,7 +559,7 @@ public final class HighlyConnectedModelObjsCD extends BaseGeneratedEMFQuerySpeci
           return null;
       }
     }
-    
+
     @Override
     protected HighlyConnectedModelObjsCD.Match arrayToMatch(final Object[] match) {
       try {
@@ -569,7 +569,7 @@ public final class HighlyConnectedModelObjsCD extends BaseGeneratedEMFQuerySpeci
           return null;
       }
     }
-    
+
     @Override
     protected HighlyConnectedModelObjsCD.Match arrayToMatchMutable(final Object[] match) {
       try {
@@ -579,7 +579,7 @@ public final class HighlyConnectedModelObjsCD extends BaseGeneratedEMFQuerySpeci
           return null;
       }
     }
-    
+
     /**
      * @return the singleton instance of the query specification of this pattern
      * @throws ViatraQueryRuntimeException if the pattern definition could not be loaded
@@ -589,11 +589,11 @@ public final class HighlyConnectedModelObjsCD extends BaseGeneratedEMFQuerySpeci
       return HighlyConnectedModelObjsCD.instance();
     }
   }
-  
+
   private HighlyConnectedModelObjsCD() {
     super(GeneratedPQuery.INSTANCE);
   }
-  
+
   /**
    * @return the singleton instance of the query specification
    * @throws ViatraQueryRuntimeException if the pattern definition could not be loaded
@@ -606,27 +606,27 @@ public final class HighlyConnectedModelObjsCD extends BaseGeneratedEMFQuerySpeci
         throw processInitializerError(err);
     }
   }
-  
+
   @Override
   protected HighlyConnectedModelObjsCD.Matcher instantiate(final ViatraQueryEngine engine) {
     return HighlyConnectedModelObjsCD.Matcher.on(engine);
   }
-  
+
   @Override
   public HighlyConnectedModelObjsCD.Matcher instantiate() {
     return HighlyConnectedModelObjsCD.Matcher.create();
   }
-  
+
   @Override
   public HighlyConnectedModelObjsCD.Match newEmptyMatch() {
     return HighlyConnectedModelObjsCD.Match.newEmptyMatch();
   }
-  
+
   @Override
   public HighlyConnectedModelObjsCD.Match newMatch(final Object... parameters) {
     return HighlyConnectedModelObjsCD.Match.newMatch((org.eclipse.emf.ecore.EObject) parameters[0], (java.lang.Integer) parameters[1]);
   }
-  
+
   /**
    * Inner class allowing the singleton instance of {@link HighlyConnectedModelObjsCD} to be created 
    *     <b>not</b> at the class load time of the outer class, 
@@ -637,7 +637,7 @@ public final class HighlyConnectedModelObjsCD extends BaseGeneratedEMFQuerySpeci
    */
   private static class LazyHolder {
     private static final HighlyConnectedModelObjsCD INSTANCE = new HighlyConnectedModelObjsCD();
-    
+
     /**
      * Statically initializes the query specification <b>after</b> the field {@link #INSTANCE} is assigned.
      * This initialization order is required to support indirect recursion.
@@ -646,41 +646,41 @@ public final class HighlyConnectedModelObjsCD extends BaseGeneratedEMFQuerySpeci
      * 
      */
     private static final Object STATIC_INITIALIZER = ensureInitialized();
-    
+
     public static Object ensureInitialized() {
       INSTANCE.ensureInitializedInternal();
       return null;
     }
   }
-  
+
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private static final HighlyConnectedModelObjsCD.GeneratedPQuery INSTANCE = new GeneratedPQuery();
-    
+
     private final PParameter parameter_modelObj = new PParameter("modelObj", "org.eclipse.emf.ecore.EObject", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.eclipse.org/emf/2002/Ecore", "EObject")), PParameterDirection.INOUT);
-    
+
     private final PParameter parameter_connections = new PParameter("connections", "java.lang.Integer", new JavaTransitiveInstancesKey(java.lang.Integer.class), PParameterDirection.INOUT);
-    
+
     private final List<PParameter> parameters = Arrays.asList(parameter_modelObj, parameter_connections);
-    
+
     private GeneratedPQuery() {
       super(PVisibility.PUBLIC);
     }
-    
+
     @Override
     public String getFullyQualifiedName() {
       return "edu.toronto.cs.se.mmint.productline.viatra.tests.highlyConnectedModelObjsCD";
     }
-    
+
     @Override
     public List<String> getParameterNames() {
       return Arrays.asList("modelObj","connections");
     }
-    
+
     @Override
     public List<PParameter> getParameters() {
       return parameters;
     }
-    
+
     @Override
     public Set<PBody> doGetContainedBodies() {
       setEvaluationHints(new QueryEvaluationHint(null, QueryEvaluationHint.BackendRequirement.UNSPECIFIED));

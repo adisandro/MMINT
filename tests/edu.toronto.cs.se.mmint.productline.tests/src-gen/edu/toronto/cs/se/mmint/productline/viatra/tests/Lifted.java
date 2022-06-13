@@ -42,9 +42,9 @@ public final class Lifted extends BaseGeneratedPatternGroup {
     }
     return INSTANCE;
   }
-  
+
   private static Lifted INSTANCE;
-  
+
   private Lifted() {
     querySpecifications.add(MultipleInheritancePL.instance());
     querySpecifications.add(TestAttributePL.instance());
@@ -55,67 +55,67 @@ public final class Lifted extends BaseGeneratedPatternGroup {
     querySpecifications.add(TestMinPL.instance());
     querySpecifications.add(TestMaxPL.instance());
   }
-  
+
   public MultipleInheritancePL getMultipleInheritancePL() {
     return MultipleInheritancePL.instance();
   }
-  
+
   public MultipleInheritancePL.Matcher getMultipleInheritancePL(final ViatraQueryEngine engine) {
     return MultipleInheritancePL.Matcher.on(engine);
   }
-  
+
   public TestAttributePL getTestAttributePL() {
     return TestAttributePL.instance();
   }
-  
+
   public TestAttributePL.Matcher getTestAttributePL(final ViatraQueryEngine engine) {
     return TestAttributePL.Matcher.on(engine);
   }
-  
+
   public TestAttribute2PL getTestAttribute2PL() {
     return TestAttribute2PL.instance();
   }
-  
+
   public TestAttribute2PL.Matcher getTestAttribute2PL(final ViatraQueryEngine engine) {
     return TestAttribute2PL.Matcher.on(engine);
   }
-  
+
   public TestMultipleEdgesPL getTestMultipleEdgesPL() {
     return TestMultipleEdgesPL.instance();
   }
-  
+
   public TestMultipleEdgesPL.Matcher getTestMultipleEdgesPL(final ViatraQueryEngine engine) {
     return TestMultipleEdgesPL.Matcher.on(engine);
   }
-  
+
   public AsilBConnectedClassesPL getAsilBConnectedClassesPL() {
     return AsilBConnectedClassesPL.instance();
   }
-  
+
   public AsilBConnectedClassesPL.Matcher getAsilBConnectedClassesPL(final ViatraQueryEngine engine) {
     return AsilBConnectedClassesPL.Matcher.on(engine);
   }
-  
+
   public HighlyConnectedModelObjsPL getHighlyConnectedModelObjsPL() {
     return HighlyConnectedModelObjsPL.instance();
   }
-  
+
   public HighlyConnectedModelObjsPL.Matcher getHighlyConnectedModelObjsPL(final ViatraQueryEngine engine) {
     return HighlyConnectedModelObjsPL.Matcher.on(engine);
   }
-  
+
   public TestMinPL getTestMinPL() {
     return TestMinPL.instance();
   }
-  
+
   public TestMinPL.Matcher getTestMinPL(final ViatraQueryEngine engine) {
     return TestMinPL.Matcher.on(engine);
   }
-  
+
   public TestMaxPL getTestMaxPL() {
     return TestMaxPL.instance();
   }
-  
+
   public TestMaxPL.Matcher getTestMaxPL(final ViatraQueryEngine engine) {
     return TestMaxPL.Matcher.on(engine);
   }

@@ -47,26 +47,26 @@ public final class Query extends BaseGeneratedPatternGroup {
     }
     return INSTANCE;
   }
-  
+
   private static Query INSTANCE;
-  
+
   private Query() {
     querySpecifications.add(DbLockStates.instance());
     querySpecifications.add(Damaged.instance());
   }
-  
+
   public DbLockStates getDbLockStates() {
     return DbLockStates.instance();
   }
-  
+
   public DbLockStates.Matcher getDbLockStates(final ViatraQueryEngine engine) {
     return DbLockStates.Matcher.on(engine);
   }
-  
+
   public Damaged getDamaged() {
     return Damaged.instance();
   }
-  
+
   public Damaged.Matcher getDamaged(final ViatraQueryEngine engine) {
     return Damaged.Matcher.on(engine);
   }

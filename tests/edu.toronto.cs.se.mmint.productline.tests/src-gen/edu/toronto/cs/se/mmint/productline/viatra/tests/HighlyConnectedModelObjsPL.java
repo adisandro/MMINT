@@ -68,19 +68,19 @@ public final class HighlyConnectedModelObjsPL extends BaseGeneratedEMFQuerySpeci
    */
   public static abstract class Match extends BasePatternMatch {
     private edu.toronto.cs.se.mmint.productline.Class fModelObj;
-    
+
     private edu.toronto.cs.se.mmint.productline.Class fOtherModelObj;
-    
+
     private Mapping fMapping;
-    
+
     private static List<String> parameterNames = makeImmutableList("modelObj", "otherModelObj", "mapping");
-    
+
     private Match(final edu.toronto.cs.se.mmint.productline.Class pModelObj, final edu.toronto.cs.se.mmint.productline.Class pOtherModelObj, final Mapping pMapping) {
       this.fModelObj = pModelObj;
       this.fOtherModelObj = pOtherModelObj;
       this.fMapping = pMapping;
     }
-    
+
     @Override
     public Object get(final String parameterName) {
       switch(parameterName) {
@@ -90,7 +90,7 @@ public final class HighlyConnectedModelObjsPL extends BaseGeneratedEMFQuerySpeci
           default: return null;
       }
     }
-    
+
     @Override
     public Object get(final int index) {
       switch(index) {
@@ -100,19 +100,19 @@ public final class HighlyConnectedModelObjsPL extends BaseGeneratedEMFQuerySpeci
           default: return null;
       }
     }
-    
+
     public edu.toronto.cs.se.mmint.productline.Class getModelObj() {
       return this.fModelObj;
     }
-    
+
     public edu.toronto.cs.se.mmint.productline.Class getOtherModelObj() {
       return this.fOtherModelObj;
     }
-    
+
     public Mapping getMapping() {
       return this.fMapping;
     }
-    
+
     @Override
     public boolean set(final String parameterName, final Object newValue) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
@@ -130,42 +130,42 @@ public final class HighlyConnectedModelObjsPL extends BaseGeneratedEMFQuerySpeci
       }
       return false;
     }
-    
+
     public void setModelObj(final edu.toronto.cs.se.mmint.productline.Class pModelObj) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
       this.fModelObj = pModelObj;
     }
-    
+
     public void setOtherModelObj(final edu.toronto.cs.se.mmint.productline.Class pOtherModelObj) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
       this.fOtherModelObj = pOtherModelObj;
     }
-    
+
     public void setMapping(final Mapping pMapping) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
       this.fMapping = pMapping;
     }
-    
+
     @Override
     public String patternName() {
       return "edu.toronto.cs.se.mmint.productline.viatra.tests.highlyConnectedModelObjsPL";
     }
-    
+
     @Override
     public List<String> parameterNames() {
       return HighlyConnectedModelObjsPL.Match.parameterNames;
     }
-    
+
     @Override
     public Object[] toArray() {
       return new Object[]{fModelObj, fOtherModelObj, fMapping};
     }
-    
+
     @Override
     public HighlyConnectedModelObjsPL.Match toImmutable() {
       return isMutable() ? newMatch(fModelObj, fOtherModelObj, fMapping) : this;
     }
-    
+
     @Override
     public String prettyPrint() {
       StringBuilder result = new StringBuilder();
@@ -174,12 +174,12 @@ public final class HighlyConnectedModelObjsPL extends BaseGeneratedEMFQuerySpeci
       result.append("\"mapping\"=" + prettyPrintValue(fMapping));
       return result.toString();
     }
-    
+
     @Override
     public int hashCode() {
       return Objects.hash(fModelObj, fOtherModelObj, fMapping);
     }
-    
+
     @Override
     public boolean equals(final Object obj) {
       if (this == obj)
@@ -199,12 +199,12 @@ public final class HighlyConnectedModelObjsPL extends BaseGeneratedEMFQuerySpeci
           return Objects.equals(specification(), otherSig.specification()) && Arrays.deepEquals(toArray(), otherSig.toArray());
       }
     }
-    
+
     @Override
     public HighlyConnectedModelObjsPL specification() {
       return HighlyConnectedModelObjsPL.instance();
     }
-    
+
     /**
      * Returns an empty, mutable match.
      * Fields of the mutable match can be filled to create a partial match, usable as matcher input.
@@ -215,7 +215,7 @@ public final class HighlyConnectedModelObjsPL extends BaseGeneratedEMFQuerySpeci
     public static HighlyConnectedModelObjsPL.Match newEmptyMatch() {
       return new Mutable(null, null, null);
     }
-    
+
     /**
      * Returns a mutable (partial) match.
      * Fields of the mutable match can be filled to create a partial match, usable as matcher input.
@@ -229,7 +229,7 @@ public final class HighlyConnectedModelObjsPL extends BaseGeneratedEMFQuerySpeci
     public static HighlyConnectedModelObjsPL.Match newMutableMatch(final edu.toronto.cs.se.mmint.productline.Class pModelObj, final edu.toronto.cs.se.mmint.productline.Class pOtherModelObj, final Mapping pMapping) {
       return new Mutable(pModelObj, pOtherModelObj, pMapping);
     }
-    
+
     /**
      * Returns a new (partial) match.
      * This can be used e.g. to call the matcher with a partial match.
@@ -243,30 +243,30 @@ public final class HighlyConnectedModelObjsPL extends BaseGeneratedEMFQuerySpeci
     public static HighlyConnectedModelObjsPL.Match newMatch(final edu.toronto.cs.se.mmint.productline.Class pModelObj, final edu.toronto.cs.se.mmint.productline.Class pOtherModelObj, final Mapping pMapping) {
       return new Immutable(pModelObj, pOtherModelObj, pMapping);
     }
-    
+
     private static final class Mutable extends HighlyConnectedModelObjsPL.Match {
       Mutable(final edu.toronto.cs.se.mmint.productline.Class pModelObj, final edu.toronto.cs.se.mmint.productline.Class pOtherModelObj, final Mapping pMapping) {
         super(pModelObj, pOtherModelObj, pMapping);
       }
-      
+
       @Override
       public boolean isMutable() {
         return true;
       }
     }
-    
+
     private static final class Immutable extends HighlyConnectedModelObjsPL.Match {
       Immutable(final edu.toronto.cs.se.mmint.productline.Class pModelObj, final edu.toronto.cs.se.mmint.productline.Class pOtherModelObj, final Mapping pMapping) {
         super(pModelObj, pOtherModelObj, pMapping);
       }
-      
+
       @Override
       public boolean isMutable() {
         return false;
       }
     }
   }
-  
+
   /**
    * Generated pattern matcher API of the edu.toronto.cs.se.mmint.productline.viatra.tests.highlyConnectedModelObjsPL pattern,
    * providing pattern-specific query methods.
@@ -304,7 +304,7 @@ public final class HighlyConnectedModelObjsPL extends BaseGeneratedEMFQuerySpeci
       }
       return matcher;
     }
-    
+
     /**
      * @throws ViatraQueryRuntimeException if an error occurs during pattern matcher creation
      * @return an initialized matcher
@@ -314,15 +314,15 @@ public final class HighlyConnectedModelObjsPL extends BaseGeneratedEMFQuerySpeci
     public static HighlyConnectedModelObjsPL.Matcher create() {
       return new Matcher();
     }
-    
+
     private static final int POSITION_MODELOBJ = 0;
-    
+
     private static final int POSITION_OTHERMODELOBJ = 1;
-    
+
     private static final int POSITION_MAPPING = 2;
-    
+
     private static final Logger LOGGER = ViatraQueryLoggingUtil.getLogger(HighlyConnectedModelObjsPL.Matcher.class);
-    
+
     /**
      * Initializes the pattern matcher within an existing VIATRA Query engine.
      * If the pattern matcher is already constructed in the engine, only a light-weight reference is returned.
@@ -334,7 +334,7 @@ public final class HighlyConnectedModelObjsPL extends BaseGeneratedEMFQuerySpeci
     private Matcher() {
       super(querySpecification());
     }
-    
+
     /**
      * Returns the set of all matches of the pattern that conform to the given fixed values of some parameters.
      * @param pModelObj the fixed value of pattern parameter modelObj, or null if not bound.
@@ -346,7 +346,7 @@ public final class HighlyConnectedModelObjsPL extends BaseGeneratedEMFQuerySpeci
     public Collection<HighlyConnectedModelObjsPL.Match> getAllMatches(final edu.toronto.cs.se.mmint.productline.Class pModelObj, final edu.toronto.cs.se.mmint.productline.Class pOtherModelObj, final Mapping pMapping) {
       return rawStreamAllMatches(new Object[]{pModelObj, pOtherModelObj, pMapping}).collect(Collectors.toSet());
     }
-    
+
     /**
      * Returns a stream of all matches of the pattern that conform to the given fixed values of some parameters.
      * </p>
@@ -362,7 +362,7 @@ public final class HighlyConnectedModelObjsPL extends BaseGeneratedEMFQuerySpeci
     public Stream<HighlyConnectedModelObjsPL.Match> streamAllMatches(final edu.toronto.cs.se.mmint.productline.Class pModelObj, final edu.toronto.cs.se.mmint.productline.Class pOtherModelObj, final Mapping pMapping) {
       return rawStreamAllMatches(new Object[]{pModelObj, pOtherModelObj, pMapping});
     }
-    
+
     /**
      * Returns an arbitrarily chosen match of the pattern that conforms to the given fixed values of some parameters.
      * Neither determinism nor randomness of selection is guaranteed.
@@ -375,7 +375,7 @@ public final class HighlyConnectedModelObjsPL extends BaseGeneratedEMFQuerySpeci
     public Optional<HighlyConnectedModelObjsPL.Match> getOneArbitraryMatch(final edu.toronto.cs.se.mmint.productline.Class pModelObj, final edu.toronto.cs.se.mmint.productline.Class pOtherModelObj, final Mapping pMapping) {
       return rawGetOneArbitraryMatch(new Object[]{pModelObj, pOtherModelObj, pMapping});
     }
-    
+
     /**
      * Indicates whether the given combination of specified pattern parameters constitute a valid pattern match,
      * under any possible substitution of the unspecified parameters (if any).
@@ -388,7 +388,7 @@ public final class HighlyConnectedModelObjsPL extends BaseGeneratedEMFQuerySpeci
     public boolean hasMatch(final edu.toronto.cs.se.mmint.productline.Class pModelObj, final edu.toronto.cs.se.mmint.productline.Class pOtherModelObj, final Mapping pMapping) {
       return rawHasMatch(new Object[]{pModelObj, pOtherModelObj, pMapping});
     }
-    
+
     /**
      * Returns the number of all matches of the pattern that conform to the given fixed values of some parameters.
      * @param pModelObj the fixed value of pattern parameter modelObj, or null if not bound.
@@ -400,7 +400,7 @@ public final class HighlyConnectedModelObjsPL extends BaseGeneratedEMFQuerySpeci
     public int countMatches(final edu.toronto.cs.se.mmint.productline.Class pModelObj, final edu.toronto.cs.se.mmint.productline.Class pOtherModelObj, final Mapping pMapping) {
       return rawCountMatches(new Object[]{pModelObj, pOtherModelObj, pMapping});
     }
-    
+
     /**
      * Executes the given processor on an arbitrarily chosen match of the pattern that conforms to the given fixed values of some parameters.
      * Neither determinism nor randomness of selection is guaranteed.
@@ -414,7 +414,7 @@ public final class HighlyConnectedModelObjsPL extends BaseGeneratedEMFQuerySpeci
     public boolean forOneArbitraryMatch(final edu.toronto.cs.se.mmint.productline.Class pModelObj, final edu.toronto.cs.se.mmint.productline.Class pOtherModelObj, final Mapping pMapping, final Consumer<? super HighlyConnectedModelObjsPL.Match> processor) {
       return rawForOneArbitraryMatch(new Object[]{pModelObj, pOtherModelObj, pMapping}, processor);
     }
-    
+
     /**
      * Returns a new (partial) match.
      * This can be used e.g. to call the matcher with a partial match.
@@ -428,7 +428,7 @@ public final class HighlyConnectedModelObjsPL extends BaseGeneratedEMFQuerySpeci
     public HighlyConnectedModelObjsPL.Match newMatch(final edu.toronto.cs.se.mmint.productline.Class pModelObj, final edu.toronto.cs.se.mmint.productline.Class pOtherModelObj, final Mapping pMapping) {
       return HighlyConnectedModelObjsPL.Match.newMatch(pModelObj, pOtherModelObj, pMapping);
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for modelObj.
      * @return the Set of all values or empty set if there are no matches
@@ -437,7 +437,7 @@ public final class HighlyConnectedModelObjsPL extends BaseGeneratedEMFQuerySpeci
     protected Stream<edu.toronto.cs.se.mmint.productline.Class> rawStreamAllValuesOfmodelObj(final Object[] parameters) {
       return rawStreamAllValues(POSITION_MODELOBJ, parameters).map(edu.toronto.cs.se.mmint.productline.Class.class::cast);
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for modelObj.
      * @return the Set of all values or empty set if there are no matches
@@ -446,7 +446,7 @@ public final class HighlyConnectedModelObjsPL extends BaseGeneratedEMFQuerySpeci
     public Set<edu.toronto.cs.se.mmint.productline.Class> getAllValuesOfmodelObj() {
       return rawStreamAllValuesOfmodelObj(emptyArray()).collect(Collectors.toSet());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for modelObj.
      * @return the Set of all values or empty set if there are no matches
@@ -455,7 +455,7 @@ public final class HighlyConnectedModelObjsPL extends BaseGeneratedEMFQuerySpeci
     public Stream<edu.toronto.cs.se.mmint.productline.Class> streamAllValuesOfmodelObj() {
       return rawStreamAllValuesOfmodelObj(emptyArray());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for modelObj.
      * </p>
@@ -469,7 +469,7 @@ public final class HighlyConnectedModelObjsPL extends BaseGeneratedEMFQuerySpeci
     public Stream<edu.toronto.cs.se.mmint.productline.Class> streamAllValuesOfmodelObj(final HighlyConnectedModelObjsPL.Match partialMatch) {
       return rawStreamAllValuesOfmodelObj(partialMatch.toArray());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for modelObj.
      * </p>
@@ -483,7 +483,7 @@ public final class HighlyConnectedModelObjsPL extends BaseGeneratedEMFQuerySpeci
     public Stream<edu.toronto.cs.se.mmint.productline.Class> streamAllValuesOfmodelObj(final edu.toronto.cs.se.mmint.productline.Class pOtherModelObj, final Mapping pMapping) {
       return rawStreamAllValuesOfmodelObj(new Object[]{null, pOtherModelObj, pMapping});
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for modelObj.
      * @return the Set of all values or empty set if there are no matches
@@ -492,7 +492,7 @@ public final class HighlyConnectedModelObjsPL extends BaseGeneratedEMFQuerySpeci
     public Set<edu.toronto.cs.se.mmint.productline.Class> getAllValuesOfmodelObj(final HighlyConnectedModelObjsPL.Match partialMatch) {
       return rawStreamAllValuesOfmodelObj(partialMatch.toArray()).collect(Collectors.toSet());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for modelObj.
      * @return the Set of all values or empty set if there are no matches
@@ -501,7 +501,7 @@ public final class HighlyConnectedModelObjsPL extends BaseGeneratedEMFQuerySpeci
     public Set<edu.toronto.cs.se.mmint.productline.Class> getAllValuesOfmodelObj(final edu.toronto.cs.se.mmint.productline.Class pOtherModelObj, final Mapping pMapping) {
       return rawStreamAllValuesOfmodelObj(new Object[]{null, pOtherModelObj, pMapping}).collect(Collectors.toSet());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for otherModelObj.
      * @return the Set of all values or empty set if there are no matches
@@ -510,7 +510,7 @@ public final class HighlyConnectedModelObjsPL extends BaseGeneratedEMFQuerySpeci
     protected Stream<edu.toronto.cs.se.mmint.productline.Class> rawStreamAllValuesOfotherModelObj(final Object[] parameters) {
       return rawStreamAllValues(POSITION_OTHERMODELOBJ, parameters).map(edu.toronto.cs.se.mmint.productline.Class.class::cast);
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for otherModelObj.
      * @return the Set of all values or empty set if there are no matches
@@ -519,7 +519,7 @@ public final class HighlyConnectedModelObjsPL extends BaseGeneratedEMFQuerySpeci
     public Set<edu.toronto.cs.se.mmint.productline.Class> getAllValuesOfotherModelObj() {
       return rawStreamAllValuesOfotherModelObj(emptyArray()).collect(Collectors.toSet());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for otherModelObj.
      * @return the Set of all values or empty set if there are no matches
@@ -528,7 +528,7 @@ public final class HighlyConnectedModelObjsPL extends BaseGeneratedEMFQuerySpeci
     public Stream<edu.toronto.cs.se.mmint.productline.Class> streamAllValuesOfotherModelObj() {
       return rawStreamAllValuesOfotherModelObj(emptyArray());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for otherModelObj.
      * </p>
@@ -542,7 +542,7 @@ public final class HighlyConnectedModelObjsPL extends BaseGeneratedEMFQuerySpeci
     public Stream<edu.toronto.cs.se.mmint.productline.Class> streamAllValuesOfotherModelObj(final HighlyConnectedModelObjsPL.Match partialMatch) {
       return rawStreamAllValuesOfotherModelObj(partialMatch.toArray());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for otherModelObj.
      * </p>
@@ -556,7 +556,7 @@ public final class HighlyConnectedModelObjsPL extends BaseGeneratedEMFQuerySpeci
     public Stream<edu.toronto.cs.se.mmint.productline.Class> streamAllValuesOfotherModelObj(final edu.toronto.cs.se.mmint.productline.Class pModelObj, final Mapping pMapping) {
       return rawStreamAllValuesOfotherModelObj(new Object[]{pModelObj, null, pMapping});
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for otherModelObj.
      * @return the Set of all values or empty set if there are no matches
@@ -565,7 +565,7 @@ public final class HighlyConnectedModelObjsPL extends BaseGeneratedEMFQuerySpeci
     public Set<edu.toronto.cs.se.mmint.productline.Class> getAllValuesOfotherModelObj(final HighlyConnectedModelObjsPL.Match partialMatch) {
       return rawStreamAllValuesOfotherModelObj(partialMatch.toArray()).collect(Collectors.toSet());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for otherModelObj.
      * @return the Set of all values or empty set if there are no matches
@@ -574,7 +574,7 @@ public final class HighlyConnectedModelObjsPL extends BaseGeneratedEMFQuerySpeci
     public Set<edu.toronto.cs.se.mmint.productline.Class> getAllValuesOfotherModelObj(final edu.toronto.cs.se.mmint.productline.Class pModelObj, final Mapping pMapping) {
       return rawStreamAllValuesOfotherModelObj(new Object[]{pModelObj, null, pMapping}).collect(Collectors.toSet());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for mapping.
      * @return the Set of all values or empty set if there are no matches
@@ -583,7 +583,7 @@ public final class HighlyConnectedModelObjsPL extends BaseGeneratedEMFQuerySpeci
     protected Stream<Mapping> rawStreamAllValuesOfmapping(final Object[] parameters) {
       return rawStreamAllValues(POSITION_MAPPING, parameters).map(Mapping.class::cast);
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for mapping.
      * @return the Set of all values or empty set if there are no matches
@@ -592,7 +592,7 @@ public final class HighlyConnectedModelObjsPL extends BaseGeneratedEMFQuerySpeci
     public Set<Mapping> getAllValuesOfmapping() {
       return rawStreamAllValuesOfmapping(emptyArray()).collect(Collectors.toSet());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for mapping.
      * @return the Set of all values or empty set if there are no matches
@@ -601,7 +601,7 @@ public final class HighlyConnectedModelObjsPL extends BaseGeneratedEMFQuerySpeci
     public Stream<Mapping> streamAllValuesOfmapping() {
       return rawStreamAllValuesOfmapping(emptyArray());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for mapping.
      * </p>
@@ -615,7 +615,7 @@ public final class HighlyConnectedModelObjsPL extends BaseGeneratedEMFQuerySpeci
     public Stream<Mapping> streamAllValuesOfmapping(final HighlyConnectedModelObjsPL.Match partialMatch) {
       return rawStreamAllValuesOfmapping(partialMatch.toArray());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for mapping.
      * </p>
@@ -629,7 +629,7 @@ public final class HighlyConnectedModelObjsPL extends BaseGeneratedEMFQuerySpeci
     public Stream<Mapping> streamAllValuesOfmapping(final edu.toronto.cs.se.mmint.productline.Class pModelObj, final edu.toronto.cs.se.mmint.productline.Class pOtherModelObj) {
       return rawStreamAllValuesOfmapping(new Object[]{pModelObj, pOtherModelObj, null});
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for mapping.
      * @return the Set of all values or empty set if there are no matches
@@ -638,7 +638,7 @@ public final class HighlyConnectedModelObjsPL extends BaseGeneratedEMFQuerySpeci
     public Set<Mapping> getAllValuesOfmapping(final HighlyConnectedModelObjsPL.Match partialMatch) {
       return rawStreamAllValuesOfmapping(partialMatch.toArray()).collect(Collectors.toSet());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for mapping.
      * @return the Set of all values or empty set if there are no matches
@@ -647,7 +647,7 @@ public final class HighlyConnectedModelObjsPL extends BaseGeneratedEMFQuerySpeci
     public Set<Mapping> getAllValuesOfmapping(final edu.toronto.cs.se.mmint.productline.Class pModelObj, final edu.toronto.cs.se.mmint.productline.Class pOtherModelObj) {
       return rawStreamAllValuesOfmapping(new Object[]{pModelObj, pOtherModelObj, null}).collect(Collectors.toSet());
     }
-    
+
     @Override
     protected HighlyConnectedModelObjsPL.Match tupleToMatch(final Tuple t) {
       try {
@@ -657,7 +657,7 @@ public final class HighlyConnectedModelObjsPL extends BaseGeneratedEMFQuerySpeci
           return null;
       }
     }
-    
+
     @Override
     protected HighlyConnectedModelObjsPL.Match arrayToMatch(final Object[] match) {
       try {
@@ -667,7 +667,7 @@ public final class HighlyConnectedModelObjsPL extends BaseGeneratedEMFQuerySpeci
           return null;
       }
     }
-    
+
     @Override
     protected HighlyConnectedModelObjsPL.Match arrayToMatchMutable(final Object[] match) {
       try {
@@ -677,7 +677,7 @@ public final class HighlyConnectedModelObjsPL extends BaseGeneratedEMFQuerySpeci
           return null;
       }
     }
-    
+
     /**
      * @return the singleton instance of the query specification of this pattern
      * @throws ViatraQueryRuntimeException if the pattern definition could not be loaded
@@ -687,11 +687,11 @@ public final class HighlyConnectedModelObjsPL extends BaseGeneratedEMFQuerySpeci
       return HighlyConnectedModelObjsPL.instance();
     }
   }
-  
+
   private HighlyConnectedModelObjsPL() {
     super(GeneratedPQuery.INSTANCE);
   }
-  
+
   /**
    * @return the singleton instance of the query specification
    * @throws ViatraQueryRuntimeException if the pattern definition could not be loaded
@@ -704,27 +704,27 @@ public final class HighlyConnectedModelObjsPL extends BaseGeneratedEMFQuerySpeci
         throw processInitializerError(err);
     }
   }
-  
+
   @Override
   protected HighlyConnectedModelObjsPL.Matcher instantiate(final ViatraQueryEngine engine) {
     return HighlyConnectedModelObjsPL.Matcher.on(engine);
   }
-  
+
   @Override
   public HighlyConnectedModelObjsPL.Matcher instantiate() {
     return HighlyConnectedModelObjsPL.Matcher.create();
   }
-  
+
   @Override
   public HighlyConnectedModelObjsPL.Match newEmptyMatch() {
     return HighlyConnectedModelObjsPL.Match.newEmptyMatch();
   }
-  
+
   @Override
   public HighlyConnectedModelObjsPL.Match newMatch(final Object... parameters) {
     return HighlyConnectedModelObjsPL.Match.newMatch((edu.toronto.cs.se.mmint.productline.Class) parameters[0], (edu.toronto.cs.se.mmint.productline.Class) parameters[1], (edu.toronto.cs.se.mmint.mid.relationship.Mapping) parameters[2]);
   }
-  
+
   /**
    * Inner class allowing the singleton instance of {@link HighlyConnectedModelObjsPL} to be created 
    *     <b>not</b> at the class load time of the outer class, 
@@ -735,7 +735,7 @@ public final class HighlyConnectedModelObjsPL extends BaseGeneratedEMFQuerySpeci
    */
   private static class LazyHolder {
     private static final HighlyConnectedModelObjsPL INSTANCE = new HighlyConnectedModelObjsPL();
-    
+
     /**
      * Statically initializes the query specification <b>after</b> the field {@link #INSTANCE} is assigned.
      * This initialization order is required to support indirect recursion.
@@ -744,43 +744,43 @@ public final class HighlyConnectedModelObjsPL extends BaseGeneratedEMFQuerySpeci
      * 
      */
     private static final Object STATIC_INITIALIZER = ensureInitialized();
-    
+
     public static Object ensureInitialized() {
       INSTANCE.ensureInitializedInternal();
       return null;
     }
   }
-  
+
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private static final HighlyConnectedModelObjsPL.GeneratedPQuery INSTANCE = new GeneratedPQuery();
-    
+
     private final PParameter parameter_modelObj = new PParameter("modelObj", "edu.toronto.cs.se.mmint.productline.Class", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("model://edu.toronto.cs.se.mmint.productline", "Class")), PParameterDirection.INOUT);
-    
+
     private final PParameter parameter_otherModelObj = new PParameter("otherModelObj", "edu.toronto.cs.se.mmint.productline.Class", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("model://edu.toronto.cs.se.mmint.productline", "Class")), PParameterDirection.INOUT);
-    
+
     private final PParameter parameter_mapping = new PParameter("mapping", "edu.toronto.cs.se.mmint.mid.relationship.Mapping", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://se.cs.toronto.edu/mmint/MID/Relationship", "Mapping")), PParameterDirection.INOUT);
-    
+
     private final List<PParameter> parameters = Arrays.asList(parameter_modelObj, parameter_otherModelObj, parameter_mapping);
-    
+
     private GeneratedPQuery() {
       super(PVisibility.PUBLIC);
     }
-    
+
     @Override
     public String getFullyQualifiedName() {
       return "edu.toronto.cs.se.mmint.productline.viatra.tests.highlyConnectedModelObjsPL";
     }
-    
+
     @Override
     public List<String> getParameterNames() {
       return Arrays.asList("modelObj","otherModelObj","mapping");
     }
-    
+
     @Override
     public List<PParameter> getParameters() {
       return parameters;
     }
-    
+
     @Override
     public Set<PBody> doGetContainedBodies() {
       setEvaluationHints(new QueryEvaluationHint(null, QueryEvaluationHint.BackendRequirement.UNSPECIFIED));

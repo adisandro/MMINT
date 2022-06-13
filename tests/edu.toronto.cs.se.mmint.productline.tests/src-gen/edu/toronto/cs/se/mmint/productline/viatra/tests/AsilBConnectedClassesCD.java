@@ -74,16 +74,16 @@ public final class AsilBConnectedClassesCD extends BaseGeneratedEMFQuerySpecific
    */
   public static abstract class Match extends BasePatternMatch {
     private Goal fGoal;
-    
+
     private edu.toronto.cs.se.modelepedia.classdiagram.Class fClazz;
-    
+
     private static List<String> parameterNames = makeImmutableList("goal", "clazz");
-    
+
     private Match(final Goal pGoal, final edu.toronto.cs.se.modelepedia.classdiagram.Class pClazz) {
       this.fGoal = pGoal;
       this.fClazz = pClazz;
     }
-    
+
     @Override
     public Object get(final String parameterName) {
       switch(parameterName) {
@@ -92,7 +92,7 @@ public final class AsilBConnectedClassesCD extends BaseGeneratedEMFQuerySpecific
           default: return null;
       }
     }
-    
+
     @Override
     public Object get(final int index) {
       switch(index) {
@@ -101,15 +101,15 @@ public final class AsilBConnectedClassesCD extends BaseGeneratedEMFQuerySpecific
           default: return null;
       }
     }
-    
+
     public Goal getGoal() {
       return this.fGoal;
     }
-    
+
     public edu.toronto.cs.se.modelepedia.classdiagram.Class getClazz() {
       return this.fClazz;
     }
-    
+
     @Override
     public boolean set(final String parameterName, final Object newValue) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
@@ -123,37 +123,37 @@ public final class AsilBConnectedClassesCD extends BaseGeneratedEMFQuerySpecific
       }
       return false;
     }
-    
+
     public void setGoal(final Goal pGoal) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
       this.fGoal = pGoal;
     }
-    
+
     public void setClazz(final edu.toronto.cs.se.modelepedia.classdiagram.Class pClazz) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
       this.fClazz = pClazz;
     }
-    
+
     @Override
     public String patternName() {
       return "edu.toronto.cs.se.mmint.productline.viatra.tests.asilBConnectedClassesCD";
     }
-    
+
     @Override
     public List<String> parameterNames() {
       return AsilBConnectedClassesCD.Match.parameterNames;
     }
-    
+
     @Override
     public Object[] toArray() {
       return new Object[]{fGoal, fClazz};
     }
-    
+
     @Override
     public AsilBConnectedClassesCD.Match toImmutable() {
       return isMutable() ? newMatch(fGoal, fClazz) : this;
     }
-    
+
     @Override
     public String prettyPrint() {
       StringBuilder result = new StringBuilder();
@@ -161,12 +161,12 @@ public final class AsilBConnectedClassesCD extends BaseGeneratedEMFQuerySpecific
       result.append("\"clazz\"=" + prettyPrintValue(fClazz));
       return result.toString();
     }
-    
+
     @Override
     public int hashCode() {
       return Objects.hash(fGoal, fClazz);
     }
-    
+
     @Override
     public boolean equals(final Object obj) {
       if (this == obj)
@@ -186,12 +186,12 @@ public final class AsilBConnectedClassesCD extends BaseGeneratedEMFQuerySpecific
           return Objects.equals(specification(), otherSig.specification()) && Arrays.deepEquals(toArray(), otherSig.toArray());
       }
     }
-    
+
     @Override
     public AsilBConnectedClassesCD specification() {
       return AsilBConnectedClassesCD.instance();
     }
-    
+
     /**
      * Returns an empty, mutable match.
      * Fields of the mutable match can be filled to create a partial match, usable as matcher input.
@@ -202,7 +202,7 @@ public final class AsilBConnectedClassesCD extends BaseGeneratedEMFQuerySpecific
     public static AsilBConnectedClassesCD.Match newEmptyMatch() {
       return new Mutable(null, null);
     }
-    
+
     /**
      * Returns a mutable (partial) match.
      * Fields of the mutable match can be filled to create a partial match, usable as matcher input.
@@ -215,7 +215,7 @@ public final class AsilBConnectedClassesCD extends BaseGeneratedEMFQuerySpecific
     public static AsilBConnectedClassesCD.Match newMutableMatch(final Goal pGoal, final edu.toronto.cs.se.modelepedia.classdiagram.Class pClazz) {
       return new Mutable(pGoal, pClazz);
     }
-    
+
     /**
      * Returns a new (partial) match.
      * This can be used e.g. to call the matcher with a partial match.
@@ -228,30 +228,30 @@ public final class AsilBConnectedClassesCD extends BaseGeneratedEMFQuerySpecific
     public static AsilBConnectedClassesCD.Match newMatch(final Goal pGoal, final edu.toronto.cs.se.modelepedia.classdiagram.Class pClazz) {
       return new Immutable(pGoal, pClazz);
     }
-    
+
     private static final class Mutable extends AsilBConnectedClassesCD.Match {
       Mutable(final Goal pGoal, final edu.toronto.cs.se.modelepedia.classdiagram.Class pClazz) {
         super(pGoal, pClazz);
       }
-      
+
       @Override
       public boolean isMutable() {
         return true;
       }
     }
-    
+
     private static final class Immutable extends AsilBConnectedClassesCD.Match {
       Immutable(final Goal pGoal, final edu.toronto.cs.se.modelepedia.classdiagram.Class pClazz) {
         super(pGoal, pClazz);
       }
-      
+
       @Override
       public boolean isMutable() {
         return false;
       }
     }
   }
-  
+
   /**
    * Generated pattern matcher API of the edu.toronto.cs.se.mmint.productline.viatra.tests.asilBConnectedClassesCD pattern,
    * providing pattern-specific query methods.
@@ -290,7 +290,7 @@ public final class AsilBConnectedClassesCD extends BaseGeneratedEMFQuerySpecific
       }
       return matcher;
     }
-    
+
     /**
      * @throws ViatraQueryRuntimeException if an error occurs during pattern matcher creation
      * @return an initialized matcher
@@ -300,13 +300,13 @@ public final class AsilBConnectedClassesCD extends BaseGeneratedEMFQuerySpecific
     public static AsilBConnectedClassesCD.Matcher create() {
       return new Matcher();
     }
-    
+
     private static final int POSITION_GOAL = 0;
-    
+
     private static final int POSITION_CLAZZ = 1;
-    
+
     private static final Logger LOGGER = ViatraQueryLoggingUtil.getLogger(AsilBConnectedClassesCD.Matcher.class);
-    
+
     /**
      * Initializes the pattern matcher within an existing VIATRA Query engine.
      * If the pattern matcher is already constructed in the engine, only a light-weight reference is returned.
@@ -318,7 +318,7 @@ public final class AsilBConnectedClassesCD extends BaseGeneratedEMFQuerySpecific
     private Matcher() {
       super(querySpecification());
     }
-    
+
     /**
      * Returns the set of all matches of the pattern that conform to the given fixed values of some parameters.
      * @param pGoal the fixed value of pattern parameter goal, or null if not bound.
@@ -329,7 +329,7 @@ public final class AsilBConnectedClassesCD extends BaseGeneratedEMFQuerySpecific
     public Collection<AsilBConnectedClassesCD.Match> getAllMatches(final Goal pGoal, final edu.toronto.cs.se.modelepedia.classdiagram.Class pClazz) {
       return rawStreamAllMatches(new Object[]{pGoal, pClazz}).collect(Collectors.toSet());
     }
-    
+
     /**
      * Returns a stream of all matches of the pattern that conform to the given fixed values of some parameters.
      * </p>
@@ -344,7 +344,7 @@ public final class AsilBConnectedClassesCD extends BaseGeneratedEMFQuerySpecific
     public Stream<AsilBConnectedClassesCD.Match> streamAllMatches(final Goal pGoal, final edu.toronto.cs.se.modelepedia.classdiagram.Class pClazz) {
       return rawStreamAllMatches(new Object[]{pGoal, pClazz});
     }
-    
+
     /**
      * Returns an arbitrarily chosen match of the pattern that conforms to the given fixed values of some parameters.
      * Neither determinism nor randomness of selection is guaranteed.
@@ -356,7 +356,7 @@ public final class AsilBConnectedClassesCD extends BaseGeneratedEMFQuerySpecific
     public Optional<AsilBConnectedClassesCD.Match> getOneArbitraryMatch(final Goal pGoal, final edu.toronto.cs.se.modelepedia.classdiagram.Class pClazz) {
       return rawGetOneArbitraryMatch(new Object[]{pGoal, pClazz});
     }
-    
+
     /**
      * Indicates whether the given combination of specified pattern parameters constitute a valid pattern match,
      * under any possible substitution of the unspecified parameters (if any).
@@ -368,7 +368,7 @@ public final class AsilBConnectedClassesCD extends BaseGeneratedEMFQuerySpecific
     public boolean hasMatch(final Goal pGoal, final edu.toronto.cs.se.modelepedia.classdiagram.Class pClazz) {
       return rawHasMatch(new Object[]{pGoal, pClazz});
     }
-    
+
     /**
      * Returns the number of all matches of the pattern that conform to the given fixed values of some parameters.
      * @param pGoal the fixed value of pattern parameter goal, or null if not bound.
@@ -379,7 +379,7 @@ public final class AsilBConnectedClassesCD extends BaseGeneratedEMFQuerySpecific
     public int countMatches(final Goal pGoal, final edu.toronto.cs.se.modelepedia.classdiagram.Class pClazz) {
       return rawCountMatches(new Object[]{pGoal, pClazz});
     }
-    
+
     /**
      * Executes the given processor on an arbitrarily chosen match of the pattern that conforms to the given fixed values of some parameters.
      * Neither determinism nor randomness of selection is guaranteed.
@@ -392,7 +392,7 @@ public final class AsilBConnectedClassesCD extends BaseGeneratedEMFQuerySpecific
     public boolean forOneArbitraryMatch(final Goal pGoal, final edu.toronto.cs.se.modelepedia.classdiagram.Class pClazz, final Consumer<? super AsilBConnectedClassesCD.Match> processor) {
       return rawForOneArbitraryMatch(new Object[]{pGoal, pClazz}, processor);
     }
-    
+
     /**
      * Returns a new (partial) match.
      * This can be used e.g. to call the matcher with a partial match.
@@ -405,7 +405,7 @@ public final class AsilBConnectedClassesCD extends BaseGeneratedEMFQuerySpecific
     public AsilBConnectedClassesCD.Match newMatch(final Goal pGoal, final edu.toronto.cs.se.modelepedia.classdiagram.Class pClazz) {
       return AsilBConnectedClassesCD.Match.newMatch(pGoal, pClazz);
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for goal.
      * @return the Set of all values or empty set if there are no matches
@@ -414,7 +414,7 @@ public final class AsilBConnectedClassesCD extends BaseGeneratedEMFQuerySpecific
     protected Stream<Goal> rawStreamAllValuesOfgoal(final Object[] parameters) {
       return rawStreamAllValues(POSITION_GOAL, parameters).map(Goal.class::cast);
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for goal.
      * @return the Set of all values or empty set if there are no matches
@@ -423,7 +423,7 @@ public final class AsilBConnectedClassesCD extends BaseGeneratedEMFQuerySpecific
     public Set<Goal> getAllValuesOfgoal() {
       return rawStreamAllValuesOfgoal(emptyArray()).collect(Collectors.toSet());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for goal.
      * @return the Set of all values or empty set if there are no matches
@@ -432,7 +432,7 @@ public final class AsilBConnectedClassesCD extends BaseGeneratedEMFQuerySpecific
     public Stream<Goal> streamAllValuesOfgoal() {
       return rawStreamAllValuesOfgoal(emptyArray());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for goal.
      * </p>
@@ -446,7 +446,7 @@ public final class AsilBConnectedClassesCD extends BaseGeneratedEMFQuerySpecific
     public Stream<Goal> streamAllValuesOfgoal(final AsilBConnectedClassesCD.Match partialMatch) {
       return rawStreamAllValuesOfgoal(partialMatch.toArray());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for goal.
      * </p>
@@ -460,7 +460,7 @@ public final class AsilBConnectedClassesCD extends BaseGeneratedEMFQuerySpecific
     public Stream<Goal> streamAllValuesOfgoal(final edu.toronto.cs.se.modelepedia.classdiagram.Class pClazz) {
       return rawStreamAllValuesOfgoal(new Object[]{null, pClazz});
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for goal.
      * @return the Set of all values or empty set if there are no matches
@@ -469,7 +469,7 @@ public final class AsilBConnectedClassesCD extends BaseGeneratedEMFQuerySpecific
     public Set<Goal> getAllValuesOfgoal(final AsilBConnectedClassesCD.Match partialMatch) {
       return rawStreamAllValuesOfgoal(partialMatch.toArray()).collect(Collectors.toSet());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for goal.
      * @return the Set of all values or empty set if there are no matches
@@ -478,7 +478,7 @@ public final class AsilBConnectedClassesCD extends BaseGeneratedEMFQuerySpecific
     public Set<Goal> getAllValuesOfgoal(final edu.toronto.cs.se.modelepedia.classdiagram.Class pClazz) {
       return rawStreamAllValuesOfgoal(new Object[]{null, pClazz}).collect(Collectors.toSet());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for clazz.
      * @return the Set of all values or empty set if there are no matches
@@ -487,7 +487,7 @@ public final class AsilBConnectedClassesCD extends BaseGeneratedEMFQuerySpecific
     protected Stream<edu.toronto.cs.se.modelepedia.classdiagram.Class> rawStreamAllValuesOfclazz(final Object[] parameters) {
       return rawStreamAllValues(POSITION_CLAZZ, parameters).map(edu.toronto.cs.se.modelepedia.classdiagram.Class.class::cast);
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for clazz.
      * @return the Set of all values or empty set if there are no matches
@@ -496,7 +496,7 @@ public final class AsilBConnectedClassesCD extends BaseGeneratedEMFQuerySpecific
     public Set<edu.toronto.cs.se.modelepedia.classdiagram.Class> getAllValuesOfclazz() {
       return rawStreamAllValuesOfclazz(emptyArray()).collect(Collectors.toSet());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for clazz.
      * @return the Set of all values or empty set if there are no matches
@@ -505,7 +505,7 @@ public final class AsilBConnectedClassesCD extends BaseGeneratedEMFQuerySpecific
     public Stream<edu.toronto.cs.se.modelepedia.classdiagram.Class> streamAllValuesOfclazz() {
       return rawStreamAllValuesOfclazz(emptyArray());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for clazz.
      * </p>
@@ -519,7 +519,7 @@ public final class AsilBConnectedClassesCD extends BaseGeneratedEMFQuerySpecific
     public Stream<edu.toronto.cs.se.modelepedia.classdiagram.Class> streamAllValuesOfclazz(final AsilBConnectedClassesCD.Match partialMatch) {
       return rawStreamAllValuesOfclazz(partialMatch.toArray());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for clazz.
      * </p>
@@ -533,7 +533,7 @@ public final class AsilBConnectedClassesCD extends BaseGeneratedEMFQuerySpecific
     public Stream<edu.toronto.cs.se.modelepedia.classdiagram.Class> streamAllValuesOfclazz(final Goal pGoal) {
       return rawStreamAllValuesOfclazz(new Object[]{pGoal, null});
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for clazz.
      * @return the Set of all values or empty set if there are no matches
@@ -542,7 +542,7 @@ public final class AsilBConnectedClassesCD extends BaseGeneratedEMFQuerySpecific
     public Set<edu.toronto.cs.se.modelepedia.classdiagram.Class> getAllValuesOfclazz(final AsilBConnectedClassesCD.Match partialMatch) {
       return rawStreamAllValuesOfclazz(partialMatch.toArray()).collect(Collectors.toSet());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for clazz.
      * @return the Set of all values or empty set if there are no matches
@@ -551,7 +551,7 @@ public final class AsilBConnectedClassesCD extends BaseGeneratedEMFQuerySpecific
     public Set<edu.toronto.cs.se.modelepedia.classdiagram.Class> getAllValuesOfclazz(final Goal pGoal) {
       return rawStreamAllValuesOfclazz(new Object[]{pGoal, null}).collect(Collectors.toSet());
     }
-    
+
     @Override
     protected AsilBConnectedClassesCD.Match tupleToMatch(final Tuple t) {
       try {
@@ -561,7 +561,7 @@ public final class AsilBConnectedClassesCD extends BaseGeneratedEMFQuerySpecific
           return null;
       }
     }
-    
+
     @Override
     protected AsilBConnectedClassesCD.Match arrayToMatch(final Object[] match) {
       try {
@@ -571,7 +571,7 @@ public final class AsilBConnectedClassesCD extends BaseGeneratedEMFQuerySpecific
           return null;
       }
     }
-    
+
     @Override
     protected AsilBConnectedClassesCD.Match arrayToMatchMutable(final Object[] match) {
       try {
@@ -581,7 +581,7 @@ public final class AsilBConnectedClassesCD extends BaseGeneratedEMFQuerySpecific
           return null;
       }
     }
-    
+
     /**
      * @return the singleton instance of the query specification of this pattern
      * @throws ViatraQueryRuntimeException if the pattern definition could not be loaded
@@ -591,11 +591,11 @@ public final class AsilBConnectedClassesCD extends BaseGeneratedEMFQuerySpecific
       return AsilBConnectedClassesCD.instance();
     }
   }
-  
+
   private AsilBConnectedClassesCD() {
     super(GeneratedPQuery.INSTANCE);
   }
-  
+
   /**
    * @return the singleton instance of the query specification
    * @throws ViatraQueryRuntimeException if the pattern definition could not be loaded
@@ -608,27 +608,27 @@ public final class AsilBConnectedClassesCD extends BaseGeneratedEMFQuerySpecific
         throw processInitializerError(err);
     }
   }
-  
+
   @Override
   protected AsilBConnectedClassesCD.Matcher instantiate(final ViatraQueryEngine engine) {
     return AsilBConnectedClassesCD.Matcher.on(engine);
   }
-  
+
   @Override
   public AsilBConnectedClassesCD.Matcher instantiate() {
     return AsilBConnectedClassesCD.Matcher.create();
   }
-  
+
   @Override
   public AsilBConnectedClassesCD.Match newEmptyMatch() {
     return AsilBConnectedClassesCD.Match.newEmptyMatch();
   }
-  
+
   @Override
   public AsilBConnectedClassesCD.Match newMatch(final Object... parameters) {
     return AsilBConnectedClassesCD.Match.newMatch((edu.toronto.cs.se.modelepedia.gsn.Goal) parameters[0], (edu.toronto.cs.se.modelepedia.classdiagram.Class) parameters[1]);
   }
-  
+
   /**
    * Inner class allowing the singleton instance of {@link AsilBConnectedClassesCD} to be created 
    *     <b>not</b> at the class load time of the outer class, 
@@ -639,7 +639,7 @@ public final class AsilBConnectedClassesCD extends BaseGeneratedEMFQuerySpecific
    */
   private static class LazyHolder {
     private static final AsilBConnectedClassesCD INSTANCE = new AsilBConnectedClassesCD();
-    
+
     /**
      * Statically initializes the query specification <b>after</b> the field {@link #INSTANCE} is assigned.
      * This initialization order is required to support indirect recursion.
@@ -648,41 +648,41 @@ public final class AsilBConnectedClassesCD extends BaseGeneratedEMFQuerySpecific
      * 
      */
     private static final Object STATIC_INITIALIZER = ensureInitialized();
-    
+
     public static Object ensureInitialized() {
       INSTANCE.ensureInitializedInternal();
       return null;
     }
   }
-  
+
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private static final AsilBConnectedClassesCD.GeneratedPQuery INSTANCE = new GeneratedPQuery();
-    
+
     private final PParameter parameter_goal = new PParameter("goal", "edu.toronto.cs.se.modelepedia.gsn.Goal", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://se.cs.toronto.edu/modelepedia/GSN", "Goal")), PParameterDirection.INOUT);
-    
+
     private final PParameter parameter_clazz = new PParameter("clazz", "edu.toronto.cs.se.modelepedia.classdiagram.Class", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://se.cs.toronto.edu/modelepedia/ClassDiagram", "Class")), PParameterDirection.INOUT);
-    
+
     private final List<PParameter> parameters = Arrays.asList(parameter_goal, parameter_clazz);
-    
+
     private GeneratedPQuery() {
       super(PVisibility.PUBLIC);
     }
-    
+
     @Override
     public String getFullyQualifiedName() {
       return "edu.toronto.cs.se.mmint.productline.viatra.tests.asilBConnectedClassesCD";
     }
-    
+
     @Override
     public List<String> getParameterNames() {
       return Arrays.asList("goal","clazz");
     }
-    
+
     @Override
     public List<PParameter> getParameters() {
       return parameters;
     }
-    
+
     @Override
     public Set<PBody> doGetContainedBodies() {
       setEvaluationHints(new QueryEvaluationHint(null, QueryEvaluationHint.BackendRequirement.UNSPECIFIED));

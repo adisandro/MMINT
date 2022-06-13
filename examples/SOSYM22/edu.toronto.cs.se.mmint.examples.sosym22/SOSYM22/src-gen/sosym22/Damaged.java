@@ -82,13 +82,13 @@ public final class Damaged extends BaseGeneratedEMFQuerySpecification<Damaged.Ma
    */
   public static abstract class Match extends BasePatternMatch {
     private State fState;
-    
+
     private static List<String> parameterNames = makeImmutableList("state");
-    
+
     private Match(final State pState) {
       this.fState = pState;
     }
-    
+
     @Override
     public Object get(final String parameterName) {
       switch(parameterName) {
@@ -96,7 +96,7 @@ public final class Damaged extends BaseGeneratedEMFQuerySpecification<Damaged.Ma
           default: return null;
       }
     }
-    
+
     @Override
     public Object get(final int index) {
       switch(index) {
@@ -104,11 +104,11 @@ public final class Damaged extends BaseGeneratedEMFQuerySpecification<Damaged.Ma
           default: return null;
       }
     }
-    
+
     public State getState() {
       return this.fState;
     }
-    
+
     @Override
     public boolean set(final String parameterName, final Object newValue) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
@@ -118,44 +118,44 @@ public final class Damaged extends BaseGeneratedEMFQuerySpecification<Damaged.Ma
       }
       return false;
     }
-    
+
     public void setState(final State pState) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
       this.fState = pState;
     }
-    
+
     @Override
     public String patternName() {
       return "sosym22.damaged";
     }
-    
+
     @Override
     public List<String> parameterNames() {
       return Damaged.Match.parameterNames;
     }
-    
+
     @Override
     public Object[] toArray() {
       return new Object[]{fState};
     }
-    
+
     @Override
     public Damaged.Match toImmutable() {
       return isMutable() ? newMatch(fState) : this;
     }
-    
+
     @Override
     public String prettyPrint() {
       StringBuilder result = new StringBuilder();
       result.append("\"state\"=" + prettyPrintValue(fState));
       return result.toString();
     }
-    
+
     @Override
     public int hashCode() {
       return Objects.hash(fState);
     }
-    
+
     @Override
     public boolean equals(final Object obj) {
       if (this == obj)
@@ -175,12 +175,12 @@ public final class Damaged extends BaseGeneratedEMFQuerySpecification<Damaged.Ma
           return Objects.equals(specification(), otherSig.specification()) && Arrays.deepEquals(toArray(), otherSig.toArray());
       }
     }
-    
+
     @Override
     public Damaged specification() {
       return Damaged.instance();
     }
-    
+
     /**
      * Returns an empty, mutable match.
      * Fields of the mutable match can be filled to create a partial match, usable as matcher input.
@@ -191,7 +191,7 @@ public final class Damaged extends BaseGeneratedEMFQuerySpecification<Damaged.Ma
     public static Damaged.Match newEmptyMatch() {
       return new Mutable(null);
     }
-    
+
     /**
      * Returns a mutable (partial) match.
      * Fields of the mutable match can be filled to create a partial match, usable as matcher input.
@@ -203,7 +203,7 @@ public final class Damaged extends BaseGeneratedEMFQuerySpecification<Damaged.Ma
     public static Damaged.Match newMutableMatch(final State pState) {
       return new Mutable(pState);
     }
-    
+
     /**
      * Returns a new (partial) match.
      * This can be used e.g. to call the matcher with a partial match.
@@ -215,30 +215,30 @@ public final class Damaged extends BaseGeneratedEMFQuerySpecification<Damaged.Ma
     public static Damaged.Match newMatch(final State pState) {
       return new Immutable(pState);
     }
-    
+
     private static final class Mutable extends Damaged.Match {
       Mutable(final State pState) {
         super(pState);
       }
-      
+
       @Override
       public boolean isMutable() {
         return true;
       }
     }
-    
+
     private static final class Immutable extends Damaged.Match {
       Immutable(final State pState) {
         super(pState);
       }
-      
+
       @Override
       public boolean isMutable() {
         return false;
       }
     }
   }
-  
+
   /**
    * Generated pattern matcher API of the sosym22.damaged pattern,
    * providing pattern-specific query methods.
@@ -276,7 +276,7 @@ public final class Damaged extends BaseGeneratedEMFQuerySpecification<Damaged.Ma
       }
       return matcher;
     }
-    
+
     /**
      * @throws ViatraQueryRuntimeException if an error occurs during pattern matcher creation
      * @return an initialized matcher
@@ -286,11 +286,11 @@ public final class Damaged extends BaseGeneratedEMFQuerySpecification<Damaged.Ma
     public static Damaged.Matcher create() {
       return new Matcher();
     }
-    
+
     private static final int POSITION_STATE = 0;
-    
+
     private static final Logger LOGGER = ViatraQueryLoggingUtil.getLogger(Damaged.Matcher.class);
-    
+
     /**
      * Initializes the pattern matcher within an existing VIATRA Query engine.
      * If the pattern matcher is already constructed in the engine, only a light-weight reference is returned.
@@ -302,7 +302,7 @@ public final class Damaged extends BaseGeneratedEMFQuerySpecification<Damaged.Ma
     private Matcher() {
       super(querySpecification());
     }
-    
+
     /**
      * Returns the set of all matches of the pattern that conform to the given fixed values of some parameters.
      * @param pState the fixed value of pattern parameter state, or null if not bound.
@@ -312,7 +312,7 @@ public final class Damaged extends BaseGeneratedEMFQuerySpecification<Damaged.Ma
     public Collection<Damaged.Match> getAllMatches(final State pState) {
       return rawStreamAllMatches(new Object[]{pState}).collect(Collectors.toSet());
     }
-    
+
     /**
      * Returns a stream of all matches of the pattern that conform to the given fixed values of some parameters.
      * </p>
@@ -326,7 +326,7 @@ public final class Damaged extends BaseGeneratedEMFQuerySpecification<Damaged.Ma
     public Stream<Damaged.Match> streamAllMatches(final State pState) {
       return rawStreamAllMatches(new Object[]{pState});
     }
-    
+
     /**
      * Returns an arbitrarily chosen match of the pattern that conforms to the given fixed values of some parameters.
      * Neither determinism nor randomness of selection is guaranteed.
@@ -337,7 +337,7 @@ public final class Damaged extends BaseGeneratedEMFQuerySpecification<Damaged.Ma
     public Optional<Damaged.Match> getOneArbitraryMatch(final State pState) {
       return rawGetOneArbitraryMatch(new Object[]{pState});
     }
-    
+
     /**
      * Indicates whether the given combination of specified pattern parameters constitute a valid pattern match,
      * under any possible substitution of the unspecified parameters (if any).
@@ -348,7 +348,7 @@ public final class Damaged extends BaseGeneratedEMFQuerySpecification<Damaged.Ma
     public boolean hasMatch(final State pState) {
       return rawHasMatch(new Object[]{pState});
     }
-    
+
     /**
      * Returns the number of all matches of the pattern that conform to the given fixed values of some parameters.
      * @param pState the fixed value of pattern parameter state, or null if not bound.
@@ -358,7 +358,7 @@ public final class Damaged extends BaseGeneratedEMFQuerySpecification<Damaged.Ma
     public int countMatches(final State pState) {
       return rawCountMatches(new Object[]{pState});
     }
-    
+
     /**
      * Executes the given processor on an arbitrarily chosen match of the pattern that conforms to the given fixed values of some parameters.
      * Neither determinism nor randomness of selection is guaranteed.
@@ -370,7 +370,7 @@ public final class Damaged extends BaseGeneratedEMFQuerySpecification<Damaged.Ma
     public boolean forOneArbitraryMatch(final State pState, final Consumer<? super Damaged.Match> processor) {
       return rawForOneArbitraryMatch(new Object[]{pState}, processor);
     }
-    
+
     /**
      * Returns a new (partial) match.
      * This can be used e.g. to call the matcher with a partial match.
@@ -382,7 +382,7 @@ public final class Damaged extends BaseGeneratedEMFQuerySpecification<Damaged.Ma
     public Damaged.Match newMatch(final State pState) {
       return Damaged.Match.newMatch(pState);
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for state.
      * @return the Set of all values or empty set if there are no matches
@@ -391,7 +391,7 @@ public final class Damaged extends BaseGeneratedEMFQuerySpecification<Damaged.Ma
     protected Stream<State> rawStreamAllValuesOfstate(final Object[] parameters) {
       return rawStreamAllValues(POSITION_STATE, parameters).map(State.class::cast);
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for state.
      * @return the Set of all values or empty set if there are no matches
@@ -400,7 +400,7 @@ public final class Damaged extends BaseGeneratedEMFQuerySpecification<Damaged.Ma
     public Set<State> getAllValuesOfstate() {
       return rawStreamAllValuesOfstate(emptyArray()).collect(Collectors.toSet());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for state.
      * @return the Set of all values or empty set if there are no matches
@@ -409,7 +409,7 @@ public final class Damaged extends BaseGeneratedEMFQuerySpecification<Damaged.Ma
     public Stream<State> streamAllValuesOfstate() {
       return rawStreamAllValuesOfstate(emptyArray());
     }
-    
+
     @Override
     protected Damaged.Match tupleToMatch(final Tuple t) {
       try {
@@ -419,7 +419,7 @@ public final class Damaged extends BaseGeneratedEMFQuerySpecification<Damaged.Ma
           return null;
       }
     }
-    
+
     @Override
     protected Damaged.Match arrayToMatch(final Object[] match) {
       try {
@@ -429,7 +429,7 @@ public final class Damaged extends BaseGeneratedEMFQuerySpecification<Damaged.Ma
           return null;
       }
     }
-    
+
     @Override
     protected Damaged.Match arrayToMatchMutable(final Object[] match) {
       try {
@@ -439,7 +439,7 @@ public final class Damaged extends BaseGeneratedEMFQuerySpecification<Damaged.Ma
           return null;
       }
     }
-    
+
     /**
      * @return the singleton instance of the query specification of this pattern
      * @throws ViatraQueryRuntimeException if the pattern definition could not be loaded
@@ -449,11 +449,11 @@ public final class Damaged extends BaseGeneratedEMFQuerySpecification<Damaged.Ma
       return Damaged.instance();
     }
   }
-  
+
   private Damaged() {
     super(GeneratedPQuery.INSTANCE);
   }
-  
+
   /**
    * @return the singleton instance of the query specification
    * @throws ViatraQueryRuntimeException if the pattern definition could not be loaded
@@ -466,27 +466,27 @@ public final class Damaged extends BaseGeneratedEMFQuerySpecification<Damaged.Ma
         throw processInitializerError(err);
     }
   }
-  
+
   @Override
   protected Damaged.Matcher instantiate(final ViatraQueryEngine engine) {
     return Damaged.Matcher.on(engine);
   }
-  
+
   @Override
   public Damaged.Matcher instantiate() {
     return Damaged.Matcher.create();
   }
-  
+
   @Override
   public Damaged.Match newEmptyMatch() {
     return Damaged.Match.newEmptyMatch();
   }
-  
+
   @Override
   public Damaged.Match newMatch(final Object... parameters) {
     return Damaged.Match.newMatch((edu.toronto.cs.se.mmint.types.lts.State) parameters[0]);
   }
-  
+
   /**
    * Inner class allowing the singleton instance of {@link Damaged} to be created 
    *     <b>not</b> at the class load time of the outer class, 
@@ -497,7 +497,7 @@ public final class Damaged extends BaseGeneratedEMFQuerySpecification<Damaged.Ma
    */
   private static class LazyHolder {
     private static final Damaged INSTANCE = new Damaged();
-    
+
     /**
      * Statically initializes the query specification <b>after</b> the field {@link #INSTANCE} is assigned.
      * This initialization order is required to support indirect recursion.
@@ -506,39 +506,39 @@ public final class Damaged extends BaseGeneratedEMFQuerySpecification<Damaged.Ma
      * 
      */
     private static final Object STATIC_INITIALIZER = ensureInitialized();
-    
+
     public static Object ensureInitialized() {
       INSTANCE.ensureInitializedInternal();
       return null;
     }
   }
-  
+
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private static final Damaged.GeneratedPQuery INSTANCE = new GeneratedPQuery();
-    
+
     private final PParameter parameter_state = new PParameter("state", "edu.toronto.cs.se.mmint.types.lts.State", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("model://edu.toronto.cs.se.mmint.types.lts", "State")), PParameterDirection.INOUT);
-    
+
     private final List<PParameter> parameters = Arrays.asList(parameter_state);
-    
+
     private GeneratedPQuery() {
       super(PVisibility.PUBLIC);
     }
-    
+
     @Override
     public String getFullyQualifiedName() {
       return "sosym22.damaged";
     }
-    
+
     @Override
     public List<String> getParameterNames() {
       return Arrays.asList("state");
     }
-    
+
     @Override
     public List<PParameter> getParameters() {
       return parameters;
     }
-    
+
     @Override
     public Set<PBody> doGetContainedBodies() {
       setEvaluationHints(new QueryEvaluationHint(null, QueryEvaluationHint.BackendRequirement.UNSPECIFIED));

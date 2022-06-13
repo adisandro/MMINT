@@ -70,13 +70,13 @@ public final class MultipleInheritanceCD extends BaseGeneratedEMFQuerySpecificat
    */
   public static abstract class Match extends BasePatternMatch {
     private edu.toronto.cs.se.modelepedia.classdiagram.Class fChild;
-    
+
     private static List<String> parameterNames = makeImmutableList("child");
-    
+
     private Match(final edu.toronto.cs.se.modelepedia.classdiagram.Class pChild) {
       this.fChild = pChild;
     }
-    
+
     @Override
     public Object get(final String parameterName) {
       switch(parameterName) {
@@ -84,7 +84,7 @@ public final class MultipleInheritanceCD extends BaseGeneratedEMFQuerySpecificat
           default: return null;
       }
     }
-    
+
     @Override
     public Object get(final int index) {
       switch(index) {
@@ -92,11 +92,11 @@ public final class MultipleInheritanceCD extends BaseGeneratedEMFQuerySpecificat
           default: return null;
       }
     }
-    
+
     public edu.toronto.cs.se.modelepedia.classdiagram.Class getChild() {
       return this.fChild;
     }
-    
+
     @Override
     public boolean set(final String parameterName, final Object newValue) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
@@ -106,44 +106,44 @@ public final class MultipleInheritanceCD extends BaseGeneratedEMFQuerySpecificat
       }
       return false;
     }
-    
+
     public void setChild(final edu.toronto.cs.se.modelepedia.classdiagram.Class pChild) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
       this.fChild = pChild;
     }
-    
+
     @Override
     public String patternName() {
       return "edu.toronto.cs.se.mmint.productline.viatra.tests.multipleInheritanceCD";
     }
-    
+
     @Override
     public List<String> parameterNames() {
       return MultipleInheritanceCD.Match.parameterNames;
     }
-    
+
     @Override
     public Object[] toArray() {
       return new Object[]{fChild};
     }
-    
+
     @Override
     public MultipleInheritanceCD.Match toImmutable() {
       return isMutable() ? newMatch(fChild) : this;
     }
-    
+
     @Override
     public String prettyPrint() {
       StringBuilder result = new StringBuilder();
       result.append("\"child\"=" + prettyPrintValue(fChild));
       return result.toString();
     }
-    
+
     @Override
     public int hashCode() {
       return Objects.hash(fChild);
     }
-    
+
     @Override
     public boolean equals(final Object obj) {
       if (this == obj)
@@ -163,12 +163,12 @@ public final class MultipleInheritanceCD extends BaseGeneratedEMFQuerySpecificat
           return Objects.equals(specification(), otherSig.specification()) && Arrays.deepEquals(toArray(), otherSig.toArray());
       }
     }
-    
+
     @Override
     public MultipleInheritanceCD specification() {
       return MultipleInheritanceCD.instance();
     }
-    
+
     /**
      * Returns an empty, mutable match.
      * Fields of the mutable match can be filled to create a partial match, usable as matcher input.
@@ -179,7 +179,7 @@ public final class MultipleInheritanceCD extends BaseGeneratedEMFQuerySpecificat
     public static MultipleInheritanceCD.Match newEmptyMatch() {
       return new Mutable(null);
     }
-    
+
     /**
      * Returns a mutable (partial) match.
      * Fields of the mutable match can be filled to create a partial match, usable as matcher input.
@@ -191,7 +191,7 @@ public final class MultipleInheritanceCD extends BaseGeneratedEMFQuerySpecificat
     public static MultipleInheritanceCD.Match newMutableMatch(final edu.toronto.cs.se.modelepedia.classdiagram.Class pChild) {
       return new Mutable(pChild);
     }
-    
+
     /**
      * Returns a new (partial) match.
      * This can be used e.g. to call the matcher with a partial match.
@@ -203,30 +203,30 @@ public final class MultipleInheritanceCD extends BaseGeneratedEMFQuerySpecificat
     public static MultipleInheritanceCD.Match newMatch(final edu.toronto.cs.se.modelepedia.classdiagram.Class pChild) {
       return new Immutable(pChild);
     }
-    
+
     private static final class Mutable extends MultipleInheritanceCD.Match {
       Mutable(final edu.toronto.cs.se.modelepedia.classdiagram.Class pChild) {
         super(pChild);
       }
-      
+
       @Override
       public boolean isMutable() {
         return true;
       }
     }
-    
+
     private static final class Immutable extends MultipleInheritanceCD.Match {
       Immutable(final edu.toronto.cs.se.modelepedia.classdiagram.Class pChild) {
         super(pChild);
       }
-      
+
       @Override
       public boolean isMutable() {
         return false;
       }
     }
   }
-  
+
   /**
    * Generated pattern matcher API of the edu.toronto.cs.se.mmint.productline.viatra.tests.multipleInheritanceCD pattern,
    * providing pattern-specific query methods.
@@ -266,7 +266,7 @@ public final class MultipleInheritanceCD extends BaseGeneratedEMFQuerySpecificat
       }
       return matcher;
     }
-    
+
     /**
      * @throws ViatraQueryRuntimeException if an error occurs during pattern matcher creation
      * @return an initialized matcher
@@ -276,11 +276,11 @@ public final class MultipleInheritanceCD extends BaseGeneratedEMFQuerySpecificat
     public static MultipleInheritanceCD.Matcher create() {
       return new Matcher();
     }
-    
+
     private static final int POSITION_CHILD = 0;
-    
+
     private static final Logger LOGGER = ViatraQueryLoggingUtil.getLogger(MultipleInheritanceCD.Matcher.class);
-    
+
     /**
      * Initializes the pattern matcher within an existing VIATRA Query engine.
      * If the pattern matcher is already constructed in the engine, only a light-weight reference is returned.
@@ -292,7 +292,7 @@ public final class MultipleInheritanceCD extends BaseGeneratedEMFQuerySpecificat
     private Matcher() {
       super(querySpecification());
     }
-    
+
     /**
      * Returns the set of all matches of the pattern that conform to the given fixed values of some parameters.
      * @param pChild the fixed value of pattern parameter child, or null if not bound.
@@ -302,7 +302,7 @@ public final class MultipleInheritanceCD extends BaseGeneratedEMFQuerySpecificat
     public Collection<MultipleInheritanceCD.Match> getAllMatches(final edu.toronto.cs.se.modelepedia.classdiagram.Class pChild) {
       return rawStreamAllMatches(new Object[]{pChild}).collect(Collectors.toSet());
     }
-    
+
     /**
      * Returns a stream of all matches of the pattern that conform to the given fixed values of some parameters.
      * </p>
@@ -316,7 +316,7 @@ public final class MultipleInheritanceCD extends BaseGeneratedEMFQuerySpecificat
     public Stream<MultipleInheritanceCD.Match> streamAllMatches(final edu.toronto.cs.se.modelepedia.classdiagram.Class pChild) {
       return rawStreamAllMatches(new Object[]{pChild});
     }
-    
+
     /**
      * Returns an arbitrarily chosen match of the pattern that conforms to the given fixed values of some parameters.
      * Neither determinism nor randomness of selection is guaranteed.
@@ -327,7 +327,7 @@ public final class MultipleInheritanceCD extends BaseGeneratedEMFQuerySpecificat
     public Optional<MultipleInheritanceCD.Match> getOneArbitraryMatch(final edu.toronto.cs.se.modelepedia.classdiagram.Class pChild) {
       return rawGetOneArbitraryMatch(new Object[]{pChild});
     }
-    
+
     /**
      * Indicates whether the given combination of specified pattern parameters constitute a valid pattern match,
      * under any possible substitution of the unspecified parameters (if any).
@@ -338,7 +338,7 @@ public final class MultipleInheritanceCD extends BaseGeneratedEMFQuerySpecificat
     public boolean hasMatch(final edu.toronto.cs.se.modelepedia.classdiagram.Class pChild) {
       return rawHasMatch(new Object[]{pChild});
     }
-    
+
     /**
      * Returns the number of all matches of the pattern that conform to the given fixed values of some parameters.
      * @param pChild the fixed value of pattern parameter child, or null if not bound.
@@ -348,7 +348,7 @@ public final class MultipleInheritanceCD extends BaseGeneratedEMFQuerySpecificat
     public int countMatches(final edu.toronto.cs.se.modelepedia.classdiagram.Class pChild) {
       return rawCountMatches(new Object[]{pChild});
     }
-    
+
     /**
      * Executes the given processor on an arbitrarily chosen match of the pattern that conforms to the given fixed values of some parameters.
      * Neither determinism nor randomness of selection is guaranteed.
@@ -360,7 +360,7 @@ public final class MultipleInheritanceCD extends BaseGeneratedEMFQuerySpecificat
     public boolean forOneArbitraryMatch(final edu.toronto.cs.se.modelepedia.classdiagram.Class pChild, final Consumer<? super MultipleInheritanceCD.Match> processor) {
       return rawForOneArbitraryMatch(new Object[]{pChild}, processor);
     }
-    
+
     /**
      * Returns a new (partial) match.
      * This can be used e.g. to call the matcher with a partial match.
@@ -372,7 +372,7 @@ public final class MultipleInheritanceCD extends BaseGeneratedEMFQuerySpecificat
     public MultipleInheritanceCD.Match newMatch(final edu.toronto.cs.se.modelepedia.classdiagram.Class pChild) {
       return MultipleInheritanceCD.Match.newMatch(pChild);
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for child.
      * @return the Set of all values or empty set if there are no matches
@@ -381,7 +381,7 @@ public final class MultipleInheritanceCD extends BaseGeneratedEMFQuerySpecificat
     protected Stream<edu.toronto.cs.se.modelepedia.classdiagram.Class> rawStreamAllValuesOfchild(final Object[] parameters) {
       return rawStreamAllValues(POSITION_CHILD, parameters).map(edu.toronto.cs.se.modelepedia.classdiagram.Class.class::cast);
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for child.
      * @return the Set of all values or empty set if there are no matches
@@ -390,7 +390,7 @@ public final class MultipleInheritanceCD extends BaseGeneratedEMFQuerySpecificat
     public Set<edu.toronto.cs.se.modelepedia.classdiagram.Class> getAllValuesOfchild() {
       return rawStreamAllValuesOfchild(emptyArray()).collect(Collectors.toSet());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for child.
      * @return the Set of all values or empty set if there are no matches
@@ -399,7 +399,7 @@ public final class MultipleInheritanceCD extends BaseGeneratedEMFQuerySpecificat
     public Stream<edu.toronto.cs.se.modelepedia.classdiagram.Class> streamAllValuesOfchild() {
       return rawStreamAllValuesOfchild(emptyArray());
     }
-    
+
     @Override
     protected MultipleInheritanceCD.Match tupleToMatch(final Tuple t) {
       try {
@@ -409,7 +409,7 @@ public final class MultipleInheritanceCD extends BaseGeneratedEMFQuerySpecificat
           return null;
       }
     }
-    
+
     @Override
     protected MultipleInheritanceCD.Match arrayToMatch(final Object[] match) {
       try {
@@ -419,7 +419,7 @@ public final class MultipleInheritanceCD extends BaseGeneratedEMFQuerySpecificat
           return null;
       }
     }
-    
+
     @Override
     protected MultipleInheritanceCD.Match arrayToMatchMutable(final Object[] match) {
       try {
@@ -429,7 +429,7 @@ public final class MultipleInheritanceCD extends BaseGeneratedEMFQuerySpecificat
           return null;
       }
     }
-    
+
     /**
      * @return the singleton instance of the query specification of this pattern
      * @throws ViatraQueryRuntimeException if the pattern definition could not be loaded
@@ -439,11 +439,11 @@ public final class MultipleInheritanceCD extends BaseGeneratedEMFQuerySpecificat
       return MultipleInheritanceCD.instance();
     }
   }
-  
+
   private MultipleInheritanceCD() {
     super(GeneratedPQuery.INSTANCE);
   }
-  
+
   /**
    * @return the singleton instance of the query specification
    * @throws ViatraQueryRuntimeException if the pattern definition could not be loaded
@@ -456,27 +456,27 @@ public final class MultipleInheritanceCD extends BaseGeneratedEMFQuerySpecificat
         throw processInitializerError(err);
     }
   }
-  
+
   @Override
   protected MultipleInheritanceCD.Matcher instantiate(final ViatraQueryEngine engine) {
     return MultipleInheritanceCD.Matcher.on(engine);
   }
-  
+
   @Override
   public MultipleInheritanceCD.Matcher instantiate() {
     return MultipleInheritanceCD.Matcher.create();
   }
-  
+
   @Override
   public MultipleInheritanceCD.Match newEmptyMatch() {
     return MultipleInheritanceCD.Match.newEmptyMatch();
   }
-  
+
   @Override
   public MultipleInheritanceCD.Match newMatch(final Object... parameters) {
     return MultipleInheritanceCD.Match.newMatch((edu.toronto.cs.se.modelepedia.classdiagram.Class) parameters[0]);
   }
-  
+
   /**
    * Inner class allowing the singleton instance of {@link MultipleInheritanceCD} to be created 
    *     <b>not</b> at the class load time of the outer class, 
@@ -487,7 +487,7 @@ public final class MultipleInheritanceCD extends BaseGeneratedEMFQuerySpecificat
    */
   private static class LazyHolder {
     private static final MultipleInheritanceCD INSTANCE = new MultipleInheritanceCD();
-    
+
     /**
      * Statically initializes the query specification <b>after</b> the field {@link #INSTANCE} is assigned.
      * This initialization order is required to support indirect recursion.
@@ -496,39 +496,39 @@ public final class MultipleInheritanceCD extends BaseGeneratedEMFQuerySpecificat
      * 
      */
     private static final Object STATIC_INITIALIZER = ensureInitialized();
-    
+
     public static Object ensureInitialized() {
       INSTANCE.ensureInitializedInternal();
       return null;
     }
   }
-  
+
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private static final MultipleInheritanceCD.GeneratedPQuery INSTANCE = new GeneratedPQuery();
-    
+
     private final PParameter parameter_child = new PParameter("child", "edu.toronto.cs.se.modelepedia.classdiagram.Class", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://se.cs.toronto.edu/modelepedia/ClassDiagram", "Class")), PParameterDirection.INOUT);
-    
+
     private final List<PParameter> parameters = Arrays.asList(parameter_child);
-    
+
     private GeneratedPQuery() {
       super(PVisibility.PUBLIC);
     }
-    
+
     @Override
     public String getFullyQualifiedName() {
       return "edu.toronto.cs.se.mmint.productline.viatra.tests.multipleInheritanceCD";
     }
-    
+
     @Override
     public List<String> getParameterNames() {
       return Arrays.asList("child");
     }
-    
+
     @Override
     public List<PParameter> getParameters() {
       return parameters;
     }
-    
+
     @Override
     public Set<PBody> doGetContainedBodies() {
       setEvaluationHints(new QueryEvaluationHint(null, QueryEvaluationHint.BackendRequirement.UNSPECIFIED));

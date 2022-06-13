@@ -74,13 +74,13 @@ public final class TestMaxCD extends BaseGeneratedEMFQuerySpecification<TestMaxC
    */
   public static abstract class Match extends BasePatternMatch {
     private String fMaxName;
-    
+
     private static List<String> parameterNames = makeImmutableList("maxName");
-    
+
     private Match(final String pMaxName) {
       this.fMaxName = pMaxName;
     }
-    
+
     @Override
     public Object get(final String parameterName) {
       switch(parameterName) {
@@ -88,7 +88,7 @@ public final class TestMaxCD extends BaseGeneratedEMFQuerySpecification<TestMaxC
           default: return null;
       }
     }
-    
+
     @Override
     public Object get(final int index) {
       switch(index) {
@@ -96,11 +96,11 @@ public final class TestMaxCD extends BaseGeneratedEMFQuerySpecification<TestMaxC
           default: return null;
       }
     }
-    
+
     public String getMaxName() {
       return this.fMaxName;
     }
-    
+
     @Override
     public boolean set(final String parameterName, final Object newValue) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
@@ -110,44 +110,44 @@ public final class TestMaxCD extends BaseGeneratedEMFQuerySpecification<TestMaxC
       }
       return false;
     }
-    
+
     public void setMaxName(final String pMaxName) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
       this.fMaxName = pMaxName;
     }
-    
+
     @Override
     public String patternName() {
       return "edu.toronto.cs.se.mmint.productline.viatra.tests.testMaxCD";
     }
-    
+
     @Override
     public List<String> parameterNames() {
       return TestMaxCD.Match.parameterNames;
     }
-    
+
     @Override
     public Object[] toArray() {
       return new Object[]{fMaxName};
     }
-    
+
     @Override
     public TestMaxCD.Match toImmutable() {
       return isMutable() ? newMatch(fMaxName) : this;
     }
-    
+
     @Override
     public String prettyPrint() {
       StringBuilder result = new StringBuilder();
       result.append("\"maxName\"=" + prettyPrintValue(fMaxName));
       return result.toString();
     }
-    
+
     @Override
     public int hashCode() {
       return Objects.hash(fMaxName);
     }
-    
+
     @Override
     public boolean equals(final Object obj) {
       if (this == obj)
@@ -167,12 +167,12 @@ public final class TestMaxCD extends BaseGeneratedEMFQuerySpecification<TestMaxC
           return Objects.equals(specification(), otherSig.specification()) && Arrays.deepEquals(toArray(), otherSig.toArray());
       }
     }
-    
+
     @Override
     public TestMaxCD specification() {
       return TestMaxCD.instance();
     }
-    
+
     /**
      * Returns an empty, mutable match.
      * Fields of the mutable match can be filled to create a partial match, usable as matcher input.
@@ -183,7 +183,7 @@ public final class TestMaxCD extends BaseGeneratedEMFQuerySpecification<TestMaxC
     public static TestMaxCD.Match newEmptyMatch() {
       return new Mutable(null);
     }
-    
+
     /**
      * Returns a mutable (partial) match.
      * Fields of the mutable match can be filled to create a partial match, usable as matcher input.
@@ -195,7 +195,7 @@ public final class TestMaxCD extends BaseGeneratedEMFQuerySpecification<TestMaxC
     public static TestMaxCD.Match newMutableMatch(final String pMaxName) {
       return new Mutable(pMaxName);
     }
-    
+
     /**
      * Returns a new (partial) match.
      * This can be used e.g. to call the matcher with a partial match.
@@ -207,30 +207,30 @@ public final class TestMaxCD extends BaseGeneratedEMFQuerySpecification<TestMaxC
     public static TestMaxCD.Match newMatch(final String pMaxName) {
       return new Immutable(pMaxName);
     }
-    
+
     private static final class Mutable extends TestMaxCD.Match {
       Mutable(final String pMaxName) {
         super(pMaxName);
       }
-      
+
       @Override
       public boolean isMutable() {
         return true;
       }
     }
-    
+
     private static final class Immutable extends TestMaxCD.Match {
       Immutable(final String pMaxName) {
         super(pMaxName);
       }
-      
+
       @Override
       public boolean isMutable() {
         return false;
       }
     }
   }
-  
+
   /**
    * Generated pattern matcher API of the edu.toronto.cs.se.mmint.productline.viatra.tests.testMaxCD pattern,
    * providing pattern-specific query methods.
@@ -268,7 +268,7 @@ public final class TestMaxCD extends BaseGeneratedEMFQuerySpecification<TestMaxC
       }
       return matcher;
     }
-    
+
     /**
      * @throws ViatraQueryRuntimeException if an error occurs during pattern matcher creation
      * @return an initialized matcher
@@ -278,11 +278,11 @@ public final class TestMaxCD extends BaseGeneratedEMFQuerySpecification<TestMaxC
     public static TestMaxCD.Matcher create() {
       return new Matcher();
     }
-    
+
     private static final int POSITION_MAXNAME = 0;
-    
+
     private static final Logger LOGGER = ViatraQueryLoggingUtil.getLogger(TestMaxCD.Matcher.class);
-    
+
     /**
      * Initializes the pattern matcher within an existing VIATRA Query engine.
      * If the pattern matcher is already constructed in the engine, only a light-weight reference is returned.
@@ -294,7 +294,7 @@ public final class TestMaxCD extends BaseGeneratedEMFQuerySpecification<TestMaxC
     private Matcher() {
       super(querySpecification());
     }
-    
+
     /**
      * Returns the set of all matches of the pattern that conform to the given fixed values of some parameters.
      * @param pMaxName the fixed value of pattern parameter maxName, or null if not bound.
@@ -304,7 +304,7 @@ public final class TestMaxCD extends BaseGeneratedEMFQuerySpecification<TestMaxC
     public Collection<TestMaxCD.Match> getAllMatches(final String pMaxName) {
       return rawStreamAllMatches(new Object[]{pMaxName}).collect(Collectors.toSet());
     }
-    
+
     /**
      * Returns a stream of all matches of the pattern that conform to the given fixed values of some parameters.
      * </p>
@@ -318,7 +318,7 @@ public final class TestMaxCD extends BaseGeneratedEMFQuerySpecification<TestMaxC
     public Stream<TestMaxCD.Match> streamAllMatches(final String pMaxName) {
       return rawStreamAllMatches(new Object[]{pMaxName});
     }
-    
+
     /**
      * Returns an arbitrarily chosen match of the pattern that conforms to the given fixed values of some parameters.
      * Neither determinism nor randomness of selection is guaranteed.
@@ -329,7 +329,7 @@ public final class TestMaxCD extends BaseGeneratedEMFQuerySpecification<TestMaxC
     public Optional<TestMaxCD.Match> getOneArbitraryMatch(final String pMaxName) {
       return rawGetOneArbitraryMatch(new Object[]{pMaxName});
     }
-    
+
     /**
      * Indicates whether the given combination of specified pattern parameters constitute a valid pattern match,
      * under any possible substitution of the unspecified parameters (if any).
@@ -340,7 +340,7 @@ public final class TestMaxCD extends BaseGeneratedEMFQuerySpecification<TestMaxC
     public boolean hasMatch(final String pMaxName) {
       return rawHasMatch(new Object[]{pMaxName});
     }
-    
+
     /**
      * Returns the number of all matches of the pattern that conform to the given fixed values of some parameters.
      * @param pMaxName the fixed value of pattern parameter maxName, or null if not bound.
@@ -350,7 +350,7 @@ public final class TestMaxCD extends BaseGeneratedEMFQuerySpecification<TestMaxC
     public int countMatches(final String pMaxName) {
       return rawCountMatches(new Object[]{pMaxName});
     }
-    
+
     /**
      * Executes the given processor on an arbitrarily chosen match of the pattern that conforms to the given fixed values of some parameters.
      * Neither determinism nor randomness of selection is guaranteed.
@@ -362,7 +362,7 @@ public final class TestMaxCD extends BaseGeneratedEMFQuerySpecification<TestMaxC
     public boolean forOneArbitraryMatch(final String pMaxName, final Consumer<? super TestMaxCD.Match> processor) {
       return rawForOneArbitraryMatch(new Object[]{pMaxName}, processor);
     }
-    
+
     /**
      * Returns a new (partial) match.
      * This can be used e.g. to call the matcher with a partial match.
@@ -374,7 +374,7 @@ public final class TestMaxCD extends BaseGeneratedEMFQuerySpecification<TestMaxC
     public TestMaxCD.Match newMatch(final String pMaxName) {
       return TestMaxCD.Match.newMatch(pMaxName);
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for maxName.
      * @return the Set of all values or empty set if there are no matches
@@ -383,7 +383,7 @@ public final class TestMaxCD extends BaseGeneratedEMFQuerySpecification<TestMaxC
     protected Stream<String> rawStreamAllValuesOfmaxName(final Object[] parameters) {
       return rawStreamAllValues(POSITION_MAXNAME, parameters).map(String.class::cast);
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for maxName.
      * @return the Set of all values or empty set if there are no matches
@@ -392,7 +392,7 @@ public final class TestMaxCD extends BaseGeneratedEMFQuerySpecification<TestMaxC
     public Set<String> getAllValuesOfmaxName() {
       return rawStreamAllValuesOfmaxName(emptyArray()).collect(Collectors.toSet());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for maxName.
      * @return the Set of all values or empty set if there are no matches
@@ -401,7 +401,7 @@ public final class TestMaxCD extends BaseGeneratedEMFQuerySpecification<TestMaxC
     public Stream<String> streamAllValuesOfmaxName() {
       return rawStreamAllValuesOfmaxName(emptyArray());
     }
-    
+
     @Override
     protected TestMaxCD.Match tupleToMatch(final Tuple t) {
       try {
@@ -411,7 +411,7 @@ public final class TestMaxCD extends BaseGeneratedEMFQuerySpecification<TestMaxC
           return null;
       }
     }
-    
+
     @Override
     protected TestMaxCD.Match arrayToMatch(final Object[] match) {
       try {
@@ -421,7 +421,7 @@ public final class TestMaxCD extends BaseGeneratedEMFQuerySpecification<TestMaxC
           return null;
       }
     }
-    
+
     @Override
     protected TestMaxCD.Match arrayToMatchMutable(final Object[] match) {
       try {
@@ -431,7 +431,7 @@ public final class TestMaxCD extends BaseGeneratedEMFQuerySpecification<TestMaxC
           return null;
       }
     }
-    
+
     /**
      * @return the singleton instance of the query specification of this pattern
      * @throws ViatraQueryRuntimeException if the pattern definition could not be loaded
@@ -441,11 +441,11 @@ public final class TestMaxCD extends BaseGeneratedEMFQuerySpecification<TestMaxC
       return TestMaxCD.instance();
     }
   }
-  
+
   private TestMaxCD() {
     super(GeneratedPQuery.INSTANCE);
   }
-  
+
   /**
    * @return the singleton instance of the query specification
    * @throws ViatraQueryRuntimeException if the pattern definition could not be loaded
@@ -458,27 +458,27 @@ public final class TestMaxCD extends BaseGeneratedEMFQuerySpecification<TestMaxC
         throw processInitializerError(err);
     }
   }
-  
+
   @Override
   protected TestMaxCD.Matcher instantiate(final ViatraQueryEngine engine) {
     return TestMaxCD.Matcher.on(engine);
   }
-  
+
   @Override
   public TestMaxCD.Matcher instantiate() {
     return TestMaxCD.Matcher.create();
   }
-  
+
   @Override
   public TestMaxCD.Match newEmptyMatch() {
     return TestMaxCD.Match.newEmptyMatch();
   }
-  
+
   @Override
   public TestMaxCD.Match newMatch(final Object... parameters) {
     return TestMaxCD.Match.newMatch((java.lang.String) parameters[0]);
   }
-  
+
   /**
    * Inner class allowing the singleton instance of {@link TestMaxCD} to be created 
    *     <b>not</b> at the class load time of the outer class, 
@@ -489,7 +489,7 @@ public final class TestMaxCD extends BaseGeneratedEMFQuerySpecification<TestMaxC
    */
   private static class LazyHolder {
     private static final TestMaxCD INSTANCE = new TestMaxCD();
-    
+
     /**
      * Statically initializes the query specification <b>after</b> the field {@link #INSTANCE} is assigned.
      * This initialization order is required to support indirect recursion.
@@ -498,41 +498,41 @@ public final class TestMaxCD extends BaseGeneratedEMFQuerySpecification<TestMaxC
      * 
      */
     private static final Object STATIC_INITIALIZER = ensureInitialized();
-    
+
     public static Object ensureInitialized() {
       INSTANCE.ensureInitializedInternal();
       return null;
     }
   }
-  
+
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private static final TestMaxCD.GeneratedPQuery INSTANCE = new GeneratedPQuery();
-    
+
     private final PParameter parameter_maxName = new PParameter("maxName", "java.lang.String", new JavaTransitiveInstancesKey(java.lang.String.class), PParameterDirection.INOUT);
-    
+
     private final List<PParameter> parameters = Arrays.asList(parameter_maxName);
-    
+
     private class Embedded_1_Class_name extends BaseGeneratedEMFPQuery {
       private final PParameter parameter_p0 = new PParameter("p0", "edu.toronto.cs.se.modelepedia.classdiagram.Class", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://se.cs.toronto.edu/modelepedia/ClassDiagram", "Class")), PParameterDirection.INOUT);
-      
+
       private final PParameter parameter_p1 = new PParameter("p1", "java.lang.String", new EDataTypeInSlotsKey((EDataType)getClassifierLiteralSafe("http://www.eclipse.org/emf/2002/Ecore", "EString")), PParameterDirection.INOUT);
-      
+
       private final List<PParameter> embeddedParameters = Arrays.asList(parameter_p0, parameter_p1);
-      
+
       public Embedded_1_Class_name() {
         super(PVisibility.EMBEDDED);
       }
-      
+
       @Override
       public String getFullyQualifiedName() {
         return GeneratedPQuery.this.getFullyQualifiedName() + "$Embedded_1_Class_name";
       }
-      
+
       @Override
       public List<PParameter> getParameters() {
         return embeddedParameters;
       }
-      
+
       @Override
       public Set<PBody> doGetContainedBodies() {
         PBody body = new PBody(this);
@@ -551,26 +551,26 @@ public final class TestMaxCD extends BaseGeneratedEMFQuerySpecification<TestMaxC
         return Collections.singleton(body);
       }
     }
-    
+
     private GeneratedPQuery() {
       super(PVisibility.PUBLIC);
     }
-    
+
     @Override
     public String getFullyQualifiedName() {
       return "edu.toronto.cs.se.mmint.productline.viatra.tests.testMaxCD";
     }
-    
+
     @Override
     public List<String> getParameterNames() {
       return Arrays.asList("maxName");
     }
-    
+
     @Override
     public List<PParameter> getParameters() {
       return parameters;
     }
-    
+
     @Override
     public Set<PBody> doGetContainedBodies() {
       setEvaluationHints(new QueryEvaluationHint(null, QueryEvaluationHint.BackendRequirement.UNSPECIFIED));

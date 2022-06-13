@@ -71,19 +71,19 @@ public final class TestAttribute2PL extends BaseGeneratedEMFQuerySpecification<T
    */
   public static abstract class Match extends BasePatternMatch {
     private edu.toronto.cs.se.mmint.productline.Class fClazz;
-    
+
     private PLElement fAttr;
-    
+
     private String fName;
-    
+
     private static List<String> parameterNames = makeImmutableList("clazz", "attr", "name");
-    
+
     private Match(final edu.toronto.cs.se.mmint.productline.Class pClazz, final PLElement pAttr, final String pName) {
       this.fClazz = pClazz;
       this.fAttr = pAttr;
       this.fName = pName;
     }
-    
+
     @Override
     public Object get(final String parameterName) {
       switch(parameterName) {
@@ -93,7 +93,7 @@ public final class TestAttribute2PL extends BaseGeneratedEMFQuerySpecification<T
           default: return null;
       }
     }
-    
+
     @Override
     public Object get(final int index) {
       switch(index) {
@@ -103,19 +103,19 @@ public final class TestAttribute2PL extends BaseGeneratedEMFQuerySpecification<T
           default: return null;
       }
     }
-    
+
     public edu.toronto.cs.se.mmint.productline.Class getClazz() {
       return this.fClazz;
     }
-    
+
     public PLElement getAttr() {
       return this.fAttr;
     }
-    
+
     public String getName() {
       return this.fName;
     }
-    
+
     @Override
     public boolean set(final String parameterName, final Object newValue) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
@@ -133,42 +133,42 @@ public final class TestAttribute2PL extends BaseGeneratedEMFQuerySpecification<T
       }
       return false;
     }
-    
+
     public void setClazz(final edu.toronto.cs.se.mmint.productline.Class pClazz) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
       this.fClazz = pClazz;
     }
-    
+
     public void setAttr(final PLElement pAttr) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
       this.fAttr = pAttr;
     }
-    
+
     public void setName(final String pName) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
       this.fName = pName;
     }
-    
+
     @Override
     public String patternName() {
       return "edu.toronto.cs.se.mmint.productline.viatra.tests.testAttribute2PL";
     }
-    
+
     @Override
     public List<String> parameterNames() {
       return TestAttribute2PL.Match.parameterNames;
     }
-    
+
     @Override
     public Object[] toArray() {
       return new Object[]{fClazz, fAttr, fName};
     }
-    
+
     @Override
     public TestAttribute2PL.Match toImmutable() {
       return isMutable() ? newMatch(fClazz, fAttr, fName) : this;
     }
-    
+
     @Override
     public String prettyPrint() {
       StringBuilder result = new StringBuilder();
@@ -177,12 +177,12 @@ public final class TestAttribute2PL extends BaseGeneratedEMFQuerySpecification<T
       result.append("\"name\"=" + prettyPrintValue(fName));
       return result.toString();
     }
-    
+
     @Override
     public int hashCode() {
       return Objects.hash(fClazz, fAttr, fName);
     }
-    
+
     @Override
     public boolean equals(final Object obj) {
       if (this == obj)
@@ -202,12 +202,12 @@ public final class TestAttribute2PL extends BaseGeneratedEMFQuerySpecification<T
           return Objects.equals(specification(), otherSig.specification()) && Arrays.deepEquals(toArray(), otherSig.toArray());
       }
     }
-    
+
     @Override
     public TestAttribute2PL specification() {
       return TestAttribute2PL.instance();
     }
-    
+
     /**
      * Returns an empty, mutable match.
      * Fields of the mutable match can be filled to create a partial match, usable as matcher input.
@@ -218,7 +218,7 @@ public final class TestAttribute2PL extends BaseGeneratedEMFQuerySpecification<T
     public static TestAttribute2PL.Match newEmptyMatch() {
       return new Mutable(null, null, null);
     }
-    
+
     /**
      * Returns a mutable (partial) match.
      * Fields of the mutable match can be filled to create a partial match, usable as matcher input.
@@ -232,7 +232,7 @@ public final class TestAttribute2PL extends BaseGeneratedEMFQuerySpecification<T
     public static TestAttribute2PL.Match newMutableMatch(final edu.toronto.cs.se.mmint.productline.Class pClazz, final PLElement pAttr, final String pName) {
       return new Mutable(pClazz, pAttr, pName);
     }
-    
+
     /**
      * Returns a new (partial) match.
      * This can be used e.g. to call the matcher with a partial match.
@@ -246,30 +246,30 @@ public final class TestAttribute2PL extends BaseGeneratedEMFQuerySpecification<T
     public static TestAttribute2PL.Match newMatch(final edu.toronto.cs.se.mmint.productline.Class pClazz, final PLElement pAttr, final String pName) {
       return new Immutable(pClazz, pAttr, pName);
     }
-    
+
     private static final class Mutable extends TestAttribute2PL.Match {
       Mutable(final edu.toronto.cs.se.mmint.productline.Class pClazz, final PLElement pAttr, final String pName) {
         super(pClazz, pAttr, pName);
       }
-      
+
       @Override
       public boolean isMutable() {
         return true;
       }
     }
-    
+
     private static final class Immutable extends TestAttribute2PL.Match {
       Immutable(final edu.toronto.cs.se.mmint.productline.Class pClazz, final PLElement pAttr, final String pName) {
         super(pClazz, pAttr, pName);
       }
-      
+
       @Override
       public boolean isMutable() {
         return false;
       }
     }
   }
-  
+
   /**
    * Generated pattern matcher API of the edu.toronto.cs.se.mmint.productline.viatra.tests.testAttribute2PL pattern,
    * providing pattern-specific query methods.
@@ -307,7 +307,7 @@ public final class TestAttribute2PL extends BaseGeneratedEMFQuerySpecification<T
       }
       return matcher;
     }
-    
+
     /**
      * @throws ViatraQueryRuntimeException if an error occurs during pattern matcher creation
      * @return an initialized matcher
@@ -317,15 +317,15 @@ public final class TestAttribute2PL extends BaseGeneratedEMFQuerySpecification<T
     public static TestAttribute2PL.Matcher create() {
       return new Matcher();
     }
-    
+
     private static final int POSITION_CLAZZ = 0;
-    
+
     private static final int POSITION_ATTR = 1;
-    
+
     private static final int POSITION_NAME = 2;
-    
+
     private static final Logger LOGGER = ViatraQueryLoggingUtil.getLogger(TestAttribute2PL.Matcher.class);
-    
+
     /**
      * Initializes the pattern matcher within an existing VIATRA Query engine.
      * If the pattern matcher is already constructed in the engine, only a light-weight reference is returned.
@@ -337,7 +337,7 @@ public final class TestAttribute2PL extends BaseGeneratedEMFQuerySpecification<T
     private Matcher() {
       super(querySpecification());
     }
-    
+
     /**
      * Returns the set of all matches of the pattern that conform to the given fixed values of some parameters.
      * @param pClazz the fixed value of pattern parameter clazz, or null if not bound.
@@ -349,7 +349,7 @@ public final class TestAttribute2PL extends BaseGeneratedEMFQuerySpecification<T
     public Collection<TestAttribute2PL.Match> getAllMatches(final edu.toronto.cs.se.mmint.productline.Class pClazz, final PLElement pAttr, final String pName) {
       return rawStreamAllMatches(new Object[]{pClazz, pAttr, pName}).collect(Collectors.toSet());
     }
-    
+
     /**
      * Returns a stream of all matches of the pattern that conform to the given fixed values of some parameters.
      * </p>
@@ -365,7 +365,7 @@ public final class TestAttribute2PL extends BaseGeneratedEMFQuerySpecification<T
     public Stream<TestAttribute2PL.Match> streamAllMatches(final edu.toronto.cs.se.mmint.productline.Class pClazz, final PLElement pAttr, final String pName) {
       return rawStreamAllMatches(new Object[]{pClazz, pAttr, pName});
     }
-    
+
     /**
      * Returns an arbitrarily chosen match of the pattern that conforms to the given fixed values of some parameters.
      * Neither determinism nor randomness of selection is guaranteed.
@@ -378,7 +378,7 @@ public final class TestAttribute2PL extends BaseGeneratedEMFQuerySpecification<T
     public Optional<TestAttribute2PL.Match> getOneArbitraryMatch(final edu.toronto.cs.se.mmint.productline.Class pClazz, final PLElement pAttr, final String pName) {
       return rawGetOneArbitraryMatch(new Object[]{pClazz, pAttr, pName});
     }
-    
+
     /**
      * Indicates whether the given combination of specified pattern parameters constitute a valid pattern match,
      * under any possible substitution of the unspecified parameters (if any).
@@ -391,7 +391,7 @@ public final class TestAttribute2PL extends BaseGeneratedEMFQuerySpecification<T
     public boolean hasMatch(final edu.toronto.cs.se.mmint.productline.Class pClazz, final PLElement pAttr, final String pName) {
       return rawHasMatch(new Object[]{pClazz, pAttr, pName});
     }
-    
+
     /**
      * Returns the number of all matches of the pattern that conform to the given fixed values of some parameters.
      * @param pClazz the fixed value of pattern parameter clazz, or null if not bound.
@@ -403,7 +403,7 @@ public final class TestAttribute2PL extends BaseGeneratedEMFQuerySpecification<T
     public int countMatches(final edu.toronto.cs.se.mmint.productline.Class pClazz, final PLElement pAttr, final String pName) {
       return rawCountMatches(new Object[]{pClazz, pAttr, pName});
     }
-    
+
     /**
      * Executes the given processor on an arbitrarily chosen match of the pattern that conforms to the given fixed values of some parameters.
      * Neither determinism nor randomness of selection is guaranteed.
@@ -417,7 +417,7 @@ public final class TestAttribute2PL extends BaseGeneratedEMFQuerySpecification<T
     public boolean forOneArbitraryMatch(final edu.toronto.cs.se.mmint.productline.Class pClazz, final PLElement pAttr, final String pName, final Consumer<? super TestAttribute2PL.Match> processor) {
       return rawForOneArbitraryMatch(new Object[]{pClazz, pAttr, pName}, processor);
     }
-    
+
     /**
      * Returns a new (partial) match.
      * This can be used e.g. to call the matcher with a partial match.
@@ -431,7 +431,7 @@ public final class TestAttribute2PL extends BaseGeneratedEMFQuerySpecification<T
     public TestAttribute2PL.Match newMatch(final edu.toronto.cs.se.mmint.productline.Class pClazz, final PLElement pAttr, final String pName) {
       return TestAttribute2PL.Match.newMatch(pClazz, pAttr, pName);
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for clazz.
      * @return the Set of all values or empty set if there are no matches
@@ -440,7 +440,7 @@ public final class TestAttribute2PL extends BaseGeneratedEMFQuerySpecification<T
     protected Stream<edu.toronto.cs.se.mmint.productline.Class> rawStreamAllValuesOfclazz(final Object[] parameters) {
       return rawStreamAllValues(POSITION_CLAZZ, parameters).map(edu.toronto.cs.se.mmint.productline.Class.class::cast);
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for clazz.
      * @return the Set of all values or empty set if there are no matches
@@ -449,7 +449,7 @@ public final class TestAttribute2PL extends BaseGeneratedEMFQuerySpecification<T
     public Set<edu.toronto.cs.se.mmint.productline.Class> getAllValuesOfclazz() {
       return rawStreamAllValuesOfclazz(emptyArray()).collect(Collectors.toSet());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for clazz.
      * @return the Set of all values or empty set if there are no matches
@@ -458,7 +458,7 @@ public final class TestAttribute2PL extends BaseGeneratedEMFQuerySpecification<T
     public Stream<edu.toronto.cs.se.mmint.productline.Class> streamAllValuesOfclazz() {
       return rawStreamAllValuesOfclazz(emptyArray());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for clazz.
      * </p>
@@ -472,7 +472,7 @@ public final class TestAttribute2PL extends BaseGeneratedEMFQuerySpecification<T
     public Stream<edu.toronto.cs.se.mmint.productline.Class> streamAllValuesOfclazz(final TestAttribute2PL.Match partialMatch) {
       return rawStreamAllValuesOfclazz(partialMatch.toArray());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for clazz.
      * </p>
@@ -486,7 +486,7 @@ public final class TestAttribute2PL extends BaseGeneratedEMFQuerySpecification<T
     public Stream<edu.toronto.cs.se.mmint.productline.Class> streamAllValuesOfclazz(final PLElement pAttr, final String pName) {
       return rawStreamAllValuesOfclazz(new Object[]{null, pAttr, pName});
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for clazz.
      * @return the Set of all values or empty set if there are no matches
@@ -495,7 +495,7 @@ public final class TestAttribute2PL extends BaseGeneratedEMFQuerySpecification<T
     public Set<edu.toronto.cs.se.mmint.productline.Class> getAllValuesOfclazz(final TestAttribute2PL.Match partialMatch) {
       return rawStreamAllValuesOfclazz(partialMatch.toArray()).collect(Collectors.toSet());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for clazz.
      * @return the Set of all values or empty set if there are no matches
@@ -504,7 +504,7 @@ public final class TestAttribute2PL extends BaseGeneratedEMFQuerySpecification<T
     public Set<edu.toronto.cs.se.mmint.productline.Class> getAllValuesOfclazz(final PLElement pAttr, final String pName) {
       return rawStreamAllValuesOfclazz(new Object[]{null, pAttr, pName}).collect(Collectors.toSet());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for attr.
      * @return the Set of all values or empty set if there are no matches
@@ -513,7 +513,7 @@ public final class TestAttribute2PL extends BaseGeneratedEMFQuerySpecification<T
     protected Stream<PLElement> rawStreamAllValuesOfattr(final Object[] parameters) {
       return rawStreamAllValues(POSITION_ATTR, parameters).map(PLElement.class::cast);
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for attr.
      * @return the Set of all values or empty set if there are no matches
@@ -522,7 +522,7 @@ public final class TestAttribute2PL extends BaseGeneratedEMFQuerySpecification<T
     public Set<PLElement> getAllValuesOfattr() {
       return rawStreamAllValuesOfattr(emptyArray()).collect(Collectors.toSet());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for attr.
      * @return the Set of all values or empty set if there are no matches
@@ -531,7 +531,7 @@ public final class TestAttribute2PL extends BaseGeneratedEMFQuerySpecification<T
     public Stream<PLElement> streamAllValuesOfattr() {
       return rawStreamAllValuesOfattr(emptyArray());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for attr.
      * </p>
@@ -545,7 +545,7 @@ public final class TestAttribute2PL extends BaseGeneratedEMFQuerySpecification<T
     public Stream<PLElement> streamAllValuesOfattr(final TestAttribute2PL.Match partialMatch) {
       return rawStreamAllValuesOfattr(partialMatch.toArray());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for attr.
      * </p>
@@ -559,7 +559,7 @@ public final class TestAttribute2PL extends BaseGeneratedEMFQuerySpecification<T
     public Stream<PLElement> streamAllValuesOfattr(final edu.toronto.cs.se.mmint.productline.Class pClazz, final String pName) {
       return rawStreamAllValuesOfattr(new Object[]{pClazz, null, pName});
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for attr.
      * @return the Set of all values or empty set if there are no matches
@@ -568,7 +568,7 @@ public final class TestAttribute2PL extends BaseGeneratedEMFQuerySpecification<T
     public Set<PLElement> getAllValuesOfattr(final TestAttribute2PL.Match partialMatch) {
       return rawStreamAllValuesOfattr(partialMatch.toArray()).collect(Collectors.toSet());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for attr.
      * @return the Set of all values or empty set if there are no matches
@@ -577,7 +577,7 @@ public final class TestAttribute2PL extends BaseGeneratedEMFQuerySpecification<T
     public Set<PLElement> getAllValuesOfattr(final edu.toronto.cs.se.mmint.productline.Class pClazz, final String pName) {
       return rawStreamAllValuesOfattr(new Object[]{pClazz, null, pName}).collect(Collectors.toSet());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for name.
      * @return the Set of all values or empty set if there are no matches
@@ -586,7 +586,7 @@ public final class TestAttribute2PL extends BaseGeneratedEMFQuerySpecification<T
     protected Stream<String> rawStreamAllValuesOfname(final Object[] parameters) {
       return rawStreamAllValues(POSITION_NAME, parameters).map(String.class::cast);
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for name.
      * @return the Set of all values or empty set if there are no matches
@@ -595,7 +595,7 @@ public final class TestAttribute2PL extends BaseGeneratedEMFQuerySpecification<T
     public Set<String> getAllValuesOfname() {
       return rawStreamAllValuesOfname(emptyArray()).collect(Collectors.toSet());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for name.
      * @return the Set of all values or empty set if there are no matches
@@ -604,7 +604,7 @@ public final class TestAttribute2PL extends BaseGeneratedEMFQuerySpecification<T
     public Stream<String> streamAllValuesOfname() {
       return rawStreamAllValuesOfname(emptyArray());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for name.
      * </p>
@@ -618,7 +618,7 @@ public final class TestAttribute2PL extends BaseGeneratedEMFQuerySpecification<T
     public Stream<String> streamAllValuesOfname(final TestAttribute2PL.Match partialMatch) {
       return rawStreamAllValuesOfname(partialMatch.toArray());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for name.
      * </p>
@@ -632,7 +632,7 @@ public final class TestAttribute2PL extends BaseGeneratedEMFQuerySpecification<T
     public Stream<String> streamAllValuesOfname(final edu.toronto.cs.se.mmint.productline.Class pClazz, final PLElement pAttr) {
       return rawStreamAllValuesOfname(new Object[]{pClazz, pAttr, null});
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for name.
      * @return the Set of all values or empty set if there are no matches
@@ -641,7 +641,7 @@ public final class TestAttribute2PL extends BaseGeneratedEMFQuerySpecification<T
     public Set<String> getAllValuesOfname(final TestAttribute2PL.Match partialMatch) {
       return rawStreamAllValuesOfname(partialMatch.toArray()).collect(Collectors.toSet());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for name.
      * @return the Set of all values or empty set if there are no matches
@@ -650,7 +650,7 @@ public final class TestAttribute2PL extends BaseGeneratedEMFQuerySpecification<T
     public Set<String> getAllValuesOfname(final edu.toronto.cs.se.mmint.productline.Class pClazz, final PLElement pAttr) {
       return rawStreamAllValuesOfname(new Object[]{pClazz, pAttr, null}).collect(Collectors.toSet());
     }
-    
+
     @Override
     protected TestAttribute2PL.Match tupleToMatch(final Tuple t) {
       try {
@@ -660,7 +660,7 @@ public final class TestAttribute2PL extends BaseGeneratedEMFQuerySpecification<T
           return null;
       }
     }
-    
+
     @Override
     protected TestAttribute2PL.Match arrayToMatch(final Object[] match) {
       try {
@@ -670,7 +670,7 @@ public final class TestAttribute2PL extends BaseGeneratedEMFQuerySpecification<T
           return null;
       }
     }
-    
+
     @Override
     protected TestAttribute2PL.Match arrayToMatchMutable(final Object[] match) {
       try {
@@ -680,7 +680,7 @@ public final class TestAttribute2PL extends BaseGeneratedEMFQuerySpecification<T
           return null;
       }
     }
-    
+
     /**
      * @return the singleton instance of the query specification of this pattern
      * @throws ViatraQueryRuntimeException if the pattern definition could not be loaded
@@ -690,11 +690,11 @@ public final class TestAttribute2PL extends BaseGeneratedEMFQuerySpecification<T
       return TestAttribute2PL.instance();
     }
   }
-  
+
   private TestAttribute2PL() {
     super(GeneratedPQuery.INSTANCE);
   }
-  
+
   /**
    * @return the singleton instance of the query specification
    * @throws ViatraQueryRuntimeException if the pattern definition could not be loaded
@@ -707,27 +707,27 @@ public final class TestAttribute2PL extends BaseGeneratedEMFQuerySpecification<T
         throw processInitializerError(err);
     }
   }
-  
+
   @Override
   protected TestAttribute2PL.Matcher instantiate(final ViatraQueryEngine engine) {
     return TestAttribute2PL.Matcher.on(engine);
   }
-  
+
   @Override
   public TestAttribute2PL.Matcher instantiate() {
     return TestAttribute2PL.Matcher.create();
   }
-  
+
   @Override
   public TestAttribute2PL.Match newEmptyMatch() {
     return TestAttribute2PL.Match.newEmptyMatch();
   }
-  
+
   @Override
   public TestAttribute2PL.Match newMatch(final Object... parameters) {
     return TestAttribute2PL.Match.newMatch((edu.toronto.cs.se.mmint.productline.Class) parameters[0], (edu.toronto.cs.se.mmint.productline.PLElement) parameters[1], (java.lang.String) parameters[2]);
   }
-  
+
   /**
    * Inner class allowing the singleton instance of {@link TestAttribute2PL} to be created 
    *     <b>not</b> at the class load time of the outer class, 
@@ -738,7 +738,7 @@ public final class TestAttribute2PL extends BaseGeneratedEMFQuerySpecification<T
    */
   private static class LazyHolder {
     private static final TestAttribute2PL INSTANCE = new TestAttribute2PL();
-    
+
     /**
      * Statically initializes the query specification <b>after</b> the field {@link #INSTANCE} is assigned.
      * This initialization order is required to support indirect recursion.
@@ -747,43 +747,43 @@ public final class TestAttribute2PL extends BaseGeneratedEMFQuerySpecification<T
      * 
      */
     private static final Object STATIC_INITIALIZER = ensureInitialized();
-    
+
     public static Object ensureInitialized() {
       INSTANCE.ensureInitializedInternal();
       return null;
     }
   }
-  
+
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private static final TestAttribute2PL.GeneratedPQuery INSTANCE = new GeneratedPQuery();
-    
+
     private final PParameter parameter_clazz = new PParameter("clazz", "edu.toronto.cs.se.mmint.productline.Class", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("model://edu.toronto.cs.se.mmint.productline", "Class")), PParameterDirection.INOUT);
-    
+
     private final PParameter parameter_attr = new PParameter("attr", "edu.toronto.cs.se.mmint.productline.PLElement", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("model://edu.toronto.cs.se.mmint.productline", "PLElement")), PParameterDirection.INOUT);
-    
+
     private final PParameter parameter_name = new PParameter("name", "java.lang.String", new EDataTypeInSlotsKey((EDataType)getClassifierLiteralSafe("http://www.eclipse.org/emf/2002/Ecore", "EString")), PParameterDirection.INOUT);
-    
+
     private final List<PParameter> parameters = Arrays.asList(parameter_clazz, parameter_attr, parameter_name);
-    
+
     private GeneratedPQuery() {
       super(PVisibility.PUBLIC);
     }
-    
+
     @Override
     public String getFullyQualifiedName() {
       return "edu.toronto.cs.se.mmint.productline.viatra.tests.testAttribute2PL";
     }
-    
+
     @Override
     public List<String> getParameterNames() {
       return Arrays.asList("clazz","attr","name");
     }
-    
+
     @Override
     public List<PParameter> getParameters() {
       return parameters;
     }
-    
+
     @Override
     public Set<PBody> doGetContainedBodies() {
       setEvaluationHints(new QueryEvaluationHint(null, QueryEvaluationHint.BackendRequirement.UNSPECIFIED));

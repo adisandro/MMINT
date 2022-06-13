@@ -74,13 +74,13 @@ public final class TestMinCD extends BaseGeneratedEMFQuerySpecification<TestMinC
    */
   public static abstract class Match extends BasePatternMatch {
     private String fMinName;
-    
+
     private static List<String> parameterNames = makeImmutableList("minName");
-    
+
     private Match(final String pMinName) {
       this.fMinName = pMinName;
     }
-    
+
     @Override
     public Object get(final String parameterName) {
       switch(parameterName) {
@@ -88,7 +88,7 @@ public final class TestMinCD extends BaseGeneratedEMFQuerySpecification<TestMinC
           default: return null;
       }
     }
-    
+
     @Override
     public Object get(final int index) {
       switch(index) {
@@ -96,11 +96,11 @@ public final class TestMinCD extends BaseGeneratedEMFQuerySpecification<TestMinC
           default: return null;
       }
     }
-    
+
     public String getMinName() {
       return this.fMinName;
     }
-    
+
     @Override
     public boolean set(final String parameterName, final Object newValue) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
@@ -110,44 +110,44 @@ public final class TestMinCD extends BaseGeneratedEMFQuerySpecification<TestMinC
       }
       return false;
     }
-    
+
     public void setMinName(final String pMinName) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
       this.fMinName = pMinName;
     }
-    
+
     @Override
     public String patternName() {
       return "edu.toronto.cs.se.mmint.productline.viatra.tests.testMinCD";
     }
-    
+
     @Override
     public List<String> parameterNames() {
       return TestMinCD.Match.parameterNames;
     }
-    
+
     @Override
     public Object[] toArray() {
       return new Object[]{fMinName};
     }
-    
+
     @Override
     public TestMinCD.Match toImmutable() {
       return isMutable() ? newMatch(fMinName) : this;
     }
-    
+
     @Override
     public String prettyPrint() {
       StringBuilder result = new StringBuilder();
       result.append("\"minName\"=" + prettyPrintValue(fMinName));
       return result.toString();
     }
-    
+
     @Override
     public int hashCode() {
       return Objects.hash(fMinName);
     }
-    
+
     @Override
     public boolean equals(final Object obj) {
       if (this == obj)
@@ -167,12 +167,12 @@ public final class TestMinCD extends BaseGeneratedEMFQuerySpecification<TestMinC
           return Objects.equals(specification(), otherSig.specification()) && Arrays.deepEquals(toArray(), otherSig.toArray());
       }
     }
-    
+
     @Override
     public TestMinCD specification() {
       return TestMinCD.instance();
     }
-    
+
     /**
      * Returns an empty, mutable match.
      * Fields of the mutable match can be filled to create a partial match, usable as matcher input.
@@ -183,7 +183,7 @@ public final class TestMinCD extends BaseGeneratedEMFQuerySpecification<TestMinC
     public static TestMinCD.Match newEmptyMatch() {
       return new Mutable(null);
     }
-    
+
     /**
      * Returns a mutable (partial) match.
      * Fields of the mutable match can be filled to create a partial match, usable as matcher input.
@@ -195,7 +195,7 @@ public final class TestMinCD extends BaseGeneratedEMFQuerySpecification<TestMinC
     public static TestMinCD.Match newMutableMatch(final String pMinName) {
       return new Mutable(pMinName);
     }
-    
+
     /**
      * Returns a new (partial) match.
      * This can be used e.g. to call the matcher with a partial match.
@@ -207,30 +207,30 @@ public final class TestMinCD extends BaseGeneratedEMFQuerySpecification<TestMinC
     public static TestMinCD.Match newMatch(final String pMinName) {
       return new Immutable(pMinName);
     }
-    
+
     private static final class Mutable extends TestMinCD.Match {
       Mutable(final String pMinName) {
         super(pMinName);
       }
-      
+
       @Override
       public boolean isMutable() {
         return true;
       }
     }
-    
+
     private static final class Immutable extends TestMinCD.Match {
       Immutable(final String pMinName) {
         super(pMinName);
       }
-      
+
       @Override
       public boolean isMutable() {
         return false;
       }
     }
   }
-  
+
   /**
    * Generated pattern matcher API of the edu.toronto.cs.se.mmint.productline.viatra.tests.testMinCD pattern,
    * providing pattern-specific query methods.
@@ -268,7 +268,7 @@ public final class TestMinCD extends BaseGeneratedEMFQuerySpecification<TestMinC
       }
       return matcher;
     }
-    
+
     /**
      * @throws ViatraQueryRuntimeException if an error occurs during pattern matcher creation
      * @return an initialized matcher
@@ -278,11 +278,11 @@ public final class TestMinCD extends BaseGeneratedEMFQuerySpecification<TestMinC
     public static TestMinCD.Matcher create() {
       return new Matcher();
     }
-    
+
     private static final int POSITION_MINNAME = 0;
-    
+
     private static final Logger LOGGER = ViatraQueryLoggingUtil.getLogger(TestMinCD.Matcher.class);
-    
+
     /**
      * Initializes the pattern matcher within an existing VIATRA Query engine.
      * If the pattern matcher is already constructed in the engine, only a light-weight reference is returned.
@@ -294,7 +294,7 @@ public final class TestMinCD extends BaseGeneratedEMFQuerySpecification<TestMinC
     private Matcher() {
       super(querySpecification());
     }
-    
+
     /**
      * Returns the set of all matches of the pattern that conform to the given fixed values of some parameters.
      * @param pMinName the fixed value of pattern parameter minName, or null if not bound.
@@ -304,7 +304,7 @@ public final class TestMinCD extends BaseGeneratedEMFQuerySpecification<TestMinC
     public Collection<TestMinCD.Match> getAllMatches(final String pMinName) {
       return rawStreamAllMatches(new Object[]{pMinName}).collect(Collectors.toSet());
     }
-    
+
     /**
      * Returns a stream of all matches of the pattern that conform to the given fixed values of some parameters.
      * </p>
@@ -318,7 +318,7 @@ public final class TestMinCD extends BaseGeneratedEMFQuerySpecification<TestMinC
     public Stream<TestMinCD.Match> streamAllMatches(final String pMinName) {
       return rawStreamAllMatches(new Object[]{pMinName});
     }
-    
+
     /**
      * Returns an arbitrarily chosen match of the pattern that conforms to the given fixed values of some parameters.
      * Neither determinism nor randomness of selection is guaranteed.
@@ -329,7 +329,7 @@ public final class TestMinCD extends BaseGeneratedEMFQuerySpecification<TestMinC
     public Optional<TestMinCD.Match> getOneArbitraryMatch(final String pMinName) {
       return rawGetOneArbitraryMatch(new Object[]{pMinName});
     }
-    
+
     /**
      * Indicates whether the given combination of specified pattern parameters constitute a valid pattern match,
      * under any possible substitution of the unspecified parameters (if any).
@@ -340,7 +340,7 @@ public final class TestMinCD extends BaseGeneratedEMFQuerySpecification<TestMinC
     public boolean hasMatch(final String pMinName) {
       return rawHasMatch(new Object[]{pMinName});
     }
-    
+
     /**
      * Returns the number of all matches of the pattern that conform to the given fixed values of some parameters.
      * @param pMinName the fixed value of pattern parameter minName, or null if not bound.
@@ -350,7 +350,7 @@ public final class TestMinCD extends BaseGeneratedEMFQuerySpecification<TestMinC
     public int countMatches(final String pMinName) {
       return rawCountMatches(new Object[]{pMinName});
     }
-    
+
     /**
      * Executes the given processor on an arbitrarily chosen match of the pattern that conforms to the given fixed values of some parameters.
      * Neither determinism nor randomness of selection is guaranteed.
@@ -362,7 +362,7 @@ public final class TestMinCD extends BaseGeneratedEMFQuerySpecification<TestMinC
     public boolean forOneArbitraryMatch(final String pMinName, final Consumer<? super TestMinCD.Match> processor) {
       return rawForOneArbitraryMatch(new Object[]{pMinName}, processor);
     }
-    
+
     /**
      * Returns a new (partial) match.
      * This can be used e.g. to call the matcher with a partial match.
@@ -374,7 +374,7 @@ public final class TestMinCD extends BaseGeneratedEMFQuerySpecification<TestMinC
     public TestMinCD.Match newMatch(final String pMinName) {
       return TestMinCD.Match.newMatch(pMinName);
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for minName.
      * @return the Set of all values or empty set if there are no matches
@@ -383,7 +383,7 @@ public final class TestMinCD extends BaseGeneratedEMFQuerySpecification<TestMinC
     protected Stream<String> rawStreamAllValuesOfminName(final Object[] parameters) {
       return rawStreamAllValues(POSITION_MINNAME, parameters).map(String.class::cast);
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for minName.
      * @return the Set of all values or empty set if there are no matches
@@ -392,7 +392,7 @@ public final class TestMinCD extends BaseGeneratedEMFQuerySpecification<TestMinC
     public Set<String> getAllValuesOfminName() {
       return rawStreamAllValuesOfminName(emptyArray()).collect(Collectors.toSet());
     }
-    
+
     /**
      * Retrieve the set of values that occur in matches for minName.
      * @return the Set of all values or empty set if there are no matches
@@ -401,7 +401,7 @@ public final class TestMinCD extends BaseGeneratedEMFQuerySpecification<TestMinC
     public Stream<String> streamAllValuesOfminName() {
       return rawStreamAllValuesOfminName(emptyArray());
     }
-    
+
     @Override
     protected TestMinCD.Match tupleToMatch(final Tuple t) {
       try {
@@ -411,7 +411,7 @@ public final class TestMinCD extends BaseGeneratedEMFQuerySpecification<TestMinC
           return null;
       }
     }
-    
+
     @Override
     protected TestMinCD.Match arrayToMatch(final Object[] match) {
       try {
@@ -421,7 +421,7 @@ public final class TestMinCD extends BaseGeneratedEMFQuerySpecification<TestMinC
           return null;
       }
     }
-    
+
     @Override
     protected TestMinCD.Match arrayToMatchMutable(final Object[] match) {
       try {
@@ -431,7 +431,7 @@ public final class TestMinCD extends BaseGeneratedEMFQuerySpecification<TestMinC
           return null;
       }
     }
-    
+
     /**
      * @return the singleton instance of the query specification of this pattern
      * @throws ViatraQueryRuntimeException if the pattern definition could not be loaded
@@ -441,11 +441,11 @@ public final class TestMinCD extends BaseGeneratedEMFQuerySpecification<TestMinC
       return TestMinCD.instance();
     }
   }
-  
+
   private TestMinCD() {
     super(GeneratedPQuery.INSTANCE);
   }
-  
+
   /**
    * @return the singleton instance of the query specification
    * @throws ViatraQueryRuntimeException if the pattern definition could not be loaded
@@ -458,27 +458,27 @@ public final class TestMinCD extends BaseGeneratedEMFQuerySpecification<TestMinC
         throw processInitializerError(err);
     }
   }
-  
+
   @Override
   protected TestMinCD.Matcher instantiate(final ViatraQueryEngine engine) {
     return TestMinCD.Matcher.on(engine);
   }
-  
+
   @Override
   public TestMinCD.Matcher instantiate() {
     return TestMinCD.Matcher.create();
   }
-  
+
   @Override
   public TestMinCD.Match newEmptyMatch() {
     return TestMinCD.Match.newEmptyMatch();
   }
-  
+
   @Override
   public TestMinCD.Match newMatch(final Object... parameters) {
     return TestMinCD.Match.newMatch((java.lang.String) parameters[0]);
   }
-  
+
   /**
    * Inner class allowing the singleton instance of {@link TestMinCD} to be created 
    *     <b>not</b> at the class load time of the outer class, 
@@ -489,7 +489,7 @@ public final class TestMinCD extends BaseGeneratedEMFQuerySpecification<TestMinC
    */
   private static class LazyHolder {
     private static final TestMinCD INSTANCE = new TestMinCD();
-    
+
     /**
      * Statically initializes the query specification <b>after</b> the field {@link #INSTANCE} is assigned.
      * This initialization order is required to support indirect recursion.
@@ -498,41 +498,41 @@ public final class TestMinCD extends BaseGeneratedEMFQuerySpecification<TestMinC
      * 
      */
     private static final Object STATIC_INITIALIZER = ensureInitialized();
-    
+
     public static Object ensureInitialized() {
       INSTANCE.ensureInitializedInternal();
       return null;
     }
   }
-  
+
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private static final TestMinCD.GeneratedPQuery INSTANCE = new GeneratedPQuery();
-    
+
     private final PParameter parameter_minName = new PParameter("minName", "java.lang.String", new JavaTransitiveInstancesKey(java.lang.String.class), PParameterDirection.INOUT);
-    
+
     private final List<PParameter> parameters = Arrays.asList(parameter_minName);
-    
+
     private class Embedded_1_Class_name extends BaseGeneratedEMFPQuery {
       private final PParameter parameter_p0 = new PParameter("p0", "edu.toronto.cs.se.modelepedia.classdiagram.Class", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://se.cs.toronto.edu/modelepedia/ClassDiagram", "Class")), PParameterDirection.INOUT);
-      
+
       private final PParameter parameter_p1 = new PParameter("p1", "java.lang.String", new EDataTypeInSlotsKey((EDataType)getClassifierLiteralSafe("http://www.eclipse.org/emf/2002/Ecore", "EString")), PParameterDirection.INOUT);
-      
+
       private final List<PParameter> embeddedParameters = Arrays.asList(parameter_p0, parameter_p1);
-      
+
       public Embedded_1_Class_name() {
         super(PVisibility.EMBEDDED);
       }
-      
+
       @Override
       public String getFullyQualifiedName() {
         return GeneratedPQuery.this.getFullyQualifiedName() + "$Embedded_1_Class_name";
       }
-      
+
       @Override
       public List<PParameter> getParameters() {
         return embeddedParameters;
       }
-      
+
       @Override
       public Set<PBody> doGetContainedBodies() {
         PBody body = new PBody(this);
@@ -551,26 +551,26 @@ public final class TestMinCD extends BaseGeneratedEMFQuerySpecification<TestMinC
         return Collections.singleton(body);
       }
     }
-    
+
     private GeneratedPQuery() {
       super(PVisibility.PUBLIC);
     }
-    
+
     @Override
     public String getFullyQualifiedName() {
       return "edu.toronto.cs.se.mmint.productline.viatra.tests.testMinCD";
     }
-    
+
     @Override
     public List<String> getParameterNames() {
       return Arrays.asList("minName");
     }
-    
+
     @Override
     public List<PParameter> getParameters() {
       return parameters;
     }
-    
+
     @Override
     public Set<PBody> doGetContainedBodies() {
       setEvaluationHints(new QueryEvaluationHint(null, QueryEvaluationHint.BackendRequirement.UNSPECIFIED));
