@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
 /**
- * Entry point of the 'LTSToLeanAcceleo' generation module.
+ * Entry point of the 'UMLToLeanAcceleo' generation module.
  *
  * @generated
  */
@@ -93,6 +93,29 @@ public class UMLToLeanAcceleo extends AbstractAcceleoGenerator {
     /**
      * This allows clients to instantiates a generator with all required information.
      * 
+Commits on Apr 22, 2022
+
+    product-line: Tweak feature selection messages
+    @adisandro
+    adisandro committed on Apr 22
+
+Commits on Apr 27, 2022
+
+    query: Separate display from store apis
+    @adisandro
+    adisandro committed on Apr 27
+
+query: Add button to stop viewing results
+@adisandro
+adisandro committed on Apr 28
+
+Commits on May 5, 2022
+
+    product-line: Add trace rel to toProduct's outputs
+    @adisandro
+    adisandro committed on May 5
+
+
      * @param model
      *            We'll iterate over the content of this element to find Objects matching the first parameter
      *            of the template we need to call.
