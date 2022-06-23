@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram; singleton:=true
 Automatic-Module-Name: edu.toronto.cs.se.modelepedia.relationaldatabase.mavo.diagram
-Bundle-Version: 2.13.99.qualifier
+Bundle-Version: 2.14.0.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVODiagramEditorPlugin
 Bundle-Vendor: %providerName

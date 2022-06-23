@@ -14,7 +14,7 @@
 <feature
       id="edu.toronto.cs.se.mmint.feature"
       label="MMINT"
-      version="2.13.99.qualifier"
+      version="2.14.0.qualifier"
       provider-name="Software Engineering Group, University of Toronto">
 
    <description url="https://github.com/adisandro/MMINT">
