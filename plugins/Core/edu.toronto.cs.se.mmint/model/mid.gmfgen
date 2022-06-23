@@ -853,7 +853,7 @@
   <plugin
       name="MID Diagram Type"
       provider="Software Engineering Group, University of Toronto"
-      version="2.13.99.qualifier">
+      version="2.14.0.qualifier">
     <requiredPlugins>org.eclipse.papyrus.infra.gmfdiag.tooling.runtime</requiredPlugins>
     <requiredPlugins>org.eclipse.draw2d</requiredPlugins>
     <requiredPlugins>org.eclipse.gmf.runtime.draw2d.ui</requiredPlugins>
