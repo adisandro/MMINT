@@ -30,7 +30,7 @@
     <repository>
       <id>SysML</id>
       <layout>p2</layout>
-      <url>https://download.eclipse.org/modeling/mdt/papyrus/components/sysml16/2022-03</url>
+      <url>https://download.eclipse.org/modeling/mdt/papyrus/components/sysml16/2022-06</url>
     </repository>
   </repositories>
   <pluginRepositories>
