@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.mmint.examples.models21;singleton:=true
-Bundle-Version: 2.14.0.qualifier
+Bundle-Version: 2.14.99.qualifier
 Automatic-Module-Name: edu.toronto.cs.se.mmint.examples.models21
 Bundle-RequiredExecutionEnvironment: JavaSE-18
 Bundle-Vendor: %providerName
