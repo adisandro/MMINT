@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Copyright (c) 2022, 2022 Alessio Di Sandro.
+   
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License 2.0 which is available at
+    https://www.eclipse.org/legal/epl-2.0/
+   
+    SPDX-License-Identifier: EPL-2.0
+   
+    Contributors:
+        Alessio Di Sandro - Implementation
+ -->
+<feature
+      id="edu.toronto.cs.se.mmint.examples.sle22.feature"
+      label="MMINT - SLE22 paper"
+      version="2.14.99.qualifier"
+      provider-name="Software Engineering Group, University of Toronto">
+
+   <description url="">
+      MMINT support for the SLE22 paper.
+   </description>
+
+   <copyright>
+      Copyright (c) 2022, 2022 Alessio Di Sandro.
+   </copyright>
+
+   <license url="https://www.eclipse.org/legal/epl-2.0/">
+      This program and the accompanying materials are made available under the terms of the Eclipse Public License 2.0 which is available at https://www.eclipse.org/legal/epl-2.0/
+   </license>
+
+   <requires>
+      <import plugin="org.eclipse.emf.common.ui"/>
+      <import feature="edu.toronto.cs.se.modelepedia.classdiagram.feature"/>
+   </requires>
+
+   <plugin
+         id="edu.toronto.cs.se.mmint.examples.sle22"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>
