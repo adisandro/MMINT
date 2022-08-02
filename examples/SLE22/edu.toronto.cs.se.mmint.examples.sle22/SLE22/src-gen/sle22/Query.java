@@ -25,7 +25,7 @@ import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedPatternGroup;
  * in order to achieve better performance than one-by-one on-demand matcher initialization.
  * 
  * <p> From package sle22, the group contains the definition of the following patterns: <ul>
- * <li>multipleInheritance</li>
+ * <li>publicAttributes</li>
  * </ul>
  * 
  * @see IQueryGroup
@@ -50,14 +50,14 @@ public final class Query extends BaseGeneratedPatternGroup {
   private static Query INSTANCE;
 
   private Query() {
-    querySpecifications.add(MultipleInheritance.instance());
+    querySpecifications.add(PublicAttributes.instance());
   }
 
-  public MultipleInheritance getMultipleInheritance() {
-    return MultipleInheritance.instance();
+  public PublicAttributes getPublicAttributes() {
+    return PublicAttributes.instance();
   }
 
-  public MultipleInheritance.Matcher getMultipleInheritance(final ViatraQueryEngine engine) {
-    return MultipleInheritance.Matcher.on(engine);
+  public PublicAttributes.Matcher getPublicAttributes(final ViatraQueryEngine engine) {
+    return PublicAttributes.Matcher.on(engine);
   }
 }

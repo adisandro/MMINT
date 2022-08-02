@@ -223,6 +223,7 @@
     <module>../../examples/MoDELS20/edu.toronto.cs.se.mmint.example.models20</module>
     <module>../../examples/MODELS21/edu.toronto.cs.se.mmint.examples.models21</module>
     <module>../../examples/SLE22/edu.toronto.cs.se.mmint.examples.sle22</module>
+    <module>../../examples/SLE22/edu.toronto.cs.se.mmint.examples.sle22.operators</module>
     <module>../../examples/SOSYM22/edu.toronto.cs.se.mmint.examples.sosym22</module>
     <module>../../features/edu.toronto.cs.se.mmint.feature</module>
     <module>../../features/edu.toronto.cs.se.mmint.sdk.feature</module>

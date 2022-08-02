@@ -14,6 +14,7 @@
  */
 package sle22;
 
+import edu.toronto.cs.se.modelepedia.classdiagram.Attribute;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedHashSet;
@@ -26,6 +27,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.viatra.query.runtime.api.IPatternMatch;
 import org.eclipse.viatra.query.runtime.api.IQuerySpecification;
 import org.eclipse.viatra.query.runtime.api.ViatraQueryEngine;
@@ -34,13 +36,14 @@ import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedEMFQuerySpecificat
 import org.eclipse.viatra.query.runtime.api.impl.BaseMatcher;
 import org.eclipse.viatra.query.runtime.api.impl.BasePatternMatch;
 import org.eclipse.viatra.query.runtime.emf.types.EClassTransitiveInstancesKey;
+import org.eclipse.viatra.query.runtime.emf.types.EDataTypeInSlotsKey;
 import org.eclipse.viatra.query.runtime.emf.types.EStructuralFeatureInstancesKey;
 import org.eclipse.viatra.query.runtime.matchers.backend.QueryEvaluationHint;
 import org.eclipse.viatra.query.runtime.matchers.psystem.PBody;
 import org.eclipse.viatra.query.runtime.matchers.psystem.PVariable;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.Equality;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.ExportedParameter;
-import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.Inequality;
+import org.eclipse.viatra.query.runtime.matchers.psystem.basicenumerables.ConstantValue;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicenumerables.TypeConstraint;
 import org.eclipse.viatra.query.runtime.matchers.psystem.queries.PParameter;
 import org.eclipse.viatra.query.runtime.matchers.psystem.queries.PParameterDirection;
@@ -54,10 +57,8 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 
  * <p>Original source:
  *         <code><pre>
- *         pattern multipleInheritance(child: Class) {
- *           Class.superclass(child, parent1);
- *           Class.superclass(child, parent2);
- *           parent1 != parent2;
+ *         pattern publicAttributes(attribute: Attribute) {
+ *           Attribute.public(attribute, true);
  *         }
  * </pre></code>
  * 
@@ -66,9 +67,9 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 
  */
 @SuppressWarnings("all")
-public final class MultipleInheritance extends BaseGeneratedEMFQuerySpecification<MultipleInheritance.Matcher> {
+public final class PublicAttributes extends BaseGeneratedEMFQuerySpecification<PublicAttributes.Matcher> {
   /**
-   * Pattern-specific match representation of the sle22.multipleInheritance pattern,
+   * Pattern-specific match representation of the sle22.publicAttributes pattern,
    * to be used in conjunction with {@link Matcher}.
    * 
    * <p>Class fields correspond to parameters of the pattern. Fields with value null are considered unassigned.
@@ -80,18 +81,18 @@ public final class MultipleInheritance extends BaseGeneratedEMFQuerySpecificatio
    * 
    */
   public static abstract class Match extends BasePatternMatch {
-    private edu.toronto.cs.se.modelepedia.classdiagram.Class fChild;
+    private Attribute fAttribute;
 
-    private static List<String> parameterNames = makeImmutableList("child");
+    private static List<String> parameterNames = makeImmutableList("attribute");
 
-    private Match(final edu.toronto.cs.se.modelepedia.classdiagram.Class pChild) {
-      this.fChild = pChild;
+    private Match(final Attribute pAttribute) {
+      this.fAttribute = pAttribute;
     }
 
     @Override
     public Object get(final String parameterName) {
       switch(parameterName) {
-          case "child": return this.fChild;
+          case "attribute": return this.fAttribute;
           default: return null;
       }
     }
@@ -99,60 +100,60 @@ public final class MultipleInheritance extends BaseGeneratedEMFQuerySpecificatio
     @Override
     public Object get(final int index) {
       switch(index) {
-          case 0: return this.fChild;
+          case 0: return this.fAttribute;
           default: return null;
       }
     }
 
-    public edu.toronto.cs.se.modelepedia.classdiagram.Class getChild() {
-      return this.fChild;
+    public Attribute getAttribute() {
+      return this.fAttribute;
     }
 
     @Override
     public boolean set(final String parameterName, final Object newValue) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
-      if ("child".equals(parameterName) ) {
-          this.fChild = (edu.toronto.cs.se.modelepedia.classdiagram.Class) newValue;
+      if ("attribute".equals(parameterName) ) {
+          this.fAttribute = (Attribute) newValue;
           return true;
       }
       return false;
     }
 
-    public void setChild(final edu.toronto.cs.se.modelepedia.classdiagram.Class pChild) {
+    public void setAttribute(final Attribute pAttribute) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
-      this.fChild = pChild;
+      this.fAttribute = pAttribute;
     }
 
     @Override
     public String patternName() {
-      return "sle22.multipleInheritance";
+      return "sle22.publicAttributes";
     }
 
     @Override
     public List<String> parameterNames() {
-      return MultipleInheritance.Match.parameterNames;
+      return PublicAttributes.Match.parameterNames;
     }
 
     @Override
     public Object[] toArray() {
-      return new Object[]{fChild};
+      return new Object[]{fAttribute};
     }
 
     @Override
-    public MultipleInheritance.Match toImmutable() {
-      return isMutable() ? newMatch(fChild) : this;
+    public PublicAttributes.Match toImmutable() {
+      return isMutable() ? newMatch(fAttribute) : this;
     }
 
     @Override
     public String prettyPrint() {
       StringBuilder result = new StringBuilder();
-      result.append("\"child\"=" + prettyPrintValue(fChild));
+      result.append("\"attribute\"=" + prettyPrintValue(fAttribute));
       return result.toString();
     }
 
     @Override
     public int hashCode() {
-      return Objects.hash(fChild);
+      return Objects.hash(fAttribute);
     }
 
     @Override
@@ -162,9 +163,9 @@ public final class MultipleInheritance extends BaseGeneratedEMFQuerySpecificatio
       if (obj == null) {
           return false;
       }
-      if ((obj instanceof MultipleInheritance.Match)) {
-          MultipleInheritance.Match other = (MultipleInheritance.Match) obj;
-          return Objects.equals(fChild, other.fChild);
+      if ((obj instanceof PublicAttributes.Match)) {
+          PublicAttributes.Match other = (PublicAttributes.Match) obj;
+          return Objects.equals(fAttribute, other.fAttribute);
       } else {
           // this should be infrequent
           if (!(obj instanceof IPatternMatch)) {
@@ -176,8 +177,8 @@ public final class MultipleInheritance extends BaseGeneratedEMFQuerySpecificatio
     }
 
     @Override
-    public MultipleInheritance specification() {
-      return MultipleInheritance.instance();
+    public PublicAttributes specification() {
+      return PublicAttributes.instance();
     }
 
     /**
@@ -187,7 +188,7 @@ public final class MultipleInheritance extends BaseGeneratedEMFQuerySpecificatio
      * @return the empty match.
      * 
      */
-    public static MultipleInheritance.Match newEmptyMatch() {
+    public static PublicAttributes.Match newEmptyMatch() {
       return new Mutable(null);
     }
 
@@ -195,29 +196,29 @@ public final class MultipleInheritance extends BaseGeneratedEMFQuerySpecificatio
      * Returns a mutable (partial) match.
      * Fields of the mutable match can be filled to create a partial match, usable as matcher input.
      * 
-     * @param pChild the fixed value of pattern parameter child, or null if not bound.
+     * @param pAttribute the fixed value of pattern parameter attribute, or null if not bound.
      * @return the new, mutable (partial) match object.
      * 
      */
-    public static MultipleInheritance.Match newMutableMatch(final edu.toronto.cs.se.modelepedia.classdiagram.Class pChild) {
-      return new Mutable(pChild);
+    public static PublicAttributes.Match newMutableMatch(final Attribute pAttribute) {
+      return new Mutable(pAttribute);
     }
 
     /**
      * Returns a new (partial) match.
      * This can be used e.g. to call the matcher with a partial match.
      * <p>The returned match will be immutable. Use {@link #newEmptyMatch()} to obtain a mutable match object.
-     * @param pChild the fixed value of pattern parameter child, or null if not bound.
+     * @param pAttribute the fixed value of pattern parameter attribute, or null if not bound.
      * @return the (partial) match object.
      * 
      */
-    public static MultipleInheritance.Match newMatch(final edu.toronto.cs.se.modelepedia.classdiagram.Class pChild) {
-      return new Immutable(pChild);
+    public static PublicAttributes.Match newMatch(final Attribute pAttribute) {
+      return new Immutable(pAttribute);
     }
 
-    private static final class Mutable extends MultipleInheritance.Match {
-      Mutable(final edu.toronto.cs.se.modelepedia.classdiagram.Class pChild) {
-        super(pChild);
+    private static final class Mutable extends PublicAttributes.Match {
+      Mutable(final Attribute pAttribute) {
+        super(pAttribute);
       }
 
       @Override
@@ -226,9 +227,9 @@ public final class MultipleInheritance extends BaseGeneratedEMFQuerySpecificatio
       }
     }
 
-    private static final class Immutable extends MultipleInheritance.Match {
-      Immutable(final edu.toronto.cs.se.modelepedia.classdiagram.Class pChild) {
-        super(pChild);
+    private static final class Immutable extends PublicAttributes.Match {
+      Immutable(final Attribute pAttribute) {
+        super(pAttribute);
       }
 
       @Override
@@ -239,7 +240,7 @@ public final class MultipleInheritance extends BaseGeneratedEMFQuerySpecificatio
   }
 
   /**
-   * Generated pattern matcher API of the sle22.multipleInheritance pattern,
+   * Generated pattern matcher API of the sle22.publicAttributes pattern,
    * providing pattern-specific query methods.
    * 
    * <p>Use the pattern matcher on a given model via {@link #on(ViatraQueryEngine)},
@@ -249,18 +250,16 @@ public final class MultipleInheritance extends BaseGeneratedEMFQuerySpecificatio
    * 
    * <p>Original source:
    * <code><pre>
-   * pattern multipleInheritance(child: Class) {
-   *   Class.superclass(child, parent1);
-   *   Class.superclass(child, parent2);
-   *   parent1 != parent2;
+   * pattern publicAttributes(attribute: Attribute) {
+   *   Attribute.public(attribute, true);
    * }
    * </pre></code>
    * 
    * @see Match
-   * @see MultipleInheritance
+   * @see PublicAttributes
    * 
    */
-  public static class Matcher extends BaseMatcher<MultipleInheritance.Match> {
+  public static class Matcher extends BaseMatcher<PublicAttributes.Match> {
     /**
      * Initializes the pattern matcher within an existing VIATRA Query engine.
      * If the pattern matcher is already constructed in the engine, only a light-weight reference is returned.
@@ -269,7 +268,7 @@ public final class MultipleInheritance extends BaseGeneratedEMFQuerySpecificatio
      * @throws ViatraQueryRuntimeException if an error occurs during pattern matcher creation
      * 
      */
-    public static MultipleInheritance.Matcher on(final ViatraQueryEngine engine) {
+    public static PublicAttributes.Matcher on(final ViatraQueryEngine engine) {
       // check if matcher already exists
       Matcher matcher = engine.getExistingMatcher(querySpecification());
       if (matcher == null) {
@@ -284,13 +283,13 @@ public final class MultipleInheritance extends BaseGeneratedEMFQuerySpecificatio
      * @noreference This method is for internal matcher initialization by the framework, do not call it manually.
      * 
      */
-    public static MultipleInheritance.Matcher create() {
+    public static PublicAttributes.Matcher create() {
       return new Matcher();
     }
 
-    private static final int POSITION_CHILD = 0;
+    private static final int POSITION_ATTRIBUTE = 0;
 
-    private static final Logger LOGGER = ViatraQueryLoggingUtil.getLogger(MultipleInheritance.Matcher.class);
+    private static final Logger LOGGER = ViatraQueryLoggingUtil.getLogger(PublicAttributes.Matcher.class);
 
     /**
      * Initializes the pattern matcher within an existing VIATRA Query engine.
@@ -306,12 +305,12 @@ public final class MultipleInheritance extends BaseGeneratedEMFQuerySpecificatio
 
     /**
      * Returns the set of all matches of the pattern that conform to the given fixed values of some parameters.
-     * @param pChild the fixed value of pattern parameter child, or null if not bound.
+     * @param pAttribute the fixed value of pattern parameter attribute, or null if not bound.
      * @return matches represented as a Match object.
      * 
      */
-    public Collection<MultipleInheritance.Match> getAllMatches(final edu.toronto.cs.se.modelepedia.classdiagram.Class pChild) {
-      return rawStreamAllMatches(new Object[]{pChild}).collect(Collectors.toSet());
+    public Collection<PublicAttributes.Match> getAllMatches(final Attribute pAttribute) {
+      return rawStreamAllMatches(new Object[]{pAttribute}).collect(Collectors.toSet());
     }
 
     /**
@@ -320,101 +319,101 @@ public final class MultipleInheritance extends BaseGeneratedEMFQuerySpecificatio
      * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
      * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
      * In such cases, either rely on {@link #getAllMatches()} or collect the results of the stream in end-user code.
-     * @param pChild the fixed value of pattern parameter child, or null if not bound.
+     * @param pAttribute the fixed value of pattern parameter attribute, or null if not bound.
      * @return a stream of matches represented as a Match object.
      * 
      */
-    public Stream<MultipleInheritance.Match> streamAllMatches(final edu.toronto.cs.se.modelepedia.classdiagram.Class pChild) {
-      return rawStreamAllMatches(new Object[]{pChild});
+    public Stream<PublicAttributes.Match> streamAllMatches(final Attribute pAttribute) {
+      return rawStreamAllMatches(new Object[]{pAttribute});
     }
 
     /**
      * Returns an arbitrarily chosen match of the pattern that conforms to the given fixed values of some parameters.
      * Neither determinism nor randomness of selection is guaranteed.
-     * @param pChild the fixed value of pattern parameter child, or null if not bound.
+     * @param pAttribute the fixed value of pattern parameter attribute, or null if not bound.
      * @return a match represented as a Match object, or null if no match is found.
      * 
      */
-    public Optional<MultipleInheritance.Match> getOneArbitraryMatch(final edu.toronto.cs.se.modelepedia.classdiagram.Class pChild) {
-      return rawGetOneArbitraryMatch(new Object[]{pChild});
+    public Optional<PublicAttributes.Match> getOneArbitraryMatch(final Attribute pAttribute) {
+      return rawGetOneArbitraryMatch(new Object[]{pAttribute});
     }
 
     /**
      * Indicates whether the given combination of specified pattern parameters constitute a valid pattern match,
      * under any possible substitution of the unspecified parameters (if any).
-     * @param pChild the fixed value of pattern parameter child, or null if not bound.
+     * @param pAttribute the fixed value of pattern parameter attribute, or null if not bound.
      * @return true if the input is a valid (partial) match of the pattern.
      * 
      */
-    public boolean hasMatch(final edu.toronto.cs.se.modelepedia.classdiagram.Class pChild) {
-      return rawHasMatch(new Object[]{pChild});
+    public boolean hasMatch(final Attribute pAttribute) {
+      return rawHasMatch(new Object[]{pAttribute});
     }
 
     /**
      * Returns the number of all matches of the pattern that conform to the given fixed values of some parameters.
-     * @param pChild the fixed value of pattern parameter child, or null if not bound.
+     * @param pAttribute the fixed value of pattern parameter attribute, or null if not bound.
      * @return the number of pattern matches found.
      * 
      */
-    public int countMatches(final edu.toronto.cs.se.modelepedia.classdiagram.Class pChild) {
-      return rawCountMatches(new Object[]{pChild});
+    public int countMatches(final Attribute pAttribute) {
+      return rawCountMatches(new Object[]{pAttribute});
     }
 
     /**
      * Executes the given processor on an arbitrarily chosen match of the pattern that conforms to the given fixed values of some parameters.
      * Neither determinism nor randomness of selection is guaranteed.
-     * @param pChild the fixed value of pattern parameter child, or null if not bound.
+     * @param pAttribute the fixed value of pattern parameter attribute, or null if not bound.
      * @param processor the action that will process the selected match.
      * @return true if the pattern has at least one match with the given parameter values, false if the processor was not invoked
      * 
      */
-    public boolean forOneArbitraryMatch(final edu.toronto.cs.se.modelepedia.classdiagram.Class pChild, final Consumer<? super MultipleInheritance.Match> processor) {
-      return rawForOneArbitraryMatch(new Object[]{pChild}, processor);
+    public boolean forOneArbitraryMatch(final Attribute pAttribute, final Consumer<? super PublicAttributes.Match> processor) {
+      return rawForOneArbitraryMatch(new Object[]{pAttribute}, processor);
     }
 
     /**
      * Returns a new (partial) match.
      * This can be used e.g. to call the matcher with a partial match.
      * <p>The returned match will be immutable. Use {@link #newEmptyMatch()} to obtain a mutable match object.
-     * @param pChild the fixed value of pattern parameter child, or null if not bound.
+     * @param pAttribute the fixed value of pattern parameter attribute, or null if not bound.
      * @return the (partial) match object.
      * 
      */
-    public MultipleInheritance.Match newMatch(final edu.toronto.cs.se.modelepedia.classdiagram.Class pChild) {
-      return MultipleInheritance.Match.newMatch(pChild);
+    public PublicAttributes.Match newMatch(final Attribute pAttribute) {
+      return PublicAttributes.Match.newMatch(pAttribute);
     }
 
     /**
-     * Retrieve the set of values that occur in matches for child.
+     * Retrieve the set of values that occur in matches for attribute.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    protected Stream<edu.toronto.cs.se.modelepedia.classdiagram.Class> rawStreamAllValuesOfchild(final Object[] parameters) {
-      return rawStreamAllValues(POSITION_CHILD, parameters).map(edu.toronto.cs.se.modelepedia.classdiagram.Class.class::cast);
+    protected Stream<Attribute> rawStreamAllValuesOfattribute(final Object[] parameters) {
+      return rawStreamAllValues(POSITION_ATTRIBUTE, parameters).map(Attribute.class::cast);
     }
 
     /**
-     * Retrieve the set of values that occur in matches for child.
+     * Retrieve the set of values that occur in matches for attribute.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<edu.toronto.cs.se.modelepedia.classdiagram.Class> getAllValuesOfchild() {
-      return rawStreamAllValuesOfchild(emptyArray()).collect(Collectors.toSet());
+    public Set<Attribute> getAllValuesOfattribute() {
+      return rawStreamAllValuesOfattribute(emptyArray()).collect(Collectors.toSet());
     }
 
     /**
-     * Retrieve the set of values that occur in matches for child.
+     * Retrieve the set of values that occur in matches for attribute.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Stream<edu.toronto.cs.se.modelepedia.classdiagram.Class> streamAllValuesOfchild() {
-      return rawStreamAllValuesOfchild(emptyArray());
+    public Stream<Attribute> streamAllValuesOfattribute() {
+      return rawStreamAllValuesOfattribute(emptyArray());
     }
 
     @Override
-    protected MultipleInheritance.Match tupleToMatch(final Tuple t) {
+    protected PublicAttributes.Match tupleToMatch(final Tuple t) {
       try {
-          return MultipleInheritance.Match.newMatch((edu.toronto.cs.se.modelepedia.classdiagram.Class) t.get(POSITION_CHILD));
+          return PublicAttributes.Match.newMatch((Attribute) t.get(POSITION_ATTRIBUTE));
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in tuple not properly typed!",e);
           return null;
@@ -422,9 +421,9 @@ public final class MultipleInheritance extends BaseGeneratedEMFQuerySpecificatio
     }
 
     @Override
-    protected MultipleInheritance.Match arrayToMatch(final Object[] match) {
+    protected PublicAttributes.Match arrayToMatch(final Object[] match) {
       try {
-          return MultipleInheritance.Match.newMatch((edu.toronto.cs.se.modelepedia.classdiagram.Class) match[POSITION_CHILD]);
+          return PublicAttributes.Match.newMatch((Attribute) match[POSITION_ATTRIBUTE]);
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in array not properly typed!",e);
           return null;
@@ -432,9 +431,9 @@ public final class MultipleInheritance extends BaseGeneratedEMFQuerySpecificatio
     }
 
     @Override
-    protected MultipleInheritance.Match arrayToMatchMutable(final Object[] match) {
+    protected PublicAttributes.Match arrayToMatchMutable(final Object[] match) {
       try {
-          return MultipleInheritance.Match.newMutableMatch((edu.toronto.cs.se.modelepedia.classdiagram.Class) match[POSITION_CHILD]);
+          return PublicAttributes.Match.newMutableMatch((Attribute) match[POSITION_ATTRIBUTE]);
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in array not properly typed!",e);
           return null;
@@ -446,12 +445,12 @@ public final class MultipleInheritance extends BaseGeneratedEMFQuerySpecificatio
      * @throws ViatraQueryRuntimeException if the pattern definition could not be loaded
      * 
      */
-    public static IQuerySpecification<MultipleInheritance.Matcher> querySpecification() {
-      return MultipleInheritance.instance();
+    public static IQuerySpecification<PublicAttributes.Matcher> querySpecification() {
+      return PublicAttributes.instance();
     }
   }
 
-  private MultipleInheritance() {
+  private PublicAttributes() {
     super(GeneratedPQuery.INSTANCE);
   }
 
@@ -460,7 +459,7 @@ public final class MultipleInheritance extends BaseGeneratedEMFQuerySpecificatio
    * @throws ViatraQueryRuntimeException if the pattern definition could not be loaded
    * 
    */
-  public static MultipleInheritance instance() {
+  public static PublicAttributes instance() {
     try{
         return LazyHolder.INSTANCE;
     } catch (ExceptionInInitializerError err) {
@@ -469,35 +468,35 @@ public final class MultipleInheritance extends BaseGeneratedEMFQuerySpecificatio
   }
 
   @Override
-  protected MultipleInheritance.Matcher instantiate(final ViatraQueryEngine engine) {
-    return MultipleInheritance.Matcher.on(engine);
+  protected PublicAttributes.Matcher instantiate(final ViatraQueryEngine engine) {
+    return PublicAttributes.Matcher.on(engine);
   }
 
   @Override
-  public MultipleInheritance.Matcher instantiate() {
-    return MultipleInheritance.Matcher.create();
+  public PublicAttributes.Matcher instantiate() {
+    return PublicAttributes.Matcher.create();
   }
 
   @Override
-  public MultipleInheritance.Match newEmptyMatch() {
-    return MultipleInheritance.Match.newEmptyMatch();
+  public PublicAttributes.Match newEmptyMatch() {
+    return PublicAttributes.Match.newEmptyMatch();
   }
 
   @Override
-  public MultipleInheritance.Match newMatch(final Object... parameters) {
-    return MultipleInheritance.Match.newMatch((edu.toronto.cs.se.modelepedia.classdiagram.Class) parameters[0]);
+  public PublicAttributes.Match newMatch(final Object... parameters) {
+    return PublicAttributes.Match.newMatch((edu.toronto.cs.se.modelepedia.classdiagram.Attribute) parameters[0]);
   }
 
   /**
-   * Inner class allowing the singleton instance of {@link MultipleInheritance} to be created 
+   * Inner class allowing the singleton instance of {@link PublicAttributes} to be created 
    *     <b>not</b> at the class load time of the outer class, 
-   *     but rather at the first call to {@link MultipleInheritance#instance()}.
+   *     but rather at the first call to {@link PublicAttributes#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 
    */
   private static class LazyHolder {
-    private static final MultipleInheritance INSTANCE = new MultipleInheritance();
+    private static final PublicAttributes INSTANCE = new PublicAttributes();
 
     /**
      * Statically initializes the query specification <b>after</b> the field {@link #INSTANCE} is assigned.
@@ -515,11 +514,11 @@ public final class MultipleInheritance extends BaseGeneratedEMFQuerySpecificatio
   }
 
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
-    private static final MultipleInheritance.GeneratedPQuery INSTANCE = new GeneratedPQuery();
+    private static final PublicAttributes.GeneratedPQuery INSTANCE = new GeneratedPQuery();
 
-    private final PParameter parameter_child = new PParameter("child", "edu.toronto.cs.se.modelepedia.classdiagram.Class", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://se.cs.toronto.edu/modelepedia/ClassDiagram", "Class")), PParameterDirection.INOUT);
+    private final PParameter parameter_attribute = new PParameter("attribute", "edu.toronto.cs.se.modelepedia.classdiagram.Attribute", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://se.cs.toronto.edu/modelepedia/ClassDiagram", "Attribute")), PParameterDirection.INOUT);
 
-    private final List<PParameter> parameters = Arrays.asList(parameter_child);
+    private final List<PParameter> parameters = Arrays.asList(parameter_attribute);
 
     private GeneratedPQuery() {
       super(PVisibility.PUBLIC);
@@ -527,12 +526,12 @@ public final class MultipleInheritance extends BaseGeneratedEMFQuerySpecificatio
 
     @Override
     public String getFullyQualifiedName() {
-      return "sle22.multipleInheritance";
+      return "sle22.publicAttributes";
     }
 
     @Override
     public List<String> getParameterNames() {
-      return Arrays.asList("child");
+      return Arrays.asList("attribute");
     }
 
     @Override
@@ -546,30 +545,26 @@ public final class MultipleInheritance extends BaseGeneratedEMFQuerySpecificatio
       Set<PBody> bodies = new LinkedHashSet<>();
       {
           PBody body = new PBody(this);
-          PVariable var_child = body.getOrCreateVariableByName("child");
-          PVariable var_parent1 = body.getOrCreateVariableByName("parent1");
-          PVariable var_parent2 = body.getOrCreateVariableByName("parent2");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_child), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://se.cs.toronto.edu/modelepedia/ClassDiagram", "Class")));
+          PVariable var_attribute = body.getOrCreateVariableByName("attribute");
+          new TypeConstraint(body, Tuples.flatTupleOf(var_attribute), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://se.cs.toronto.edu/modelepedia/ClassDiagram", "Attribute")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
-             new ExportedParameter(body, var_child, parameter_child)
+             new ExportedParameter(body, var_attribute, parameter_attribute)
           ));
-          //   Class.superclass(child, parent1)
-          new TypeConstraint(body, Tuples.flatTupleOf(var_child), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://se.cs.toronto.edu/modelepedia/ClassDiagram", "Class")));
+          //   Attribute.public(attribute, true)
           PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_child, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://se.cs.toronto.edu/modelepedia/ClassDiagram", "Class", "superclass")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://se.cs.toronto.edu/modelepedia/ClassDiagram", "Class")));
-          new Equality(body, var__virtual_0_, var_parent1);
-          //   Class.superclass(child, parent2)
-          new TypeConstraint(body, Tuples.flatTupleOf(var_child), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://se.cs.toronto.edu/modelepedia/ClassDiagram", "Class")));
+          new ConstantValue(body, var__virtual_0_, true);
+          new TypeConstraint(body, Tuples.flatTupleOf(var_attribute), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://se.cs.toronto.edu/modelepedia/ClassDiagram", "Attribute")));
           PVariable var__virtual_1_ = body.getOrCreateVariableByName(".virtual{1}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_child, var__virtual_1_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://se.cs.toronto.edu/modelepedia/ClassDiagram", "Class", "superclass")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_1_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://se.cs.toronto.edu/modelepedia/ClassDiagram", "Class")));
-          new Equality(body, var__virtual_1_, var_parent2);
-          //   parent1 != parent2
-          new Inequality(body, var_parent1, var_parent2);
+          new TypeConstraint(body, Tuples.flatTupleOf(var_attribute, var__virtual_1_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://se.cs.toronto.edu/modelepedia/ClassDiagram", "TypedElement", "public")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_1_), new EDataTypeInSlotsKey((EDataType)getClassifierLiteral("http://www.eclipse.org/emf/2002/Ecore", "EBoolean")));
+          new Equality(body, var__virtual_1_, var__virtual_0_);
           bodies.add(body);
       }
       return bodies;
     }
+  }
+
+  private static boolean evaluateExpression_1_1() {
+    return true;
   }
 }

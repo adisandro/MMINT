@@ -18,4 +18,5 @@ Require-Bundle: org.eclipse.core.runtime,
  edu.toronto.cs.se.mmint.productline,
  edu.toronto.cs.se.mmint.viatra
 Bundle-Vendor: %providerName
-Export-Package: edu.toronto.cs.se.mmint.productline.viatra.reasoning
+Export-Package: edu.toronto.cs.se.mmint.productline.operators,
+ edu.toronto.cs.se.mmint.productline.viatra.reasoning

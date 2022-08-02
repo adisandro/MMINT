@@ -12,7 +12,7 @@
  --><plugin>
   <extension id="sle22.Query" point="org.eclipse.viatra.query.runtime.queryspecification">
     <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:sle22.Query" id="sle22.Query">
-      <query-specification fqn="sle22.multipleInheritance"/>
+      <query-specification fqn="sle22.publicAttributes"/>
     </group>
   </extension>
 </plugin>

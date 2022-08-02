@@ -10,10 +10,7 @@
  * Contributors:
  *     Alessio Di Sandro - Implementation
  *******************************************************************************/
-package sle22
+@NonNullByDefault
+package edu.toronto.cs.se.mmint.examples.sle22.operators;
 
-import "http://se.cs.toronto.edu/modelepedia/ClassDiagram"
-
-pattern publicAttributes(attribute: Attribute) {
-  Attribute.public(attribute, true);
-}
+import org.eclipse.jdt.annotation.NonNullByDefault;
