@@ -75,23 +75,25 @@ public class CDMAVOToProductLine extends ToProductLine {
       ClassDiagramPackage.eINSTANCE.getClass_AssociationsAsSource(),
       ClassDiagram_MAVOPackage.eINSTANCE.getClass_AssociationsAsTarget(),
       ClassDiagramPackage.eINSTANCE.getClass_AssociationsAsTarget(),
-      ClassDiagram_MAVOPackage.eINSTANCE.getClass_Superclass(),
-      ClassDiagram_MAVOPackage.eINSTANCE.getClass_Superclass());
-    // pass 1: classes and attributes
+      ClassDiagramPackage.eINSTANCE.getClass_Superclass(),
+      ClassDiagramPackage.eINSTANCE.getClass_Superclass());
+    // pass 1: adjust class and attribute types from CDMAVO to CD
     for (var classIter = this.out.productLine.getClasses().iterator(); classIter.hasNext();) {
       var plClass = classIter.next();
       if (plClass.getType() == ClassDiagram_MAVOPackage.eINSTANCE.getSuperclassReference()) {
+        // turn MAVOReferences from CLass back to Reference
         var plReference = ProductLineFactory.eINSTANCE.createReference();
         plReference.setPresenceCondition("true");
         plReference.setType(ClassDiagramPackage.eINSTANCE.getClass_Superclass());
-        for (var tgt : plClass.getReferencesAsTargets()) {
-          this.out.productLine.getReferences().remove(tgt);
-          if (tgt.getType() == ClassDiagram_MAVOPackage.eINSTANCE.getClass_Superclass()) {
-            plReference.setSource(tgt.getSource());
+        for (var tgtReference : plClass.getReferencesAsTargets()) {
+          this.out.productLine.getReferences().remove(tgtReference);
+          if (tgtReference.getType() == ClassDiagram_MAVOPackage.eINSTANCE.getClass_Superclass()) {
+            plReference.setSource(tgtReference.getSource());
           }
           else {
-            plReference.getTargets().add(tgt.getSource());
+            plReference.getTargets().add(tgtReference.getSource());
           }
+          tgtReference.setSource(null);
         }
         this.out.productLine.getReferences().add(plReference);
         classIter.remove();
@@ -100,6 +102,7 @@ public class CDMAVOToProductLine extends ToProductLine {
         plClass.setType(classTypeSwitch.get(plClass.getType()));
         for (var attrIter = plClass.getAttributes().iterator(); attrIter.hasNext();) {
           var plAttribute = attrIter.next();
+          // set the presence condition
           if (plAttribute.getType() == MAVOPackage.eINSTANCE.getLogicElement_FormulaVariable()) {
             plClass.setPresenceCondition(plAttribute.getValue());
           }
@@ -112,7 +115,7 @@ public class CDMAVOToProductLine extends ToProductLine {
         }
       }
     }
-    // pass 2: references
+    // pass 2: adjust reference types from CDMAVO to CD
     for (var plReference : this.out.productLine.getReferences()) {
       plReference.setType(refTypeSwitch.get(plReference.getType()));
     }
