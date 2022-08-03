@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.viatra.query.patternlanguage.emf.vql.AggregatedValue;
+import org.eclipse.viatra.query.patternlanguage.emf.vql.BoolValue;
 import org.eclipse.viatra.query.patternlanguage.emf.vql.ClassType;
 import org.eclipse.viatra.query.patternlanguage.emf.vql.ClosureType;
 import org.eclipse.viatra.query.patternlanguage.emf.vql.CompareConstraint;
@@ -325,12 +326,15 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
       if (edgeFeature instanceof EAttribute edgeAttribute) {
         var dst = pathConstraint.getDst();
         ValueReference plValue;
-        //TODO MMINT[JAVA19] Convert to switch with pattern matching
+        //TODO MMINT[JAVA20] Convert to switch with pattern matching
         if (dst instanceof StringValue strDst) {
           plValue = createStringValue(strDst.getValue());
         }
         else if (dst instanceof EnumValue enumDst) {
           plValue = createStringValue(enumDst.getLiteral().getLiteral());
+        }
+        else if (dst instanceof BoolValue boolDst) {
+          plValue = createStringValue(String.valueOf(boolDst.getValue().isIsTrue()));
         }
         else if (dst instanceof VariableReference varRefDst) {
           var varDst = varRefDst.getVariable();
@@ -441,7 +445,7 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
   private List<? extends Constraint> liftCompareConstraint(CompareConstraint compareConstraint,
                                                            EList<Variable> plParameters, EList<Variable> plVariables,
                                                            Map<String, Variable> plVarsMap) throws Exception {
-    //TODO MMINT[JAVA19] Convert to switch with pattern matching
+    //TODO MMINT[JAVA20] Convert to switch with pattern matching
     var left = compareConstraint.getLeftOperand();
     if (!(left instanceof VariableReference leftVarRef)) {
       throw new MMINTException("Left operand type " + left.getClass().getName() + " not supported");
