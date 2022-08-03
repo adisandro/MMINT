@@ -167,11 +167,12 @@ public class ToProduct extends OperatorImpl {
         }
         else {
           value = switch(emfType.getName()) {
-            case "EInt"    -> Integer.parseInt(plAttribute.getValue());
-            case "EFloat"  -> Float.parseFloat(plAttribute.getValue());
-            case "EDouble" -> Double.parseDouble(plAttribute.getValue());
-            case "EString" -> plAttribute.getValue();
-            default        -> plAttribute.getValue();
+            case "EBoolean" -> Boolean.parseBoolean(plAttribute.getValue());
+            case "EInt"     -> Integer.parseInt(plAttribute.getValue());
+            case "EFloat"   -> Float.parseFloat(plAttribute.getValue());
+            case "EDouble"  -> Double.parseDouble(plAttribute.getValue());
+            case "EString"  -> plAttribute.getValue();
+            default         -> plAttribute.getValue();
           };
         }
         FileUtils.setModelObjectFeature(productModelObj, plAttribute.getType().getName(), value);

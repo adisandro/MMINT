@@ -19,7 +19,10 @@ import edu.toronto.cs.se.mavo.MAVOPackage;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.productline.ProductLineFactory;
 import edu.toronto.cs.se.mmint.productline.operators.ToProductLine;
+import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage;
+import edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage;
 
 public class CDMAVOToProductLine extends ToProductLine {
 
@@ -41,56 +44,75 @@ public class CDMAVOToProductLine extends ToProductLine {
   protected void toProductLine() {
     super.toProductLine();
     var classTypeSwitch = Map.of(
-      edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage.eINSTANCE.getClassDiagram(),
-      edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage.eINSTANCE.getClassDiagram(),
-      edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage.eINSTANCE.getClass_(),
-      edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage.eINSTANCE.getClass_(),
-      edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage.eINSTANCE.getAttribute(),
-      edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage.eINSTANCE.getAttribute(),
-      edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage.eINSTANCE.getOperation(),
-      edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage.eINSTANCE.getOperation(),
-      edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage.eINSTANCE.getAssociation(),
-      edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage.eINSTANCE.getAssociation());
+      ClassDiagram_MAVOPackage.eINSTANCE.getClassDiagram(), ClassDiagramPackage.eINSTANCE.getClassDiagram(),
+      ClassDiagram_MAVOPackage.eINSTANCE.getClass_(),       ClassDiagramPackage.eINSTANCE.getClass_(),
+      ClassDiagram_MAVOPackage.eINSTANCE.getAttribute(),    ClassDiagramPackage.eINSTANCE.getAttribute(),
+      ClassDiagram_MAVOPackage.eINSTANCE.getOperation(),    ClassDiagramPackage.eINSTANCE.getOperation(),
+      ClassDiagram_MAVOPackage.eINSTANCE.getAssociation(),  ClassDiagramPackage.eINSTANCE.getAssociation());
     var attrTypeSwitch = Map.of(
-      edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage.eINSTANCE.getNamedElement_Name(),
-      edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage.eINSTANCE.getNamedElement_Name(),
-      edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage.eINSTANCE.getTypedElement_Public(),
-      edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage.eINSTANCE.getTypedElement_Public());
+      ClassDiagram_MAVOPackage.eINSTANCE.getNamedElement_Name(),
+      ClassDiagramPackage.eINSTANCE.getNamedElement_Name(),
+      ClassDiagram_MAVOPackage.eINSTANCE.getTypedElement_Public(),
+      ClassDiagramPackage.eINSTANCE.getTypedElement_Public());
     var attrTypeDelete = Set.of(
       MAVOPackage.eINSTANCE.getLogicElement_FormulaVariable(),
       MAVOPackage.eINSTANCE.getMAVOElement_May(),
       MAVOPackage.eINSTANCE.getMAVOElement_Set(),
-      MAVOPackage.eINSTANCE.getMAVOElement_Var());
+      MAVOPackage.eINSTANCE.getMAVOElement_Var(),
+      MAVOPackage.eINSTANCE.getMAVORoot_Inc());
     var refTypeSwitch = Map.of(
-      edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage.eINSTANCE.getClassDiagram_Classes(),
-      edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage.eINSTANCE.getClassDiagram_Classes(),
-      edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage.eINSTANCE.getClassDiagram_Associations(),
-      edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage.eINSTANCE.getClassDiagram_Associations(),
-      edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage.eINSTANCE.getClass_OwnedAttributes(),
-      edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage.eINSTANCE.getClass_OwnedAttributes(),
-      edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage.eINSTANCE.getClass_OwnedOperations(),
-      edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage.eINSTANCE.getClass_OwnedOperations(),
-      edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage.eINSTANCE.getTypedElement_Type(),
-      edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage.eINSTANCE.getTypedElement_Type(),
-      edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage.eINSTANCE.getClass_AssociationsAsSource(),
-      edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage.eINSTANCE.getClass_AssociationsAsSource(),
-      edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage.eINSTANCE.getClass_AssociationsAsTarget(),
-      edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage.eINSTANCE.getClass_AssociationsAsTarget());
-    for (var plClass : this.out.productLine.getClasses()) {
-      plClass.setType(classTypeSwitch.get(plClass.getType()));
-      for (var iter = plClass.getAttributes().iterator(); iter.hasNext();) {
-        var plAttribute = iter.next();
-        if (plAttribute.getType() == MAVOPackage.eINSTANCE.getLogicElement_FormulaVariable()) {
-          plClass.setPresenceCondition(plAttribute.getValue());
+      ClassDiagram_MAVOPackage.eINSTANCE.getClassDiagram_Classes(),
+      ClassDiagramPackage.eINSTANCE.getClassDiagram_Classes(),
+      ClassDiagram_MAVOPackage.eINSTANCE.getClassDiagram_Associations(),
+      ClassDiagramPackage.eINSTANCE.getClassDiagram_Associations(),
+      ClassDiagram_MAVOPackage.eINSTANCE.getClass_OwnedAttributes(),
+      ClassDiagramPackage.eINSTANCE.getClass_OwnedAttributes(),
+      ClassDiagram_MAVOPackage.eINSTANCE.getClass_OwnedOperations(),
+      ClassDiagramPackage.eINSTANCE.getClass_OwnedOperations(),
+      ClassDiagram_MAVOPackage.eINSTANCE.getTypedElement_Type(),
+      ClassDiagramPackage.eINSTANCE.getTypedElement_Type(),
+      ClassDiagram_MAVOPackage.eINSTANCE.getClass_AssociationsAsSource(),
+      ClassDiagramPackage.eINSTANCE.getClass_AssociationsAsSource(),
+      ClassDiagram_MAVOPackage.eINSTANCE.getClass_AssociationsAsTarget(),
+      ClassDiagramPackage.eINSTANCE.getClass_AssociationsAsTarget(),
+      ClassDiagram_MAVOPackage.eINSTANCE.getClass_Superclass(),
+      ClassDiagram_MAVOPackage.eINSTANCE.getClass_Superclass());
+    // pass 1: classes and attributes
+    for (var classIter = this.out.productLine.getClasses().iterator(); classIter.hasNext();) {
+      var plClass = classIter.next();
+      if (plClass.getType() == ClassDiagram_MAVOPackage.eINSTANCE.getSuperclassReference()) {
+        var plReference = ProductLineFactory.eINSTANCE.createReference();
+        plReference.setPresenceCondition("true");
+        plReference.setType(ClassDiagramPackage.eINSTANCE.getClass_Superclass());
+        for (var tgt : plClass.getReferencesAsTargets()) {
+          this.out.productLine.getReferences().remove(tgt);
+          if (tgt.getType() == ClassDiagram_MAVOPackage.eINSTANCE.getClass_Superclass()) {
+            plReference.setSource(tgt.getSource());
+          }
+          else {
+            plReference.getTargets().add(tgt.getSource());
+          }
         }
-        if (attrTypeDelete.contains(plAttribute.getType())) {
-          iter.remove();
-        }
-        else {
-          plAttribute.setType(attrTypeSwitch.get(plAttribute.getType()));
+        this.out.productLine.getReferences().add(plReference);
+        classIter.remove();
+      }
+      else {
+        plClass.setType(classTypeSwitch.get(plClass.getType()));
+        for (var attrIter = plClass.getAttributes().iterator(); attrIter.hasNext();) {
+          var plAttribute = attrIter.next();
+          if (plAttribute.getType() == MAVOPackage.eINSTANCE.getLogicElement_FormulaVariable()) {
+            plClass.setPresenceCondition(plAttribute.getValue());
+          }
+          if (attrTypeDelete.contains(plAttribute.getType())) {
+            attrIter.remove();
+          }
+          else {
+            plAttribute.setType(attrTypeSwitch.get(plAttribute.getType()));
+          }
         }
       }
     }
+    // pass 2: references
     for (var plReference : this.out.productLine.getReferences()) {
       plReference.setType(refTypeSwitch.get(plReference.getType()));
     }
