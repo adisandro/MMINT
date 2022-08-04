@@ -545,6 +545,9 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
         plConstraints.addAll(liftCompareConstraint(compareConstraint, plParameters, plVariables, plVarsMap));
       }
       else if (constraint instanceof PatternCompositionConstraint patternConstraint) {
+        if (patternConstraint.isNegative()) {
+          throw new MMINTException("Negative PatternCompositionConstraint not supported");
+        }
         plConstraints.addAll(liftPatternCompositionConstraint(patternConstraint, plParameters, plVariables, plVarsMap));
       }
       else {
