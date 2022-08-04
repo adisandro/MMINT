@@ -474,12 +474,16 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
       }
       // aggregation with path expression
       else if (aggCall instanceof PathExpressionConstraint aggPathExpr) {
-        var aggName = ((VariableReference) aggPathExpr.getDst()).getVariable().getName();
-        this.aggregatedGroupBy = Set.of(aggName);
-        if (this.aggregator != Aggregator.COUNT) {
+        String aggName;
+        if (this.aggregator == Aggregator.COUNT) {
+          aggName = aggPathExpr.getSrc().getVariable().getName();
+        }
+        else {
+          aggName = ((VariableReference) aggPathExpr.getDst()).getVariable().getName();
           createParameterAndRef(aggName, aggPathExpr.getEdgeTypes().get(0).getRefname().getEType(),
                                 ParameterDirection.OUT, plParameters, plVariables, plVarsMap);
         }
+        this.aggregatedGroupBy = Set.of(aggName);
         return createPathExpressionConstraint(aggPathExpr, plParameters, plVariables, plVarsMap);
       }
     }
@@ -620,7 +624,7 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
         aggregatedValue = aggregatedMatch.iterator().next();
         aggregatedMatch = Set.of();
       }
-      var presenceConditions = getPresenceConditions(plElements);//TODO What happens if it's a true?
+      var presenceConditions = getPresenceConditions(plElements);
       aggregations = this.featureReasoner.aggregate(presenceConditions, this.featuresConstraint, aggregatedMatch,
                                                     aggregatedValue, this.aggregator.aggregatorLambda, aggregations);
     }
