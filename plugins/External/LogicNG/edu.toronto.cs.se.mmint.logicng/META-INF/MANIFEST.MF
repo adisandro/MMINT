@@ -14,3 +14,4 @@ Require-Bundle: org.eclipse.core.runtime,
 Bundle-ClassPath: target/dependency/logicng.jar,
  target/dependency/antlr4-runtime.jar,
  .
+Export-Package: edu.toronto.cs.se.mmint.logicng.reasoning
