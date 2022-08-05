@@ -18,6 +18,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.eclipse.core.runtime.IStatus;
 import org.logicng.datastructures.Substitution;
 import org.logicng.datastructures.Tristate;
 import org.logicng.formulas.Formula;
@@ -26,6 +27,7 @@ import org.logicng.io.parsers.ParserException;
 import org.logicng.io.parsers.PropositionalParser;
 import org.logicng.solvers.MiniSat;
 
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeatureConstraintTrait;
 import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineQueryTrait.AggregatorLambda;
 
@@ -59,6 +61,7 @@ public class LogicNGReasoner implements IProductLineFeatureConstraintTrait {
       return minisat.sat() == Tristate.TRUE;
     }
     catch (ParserException e) {
+      MMINTException.print(IStatus.WARNING, "Error parsing " + getName() + " formula, returning false", e);
       return false;
     }
   }
@@ -78,6 +81,7 @@ public class LogicNGReasoner implements IProductLineFeatureConstraintTrait {
       return minisat.sat() == Tristate.TRUE;
     }
     catch (ParserException e) {
+      MMINTException.print(IStatus.WARNING, "Error parsing " + getName() + " formula, returning false", e);
       return false;
     }
   }
