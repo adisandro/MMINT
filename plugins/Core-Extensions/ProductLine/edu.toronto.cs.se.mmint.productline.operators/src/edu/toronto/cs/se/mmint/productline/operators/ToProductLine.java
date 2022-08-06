@@ -21,6 +21,8 @@ import java.util.Set;
 
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 
@@ -33,9 +35,11 @@ import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
+import edu.toronto.cs.se.mmint.productline.Attribute;
 import edu.toronto.cs.se.mmint.productline.Class;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.productline.ProductLineFactory;
+import edu.toronto.cs.se.mmint.productline.Reference;
 
 public class ToProductLine extends OperatorImpl {
   protected In in;
@@ -95,23 +99,46 @@ public class ToProductLine extends OperatorImpl {
     this.out = new Out(outputMIDsByName, getWorkingPath(), this.in);
   }
 
-  private void createPLClassAndAttributes(EObject pModelObj, Map<String, Class> plClasses) {
-    var plType = pModelObj.eClass();
+  protected Class createPLClass(EObject modelObj, EClass plType, Map<String, Class> plClasses) {
     var plClass = ProductLineFactory.eINSTANCE.createClass();
     plClass.setPresenceCondition("true");
     plClass.setType(plType);
     this.out.productLine.getClasses().add(plClass);
-    plClasses.put(MIDRegistry.getModelElementUri(pModelObj), plClass);
+    plClasses.put(MIDRegistry.getModelElementUri(modelObj), plClass);
+
+    return plClass;
+  }
+
+  protected Attribute createPLAttribute(EAttribute plType, String plValue, Class plClass) {
+    var plAttribute = ProductLineFactory.eINSTANCE.createAttribute();
+    plAttribute.setPresenceCondition("true");
+    plAttribute.setType(plType);
+    plAttribute.setValue(plValue);
+    plClass.getAttributes().add(plAttribute);
+
+    return plAttribute;
+  }
+
+  protected Reference createPLReference(EReference plType, Class plSrc, Class plTgt) {
+    var plReference = ProductLineFactory.eINSTANCE.createReference();
+    plReference.setPresenceCondition("true");
+    plReference.setType(plType);
+    plReference.setSource(plSrc);
+    plReference.getTargets().add(plTgt);
+    this.out.productLine.getReferences().add(plReference);
+
+    return plReference;
+  }
+
+  private void createPLClassAndAttributes(EObject pModelObj, Map<String, Class> plClasses) {
+    var plType = pModelObj.eClass();
+    var plClass = createPLClass(pModelObj, plType, plClasses);
     for (var pAttribute : plType.getEAllAttributes()) {
       var plValue = pModelObj.eGet(pAttribute);
       if (plValue == null) {
         continue;
       }
-      var plAttribute = ProductLineFactory.eINSTANCE.createAttribute();
-      plAttribute.setPresenceCondition("true");
-      plAttribute.setType(pAttribute);
-      plAttribute.setValue(plValue.toString());
-      plClass.getAttributes().add(plAttribute);
+      createPLAttribute(pAttribute, plValue.toString(), plClass);
     }
   }
 
@@ -140,12 +167,7 @@ public class ToProductLine extends OperatorImpl {
       }
       var plSource = plClasses.get(MIDRegistry.getModelElementUri(pModelObj));
       for (var plTarget : plTargets) {
-        var plReference = ProductLineFactory.eINSTANCE.createReference();
-        plReference.setPresenceCondition("true");
-        plReference.setType(pReference);
-        plReference.setSource(plSource);
-        plReference.getTargets().add(plTarget);
-        this.out.productLine.getReferences().add(plReference);
+        createPLReference(pReference, plSource, plTarget);
       }
     }
   }

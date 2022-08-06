@@ -24,10 +24,10 @@ import edu.toronto.cs.se.mmint.productline.operators.ToProductLine;
 import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage;
 
-public class CDMAVOToProductLine extends ToProductLine {
+public class CDMAVOToCDProductLine extends ToProductLine {
 
-  protected static class CDMAVOToPLOut extends Out {
-    public CDMAVOToPLOut(Map<String, MID> outputMIDsByName, String workingPath, In in) throws MMINTException {
+  protected static class CDMAVOToCDPLOut extends Out {
+    public CDMAVOToCDPLOut(Map<String, MID> outputMIDsByName, String workingPath, In in) throws MMINTException {
       super(outputMIDsByName, workingPath, in);
       this.productLine.setReasonerName("LogicNG");
       this.productLine.setMetamodel(edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage.eINSTANCE);
@@ -37,7 +37,7 @@ public class CDMAVOToProductLine extends ToProductLine {
   @Override
   protected void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws MMINTException {
     this.in = new In(inputsByName);
-    this.out = new CDMAVOToPLOut(outputMIDsByName, getWorkingPath(), this.in);
+    this.out = new CDMAVOToCDPLOut(outputMIDsByName, getWorkingPath(), this.in);
   }
 
   @Override
