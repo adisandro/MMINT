@@ -79,6 +79,9 @@
     <attributes value="name">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
+    <attributes value="true">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/public"/>
+    </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
   <classes referencesAsSource="//@references.21 //@references.23 //@references.25 //@references.27 //@references.29 //@references.31 //@references.33 //@references.51 //@references.73" referencesAsTargets="//@references.20 //@references.69 //@references.70">
@@ -90,6 +93,9 @@
   <classes presenceCondition="Probability" referencesAsSource="//@references.57" referencesAsTargets="//@references.21">
     <attributes presenceCondition="Probability" value="probability">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
+    </attributes>
+    <attributes presenceCondition="Probability" value="true">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/public"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
@@ -139,17 +145,26 @@
     <attributes value="name">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
+    <attributes value="true">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/public"/>
+    </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
   <classes presenceCondition="Initial" referencesAsSource="//@references.66" referencesAsTargets="//@references.36">
     <attributes presenceCondition="Initial" value="isInitial">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
+    <attributes presenceCondition="Initial" value="true">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/public"/>
+    </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
   <classes presenceCondition="Final" referencesAsSource="//@references.67" referencesAsTargets="//@references.37">
     <attributes presenceCondition="Final" value="isFinal">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
+    </attributes>
+    <attributes presenceCondition="Final" value="true">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/public"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
