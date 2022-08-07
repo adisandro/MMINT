@@ -87,6 +87,8 @@ public class AnnotatedEcoreToCDProductLine extends ToProductLine {
           .setPresenceCondition(plEAttribute.getPresenceCondition());
         createPLAttribute(ClassDiagramPackage.eINSTANCE.getNamedElement_Name(), eAttribute.getName(), plEAttribute)
           .setPresenceCondition(plEAttribute.getPresenceCondition());
+        createPLAttribute(ClassDiagramPackage.eINSTANCE.getTypedElement_Public(), "true", plEAttribute)
+          .setPresenceCondition(plEAttribute.getPresenceCondition());
       }
       for (var eReference : eClass.getEReferences()) {
         var plEReference = createPLClass(eReference, ClassDiagramPackage.eINSTANCE.getAssociation(), plClasses);
