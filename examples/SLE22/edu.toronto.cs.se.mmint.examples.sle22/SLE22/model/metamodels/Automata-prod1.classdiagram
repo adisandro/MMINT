@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classdiagram:ClassDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:classdiagram="http://se.cs.toronto.edu/modelepedia/ClassDiagram">
+  <classes name="AcceptanceKind"/>
+  <classes name="Alphabet" associationsAsSource="//@associations.2"/>
+  <classes name="Symbol" associationsAsTarget="//@associations.2">
+    <ownedAttributes name="name" type="//@datatypes.0" public="true"/>
+  </classes>
+  <classes name="Transition" associationsAsSource="//@associations.3 //@associations.4" associationsAsTarget="//@associations.1"/>
+  <associations name="states"/>
+  <associations name="transitions" target="//@classes.3"/>
+  <associations name="symbols" source="//@classes.1" target="//@classes.2"/>
+  <associations name="from" source="//@classes.3"/>
+  <associations name="to" source="//@classes.3"/>
+  <datatypes name="EString"/>
+  <datatypes name="EBigDecimal"/>
+  <datatypes name="EBooleanObject"/>
+</classdiagram:ClassDiagram>
