@@ -15,10 +15,14 @@ package edu.toronto.cs.se.mmint.logicng.reasoning;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
+import java.util.Random;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.jdt.annotation.Nullable;
+import org.logicng.datastructures.Assignment;
 import org.logicng.datastructures.Substitution;
 import org.logicng.datastructures.Tristate;
 import org.logicng.formulas.Formula;
@@ -83,6 +87,47 @@ public class LogicNGReasoner implements IProductLineFeatureConstraintTrait {
     catch (ParserException e) {
       MMINTException.print(IStatus.WARNING, "Error parsing " + getName() + " formula, returning false", e);
       return false;
+    }
+  }
+
+  @Override
+  public Optional<Map<String, Boolean>> assignFeatures(String plFormula, Map<String, Boolean> featureValues,
+                                                       @Nullable Random random) {
+    var newFeatureValues = new HashMap<String, Boolean>();
+    var factory = new FormulaFactory();
+    var parser = new PropositionalParser(factory);
+    var minisat = MiniSat.miniSat(factory);
+    try {
+      var formula = parser.parse(plFormula);
+      if (!featureValues.isEmpty()) {
+        var sub = new Substitution();
+        featureValues.forEach((k, v) -> sub.addMapping(factory.variable(k), factory.constant(v)));
+        formula = formula.substitute(sub);
+      }
+      minisat.add(formula);
+      var sat = minisat.sat();
+      if (sat != Tristate.TRUE) {
+        return Optional.empty();
+      }
+      Assignment assignment;
+      if (random != null) {
+        var assignments = minisat.enumerateAllModels();
+        assignment = assignments.get(random.nextInt(assignments.size()));
+      }
+      else {
+        assignment = minisat.model();
+      }
+      for (var pos : assignment.positiveVariables()) {
+        newFeatureValues.put(pos.name(), true);
+      }
+      for (var neg : assignment.negativeVariables()) {
+        newFeatureValues.put(neg.name(), false);
+      }
+      return Optional.of(newFeatureValues);
+    }
+    catch (ParserException e) {
+      MMINTException.print(IStatus.WARNING, "Error parsing " + getName() + " formula, returning empty model", e);
+      return Optional.empty();
     }
   }
 
