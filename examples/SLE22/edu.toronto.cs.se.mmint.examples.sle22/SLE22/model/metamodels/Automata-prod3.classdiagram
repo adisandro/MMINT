@@ -5,7 +5,9 @@
   <classes name="Symbol" associationsAsTarget="//@associations.0 //@associations.1 //@associations.2 //@associations.3">
     <ownedAttributes name="name" type="//@datatypes.0" public="true"/>
   </classes>
-  <classes name="Transition" associationsAsSource="//@associations.1 //@associations.2 //@associations.3" associationsAsTarget="//@associations.4"/>
+  <classes name="Transition" associationsAsSource="//@associations.1 //@associations.2 //@associations.3" associationsAsTarget="//@associations.4">
+    <ownedAttributes name="probability" type="//@datatypes.1" public="true"/>
+  </classes>
   <classes name="HierarchicalState" associationsAsSource="//@associations.4"/>
   <associations name="symbols" source="//@classes.1" target="//@classes.2"/>
   <associations name="input" source="//@classes.3" target="//@classes.2"/>

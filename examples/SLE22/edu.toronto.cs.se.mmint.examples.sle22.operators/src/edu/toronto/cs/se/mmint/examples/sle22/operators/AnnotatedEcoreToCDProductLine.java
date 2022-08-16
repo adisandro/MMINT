@@ -74,37 +74,31 @@ public class AnnotatedEcoreToCDProductLine extends ToProductLine {
 
     for (var eClassifier : ePackage.getEClassifiers()) {
       var plEClass = createPLClass(eClassifier, ClassDiagramPackage.eINSTANCE.getClass_(), plClasses);
+      var plEClassPC = plEClass.getPresenceCondition();
       createPLReference(ClassDiagramPackage.eINSTANCE.getClassDiagram_Classes(), plEPackage, plEClass)
-        .setPresenceCondition(plEClass.getPresenceCondition());
+        .setPresenceCondition(plEClassPC);
       createPLAttribute(ClassDiagramPackage.eINSTANCE.getNamedElement_Name(), eClassifier.getName(), plEClass)
-        .setPresenceCondition(plEClass.getPresenceCondition());
+        .setPresenceCondition(plEClassPC);
       if (!(eClassifier instanceof EClass eClass)) {
         continue;
       }
       for (var eAttribute : eClass.getEAttributes()) {
         var plEAttribute = createPLClass(eAttribute, ClassDiagramPackage.eINSTANCE.getAttribute(), plClasses);
+        var plEAttributePC = "(" + plEAttribute.getPresenceCondition() + ") & (" + plEClassPC + ")";
         createPLReference(ClassDiagramPackage.eINSTANCE.getClass_OwnedAttributes(), plEClass, plEAttribute)
-          .setPresenceCondition(plEAttribute.getPresenceCondition());
+          .setPresenceCondition(plEAttributePC);
         createPLAttribute(ClassDiagramPackage.eINSTANCE.getNamedElement_Name(), eAttribute.getName(), plEAttribute)
-          .setPresenceCondition(plEAttribute.getPresenceCondition());
+          .setPresenceCondition(plEAttributePC);
         createPLAttribute(ClassDiagramPackage.eINSTANCE.getTypedElement_Public(), "true", plEAttribute)
-          .setPresenceCondition(plEAttribute.getPresenceCondition());
-      }
-      for (var eReference : eClass.getEReferences()) {
-        var plEReference = createPLClass(eReference, ClassDiagramPackage.eINSTANCE.getAssociation(), plClasses);
-        createPLReference(ClassDiagramPackage.eINSTANCE.getClassDiagram_Associations(), plEPackage, plEReference)
-          .setPresenceCondition(plEReference.getPresenceCondition());
-        createPLReference(ClassDiagramPackage.eINSTANCE.getClass_AssociationsAsSource(), plEClass, plEReference)
-          .setPresenceCondition(plEReference.getPresenceCondition());
-        createPLAttribute(ClassDiagramPackage.eINSTANCE.getNamedElement_Name(), eReference.getName(), plEReference)
-          .setPresenceCondition(plEReference.getPresenceCondition());
+          .setPresenceCondition(plEAttributePC);
       }
       for (var eOperation : eClass.getEOperations()) {
         var plEOperation = createPLClass(eOperation, ClassDiagramPackage.eINSTANCE.getOperation(), plClasses);
+        var plEOperationPC = "(" + plEOperation.getPresenceCondition() + ") & (" + plEClassPC + ")";
         createPLReference(ClassDiagramPackage.eINSTANCE.getClass_OwnedOperations(), plEClass, plEOperation)
-          .setPresenceCondition(plEOperation.getPresenceCondition());
+          .setPresenceCondition(plEOperationPC);
         createPLAttribute(ClassDiagramPackage.eINSTANCE.getNamedElement_Name(), eOperation.getName(), plEOperation)
-          .setPresenceCondition(plEOperation.getPresenceCondition());
+          .setPresenceCondition(plEOperationPC);
       }
     }
 
@@ -112,11 +106,13 @@ public class AnnotatedEcoreToCDProductLine extends ToProductLine {
       if (!(eClassifier instanceof EClass eClass)) {
         continue;
       }
+      var plEClass = plClasses.get(MIDRegistry.getModelElementUri(eClass));
+      var plEClassPC = plEClass.getPresenceCondition();
       for (var eSuperclass : eClass.getESuperTypes()) {
-        var plSrc = plClasses.get(MIDRegistry.getModelElementUri(eClass));
-        var plTgt = plClasses.get(MIDRegistry.getModelElementUri(eSuperclass));
-        createPLReference(ClassDiagramPackage.eINSTANCE.getClass_Superclass(), plSrc, plTgt)
-          .setPresenceCondition(plTgt.getPresenceCondition());
+        var plESuperclass = plClasses.get(MIDRegistry.getModelElementUri(eSuperclass));
+        var plESuperclassPC = "(" + plESuperclass.getPresenceCondition() + ") & (" + plEClassPC + ")";
+        createPLReference(ClassDiagramPackage.eINSTANCE.getClass_Superclass(), plEClass, plESuperclass)
+          .setPresenceCondition(plESuperclassPC);
       }
       for (var eAttribute : eClass.getEAttributes()) {
         var plSrc = plClasses.get(MIDRegistry.getModelElementUri(eAttribute));
@@ -128,13 +124,7 @@ public class AnnotatedEcoreToCDProductLine extends ToProductLine {
           createPLAttribute(ClassDiagramPackage.eINSTANCE.getNamedElement_Name(), eAttribute.getEType().getName(), plTgt);
         }
         createPLReference(ClassDiagramPackage.eINSTANCE.getTypedElement_Type(), plSrc, plTgt)
-          .setPresenceCondition(plTgt.getPresenceCondition());
-      }
-      for (var eReference : eClass.getEReferences()) {
-        var plSrc = plClasses.get(MIDRegistry.getModelElementUri(eReference.getEType()));
-        var plTgt = plClasses.get(MIDRegistry.getModelElementUri(eReference));
-        createPLReference(ClassDiagramPackage.eINSTANCE.getClass_AssociationsAsTarget(), plSrc, plTgt)
-          .setPresenceCondition(plTgt.getPresenceCondition());
+          .setPresenceCondition(plSrc.getPresenceCondition());
       }
       for (var eOperation : eClass.getEOperations()) {
         var plSrc = plClasses.get(MIDRegistry.getModelElementUri(eOperation));
@@ -146,7 +136,21 @@ public class AnnotatedEcoreToCDProductLine extends ToProductLine {
           createPLAttribute(ClassDiagramPackage.eINSTANCE.getNamedElement_Name(), eOperation.getEType().getName(), plTgt);
         }
         createPLReference(ClassDiagramPackage.eINSTANCE.getTypedElement_Type(), plSrc, plTgt)
-          .setPresenceCondition(plTgt.getPresenceCondition());
+          .setPresenceCondition(plSrc.getPresenceCondition());
+      }
+      for (var eReference : eClass.getEReferences()) {
+        var plEReference = createPLClass(eReference, ClassDiagramPackage.eINSTANCE.getAssociation(), plClasses);
+        var plEClassTgt = plClasses.get(MIDRegistry.getModelElementUri(eReference.getEType()));
+        var plEReferencePC = "(" + plEReference.getPresenceCondition() + ") & (" + plEClassPC + ") & (" +
+                             plEClassTgt.getPresenceCondition() + ")";
+        createPLReference(ClassDiagramPackage.eINSTANCE.getClassDiagram_Associations(), plEPackage, plEReference)
+          .setPresenceCondition(plEReferencePC);
+        createPLReference(ClassDiagramPackage.eINSTANCE.getClass_AssociationsAsSource(), plEClass, plEReference)
+          .setPresenceCondition(plEReferencePC);
+        createPLReference(ClassDiagramPackage.eINSTANCE.getClass_AssociationsAsTarget(), plEClassTgt, plEReference)
+          .setPresenceCondition(plEReferencePC);
+        createPLAttribute(ClassDiagramPackage.eINSTANCE.getNamedElement_Name(), eReference.getName(), plEReference)
+          .setPresenceCondition(plEReferencePC);
       }
     }
   }
