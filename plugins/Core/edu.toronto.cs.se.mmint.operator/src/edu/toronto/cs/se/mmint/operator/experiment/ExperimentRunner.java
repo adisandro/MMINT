@@ -24,9 +24,11 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.ECollections;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.operator.RandomOperator;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
@@ -51,7 +53,7 @@ public class ExperimentRunner implements Runnable {
     this.exp = experiment;
     this.expVariables = experimentVariables;
     this.expIndex = experimentIndex;
-    this.path = this.exp.path.append(EXPERIMENT_SUBDIR + this.expIndex);
+    this.path = this.exp.path.append(ExperimentRunner.EXPERIMENT_SUBDIR + this.expIndex);
     this.state = new Random(this.exp.seed + this.expIndex);
     this.samples = new HashMap<>(this.exp.outputs.size());
     for (var outputEntry : this.exp.outputs.entrySet()) {
@@ -93,16 +95,23 @@ public class ExperimentRunner implements Runnable {
       }
 
       // run setup workflow
-      var inputs = this.exp.input.setupWorkflow.checkAllowedInputs(ECollections.asEList(this.exp.input.models));
-      var outputMIDsByName = MIDOperatorIOUtils.createSameOutputMIDsByName(this.exp.input.setupWorkflow, null);
-      this.exp.input.setupWorkflow.getNestedWorkflowMID().getOperators().stream() // init seeded random state
-        .map(o -> o.getMetatype())
-        .filter(o -> o instanceof RandomOperator)
-        .findFirst()
-        .ifPresent(o -> ((RandomOperator) o).setState(this.state));
-      var setup = this.exp.input.setupWorkflow.startInstance(inputs, null, ECollections.emptyEList(), outputMIDsByName,
-                                                             null);
-      var sampleInputs = setup.getOutputModels();
+      EList<Model> setupInputs = ECollections.asEList(this.exp.input.models);
+      EList<Model> sampleInputs;
+      if (this.exp.input.setupWorkflow.getNestedWorkflowMID().getOperators().isEmpty()) {
+        sampleInputs = setupInputs;
+      }
+      else {
+        var inputs = this.exp.input.setupWorkflow.checkAllowedInputs(setupInputs);
+        var outputMIDsByName = MIDOperatorIOUtils.createSameOutputMIDsByName(this.exp.input.setupWorkflow, null);
+        this.exp.input.setupWorkflow.getNestedWorkflowMID().getOperators().stream() // init seeded random state
+          .map(o -> o.getMetatype())
+          .filter(o -> o instanceof RandomOperator)
+          .findFirst()
+          .ifPresent(o -> ((RandomOperator) o).setState(this.state));
+        var setup = this.exp.input.setupWorkflow.startInstance(inputs, null, ECollections.emptyEList(),
+                                                               outputMIDsByName, null);
+        sampleInputs = setup.getOutputModels();
+      }
 
       // run samples
       for (var s = 0; s < this.exp.maxSamples + this.exp.skipWarmupSamples; s++) {
@@ -170,12 +179,12 @@ public class ExperimentRunner implements Runnable {
       for (var sampleEntry : this.samples.entrySet()) {
         var output = sampleEntry.getKey();
         var outputSamples = sampleEntry.getValue();
-        expProps.setProperty(output + PROP_OUT_AVG_SUFFIX, String.valueOf(outputSamples.getAverage()));
+        expProps.setProperty(output + ExperimentRunner.PROP_OUT_AVG_SUFFIX, String.valueOf(outputSamples.getAverage()));
         if (outputSamples.doConfidence()) {
-          expProps.setProperty(output + PROP_OUT_UPPER_SUFFIX, String.valueOf(outputSamples.getUpperConfidence()));
-          expProps.setProperty(output + PROP_OUT_LOWER_SUFFIX, String.valueOf(outputSamples.getLowerConfidence()));
+          expProps.setProperty(output + ExperimentRunner.PROP_OUT_UPPER_SUFFIX, String.valueOf(outputSamples.getUpperConfidence()));
+          expProps.setProperty(output + ExperimentRunner.PROP_OUT_LOWER_SUFFIX, String.valueOf(outputSamples.getLowerConfidence()));
         }
-        expProps.setProperty(output + PROP_OUT_NUMSAMPLES_SUFFIX, String.valueOf(outputSamples.getNumSamples()));
+        expProps.setProperty(output + ExperimentRunner.PROP_OUT_NUMSAMPLES_SUFFIX, String.valueOf(outputSamples.getNumSamples()));
       }
       for (var expVariable : this.expVariables.entrySet()) {
         var variable = expVariable.getKey();
