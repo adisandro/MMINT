@@ -98,4 +98,28 @@
       </operatorType>
    </extension>
 
+   <extension
+         point="edu.toronto.cs.se.mmint.operators">
+      <operatorType>
+         <type
+               name="SLE22"
+               uri="edu.toronto.cs.se.mmint.examples.sle22.operators.SLE22"
+               class="edu.toronto.cs.se.mmint.examples.sle22.operators.SLE22">
+         </type>
+         <inputs>
+            <parameter>
+               <type
+                     name="model"
+                     uri="edu.toronto.cs.se.mmint.examples.sle22.operators.SLE22/model">
+               </type>
+               <typeEndpoint
+                     targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
+               </typeEndpoint>
+            </parameter>
+         </inputs>
+         <outputs>
+         </outputs>
+      </operatorType>
+   </extension>
+
 </plugin>
