@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mid:MID xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mid="http://se.cs.toronto.edu/mmint/MID">
+  <models uri="/SLE22/model/crom_l1/crom_l1.productline" name="crom_l1" metatypeUri="model://edu.toronto.cs.se.mmint.productline" dynamic="true" fileExtension="productline" editors="//@editors.0"/>
+  <models uri="/SLE22/model/crom_l1/crom_l1-prod1.classdiagram" name="crom_l1-prod1" metatypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram" dynamic="true" fileExtension="classdiagram" editors="//@editors.1"/>
+  <editors uri="/SLE22/model/crom_l1/crom_l1.productline" name="ProductLine EMF Editor for model /SLE22/model/crom_l1/crom_l1.productline" metatypeUri="edu.toronto.cs.se.mmint.productline.editor" dynamic="true" modelUri="/SLE22/model/crom_l1/crom_l1.productline" id="edu.toronto.cs.se.mmint.productline.presentation.ProductLineEditorID" wizardId="edu.toronto.cs.se.mmint.productline.presentation.ProductLineModelWizardID">
+    <fileExtensions>productline</fileExtensions>
+  </editors>
+  <editors uri="/SLE22/model/crom_l1/crom_l1-prod1.classdiagram" name="ClassDiagram tree for model /SLE22/model/crom_l1/crom_l1-prod1.classdiagram" metatypeUri="http://se.cs.toronto.edu/modelepedia/Tree_ClassDiagram" dynamic="true" modelUri="/SLE22/model/crom_l1/crom_l1-prod1.classdiagram" id="edu.toronto.cs.se.modelepedia.classdiagram.presentation.ClassDiagramEditorID" wizardId="edu.toronto.cs.se.modelepedia.classdiagram.presentation.ClassDiagramModelWizardID">
+    <fileExtensions>classdiagram</fileExtensions>
+  </editors>
+  <extendibleTable key="/SLE22/model/crom_l1/crom_l1.productline" value="//@models.0"/>
+  <extendibleTable key="/SLE22/model/crom_l1/crom_l1-prod1.classdiagram" value="//@models.1"/>
+</mid:MID>

@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mid="http://se.cs.toronto.edu/mmint/MID" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" xmi:id="_1Xi1kB20Ee2uXbz2q_8Z5Q" type="MID" name="RoleModeling.middiag" measurementUnit="Pixel">
-  <styles xmi:type="notation:DiagramStyle" xmi:id="_1Xi1kR20Ee2uXbz2q_8Z5Q"/>
-  <element xmi:type="mid:MID" href="RoleModeling.mid#/"/>
-</notation:Diagram>
