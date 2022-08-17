@@ -19,7 +19,7 @@ import java.util.Set;
 
 import org.eclipse.jdt.annotation.Nullable;
 
-import edu.toronto.cs.se.mmint.mid.reasoning.IReasoner;
+import edu.toronto.cs.se.mmint.mid.reasoning.ISATReasoner;
 import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineQueryTrait.AggregatorLambda;
 
 /**
@@ -27,7 +27,7 @@ import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineQueryTrait.Aggr
  *
  * @author Alessio Di Sandro
  */
-public interface IProductLineFeatureConstraintTrait extends IReasoner {
+public interface IProductLineFeatureConstraintTrait extends ISATReasoner {
 
   /**
    * Gets the set of features from a product line formula.

@@ -196,5 +196,4 @@ public class ToProductLine extends OperatorImpl {
 
     return this.out.packed();
   }
-
 }
