@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mid:MID xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mid="http://se.cs.toronto.edu/mmint/MID" level="WORKFLOWS">
+  <models uri="model" name="model" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Model" dynamic="true" origin="CREATED" fileExtension="xmi"/>
+  <operators uri="" name="SLE22" level="WORKFLOWS" metatypeUri="edu.toronto.cs.se.mmint.examples.sle22.operators.SLE22" dynamic="true">
+    <inputs uri="" name="model" level="WORKFLOWS" metatypeUri="edu.toronto.cs.se.mmint.examples.sle22.operators.SLE22/model" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0"/>
+  </operators>
+  <extendibleTable key="model" value="//@models.0"/>
+</mid:MID>
