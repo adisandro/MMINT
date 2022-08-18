@@ -17,3 +17,34 @@ import "http://se.cs.toronto.edu/modelepedia/ClassDiagram"
 pattern publicAttributes(attribute: Attribute) {
   Attribute.public(attribute, true);
 }
+
+pattern liftAttributes(clazz: Class, attribute: Attribute) {
+  Class.superclass(clazz, _);
+  Class.ownedAttributes(clazz, attribute);
+}
+
+pattern superAssociations(super1: Class, super2: Class, association: Association) {
+  super1 != super2;
+  Class.superclass(sub1, super1);
+  Class.superclass(sub2, super2);
+  sub1 != sub2;
+  Class.associationsAsSource(super1, association);
+  Class.associationsAsTarget(super2, association);
+}
+
+pattern classAssociations(clazz: Class, associations: java Integer) {
+  associations == count Class.associationsAsTarget(clazz, _);
+}
+
+pattern bestName(bestName: java String) {
+  bestName == max NamedElement.name(_, #name);
+}
+
+//pattern subAssoc(sub1: Class, sub2: Class, assoc: Association) {
+//  sub1 != sub2;
+//  Class.superclass(sub1, super1);
+//  Class.superclass(sub2, super2);
+//  super1 != super2;
+//  Class.associationsAsSource(sub1, assoc);
+//  Class.associationsAsTarget(sub2, assoc);
+//}
