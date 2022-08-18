@@ -9,7 +9,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
-  <classes referencesAsSource="//@references.16" referencesAsTargets="//@references.1">
+  <classes presenceCondition="Connected" referencesAsSource="//@references.16" referencesAsTargets="//@references.1">
     <attributes presenceCondition="Connected" value="acceptanceCondition">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -63,7 +63,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
-  <classes referencesAsSource="//@references.60" referencesAsTargets="//@references.9">
+  <classes presenceCondition="Deterministic" referencesAsSource="//@references.60" referencesAsTargets="//@references.9">
     <attributes presenceCondition="Deterministic" value="name">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -72,7 +72,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition="Initial" referencesAsSource="//@references.62" referencesAsTargets="//@references.10">
+  <classes presenceCondition="(Initial) &amp; (Deterministic)" referencesAsSource="//@references.62" referencesAsTargets="//@references.10">
     <attributes presenceCondition="(Initial) &amp; (Deterministic)" value="isInitial">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -81,7 +81,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition="Final" referencesAsSource="//@references.63" referencesAsTargets="//@references.11">
+  <classes presenceCondition="(Final) &amp; (Deterministic)" referencesAsSource="//@references.63" referencesAsTargets="//@references.11">
     <attributes presenceCondition="(Final) &amp; (Deterministic)" value="isFinal">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -90,19 +90,19 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes referencesAsSource="//@references.64" referencesAsTargets="//@references.12">
+  <classes presenceCondition="Deterministic" referencesAsSource="//@references.64" referencesAsTargets="//@references.12">
     <attributes presenceCondition="Deterministic" value="adjacent">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes referencesAsSource="//@references.65" referencesAsTargets="//@references.13">
+  <classes presenceCondition="Deterministic" referencesAsSource="//@references.65" referencesAsTargets="//@references.13">
     <attributes presenceCondition="Deterministic" value="inTrans">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes referencesAsSource="//@references.66" referencesAsTargets="//@references.14">
+  <classes presenceCondition="Deterministic" referencesAsSource="//@references.66" referencesAsTargets="//@references.14">
     <attributes presenceCondition="Deterministic" value="outTrans">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -114,37 +114,37 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
-  <classes presenceCondition="Input" referencesAsTargets="//@references.17 //@references.18 //@references.19">
+  <classes presenceCondition="(Input) &amp; (Connected)" referencesAsTargets="//@references.17 //@references.18 //@references.19">
     <attributes presenceCondition="(Input) &amp; (Connected)" value="inputAlphabet">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes presenceCondition="Output" referencesAsTargets="//@references.20 //@references.21 //@references.22">
+  <classes presenceCondition="(Output) &amp; (Connected)" referencesAsTargets="//@references.20 //@references.21 //@references.22">
     <attributes presenceCondition="(Output) &amp; (Connected)" value="outputAlphabet">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes presenceCondition="Stack" referencesAsTargets="//@references.23 //@references.24 //@references.25">
+  <classes presenceCondition="(Stack) &amp; (Connected)" referencesAsTargets="//@references.23 //@references.24 //@references.25">
     <attributes presenceCondition="(Stack) &amp; (Connected)" value="stackAlphabet">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes presenceCondition="Stack" referencesAsTargets="//@references.26 //@references.27 //@references.28">
+  <classes presenceCondition="(Stack) &amp; (Connected)" referencesAsTargets="//@references.26 //@references.27 //@references.28">
     <attributes presenceCondition="(Stack) &amp; (Connected)" value="initialStackSymbol">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes referencesAsTargets="//@references.29 //@references.30 //@references.31">
+  <classes presenceCondition="(Connected) &amp; (Deterministic)" referencesAsTargets="//@references.29 //@references.30 //@references.31">
     <attributes presenceCondition="(Connected) &amp; (Deterministic)" value="states">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes referencesAsTargets="//@references.32 //@references.33 //@references.34">
+  <classes presenceCondition="Connected" referencesAsTargets="//@references.32 //@references.33 //@references.34">
     <attributes presenceCondition="Connected" value="transitions">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -192,13 +192,13 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes referencesAsTargets="//@references.54 //@references.55 //@references.56">
+  <classes presenceCondition="Deterministic" referencesAsTargets="//@references.54 //@references.55 //@references.56">
     <attributes presenceCondition="Deterministic" value="from">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes referencesAsTargets="//@references.57 //@references.58 //@references.59">
+  <classes presenceCondition="Deterministic" referencesAsTargets="//@references.57 //@references.58 //@references.59">
     <attributes presenceCondition="Deterministic" value="to">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -210,13 +210,13 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//DataType"/>
   </classes>
-  <classes presenceCondition="Hierarchical" referencesAsTargets="//@references.68 //@references.69 //@references.70">
+  <classes presenceCondition="(Hierarchical) &amp; (Hierarchical) &amp; (Deterministic)" referencesAsTargets="//@references.68 //@references.69 //@references.70">
     <attributes presenceCondition="(Hierarchical) &amp; (Hierarchical) &amp; (Deterministic)" value="states">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes presenceCondition="Hierarchical" referencesAsTargets="//@references.71 //@references.72 //@references.73">
+  <classes presenceCondition="(Hierarchical) &amp; (Hierarchical)" referencesAsTargets="//@references.71 //@references.72 //@references.73">
     <attributes presenceCondition="(Hierarchical) &amp; (Hierarchical)" value="transitions">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -270,7 +270,7 @@
   <references presenceCondition="Hierarchical" source="//@classes.0" targets="//@classes.16">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/classes"/>
   </references>
-  <references source="//@classes.2" targets="//@classes.3">
+  <references presenceCondition="Connected" source="//@classes.2" targets="//@classes.3">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/type"/>
   </references>
   <references presenceCondition="(Input) &amp; (Connected)" source="//@classes.0" targets="//@classes.17">
@@ -402,25 +402,25 @@
   <references presenceCondition="Deterministic" source="//@classes.9" targets="//@classes.31">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
   </references>
-  <references source="//@classes.10" targets="//@classes.24">
+  <references presenceCondition="Deterministic" source="//@classes.10" targets="//@classes.24">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/type"/>
   </references>
   <references source="//@classes.0" targets="//@classes.32">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/datatypes"/>
   </references>
-  <references presenceCondition="Initial" source="//@classes.11" targets="//@classes.32">
+  <references presenceCondition="(Initial) &amp; (Deterministic)" source="//@classes.11" targets="//@classes.32">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/type"/>
   </references>
-  <references presenceCondition="Final" source="//@classes.12" targets="//@classes.32">
+  <references presenceCondition="(Final) &amp; (Deterministic)" source="//@classes.12" targets="//@classes.32">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/type"/>
   </references>
-  <references source="//@classes.13" targets="//@classes.9">
+  <references presenceCondition="Deterministic" source="//@classes.13" targets="//@classes.9">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/type"/>
   </references>
-  <references source="//@classes.14" targets="//@classes.7">
+  <references presenceCondition="Deterministic" source="//@classes.14" targets="//@classes.7">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/type"/>
   </references>
-  <references source="//@classes.15" targets="//@classes.7">
+  <references presenceCondition="Deterministic" source="//@classes.15" targets="//@classes.7">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/type"/>
   </references>
   <references presenceCondition="(Deterministic) &amp; (Hierarchical)" source="//@classes.16" targets="//@classes.9">

@@ -90,6 +90,7 @@ public class AnnotatedEcoreToCDProductLine extends ToProductLine {
           plEAttributePC = (plEAttributePC.equals("true")) ?
             plEClassPC :
             "(" + plEAttributePC + ") & (" + plEClassPC + ")";
+          plEAttribute.setPresenceCondition(plEAttributePC);
         }
         createPLReference(ClassDiagramPackage.eINSTANCE.getClass_OwnedAttributes(), plEClass, plEAttribute)
           .setPresenceCondition(plEAttributePC);
@@ -105,6 +106,7 @@ public class AnnotatedEcoreToCDProductLine extends ToProductLine {
           plEOperationPC = (plEOperationPC.equals("true")) ?
             plEClassPC :
             "(" + plEOperationPC + ") & (" + plEClassPC + ")";
+          plEOperation.setPresenceCondition(plEOperationPC);
         }
         createPLReference(ClassDiagramPackage.eINSTANCE.getClass_OwnedOperations(), plEClass, plEOperation)
           .setPresenceCondition(plEOperationPC);
@@ -182,6 +184,7 @@ public class AnnotatedEcoreToCDProductLine extends ToProductLine {
               "(" + plEReferencePC + ") & (" + plEClassPC + ") & (" + plEClassTgtPC + ")";
           }
         }
+        plEReference.setPresenceCondition(plEReferencePC);
         createPLReference(ClassDiagramPackage.eINSTANCE.getClassDiagram_Associations(), plEPackage, plEReference)
           .setPresenceCondition(plEReferencePC);
         createPLReference(ClassDiagramPackage.eINSTANCE.getClass_AssociationsAsSource(), plEClass, plEReference)

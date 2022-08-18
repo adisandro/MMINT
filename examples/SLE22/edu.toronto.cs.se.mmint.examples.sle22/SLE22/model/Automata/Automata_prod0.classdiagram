@@ -10,7 +10,7 @@
   </classes>
   <classes name="HierarchicalState" associationsAsSource="//@associations.4"/>
   <associations name="symbols" source="//@classes.1" target="//@classes.2"/>
-  <associations name="input" source="//@classes.3" target="//@classes.2"/>
+  <associations name="output" source="//@classes.3" target="//@classes.2"/>
   <associations name="stackCheck" source="//@classes.3" target="//@classes.2"/>
   <associations name="stackPush" source="//@classes.3" target="//@classes.2"/>
   <associations name="transitions" source="//@classes.4" target="//@classes.3"/>

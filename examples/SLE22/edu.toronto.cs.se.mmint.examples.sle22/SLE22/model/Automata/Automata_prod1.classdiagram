@@ -1,32 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classdiagram:ClassDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:classdiagram="http://se.cs.toronto.edu/modelepedia/ClassDiagram">
-  <classes name="Automaton" associationsAsSource="//@associations.0 //@associations.1 //@associations.2 //@associations.3">
+  <classes name="Automaton" associationsAsSource="//@associations.0 //@associations.1 //@associations.2">
     <ownedOperations name="acceptanceCondition" type="//@classes.1"/>
   </classes>
   <classes name="AcceptanceKind"/>
-  <classes name="Alphabet" associationsAsSource="//@associations.4" associationsAsTarget="//@associations.0 //@associations.1"/>
-  <classes name="Symbol" associationsAsTarget="//@associations.4 //@associations.5 //@associations.6">
+  <classes name="Alphabet" associationsAsSource="//@associations.3" associationsAsTarget="//@associations.0"/>
+  <classes name="Symbol" associationsAsTarget="//@associations.1 //@associations.3 //@associations.4 //@associations.5">
     <ownedAttributes name="name" type="//@datatypes.0" public="true"/>
   </classes>
-  <classes name="Transition" associationsAsSource="//@associations.5 //@associations.6 //@associations.7 //@associations.8" associationsAsTarget="//@associations.3">
-    <ownedAttributes name="probability" type="//@datatypes.1" public="true"/>
-  </classes>
-  <classes name="State" associationsAsTarget="//@associations.2 //@associations.7 //@associations.8">
-    <ownedAttributes name="name" type="//@datatypes.0" public="true"/>
-    <ownedAttributes name="isInitial" type="//@datatypes.2" public="true"/>
-    <ownedOperations name="adjacent" type="//@classes.5"/>
-    <ownedOperations name="inTrans" type="//@classes.4"/>
-    <ownedOperations name="outTrans" type="//@classes.4"/>
-  </classes>
-  <associations name="inputAlphabet" source="//@classes.0" target="//@classes.2"/>
-  <associations name="outputAlphabet" source="//@classes.0" target="//@classes.2"/>
-  <associations name="states" source="//@classes.0" target="//@classes.5"/>
+  <classes name="Transition" associationsAsSource="//@associations.4 //@associations.5" associationsAsTarget="//@associations.2"/>
+  <associations name="stackAlphabet" source="//@classes.0" target="//@classes.2"/>
+  <associations name="initialStackSymbol" source="//@classes.0" target="//@classes.3"/>
   <associations name="transitions" source="//@classes.0" target="//@classes.4"/>
   <associations name="symbols" source="//@classes.2" target="//@classes.3"/>
-  <associations name="input" source="//@classes.4" target="//@classes.3"/>
-  <associations name="output" source="//@classes.4" target="//@classes.3"/>
-  <associations name="from" source="//@classes.4" target="//@classes.5"/>
-  <associations name="to" source="//@classes.4" target="//@classes.5"/>
+  <associations name="stackCheck" source="//@classes.4" target="//@classes.3"/>
+  <associations name="stackPush" source="//@classes.4" target="//@classes.3"/>
   <datatypes name="EString"/>
   <datatypes name="EBigDecimal"/>
   <datatypes name="EBooleanObject"/>
