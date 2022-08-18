@@ -10,10 +10,10 @@
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
   <classes referencesAsSource="//@references.48" referencesAsTargets="//@references.1">
-    <attributes presenceCondition="(true) &amp; (true)" value="name">
+    <attributes value="name">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
-    <attributes presenceCondition="(true) &amp; (true)" value="true">
+    <attributes value="true">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/public"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
@@ -61,10 +61,10 @@
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
   <classes referencesAsSource="//@references.62" referencesAsTargets="//@references.9">
-    <attributes presenceCondition="(true) &amp; (true)" value="operation">
+    <attributes value="operation">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
-    <attributes presenceCondition="(true) &amp; (true)" value="true">
+    <attributes value="true">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/public"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
@@ -159,20 +159,20 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
-  <classes referencesAsSource="//@references.148" referencesAsTargets="//@references.25">
-    <attributes presenceCondition="(true) &amp; (GroupConstraints)" value="lower">
+  <classes presenceCondition="GroupConstraints" referencesAsSource="//@references.148" referencesAsTargets="//@references.25">
+    <attributes presenceCondition="GroupConstraints" value="lower">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
-    <attributes presenceCondition="(true) &amp; (GroupConstraints)" value="true">
+    <attributes presenceCondition="GroupConstraints" value="true">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/public"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes referencesAsSource="//@references.149" referencesAsTargets="//@references.26">
-    <attributes presenceCondition="(true) &amp; (GroupConstraints)" value="upper">
+  <classes presenceCondition="GroupConstraints" referencesAsSource="//@references.149" referencesAsTargets="//@references.26">
+    <attributes presenceCondition="GroupConstraints" value="upper">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
-    <attributes presenceCondition="(true) &amp; (GroupConstraints)" value="true">
+    <attributes presenceCondition="GroupConstraints" value="true">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/public"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
@@ -231,29 +231,29 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
-  <classes referencesAsSource="//@references.174" referencesAsTargets="//@references.36">
-    <attributes presenceCondition="(true) &amp; (OnRelationships)" value="lower">
+  <classes presenceCondition="OnRelationships" referencesAsSource="//@references.174" referencesAsTargets="//@references.36">
+    <attributes presenceCondition="OnRelationships" value="lower">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
-    <attributes presenceCondition="(true) &amp; (OnRelationships)" value="true">
+    <attributes presenceCondition="OnRelationships" value="true">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/public"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes referencesAsSource="//@references.175" referencesAsTargets="//@references.37">
-    <attributes presenceCondition="(true) &amp; (OnRelationships)" value="upper">
+  <classes presenceCondition="OnRelationships" referencesAsSource="//@references.175" referencesAsTargets="//@references.37">
+    <attributes presenceCondition="OnRelationships" value="upper">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
-    <attributes presenceCondition="(true) &amp; (OnRelationships)" value="true">
+    <attributes presenceCondition="OnRelationships" value="true">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/public"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes referencesAsSource="//@references.176" referencesAsTargets="//@references.38">
-    <attributes presenceCondition="(true) &amp; (OnRelationships)" value="part">
+  <classes presenceCondition="OnRelationships" referencesAsSource="//@references.176" referencesAsTargets="//@references.38">
+    <attributes presenceCondition="OnRelationships" value="part">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
-    <attributes presenceCondition="(true) &amp; (OnRelationships)" value="true">
+    <attributes presenceCondition="OnRelationships" value="true">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/public"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
@@ -313,150 +313,150 @@
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//DataType"/>
   </classes>
   <classes referencesAsTargets="//@references.50 //@references.51 //@references.52">
-    <attributes presenceCondition="(true) &amp; (true) &amp; (true)" value="relations">
+    <attributes value="relations">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
   <classes referencesAsTargets="//@references.53 //@references.54 //@references.55">
-    <attributes presenceCondition="(true) &amp; (true) &amp; (true)" value="elements">
+    <attributes value="elements">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
   <classes referencesAsTargets="//@references.63 //@references.64 //@references.65">
-    <attributes presenceCondition="(true) &amp; (true) &amp; (true)" value="params">
+    <attributes value="params">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
   <classes referencesAsTargets="//@references.66 //@references.67 //@references.68">
-    <attributes presenceCondition="(true) &amp; (true) &amp; (true)" value="owner">
+    <attributes value="owner">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
   <classes referencesAsTargets="//@references.70 //@references.71 //@references.72">
-    <attributes presenceCondition="(true) &amp; (true) &amp; (true)" value="owner">
+    <attributes value="owner">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
   <classes referencesAsTargets="//@references.74 //@references.75 //@references.76">
-    <attributes presenceCondition="(true) &amp; (true) &amp; (true)" value="attributes">
+    <attributes value="attributes">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
   <classes referencesAsTargets="//@references.77 //@references.78 //@references.79">
-    <attributes presenceCondition="(true) &amp; (true) &amp; (true)" value="operations">
+    <attributes value="operations">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
   <classes referencesAsTargets="//@references.84 //@references.85 //@references.86">
-    <attributes presenceCondition="(true) &amp; (true) &amp; (true)" value="filled">
+    <attributes value="filled">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
   <classes presenceCondition="Compartments &amp; Roles" referencesAsTargets="//@references.87 //@references.88 //@references.89">
-    <attributes presenceCondition="(Compartments &amp; Roles) &amp; (true) &amp; (true)" value="fillerType">
+    <attributes presenceCondition="Compartments &amp; Roles" value="fillerType">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
   <classes presenceCondition="Compartments &amp; ~Roles" referencesAsTargets="//@references.90 //@references.91 //@references.92">
-    <attributes presenceCondition="(Compartments &amp; ~Roles) &amp; (true) &amp; (true)" value="fillerRType">
+    <attributes presenceCondition="Compartments &amp; ~Roles" value="fillerRType">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes presenceCondition="~Compartments &amp; Roles" referencesAsTargets="//@references.93 //@references.94 //@references.95">
-    <attributes presenceCondition="(~Compartments &amp; Roles) &amp; (true) &amp; (~Compartments &amp; Roles)" value="fillerPlayer">
+  <classes presenceCondition="(~Compartments &amp; Roles) &amp; (~Compartments &amp; Roles)" referencesAsTargets="//@references.93 //@references.94 //@references.95">
+    <attributes presenceCondition="(~Compartments &amp; Roles) &amp; (~Compartments &amp; Roles)" value="fillerPlayer">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
   <classes presenceCondition="~Compartments &amp; ~Roles" referencesAsTargets="//@references.96 //@references.97 //@references.98">
-    <attributes presenceCondition="(~Compartments &amp; ~Roles) &amp; (true) &amp; (true)" value="fillerNType">
+    <attributes presenceCondition="~Compartments &amp; ~Roles" value="fillerNType">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
   <classes referencesAsTargets="//@references.101 //@references.102 //@references.103">
-    <attributes presenceCondition="(true) &amp; (true) &amp; (true)" value="super">
+    <attributes value="super">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
   <classes referencesAsTargets="//@references.104 //@references.105 //@references.106">
-    <attributes presenceCondition="(true) &amp; (true) &amp; (true)" value="sub">
+    <attributes value="sub">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
   <classes referencesAsTargets="//@references.108 //@references.109 //@references.110">
-    <attributes presenceCondition="(true) &amp; (true) &amp; (true)" value="incoming">
+    <attributes value="incoming">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
   <classes referencesAsTargets="//@references.111 //@references.112 //@references.113">
-    <attributes presenceCondition="(true) &amp; (true) &amp; (true)" value="outgoing">
+    <attributes value="outgoing">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes presenceCondition="~OnCompartments" referencesAsTargets="//@references.114 //@references.115 //@references.116">
-    <attributes presenceCondition="(~OnCompartments) &amp; (true) &amp; (~OnCompartments)" value="model">
+  <classes presenceCondition="(~OnCompartments) &amp; (~OnCompartments)" referencesAsTargets="//@references.114 //@references.115 //@references.116">
+    <attributes presenceCondition="(~OnCompartments) &amp; (~OnCompartments)" value="model">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes presenceCondition="OnCompartments" referencesAsTargets="//@references.117 //@references.118 //@references.119">
-    <attributes presenceCondition="(OnCompartments) &amp; (true) &amp; (OnCompartments)" value="whole">
+  <classes presenceCondition="(OnCompartments) &amp; (OnCompartments)" referencesAsTargets="//@references.117 //@references.118 //@references.119">
+    <attributes presenceCondition="(OnCompartments) &amp; (OnCompartments)" value="whole">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes referencesAsTargets="//@references.121 //@references.122 //@references.123">
-    <attributes presenceCondition="(true) &amp; (~OnCompartments) &amp; (true)" value="roles">
+  <classes presenceCondition="~OnCompartments" referencesAsTargets="//@references.121 //@references.122 //@references.123">
+    <attributes presenceCondition="~OnCompartments" value="roles">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
   <classes referencesAsTargets="//@references.125 //@references.126 //@references.127">
-    <attributes presenceCondition="(true) &amp; (true) &amp; (true)" value="type">
+    <attributes value="type">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes referencesAsTargets="//@references.129 //@references.130 //@references.131">
-    <attributes presenceCondition="(true) &amp; (OnCompartments) &amp; (true)" value="parts">
+  <classes presenceCondition="OnCompartments" referencesAsTargets="//@references.129 //@references.130 //@references.131">
+    <attributes presenceCondition="OnCompartments" value="parts">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes presenceCondition="OnCompartments &amp; OnRelationships" referencesAsTargets="//@references.132 //@references.133 //@references.134">
+  <classes presenceCondition="(OnCompartments &amp; OnRelationships) &amp; (OnCompartments) &amp; (OnRelationships)" referencesAsTargets="//@references.132 //@references.133 //@references.134">
     <attributes presenceCondition="(OnCompartments &amp; OnRelationships) &amp; (OnCompartments) &amp; (OnRelationships)" value="relationships">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes presenceCondition="(RelationshipConstraints | RoleConstraints) &amp; OnCompartments" referencesAsTargets="//@references.135 //@references.136 //@references.137">
+  <classes presenceCondition="((RelationshipConstraints | RoleConstraints) &amp; OnCompartments) &amp; (OnCompartments) &amp; (RelationshipConstraints | RoleConstraints)" referencesAsTargets="//@references.135 //@references.136 //@references.137">
     <attributes presenceCondition="((RelationshipConstraints | RoleConstraints) &amp; OnCompartments) &amp; (OnCompartments) &amp; (RelationshipConstraints | RoleConstraints)" value="constraints">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes presenceCondition="CompartmentInheritance &amp; OnCompartments" referencesAsTargets="//@references.139 //@references.140 //@references.141">
+  <classes presenceCondition="(CompartmentInheritance &amp; OnCompartments) &amp; (CompartmentInheritance) &amp; (OnCompartments)" referencesAsTargets="//@references.139 //@references.140 //@references.141">
     <attributes presenceCondition="(CompartmentInheritance &amp; OnCompartments) &amp; (CompartmentInheritance) &amp; (OnCompartments)" value="super">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes presenceCondition="CompartmentInheritance &amp; OnCompartments" referencesAsTargets="//@references.142 //@references.143 //@references.144">
+  <classes presenceCondition="(CompartmentInheritance &amp; OnCompartments) &amp; (CompartmentInheritance) &amp; (OnCompartments)" referencesAsTargets="//@references.142 //@references.143 //@references.144">
     <attributes presenceCondition="(CompartmentInheritance &amp; OnCompartments) &amp; (CompartmentInheritance) &amp; (OnCompartments)" value="sub">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -468,68 +468,68 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//DataType"/>
   </classes>
-  <classes referencesAsTargets="//@references.150 //@references.151 //@references.152">
-    <attributes presenceCondition="(true) &amp; (GroupConstraints) &amp; (true)" value="elements">
+  <classes presenceCondition="GroupConstraints" referencesAsTargets="//@references.150 //@references.151 //@references.152">
+    <attributes presenceCondition="GroupConstraints" value="elements">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes referencesAsTargets="//@references.154 //@references.155 //@references.156">
-    <attributes presenceCondition="(true) &amp; (InterRelationshipConstraints) &amp; (OnRelationships)" value="first">
+  <classes presenceCondition="(InterRelationshipConstraints) &amp; (OnRelationships)" referencesAsTargets="//@references.154 //@references.155 //@references.156">
+    <attributes presenceCondition="(InterRelationshipConstraints) &amp; (OnRelationships)" value="first">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes referencesAsTargets="//@references.157 //@references.158 //@references.159">
-    <attributes presenceCondition="(true) &amp; (InterRelationshipConstraints) &amp; (OnRelationships)" value="second">
+  <classes presenceCondition="(InterRelationshipConstraints) &amp; (OnRelationships)" referencesAsTargets="//@references.157 //@references.158 //@references.159">
+    <attributes presenceCondition="(InterRelationshipConstraints) &amp; (OnRelationships)" value="second">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes referencesAsTargets="//@references.160 //@references.161 //@references.162">
-    <attributes presenceCondition="(true) &amp; (OnRelationships) &amp; (OnRelationships)" value="first">
+  <classes presenceCondition="(OnRelationships) &amp; (OnRelationships)" referencesAsTargets="//@references.160 //@references.161 //@references.162">
+    <attributes presenceCondition="(OnRelationships) &amp; (OnRelationships)" value="first">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes referencesAsTargets="//@references.163 //@references.164 //@references.165">
-    <attributes presenceCondition="(true) &amp; (OnRelationships) &amp; (OnRelationships)" value="second">
+  <classes presenceCondition="(OnRelationships) &amp; (OnRelationships)" referencesAsTargets="//@references.163 //@references.164 //@references.165">
+    <attributes presenceCondition="(OnRelationships) &amp; (OnRelationships)" value="second">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes referencesAsTargets="//@references.168 //@references.169 //@references.170">
-    <attributes presenceCondition="(true) &amp; (IntraRelationshipConstraints) &amp; (OnRelationships)" value="relation">
+  <classes presenceCondition="(IntraRelationshipConstraints) &amp; (OnRelationships)" referencesAsTargets="//@references.168 //@references.169 //@references.170">
+    <attributes presenceCondition="(IntraRelationshipConstraints) &amp; (OnRelationships)" value="relation">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes referencesAsTargets="//@references.177 //@references.178 //@references.179">
-    <attributes presenceCondition="(true) &amp; (OnRelationships) &amp; (true)" value="holder">
+  <classes presenceCondition="OnRelationships" referencesAsTargets="//@references.177 //@references.178 //@references.179">
+    <attributes presenceCondition="OnRelationships" value="holder">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes referencesAsTargets="//@references.183 //@references.184 //@references.185">
-    <attributes presenceCondition="(true) &amp; (RoleConstraints) &amp; (true)" value="first">
+  <classes presenceCondition="RoleConstraints" referencesAsTargets="//@references.183 //@references.184 //@references.185">
+    <attributes presenceCondition="RoleConstraints" value="first">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes referencesAsTargets="//@references.186 //@references.187 //@references.188">
-    <attributes presenceCondition="(true) &amp; (RoleConstraints) &amp; (true)" value="second">
+  <classes presenceCondition="RoleConstraints" referencesAsTargets="//@references.186 //@references.187 //@references.188">
+    <attributes presenceCondition="RoleConstraints" value="second">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes referencesAsTargets="//@references.192 //@references.193 //@references.194">
-    <attributes presenceCondition="(true) &amp; (RoleInheritance) &amp; (true)" value="super">
+  <classes presenceCondition="RoleInheritance" referencesAsTargets="//@references.192 //@references.193 //@references.194">
+    <attributes presenceCondition="RoleInheritance" value="super">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes referencesAsTargets="//@references.195 //@references.196 //@references.197">
-    <attributes presenceCondition="(true) &amp; (RoleInheritance) &amp; (true)" value="sub">
+  <classes presenceCondition="RoleInheritance" referencesAsTargets="//@references.195 //@references.196 //@references.197">
+    <attributes presenceCondition="RoleInheritance" value="sub">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
@@ -537,7 +537,7 @@
   <references source="//@classes.0" targets="//@classes.1">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/classes"/>
   </references>
-  <references presenceCondition="(true) &amp; (true)" source="//@classes.1" targets="//@classes.2">
+  <references source="//@classes.1" targets="//@classes.2">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/ownedAttributes"/>
   </references>
   <references source="//@classes.0" targets="//@classes.3">
@@ -561,7 +561,7 @@
   <references source="//@classes.0" targets="//@classes.9">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/classes"/>
   </references>
-  <references presenceCondition="(true) &amp; (true)" source="//@classes.9" targets="//@classes.10">
+  <references source="//@classes.9" targets="//@classes.10">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/ownedAttributes"/>
   </references>
   <references source="//@classes.0" targets="//@classes.11">
@@ -609,10 +609,10 @@
   <references presenceCondition="GroupConstraints" source="//@classes.0" targets="//@classes.25">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/classes"/>
   </references>
-  <references presenceCondition="(true) &amp; (GroupConstraints)" source="//@classes.25" targets="//@classes.26">
+  <references presenceCondition="GroupConstraints" source="//@classes.25" targets="//@classes.26">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/ownedAttributes"/>
   </references>
-  <references presenceCondition="(true) &amp; (GroupConstraints)" source="//@classes.25" targets="//@classes.27">
+  <references presenceCondition="GroupConstraints" source="//@classes.25" targets="//@classes.27">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/ownedAttributes"/>
   </references>
   <references presenceCondition="InterRelationshipConstraints" source="//@classes.0" targets="//@classes.28">
@@ -642,13 +642,13 @@
   <references presenceCondition="OnRelationships" source="//@classes.0" targets="//@classes.36">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/classes"/>
   </references>
-  <references presenceCondition="(true) &amp; (OnRelationships)" source="//@classes.36" targets="//@classes.37">
+  <references presenceCondition="OnRelationships" source="//@classes.36" targets="//@classes.37">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/ownedAttributes"/>
   </references>
-  <references presenceCondition="(true) &amp; (OnRelationships)" source="//@classes.36" targets="//@classes.38">
+  <references presenceCondition="OnRelationships" source="//@classes.36" targets="//@classes.38">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/ownedAttributes"/>
   </references>
-  <references presenceCondition="(true) &amp; (OnRelationships)" source="//@classes.36" targets="//@classes.39">
+  <references presenceCondition="OnRelationships" source="//@classes.36" targets="//@classes.39">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/ownedAttributes"/>
   </references>
   <references presenceCondition="RelationshipConstraints" source="//@classes.0" targets="//@classes.40">
@@ -681,253 +681,253 @@
   <references source="//@classes.2" targets="//@classes.48">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/type"/>
   </references>
-  <references presenceCondition="(true) &amp; (true)" source="//@classes.3" targets="//@classes.1">
+  <references source="//@classes.3" targets="//@classes.1">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/superclass"/>
   </references>
-  <references presenceCondition="(true) &amp; (true) &amp; (true)" source="//@classes.0" targets="//@classes.49">
+  <references source="//@classes.0" targets="//@classes.49">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
   </references>
-  <references presenceCondition="(true) &amp; (true) &amp; (true)" source="//@classes.3" targets="//@classes.49">
+  <references source="//@classes.3" targets="//@classes.49">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
   </references>
-  <references presenceCondition="(true) &amp; (true) &amp; (true)" source="//@classes.7" targets="//@classes.49">
+  <references source="//@classes.7" targets="//@classes.49">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
   </references>
-  <references presenceCondition="(true) &amp; (true) &amp; (true)" source="//@classes.0" targets="//@classes.50">
+  <references source="//@classes.0" targets="//@classes.50">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
   </references>
-  <references presenceCondition="(true) &amp; (true) &amp; (true)" source="//@classes.4" targets="//@classes.50">
+  <references source="//@classes.4" targets="//@classes.50">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
   </references>
-  <references presenceCondition="(true) &amp; (true) &amp; (true)" source="//@classes.3" targets="//@classes.50">
+  <references source="//@classes.3" targets="//@classes.50">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
   </references>
-  <references presenceCondition="(true) &amp; (true)" source="//@classes.5" targets="//@classes.12">
+  <references source="//@classes.5" targets="//@classes.12">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/superclass"/>
   </references>
-  <references presenceCondition="(true) &amp; (true)" source="//@classes.5" targets="//@classes.3">
+  <references source="//@classes.5" targets="//@classes.3">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/superclass"/>
   </references>
-  <references presenceCondition="(true) &amp; (true)" source="//@classes.6" targets="//@classes.3">
+  <references source="//@classes.6" targets="//@classes.3">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/superclass"/>
   </references>
-  <references presenceCondition="(true) &amp; (true)" source="//@classes.6" targets="//@classes.4">
+  <references source="//@classes.6" targets="//@classes.4">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/superclass"/>
   </references>
-  <references presenceCondition="(true) &amp; (true)" source="//@classes.8" targets="//@classes.21">
+  <references source="//@classes.8" targets="//@classes.21">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/superclass"/>
   </references>
-  <references presenceCondition="(true) &amp; (true)" source="//@classes.9" targets="//@classes.21">
+  <references source="//@classes.9" targets="//@classes.21">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/superclass"/>
   </references>
   <references source="//@classes.10" targets="//@classes.48">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/type"/>
   </references>
-  <references presenceCondition="(true) &amp; (true) &amp; (true)" source="//@classes.0" targets="//@classes.51">
+  <references source="//@classes.0" targets="//@classes.51">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
   </references>
-  <references presenceCondition="(true) &amp; (true) &amp; (true)" source="//@classes.9" targets="//@classes.51">
+  <references source="//@classes.9" targets="//@classes.51">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
   </references>
-  <references presenceCondition="(true) &amp; (true) &amp; (true)" source="//@classes.8" targets="//@classes.51">
+  <references source="//@classes.8" targets="//@classes.51">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
   </references>
-  <references presenceCondition="(true) &amp; (true) &amp; (true)" source="//@classes.0" targets="//@classes.52">
+  <references source="//@classes.0" targets="//@classes.52">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
   </references>
-  <references presenceCondition="(true) &amp; (true) &amp; (true)" source="//@classes.9" targets="//@classes.52">
+  <references source="//@classes.9" targets="//@classes.52">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
   </references>
-  <references presenceCondition="(true) &amp; (true) &amp; (true)" source="//@classes.12" targets="//@classes.52">
+  <references source="//@classes.12" targets="//@classes.52">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
   </references>
-  <references presenceCondition="(true) &amp; (true)" source="//@classes.11" targets="//@classes.21">
+  <references source="//@classes.11" targets="//@classes.21">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/superclass"/>
   </references>
-  <references presenceCondition="(true) &amp; (true) &amp; (true)" source="//@classes.0" targets="//@classes.53">
+  <references source="//@classes.0" targets="//@classes.53">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
   </references>
-  <references presenceCondition="(true) &amp; (true) &amp; (true)" source="//@classes.11" targets="//@classes.53">
+  <references source="//@classes.11" targets="//@classes.53">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
   </references>
-  <references presenceCondition="(true) &amp; (true) &amp; (true)" source="//@classes.12" targets="//@classes.53">
+  <references source="//@classes.12" targets="//@classes.53">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
   </references>
-  <references presenceCondition="(true) &amp; (true)" source="//@classes.12" targets="//@classes.18">
+  <references source="//@classes.12" targets="//@classes.18">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/superclass"/>
   </references>
-  <references presenceCondition="(true) &amp; (true) &amp; (true)" source="//@classes.0" targets="//@classes.54">
+  <references source="//@classes.0" targets="//@classes.54">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
   </references>
-  <references presenceCondition="(true) &amp; (true) &amp; (true)" source="//@classes.12" targets="//@classes.54">
+  <references source="//@classes.12" targets="//@classes.54">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
   </references>
-  <references presenceCondition="(true) &amp; (true) &amp; (true)" source="//@classes.11" targets="//@classes.54">
+  <references source="//@classes.11" targets="//@classes.54">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
   </references>
-  <references presenceCondition="(true) &amp; (true) &amp; (true)" source="//@classes.0" targets="//@classes.55">
+  <references source="//@classes.0" targets="//@classes.55">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
   </references>
-  <references presenceCondition="(true) &amp; (true) &amp; (true)" source="//@classes.12" targets="//@classes.55">
+  <references source="//@classes.12" targets="//@classes.55">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
   </references>
-  <references presenceCondition="(true) &amp; (true) &amp; (true)" source="//@classes.9" targets="//@classes.55">
+  <references source="//@classes.9" targets="//@classes.55">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
   </references>
-  <references presenceCondition="(true) &amp; (true)" source="//@classes.13" targets="//@classes.5">
+  <references source="//@classes.13" targets="//@classes.5">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/superclass"/>
   </references>
-  <references presenceCondition="(true) &amp; (true)" source="//@classes.14" targets="//@classes.19">
+  <references source="//@classes.14" targets="//@classes.19">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/superclass"/>
   </references>
-  <references presenceCondition="(true) &amp; (true)" source="//@classes.14" targets="//@classes.18">
+  <references source="//@classes.14" targets="//@classes.18">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/superclass"/>
   </references>
-  <references presenceCondition="(true) &amp; (true)" source="//@classes.15" targets="//@classes.7">
+  <references source="//@classes.15" targets="//@classes.7">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/superclass"/>
   </references>
-  <references presenceCondition="(true) &amp; (true) &amp; (true)" source="//@classes.0" targets="//@classes.56">
+  <references source="//@classes.0" targets="//@classes.56">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
   </references>
-  <references presenceCondition="(true) &amp; (true) &amp; (true)" source="//@classes.15" targets="//@classes.56">
+  <references source="//@classes.15" targets="//@classes.56">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
   </references>
-  <references presenceCondition="(true) &amp; (true) &amp; (true)" source="//@classes.19" targets="//@classes.56">
+  <references source="//@classes.19" targets="//@classes.56">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
   </references>
-  <references presenceCondition="(Compartments &amp; Roles) &amp; (true) &amp; (true)" source="//@classes.0" targets="//@classes.57">
+  <references presenceCondition="Compartments &amp; Roles" source="//@classes.0" targets="//@classes.57">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
   </references>
-  <references presenceCondition="(Compartments &amp; Roles) &amp; (true) &amp; (true)" source="//@classes.15" targets="//@classes.57">
+  <references presenceCondition="Compartments &amp; Roles" source="//@classes.15" targets="//@classes.57">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
   </references>
-  <references presenceCondition="(Compartments &amp; Roles) &amp; (true) &amp; (true)" source="//@classes.12" targets="//@classes.57">
+  <references presenceCondition="Compartments &amp; Roles" source="//@classes.12" targets="//@classes.57">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
   </references>
-  <references presenceCondition="(Compartments &amp; ~Roles) &amp; (true) &amp; (true)" source="//@classes.0" targets="//@classes.58">
+  <references presenceCondition="Compartments &amp; ~Roles" source="//@classes.0" targets="//@classes.58">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
   </references>
-  <references presenceCondition="(Compartments &amp; ~Roles) &amp; (true) &amp; (true)" source="//@classes.15" targets="//@classes.58">
+  <references presenceCondition="Compartments &amp; ~Roles" source="//@classes.15" targets="//@classes.58">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
   </references>
-  <references presenceCondition="(Compartments &amp; ~Roles) &amp; (true) &amp; (true)" source="//@classes.5" targets="//@classes.58">
+  <references presenceCondition="Compartments &amp; ~Roles" source="//@classes.5" targets="//@classes.58">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
   </references>
-  <references presenceCondition="(~Compartments &amp; Roles) &amp; (true) &amp; (~Compartments &amp; Roles)" source="//@classes.0" targets="//@classes.59">
+  <references presenceCondition="(~Compartments &amp; Roles) &amp; (~Compartments &amp; Roles)" source="//@classes.0" targets="//@classes.59">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
   </references>
-  <references presenceCondition="(~Compartments &amp; Roles) &amp; (true) &amp; (~Compartments &amp; Roles)" source="//@classes.15" targets="//@classes.59">
+  <references presenceCondition="(~Compartments &amp; Roles) &amp; (~Compartments &amp; Roles)" source="//@classes.15" targets="//@classes.59">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
   </references>
-  <references presenceCondition="(~Compartments &amp; Roles) &amp; (true) &amp; (~Compartments &amp; Roles)" source="//@classes.23" targets="//@classes.59">
+  <references presenceCondition="(~Compartments &amp; Roles) &amp; (~Compartments &amp; Roles)" source="//@classes.23" targets="//@classes.59">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
   </references>
-  <references presenceCondition="(~Compartments &amp; ~Roles) &amp; (true) &amp; (true)" source="//@classes.0" targets="//@classes.60">
+  <references presenceCondition="~Compartments &amp; ~Roles" source="//@classes.0" targets="//@classes.60">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
   </references>
-  <references presenceCondition="(~Compartments &amp; ~Roles) &amp; (true) &amp; (true)" source="//@classes.15" targets="//@classes.60">
+  <references presenceCondition="~Compartments &amp; ~Roles" source="//@classes.15" targets="//@classes.60">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
   </references>
-  <references presenceCondition="(~Compartments &amp; ~Roles) &amp; (true) &amp; (true)" source="//@classes.13" targets="//@classes.60">
+  <references presenceCondition="~Compartments &amp; ~Roles" source="//@classes.13" targets="//@classes.60">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
   </references>
-  <references presenceCondition="(true) &amp; (true)" source="//@classes.16" targets="//@classes.7">
+  <references source="//@classes.16" targets="//@classes.7">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/superclass"/>
   </references>
-  <references presenceCondition="(true) &amp; (true)" source="//@classes.17" targets="//@classes.16">
+  <references source="//@classes.17" targets="//@classes.16">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/superclass"/>
   </references>
-  <references presenceCondition="(true) &amp; (true) &amp; (true)" source="//@classes.0" targets="//@classes.61">
+  <references source="//@classes.0" targets="//@classes.61">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
   </references>
-  <references presenceCondition="(true) &amp; (true) &amp; (true)" source="//@classes.17" targets="//@classes.61">
+  <references source="//@classes.17" targets="//@classes.61">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
   </references>
-  <references presenceCondition="(true) &amp; (true) &amp; (true)" source="//@classes.13" targets="//@classes.61">
+  <references source="//@classes.13" targets="//@classes.61">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
   </references>
-  <references presenceCondition="(true) &amp; (true) &amp; (true)" source="//@classes.0" targets="//@classes.62">
+  <references source="//@classes.0" targets="//@classes.62">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
   </references>
-  <references presenceCondition="(true) &amp; (true) &amp; (true)" source="//@classes.17" targets="//@classes.62">
+  <references source="//@classes.17" targets="//@classes.62">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
   </references>
-  <references presenceCondition="(true) &amp; (true) &amp; (true)" source="//@classes.13" targets="//@classes.62">
+  <references source="//@classes.13" targets="//@classes.62">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
   </references>
-  <references presenceCondition="(true) &amp; (true)" source="//@classes.18" targets="//@classes.1">
+  <references source="//@classes.18" targets="//@classes.1">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/superclass"/>
   </references>
-  <references presenceCondition="(true) &amp; (true) &amp; (true)" source="//@classes.0" targets="//@classes.63">
+  <references source="//@classes.0" targets="//@classes.63">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
   </references>
-  <references presenceCondition="(true) &amp; (true) &amp; (true)" source="//@classes.18" targets="//@classes.63">
+  <references source="//@classes.18" targets="//@classes.63">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
   </references>
-  <references presenceCondition="(true) &amp; (true) &amp; (true)" source="//@classes.7" targets="//@classes.63">
+  <references source="//@classes.7" targets="//@classes.63">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
   </references>
-  <references presenceCondition="(true) &amp; (true) &amp; (true)" source="//@classes.0" targets="//@classes.64">
+  <references source="//@classes.0" targets="//@classes.64">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
   </references>
-  <references presenceCondition="(true) &amp; (true) &amp; (true)" source="//@classes.18" targets="//@classes.64">
+  <references source="//@classes.18" targets="//@classes.64">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
   </references>
-  <references presenceCondition="(true) &amp; (true) &amp; (true)" source="//@classes.7" targets="//@classes.64">
+  <references source="//@classes.7" targets="//@classes.64">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
   </references>
-  <references presenceCondition="(~OnCompartments) &amp; (true) &amp; (~OnCompartments)" source="//@classes.0" targets="//@classes.65">
+  <references presenceCondition="(~OnCompartments) &amp; (~OnCompartments)" source="//@classes.0" targets="//@classes.65">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
   </references>
-  <references presenceCondition="(~OnCompartments) &amp; (true) &amp; (~OnCompartments)" source="//@classes.19" targets="//@classes.65">
+  <references presenceCondition="(~OnCompartments) &amp; (~OnCompartments)" source="//@classes.19" targets="//@classes.65">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
   </references>
-  <references presenceCondition="(~OnCompartments) &amp; (true) &amp; (~OnCompartments)" source="//@classes.20" targets="//@classes.65">
+  <references presenceCondition="(~OnCompartments) &amp; (~OnCompartments)" source="//@classes.20" targets="//@classes.65">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
   </references>
-  <references presenceCondition="(OnCompartments) &amp; (true) &amp; (OnCompartments)" source="//@classes.0" targets="//@classes.66">
+  <references presenceCondition="(OnCompartments) &amp; (OnCompartments)" source="//@classes.0" targets="//@classes.66">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
   </references>
-  <references presenceCondition="(OnCompartments) &amp; (true) &amp; (OnCompartments)" source="//@classes.19" targets="//@classes.66">
+  <references presenceCondition="(OnCompartments) &amp; (OnCompartments)" source="//@classes.19" targets="//@classes.66">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
   </references>
-  <references presenceCondition="(OnCompartments) &amp; (true) &amp; (OnCompartments)" source="//@classes.22" targets="//@classes.66">
+  <references presenceCondition="(OnCompartments) &amp; (OnCompartments)" source="//@classes.22" targets="//@classes.66">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
   </references>
-  <references presenceCondition="(true) &amp; (~OnCompartments)" source="//@classes.20" targets="//@classes.3">
+  <references presenceCondition="~OnCompartments" source="//@classes.20" targets="//@classes.3">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/superclass"/>
   </references>
-  <references presenceCondition="(true) &amp; (~OnCompartments) &amp; (true)" source="//@classes.0" targets="//@classes.67">
+  <references presenceCondition="~OnCompartments" source="//@classes.0" targets="//@classes.67">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
   </references>
-  <references presenceCondition="(true) &amp; (~OnCompartments) &amp; (true)" source="//@classes.20" targets="//@classes.67">
+  <references presenceCondition="~OnCompartments" source="//@classes.20" targets="//@classes.67">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
   </references>
-  <references presenceCondition="(true) &amp; (~OnCompartments) &amp; (true)" source="//@classes.19" targets="//@classes.67">
+  <references presenceCondition="~OnCompartments" source="//@classes.19" targets="//@classes.67">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
   </references>
-  <references presenceCondition="(true) &amp; (true)" source="//@classes.21" targets="//@classes.1">
+  <references source="//@classes.21" targets="//@classes.1">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/superclass"/>
   </references>
-  <references presenceCondition="(true) &amp; (true) &amp; (true)" source="//@classes.0" targets="//@classes.68">
+  <references source="//@classes.0" targets="//@classes.68">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
   </references>
-  <references presenceCondition="(true) &amp; (true) &amp; (true)" source="//@classes.21" targets="//@classes.68">
+  <references source="//@classes.21" targets="//@classes.68">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
   </references>
-  <references presenceCondition="(true) &amp; (true) &amp; (true)" source="//@classes.12" targets="//@classes.68">
+  <references source="//@classes.12" targets="//@classes.68">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
   </references>
-  <references presenceCondition="(true) &amp; (OnCompartments)" source="//@classes.22" targets="//@classes.5">
+  <references presenceCondition="OnCompartments" source="//@classes.22" targets="//@classes.5">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/superclass"/>
   </references>
-  <references presenceCondition="(true) &amp; (OnCompartments) &amp; (true)" source="//@classes.0" targets="//@classes.69">
+  <references presenceCondition="OnCompartments" source="//@classes.0" targets="//@classes.69">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
   </references>
-  <references presenceCondition="(true) &amp; (OnCompartments) &amp; (true)" source="//@classes.22" targets="//@classes.69">
+  <references presenceCondition="OnCompartments" source="//@classes.22" targets="//@classes.69">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
   </references>
-  <references presenceCondition="(true) &amp; (OnCompartments) &amp; (true)" source="//@classes.19" targets="//@classes.69">
+  <references presenceCondition="OnCompartments" source="//@classes.19" targets="//@classes.69">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
   </references>
   <references presenceCondition="(OnCompartments &amp; OnRelationships) &amp; (OnCompartments) &amp; (OnRelationships)" source="//@classes.0" targets="//@classes.70">
@@ -948,7 +948,7 @@
   <references presenceCondition="((RelationshipConstraints | RoleConstraints) &amp; OnCompartments) &amp; (OnCompartments) &amp; (RelationshipConstraints | RoleConstraints)" source="//@classes.41" targets="//@classes.71">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
   </references>
-  <references presenceCondition="(true) &amp; (CompartmentInheritance)" source="//@classes.24" targets="//@classes.16">
+  <references presenceCondition="CompartmentInheritance" source="//@classes.24" targets="//@classes.16">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/superclass"/>
   </references>
   <references presenceCondition="(CompartmentInheritance &amp; OnCompartments) &amp; (CompartmentInheritance) &amp; (OnCompartments)" source="//@classes.0" targets="//@classes.72">
@@ -969,67 +969,67 @@
   <references presenceCondition="(CompartmentInheritance &amp; OnCompartments) &amp; (CompartmentInheritance) &amp; (OnCompartments)" source="//@classes.22" targets="//@classes.73">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
   </references>
-  <references presenceCondition="(true) &amp; (GroupConstraints)" source="//@classes.25" targets="//@classes.19">
+  <references presenceCondition="GroupConstraints" source="//@classes.25" targets="//@classes.19">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/superclass"/>
   </references>
-  <references presenceCondition="(true) &amp; (GroupConstraints)" source="//@classes.25" targets="//@classes.18">
+  <references presenceCondition="GroupConstraints" source="//@classes.25" targets="//@classes.18">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/superclass"/>
   </references>
   <references source="//@classes.0" targets="//@classes.74">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/datatypes"/>
   </references>
-  <references source="//@classes.26" targets="//@classes.74">
+  <references presenceCondition="GroupConstraints" source="//@classes.26" targets="//@classes.74">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/type"/>
   </references>
-  <references source="//@classes.27" targets="//@classes.74">
+  <references presenceCondition="GroupConstraints" source="//@classes.27" targets="//@classes.74">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/type"/>
   </references>
-  <references presenceCondition="(true) &amp; (GroupConstraints) &amp; (true)" source="//@classes.0" targets="//@classes.75">
+  <references presenceCondition="GroupConstraints" source="//@classes.0" targets="//@classes.75">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
   </references>
-  <references presenceCondition="(true) &amp; (GroupConstraints) &amp; (true)" source="//@classes.25" targets="//@classes.75">
+  <references presenceCondition="GroupConstraints" source="//@classes.25" targets="//@classes.75">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
   </references>
-  <references presenceCondition="(true) &amp; (GroupConstraints) &amp; (true)" source="//@classes.19" targets="//@classes.75">
+  <references presenceCondition="GroupConstraints" source="//@classes.19" targets="//@classes.75">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
   </references>
   <references presenceCondition="(RelationshipConstraints) &amp; (InterRelationshipConstraints)" source="//@classes.28" targets="//@classes.40">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/superclass"/>
   </references>
-  <references presenceCondition="(true) &amp; (InterRelationshipConstraints) &amp; (OnRelationships)" source="//@classes.0" targets="//@classes.76">
+  <references presenceCondition="(InterRelationshipConstraints) &amp; (OnRelationships)" source="//@classes.0" targets="//@classes.76">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
   </references>
-  <references presenceCondition="(true) &amp; (InterRelationshipConstraints) &amp; (OnRelationships)" source="//@classes.28" targets="//@classes.76">
+  <references presenceCondition="(InterRelationshipConstraints) &amp; (OnRelationships)" source="//@classes.28" targets="//@classes.76">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
   </references>
-  <references presenceCondition="(true) &amp; (InterRelationshipConstraints) &amp; (OnRelationships)" source="//@classes.29" targets="//@classes.76">
+  <references presenceCondition="(InterRelationshipConstraints) &amp; (OnRelationships)" source="//@classes.29" targets="//@classes.76">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
   </references>
-  <references presenceCondition="(true) &amp; (InterRelationshipConstraints) &amp; (OnRelationships)" source="//@classes.0" targets="//@classes.77">
+  <references presenceCondition="(InterRelationshipConstraints) &amp; (OnRelationships)" source="//@classes.0" targets="//@classes.77">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
   </references>
-  <references presenceCondition="(true) &amp; (InterRelationshipConstraints) &amp; (OnRelationships)" source="//@classes.28" targets="//@classes.77">
+  <references presenceCondition="(InterRelationshipConstraints) &amp; (OnRelationships)" source="//@classes.28" targets="//@classes.77">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
   </references>
-  <references presenceCondition="(true) &amp; (InterRelationshipConstraints) &amp; (OnRelationships)" source="//@classes.29" targets="//@classes.77">
+  <references presenceCondition="(InterRelationshipConstraints) &amp; (OnRelationships)" source="//@classes.29" targets="//@classes.77">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
   </references>
-  <references presenceCondition="(true) &amp; (OnRelationships) &amp; (OnRelationships)" source="//@classes.0" targets="//@classes.78">
+  <references presenceCondition="(OnRelationships) &amp; (OnRelationships)" source="//@classes.0" targets="//@classes.78">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
   </references>
-  <references presenceCondition="(true) &amp; (OnRelationships) &amp; (OnRelationships)" source="//@classes.29" targets="//@classes.78">
+  <references presenceCondition="(OnRelationships) &amp; (OnRelationships)" source="//@classes.29" targets="//@classes.78">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
   </references>
-  <references presenceCondition="(true) &amp; (OnRelationships) &amp; (OnRelationships)" source="//@classes.36" targets="//@classes.78">
+  <references presenceCondition="(OnRelationships) &amp; (OnRelationships)" source="//@classes.36" targets="//@classes.78">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
   </references>
-  <references presenceCondition="(true) &amp; (OnRelationships) &amp; (OnRelationships)" source="//@classes.0" targets="//@classes.79">
+  <references presenceCondition="(OnRelationships) &amp; (OnRelationships)" source="//@classes.0" targets="//@classes.79">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
   </references>
-  <references presenceCondition="(true) &amp; (OnRelationships) &amp; (OnRelationships)" source="//@classes.29" targets="//@classes.79">
+  <references presenceCondition="(OnRelationships) &amp; (OnRelationships)" source="//@classes.29" targets="//@classes.79">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
   </references>
-  <references presenceCondition="(true) &amp; (OnRelationships) &amp; (OnRelationships)" source="//@classes.36" targets="//@classes.79">
+  <references presenceCondition="(OnRelationships) &amp; (OnRelationships)" source="//@classes.36" targets="//@classes.79">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
   </references>
   <references presenceCondition="(InterRelationshipConstraints) &amp; (InterRelationshipConstraints)" source="//@classes.30" targets="//@classes.28">
@@ -1038,13 +1038,13 @@
   <references presenceCondition="(RelationshipConstraints) &amp; (IntraRelationshipConstraints)" source="//@classes.31" targets="//@classes.40">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/superclass"/>
   </references>
-  <references presenceCondition="(true) &amp; (IntraRelationshipConstraints) &amp; (OnRelationships)" source="//@classes.0" targets="//@classes.80">
+  <references presenceCondition="(IntraRelationshipConstraints) &amp; (OnRelationships)" source="//@classes.0" targets="//@classes.80">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
   </references>
-  <references presenceCondition="(true) &amp; (IntraRelationshipConstraints) &amp; (OnRelationships)" source="//@classes.31" targets="//@classes.80">
+  <references presenceCondition="(IntraRelationshipConstraints) &amp; (OnRelationships)" source="//@classes.31" targets="//@classes.80">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
   </references>
-  <references presenceCondition="(true) &amp; (IntraRelationshipConstraints) &amp; (OnRelationships)" source="//@classes.29" targets="//@classes.80">
+  <references presenceCondition="(IntraRelationshipConstraints) &amp; (OnRelationships)" source="//@classes.29" targets="//@classes.80">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
   </references>
   <references presenceCondition="(IntraRelationshipConstraints) &amp; (IntraRelationshipConstraints)" source="//@classes.32" targets="//@classes.31">
@@ -1056,49 +1056,49 @@
   <references presenceCondition="(IntraRelationshipConstraints) &amp; (IntraRelationshipConstraints)" source="//@classes.34" targets="//@classes.31">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/superclass"/>
   </references>
-  <references source="//@classes.37" targets="//@classes.74">
+  <references presenceCondition="OnRelationships" source="//@classes.37" targets="//@classes.74">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/type"/>
   </references>
-  <references source="//@classes.38" targets="//@classes.74">
+  <references presenceCondition="OnRelationships" source="//@classes.38" targets="//@classes.74">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/type"/>
   </references>
-  <references source="//@classes.39" targets="//@classes.35">
+  <references presenceCondition="OnRelationships" source="//@classes.39" targets="//@classes.35">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/type"/>
   </references>
-  <references presenceCondition="(true) &amp; (OnRelationships) &amp; (true)" source="//@classes.0" targets="//@classes.81">
+  <references presenceCondition="OnRelationships" source="//@classes.0" targets="//@classes.81">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
   </references>
-  <references presenceCondition="(true) &amp; (OnRelationships) &amp; (true)" source="//@classes.36" targets="//@classes.81">
+  <references presenceCondition="OnRelationships" source="//@classes.36" targets="//@classes.81">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
   </references>
-  <references presenceCondition="(true) &amp; (OnRelationships) &amp; (true)" source="//@classes.14" targets="//@classes.81">
+  <references presenceCondition="OnRelationships" source="//@classes.14" targets="//@classes.81">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
   </references>
   <references presenceCondition="(RelationshipConstraints | RoleConstraints) &amp; (RelationshipConstraints)" source="//@classes.40" targets="//@classes.41">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/superclass"/>
   </references>
-  <references presenceCondition="(true) &amp; (RoleBehavior &amp; RoleProperties)" source="//@classes.42" targets="//@classes.12">
+  <references presenceCondition="RoleBehavior &amp; RoleProperties" source="//@classes.42" targets="//@classes.12">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/superclass"/>
   </references>
   <references presenceCondition="(RelationshipConstraints | RoleConstraints) &amp; (RoleConstraints)" source="//@classes.43" targets="//@classes.41">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/superclass"/>
   </references>
-  <references presenceCondition="(true) &amp; (RoleConstraints) &amp; (true)" source="//@classes.0" targets="//@classes.82">
+  <references presenceCondition="RoleConstraints" source="//@classes.0" targets="//@classes.82">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
   </references>
-  <references presenceCondition="(true) &amp; (RoleConstraints) &amp; (true)" source="//@classes.43" targets="//@classes.82">
+  <references presenceCondition="RoleConstraints" source="//@classes.43" targets="//@classes.82">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
   </references>
-  <references presenceCondition="(true) &amp; (RoleConstraints) &amp; (true)" source="//@classes.19" targets="//@classes.82">
+  <references presenceCondition="RoleConstraints" source="//@classes.19" targets="//@classes.82">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
   </references>
-  <references presenceCondition="(true) &amp; (RoleConstraints) &amp; (true)" source="//@classes.0" targets="//@classes.83">
+  <references presenceCondition="RoleConstraints" source="//@classes.0" targets="//@classes.83">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
   </references>
-  <references presenceCondition="(true) &amp; (RoleConstraints) &amp; (true)" source="//@classes.43" targets="//@classes.83">
+  <references presenceCondition="RoleConstraints" source="//@classes.43" targets="//@classes.83">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
   </references>
-  <references presenceCondition="(true) &amp; (RoleConstraints) &amp; (true)" source="//@classes.19" targets="//@classes.83">
+  <references presenceCondition="RoleConstraints" source="//@classes.19" targets="//@classes.83">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
   </references>
   <references presenceCondition="(RoleConstraints) &amp; (RoleEquivalence)" source="//@classes.44" targets="//@classes.43">
@@ -1107,25 +1107,25 @@
   <references presenceCondition="(RoleConstraints) &amp; (RoleImplication)" source="//@classes.45" targets="//@classes.43">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/superclass"/>
   </references>
-  <references presenceCondition="(true) &amp; (RoleInheritance)" source="//@classes.46" targets="//@classes.16">
+  <references presenceCondition="RoleInheritance" source="//@classes.46" targets="//@classes.16">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/superclass"/>
   </references>
-  <references presenceCondition="(true) &amp; (RoleInheritance) &amp; (true)" source="//@classes.0" targets="//@classes.84">
+  <references presenceCondition="RoleInheritance" source="//@classes.0" targets="//@classes.84">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
   </references>
-  <references presenceCondition="(true) &amp; (RoleInheritance) &amp; (true)" source="//@classes.46" targets="//@classes.84">
+  <references presenceCondition="RoleInheritance" source="//@classes.46" targets="//@classes.84">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
   </references>
-  <references presenceCondition="(true) &amp; (RoleInheritance) &amp; (true)" source="//@classes.14" targets="//@classes.84">
+  <references presenceCondition="RoleInheritance" source="//@classes.14" targets="//@classes.84">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
   </references>
-  <references presenceCondition="(true) &amp; (RoleInheritance) &amp; (true)" source="//@classes.0" targets="//@classes.85">
+  <references presenceCondition="RoleInheritance" source="//@classes.0" targets="//@classes.85">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
   </references>
-  <references presenceCondition="(true) &amp; (RoleInheritance) &amp; (true)" source="//@classes.46" targets="//@classes.85">
+  <references presenceCondition="RoleInheritance" source="//@classes.46" targets="//@classes.85">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
   </references>
-  <references presenceCondition="(true) &amp; (RoleInheritance) &amp; (true)" source="//@classes.14" targets="//@classes.85">
+  <references presenceCondition="RoleInheritance" source="//@classes.14" targets="//@classes.85">
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
   </references>
   <references presenceCondition="(RoleConstraints) &amp; (RoleProhibition)" source="//@classes.47" targets="//@classes.43">
