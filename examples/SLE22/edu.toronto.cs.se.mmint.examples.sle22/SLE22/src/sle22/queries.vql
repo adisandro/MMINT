@@ -36,8 +36,8 @@ pattern classAssociations(clazz: Class, associations: java Integer) {
   associations == count Class.associationsAsTarget(clazz, _);
 }
 
-pattern bestName(bestName: java String) {
-  bestName == max NamedElement.name(_, #name);
+pattern maxName(maxName: java String) {
+  maxName == max NamedElement.name(_, #name);
 }
 
 //pattern subAssoc(sub1: Class, sub2: Class, assoc: Association) {
