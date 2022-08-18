@@ -88,15 +88,15 @@ public class ToProduct extends RandomOperatorImpl {
     public Out(Map<String, MID> outputMIDsByName, String workingPath, In in) {
       this.in = in;
       this.productModelType = MIDTypeRegistry.<Model>getType(in.pl.getMetamodel().getNsURI());
-      this.productPath = workingPath + IPath.SEPARATOR + in.plModel.getName() + "." +
+      this.productPath = workingPath + IPath.SEPARATOR + in.plModel.getName() + "_prod." +
                          this.productModelType.getFileExtension();
-      this.productPath = FileUtils.getUniquePath(this.productPath, true, false);
       this.productMID = outputMIDsByName.get(Out.MODEL);
       this.traceMID = outputMIDsByName.get(Out.MODELREL);
       this.traceLinks = new LinkedHashMap<>();
     }
 
     public Map<String, Model> packed() throws MMINTException, IOException {
+      this.productPath = FileUtils.getUniquePath(this.productPath, true, false);
       var productModel = this.productModelType.createInstanceAndEditor(this.product, this.productPath, this.productMID);
       var traceRel = MIDTypeHierarchy.getRootModelRelType()
         .createBinaryInstanceAndEndpoints(null, Out.MODELREL, this.in.plModel, productModel, this.traceMID);

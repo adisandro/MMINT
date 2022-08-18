@@ -75,6 +75,7 @@ public class AnnotatedEcoreToCDProductLine extends ToProductLine {
     for (var eClassifier : ePackage.getEClassifiers()) {
       var plEClass = createPLClass(eClassifier, ClassDiagramPackage.eINSTANCE.getClass_(), plClasses);
       var plEClassPC = plEClass.getPresenceCondition();
+      var classIsTrue = plEClassPC.equals("true");
       createPLReference(ClassDiagramPackage.eINSTANCE.getClassDiagram_Classes(), plEPackage, plEClass)
         .setPresenceCondition(plEClassPC);
       createPLAttribute(ClassDiagramPackage.eINSTANCE.getNamedElement_Name(), eClassifier.getName(), plEClass)
@@ -84,7 +85,12 @@ public class AnnotatedEcoreToCDProductLine extends ToProductLine {
       }
       for (var eAttribute : eClass.getEAttributes()) {
         var plEAttribute = createPLClass(eAttribute, ClassDiagramPackage.eINSTANCE.getAttribute(), plClasses);
-        var plEAttributePC = "(" + plEAttribute.getPresenceCondition() + ") & (" + plEClassPC + ")";
+        var plEAttributePC = plEAttribute.getPresenceCondition();
+        if (!classIsTrue) {
+          plEAttributePC = (plEAttributePC.equals("true")) ?
+            plEClassPC :
+            "(" + plEAttributePC + ") & (" + plEClassPC + ")";
+        }
         createPLReference(ClassDiagramPackage.eINSTANCE.getClass_OwnedAttributes(), plEClass, plEAttribute)
           .setPresenceCondition(plEAttributePC);
         createPLAttribute(ClassDiagramPackage.eINSTANCE.getNamedElement_Name(), eAttribute.getName(), plEAttribute)
@@ -94,7 +100,12 @@ public class AnnotatedEcoreToCDProductLine extends ToProductLine {
       }
       for (var eOperation : eClass.getEOperations()) {
         var plEOperation = createPLClass(eOperation, ClassDiagramPackage.eINSTANCE.getOperation(), plClasses);
-        var plEOperationPC = "(" + plEOperation.getPresenceCondition() + ") & (" + plEClassPC + ")";
+        var plEOperationPC = plEOperation.getPresenceCondition();
+        if (!classIsTrue) {
+          plEOperationPC = (plEOperationPC.equals("true")) ?
+            plEClassPC :
+            "(" + plEOperationPC + ") & (" + plEClassPC + ")";
+        }
         createPLReference(ClassDiagramPackage.eINSTANCE.getClass_OwnedOperations(), plEClass, plEOperation)
           .setPresenceCondition(plEOperationPC);
         createPLAttribute(ClassDiagramPackage.eINSTANCE.getNamedElement_Name(), eOperation.getName(), plEOperation)
@@ -108,9 +119,15 @@ public class AnnotatedEcoreToCDProductLine extends ToProductLine {
       }
       var plEClass = plClasses.get(MIDRegistry.getModelElementUri(eClass));
       var plEClassPC = plEClass.getPresenceCondition();
+      var classIsTrue = plEClassPC.equals("true");
       for (var eSuperclass : eClass.getESuperTypes()) {
         var plESuperclass = plClasses.get(MIDRegistry.getModelElementUri(eSuperclass));
-        var plESuperclassPC = "(" + plESuperclass.getPresenceCondition() + ") & (" + plEClassPC + ")";
+        var plESuperclassPC = plESuperclass.getPresenceCondition();
+        if (!classIsTrue) {
+          plESuperclassPC = (plESuperclassPC.equals("true")) ?
+            plEClassPC :
+            "(" + plESuperclassPC + ") & (" + plEClassPC + ")";
+        }
         createPLReference(ClassDiagramPackage.eINSTANCE.getClass_Superclass(), plEClass, plESuperclass)
           .setPresenceCondition(plESuperclassPC);
       }
@@ -141,8 +158,30 @@ public class AnnotatedEcoreToCDProductLine extends ToProductLine {
       for (var eReference : eClass.getEReferences()) {
         var plEReference = createPLClass(eReference, ClassDiagramPackage.eINSTANCE.getAssociation(), plClasses);
         var plEClassTgt = plClasses.get(MIDRegistry.getModelElementUri(eReference.getEType()));
-        var plEReferencePC = "(" + plEReference.getPresenceCondition() + ") & (" + plEClassPC + ") & (" +
-                             plEClassTgt.getPresenceCondition() + ")";
+        var plEClassTgtPC = plEClassTgt.getPresenceCondition();
+        var plEReferencePC = plEReference.getPresenceCondition();
+        var tgtIsTrue = plEClassTgtPC.equals("true");
+        var assocIsTrue = plEReferencePC.equals("true");
+        if (classIsTrue) {
+          // tgtIsTrue => plEReferencePC stays as-is
+          if (!tgtIsTrue) {
+            plEReferencePC = (assocIsTrue) ?
+              plEClassTgtPC :
+              "(" + plEReferencePC + ") & (" + plEClassTgtPC + ")";
+          }
+        }
+        else { // !classIsTrue
+          if (tgtIsTrue) {
+            plEReferencePC = (assocIsTrue) ?
+              plEClassPC :
+              "(" + plEReferencePC + ") & (" + plEClassPC + ")";
+          }
+          else { // !tgtIsTrue
+            plEReferencePC = (assocIsTrue) ?
+              "(" + plEClassPC + ") & (" + plEClassTgtPC + ")" :
+              "(" + plEReferencePC + ") & (" + plEClassPC + ") & (" + plEClassTgtPC + ")";
+          }
+        }
         createPLReference(ClassDiagramPackage.eINSTANCE.getClassDiagram_Associations(), plEPackage, plEReference)
           .setPresenceCondition(plEReferencePC);
         createPLReference(ClassDiagramPackage.eINSTANCE.getClass_AssociationsAsSource(), plEClass, plEReference)

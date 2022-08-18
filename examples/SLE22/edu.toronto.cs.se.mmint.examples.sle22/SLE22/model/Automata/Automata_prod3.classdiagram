@@ -8,6 +8,8 @@
   <classes name="Transition" associationsAsSource="//@associations.1 //@associations.2 //@associations.3 //@associations.4 //@associations.5" associationsAsTarget="//@associations.7"/>
   <classes name="State" subclasses="//@classes.5" associationsAsTarget="//@associations.4 //@associations.5 //@associations.6">
     <ownedAttributes name="name" type="//@datatypes.0" public="true"/>
+    <ownedAttributes name="isInitial" type="//@datatypes.2" public="true"/>
+    <ownedAttributes name="isFinal" type="//@datatypes.2" public="true"/>
     <ownedOperations name="adjacent" type="//@classes.4"/>
     <ownedOperations name="inTrans" type="//@classes.3"/>
     <ownedOperations name="outTrans" type="//@classes.3"/>
