@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mid:MID xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editor="http://se.cs.toronto.edu/mmint/MID/Editor" xmlns:mid="http://se.cs.toronto.edu/mmint/MID">
+  <models uri="/SLE22/model/GPL/GPL.ecore" name="GPL" metatypeUri="http://www.eclipse.org/emf/2002/Ecore" dynamic="true" fileExtension="ecore" editors="//@editors.0"/>
+  <models uri="/SLE22/model/GPL/GPL.productline" name="GPL" metatypeUri="model://edu.toronto.cs.se.mmint.productline" dynamic="true" origin="CREATED" fileExtension="productline" editors="//@editors.1"/>
+  <editors uri="/SLE22/model/GPL/GPL.ecore" name="Ecore tree for model /SLE22/model/GPL/GPL.ecore" metatypeUri="http://www.eclipse.org/emf/2002/Ecore_tree" dynamic="true" modelUri="/SLE22/model/GPL/GPL.ecore" id="org.eclipse.emf.ecore.presentation.EcoreEditorID" wizardId="org.eclipse.emf.ecore.presentation.EcoreModelWizardID">
+    <fileExtensions>ecore</fileExtensions>
+  </editors>
+  <editors xsi:type="editor:Diagram" uri="/SLE22/representations.aird#_mPNuwB8YEe2mGa8gntgr7g" name="ProductLine Sirius Diagram for model /SLE22/model/GPL/GPL.productline" metatypeUri="edu.toronto.cs.se.mmint.productline.design" dynamic="true" modelUri="/SLE22/model/GPL/GPL.productline" id="edu.toronto.cs.se.mmint.productline.design" wizardId="edu.toronto.cs.se.mmint.productline.presentation.ProductLineModelWizardID">
+    <fileExtensions>aird</fileExtensions>
+  </editors>
+  <operators uri="" name="ToProductLine" metatypeUri="edu.toronto.cs.se.mmint.examples.sle22.operators.AnnotatedEcoreToCDProductLine" dynamic="true" workingPath="/SLE22/model/GPL" executionTime="433230428">
+    <inputs uri="" name="product" metatypeUri="edu.toronto.cs.se.mmint.examples.sle22.operators.AnnotatedEcoreToCDProductLine/product" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0"/>
+    <outputs uri="" name="productLine" metatypeUri="edu.toronto.cs.se.mmint.examples.sle22.operators.AnnotatedEcoreToCDProductLine/productLine" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1"/>
+  </operators>
+  <extendibleTable key="/SLE22/model/GPL/GPL.ecore" value="//@models.0"/>
+  <extendibleTable key="/SLE22/model/GPL/GPL.productline" value="//@models.1"/>
+</mid:MID>
