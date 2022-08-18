@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classdiagram:ClassDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:classdiagram="http://se.cs.toronto.edu/modelepedia/ClassDiagram">
+  <classes name="EdgeIfc"/>
+  <classes name="EdgeIter"/>
+  <classes name="NeighborIfc"/>
+  <classes name="VertexIter"/>
+  <classes name="Vertex" associationsAsSource="//@associations.0" associationsAsTarget="//@associations.0 //@associations.1">
+    <ownedAttributes name="visited" type="//@datatypes.0" public="true"/>
+    <ownedAttributes name="componentNumber" type="//@datatypes.1" public="true"/>
+    <ownedAttributes name="name" type="//@datatypes.2" public="true"/>
+    <ownedAttributes name="VertexNumber" type="//@datatypes.1" public="true"/>
+  </classes>
+  <classes name="Graph" associationsAsSource="//@associations.1" associationsAsTarget="//@associations.2">
+    <ownedAttributes name="isDirected" type="//@datatypes.3" public="true"/>
+  </classes>
+  <classes name="GlobalVarsWrapper"/>
+  <classes name="WorkSpace" subclasses="//@classes.8 //@classes.10"/>
+  <classes name="RegionWorkSpace" superclass="//@classes.7">
+    <ownedAttributes name="counter" type="//@datatypes.1" public="true"/>
+  </classes>
+  <classes name="Neighbor">
+    <ownedAttributes name="weight" type="//@datatypes.1" public="true"/>
+  </classes>
+  <classes name="NumberWorkSpace" superclass="//@classes.7">
+    <ownedAttributes name="vertexCounter" type="//@datatypes.1" public="true"/>
+  </classes>
+  <classes name="Main" associationsAsSource="//@associations.2"/>
+  <associations name="adjacentVertices" source="//@classes.4" target="//@classes.4"/>
+  <associations name="vertices" source="//@classes.5" target="//@classes.4"/>
+  <associations name="g" source="//@classes.11" target="//@classes.5"/>
+  <datatypes name="EBoolean"/>
+  <datatypes name="EInt"/>
+  <datatypes name="EString"/>
+  <datatypes name="EBooleanObject"/>
+</classdiagram:ClassDiagram>
