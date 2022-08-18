@@ -84,17 +84,17 @@ public class SLE22 extends OperatorImpl {
     var queryReasoner = (IQueryTrait) MMINT.getReasoner(reasonerName);
     var querySpec = new QuerySpec(queryReasoner, "/SLE22/src/sle22/query.vql", this.queryName);
     if (satReasoner != null) {
-      satReasoner.toggleCounters(true);
+      satReasoner.toggleStats(true);
     }
     var timeQueryStart = System.nanoTime();
     var queryResults = querySpec.evaluateQuery(modelRootObj, List.of());
     this.out.timeQuery = System.nanoTime() - timeQueryStart;
     this.out.numResults = queryResults.size();
     if (satReasoner != null) {
-      var satCounters = satReasoner.getCounters();
-      this.out.timeSat = satCounters.time();
-      this.out.satCalls = satCounters.numCalls();
-      satReasoner.toggleCounters(false);
+      var satStats = satReasoner.getStats();
+      this.out.timeSat = satStats.time();
+      this.out.satCalls = satStats.numCalls();
+      satReasoner.toggleStats(false);
     }
   }
 

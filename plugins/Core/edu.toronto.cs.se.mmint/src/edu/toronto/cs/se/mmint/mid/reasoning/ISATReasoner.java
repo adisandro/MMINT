@@ -22,26 +22,26 @@ import java.util.Objects;
 public interface ISATReasoner extends IReasoner {
 
   /**
-   * Counters to keep track of SAT calls and time.
+   * Statistics to keep track of SAT calls and time.
    */
-  public record SATCounters(long time, int numCalls) {
-    public SATCounters(long time, int numCalls) {
+  public record SATStats(long time, int numCalls) {
+    public SATStats(long time, int numCalls) {
       this.time = Objects.requireNonNull(time);
       this.numCalls = Objects.requireNonNull(numCalls);
     }
   }
 
   /**
-   * Enables or disables the SAT counters, resetting them in both cases.
+   * Enables or disables the SAT statistics, resetting them in both cases.
    */
-  default void toggleCounters(boolean enable) {}
+  default void toggleStats(boolean enable) {}
 
   /**
-   * Retrieves the SAT counters.
+   * Retrieves the SAT statistics.
    *
-   * @return The SAT counters.
+   * @return The SAT statistics.
    */
-  default SATCounters getCounters() {
-    return new SATCounters(0, 0);
+  default SATStats getStats() {
+    return new SATStats(0, 0);
   }
 }
