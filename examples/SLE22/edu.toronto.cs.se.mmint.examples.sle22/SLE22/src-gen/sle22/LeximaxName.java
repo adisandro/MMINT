@@ -60,7 +60,8 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 
  * <p>Original source:
  *         <code><pre>
- *         pattern maxName(maxName: java String) {
+ *         // Finds the max name in lexicographic order
+ *         pattern leximaxName(maxName: java String) {
  *           maxName == max NamedElement.name(_, #name);
  *         }
  * </pre></code>
@@ -70,9 +71,9 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 
  */
 @SuppressWarnings("all")
-public final class MaxName extends BaseGeneratedEMFQuerySpecification<MaxName.Matcher> {
+public final class LeximaxName extends BaseGeneratedEMFQuerySpecification<LeximaxName.Matcher> {
   /**
-   * Pattern-specific match representation of the sle22.maxName pattern,
+   * Pattern-specific match representation of the sle22.leximaxName pattern,
    * to be used in conjunction with {@link Matcher}.
    * 
    * <p>Class fields correspond to parameters of the pattern. Fields with value null are considered unassigned.
@@ -129,12 +130,12 @@ public final class MaxName extends BaseGeneratedEMFQuerySpecification<MaxName.Ma
 
     @Override
     public String patternName() {
-      return "sle22.maxName";
+      return "sle22.leximaxName";
     }
 
     @Override
     public List<String> parameterNames() {
-      return MaxName.Match.parameterNames;
+      return LeximaxName.Match.parameterNames;
     }
 
     @Override
@@ -143,7 +144,7 @@ public final class MaxName extends BaseGeneratedEMFQuerySpecification<MaxName.Ma
     }
 
     @Override
-    public MaxName.Match toImmutable() {
+    public LeximaxName.Match toImmutable() {
       return isMutable() ? newMatch(fMaxName) : this;
     }
 
@@ -166,8 +167,8 @@ public final class MaxName extends BaseGeneratedEMFQuerySpecification<MaxName.Ma
       if (obj == null) {
           return false;
       }
-      if ((obj instanceof MaxName.Match)) {
-          MaxName.Match other = (MaxName.Match) obj;
+      if ((obj instanceof LeximaxName.Match)) {
+          LeximaxName.Match other = (LeximaxName.Match) obj;
           return Objects.equals(fMaxName, other.fMaxName);
       } else {
           // this should be infrequent
@@ -180,8 +181,8 @@ public final class MaxName extends BaseGeneratedEMFQuerySpecification<MaxName.Ma
     }
 
     @Override
-    public MaxName specification() {
-      return MaxName.instance();
+    public LeximaxName specification() {
+      return LeximaxName.instance();
     }
 
     /**
@@ -191,7 +192,7 @@ public final class MaxName extends BaseGeneratedEMFQuerySpecification<MaxName.Ma
      * @return the empty match.
      * 
      */
-    public static MaxName.Match newEmptyMatch() {
+    public static LeximaxName.Match newEmptyMatch() {
       return new Mutable(null);
     }
 
@@ -203,7 +204,7 @@ public final class MaxName extends BaseGeneratedEMFQuerySpecification<MaxName.Ma
      * @return the new, mutable (partial) match object.
      * 
      */
-    public static MaxName.Match newMutableMatch(final String pMaxName) {
+    public static LeximaxName.Match newMutableMatch(final String pMaxName) {
       return new Mutable(pMaxName);
     }
 
@@ -215,11 +216,11 @@ public final class MaxName extends BaseGeneratedEMFQuerySpecification<MaxName.Ma
      * @return the (partial) match object.
      * 
      */
-    public static MaxName.Match newMatch(final String pMaxName) {
+    public static LeximaxName.Match newMatch(final String pMaxName) {
       return new Immutable(pMaxName);
     }
 
-    private static final class Mutable extends MaxName.Match {
+    private static final class Mutable extends LeximaxName.Match {
       Mutable(final String pMaxName) {
         super(pMaxName);
       }
@@ -230,7 +231,7 @@ public final class MaxName extends BaseGeneratedEMFQuerySpecification<MaxName.Ma
       }
     }
 
-    private static final class Immutable extends MaxName.Match {
+    private static final class Immutable extends LeximaxName.Match {
       Immutable(final String pMaxName) {
         super(pMaxName);
       }
@@ -243,7 +244,7 @@ public final class MaxName extends BaseGeneratedEMFQuerySpecification<MaxName.Ma
   }
 
   /**
-   * Generated pattern matcher API of the sle22.maxName pattern,
+   * Generated pattern matcher API of the sle22.leximaxName pattern,
    * providing pattern-specific query methods.
    * 
    * <p>Use the pattern matcher on a given model via {@link #on(ViatraQueryEngine)},
@@ -253,16 +254,17 @@ public final class MaxName extends BaseGeneratedEMFQuerySpecification<MaxName.Ma
    * 
    * <p>Original source:
    * <code><pre>
-   * pattern maxName(maxName: java String) {
+   * // Finds the max name in lexicographic order
+   * pattern leximaxName(maxName: java String) {
    *   maxName == max NamedElement.name(_, #name);
    * }
    * </pre></code>
    * 
    * @see Match
-   * @see MaxName
+   * @see LeximaxName
    * 
    */
-  public static class Matcher extends BaseMatcher<MaxName.Match> {
+  public static class Matcher extends BaseMatcher<LeximaxName.Match> {
     /**
      * Initializes the pattern matcher within an existing VIATRA Query engine.
      * If the pattern matcher is already constructed in the engine, only a light-weight reference is returned.
@@ -271,7 +273,7 @@ public final class MaxName extends BaseGeneratedEMFQuerySpecification<MaxName.Ma
      * @throws ViatraQueryRuntimeException if an error occurs during pattern matcher creation
      * 
      */
-    public static MaxName.Matcher on(final ViatraQueryEngine engine) {
+    public static LeximaxName.Matcher on(final ViatraQueryEngine engine) {
       // check if matcher already exists
       Matcher matcher = engine.getExistingMatcher(querySpecification());
       if (matcher == null) {
@@ -286,13 +288,13 @@ public final class MaxName extends BaseGeneratedEMFQuerySpecification<MaxName.Ma
      * @noreference This method is for internal matcher initialization by the framework, do not call it manually.
      * 
      */
-    public static MaxName.Matcher create() {
+    public static LeximaxName.Matcher create() {
       return new Matcher();
     }
 
     private static final int POSITION_MAXNAME = 0;
 
-    private static final Logger LOGGER = ViatraQueryLoggingUtil.getLogger(MaxName.Matcher.class);
+    private static final Logger LOGGER = ViatraQueryLoggingUtil.getLogger(LeximaxName.Matcher.class);
 
     /**
      * Initializes the pattern matcher within an existing VIATRA Query engine.
@@ -312,7 +314,7 @@ public final class MaxName extends BaseGeneratedEMFQuerySpecification<MaxName.Ma
      * @return matches represented as a Match object.
      * 
      */
-    public Collection<MaxName.Match> getAllMatches(final String pMaxName) {
+    public Collection<LeximaxName.Match> getAllMatches(final String pMaxName) {
       return rawStreamAllMatches(new Object[]{pMaxName}).collect(Collectors.toSet());
     }
 
@@ -326,7 +328,7 @@ public final class MaxName extends BaseGeneratedEMFQuerySpecification<MaxName.Ma
      * @return a stream of matches represented as a Match object.
      * 
      */
-    public Stream<MaxName.Match> streamAllMatches(final String pMaxName) {
+    public Stream<LeximaxName.Match> streamAllMatches(final String pMaxName) {
       return rawStreamAllMatches(new Object[]{pMaxName});
     }
 
@@ -337,7 +339,7 @@ public final class MaxName extends BaseGeneratedEMFQuerySpecification<MaxName.Ma
      * @return a match represented as a Match object, or null if no match is found.
      * 
      */
-    public Optional<MaxName.Match> getOneArbitraryMatch(final String pMaxName) {
+    public Optional<LeximaxName.Match> getOneArbitraryMatch(final String pMaxName) {
       return rawGetOneArbitraryMatch(new Object[]{pMaxName});
     }
 
@@ -370,7 +372,7 @@ public final class MaxName extends BaseGeneratedEMFQuerySpecification<MaxName.Ma
      * @return true if the pattern has at least one match with the given parameter values, false if the processor was not invoked
      * 
      */
-    public boolean forOneArbitraryMatch(final String pMaxName, final Consumer<? super MaxName.Match> processor) {
+    public boolean forOneArbitraryMatch(final String pMaxName, final Consumer<? super LeximaxName.Match> processor) {
       return rawForOneArbitraryMatch(new Object[]{pMaxName}, processor);
     }
 
@@ -382,8 +384,8 @@ public final class MaxName extends BaseGeneratedEMFQuerySpecification<MaxName.Ma
      * @return the (partial) match object.
      * 
      */
-    public MaxName.Match newMatch(final String pMaxName) {
-      return MaxName.Match.newMatch(pMaxName);
+    public LeximaxName.Match newMatch(final String pMaxName) {
+      return LeximaxName.Match.newMatch(pMaxName);
     }
 
     /**
@@ -414,9 +416,9 @@ public final class MaxName extends BaseGeneratedEMFQuerySpecification<MaxName.Ma
     }
 
     @Override
-    protected MaxName.Match tupleToMatch(final Tuple t) {
+    protected LeximaxName.Match tupleToMatch(final Tuple t) {
       try {
-          return MaxName.Match.newMatch((String) t.get(POSITION_MAXNAME));
+          return LeximaxName.Match.newMatch((String) t.get(POSITION_MAXNAME));
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in tuple not properly typed!",e);
           return null;
@@ -424,9 +426,9 @@ public final class MaxName extends BaseGeneratedEMFQuerySpecification<MaxName.Ma
     }
 
     @Override
-    protected MaxName.Match arrayToMatch(final Object[] match) {
+    protected LeximaxName.Match arrayToMatch(final Object[] match) {
       try {
-          return MaxName.Match.newMatch((String) match[POSITION_MAXNAME]);
+          return LeximaxName.Match.newMatch((String) match[POSITION_MAXNAME]);
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in array not properly typed!",e);
           return null;
@@ -434,9 +436,9 @@ public final class MaxName extends BaseGeneratedEMFQuerySpecification<MaxName.Ma
     }
 
     @Override
-    protected MaxName.Match arrayToMatchMutable(final Object[] match) {
+    protected LeximaxName.Match arrayToMatchMutable(final Object[] match) {
       try {
-          return MaxName.Match.newMutableMatch((String) match[POSITION_MAXNAME]);
+          return LeximaxName.Match.newMutableMatch((String) match[POSITION_MAXNAME]);
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in array not properly typed!",e);
           return null;
@@ -448,12 +450,12 @@ public final class MaxName extends BaseGeneratedEMFQuerySpecification<MaxName.Ma
      * @throws ViatraQueryRuntimeException if the pattern definition could not be loaded
      * 
      */
-    public static IQuerySpecification<MaxName.Matcher> querySpecification() {
-      return MaxName.instance();
+    public static IQuerySpecification<LeximaxName.Matcher> querySpecification() {
+      return LeximaxName.instance();
     }
   }
 
-  private MaxName() {
+  private LeximaxName() {
     super(GeneratedPQuery.INSTANCE);
   }
 
@@ -462,7 +464,7 @@ public final class MaxName extends BaseGeneratedEMFQuerySpecification<MaxName.Ma
    * @throws ViatraQueryRuntimeException if the pattern definition could not be loaded
    * 
    */
-  public static MaxName instance() {
+  public static LeximaxName instance() {
     try{
         return LazyHolder.INSTANCE;
     } catch (ExceptionInInitializerError err) {
@@ -471,35 +473,35 @@ public final class MaxName extends BaseGeneratedEMFQuerySpecification<MaxName.Ma
   }
 
   @Override
-  protected MaxName.Matcher instantiate(final ViatraQueryEngine engine) {
-    return MaxName.Matcher.on(engine);
+  protected LeximaxName.Matcher instantiate(final ViatraQueryEngine engine) {
+    return LeximaxName.Matcher.on(engine);
   }
 
   @Override
-  public MaxName.Matcher instantiate() {
-    return MaxName.Matcher.create();
+  public LeximaxName.Matcher instantiate() {
+    return LeximaxName.Matcher.create();
   }
 
   @Override
-  public MaxName.Match newEmptyMatch() {
-    return MaxName.Match.newEmptyMatch();
+  public LeximaxName.Match newEmptyMatch() {
+    return LeximaxName.Match.newEmptyMatch();
   }
 
   @Override
-  public MaxName.Match newMatch(final Object... parameters) {
-    return MaxName.Match.newMatch((java.lang.String) parameters[0]);
+  public LeximaxName.Match newMatch(final Object... parameters) {
+    return LeximaxName.Match.newMatch((java.lang.String) parameters[0]);
   }
 
   /**
-   * Inner class allowing the singleton instance of {@link MaxName} to be created 
+   * Inner class allowing the singleton instance of {@link LeximaxName} to be created 
    *     <b>not</b> at the class load time of the outer class, 
-   *     but rather at the first call to {@link MaxName#instance()}.
+   *     but rather at the first call to {@link LeximaxName#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 
    */
   private static class LazyHolder {
-    private static final MaxName INSTANCE = new MaxName();
+    private static final LeximaxName INSTANCE = new LeximaxName();
 
     /**
      * Statically initializes the query specification <b>after</b> the field {@link #INSTANCE} is assigned.
@@ -517,7 +519,7 @@ public final class MaxName extends BaseGeneratedEMFQuerySpecification<MaxName.Ma
   }
 
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
-    private static final MaxName.GeneratedPQuery INSTANCE = new GeneratedPQuery();
+    private static final LeximaxName.GeneratedPQuery INSTANCE = new GeneratedPQuery();
 
     private final PParameter parameter_maxName = new PParameter("maxName", "java.lang.String", new JavaTransitiveInstancesKey(java.lang.String.class), PParameterDirection.INOUT);
 
@@ -569,7 +571,7 @@ public final class MaxName extends BaseGeneratedEMFQuerySpecification<MaxName.Ma
 
     @Override
     public String getFullyQualifiedName() {
-      return "sle22.maxName";
+      return "sle22.leximaxName";
     }
 
     @Override
@@ -597,7 +599,7 @@ public final class MaxName extends BaseGeneratedEMFQuerySpecification<MaxName.Ma
           ));
           //   maxName == max NamedElement.name(_, #name)
           PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
-          new AggregatorConstraint(new max().getAggregatorLogic(String.class), body, Tuples.flatTupleOf(var___0_, var__name), new MaxName.GeneratedPQuery.Embedded_1_NamedElement_name(), var__virtual_0_, 1);
+          new AggregatorConstraint(new max().getAggregatorLogic(String.class), body, Tuples.flatTupleOf(var___0_, var__name), new LeximaxName.GeneratedPQuery.Embedded_1_NamedElement_name(), var__virtual_0_, 1);
           new Equality(body, var_maxName, var__virtual_0_);
           bodies.add(body);
       }

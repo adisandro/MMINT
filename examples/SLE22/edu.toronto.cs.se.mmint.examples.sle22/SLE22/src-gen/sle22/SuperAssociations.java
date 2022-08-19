@@ -55,7 +55,10 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 
  * <p>Original source:
  *         <code><pre>
- *         pattern superAssociations(super1: Class, super2: Class, association: Association) {
+ *         // Finds two superclasses connected by an association,
+ *         // each with a subclass
+ *         pattern superAssociations(super1: Class, super2: Class,
+ *                                   association: Association) {
  *           super1 != super2;
  *           Class.superclass(sub1, super1);
  *           Class.superclass(sub2, super2);
@@ -295,7 +298,10 @@ public final class SuperAssociations extends BaseGeneratedEMFQuerySpecification<
    * 
    * <p>Original source:
    * <code><pre>
-   * pattern superAssociations(super1: Class, super2: Class, association: Association) {
+   * // Finds two superclasses connected by an association,
+   * // each with a subclass
+   * pattern superAssociations(super1: Class, super2: Class,
+   *                           association: Association) {
    *   super1 != super2;
    *   Class.superclass(sub1, super1);
    *   Class.superclass(sub2, super2);

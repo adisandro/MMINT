@@ -57,7 +57,9 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 
  * <p>Original source:
  *         <code><pre>
- *         pattern classAssociations(clazz: Class, associations: java Integer) {
+ *         // Counts the number of incoming associations of each class
+ *         pattern classAssociations(clazz: Class,
+ *                                   associations: java Integer) {
  *           associations == count Class.associationsAsTarget(clazz, _);
  *         }
  * </pre></code>
@@ -271,7 +273,9 @@ public final class ClassAssociations extends BaseGeneratedEMFQuerySpecification<
    * 
    * <p>Original source:
    * <code><pre>
-   * pattern classAssociations(clazz: Class, associations: java Integer) {
+   * // Counts the number of incoming associations of each class
+   * pattern classAssociations(clazz: Class,
+   *                           associations: java Integer) {
    *   associations == count Class.associationsAsTarget(clazz, _);
    * }
    * </pre></code>

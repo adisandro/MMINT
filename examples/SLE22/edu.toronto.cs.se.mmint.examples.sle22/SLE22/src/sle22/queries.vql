@@ -14,16 +14,21 @@ package sle22
 
 import "http://se.cs.toronto.edu/modelepedia/ClassDiagram"
 
+// Finds public attributes
 pattern publicAttributes(attribute: Attribute) {
   Attribute.public(attribute, true);
 }
 
-pattern liftAttributes(clazz: Class, attribute: Attribute) {
+// Finds attributes in a class that has a superclass
+pattern subAttributes(clazz: Class, attribute: Attribute) {
   Class.superclass(clazz, _);
   Class.ownedAttributes(clazz, attribute);
 }
 
-pattern superAssociations(super1: Class, super2: Class, association: Association) {
+// Finds two superclasses connected by an association,
+// each with a subclass
+pattern superAssociations(super1: Class, super2: Class,
+                          association: Association) {
   super1 != super2;
   Class.superclass(sub1, super1);
   Class.superclass(sub2, super2);
@@ -32,19 +37,13 @@ pattern superAssociations(super1: Class, super2: Class, association: Association
   Class.associationsAsTarget(super2, association);
 }
 
-pattern classAssociations(clazz: Class, associations: java Integer) {
+// Counts the number of incoming associations of each class
+pattern classAssociations(clazz: Class,
+                          associations: java Integer) {
   associations == count Class.associationsAsTarget(clazz, _);
 }
 
-pattern maxName(maxName: java String) {
+// Finds the max name in lexicographic order
+pattern leximaxName(maxName: java String) {
   maxName == max NamedElement.name(_, #name);
 }
-
-//pattern subAssoc(sub1: Class, sub2: Class, assoc: Association) {
-//  sub1 != sub2;
-//  Class.superclass(sub1, super1);
-//  Class.superclass(sub2, super2);
-//  super1 != super2;
-//  Class.associationsAsSource(sub1, assoc);
-//  Class.associationsAsTarget(sub2, assoc);
-//}

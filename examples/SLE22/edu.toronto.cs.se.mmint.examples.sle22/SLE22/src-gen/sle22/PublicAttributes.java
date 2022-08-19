@@ -57,6 +57,7 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 
  * <p>Original source:
  *         <code><pre>
+ *         // Finds public attributes
  *         pattern publicAttributes(attribute: Attribute) {
  *           Attribute.public(attribute, true);
  *         }
@@ -250,6 +251,7 @@ public final class PublicAttributes extends BaseGeneratedEMFQuerySpecification<P
    * 
    * <p>Original source:
    * <code><pre>
+   * // Finds public attributes
    * pattern publicAttributes(attribute: Attribute) {
    *   Attribute.public(attribute, true);
    * }

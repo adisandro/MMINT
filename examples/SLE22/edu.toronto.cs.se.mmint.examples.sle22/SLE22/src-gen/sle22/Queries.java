@@ -26,10 +26,10 @@ import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedPatternGroup;
  * 
  * <p> From package sle22, the group contains the definition of the following patterns: <ul>
  * <li>publicAttributes</li>
- * <li>liftAttributes</li>
+ * <li>subAttributes</li>
  * <li>superAssociations</li>
  * <li>classAssociations</li>
- * <li>maxName</li>
+ * <li>leximaxName</li>
  * </ul>
  * 
  * @see IQueryGroup
@@ -55,10 +55,10 @@ public final class Queries extends BaseGeneratedPatternGroup {
 
   private Queries() {
     querySpecifications.add(PublicAttributes.instance());
-    querySpecifications.add(LiftAttributes.instance());
+    querySpecifications.add(SubAttributes.instance());
     querySpecifications.add(SuperAssociations.instance());
     querySpecifications.add(ClassAssociations.instance());
-    querySpecifications.add(MaxName.instance());
+    querySpecifications.add(LeximaxName.instance());
   }
 
   public PublicAttributes getPublicAttributes() {
@@ -69,12 +69,12 @@ public final class Queries extends BaseGeneratedPatternGroup {
     return PublicAttributes.Matcher.on(engine);
   }
 
-  public LiftAttributes getLiftAttributes() {
-    return LiftAttributes.instance();
+  public SubAttributes getSubAttributes() {
+    return SubAttributes.instance();
   }
 
-  public LiftAttributes.Matcher getLiftAttributes(final ViatraQueryEngine engine) {
-    return LiftAttributes.Matcher.on(engine);
+  public SubAttributes.Matcher getSubAttributes(final ViatraQueryEngine engine) {
+    return SubAttributes.Matcher.on(engine);
   }
 
   public SuperAssociations getSuperAssociations() {
@@ -93,11 +93,11 @@ public final class Queries extends BaseGeneratedPatternGroup {
     return ClassAssociations.Matcher.on(engine);
   }
 
-  public MaxName getMaxName() {
-    return MaxName.instance();
+  public LeximaxName getLeximaxName() {
+    return LeximaxName.instance();
   }
 
-  public MaxName.Matcher getMaxName(final ViatraQueryEngine engine) {
-    return MaxName.Matcher.on(engine);
+  public LeximaxName.Matcher getLeximaxName(final ViatraQueryEngine engine) {
+    return LeximaxName.Matcher.on(engine);
   }
 }

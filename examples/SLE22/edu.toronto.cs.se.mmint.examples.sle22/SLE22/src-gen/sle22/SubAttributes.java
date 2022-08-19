@@ -54,7 +54,8 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 
  * <p>Original source:
  *         <code><pre>
- *         pattern liftAttributes(clazz: Class, attribute: Attribute) {
+ *         // Finds attributes in a class that has a superclass
+ *         pattern subAttributes(clazz: Class, attribute: Attribute) {
  *           Class.superclass(clazz, _);
  *           Class.ownedAttributes(clazz, attribute);
  *         }
@@ -65,9 +66,9 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 
  */
 @SuppressWarnings("all")
-public final class LiftAttributes extends BaseGeneratedEMFQuerySpecification<LiftAttributes.Matcher> {
+public final class SubAttributes extends BaseGeneratedEMFQuerySpecification<SubAttributes.Matcher> {
   /**
-   * Pattern-specific match representation of the sle22.liftAttributes pattern,
+   * Pattern-specific match representation of the sle22.subAttributes pattern,
    * to be used in conjunction with {@link Matcher}.
    * 
    * <p>Class fields correspond to parameters of the pattern. Fields with value null are considered unassigned.
@@ -142,12 +143,12 @@ public final class LiftAttributes extends BaseGeneratedEMFQuerySpecification<Lif
 
     @Override
     public String patternName() {
-      return "sle22.liftAttributes";
+      return "sle22.subAttributes";
     }
 
     @Override
     public List<String> parameterNames() {
-      return LiftAttributes.Match.parameterNames;
+      return SubAttributes.Match.parameterNames;
     }
 
     @Override
@@ -156,7 +157,7 @@ public final class LiftAttributes extends BaseGeneratedEMFQuerySpecification<Lif
     }
 
     @Override
-    public LiftAttributes.Match toImmutable() {
+    public SubAttributes.Match toImmutable() {
       return isMutable() ? newMatch(fClazz, fAttribute) : this;
     }
 
@@ -180,8 +181,8 @@ public final class LiftAttributes extends BaseGeneratedEMFQuerySpecification<Lif
       if (obj == null) {
           return false;
       }
-      if ((obj instanceof LiftAttributes.Match)) {
-          LiftAttributes.Match other = (LiftAttributes.Match) obj;
+      if ((obj instanceof SubAttributes.Match)) {
+          SubAttributes.Match other = (SubAttributes.Match) obj;
           return Objects.equals(fClazz, other.fClazz) && Objects.equals(fAttribute, other.fAttribute);
       } else {
           // this should be infrequent
@@ -194,8 +195,8 @@ public final class LiftAttributes extends BaseGeneratedEMFQuerySpecification<Lif
     }
 
     @Override
-    public LiftAttributes specification() {
-      return LiftAttributes.instance();
+    public SubAttributes specification() {
+      return SubAttributes.instance();
     }
 
     /**
@@ -205,7 +206,7 @@ public final class LiftAttributes extends BaseGeneratedEMFQuerySpecification<Lif
      * @return the empty match.
      * 
      */
-    public static LiftAttributes.Match newEmptyMatch() {
+    public static SubAttributes.Match newEmptyMatch() {
       return new Mutable(null, null);
     }
 
@@ -218,7 +219,7 @@ public final class LiftAttributes extends BaseGeneratedEMFQuerySpecification<Lif
      * @return the new, mutable (partial) match object.
      * 
      */
-    public static LiftAttributes.Match newMutableMatch(final edu.toronto.cs.se.modelepedia.classdiagram.Class pClazz, final Attribute pAttribute) {
+    public static SubAttributes.Match newMutableMatch(final edu.toronto.cs.se.modelepedia.classdiagram.Class pClazz, final Attribute pAttribute) {
       return new Mutable(pClazz, pAttribute);
     }
 
@@ -231,11 +232,11 @@ public final class LiftAttributes extends BaseGeneratedEMFQuerySpecification<Lif
      * @return the (partial) match object.
      * 
      */
-    public static LiftAttributes.Match newMatch(final edu.toronto.cs.se.modelepedia.classdiagram.Class pClazz, final Attribute pAttribute) {
+    public static SubAttributes.Match newMatch(final edu.toronto.cs.se.modelepedia.classdiagram.Class pClazz, final Attribute pAttribute) {
       return new Immutable(pClazz, pAttribute);
     }
 
-    private static final class Mutable extends LiftAttributes.Match {
+    private static final class Mutable extends SubAttributes.Match {
       Mutable(final edu.toronto.cs.se.modelepedia.classdiagram.Class pClazz, final Attribute pAttribute) {
         super(pClazz, pAttribute);
       }
@@ -246,7 +247,7 @@ public final class LiftAttributes extends BaseGeneratedEMFQuerySpecification<Lif
       }
     }
 
-    private static final class Immutable extends LiftAttributes.Match {
+    private static final class Immutable extends SubAttributes.Match {
       Immutable(final edu.toronto.cs.se.modelepedia.classdiagram.Class pClazz, final Attribute pAttribute) {
         super(pClazz, pAttribute);
       }
@@ -259,7 +260,7 @@ public final class LiftAttributes extends BaseGeneratedEMFQuerySpecification<Lif
   }
 
   /**
-   * Generated pattern matcher API of the sle22.liftAttributes pattern,
+   * Generated pattern matcher API of the sle22.subAttributes pattern,
    * providing pattern-specific query methods.
    * 
    * <p>Use the pattern matcher on a given model via {@link #on(ViatraQueryEngine)},
@@ -269,17 +270,18 @@ public final class LiftAttributes extends BaseGeneratedEMFQuerySpecification<Lif
    * 
    * <p>Original source:
    * <code><pre>
-   * pattern liftAttributes(clazz: Class, attribute: Attribute) {
+   * // Finds attributes in a class that has a superclass
+   * pattern subAttributes(clazz: Class, attribute: Attribute) {
    *   Class.superclass(clazz, _);
    *   Class.ownedAttributes(clazz, attribute);
    * }
    * </pre></code>
    * 
    * @see Match
-   * @see LiftAttributes
+   * @see SubAttributes
    * 
    */
-  public static class Matcher extends BaseMatcher<LiftAttributes.Match> {
+  public static class Matcher extends BaseMatcher<SubAttributes.Match> {
     /**
      * Initializes the pattern matcher within an existing VIATRA Query engine.
      * If the pattern matcher is already constructed in the engine, only a light-weight reference is returned.
@@ -288,7 +290,7 @@ public final class LiftAttributes extends BaseGeneratedEMFQuerySpecification<Lif
      * @throws ViatraQueryRuntimeException if an error occurs during pattern matcher creation
      * 
      */
-    public static LiftAttributes.Matcher on(final ViatraQueryEngine engine) {
+    public static SubAttributes.Matcher on(final ViatraQueryEngine engine) {
       // check if matcher already exists
       Matcher matcher = engine.getExistingMatcher(querySpecification());
       if (matcher == null) {
@@ -303,7 +305,7 @@ public final class LiftAttributes extends BaseGeneratedEMFQuerySpecification<Lif
      * @noreference This method is for internal matcher initialization by the framework, do not call it manually.
      * 
      */
-    public static LiftAttributes.Matcher create() {
+    public static SubAttributes.Matcher create() {
       return new Matcher();
     }
 
@@ -311,7 +313,7 @@ public final class LiftAttributes extends BaseGeneratedEMFQuerySpecification<Lif
 
     private static final int POSITION_ATTRIBUTE = 1;
 
-    private static final Logger LOGGER = ViatraQueryLoggingUtil.getLogger(LiftAttributes.Matcher.class);
+    private static final Logger LOGGER = ViatraQueryLoggingUtil.getLogger(SubAttributes.Matcher.class);
 
     /**
      * Initializes the pattern matcher within an existing VIATRA Query engine.
@@ -332,7 +334,7 @@ public final class LiftAttributes extends BaseGeneratedEMFQuerySpecification<Lif
      * @return matches represented as a Match object.
      * 
      */
-    public Collection<LiftAttributes.Match> getAllMatches(final edu.toronto.cs.se.modelepedia.classdiagram.Class pClazz, final Attribute pAttribute) {
+    public Collection<SubAttributes.Match> getAllMatches(final edu.toronto.cs.se.modelepedia.classdiagram.Class pClazz, final Attribute pAttribute) {
       return rawStreamAllMatches(new Object[]{pClazz, pAttribute}).collect(Collectors.toSet());
     }
 
@@ -347,7 +349,7 @@ public final class LiftAttributes extends BaseGeneratedEMFQuerySpecification<Lif
      * @return a stream of matches represented as a Match object.
      * 
      */
-    public Stream<LiftAttributes.Match> streamAllMatches(final edu.toronto.cs.se.modelepedia.classdiagram.Class pClazz, final Attribute pAttribute) {
+    public Stream<SubAttributes.Match> streamAllMatches(final edu.toronto.cs.se.modelepedia.classdiagram.Class pClazz, final Attribute pAttribute) {
       return rawStreamAllMatches(new Object[]{pClazz, pAttribute});
     }
 
@@ -359,7 +361,7 @@ public final class LiftAttributes extends BaseGeneratedEMFQuerySpecification<Lif
      * @return a match represented as a Match object, or null if no match is found.
      * 
      */
-    public Optional<LiftAttributes.Match> getOneArbitraryMatch(final edu.toronto.cs.se.modelepedia.classdiagram.Class pClazz, final Attribute pAttribute) {
+    public Optional<SubAttributes.Match> getOneArbitraryMatch(final edu.toronto.cs.se.modelepedia.classdiagram.Class pClazz, final Attribute pAttribute) {
       return rawGetOneArbitraryMatch(new Object[]{pClazz, pAttribute});
     }
 
@@ -395,7 +397,7 @@ public final class LiftAttributes extends BaseGeneratedEMFQuerySpecification<Lif
      * @return true if the pattern has at least one match with the given parameter values, false if the processor was not invoked
      * 
      */
-    public boolean forOneArbitraryMatch(final edu.toronto.cs.se.modelepedia.classdiagram.Class pClazz, final Attribute pAttribute, final Consumer<? super LiftAttributes.Match> processor) {
+    public boolean forOneArbitraryMatch(final edu.toronto.cs.se.modelepedia.classdiagram.Class pClazz, final Attribute pAttribute, final Consumer<? super SubAttributes.Match> processor) {
       return rawForOneArbitraryMatch(new Object[]{pClazz, pAttribute}, processor);
     }
 
@@ -408,8 +410,8 @@ public final class LiftAttributes extends BaseGeneratedEMFQuerySpecification<Lif
      * @return the (partial) match object.
      * 
      */
-    public LiftAttributes.Match newMatch(final edu.toronto.cs.se.modelepedia.classdiagram.Class pClazz, final Attribute pAttribute) {
-      return LiftAttributes.Match.newMatch(pClazz, pAttribute);
+    public SubAttributes.Match newMatch(final edu.toronto.cs.se.modelepedia.classdiagram.Class pClazz, final Attribute pAttribute) {
+      return SubAttributes.Match.newMatch(pClazz, pAttribute);
     }
 
     /**
@@ -449,7 +451,7 @@ public final class LiftAttributes extends BaseGeneratedEMFQuerySpecification<Lif
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<edu.toronto.cs.se.modelepedia.classdiagram.Class> streamAllValuesOfclazz(final LiftAttributes.Match partialMatch) {
+    public Stream<edu.toronto.cs.se.modelepedia.classdiagram.Class> streamAllValuesOfclazz(final SubAttributes.Match partialMatch) {
       return rawStreamAllValuesOfclazz(partialMatch.toArray());
     }
 
@@ -472,7 +474,7 @@ public final class LiftAttributes extends BaseGeneratedEMFQuerySpecification<Lif
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<edu.toronto.cs.se.modelepedia.classdiagram.Class> getAllValuesOfclazz(final LiftAttributes.Match partialMatch) {
+    public Set<edu.toronto.cs.se.modelepedia.classdiagram.Class> getAllValuesOfclazz(final SubAttributes.Match partialMatch) {
       return rawStreamAllValuesOfclazz(partialMatch.toArray()).collect(Collectors.toSet());
     }
 
@@ -522,7 +524,7 @@ public final class LiftAttributes extends BaseGeneratedEMFQuerySpecification<Lif
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<Attribute> streamAllValuesOfattribute(final LiftAttributes.Match partialMatch) {
+    public Stream<Attribute> streamAllValuesOfattribute(final SubAttributes.Match partialMatch) {
       return rawStreamAllValuesOfattribute(partialMatch.toArray());
     }
 
@@ -545,7 +547,7 @@ public final class LiftAttributes extends BaseGeneratedEMFQuerySpecification<Lif
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<Attribute> getAllValuesOfattribute(final LiftAttributes.Match partialMatch) {
+    public Set<Attribute> getAllValuesOfattribute(final SubAttributes.Match partialMatch) {
       return rawStreamAllValuesOfattribute(partialMatch.toArray()).collect(Collectors.toSet());
     }
 
@@ -559,9 +561,9 @@ public final class LiftAttributes extends BaseGeneratedEMFQuerySpecification<Lif
     }
 
     @Override
-    protected LiftAttributes.Match tupleToMatch(final Tuple t) {
+    protected SubAttributes.Match tupleToMatch(final Tuple t) {
       try {
-          return LiftAttributes.Match.newMatch((edu.toronto.cs.se.modelepedia.classdiagram.Class) t.get(POSITION_CLAZZ), (Attribute) t.get(POSITION_ATTRIBUTE));
+          return SubAttributes.Match.newMatch((edu.toronto.cs.se.modelepedia.classdiagram.Class) t.get(POSITION_CLAZZ), (Attribute) t.get(POSITION_ATTRIBUTE));
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in tuple not properly typed!",e);
           return null;
@@ -569,9 +571,9 @@ public final class LiftAttributes extends BaseGeneratedEMFQuerySpecification<Lif
     }
 
     @Override
-    protected LiftAttributes.Match arrayToMatch(final Object[] match) {
+    protected SubAttributes.Match arrayToMatch(final Object[] match) {
       try {
-          return LiftAttributes.Match.newMatch((edu.toronto.cs.se.modelepedia.classdiagram.Class) match[POSITION_CLAZZ], (Attribute) match[POSITION_ATTRIBUTE]);
+          return SubAttributes.Match.newMatch((edu.toronto.cs.se.modelepedia.classdiagram.Class) match[POSITION_CLAZZ], (Attribute) match[POSITION_ATTRIBUTE]);
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in array not properly typed!",e);
           return null;
@@ -579,9 +581,9 @@ public final class LiftAttributes extends BaseGeneratedEMFQuerySpecification<Lif
     }
 
     @Override
-    protected LiftAttributes.Match arrayToMatchMutable(final Object[] match) {
+    protected SubAttributes.Match arrayToMatchMutable(final Object[] match) {
       try {
-          return LiftAttributes.Match.newMutableMatch((edu.toronto.cs.se.modelepedia.classdiagram.Class) match[POSITION_CLAZZ], (Attribute) match[POSITION_ATTRIBUTE]);
+          return SubAttributes.Match.newMutableMatch((edu.toronto.cs.se.modelepedia.classdiagram.Class) match[POSITION_CLAZZ], (Attribute) match[POSITION_ATTRIBUTE]);
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in array not properly typed!",e);
           return null;
@@ -593,12 +595,12 @@ public final class LiftAttributes extends BaseGeneratedEMFQuerySpecification<Lif
      * @throws ViatraQueryRuntimeException if the pattern definition could not be loaded
      * 
      */
-    public static IQuerySpecification<LiftAttributes.Matcher> querySpecification() {
-      return LiftAttributes.instance();
+    public static IQuerySpecification<SubAttributes.Matcher> querySpecification() {
+      return SubAttributes.instance();
     }
   }
 
-  private LiftAttributes() {
+  private SubAttributes() {
     super(GeneratedPQuery.INSTANCE);
   }
 
@@ -607,7 +609,7 @@ public final class LiftAttributes extends BaseGeneratedEMFQuerySpecification<Lif
    * @throws ViatraQueryRuntimeException if the pattern definition could not be loaded
    * 
    */
-  public static LiftAttributes instance() {
+  public static SubAttributes instance() {
     try{
         return LazyHolder.INSTANCE;
     } catch (ExceptionInInitializerError err) {
@@ -616,35 +618,35 @@ public final class LiftAttributes extends BaseGeneratedEMFQuerySpecification<Lif
   }
 
   @Override
-  protected LiftAttributes.Matcher instantiate(final ViatraQueryEngine engine) {
-    return LiftAttributes.Matcher.on(engine);
+  protected SubAttributes.Matcher instantiate(final ViatraQueryEngine engine) {
+    return SubAttributes.Matcher.on(engine);
   }
 
   @Override
-  public LiftAttributes.Matcher instantiate() {
-    return LiftAttributes.Matcher.create();
+  public SubAttributes.Matcher instantiate() {
+    return SubAttributes.Matcher.create();
   }
 
   @Override
-  public LiftAttributes.Match newEmptyMatch() {
-    return LiftAttributes.Match.newEmptyMatch();
+  public SubAttributes.Match newEmptyMatch() {
+    return SubAttributes.Match.newEmptyMatch();
   }
 
   @Override
-  public LiftAttributes.Match newMatch(final Object... parameters) {
-    return LiftAttributes.Match.newMatch((edu.toronto.cs.se.modelepedia.classdiagram.Class) parameters[0], (edu.toronto.cs.se.modelepedia.classdiagram.Attribute) parameters[1]);
+  public SubAttributes.Match newMatch(final Object... parameters) {
+    return SubAttributes.Match.newMatch((edu.toronto.cs.se.modelepedia.classdiagram.Class) parameters[0], (edu.toronto.cs.se.modelepedia.classdiagram.Attribute) parameters[1]);
   }
 
   /**
-   * Inner class allowing the singleton instance of {@link LiftAttributes} to be created 
+   * Inner class allowing the singleton instance of {@link SubAttributes} to be created 
    *     <b>not</b> at the class load time of the outer class, 
-   *     but rather at the first call to {@link LiftAttributes#instance()}.
+   *     but rather at the first call to {@link SubAttributes#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 
    */
   private static class LazyHolder {
-    private static final LiftAttributes INSTANCE = new LiftAttributes();
+    private static final SubAttributes INSTANCE = new SubAttributes();
 
     /**
      * Statically initializes the query specification <b>after</b> the field {@link #INSTANCE} is assigned.
@@ -662,7 +664,7 @@ public final class LiftAttributes extends BaseGeneratedEMFQuerySpecification<Lif
   }
 
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
-    private static final LiftAttributes.GeneratedPQuery INSTANCE = new GeneratedPQuery();
+    private static final SubAttributes.GeneratedPQuery INSTANCE = new GeneratedPQuery();
 
     private final PParameter parameter_clazz = new PParameter("clazz", "edu.toronto.cs.se.modelepedia.classdiagram.Class", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://se.cs.toronto.edu/modelepedia/ClassDiagram", "Class")), PParameterDirection.INOUT);
 
@@ -676,7 +678,7 @@ public final class LiftAttributes extends BaseGeneratedEMFQuerySpecification<Lif
 
     @Override
     public String getFullyQualifiedName() {
-      return "sle22.liftAttributes";
+      return "sle22.subAttributes";
     }
 
     @Override

@@ -13,10 +13,10 @@
   <extension id="sle22.Queries" point="org.eclipse.viatra.query.runtime.queryspecification">
     <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:sle22.Queries" id="sle22.Queries">
       <query-specification fqn="sle22.publicAttributes"/>
-      <query-specification fqn="sle22.liftAttributes"/>
+      <query-specification fqn="sle22.subAttributes"/>
       <query-specification fqn="sle22.superAssociations"/>
       <query-specification fqn="sle22.classAssociations"/>
-      <query-specification fqn="sle22.maxName"/>
+      <query-specification fqn="sle22.leximaxName"/>
     </group>
   </extension>
 </plugin>
