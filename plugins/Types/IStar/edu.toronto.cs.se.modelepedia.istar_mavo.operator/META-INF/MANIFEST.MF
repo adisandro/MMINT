@@ -16,7 +16,7 @@ Require-Bundle: org.eclipse.core.runtime,
  edu.toronto.cs.se.mmint.productline,
  edu.toronto.cs.se.modelepedia.istar_mavo,
  edu.toronto.cs.se.modelepedia.z3
-Bundle-RequiredExecutionEnvironment: JavaSE-18
+Bundle-RequiredExecutionEnvironment: JavaSE-19
 Bundle-ActivationPolicy: lazy
 Export-Package: edu.toronto.cs.se.modelepedia.istar_mavo.operator
 Bundle-ClassPath: .

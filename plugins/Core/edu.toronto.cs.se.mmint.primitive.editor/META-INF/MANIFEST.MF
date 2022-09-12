@@ -8,7 +8,7 @@ Bundle-ClassPath: .
 Bundle-Activator: edu.toronto.cs.se.mmint.primitive.presentation.PrimitiveEditorPlugin$Implementation
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-18
+Bundle-RequiredExecutionEnvironment: JavaSE-19
 Export-Package: edu.toronto.cs.se.mmint.primitive.boolean_.presentation,
  edu.toronto.cs.se.mmint.primitive.int_.presentation,
  edu.toronto.cs.se.mmint.primitive.presentation,

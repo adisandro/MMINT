@@ -48,4 +48,4 @@ Require-Bundle: org.eclipse.core.runtime,
  edu.toronto.cs.se.mmint,
  edu.toronto.cs.se.mmint.edit
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: JavaSE-18
+Bundle-RequiredExecutionEnvironment: JavaSE-19

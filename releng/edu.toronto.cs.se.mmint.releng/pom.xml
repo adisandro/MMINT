@@ -112,7 +112,7 @@
         <artifactId>target-platform-configuration</artifactId>
         <version>${tycho-version}</version>
         <configuration>
-          <executionEnvironment>JavaSE-18</executionEnvironment>
+          <executionEnvironment>JavaSE-19</executionEnvironment>
         </configuration>
       </plugin>
     </plugins>

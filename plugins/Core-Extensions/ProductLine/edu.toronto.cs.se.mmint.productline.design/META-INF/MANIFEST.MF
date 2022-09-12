@@ -15,6 +15,6 @@ Require-Bundle: org.eclipse.ui,
  edu.toronto.cs.se.mmint,
  edu.toronto.cs.se.mmint.productline
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: JavaSE-18
+Bundle-RequiredExecutionEnvironment: JavaSE-19
 Bundle-Vendor: %providerName
 Automatic-Module-Name: edu.toronto.cs.se.mmint.productline.design
