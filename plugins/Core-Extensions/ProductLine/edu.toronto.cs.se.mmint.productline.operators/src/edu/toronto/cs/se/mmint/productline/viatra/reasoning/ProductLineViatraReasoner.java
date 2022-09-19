@@ -68,26 +68,6 @@ import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineQueryTrait;
 import edu.toronto.cs.se.mmint.viatra.reasoning.ViatraReasoner;
 
 public class ProductLineViatraReasoner extends ViatraReasoner implements IProductLineQueryTrait {
-  public enum Aggregator {
-    COUNT((a, b) -> (int) a + (int) b),
-    MIN((a, b) -> {
-      if (!(a instanceof Comparable aa) || !(b instanceof Comparable bb)) {
-        throw new IllegalArgumentException(a + " and " + b + " are not comparable");
-      }
-      return (aa.compareTo(bb) <= 0) ? aa : bb;
-    }),
-    MAX((a, b) -> {
-      if (!(a instanceof Comparable aa) || !(b instanceof Comparable bb)) {
-        throw new IllegalArgumentException(a + " and " + b + " are not comparable");
-      }
-      return (aa.compareTo(bb) >= 0) ? aa : bb;
-    }),
-    SUM((a, b) -> (int) a + (int) b);
-    private AggregatorLambda aggregatorLambda;
-    Aggregator(AggregatorLambda aggregatorLambda) {
-      this.aggregatorLambda = aggregatorLambda;
-    }
-  }
 
   public final static String VIATRA_LIB_PATH = "edu/toronto/cs/se/mmint/productline/viatra/pl.vql";
   public final static String LIB_REFERENCE_PATTERN = "reference";
@@ -153,6 +133,11 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
   public boolean areInAProduct(Set<PLElement> plElements) throws MMINTException {
     if (plElements.isEmpty()) {
       return false;
+    }
+    if (this.featureReasoner == null) {
+      var pl = plElements.iterator().next().getProductLine();
+      this.featureReasoner = pl.getReasoner();
+      this.featuresConstraint = pl.getFeaturesConstraint();
     }
     var presenceConditions = getPresenceConditions(plElements);
     return this.featureReasoner.checkConsistency(this.featuresConstraint, presenceConditions);
@@ -605,11 +590,6 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
         }
         if (parameterValue instanceof PLElement plElement) {
           plElements.add(plElement);
-          if (this.featureReasoner == null) {
-            var pl = plElement.getProductLine();
-            this.featureReasoner = pl.getReasoner();
-            this.featuresConstraint = pl.getFeaturesConstraint();
-          }
         }
       }
       if (!areInAProduct(plElements)) {
@@ -626,7 +606,7 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
       }
       var presenceConditions = getPresenceConditions(plElements);
       aggregations = this.featureReasoner.aggregate(presenceConditions, this.featuresConstraint, aggregatedMatch,
-                                                    aggregatedValue, this.aggregator.aggregatorLambda, aggregations);
+                                                    aggregatedValue, this.aggregator.lambda, aggregations);
     }
 
     // second pass:
@@ -664,11 +644,6 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
         // ..but extra lifting parameters must still be considered for compatible presence conditions
         if (parameterValue instanceof PLElement plElement) {
           plElements.add(plElement);
-          if (this.featureReasoner == null) {
-            var pl = plElement.getProductLine();
-            this.featureReasoner = pl.getReasoner();
-            this.featuresConstraint = pl.getFeaturesConstraint();
-          }
         }
       }
       // the inner list is redundant for one element

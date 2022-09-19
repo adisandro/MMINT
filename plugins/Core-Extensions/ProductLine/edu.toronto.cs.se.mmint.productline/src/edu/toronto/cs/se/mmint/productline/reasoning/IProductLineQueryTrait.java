@@ -30,6 +30,27 @@ public interface IProductLineQueryTrait extends IQueryTrait {
     Object apply(Object a, Object b);
   }
 
+  public enum Aggregator {
+    COUNT((a, b) -> (int) a + (int) b),
+    MIN((a, b) -> {
+      if (!(a instanceof Comparable aa) || !(b instanceof Comparable bb)) {
+        throw new IllegalArgumentException(a + " and " + b + " are not comparable");
+      }
+      return (aa.compareTo(bb) <= 0) ? aa : bb;
+    }),
+    MAX((a, b) -> {
+      if (!(a instanceof Comparable aa) || !(b instanceof Comparable bb)) {
+        throw new IllegalArgumentException(a + " and " + b + " are not comparable");
+      }
+      return (aa.compareTo(bb) >= 0) ? aa : bb;
+    }),
+    SUM((a, b) -> (int) a + (int) b);
+    public AggregatorLambda lambda;
+    Aggregator(AggregatorLambda lambda) {
+      this.lambda = lambda;
+    }
+  }
+
   default Set<String> getPresenceConditions(Set<PLElement> plElements) {
     return plElements.stream()
       .map(e -> e.getPresenceCondition())
