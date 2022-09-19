@@ -15,6 +15,7 @@ package edu.toronto.cs.se.mmint.logicng.reasoning;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -35,7 +36,8 @@ import org.logicng.solvers.MiniSat;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeatureConstraintTrait;
-import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineQueryTrait.AggregatorLambda;
+import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineQueryTrait.Aggregated;
+import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineQueryTrait.Aggregator;
 
 public class LogicNGReasoner implements IProductLineFeatureConstraintTrait {
   public static boolean statsEnabled = false;
@@ -200,7 +202,7 @@ public class LogicNGReasoner implements IProductLineFeatureConstraintTrait {
 
   private void aggregate2(MiniSat minisat, Formula featuresFormula, Formula formula,
                           Map<Set<Object>, Object> currAggregation, Set<Object> aggregatedMatch, Object aggregatedValue,
-                          AggregatorLambda aggregator, Map<String, Map<Set<Object>, Object>> newAggregations,
+                          Aggregator aggregator, Map<String, Map<Set<Object>, Object>> newAggregations,
                           boolean positive) {
     minisat.add(featuresFormula);
     minisat.add(formula);
@@ -212,7 +214,7 @@ public class LogicNGReasoner implements IProductLineFeatureConstraintTrait {
       var newAggregation = new HashMap<>(currAggregation);
       if (positive) {
         newAggregation.compute(
-          aggregatedMatch, (k, v) -> (v == null) ? aggregatedValue : aggregator.apply(v, aggregatedValue));
+          aggregatedMatch, (k, v) -> (v == null) ? aggregatedValue : aggregator.lambda.aggregate(v, aggregatedValue));
       }
       else {
         newAggregation.putIfAbsent(aggregatedMatch, null);
@@ -223,7 +225,7 @@ public class LogicNGReasoner implements IProductLineFeatureConstraintTrait {
       }
       else {
         newAggregation.forEach(
-          (k, v) -> otherAggregation.merge(k, v, (v1, v2) -> aggregator.apply(v1, v2)));
+          (k, v) -> otherAggregation.merge(k, v, (v1, v2) -> aggregator.lambda.aggregate(v1, v2)));
       }
     }
     minisat.reset();
@@ -232,7 +234,7 @@ public class LogicNGReasoner implements IProductLineFeatureConstraintTrait {
   @Override
   public Map<String, Map<Set<Object>, Object>> aggregate(Set<String> presenceConditions, String featuresConstraint,
                                                          Set<Object> aggregatedMatch, Object aggregatedValue,
-                                                         AggregatorLambda aggregator,
+                                                         Aggregator aggregator,
                                                          Map<String, Map<Set<Object>, Object>> aggregations)
                                                            throws ParserException {
     var startTime = 0L;
@@ -270,4 +272,49 @@ public class LogicNGReasoner implements IProductLineFeatureConstraintTrait {
 
     return newAggregations;
   }
+
+    @Override
+    public Map<String, Map<Set<Object>, Object>> aggregate(String featuresConstraint,
+                                                           Map<Aggregated, Set<String>> aggregationsByValue)
+                                                             throws ParserException {
+      var startTime = 0L;
+      if (LogicNGReasoner.statsEnabled) {
+        startTime = System.nanoTime();
+      }
+      var aggregations = new HashMap<String, Map<Set<Object>, Object>>();
+      var factory = new FormulaFactory();
+      var parser = new PropositionalParser(factory);
+      var minisat = MiniSat.miniSat(factory);
+      var featuresFormula = parser.parse(featuresConstraint);
+      for (var aggregationEntry : aggregationsByValue.entrySet()) {
+        var aggregated = aggregationEntry.getKey();
+        var aggregatedAsMap = new HashMap<Set<Object>, Object>();
+        aggregatedAsMap.put(aggregated.match(), aggregated.value());
+        var formulas = new HashSet<Formula>();
+        for (var formula : aggregationEntry.getValue()) {
+          formulas.add(parser.parse(formula));
+        }
+        var orFormulas = factory.or(formulas);
+        minisat.add(featuresFormula);
+        minisat.add(orFormulas);
+        var sat = minisat.sat() == Tristate.TRUE;
+        if (LogicNGReasoner.statsEnabled) {
+          LogicNGReasoner.satCalls++;
+        }
+        minisat.reset();
+        if (sat) {
+          aggregations.put(orFormulas.toString(), aggregatedAsMap);
+        }
+        else {
+          for (var formula : aggregationEntry.getValue()) {
+            aggregations.put(formula, aggregatedAsMap);
+          }
+        }
+      }
+      if (LogicNGReasoner.statsEnabled) {
+        LogicNGReasoner.satTime += System.nanoTime() - startTime;
+      }
+
+      return aggregations;
+    }
 }

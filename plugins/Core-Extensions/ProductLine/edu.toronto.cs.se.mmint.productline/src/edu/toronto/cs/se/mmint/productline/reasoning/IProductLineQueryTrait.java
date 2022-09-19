@@ -27,10 +27,10 @@ import edu.toronto.cs.se.mmint.productline.PLElement;
 public interface IProductLineQueryTrait extends IQueryTrait {
 
   interface AggregatorLambda {
-    Object apply(Object a, Object b);
+    Object aggregate(Object a, Object b);
   }
 
-  public enum Aggregator {
+  enum Aggregator {
     COUNT((a, b) -> (int) a + (int) b),
     MIN((a, b) -> {
       if (!(a instanceof Comparable aa) || !(b instanceof Comparable bb)) {
@@ -50,6 +50,8 @@ public interface IProductLineQueryTrait extends IQueryTrait {
       this.lambda = lambda;
     }
   }
+
+  record Aggregated(Set<Object> match, Object value) {}
 
   default Set<String> getPresenceConditions(Set<PLElement> plElements) {
     return plElements.stream()

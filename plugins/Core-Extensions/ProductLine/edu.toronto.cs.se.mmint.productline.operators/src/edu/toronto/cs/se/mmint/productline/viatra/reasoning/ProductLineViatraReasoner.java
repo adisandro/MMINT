@@ -578,7 +578,7 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
   }
 
   private List<Object> getAggregatedMatches(Collection<GenericPatternMatch> vMatches) throws Exception {
-    // first pass:
+    // collect and aggregate results
     var aggregations = Map.<String, Map<Set<Object>, Object>>of();
     for (var vMatch : vMatches) {
       var plElements = new HashSet<PLElement>();
@@ -606,10 +606,24 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
       }
       var presenceConditions = getPresenceConditions(plElements);
       aggregations = this.featureReasoner.aggregate(presenceConditions, this.featuresConstraint, aggregatedMatch,
-                                                    aggregatedValue, this.aggregator.lambda, aggregations);
+                                                    aggregatedValue, this.aggregator, aggregations);
     }
 
-    // second pass:
+    // compact results for min/max: there can be same aggregated values for which formulas can be or-ed
+    if ((this.aggregator == Aggregator.MIN || this.aggregator == Aggregator.MAX)) {
+      var aggregationsByValue = new HashMap<Aggregated, Set<String>>();
+      for (var aggregationEntry : aggregations.entrySet()) {
+        var formula = aggregationEntry.getKey();
+        for (var matchEntry : aggregationEntry.getValue().entrySet()) {
+          var aggregated = new Aggregated(matchEntry.getKey(), matchEntry.getValue());
+          aggregationsByValue.compute(aggregated, (k, formulas) -> (formulas == null) ? new HashSet<>() : formulas)
+                             .add(formula);
+        }
+      }
+      aggregations = this.featureReasoner.aggregate(this.featuresConstraint, aggregationsByValue);
+    }
+
+    // rearrange results for printing
     var matches = new ArrayList<>();
     for (var aggregationEntry : aggregations.entrySet()) {
       var formulaList = new ArrayList<>();

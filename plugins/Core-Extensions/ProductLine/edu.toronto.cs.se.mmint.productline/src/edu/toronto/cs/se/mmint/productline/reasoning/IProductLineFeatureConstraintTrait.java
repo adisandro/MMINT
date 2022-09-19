@@ -20,7 +20,8 @@ import java.util.Set;
 import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mmint.mid.reasoning.ISATReasoner;
-import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineQueryTrait.AggregatorLambda;
+import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineQueryTrait.Aggregated;
+import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineQueryTrait.Aggregator;
 
 /**
  * The specification of a reasoning trait to check product line feature constraints.
@@ -79,8 +80,14 @@ public interface IProductLineFeatureConstraintTrait extends ISATReasoner {
 
   default Map<String, Map<Set<Object>, Object>> aggregate(Set<String> presenceConditions, String featuresConstraint,
                                                           Set<Object> aggregatedMatch, Object aggregatedValue,
-                                                          AggregatorLambda aggregator,
+                                                          Aggregator aggregator,
                                                           Map<String, Map<Set<Object>, Object>> aggregations)
+                                                            throws Exception {
+    return Map.of();
+  }
+
+  default Map<String, Map<Set<Object>, Object>> aggregate(String featuresConstraint,
+                                                          Map<Aggregated, Set<String>> reverseAggregations)
                                                             throws Exception {
     return Map.of();
   }
