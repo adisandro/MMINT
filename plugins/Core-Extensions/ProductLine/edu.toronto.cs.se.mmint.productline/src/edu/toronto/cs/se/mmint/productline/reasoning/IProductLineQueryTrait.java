@@ -51,8 +51,6 @@ public interface IProductLineQueryTrait extends IQueryTrait {
     }
   }
 
-  record Aggregated(Set<Object> match, Object value) {}
-
   default Set<String> getPresenceConditions(Set<PLElement> plElements) {
     return plElements.stream()
       .map(e -> e.getPresenceCondition())

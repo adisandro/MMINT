@@ -36,7 +36,6 @@ import org.logicng.solvers.MiniSat;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeatureConstraintTrait;
-import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineQueryTrait.Aggregated;
 import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineQueryTrait.Aggregator;
 
 public class LogicNGReasoner implements IProductLineFeatureConstraintTrait {
@@ -275,7 +274,7 @@ public class LogicNGReasoner implements IProductLineFeatureConstraintTrait {
 
     @Override
     public Map<String, Map<Set<Object>, Object>> aggregate(String featuresConstraint,
-                                                           Map<Aggregated, Set<String>> aggregationsByValue)
+                                                           Map<Map<Set<Object>, Object>, Set<String>> aggregationsByValue)
                                                              throws ParserException {
       var startTime = 0L;
       if (LogicNGReasoner.statsEnabled) {
@@ -288,8 +287,6 @@ public class LogicNGReasoner implements IProductLineFeatureConstraintTrait {
       var featuresFormula = parser.parse(featuresConstraint);
       for (var aggregationEntry : aggregationsByValue.entrySet()) {
         var aggregated = aggregationEntry.getKey();
-        var aggregatedAsMap = new HashMap<Set<Object>, Object>();
-        aggregatedAsMap.put(aggregated.match(), aggregated.value());
         var formulas = new HashSet<Formula>();
         for (var formula : aggregationEntry.getValue()) {
           formulas.add(parser.parse(formula));
@@ -303,11 +300,11 @@ public class LogicNGReasoner implements IProductLineFeatureConstraintTrait {
         }
         minisat.reset();
         if (sat) {
-          aggregations.put(orFormulas.toString(), aggregatedAsMap);
+          aggregations.put(orFormulas.toString(), aggregated);
         }
         else {
           for (var formula : aggregationEntry.getValue()) {
-            aggregations.put(formula, aggregatedAsMap);
+            aggregations.put(formula, aggregated);
           }
         }
       }

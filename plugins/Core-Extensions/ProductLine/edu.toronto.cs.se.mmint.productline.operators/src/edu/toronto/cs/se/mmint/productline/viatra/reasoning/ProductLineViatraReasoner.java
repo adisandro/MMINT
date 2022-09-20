@@ -19,6 +19,7 @@ import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -578,7 +579,7 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
   }
 
   private List<Object> getAggregatedMatches(Collection<GenericPatternMatch> vMatches) throws Exception {
-    // collect and aggregate results
+    // collect raw results and aggregate them
     var aggregations = Map.<String, Map<Set<Object>, Object>>of();
     for (var vMatch : vMatches) {
       var plElements = new HashSet<PLElement>();
@@ -609,19 +610,20 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
                                                     aggregatedValue, this.aggregator, aggregations);
     }
 
-    // compact results for min/max: there can be same aggregated values for which formulas can be or-ed
-    if ((this.aggregator == Aggregator.MIN || this.aggregator == Aggregator.MAX)) {
-      var aggregationsByValue = new HashMap<Aggregated, Set<String>>();
-      for (var aggregationEntry : aggregations.entrySet()) {
-        var formula = aggregationEntry.getKey();
-        for (var matchEntry : aggregationEntry.getValue().entrySet()) {
-          var aggregated = new Aggregated(matchEntry.getKey(), matchEntry.getValue());
-          aggregationsByValue.compute(aggregated, (k, formulas) -> (formulas == null) ? new HashSet<>() : formulas)
-                             .add(formula);
-        }
+    // compact aggregated results: there can be same aggregated values for which formulas can be or-ed
+    var aggregationsByValue = new HashMap<Map<Set<Object>, Object>, Set<String>>();
+    for (var aggregationEntry : aggregations.entrySet()) {
+      var formula = aggregationEntry.getKey();
+      var aggregated = aggregationEntry.getValue().entrySet().stream()
+        .filter(e -> e.getValue() != null) // no matches for this formula if null
+        .collect(Collectors.toUnmodifiableMap(Entry::getKey, Entry::getValue));
+      if (aggregationsByValue.containsKey(aggregated)) {
+
       }
-      aggregations = this.featureReasoner.aggregate(this.featuresConstraint, aggregationsByValue);
+      aggregationsByValue.compute(aggregated, (k, formulas) -> (formulas == null) ? new HashSet<>() : formulas)
+                         .add(formula);
     }
+    aggregations = this.featureReasoner.aggregate(this.featuresConstraint, aggregationsByValue);
 
     // rearrange results for printing
     var matches = new ArrayList<>();
@@ -630,10 +632,6 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
       formulaList.add(aggregationEntry.getKey()); // [formula, [match1, aggrValue1], ..., [matchN, aggrValueN]]
       for (var matchEntry : aggregationEntry.getValue().entrySet()) {
         var matchList = new ArrayList<>();
-        var aggregatedValue = matchEntry.getValue();
-        if (aggregatedValue == null) { // no matches for this formula
-          continue;
-        }
         matchList.addAll(matchEntry.getKey()); // match (can be empty for min/max/sum)
         matchList.add(matchEntry.getValue()); // aggregated value
         formulaList.add(matchList);

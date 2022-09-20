@@ -20,7 +20,6 @@ import java.util.Set;
 import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mmint.mid.reasoning.ISATReasoner;
-import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineQueryTrait.Aggregated;
 import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineQueryTrait.Aggregator;
 
 /**
@@ -87,7 +86,7 @@ public interface IProductLineFeatureConstraintTrait extends ISATReasoner {
   }
 
   default Map<String, Map<Set<Object>, Object>> aggregate(String featuresConstraint,
-                                                          Map<Aggregated, Set<String>> reverseAggregations)
+                                                          Map<Map<Set<Object>, Object>, Set<String>> aggregationsByValue)
                                                             throws Exception {
     return Map.of();
   }
