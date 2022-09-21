@@ -617,9 +617,6 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
       var aggregated = aggregationEntry.getValue().entrySet().stream()
         .filter(e -> e.getValue() != null) // no matches for this formula if null
         .collect(Collectors.toUnmodifiableMap(Entry::getKey, Entry::getValue));
-      if (aggregationsByValue.containsKey(aggregated)) {
-
-      }
       aggregationsByValue.compute(aggregated, (k, formulas) -> (formulas == null) ? new HashSet<>() : formulas)
                          .add(formula);
     }
