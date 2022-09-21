@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.LabelProvider;
@@ -123,14 +124,15 @@ public class ViatraReasoner implements IQueryTrait {
           }
         }
       }
-      var resourceSet = context.eResource().getResourceSet();
+      Notifier scopeRoot = context;
       if (context instanceof MID instanceMID) {
         // if context is a MID, preload all model roots into the same resource set
         // as a side effect of getEMFInstanceRoot()
         instanceMID.getModels().stream().filter(m -> !(m instanceof ModelRel)).forEach(m -> m.getEMFInstanceRoot());
+        scopeRoot = context.eResource().getResourceSet();
       }
       // find query matches within context
-      engine = AdvancedViatraQueryEngine.createUnmanagedEngine(new EMFScope(resourceSet));
+      engine = AdvancedViatraQueryEngine.createUnmanagedEngine(new EMFScope(scopeRoot));
       var builder = new SpecificationBuilder();
       var spec = builder.getOrCreateSpecification(pattern);
       var matcher = (GenericPatternMatcher) engine.getMatcher(spec);
