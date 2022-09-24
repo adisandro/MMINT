@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.viatra.query.patternlanguage.emf.vql.AggregatedValue;
 import org.eclipse.viatra.query.patternlanguage.emf.vql.BoolValue;
@@ -63,6 +64,7 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
 import edu.toronto.cs.se.mmint.productline.PLElement;
+import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.productline.ProductLinePackage;
 import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeatureConstraintTrait;
 import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineQueryTrait;
@@ -552,7 +554,16 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
   public List<Object> evaluateQuery(String filePath, Object queryObj, EObject context,
                                     List<? extends EObject> queryArgs) throws Exception {
     reset();
-    return super.evaluateQuery(filePath, queryObj, context, queryArgs);
+    if (context instanceof ProductLine plContext) {
+      // reload the resource to pull in the related metamodel without including all the models in the MID
+      var scopeRoot = new ResourceSetImpl();
+      var resource = scopeRoot.createResource(plContext.eResource().getURI());
+      resource.load(Map.of());
+      return super.evaluateQuery(filePath, queryObj, scopeRoot, queryArgs);
+    }
+    else {
+      return super.evaluateQuery(filePath, queryObj, context, queryArgs);
+    }
   }
 
   @Override

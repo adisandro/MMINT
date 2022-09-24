@@ -103,9 +103,8 @@ public class ViatraReasoner implements IQueryTrait {
     return matches;
   }
 
-  @Override
-  public List<Object> evaluateQuery(String filePath, Object queryObj, EObject context,
-                                    List<? extends EObject> queryArgs) throws Exception {
+  protected List<Object> evaluateQuery(String filePath, Object queryObj, Notifier scopeRoot,
+                                       List<? extends EObject> queryArgs) throws Exception {
     AdvancedViatraQueryEngine engine = null;
     try {
       // handle query arguments
@@ -124,14 +123,7 @@ public class ViatraReasoner implements IQueryTrait {
           }
         }
       }
-      Notifier scopeRoot = context;
-      if (context instanceof MID instanceMID) {
-        // if context is a MID, preload all model roots into the same resource set
-        // as a side effect of getEMFInstanceRoot()
-        instanceMID.getModels().stream().filter(m -> !(m instanceof ModelRel)).forEach(m -> m.getEMFInstanceRoot());
-        scopeRoot = context.eResource().getResourceSet();
-      }
-      // find query matches within context
+      // find query matches within scope
       engine = AdvancedViatraQueryEngine.createUnmanagedEngine(new EMFScope(scopeRoot));
       var builder = new SpecificationBuilder();
       var spec = builder.getOrCreateSpecification(pattern);
@@ -149,5 +141,18 @@ public class ViatraReasoner implements IQueryTrait {
         engine.dispose();
       }
     }
+
+  }
+
+  @Override
+  public List<Object> evaluateQuery(String filePath, Object queryObj, EObject context,
+                                    List<? extends EObject> queryArgs) throws Exception {
+    Notifier scopeRoot = context;
+    if (context instanceof MID instanceMID) {
+      // preload all model roots into the same resource set as a side effect of getEMFInstanceRoot()
+      scopeRoot = context.eResource().getResourceSet();
+      instanceMID.getModels().stream().filter(m -> !(m instanceof ModelRel)).forEach(m -> m.getEMFInstanceRoot());
+    }
+    return evaluateQuery(filePath, queryObj, scopeRoot, queryArgs);
   }
 }
