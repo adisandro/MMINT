@@ -11,10 +11,10 @@ if __name__ == "__main__":
                 f'{args.model_name}/results/{args.instance_name}_PA.properties')
     shutil.rmtree(f'{args.model_name}/experiment0')
     shutil.move(f'{args.model_name}/experiment1/ExperimentOut.properties',
-                f'{args.model_name}/results/{args.instance_name}_SU.properties')
+                f'{args.model_name}/results/{args.instance_name}_SAt.properties')
     shutil.rmtree(f'{args.model_name}/experiment1')
     shutil.move(f'{args.model_name}/experiment2/ExperimentOut.properties',
-                f'{args.model_name}/results/{args.instance_name}_SA.properties')
+                f'{args.model_name}/results/{args.instance_name}_SAs.properties')
     shutil.rmtree(f'{args.model_name}/experiment2')
     shutil.move(f'{args.model_name}/experiment3/ExperimentOut.properties',
                 f'{args.model_name}/results/{args.instance_name}_CA.properties')
