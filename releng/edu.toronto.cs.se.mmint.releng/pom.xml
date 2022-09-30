@@ -5,7 +5,7 @@
   <version>2.14.99-SNAPSHOT</version>
   <packaging>pom</packaging>
   <properties>
-    <tycho-version>3.0.0-SNAPSHOT</tycho-version>
+    <tycho-version>3.0.0</tycho-version>
     <acceleo-version>3.6.4</acceleo-version>
     <mavendeps-version>3.2.0</mavendeps-version>
     <ecj-version>3.31.0</ecj-version>
