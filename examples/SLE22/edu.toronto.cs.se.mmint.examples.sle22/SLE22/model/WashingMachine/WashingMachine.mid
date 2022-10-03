@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mid:MID xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editor="http://se.cs.toronto.edu/mmint/MID/Editor" xmlns:mid="http://se.cs.toronto.edu/mmint/MID">
+  <models uri="/SLE22/model/WashingMachine/WashingMachine.productline" name="WashingMachine" metatypeUri="model://edu.toronto.cs.se.mmint.productline" dynamic="true" origin="CREATED" fileExtension="productline" editors="//@editors.0"/>
+  <editors xsi:type="editor:Diagram" uri="/SLE22/representations.aird#_gZVcwENEEe2os4oFZ-bqCw" name="ProductLine Sirius Diagram for model /SLE22/model/WashingMachine/WashingMachine.productline" metatypeUri="edu.toronto.cs.se.mmint.productline.design" dynamic="true" modelUri="/SLE22/model/WashingMachine/WashingMachine.productline" id="edu.toronto.cs.se.mmint.productline.design" wizardId="edu.toronto.cs.se.mmint.productline.presentation.ProductLineModelWizardID">
+    <fileExtensions>aird</fileExtensions>
+  </editors>
+  <extendibleTable key="/SLE22/model/WashingMachine/WashingMachine.productline" value="//@models.0"/>
+</mid:MID>

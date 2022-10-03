@@ -12,7 +12,8 @@ Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.xtext.xbase.lib,
  edu.toronto.cs.se.mmint,
  edu.toronto.cs.se.mmint.productline,
- edu.toronto.cs.se.modelepedia.classdiagram
+ edu.toronto.cs.se.modelepedia.classdiagram,
+ edu.toronto.cs.se.modelepedia.statemachine
 Bundle-RequiredExecutionEnvironment: JavaSE-19
 Automatic-Module-Name: SLE22
 Import-Package: org.apache.log4j

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<productline:ProductLine xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:productline="model://edu.toronto.cs.se.mmint.productline" featuresConstraint="Wash &amp; ~(Heat &amp; Delay)" reasonerName="LogicNG">
+  <classes referencesAsSource="//@references.0 //@references.1 //@references.2 //@references.3 //@references.4 //@references.5 //@references.6 //@references.7 //@references.12 //@references.15 //@references.16 //@references.19 //@references.24 //@references.27 //@references.28">
+    <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//StateMachine"/>
+  </classes>
+  <classes referencesAsTargets="//@references.0 //@references.8">
+    <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//InitialState"/>
+  </classes>
+  <classes referencesAsTargets="//@references.1 //@references.9 //@references.10 //@references.17">
+    <attributes value="Locking">
+      <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//AbstractState/name"/>
+    </attributes>
+    <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//State"/>
+  </classes>
+  <classes presenceCondition="Heat | Delay" referencesAsTargets="//@references.2 //@references.11 //@references.13">
+    <attributes presenceCondition="Heat | Delay" value="Waiting">
+      <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//AbstractState/name"/>
+    </attributes>
+    <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//State"/>
+  </classes>
+  <classes referencesAsTargets="//@references.3 //@references.14 //@references.18 //@references.20 //@references.29">
+    <attributes value="Washing">
+      <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//AbstractState/name"/>
+    </attributes>
+    <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//State"/>
+  </classes>
+  <classes presenceCondition="Dry" referencesAsTargets="//@references.4 //@references.21 //@references.22">
+    <attributes presenceCondition="Dry" value="Drying">
+      <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//AbstractState/name"/>
+    </attributes>
+    <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//State"/>
+  </classes>
+  <classes referencesAsTargets="//@references.5 //@references.23 //@references.25 //@references.30">
+    <attributes value="Unlocking">
+      <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//AbstractState/name"/>
+    </attributes>
+    <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//State"/>
+  </classes>
+  <classes referencesAsTargets="//@references.6 //@references.26">
+    <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//FinalState"/>
+  </classes>
+  <classes referencesAsSource="//@references.8 //@references.9" referencesAsTargets="//@references.7">
+    <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//Transition"/>
+  </classes>
+  <classes presenceCondition="Heat | Delay" referencesAsSource="//@references.10 //@references.11" referencesAsTargets="//@references.12">
+    <attributes presenceCondition="Heat" value="heatEnabled">
+      <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//FiringElement/trigger"/>
+    </attributes>
+    <attributes presenceCondition="Delay" value="delayEnabled">
+      <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//FiringElement/trigger"/>
+    </attributes>
+    <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//Transition"/>
+  </classes>
+  <classes presenceCondition="Heat | Delay" referencesAsSource="//@references.13 //@references.14" referencesAsTargets="//@references.15">
+    <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//Transition"/>
+  </classes>
+  <classes referencesAsSource="//@references.17 //@references.18" referencesAsTargets="//@references.16">
+    <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//Transition"/>
+  </classes>
+  <classes presenceCondition="Dry" referencesAsSource="//@references.20 //@references.21" referencesAsTargets="//@references.19">
+    <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//Transition"/>
+  </classes>
+  <classes presenceCondition="Dry" referencesAsSource="//@references.22 //@references.23" referencesAsTargets="//@references.24">
+    <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//Transition"/>
+  </classes>
+  <classes referencesAsSource="//@references.25 //@references.26" referencesAsTargets="//@references.27">
+    <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//Transition"/>
+  </classes>
+  <classes presenceCondition="~Dry" referencesAsSource="//@references.29 //@references.30" referencesAsTargets="//@references.28">
+    <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//Transition"/>
+  </classes>
+  <references source="//@classes.0" targets="//@classes.1">
+    <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//StateMachine/states"/>
+  </references>
+  <references source="//@classes.0" targets="//@classes.2">
+    <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//StateMachine/states"/>
+  </references>
+  <references presenceCondition="Heat | Delay" source="//@classes.0" targets="//@classes.3">
+    <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//StateMachine/states"/>
+  </references>
+  <references source="//@classes.0" targets="//@classes.4">
+    <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//StateMachine/states"/>
+  </references>
+  <references presenceCondition="Dry" source="//@classes.0" targets="//@classes.5">
+    <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//StateMachine/states"/>
+  </references>
+  <references source="//@classes.0" targets="//@classes.6">
+    <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//StateMachine/states"/>
+  </references>
+  <references source="//@classes.0" targets="//@classes.7">
+    <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//StateMachine/states"/>
+  </references>
+  <references source="//@classes.0" targets="//@classes.8">
+    <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//StateMachine/transitions"/>
+  </references>
+  <references source="//@classes.8" targets="//@classes.1">
+    <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//Transition/source"/>
+  </references>
+  <references source="//@classes.8" targets="//@classes.2">
+    <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//Transition/target"/>
+  </references>
+  <references presenceCondition="Heat | Delay" source="//@classes.9" targets="//@classes.2">
+    <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//Transition/source"/>
+  </references>
+  <references presenceCondition="Heat | Delay" source="//@classes.9" targets="//@classes.3">
+    <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//Transition/target"/>
+  </references>
+  <references presenceCondition="Heat | Delay" source="//@classes.0" targets="//@classes.9">
+    <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//StateMachine/transitions"/>
+  </references>
+  <references presenceCondition="Heat | Delay" source="//@classes.10" targets="//@classes.3">
+    <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//Transition/source"/>
+  </references>
+  <references presenceCondition="Heat | Delay" source="//@classes.10" targets="//@classes.4">
+    <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//Transition/target"/>
+  </references>
+  <references presenceCondition="Heat | Delay" source="//@classes.0" targets="//@classes.10">
+    <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//StateMachine/transitions"/>
+  </references>
+  <references source="//@classes.0" targets="//@classes.11">
+    <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//StateMachine/transitions"/>
+  </references>
+  <references source="//@classes.11" targets="//@classes.2">
+    <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//Transition/source"/>
+  </references>
+  <references source="//@classes.11" targets="//@classes.4">
+    <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//Transition/target"/>
+  </references>
+  <references presenceCondition="Dry" source="//@classes.0" targets="//@classes.12">
+    <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//StateMachine/transitions"/>
+  </references>
+  <references presenceCondition="Dry" source="//@classes.12" targets="//@classes.4">
+    <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//Transition/source"/>
+  </references>
+  <references presenceCondition="Dry" source="//@classes.12" targets="//@classes.5">
+    <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//Transition/target"/>
+  </references>
+  <references presenceCondition="Dry" source="//@classes.13" targets="//@classes.5">
+    <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//Transition/source"/>
+  </references>
+  <references presenceCondition="Dry" source="//@classes.13" targets="//@classes.6">
+    <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//Transition/target"/>
+  </references>
+  <references presenceCondition="Dry" source="//@classes.0" targets="//@classes.13">
+    <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//StateMachine/transitions"/>
+  </references>
+  <references source="//@classes.14" targets="//@classes.6">
+    <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//Transition/source"/>
+  </references>
+  <references source="//@classes.14" targets="//@classes.7">
+    <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//Transition/target"/>
+  </references>
+  <references source="//@classes.0" targets="//@classes.14">
+    <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//StateMachine/transitions"/>
+  </references>
+  <references presenceCondition="~Dry" source="//@classes.0" targets="//@classes.15">
+    <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//StateMachine/transitions"/>
+  </references>
+  <references presenceCondition="~Dry" source="//@classes.15" targets="//@classes.4">
+    <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//Transition/source"/>
+  </references>
+  <references presenceCondition="~Dry" source="//@classes.15" targets="//@classes.6">
+    <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//Transition/target"/>
+  </references>
+  <metamodel href="http://se.cs.toronto.edu/modelepedia/StateMachine#/"/>
+</productline:ProductLine>
