@@ -82,7 +82,7 @@ public class SLE22 extends OperatorImpl {
       reasonerName = "Viatra";
     }
     var queryReasoner = (IQueryTrait) MMINT.getReasoner(reasonerName);
-    var querySpec = new QuerySpec(queryReasoner, "/SLE22/src/sle22/queries.vql", this.queryName);
+    var querySpec = new QuerySpec(queryReasoner, "/SLE22/src/sle22/evaluation.vql", this.queryName);
     if (satReasoner != null) {
       satReasoner.toggleStats(true);
     }

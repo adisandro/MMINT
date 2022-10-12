@@ -18,10 +18,10 @@ import org.eclipse.viatra.query.runtime.api.ViatraQueryEngine;
 import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedPatternGroup;
 
 /**
- * A pattern group formed of all public patterns defined in queries.vql.
+ * A pattern group formed of all public patterns defined in evaluation.vql.
  * 
  * <p>Use the static instance as any {@link interface org.eclipse.viatra.query.runtime.api.IQueryGroup}, to conveniently prepare
- * a VIATRA Query engine for matching all patterns originally defined in file queries.vql,
+ * a VIATRA Query engine for matching all patterns originally defined in file evaluation.vql,
  * in order to achieve better performance than one-by-one on-demand matcher initialization.
  * 
  * <p> From package sle22, the group contains the definition of the following patterns: <ul>
@@ -36,7 +36,7 @@ import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedPatternGroup;
  * 
  */
 @SuppressWarnings("all")
-public final class Queries extends BaseGeneratedPatternGroup {
+public final class Evaluation extends BaseGeneratedPatternGroup {
   /**
    * Access the pattern group.
    * 
@@ -44,16 +44,16 @@ public final class Queries extends BaseGeneratedPatternGroup {
    * @throws ViatraQueryRuntimeException if there was an error loading the generated code of pattern specifications
    * 
    */
-  public static Queries instance() {
+  public static Evaluation instance() {
     if (INSTANCE == null) {
-        INSTANCE = new Queries();
+        INSTANCE = new Evaluation();
     }
     return INSTANCE;
   }
 
-  private static Queries INSTANCE;
+  private static Evaluation INSTANCE;
 
-  private Queries() {
+  private Evaluation() {
     querySpecifications.add(PublicAttributes.instance());
     querySpecifications.add(SubAttributes.instance());
     querySpecifications.add(SuperAssociations.instance());
