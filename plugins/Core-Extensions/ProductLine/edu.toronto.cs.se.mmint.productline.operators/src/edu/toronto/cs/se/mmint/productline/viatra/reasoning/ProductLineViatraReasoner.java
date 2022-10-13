@@ -465,6 +465,9 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
         String aggName;
         if (this.aggregator == Aggregator.COUNT) {
           aggName = aggPathExpr.getSrc().getVariable().getName();
+          if (aggName.startsWith(ProductLineViatraReasoner.DONTCARE_VAR_NAME)) {
+            aggName = ((VariableReference) aggPathExpr.getDst()).getVariable().getName();
+          }
         }
         else {
           aggName = ((VariableReference) aggPathExpr.getDst()).getVariable().getName();
