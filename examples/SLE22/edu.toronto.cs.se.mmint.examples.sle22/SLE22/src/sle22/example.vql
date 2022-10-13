@@ -14,4 +14,8 @@ package sle22
 
 import "http://se.cs.toronto.edu/modelepedia/StateMachine"
 
-
+pattern twoOutgoingTransitions(state: State) {
+  Transition.source(transition1, state);
+  Transition.source(transition2, state);
+  transition1 != transition2;
+}
