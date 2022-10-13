@@ -26,6 +26,7 @@ import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedPatternGroup;
  * 
  * <p> From package sle22, the group contains the definition of the following patterns: <ul>
  * <li>twoOutgoingTransitions</li>
+ * <li>numOutgoingTransitions</li>
  * </ul>
  * 
  * @see IQueryGroup
@@ -51,6 +52,7 @@ public final class Example extends BaseGeneratedPatternGroup {
 
   private Example() {
     querySpecifications.add(TwoOutgoingTransitions.instance());
+    querySpecifications.add(NumOutgoingTransitions.instance());
   }
 
   public TwoOutgoingTransitions getTwoOutgoingTransitions() {
@@ -59,5 +61,13 @@ public final class Example extends BaseGeneratedPatternGroup {
 
   public TwoOutgoingTransitions.Matcher getTwoOutgoingTransitions(final ViatraQueryEngine engine) {
     return TwoOutgoingTransitions.Matcher.on(engine);
+  }
+
+  public NumOutgoingTransitions getNumOutgoingTransitions() {
+    return NumOutgoingTransitions.instance();
+  }
+
+  public NumOutgoingTransitions.Matcher getNumOutgoingTransitions(final ViatraQueryEngine engine) {
+    return NumOutgoingTransitions.Matcher.on(engine);
   }
 }

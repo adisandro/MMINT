@@ -22,6 +22,7 @@
   <extension id="sle22.Example" point="org.eclipse.viatra.query.runtime.queryspecification">
     <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:sle22.Example" id="sle22.Example">
       <query-specification fqn="sle22.twoOutgoingTransitions"/>
+      <query-specification fqn="sle22.numOutgoingTransitions"/>
     </group>
   </extension>
 </plugin>

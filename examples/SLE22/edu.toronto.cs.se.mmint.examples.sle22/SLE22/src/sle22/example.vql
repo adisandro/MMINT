@@ -19,3 +19,8 @@ pattern twoOutgoingTransitions(state: State) {
   Transition.source(transition2, state);
   transition1 != transition2;
 }
+
+pattern numOutgoingTransitions(state: State,
+                               transitions: java Integer) {
+  transitions == count Transition.source(_, state);
+}
