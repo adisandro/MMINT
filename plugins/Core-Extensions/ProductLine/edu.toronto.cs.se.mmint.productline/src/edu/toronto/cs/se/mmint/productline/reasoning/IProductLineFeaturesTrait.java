@@ -20,14 +20,38 @@ import java.util.Set;
 import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mmint.mid.reasoning.ISATReasoner;
-import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineQueryTrait.Aggregator;
 
 /**
- * The specification of a reasoning trait to check product line feature constraints.
+ * The specification of a reasoning trait to manage product line features.
  *
  * @author Alessio Di Sandro
  */
-public interface IProductLineFeatureConstraintTrait extends ISATReasoner {
+public interface IProductLineFeaturesTrait extends ISATReasoner {
+
+  interface AggregatorLambda {
+    Object aggregate(Object a, Object b);
+  }
+
+  enum Aggregator {
+    COUNT((a, b) -> (int) a + (int) b),
+    MIN((a, b) -> {
+      if (!(a instanceof Comparable aa) || !(b instanceof Comparable bb)) {
+        throw new IllegalArgumentException(a + " and " + b + " are not comparable");
+      }
+      return (aa.compareTo(bb) <= 0) ? aa : bb;
+    }),
+    MAX((a, b) -> {
+      if (!(a instanceof Comparable aa) || !(b instanceof Comparable bb)) {
+        throw new IllegalArgumentException(a + " and " + b + " are not comparable");
+      }
+      return (aa.compareTo(bb) >= 0) ? aa : bb;
+    }),
+    SUM((a, b) -> (int) a + (int) b);
+    public AggregatorLambda lambda;
+    Aggregator(AggregatorLambda lambda) {
+      this.lambda = lambda;
+    }
+  }
 
   /**
    * Gets the set of features from a product line formula.

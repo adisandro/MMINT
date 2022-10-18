@@ -13,7 +13,7 @@
   <genPackages prefix="ProductLine" basePackage="edu.toronto.cs.se.mmint" disposableProviderFactory="true"
       ecorePackage="productline.ecore#/">
     <genDataTypes ecoreDataType="productline.ecore#//MMINTException"/>
-    <genDataTypes ecoreDataType="productline.ecore#//IProductLineFeatureConstraintTrait"/>
+    <genDataTypes ecoreDataType="productline.ecore#//IProductLineFeaturesTrait"/>
     <genClasses ecoreClass="productline.ecore#//ProductLine">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute productline.ecore#//ProductLine/featuresConstraint"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute productline.ecore#//ProductLine/reasonerName"/>

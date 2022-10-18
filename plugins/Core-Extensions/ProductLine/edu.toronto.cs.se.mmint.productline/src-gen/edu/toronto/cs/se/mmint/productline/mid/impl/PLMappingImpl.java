@@ -176,12 +176,10 @@ public class PLMappingImpl extends MappingImpl implements PLMapping {
   @Override
   public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
     if (baseClass == PLElement.class) {
-      switch (derivedFeatureID) {
-      case ProductLineMIDPackage.PL_MAPPING__PRESENCE_CONDITION:
-        return ProductLinePackage.PL_ELEMENT__PRESENCE_CONDITION;
-      default:
-        return -1;
-      }
+      return switch (derivedFeatureID) {
+      case ProductLineMIDPackage.PL_MAPPING__PRESENCE_CONDITION -> ProductLinePackage.PL_ELEMENT__PRESENCE_CONDITION;
+      default -> -1;
+      };
     }
     return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
   }
@@ -194,12 +192,10 @@ public class PLMappingImpl extends MappingImpl implements PLMapping {
   @Override
   public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
     if (baseClass == PLElement.class) {
-      switch (baseFeatureID) {
-      case ProductLinePackage.PL_ELEMENT__PRESENCE_CONDITION:
-        return ProductLineMIDPackage.PL_MAPPING__PRESENCE_CONDITION;
-      default:
-        return -1;
-      }
+      return switch (baseFeatureID) {
+      case ProductLinePackage.PL_ELEMENT__PRESENCE_CONDITION -> ProductLineMIDPackage.PL_MAPPING__PRESENCE_CONDITION;
+      default -> -1;
+      };
     }
     return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
   }

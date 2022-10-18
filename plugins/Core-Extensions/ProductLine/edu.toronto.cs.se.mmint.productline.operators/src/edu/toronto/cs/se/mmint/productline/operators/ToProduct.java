@@ -40,12 +40,12 @@ import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.productline.Class;
 import edu.toronto.cs.se.mmint.productline.PLElement;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
-import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeatureConstraintTrait;
+import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeaturesTrait;
 
 public class ToProduct extends RandomOperatorImpl {
   private In in;
   private Out out;
-  private IProductLineFeatureConstraintTrait featureReasoner;
+  private IProductLineFeaturesTrait featureReasoner;
   private Map<String, Boolean> allFeatureValues;
   private Map<String, Boolean> presenceConditionCache;
   private Boolean userAssigned;

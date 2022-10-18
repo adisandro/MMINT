@@ -66,11 +66,11 @@ import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
 import edu.toronto.cs.se.mmint.productline.PLElement;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.productline.ProductLinePackage;
-import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeatureConstraintTrait;
-import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineQueryTrait;
+import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeaturesTrait;
+import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeaturesTrait.Aggregator;
 import edu.toronto.cs.se.mmint.viatra.reasoning.ViatraReasoner;
 
-public class ProductLineViatraReasoner extends ViatraReasoner implements IProductLineQueryTrait {
+public class ProductLineViatraReasoner extends ViatraReasoner {
 
   public final static String VIATRA_LIB_PATH = "edu/toronto/cs/se/mmint/productline/viatra/pl.vql";
   public final static String LIB_REFERENCE_PATTERN = "reference";
@@ -90,7 +90,7 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
   private @Nullable String aggregatedVarName;
   private @Nullable Aggregator aggregator;
   private Set<String> aggregatedGroupBy;
-  private @Nullable IProductLineFeatureConstraintTrait featureReasoner;
+  private @Nullable IProductLineFeaturesTrait featureReasoner;
   private String featuresConstraint;
 
   public ProductLineViatraReasoner() throws Exception {
@@ -124,6 +124,9 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
 
   @Override
   public boolean canUse(Object data) {
+    if (data instanceof ProductLine || data instanceof PLElement) {
+      return true;
+    }
     if (!(data instanceof MID mid)) {
       return false;
     }
@@ -132,7 +135,23 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
       .anyMatch(m -> MIDTypeHierarchy.instanceOf(m, ProductLinePackage.eNS_URI, false));
   }
 
-  @Override
+  public Set<String> getPresenceConditions(Set<PLElement> plElements) {
+    return plElements.stream()
+      .map(e -> e.getPresenceCondition())
+      .filter(pc -> pc != null && !pc.strip().equals("true"))
+      .collect(Collectors.toSet());
+  }
+
+  /**
+   * Checks whether a set of product line elements are in a same product, according to their presence conditions and the
+   * product line feature model.
+   *
+   * @param plElements
+   *          The set of product line elements, within the same product line.
+   * @throws MMINTException
+   *           If a reasoner to check product line feature constraints is not available.
+   * @return True if all the elements are in a same product, false otherwise.
+   */
   public boolean areInAProduct(Set<PLElement> plElements) throws MMINTException {
     if (plElements.isEmpty()) {
       return false;

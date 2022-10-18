@@ -30,7 +30,7 @@ import edu.toronto.cs.se.mmint.productline.ProductLinePackage;
 import edu.toronto.cs.se.mmint.productline.Reference;
 import edu.toronto.cs.se.mmint.productline.mid.ProductLineMIDPackage;
 import edu.toronto.cs.se.mmint.productline.mid.impl.ProductLineMIDPackageImpl;
-import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeatureConstraintTrait;
+import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeaturesTrait;
 
 /**
  * <!-- begin-user-doc -->
@@ -86,7 +86,7 @@ public class ProductLinePackageImpl extends EPackageImpl implements ProductLineP
    * <!-- end-user-doc -->
    * @generated
    */
-  private EDataType iProductLineFeatureConstraintTraitEDataType = null;
+  private EDataType iProductLineFeaturesTraitEDataType = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -379,8 +379,8 @@ public class ProductLinePackageImpl extends EPackageImpl implements ProductLineP
    * @generated
    */
   @Override
-  public EDataType getIProductLineFeatureConstraintTrait() {
-    return this.iProductLineFeatureConstraintTraitEDataType;
+  public EDataType getIProductLineFeaturesTrait() {
+    return this.iProductLineFeaturesTraitEDataType;
   }
 
   /**
@@ -440,7 +440,7 @@ public class ProductLinePackageImpl extends EPackageImpl implements ProductLineP
 
     // Create data types
     this.mmintExceptionEDataType = createEDataType(ProductLinePackage.MMINT_EXCEPTION);
-    this.iProductLineFeatureConstraintTraitEDataType = createEDataType(ProductLinePackage.IPRODUCT_LINE_FEATURE_CONSTRAINT_TRAIT);
+    this.iProductLineFeaturesTraitEDataType = createEDataType(ProductLinePackage.IPRODUCT_LINE_FEATURES_TRAIT);
   }
 
   /**
@@ -495,7 +495,7 @@ public class ProductLinePackageImpl extends EPackageImpl implements ProductLineP
                    ProductLine.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES,
                    !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
 
-    var op = addEOperation(this.productLineEClass, this.getIProductLineFeatureConstraintTrait(), "getReasoner", 1, 1,
+    var op = addEOperation(this.productLineEClass, this.getIProductLineFeaturesTrait(), "getReasoner", 1, 1,
                                   EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEException(op, this.getMMINTException());
 
@@ -544,8 +544,8 @@ public class ProductLinePackageImpl extends EPackageImpl implements ProductLineP
     // Initialize data types
     initEDataType(this.mmintExceptionEDataType, MMINTException.class, "MMINTException", !EPackageImpl.IS_SERIALIZABLE,
                   !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
-    initEDataType(this.iProductLineFeatureConstraintTraitEDataType, IProductLineFeatureConstraintTrait.class,
-                  "IProductLineFeatureConstraintTrait", !EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+    initEDataType(this.iProductLineFeaturesTraitEDataType, IProductLineFeaturesTrait.class, "IProductLineFeaturesTrait",
+                  !EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 
     // Create resource
     createResource(ProductLinePackage.eNS_URI);

@@ -35,10 +35,9 @@ import org.logicng.io.parsers.PropositionalParser;
 import org.logicng.solvers.MiniSat;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeatureConstraintTrait;
-import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineQueryTrait.Aggregator;
+import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeaturesTrait;
 
-public class LogicNGReasoner implements IProductLineFeatureConstraintTrait {
+public class LogicNGReasoner implements IProductLineFeaturesTrait {
   public static boolean statsEnabled = false;
   public static int satCalls = 0;
   public static long satTime = 0;

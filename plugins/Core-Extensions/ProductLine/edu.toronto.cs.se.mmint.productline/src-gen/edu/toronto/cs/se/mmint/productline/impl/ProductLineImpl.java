@@ -30,7 +30,7 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.productline.ProductLinePackage;
 import edu.toronto.cs.se.mmint.productline.Reference;
-import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeatureConstraintTrait;
+import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeaturesTrait;
 
 /**
  * <!-- begin-user-doc -->
@@ -262,9 +262,9 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
    * @generated NOT
    */
   @Override
-  public IProductLineFeatureConstraintTrait getReasoner() throws MMINTException {
+  public IProductLineFeaturesTrait getReasoner() throws MMINTException {
     var reasonerName = getReasonerName();
-    if (!(MMINT.getReasoner(reasonerName) instanceof IProductLineFeatureConstraintTrait featureReasoner)) {
+    if (!(MMINT.getReasoner(reasonerName) instanceof IProductLineFeaturesTrait featureReasoner)) {
       throw new MMINTException(reasonerName + " is not able to check product line feature constraints");
     }
     return featureReasoner;

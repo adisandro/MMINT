@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeatureConstraintTrait;
+import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeaturesTrait;
 
 /**
  * <!-- begin-user-doc -->
@@ -133,9 +133,9 @@ public interface ProductLine extends EObject {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @model kind="operation" dataType="edu.toronto.cs.se.mmint.productline.IProductLineFeatureConstraintTrait" required="true" exceptions="edu.toronto.cs.se.mmint.productline.MMINTException"
+   * @model kind="operation" dataType="edu.toronto.cs.se.mmint.productline.IProductLineFeaturesTrait" required="true" exceptions="edu.toronto.cs.se.mmint.productline.MMINTException"
    * @generated
    */
-  IProductLineFeatureConstraintTrait getReasoner() throws MMINTException;
+  IProductLineFeaturesTrait getReasoner() throws MMINTException;
 
 } // ProductLine
