@@ -68,6 +68,22 @@ Follow these steps to install MMINT-A:
 1. Add `https://adisandro.github.io/mmint/release` to the list of software sites in Eclipse (`Help > Install New Software > Available Software Sites`).
 2. Install `Modeling > MMINT-A`.
 
+### MMINT-PL
+
+MMINT-PL is an extended version of MMINT for product lines, for creating and managing annotative product lines of models as well as to facilitate lifting modeling activities to the product line level. MMINT-PL adds the following features:
+
+* Annotative Product Line (PL) editor for any EMF metamodel.
+* PL well-formedness checks with respect to feature model and presence conditions.
+* PL initialization from a product.
+* Product instantiation by selection of features.
+* PL-aware model relationships.
+* Lifted VQL engine.
+
+Follow these steps to install MMINT-PL:
+
+1. Add `https://adisandro.github.io/mmint/release` to the list of software sites in Eclipse (`Help > Install New Software > Available Software Sites`).
+2. Install `Modeling > MMINT-PL`.
+
 
 ## Publications
 
