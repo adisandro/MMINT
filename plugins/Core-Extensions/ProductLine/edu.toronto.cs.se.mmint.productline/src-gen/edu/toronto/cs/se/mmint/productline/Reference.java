@@ -12,7 +12,6 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.productline;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EReference;
 
 /**
@@ -25,7 +24,7 @@ import org.eclipse.emf.ecore.EReference;
  * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmint.productline.Reference#getSource <em>Source</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmint.productline.Reference#getTargets <em>Targets</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmint.productline.Reference#getTarget <em>Target</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.productline.Reference#getType <em>Type</em>}</li>
  * </ul>
  *
@@ -59,18 +58,28 @@ public interface Reference extends PLElement {
   void setSource(edu.toronto.cs.se.mmint.productline.Class value);
 
   /**
-   * Returns the value of the '<em><b>Targets</b></em>' reference list.
-   * The list contents are of type {@link edu.toronto.cs.se.mmint.productline.Class}.
-   * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.mmint.productline.Class#getReferencesAsTargets <em>References As Targets</em>}'.
+   * Returns the value of the '<em><b>Target</b></em>' reference.
+   * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.mmint.productline.Class#getReferencesAsTarget <em>References As Target</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Targets</em>' reference list.
-   * @see edu.toronto.cs.se.mmint.productline.ProductLinePackage#getReference_Targets()
-   * @see edu.toronto.cs.se.mmint.productline.Class#getReferencesAsTargets
-   * @model opposite="referencesAsTargets" required="true"
+   * @return the value of the '<em>Target</em>' reference.
+   * @see #setTarget(edu.toronto.cs.se.mmint.productline.Class)
+   * @see edu.toronto.cs.se.mmint.productline.ProductLinePackage#getReference_Target()
+   * @see edu.toronto.cs.se.mmint.productline.Class#getReferencesAsTarget
+   * @model opposite="referencesAsTarget" required="true"
    * @generated
    */
-  EList<edu.toronto.cs.se.mmint.productline.Class> getTargets();
+  edu.toronto.cs.se.mmint.productline.Class getTarget();
+
+  /**
+   * Sets the value of the '{@link edu.toronto.cs.se.mmint.productline.Reference#getTarget <em>Target</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Target</em>' reference.
+   * @see #getTarget()
+   * @generated
+   */
+  void setTarget(edu.toronto.cs.se.mmint.productline.Class value);
 
   /**
    * Returns the value of the '<em><b>Type</b></em>' reference.

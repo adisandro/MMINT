@@ -85,13 +85,13 @@ public class CDMAVOToCDProductLine extends ToProductLine {
         var plReference = ProductLineFactory.eINSTANCE.createReference();
         plReference.setPresenceCondition("true");
         plReference.setType(ClassDiagramPackage.eINSTANCE.getClass_Superclass());
-        for (var tgtReference : plClass.getReferencesAsTargets()) {
+        for (var tgtReference : plClass.getReferencesAsTarget()) {
           this.out.productLine.getReferences().remove(tgtReference);
           if (tgtReference.getType() == ClassDiagram_MAVOPackage.eINSTANCE.getClass_Superclass()) {
             plReference.setSource(tgtReference.getSource());
           }
           else {
-            plReference.getTargets().add(tgtReference.getSource());
+            plReference.setTarget(tgtReference.getSource());
           }
           tgtReference.setSource(null);
         }

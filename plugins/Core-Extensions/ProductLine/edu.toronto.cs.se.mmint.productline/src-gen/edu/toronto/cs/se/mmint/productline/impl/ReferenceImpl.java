@@ -12,17 +12,12 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.productline.impl;
 
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 import edu.toronto.cs.se.mmint.productline.ProductLinePackage;
 import edu.toronto.cs.se.mmint.productline.Reference;
@@ -36,7 +31,7 @@ import edu.toronto.cs.se.mmint.productline.Reference;
  * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmint.productline.impl.ReferenceImpl#getSource <em>Source</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmint.productline.impl.ReferenceImpl#getTargets <em>Targets</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmint.productline.impl.ReferenceImpl#getTarget <em>Target</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.productline.impl.ReferenceImpl#getType <em>Type</em>}</li>
  * </ul>
  *
@@ -54,14 +49,14 @@ public class ReferenceImpl extends PLElementImpl implements Reference {
   protected edu.toronto.cs.se.mmint.productline.Class source;
 
   /**
-   * The cached value of the '{@link #getTargets() <em>Targets</em>}' reference list.
+   * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getTargets()
+   * @see #getTarget()
    * @generated
    * @ordered
    */
-  protected EList<edu.toronto.cs.se.mmint.productline.Class> targets;
+  protected edu.toronto.cs.se.mmint.productline.Class target;
 
   /**
    * The cached value of the '{@link #getType() <em>Type</em>}' reference.
@@ -129,7 +124,7 @@ public class ReferenceImpl extends PLElementImpl implements Reference {
     var oldSource = this.source;
     this.source = newSource;
     if (eNotificationRequired()) {
-      var notification = new ENotificationImpl(this, Notification.SET,
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
                                                              ProductLinePackage.REFERENCE__SOURCE, oldSource,
                                                              newSource);
       if (msgs == null)
@@ -170,14 +165,70 @@ public class ReferenceImpl extends PLElementImpl implements Reference {
    * @generated
    */
   @Override
-  public EList<edu.toronto.cs.se.mmint.productline.Class> getTargets() {
-    if (this.targets == null) {
-      this.targets = new EObjectWithInverseResolvingEList.ManyInverse<>(edu.toronto.cs.se.mmint.productline.Class.class,
-                                                                                                            this,
-                                                                                                            ProductLinePackage.REFERENCE__TARGETS,
-                                                                                                            ProductLinePackage.CLASS__REFERENCES_AS_TARGETS);
+  public edu.toronto.cs.se.mmint.productline.Class getTarget() {
+    if (this.target != null && this.target.eIsProxy()) {
+      var oldTarget = (InternalEObject) this.target;
+      this.target = (edu.toronto.cs.se.mmint.productline.Class) eResolveProxy(oldTarget);
+      if (this.target != oldTarget) {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProductLinePackage.REFERENCE__TARGET, oldTarget,
+                                        this.target));
+      }
     }
-    return this.targets;
+    return this.target;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public edu.toronto.cs.se.mmint.productline.Class basicGetTarget() {
+    return this.target;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetTarget(edu.toronto.cs.se.mmint.productline.Class newTarget, NotificationChain msgs) {
+    var oldTarget = this.target;
+    this.target = newTarget;
+    if (eNotificationRequired()) {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+                                                             ProductLinePackage.REFERENCE__TARGET, oldTarget,
+                                                             newTarget);
+      if (msgs == null)
+        msgs = notification;
+      else
+        msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setTarget(edu.toronto.cs.se.mmint.productline.Class newTarget) {
+    if (newTarget != this.target) {
+      NotificationChain msgs = null;
+      if (this.target != null)
+        msgs = ((InternalEObject) this.target).eInverseRemove(this, ProductLinePackage.CLASS__REFERENCES_AS_TARGET,
+                                                         edu.toronto.cs.se.mmint.productline.Class.class, msgs);
+      if (newTarget != null)
+        msgs = ((InternalEObject) newTarget).eInverseAdd(this, ProductLinePackage.CLASS__REFERENCES_AS_TARGET,
+                                                         edu.toronto.cs.se.mmint.productline.Class.class, msgs);
+      msgs = basicSetTarget(newTarget, msgs);
+      if (msgs != null)
+        msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProductLinePackage.REFERENCE__TARGET, newTarget,
+                                    newTarget));
   }
 
   /**
@@ -234,8 +285,11 @@ public class ReferenceImpl extends PLElementImpl implements Reference {
         msgs = ((InternalEObject) this.source).eInverseRemove(this, ProductLinePackage.CLASS__REFERENCES_AS_SOURCE,
                                                          edu.toronto.cs.se.mmint.productline.Class.class, msgs);
       return basicSetSource((edu.toronto.cs.se.mmint.productline.Class) otherEnd, msgs);
-    case ProductLinePackage.REFERENCE__TARGETS:
-      return ((InternalEList<InternalEObject>) (InternalEList<?>) getTargets()).basicAdd(otherEnd, msgs);
+    case ProductLinePackage.REFERENCE__TARGET:
+      if (this.target != null)
+        msgs = ((InternalEObject) this.target).eInverseRemove(this, ProductLinePackage.CLASS__REFERENCES_AS_TARGET,
+                                                         edu.toronto.cs.se.mmint.productline.Class.class, msgs);
+      return basicSetTarget((edu.toronto.cs.se.mmint.productline.Class) otherEnd, msgs);
     }
     return super.eInverseAdd(otherEnd, featureID, msgs);
   }
@@ -250,8 +304,8 @@ public class ReferenceImpl extends PLElementImpl implements Reference {
     switch (featureID) {
     case ProductLinePackage.REFERENCE__SOURCE:
       return basicSetSource(null, msgs);
-    case ProductLinePackage.REFERENCE__TARGETS:
-      return ((InternalEList<?>) getTargets()).basicRemove(otherEnd, msgs);
+    case ProductLinePackage.REFERENCE__TARGET:
+      return basicSetTarget(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -268,8 +322,10 @@ public class ReferenceImpl extends PLElementImpl implements Reference {
       if (resolve)
         return getSource();
       return basicGetSource();
-    case ProductLinePackage.REFERENCE__TARGETS:
-      return getTargets();
+    case ProductLinePackage.REFERENCE__TARGET:
+      if (resolve)
+        return getTarget();
+      return basicGetTarget();
     case ProductLinePackage.REFERENCE__TYPE:
       if (resolve)
         return getType();
@@ -290,9 +346,8 @@ public class ReferenceImpl extends PLElementImpl implements Reference {
     case ProductLinePackage.REFERENCE__SOURCE:
       setSource((edu.toronto.cs.se.mmint.productline.Class) newValue);
       return;
-    case ProductLinePackage.REFERENCE__TARGETS:
-      getTargets().clear();
-      getTargets().addAll((Collection<? extends edu.toronto.cs.se.mmint.productline.Class>) newValue);
+    case ProductLinePackage.REFERENCE__TARGET:
+      setTarget((edu.toronto.cs.se.mmint.productline.Class) newValue);
       return;
     case ProductLinePackage.REFERENCE__TYPE:
       setType((EReference) newValue);
@@ -312,8 +367,8 @@ public class ReferenceImpl extends PLElementImpl implements Reference {
     case ProductLinePackage.REFERENCE__SOURCE:
       setSource((edu.toronto.cs.se.mmint.productline.Class) null);
       return;
-    case ProductLinePackage.REFERENCE__TARGETS:
-      getTargets().clear();
+    case ProductLinePackage.REFERENCE__TARGET:
+      setTarget((edu.toronto.cs.se.mmint.productline.Class) null);
       return;
     case ProductLinePackage.REFERENCE__TYPE:
       setType((EReference) null);
@@ -332,8 +387,8 @@ public class ReferenceImpl extends PLElementImpl implements Reference {
     switch (featureID) {
     case ProductLinePackage.REFERENCE__SOURCE:
       return this.source != null;
-    case ProductLinePackage.REFERENCE__TARGETS:
-      return this.targets != null && !this.targets.isEmpty();
+    case ProductLinePackage.REFERENCE__TARGET:
+      return this.target != null;
     case ProductLinePackage.REFERENCE__TYPE:
       return this.type != null;
     }

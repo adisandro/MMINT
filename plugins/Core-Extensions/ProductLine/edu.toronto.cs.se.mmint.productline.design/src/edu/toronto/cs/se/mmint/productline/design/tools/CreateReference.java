@@ -78,7 +78,7 @@ public class CreateReference extends AbstractExternalJavaAction {
         var reference = ProductLineFactory.eINSTANCE.createReference();
         reference.setType(type);
         reference.setSource(this.srcClass);
-        reference.getTargets().add(this.tgtClass);
+        reference.setTarget(this.tgtClass);
         ((ProductLine) this.srcClass.eContainer()).getReferences().add(reference);
       }
       catch (MIDDialogCancellation e) {

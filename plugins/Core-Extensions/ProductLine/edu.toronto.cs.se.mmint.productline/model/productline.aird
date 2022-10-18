@@ -4,7 +4,7 @@
     <semanticResources>productline.ecore</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" uid="_jUkJMAnoEe2GLbDXmFGvBg">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_qiWlkAnoEe2GLbDXmFGvBg" name="productline" repPath="#_qiUwYAnoEe2GLbDXmFGvBg" changeId="9724e0bd-0dec-45e4-9bdd-a268260d2ee7">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_qiWlkAnoEe2GLbDXmFGvBg" name="productline" repPath="#_qiUwYAnoEe2GLbDXmFGvBg" changeId="3d0de14d-29af-43f7-a94a-6f9836d2725b">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']"/>
         <target xmi:type="ecore:EPackage" href="productline.ecore#/"/>
       </ownedRepresentationDescriptors>
@@ -549,10 +549,10 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='Bi-directional%20EC_EReference%20']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_q_sB1gnoEe2GLbDXmFGvBg" sourceNode="_q_XRsAnoEe2GLbDXmFGvBg" targetNode="_q_X4wgnoEe2GLbDXmFGvBg" beginLabel="[1..*] targets" endLabel="[0..*] referencesAsTargets">
-      <target xmi:type="ecore:EReference" href="productline.ecore#//Class/referencesAsTargets"/>
-      <semanticElements xmi:type="ecore:EReference" href="productline.ecore#//Class/referencesAsTargets"/>
-      <semanticElements xmi:type="ecore:EReference" href="productline.ecore#//Reference/targets"/>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_q_sB1gnoEe2GLbDXmFGvBg" sourceNode="_q_XRsAnoEe2GLbDXmFGvBg" targetNode="_q_X4wgnoEe2GLbDXmFGvBg" beginLabel="[1..1] target" endLabel="[0..*] referencesAsTarget">
+      <target xmi:type="ecore:EReference" href="productline.ecore#//Class/referencesAsTarget"/>
+      <semanticElements xmi:type="ecore:EReference" href="productline.ecore#//Class/referencesAsTarget"/>
+      <semanticElements xmi:type="ecore:EReference" href="productline.ecore#//Reference/target"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_q_so4AnoEe2GLbDXmFGvBg" sourceArrow="InputArrow" routingStyle="manhattan" strokeColor="0,0,0">
         <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='Bi-directional%20EC_EReference%20']/@style"/>
         <beginLabelStyle xmi:type="diagram:BeginLabelStyle" uid="_q_so4QnoEe2GLbDXmFGvBg" showIcon="false"/>

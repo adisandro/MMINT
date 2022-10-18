@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.EClass;
  * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmint.productline.Class#getReferencesAsSource <em>References As Source</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmint.productline.Class#getReferencesAsTargets <em>References As Targets</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmint.productline.Class#getReferencesAsTarget <em>References As Target</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.productline.Class#getAttributes <em>Attributes</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.productline.Class#getType <em>Type</em>}</li>
  * </ul>
@@ -50,18 +50,18 @@ public interface Class extends PLElement {
   EList<Reference> getReferencesAsSource();
 
   /**
-   * Returns the value of the '<em><b>References As Targets</b></em>' reference list.
+   * Returns the value of the '<em><b>References As Target</b></em>' reference list.
    * The list contents are of type {@link edu.toronto.cs.se.mmint.productline.Reference}.
-   * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.mmint.productline.Reference#getTargets <em>Targets</em>}'.
+   * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.mmint.productline.Reference#getTarget <em>Target</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>References As Targets</em>' reference list.
-   * @see edu.toronto.cs.se.mmint.productline.ProductLinePackage#getClass_ReferencesAsTargets()
-   * @see edu.toronto.cs.se.mmint.productline.Reference#getTargets
-   * @model opposite="targets"
+   * @return the value of the '<em>References As Target</em>' reference list.
+   * @see edu.toronto.cs.se.mmint.productline.ProductLinePackage#getClass_ReferencesAsTarget()
+   * @see edu.toronto.cs.se.mmint.productline.Reference#getTarget
+   * @model opposite="target"
    * @generated
    */
-  EList<Reference> getReferencesAsTargets();
+  EList<Reference> getReferencesAsTarget();
 
   /**
    * Returns the value of the '<em><b>Attributes</b></em>' containment reference list.

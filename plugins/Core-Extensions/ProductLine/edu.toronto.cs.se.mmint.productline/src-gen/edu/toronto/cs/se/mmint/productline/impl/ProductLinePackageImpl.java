@@ -269,7 +269,7 @@ public class ProductLinePackageImpl extends EPackageImpl implements ProductLineP
    * @generated
    */
   @Override
-  public EReference getClass_ReferencesAsTargets() {
+  public EReference getClass_ReferencesAsTarget() {
     return (EReference) this.classEClass.getEStructuralFeatures().get(1);
   }
 
@@ -319,7 +319,7 @@ public class ProductLinePackageImpl extends EPackageImpl implements ProductLineP
    * @generated
    */
   @Override
-  public EReference getReference_Targets() {
+  public EReference getReference_Target() {
     return (EReference) this.referenceEClass.getEStructuralFeatures().get(1);
   }
 
@@ -425,13 +425,13 @@ public class ProductLinePackageImpl extends EPackageImpl implements ProductLineP
 
     this.classEClass = createEClass(ProductLinePackage.CLASS);
     createEReference(this.classEClass, ProductLinePackage.CLASS__REFERENCES_AS_SOURCE);
-    createEReference(this.classEClass, ProductLinePackage.CLASS__REFERENCES_AS_TARGETS);
+    createEReference(this.classEClass, ProductLinePackage.CLASS__REFERENCES_AS_TARGET);
     createEReference(this.classEClass, ProductLinePackage.CLASS__ATTRIBUTES);
     createEReference(this.classEClass, ProductLinePackage.CLASS__TYPE);
 
     this.referenceEClass = createEClass(ProductLinePackage.REFERENCE);
     createEReference(this.referenceEClass, ProductLinePackage.REFERENCE__SOURCE);
-    createEReference(this.referenceEClass, ProductLinePackage.REFERENCE__TARGETS);
+    createEReference(this.referenceEClass, ProductLinePackage.REFERENCE__TARGET);
     createEReference(this.referenceEClass, ProductLinePackage.REFERENCE__TYPE);
 
     this.attributeEClass = createEClass(ProductLinePackage.ATTRIBUTE);
@@ -512,10 +512,10 @@ public class ProductLinePackageImpl extends EPackageImpl implements ProductLineP
                    null, 0, -1, edu.toronto.cs.se.mmint.productline.Class.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE,
                    EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED,
                    EPackageImpl.IS_ORDERED);
-    initEReference(getClass_ReferencesAsTargets(), this.getReference(), this.getReference_Targets(),
-                   "referencesAsTargets", null, 0, -1, edu.toronto.cs.se.mmint.productline.Class.class, !EPackageImpl.IS_TRANSIENT,
-                   !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE,
-                   !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
+    initEReference(getClass_ReferencesAsTarget(), this.getReference(), this.getReference_Target(), "referencesAsTarget",
+                   null, 0, -1, edu.toronto.cs.se.mmint.productline.Class.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE,
+                   EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED,
+                   EPackageImpl.IS_ORDERED);
     initEReference(getClass_Attributes(), this.getAttribute(), null, "attributes", null, 0, -1,
                    edu.toronto.cs.se.mmint.productline.Class.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE,
                    EPackageImpl.IS_COMPOSITE, !EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
@@ -527,8 +527,8 @@ public class ProductLinePackageImpl extends EPackageImpl implements ProductLineP
     initEReference(getReference_Source(), this.getClass_(), this.getClass_ReferencesAsSource(), "source", null, 1, 1,
                    Reference.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES,
                    !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
-    initEReference(getReference_Targets(), this.getClass_(), this.getClass_ReferencesAsTargets(), "targets", null, 1,
-                   -1, Reference.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES,
+    initEReference(getReference_Target(), this.getClass_(), this.getClass_ReferencesAsTarget(), "target", null, 1, 1,
+                   Reference.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES,
                    !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
     initEReference(getReference_Type(), this.ecorePackage.getEReference(), null, "type", null, 1, 1, Reference.class,
                    !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE,

@@ -24,8 +24,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="Class" eSuperTypes="#//PLElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="referencesAsSource" upperBound="-1"
         eType="#//Reference" eOpposite="#//Reference/source"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="referencesAsTargets" upperBound="-1"
-        eType="#//Reference" eOpposite="#//Reference/targets"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="referencesAsTarget" upperBound="-1"
+        eType="#//Reference" eOpposite="#//Reference/target"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" upperBound="-1"
         eType="#//Attribute" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
@@ -33,8 +33,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="Reference" eSuperTypes="#//PLElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
         eType="#//Class" eOpposite="#//Class/referencesAsSource"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="targets" lowerBound="1"
-        upperBound="-1" eType="#//Class" eOpposite="#//Class/referencesAsTargets"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
+        eType="#//Class" eOpposite="#//Class/referencesAsTarget"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EReference"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Attribute" eSuperTypes="#//PLElement">

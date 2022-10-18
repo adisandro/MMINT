@@ -211,13 +211,11 @@ public class ToProduct extends RandomOperatorImpl {
       if (srcProductModelObj == null) {
         continue;
       }
-      for (var target : plReference.getTargets()) {
-        var tgtProductModelObj = this.out.traceLinks.get(target);
-        if (tgtProductModelObj == null) {
-          continue;
-        }
-        FileUtils.setModelObjectFeature(srcProductModelObj, plReference.getType().getName(), tgtProductModelObj);
+      var tgtProductModelObj = this.out.traceLinks.get(plReference.getTarget());
+      if (tgtProductModelObj == null) {
+        continue;
       }
+      FileUtils.setModelObjectFeature(srcProductModelObj, plReference.getType().getName(), tgtProductModelObj);
     }
   }
 

@@ -54,7 +54,7 @@ public class ClassItemProvider extends PLElementItemProvider {
       super.getPropertyDescriptors(object);
 
       addReferencesAsSourcePropertyDescriptor(object);
-      addReferencesAsTargetsPropertyDescriptor(object);
+      addReferencesAsTargetPropertyDescriptor(object);
       addAttributesPropertyDescriptor(object);
       addTypePropertyDescriptor(object);
     }
@@ -79,19 +79,19 @@ public class ClassItemProvider extends PLElementItemProvider {
   }
 
   /**
-   * This adds a property descriptor for the References As Targets feature.
+   * This adds a property descriptor for the References As Target feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected void addReferencesAsTargetsPropertyDescriptor(Object object) {
+  protected void addReferencesAsTargetPropertyDescriptor(Object object) {
     this.itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(),
                                                              getResourceLocator(), getString(
-                                                                                             "_UI_Class_referencesAsTargets_feature"),
+                                                                                             "_UI_Class_referencesAsTarget_feature"),
                                                              getString("_UI_PropertyDescriptor_description",
-                                                                       "_UI_Class_referencesAsTargets_feature",
+                                                                       "_UI_Class_referencesAsTarget_feature",
                                                                        "_UI_Class_type"),
-                                                             ProductLinePackage.Literals.CLASS__REFERENCES_AS_TARGETS,
+                                                             ProductLinePackage.Literals.CLASS__REFERENCES_AS_TARGET,
                                                              true, false, true, null, null, null));
   }
 
