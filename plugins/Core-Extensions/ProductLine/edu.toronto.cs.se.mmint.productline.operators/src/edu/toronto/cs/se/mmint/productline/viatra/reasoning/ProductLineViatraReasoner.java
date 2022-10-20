@@ -68,6 +68,7 @@ import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.productline.ProductLinePackage;
 import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeaturesTrait;
 import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeaturesTrait.Aggregator;
+import edu.toronto.cs.se.mmint.productline.reasoning.PLPipeline;
 import edu.toronto.cs.se.mmint.viatra.reasoning.ViatraReasoner;
 
 public class ProductLineViatraReasoner extends ViatraReasoner {
@@ -573,6 +574,7 @@ public class ProductLineViatraReasoner extends ViatraReasoner {
   }
 
   @Override
+  @PLPipeline.Intercept
   public List<Object> evaluateQuery(String filePath, Object queryObj, EObject context,
                                     List<? extends EObject> queryArgs) throws Exception {
     reset();
@@ -589,6 +591,7 @@ public class ProductLineViatraReasoner extends ViatraReasoner {
   }
 
   @Override
+  @PLPipeline.Modify
   protected Pattern getPattern(String queryFilePath, Object queryObj) throws Exception {
     var pattern = super.getPattern(queryFilePath, queryObj);
     var plPattern = PatternLanguageFactory.eINSTANCE.createPattern();
@@ -705,6 +708,7 @@ public class ProductLineViatraReasoner extends ViatraReasoner {
   }
 
   @Override
+  @PLPipeline.Filter
   protected List<Object> getMatches(Collection<GenericPatternMatch> vMatches) throws Exception {
     return (this.aggregator != null) ? getAggregatedMatches(vMatches) : getStandardMatches(vMatches);
   }
