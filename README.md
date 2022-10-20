@@ -39,7 +39,7 @@ Binary packages for MMINT are created at each release and will automatically ins
 1. Add `https://adisandro.github.io/mmint/release` to the list of software sites in Eclipse (`Help > Install New Software > Available Software Sites`).
 2. Install `Modeling > MMINT`.
 
-You can also install [MMINT-A](#mmint-a) (a version of MMINT for automotive safety assurance), a selection of pre-packaged model types, relationship types and operators under the `Modelepedia` category, or examples from various papers under the `Examples` category.
+You can also install [MMINT-A](#mmint-a) (a version of MMINT for automotive safety assurance), [MMINT-PL](#mmint-pl) (a version of MMINT for product lines), a selection of pre-packaged model types, relationship types and operators under the `Modelepedia` category, or examples from various papers under the `Examples` category.
 
 Binary packages for the current development version of MMINT are similarly available using the software site `https://adisandro.github.io/mmint/develop`.
 
@@ -89,6 +89,8 @@ Follow these steps to install MMINT-PL:
 
 ### About MMINT
 
+* Adding Product-Line Capabilities to Your Favourite Modeling Language  
+VaMoS 23 (submitted for review) | Install: `Examples > MMINT - VAMOS23` | [Readme](examples/VAMOS23/edu.toronto.cs.se.mmint.examples.vamos23/VAMOS23/README.md)
 * [MMINT-A 2.0: Tool Support for the Lifecycle of Model-Based Safety Artifacts](https://doi.org/10.1145/3417990.3422012)  
 MoDELS 20 | Install: `Examples > MMINT - MoDELS20` | [Readme](examples/MoDELS20/edu.toronto.cs.se.mmint.example.models20/MoDELS20/README.md)
 * [MMINT-A: A Tool for Automated Change Impact Assessment on Assurance Cases](https://doi.org/10.1007/978-3-319-99229-7_7)  
