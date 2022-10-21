@@ -2,7 +2,7 @@
 <feature
       id="edu.toronto.cs.se.modelepedia.classdiagram.feature"
       label="Modelepedia ClassDiagram"
-      version="2.15.0.qualifier"
+      version="2.15.99.qualifier"
       provider-name="Software Engineering Group, University of Toronto">
 
    <description>

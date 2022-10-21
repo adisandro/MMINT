@@ -371,7 +371,7 @@
   </diagram>
   <plugin
       provider="Software Engineering Group, University of Toronto"
-      version="2.15.0.qualifier"
+      version="2.15.99.qualifier"
       printingEnabled="true">
     <requiredPlugins>org.eclipse.papyrus.infra.gmfdiag.tooling.runtime</requiredPlugins>
     <requiredPlugins>org.eclipse.draw2d</requiredPlugins>

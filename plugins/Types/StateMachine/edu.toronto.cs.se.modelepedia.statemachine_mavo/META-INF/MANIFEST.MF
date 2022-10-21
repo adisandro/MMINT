@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.statemachine_mavo;singleton:=true
 Automatic-Module-Name: edu.toronto.cs.se.modelepedia.statemachine.mavo
-Bundle-Version: 2.15.0.qualifier
+Bundle-Version: 2.15.99.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
