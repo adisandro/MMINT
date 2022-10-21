@@ -113,7 +113,7 @@
       <children xsi:type="gmfgen:GenStandardPreferencePage" iD="edu.toronto.cs.se.modelepedia.statemachine.diagram.rulersAndGrid" name="Rulers And Grid" kind="RulersAndGrid"/>
     </preferencePages>
   </diagram>
-  <plugin provider="Software Engineering Group, University of Toronto" version="2.14.99.qualifier">
+  <plugin provider="Software Engineering Group, University of Toronto" version="2.15.0.qualifier">
     <requiredPlugins>org.eclipse.papyrus.infra.gmfdiag.tooling.runtime</requiredPlugins>
     <requiredPlugins>org.eclipse.draw2d</requiredPlugins>
     <requiredPlugins>org.eclipse.gmf.runtime.draw2d.ui</requiredPlugins>

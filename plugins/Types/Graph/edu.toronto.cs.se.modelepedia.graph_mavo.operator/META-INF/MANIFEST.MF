@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.graph_mavo.operator;singleton:=true
 Automatic-Module-Name: edu.toronto.cs.se.modelepedia.graph.mavo.operator
-Bundle-Version: 2.14.99.qualifier
+Bundle-Version: 2.15.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-19
 Bundle-ActivationPolicy: lazy
 Bundle-Vendor: %providerName
