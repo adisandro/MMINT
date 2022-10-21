@@ -3,7 +3,7 @@
   <classes referencesAsSource="//@references.0 //@references.1 //@references.2">
     <type href="http://se.cs.toronto.edu/modelepedia/GSN#//SafetyCase"/>
   </classes>
-  <classes presenceCondition="f1" referencesAsSource="//@references.4 //@references.7" referencesAsTargets="//@references.1">
+  <classes presenceCondition="f1" referencesAsSource="//@references.4 //@references.7" referencesAsTarget="//@references.1">
     <attributes presenceCondition="f1" value="G1">
       <type href="http://se.cs.toronto.edu/modelepedia/GSN#//ArgumentElement/id"/>
     </attributes>
@@ -12,7 +12,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/GSN#//BasicGoal"/>
   </classes>
-  <classes presenceCondition="f2" referencesAsSource="//@references.6 //@references.8" referencesAsTargets="//@references.2">
+  <classes presenceCondition="f2" referencesAsSource="//@references.6 //@references.8" referencesAsTarget="//@references.2">
     <attributes presenceCondition="f2" value="G2">
       <type href="http://se.cs.toronto.edu/modelepedia/GSN#//ArgumentElement/id"/>
     </attributes>
@@ -21,7 +21,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/GSN#//BasicGoal"/>
   </classes>
-  <classes referencesAsSource="//@references.3 //@references.5" referencesAsTargets="//@references.0">
+  <classes referencesAsSource="//@references.3 //@references.5" referencesAsTarget="//@references.0">
     <attributes value="G0">
       <type href="http://se.cs.toronto.edu/modelepedia/GSN#//ArgumentElement/id"/>
     </attributes>
@@ -30,49 +30,49 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/GSN#//BasicGoal"/>
   </classes>
-  <classes presenceCondition="f1" referencesAsTargets="//@references.3 //@references.4">
+  <classes presenceCondition="f1" referencesAsTarget="//@references.3 //@references.4">
     <type href="http://se.cs.toronto.edu/modelepedia/GSN#//SupportedBy"/>
   </classes>
-  <classes presenceCondition="f2" referencesAsTargets="//@references.5 //@references.6">
+  <classes presenceCondition="f2" referencesAsTarget="//@references.5 //@references.6">
     <type href="http://se.cs.toronto.edu/modelepedia/GSN#//SupportedBy"/>
   </classes>
-  <classes presenceCondition="f1" referencesAsTargets="//@references.7">
+  <classes presenceCondition="f1" referencesAsTarget="//@references.7">
     <attributes presenceCondition="f1" value="B">
       <type href="http://se.cs.toronto.edu/modelepedia/GSN#//ASIL/value"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/GSN#//ASIL"/>
   </classes>
-  <classes presenceCondition="f2" referencesAsTargets="//@references.8">
+  <classes presenceCondition="f2" referencesAsTarget="//@references.8">
     <attributes presenceCondition="f2" value="B">
       <type href="http://se.cs.toronto.edu/modelepedia/GSN#//ASIL/value"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/GSN#//ASIL"/>
   </classes>
-  <references source="//@classes.0" targets="//@classes.3">
+  <references source="//@classes.0" target="//@classes.3">
     <type href="http://se.cs.toronto.edu/modelepedia/GSN#//SafetyCase/goals"/>
   </references>
-  <references presenceCondition="f1" source="//@classes.0" targets="//@classes.1">
+  <references presenceCondition="f1" source="//@classes.0" target="//@classes.1">
     <type href="http://se.cs.toronto.edu/modelepedia/GSN#//SafetyCase/goals"/>
   </references>
-  <references presenceCondition="f2" source="//@classes.0" targets="//@classes.2">
+  <references presenceCondition="f2" source="//@classes.0" target="//@classes.2">
     <type href="http://se.cs.toronto.edu/modelepedia/GSN#//SafetyCase/goals"/>
   </references>
-  <references presenceCondition="f1" source="//@classes.3" targets="//@classes.4">
+  <references presenceCondition="f1" source="//@classes.3" target="//@classes.4">
     <type href="http://se.cs.toronto.edu/modelepedia/GSN#//Supportable/supportedBy"/>
   </references>
-  <references presenceCondition="f1" source="//@classes.1" targets="//@classes.4">
+  <references presenceCondition="f1" source="//@classes.1" target="//@classes.4">
     <type href="http://se.cs.toronto.edu/modelepedia/GSN#//Supporter/supports"/>
   </references>
-  <references presenceCondition="f2" source="//@classes.3" targets="//@classes.5">
+  <references presenceCondition="f2" source="//@classes.3" target="//@classes.5">
     <type href="http://se.cs.toronto.edu/modelepedia/GSN#//Supportable/supportedBy"/>
   </references>
-  <references presenceCondition="f2" source="//@classes.2" targets="//@classes.5">
+  <references presenceCondition="f2" source="//@classes.2" target="//@classes.5">
     <type href="http://se.cs.toronto.edu/modelepedia/GSN#//Supporter/supports"/>
   </references>
-  <references presenceCondition="f1" source="//@classes.1" targets="//@classes.6">
+  <references presenceCondition="f1" source="//@classes.1" target="//@classes.6">
     <type href="http://se.cs.toronto.edu/modelepedia/GSN#//ASILfulElement/asil"/>
   </references>
-  <references presenceCondition="f2" source="//@classes.2" targets="//@classes.7">
+  <references presenceCondition="f2" source="//@classes.2" target="//@classes.7">
     <type href="http://se.cs.toronto.edu/modelepedia/GSN#//ASILfulElement/asil"/>
   </references>
   <metamodel href="http://se.cs.toronto.edu/modelepedia/GSN#/"/>

@@ -3,9 +3,9 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.sequencediagram;singleton:=true
 Automatic-Module-Name: edu.toronto.cs.se.modelepedia.sequencediagram
-Bundle-Version: 2.14.0.qualifier
+Bundle-Version: 2.15.0.qualifier
 Bundle-ClassPath: .
-Bundle-RequiredExecutionEnvironment: JavaSE-18
+Bundle-RequiredExecutionEnvironment: JavaSE-19
 Export-Package: edu.toronto.cs.se.modelepedia.sequencediagram,
  edu.toronto.cs.se.modelepedia.sequencediagram.impl,
  edu.toronto.cs.se.modelepedia.sequencediagram.util

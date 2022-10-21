@@ -2,20 +2,25 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>MMINT</groupId>
   <artifactId>edu.toronto.cs.se.mmint.releng</artifactId>
-  <version>2.14.0-SNAPSHOT</version>
+  <version>2.15.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   <properties>
-    <tycho-version>3.0.0-SNAPSHOT</tycho-version>
+    <tycho-version>3.0.0</tycho-version>
     <acceleo-version>3.6.4</acceleo-version>
     <mavendeps-version>3.2.0</mavendeps-version>
-    <ecj-version>3.30.0</ecj-version>
+    <ecj-version>3.32.0.v20221019-1213</ecj-version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
   <repositories>
     <repository>
       <id>Eclipse</id>
       <layout>p2</layout>
-      <url>http://download.eclipse.org/releases/2022-06</url>
+      <url>http://download.eclipse.org/releases/2022-09</url>
+    </repository>
+    <repository>
+      <id>Orbit</id>
+      <layout>p2</layout>
+      <url>https://download.eclipse.org/tools/orbit/downloads/2022-09</url>
     </repository>
     <repository>
       <id>Henshin</id>
@@ -107,7 +112,7 @@
         <artifactId>target-platform-configuration</artifactId>
         <version>${tycho-version}</version>
         <configuration>
-          <executionEnvironment>JavaSE-18</executionEnvironment>
+          <executionEnvironment>JavaSE-19</executionEnvironment>
         </configuration>
       </plugin>
     </plugins>
@@ -223,12 +228,15 @@
     <module>../../examples/MoDELS20/edu.toronto.cs.se.mmint.example.models20</module>
     <module>../../examples/MODELS21/edu.toronto.cs.se.mmint.examples.models21</module>
     <module>../../examples/SOSYM22/edu.toronto.cs.se.mmint.examples.sosym22</module>
+    <module>../../examples/VAMOS23/edu.toronto.cs.se.mmint.examples.vamos23</module>
+    <module>../../examples/VAMOS23/edu.toronto.cs.se.mmint.examples.vamos23.operators</module>
     <module>../../features/edu.toronto.cs.se.mmint.feature</module>
     <module>../../features/edu.toronto.cs.se.mmint.sdk.feature</module>
     <module>../../features/edu.toronto.cs.se.mmint.productline.feature</module>
     <module>../../features/edu.toronto.cs.se.mmint.types.lts.feature</module>
     <module>../../features/edu.toronto.cs.se.mmint.types.simulink.feature</module>
     <module>../../features/edu.toronto.cs.se.mminta.feature</module>
+    <module>../../features/edu.toronto.cs.se.mmintpl.feature</module>
     <module>../../features/edu.toronto.cs.se.mummint.feature</module>
     <module>../../features/edu.toronto.cs.se.mmint.lean.feature</module>
     <module>../../features/edu.toronto.cs.se.mmint.logicng.feature</module>
@@ -252,6 +260,7 @@
     <module>../../features/edu.toronto.cs.se.mmint.example.models20.feature</module>
     <module>../../features/edu.toronto.cs.se.mmint.examples.models21.feature</module>
     <module>../../features/edu.toronto.cs.se.mmint.examples.sosym22.feature</module>
+    <module>../../features/edu.toronto.cs.se.mmint.examples.vamos23.feature</module>
     <module>../../tests/edu.toronto.cs.se.modelepedia.tests</module>
     <module>../edu.toronto.cs.se.mmint.install</module>
   </modules>

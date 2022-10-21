@@ -68,18 +68,13 @@ public class ProductLineFactoryImpl extends EFactoryImpl implements ProductLineF
    */
   @Override
   public EObject create(EClass eClass) {
-    switch (eClass.getClassifierID()) {
-    case ProductLinePackage.PRODUCT_LINE:
-      return createProductLine();
-    case ProductLinePackage.CLASS:
-      return createClass();
-    case ProductLinePackage.REFERENCE:
-      return createReference();
-    case ProductLinePackage.ATTRIBUTE:
-      return createAttribute();
-    default:
-      throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-    }
+    return switch (eClass.getClassifierID()) {
+    case ProductLinePackage.PRODUCT_LINE -> createProductLine();
+    case ProductLinePackage.CLASS -> createClass();
+    case ProductLinePackage.REFERENCE -> createReference();
+    case ProductLinePackage.ATTRIBUTE -> createAttribute();
+    default -> throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+    };
   }
 
   /**

@@ -3,7 +3,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.gsn.design;singleton:=true
-Bundle-Version: 2.14.0.qualifier
+Bundle-Version: 2.15.0.qualifier
 Bundle-Activator: edu.toronto.cs.se.modelepedia.gsn.design.Activator
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.ui,
@@ -17,5 +17,5 @@ Require-Bundle: org.eclipse.ui,
  edu.toronto.cs.se.mmint.diagram,
  edu.toronto.cs.se.modelepedia.gsn
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: JavaSE-18
+Bundle-RequiredExecutionEnvironment: JavaSE-19
 Bundle-Vendor: %providerName

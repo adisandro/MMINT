@@ -3,12 +3,12 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.classdiagram_mavo.edit;singleton:=true
 Automatic-Module-Name: edu.toronto.cs.se.modelepedia.classdiagram.mavo.edit
-Bundle-Version: 2.14.0.qualifier
+Bundle-Version: 2.15.0.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: edu.toronto.cs.se.modelepedia.classdiagram_mavo.provider.ClassDiagram_MAVOEditPlugin$Implementation
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-18
+Bundle-RequiredExecutionEnvironment: JavaSE-19
 Export-Package: edu.toronto.cs.se.modelepedia.classdiagram_mavo.provider
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.edit,

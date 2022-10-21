@@ -12,12 +12,20 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.logicng.reasoning;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+import java.util.Random;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.jdt.annotation.Nullable;
+import org.logicng.datastructures.Assignment;
 import org.logicng.datastructures.Substitution;
 import org.logicng.datastructures.Tristate;
 import org.logicng.formulas.Formula;
@@ -26,14 +34,69 @@ import org.logicng.io.parsers.ParserException;
 import org.logicng.io.parsers.PropositionalParser;
 import org.logicng.solvers.MiniSat;
 
-import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeatureConstraintTrait;
-import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineQueryTrait.AggregatorLambda;
+import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeaturesTrait;
 
-public class LogicNGReasoner implements IProductLineFeatureConstraintTrait {
+public class LogicNGReasoner implements IProductLineFeaturesTrait {
+  public static boolean statsEnabled = false;
+  public static int satCalls = 0;
+  public static long satTime = 0;
 
   @Override
   public String getName() {
     return "LogicNG";
+  }
+
+  @Override
+  public void toggleStats(boolean enable) {
+    LogicNGReasoner.statsEnabled = enable;
+    LogicNGReasoner.satCalls = 0;
+    LogicNGReasoner.satTime = 0;
+  }
+
+  @Override
+  public SATStats getStats() {
+    return new SATStats(LogicNGReasoner.satTime, LogicNGReasoner.satCalls);
+  }
+
+  public Tristate checkSAT(List<String> satFormulas, Map<String, Boolean> varValues) throws ParserException {
+    var startTime = 0L;
+    if (LogicNGReasoner.statsEnabled) {
+      startTime = System.nanoTime();
+    }
+    var factory = new FormulaFactory();
+    var parser = new PropositionalParser(factory);
+    var minisat = MiniSat.miniSat(factory);
+    try {
+      for (var satFormula : satFormulas) {
+        var formula = parser.parse(satFormula);
+        if (!varValues.isEmpty()) {
+          var sub = new Substitution();
+          for (var varValue : varValues.entrySet()) {
+            var varName = varValue.getKey();
+            if (!formula.containsVariable(varName)) {
+              continue;
+            }
+            sub.addMapping(factory.variable(varName), factory.constant(varValue.getValue()));
+          }
+          formula = formula.substitute(sub);
+        }
+        minisat.add(formula);
+      }
+    }
+    catch (ParserException e) {
+      if (LogicNGReasoner.statsEnabled) {
+        LogicNGReasoner.satTime += System.nanoTime() - startTime;
+      }
+      throw e;
+    }
+    var sat = minisat.sat();
+    if (LogicNGReasoner.statsEnabled) {
+      LogicNGReasoner.satCalls++;
+      LogicNGReasoner.satTime += System.nanoTime() - startTime;
+    }
+
+    return sat;
   }
 
   @Override
@@ -48,51 +111,108 @@ public class LogicNGReasoner implements IProductLineFeatureConstraintTrait {
 
   @Override
   public boolean checkConsistency(String featuresConstraint, Set<String> presenceConditions) {
-    var factory = new FormulaFactory();
-    var parser = new PropositionalParser(factory);
-    var minisat = MiniSat.miniSat(factory);
+    var plFormulas = new ArrayList<String>();
+    plFormulas.add(featuresConstraint);
+    plFormulas.addAll(presenceConditions);
     try {
-      minisat.add(parser.parse(featuresConstraint));
-      for (var presenceCondition : presenceConditions) {
-        minisat.add(parser.parse(presenceCondition));
-      }
-      return minisat.sat() == Tristate.TRUE;
+      return checkSAT(plFormulas, Map.of()) == Tristate.TRUE;
     }
     catch (ParserException e) {
+      MMINTException.print(IStatus.WARNING,
+                           "Error parsing " + getName() + " formulas '" + plFormulas + "', returning false", e);
       return false;
     }
   }
 
   @Override
   public boolean checkConsistency(String plFormula, Map<String, Boolean> featureValues) {
+    try {
+      return checkSAT(List.of(plFormula), featureValues) == Tristate.TRUE;
+    }
+    catch (ParserException e) {
+      MMINTException.print(IStatus.WARNING,
+                           "Error parsing " + getName() + " formula '" + plFormula + "', returning false", e);
+      return false;
+    }
+  }
+
+  @Override
+  public Optional<Map<String, Boolean>> assignFeatures(String plFormula, Map<String, Boolean> featureValues,
+                                                       @Nullable Random random) {
+    var startTime = 0L;
+    if (LogicNGReasoner.statsEnabled) {
+      startTime = System.nanoTime();
+    }
     var factory = new FormulaFactory();
     var parser = new PropositionalParser(factory);
     var minisat = MiniSat.miniSat(factory);
     try {
       var formula = parser.parse(plFormula);
-      var sub = new Substitution();
-      featureValues.forEach((k, v) -> sub.addMapping(factory.variable(k), factory.constant(v)));
-      formula = formula.substitute(sub);
+      if (!featureValues.isEmpty()) {
+        var sub = new Substitution();
+        featureValues.forEach((k, v) -> sub.addMapping(factory.variable(k), factory.constant(v)));
+        formula = formula.substitute(sub);
+      }
       minisat.add(formula);
+      var sat = minisat.sat() == Tristate.TRUE;
+      if (LogicNGReasoner.statsEnabled) {
+        LogicNGReasoner.satCalls++;
+      }
+      if (!sat) {
+        if (LogicNGReasoner.statsEnabled) {
+          LogicNGReasoner.satTime += System.nanoTime() - startTime;
+        }
 
-      return minisat.sat() == Tristate.TRUE;
+        return Optional.empty();
+      }
+
+      var newFeatureValues = new HashMap<String, Boolean>();
+      Assignment assignment;
+      if (random != null) {
+        var assignments = minisat.enumerateAllModels();
+        assignment = assignments.get(random.nextInt(assignments.size()));
+      }
+      else {
+        assignment = minisat.model();
+      }
+      for (var pos : assignment.positiveVariables()) {
+        newFeatureValues.put(pos.name(), true);
+      }
+      for (var neg : assignment.negativeVariables()) {
+        newFeatureValues.put(neg.name(), false);
+      }
+      if (LogicNGReasoner.statsEnabled) {
+        LogicNGReasoner.satTime += System.nanoTime() - startTime;
+      }
+
+      return Optional.of(newFeatureValues);
     }
     catch (ParserException e) {
-      return false;
+      MMINTException.print(IStatus.WARNING,
+                           "Error parsing " + getName() + " formula '" + plFormula + "', returning empty model", e);
+      if (LogicNGReasoner.statsEnabled) {
+        LogicNGReasoner.satTime += System.nanoTime() - startTime;
+      }
+
+      return Optional.empty();
     }
   }
 
   private void aggregate2(MiniSat minisat, Formula featuresFormula, Formula formula,
                           Map<Set<Object>, Object> currAggregation, Set<Object> aggregatedMatch, Object aggregatedValue,
-                          AggregatorLambda aggregator, Map<String, Map<Set<Object>, Object>> newAggregations,
+                          Aggregator aggregator, Map<String, Map<Set<Object>, Object>> newAggregations,
                           boolean positive) {
     minisat.add(featuresFormula);
     minisat.add(formula);
-    if (minisat.sat() == Tristate.TRUE) {
+    var sat = minisat.sat() == Tristate.TRUE;
+    if (LogicNGReasoner.statsEnabled) {
+      LogicNGReasoner.satCalls++;
+    }
+    if (sat) {
       var newAggregation = new HashMap<>(currAggregation);
       if (positive) {
         newAggregation.compute(
-          aggregatedMatch, (k, v) -> (v == null) ? aggregatedValue : aggregator.apply(v, aggregatedValue));
+          aggregatedMatch, (k, v) -> (v == null) ? aggregatedValue : aggregator.lambda.aggregate(v, aggregatedValue));
       }
       else {
         newAggregation.putIfAbsent(aggregatedMatch, null);
@@ -103,7 +223,7 @@ public class LogicNGReasoner implements IProductLineFeatureConstraintTrait {
       }
       else {
         newAggregation.forEach(
-          (k, v) -> otherAggregation.merge(k, v, (v1, v2) -> aggregator.apply(v1, v2)));
+          (k, v) -> otherAggregation.merge(k, v, (v1, v2) -> aggregator.lambda.aggregate(v1, v2)));
       }
     }
     minisat.reset();
@@ -112,9 +232,13 @@ public class LogicNGReasoner implements IProductLineFeatureConstraintTrait {
   @Override
   public Map<String, Map<Set<Object>, Object>> aggregate(Set<String> presenceConditions, String featuresConstraint,
                                                          Set<Object> aggregatedMatch, Object aggregatedValue,
-                                                         AggregatorLambda aggregator,
+                                                         Aggregator aggregator,
                                                          Map<String, Map<Set<Object>, Object>> aggregations)
                                                            throws ParserException {
+    var startTime = 0L;
+    if (LogicNGReasoner.statsEnabled) {
+      startTime = System.nanoTime();
+    }
     var plFormula = presenceConditions.stream().collect(Collectors.joining(" & "));
     var factory = new FormulaFactory();
     var parser = new PropositionalParser(factory);
@@ -140,7 +264,53 @@ public class LogicNGReasoner implements IProductLineFeatureConstraintTrait {
       aggregate2(minisat, featuresFormula, notFormula2, currAggregation, aggregatedMatch, aggregatedValue, aggregator,
                  newAggregations, false);
     }
+    if (LogicNGReasoner.statsEnabled) {
+      LogicNGReasoner.satTime += System.nanoTime() - startTime;
+    }
 
     return newAggregations;
   }
+
+    @Override
+    public Map<String, Map<Set<Object>, Object>> aggregate(String featuresConstraint,
+                                                           Map<Map<Set<Object>, Object>, Set<String>> aggregationsByValue)
+                                                             throws ParserException {
+      var startTime = 0L;
+      if (LogicNGReasoner.statsEnabled) {
+        startTime = System.nanoTime();
+      }
+      var aggregations = new HashMap<String, Map<Set<Object>, Object>>();
+      var factory = new FormulaFactory();
+      var parser = new PropositionalParser(factory);
+      var minisat = MiniSat.miniSat(factory);
+      var featuresFormula = parser.parse(featuresConstraint);
+      for (var aggregationEntry : aggregationsByValue.entrySet()) {
+        var aggregated = aggregationEntry.getKey();
+        var formulas = new HashSet<Formula>();
+        for (var formula : aggregationEntry.getValue()) {
+          formulas.add(parser.parse(formula));
+        }
+        var orFormulas = factory.or(formulas);
+        minisat.add(featuresFormula);
+        minisat.add(orFormulas);
+        var sat = minisat.sat() == Tristate.TRUE;
+        if (LogicNGReasoner.statsEnabled) {
+          LogicNGReasoner.satCalls++;
+        }
+        minisat.reset();
+        if (sat) {
+          aggregations.put(orFormulas.toString(), aggregated);
+        }
+        else {
+          for (var formula : aggregationEntry.getValue()) {
+            aggregations.put(formula, aggregated);
+          }
+        }
+      }
+      if (LogicNGReasoner.statsEnabled) {
+        LogicNGReasoner.satTime += System.nanoTime() - startTime;
+      }
+
+      return aggregations;
+    }
 }

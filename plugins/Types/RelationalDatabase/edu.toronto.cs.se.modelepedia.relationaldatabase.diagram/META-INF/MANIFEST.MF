@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.relationaldatabase.diagram; singleton:=true
 Automatic-Module-Name: edu.toronto.cs.se.modelepedia.relationaldatabase.diagram
-Bundle-Version: 2.14.0.qualifier
+Bundle-Version: 2.15.0.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: edu.toronto.cs.se.modelepedia.relationaldatabase.diagram.part.RelationalDatabaseDiagramEditorPlugin
 Bundle-Vendor: %providerName
@@ -42,4 +42,4 @@ Require-Bundle: org.eclipse.core.runtime,
  edu.toronto.cs.se.modelepedia.relationaldatabase,
  edu.toronto.cs.se.modelepedia.relationaldatabase.edit
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: JavaSE-18
+Bundle-RequiredExecutionEnvironment: JavaSE-19

@@ -52,7 +52,7 @@ public class ReferenceItemProvider extends PLElementItemProvider {
       super.getPropertyDescriptors(object);
 
       addSourcePropertyDescriptor(object);
-      addTargetsPropertyDescriptor(object);
+      addTargetPropertyDescriptor(object);
       addTypePropertyDescriptor(object);
     }
     return this.itemPropertyDescriptors;
@@ -76,20 +76,20 @@ public class ReferenceItemProvider extends PLElementItemProvider {
   }
 
   /**
-   * This adds a property descriptor for the Targets feature.
+   * This adds a property descriptor for the Target feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected void addTargetsPropertyDescriptor(Object object) {
+  protected void addTargetPropertyDescriptor(Object object) {
     this.itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(),
                                                              getResourceLocator(), getString(
-                                                                                             "_UI_Reference_targets_feature"),
+                                                                                             "_UI_Reference_target_feature"),
                                                              getString("_UI_PropertyDescriptor_description",
-                                                                       "_UI_Reference_targets_feature",
+                                                                       "_UI_Reference_target_feature",
                                                                        "_UI_Reference_type"),
-                                                             ProductLinePackage.Literals.REFERENCE__TARGETS, true,
-                                                             false, true, null, null, null));
+                                                             ProductLinePackage.Literals.REFERENCE__TARGET, true, false,
+                                                             true, null, null, null));
   }
 
   /**

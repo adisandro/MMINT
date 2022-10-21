@@ -30,7 +30,7 @@ import edu.toronto.cs.se.mmint.productline.ProductLinePackage;
 import edu.toronto.cs.se.mmint.productline.Reference;
 import edu.toronto.cs.se.mmint.productline.mid.ProductLineMIDPackage;
 import edu.toronto.cs.se.mmint.productline.mid.impl.ProductLineMIDPackageImpl;
-import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeatureConstraintTrait;
+import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeaturesTrait;
 
 /**
  * <!-- begin-user-doc -->
@@ -86,7 +86,7 @@ public class ProductLinePackageImpl extends EPackageImpl implements ProductLineP
    * <!-- end-user-doc -->
    * @generated
    */
-  private EDataType iProductLineFeatureConstraintTraitEDataType = null;
+  private EDataType iProductLineFeaturesTraitEDataType = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -269,7 +269,7 @@ public class ProductLinePackageImpl extends EPackageImpl implements ProductLineP
    * @generated
    */
   @Override
-  public EReference getClass_ReferencesAsTargets() {
+  public EReference getClass_ReferencesAsTarget() {
     return (EReference) this.classEClass.getEStructuralFeatures().get(1);
   }
 
@@ -319,7 +319,7 @@ public class ProductLinePackageImpl extends EPackageImpl implements ProductLineP
    * @generated
    */
   @Override
-  public EReference getReference_Targets() {
+  public EReference getReference_Target() {
     return (EReference) this.referenceEClass.getEStructuralFeatures().get(1);
   }
 
@@ -379,8 +379,8 @@ public class ProductLinePackageImpl extends EPackageImpl implements ProductLineP
    * @generated
    */
   @Override
-  public EDataType getIProductLineFeatureConstraintTrait() {
-    return this.iProductLineFeatureConstraintTraitEDataType;
+  public EDataType getIProductLineFeaturesTrait() {
+    return this.iProductLineFeaturesTraitEDataType;
   }
 
   /**
@@ -425,13 +425,13 @@ public class ProductLinePackageImpl extends EPackageImpl implements ProductLineP
 
     this.classEClass = createEClass(ProductLinePackage.CLASS);
     createEReference(this.classEClass, ProductLinePackage.CLASS__REFERENCES_AS_SOURCE);
-    createEReference(this.classEClass, ProductLinePackage.CLASS__REFERENCES_AS_TARGETS);
+    createEReference(this.classEClass, ProductLinePackage.CLASS__REFERENCES_AS_TARGET);
     createEReference(this.classEClass, ProductLinePackage.CLASS__ATTRIBUTES);
     createEReference(this.classEClass, ProductLinePackage.CLASS__TYPE);
 
     this.referenceEClass = createEClass(ProductLinePackage.REFERENCE);
     createEReference(this.referenceEClass, ProductLinePackage.REFERENCE__SOURCE);
-    createEReference(this.referenceEClass, ProductLinePackage.REFERENCE__TARGETS);
+    createEReference(this.referenceEClass, ProductLinePackage.REFERENCE__TARGET);
     createEReference(this.referenceEClass, ProductLinePackage.REFERENCE__TYPE);
 
     this.attributeEClass = createEClass(ProductLinePackage.ATTRIBUTE);
@@ -440,7 +440,7 @@ public class ProductLinePackageImpl extends EPackageImpl implements ProductLineP
 
     // Create data types
     this.mmintExceptionEDataType = createEDataType(ProductLinePackage.MMINT_EXCEPTION);
-    this.iProductLineFeatureConstraintTraitEDataType = createEDataType(ProductLinePackage.IPRODUCT_LINE_FEATURE_CONSTRAINT_TRAIT);
+    this.iProductLineFeaturesTraitEDataType = createEDataType(ProductLinePackage.IPRODUCT_LINE_FEATURES_TRAIT);
   }
 
   /**
@@ -495,7 +495,7 @@ public class ProductLinePackageImpl extends EPackageImpl implements ProductLineP
                    ProductLine.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES,
                    !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
 
-    var op = addEOperation(this.productLineEClass, this.getIProductLineFeatureConstraintTrait(), "getReasoner", 1, 1,
+    var op = addEOperation(this.productLineEClass, this.getIProductLineFeaturesTrait(), "getReasoner", 1, 1,
                                   EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEException(op, this.getMMINTException());
 
@@ -512,10 +512,10 @@ public class ProductLinePackageImpl extends EPackageImpl implements ProductLineP
                    null, 0, -1, edu.toronto.cs.se.mmint.productline.Class.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE,
                    EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED,
                    EPackageImpl.IS_ORDERED);
-    initEReference(getClass_ReferencesAsTargets(), this.getReference(), this.getReference_Targets(),
-                   "referencesAsTargets", null, 0, -1, edu.toronto.cs.se.mmint.productline.Class.class, !EPackageImpl.IS_TRANSIENT,
-                   !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE,
-                   !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
+    initEReference(getClass_ReferencesAsTarget(), this.getReference(), this.getReference_Target(), "referencesAsTarget",
+                   null, 0, -1, edu.toronto.cs.se.mmint.productline.Class.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE,
+                   EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED,
+                   EPackageImpl.IS_ORDERED);
     initEReference(getClass_Attributes(), this.getAttribute(), null, "attributes", null, 0, -1,
                    edu.toronto.cs.se.mmint.productline.Class.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE,
                    EPackageImpl.IS_COMPOSITE, !EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
@@ -527,8 +527,8 @@ public class ProductLinePackageImpl extends EPackageImpl implements ProductLineP
     initEReference(getReference_Source(), this.getClass_(), this.getClass_ReferencesAsSource(), "source", null, 1, 1,
                    Reference.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES,
                    !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
-    initEReference(getReference_Targets(), this.getClass_(), this.getClass_ReferencesAsTargets(), "targets", null, 1,
-                   -1, Reference.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES,
+    initEReference(getReference_Target(), this.getClass_(), this.getClass_ReferencesAsTarget(), "target", null, 1, 1,
+                   Reference.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES,
                    !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
     initEReference(getReference_Type(), this.ecorePackage.getEReference(), null, "type", null, 1, 1, Reference.class,
                    !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE,
@@ -544,8 +544,8 @@ public class ProductLinePackageImpl extends EPackageImpl implements ProductLineP
     // Initialize data types
     initEDataType(this.mmintExceptionEDataType, MMINTException.class, "MMINTException", !EPackageImpl.IS_SERIALIZABLE,
                   !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
-    initEDataType(this.iProductLineFeatureConstraintTraitEDataType, IProductLineFeatureConstraintTrait.class,
-                  "IProductLineFeatureConstraintTrait", !EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+    initEDataType(this.iProductLineFeaturesTraitEDataType, IProductLineFeaturesTrait.class, "IProductLineFeaturesTrait",
+                  !EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 
     // Create resource
     createResource(ProductLinePackage.eNS_URI);

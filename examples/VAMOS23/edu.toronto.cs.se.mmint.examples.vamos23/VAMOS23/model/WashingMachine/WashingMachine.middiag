@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mid="http://se.cs.toronto.edu/mmint/MID" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" xmi:id="__cqAUENDEe2os4oFZ-bqCw" type="MID" name="WashingMachine.middiag" measurementUnit="Pixel">
+  <children xmi:type="notation:Node" xmi:id="_ghq5YENEEe2os4oFZ-bqCw" type="2001">
+    <children xmi:type="notation:DecorationNode" xmi:id="_ghujwENEEe2os4oFZ-bqCw" type="5001"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_ghujwUNEEe2os4oFZ-bqCw" type="5002"/>
+    <styles xmi:type="notation:DescriptionStyle" xmi:id="_ghq5YUNEEe2os4oFZ-bqCw"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_ghq5YkNEEe2os4oFZ-bqCw" fontName="Cantarell"/>
+    <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_ghq5Y0NEEe2os4oFZ-bqCw" hint="Mid"/>
+    <element xmi:type="mid:Model" href="WashingMachine.mid#//@models.0"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ghq5ZENEEe2os4oFZ-bqCw" x="348" y="154"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="__cqAUUNDEe2os4oFZ-bqCw"/>
+  <element xmi:type="mid:MID" href="WashingMachine.mid#/"/>
+</notation:Diagram>

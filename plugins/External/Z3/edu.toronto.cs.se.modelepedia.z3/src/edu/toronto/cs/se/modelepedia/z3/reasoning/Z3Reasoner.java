@@ -16,6 +16,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+import java.util.Random;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -43,7 +45,7 @@ import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.reasoning.IModelConstraintTrait;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
-import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeatureConstraintTrait;
+import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeaturesTrait;
 import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver;
 import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver.Z3IncrementalBehavior;
 import edu.toronto.cs.se.modelepedia.z3.Z3Model;
@@ -56,7 +58,7 @@ import edu.toronto.cs.se.modelepedia.z3.mavo.Z3MAVOModelParser;
 import edu.toronto.cs.se.modelepedia.z3.mavo.Z3MAVOUtils;
 
 //TODO MMINT[Z3] Support refinement and highlighting for the complex full-MAVO encoding
-public class Z3Reasoner implements IModelConstraintTrait, IMAVOTrait, IProductLineFeatureConstraintTrait {
+public class Z3Reasoner implements IModelConstraintTrait, IMAVOTrait, IProductLineFeaturesTrait {
 
 	public enum MAVOCheckStrategy { DOUBLE_CHECK, SINGLE_CHECK_IF_FALSE, SINGLE_CHECK }
 	public final static String ECOREMAVOTOSMTLIB_OPERATOR_URI = "http://se.cs.toronto.edu/modelepedia/Operator_EcoreMAVOToSMTLIB";
@@ -143,7 +145,7 @@ public class Z3Reasoner implements IModelConstraintTrait, IMAVOTrait, IProductLi
 			return MAVOTruthValue.FALSE;
 		}
 		var checkStrategy = (z3ModelParser.isAnnotated()) ? MAVOCheckStrategy.DOUBLE_CHECK : MAVOCheckStrategy.SINGLE_CHECK;
-		MAVOTruthValue constraintTruthValue = checkMAVOConstraint(z3ModelParser.getSMTLIBEncoding(), z3ModelParser.getSMTLIBMacros(), constraint.getImplementation(), checkStrategy);
+		var constraintTruthValue = checkMAVOConstraint(z3ModelParser.getSMTLIBEncoding(), z3ModelParser.getSMTLIBMacros(), constraint.getImplementation(), checkStrategy);
 
 		// show example if: maybe, has a diagram, user accepts
 		if (constraintTruthValue != MAVOTruthValue.MAYBE) {
@@ -246,7 +248,7 @@ public class Z3Reasoner implements IModelConstraintTrait, IMAVOTrait, IProductLi
 	public Set<String> allSAT(Model model) {
 
 		try {
-			Z3MAVOModelParser z3ModelParser = generateSMTLIBEncoding(model);
+			var z3ModelParser = generateSMTLIBEncoding(model);
 			var rootMavoModelObj = (MAVORoot) model.getEMFInstanceRoot();
 			return allSAT(z3ModelParser.getSMTLIBEncoding(), z3ModelParser, new HashSet<>(MAVOUtils.getAnnotatedMAVOModelObjects(rootMavoModelObj).values()), rootMavoModelObj);
 		}
@@ -289,7 +291,7 @@ public class Z3Reasoner implements IModelConstraintTrait, IMAVOTrait, IProductLi
 				MMINTException.print(IStatus.WARNING, "Can't generate SMTLIB encoding for may model object " + formulaVar + ", skipping it", e);
 				continue;
 			}
-			MAVOTruthValue backboneTruthValue = this.checkMAVOConstraintWithSolver(z3IncSolver, "", smtConstraint, MAVOCheckStrategy.SINGLE_CHECK_IF_FALSE);
+			var backboneTruthValue = this.checkMAVOConstraintWithSolver(z3IncSolver, "", smtConstraint, MAVOCheckStrategy.SINGLE_CHECK_IF_FALSE);
 			backboneTruthValues.put(formulaVar, backboneTruthValue);
 			if (backboneTruthValue != MAVOTruthValue.FALSE && z3ModelParser != null) { // optimize
 				optimizeMayBackbone(z3ModelParser, this.z3ConstraintModel, mayModelObjs, baselineFormulaVars, backboneTruthValues);
@@ -316,7 +318,7 @@ public class Z3Reasoner implements IModelConstraintTrait, IMAVOTrait, IProductLi
 	public Map<String, MAVOTruthValue> mayBackbone(Model model) {
 
 		try {
-			Z3MAVOModelParser z3ModelParser = generateSMTLIBEncoding(model);
+			var z3ModelParser = generateSMTLIBEncoding(model);
 			if (!z3ModelParser.isMayOnly()) {
 				throw new MMINTException("The backbone is for may models only");
 			}
@@ -341,7 +343,7 @@ public class Z3Reasoner implements IModelConstraintTrait, IMAVOTrait, IProductLi
 			return null;
 		}
 		var checkStrategy = (z3ModelParser.isAnnotated()) ? MAVOCheckStrategy.DOUBLE_CHECK : MAVOCheckStrategy.SINGLE_CHECK;
-		MAVOTruthValue constraintTruthValue = checkMAVOConstraint(z3ModelParser.getSMTLIBEncoding(), z3ModelParser.getSMTLIBMacros(), model.getConstraint().getImplementation(), checkStrategy);
+		var constraintTruthValue = checkMAVOConstraint(z3ModelParser.getSMTLIBEncoding(), z3ModelParser.getSMTLIBMacros(), model.getConstraint().getImplementation(), checkStrategy);
 
 		// refine if: maybe
 		if (constraintTruthValue != MAVOTruthValue.MAYBE) {
@@ -365,7 +367,7 @@ public class Z3Reasoner implements IModelConstraintTrait, IMAVOTrait, IProductLi
 	private String generateMayRefinementSMTLIBEncoding(Model model, List<? extends LogicElement> mayLogicElems) throws Exception {
 
 		// base encoding
-		Z3MAVOModelParser z3ModelParser = generateSMTLIBEncoding(model);
+		var z3ModelParser = generateSMTLIBEncoding(model);
 		String smtEncoding = z3ModelParser.getSMTLIBEncoding();
 
 		// constraints
@@ -523,5 +525,12 @@ public class Z3Reasoner implements IModelConstraintTrait, IMAVOTrait, IProductLi
     }
 
     return new Z3Solver().checkSat(Z3Utils.assertion(plFormula)).isSAT();
+  }
+
+  @Override
+  public Optional<Map<String, Boolean>> assignFeatures(String plFormula, Map<String, Boolean> featureValues,
+                                             @Nullable Random random) {
+    //TODO MMINT[PL] Implement
+    return Optional.empty();
   }
 }

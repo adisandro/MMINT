@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="autopl" nsURI="http://Automata/PL" nsPrefix="autopl">
+  <eAnnotations source="features">
+    <details key="file" value="model.xml"/>
+  </eAnnotations>
+  <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+    <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+  </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="Automaton">
+    <eAnnotations source="presence">
+      <details key="condition" value="Connected"/>
+      <details key="constraint" value="connected"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="connected"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="connected" value="&#xA;&#x9;&#x9;    self.states->forAll( s | Set{s}->closure(adjacent())->includesAll(self.states))"/>
+    </eAnnotations>
+    <eOperations name="acceptanceCondition" lowerBound="1" eType="#//AcceptanceKind"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="inputAlphabet" lowerBound="1"
+        eType="#//Alphabet" containment="true">
+      <eAnnotations source="presence">
+        <details key="condition" value="Input"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outputAlphabet" lowerBound="1"
+        eType="#//Alphabet" containment="true">
+      <eAnnotations source="presence">
+        <details key="condition" value="Output"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="stackAlphabet" lowerBound="1"
+        eType="#//Alphabet" containment="true">
+      <eAnnotations source="presence">
+        <details key="condition" value="Stack"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="initialStackSymbol" lowerBound="1"
+        eType="#//Symbol">
+      <eAnnotations source="presence">
+        <details key="condition" value="Stack"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="states" ordered="false"
+        upperBound="-1" eType="#//State">
+      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+        <details key="nullFree" value="false"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="transitions" ordered="false"
+        upperBound="-1" eType="#//Transition">
+      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+        <details key="nullFree" value="false"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="AcceptanceKind" serializable="false">
+    <eLiterals name="Finite"/>
+    <eLiterals name="Infinite"/>
+    <eLiterals name="Probabilistic"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Alphabet">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="different"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="different" value="self.symbols->forAll(s1 |&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;self.symbols->forAll( s2 | s1&lt;>s2 implies s1.name&lt;>s2.name )&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;)"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="symbols" ordered="false"
+        upperBound="-1" eType="#//Symbol" containment="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+        <details key="nullFree" value="false"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Symbol">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Transition">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="input" lowerBound="1" eType="#//Symbol">
+      <eAnnotations source="presence">
+        <details key="condition" value="Input"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="output" lowerBound="1"
+        eType="#//Symbol">
+      <eAnnotations source="presence">
+        <details key="condition" value="Output"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="probability" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBigDecimal">
+      <eAnnotations source="presence">
+        <details key="condition" value="Probability"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="stackCheck" lowerBound="1"
+        eType="#//Symbol">
+      <eAnnotations source="presence">
+        <details key="condition" value="Stack"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="stackPush" ordered="false"
+        lowerBound="2" upperBound="2" eType="#//Symbol">
+      <eAnnotations source="presence">
+        <details key="condition" value="Stack"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+        <details key="nullFree" value="false"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="from" lowerBound="1" eType="#//State"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="to" lowerBound="1" eType="#//State"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="State">
+    <eAnnotations source="presence">
+      <details key="constraint" value="isDeterministic"/>
+      <details key="condition" value="Deterministic"/>
+    </eAnnotations>
+    <eAnnotations source="presence">
+      <details key="condition" value="NoIncomingTrans and Initial"/>
+      <details key="constraint" value="noIncoming"/>
+    </eAnnotations>
+    <eAnnotations source="presence">
+      <details key="condition" value="NoOutgoingTrans and Final"/>
+      <details key="constraint" value="noOutgoing"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="isDeterministic noIncoming noOutgoing"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="isDeterministic" value="self.outTrans()->isUnique(t|t.output)"/>
+      <details key="noIncoming" value="self.isInitial implies self.inTrans()->isEmpty()"/>
+      <details key="noOutgoing" value="self.isFinal implies self.outTrans()->isEmpty()"/>
+    </eAnnotations>
+    <eOperations name="adjacent" ordered="false" upperBound="-1" eType="#//State">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="self.inTrans().from->flatten()->union(self.outTrans().to->flatten())->asSet()"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+        <details key="nullFree" value="false"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="inTrans" ordered="false" upperBound="-1" eType="#//Transition">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="Transition.allInstances()->select( t | t.to = self)"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+        <details key="nullFree" value="false"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="outTrans" ordered="false" upperBound="-1" eType="#//Transition">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="Transition.allInstances()->select( t | t.from = self)"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+        <details key="nullFree" value="false"/>
+      </eAnnotations>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isInitial" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject">
+      <eAnnotations source="presence">
+        <details key="condition" value="Initial"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isFinal" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject">
+      <eAnnotations source="presence">
+        <details key="condition" value="Final"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="HierarchicalState" eSuperTypes="#//State">
+    <eAnnotations source="presence">
+      <details key="condition" value="Hierarchical"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="states" ordered="false"
+        upperBound="-1" eType="#//State" containment="true">
+      <eAnnotations source="presence">
+        <details key="condition" value="Hierarchical"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+        <details key="nullFree" value="false"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="transitions" ordered="false"
+        upperBound="-1" eType="#//Transition" containment="true">
+      <eAnnotations source="presence">
+        <details key="condition" value="Hierarchical"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+        <details key="nullFree" value="false"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+</ecore:EPackage>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?><!--
+    Copyright (c) 2022, 2022 Alessio Di Sandro.
+   
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License 2.0 which is available at
+    https://www.eclipse.org/legal/epl-2.0/
+   
+    SPDX-License-Identifier: EPL-2.0
+   
+    Contributors:
+        Alessio Di Sandro - Implementation
+ --><plugin>
+  <extension id="vamos23.Evaluation" point="org.eclipse.viatra.query.runtime.queryspecification">
+    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:vamos23.Evaluation" id="vamos23.Evaluation">
+      <query-specification fqn="vamos23.publicAttributes"/>
+      <query-specification fqn="vamos23.subAttributes"/>
+      <query-specification fqn="vamos23.superAssociations"/>
+      <query-specification fqn="vamos23.classAssociations"/>
+      <query-specification fqn="vamos23.leximaxName"/>
+    </group>
+  </extension>
+  <extension id="vamos23.Example" point="org.eclipse.viatra.query.runtime.queryspecification">
+    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:vamos23.Example" id="vamos23.Example">
+      <query-specification fqn="vamos23.twoOutgoingTransitions"/>
+      <query-specification fqn="vamos23.numOutgoingTransitions"/>
+    </group>
+  </extension>
+</plugin>

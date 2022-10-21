@@ -70,22 +70,15 @@ public class ProductLineMIDFactoryImpl extends EFactoryImpl implements ProductLi
    */
   @Override
   public EObject create(EClass eClass) {
-    switch (eClass.getClassifierID()) {
-    case ProductLineMIDPackage.PL_MODEL_REL:
-      return createPLModelRel();
-    case ProductLineMIDPackage.PL_BINARY_MODEL_REL:
-      return createPLBinaryModelRel();
-    case ProductLineMIDPackage.PL_MAPPING:
-      return createPLMapping();
-    case ProductLineMIDPackage.PL_BINARY_MAPPING:
-      return createPLBinaryMapping();
-    case ProductLineMIDPackage.PL_MAPPING_REFERENCE:
-      return createPLMappingReference();
-    case ProductLineMIDPackage.PL_BINARY_MAPPING_REFERENCE:
-      return createPLBinaryMappingReference();
-    default:
-      throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-    }
+    return switch (eClass.getClassifierID()) {
+    case ProductLineMIDPackage.PL_MODEL_REL -> createPLModelRel();
+    case ProductLineMIDPackage.PL_BINARY_MODEL_REL -> createPLBinaryModelRel();
+    case ProductLineMIDPackage.PL_MAPPING -> createPLMapping();
+    case ProductLineMIDPackage.PL_BINARY_MAPPING -> createPLBinaryMapping();
+    case ProductLineMIDPackage.PL_MAPPING_REFERENCE -> createPLMappingReference();
+    case ProductLineMIDPackage.PL_BINARY_MAPPING_REFERENCE -> createPLBinaryMappingReference();
+    default -> throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+    };
   }
 
   /**

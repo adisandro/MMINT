@@ -31,7 +31,7 @@ pattern reference(plSrc: Class, srcType: java String, plDst: Class, dstType: jav
   find classType(plSrc, srcType);
   Class.referencesAsSource(plSrc, plRef);
   Reference.type.name(plRef, refType);
-  Reference.targets(plRef, plDst);
+  Reference.target(plRef, plDst);
   find classType(plDst, dstType);
 }
 

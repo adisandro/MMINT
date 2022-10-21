@@ -63,7 +63,7 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  *           find classType(plSrc, srcType);
  *           Class.referencesAsSource(plSrc, plRef);
  *           Reference.type.name(plRef, refType);
- *           Reference.targets(plRef, plDst);
+ *           Reference.target(plRef, plDst);
  *           find classType(plDst, dstType);
  *         }
  * </pre></code>
@@ -366,7 +366,7 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
    *   find classType(plSrc, srcType);
    *   Class.referencesAsSource(plSrc, plRef);
    *   Reference.type.name(plRef, refType);
-   *   Reference.targets(plRef, plDst);
+   *   Reference.target(plRef, plDst);
    *   find classType(plDst, dstType);
    * }
    * </pre></code>
@@ -1164,10 +1164,10 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
           new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_1_, var__virtual_2_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.eclipse.org/emf/2002/Ecore", "ENamedElement", "name")));
           new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_2_), new EDataTypeInSlotsKey((EDataType)getClassifierLiteral("http://www.eclipse.org/emf/2002/Ecore", "EString")));
           new Equality(body, var__virtual_2_, var_refType);
-          //   Reference.targets(plRef, plDst)
+          //   Reference.target(plRef, plDst)
           new TypeConstraint(body, Tuples.flatTupleOf(var_plRef), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("model://edu.toronto.cs.se.mmint.productline", "Reference")));
           PVariable var__virtual_3_ = body.getOrCreateVariableByName(".virtual{3}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_plRef, var__virtual_3_), new EStructuralFeatureInstancesKey(getFeatureLiteral("model://edu.toronto.cs.se.mmint.productline", "Reference", "targets")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_plRef, var__virtual_3_), new EStructuralFeatureInstancesKey(getFeatureLiteral("model://edu.toronto.cs.se.mmint.productline", "Reference", "target")));
           new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_3_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("model://edu.toronto.cs.se.mmint.productline", "Class")));
           new Equality(body, var__virtual_3_, var_plDst);
           //   find classType(plDst, dstType)

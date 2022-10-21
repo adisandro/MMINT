@@ -19,6 +19,7 @@ import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -29,8 +30,10 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.viatra.query.patternlanguage.emf.vql.AggregatedValue;
+import org.eclipse.viatra.query.patternlanguage.emf.vql.BoolValue;
 import org.eclipse.viatra.query.patternlanguage.emf.vql.ClassType;
 import org.eclipse.viatra.query.patternlanguage.emf.vql.ClosureType;
 import org.eclipse.viatra.query.patternlanguage.emf.vql.CompareConstraint;
@@ -61,32 +64,14 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
 import edu.toronto.cs.se.mmint.productline.PLElement;
+import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.productline.ProductLinePackage;
-import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeatureConstraintTrait;
-import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineQueryTrait;
+import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeaturesTrait;
+import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeaturesTrait.Aggregator;
+import edu.toronto.cs.se.mmint.productline.reasoning.PLPipeline;
 import edu.toronto.cs.se.mmint.viatra.reasoning.ViatraReasoner;
 
-public class ProductLineViatraReasoner extends ViatraReasoner implements IProductLineQueryTrait {
-  public enum Aggregator {
-    COUNT((a, b) -> (int) a + (int) b),
-    MIN((a, b) -> {
-      if (!(a instanceof Comparable aa) || !(b instanceof Comparable bb)) {
-        throw new IllegalArgumentException(a + " and " + b + " are not comparable");
-      }
-      return (aa.compareTo(bb) <= 0) ? aa : bb;
-    }),
-    MAX((a, b) -> {
-      if (!(a instanceof Comparable aa) || !(b instanceof Comparable bb)) {
-        throw new IllegalArgumentException(a + " and " + b + " are not comparable");
-      }
-      return (aa.compareTo(bb) >= 0) ? aa : bb;
-    }),
-    SUM((a, b) -> (int) a + (int) b);
-    private AggregatorLambda aggregatorLambda;
-    Aggregator(AggregatorLambda aggregatorLambda) {
-      this.aggregatorLambda = aggregatorLambda;
-    }
-  }
+public class ProductLineViatraReasoner extends ViatraReasoner {
 
   public final static String VIATRA_LIB_PATH = "edu/toronto/cs/se/mmint/productline/viatra/pl.vql";
   public final static String LIB_REFERENCE_PATTERN = "reference";
@@ -106,7 +91,7 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
   private @Nullable String aggregatedVarName;
   private @Nullable Aggregator aggregator;
   private Set<String> aggregatedGroupBy;
-  private @Nullable IProductLineFeatureConstraintTrait featureReasoner;
+  private @Nullable IProductLineFeaturesTrait featureReasoner;
   private String featuresConstraint;
 
   public ProductLineViatraReasoner() throws Exception {
@@ -140,6 +125,9 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
 
   @Override
   public boolean canUse(Object data) {
+    if (data instanceof ProductLine || data instanceof PLElement) {
+      return true;
+    }
     if (!(data instanceof MID mid)) {
       return false;
     }
@@ -148,10 +136,31 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
       .anyMatch(m -> MIDTypeHierarchy.instanceOf(m, ProductLinePackage.eNS_URI, false));
   }
 
-  @Override
+  public Set<String> getPresenceConditions(Set<PLElement> plElements) {
+    return plElements.stream()
+      .map(e -> e.getPresenceCondition())
+      .filter(pc -> pc != null && !pc.strip().equals("true"))
+      .collect(Collectors.toSet());
+  }
+
+  /**
+   * Checks whether a set of product line elements are in a same product, according to their presence conditions and the
+   * product line feature model.
+   *
+   * @param plElements
+   *          The set of product line elements, within the same product line.
+   * @throws MMINTException
+   *           If a reasoner to check product line feature constraints is not available.
+   * @return True if all the elements are in a same product, false otherwise.
+   */
   public boolean areInAProduct(Set<PLElement> plElements) throws MMINTException {
     if (plElements.isEmpty()) {
       return false;
+    }
+    if (this.featureReasoner == null) {
+      var pl = plElements.iterator().next().getProductLine();
+      this.featureReasoner = pl.getReasoner();
+      this.featuresConstraint = pl.getFeaturesConstraint();
     }
     var presenceConditions = getPresenceConditions(plElements);
     return this.featureReasoner.checkConsistency(this.featuresConstraint, presenceConditions);
@@ -325,12 +334,15 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
       if (edgeFeature instanceof EAttribute edgeAttribute) {
         var dst = pathConstraint.getDst();
         ValueReference plValue;
-        //TODO MMINT[JAVA19] Convert to switch with pattern matching
+        //TODO MMINT[JAVA20] Convert to switch with pattern matching
         if (dst instanceof StringValue strDst) {
           plValue = createStringValue(strDst.getValue());
         }
         else if (dst instanceof EnumValue enumDst) {
           plValue = createStringValue(enumDst.getLiteral().getLiteral());
+        }
+        else if (dst instanceof BoolValue boolDst) {
+          plValue = createStringValue(String.valueOf(boolDst.getValue().isIsTrue()));
         }
         else if (dst instanceof VariableReference varRefDst) {
           var varDst = varRefDst.getVariable();
@@ -441,7 +453,7 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
   private List<? extends Constraint> liftCompareConstraint(CompareConstraint compareConstraint,
                                                            EList<Variable> plParameters, EList<Variable> plVariables,
                                                            Map<String, Variable> plVarsMap) throws Exception {
-    //TODO MMINT[JAVA19] Convert to switch with pattern matching
+    //TODO MMINT[JAVA20] Convert to switch with pattern matching
     var left = compareConstraint.getLeftOperand();
     if (!(left instanceof VariableReference leftVarRef)) {
       throw new MMINTException("Left operand type " + left.getClass().getName() + " not supported");
@@ -470,12 +482,19 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
       }
       // aggregation with path expression
       else if (aggCall instanceof PathExpressionConstraint aggPathExpr) {
-        var aggName = ((VariableReference) aggPathExpr.getDst()).getVariable().getName();
-        this.aggregatedGroupBy = Set.of(aggName);
-        if (this.aggregator != Aggregator.COUNT) {
+        String aggName;
+        if (this.aggregator == Aggregator.COUNT) {
+          aggName = aggPathExpr.getSrc().getVariable().getName();
+          if (aggName.startsWith(ProductLineViatraReasoner.DONTCARE_VAR_NAME)) {
+            aggName = ((VariableReference) aggPathExpr.getDst()).getVariable().getName();
+          }
+        }
+        else {
+          aggName = ((VariableReference) aggPathExpr.getDst()).getVariable().getName();
           createParameterAndRef(aggName, aggPathExpr.getEdgeTypes().get(0).getRefname().getEType(),
                                 ParameterDirection.OUT, plParameters, plVariables, plVarsMap);
         }
+        this.aggregatedGroupBy = Set.of(aggName);
         return createPathExpressionConstraint(aggPathExpr, plParameters, plVariables, plVarsMap);
       }
     }
@@ -541,6 +560,9 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
         plConstraints.addAll(liftCompareConstraint(compareConstraint, plParameters, plVariables, plVarsMap));
       }
       else if (constraint instanceof PatternCompositionConstraint patternConstraint) {
+        if (patternConstraint.isNegative()) {
+          throw new MMINTException("Negative PatternCompositionConstraint not supported");
+        }
         plConstraints.addAll(liftPatternCompositionConstraint(patternConstraint, plParameters, plVariables, plVarsMap));
       }
       else {
@@ -552,13 +574,24 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
   }
 
   @Override
+  @PLPipeline.Intercept
   public List<Object> evaluateQuery(String filePath, Object queryObj, EObject context,
                                     List<? extends EObject> queryArgs) throws Exception {
     reset();
-    return super.evaluateQuery(filePath, queryObj, context, queryArgs);
+    if (context instanceof ProductLine plContext) {
+      // reload the resource to pull in the related metamodel without including all the models in the MID
+      var scopeRoot = new ResourceSetImpl();
+      var resource = scopeRoot.createResource(plContext.eResource().getURI());
+      resource.load(Map.of());
+      return super.evaluateQuery(filePath, queryObj, scopeRoot, queryArgs);
+    }
+    else {
+      return super.evaluateQuery(filePath, queryObj, context, queryArgs);
+    }
   }
 
   @Override
+  @PLPipeline.Modify
   protected Pattern getPattern(String queryFilePath, Object queryObj) throws Exception {
     var pattern = super.getPattern(queryFilePath, queryObj);
     var plPattern = PatternLanguageFactory.eINSTANCE.createPattern();
@@ -582,7 +615,7 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
   }
 
   private List<Object> getAggregatedMatches(Collection<GenericPatternMatch> vMatches) throws Exception {
-    // first pass:
+    // collect raw results and aggregate them
     var aggregations = Map.<String, Map<Set<Object>, Object>>of();
     for (var vMatch : vMatches) {
       var plElements = new HashSet<PLElement>();
@@ -594,11 +627,6 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
         }
         if (parameterValue instanceof PLElement plElement) {
           plElements.add(plElement);
-          if (this.featureReasoner == null) {
-            var pl = plElement.getProductLine();
-            this.featureReasoner = pl.getReasoner();
-            this.featuresConstraint = pl.getFeaturesConstraint();
-          }
         }
       }
       if (!areInAProduct(plElements)) {
@@ -613,22 +641,32 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
         aggregatedValue = aggregatedMatch.iterator().next();
         aggregatedMatch = Set.of();
       }
-      var presenceConditions = getPresenceConditions(plElements);//TODO What happens if it's a true?
+      var presenceConditions = getPresenceConditions(plElements);
       aggregations = this.featureReasoner.aggregate(presenceConditions, this.featuresConstraint, aggregatedMatch,
-                                                    aggregatedValue, this.aggregator.aggregatorLambda, aggregations);
+                                                    aggregatedValue, this.aggregator, aggregations);
     }
 
-    // second pass:
+    // compact aggregated results: there can be same aggregated values for which formulas can be or-ed
+    if (!aggregations.isEmpty()) {
+      var aggregationsByValue = new HashMap<Map<Set<Object>, Object>, Set<String>>();
+      for (var aggregationEntry : aggregations.entrySet()) {
+        var formula = aggregationEntry.getKey();
+        var aggregated = aggregationEntry.getValue().entrySet().stream()
+          .filter(e -> e.getValue() != null) // no matches for this formula if null
+          .collect(Collectors.toUnmodifiableMap(Entry::getKey, Entry::getValue));
+        aggregationsByValue.compute(aggregated, (k, formulas) -> (formulas == null) ? new HashSet<>() : formulas)
+                           .add(formula);
+      }
+      aggregations = this.featureReasoner.aggregate(this.featuresConstraint, aggregationsByValue);
+    }
+
+    // rearrange results for printing
     var matches = new ArrayList<>();
     for (var aggregationEntry : aggregations.entrySet()) {
       var formulaList = new ArrayList<>();
       formulaList.add(aggregationEntry.getKey()); // [formula, [match1, aggrValue1], ..., [matchN, aggrValueN]]
       for (var matchEntry : aggregationEntry.getValue().entrySet()) {
         var matchList = new ArrayList<>();
-        var aggregatedValue = matchEntry.getValue();
-        if (aggregatedValue == null) { // no matches for this formula
-          continue;
-        }
         matchList.addAll(matchEntry.getKey()); // match (can be empty for min/max/sum)
         matchList.add(matchEntry.getValue()); // aggregated value
         formulaList.add(matchList);
@@ -653,11 +691,6 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
         // ..but extra lifting parameters must still be considered for compatible presence conditions
         if (parameterValue instanceof PLElement plElement) {
           plElements.add(plElement);
-          if (this.featureReasoner == null) {
-            var pl = plElement.getProductLine();
-            this.featureReasoner = pl.getReasoner();
-            this.featuresConstraint = pl.getFeaturesConstraint();
-          }
         }
       }
       // the inner list is redundant for one element
@@ -675,6 +708,7 @@ public class ProductLineViatraReasoner extends ViatraReasoner implements IProduc
   }
 
   @Override
+  @PLPipeline.Filter
   protected List<Object> getMatches(Collection<GenericPatternMatch> vMatches) throws Exception {
     return (this.aggregator != null) ? getAggregatedMatches(vMatches) : getStandardMatches(vMatches);
   }
