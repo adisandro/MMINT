@@ -1,8 +1,12 @@
 name: Build and Deploy
-on: [push, pull_request]
+on:
+  push:
+    branches-ignore:
+      - 'dependabot/**'
+  pull_request:
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
 
       - name: Checkout MMINT
