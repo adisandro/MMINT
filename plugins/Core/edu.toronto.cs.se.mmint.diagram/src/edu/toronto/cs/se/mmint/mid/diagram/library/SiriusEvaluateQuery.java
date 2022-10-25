@@ -136,10 +136,10 @@ results:
       var highlightUris = new HashSet<String>();
       var models = new HashSet<Model>();
       if (result instanceof Collection multiResult) {
-        message = "[";
+        message = "";
         for (var innerResult : multiResult) {
           if (message.length() > 1) {
-            message += ", ";
+            message += "\n";
           }
           message += queryResultToString(innerResult);
           if (innerResult instanceof EObject innerObj) {
@@ -157,7 +157,6 @@ results:
             }
           }
         }
-        message += "]";
       }
       else {
         message = queryResultToString(result);
