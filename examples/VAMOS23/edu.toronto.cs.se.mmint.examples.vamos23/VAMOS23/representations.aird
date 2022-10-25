@@ -4,7 +4,7 @@
     <semanticResources>model/WashingMachine/WashingMachine.productline</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" uid="_3uqd8B20Ee2uXbz2q_8Z5Q">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']"/>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_gZfNwENEEe2os4oFZ-bqCw" name="WashingMachine" repPath="#_gZVcwENEEe2os4oFZ-bqCw" changeId="ac0b9a6f-792d-4d5c-b124-ee2bd0c8217b">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_gZfNwENEEe2os4oFZ-bqCw" name="WashingMachine" repPath="#_gZVcwENEEe2os4oFZ-bqCw" changeId="73347b63-5cea-405a-9dbc-29e799a3af1d">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']"/>
         <target xmi:type="productline:ProductLine" href="model/WashingMachine/WashingMachine.productline#/"/>
       </ownedRepresentationDescriptors>
@@ -686,7 +686,7 @@
     <ownedAnnotationEntries xmi:type="description:AnnotationEntry" uid="_gZyvwENEEe2os4oFZ-bqCw" source="DANNOTATION_CUSTOMIZATION_KEY">
       <data xmi:type="diagram:ComputedStyleDescriptionRegistry" uid="_gZyvwUNEEe2os4oFZ-bqCw"/>
     </ownedAnnotationEntries>
-    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_4IxREENFEe2os4oFZ-bqCw" name="StateMachine (true)" outgoingEdges="_9Pvx8ENFEe2os4oFZ-bqCw _G0PnBUNGEe2os4oFZ-bqCw _T5nh2ENGEe2os4oFZ-bqCw _UZIIUkNGEe2os4oFZ-bqCw _U3gGaENGEe2os4oFZ-bqCw _VkpgTENGEe2os4oFZ-bqCw _WFF69kNGEe2os4oFZ-bqCw _jsngmENGEe2os4oFZ-bqCw _1aoaiENGEe2os4oFZ-bqCw _s-2EgkNHEe2os4oFZ-bqCw _4d3FeENHEe2os4oFZ-bqCw _-S178ENHEe2os4oFZ-bqCw _Rq1EJENIEe2os4oFZ-bqCw _XeIf2ENIEe2os4oFZ-bqCw _enkAZENIEe2os4oFZ-bqCw">
+    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_4IxREENFEe2os4oFZ-bqCw" name="StateMachine" outgoingEdges="_9Pvx8ENFEe2os4oFZ-bqCw _G0PnBUNGEe2os4oFZ-bqCw _T5nh2ENGEe2os4oFZ-bqCw _UZIIUkNGEe2os4oFZ-bqCw _U3gGaENGEe2os4oFZ-bqCw _VkpgTENGEe2os4oFZ-bqCw _WFF69kNGEe2os4oFZ-bqCw _jsngmENGEe2os4oFZ-bqCw _1aoaiENGEe2os4oFZ-bqCw _s-2EgkNHEe2os4oFZ-bqCw _4d3FeENHEe2os4oFZ-bqCw _-S178ENHEe2os4oFZ-bqCw _Rq1EJENIEe2os4oFZ-bqCw _XeIf2ENIEe2os4oFZ-bqCw _enkAZENIEe2os4oFZ-bqCw">
       <target xmi:type="productline:Class" href="model/WashingMachine/WashingMachine.productline#//@classes.0"/>
       <semanticElements xmi:type="productline:Class" href="model/WashingMachine/WashingMachine.productline#//@classes.0"/>
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
@@ -697,7 +697,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@containerMappings[name='ClassContainer']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_53SoYENFEe2os4oFZ-bqCw" name="InitialState (true)" incomingEdges="_9Pvx8ENFEe2os4oFZ-bqCw _oD7fBkNGEe2os4oFZ-bqCw">
+    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_53SoYENFEe2os4oFZ-bqCw" name="InitialState" incomingEdges="_9Pvx8ENFEe2os4oFZ-bqCw _oD7fBkNGEe2os4oFZ-bqCw">
       <target xmi:type="productline:Class" href="model/WashingMachine/WashingMachine.productline#//@classes.1"/>
       <semanticElements xmi:type="productline:Class" href="model/WashingMachine/WashingMachine.productline#//@classes.1"/>
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
@@ -708,7 +708,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@containerMappings[name='ClassContainer']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_9Pvx8ENFEe2os4oFZ-bqCw" name="states (true)" sourceNode="_4IxREENFEe2os4oFZ-bqCw" targetNode="_53SoYENFEe2os4oFZ-bqCw">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_9Pvx8ENFEe2os4oFZ-bqCw" name="states" sourceNode="_4IxREENFEe2os4oFZ-bqCw" targetNode="_53SoYENFEe2os4oFZ-bqCw">
       <target xmi:type="productline:Reference" href="model/WashingMachine/WashingMachine.productline#//@references.0"/>
       <semanticElements xmi:type="productline:Reference" href="model/WashingMachine/WashingMachine.productline#//@references.0"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_9PxnIENFEe2os4oFZ-bqCw" size="2">
@@ -717,7 +717,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@edgeMappings[name='ReferenceEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_DpGgsUNGEe2os4oFZ-bqCw" name="State (true)" incomingEdges="_G0PnBUNGEe2os4oFZ-bqCw _or9vbENGEe2os4oFZ-bqCw _uT8rqENGEe2os4oFZ-bqCw _5G9s4ENHEe2os4oFZ-bqCw">
+    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_DpGgsUNGEe2os4oFZ-bqCw" name="State" incomingEdges="_G0PnBUNGEe2os4oFZ-bqCw _or9vbENGEe2os4oFZ-bqCw _uT8rqENGEe2os4oFZ-bqCw _5G9s4ENHEe2os4oFZ-bqCw">
       <target xmi:type="productline:Class" href="model/WashingMachine/WashingMachine.productline#//@classes.2"/>
       <semanticElements xmi:type="productline:Class" href="model/WashingMachine/WashingMachine.productline#//@classes.2"/>
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
@@ -727,7 +727,7 @@
         <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@containerMappings[name='ClassContainer']/@style"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@containerMappings[name='ClassContainer']"/>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_ErXO8ENGEe2os4oFZ-bqCw" name="name: Locking (true)">
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_ErXO8ENGEe2os4oFZ-bqCw" name="name: Locking">
         <target xmi:type="productline:Attribute" href="model/WashingMachine/WashingMachine.productline#//@classes.2/@attributes.0"/>
         <semanticElements xmi:type="productline:Attribute" href="model/WashingMachine/WashingMachine.productline#//@classes.2/@attributes.0"/>
         <ownedStyle xmi:type="diagram:Square" uid="_ErZEIENGEe2os4oFZ-bqCw" labelSize="12" showIcon="false" labelPosition="node">
@@ -736,7 +736,7 @@
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@containerMappings[name='ClassContainer']/@subNodeMappings[name='AttributeNode']"/>
       </ownedElements>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_G0PnBUNGEe2os4oFZ-bqCw" name="states (true)" sourceNode="_4IxREENFEe2os4oFZ-bqCw" targetNode="_DpGgsUNGEe2os4oFZ-bqCw">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_G0PnBUNGEe2os4oFZ-bqCw" name="states" sourceNode="_4IxREENFEe2os4oFZ-bqCw" targetNode="_DpGgsUNGEe2os4oFZ-bqCw">
       <target xmi:type="productline:Reference" href="model/WashingMachine/WashingMachine.productline#//@references.1"/>
       <semanticElements xmi:type="productline:Reference" href="model/WashingMachine/WashingMachine.productline#//@references.1"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_G0QOEENGEe2os4oFZ-bqCw" size="2">
@@ -764,7 +764,7 @@
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@containerMappings[name='ClassContainer']/@subNodeMappings[name='AttributeNode']"/>
       </ownedElements>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_LdGohENGEe2os4oFZ-bqCw" name="State (true)" incomingEdges="_UZIIUkNGEe2os4oFZ-bqCw _sY4QokNHEe2os4oFZ-bqCw _54XUqkNHEe2os4oFZ-bqCw __AH4qENHEe2os4oFZ-bqCw _gsFdBkNIEe2os4oFZ-bqCw">
+    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_LdGohENGEe2os4oFZ-bqCw" name="State" incomingEdges="_UZIIUkNGEe2os4oFZ-bqCw _sY4QokNHEe2os4oFZ-bqCw _54XUqkNHEe2os4oFZ-bqCw __AH4qENHEe2os4oFZ-bqCw _gsFdBkNIEe2os4oFZ-bqCw">
       <target xmi:type="productline:Class" href="model/WashingMachine/WashingMachine.productline#//@classes.4"/>
       <semanticElements xmi:type="productline:Class" href="model/WashingMachine/WashingMachine.productline#//@classes.4"/>
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
@@ -774,7 +774,7 @@
         <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@containerMappings[name='ClassContainer']/@style"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@containerMappings[name='ClassContainer']"/>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_MKghEkNGEe2os4oFZ-bqCw" name="name: Washing (true)">
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_MKghEkNGEe2os4oFZ-bqCw" name="name: Washing">
         <target xmi:type="productline:Attribute" href="model/WashingMachine/WashingMachine.productline#//@classes.4/@attributes.0"/>
         <semanticElements xmi:type="productline:Attribute" href="model/WashingMachine/WashingMachine.productline#//@classes.4/@attributes.0"/>
         <ownedStyle xmi:type="diagram:Square" uid="_MKghE0NGEe2os4oFZ-bqCw" labelSize="12" showIcon="false" labelPosition="node">
@@ -802,7 +802,7 @@
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@containerMappings[name='ClassContainer']/@subNodeMappings[name='AttributeNode']"/>
       </ownedElements>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_P8rLK0NGEe2os4oFZ-bqCw" name="State (true)" incomingEdges="_VkpgTENGEe2os4oFZ-bqCw _OsDmOkNIEe2os4oFZ-bqCw _Vb-a1ENIEe2os4oFZ-bqCw _h8EeIENIEe2os4oFZ-bqCw">
+    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_P8rLK0NGEe2os4oFZ-bqCw" name="State" incomingEdges="_VkpgTENGEe2os4oFZ-bqCw _OsDmOkNIEe2os4oFZ-bqCw _Vb-a1ENIEe2os4oFZ-bqCw _h8EeIENIEe2os4oFZ-bqCw">
       <target xmi:type="productline:Class" href="model/WashingMachine/WashingMachine.productline#//@classes.6"/>
       <semanticElements xmi:type="productline:Class" href="model/WashingMachine/WashingMachine.productline#//@classes.6"/>
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
@@ -812,7 +812,7 @@
         <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@containerMappings[name='ClassContainer']/@style"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@containerMappings[name='ClassContainer']"/>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_Qj-bsENGEe2os4oFZ-bqCw" name="name: Unlocking (true)">
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_Qj-bsENGEe2os4oFZ-bqCw" name="name: Unlocking">
         <target xmi:type="productline:Attribute" href="model/WashingMachine/WashingMachine.productline#//@classes.6/@attributes.0"/>
         <semanticElements xmi:type="productline:Attribute" href="model/WashingMachine/WashingMachine.productline#//@classes.6/@attributes.0"/>
         <ownedStyle xmi:type="diagram:Square" uid="_Qj-bsUNGEe2os4oFZ-bqCw" labelSize="12" showIcon="false" labelPosition="node">
@@ -821,7 +821,7 @@
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@containerMappings[name='ClassContainer']/@subNodeMappings[name='AttributeNode']"/>
       </ownedElements>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_SoAI_ENGEe2os4oFZ-bqCw" name="FinalState (true)" incomingEdges="_WFF69kNGEe2os4oFZ-bqCw _WsBGSENIEe2os4oFZ-bqCw">
+    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_SoAI_ENGEe2os4oFZ-bqCw" name="FinalState" incomingEdges="_WFF69kNGEe2os4oFZ-bqCw _WsBGSENIEe2os4oFZ-bqCw">
       <target xmi:type="productline:Class" href="model/WashingMachine/WashingMachine.productline#//@classes.7"/>
       <semanticElements xmi:type="productline:Class" href="model/WashingMachine/WashingMachine.productline#//@classes.7"/>
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
@@ -841,7 +841,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@edgeMappings[name='ReferenceEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_UZIIUkNGEe2os4oFZ-bqCw" name="states (true)" sourceNode="_4IxREENFEe2os4oFZ-bqCw" targetNode="_LdGohENGEe2os4oFZ-bqCw">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_UZIIUkNGEe2os4oFZ-bqCw" name="states" sourceNode="_4IxREENFEe2os4oFZ-bqCw" targetNode="_LdGohENGEe2os4oFZ-bqCw">
       <target xmi:type="productline:Reference" href="model/WashingMachine/WashingMachine.productline#//@references.3"/>
       <semanticElements xmi:type="productline:Reference" href="model/WashingMachine/WashingMachine.productline#//@references.3"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_UZIIU0NGEe2os4oFZ-bqCw" size="2">
@@ -859,7 +859,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@edgeMappings[name='ReferenceEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_VkpgTENGEe2os4oFZ-bqCw" name="states (true)" sourceNode="_4IxREENFEe2os4oFZ-bqCw" targetNode="_P8rLK0NGEe2os4oFZ-bqCw">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_VkpgTENGEe2os4oFZ-bqCw" name="states" sourceNode="_4IxREENFEe2os4oFZ-bqCw" targetNode="_P8rLK0NGEe2os4oFZ-bqCw">
       <target xmi:type="productline:Reference" href="model/WashingMachine/WashingMachine.productline#//@references.5"/>
       <semanticElements xmi:type="productline:Reference" href="model/WashingMachine/WashingMachine.productline#//@references.5"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_VkpgTUNGEe2os4oFZ-bqCw" size="2">
@@ -868,7 +868,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@edgeMappings[name='ReferenceEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_WFF69kNGEe2os4oFZ-bqCw" name="states (true)" sourceNode="_4IxREENFEe2os4oFZ-bqCw" targetNode="_SoAI_ENGEe2os4oFZ-bqCw">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_WFF69kNGEe2os4oFZ-bqCw" name="states" sourceNode="_4IxREENFEe2os4oFZ-bqCw" targetNode="_SoAI_ENGEe2os4oFZ-bqCw">
       <target xmi:type="productline:Reference" href="model/WashingMachine/WashingMachine.productline#//@references.6"/>
       <semanticElements xmi:type="productline:Reference" href="model/WashingMachine/WashingMachine.productline#//@references.6"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_WFF690NGEe2os4oFZ-bqCw" size="2">
@@ -877,7 +877,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@edgeMappings[name='ReferenceEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_idKq1kNGEe2os4oFZ-bqCw" name="Transition (true)" outgoingEdges="_oD7fBkNGEe2os4oFZ-bqCw _or9vbENGEe2os4oFZ-bqCw" incomingEdges="_jsngmENGEe2os4oFZ-bqCw">
+    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_idKq1kNGEe2os4oFZ-bqCw" name="Transition" outgoingEdges="_oD7fBkNGEe2os4oFZ-bqCw _or9vbENGEe2os4oFZ-bqCw" incomingEdges="_jsngmENGEe2os4oFZ-bqCw">
       <target xmi:type="productline:Class" href="model/WashingMachine/WashingMachine.productline#//@classes.8"/>
       <semanticElements xmi:type="productline:Class" href="model/WashingMachine/WashingMachine.productline#//@classes.8"/>
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
@@ -888,7 +888,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@containerMappings[name='ClassContainer']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_jsngmENGEe2os4oFZ-bqCw" name="transitions (true)" sourceNode="_4IxREENFEe2os4oFZ-bqCw" targetNode="_idKq1kNGEe2os4oFZ-bqCw">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_jsngmENGEe2os4oFZ-bqCw" name="transitions" sourceNode="_4IxREENFEe2os4oFZ-bqCw" targetNode="_idKq1kNGEe2os4oFZ-bqCw">
       <target xmi:type="productline:Reference" href="model/WashingMachine/WashingMachine.productline#//@references.7"/>
       <semanticElements xmi:type="productline:Reference" href="model/WashingMachine/WashingMachine.productline#//@references.7"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_jsngmUNGEe2os4oFZ-bqCw" size="2">
@@ -897,7 +897,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@edgeMappings[name='ReferenceEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_oD7fBkNGEe2os4oFZ-bqCw" name="source (true)" sourceNode="_idKq1kNGEe2os4oFZ-bqCw" targetNode="_53SoYENFEe2os4oFZ-bqCw">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_oD7fBkNGEe2os4oFZ-bqCw" name="source" sourceNode="_idKq1kNGEe2os4oFZ-bqCw" targetNode="_53SoYENFEe2os4oFZ-bqCw">
       <target xmi:type="productline:Reference" href="model/WashingMachine/WashingMachine.productline#//@references.8"/>
       <semanticElements xmi:type="productline:Reference" href="model/WashingMachine/WashingMachine.productline#//@references.8"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_oD7fB0NGEe2os4oFZ-bqCw" size="2">
@@ -906,7 +906,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@edgeMappings[name='ReferenceEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_or9vbENGEe2os4oFZ-bqCw" name="target (true)" sourceNode="_idKq1kNGEe2os4oFZ-bqCw" targetNode="_DpGgsUNGEe2os4oFZ-bqCw">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_or9vbENGEe2os4oFZ-bqCw" name="target" sourceNode="_idKq1kNGEe2os4oFZ-bqCw" targetNode="_DpGgsUNGEe2os4oFZ-bqCw">
       <target xmi:type="productline:Reference" href="model/WashingMachine/WashingMachine.productline#//@references.9"/>
       <semanticElements xmi:type="productline:Reference" href="model/WashingMachine/WashingMachine.productline#//@references.9"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_or9vbUNGEe2os4oFZ-bqCw" size="2">
@@ -1007,7 +1007,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@edgeMappings[name='ReferenceEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_2lRMIENHEe2os4oFZ-bqCw" name="Transition (true)" outgoingEdges="_5G9s4ENHEe2os4oFZ-bqCw _54XUqkNHEe2os4oFZ-bqCw" incomingEdges="_4d3FeENHEe2os4oFZ-bqCw">
+    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_2lRMIENHEe2os4oFZ-bqCw" name="Transition" outgoingEdges="_5G9s4ENHEe2os4oFZ-bqCw _54XUqkNHEe2os4oFZ-bqCw" incomingEdges="_4d3FeENHEe2os4oFZ-bqCw">
       <target xmi:type="productline:Class" href="model/WashingMachine/WashingMachine.productline#//@classes.11"/>
       <semanticElements xmi:type="productline:Class" href="model/WashingMachine/WashingMachine.productline#//@classes.11"/>
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
@@ -1018,7 +1018,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@containerMappings[name='ClassContainer']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_4d3FeENHEe2os4oFZ-bqCw" name="transitions (true)" sourceNode="_4IxREENFEe2os4oFZ-bqCw" targetNode="_2lRMIENHEe2os4oFZ-bqCw">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_4d3FeENHEe2os4oFZ-bqCw" name="transitions" sourceNode="_4IxREENFEe2os4oFZ-bqCw" targetNode="_2lRMIENHEe2os4oFZ-bqCw">
       <target xmi:type="productline:Reference" href="model/WashingMachine/WashingMachine.productline#//@references.16"/>
       <semanticElements xmi:type="productline:Reference" href="model/WashingMachine/WashingMachine.productline#//@references.16"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_4d3scENHEe2os4oFZ-bqCw" size="2">
@@ -1027,7 +1027,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@edgeMappings[name='ReferenceEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_5G9s4ENHEe2os4oFZ-bqCw" name="source (true)" sourceNode="_2lRMIENHEe2os4oFZ-bqCw" targetNode="_DpGgsUNGEe2os4oFZ-bqCw">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_5G9s4ENHEe2os4oFZ-bqCw" name="source" sourceNode="_2lRMIENHEe2os4oFZ-bqCw" targetNode="_DpGgsUNGEe2os4oFZ-bqCw">
       <target xmi:type="productline:Reference" href="model/WashingMachine/WashingMachine.productline#//@references.17"/>
       <semanticElements xmi:type="productline:Reference" href="model/WashingMachine/WashingMachine.productline#//@references.17"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_5G9s4UNHEe2os4oFZ-bqCw" size="2">
@@ -1036,7 +1036,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@edgeMappings[name='ReferenceEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_54XUqkNHEe2os4oFZ-bqCw" name="target (true)" sourceNode="_2lRMIENHEe2os4oFZ-bqCw" targetNode="_LdGohENGEe2os4oFZ-bqCw">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_54XUqkNHEe2os4oFZ-bqCw" name="target" sourceNode="_2lRMIENHEe2os4oFZ-bqCw" targetNode="_LdGohENGEe2os4oFZ-bqCw">
       <target xmi:type="productline:Reference" href="model/WashingMachine/WashingMachine.productline#//@references.18"/>
       <semanticElements xmi:type="productline:Reference" href="model/WashingMachine/WashingMachine.productline#//@references.18"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_54XUq0NHEe2os4oFZ-bqCw" size="2">
@@ -1121,7 +1121,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@edgeMappings[name='ReferenceEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_UAsvWENIEe2os4oFZ-bqCw" name="Transition (true)" outgoingEdges="_Vb-a1ENIEe2os4oFZ-bqCw _WsBGSENIEe2os4oFZ-bqCw" incomingEdges="_XeIf2ENIEe2os4oFZ-bqCw">
+    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_UAsvWENIEe2os4oFZ-bqCw" name="Transition" outgoingEdges="_Vb-a1ENIEe2os4oFZ-bqCw _WsBGSENIEe2os4oFZ-bqCw" incomingEdges="_XeIf2ENIEe2os4oFZ-bqCw">
       <target xmi:type="productline:Class" href="model/WashingMachine/WashingMachine.productline#//@classes.14"/>
       <semanticElements xmi:type="productline:Class" href="model/WashingMachine/WashingMachine.productline#//@classes.14"/>
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
@@ -1132,7 +1132,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@containerMappings[name='ClassContainer']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_Vb-a1ENIEe2os4oFZ-bqCw" name="source (true)" sourceNode="_UAsvWENIEe2os4oFZ-bqCw" targetNode="_P8rLK0NGEe2os4oFZ-bqCw">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_Vb-a1ENIEe2os4oFZ-bqCw" name="source" sourceNode="_UAsvWENIEe2os4oFZ-bqCw" targetNode="_P8rLK0NGEe2os4oFZ-bqCw">
       <target xmi:type="productline:Reference" href="model/WashingMachine/WashingMachine.productline#//@references.25"/>
       <semanticElements xmi:type="productline:Reference" href="model/WashingMachine/WashingMachine.productline#//@references.25"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_Vb_BkENIEe2os4oFZ-bqCw" size="2">
@@ -1141,7 +1141,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@edgeMappings[name='ReferenceEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_WsBGSENIEe2os4oFZ-bqCw" name="target (true)" sourceNode="_UAsvWENIEe2os4oFZ-bqCw" targetNode="_SoAI_ENGEe2os4oFZ-bqCw">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_WsBGSENIEe2os4oFZ-bqCw" name="target" sourceNode="_UAsvWENIEe2os4oFZ-bqCw" targetNode="_SoAI_ENGEe2os4oFZ-bqCw">
       <target xmi:type="productline:Reference" href="model/WashingMachine/WashingMachine.productline#//@references.26"/>
       <semanticElements xmi:type="productline:Reference" href="model/WashingMachine/WashingMachine.productline#//@references.26"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_WsBGSUNIEe2os4oFZ-bqCw" size="2">
@@ -1150,7 +1150,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@edgeMappings[name='ReferenceEdge']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_XeIf2ENIEe2os4oFZ-bqCw" name="transitions (true)" sourceNode="_4IxREENFEe2os4oFZ-bqCw" targetNode="_UAsvWENIEe2os4oFZ-bqCw">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_XeIf2ENIEe2os4oFZ-bqCw" name="transitions" sourceNode="_4IxREENFEe2os4oFZ-bqCw" targetNode="_UAsvWENIEe2os4oFZ-bqCw">
       <target xmi:type="productline:Reference" href="model/WashingMachine/WashingMachine.productline#//@references.27"/>
       <semanticElements xmi:type="productline:Reference" href="model/WashingMachine/WashingMachine.productline#//@references.27"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_XeIf2UNIEe2os4oFZ-bqCw" size="2">

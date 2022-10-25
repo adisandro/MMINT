@@ -323,9 +323,13 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
    */
   @Override
   public String toString() {
-    return getType().getName() + " " + ProductLineMIDHeavyTypeFactory.getPLElementLabel(this, true) + " {"
-      + getAttributes().stream().map(a -> a.getType().getName() + ": " + a.getValue()).collect(Collectors.joining(", "))
-      + "}";
+    var attributes = getAttributes().stream()
+      .map(a -> a.getType().getName() + ": " + a.getValue())
+      .collect(Collectors.joining(", "));
+    var presenceCondition = ProductLineMIDHeavyTypeFactory.getPLElementLabel(this, true);
+    return getType().getName() +
+      (attributes.isEmpty() ? "" : "{" + attributes + "}") +
+      (presenceCondition.isEmpty() ? "" : " " + presenceCondition);
   }
 
 } //ClassImpl

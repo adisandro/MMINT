@@ -8,11 +8,11 @@
     </ownedViews>
     <ownedViews xmi:type="viewpoint:DView" uid="_bA5tEAwEEeyMLqHNYQjbCA">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']"/>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_lRqyQAwEEeyMLqHNYQjbCA" name="cd" repPath="#_lRqLMAwEEeyMLqHNYQjbCA" changeId="44212baf-8066-4a1c-89ac-7541e8ce0b1f">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_lRqyQAwEEeyMLqHNYQjbCA" name="cd" repPath="#_lRqLMAwEEeyMLqHNYQjbCA" changeId="66dbb07a-487a-449a-9066-f98ac00a8594">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']"/>
         <target xmi:type="productline:ProductLine" href="model/cd.productline#/"/>
       </ownedRepresentationDescriptors>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_1HMWICcDEeyoxNi2IcQHPg" name="gsn" repPath="#_1HLvECcDEeyoxNi2IcQHPg" changeId="99b7339d-8909-4911-b184-59ae8dab0b1f">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_1HMWICcDEeyoxNi2IcQHPg" name="gsn" repPath="#_1HLvECcDEeyoxNi2IcQHPg" changeId="7f3800c4-611f-4aaa-ad8d-b256767fb1e5">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']"/>
         <target xmi:type="productline:ProductLine" href="model/gsn.productline#/"/>
       </ownedRepresentationDescriptors>
@@ -158,7 +158,7 @@
     <ownedAnnotationEntries xmi:type="description:AnnotationEntry" uid="_lRtOgwwEEeyMLqHNYQjbCA" source="DANNOTATION_CUSTOMIZATION_KEY">
       <data xmi:type="diagram:ComputedStyleDescriptionRegistry" uid="_lRtOhAwEEeyMLqHNYQjbCA"/>
     </ownedAnnotationEntries>
-    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_Xs03wAwFEeyMLqHNYQjbCA" name="ClassDiagram (true)" outgoingEdges="_ivUU0QwFEeyMLqHNYQjbCA _5OfQkAwFEeyMLqHNYQjbCA _5vXwIAwFEeyMLqHNYQjbCA">
+    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_Xs03wAwFEeyMLqHNYQjbCA" name="ClassDiagram" outgoingEdges="_ivUU0QwFEeyMLqHNYQjbCA _5OfQkAwFEeyMLqHNYQjbCA _5vXwIAwFEeyMLqHNYQjbCA">
       <target xmi:type="productline:Class" href="model/cd.productline#//@classes.0"/>
       <semanticElements xmi:type="productline:Class" href="model/cd.productline#//@classes.0"/>
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
@@ -169,7 +169,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@containerMappings[name='ClassContainer']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_ejZuAgwFEeyMLqHNYQjbCA" name="Class (true)" outgoingEdges="_sbpQNgwFEeyMLqHNYQjbCA _tRXXSAwFEeyMLqHNYQjbCA" incomingEdges="_ivUU0QwFEeyMLqHNYQjbCA">
+    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_ejZuAgwFEeyMLqHNYQjbCA" name="Class" outgoingEdges="_sbpQNgwFEeyMLqHNYQjbCA _tRXXSAwFEeyMLqHNYQjbCA" incomingEdges="_ivUU0QwFEeyMLqHNYQjbCA">
       <target xmi:type="productline:Class" href="model/cd.productline#//@classes.1"/>
       <semanticElements xmi:type="productline:Class" href="model/cd.productline#//@classes.1"/>
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
@@ -179,7 +179,7 @@
         <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@containerMappings[name='ClassContainer']/@style"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@containerMappings[name='ClassContainer']"/>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_gJcexAwFEeyMLqHNYQjbCA" name="name: child (true)">
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_gJcexAwFEeyMLqHNYQjbCA" name="name: child">
         <target xmi:type="productline:Attribute" href="model/cd.productline#//@classes.1/@attributes.0"/>
         <semanticElements xmi:type="productline:Attribute" href="model/cd.productline#//@classes.1/@attributes.0"/>
         <ownedStyle xmi:type="diagram:Square" uid="_gJds4AwFEeyMLqHNYQjbCA" labelSize="12" showIcon="false" labelPosition="node">
@@ -188,7 +188,7 @@
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@containerMappings[name='ClassContainer']/@subNodeMappings[name='AttributeNode']"/>
       </ownedElements>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_ivUU0QwFEeyMLqHNYQjbCA" name="classes (true)" sourceNode="_Xs03wAwFEeyMLqHNYQjbCA" targetNode="_ejZuAgwFEeyMLqHNYQjbCA">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_ivUU0QwFEeyMLqHNYQjbCA" name="classes" sourceNode="_Xs03wAwFEeyMLqHNYQjbCA" targetNode="_ejZuAgwFEeyMLqHNYQjbCA">
       <target xmi:type="productline:Reference" href="model/cd.productline#//@references.0"/>
       <semanticElements xmi:type="productline:Reference" href="model/cd.productline#//@references.0"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_ivUU0gwFEeyMLqHNYQjbCA" size="2">
@@ -533,7 +533,7 @@
     <ownedAnnotationEntries xmi:type="description:AnnotationEntry" uid="_1HQAgCcDEeyoxNi2IcQHPg" source="DANNOTATION_CUSTOMIZATION_KEY">
       <data xmi:type="diagram:ComputedStyleDescriptionRegistry" uid="_1HQAgScDEeyoxNi2IcQHPg"/>
     </ownedAnnotationEntries>
-    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_CoUY0CcEEeyoxNi2IcQHPg" name="SafetyCase (true)" outgoingEdges="_LNxg0icGEeyoxNi2IcQHPg _MiUR5CcGEeyoxNi2IcQHPg _NseX6ycGEeyoxNi2IcQHPg">
+    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_CoUY0CcEEeyoxNi2IcQHPg" name="SafetyCase" outgoingEdges="_LNxg0icGEeyoxNi2IcQHPg _MiUR5CcGEeyoxNi2IcQHPg _NseX6ycGEeyoxNi2IcQHPg">
       <target xmi:type="productline:Class" href="model/gsn.productline#//@classes.0"/>
       <semanticElements xmi:type="productline:Class" href="model/gsn.productline#//@classes.0"/>
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
@@ -598,7 +598,7 @@
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@containerMappings[name='ClassContainer']/@subNodeMappings[name='AttributeNode']"/>
       </ownedElements>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_S6F-NicEEeyoxNi2IcQHPg" name="BasicGoal (true)" outgoingEdges="_KqkQricHEeyoxNi2IcQHPg _VqwApycHEeyoxNi2IcQHPg" incomingEdges="_LNxg0icGEeyoxNi2IcQHPg">
+    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_S6F-NicEEeyoxNi2IcQHPg" name="BasicGoal" outgoingEdges="_KqkQricHEeyoxNi2IcQHPg _VqwApycHEeyoxNi2IcQHPg" incomingEdges="_LNxg0icGEeyoxNi2IcQHPg">
       <target xmi:type="productline:Class" href="model/gsn.productline#//@classes.3"/>
       <semanticElements xmi:type="productline:Class" href="model/gsn.productline#//@classes.3"/>
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
@@ -608,7 +608,7 @@
         <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@containerMappings[name='ClassContainer']/@style"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@containerMappings[name='ClassContainer']"/>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_UnQqoCcEEeyoxNi2IcQHPg" name="id: G0 (true)">
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_UnQqoCcEEeyoxNi2IcQHPg" name="id: G0">
         <target xmi:type="productline:Attribute" href="model/gsn.productline#//@classes.3/@attributes.0"/>
         <semanticElements xmi:type="productline:Attribute" href="model/gsn.productline#//@classes.3/@attributes.0"/>
         <ownedStyle xmi:type="diagram:Square" uid="_UnQqoScEEeyoxNi2IcQHPg" labelSize="12" showIcon="false" labelPosition="node">
@@ -616,7 +616,7 @@
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@containerMappings[name='ClassContainer']/@subNodeMappings[name='AttributeNode']"/>
       </ownedElements>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_XhjRiScEEeyoxNi2IcQHPg" name="description: All is safe (true)">
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_XhjRiScEEeyoxNi2IcQHPg" name="description: All is safe">
         <target xmi:type="productline:Attribute" href="model/gsn.productline#//@classes.3/@attributes.1"/>
         <semanticElements xmi:type="productline:Attribute" href="model/gsn.productline#//@classes.3/@attributes.1"/>
         <ownedStyle xmi:type="diagram:Square" uid="_Xhj4kCcEEeyoxNi2IcQHPg" labelSize="12" showIcon="false" labelPosition="node">
@@ -625,7 +625,7 @@
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@containerMappings[name='ClassContainer']/@subNodeMappings[name='AttributeNode']"/>
       </ownedElements>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_LNxg0icGEeyoxNi2IcQHPg" name="goals (true)" sourceNode="_CoUY0CcEEeyoxNi2IcQHPg" targetNode="_S6F-NicEEeyoxNi2IcQHPg">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_LNxg0icGEeyoxNi2IcQHPg" name="goals" sourceNode="_CoUY0CcEEeyoxNi2IcQHPg" targetNode="_S6F-NicEEeyoxNi2IcQHPg">
       <target xmi:type="productline:Reference" href="model/gsn.productline#//@references.0"/>
       <semanticElements xmi:type="productline:Reference" href="model/gsn.productline#//@references.0"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_LNxg0ycGEeyoxNi2IcQHPg" size="2">

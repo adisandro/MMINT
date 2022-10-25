@@ -27,13 +27,13 @@ public class ProductLineMIDHeavyTypeFactory extends MIDHeavyTypeFactory {
 
   public static String getPLElementLabel(PLElement plElem, boolean withParenthesis) {
     var pc = plElem.getPresenceCondition();
-    if (pc == null) {
+    if (pc == null || pc == "true") {
       return "";
     }
-    if (!withParenthesis) {
-      return pc;
+    if (withParenthesis) {
+      return "(" + pc + ")";
     }
-    return "(" + pc + ")";
+    return pc;
   }
 
   public static ProductLine getProductLine(PLMapping plMapping) {
