@@ -28,7 +28,6 @@ import org.eclipse.swt.events.SelectionEvent;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
-import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
 import edu.toronto.cs.se.mmint.mid.diagram.library.SiriusEvaluateQuery;
@@ -65,10 +64,8 @@ public class MIDContextEvaluateQueryListener extends MIDContextMenuListener {
         var querySpec = SiriusEvaluateQuery.selectQuery(MIDContextEvaluateQueryListener.this.context);
         var queryResults = querySpec.evaluateQuery(MIDContextEvaluateQueryListener.this.context,
                                                    MIDContextEvaluateQueryListener.this.queryArgs);
-        SiriusEvaluateQuery.displayQueryResults(MIDContextEvaluateQueryListener.this.context, queryResults);
-        if (MIDContextEvaluateQueryListener.this.context instanceof MID instanceMID) {
-          SiriusEvaluateQuery.storeQueryResults(querySpec.query().toString(), queryResults, instanceMID);
-        }
+        SiriusEvaluateQuery.displayQueryResults(MIDContextEvaluateQueryListener.this.context, queryResults,
+                                                querySpec.query().toString());
         return CommandResult.newOKCommandResult();
       }
       catch (MIDDialogCancellation e) {

@@ -119,7 +119,7 @@ public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
     return result.toString();
   }
 
-  public static void displayQueryResults(EObject context, List<Object> results) {
+  public static void displayQueryResults(EObject context, List<Object> results, String queryName) {
     var window = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
     var shell = window.getShell();
     if (results.isEmpty()) {
@@ -129,6 +129,19 @@ public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
 
     // collect results
     var numResults = results.size();
+    String[] buttonsDone, buttonsDoneNext, buttonsDoneSame;
+    if (context instanceof MID) {
+      buttonsDone = new String[] {"Done + Store Results", "Done"};
+      buttonsDoneNext = new String[] {"Done + Store Results", "Next Result", "Done"};
+      buttonsDoneSame = new String[] {"Done + Store Results", "Same Result, Next Model", "Done"};
+    }
+    else {
+      buttonsDone = new String[] {"Done"};
+      buttonsDoneNext = new String[] {"Done", "Next Result"};
+      buttonsDoneSame = new String[] {"Done", "Same Result, Next Model"};
+    }
+    var buttons = buttonsDone;
+    var buttonPressed = 0;
 results:
     for (var i = 0; i < numResults; i++) {
       var result = results.get(i);
@@ -176,9 +189,9 @@ results:
       // display results
       var title = "Query Results (" + (i+1) + " out of " + numResults + ")";
       if (models.isEmpty()) {
-        var buttons = ((i+1) == numResults) ? new String[] {"Done"} : new String[] {"Done", "Next Result"};
-        var button = MessageDialog.open(MessageDialog.INFORMATION, shell, title, message, SWT.NONE, buttons);
-        if (button == 0) {
+        buttons = ((i+1) == numResults) ? buttonsDone : buttonsDoneNext;
+        buttonPressed = MessageDialog.open(MessageDialog.INFORMATION, shell, title, message, SWT.NONE, buttons);
+        if (buttons[buttonPressed].startsWith("Done")) {
           break;
         }
       }
@@ -192,12 +205,11 @@ results:
           catch (Exception e) {
             MMINTException.print(IStatus.WARNING, "Query result highlighting failed", e);
           }
-          var next = (j < models.size()) ? "Same Result, Next Model" : "Next Result";
-          var buttons = ((i+1) == numResults && j == models.size()) ?
-            new String[] {"Done"} :
-            new String[] {"Done", next};
-          var button = MessageDialog.open(MessageDialog.INFORMATION, shell, title, message, SWT.NONE, buttons);
-          if (button == 0) {
+          buttons = ((i+1) == numResults && j == models.size()) ?
+            buttonsDone : ((j < models.size()) ?
+              buttonsDoneSame : buttonsDoneNext);
+          buttonPressed = MessageDialog.open(MessageDialog.INFORMATION, shell, title, message, SWT.NONE, buttons);
+          if (buttons[buttonPressed].startsWith("Done")) {
             SiriusUtils.closeRepresentations(window, highlighted);
             break results;
           }
@@ -206,16 +218,14 @@ results:
         SiriusUtils.closeRepresentations(window, highlighted);
       }
     }
+
+    // store results
+    if (buttons[buttonPressed].endsWith("Store Results")) {
+      storeQueryResults((MID) context, results, queryName);
+    }
   }
 
-  public static void storeQueryResults(String queryName, List<Object> results, MID instanceMID) {
-    var shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-    var title = "Query Results";
-    var message = "Do you want to store the results?";
-    if (!MessageDialog.openQuestion(shell, title, message)) {
-      return;
-    }
-
+  private static void storeQueryResults(MID instanceMID, List<Object> results, String queryName) {
     var rels = new HashMap<String, ModelRel>();
     var relType = MIDTypeHierarchy.getRootModelRelType();
     for (var result : results) {
@@ -273,8 +283,7 @@ results:
         .collect(Collectors.toList());
       var querySpec = selectQuery(instanceMID);
       var queryResults = querySpec.evaluateQuery(instanceMID, queryArgs);
-      displayQueryResults(instanceMID, queryResults);
-      storeQueryResults(querySpec.query().toString(), queryResults, instanceMID);
+      displayQueryResults(instanceMID, queryResults, querySpec.query().toString());
     }
     catch (Exception e) {
       MMINTException.print(IStatus.ERROR, "Query error", e);
