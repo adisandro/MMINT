@@ -133,7 +133,11 @@ public class ToProduct extends RandomOperatorImpl {
     if (this.userAssigned == null) {
       this.userAssigned = MIDDialogs.getBooleanInput("Create product", "Do you want to manually assign features?");
     }
+    if (this.presenceConditionCache.containsKey(plFormula)) {
+      return this.presenceConditionCache.get(plFormula);
+    }
 
+    boolean canInstantiate;
     if (this.userAssigned) {
       var featureValues = new HashMap<String, Boolean>();
       features.forEach(feature -> {
@@ -141,21 +145,19 @@ public class ToProduct extends RandomOperatorImpl {
           feature, k -> MIDDialogs.getBooleanInput("Create product", "Enable feature '" + k + "'?"));
         featureValues.put(feature, value);
       });
-
-      return this.presenceConditionCache.computeIfAbsent(
-        plFormula, k -> this.featureReasoner.checkConsistency(k, featureValues));
+      canInstantiate = this.featureReasoner.checkConsistency(plFormula, featureValues);
     }
     else {
       var featureValues = features.stream()
         .filter(this.allFeatureValues::containsKey)
         .collect(Collectors.toMap(Function.identity(), this.allFeatureValues::get));
       var newFeatureValues = this.featureReasoner.assignFeatures(plFormula, featureValues, getState());
-      var canInstantiate = (newFeatureValues.isEmpty()) ? false : true;
-      this.presenceConditionCache.put(plFormula, canInstantiate);
+      canInstantiate = (newFeatureValues.isEmpty()) ? false : true;
       newFeatureValues.ifPresent(vv -> this.allFeatureValues.putAll(vv));
-
-      return canInstantiate;
     }
+    this.presenceConditionCache.put(plFormula, canInstantiate);
+
+    return canInstantiate;
   }
 
   private boolean canInstantiateFeatures(ProductLine pl) {

@@ -59,6 +59,19 @@ public class LogicNGReasoner implements IProductLineFeaturesTrait {
     return new SATStats(LogicNGReasoner.satTime, LogicNGReasoner.satCalls);
   }
 
+  private Formula substituteVars(FormulaFactory factory, Formula formula, Map<String, Boolean> varValues) {
+    var sub = new Substitution();
+    for (var varEntry : varValues.entrySet()) {
+      var varName = varEntry.getKey();
+      if (!formula.containsVariable(varName)) {
+        continue;
+      }
+      sub.addMapping(factory.variable(varName), factory.constant(varEntry.getValue()));
+    }
+
+    return formula.substitute(sub);
+  }
+
   public Tristate checkSAT(List<String> satFormulas, Map<String, Boolean> varValues) throws ParserException {
     var startTime = 0L;
     if (LogicNGReasoner.statsEnabled) {
@@ -71,15 +84,7 @@ public class LogicNGReasoner implements IProductLineFeaturesTrait {
       for (var satFormula : satFormulas) {
         var formula = parser.parse(satFormula);
         if (!varValues.isEmpty()) {
-          var sub = new Substitution();
-          for (var varValue : varValues.entrySet()) {
-            var varName = varValue.getKey();
-            if (!formula.containsVariable(varName)) {
-              continue;
-            }
-            sub.addMapping(factory.variable(varName), factory.constant(varValue.getValue()));
-          }
-          formula = formula.substitute(sub);
+          formula = substituteVars(factory, formula, varValues);
         }
         minisat.add(formula);
       }
@@ -149,9 +154,7 @@ public class LogicNGReasoner implements IProductLineFeaturesTrait {
     try {
       var formula = parser.parse(plFormula);
       if (!featureValues.isEmpty()) {
-        var sub = new Substitution();
-        featureValues.forEach((k, v) -> sub.addMapping(factory.variable(k), factory.constant(v)));
-        formula = formula.substitute(sub);
+        formula = substituteVars(factory, formula, featureValues);
       }
       minisat.add(formula);
       var sat = minisat.sat() == Tristate.TRUE;
