@@ -2247,23 +2247,23 @@
   <editors uri="/VAMOS23/model/GPL/GPL.ecore" name="Ecore tree for model /VAMOS23/model/GPL/GPL.ecore" metatypeUri="http://www.eclipse.org/emf/2002/Ecore_tree" dynamic="true" modelUri="/VAMOS23/model/GPL/GPL.ecore" id="org.eclipse.emf.ecore.presentation.EcoreEditorID" wizardId="org.eclipse.emf.ecore.presentation.EcoreModelWizardID">
     <fileExtensions>ecore</fileExtensions>
   </editors>
-  <editors xsi:type="editor:Diagram" uri="/VAMOS23/representations.aird#_mPNuwB8YEe2mGa8gntgr7g" name="ProductLine Sirius Diagram for model /VAMOS23/model/GPL/GPL.productline" metatypeUri="edu.toronto.cs.se.mmint.productline.design" dynamic="true" modelUri="/VAMOS23/model/GPL/GPL.productline" id="edu.toronto.cs.se.mmint.productline.design" wizardId="edu.toronto.cs.se.mmint.productline.presentation.ProductLineModelWizardID">
-    <fileExtensions>aird</fileExtensions>
+  <editors uri="/VAMOS23/model/GPL/GPL.productline" name="ProductLine EMF Editor for model /VAMOS23/model/GPL/GPL.productline" metatypeUri="edu.toronto.cs.se.mmint.productline.editor" dynamic="true" modelUri="/VAMOS23/model/GPL/GPL.productline" id="edu.toronto.cs.se.mmint.productline.presentation.ProductLineEditorID" wizardId="edu.toronto.cs.se.mmint.productline.presentation.ProductLineModelWizardID">
+    <fileExtensions>productline</fileExtensions>
   </editors>
-  <editors xsi:type="editor:Diagram" uri="/VAMOS23/representations.aird#_PGpbQB8ZEe2mGa8gntgr7g" name="ClassDiagram representation for model /VAMOS23/model/GPL/GPL_prod0.classdiagram" metatypeUri="http://se.cs.toronto.edu/modelepedia/Representation_ClassDiagram" dynamic="true" modelUri="/VAMOS23/model/GPL/GPL_prod0.classdiagram" id="edu.toronto.cs.se.modelepedia.classdiagram.design" wizardId="edu.toronto.cs.se.modelepedia.classdiagram.presentation.ClassDiagramModelWizardID">
-    <fileExtensions>aird</fileExtensions>
+  <editors uri="/VAMOS23/model/GPL/GPL_prod0.classdiagram" name="ClassDiagram tree for model /VAMOS23/model/GPL/GPL_prod0.classdiagram" metatypeUri="http://se.cs.toronto.edu/modelepedia/Tree_ClassDiagram" dynamic="true" modelUri="/VAMOS23/model/GPL/GPL_prod0.classdiagram" id="edu.toronto.cs.se.modelepedia.classdiagram.presentation.ClassDiagramEditorID" wizardId="edu.toronto.cs.se.modelepedia.classdiagram.presentation.ClassDiagramModelWizardID">
+    <fileExtensions>classdiagram</fileExtensions>
   </editors>
-  <editors xsi:type="editor:Diagram" uri="/VAMOS23/representations.aird#_RH4TMB8ZEe2mGa8gntgr7g" name="ClassDiagram representation for model /VAMOS23/model/GPL/GPL_prod1.classdiagram" metatypeUri="http://se.cs.toronto.edu/modelepedia/Representation_ClassDiagram" dynamic="true" modelUri="/VAMOS23/model/GPL/GPL_prod1.classdiagram" id="edu.toronto.cs.se.modelepedia.classdiagram.design" wizardId="edu.toronto.cs.se.modelepedia.classdiagram.presentation.ClassDiagramModelWizardID">
-    <fileExtensions>aird</fileExtensions>
+  <editors uri="/VAMOS23/model/GPL/GPL_prod1.classdiagram" name="ClassDiagram tree for model /VAMOS23/model/GPL/GPL_prod1.classdiagram" metatypeUri="http://se.cs.toronto.edu/modelepedia/Tree_ClassDiagram" dynamic="true" modelUri="/VAMOS23/model/GPL/GPL_prod1.classdiagram" id="edu.toronto.cs.se.modelepedia.classdiagram.presentation.ClassDiagramEditorID" wizardId="edu.toronto.cs.se.modelepedia.classdiagram.presentation.ClassDiagramModelWizardID">
+    <fileExtensions>classdiagram</fileExtensions>
   </editors>
-  <editors xsi:type="editor:Diagram" uri="/VAMOS23/representations.aird#_SDQWUB8ZEe2mGa8gntgr7g" name="ClassDiagram representation for model /VAMOS23/model/GPL/GPL_prod2.classdiagram" metatypeUri="http://se.cs.toronto.edu/modelepedia/Representation_ClassDiagram" dynamic="true" modelUri="/VAMOS23/model/GPL/GPL_prod2.classdiagram" id="edu.toronto.cs.se.modelepedia.classdiagram.design" wizardId="edu.toronto.cs.se.modelepedia.classdiagram.presentation.ClassDiagramModelWizardID">
-    <fileExtensions>aird</fileExtensions>
+  <editors uri="/VAMOS23/model/GPL/GPL_prod2.classdiagram" name="ClassDiagram tree for model /VAMOS23/model/GPL/GPL_prod2.classdiagram" metatypeUri="http://se.cs.toronto.edu/modelepedia/Tree_ClassDiagram" dynamic="true" modelUri="/VAMOS23/model/GPL/GPL_prod2.classdiagram" id="edu.toronto.cs.se.modelepedia.classdiagram.presentation.ClassDiagramEditorID" wizardId="edu.toronto.cs.se.modelepedia.classdiagram.presentation.ClassDiagramModelWizardID">
+    <fileExtensions>classdiagram</fileExtensions>
   </editors>
-  <editors xsi:type="editor:Diagram" uri="/VAMOS23/representations.aird#_S2cGwB8ZEe2mGa8gntgr7g" name="ClassDiagram representation for model /VAMOS23/model/GPL/GPL_prod3.classdiagram" metatypeUri="http://se.cs.toronto.edu/modelepedia/Representation_ClassDiagram" dynamic="true" modelUri="/VAMOS23/model/GPL/GPL_prod3.classdiagram" id="edu.toronto.cs.se.modelepedia.classdiagram.design" wizardId="edu.toronto.cs.se.modelepedia.classdiagram.presentation.ClassDiagramModelWizardID">
-    <fileExtensions>aird</fileExtensions>
+  <editors uri="/VAMOS23/model/GPL/GPL_prod3.classdiagram" name="ClassDiagram tree for model /VAMOS23/model/GPL/GPL_prod3.classdiagram" metatypeUri="http://se.cs.toronto.edu/modelepedia/Tree_ClassDiagram" dynamic="true" modelUri="/VAMOS23/model/GPL/GPL_prod3.classdiagram" id="edu.toronto.cs.se.modelepedia.classdiagram.presentation.ClassDiagramEditorID" wizardId="edu.toronto.cs.se.modelepedia.classdiagram.presentation.ClassDiagramModelWizardID">
+    <fileExtensions>classdiagram</fileExtensions>
   </editors>
-  <editors xsi:type="editor:Diagram" uri="/VAMOS23/representations.aird#_TtBwgB8ZEe2mGa8gntgr7g" name="ClassDiagram representation for model /VAMOS23/model/GPL/GPL_prod4.classdiagram" metatypeUri="http://se.cs.toronto.edu/modelepedia/Representation_ClassDiagram" dynamic="true" modelUri="/VAMOS23/model/GPL/GPL_prod4.classdiagram" id="edu.toronto.cs.se.modelepedia.classdiagram.design" wizardId="edu.toronto.cs.se.modelepedia.classdiagram.presentation.ClassDiagramModelWizardID">
-    <fileExtensions>aird</fileExtensions>
+  <editors uri="/VAMOS23/model/GPL/GPL_prod4.classdiagram" name="ClassDiagram tree for model /VAMOS23/model/GPL/GPL_prod4.classdiagram" metatypeUri="http://se.cs.toronto.edu/modelepedia/Tree_ClassDiagram" dynamic="true" modelUri="/VAMOS23/model/GPL/GPL_prod4.classdiagram" id="edu.toronto.cs.se.modelepedia.classdiagram.presentation.ClassDiagramEditorID" wizardId="edu.toronto.cs.se.modelepedia.classdiagram.presentation.ClassDiagramModelWizardID">
+    <fileExtensions>classdiagram</fileExtensions>
   </editors>
   <operators uri="" name="ToProductLine" metatypeUri="edu.toronto.cs.se.mmint.examples.VAMOS23.operators.AnnotatedEcoreToCDProductLine" dynamic="true" workingPath="/VAMOS23/model/GPL" executionTime="433230428">
     <inputs uri="" name="product" metatypeUri="edu.toronto.cs.se.mmint.examples.VAMOS23.operators.AnnotatedEcoreToCDProductLine/product" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0"/>
