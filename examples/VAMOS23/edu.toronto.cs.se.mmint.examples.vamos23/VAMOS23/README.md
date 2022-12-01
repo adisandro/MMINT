@@ -2,9 +2,11 @@
 
 Adding Product-Line Capabilities to Your Favourite Modeling Language
 
+Evaluation results are [here](model).
+
 ## Instructions to reproduce the examples
 
-The evaluation requires Python >= 3.10 installed on your system.
+The evaluation requires Python >= 3.10.
 
 1. MMINT-PL
     1. Add `https://adisandro.github.io/mmint/release` to the list of software sites in Eclipse (`Help > Install New Software > Available Software Sites`) unless MMINT is already installed.
