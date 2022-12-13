@@ -521,6 +521,14 @@ public class ProductLineViatraReasoner extends ViatraReasoner {
   }
 
   private PatternBody liftBody(PatternBody body, EList<Variable> plParameters) throws Exception {
+    /**
+     * TODO MMINT[PL]
+     *   Lift pattern call (recursive)
+     *   Lift or
+     *   Figure out how to support transitive closures
+     *   Support eopposites
+     *   Automatically delete attached references when deleting a class (or better, let Class own Reference)
+     */
     var plBody = PatternLanguageFactory.eINSTANCE.createPatternBody();
     // variables pass #1: parameter references only
     var plVarsMap = new HashMap<String, Variable>();
