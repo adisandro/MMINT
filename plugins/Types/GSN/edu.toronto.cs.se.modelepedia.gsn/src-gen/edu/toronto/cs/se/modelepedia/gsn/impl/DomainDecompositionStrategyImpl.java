@@ -118,9 +118,11 @@ public class DomainDecompositionStrategyImpl extends DecompositionStrategyImpl i
   @Override
   public void validate() throws Exception {
     var domain = Objects.requireNonNull(getDomain(), "Domain not specified");
-    var subDomains = getSupportedBy().stream().map(SupportedBy::getTarget).filter(g -> g instanceof DomainGoal).map(
-                                                                                                                    g -> ((DomainGoal) g).getDomain())
-                                     .filter(d -> d != null).collect(Collectors.toList());
+    var subDomains = getSupportedBy().stream()
+      .map(SupportedBy::getTarget)
+      .filter(g -> g instanceof DomainGoal)
+      .map(g -> ((DomainGoal) g).getDomain())
+      .filter(d -> d != null).collect(Collectors.toList());
     if (subDomains.size() == 0) {
       throw new MMINTException("A domain must be decomposed into sub-domains");
     }
@@ -201,10 +203,10 @@ public class DomainDecompositionStrategyImpl extends DecompositionStrategyImpl i
   @Override
   public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
     if (baseClass == DomainDecompositionElement.class) {
-      switch (derivedFeatureID) {
-        case GSNPackage.DOMAIN_DECOMPOSITION_STRATEGY__DOMAIN: return GSNPackage.DOMAIN_DECOMPOSITION_ELEMENT__DOMAIN;
-        default: return -1;
-      }
+      return switch (derivedFeatureID) {
+      case GSNPackage.DOMAIN_DECOMPOSITION_STRATEGY__DOMAIN -> GSNPackage.DOMAIN_DECOMPOSITION_ELEMENT__DOMAIN;
+      default -> -1;
+      };
     }
     return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
   }
@@ -216,10 +218,10 @@ public class DomainDecompositionStrategyImpl extends DecompositionStrategyImpl i
   @Override
   public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
     if (baseClass == DomainDecompositionElement.class) {
-      switch (baseFeatureID) {
-        case GSNPackage.DOMAIN_DECOMPOSITION_ELEMENT__DOMAIN: return GSNPackage.DOMAIN_DECOMPOSITION_STRATEGY__DOMAIN;
-        default: return -1;
-      }
+      return switch (baseFeatureID) {
+      case GSNPackage.DOMAIN_DECOMPOSITION_ELEMENT__DOMAIN -> GSNPackage.DOMAIN_DECOMPOSITION_STRATEGY__DOMAIN;
+      default -> -1;
+      };
     }
     return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
   }

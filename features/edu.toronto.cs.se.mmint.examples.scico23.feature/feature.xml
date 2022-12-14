@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Copyright (c) 2022, 2022 Alessio Di Sandro.
+   
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License 2.0 which is available at
+    https://www.eclipse.org/legal/epl-2.0/
+   
+    SPDX-License-Identifier: EPL-2.0
+   
+    Contributors:
+        Alessio Di Sandro - Implementation
+ -->
+<feature
+      id="edu.toronto.cs.se.mmint.examples.scico23.feature"
+      label="MMINT - SCICO23 paper"
+      version="2.15.99.qualifier"
+      provider-name="Software Engineering Group, University of Toronto">
+
+   <description url="">
+      MMINT support for the SCICO23 paper.
+   </description>
+
+   <copyright>
+      Copyright (c) 2022, 2022 Alessio Di Sandro.
+   </copyright>
+
+   <license url="https://www.eclipse.org/legal/epl-2.0/">
+      This program and the accompanying materials are made available under the terms of the Eclipse Public License 2.0 which is available at https://www.eclipse.org/legal/epl-2.0/
+   </license>
+
+   <requires>
+      <import plugin="org.eclipse.emf.common.ui"/>
+      <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="org.eclipse.emf.validation"/>
+      <import plugin="org.eclipse.uml2.uml"/>
+      <import plugin="org.eclipse.acceleo.engine"/>
+      <import plugin="edu.toronto.cs.se.mmint"/>
+      <import plugin="edu.toronto.cs.se.mmint.papyrus"/>
+      <import plugin="edu.toronto.cs.se.mmint.primitive"/>
+      <import plugin="edu.toronto.cs.se.mmint.lean"/>
+      <import plugin="edu.toronto.cs.se.modelepedia.gsn"/>
+      <import feature="edu.toronto.cs.se.mminta.feature"/>
+      <import feature="edu.toronto.cs.se.mmint.types.lts.feature"/>
+   </requires>
+
+   <plugin
+         id="edu.toronto.cs.se.mmint.examples.scico23"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>
