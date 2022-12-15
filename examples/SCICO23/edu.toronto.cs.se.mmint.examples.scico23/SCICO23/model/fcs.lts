@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lts:LTS xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:lts="model://edu.toronto.cs.se.mmint.types.lts">
+  <states xsi:type="lts:InitialState" label="Clean&#xA;No object" incoming="//@transitions.2 //@transitions.3" outgoing="//@transitions.0 //@transitions.1"/>
+  <states label="Clean&#xA;Has object" incoming="//@transitions.0" outgoing="//@transitions.2 //@transitions.6"/>
+  <states label="Grimy&#xA;No object" incoming="//@transitions.1 //@transitions.5" outgoing="//@transitions.3 //@transitions.4"/>
+  <states label="Grimy&#xA;Has object" incoming="//@transitions.4" outgoing="//@transitions.5 //@transitions.7"/>
+  <states label="Damaged" incoming="//@transitions.6 //@transitions.7"/>
+  <transitions label="Add object 1" from="//@states.0" to="//@states.1"/>
+  <transitions label="Dirty tile" from="//@states.0" to="//@states.2"/>
+  <transitions label="Vacuum object 1" from="//@states.1" to="//@states.0"/>
+  <transitions label="Clean tile 1" from="//@states.2" to="//@states.0"/>
+  <transitions label="Add object 2" from="//@states.2" to="//@states.3"/>
+  <transitions label="Vacuum object 2" from="//@states.3" to="//@states.2"/>
+  <transitions label="Clean tile 2" from="//@states.1" to="//@states.4"/>
+  <transitions label="Clean tile 3" from="//@states.3" to="//@states.4"/>
+</lts:LTS>
