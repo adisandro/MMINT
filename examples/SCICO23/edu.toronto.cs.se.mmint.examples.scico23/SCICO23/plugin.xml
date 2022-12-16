@@ -10,4 +10,9 @@
     Contributors:
         Alessio Di Sandro - Implementation
  --><plugin>
+  <extension id="scico23.Example" point="org.eclipse.viatra.query.runtime.queryspecification">
+    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:scico23.Example" id="scico23.Example">
+      <query-specification fqn="scico23.damaged"/>
+    </group>
+  </extension>
 </plugin>
