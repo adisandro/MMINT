@@ -1,4 +1,4 @@
-## VAMOS 2023 paper
+## VaMoS 2023 paper
 
 Adding Product-Line Capabilities to Your Favourite Modeling Language
 

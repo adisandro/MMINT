@@ -60,10 +60,10 @@ public class DomainDecomposition extends GoalDecomposition {
     // create decomposition template
     var id = decomposed.getId();
     var desc = decomposed.getDescription();
-    var strategyId = "S-" + id;
-    var justId = "J-" + id;
-    var subGoalId = id + "-";
-    var compGoalId = id + "-C";
+    var strategyId = "S1." + id;
+    var justId = "J1." + id;
+    var subGoalId = id + ".";
+    var compGoalId = id + ".1";
     var strategyDesc = "Decomposition over domain " + domain.toString();
     var justDesc = "Every scenario has a corresponding value in the domain " + domain.toString();
     var subGoalDesc = desc + " for sub-domain ";
@@ -75,7 +75,7 @@ public class DomainDecomposition extends GoalDecomposition {
     for (var i = 0; i < numDomains; i++) {
       var subDomain = builder.createDomain(title, "Insert the sub-domain #" + (i+1), subDomainTypes);
       subDomains.add(subDomain.toString());
-      var subGoal = builder.createDomainGoal(subGoalId + i, subGoalDesc + subDomain.toString(), subDomain);
+      var subGoal = builder.createDomainGoal(subGoalId + (i+2), subGoalDesc + subDomain.toString(), subDomain);
       builder.addSupporter(strategy, subGoal);
     }
     var goal = builder.createBasicGoal(compGoalId, compGoalDesc + String.join(", ", subDomains));

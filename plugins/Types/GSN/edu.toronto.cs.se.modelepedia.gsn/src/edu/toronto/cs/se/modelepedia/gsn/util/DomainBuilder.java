@@ -58,9 +58,10 @@ public class DomainBuilder extends GSNBuilder {
   }
 
   public Domain createDomain(String title, String message, Set<Integer> whichTypes) throws Exception {
-    var syntaxes = Map.of(GSNPackage.INT_DOMAIN,   "'_' for ranges",
-                          GSNPackage.REAL_DOMAIN,  "'_' for ranges",
-                          GSNPackage.ENUM_DOMAIN,  "',' for enumerations");
+    var syntaxes = Map.of(GSNPackage.INT_DOMAIN,   "'_' for numeric ranges",
+                          GSNPackage.REAL_DOMAIN,  "'_' for numeric ranges",
+                          GSNPackage.ENUM_DOMAIN,  "',' for enumerations",
+                          GSNPackage.VALUE_DOMAIN, "use a single value");
     var examples = Map.of(GSNPackage.INT_DOMAIN,   "integer range '-40_50'",
                           GSNPackage.REAL_DOMAIN,  "real range '-40.0_50.0'",
                           GSNPackage.ENUM_DOMAIN,  "enumeration 'x,y,z'",
@@ -71,9 +72,9 @@ public class DomainBuilder extends GSNBuilder {
         .map(we -> syntaxes.get(we))
         .filter(Objects::nonNull)
         .distinct()
-        .collect(Collectors.joining(" and "));
+        .collect(Collectors.joining(" or "));
       if (!message.isBlank()) {
-        message += ", using " + syntax;
+        message += "\nUse " + syntax;
       }
       var example = whichTypes.stream()
         .map(we -> examples.get(we))
