@@ -74,6 +74,9 @@ public class DomainDecomposition extends GoalDecomposition {
     var subDomains = new ArrayList<String>();
     for (var i = 0; i < numDomains; i++) {
       var subDomain = builder.createDomain(title, "Insert the sub-domain #" + (i+1), subDomainTypes);
+      if (domain instanceof EnumDomain && subDomain instanceof EnumDomain subEnumDomain) {
+        numDomains -= (subEnumDomain.getValues().size()-1);
+      }
       subDomains.add(subDomain.toString());
       var subGoal = builder.createDomainGoal(subGoalId + (i+2), subGoalDesc + subDomain.toString(), subDomain);
       builder.addSupporter(strategy, subGoal);
