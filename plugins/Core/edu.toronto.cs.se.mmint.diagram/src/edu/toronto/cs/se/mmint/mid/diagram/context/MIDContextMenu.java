@@ -286,6 +286,7 @@ public class MIDContextMenu extends ContributionItem {
       }
     }
     // coherence
+    doCoherence = false; //TODO MMINT[TYPES] Deprecated
     if (doCoherence) {
       var multiplePathConversions = MIDTypeHierarchy.getMultiplePathConversions(selectedModels.get(0).getMetatypeUri());
       if (!multiplePathConversions.isEmpty()) {
