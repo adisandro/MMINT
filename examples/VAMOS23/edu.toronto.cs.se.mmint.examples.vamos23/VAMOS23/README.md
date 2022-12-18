@@ -19,7 +19,7 @@ The evaluation requires Python >= 3.10.
         2. Repeat step a with query `numOutgoingTransitions`.
     3. Run a Product query:
         1. Right-click on the yellow box named `WashingMachine : ProductLine`, select `MMINT > Run Operator > ToProduct(ProductLine productLine=WashingMachine)`, answer `Yes` when asked to manually assign features, answer `Yes` to the features you want to enable.
-        2. Repeat step 1 if the product instantiation fails because of the feature model constraints, or double-click on the yellow box named `WashingMachine_prod : StateMachine` to view the state machine product.
+        2. Repeat step a if the product instantiation fails because of the feature model constraints, or double-click on the yellow box named `WashingMachine_prod : StateMachine` to view the state machine product.
         3. Right-click in the diagram background, select `MMINT > Evaluate Query`, select file `/VAMOS23/src/vamos23/example.vql`, select reasoner `Viatra`, select query `twoOutgoingTransitions`, check the result(s), select `Done` to finish.
         4. To repeat steps a-b-c with a different product, right-click on the yellow box named `WashingMachine_prod : StateMachine` and select `Delete from Model`.
         2. Repeat steps a-b-c-d with query `numOutgoingTransitions`.
