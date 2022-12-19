@@ -6,7 +6,7 @@ Model management techniques help tame the complexity caused by the many models u
 
 ## Experiments instructions
 
-1. Add `https://adisandro.github.io/mmint/release` to the list of software sites in Eclipse (`Help > Install New Software > Available Software Sites`).
+1. Install Java and Eclipse following the [requirements](/README.md#requirements), then add `https://adisandro.github.io/mmint/release` to the list of software sites (`Help > Install New Software > Available Software Sites`).
 2. Install `Examples > SoSyM18`.
 3. Import [this project](https://github.com/adisandro/MMINT/tree/develop/examples/SOSYM18) in your workspace from git (here's an Eclipse tutorial: https://wiki.eclipse.org/EGit/User_Guide#Starting_from_existing_Git_Repositories).
 4. Navigate to the scenario you want to run, e.g. `experiments > filter > model` (from now on, let us assume this is the scenario to run).

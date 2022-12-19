@@ -6,7 +6,7 @@ In recent years, the complexity of safety-critical systems such as automotive sy
 
 ## Demo instructions
 
-1. Add `https://adisandro.github.io/mmint/release` to the list of software sites in Eclipse (`Help > Install New Software > Available Software Sites`).
+1. Install Java and Eclipse following the [requirements](/README.md#requirements), then add `https://adisandro.github.io/mmint/release` to the list of software sites (`Help > Install New Software > Available Software Sites`).
 2. Install `Examples > MMINT - MoDELS20 paper`.
 3. Load the example project `File > New > Example > MMINT Examples > LMS`.
 4. Load the example project `File > New > Example > MMINT Examples > MoDELS20`.

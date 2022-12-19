@@ -9,7 +9,7 @@ Evaluation results are [here](model).
 The evaluation requires Python >= 3.10.
 
 1. MMINT-PL
-    1. Add `https://adisandro.github.io/mmint/release` to the list of software sites in Eclipse (`Help > Install New Software > Available Software Sites`) unless MMINT is already installed.
+    1. Install Java and Eclipse following the [requirements](/README.md#requirements), then add `https://adisandro.github.io/mmint/release` to the list of software sites (`Help > Install New Software > Available Software Sites`).
     2. From the top menu select `Help > Install New Software` and install `Examples > MMINT - VAMOS23 paper`.
     3. From the top menu select `File > New > Example > MMINT Examples > VAMOS23`.
 2. Washing Machine example (Sec. 4):
