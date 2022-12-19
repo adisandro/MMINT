@@ -83,7 +83,6 @@ do
 | _ := return ()
 end
 
-
 @['['/]user_command[']'/]
 meta def main
 (meta_info : decl_meta_info)

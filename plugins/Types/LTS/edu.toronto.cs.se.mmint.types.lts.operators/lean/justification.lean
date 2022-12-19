@@ -21,7 +21,7 @@ end list
 def meaning {α : Type} (C : Claim α) : Prop := 
 ∀ x ∈ C.X, C.P x 
 
-notation ⟦C⟧ := meaning C 
+notation (name := claim_sem) ⟦C⟧ := meaning C 
 
 structure Strategy (α : Type) :=
 (parent : Claim α) (decomp : Claim α → list (Claim α))

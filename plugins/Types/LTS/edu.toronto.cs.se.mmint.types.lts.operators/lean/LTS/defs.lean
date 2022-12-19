@@ -132,11 +132,11 @@ def sat {M : LTS} : formula M → path M → Prop
 
 notation φ ` & ` ψ := formula.conj  φ ψ 
 notation φ ` ⅋ ` ψ := formula.disj φ ψ 
-notation ` !` φ := formula.neg φ 
+notation (name := ltl_neg) ` !` φ := formula.neg φ 
 notation φ ` U ` ψ := formula.until φ ψ 
 notation ` ◆` φ := formula.eventually φ 
 notation ` ◾` φ  := formula.always  φ
-notation φ ` ⇒ ` ψ := formula.impl φ ψ 
+notation (name := ltl_impl) φ ` ⇒ ` ψ := formula.impl φ ψ 
 notation π `⊨` P := sat P π 
 
 namespace formula 

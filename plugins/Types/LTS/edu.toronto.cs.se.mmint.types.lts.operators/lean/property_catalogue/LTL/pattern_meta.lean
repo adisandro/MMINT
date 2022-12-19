@@ -20,8 +20,9 @@ do
   do 
     ps ← absent.after_until.solve ps ctx, 
     return ps
-  | _ := return ps
-  end 
+-- | add new tactics here!
+   | _ := return ps
+   end 
 
 
 meta def debug_inductive (tgt : expr) : tactic (string) := 

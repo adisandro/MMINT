@@ -11,16 +11,16 @@ def init_state (s : formula M) : formula M := s
 
 @[reducible]
 def holds_over_transition (s : formula M)  : formula M :=  
-◾(s ⇒ formula.next s)
+◾(formula.impl s (formula.next s))
  
 
 @[reducible]
-def not_init (s : formula M) : formula M := !s
+def not_init (s : formula M) : formula M := formula.neg s
 
 
 @[reducible]
 def transitions_safe  (s : formula M)  : formula M := 
-◾(!s ⇒ !formula.next s)
+◾((formula.neg s)).impl (formula.neg (formula.next s))
 
 
 namespace absent 
