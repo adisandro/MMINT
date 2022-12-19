@@ -61,7 +61,7 @@ public class DomainDecomposition extends GoalDecomposition {
     var id = decomposed.getId();
     var desc = decomposed.getDescription();
     var strategyId = "S1." + id;
-    var justId = "J1." + id;
+    var justId = "J." + id;
     var subGoalId = id + ".";
     var compGoalId = id + ".1";
     var strategyDesc = "Decomposition over domain " + domain.toString();
