@@ -14,23 +14,13 @@ MMINT is used by the Software Engineering group as a common research platform an
 
 ## Installation
 
-The easiest way of installing MMINT in Eclipse is using the [binary packages](#binary-packages), which will automatically take care of all the Eclipse dependencies. Alternatively, you can download and build the [source code](#source-code) from this git repository. Please take a look at the [requirements](#requirements) to check that your system can run MMINT.
+The easiest way of installing MMINT in Eclipse is using the [binary packages](#binary-packages), which will automatically take care of all the Eclipse dependencies. Alternatively, you can download and build the [source code](#source-code) from this git repository. Please take a look at the [requirements](#requirements) first to check that your system can run MMINT.
 
 ### Requirements
 
 * Java 19
-* Eclipse Modeling Tools 2022-12. Within Eclipse, use `Help > Install New Software` to add the following components:
-  * Acceleo
-  * Papyrus for UML
-  * Sirius Properties Views - Specifier Support
-  * Sirius Specifier Environment
-  * VIATRA Query and Transformation SDK
-  * ATL SDK - ATL Transformation Language SDK _(Required for Modelepedia ClassDiagram)_
-  * Massif Core _(Required for Modelepedia Simulink)_
-  * Henshin SDK _(Required for Z3)_
-  * M2E - Maven Integration for Eclipse _(Required for building the source code)_
-
-Requirements marked with _(Required for ...)_ are optional except for the specified component.
+* [Eclipse Modeling Tools 2022-12](https://www.eclipse.org/downloads/packages/release/2022-12/r/eclipse-modeling-tools)
+* After downloading Eclipse, open the `eclipse.ini` file and change the line below `-vm` to point to your Java 19 installation (for example on Debian Linux change it to `/lib/jvm/java-19-openjdk-amd64/bin`)
 
 ### Binary Packages
 
@@ -45,9 +35,25 @@ Binary packages for the current development version of MMINT are similarly avail
 
 ### Source code
 
+Within Eclipse, use `Help > Install New Software` to add the following update sites:
+  * `https://download.eclipse.org/tools/orbit/downloads/2022-12`
+  * `http://download.eclipse.org/modeling/emft/henshin/updates/release`
+  * `https://static.incquerylabs.com/projects/massif/release/0.7.0/repository`
+
+Then, install the following components:
+  * `Acceleo`
+  * `ATL SDK - ATL Transformation Language SDK`
+  * `Henshin SDK`
+  * `M2E - Maven Integration for Eclipse`
+  * `Massif Core`
+  * `Papyrus for UML`
+  * `Sirius Properties Views - Specifier Support`
+  * `Sirius Specifier Environment`
+  * `VIATRA Query and Transformation SDK`
+
 To import the source code in your Eclipse workspace, use `File > Import` and then `Projects from Git` under the `Git` category. Wait until everything is built, then right-click on any project and `Run As > Eclipse Application`.
 
-The projects are under the [plugins](https://github.com/adisandro/MMINT/tree/master/plugins) directory: required projects under [Core](https://github.com/adisandro/MMINT/tree/master/plugins/Core), projects that significantly extend functionality under [Core-Extensions](https://github.com/adisandro/MMINT/tree/master/plugins/Core-Extensions), optional and domain specific projects under [Types](https://github.com/adisandro/MMINT/tree/master/plugins/Types) and projects that deal with external tools under [External](https://github.com/adisandro/MMINT/tree/master/plugins/External). The [features](https://github.com/adisandro/MMINT/tree/master/features) directory contains the logical units of functionality, [tests](https://github.com/adisandro/MMINT/tree/master/tests) contains a suite for regression testing, [releng](https://github.com/adisandro/MMINT/tree/master/releng) contains the release engineering code, and [examples](https://github.com/adisandro/MMINT/tree/master/examples) contains artifacts created with MMINT for various papers and conferences.
+The projects are under the [plugins](plugins) directory: required projects under [Core](plugins/Core), projects that significantly extend functionality under [Core-Extensions](plugins/Core-Extensions), optional and domain specific projects under [Types](plugins/Types) and projects that deal with external tools under [External](plugins/External). The [features](features) directory contains the logical units of functionality, [tests](tests) contains a suite for regression testing, [releng](releng) contains the release engineering code, and [examples](examples) contains artifacts created with MMINT for various papers and conferences.
 
 
 
@@ -83,6 +89,7 @@ Follow these steps to install MMINT-PL:
 
 1. Add `https://adisandro.github.io/mmint/release` to the list of software sites in Eclipse (`Help > Install New Software > Available Software Sites`).
 2. Install `Modeling > MMINT-PL`.
+
 
 
 ## Publications
