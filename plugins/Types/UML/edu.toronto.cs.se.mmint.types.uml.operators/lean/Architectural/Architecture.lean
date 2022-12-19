@@ -204,3 +204,7 @@ def CompositeEnvironment
 (E : Env Var) : Env Var := 
 E ∩ ⋂ (S' : Component Var) {S' ∈ A.subs.erase U}, Impls S' (mem_of_mem_erase H)
 
+
+meta structure model_info := 
+(del : list (expr × expr)) 
+(comps : list expr)

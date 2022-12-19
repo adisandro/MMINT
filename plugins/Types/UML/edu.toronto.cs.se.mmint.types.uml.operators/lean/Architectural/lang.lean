@@ -70,6 +70,10 @@ axiom synchronize {φ : LANG} {σ : Trace PORTS} : ∀ v1 v2 : PORTS,
 σ ∈ (@AssertionLang.sem LANG PORTS _ _ _ (φ.sub v1 v2))
 
 
+axiom synchronize'  (σ : Trace PORTS) (v1 v2 : PORTS) (φ : LANG) (h:(v1,v2) ∈ LACU_ARCH_MODEL.delegation ∨ (v2,v1) ∈ LACU_ARCH_MODEL.delegation): 
+σ ∈ (@AssertionLang.sem LANG PORTS _ _ _ φ) ↔ 
+σ ∈ (@AssertionLang.sem LANG PORTS _ _ _ (φ.sub v1 v2))
+
 theorem forall_conj_distrib : ∀ A B : LANG,   
 (@AssertionLang.sem LANG PORTS _ _ _  (LANG.conj A B).always) = (@AssertionLang.sem LANG PORTS _ _ _  ((A.always).conj (B.always))) :=
 begin 

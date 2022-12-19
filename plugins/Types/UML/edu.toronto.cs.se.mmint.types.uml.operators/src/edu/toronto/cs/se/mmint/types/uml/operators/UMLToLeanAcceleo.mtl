@@ -13,8 +13,7 @@
 [template private encodeMain(modelName : String, mainClassName : String)]
 import justification
 import [modelName/]
-import Architectural.lang Architectural.proofObligations
-import rpo_meta
+import Architectural.lang Architectural.proofObligations Architectural.automation.util Architectural.automation.rpo_fst_tactic
 open interactive LANG PORTS
 
 variable {α : Type}
@@ -27,8 +26,9 @@ set_option pp.structure_instances_qualifier true
 def local_input_name : string := "[modelName/]_input"
 def local_strat_name : string := "[modelName/]_strat"
 def local_prf_name : string := "[modelName/]_strat_valid"
+def local_model_info_name : string := "[modelName/]_model_info"
 
-def preamble : string := "import justification [modelName/] rpo_meta \n open LANG PORTS \n\n
+def preamble : string := "import justification [modelName/] Architectural.automation.rpo_fst_tactic \n open LANG PORTS \n\n
 local infix `OR`:50 := LANG.disj
 local infix `&`:50 := LANG.conj
 \n\n
@@ -51,7 +51,7 @@ meta def output (s : string) : io unit := do
   of ← io.mk_file_handle "evidence.lean" io.mode.write,
   io.fs.write of s.to_char_buffer
 
-theorem archMap
+def archMap
 {Var Φ : Type} ['['/]fintype Var[']'/] ['['/]decidable_eq Var[']'/] ['['/]AssertionLang Φ Var[']'/]
 {S : Component Var}
 {A : Architecture S}
@@ -66,24 +66,31 @@ meta def Output (s : string) : io unit := do
   of ← io.mk_file_handle "evidence.lean" io.mode.write,
   io.fs.write of s.to_char_buffer
 
+
+def split : list string → string
+| ['['/][']'/] := string.empty
+| (x::t) := "{" ++ x ++ " " ++ local_model_info_name ++" " ++ "},\n" ++ split t
+
 meta def driver (input : pexpr) : tactic unit :=
 do
   STRAT ← tactic.to_expr input,
   if STRAT.contains_sorry then tactic.trace "ff" else do
   match STRAT with
-  | `(ArchitectureWithContracts.mk %%A %%prnt %%map %%prf) := do
+  | `(ArchitectureWithContracts.mk %%A %%prnt %%map _) := do
       inpt ← tactic.eval_expr (ArchitectureWithContracts LANG [mainClassName/]) STRAT,
+      let inpt := {all_components := by {cases inpt,assumption,}, ..inpt},
       input_fmt ← tactic_format_expr STRAT,
       let envc : expr := `(@set.univ (Trace PORTS)),
       let goal := `(deductive (Trace PORTS) (@Contract.mk_strategy LANG _ _ _ _ [mainClassName/] (%%STRAT))),
       set_goal goal,
       `['['/]apply via_rpo[']'/],
-      solve_rpo,
+      tactic.split,
+      l ← tactic.all_goals (solve_rpos [modelName/]_model_info),
       b ← is_solved,
       match b with
       | tt := do tactic.trace "True",
          input_string ← stringOfFormatExpr STRAT,
-          tactic.unsafe_run_io $ Output $ evidence_file_template input_string "apply via_rpo,\n solve_rpo,"
+          tactic.unsafe_run_io $ Output $ evidence_file_template input_string ("apply via_rpo,\nsplit,\n" ++ (split l))
       | ff := do tactic.trace "False"
       end
   | _ := return ()
@@ -133,6 +140,14 @@ def [sanitize(mainClass.name, sanitizeRegexp)/]_ARCH_MODEL : Architecture [sanit
   [for (flow : InformationFlow | umlRoot.packagedElement->selectByType(InformationFlow)) separator(',\n')][for (inPort : Port | flow.informationSource->filter(Port))][for (outPort : Port | flow.informationTarget->filter(Port))]    ([portName(inPort, sanitizeRegexp)/], [portName(outPort, sanitizeRegexp)/])[/for][/for][/for]
   [']'/]
 }
+
+meta def delegation_exprs : list (expr × expr) := ['['/]
+  [for (flow : InformationFlow | umlRoot.packagedElement->selectByType(InformationFlow)) separator(',\n')][for (inPort : Port | flow.informationSource->filter(Port))][for (outPort : Port | flow.informationTarget->filter(Port))]  (`([portName(inPort, sanitizeRegexp)/]), `([portName(outPort, sanitizeRegexp)/]))[/for][/for][/for]
+[']'/]
+
+meta def [modelName/]_model_info : model_info := { del := delegation_exprs, comps := ['['/]
+  [for (property : Property | mainClass.ownedAttribute->selectByType(Property)) separator(',\n')]  `([sanitize(property.type.name, sanitizeRegexp)/])[/for]
+[']'/]}
 [/template]
 
 [template public UMLToLean(umlRoot : Model, modelName : String, sanitizeRegexp : String)]

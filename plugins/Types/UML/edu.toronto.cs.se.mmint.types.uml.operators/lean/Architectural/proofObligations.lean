@@ -166,28 +166,6 @@ begin
   apply subclaims_meaning_impl, assumption,
 end 
 
--- theorem validity : deductive (Trace PORTS) (Contract.strategy IMPLEMENTATIONS CURRENT_ENVIRONMENT) := 
--- begin
---   intro H,
---   replace H := subclaims_meaning _ _ H,
---   cases H with Henv Himpl,
---   rw Contract.strategy,
---   simp,
---   rw Claim.correctDecomposition,
---   rw meaning, 
---   simp,
---   intros σ, 
---   split, {
---     rw Claim.correctDecompositionImpl,
---     intros H₁ H₂,
---     rw CI at H₂,
---     simp at H₂,
---     sorry 
---   }
--- end 
-
--- def LACU_ARCH_WITH_CONTRACTS : ArchitectureWithContracts lt_eq_assertions LACU := 
-
 
 theorem via_rpo 
 {S : Component Var}  
@@ -227,7 +205,7 @@ begin
     rw isCorrectImplementation at H₄,
     rw meaning at H₄, simp at H₄,
     replace H₃ := H₃ S' S',
-    replace H₄ := H₄ σ (H₃ Hmem),
+    replace H₄ := H₄ σ (set.mem_Inter.mp H₃ Hmem),
     have further : (Map.find_val S' A.contracts).iget = C, by {exact (congr_arg option.iget H₆).trans rfl,},
     simp [further] at *, clear further,
     rw AssertionLang.disj_def,
