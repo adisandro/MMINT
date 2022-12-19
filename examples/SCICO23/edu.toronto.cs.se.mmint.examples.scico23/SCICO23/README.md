@@ -9,7 +9,7 @@ Alternatively, a virtual machine image for VirtualBox with all the required depe
     1. Download and extract the Lean theorem prover from here: <https://oleanstorage.azureedge.net/releases/bundles/trylean_linux.tar.gz>
     2. `mkdir -p ~/.local/bin; cd ~/.local/bin; ln -s /path_to_lean_folder/lean/bin/lean lean`
 2. MMINT
-    1. Add `https://adisandro.github.io/mmint/release` to the list of software sites in Eclipse (`Help > Install New Software > Available Software Sites`) unless MMINT is already installed.
+    1. Install Java and Eclipse following the [requirements](/README.md#requirements), then add `https://adisandro.github.io/mmint/release` to the list of software sites (`Help > Install New Software > Available Software Sites`).
     2. From the top menu select `Help > Install New Software` and install `Examples > MMINT - SCICO23 paper`.
     3. From the top menu select `MMINT > Lean > Change Lean Mathlib Path` and insert `/path_to_lean_folder/mathlib`.
     4. From the top menu select `Window > Show View > Other > General > Properties` (TODO others?).

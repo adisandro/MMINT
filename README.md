@@ -35,12 +35,12 @@ Binary packages for the current development version of MMINT are similarly avail
 
 ### Source code
 
-Within Eclipse, use `Help > Install New Software` to add the following update sites:
+Add the following update sites to Eclipse (`Help > Install New Software > Available Software Sites`):
   * `https://download.eclipse.org/tools/orbit/downloads/2022-12`
   * `http://download.eclipse.org/modeling/emft/henshin/updates/release`
   * `https://static.incquerylabs.com/projects/massif/release/0.7.0/repository`
 
-Then, install the following components:
+Then, install the following components (`Help > Install New Software`):
   * `Acceleo`
   * `ATL SDK - ATL Transformation Language SDK`
   * `Henshin SDK`
