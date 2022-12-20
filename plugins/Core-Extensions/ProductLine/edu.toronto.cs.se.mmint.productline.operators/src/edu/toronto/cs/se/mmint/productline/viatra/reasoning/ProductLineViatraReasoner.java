@@ -60,12 +60,12 @@ import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.MID;
-import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
 import edu.toronto.cs.se.mmint.productline.PLElement;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.productline.ProductLinePackage;
+import edu.toronto.cs.se.mmint.productline.mid.ProductLineMIDPackage;
 import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeaturesTrait;
 import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeaturesTrait.Aggregator;
 import edu.toronto.cs.se.mmint.productline.reasoning.PLPipeline;
@@ -95,8 +95,8 @@ public class ProductLineViatraReasoner extends ViatraReasoner {
   private String featuresConstraint;
 
   public ProductLineViatraReasoner() throws Exception {
-    var plModelType = MIDTypeRegistry.<Model>getType(ProductLinePackage.eNS_URI);
-    var libFilePath = MIDTypeRegistry.getBundlePath(plModelType, ProductLineViatraReasoner.VIATRA_LIB_PATH);
+    var plModelRelType = MIDTypeRegistry.<ModelRel>getType(ProductLineMIDPackage.eNS_URI);
+    var libFilePath = MIDTypeRegistry.getBundlePath(plModelRelType, ProductLineViatraReasoner.VIATRA_LIB_PATH);
     var libVqlRoot = getVQLRoot(libFilePath, false);
     this.libRefPattern = super.getPattern(libVqlRoot, ProductLineViatraReasoner.LIB_REFERENCE_PATTERN);
     this.libAttrPattern = super.getPattern(libVqlRoot, ProductLineViatraReasoner.LIB_ATTRIBUTE_PATTERN);
