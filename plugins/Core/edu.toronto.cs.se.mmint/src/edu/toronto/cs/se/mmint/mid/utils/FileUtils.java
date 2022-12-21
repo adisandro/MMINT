@@ -52,7 +52,10 @@ import edu.toronto.cs.se.mmint.mid.ui.SiriusUtils;
 
 public class FileUtils {
 
-	public static URI createEMFUri(String uri, boolean isWorkspaceRelative) {
+  private static Map<String, Object> SAVE_OPTIONS = Map.of(XMLResource.OPTION_SCHEMA_LOCATION, true,
+                                                           XMLResource.OPTION_ENCODING,        "UTF-8");
+
+  public static URI createEMFUri(String uri, boolean isWorkspaceRelative) {
 		var emfUri = (isWorkspaceRelative) ?
 			URI.createPlatformResourceURI(uri, true) :
 			URI.createFileURI(uri);
@@ -373,7 +376,7 @@ public class FileUtils {
 	                                      boolean isWorkspaceRelative) throws IOException {
 	  var resource = writeEMFResource(filePath, resourceSet, isWorkspaceRelative);
 		resource.getContents().add(rootModelObj);
-		resource.save(Map.of(XMLResource.OPTION_SCHEMA_LOCATION, true));
+		resource.save(FileUtils.SAVE_OPTIONS);
 		return resource;
 	}
 

@@ -12,20 +12,16 @@
 package edu.toronto.cs.se.mmint.mid.ui;
 
 import java.net.URL;
-import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.Path;
-import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
@@ -37,7 +33,6 @@ import org.eclipse.gmf.runtime.diagram.core.services.ViewService;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.ClientContextManager;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
-import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.IEditHelper;
@@ -62,39 +57,35 @@ public class GMFUtils {
 	public static final String DIAGRAM_SUFFIX = "diag";
 
 	public static Diagram createGMFDiagram(EObject rootModelObj, String diagramKind, String diagramPluginId) {
-
-		Diagram diagram = ViewService.createDiagram(
-			rootModelObj,
-			diagramKind,
-			new PreferencesHint(diagramPluginId)
-		);
-
+		var diagram = ViewService.createDiagram(rootModelObj, diagramKind, new PreferencesHint(diagramPluginId));
 		return diagram;
 	}
 
-	public static Diagram createGMFDiagramAndFile(String modelPath, String diagramPath, String diagramKind, String diagramPluginId, boolean isWorkspaceRelative) throws Exception {
+  public static Diagram createGMFDiagramAndFile(EObject rootModelObj, String diagramPath, String diagramKind,
+                                                String diagramPluginId, boolean isWorkspaceRelative) throws Exception {
+    var diagramResource = FileUtils.writeEMFResource(diagramPath, rootModelObj.eResource().getResourceSet(),
+                                                     isWorkspaceRelative);
+    var diagram = GMFUtils.createGMFDiagram(rootModelObj, diagramKind, diagramPluginId);
+    diagram.setName(FileUtils.getLastSegmentFromPath(diagramPath));
+    diagramResource.getContents().add(diagram);
+    var saveOptions = Map.of(XMLResource.OPTION_ENCODING, "UTF-8",
+                             Resource.OPTION_SAVE_ONLY_IF_CHANGED, Resource.OPTION_SAVE_ONLY_IF_CHANGED_MEMORY_BUFFER);
+    diagramResource.save(saveOptions);
 
-		ResourceSet domainResourceSet = new ResourceSetImpl();
-		Resource modelResource = domainResourceSet.getResource(FileUtils.createEMFUri(modelPath, isWorkspaceRelative), true);
-		ResourceSet diagramResourceSet = new ResourceSetImpl();
-		Resource diagramResource =	diagramResourceSet.createResource(FileUtils.createEMFUri(diagramPath, isWorkspaceRelative));
-		EObject rootModelObj = modelResource.getContents().get(0);
-		Diagram diagram = GMFUtils.createGMFDiagram(rootModelObj, diagramKind, diagramPluginId);
-		diagram.setName(FileUtils.getLastSegmentFromPath(diagramPath));
-		diagramResource.getContents().add(diagram);
-		Map<String, Object> saveOptions = new HashMap<>();
-		saveOptions.put(XMLResource.OPTION_ENCODING, "UTF-8");
-		saveOptions.put(Resource.OPTION_SAVE_ONLY_IF_CHANGED, Resource.OPTION_SAVE_ONLY_IF_CHANGED_MEMORY_BUFFER);
-		diagramResource.save(saveOptions);
+    return diagram;
+  }
 
-		return diagram;
+	public static Diagram createGMFDiagramAndFile(String modelPath, String diagramPath, String diagramKind,
+	                                              String diagramPluginId, boolean isWorkspaceRelative) throws Exception {
+    var rootModelObj = FileUtils.readModelFile(modelPath, null, isWorkspaceRelative);
+		return createGMFDiagramAndFile(rootModelObj, diagramPath, diagramKind, diagramPluginId, isWorkspaceRelative);
 	}
 
 	public static @NonNull IFile getModelFileFromDiagramFile(@NonNull IFile diagramFile) throws Exception {
 
-		Diagram diagram = (Diagram) FileUtils.readModelFile(diagramFile.getFullPath().toString(), null, true);
-		String modelUri = MIDRegistry.getModelUri(diagram.getElement());
-		IFile modelFile = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(modelUri));
+		var diagram = (Diagram) FileUtils.readModelFile(diagramFile.getFullPath().toString(), null, true);
+		var modelUri = MIDRegistry.getModelUri(diagram.getElement());
+		var modelFile = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(modelUri));
 
 		return modelFile;
 	}
@@ -106,10 +97,10 @@ public class GMFUtils {
 			gmfType = ElementTypeRegistry.getInstance().getElementType(modelObj);
 		}
 		else {
-			IClientContext context = ClientContextManager.getInstance().getClientContext(contextId);
+			var context = ClientContextManager.getInstance().getClientContext(contextId);
 			gmfType = ElementTypeRegistry.getInstance().getElementType(modelObj, context);
 		}
-		String gmfTypeHint = gmfType.getId().substring(gmfType.getId().lastIndexOf('_') + 1);
+		var gmfTypeHint = gmfType.getId().substring(gmfType.getId().lastIndexOf('_') + 1);
 
 		return gmfTypeHint;
 	}
@@ -118,7 +109,7 @@ public class GMFUtils {
 
 		Node gmfNode = null;
 		if (viewProvider == null) {
-			String gmfTypeHint = GMFUtils.getGMFRegistryType(modelObj, null);
+			var gmfTypeHint = GMFUtils.getGMFRegistryType(modelObj, null);
 			// works only if modelObj has the right eStorage adapters attached, or it returns a generic type
 			gmfNode = ViewService.createNode(gmfDiagram, modelObj, gmfTypeHint, new PreferencesHint(diagramPluginId));
 		}
@@ -133,27 +124,38 @@ public class GMFUtils {
 
 		Edge gmfEdge = null;
 		if (viewProvider == null) {
-			String gmfTypeHint = GMFUtils.getGMFRegistryType(modelObj, null);
+			var gmfTypeHint = GMFUtils.getGMFRegistryType(modelObj, null);
 			// works only if modelObj has the right eStorage adapters attached, or it returns a generic type
 			gmfEdge = ViewService.createEdge(srcNode, tgtNode, modelObj, gmfTypeHint, new PreferencesHint(diagramPluginId));
 		}
 		else {
-			IAdaptable modelObjWrapper = new IAdaptable() {
-				public Object getAdapter(Class adapter) {
+			var modelObjWrapper = new IAdaptable() {
+				@Override
+        public Object getAdapter(Class adapter) {
 					if (adapter == IElementType.class) {
 						return new IHintedType() {
-							public String getSemanticHint() {
+							@Override
+              public String getSemanticHint() {
 								return GMFUtils.getGMFRegistryType(modelObj, diagramPluginId + ".TypeContext");
 							}
-							public String getId() { return null; }
-							public URL getIconURL() { return null; }
-							public String getDisplayName() { return null; }
-							public EClass getEClass() { return null; }
-							public ICommand getEditCommand(IEditCommandRequest request) { return null; }
-							public boolean canEdit(IEditCommandRequest req) { return false; }
-							public IEditHelper getEditHelper() { return null; }
-							public IElementType[] getAllSuperTypes() { return null; }
-							public <T> T getAdapter(Class<T> adapter) { return null; }
+							@Override
+              public String getId() { return null; }
+							@Override
+              public URL getIconURL() { return null; }
+							@Override
+              public String getDisplayName() { return null; }
+							@Override
+              public EClass getEClass() { return null; }
+							@Override
+              public ICommand getEditCommand(IEditCommandRequest request) { return null; }
+							@Override
+              public boolean canEdit(IEditCommandRequest req) { return false; }
+							@Override
+              public IEditHelper getEditHelper() { return null; }
+							@Override
+              public IElementType[] getAllSuperTypes() { return null; }
+							@Override
+              public <T> T getAdapter(Class<T> adapter) { return null; }
 						};
 					}
 					return new EObjectAdapter(modelObj).getAdapter(adapter);
@@ -169,7 +171,7 @@ public class GMFUtils {
 
 	public static void addGMFShortcut(@NonNull Node gmfNode, @NonNull String shortcutId) {
 
-		EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
+		var shortcutAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
 		shortcutAnnotation.setSource("Shortcut");
 		shortcutAnnotation.getDetails().put("modelID", shortcutId);
 		gmfNode.getEAnnotations().add(shortcutAnnotation);
@@ -177,7 +179,7 @@ public class GMFUtils {
 
 	public static @Nullable Node createGMFNodeShortcut(@NonNull EObject modelObj, @NonNull Diagram gmfDiagram, @NonNull String diagramPluginId, @NonNull String shortcutId, @Nullable IViewProvider viewProvider) {
 
-		Node gmfNode = GMFUtils.createGMFNode(modelObj, gmfDiagram, diagramPluginId, viewProvider);
+		var gmfNode = GMFUtils.createGMFNode(modelObj, gmfDiagram, diagramPluginId, viewProvider);
 		GMFUtils.addGMFShortcut(gmfNode, shortcutId);
 
 		return gmfNode;
@@ -189,16 +191,14 @@ public class GMFUtils {
 			throw new MMINTException("Diagram element not supported: " + diagramView.getClass().getName());
 		}
 
-		if (diagramView instanceof Shape) {
-			Shape node = (Shape) diagramView;
+		if (diagramView instanceof Shape node) {
 			node.setFillColor(color);
 			node.setLineColor(color);
 			node.setFontColor(fontColor);
 		}
-		else if (diagramView instanceof Connector) {
-			Connector edge = (Connector) diagramView;
+		else if (diagramView instanceof Connector edge) {
 			edge.setLineColor(color);
-			FontStyle labelFont = (FontStyle) edge.getStyles().get(0);
+			var labelFont = (FontStyle) edge.getStyles().get(0);
 			labelFont.setFontColor(fontColor);
 		}
 	}
