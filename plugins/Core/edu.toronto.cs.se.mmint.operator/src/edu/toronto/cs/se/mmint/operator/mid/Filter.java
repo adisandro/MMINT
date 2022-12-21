@@ -20,6 +20,7 @@ import java.util.Set;
 
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
@@ -170,7 +171,7 @@ public class Filter extends OperatorImpl {
   // filter mid models based on property attached to type
   protected void filter() throws Exception {
 
-    var filteredMID = (MID) this.input.midModel.getEMFInstanceRoot();
+    var filteredMID = EcoreUtil.copy((MID) this.input.midModel.getEMFInstanceRoot());
     Set<Model> modelsToDelete = new HashSet<>();
     for (Model model : filteredMID.getModels()) {
       // check constraint only if types are: Model and Model, Model and unary ModelRel, ModelRel and ModelRel
