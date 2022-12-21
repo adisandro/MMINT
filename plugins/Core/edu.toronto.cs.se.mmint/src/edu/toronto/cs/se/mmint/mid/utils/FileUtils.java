@@ -344,6 +344,19 @@ public class FileUtils {
 		FileUtils.deleteDirectory(FileUtils.prependStatePath(relativeDirectoryPath), false);
 	}
 
+  public static Resource writeEMFResource(URI emfUri, @Nullable ResourceSet resourceSet) {
+    if (resourceSet == null) {
+      resourceSet = new ResourceSetImpl();
+    }
+    return resourceSet.createResource(emfUri);
+  }
+
+	public static Resource writeEMFResource(String filePath, @Nullable ResourceSet resourceSet,
+	                                        boolean isWorkspaceRelative) {
+    var emfUri = FileUtils.createEMFUri(filePath, isWorkspaceRelative);
+    return writeEMFResource(emfUri, resourceSet);
+	}
+
 	/**
 	 * Writes the root of an ECore model from memory into an ECore model file.
 	 *
@@ -358,14 +371,9 @@ public class FileUtils {
 	 */
 	public static Resource writeModelFile(EObject rootModelObj, String filePath, @Nullable ResourceSet resourceSet,
 	                                      boolean isWorkspaceRelative) throws IOException {
-	  if (resourceSet == null) {
-	    resourceSet = new ResourceSetImpl();
-	  }
-		var emfUri = FileUtils.createEMFUri(filePath, isWorkspaceRelative);
-		var resource = resourceSet.createResource(emfUri);
+	  var resource = writeEMFResource(filePath, resourceSet, isWorkspaceRelative);
 		resource.getContents().add(rootModelObj);
 		resource.save(Map.of(XMLResource.OPTION_SCHEMA_LOCATION, true));
-
 		return resource;
 	}
 
