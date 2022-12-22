@@ -1,99 +1,99 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/edu.toronto.cs.se.mmint.feature_2.15.99.qualifier.jar" id="edu.toronto.cs.se.mmint.feature" version="2.15.99.qualifier">
+   <feature url="features/edu.toronto.cs.se.mmint.feature_2.16.0.qualifier.jar" id="edu.toronto.cs.se.mmint.feature" version="2.16.0.qualifier">
       <category name="Modeling"/>
    </feature>
-   <feature url="features/edu.toronto.cs.se.mmint.sdk.feature_2.15.99.qualifier.jar" id="edu.toronto.cs.se.mmint.sdk.feature" version="2.15.99.qualifier">
+   <feature url="features/edu.toronto.cs.se.mmint.sdk.feature_2.16.0.qualifier.jar" id="edu.toronto.cs.se.mmint.sdk.feature" version="2.16.0.qualifier">
       <category name="Modeling"/>
    </feature>
-   <feature url="features/edu.toronto.cs.se.mminta.feature_2.15.99.qualifier.jar" id="edu.toronto.cs.se.mminta.feature" version="2.15.99.qualifier">
+   <feature url="features/edu.toronto.cs.se.mminta.feature_2.16.0.qualifier.jar" id="edu.toronto.cs.se.mminta.feature" version="2.16.0.qualifier">
       <category name="Modeling"/>
    </feature>
-   <feature url="features/edu.toronto.cs.se.mmintpl.feature_2.15.99.qualifier.jar" id="edu.toronto.cs.se.mmintpl.feature" version="2.15.99.qualifier">
+   <feature url="features/edu.toronto.cs.se.mmintpl.feature_2.16.0.qualifier.jar" id="edu.toronto.cs.se.mmintpl.feature" version="2.16.0.qualifier">
       <category name="Modeling"/>
    </feature>
-   <feature url="features/edu.toronto.cs.se.mummint.feature_2.15.99.qualifier.jar" id="edu.toronto.cs.se.mummint.feature" version="2.15.99.qualifier">
+   <feature url="features/edu.toronto.cs.se.mummint.feature_2.16.0.qualifier.jar" id="edu.toronto.cs.se.mummint.feature" version="2.16.0.qualifier">
       <category name="Modeling"/>
    </feature>
-   <feature url="features/edu.toronto.cs.se.mmint.lean.feature_2.15.99.qualifier.jar" id="edu.toronto.cs.se.mmint.lean.feature" version="2.15.99.qualifier">
+   <feature url="features/edu.toronto.cs.se.mmint.lean.feature_2.16.0.qualifier.jar" id="edu.toronto.cs.se.mmint.lean.feature" version="2.16.0.qualifier">
       <category name="Modelepedia"/>
    </feature>
-   <feature url="features/edu.toronto.cs.se.mmint.logicng.feature_2.15.99.qualifier.jar" id="edu.toronto.cs.se.mmint.logicng.feature" version="2.15.99.qualifier">
+   <feature url="features/edu.toronto.cs.se.mmint.logicng.feature_2.16.0.qualifier.jar" id="edu.toronto.cs.se.mmint.logicng.feature" version="2.16.0.qualifier">
       <category name="Modelepedia"/>
    </feature>
-   <feature url="features/edu.toronto.cs.se.mmint.productline.feature_2.15.99.qualifier.jar" id="edu.toronto.cs.se.mmint.productline.feature" version="2.15.99.qualifier">
+   <feature url="features/edu.toronto.cs.se.mmint.productline.feature_2.16.0.qualifier.jar" id="edu.toronto.cs.se.mmint.productline.feature" version="2.16.0.qualifier">
       <category name="Modelepedia"/>
    </feature>
-   <feature url="features/edu.toronto.cs.se.modelepedia.feature_2.15.99.qualifier.jar" id="edu.toronto.cs.se.modelepedia.feature" version="2.15.99.qualifier">
+   <feature url="features/edu.toronto.cs.se.modelepedia.feature_2.16.0.qualifier.jar" id="edu.toronto.cs.se.modelepedia.feature" version="2.16.0.qualifier">
       <category name="Modelepedia"/>
    </feature>
-   <feature url="features/edu.toronto.cs.se.modelepedia.z3.feature_2.15.99.qualifier.jar" id="edu.toronto.cs.se.modelepedia.z3.feature" version="2.15.99.qualifier">
+   <feature url="features/edu.toronto.cs.se.modelepedia.z3.feature_2.16.0.qualifier.jar" id="edu.toronto.cs.se.modelepedia.z3.feature" version="2.16.0.qualifier">
       <category name="Modelepedia"/>
    </feature>
-   <feature url="features/edu.toronto.cs.se.modelepedia.kleisli.feature_2.15.99.qualifier.jar" id="edu.toronto.cs.se.modelepedia.kleisli.feature" version="2.15.99.qualifier">
+   <feature url="features/edu.toronto.cs.se.modelepedia.kleisli.feature_2.16.0.qualifier.jar" id="edu.toronto.cs.se.modelepedia.kleisli.feature" version="2.16.0.qualifier">
       <category name="Modelepedia"/>
    </feature>
-   <feature url="features/edu.toronto.cs.se.modelepedia.classdiagram.feature_2.15.99.qualifier.jar" id="edu.toronto.cs.se.modelepedia.classdiagram.feature" version="2.15.99.qualifier">
+   <feature url="features/edu.toronto.cs.se.modelepedia.classdiagram.feature_2.16.0.qualifier.jar" id="edu.toronto.cs.se.modelepedia.classdiagram.feature" version="2.16.0.qualifier">
       <category name="Modelepedia"/>
    </feature>
-   <feature url="features/edu.toronto.cs.se.modelepedia.classdiagram_mavo.feature_2.15.99.qualifier.jar" id="edu.toronto.cs.se.modelepedia.classdiagram_mavo.feature" version="2.15.99.qualifier">
+   <feature url="features/edu.toronto.cs.se.modelepedia.classdiagram_mavo.feature_2.16.0.qualifier.jar" id="edu.toronto.cs.se.modelepedia.classdiagram_mavo.feature" version="2.16.0.qualifier">
       <category name="Modelepedia"/>
    </feature>
-   <feature url="features/edu.toronto.cs.se.modelepedia.graph.feature_2.15.99.qualifier.jar" id="edu.toronto.cs.se.modelepedia.graph.feature" version="2.15.99.qualifier">
+   <feature url="features/edu.toronto.cs.se.modelepedia.graph.feature_2.16.0.qualifier.jar" id="edu.toronto.cs.se.modelepedia.graph.feature" version="2.16.0.qualifier">
       <category name="Modelepedia"/>
    </feature>
-   <feature url="features/edu.toronto.cs.se.modelepedia.istar.feature_2.15.99.qualifier.jar" id="edu.toronto.cs.se.modelepedia.istar.feature" version="2.15.99.qualifier">
+   <feature url="features/edu.toronto.cs.se.modelepedia.istar.feature_2.16.0.qualifier.jar" id="edu.toronto.cs.se.modelepedia.istar.feature" version="2.16.0.qualifier">
       <category name="Modelepedia"/>
    </feature>
-   <feature url="features/edu.toronto.cs.se.mmint.types.lts.feature_2.15.99.qualifier.jar" id="edu.toronto.cs.se.mmint.types.lts.feature" version="2.15.99.qualifier">
+   <feature url="features/edu.toronto.cs.se.mmint.types.lts.feature_2.16.0.qualifier.jar" id="edu.toronto.cs.se.mmint.types.lts.feature" version="2.16.0.qualifier">
       <category name="Modelepedia"/>
    </feature>
-   <feature url="features/edu.toronto.cs.se.modelepedia.relationaldatabase.feature_2.15.99.qualifier.jar" id="edu.toronto.cs.se.modelepedia.relationaldatabase.feature" version="2.15.99.qualifier">
+   <feature url="features/edu.toronto.cs.se.modelepedia.relationaldatabase.feature_2.16.0.qualifier.jar" id="edu.toronto.cs.se.modelepedia.relationaldatabase.feature" version="2.16.0.qualifier">
       <category name="Modelepedia"/>
    </feature>
-   <feature url="features/edu.toronto.cs.se.modelepedia.gsn.feature_2.15.99.qualifier.jar" id="edu.toronto.cs.se.modelepedia.gsn.feature" version="2.15.99.qualifier">
+   <feature url="features/edu.toronto.cs.se.modelepedia.gsn.feature_2.16.0.qualifier.jar" id="edu.toronto.cs.se.modelepedia.gsn.feature" version="2.16.0.qualifier">
       <category name="Modelepedia"/>
    </feature>
-   <feature url="features/edu.toronto.cs.se.modelepedia.sequencediagram.feature_2.15.99.qualifier.jar" id="edu.toronto.cs.se.modelepedia.sequencediagram.feature" version="2.15.99.qualifier">
+   <feature url="features/edu.toronto.cs.se.modelepedia.sequencediagram.feature_2.16.0.qualifier.jar" id="edu.toronto.cs.se.modelepedia.sequencediagram.feature" version="2.16.0.qualifier">
       <category name="Modelepedia"/>
    </feature>
-   <feature url="features/edu.toronto.cs.se.mmint.types.simulink.feature_2.15.99.qualifier.jar" id="edu.toronto.cs.se.mmint.types.simulink.feature" version="2.15.99.qualifier">
+   <feature url="features/edu.toronto.cs.se.mmint.types.simulink.feature_2.16.0.qualifier.jar" id="edu.toronto.cs.se.mmint.types.simulink.feature" version="2.16.0.qualifier">
       <category name="Modelepedia"/>
    </feature>
-   <feature url="features/edu.toronto.cs.se.modelepedia.statemachine.feature_2.15.99.qualifier.jar" id="edu.toronto.cs.se.modelepedia.statemachine.feature" version="2.15.99.qualifier">
+   <feature url="features/edu.toronto.cs.se.modelepedia.statemachine.feature_2.16.0.qualifier.jar" id="edu.toronto.cs.se.modelepedia.statemachine.feature" version="2.16.0.qualifier">
       <category name="Modelepedia"/>
    </feature>
-   <feature url="features/edu.toronto.cs.se.modelepedia.statemachine_mavo.feature_2.15.99.qualifier.jar" id="edu.toronto.cs.se.modelepedia.statemachine_mavo.feature" version="2.15.99.qualifier">
+   <feature url="features/edu.toronto.cs.se.modelepedia.statemachine_mavo.feature_2.16.0.qualifier.jar" id="edu.toronto.cs.se.modelepedia.statemachine_mavo.feature" version="2.16.0.qualifier">
       <category name="Modelepedia"/>
    </feature>
-   <feature url="features/edu.toronto.cs.se.modelepedia.models15.feature_2.15.99.qualifier.jar" id="edu.toronto.cs.se.modelepedia.models15.feature" version="2.15.99.qualifier">
+   <feature url="features/edu.toronto.cs.se.modelepedia.models15.feature_2.16.0.qualifier.jar" id="edu.toronto.cs.se.modelepedia.models15.feature" version="2.16.0.qualifier">
       <category name="Examples"/>
    </feature>
-   <feature url="features/edu.toronto.cs.se.modelepedia.icse15.feature_2.15.99.qualifier.jar" id="edu.toronto.cs.se.modelepedia.icse15.feature" version="2.15.99.qualifier">
+   <feature url="features/edu.toronto.cs.se.modelepedia.icse15.feature_2.16.0.qualifier.jar" id="edu.toronto.cs.se.modelepedia.icse15.feature" version="2.16.0.qualifier">
       <category name="Examples"/>
    </feature>
-   <feature url="features/edu.toronto.cs.se.modelepedia.sosym18.feature_2.15.99.qualifier.jar" id="edu.toronto.cs.se.modelepedia.sosym18.feature" version="2.15.99.qualifier">
+   <feature url="features/edu.toronto.cs.se.modelepedia.sosym18.feature_2.16.0.qualifier.jar" id="edu.toronto.cs.se.modelepedia.sosym18.feature" version="2.16.0.qualifier">
       <category name="Examples"/>
    </feature>
-   <feature url="features/edu.toronto.cs.se.mmmint.example.jase20.feature_2.15.99.qualifier.jar" id="edu.toronto.cs.se.mmint.example.jase20.feature" version="2.15.99.qualifier">
+   <feature url="features/edu.toronto.cs.se.mmmint.example.jase20.feature_2.16.0.qualifier.jar" id="edu.toronto.cs.se.mmint.example.jase20.feature" version="2.16.0.qualifier">
       <category name="Examples"/>
    </feature>
-   <feature url="features/edu.toronto.cs.se.mmmint.example.mase19.feature_2.15.99.qualifier.jar" id="edu.toronto.cs.se.mmint.example.mase19.feature" version="2.15.99.qualifier">
+   <feature url="features/edu.toronto.cs.se.mmmint.example.mase19.feature_2.16.0.qualifier.jar" id="edu.toronto.cs.se.mmint.example.mase19.feature" version="2.16.0.qualifier">
       <category name="Examples"/>
    </feature>
-   <feature url="features/edu.toronto.cs.se.mmmint.example.models20.feature_2.15.99.qualifier.jar" id="edu.toronto.cs.se.mmint.example.models20.feature" version="2.15.99.qualifier">
+   <feature url="features/edu.toronto.cs.se.mmmint.example.models20.feature_2.16.0.qualifier.jar" id="edu.toronto.cs.se.mmint.example.models20.feature" version="2.16.0.qualifier">
       <category name="Examples"/>
    </feature>
-   <feature url="features/edu.toronto.cs.se.mmmint.examples.models21.feature_2.15.99.qualifier.jar" id="edu.toronto.cs.se.mmint.examples.models21.feature" version="2.15.99.qualifier">
+   <feature url="features/edu.toronto.cs.se.mmmint.examples.models21.feature_2.16.0.qualifier.jar" id="edu.toronto.cs.se.mmint.examples.models21.feature" version="2.16.0.qualifier">
       <category name="Examples"/>
    </feature>
-   <feature url="features/edu.toronto.cs.se.mmmint.examples.scico23.feature_2.15.99.qualifier.jar" id="edu.toronto.cs.se.mmint.examples.scico23.feature" version="2.15.99.qualifier">
+   <feature url="features/edu.toronto.cs.se.mmmint.examples.scico23.feature_2.16.0.qualifier.jar" id="edu.toronto.cs.se.mmint.examples.scico23.feature" version="2.16.0.qualifier">
       <category name="Examples"/>
    </feature>
-   <feature url="features/edu.toronto.cs.se.mmmint.examples.sosym22.feature_2.15.99.qualifier.jar" id="edu.toronto.cs.se.mmint.examples.sosym22.feature" version="2.15.99.qualifier">
+   <feature url="features/edu.toronto.cs.se.mmmint.examples.sosym22.feature_2.16.0.qualifier.jar" id="edu.toronto.cs.se.mmint.examples.sosym22.feature" version="2.16.0.qualifier">
       <category name="Examples"/>
    </feature>
-   <feature url="features/edu.toronto.cs.se.mmmint.examples.vamos23.feature_2.15.99.qualifier.jar" id="edu.toronto.cs.se.mmint.examples.vamos23.feature" version="2.15.99.qualifier">
+   <feature url="features/edu.toronto.cs.se.mmmint.examples.vamos23.feature_2.16.0.qualifier.jar" id="edu.toronto.cs.se.mmint.examples.vamos23.feature" version="2.16.0.qualifier">
       <category name="Examples"/>
    </feature>
    <category-def name="Modeling" label="Modeling"/>

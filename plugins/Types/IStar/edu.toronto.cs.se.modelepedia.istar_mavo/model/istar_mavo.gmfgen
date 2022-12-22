@@ -920,7 +920,7 @@
   </diagram>
   <plugin
       provider="Software Engineering Group, University of Toronto"
-      version="2.15.99.qualifier"
+      version="2.16.0.qualifier"
       printingEnabled="true">
     <requiredPlugins>org.eclipse.papyrus.infra.gmfdiag.tooling.runtime</requiredPlugins>
     <requiredPlugins>org.eclipse.draw2d</requiredPlugins>

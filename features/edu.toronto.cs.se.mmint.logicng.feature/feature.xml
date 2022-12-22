@@ -14,7 +14,7 @@
 <feature
       id="edu.toronto.cs.se.mmint.logicng.feature"
       label="MMINT - LogicNG integration"
-      version="2.15.99.qualifier"
+      version="2.16.0.qualifier"
       provider-name="Software Engineering Group, University of Toronto">
 
    <description url="https://github.com/logic-ng/LogicNG">
