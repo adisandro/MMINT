@@ -42,6 +42,8 @@
       <import plugin="edu.toronto.cs.se.modelepedia.gsn"/>
       <import feature="edu.toronto.cs.se.mminta.feature"/>
       <import feature="edu.toronto.cs.se.mmint.types.lts.feature"/>
+      <import feature="edu.toronto.cs.se.modelepedia.classdiagram.feature"/>
+      <import feature="edu.toronto.cs.se.modelepedia.statemachine.feature"/>
    </requires>
 
    <plugin
