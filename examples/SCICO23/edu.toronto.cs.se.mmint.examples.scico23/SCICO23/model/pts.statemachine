@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<statemachine:StateMachine xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:statemachine="http://se.cs.toronto.edu/modelepedia/StateMachine">
+  <states xsi:type="statemachine:InitialState" name="Off" transitionsAsSource="//@transitions.0" transitionsAsTarget="//@transitions.1"/>
+  <states xsi:type="statemachine:State" name="On" transitionsAsSource="//@transitions.1" transitionsAsTarget="//@transitions.0"/>
+  <transitions trigger="Turn on" source="//@states.0" target="//@states.1"/>
+  <transitions trigger="Turn off" source="//@states.1" target="//@states.0"/>
+</statemachine:StateMachine>

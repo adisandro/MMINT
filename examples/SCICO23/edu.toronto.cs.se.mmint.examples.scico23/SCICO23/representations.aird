@@ -1,12 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:diagram="http://www.eclipse.org/sirius/diagram/1.1.0" xmlns:gsn="http://se.cs.toronto.edu/modelepedia/GSN" xmlns:lts="model://edu.toronto.cs.se.mmint.types.lts" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:viewpoint="http://www.eclipse.org/sirius/1.1.0" xsi:schemaLocation="http://www.eclipse.org/sirius/description/1.1.0 http://www.eclipse.org/sirius/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/style/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description/style">
-  <viewpoint:DAnalysis uid="_7Fc3YF6cEeuzRqps9eyyPw" selectedViews="_TeLVwF6dEeuzRqps9eyyPw _clvBEF6mEeuYfq7XakckNg" version="15.0.0.202201261500">
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:classdiagram="http://se.cs.toronto.edu/modelepedia/ClassDiagram" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:diagram="http://www.eclipse.org/sirius/diagram/1.1.0" xmlns:lts="model://edu.toronto.cs.se.mmint.types.lts" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" xmlns:statemachine="http://se.cs.toronto.edu/modelepedia/StateMachine" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:viewpoint="http://www.eclipse.org/sirius/1.1.0" xsi:schemaLocation="http://www.eclipse.org/sirius/description/1.1.0 http://www.eclipse.org/sirius/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/style/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description/style">
+  <viewpoint:DAnalysis uid="_7Fc3YF6cEeuzRqps9eyyPw" selectedViews="_TeLVwF6dEeuzRqps9eyyPw _nIlPUII3Ee2U5LbOC5c9EA _XS0bEII4Ee2U5LbOC5c9EA" version="15.0.0.202209061200">
     <semanticResources>model/fcs.lts</semanticResources>
+    <semanticResources>model/pts.statemachine</semanticResources>
+    <semanticResources>model/vss.classdiagram</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" uid="_TeLVwF6dEeuzRqps9eyyPw">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']"/>
       <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_edC3EV6dEeuzRqps9eyyPw" name="fcs" repPath="#_ec3Q4F6dEeuzRqps9eyyPw" changeId="af4349e1-85d3-4e88-a0ed-274187ad1b76">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']"/>
         <target xmi:type="lts:LTS" href="model/fcs.lts#/"/>
+      </ownedRepresentationDescriptors>
+    </ownedViews>
+    <ownedViews xmi:type="viewpoint:DView" uid="_nIlPUII3Ee2U5LbOC5c9EA">
+      <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']"/>
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_pjw4UII3Ee2U5LbOC5c9EA" name="pts" repPath="#_pjvDIII3Ee2U5LbOC5c9EA" changeId="98ea2753-2965-49e2-a7ba-a120856d107e">
+        <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']"/>
+        <target xmi:type="statemachine:StateMachine" href="model/pts.statemachine#/"/>
+      </ownedRepresentationDescriptors>
+    </ownedViews>
+    <ownedViews xmi:type="viewpoint:DView" uid="_XS0bEII4Ee2U5LbOC5c9EA">
+      <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/edu.toronto.cs.se.modelepedia.classdiagram.design/description/classdiagram.odesign#//@ownedViewpoints[name='ClassDiagramViewpoint']"/>
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_YyPmcII4Ee2U5LbOC5c9EA" name="vss" repPath="#_YyOYUII4Ee2U5LbOC5c9EA" changeId="445a3ff2-022f-4b84-8472-796842ad6c79">
+        <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.classdiagram.design/description/classdiagram.odesign#//@ownedViewpoints[name='ClassDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_ClassDiagram']"/>
+        <target xmi:type="classdiagram:ClassDiagram" href="model/vss.classdiagram#/"/>
       </ownedRepresentationDescriptors>
     </ownedViews>
   </viewpoint:DAnalysis>
@@ -333,5 +349,369 @@
     <filterVariableHistory xmi:type="diagram:FilterVariableHistory" uid="_ec7iUF6dEeuzRqps9eyyPw"/>
     <activatedLayers xmi:type="description_1:Layer" href="platform:/plugin/edu.toronto.cs.se.mmint.types.lts.design/description/lts.odesign#//@ownedViewpoints[name='LTSViewpoint']/@ownedRepresentations[name='LTSDiagram']/@defaultLayer"/>
     <target xmi:type="lts:LTS" href="model/fcs.lts#/"/>
+  </diagram:DSemanticDiagram>
+  <diagram:DSemanticDiagram uid="_pjvDIII3Ee2U5LbOC5c9EA">
+    <ownedAnnotationEntries xmi:type="description:AnnotationEntry" uid="_pj4NEII3Ee2U5LbOC5c9EA" source="GMF_DIAGRAMS">
+      <data xmi:type="notation:Diagram" xmi:id="_pj40III3Ee2U5LbOC5c9EA" type="Sirius" element="_pjvDIII3Ee2U5LbOC5c9EA" measurementUnit="Pixel">
+        <children xmi:type="notation:Node" xmi:id="_pl4_QII3Ee2U5LbOC5c9EA" type="2001" element="_pj5bMII3Ee2U5LbOC5c9EA">
+          <children xmi:type="notation:Node" xmi:id="_pl8CkII3Ee2U5LbOC5c9EA" type="5002">
+            <layoutConstraint xmi:type="notation:Location" xmi:id="_pl8CkYI3Ee2U5LbOC5c9EA" y="5"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_pl_s84I3Ee2U5LbOC5c9EA" type="3002" element="_pj6CQII3Ee2U5LbOC5c9EA">
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_pl_s9II3Ee2U5LbOC5c9EA" fontName="Cantarell"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_pl_s9YI3Ee2U5LbOC5c9EA"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_pl4_QYI3Ee2U5LbOC5c9EA" fontName="Cantarell" fontHeight="12" lineColor="0"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_pl4_QoI3Ee2U5LbOC5c9EA" x="224" y="163" width="30" height="30"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_pl93wII3Ee2U5LbOC5c9EA" type="2003" element="_pj7QYII3Ee2U5LbOC5c9EA">
+          <children xmi:type="notation:Node" xmi:id="_pl_F4II3Ee2U5LbOC5c9EA" type="5007"/>
+          <children xmi:type="notation:Node" xmi:id="_pl_s8II3Ee2U5LbOC5c9EA" type="7004">
+            <styles xmi:type="notation:SortingStyle" xmi:id="_pl_s8YI3Ee2U5LbOC5c9EA"/>
+            <styles xmi:type="notation:FilteringStyle" xmi:id="_pl_s8oI3Ee2U5LbOC5c9EA"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_pl93wYI3Ee2U5LbOC5c9EA" fontName="Cantarell" fontHeight="12"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_pl93woI3Ee2U5LbOC5c9EA" x="574" y="154"/>
+        </children>
+        <styles xmi:type="notation:DiagramStyle" xmi:id="_pj40IYI3Ee2U5LbOC5c9EA"/>
+        <edges xmi:type="notation:Edge" xmi:id="_pmBiIII3Ee2U5LbOC5c9EA" type="4001" element="_pj8egII3Ee2U5LbOC5c9EA" source="_pl4_QII3Ee2U5LbOC5c9EA" target="_pl93wII3Ee2U5LbOC5c9EA">
+          <children xmi:type="notation:Node" xmi:id="_pmCJMII3Ee2U5LbOC5c9EA" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_pmCJMYI3Ee2U5LbOC5c9EA" x="6" y="-16"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_pmCwQII3Ee2U5LbOC5c9EA" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_pmCwQYI3Ee2U5LbOC5c9EA" x="9" y="-2"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_pmDXUII3Ee2U5LbOC5c9EA" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_pmD-YII3Ee2U5LbOC5c9EA" x="18" y="-4"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_pmBiIYI3Ee2U5LbOC5c9EA"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_pmBiIoI3Ee2U5LbOC5c9EA" fontName="Cantarell" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_pmBiI4I3Ee2U5LbOC5c9EA" points="[15, -1, -324, 14]$[335, -15, -4, 0]"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_pmXgYYI3Ee2U5LbOC5c9EA" id="(0.10526315789473684,0.20512820512820512)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_pmYHcII3Ee2U5LbOC5c9EA" type="4001" element="_pl1U4II3Ee2U5LbOC5c9EA" source="_pl93wII3Ee2U5LbOC5c9EA" target="_pl4_QII3Ee2U5LbOC5c9EA">
+          <children xmi:type="notation:Node" xmi:id="_pmYHdII3Ee2U5LbOC5c9EA" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_pmYHdYI3Ee2U5LbOC5c9EA" x="-5" y="-14"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_pmYugII3Ee2U5LbOC5c9EA" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_pmYugYI3Ee2U5LbOC5c9EA" x="2" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_pmYugoI3Ee2U5LbOC5c9EA" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_pmYug4I3Ee2U5LbOC5c9EA" x="-1" y="-8"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_pmYHcYI3Ee2U5LbOC5c9EA"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_pmYHcoI3Ee2U5LbOC5c9EA" fontName="Cantarell" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_pmYHc4I3Ee2U5LbOC5c9EA" points="[-20, -1, 336, 12]$[-340, -13, 16, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_pmYuhII3Ee2U5LbOC5c9EA" id="(0.5263157894736842,1.0)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_pmYuhYI3Ee2U5LbOC5c9EA" id="(0.4666666666666667,0.8333333333333334)"/>
+        </edges>
+      </data>
+    </ownedAnnotationEntries>
+    <ownedAnnotationEntries xmi:type="description:AnnotationEntry" uid="_pl178II3Ee2U5LbOC5c9EA" source="DANNOTATION_CUSTOMIZATION_KEY">
+      <data xmi:type="diagram:ComputedStyleDescriptionRegistry" uid="_pl178YI3Ee2U5LbOC5c9EA"/>
+    </ownedAnnotationEntries>
+    <ownedDiagramElements xmi:type="diagram:DNode" uid="_pj5bMII3Ee2U5LbOC5c9EA" outgoingEdges="_pj8egII3Ee2U5LbOC5c9EA" incomingEdges="_pl1U4II3Ee2U5LbOC5c9EA" width="3" height="3" resizeKind="NSEW">
+      <target xmi:type="statemachine:InitialState" href="model/pts.statemachine#//@states.0"/>
+      <semanticElements xmi:type="statemachine:InitialState" href="model/pts.statemachine#//@states.0"/>
+      <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+      <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+      <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+      <ownedStyle xmi:type="diagram:Dot" uid="_pj6CQII3Ee2U5LbOC5c9EA" labelSize="12" showIcon="false" labelPosition="node" backgroundColor="0,0,0">
+        <customFeatures>labelSize</customFeatures>
+        <customFeatures>borderColor</customFeatures>
+        <description xmi:type="style:DotDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@nodeMappings[name='InitialState']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@nodeMappings[name='InitialState']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_pj7QYII3Ee2U5LbOC5c9EA" name="On" outgoingEdges="_pl1U4II3Ee2U5LbOC5c9EA" incomingEdges="_pj8egII3Ee2U5LbOC5c9EA">
+      <target xmi:type="statemachine:State" href="model/pts.statemachine#//@states.1"/>
+      <semanticElements xmi:type="statemachine:State" href="model/pts.statemachine#//@states.1"/>
+      <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+      <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+      <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_pj73cII3Ee2U5LbOC5c9EA" labelSize="12" showIcon="false" borderSize="1" borderSizeComputationExpression="1" foregroundColor="255,255,255">
+        <customFeatures>labelSize</customFeatures>
+        <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@containerMappings[name='State']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@containerMappings[name='State']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_pj8egII3Ee2U5LbOC5c9EA" name=" [Turn on]" sourceNode="_pj5bMII3Ee2U5LbOC5c9EA" targetNode="_pj7QYII3Ee2U5LbOC5c9EA">
+      <target xmi:type="statemachine:Transition" href="model/pts.statemachine#//@transitions.0"/>
+      <semanticElements xmi:type="statemachine:Transition" href="model/pts.statemachine#//@transitions.0"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_pj9FkII3Ee2U5LbOC5c9EA" size="2" strokeColor="0,0,0">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@edgeMappings[name='Transition']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_pj9FkYI3Ee2U5LbOC5c9EA" labelSize="12" showIcon="false">
+          <customFeatures>labelSize</customFeatures>
+        </centerLabelStyle>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@edgeMappings[name='Transition']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_pl1U4II3Ee2U5LbOC5c9EA" name=" [Turn off]" sourceNode="_pj7QYII3Ee2U5LbOC5c9EA" targetNode="_pj5bMII3Ee2U5LbOC5c9EA">
+      <target xmi:type="statemachine:Transition" href="model/pts.statemachine#//@transitions.1"/>
+      <semanticElements xmi:type="statemachine:Transition" href="model/pts.statemachine#//@transitions.1"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_pl1U4YI3Ee2U5LbOC5c9EA" size="2" strokeColor="0,0,0">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@edgeMappings[name='Transition']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_pl1U4oI3Ee2U5LbOC5c9EA" labelSize="12" showIcon="false">
+          <customFeatures>labelSize</customFeatures>
+        </centerLabelStyle>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@edgeMappings[name='Transition']"/>
+    </ownedDiagramElements>
+    <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']"/>
+    <filterVariableHistory xmi:type="diagram:FilterVariableHistory" uid="_pjvqMII3Ee2U5LbOC5c9EA"/>
+    <activatedLayers xmi:type="description_1:Layer" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer"/>
+    <target xmi:type="statemachine:StateMachine" href="model/pts.statemachine#/"/>
+  </diagram:DSemanticDiagram>
+  <diagram:DSemanticDiagram uid="_YyOYUII4Ee2U5LbOC5c9EA">
+    <ownedAnnotationEntries xmi:type="description:AnnotationEntry" uid="_YyQNgII4Ee2U5LbOC5c9EA" source="GMF_DIAGRAMS">
+      <data xmi:type="notation:Diagram" xmi:id="_YyQNgYI4Ee2U5LbOC5c9EA" type="Sirius" element="_YyOYUII4Ee2U5LbOC5c9EA" measurementUnit="Pixel">
+        <children xmi:type="notation:Node" xmi:id="_YyfeEII4Ee2U5LbOC5c9EA" type="2002" element="_YyQ0kII4Ee2U5LbOC5c9EA">
+          <children xmi:type="notation:Node" xmi:id="_YygFIII4Ee2U5LbOC5c9EA" type="5006"/>
+          <children xmi:type="notation:Node" xmi:id="_YygsMII4Ee2U5LbOC5c9EA" type="7001">
+            <children xmi:type="notation:Node" xmi:id="_Yyh6UII4Ee2U5LbOC5c9EA" type="3009" element="_YyTQ0II4Ee2U5LbOC5c9EA">
+              <children xmi:type="notation:Node" xmi:id="_YyihYII4Ee2U5LbOC5c9EA" visible="false" type="5004"/>
+              <children xmi:type="notation:Node" xmi:id="_YyjIcII4Ee2U5LbOC5c9EA" type="7003">
+                <styles xmi:type="notation:SortingStyle" xmi:id="_YyjIcYI4Ee2U5LbOC5c9EA"/>
+                <styles xmi:type="notation:FilteringStyle" xmi:id="_YyjIcoI4Ee2U5LbOC5c9EA"/>
+                <styles xmi:type="notation:DrawerStyle" xmi:id="_YyjIc4I4Ee2U5LbOC5c9EA"/>
+              </children>
+              <styles xmi:type="notation:ShapeStyle" xmi:id="_Yyh6UYI4Ee2U5LbOC5c9EA" fontName="Cantarell" fontHeight="8"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Yyh6UoI4Ee2U5LbOC5c9EA"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_YyjIdII4Ee2U5LbOC5c9EA" type="3009" element="_YyVGAII4Ee2U5LbOC5c9EA">
+              <children xmi:type="notation:Node" xmi:id="_YyjvgII4Ee2U5LbOC5c9EA" visible="false" type="5004"/>
+              <children xmi:type="notation:Node" xmi:id="_YyjvgYI4Ee2U5LbOC5c9EA" type="7003">
+                <children xmi:type="notation:Node" xmi:id="_YykWkII4Ee2U5LbOC5c9EA" type="3010" element="_YyVtEYI4Ee2U5LbOC5c9EA">
+                  <styles xmi:type="notation:FontStyle" xmi:id="_YykWkYI4Ee2U5LbOC5c9EA" fontName="Cantarell" fontHeight="12"/>
+                  <layoutConstraint xmi:type="notation:Location" xmi:id="_YykWkoI4Ee2U5LbOC5c9EA"/>
+                </children>
+                <styles xmi:type="notation:SortingStyle" xmi:id="_YyjvgoI4Ee2U5LbOC5c9EA"/>
+                <styles xmi:type="notation:FilteringStyle" xmi:id="_Yyjvg4I4Ee2U5LbOC5c9EA"/>
+                <styles xmi:type="notation:DrawerStyle" xmi:id="_YyjvhII4Ee2U5LbOC5c9EA"/>
+              </children>
+              <styles xmi:type="notation:ShapeStyle" xmi:id="_YyjIdYI4Ee2U5LbOC5c9EA" fontName="Cantarell" fontHeight="8"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_YyjIdoI4Ee2U5LbOC5c9EA" y="40"/>
+            </children>
+            <styles xmi:type="notation:SortingStyle" xmi:id="_YygsMYI4Ee2U5LbOC5c9EA"/>
+            <styles xmi:type="notation:FilteringStyle" xmi:id="_YygsMoI4Ee2U5LbOC5c9EA"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_YyfeEYI4Ee2U5LbOC5c9EA" fontName="Cantarell" fontHeight="12"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_YyfeEoI4Ee2U5LbOC5c9EA" x="308" y="28"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_YygsM4I4Ee2U5LbOC5c9EA" type="2002" element="_YyRboYI4Ee2U5LbOC5c9EA">
+          <children xmi:type="notation:Node" xmi:id="_YyhTQII4Ee2U5LbOC5c9EA" type="5006"/>
+          <children xmi:type="notation:Node" xmi:id="_YyhTQYI4Ee2U5LbOC5c9EA" type="7001">
+            <children xmi:type="notation:Node" xmi:id="_Yyk9oII4Ee2U5LbOC5c9EA" type="3009" element="_YyYwYYI4Ee2U5LbOC5c9EA">
+              <children xmi:type="notation:Node" xmi:id="_Yyk9o4I4Ee2U5LbOC5c9EA" visible="false" type="5004"/>
+              <children xmi:type="notation:Node" xmi:id="_YylksII4Ee2U5LbOC5c9EA" type="7003">
+                <styles xmi:type="notation:SortingStyle" xmi:id="_YylksYI4Ee2U5LbOC5c9EA"/>
+                <styles xmi:type="notation:FilteringStyle" xmi:id="_YylksoI4Ee2U5LbOC5c9EA"/>
+                <styles xmi:type="notation:DrawerStyle" xmi:id="_Yylks4I4Ee2U5LbOC5c9EA"/>
+              </children>
+              <styles xmi:type="notation:ShapeStyle" xmi:id="_Yyk9oYI4Ee2U5LbOC5c9EA" fontName="Cantarell" fontHeight="8"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Yyk9ooI4Ee2U5LbOC5c9EA" width="83"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_YylktII4Ee2U5LbOC5c9EA" type="3009" element="_YyZ-gII4Ee2U5LbOC5c9EA">
+              <children xmi:type="notation:Node" xmi:id="_Yylkt4I4Ee2U5LbOC5c9EA" visible="false" type="5004"/>
+              <children xmi:type="notation:Node" xmi:id="_YymLwII4Ee2U5LbOC5c9EA" type="7003">
+                <styles xmi:type="notation:SortingStyle" xmi:id="_YymLwYI4Ee2U5LbOC5c9EA"/>
+                <styles xmi:type="notation:FilteringStyle" xmi:id="_YymLwoI4Ee2U5LbOC5c9EA"/>
+                <styles xmi:type="notation:DrawerStyle" xmi:id="_YymLw4I4Ee2U5LbOC5c9EA"/>
+              </children>
+              <styles xmi:type="notation:ShapeStyle" xmi:id="_YylktYI4Ee2U5LbOC5c9EA" fontName="Cantarell" fontHeight="8"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_YylktoI4Ee2U5LbOC5c9EA" y="40" width="83" height="64"/>
+            </children>
+            <styles xmi:type="notation:SortingStyle" xmi:id="_YyhTQoI4Ee2U5LbOC5c9EA"/>
+            <styles xmi:type="notation:FilteringStyle" xmi:id="_YyhTQ4I4Ee2U5LbOC5c9EA"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_YygsNII4Ee2U5LbOC5c9EA" fontName="Cantarell" fontHeight="12"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_YygsNYI4Ee2U5LbOC5c9EA" x="210" y="210"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_YyhTRII4Ee2U5LbOC5c9EA" type="2002" element="_YyRbpII4Ee2U5LbOC5c9EA">
+          <children xmi:type="notation:Node" xmi:id="_YyhTR4I4Ee2U5LbOC5c9EA" type="5006"/>
+          <children xmi:type="notation:Node" xmi:id="_YyhTSII4Ee2U5LbOC5c9EA" type="7001">
+            <children xmi:type="notation:Node" xmi:id="_YymLxII4Ee2U5LbOC5c9EA" type="3009" element="_YyZ-hII4Ee2U5LbOC5c9EA">
+              <children xmi:type="notation:Node" xmi:id="_Yymy0II4Ee2U5LbOC5c9EA" visible="false" type="5004"/>
+              <children xmi:type="notation:Node" xmi:id="_Yymy0YI4Ee2U5LbOC5c9EA" type="7003">
+                <styles xmi:type="notation:SortingStyle" xmi:id="_Yymy0oI4Ee2U5LbOC5c9EA"/>
+                <styles xmi:type="notation:FilteringStyle" xmi:id="_Yymy04I4Ee2U5LbOC5c9EA"/>
+                <styles xmi:type="notation:DrawerStyle" xmi:id="_Yymy1II4Ee2U5LbOC5c9EA"/>
+              </children>
+              <styles xmi:type="notation:ShapeStyle" xmi:id="_YymLxYI4Ee2U5LbOC5c9EA" fontName="Cantarell" fontHeight="8"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_YymLxoI4Ee2U5LbOC5c9EA" width="83"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_Yymy1YI4Ee2U5LbOC5c9EA" type="3009" element="_YybMoII4Ee2U5LbOC5c9EA">
+              <children xmi:type="notation:Node" xmi:id="_YynZ4II4Ee2U5LbOC5c9EA" visible="false" type="5004"/>
+              <children xmi:type="notation:Node" xmi:id="_YynZ4YI4Ee2U5LbOC5c9EA" type="7003">
+                <styles xmi:type="notation:SortingStyle" xmi:id="_YynZ4oI4Ee2U5LbOC5c9EA"/>
+                <styles xmi:type="notation:FilteringStyle" xmi:id="_YynZ44I4Ee2U5LbOC5c9EA"/>
+                <styles xmi:type="notation:DrawerStyle" xmi:id="_YynZ5II4Ee2U5LbOC5c9EA"/>
+              </children>
+              <styles xmi:type="notation:ShapeStyle" xmi:id="_Yymy1oI4Ee2U5LbOC5c9EA" fontName="Cantarell" fontHeight="8"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Yymy14I4Ee2U5LbOC5c9EA" y="40" width="83"/>
+            </children>
+            <styles xmi:type="notation:SortingStyle" xmi:id="_YyhTSYI4Ee2U5LbOC5c9EA"/>
+            <styles xmi:type="notation:FilteringStyle" xmi:id="_YyhTSoI4Ee2U5LbOC5c9EA"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_YyhTRYI4Ee2U5LbOC5c9EA" fontName="Cantarell" fontHeight="12"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_YyhTRoI4Ee2U5LbOC5c9EA" x="462" y="210"/>
+        </children>
+        <styles xmi:type="notation:DiagramStyle" xmi:id="_YyQNgoI4Ee2U5LbOC5c9EA"/>
+        <edges xmi:type="notation:Edge" xmi:id="_YyoA8II4Ee2U5LbOC5c9EA" type="4001" element="_YycawII4Ee2U5LbOC5c9EA" source="_YygsM4I4Ee2U5LbOC5c9EA" target="_YyfeEII4Ee2U5LbOC5c9EA">
+          <children xmi:type="notation:Node" xmi:id="_YyoA9II4Ee2U5LbOC5c9EA" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_YyoA9YI4Ee2U5LbOC5c9EA" x="-1" y="-8"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_YyoA9oI4Ee2U5LbOC5c9EA" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_YyoA94I4Ee2U5LbOC5c9EA" x="-3" y="6"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_YyooAII4Ee2U5LbOC5c9EA" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_YyooAYI4Ee2U5LbOC5c9EA" x="-1" y="6"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_YyoA8YI4Ee2U5LbOC5c9EA"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_YyoA8oI4Ee2U5LbOC5c9EA" fontName="Cantarell" fontHeight="8"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_YyoA84I4Ee2U5LbOC5c9EA" points="[0, 0, -140, 66]$[140, -66, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_YypPEII4Ee2U5LbOC5c9EA" id="(0.28235294117647053,0.0)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_YypPEYI4Ee2U5LbOC5c9EA" id="(0.5056179775280899,1.0)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_YypPEoI4Ee2U5LbOC5c9EA" type="4001" element="_YydB0oI4Ee2U5LbOC5c9EA" source="_YyhTRII4Ee2U5LbOC5c9EA" target="_YyfeEII4Ee2U5LbOC5c9EA">
+          <children xmi:type="notation:Node" xmi:id="_YypPFoI4Ee2U5LbOC5c9EA" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_YypPF4I4Ee2U5LbOC5c9EA" x="-10" y="-3"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_Yyp2III4Ee2U5LbOC5c9EA" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Yyp2IYI4Ee2U5LbOC5c9EA" x="12" y="4"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_Yyp2IoI4Ee2U5LbOC5c9EA" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Yyp2I4I4Ee2U5LbOC5c9EA" x="16" y="3"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_YypPE4I4Ee2U5LbOC5c9EA"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_YypPFII4Ee2U5LbOC5c9EA" fontName="Cantarell" fontHeight="8"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_YypPFYI4Ee2U5LbOC5c9EA" points="[0, 0, 110, 66]$[-110, -66, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Yyp2JII4Ee2U5LbOC5c9EA" id="(0.25882352941176473,0.0)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Yyp2JYI4Ee2U5LbOC5c9EA" id="(0.5056179775280899,1.0)"/>
+        </edges>
+      </data>
+    </ownedAnnotationEntries>
+    <ownedAnnotationEntries xmi:type="description:AnnotationEntry" uid="_Yydo4oI4Ee2U5LbOC5c9EA" source="DANNOTATION_CUSTOMIZATION_KEY">
+      <data xmi:type="diagram:ComputedStyleDescriptionRegistry" uid="_Yydo44I4Ee2U5LbOC5c9EA"/>
+    </ownedAnnotationEntries>
+    <ownedDiagramElements xmi:type="diagram:DNodeContainer" uid="_YyQ0kII4Ee2U5LbOC5c9EA" name="Security Device" incomingEdges="_YycawII4Ee2U5LbOC5c9EA _YydB0oI4Ee2U5LbOC5c9EA" childrenPresentation="VerticalStack">
+      <target xmi:type="classdiagram:Class" href="model/vss.classdiagram#//@classes.0"/>
+      <semanticElements xmi:type="classdiagram:Class" href="model/vss.classdiagram#//@classes.0"/>
+      <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+      <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+      <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_YyQ0kYI4Ee2U5LbOC5c9EA" labelSize="12" showIcon="false" borderSize="1" borderSizeComputationExpression="1" foregroundColor="255,255,255">
+        <customFeatures>labelSize</customFeatures>
+        <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.classdiagram.design/description/classdiagram.odesign#//@ownedViewpoints[name='ClassDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_ClassDiagram']/@defaultLayer/@containerMappings[name='Class']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.classdiagram.design/description/classdiagram.odesign#//@ownedViewpoints[name='ClassDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_ClassDiagram']/@defaultLayer/@containerMappings[name='Class']"/>
+      <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_YyTQ0II4Ee2U5LbOC5c9EA" name="Attributes:">
+        <target xmi:type="classdiagram:Class" href="model/vss.classdiagram#//@classes.0"/>
+        <semanticElements xmi:type="classdiagram:Class" href="model/vss.classdiagram#//@classes.0"/>
+        <graphicalFilters xmi:type="diagram:HideLabelFilter" uid="_YyUe8II4Ee2U5LbOC5c9EA"/>
+        <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_YyT34II4Ee2U5LbOC5c9EA" showIcon="false" labelAlignment="LEFT" borderSize="1" borderSizeComputationExpression="1" hideLabelByDefault="true" foregroundColor="255,255,255">
+          <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.classdiagram.design/description/classdiagram.odesign#//@ownedViewpoints[name='ClassDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_ClassDiagram']/@defaultLayer/@containerMappings[name='Class']/@subContainerMappings[name='AttributeContainer']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.classdiagram.design/description/classdiagram.odesign#//@ownedViewpoints[name='ClassDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_ClassDiagram']/@defaultLayer/@containerMappings[name='Class']/@subContainerMappings[name='AttributeContainer']"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_YyVGAII4Ee2U5LbOC5c9EA" name="Operations:">
+        <target xmi:type="classdiagram:Class" href="model/vss.classdiagram#//@classes.0"/>
+        <semanticElements xmi:type="classdiagram:Class" href="model/vss.classdiagram#//@classes.0"/>
+        <graphicalFilters xmi:type="diagram:HideLabelFilter" uid="_YyVtEII4Ee2U5LbOC5c9EA"/>
+        <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_YyVGAYI4Ee2U5LbOC5c9EA" showIcon="false" labelAlignment="LEFT" borderSize="1" borderSizeComputationExpression="1" hideLabelByDefault="true" foregroundColor="255,255,255">
+          <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.classdiagram.design/description/classdiagram.odesign#//@ownedViewpoints[name='ClassDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_ClassDiagram']/@defaultLayer/@containerMappings[name='Class']/@subContainerMappings[name='OperationContainer']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.classdiagram.design/description/classdiagram.odesign#//@ownedViewpoints[name='ClassDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_ClassDiagram']/@defaultLayer/@containerMappings[name='Class']/@subContainerMappings[name='OperationContainer']"/>
+        <ownedElements xmi:type="diagram:DNodeListElement" uid="_YyVtEYI4Ee2U5LbOC5c9EA" name="- raiseAlarm()">
+          <target xmi:type="classdiagram:Operation" href="model/vss.classdiagram#//@classes.0/@ownedOperations.0"/>
+          <semanticElements xmi:type="classdiagram:Operation" href="model/vss.classdiagram#//@classes.0/@ownedOperations.0"/>
+          <ownedStyle xmi:type="diagram:Square" uid="_YyYwYII4Ee2U5LbOC5c9EA" labelSize="12" showIcon="false" labelAlignment="LEFT" labelPosition="node">
+            <customFeatures>labelSize</customFeatures>
+            <description xmi:type="style:SquareDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.classdiagram.design/description/classdiagram.odesign#//@ownedViewpoints[name='ClassDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_ClassDiagram']/@defaultLayer/@containerMappings[name='Class']/@subContainerMappings[name='OperationContainer']/@subNodeMappings[name='Operation']/@style"/>
+          </ownedStyle>
+          <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.classdiagram.design/description/classdiagram.odesign#//@ownedViewpoints[name='ClassDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_ClassDiagram']/@defaultLayer/@containerMappings[name='Class']/@subContainerMappings[name='OperationContainer']/@subNodeMappings[name='Operation']"/>
+        </ownedElements>
+      </ownedDiagramElements>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DNodeContainer" uid="_YyRboYI4Ee2U5LbOC5c9EA" name="Camera" outgoingEdges="_YycawII4Ee2U5LbOC5c9EA" childrenPresentation="VerticalStack">
+      <target xmi:type="classdiagram:Class" href="model/vss.classdiagram#//@classes.1"/>
+      <semanticElements xmi:type="classdiagram:Class" href="model/vss.classdiagram#//@classes.1"/>
+      <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+      <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+      <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_YyRbooI4Ee2U5LbOC5c9EA" labelSize="12" showIcon="false" borderSize="1" borderSizeComputationExpression="1" foregroundColor="255,255,255">
+        <customFeatures>labelSize</customFeatures>
+        <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.classdiagram.design/description/classdiagram.odesign#//@ownedViewpoints[name='ClassDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_ClassDiagram']/@defaultLayer/@containerMappings[name='Class']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.classdiagram.design/description/classdiagram.odesign#//@ownedViewpoints[name='ClassDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_ClassDiagram']/@defaultLayer/@containerMappings[name='Class']"/>
+      <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_YyYwYYI4Ee2U5LbOC5c9EA" name="Attributes:">
+        <target xmi:type="classdiagram:Class" href="model/vss.classdiagram#//@classes.1"/>
+        <semanticElements xmi:type="classdiagram:Class" href="model/vss.classdiagram#//@classes.1"/>
+        <graphicalFilters xmi:type="diagram:HideLabelFilter" uid="_YyZXcoI4Ee2U5LbOC5c9EA"/>
+        <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_YyZXcII4Ee2U5LbOC5c9EA" showIcon="false" labelAlignment="LEFT" borderSize="1" borderSizeComputationExpression="1" hideLabelByDefault="true" foregroundColor="255,255,255">
+          <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.classdiagram.design/description/classdiagram.odesign#//@ownedViewpoints[name='ClassDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_ClassDiagram']/@defaultLayer/@containerMappings[name='Class']/@subContainerMappings[name='AttributeContainer']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.classdiagram.design/description/classdiagram.odesign#//@ownedViewpoints[name='ClassDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_ClassDiagram']/@defaultLayer/@containerMappings[name='Class']/@subContainerMappings[name='AttributeContainer']"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_YyZ-gII4Ee2U5LbOC5c9EA" name="Operations:">
+        <target xmi:type="classdiagram:Class" href="model/vss.classdiagram#//@classes.1"/>
+        <semanticElements xmi:type="classdiagram:Class" href="model/vss.classdiagram#//@classes.1"/>
+        <graphicalFilters xmi:type="diagram:HideLabelFilter" uid="_YyZ-g4I4Ee2U5LbOC5c9EA"/>
+        <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_YyZ-gYI4Ee2U5LbOC5c9EA" showIcon="false" labelAlignment="LEFT" borderSize="1" borderSizeComputationExpression="1" hideLabelByDefault="true" foregroundColor="255,255,255">
+          <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.classdiagram.design/description/classdiagram.odesign#//@ownedViewpoints[name='ClassDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_ClassDiagram']/@defaultLayer/@containerMappings[name='Class']/@subContainerMappings[name='OperationContainer']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.classdiagram.design/description/classdiagram.odesign#//@ownedViewpoints[name='ClassDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_ClassDiagram']/@defaultLayer/@containerMappings[name='Class']/@subContainerMappings[name='OperationContainer']"/>
+      </ownedDiagramElements>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DNodeContainer" uid="_YyRbpII4Ee2U5LbOC5c9EA" name="Motion Sensor" outgoingEdges="_YydB0oI4Ee2U5LbOC5c9EA" childrenPresentation="VerticalStack">
+      <target xmi:type="classdiagram:Class" href="model/vss.classdiagram#//@classes.2"/>
+      <semanticElements xmi:type="classdiagram:Class" href="model/vss.classdiagram#//@classes.2"/>
+      <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+      <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+      <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_YyRbpYI4Ee2U5LbOC5c9EA" labelSize="12" showIcon="false" borderSize="1" borderSizeComputationExpression="1" foregroundColor="255,255,255">
+        <customFeatures>labelSize</customFeatures>
+        <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.classdiagram.design/description/classdiagram.odesign#//@ownedViewpoints[name='ClassDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_ClassDiagram']/@defaultLayer/@containerMappings[name='Class']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.classdiagram.design/description/classdiagram.odesign#//@ownedViewpoints[name='ClassDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_ClassDiagram']/@defaultLayer/@containerMappings[name='Class']"/>
+      <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_YyZ-hII4Ee2U5LbOC5c9EA" name="Attributes:">
+        <target xmi:type="classdiagram:Class" href="model/vss.classdiagram#//@classes.2"/>
+        <semanticElements xmi:type="classdiagram:Class" href="model/vss.classdiagram#//@classes.2"/>
+        <graphicalFilters xmi:type="diagram:HideLabelFilter" uid="_YyalkoI4Ee2U5LbOC5c9EA"/>
+        <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_YyalkII4Ee2U5LbOC5c9EA" showIcon="false" labelAlignment="LEFT" borderSize="1" borderSizeComputationExpression="1" hideLabelByDefault="true" foregroundColor="255,255,255">
+          <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.classdiagram.design/description/classdiagram.odesign#//@ownedViewpoints[name='ClassDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_ClassDiagram']/@defaultLayer/@containerMappings[name='Class']/@subContainerMappings[name='AttributeContainer']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.classdiagram.design/description/classdiagram.odesign#//@ownedViewpoints[name='ClassDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_ClassDiagram']/@defaultLayer/@containerMappings[name='Class']/@subContainerMappings[name='AttributeContainer']"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_YybMoII4Ee2U5LbOC5c9EA" name="Operations:">
+        <target xmi:type="classdiagram:Class" href="model/vss.classdiagram#//@classes.2"/>
+        <semanticElements xmi:type="classdiagram:Class" href="model/vss.classdiagram#//@classes.2"/>
+        <graphicalFilters xmi:type="diagram:HideLabelFilter" uid="_YybMo4I4Ee2U5LbOC5c9EA"/>
+        <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_YybMoYI4Ee2U5LbOC5c9EA" showIcon="false" labelAlignment="LEFT" borderSize="1" borderSizeComputationExpression="1" hideLabelByDefault="true" foregroundColor="255,255,255">
+          <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.classdiagram.design/description/classdiagram.odesign#//@ownedViewpoints[name='ClassDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_ClassDiagram']/@defaultLayer/@containerMappings[name='Class']/@subContainerMappings[name='OperationContainer']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.classdiagram.design/description/classdiagram.odesign#//@ownedViewpoints[name='ClassDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_ClassDiagram']/@defaultLayer/@containerMappings[name='Class']/@subContainerMappings[name='OperationContainer']"/>
+      </ownedDiagramElements>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_YycawII4Ee2U5LbOC5c9EA" sourceNode="_YyRboYI4Ee2U5LbOC5c9EA" targetNode="_YyQ0kII4Ee2U5LbOC5c9EA">
+      <target xmi:type="classdiagram:Class" href="model/vss.classdiagram#//@classes.1"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_YycawYI4Ee2U5LbOC5c9EA" targetArrow="InputClosedArrow" size="2">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.classdiagram.design/description/classdiagram.odesign#//@ownedViewpoints[name='ClassDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_ClassDiagram']/@defaultLayer/@edgeMappings[name='Superclass']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_YycawoI4Ee2U5LbOC5c9EA"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.classdiagram.design/description/classdiagram.odesign#//@ownedViewpoints[name='ClassDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_ClassDiagram']/@defaultLayer/@edgeMappings[name='Superclass']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_YydB0oI4Ee2U5LbOC5c9EA" sourceNode="_YyRbpII4Ee2U5LbOC5c9EA" targetNode="_YyQ0kII4Ee2U5LbOC5c9EA">
+      <target xmi:type="classdiagram:Class" href="model/vss.classdiagram#//@classes.2"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_YydB04I4Ee2U5LbOC5c9EA" targetArrow="InputClosedArrow" size="2">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.classdiagram.design/description/classdiagram.odesign#//@ownedViewpoints[name='ClassDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_ClassDiagram']/@defaultLayer/@edgeMappings[name='Superclass']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_YydB1II4Ee2U5LbOC5c9EA"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.classdiagram.design/description/classdiagram.odesign#//@ownedViewpoints[name='ClassDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_ClassDiagram']/@defaultLayer/@edgeMappings[name='Superclass']"/>
+    </ownedDiagramElements>
+    <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.classdiagram.design/description/classdiagram.odesign#//@ownedViewpoints[name='ClassDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_ClassDiagram']"/>
+    <filterVariableHistory xmi:type="diagram:FilterVariableHistory" uid="_YyOYUYI4Ee2U5LbOC5c9EA"/>
+    <activatedLayers xmi:type="description_1:Layer" href="platform:/plugin/edu.toronto.cs.se.modelepedia.classdiagram.design/description/classdiagram.odesign#//@ownedViewpoints[name='ClassDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_ClassDiagram']/@defaultLayer"/>
+    <target xmi:type="classdiagram:ClassDiagram" href="model/vss.classdiagram#/"/>
   </diagram:DSemanticDiagram>
 </xmi:XMI>
