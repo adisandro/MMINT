@@ -17,6 +17,7 @@ package scico23;
 import edu.toronto.cs.se.mmint.types.lts.State;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Objects;
@@ -27,7 +28,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.viatra.query.runtime.api.IPatternMatch;
 import org.eclipse.viatra.query.runtime.api.IQuerySpecification;
 import org.eclipse.viatra.query.runtime.api.ViatraQueryEngine;
@@ -36,14 +36,13 @@ import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedEMFQuerySpecificat
 import org.eclipse.viatra.query.runtime.api.impl.BaseMatcher;
 import org.eclipse.viatra.query.runtime.api.impl.BasePatternMatch;
 import org.eclipse.viatra.query.runtime.emf.types.EClassTransitiveInstancesKey;
-import org.eclipse.viatra.query.runtime.emf.types.EDataTypeInSlotsKey;
 import org.eclipse.viatra.query.runtime.emf.types.EStructuralFeatureInstancesKey;
 import org.eclipse.viatra.query.runtime.matchers.backend.QueryEvaluationHint;
 import org.eclipse.viatra.query.runtime.matchers.psystem.PBody;
 import org.eclipse.viatra.query.runtime.matchers.psystem.PVariable;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.Equality;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.ExportedParameter;
-import org.eclipse.viatra.query.runtime.matchers.psystem.basicenumerables.ConstantValue;
+import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.NegativePatternCall;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicenumerables.TypeConstraint;
 import org.eclipse.viatra.query.runtime.matchers.psystem.queries.PParameter;
 import org.eclipse.viatra.query.runtime.matchers.psystem.queries.PParameterDirection;
@@ -57,8 +56,8 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 
  * <p>Original source:
  *         <code><pre>
- *         pattern damaged(state: State) {
- *           State.label(state, "Damaged");
+ *         pattern noOutgoingTransitions(state: State) {
+ *           neg State.outgoing(state, _);
  *         }
  * </pre></code>
  * 
@@ -67,9 +66,9 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 
  */
 @SuppressWarnings("all")
-public final class Damaged extends BaseGeneratedEMFQuerySpecification<Damaged.Matcher> {
+public final class NoOutgoingTransitions extends BaseGeneratedEMFQuerySpecification<NoOutgoingTransitions.Matcher> {
   /**
-   * Pattern-specific match representation of the scico23.damaged pattern,
+   * Pattern-specific match representation of the scico23.noOutgoingTransitions pattern,
    * to be used in conjunction with {@link Matcher}.
    * 
    * <p>Class fields correspond to parameters of the pattern. Fields with value null are considered unassigned.
@@ -126,12 +125,12 @@ public final class Damaged extends BaseGeneratedEMFQuerySpecification<Damaged.Ma
 
     @Override
     public String patternName() {
-      return "scico23.damaged";
+      return "scico23.noOutgoingTransitions";
     }
 
     @Override
     public List<String> parameterNames() {
-      return Damaged.Match.parameterNames;
+      return NoOutgoingTransitions.Match.parameterNames;
     }
 
     @Override
@@ -140,7 +139,7 @@ public final class Damaged extends BaseGeneratedEMFQuerySpecification<Damaged.Ma
     }
 
     @Override
-    public Damaged.Match toImmutable() {
+    public NoOutgoingTransitions.Match toImmutable() {
       return isMutable() ? newMatch(fState) : this;
     }
 
@@ -163,8 +162,8 @@ public final class Damaged extends BaseGeneratedEMFQuerySpecification<Damaged.Ma
       if (obj == null) {
           return false;
       }
-      if ((obj instanceof Damaged.Match)) {
-          Damaged.Match other = (Damaged.Match) obj;
+      if ((obj instanceof NoOutgoingTransitions.Match)) {
+          NoOutgoingTransitions.Match other = (NoOutgoingTransitions.Match) obj;
           return Objects.equals(fState, other.fState);
       } else {
           // this should be infrequent
@@ -177,8 +176,8 @@ public final class Damaged extends BaseGeneratedEMFQuerySpecification<Damaged.Ma
     }
 
     @Override
-    public Damaged specification() {
-      return Damaged.instance();
+    public NoOutgoingTransitions specification() {
+      return NoOutgoingTransitions.instance();
     }
 
     /**
@@ -188,7 +187,7 @@ public final class Damaged extends BaseGeneratedEMFQuerySpecification<Damaged.Ma
      * @return the empty match.
      * 
      */
-    public static Damaged.Match newEmptyMatch() {
+    public static NoOutgoingTransitions.Match newEmptyMatch() {
       return new Mutable(null);
     }
 
@@ -200,7 +199,7 @@ public final class Damaged extends BaseGeneratedEMFQuerySpecification<Damaged.Ma
      * @return the new, mutable (partial) match object.
      * 
      */
-    public static Damaged.Match newMutableMatch(final State pState) {
+    public static NoOutgoingTransitions.Match newMutableMatch(final State pState) {
       return new Mutable(pState);
     }
 
@@ -212,11 +211,11 @@ public final class Damaged extends BaseGeneratedEMFQuerySpecification<Damaged.Ma
      * @return the (partial) match object.
      * 
      */
-    public static Damaged.Match newMatch(final State pState) {
+    public static NoOutgoingTransitions.Match newMatch(final State pState) {
       return new Immutable(pState);
     }
 
-    private static final class Mutable extends Damaged.Match {
+    private static final class Mutable extends NoOutgoingTransitions.Match {
       Mutable(final State pState) {
         super(pState);
       }
@@ -227,7 +226,7 @@ public final class Damaged extends BaseGeneratedEMFQuerySpecification<Damaged.Ma
       }
     }
 
-    private static final class Immutable extends Damaged.Match {
+    private static final class Immutable extends NoOutgoingTransitions.Match {
       Immutable(final State pState) {
         super(pState);
       }
@@ -240,7 +239,7 @@ public final class Damaged extends BaseGeneratedEMFQuerySpecification<Damaged.Ma
   }
 
   /**
-   * Generated pattern matcher API of the scico23.damaged pattern,
+   * Generated pattern matcher API of the scico23.noOutgoingTransitions pattern,
    * providing pattern-specific query methods.
    * 
    * <p>Use the pattern matcher on a given model via {@link #on(ViatraQueryEngine)},
@@ -250,16 +249,16 @@ public final class Damaged extends BaseGeneratedEMFQuerySpecification<Damaged.Ma
    * 
    * <p>Original source:
    * <code><pre>
-   * pattern damaged(state: State) {
-   *   State.label(state, "Damaged");
+   * pattern noOutgoingTransitions(state: State) {
+   *   neg State.outgoing(state, _);
    * }
    * </pre></code>
    * 
    * @see Match
-   * @see Damaged
+   * @see NoOutgoingTransitions
    * 
    */
-  public static class Matcher extends BaseMatcher<Damaged.Match> {
+  public static class Matcher extends BaseMatcher<NoOutgoingTransitions.Match> {
     /**
      * Initializes the pattern matcher within an existing VIATRA Query engine.
      * If the pattern matcher is already constructed in the engine, only a light-weight reference is returned.
@@ -268,7 +267,7 @@ public final class Damaged extends BaseGeneratedEMFQuerySpecification<Damaged.Ma
      * @throws ViatraQueryRuntimeException if an error occurs during pattern matcher creation
      * 
      */
-    public static Damaged.Matcher on(final ViatraQueryEngine engine) {
+    public static NoOutgoingTransitions.Matcher on(final ViatraQueryEngine engine) {
       // check if matcher already exists
       Matcher matcher = engine.getExistingMatcher(querySpecification());
       if (matcher == null) {
@@ -283,13 +282,13 @@ public final class Damaged extends BaseGeneratedEMFQuerySpecification<Damaged.Ma
      * @noreference This method is for internal matcher initialization by the framework, do not call it manually.
      * 
      */
-    public static Damaged.Matcher create() {
+    public static NoOutgoingTransitions.Matcher create() {
       return new Matcher();
     }
 
     private static final int POSITION_STATE = 0;
 
-    private static final Logger LOGGER = ViatraQueryLoggingUtil.getLogger(Damaged.Matcher.class);
+    private static final Logger LOGGER = ViatraQueryLoggingUtil.getLogger(NoOutgoingTransitions.Matcher.class);
 
     /**
      * Initializes the pattern matcher within an existing VIATRA Query engine.
@@ -309,7 +308,7 @@ public final class Damaged extends BaseGeneratedEMFQuerySpecification<Damaged.Ma
      * @return matches represented as a Match object.
      * 
      */
-    public Collection<Damaged.Match> getAllMatches(final State pState) {
+    public Collection<NoOutgoingTransitions.Match> getAllMatches(final State pState) {
       return rawStreamAllMatches(new Object[]{pState}).collect(Collectors.toSet());
     }
 
@@ -323,7 +322,7 @@ public final class Damaged extends BaseGeneratedEMFQuerySpecification<Damaged.Ma
      * @return a stream of matches represented as a Match object.
      * 
      */
-    public Stream<Damaged.Match> streamAllMatches(final State pState) {
+    public Stream<NoOutgoingTransitions.Match> streamAllMatches(final State pState) {
       return rawStreamAllMatches(new Object[]{pState});
     }
 
@@ -334,7 +333,7 @@ public final class Damaged extends BaseGeneratedEMFQuerySpecification<Damaged.Ma
      * @return a match represented as a Match object, or null if no match is found.
      * 
      */
-    public Optional<Damaged.Match> getOneArbitraryMatch(final State pState) {
+    public Optional<NoOutgoingTransitions.Match> getOneArbitraryMatch(final State pState) {
       return rawGetOneArbitraryMatch(new Object[]{pState});
     }
 
@@ -367,7 +366,7 @@ public final class Damaged extends BaseGeneratedEMFQuerySpecification<Damaged.Ma
      * @return true if the pattern has at least one match with the given parameter values, false if the processor was not invoked
      * 
      */
-    public boolean forOneArbitraryMatch(final State pState, final Consumer<? super Damaged.Match> processor) {
+    public boolean forOneArbitraryMatch(final State pState, final Consumer<? super NoOutgoingTransitions.Match> processor) {
       return rawForOneArbitraryMatch(new Object[]{pState}, processor);
     }
 
@@ -379,8 +378,8 @@ public final class Damaged extends BaseGeneratedEMFQuerySpecification<Damaged.Ma
      * @return the (partial) match object.
      * 
      */
-    public Damaged.Match newMatch(final State pState) {
-      return Damaged.Match.newMatch(pState);
+    public NoOutgoingTransitions.Match newMatch(final State pState) {
+      return NoOutgoingTransitions.Match.newMatch(pState);
     }
 
     /**
@@ -411,9 +410,9 @@ public final class Damaged extends BaseGeneratedEMFQuerySpecification<Damaged.Ma
     }
 
     @Override
-    protected Damaged.Match tupleToMatch(final Tuple t) {
+    protected NoOutgoingTransitions.Match tupleToMatch(final Tuple t) {
       try {
-          return Damaged.Match.newMatch((State) t.get(POSITION_STATE));
+          return NoOutgoingTransitions.Match.newMatch((State) t.get(POSITION_STATE));
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in tuple not properly typed!",e);
           return null;
@@ -421,9 +420,9 @@ public final class Damaged extends BaseGeneratedEMFQuerySpecification<Damaged.Ma
     }
 
     @Override
-    protected Damaged.Match arrayToMatch(final Object[] match) {
+    protected NoOutgoingTransitions.Match arrayToMatch(final Object[] match) {
       try {
-          return Damaged.Match.newMatch((State) match[POSITION_STATE]);
+          return NoOutgoingTransitions.Match.newMatch((State) match[POSITION_STATE]);
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in array not properly typed!",e);
           return null;
@@ -431,9 +430,9 @@ public final class Damaged extends BaseGeneratedEMFQuerySpecification<Damaged.Ma
     }
 
     @Override
-    protected Damaged.Match arrayToMatchMutable(final Object[] match) {
+    protected NoOutgoingTransitions.Match arrayToMatchMutable(final Object[] match) {
       try {
-          return Damaged.Match.newMutableMatch((State) match[POSITION_STATE]);
+          return NoOutgoingTransitions.Match.newMutableMatch((State) match[POSITION_STATE]);
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in array not properly typed!",e);
           return null;
@@ -445,12 +444,12 @@ public final class Damaged extends BaseGeneratedEMFQuerySpecification<Damaged.Ma
      * @throws ViatraQueryRuntimeException if the pattern definition could not be loaded
      * 
      */
-    public static IQuerySpecification<Damaged.Matcher> querySpecification() {
-      return Damaged.instance();
+    public static IQuerySpecification<NoOutgoingTransitions.Matcher> querySpecification() {
+      return NoOutgoingTransitions.instance();
     }
   }
 
-  private Damaged() {
+  private NoOutgoingTransitions() {
     super(GeneratedPQuery.INSTANCE);
   }
 
@@ -459,7 +458,7 @@ public final class Damaged extends BaseGeneratedEMFQuerySpecification<Damaged.Ma
    * @throws ViatraQueryRuntimeException if the pattern definition could not be loaded
    * 
    */
-  public static Damaged instance() {
+  public static NoOutgoingTransitions instance() {
     try{
         return LazyHolder.INSTANCE;
     } catch (ExceptionInInitializerError err) {
@@ -468,35 +467,35 @@ public final class Damaged extends BaseGeneratedEMFQuerySpecification<Damaged.Ma
   }
 
   @Override
-  protected Damaged.Matcher instantiate(final ViatraQueryEngine engine) {
-    return Damaged.Matcher.on(engine);
+  protected NoOutgoingTransitions.Matcher instantiate(final ViatraQueryEngine engine) {
+    return NoOutgoingTransitions.Matcher.on(engine);
   }
 
   @Override
-  public Damaged.Matcher instantiate() {
-    return Damaged.Matcher.create();
+  public NoOutgoingTransitions.Matcher instantiate() {
+    return NoOutgoingTransitions.Matcher.create();
   }
 
   @Override
-  public Damaged.Match newEmptyMatch() {
-    return Damaged.Match.newEmptyMatch();
+  public NoOutgoingTransitions.Match newEmptyMatch() {
+    return NoOutgoingTransitions.Match.newEmptyMatch();
   }
 
   @Override
-  public Damaged.Match newMatch(final Object... parameters) {
-    return Damaged.Match.newMatch((edu.toronto.cs.se.mmint.types.lts.State) parameters[0]);
+  public NoOutgoingTransitions.Match newMatch(final Object... parameters) {
+    return NoOutgoingTransitions.Match.newMatch((edu.toronto.cs.se.mmint.types.lts.State) parameters[0]);
   }
 
   /**
-   * Inner class allowing the singleton instance of {@link Damaged} to be created 
+   * Inner class allowing the singleton instance of {@link NoOutgoingTransitions} to be created 
    *     <b>not</b> at the class load time of the outer class, 
-   *     but rather at the first call to {@link Damaged#instance()}.
+   *     but rather at the first call to {@link NoOutgoingTransitions#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 
    */
   private static class LazyHolder {
-    private static final Damaged INSTANCE = new Damaged();
+    private static final NoOutgoingTransitions INSTANCE = new NoOutgoingTransitions();
 
     /**
      * Statically initializes the query specification <b>after</b> the field {@link #INSTANCE} is assigned.
@@ -514,11 +513,51 @@ public final class Damaged extends BaseGeneratedEMFQuerySpecification<Damaged.Ma
   }
 
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
-    private static final Damaged.GeneratedPQuery INSTANCE = new GeneratedPQuery();
+    private static final NoOutgoingTransitions.GeneratedPQuery INSTANCE = new GeneratedPQuery();
 
     private final PParameter parameter_state = new PParameter("state", "edu.toronto.cs.se.mmint.types.lts.State", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("model://edu.toronto.cs.se.mmint.types.lts", "State")), PParameterDirection.INOUT);
 
     private final List<PParameter> parameters = Arrays.asList(parameter_state);
+
+    private class Embedded_1_State_outgoing extends BaseGeneratedEMFPQuery {
+      private final PParameter parameter_p0 = new PParameter("p0", "edu.toronto.cs.se.mmint.types.lts.State", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("model://edu.toronto.cs.se.mmint.types.lts", "State")), PParameterDirection.INOUT);
+
+      private final PParameter parameter_p1 = new PParameter("p1", "edu.toronto.cs.se.mmint.types.lts.Transition", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("model://edu.toronto.cs.se.mmint.types.lts", "Transition")), PParameterDirection.INOUT);
+
+      private final List<PParameter> embeddedParameters = Arrays.asList(parameter_p0, parameter_p1);
+
+      public Embedded_1_State_outgoing() {
+        super(PVisibility.EMBEDDED);
+      }
+
+      @Override
+      public String getFullyQualifiedName() {
+        return GeneratedPQuery.this.getFullyQualifiedName() + "$Embedded_1_State_outgoing";
+      }
+
+      @Override
+      public List<PParameter> getParameters() {
+        return embeddedParameters;
+      }
+
+      @Override
+      public Set<PBody> doGetContainedBodies() {
+        PBody body = new PBody(this);
+        PVariable var_p0 = body.getOrCreateVariableByName("p0");
+        PVariable var_p1 = body.getOrCreateVariableByName("p1");
+        body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
+           new ExportedParameter(body, var_p0, parameter_p0),
+           new ExportedParameter(body, var_p1, parameter_p1)
+        ));
+        //  State.outgoing(state, _)
+        new TypeConstraint(body, Tuples.flatTupleOf(var_p0), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("model://edu.toronto.cs.se.mmint.types.lts", "State")));
+        PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
+        new TypeConstraint(body, Tuples.flatTupleOf(var_p0, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("model://edu.toronto.cs.se.mmint.types.lts", "State", "outgoing")));
+        new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("model://edu.toronto.cs.se.mmint.types.lts", "Transition")));
+        new Equality(body, var__virtual_0_, var_p1);
+        return Collections.singleton(body);
+      }
+    }
 
     private GeneratedPQuery() {
       super(PVisibility.PUBLIC);
@@ -526,7 +565,7 @@ public final class Damaged extends BaseGeneratedEMFQuerySpecification<Damaged.Ma
 
     @Override
     public String getFullyQualifiedName() {
-      return "scico23.damaged";
+      return "scico23.noOutgoingTransitions";
     }
 
     @Override
@@ -546,18 +585,13 @@ public final class Damaged extends BaseGeneratedEMFQuerySpecification<Damaged.Ma
       {
           PBody body = new PBody(this);
           PVariable var_state = body.getOrCreateVariableByName("state");
+          PVariable var___0_ = body.getOrCreateVariableByName("_<0>");
           new TypeConstraint(body, Tuples.flatTupleOf(var_state), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("model://edu.toronto.cs.se.mmint.types.lts", "State")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
              new ExportedParameter(body, var_state, parameter_state)
           ));
-          //   State.label(state, "Damaged")
-          PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
-          new ConstantValue(body, var__virtual_0_, "Damaged");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_state), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("model://edu.toronto.cs.se.mmint.types.lts", "State")));
-          PVariable var__virtual_1_ = body.getOrCreateVariableByName(".virtual{1}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_state, var__virtual_1_), new EStructuralFeatureInstancesKey(getFeatureLiteral("model://edu.toronto.cs.se.mmint.types.lts", "LabeledElement", "label")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_1_), new EDataTypeInSlotsKey((EDataType)getClassifierLiteral("http://www.eclipse.org/emf/2002/Ecore", "EString")));
-          new Equality(body, var__virtual_1_, var__virtual_0_);
+          //   neg State.outgoing(state, _)
+          new NegativePatternCall(body, Tuples.flatTupleOf(var_state, var___0_), new NoOutgoingTransitions.GeneratedPQuery.Embedded_1_State_outgoing());
           bodies.add(body);
       }
       return bodies;

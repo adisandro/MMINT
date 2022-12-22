@@ -14,6 +14,6 @@ package scico23
 
 import "model://edu.toronto.cs.se.mmint.types.lts"
 
-pattern damaged(state: State) {
-  State.label(state, "Damaged");
+pattern noOutgoingTransitions(state: State) {
+  neg State.outgoing(state, _);
 }

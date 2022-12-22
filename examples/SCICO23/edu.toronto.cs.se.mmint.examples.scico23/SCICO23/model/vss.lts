@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<lts:LTS xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:lts="model://edu.toronto.cs.se.mmint.types.lts">
-  <states xsi:type="lts:InitialState" label="Off" incoming="//@transitions.1" outgoing="//@transitions.0"/>
-  <states label="On" incoming="//@transitions.0" outgoing="//@transitions.1"/>
-  <transitions label="Turn on" from="//@states.0" to="//@states.1"/>
-  <transitions label="Turn off" from="//@states.1" to="//@states.0"/>
-</lts:LTS>

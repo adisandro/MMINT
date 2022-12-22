@@ -25,7 +25,7 @@ import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedPatternGroup;
  * in order to achieve better performance than one-by-one on-demand matcher initialization.
  * 
  * <p> From package scico23, the group contains the definition of the following patterns: <ul>
- * <li>damaged</li>
+ * <li>noOutgoingTransitions</li>
  * </ul>
  * 
  * @see IQueryGroup
@@ -50,14 +50,14 @@ public final class Example extends BaseGeneratedPatternGroup {
   private static Example INSTANCE;
 
   private Example() {
-    querySpecifications.add(Damaged.instance());
+    querySpecifications.add(NoOutgoingTransitions.instance());
   }
 
-  public Damaged getDamaged() {
-    return Damaged.instance();
+  public NoOutgoingTransitions getNoOutgoingTransitions() {
+    return NoOutgoingTransitions.instance();
   }
 
-  public Damaged.Matcher getDamaged(final ViatraQueryEngine engine) {
-    return Damaged.Matcher.on(engine);
+  public NoOutgoingTransitions.Matcher getNoOutgoingTransitions(final ViatraQueryEngine engine) {
+    return NoOutgoingTransitions.Matcher.on(engine);
   }
 }
