@@ -9,7 +9,7 @@ In this paper, we report on using the interactive theorem prover Lean to bridge 
 ## Instructions to reproduce the examples
 
 This example runs natively on Linux only.  
-Alternatively, a virtual machine image for VirtualBox with all the required dependencies is available at <https://doi.org/10.5281/zenodo.5110436>, letting you skip to step 2.4.
+Alternatively, a virtual machine image for VirtualBox with all the required dependencies is available at <https://doi.org/10.5281/zenodo.5110436> (login password `thisisastrongpassword`), letting you skip to step 2.4.
 
 1. Lean
     1. Download and extract the Lean theorem prover from [here](https://oleanstorage.azureedge.net/releases/bundles/trylean_linux.tar.gz).

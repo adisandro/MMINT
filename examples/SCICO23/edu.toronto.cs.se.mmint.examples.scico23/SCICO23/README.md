@@ -5,7 +5,7 @@ MMINT-A: A Framework for Model-Based Safety Assurance
 ## Instructions to reproduce the examples
 
 This example runs natively on Linux only.  
-Alternatively, a virtual machine image for VirtualBox with all the required dependencies is available at <https://doi.org/TODO>, letting you skip to step 2.5.
+Alternatively, a virtual machine image for VirtualBox with all the required dependencies is available at <https://doi.org/TODO> (login password `thisisastrongpassword`), letting you skip to step 2.5.
 
 1. Lean
     1. Download and extract the Lean theorem prover from [here](https://oleanstorage.azureedge.net/releases/bundles/trylean_linux.tar.gz).
