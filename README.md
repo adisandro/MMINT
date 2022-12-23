@@ -96,7 +96,7 @@ Follow these steps to install MMINT-PL:
 
 ### About MMINT
 
-* <a name="paper-scico23"></a> TBD  
+* <a name="paper-scico23"></a> MMINT-A: A Framework for Model-Based Safety Assurance  
 SciCo 23 (to be submitted for review) | Install: `Examples > MMINT - SCICO23` | [Readme](examples/SCICO23/edu.toronto.cs.se.mmint.examples.scico23/SCICO23/README.md)
 * <a name="paper-vamos23"></a> Adding Product-Line Capabilities to Your Favourite Modeling Language  
 VaMoS 23 (accepted for publication) | Install: `Examples > MMINT - VAMOS23` | [Readme](examples/VAMOS23/edu.toronto.cs.se.mmint.examples.vamos23/VAMOS23/README.md)
