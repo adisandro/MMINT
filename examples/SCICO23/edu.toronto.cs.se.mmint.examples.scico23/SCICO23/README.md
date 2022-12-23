@@ -24,7 +24,7 @@ Alternatively, a virtual machine image for VirtualBox with all the required depe
 4. GSN editor
     1. From the palette on the right select `New Model`, select `GSN > GSN Sirius Diagram`, name it `safety.gsn`, press `Next`, select `Safety Case` as model object, press `Finish`. The GSN editor will open.
     2. From the palette on the right select `Create basic goal`, then click anywhere in the diagram background.
-    3. Click to select the newly created goal if not already selected, then from the properties tab on the bottom insert `G0` in the Id field and `The warehouse fleet is operating correctly` in the Description field.
+    3. Click to select the newly created goal if not already selected, then from the properties tab on the bottom insert `G0` in the Id field and `All systems in the warehouse fleet operate safely` in the Description field.
 5. Domain decomposition
     1. Right-click on the `G0` goal and select `MMINT > Domain Decomposition`.
     2. Insert `FCS,PTS,VSS` as the domain to be decomposed.
