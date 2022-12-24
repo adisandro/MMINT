@@ -14,7 +14,7 @@
 <feature
       id="edu.toronto.cs.se.mmint.lean.feature"
       label="MMINT - Lean integration"
-      version="2.16.0.qualifier"
+      version="2.16.99.qualifier"
       provider-name="Software Engineering Group, University of Toronto">
 
    <description url="https://leanprover.github.io/">

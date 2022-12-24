@@ -2,7 +2,7 @@
 <feature
       id="edu.toronto.cs.se.modelepedia.statemachine_mavo.feature"
       label="Modelepedia StateMachineMAVO"
-      version="2.16.0.qualifier"
+      version="2.16.99.qualifier"
       provider-name="Software Engineering Group, University of Toronto">
 
    <description>
