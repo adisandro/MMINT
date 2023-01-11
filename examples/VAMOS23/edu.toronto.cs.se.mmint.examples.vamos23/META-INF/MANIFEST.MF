@@ -4,7 +4,7 @@ Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.mmint.examples.vamos23;singleton:=true
 Bundle-Version: 2.16.99.qualifier
 Automatic-Module-Name: edu.toronto.cs.se.mmint.examples.vamos23
-Bundle-RequiredExecutionEnvironment: JavaSE-19
+Bundle-RequiredExecutionEnvironment: JavaSE-20
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.emf.common.ui

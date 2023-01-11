@@ -5,7 +5,7 @@ Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.mmint.papyrus;singleton:=true
 Bundle-Version: 2.16.99.qualifier
 Bundle-ClassPath: .
-Bundle-RequiredExecutionEnvironment: JavaSE-19
+Bundle-RequiredExecutionEnvironment: JavaSE-20
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Export-Package: edu.toronto.cs.se.mmint.papyrus,

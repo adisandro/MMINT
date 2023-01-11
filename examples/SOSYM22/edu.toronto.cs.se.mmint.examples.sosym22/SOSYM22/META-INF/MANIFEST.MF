@@ -12,7 +12,7 @@ Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.xtext.xbase.lib,
  edu.toronto.cs.se.mmint,
  edu.toronto.cs.se.mmint.types.lts
-Bundle-RequiredExecutionEnvironment: JavaSE-19
+Bundle-RequiredExecutionEnvironment: JavaSE-20
 Automatic-Module-Name: SOSYM22
 Import-Package: org.apache.log4j
 Bundle-ActivationPolicy: lazy

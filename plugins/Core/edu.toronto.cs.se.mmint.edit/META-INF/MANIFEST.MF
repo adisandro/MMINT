@@ -8,7 +8,7 @@ Bundle-ClassPath: .
 Bundle-Activator: edu.toronto.cs.se.mmint.mid.provider.MIDEditPlugin$Implementation
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-19
+Bundle-RequiredExecutionEnvironment: JavaSE-20
 Export-Package: edu.toronto.cs.se.mmint.mid.editor.provider,
  edu.toronto.cs.se.mmint.mid.operator.provider,
  edu.toronto.cs.se.mmint.mid.provider,
