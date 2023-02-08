@@ -201,9 +201,6 @@ public class Filter extends OperatorImpl {
       FileUtils.replaceFileNameInPath(this.input.midModel.getUri(), Output.FILTERED_MID_NAME), true, false);
     this.output.filteredMIDModel = MIDTypeRegistry.getMIDModelType()
       .createInstanceAndEditor(filteredMID, filteredMIDModelPath, this.output.mid);
-    // reset input mid's cached EMF fields, or they will point to the filtered ones
-    this.input.midModel.setEMFInstanceResource(null);
-    this.input.midModel.setEMFInstanceRoot(null);
   }
 
   @Override

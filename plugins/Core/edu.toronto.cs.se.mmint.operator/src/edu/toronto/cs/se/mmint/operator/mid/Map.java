@@ -147,7 +147,7 @@ public class Map extends NestingOperatorImpl {
                                                   false);
       mapperOutputMIDPathsByName.put(outputName, outputMIDPath);
       if (instanceMID != null) {
-        FileUtils.writeModelFile(outputMID, outputMIDPath, null, true);
+        FileUtils.writeModelFile(outputMID, outputMIDPath, instanceMID.eResource().getResourceSet(), true);
       }
     }
 
@@ -262,7 +262,8 @@ public class Map extends NestingOperatorImpl {
       inputMIDsToSerialize.putAll(endpointMIDs);
     }
     for (var inputMIDToSerialize : inputMIDsToSerialize.entrySet()) {
-      FileUtils.writeModelFile(inputMIDToSerialize.getValue(), inputMIDToSerialize.getKey(), null, true);
+      var inputMID = inputMIDToSerialize.getValue();
+      FileUtils.writeModelFile(inputMID, inputMIDToSerialize.getKey(), inputMID.eResource().getResourceSet(), true);
     }
 
     return MIDOperatorIOUtils.setVarargs(outputMIDModels, Map.OUT_MIDS);
