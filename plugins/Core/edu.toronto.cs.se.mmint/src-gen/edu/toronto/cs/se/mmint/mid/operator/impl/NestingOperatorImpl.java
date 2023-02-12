@@ -265,7 +265,8 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
             if (nestedMIDPath == null) {
                 return null;
             }
-            var nestedMID = (MID) FileUtils.readModelFile(nestedMIDPath, null, true);
+            var nestedMID = (MID) FileUtils.readModelFile(nestedMIDPath, getMIDContainer().getEMFInstanceResourceSet(),
+                                                          true);
             this.inMemoryNestedMID = nestedMID;
             return nestedMID;
         }
@@ -292,7 +293,9 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
                 return null;
             }
             var nestedMIDDiagramPath = nestedMIDPath + GMFUtils.DIAGRAM_SUFFIX;
-            var nestedMIDDiagramRoot = (Diagram) FileUtils.readModelFile(nestedMIDDiagramPath, null, true);
+            var nestedMIDDiagramRoot = (Diagram) FileUtils.readModelFile(nestedMIDDiagramPath,
+                                                                         getMIDContainer().getEMFInstanceResourceSet(),
+                                                                         true);
             this.inMemoryNestedMIDDiagramRoot = nestedMIDDiagramRoot;
             return nestedMIDDiagramRoot;
         }
@@ -318,17 +321,13 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
         }
 
         String nestedMIDPath = FileUtils.getUniquePath(
-            FileUtils.replaceFileNameInPath(
-                MIDRegistry.getModelUri(instanceMID),
-                newOperator.getName()),
-            true,
-            false);
+            FileUtils.replaceFileNameInPath(MIDRegistry.getModelUri(instanceMID), newOperator.getName()), true, false);
         var nestedMID = MIDFactory.eINSTANCE.createMID();
         nestedMID.setLevel(MIDLevel.INSTANCES);
         try {
-            FileUtils.writeModelFile(nestedMID, nestedMIDPath, null, true);
+            FileUtils.writeModelFile(nestedMID, nestedMIDPath, instanceMID.getEMFInstanceResourceSet(), true);
             Diagram nestedMIDDiagramRoot = GMFUtils.createGMFDiagramAndFile(
-                nestedMIDPath,
+                nestedMID,
                 nestedMIDPath + GMFUtils.DIAGRAM_SUFFIX,
                 MIDTypeRegistry.getMIDModelType().getName(),
                 MIDTypeRegistry.getTypeBundle(MIDTypeRegistry.getMIDDiagramType().getUri()).getSymbolicName(),
@@ -480,8 +479,9 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
         }
 
         var nestedMIDDiagramPath = nestedMIDPath + GMFUtils.DIAGRAM_SUFFIX;
-        FileUtils.writeModelFile(this.getNestedInstanceMID(), nestedMIDPath, null, true);
-        FileUtils.writeModelFile(this.getNestedInstanceMIDDiagramRoot(), nestedMIDDiagramPath, null, true);
+        var resourceSet = getMIDContainer().getEMFInstanceResourceSet();
+        FileUtils.writeModelFile(this.getNestedInstanceMID(), nestedMIDPath, resourceSet, true);
+        FileUtils.writeModelFile(this.getNestedInstanceMIDDiagramRoot(), nestedMIDDiagramPath, resourceSet, true);
         this.inMemoryNestedMID = null;
         this.inMemoryNestedMIDDiagramRoot = null;
     }

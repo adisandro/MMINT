@@ -52,7 +52,7 @@ import edu.toronto.cs.se.mmint.mid.ui.SiriusUtils;
 
 public class FileUtils {
 
-  private static Map<String, Object> SAVE_OPTIONS = Map.of(
+  public static Map<String, Object> SAVE_OPTIONS = Map.of(
     XMLResource.OPTION_SCHEMA_LOCATION, true,
     XMLResource.OPTION_ENCODING, "UTF-8",
     XMLResource.OPTION_SAVE_ONLY_IF_CHANGED, XMLResource.OPTION_SAVE_ONLY_IF_CHANGED_MEMORY_BUFFER);

@@ -12,7 +12,6 @@
 package edu.toronto.cs.se.mmint.mid.ui;
 
 import java.net.URL;
-import java.util.Map;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -21,8 +20,6 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EcoreFactory;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
@@ -68,9 +65,7 @@ public class GMFUtils {
     var diagram = GMFUtils.createGMFDiagram(rootModelObj, diagramKind, diagramPluginId);
     diagram.setName(FileUtils.getLastSegmentFromPath(diagramPath));
     diagramResource.getContents().add(diagram);
-    var saveOptions = Map.of(XMLResource.OPTION_ENCODING, "UTF-8",
-                             Resource.OPTION_SAVE_ONLY_IF_CHANGED, Resource.OPTION_SAVE_ONLY_IF_CHANGED_MEMORY_BUFFER);
-    diagramResource.save(saveOptions);
+    diagramResource.save(FileUtils.SAVE_OPTIONS);
 
     return diagram;
   }

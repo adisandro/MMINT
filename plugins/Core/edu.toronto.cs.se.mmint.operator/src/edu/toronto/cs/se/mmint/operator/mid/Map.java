@@ -117,12 +117,13 @@ public class Map extends NestingOperatorImpl {
                                            Set<Model> midrelEndpointModels) throws Exception {
 
     var outputMIDModelDiagram = MIDRegistry.getModelDiagram(outputMIDModel);
-    var gmfDiagram = (Diagram) FileUtils.readModelFile(outputMIDModelDiagram.getUri(), null, true);
+    var resourceSet = outputMIDModelDiagram.getMIDContainer().getEMFInstanceResourceSet();
+    var gmfDiagram = (Diagram) FileUtils.readModelFile(outputMIDModelDiagram.getUri(), resourceSet, true);
     for (var midrelEndpointModel : midrelEndpointModels) {
       GMFUtils.createGMFNodeShortcut(midrelEndpointModel, gmfDiagram, midDiagramPluginId, midModelType.getName(),
                                      MIDTypeRegistry.getCachedMIDViewProvider());
     }
-    FileUtils.writeModelFile(gmfDiagram, outputMIDModelDiagram.getUri(), null, true);
+    FileUtils.writeModelFile(gmfDiagram, outputMIDModelDiagram.getUri(), resourceSet, true);
   }
 
   private java.util.@NonNull Map<String, Model> map(@NonNull List<Model> inputMIDModels, @NonNull EList<MID> inputMIDs,
@@ -147,13 +148,13 @@ public class Map extends NestingOperatorImpl {
                                                   false);
       mapperOutputMIDPathsByName.put(outputName, outputMIDPath);
       if (instanceMID != null) {
-        FileUtils.writeModelFile(outputMID, outputMIDPath, instanceMID.eResource().getResourceSet(), true);
+        FileUtils.writeModelFile(outputMID, outputMIDPath, instanceMID.getEMFInstanceResourceSet(), true);
       }
     }
 
     // start operator types
-    var mapperMIDPath = this.getNestedMIDPath();
-    var mapperMID = super.getNestedInstanceMID();
+    var mapperMIDPath = getNestedMIDPath();
+    var mapperMID = getNestedInstanceMID();
     var midrelEndpointModelsByOutputName = new HashMap<String, Set<Model>>();
     var mapperShortcutModels = new HashSet<Model>();
     for (var mapperSpec : mapperSpecs.entrySet()) {
@@ -263,7 +264,7 @@ public class Map extends NestingOperatorImpl {
     }
     for (var inputMIDToSerialize : inputMIDsToSerialize.entrySet()) {
       var inputMID = inputMIDToSerialize.getValue();
-      FileUtils.writeModelFile(inputMID, inputMIDToSerialize.getKey(), inputMID.eResource().getResourceSet(), true);
+      FileUtils.writeModelFile(inputMID, inputMIDToSerialize.getKey(), inputMID.getEMFInstanceResourceSet(), true);
     }
 
     return MIDOperatorIOUtils.setVarargs(outputMIDModels, Map.OUT_MIDS);
