@@ -61,6 +61,9 @@
         <details key="documentation" value="The metalevel (types: TYPES; instances: INSTANCES)."/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="EMFInstanceResourceSet"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EResourceSet"
+        transient="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EStringToExtendibleElementMap" instanceClassName="java.util.Map$Entry">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">

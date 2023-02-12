@@ -312,7 +312,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
       var emfResource = getEMFInstanceResourceGen();
       if (emfResource == null) {
         // load resource within the container MID's resource set
-        emfResource = FileUtils.getEMFResource(getUri(), eResource().getResourceSet(), true);
+        emfResource = FileUtils.getEMFResource(getUri(), getMIDContainer().getEMFInstanceResourceSet(), true);
         // bypass EMF notifications and the need for a write transaction
         this.emfInstanceResource = emfResource;
       }
@@ -369,10 +369,6 @@ public class ModelImpl extends GenericElementImpl implements Model {
       MMINTException.print(IStatus.WARNING, "Can't load root EMF model object '" + getUri() + "', returning null", e);
       return null;
     }
-    /*TODO MMINT[OPERATOR]
-     * Previously, if rootModelObj was in memory, it would be copied (EcoreUtil.copy(this.inMemoryRootModelObj))
-     * Having to copy it is tricky because one never modifies a model in place with an operator (only with a MID diagram) but a new model is always created
-     */
     var rootModelObj = getEMFInstanceRootGen();
     if (rootModelObj == null) {
       var emfResource = getEMFInstanceResource();
@@ -585,11 +581,11 @@ public class ModelImpl extends GenericElementImpl implements Model {
     @Override
     public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
     if (baseClass == ExtendibleElement.class) {
-      switch (baseOperationID) {
-        case MIDPackage.EXTENDIBLE_ELEMENT___GET_METATYPE: return MIDPackage.MODEL___GET_METATYPE;
-        case MIDPackage.EXTENDIBLE_ELEMENT___GET_MID_CONTAINER: return MIDPackage.MODEL___GET_MID_CONTAINER;
-        default: return super.eDerivedOperationID(baseOperationID, baseClass);
-      }
+      return switch (baseOperationID) {
+      case MIDPackage.EXTENDIBLE_ELEMENT___GET_METATYPE -> MIDPackage.MODEL___GET_METATYPE;
+      case MIDPackage.EXTENDIBLE_ELEMENT___GET_MID_CONTAINER -> MIDPackage.MODEL___GET_MID_CONTAINER;
+      default -> super.eDerivedOperationID(baseOperationID, baseClass);
+      };
     }
     return super.eDerivedOperationID(baseOperationID, baseClass);
   }
@@ -1076,7 +1072,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
         if (rootModelObj != null) {
             if (instanceMID != null) {
                 var resource = FileUtils.writeModelFile(rootModelObj, newModelPath,
-                                                        instanceMID.eResource().getResourceSet(), true);
+                                                        instanceMID.getEMFInstanceResourceSet(), true);
                 newModel.setEMFInstanceResource(resource);
             }
             newModel.setEMFInstanceRoot(rootModelObj);

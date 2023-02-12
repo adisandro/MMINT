@@ -4,7 +4,7 @@
     modelDirectory="/edu.toronto.cs.se.mmint/src-gen" editDirectory="/edu.toronto.cs.se.mmint.edit/src-gen"
     editorDirectory="/edu.toronto.cs.se.mmint.editor/src-gen" modelPluginID="edu.toronto.cs.se.mmint"
     modelName="MID" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
-    importerID="org.eclipse.emf.importer.ecore" complianceLevel="18.0" copyrightFields="false"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="19.0" copyrightFields="false"
     operationReflection="true" importOrganizing="true">
   <foreignModel>mid.ecore</foreignModel>
   <genPackages prefix="MID" basePackage="edu.toronto.cs.se.mmint" disposableProviderFactory="true"
@@ -29,6 +29,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//MID/operators"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//MID/extendibleTable"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//MID/level"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//MID/EMFInstanceResourceSet"/>
       <genOperations ecoreOperation="mid.ecore#//MID/isTypesLevel" body="return this.getLevel() == MIDLevel.TYPES;"/>
       <genOperations ecoreOperation="mid.ecore#//MID/isInstancesLevel" body="return this.getLevel() == MIDLevel.INSTANCES;"/>
       <genOperations ecoreOperation="mid.ecore#//MID/isWorkflowsLevel" body="return this.getLevel() == MIDLevel.WORKFLOWS;"/>

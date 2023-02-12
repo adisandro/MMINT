@@ -5,21 +5,20 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.mmint.mid;
 
-import edu.toronto.cs.se.mmint.mid.editor.Editor;
-
-import edu.toronto.cs.se.mmint.mid.operator.Operator;
-
-import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
-
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+
+import edu.toronto.cs.se.mmint.mid.editor.Editor;
+import edu.toronto.cs.se.mmint.mid.operator.Operator;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
 /**
  * <!-- begin-user-doc -->
@@ -39,6 +38,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link edu.toronto.cs.se.mmint.mid.MID#getOperators <em>Operators</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.MID#getExtendibleTable <em>Extendible Table</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.MID#getLevel <em>Level</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmint.mid.MID#getEMFInstanceResourceSet <em>EMF Instance Resource Set</em>}</li>
  * </ul>
  *
  * @see edu.toronto.cs.se.mmint.mid.MIDPackage#getMID()
@@ -136,8 +136,30 @@ public interface MID extends EObject {
     void setLevel(MIDLevel value);
 
     /**
+   * Returns the value of the '<em><b>EMF Instance Resource Set</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>EMF Instance Resource Set</em>' attribute.
+   * @see #setEMFInstanceResourceSet(ResourceSet)
+   * @see edu.toronto.cs.se.mmint.mid.MIDPackage#getMID_EMFInstanceResourceSet()
+   * @model transient="true"
+   * @generated
+   */
+  ResourceSet getEMFInstanceResourceSet();
+
+    /**
+   * Sets the value of the '{@link edu.toronto.cs.se.mmint.mid.MID#getEMFInstanceResourceSet <em>EMF Instance Resource Set</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>EMF Instance Resource Set</em>' attribute.
+   * @see #getEMFInstanceResourceSet()
+   * @generated
+   */
+  void setEMFInstanceResourceSet(ResourceSet value);
+
+    /**
    * <!-- begin-user-doc --> Checks whether this is a Type MID.
-     * 
+     *
      * @return True if this is a Type MID, false otherwise. <!-- end-user-doc -->
    * @model kind="operation" required="true"
    * @generated
@@ -146,7 +168,7 @@ public interface MID extends EObject {
 
     /**
    * <!-- begin-user-doc --> Checks whether this is an Instance MID.
-     * 
+     *
      * @return True if this is an Instance MID, false otherwise. <!-- end-user-doc -->
    * @model kind="operation" required="true"
    * @generated
@@ -155,7 +177,7 @@ public interface MID extends EObject {
 
     /**
    * <!-- begin-user-doc --> Checks whether this is a Workflow MID.
-     * 
+     *
      * @return True if this is a Workflow MID, false otherwise. <!-- end-user-doc -->
    * @model kind="operation" required="true"
    * @generated
@@ -164,7 +186,7 @@ public interface MID extends EObject {
 
     /**
    * <!-- begin-user-doc --> Gets an extendible element from this MID.
-     * 
+     *
      * @param uri
      *            The uri of the element.
      * @return The element, null if the uri is not found or found not to be of the desired class of elements.
@@ -176,7 +198,7 @@ public interface MID extends EObject {
 
     /**
    * <!-- begin-user-doc -->Gets the model rels contained in this MID.
-     * 
+     *
      * @return The model rels contained in this MID. <!-- end-user-doc -->
    * @model kind="operation"
    * @generated

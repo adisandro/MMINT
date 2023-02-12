@@ -14,6 +14,7 @@ package edu.toronto.cs.se.mmint.mid.impl;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicEList;
@@ -24,12 +25,14 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EcoreEMap;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
@@ -52,6 +55,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
  *   <li>{@link edu.toronto.cs.se.mmint.mid.impl.MIDImpl#getOperators <em>Operators</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.impl.MIDImpl#getExtendibleTable <em>Extendible Table</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.impl.MIDImpl#getLevel <em>Level</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmint.mid.impl.MIDImpl#getEMFInstanceResourceSet <em>EMF Instance Resource Set</em>}</li>
  * </ul>
  *
  * @generated
@@ -116,6 +120,26 @@ public class MIDImpl extends MinimalEObjectImpl.Container implements MID {
    * @ordered
    */
     protected MIDLevel level = MIDImpl.LEVEL_EDEFAULT;
+
+    /**
+   * The default value of the '{@link #getEMFInstanceResourceSet() <em>EMF Instance Resource Set</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getEMFInstanceResourceSet()
+   * @generated
+   * @ordered
+   */
+  protected static final ResourceSet EMF_INSTANCE_RESOURCE_SET_EDEFAULT = null;
+
+    /**
+   * The cached value of the '{@link #getEMFInstanceResourceSet() <em>EMF Instance Resource Set</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getEMFInstanceResourceSet()
+   * @generated
+   * @ordered
+   */
+  protected ResourceSet emfInstanceResourceSet = MIDImpl.EMF_INSTANCE_RESOURCE_SET_EDEFAULT;
 
     /**
    * <!-- begin-user-doc -->
@@ -209,6 +233,52 @@ public class MIDImpl extends MinimalEObjectImpl.Container implements MID {
     this.level = newLevel == null ? MIDImpl.LEVEL_EDEFAULT : newLevel;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.MID__LEVEL, oldLevel, this.level));
+  }
+
+    /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ResourceSet getEMFInstanceResourceSetGen() {
+    return this.emfInstanceResourceSet;
+  }
+
+  /**
+   * Gets the EMF resource set representing this megamodel.
+   *
+   * @return The EMF resource set, null if it can't be loaded.
+   * @generated NOT
+   */
+  @Override
+  public ResourceSet getEMFInstanceResourceSet() {
+    try {
+      MMINTException.mustBeInstance(this);
+      var resourceSet = getEMFInstanceResourceSetGen();
+      if (resourceSet == null) {
+        resourceSet = eResource().getResourceSet();
+        // bypass EMF notifications and the need for a write transaction
+        this.emfInstanceResourceSet = resourceSet;
+      }
+      return resourceSet;
+    }
+    catch (MMINTException e) {
+      MMINTException.print(IStatus.WARNING, "Can't load EMF MID resource set, returning null", e);
+      return null;
+    }
+  }
+
+    /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setEMFInstanceResourceSet(ResourceSet newEMFInstanceResourceSet) {
+    var oldEMFInstanceResourceSet = this.emfInstanceResourceSet;
+    this.emfInstanceResourceSet = newEMFInstanceResourceSet;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.MID__EMF_INSTANCE_RESOURCE_SET, oldEMFInstanceResourceSet, this.emfInstanceResourceSet));
   }
 
     /**
@@ -317,6 +387,8 @@ public class MIDImpl extends MinimalEObjectImpl.Container implements MID {
         else return getExtendibleTable().map();
       case MIDPackage.MID__LEVEL:
         return getLevel();
+      case MIDPackage.MID__EMF_INSTANCE_RESOURCE_SET:
+        return getEMFInstanceResourceSet();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -348,6 +420,9 @@ public class MIDImpl extends MinimalEObjectImpl.Container implements MID {
       case MIDPackage.MID__LEVEL:
         setLevel((MIDLevel)newValue);
         return;
+      case MIDPackage.MID__EMF_INSTANCE_RESOURCE_SET:
+        setEMFInstanceResourceSet((ResourceSet)newValue);
+        return;
     }
     super.eSet(featureID, newValue);
   }
@@ -375,6 +450,9 @@ public class MIDImpl extends MinimalEObjectImpl.Container implements MID {
       case MIDPackage.MID__LEVEL:
         setLevel(MIDImpl.LEVEL_EDEFAULT);
         return;
+      case MIDPackage.MID__EMF_INSTANCE_RESOURCE_SET:
+        setEMFInstanceResourceSet(MIDImpl.EMF_INSTANCE_RESOURCE_SET_EDEFAULT);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -397,6 +475,8 @@ public class MIDImpl extends MinimalEObjectImpl.Container implements MID {
         return this.extendibleTable != null && !this.extendibleTable.isEmpty();
       case MIDPackage.MID__LEVEL:
         return this.level != MIDImpl.LEVEL_EDEFAULT;
+      case MIDPackage.MID__EMF_INSTANCE_RESOURCE_SET:
+        return MIDImpl.EMF_INSTANCE_RESOURCE_SET_EDEFAULT == null ? this.emfInstanceResourceSet != null : !MIDImpl.EMF_INSTANCE_RESOURCE_SET_EDEFAULT.equals(this.emfInstanceResourceSet);
     }
     return super.eIsSet(featureID);
   }
@@ -432,9 +512,11 @@ public class MIDImpl extends MinimalEObjectImpl.Container implements MID {
     public String toString() {
     if (eIsProxy()) return super.toString();
 
-    var result = new StringBuilder(super.toString());
+    StringBuilder result = new StringBuilder(super.toString());
     result.append(" (level: ");
     result.append(this.level);
+    result.append(", EMFInstanceResourceSet: ");
+    result.append(this.emfInstanceResourceSet);
     result.append(')');
     return result.toString();
   }

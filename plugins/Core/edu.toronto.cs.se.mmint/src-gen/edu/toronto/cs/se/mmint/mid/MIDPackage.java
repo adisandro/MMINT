@@ -124,13 +124,22 @@ public interface MIDPackage extends EPackage {
     int MID__LEVEL = 4;
 
     /**
+   * The feature id for the '<em><b>EMF Instance Resource Set</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MID__EMF_INSTANCE_RESOURCE_SET = 5;
+
+    /**
    * The number of structural features of the '<em>MID</em>' class.
    * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-    int MID_FEATURE_COUNT = 5;
+    int MID_FEATURE_COUNT = 6;
 
     /**
    * The operation id for the '<em>Is Types Level</em>' operation.
@@ -2503,6 +2512,17 @@ public interface MIDPackage extends EPackage {
     EAttribute getMID_Level();
 
     /**
+   * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmint.mid.MID#getEMFInstanceResourceSet <em>EMF Instance Resource Set</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>EMF Instance Resource Set</em>'.
+   * @see edu.toronto.cs.se.mmint.mid.MID#getEMFInstanceResourceSet()
+   * @see #getMID()
+   * @generated
+   */
+  EAttribute getMID_EMFInstanceResourceSet();
+
+    /**
    * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.MID#isTypesLevel() <em>Is Types Level</em>}' operation.
    * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -3791,6 +3811,14 @@ public interface MIDPackage extends EPackage {
      * @generated
      */
         EAttribute MID__LEVEL = MIDPackage.eINSTANCE.getMID_Level();
+
+        /**
+     * The meta object literal for the '<em><b>EMF Instance Resource Set</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute MID__EMF_INSTANCE_RESOURCE_SET = MIDPackage.eINSTANCE.getMID_EMFInstanceResourceSet();
 
         /**
      * The meta object literal for the '<em><b>Is Types Level</b></em>' operation.

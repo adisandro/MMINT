@@ -311,6 +311,16 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 
     /**
    * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getMID_EMFInstanceResourceSet() {
+    return (EAttribute)this.midEClass.getEStructuralFeatures().get(5);
+  }
+
+    /**
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
    * @generated
    */
@@ -1514,6 +1524,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
     createEReference(this.midEClass, MIDPackage.MID__OPERATORS);
     createEReference(this.midEClass, MIDPackage.MID__EXTENDIBLE_TABLE);
     createEAttribute(this.midEClass, MIDPackage.MID__LEVEL);
+    createEAttribute(this.midEClass, MIDPackage.MID__EMF_INSTANCE_RESOURCE_SET);
     createEOperation(this.midEClass, MIDPackage.MID___IS_TYPES_LEVEL);
     createEOperation(this.midEClass, MIDPackage.MID___IS_INSTANCES_LEVEL);
     createEOperation(this.midEClass, MIDPackage.MID___IS_WORKFLOWS_LEVEL);
@@ -1697,6 +1708,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
     initEReference(getMID_Operators(), theOperatorPackage.getOperator(), null, "operators", null, 0, -1, edu.toronto.cs.se.mmint.mid.MID.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, EPackageImpl.IS_COMPOSITE, !EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
     initEReference(getMID_ExtendibleTable(), this.getEStringToExtendibleElementMap(), null, "extendibleTable", null, 0, -1, edu.toronto.cs.se.mmint.mid.MID.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, EPackageImpl.IS_COMPOSITE, !EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
     initEAttribute(getMID_Level(), this.getMIDLevel(), "level", null, 1, 1, edu.toronto.cs.se.mmint.mid.MID.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
+    initEAttribute(getMID_EMFInstanceResourceSet(), this.ecorePackage.getEResourceSet(), "EMFInstanceResourceSet", null, 0, 1, edu.toronto.cs.se.mmint.mid.MID.class, EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
 
     initEOperation(getMID__IsTypesLevel(), this.ecorePackage.getEBoolean(), "isTypesLevel", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
 
