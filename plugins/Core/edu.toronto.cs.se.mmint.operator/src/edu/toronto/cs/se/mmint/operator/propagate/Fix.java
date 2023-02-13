@@ -287,7 +287,7 @@ public class Fix extends NestingOperatorImpl {
                            throws Exception {
 
         // prepare nested MID
-        var fixingMID = super.getNestedInstanceMID();
+        var fixingMID = getNestedMID();
         if (fixingMID != null) {
             createNestedInstanceMIDModelShortcuts(new HashSet<>(models));
         }

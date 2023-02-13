@@ -18,11 +18,11 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
-import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+import org.eclipse.gmf.runtime.notation.Diagram;
 
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.editor.EditorPackage;
@@ -131,6 +131,13 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
    * @generated
    */
     private EDataType setEDataType = null;
+
+    /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EDataType gmfDiagramEDataType = null;
 
     /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -599,6 +606,26 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 
     /**
    * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getNestingOperator_NestedMID() {
+    return (EReference)this.nestingOperatorEClass.getEStructuralFeatures().get(1);
+  }
+
+    /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getNestingOperator_NestedMIDGMFDiagram() {
+    return (EAttribute)this.nestingOperatorEClass.getEStructuralFeatures().get(2);
+  }
+
+    /**
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
    * @generated
    */
@@ -829,6 +856,16 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 
     /**
    * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EDataType getGMFDiagram() {
+    return this.gmfDiagramEDataType;
+  }
+
+    /**
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
    * @generated
    */
@@ -898,6 +935,8 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 
     this.nestingOperatorEClass = createEClass(OperatorPackage.NESTING_OPERATOR);
     createEAttribute(this.nestingOperatorEClass, OperatorPackage.NESTING_OPERATOR__NESTED_MID_PATH);
+    createEReference(this.nestingOperatorEClass, OperatorPackage.NESTING_OPERATOR__NESTED_MID);
+    createEAttribute(this.nestingOperatorEClass, OperatorPackage.NESTING_OPERATOR__NESTED_MIDGMF_DIAGRAM);
     createEOperation(this.nestingOperatorEClass, OperatorPackage.NESTING_OPERATOR___GET_NESTED_INSTANCE_MID);
     createEOperation(this.nestingOperatorEClass, OperatorPackage.NESTING_OPERATOR___START_NESTED_INSTANCE__OPERATOR_ELIST_PROPERTIES_ELIST_MAP);
 
@@ -927,6 +966,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
     this.exceptionEDataType = createEDataType(OperatorPackage.EXCEPTION);
     this.propertiesEDataType = createEDataType(OperatorPackage.PROPERTIES);
     this.setEDataType = createEDataType(OperatorPackage.SET);
+    this.gmfDiagramEDataType = createEDataType(OperatorPackage.GMF_DIAGRAM);
   }
 
     /**
@@ -1142,6 +1182,8 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 
     initEClass(this.nestingOperatorEClass, NestingOperator.class, "NestingOperator", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getNestingOperator_NestedMIDPath(), this.ecorePackage.getEString(), "nestedMIDPath", null, 1, 1, NestingOperator.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
+    initEReference(getNestingOperator_NestedMID(), theMIDPackage.getMID(), null, "nestedMID", null, 0, 1, NestingOperator.class, EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
+    initEAttribute(getNestingOperator_NestedMIDGMFDiagram(), this.getGMFDiagram(), "nestedMIDGMFDiagram", null, 0, 1, NestingOperator.class, EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
 
     op = initEOperation(getNestingOperator__GetNestedInstanceMID(), theMIDPackage.getMID(), "getNestedInstanceMID", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEException(op, theMIDPackage.getMMINTException());
@@ -1196,10 +1238,11 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
     initEReference(getOperatorGeneric_GenericSuperTypeEndpoint(), this.getGenericEndpoint(), null, "genericSuperTypeEndpoint", null, 1, 1, OperatorGeneric.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
 
     // Initialize data types
-    initEDataType(this.randomEDataType, Random.class, "Random", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+    initEDataType(this.randomEDataType, Random.class, "Random", !EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
     initEDataType(this.exceptionEDataType, Exception.class, "Exception", !EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
     initEDataType(this.propertiesEDataType, Properties.class, "Properties", !EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
     initEDataType(this.setEDataType, Set.class, "Set", !EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+    initEDataType(this.gmfDiagramEDataType, Diagram.class, "GMFDiagram", !EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
   }
 
 } //OperatorPackageImpl

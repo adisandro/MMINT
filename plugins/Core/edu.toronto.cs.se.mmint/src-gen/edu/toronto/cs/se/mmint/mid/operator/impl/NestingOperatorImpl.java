@@ -25,6 +25,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.core.services.ViewService;
@@ -62,6 +63,8 @@ import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
  * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.impl.NestingOperatorImpl#getNestedMIDPath <em>Nested MID Path</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.impl.NestingOperatorImpl#getNestedMID <em>Nested MID</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.impl.NestingOperatorImpl#getNestedMIDGMFDiagram <em>Nested MIDGMF Diagram</em>}</li>
  * </ul>
  *
  * @generated
@@ -88,22 +91,34 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
     protected String nestedMIDPath = NestingOperatorImpl.NESTED_MID_PATH_EDEFAULT;
 
     /**
-     * The nested MID, kept in memory for performance reasons (different from
-     * {@link edu.toronto.cs.se.mmint.mid.impl.ModelImpl#inMemoryRootModelObj}, this is NOT for making it work when
-     * there is no serialization).
-     *
-     * @generated NOT
-     */
-    protected MID inMemoryNestedMID;
+   * The cached value of the '{@link #getNestedMID() <em>Nested MID</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getNestedMID()
+   * @generated
+   * @ordered
+   */
+  protected MID nestedMID;
 
     /**
-     * The nested MID gmf diagram, kept in memory for performance reasons (different from
-     * {@link edu.toronto.cs.se.mmint.mid.impl.ModelImpl#inMemoryRootModelObj}, this is NOT for making it work when
-     * there is no serialization).
-     *
-     * @generated NOT
-     */
-    protected Diagram inMemoryNestedMIDDiagramRoot;
+   * The default value of the '{@link #getNestedMIDGMFDiagram() <em>Nested MIDGMF Diagram</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getNestedMIDGMFDiagram()
+   * @generated
+   * @ordered
+   */
+  protected static final Diagram NESTED_MIDGMF_DIAGRAM_EDEFAULT = null;
+
+    /**
+   * The cached value of the '{@link #getNestedMIDGMFDiagram() <em>Nested MIDGMF Diagram</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getNestedMIDGMFDiagram()
+   * @generated
+   * @ordered
+   */
+  protected Diagram nestedMIDGMFDiagram = NestingOperatorImpl.NESTED_MIDGMF_DIAGRAM_EDEFAULT;
 
     /**
    * <!-- begin-user-doc -->
@@ -149,6 +164,118 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
 
     /**
    * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public MID getNestedMIDGen() {
+    if (this.nestedMID != null && this.nestedMID.eIsProxy()) {
+      var oldNestedMID = (InternalEObject)this.nestedMID;
+      this.nestedMID = (MID)eResolveProxy(oldNestedMID);
+      if (this.nestedMID != oldNestedMID) {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, OperatorPackage.NESTING_OPERATOR__NESTED_MID, oldNestedMID, this.nestedMID));
+      }
+    }
+    return this.nestedMID;
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public MID getNestedMID() {
+    try {
+      MMINTException.mustBeInstance(this);
+      var nestedMID = getNestedMIDGen();
+      if (nestedMID == null) {
+        var nestedMIDPath = getNestedMIDPath();
+        if (nestedMIDPath == null) {
+          return null;
+        }
+        nestedMID = (MID) FileUtils.readModelFile(nestedMIDPath, getMIDContainer().getEMFInstanceResourceSet(), true);
+        // bypass EMF notifications and the need for a write transaction
+        this.nestedMID = nestedMID;
+      }
+      return nestedMID;
+    }
+    catch (Exception e) {
+      MMINTException.print(IStatus.WARNING, "Can't load nested MID, returning null", e);
+      return null;
+    }
+  }
+
+    /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public MID basicGetNestedMID() {
+    return this.nestedMID;
+  }
+
+    /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setNestedMID(MID newNestedMID) {
+    var oldNestedMID = this.nestedMID;
+    this.nestedMID = newNestedMID;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.NESTING_OPERATOR__NESTED_MID, oldNestedMID, this.nestedMID));
+  }
+
+    /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Diagram getNestedMIDGMFDiagramGen() {
+    return this.nestedMIDGMFDiagram;
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public Diagram getNestedMIDGMFDiagram() {
+    try {
+      MMINTException.mustBeInstance(this);
+      var nestedDiagram = getNestedMIDGMFDiagramGen();
+      if (nestedDiagram == null) {
+        var nestedMIDPath = this.getNestedMIDPath();
+        if (nestedMIDPath == null) {
+          return null;
+        }
+        var nestedDiagramPath = nestedMIDPath + GMFUtils.DIAGRAM_SUFFIX;
+        nestedDiagram = (Diagram) FileUtils.readModelFile(nestedDiagramPath,
+                                                          getMIDContainer().getEMFInstanceResourceSet(), true);
+        this.nestedMIDGMFDiagram = nestedDiagram;
+      }
+      return nestedDiagram;
+    }
+    catch (Exception e) {
+      MMINTException.print(IStatus.WARNING, "Can't load nested MID GMF diagram, returning null", e);
+      return null;
+    }
+  }
+
+    /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setNestedMIDGMFDiagram(Diagram newNestedMIDGMFDiagram) {
+    var oldNestedMIDGMFDiagram = this.nestedMIDGMFDiagram;
+    this.nestedMIDGMFDiagram = newNestedMIDGMFDiagram;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.NESTING_OPERATOR__NESTED_MIDGMF_DIAGRAM, oldNestedMIDGMFDiagram, this.nestedMIDGMFDiagram));
+  }
+
+    /**
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
    * @generated
    */
@@ -157,6 +284,11 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
     switch (featureID) {
       case OperatorPackage.NESTING_OPERATOR__NESTED_MID_PATH:
         return getNestedMIDPath();
+      case OperatorPackage.NESTING_OPERATOR__NESTED_MID:
+        if (resolve) return getNestedMID();
+        return basicGetNestedMID();
+      case OperatorPackage.NESTING_OPERATOR__NESTED_MIDGMF_DIAGRAM:
+        return getNestedMIDGMFDiagram();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -171,6 +303,12 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
     switch (featureID) {
       case OperatorPackage.NESTING_OPERATOR__NESTED_MID_PATH:
         setNestedMIDPath((String)newValue);
+        return;
+      case OperatorPackage.NESTING_OPERATOR__NESTED_MID:
+        setNestedMID((MID)newValue);
+        return;
+      case OperatorPackage.NESTING_OPERATOR__NESTED_MIDGMF_DIAGRAM:
+        setNestedMIDGMFDiagram((Diagram)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -187,6 +325,12 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
       case OperatorPackage.NESTING_OPERATOR__NESTED_MID_PATH:
         setNestedMIDPath(NestingOperatorImpl.NESTED_MID_PATH_EDEFAULT);
         return;
+      case OperatorPackage.NESTING_OPERATOR__NESTED_MID:
+        setNestedMID((MID)null);
+        return;
+      case OperatorPackage.NESTING_OPERATOR__NESTED_MIDGMF_DIAGRAM:
+        setNestedMIDGMFDiagram(NestingOperatorImpl.NESTED_MIDGMF_DIAGRAM_EDEFAULT);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -201,6 +345,10 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
     switch (featureID) {
       case OperatorPackage.NESTING_OPERATOR__NESTED_MID_PATH:
         return NestingOperatorImpl.NESTED_MID_PATH_EDEFAULT == null ? this.nestedMIDPath != null : !NestingOperatorImpl.NESTED_MID_PATH_EDEFAULT.equals(this.nestedMIDPath);
+      case OperatorPackage.NESTING_OPERATOR__NESTED_MID:
+        return this.nestedMID != null;
+      case OperatorPackage.NESTING_OPERATOR__NESTED_MIDGMF_DIAGRAM:
+        return NestingOperatorImpl.NESTED_MIDGMF_DIAGRAM_EDEFAULT == null ? this.nestedMIDGMFDiagram != null : !NestingOperatorImpl.NESTED_MIDGMF_DIAGRAM_EDEFAULT.equals(this.nestedMIDGMFDiagram);
     }
     return super.eIsSet(featureID);
   }
@@ -216,7 +364,7 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
     switch (operationID) {
       case OperatorPackage.NESTING_OPERATOR___GET_NESTED_INSTANCE_MID:
         try {
-          return getNestedInstanceMID();
+          return getNestedMID();
         }
         catch (Throwable throwable) {
           throw new InvocationTargetException(throwable);
@@ -244,66 +392,11 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (nestedMIDPath: ");
     result.append(this.nestedMIDPath);
+    result.append(", nestedMIDGMFDiagram: ");
+    result.append(this.nestedMIDGMFDiagram);
     result.append(')');
     return result.toString();
   }
-
-    /**
-     * @generated NOT
-     */
-    @Override
-    public MID getNestedInstanceMID() throws MMINTException {
-
-        MMINTException.mustBeInstance(this);
-
-        if (this.inMemoryNestedMID != null) {
-            return this.inMemoryNestedMID;
-        }
-
-        try {
-            var nestedMIDPath = this.getNestedMIDPath();
-            if (nestedMIDPath == null) {
-                return null;
-            }
-            var nestedMID = (MID) FileUtils.readModelFile(nestedMIDPath, getMIDContainer().getEMFInstanceResourceSet(),
-                                                          true);
-            this.inMemoryNestedMID = nestedMID;
-            return nestedMID;
-        }
-        catch (Exception e) {
-            this.inMemoryNestedMID = null;
-            return null;
-        }
-    }
-
-    /**
-     * @generated NOT
-     */
-    protected Diagram getNestedInstanceMIDDiagramRoot() throws MMINTException {
-
-        MMINTException.mustBeInstance(this);
-
-        if (this.inMemoryNestedMIDDiagramRoot != null) {
-            return this.inMemoryNestedMIDDiagramRoot;
-        }
-
-        try {
-            var nestedMIDPath = this.getNestedMIDPath();
-            if (nestedMIDPath == null) {
-                return null;
-            }
-            var nestedMIDDiagramPath = nestedMIDPath + GMFUtils.DIAGRAM_SUFFIX;
-            var nestedMIDDiagramRoot = (Diagram) FileUtils.readModelFile(nestedMIDDiagramPath,
-                                                                         getMIDContainer().getEMFInstanceResourceSet(),
-                                                                         true);
-            this.inMemoryNestedMIDDiagramRoot = nestedMIDDiagramRoot;
-            return nestedMIDDiagramRoot;
-        }
-        catch (Exception e) {
-            this.inMemoryNestedMIDDiagramRoot = null;
-            return null;
-        }
-    }
 
     /**
      * @generated NOT
@@ -333,8 +426,8 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
                 MIDTypeRegistry.getTypeBundle(MIDTypeRegistry.getMIDDiagramType().getUri()).getSymbolicName(),
                 true);
             ((NestingOperator) newOperator).setNestedMIDPath(nestedMIDPath);
-            ((NestingOperatorImpl) newOperator).inMemoryNestedMID = nestedMID;
-            ((NestingOperatorImpl) newOperator).inMemoryNestedMIDDiagramRoot = nestedMIDDiagramRoot;
+            ((NestingOperatorImpl) newOperator).nestedMID = nestedMID;
+            ((NestingOperatorImpl) newOperator).nestedMIDGMFDiagram = nestedMIDDiagramRoot;
         }
         catch (Exception e) {
             MMINTException.print(IStatus.WARNING, "Can't store the Instance MID to contain this nesting operator's intermediate artifacts, skipping it", e);
@@ -362,8 +455,8 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
             return;
         }
 
-        var nestedMID = this.getNestedInstanceMID();
-        var nestedMIDDiagramRoot = this.getNestedInstanceMIDDiagramRoot();
+        var nestedMID = getNestedMID();
+        var nestedMIDDiagramRoot = getNestedMIDGMFDiagram();
         var midModelType = MIDTypeRegistry.getMIDModelType();
         var midDiagramPluginId = MIDTypeRegistry.getTypeBundle(MIDTypeRegistry.getMIDDiagramType().getUri()).getSymbolicName();
         var midViewProvider = MIDTypeRegistry.getCachedMIDViewProvider();
@@ -411,7 +504,7 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
 
         MMINTException.mustBeInstance(this);
 
-        var nestedMID = this.getNestedInstanceMID();
+        var nestedMID = getNestedMID();
         Map<Model, Model> nestedToCopiedModels = new HashMap<>();
         // models first
         for (var i = 0; i < operator.getOutputs().size(); i++) {
@@ -480,10 +573,10 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
 
         var nestedMIDDiagramPath = nestedMIDPath + GMFUtils.DIAGRAM_SUFFIX;
         var resourceSet = getMIDContainer().getEMFInstanceResourceSet();
-        FileUtils.writeModelFile(this.getNestedInstanceMID(), nestedMIDPath, resourceSet, true);
-        FileUtils.writeModelFile(this.getNestedInstanceMIDDiagramRoot(), nestedMIDDiagramPath, resourceSet, true);
-        this.inMemoryNestedMID = null;
-        this.inMemoryNestedMIDDiagramRoot = null;
+        FileUtils.writeModelFile(getNestedMID(), nestedMIDPath, resourceSet, true);
+        FileUtils.writeModelFile(getNestedMIDGMFDiagram(), nestedMIDDiagramPath, resourceSet, true);
+        this.nestedMID = null;
+        this.nestedMIDGMFDiagram = null;
     }
 
     /**
@@ -496,7 +589,7 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
         MMINTException.mustBeInstance(this);
 
         // create shortcuts to input models
-        var nestedMIDPath = this.getNestedMIDPath();
+        var nestedMIDPath = getNestedMIDPath();
         if (nestedMIDPath != null) {
             var inputModels = inputs.stream()
                 .map(OperatorInput::getModel)
@@ -504,7 +597,7 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
             this.createNestedInstanceMIDModelShortcuts(inputModels);
         }
         // run nested operator
-        var nestedMID = this.getNestedInstanceMID();
+        var nestedMID = getNestedMID();
         Map<String, MID> nestedOutputMIDsByName = MIDOperatorIOUtils.mixOutputMIDsByName(
             nestedOperatorType,
             nestedMID,
@@ -530,9 +623,9 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
     public void deleteInstance() throws MMINTException {
 
         super.deleteInstance();
-        var nestedMIDPath = this.getNestedMIDPath();
+        var nestedMIDPath = getNestedMIDPath();
         if (nestedMIDPath != null) {
-            var nestedMID = this.getNestedInstanceMID();
+            var nestedMID = getNestedMID();
             for (Model nestedModel : new ArrayList<>(nestedMID.getModels())) {
                 nestedModel.deleteInstanceAndFile();
             }
@@ -556,9 +649,10 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
 
         MMINTException.mustBeInstance(this);
 
-        var nestedMIDPath = this.getNestedMIDPath();
+        var nestedMIDPath = getNestedMIDPath();
         if (nestedMIDPath != null) {
-            FileUtils.openEclipseEditor(nestedMIDPath + GMFUtils.DIAGRAM_SUFFIX, MIDTypeRegistry.getMIDDiagramType().getId(), true);
+            FileUtils.openEclipseEditor(nestedMIDPath + GMFUtils.DIAGRAM_SUFFIX,
+                                        MIDTypeRegistry.getMIDDiagramType().getId(), true);
         }
     }
 

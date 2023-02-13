@@ -154,7 +154,7 @@ public class Map extends NestingOperatorImpl {
 
     // start operator types
     var mapperMIDPath = getNestedMIDPath();
-    var mapperMID = getNestedInstanceMID();
+    var mapperMID = getNestedMID();
     var midrelEndpointModelsByOutputName = new HashMap<String, Set<Model>>();
     var mapperShortcutModels = new HashSet<Model>();
     for (var mapperSpec : mapperSpecs.entrySet()) {

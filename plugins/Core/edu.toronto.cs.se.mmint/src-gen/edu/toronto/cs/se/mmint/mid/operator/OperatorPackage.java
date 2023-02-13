@@ -1775,13 +1775,31 @@ public interface OperatorPackage extends EPackage {
     int NESTING_OPERATOR__NESTED_MID_PATH = OperatorPackage.OPERATOR_FEATURE_COUNT + 0;
 
     /**
+   * The feature id for the '<em><b>Nested MID</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NESTING_OPERATOR__NESTED_MID = OperatorPackage.OPERATOR_FEATURE_COUNT + 1;
+
+    /**
+   * The feature id for the '<em><b>Nested MIDGMF Diagram</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NESTING_OPERATOR__NESTED_MIDGMF_DIAGRAM = OperatorPackage.OPERATOR_FEATURE_COUNT + 2;
+
+    /**
    * The number of structural features of the '<em>Nesting Operator</em>' class.
    * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-    int NESTING_OPERATOR_FEATURE_COUNT = OperatorPackage.OPERATOR_FEATURE_COUNT + 1;
+    int NESTING_OPERATOR_FEATURE_COUNT = OperatorPackage.OPERATOR_FEATURE_COUNT + 3;
 
     /**
    * The operation id for the '<em>Is Level</em>' operation.
@@ -2314,6 +2332,24 @@ public interface OperatorPackage extends EPackage {
    * @ordered
    */
     int WORKFLOW_OPERATOR__NESTED_MID_PATH = OperatorPackage.NESTING_OPERATOR__NESTED_MID_PATH;
+
+    /**
+   * The feature id for the '<em><b>Nested MID</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int WORKFLOW_OPERATOR__NESTED_MID = OperatorPackage.NESTING_OPERATOR__NESTED_MID;
+
+    /**
+   * The feature id for the '<em><b>Nested MIDGMF Diagram</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int WORKFLOW_OPERATOR__NESTED_MIDGMF_DIAGRAM = OperatorPackage.NESTING_OPERATOR__NESTED_MIDGMF_DIAGRAM;
 
     /**
    * The number of structural features of the '<em>Workflow Operator</em>' class.
@@ -3200,6 +3236,16 @@ public interface OperatorPackage extends EPackage {
 
 
     /**
+   * The meta object id for the '<em>GMF Diagram</em>' data type.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.eclipse.gmf.runtime.notation.Diagram
+   * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getGMFDiagram()
+   * @generated
+   */
+  int GMF_DIAGRAM = 12;
+
+    /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.mid.operator.Operator <em>Operator</em>}'.
    * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -3598,6 +3644,28 @@ public interface OperatorPackage extends EPackage {
     EAttribute getNestingOperator_NestedMIDPath();
 
     /**
+   * Returns the meta object for the reference '{@link edu.toronto.cs.se.mmint.mid.operator.NestingOperator#getNestedMID <em>Nested MID</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Nested MID</em>'.
+   * @see edu.toronto.cs.se.mmint.mid.operator.NestingOperator#getNestedMID()
+   * @see #getNestingOperator()
+   * @generated
+   */
+  EReference getNestingOperator_NestedMID();
+
+    /**
+   * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmint.mid.operator.NestingOperator#getNestedMIDGMFDiagram <em>Nested MIDGMF Diagram</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Nested MIDGMF Diagram</em>'.
+   * @see edu.toronto.cs.se.mmint.mid.operator.NestingOperator#getNestedMIDGMFDiagram()
+   * @see #getNestingOperator()
+   * @generated
+   */
+  EAttribute getNestingOperator_NestedMIDGMFDiagram();
+
+    /**
    * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.NestingOperator#getNestedInstanceMID() <em>Get Nested Instance MID</em>}' operation.
    * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -3802,7 +3870,7 @@ public interface OperatorPackage extends EPackage {
      * <!-- end-model-doc -->
    * @return the meta object for data type '<em>Random</em>'.
    * @see java.util.Random
-   * @model instanceClass="java.util.Random"
+   * @model instanceClass="java.util.Random" serializeable="false"
    * @generated
    */
     EDataType getRandom();
@@ -3848,6 +3916,20 @@ public interface OperatorPackage extends EPackage {
    * @generated
    */
     EDataType getSet();
+
+    /**
+   * Returns the meta object for data type '{@link org.eclipse.gmf.runtime.notation.Diagram <em>GMF Diagram</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * The wrapper for org.eclipse.gmf.runtime.notation.Diagram.
+     * <!-- end-model-doc -->
+   * @return the meta object for data type '<em>GMF Diagram</em>'.
+   * @see org.eclipse.gmf.runtime.notation.Diagram
+   * @model instanceClass="org.eclipse.gmf.runtime.notation.Diagram" serializeable="false"
+   * @generated
+   */
+  EDataType getGMFDiagram();
 
     /**
    * Returns the factory that creates the instances of the model.
@@ -4193,6 +4275,22 @@ public interface OperatorPackage extends EPackage {
         EAttribute NESTING_OPERATOR__NESTED_MID_PATH = OperatorPackage.eINSTANCE.getNestingOperator_NestedMIDPath();
 
         /**
+     * The meta object literal for the '<em><b>Nested MID</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference NESTING_OPERATOR__NESTED_MID = OperatorPackage.eINSTANCE.getNestingOperator_NestedMID();
+
+        /**
+     * The meta object literal for the '<em><b>Nested MIDGMF Diagram</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute NESTING_OPERATOR__NESTED_MIDGMF_DIAGRAM = OperatorPackage.eINSTANCE.getNestingOperator_NestedMIDGMFDiagram();
+
+        /**
      * The meta object literal for the '<em><b>Get Nested Instance MID</b></em>' operation.
      * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -4391,6 +4489,16 @@ public interface OperatorPackage extends EPackage {
      * @generated
      */
         EDataType SET = OperatorPackage.eINSTANCE.getSet();
+
+        /**
+     * The meta object literal for the '<em>GMF Diagram</em>' data type.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.gmf.runtime.notation.Diagram
+     * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getGMFDiagram()
+     * @generated
+     */
+    EDataType GMF_DIAGRAM = OperatorPackage.eINSTANCE.getGMFDiagram();
 
     }
 

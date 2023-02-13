@@ -190,7 +190,7 @@ public class WorkflowOperatorImpl extends NestingOperatorImpl implements Workflo
 
         // workflowMID is executed, intermediate models are stored in nestedMID, outputs in outputMIDsByName
         var workflowMID = ((WorkflowOperator) this.getMetatype()).getNestedWorkflowMID();
-        var nestedMID = this.getNestedInstanceMID();
+        var nestedMID = getNestedMID();
         var nestedMIDPath = this.getNestedMIDPath();
         var allModelsByName = new HashMap<>(inputsByName);
         Random state = null;

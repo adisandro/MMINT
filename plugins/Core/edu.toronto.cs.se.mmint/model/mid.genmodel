@@ -550,6 +550,7 @@
       <genDataTypes ecoreDataType="mid.ecore#//operator/Set">
         <genTypeParameters ecoreTypeParameter="mid.ecore#//operator/Set/E"/>
       </genDataTypes>
+      <genDataTypes ecoreDataType="mid.ecore#//operator/GMFDiagram"/>
       <genClasses ecoreClass="mid.ecore#//operator/Operator">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//operator/Operator/inputs"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//operator/Operator/outputs"/>
@@ -636,7 +637,10 @@
       </genClasses>
       <genClasses ecoreClass="mid.ecore#//operator/NestingOperator">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//operator/NestingOperator/nestedMIDPath"/>
-        <genOperations ecoreOperation="mid.ecore#//operator/NestingOperator/getNestedInstanceMID"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mid.ecore#//operator/NestingOperator/nestedMID"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EAttribute mid.ecore#//operator/NestingOperator/nestedMIDGMFDiagram"/>
         <genOperations ecoreOperation="mid.ecore#//operator/NestingOperator/startNestedInstance">
           <genParameters ecoreParameter="mid.ecore#//operator/NestingOperator/startNestedInstance/nestedOperatorType"/>
           <genParameters ecoreParameter="mid.ecore#//operator/NestingOperator/startNestedInstance/inputs"/>

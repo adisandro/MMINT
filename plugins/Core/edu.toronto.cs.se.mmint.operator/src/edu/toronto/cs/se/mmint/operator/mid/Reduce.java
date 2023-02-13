@@ -335,7 +335,7 @@ public class Reduce extends NestingOperatorImpl {
       }
     }
     if (nestedMIDPath != null) {
-      super.inMemoryNestedMID = reducedMID;
+      super.nestedMID = reducedMID;
       //TODO MMINT[NESTED] Transform input/output into shortcuts before serializing it
       super.writeNestedInstanceMID();
       var reducedModels = accumulatorOutputModels.stream()

@@ -5,18 +5,18 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.mmint.mid.operator;
 
-import edu.toronto.cs.se.mmint.MMINTException;
-
-import edu.toronto.cs.se.mmint.mid.MID;
 import java.util.Map;
 import java.util.Properties;
+
 import org.eclipse.emf.common.util.EList;
+
+import edu.toronto.cs.se.mmint.mid.MID;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,6 +32,8 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.NestingOperator#getNestedMIDPath <em>Nested MID Path</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.NestingOperator#getNestedMID <em>Nested MID</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.NestingOperator#getNestedMIDGMFDiagram <em>Nested MIDGMF Diagram</em>}</li>
  * </ul>
  *
  * @see edu.toronto.cs.se.mmint.mid.operator.OperatorPackage#getNestingOperator()
@@ -65,19 +67,53 @@ public interface NestingOperator extends Operator {
     void setNestedMIDPath(String value);
 
     /**
-   * <!-- begin-user-doc --> Gets the Instance MID containing the nested artifacts created by this operator instance.
-     * 
-     * @throws MMINTException
-     *             If this is not an operator instance.<!-- end-user-doc -->
-   * @model kind="operation" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
+   * Returns the value of the '<em><b>Nested MID</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Nested MID</em>' reference.
+   * @see #setNestedMID(MID)
+   * @see edu.toronto.cs.se.mmint.mid.operator.OperatorPackage#getNestingOperator_NestedMID()
+   * @model transient="true"
    * @generated
    */
-    MID getNestedInstanceMID() throws MMINTException;
+  MID getNestedMID();
+
+    /**
+   * Sets the value of the '{@link edu.toronto.cs.se.mmint.mid.operator.NestingOperator#getNestedMID <em>Nested MID</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Nested MID</em>' reference.
+   * @see #getNestedMID()
+   * @generated
+   */
+  void setNestedMID(MID value);
+
+    /**
+   * Returns the value of the '<em><b>Nested MIDGMF Diagram</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Nested MIDGMF Diagram</em>' attribute.
+   * @see #setNestedMIDGMFDiagram(org.eclipse.gmf.runtime.notation.Diagram)
+   * @see edu.toronto.cs.se.mmint.mid.operator.OperatorPackage#getNestingOperator_NestedMIDGMFDiagram()
+   * @model dataType="edu.toronto.cs.se.mmint.mid.operator.GMFDiagram" transient="true"
+   * @generated
+   */
+  org.eclipse.gmf.runtime.notation.Diagram getNestedMIDGMFDiagram();
+
+    /**
+   * Sets the value of the '{@link edu.toronto.cs.se.mmint.mid.operator.NestingOperator#getNestedMIDGMFDiagram <em>Nested MIDGMF Diagram</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Nested MIDGMF Diagram</em>' attribute.
+   * @see #getNestedMIDGMFDiagram()
+   * @generated
+   */
+  void setNestedMIDGMFDiagram(org.eclipse.gmf.runtime.notation.Diagram value);
 
     /**
    * <!-- begin-user-doc --> Starts a nested instance of an operator type, i.e. invokes its
      * {@link Operator#startInstance} within the nested Instance MID.
-     * 
+     *
      * @param nestedOperatorType
      *            The operator type to run nested.
      * @param inputs
