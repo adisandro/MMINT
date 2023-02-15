@@ -36,6 +36,7 @@ import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorConstraint;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDFactory;
+import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
@@ -132,13 +133,14 @@ public class Map extends NestingOperatorImpl {
                                                     java.util.@NonNull Map<String, MID> instanceMIDsByMapperOutput)
                                                     throws Exception {
 
-    // create output MIDs and pre-serialize them:
+    // create output MIDs and serialize them in advance:
     // it is necessary if the mapper is a nesting operator, does not hurt for other mappers
     var mapperOutputMIDsByName = new HashMap<String, MID>();
     var mapperOutputMIDPathsByName = new HashMap<String, String>();
     for (var mapperOutputEndpoint : mapperOperatorType.getOutputs()) {
       var outputName = mapperOutputEndpoint.getName();
       var outputMID = MIDFactory.eINSTANCE.createMID();
+      outputMID.setLevel(MIDLevel.INSTANCES);
       mapperOutputMIDsByName.put(outputName, outputMID);
       var instanceMID = instanceMIDsByMapperOutput.get(outputName);
       var baseOutputPath = (instanceMID == null) ?
@@ -148,7 +150,9 @@ public class Map extends NestingOperatorImpl {
                                                   false);
       mapperOutputMIDPathsByName.put(outputName, outputMIDPath);
       if (instanceMID != null) {
-        FileUtils.writeModelFile(outputMID, outputMIDPath, instanceMID.getEMFInstanceResourceSet(), true);
+        var resourceSet = instanceMID.getEMFInstanceResourceSet();
+        FileUtils.writeModelFile(outputMID, outputMIDPath, resourceSet, true);
+        outputMID.setEMFInstanceResourceSet(resourceSet);
       }
     }
 
@@ -217,7 +221,13 @@ public class Map extends NestingOperatorImpl {
       var outputMID = outputMIDByName.getValue();
       var outputMIDPath = mapperOutputMIDPathsByName.get(outputName);
       var instanceMID = instanceMIDsByMapperOutput.get(outputName);
-      var outputMIDModel = midModelType.createInstanceAndEditor(outputMID, outputMIDPath, instanceMID);
+      // output resources already exist, handle them appropriately
+      if (instanceMID != null) {
+        outputMID.eResource().save(FileUtils.SAVE_OPTIONS);
+      }
+      var outputMIDModel = midModelType.createInstanceAndEditor(null, outputMIDPath, instanceMID);
+      outputMIDModel.setEMFInstanceRoot(outputMID);
+      outputMIDModel.setEMFInstanceResource(outputMID.eResource());
       outputMIDModels.add(outputMIDModel);
     }
     // pass 2: output MIDRels only
@@ -231,7 +241,13 @@ public class Map extends NestingOperatorImpl {
       var outputMID = outputMIDByName.getValue();
       var outputMIDPath = mapperOutputMIDPathsByName.get(outputName);
       var instanceMID = instanceMIDsByMapperOutput.get(outputName);
-      var outputMIDModel = midrelModelType.createInstanceAndEditor(outputMID, outputMIDPath, instanceMID);
+      // output resources already exist, handle them appropriately
+      if (instanceMID != null) {
+        outputMID.eResource().save(FileUtils.SAVE_OPTIONS);
+      }
+      var outputMIDModel = midrelModelType.createInstanceAndEditor(null, outputMIDPath, instanceMID);
+      outputMIDModel.setEMFInstanceRoot(outputMID);
+      outputMIDModel.setEMFInstanceResource(outputMID.eResource());
       outputMIDModels.add(outputMIDModel);
       if (instanceMID != null) {
         createOutputMIDRelShortcuts(outputMIDModel, midModelType, midDiagramPluginId,
@@ -264,7 +280,7 @@ public class Map extends NestingOperatorImpl {
     }
     for (var inputMIDToSerialize : inputMIDsToSerialize.entrySet()) {
       var inputMID = inputMIDToSerialize.getValue();
-      FileUtils.writeModelFile(inputMID, inputMIDToSerialize.getKey(), inputMID.getEMFInstanceResourceSet(), true);
+      inputMID.eResource().save(FileUtils.SAVE_OPTIONS);
     }
 
     return MIDOperatorIOUtils.setVarargs(outputMIDModels, Map.OUT_MIDS);

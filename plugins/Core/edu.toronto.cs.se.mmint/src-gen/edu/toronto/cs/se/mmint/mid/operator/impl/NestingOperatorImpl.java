@@ -242,18 +242,19 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
   public Diagram getNestedMIDGMFDiagram() {
     try {
       MMINTException.mustBeInstance(this);
-      var nestedDiagram = getNestedMIDGMFDiagramGen();
-      if (nestedDiagram == null) {
-        var nestedMIDPath = this.getNestedMIDPath();
+      var nestedGMFDiagram = getNestedMIDGMFDiagramGen();
+      if (nestedGMFDiagram == null) {
+        var nestedMIDPath = getNestedMIDPath();
         if (nestedMIDPath == null) {
           return null;
         }
-        var nestedDiagramPath = nestedMIDPath + GMFUtils.DIAGRAM_SUFFIX;
-        nestedDiagram = (Diagram) FileUtils.readModelFile(nestedDiagramPath,
+        var nestedGMFDiagramPath = nestedMIDPath + GMFUtils.DIAGRAM_SUFFIX;
+        nestedGMFDiagram = (Diagram) FileUtils.readModelFile(nestedGMFDiagramPath,
                                                           getMIDContainer().getEMFInstanceResourceSet(), true);
-        this.nestedMIDGMFDiagram = nestedDiagram;
+        // bypass EMF notifications and the need for a write transaction
+        this.nestedMIDGMFDiagram = nestedGMFDiagram;
       }
-      return nestedDiagram;
+      return nestedGMFDiagram;
     }
     catch (Exception e) {
       MMINTException.print(IStatus.WARNING, "Can't load nested MID GMF diagram, returning null", e);
@@ -398,41 +399,47 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
     return result.toString();
   }
 
-    /**
-     * @generated NOT
-     */
-    @Override
-    protected void addInstance(@NonNull Operator newOperator, @NonNull MIDLevel midLevel, @Nullable MID instanceMID) {
-
-        super.addInstance(newOperator, midLevel, instanceMID);
-        if (instanceMID == null || midLevel == MIDLevel.WORKFLOWS) {
-            /* TODO MMINT[OPERATOR] Could we put a nestedMID in memory when not serialized too, or will it defeat the purpose of having a null instanceMID?
-             * (could be useful for experiments, to keep track of random states and fetch execution times)
-             * (normal operators that receive the nestedMID need to be able to create models in it without serializing them: need two different flags)
-             */
-            return;
-        }
-
-        String nestedMIDPath = FileUtils.getUniquePath(
-            FileUtils.replaceFileNameInPath(MIDRegistry.getModelUri(instanceMID), newOperator.getName()), true, false);
-        var nestedMID = MIDFactory.eINSTANCE.createMID();
-        nestedMID.setLevel(MIDLevel.INSTANCES);
-        try {
-            FileUtils.writeModelFile(nestedMID, nestedMIDPath, instanceMID.getEMFInstanceResourceSet(), true);
-            Diagram nestedMIDDiagramRoot = GMFUtils.createGMFDiagramAndFile(
-                nestedMID,
-                nestedMIDPath + GMFUtils.DIAGRAM_SUFFIX,
-                MIDTypeRegistry.getMIDModelType().getName(),
-                MIDTypeRegistry.getTypeBundle(MIDTypeRegistry.getMIDDiagramType().getUri()).getSymbolicName(),
-                true);
-            ((NestingOperator) newOperator).setNestedMIDPath(nestedMIDPath);
-            ((NestingOperatorImpl) newOperator).nestedMID = nestedMID;
-            ((NestingOperatorImpl) newOperator).nestedMIDGMFDiagram = nestedMIDDiagramRoot;
-        }
-        catch (Exception e) {
-            MMINTException.print(IStatus.WARNING, "Can't store the Instance MID to contain this nesting operator's intermediate artifacts, skipping it", e);
-        }
+  /**
+   * @generated NOT
+   */
+  @Override
+  protected void addInstance(@NonNull Operator newOperator, @NonNull MIDLevel midLevel, @Nullable MID instanceMID) {
+    super.addInstance(newOperator, midLevel, instanceMID);
+    if (instanceMID == null || midLevel == MIDLevel.WORKFLOWS) {
+      /* TODO MMINT[OPERATOR] Could we put a nestedMID in memory when not serialized too, or will it defeat the purpose of having a null instanceMID?
+       * (could be useful for experiments, to keep track of random states and fetch execution times)
+       * (normal operators that receive the nestedMID need to be able to create models in it without serializing them: need two different flags)
+       */
+      return;
     }
+
+    //TODO Is a diagram field really necessary?
+    //TODO Review createNestedInstanceMIDModelShortcuts
+    //TODO Map serialize outputs: look at nested mapper case
+    //TODO Map review createOutputMIDRelShortcuts
+    var nestedMIDPath = FileUtils.getUniquePath(
+      FileUtils.replaceFileNameInPath(MIDRegistry.getModelUri(instanceMID), newOperator.getName()), true, false);
+    var nestedGMFDiagramPath = nestedMIDPath + GMFUtils.DIAGRAM_SUFFIX;
+    ((NestingOperator) newOperator).setNestedMIDPath(nestedMIDPath);
+    var nestedMID = MIDFactory.eINSTANCE.createMID();
+    nestedMID.setLevel(MIDLevel.INSTANCES);
+    try {
+      // the nested MID is serialized in advance because implementors may run standard operators:
+      // they will use nested MID == instance MID and assume it is already a file
+      var resourceSet = instanceMID.getEMFInstanceResourceSet();
+      FileUtils.writeModelFile(nestedMID, nestedMIDPath, resourceSet, true);
+      nestedMID.setEMFInstanceResourceSet(resourceSet);
+      ((NestingOperator) newOperator).setNestedMID(nestedMID);
+      var nestedGMFDiagram = GMFUtils.createGMFDiagramAndFile(
+        nestedMID, nestedGMFDiagramPath, MIDTypeRegistry.getMIDModelType().getName(),
+        MIDTypeRegistry.getTypeBundle(MIDTypeRegistry.getMIDDiagramType().getUri()).getSymbolicName(), true);
+      ((NestingOperator) newOperator).setNestedMIDGMFDiagram(nestedGMFDiagram);
+    }
+    catch (Exception e) {
+      MMINTException.print(IStatus.WARNING, "Can't store the nested MID to contain this nesting operator's" +
+                           " intermediate artifacts, skipping it", e);
+    }
+  }
 
     /**
      * Create shortcuts to external models into the nested Instance MID.
@@ -553,38 +560,32 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
         return nestedToCopiedModels;
     }
 
-    /**
-     * Writes the nested Instance MID to file.
-     *
-     * @throws MMINTException
-     *             If this is not an operator instance, or if this operator was created without a nested Instance MID.
-     * @throws IOException
-     *             If the nested Instance MID could not be created or overwritten.
-     * @generated NOT
-     */
-    protected void writeNestedInstanceMID() throws MMINTException, IOException {
-
-        MMINTException.mustBeInstance(this);
-
-        var nestedMIDPath = this.getNestedMIDPath();
-        if (nestedMIDPath == null) {
-            throw new MMINTException("The nested MID is not serialized");
-        }
-
-        var nestedMIDDiagramPath = nestedMIDPath + GMFUtils.DIAGRAM_SUFFIX;
-        var resourceSet = getMIDContainer().getEMFInstanceResourceSet();
-        FileUtils.writeModelFile(getNestedMID(), nestedMIDPath, resourceSet, true);
-        FileUtils.writeModelFile(getNestedMIDGMFDiagram(), nestedMIDDiagramPath, resourceSet, true);
-        this.nestedMID = null;
-        this.nestedMIDGMFDiagram = null;
+  /**
+   * Writes the nested Instance MID to file.
+   *
+   * @throws MMINTException
+   *             If this is not an operator instance, or if this operator was created without a nested Instance MID.
+   * @throws IOException
+   *             If the nested Instance MID could not be created or overwritten.
+   * @generated NOT
+   */
+  protected void writeNestedInstanceMID() throws Exception {
+    MMINTException.mustBeInstance(this);
+    var nestedMIDPath = getNestedMIDPath();
+    if (nestedMIDPath == null) {
+      throw new MMINTException("The nested MID is not serialized");
     }
+
+    // nested resources already exist, handle them appropriately
+    getNestedMID().eResource().save(FileUtils.SAVE_OPTIONS);
+    getNestedMIDGMFDiagram().eResource().save(FileUtils.SAVE_OPTIONS);
+  }
 
     /**
      * @generated NOT
      */
     @Override
     public Operator startNestedInstance(Operator nestedOperatorType, EList<OperatorInput> inputs, Properties inputProperties, EList<OperatorGeneric> generics, Map<String, MID> outputMIDsByName) throws Exception {
-
         //TODO MMINT[NESTED] Add option to detect when the nested MID is enabled, different from when operator instances are enabled (WorkflowOperator too)
         MMINTException.mustBeInstance(this);
 
@@ -610,7 +611,7 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
             nestedMID);
         // store nested MID
         if (nestedMIDPath != null) {
-            this.writeNestedInstanceMID();
+            writeNestedInstanceMID();
         }
 
         return newNestedOperator;
