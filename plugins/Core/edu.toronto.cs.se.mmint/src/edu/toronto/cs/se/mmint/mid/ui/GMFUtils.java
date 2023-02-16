@@ -20,6 +20,7 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EcoreFactory;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
@@ -70,9 +71,10 @@ public class GMFUtils {
     return diagram;
   }
 
-	public static Diagram createGMFDiagramAndFile(String modelPath, String diagramPath, String diagramKind,
-	                                              String diagramPluginId, boolean isWorkspaceRelative) throws Exception {
-    var rootModelObj = FileUtils.readModelFile(modelPath, null, isWorkspaceRelative);
+	public static Diagram createGMFDiagramAndFile(String modelPath, @Nullable ResourceSet resourceSet, String diagramPath,
+	                                              String diagramKind, String diagramPluginId, boolean isWorkspaceRelative)
+	                                                throws Exception {
+    var rootModelObj = FileUtils.readModelFile(modelPath, resourceSet, isWorkspaceRelative);
 		return createGMFDiagramAndFile(rootModelObj, diagramPath, diagramKind, diagramPluginId, isWorkspaceRelative);
 	}
 

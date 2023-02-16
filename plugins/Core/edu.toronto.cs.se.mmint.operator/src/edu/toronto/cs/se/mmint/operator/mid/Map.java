@@ -124,7 +124,7 @@ public class Map extends NestingOperatorImpl {
       GMFUtils.createGMFNodeShortcut(midrelEndpointModel, gmfDiagram, midDiagramPluginId, midModelType.getName(),
                                      MIDTypeRegistry.getCachedMIDViewProvider());
     }
-    FileUtils.writeModelFile(gmfDiagram, outputMIDModelDiagram.getUri(), resourceSet, true);
+    gmfDiagram.eResource().save(FileUtils.SAVE_OPTIONS);
   }
 
   private java.util.@NonNull Map<String, Model> map(@NonNull List<Model> inputMIDModels, @NonNull EList<MID> inputMIDs,

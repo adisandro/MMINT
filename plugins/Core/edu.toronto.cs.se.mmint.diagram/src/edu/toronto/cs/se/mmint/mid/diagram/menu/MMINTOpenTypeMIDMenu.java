@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -29,7 +29,7 @@ public class MMINTOpenTypeMIDMenu extends AbstractHandler {
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
-		String typeMIDPath = MMINT.TYPEMID_FILENAME + GMFUtils.DIAGRAM_SUFFIX;
+		var typeMIDPath = MMINT.TYPEMID_FILENAME + GMFUtils.DIAGRAM_SUFFIX;
 		if (!FileUtils.isFileInState(typeMIDPath)) {
 			createTypeMIDDiagram();
 		}
@@ -46,9 +46,10 @@ public class MMINTOpenTypeMIDMenu extends AbstractHandler {
 	public static void createTypeMIDDiagram() {
 
 		String typeMIDPath = FileUtils.prependStatePath(MMINT.TYPEMID_FILENAME);
-		String typeMIDDiagramPath = typeMIDPath + GMFUtils.DIAGRAM_SUFFIX;
+		var typeMIDDiagramPath = typeMIDPath + GMFUtils.DIAGRAM_SUFFIX;
 		try {
-			GMFUtils.createGMFDiagramAndFile(typeMIDPath, typeMIDDiagramPath, MIDEditPart.MODEL_ID, MIDDiagramEditorPlugin.ID, false);
+			GMFUtils.createGMFDiagramAndFile(typeMIDPath, null, typeMIDDiagramPath, MIDEditPart.MODEL_ID,
+			                                 MIDDiagramEditorPlugin.ID, false);
 		}
 		catch (Exception e) {
 			MMINTException.print(IStatus.ERROR, "Error creating Type MID diagram", e);

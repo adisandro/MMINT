@@ -12,6 +12,7 @@
 package edu.toronto.cs.se.mmint.mid.editor;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.viewers.IStructuredSelection;
 
 import edu.toronto.cs.se.mmint.MMINTException;
@@ -169,6 +170,7 @@ public interface Editor extends ExtendibleElement {
    * @model kind="operation" required="true"
    * @generated
    */
+    @Override
     Editor getMetatype();
 
     /**
@@ -181,6 +183,7 @@ public interface Editor extends ExtendibleElement {
    * @model kind="operation"
    * @generated
    */
+    @Override
     Editor getSupertype();
 
     /**
@@ -189,6 +192,7 @@ public interface Editor extends ExtendibleElement {
    * @model kind="operation"
    * @generated
    */
+    @Override
     MID getMIDContainer();
 
     /**
@@ -264,7 +268,8 @@ public interface Editor extends ExtendibleElement {
    * @model dataType="edu.toronto.cs.se.mmint.mid.editor.EditorCreationWizardDialog" required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" initialSelectionDataType="edu.toronto.cs.se.mmint.mid.editor.IStructuredSelection" initialSelectionRequired="true"
    * @generated
    */
-    EditorCreationWizardDialog invokeInstanceWizard(IStructuredSelection initialSelection) throws MMINTException;
+    EditorCreationWizardDialog invokeInstanceWizard(IStructuredSelection initialSelection,
+                                                    ResourceSet resourceSet) throws MMINTException;
 
     /**
    * <!-- begin-user-doc --> Deletes this editor instance from the Instance

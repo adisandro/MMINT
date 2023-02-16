@@ -537,6 +537,7 @@
         </genOperations>
         <genOperations ecoreOperation="mid.ecore#//editor/Editor/invokeInstanceWizard">
           <genParameters ecoreParameter="mid.ecore#//editor/Editor/invokeInstanceWizard/initialSelection"/>
+          <genParameters ecoreParameter="mid.ecore#//editor/Editor/invokeInstanceWizard/resourceSet"/>
         </genOperations>
         <genOperations ecoreOperation="mid.ecore#//editor/Editor/deleteInstance"/>
       </genClasses>

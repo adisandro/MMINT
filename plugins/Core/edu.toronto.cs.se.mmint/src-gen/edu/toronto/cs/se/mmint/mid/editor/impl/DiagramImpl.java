@@ -18,6 +18,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
@@ -109,7 +110,7 @@ public class DiagramImpl extends EditorImpl implements Diagram {
                 diagramUri = FileUtils.replaceFileExtensionInPath(modelPath, this.getFileExtensions().get(0));
                 var modelFile = new StructuredSelection(
                     ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(modelPath)));
-                var wizDialog = this.invokeInstanceWizard(modelFile);
+                var wizDialog = this.invokeInstanceWizard(modelFile, instanceMID.getEMFInstanceResourceSet());
                 if (wizDialog == null) {
                     throw new MIDDialogCancellation();
                 }
@@ -189,7 +190,8 @@ public class DiagramImpl extends EditorImpl implements Diagram {
      * @generated NOT
      */
     @Override
-    public EditorCreationWizardDialog invokeInstanceWizard(IStructuredSelection initialSelection) throws MMINTException {
+    public EditorCreationWizardDialog invokeInstanceWizard(IStructuredSelection initialSelection,
+                                                           ResourceSet resourceSet) throws MMINTException {
 
         MMINTException.mustBeType(this);
 
@@ -201,13 +203,15 @@ public class DiagramImpl extends EditorImpl implements Diagram {
                 var modelUri = ((IFile) initialSelection.getFirstElement()).getFullPath().toOSString();
                 String diagramUri = FileUtils.replaceFileExtensionInPath(modelUri, this.getFileExtensions().get(0));
                 Diagram superDiagramType = this;
-                while (superDiagramType.getSupertype() != null && superDiagramType.getSupertype() != MIDTypeHierarchy.getRootEditorType()) {
+                while (superDiagramType.getSupertype() != null &&
+                       superDiagramType.getSupertype() != MIDTypeHierarchy.getRootEditorType()) {
                     superDiagramType = (Diagram) superDiagramType.getSupertype();
                 }
                 var diagramKind = MIDTypeRegistry.getType(superDiagramType.getModelUri()).getName();
                 var diagramPluginId = MIDTypeRegistry.getTypeBundle(superDiagramType.getUri()).getSymbolicName();
                 try {
-                    GMFUtils.createGMFDiagramAndFile(modelUri, diagramUri, diagramKind, diagramPluginId, true);
+                    GMFUtils.createGMFDiagramAndFile(modelUri, resourceSet, diagramUri, diagramKind, diagramPluginId,
+                                                     true);
                     if (Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.
                                                                  PREFERENCE_MENU_OPENMODELEDITORS_ENABLED))) {
                         FileUtils.openEclipseEditor(diagramUri, this.getId(), true);

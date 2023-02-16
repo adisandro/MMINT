@@ -293,7 +293,7 @@ public class MIDDialogs {
 				ResourcesPlugin.getWorkspace().getRoot().getProject(midContainerUri)
 			);
 		}
-		var wizDialog = editorType.invokeInstanceWizard(midContainer);
+		var wizDialog = editorType.invokeInstanceWizard(midContainer, instanceMID.getEMFInstanceResourceSet());
 		if (wizDialog == null) {
 			throw new MIDDialogCancellation();
 		}

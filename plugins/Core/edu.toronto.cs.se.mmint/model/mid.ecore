@@ -1122,6 +1122,7 @@
       <eOperations name="invokeInstanceWizard" lowerBound="1" eType="#//editor/EditorCreationWizardDialog"
           eExceptions="#//MMINTException">
         <eParameters name="initialSelection" lowerBound="1" eType="#//editor/IStructuredSelection"/>
+        <eParameters name="resourceSet" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EResourceSet"/>
       </eOperations>
       <eOperations name="deleteInstance" eExceptions="#//MMINTException"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="modelUri" lowerBound="1"

@@ -21,6 +21,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.presentation.DynamicModelWizard;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.window.Window;
@@ -464,7 +465,7 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
         }
       case EditorPackage.EDITOR___INVOKE_INSTANCE_WIZARD__ISTRUCTUREDSELECTION:
         try {
-          return invokeInstanceWizard((IStructuredSelection)arguments.get(0));
+          return invokeInstanceWizard((IStructuredSelection)arguments.get(0), (ResourceSet)arguments.get(1));
         }
         catch (Throwable throwable) {
           throw new InvocationTargetException(throwable);
@@ -689,7 +690,8 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
      * @generated NOT
      */
     @Override
-    public EditorCreationWizardDialog invokeInstanceWizard(IStructuredSelection initialSelection) throws MMINTException {
+    public EditorCreationWizardDialog invokeInstanceWizard(IStructuredSelection initialSelection,
+                                                           ResourceSet resourceSet) throws MMINTException {
 
         MMINTException.mustBeType(this);
 
