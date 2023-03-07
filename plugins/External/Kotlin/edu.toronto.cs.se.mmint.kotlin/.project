@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>edu.toronto.cs.se.mmint.kotlin</name>
+	<comment>edu.toronto.cs.se.mmint.kotlin</comment>
+	<projects>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.jetbrains.kotlin.ui.kotlinBuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
+			<name>org.eclipse.jdt.core.javabuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
+			<name>org.eclipse.pde.ManifestBuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
+			<name>org.eclipse.pde.SchemaBuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
+			<name>org.eclipse.m2e.core.maven2Builder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.eclipse.m2e.core.maven2Nature</nature>
+		<nature>org.eclipse.jdt.core.javanature</nature>
+		<nature>org.jetbrains.kotlin.core.kotlinNature</nature>
+		<nature>org.eclipse.pde.PluginNature</nature>
+	</natures>
+	<linkedResources>
+		<link>
+			<name>kotlin_bin</name>
+			<type>2</type>
+			<locationURI>org.jetbrains.kotlin.core.filesystem:/edu.toronto.cs.se.mmint.kotlin/kotlin_bin</locationURI>
+		</link>
+	</linkedResources>
+</projectDescription>

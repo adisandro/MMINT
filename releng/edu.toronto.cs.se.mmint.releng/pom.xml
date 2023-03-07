@@ -149,6 +149,7 @@
     <module>../../plugins/Core-Extensions/ProductLine/edu.toronto.cs.se.mmint.productline.operators</module>
     <module>../../plugins/External/Lean/edu.toronto.cs.se.mmint.lean</module>
     <module>../../plugins/External/LogicNG/edu.toronto.cs.se.mmint.logicng</module>
+    <module>../../plugins/External/Kotlin/edu.toronto.cs.se.mmint.kotlin</module>
     <module>../../plugins/External/Z3/edu.toronto.cs.se.modelepedia.z3</module>
     <module>../../plugins/External/Z3/edu.toronto.cs.se.modelepedia.z3.operator</module>
     <module>../../plugins/Types/ClassDiagram/edu.toronto.cs.se.modelepedia.classdiagram</module>

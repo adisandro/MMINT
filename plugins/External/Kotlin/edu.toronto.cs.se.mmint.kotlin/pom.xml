@@ -1,0 +1,73 @@
+<!--
+    Copyright (c) 2023, 2023 Alessio Di Sandro.
+   
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License 2.0 which is available at
+    https://www.eclipse.org/legal/epl-2.0/
+   
+    SPDX-License-Identifier: EPL-2.0
+   
+    Contributors:
+        Alessio Di Sandro - Implementation
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>edu.toronto.cs.se.mmint.kotlin</artifactId>
+  <packaging>eclipse-plugin</packaging>
+  <properties>
+    <kotlin-version>1.8.10</kotlin-version>
+  </properties>
+  <parent>
+  	<groupId>MMINT</groupId>
+  	<artifactId>edu.toronto.cs.se.mmint.releng</artifactId>
+  	<version>2.16.99-SNAPSHOT</version>
+  	<relativePath>../../../../releng/edu.toronto.cs.se.mmint.releng</relativePath>
+  </parent>
+  <dependencies>
+    <dependency>
+      <groupId>org.jetbrains.kotlin</groupId>
+      <artifactId>kotlin-osgi-bundle</artifactId>
+      <version>${kotlin-version}</version>
+    </dependency>
+  </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.jetbrains.kotlin</groupId>
+        <artifactId>kotlin-maven-plugin</artifactId>
+        <version>${kotlin-version}</version>
+        <executions>
+          <execution>
+            <id>compile</id>
+            <phase>process-sources</phase>
+            <goals>
+              <goal>compile</goal>
+            </goals>
+            <configuration>
+              <sourceDirs>
+                <sourceDir>${project.basedir}/src/</sourceDir>
+              </sourceDirs>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>${mavendeps-version}</version>
+        <executions>
+          <execution>
+            <id>copy-dependencies</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>copy-dependencies</goal>
+            </goals>
+            <configuration>
+              <stripVersion>true</stripVersion>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>

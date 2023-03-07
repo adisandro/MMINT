@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: edu.toronto.cs.se.mmint.kotlin;singleton:=true
+Bundle-Vendor: %providerName
+Bundle-Version: 2.16.99.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-19
+Automatic-Module-Name: edu.toronto.cs.se.mmint.kotlin
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: target/dependency/kotlin-osgi-bundle.jar,
+ .
+Export-Package: edu.toronto.cs.se.mmint.kotlin.operator
+Require-Bundle: edu.toronto.cs.se.mmint
