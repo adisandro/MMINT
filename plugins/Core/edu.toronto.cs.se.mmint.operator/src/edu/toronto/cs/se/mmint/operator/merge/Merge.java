@@ -17,6 +17,7 @@ import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.BasicEList;
@@ -26,6 +27,7 @@ import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MMINTConstants;
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorConstraint;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
@@ -36,6 +38,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
 //TODO MMINT[OPERATOR] Review this whole operator to find examples on how to make apis easier to use
@@ -45,17 +48,20 @@ public class Merge extends OperatorImpl {
   private static final String MERGE_SEPARATOR = "_";
   private static final String TRACE_COPIED_NAME = "copied";
   private static final String TRACE_MERGED_NAME = "merged";
-  private Input input;
-  private Output output;
+  private In in;
+  private Out out;
+  private String engine;
 
-  private static class Input {
+  private static class In {
+    private final static String PROP_IN_ENGINE = "engine";
+    private final static String PROP_IN_ENGINE_DEFAULT = "java";
     private final static String MODELREL = "overlap";
     private ModelRel overlap;
     private Model model1;
     private Model model2;
 
-    public Input(Map<String, Model> inputsByName) {
-      this.overlap = (ModelRel) inputsByName.get(Input.MODELREL);
+    public In(Map<String, Model> inputsByName) {
+      this.overlap = (ModelRel) inputsByName.get(In.MODELREL);
       if (this.overlap.getModelEndpoints().size() != 2) {
         throw new IllegalArgumentException();
       }
@@ -67,7 +73,7 @@ public class Merge extends OperatorImpl {
     }
   }
 
-  private static class Output {
+  private static class Out {
     private final static String MODEL = "merged";
     private final static String MODELREL1 = "trace1";
     private final static String MODELREL2 = "trace2";
@@ -78,30 +84,30 @@ public class Merge extends OperatorImpl {
     private ModelRel mergeTrace;
     private String mergedModelPath;
 
-    public Output(Input input, Map<String, MID> outputMIDsByName) throws Exception {
-      var mergedModelMID = outputMIDsByName.get(Output.MODEL);
+    public Out(In input, Map<String, MID> outputMIDsByName) throws Exception {
+      var mergedModelMID = outputMIDsByName.get(Out.MODEL);
       var mergedModelName = input.model1.getName() + Merge.MERGE_SEPARATOR + input.model2.getName() +
                             MMINTConstants.MODEL_FILEEXTENSION_SEPARATOR + input.model1.getFileExtension();
       this.mergedModelPath = FileUtils.replaceLastSegmentInPath(MIDRegistry.getModelUri(mergedModelMID),
                                                                 mergedModelName);
       this.merged = input.model1.getMetatype().createInstance(null, this.mergedModelPath, mergedModelMID);
       var modelRelType = MIDTypeHierarchy.getRootModelRelType();
-      this.trace1 = modelRelType.createBinaryInstanceAndEndpoints(null, Output.MODELREL1, input.model1, this.merged,
-                                                                  outputMIDsByName.get(Output.MODELREL1));
-      this.trace2 = modelRelType.createBinaryInstanceAndEndpoints(null, Output.MODELREL2, input.model2, this.merged,
-                                                                  outputMIDsByName.get(Output.MODELREL2));
-      this.mergeTrace = modelRelType.createBinaryInstanceAndEndpoints(null, Output.MODELREL3, input.overlap,
+      this.trace1 = modelRelType.createBinaryInstanceAndEndpoints(null, Out.MODELREL1, input.model1, this.merged,
+                                                                  outputMIDsByName.get(Out.MODELREL1));
+      this.trace2 = modelRelType.createBinaryInstanceAndEndpoints(null, Out.MODELREL2, input.model2, this.merged,
+                                                                  outputMIDsByName.get(Out.MODELREL2));
+      this.mergeTrace = modelRelType.createBinaryInstanceAndEndpoints(null, Out.MODELREL3, input.overlap,
                                                                       this.merged,
-                                                                      outputMIDsByName.get(Output.MODELREL3));
+                                                                      outputMIDsByName.get(Out.MODELREL3));
     }
 
     public Map<String, Model> packed() throws Exception {
       this.merged.createInstanceEditor(true); // opens the new model editor as side effect
 
-      return Map.of(Output.MODEL, this.merged,
-                    Output.MODELREL1, this.trace1,
-                    Output.MODELREL2, this.trace2,
-                    Output.MODELREL3, this.mergeTrace);
+      return Map.of(Out.MODEL, this.merged,
+                    Out.MODELREL1, this.trace1,
+                    Out.MODELREL2, this.trace2,
+                    Out.MODELREL3, this.mergeTrace);
     }
   }
 
@@ -109,7 +115,7 @@ public class Merge extends OperatorImpl {
     @Override
     public boolean checkInputs(Map<String, Model> inputsByName) {
       try {
-        new Input(inputsByName);
+        new In(inputsByName);
         return true;
       }
       catch (IllegalArgumentException e) {
@@ -121,16 +127,22 @@ public class Merge extends OperatorImpl {
     public Map<ModelRel, List<Model>> getOutputModelRelEndpoints(Map<String, GenericElement> genericsByName,
                                                                  Map<String, Model> inputsByName,
                                                                  Map<String, Model> outputsByName) {
-      var input = new Input(inputsByName);
-      var mergedModel = outputsByName.get(Output.MODEL);
-      var traceRel1 = (ModelRel) outputsByName.get(Output.MODELREL1);
-      var traceRel2 = (ModelRel) outputsByName.get(Output.MODELREL2);
-      var mergeRel = (ModelRel) outputsByName.get(Output.MODELREL3);
+      var input = new In(inputsByName);
+      var mergedModel = outputsByName.get(Out.MODEL);
+      var traceRel1 = (ModelRel) outputsByName.get(Out.MODELREL1);
+      var traceRel2 = (ModelRel) outputsByName.get(Out.MODELREL2);
+      var mergeRel = (ModelRel) outputsByName.get(Out.MODELREL3);
 
       return Map.of(traceRel1, List.of(input.model1, mergedModel),
                     traceRel2, List.of(input.model2, mergedModel),
                     mergeRel, List.of(input.overlap, mergedModel));
     }
+  }
+
+  @Override
+  public void readInputProperties(Properties inputProperties) throws MMINTException {
+    this.engine = MIDOperatorIOUtils.getOptionalStringProperty(inputProperties, In.PROP_IN_ENGINE,
+                                                               In.PROP_IN_ENGINE_DEFAULT);
   }
 
   // TODO MMINT[OPERATOR] Make this an api
@@ -149,20 +161,16 @@ public class Merge extends OperatorImpl {
     return connModelElemRefs;
   }
 
-  protected void rule() {
-
-  }
-
   private void merge() throws Exception {
     var modelElemType = MIDTypeHierarchy.getRootModelElementType();
     var mappingType = MIDTypeHierarchy.getRootMappingType();
 
     // create merged root
-    var rootModelObj1 = this.input.model1.getEMFInstanceRoot();
+    var rootModelObj1 = this.in.model1.getEMFInstanceRoot();
     var modelFactory = rootModelObj1.eClass().getEPackage().getEFactoryInstance();
     var rootMergedModelObj = modelFactory.create(rootModelObj1.eClass());
     var overlapModelElems1 = new HashMap<String, String>(); // uri1 to uri2
-    for (var modelElemRef1 : this.input.overlap.getModelEndpointRefs().get(0).getModelElemRefs()) {
+    for (var modelElemRef1 : this.in.overlap.getModelEndpointRefs().get(0).getModelElemRefs()) {
       var modelElemRef2 = this.getConnected(modelElemRef1).stream().findFirst().get();
       overlapModelElems1.put(MIDRegistry.getModelObjectUri(modelElemRef1.getObject()),
                              MIDRegistry.getModelObjectUri(modelElemRef2.getObject()));
@@ -192,19 +200,19 @@ public class Merge extends OperatorImpl {
       var traceName = (isMerged) ? Merge.TRACE_MERGED_NAME : Merge.TRACE_COPIED_NAME;
       var traceModelElemRefs1 = new BasicEList<ModelElementReference>();
       traceModelElemRefs1.add(
-        this.output.trace1.getModelEndpointRefs().get(0).createModelElementInstanceAndReference(modelObj1, null));
-      var newModelElemUri = this.output.merged.getUri() + MIDRegistry.getModelElementUri(mergedModelObj);
+        this.out.trace1.getModelEndpointRefs().get(0).createModelElementInstanceAndReference(modelObj1, null));
+      var newModelElemUri = this.out.merged.getUri() + MIDRegistry.getModelElementUri(mergedModelObj);
       var eInfo = MIDRegistry.getModelElementEMFInfo(mergedModelObj, MIDLevel.INSTANCES);
       var newModelElemName = MIDRegistry.getModelElementName(eInfo, mergedModelObj, MIDLevel.INSTANCES);
       traceModelElemRefs1.add( // merged model element is not serialized yet
         modelElemType.createInstanceAndReference(newModelElemUri, newModelElemName, eInfo,
-                                                 this.output.trace1.getModelEndpointRefs().get(1)));
+                                                 this.out.trace1.getModelEndpointRefs().get(1)));
       var newMappingRef = mappingType.createInstanceAndReferenceAndEndpointsAndReferences(true, traceModelElemRefs1);
       newMappingRef.getObject().setName(traceName);
     }
 
     // copy elements from model2
-    var rootModelObj2 = this.input.model2.getEMFInstanceRoot();
+    var rootModelObj2 = this.in.model2.getEMFInstanceRoot();
     allModelObjs.put(rootModelObj2, rootMergedModelObj);
     for (var iter2 = rootModelObj2.eAllContents(); iter2.hasNext(); ) {
       var modelObj2 = iter2.next();
@@ -223,13 +231,13 @@ public class Merge extends OperatorImpl {
       var traceName = (isMerged) ? Merge.TRACE_MERGED_NAME : Merge.TRACE_COPIED_NAME;
       var traceModelElemRefs2 = new BasicEList<ModelElementReference>();
       traceModelElemRefs2.add(
-        this.output.trace2.getModelEndpointRefs().get(0).createModelElementInstanceAndReference(modelObj2, null));
-      var newModelElemUri = this.output.merged.getUri() + MIDRegistry.getModelElementUri(mergedModelObj);
+        this.out.trace2.getModelEndpointRefs().get(0).createModelElementInstanceAndReference(modelObj2, null));
+      var newModelElemUri = this.out.merged.getUri() + MIDRegistry.getModelElementUri(mergedModelObj);
       var eInfo = MIDRegistry.getModelElementEMFInfo(mergedModelObj, MIDLevel.INSTANCES);
       var newModelElemName = MIDRegistry.getModelElementName(eInfo, mergedModelObj, MIDLevel.INSTANCES);
       traceModelElemRefs2.add( // merged model element is not serialized yet
         modelElemType.createInstanceAndReference(newModelElemUri, newModelElemName, eInfo,
-                                                 this.output.trace2.getModelEndpointRefs().get(1)));
+                                                 this.out.trace2.getModelEndpointRefs().get(1)));
       var newMappingRef = mappingType.createInstanceAndReferenceAndEndpointsAndReferences(true, traceModelElemRefs2);
       newMappingRef.getObject().setName(traceName);
     }
@@ -277,36 +285,49 @@ public class Merge extends OperatorImpl {
     }
 
     // store merged model
-    FileUtils.writeModelFile(rootMergedModelObj, this.output.merged.getUri(), null, true);
+    FileUtils.writeModelFile(rootMergedModelObj, this.out.merged.getUri(), null, true);
 
     // merge rel
-    for (var overlapMapping : this.input.overlap.getMappings()) {
+    for (var overlapMapping : this.in.overlap.getMappings()) {
       var mergeModelElemRefs = new BasicEList<ModelElementReference>();
-      mergeModelElemRefs.add(this.output.mergeTrace.getModelEndpointRefs().get(0)
+      mergeModelElemRefs.add(this.out.mergeTrace.getModelEndpointRefs().get(0)
         .createModelElementInstanceAndReference(overlapMapping, null));
       var modelElemUri2 = overlapMapping.getModelElemEndpoints().stream()
         .map(mee -> MIDRegistry.getModelObjectUri(mee.getTarget()))
-        .filter(u -> this.input.model2.getUri().equals(MIDRegistry.getModelUri(u)))
+        .filter(u -> this.in.model2.getUri().equals(MIDRegistry.getModelUri(u)))
         .findFirst().get();
       var mergedModelObj = mergedModelObjs.get(modelElemUri2);
-      mergeModelElemRefs.add(this.output.mergeTrace.getModelEndpointRefs().get(1)
+      mergeModelElemRefs.add(this.out.mergeTrace.getModelEndpointRefs().get(1)
         .createModelElementInstanceAndReference(mergedModelObj, null));
       var mergeMappingRef = mappingType.createInstanceAndReferenceAndEndpointsAndReferences(true, mergeModelElemRefs);
       mergeMappingRef.getObject().setName(Merge.TRACE_MERGED_NAME);
     }
   }
 
+  private void kmerge() throws Exception {
+    var k = new edu.toronto.cs.se.mmint.kotlin.operator.merge.Merge();
+    var rootMergedModelObj = k.merge(this.in.model1, this.in.model2, this.in.overlap);
+    FileUtils.writeModelFile(rootMergedModelObj, this.out.merged.getUri(), null, true);
+  }
+
   private void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws Exception {
-    this.input = new Input(inputsByName);
-    this.output = new Output(this.input, outputMIDsByName);
+    this.in = new In(inputsByName);
+    this.out = new Out(this.in, outputMIDsByName);
   }
 
   @Override
   public Map<String, Model> run(Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
                                 Map<String, MID> outputMIDsByName) throws Exception {
     init(inputsByName, outputMIDsByName);
-    merge();
+    switch(this.engine) {
+      case "kotlin":
+        kmerge();
+        break;
+      case "java":
+      default:
+        merge();
+    }
 
-    return this.output.packed();
+    return this.out.packed();
   }
 }
