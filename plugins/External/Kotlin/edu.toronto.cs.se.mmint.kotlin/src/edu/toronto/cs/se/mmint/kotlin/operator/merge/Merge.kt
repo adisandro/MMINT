@@ -18,9 +18,9 @@ import org.eclipse.emf.ecore.EObject
 
 class Merge {
   fun merge(model1: Model, model2: Model, overlap: ModelRel): EObject {
-    val rootModelObj1 = model1.getEMFInstanceRoot();
-    val modelFactory = rootModelObj1.eClass().getEPackage().getEFactoryInstance();
-    val rootMergedModelObj = modelFactory.create(rootModelObj1.eClass());
+    val rootModelObj1 = model1.getEMFInstanceRoot()
+    val modelFactory = rootModelObj1.eClass().getEPackage().getEFactoryInstance()
+    val rootMergedModelObj = modelFactory.create(rootModelObj1.eClass())
     return rootMergedModelObj
   }
 }
