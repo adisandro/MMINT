@@ -191,7 +191,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
       return modelObj;
     }
     catch (Exception e) {
-      MMINTException.print(IStatus.WARNING, "Can't load EMF object '" + getUri() + "', returning null", e);
+      MMINTException.print(IStatus.INFO, "Can't load EMF object '" + getUri() + "', returning null", e);
       return null;
     }
   }

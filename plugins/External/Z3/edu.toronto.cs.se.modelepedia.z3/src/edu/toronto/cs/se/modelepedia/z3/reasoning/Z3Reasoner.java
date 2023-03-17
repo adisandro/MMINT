@@ -170,7 +170,7 @@ public class Z3Reasoner implements IModelConstraintTrait, IMAVOTrait, IProductLi
 			highlighter.highlightMAVOCounterExample(modelDiagram, z3ModelParser.getZ3MAVOModelObjects(this.z3NotConstraintModel));
 		}
 		catch (Exception e) {
-			MMINTException.print(IStatus.WARNING, "Can't highlight concretization, skipping it", e);
+			MMINTException.print(IStatus.INFO, "Can't highlight concretization, skipping it", e);
 		}
 
 		return constraintTruthValue;
@@ -221,7 +221,7 @@ public class Z3Reasoner implements IModelConstraintTrait, IMAVOTrait, IProductLi
 					}
 				}
 				catch (MMINTException e) {
-					MMINTException.print(IStatus.WARNING, "Can't generate SMTLIB encoding for may model object " + formulaVar + ", skipping it", e);
+					MMINTException.print(IStatus.INFO, "Can't generate SMTLIB encoding for may model object " + formulaVar + ", skipping it", e);
 					continue;
 				}
 			}
@@ -288,7 +288,7 @@ public class Z3Reasoner implements IModelConstraintTrait, IMAVOTrait, IProductLi
 				smtConstraint = Z3MAVOUtils.getSMTLIBMayModelObjectConstraint(mayModelObj, true, false);
 			}
 			catch (MMINTException e) {
-				MMINTException.print(IStatus.WARNING, "Can't generate SMTLIB encoding for may model object " + formulaVar + ", skipping it", e);
+				MMINTException.print(IStatus.INFO, "Can't generate SMTLIB encoding for may model object " + formulaVar + ", skipping it", e);
 				continue;
 			}
 			var backboneTruthValue = this.checkMAVOConstraintWithSolver(z3IncSolver, "", smtConstraint, MAVOCheckStrategy.SINGLE_CHECK_IF_FALSE);
@@ -455,7 +455,7 @@ public class Z3Reasoner implements IModelConstraintTrait, IMAVOTrait, IProductLi
 			highlighter.highlight(modelDiagram, mavoDecision);
 		}
 		catch (Exception e) {
-			MMINTException.print(IStatus.WARNING, "Can't highlight MAVO decision, skipping it", e);
+			MMINTException.print(IStatus.INFO, "Can't highlight MAVO decision, skipping it", e);
 		}
 	}
 
@@ -467,7 +467,7 @@ public class Z3Reasoner implements IModelConstraintTrait, IMAVOTrait, IProductLi
 			highlighter.highlight(modelDiagram, mavoCollection);
 		}
 		catch (Exception e) {
-			MMINTException.print(IStatus.WARNING, "Can't highlight MAVO collection, skipping it", e);
+			MMINTException.print(IStatus.INFO, "Can't highlight MAVO collection, skipping it", e);
 		}
 	}
 
@@ -479,7 +479,7 @@ public class Z3Reasoner implements IModelConstraintTrait, IMAVOTrait, IProductLi
 			highlighter.highlight(modelDiagram, mavoModelObj);
 		}
 		catch (Exception e) {
-			MMINTException.print(IStatus.WARNING, "Can't highlight MAVO element, skipping it", e);
+			MMINTException.print(IStatus.INFO, "Can't highlight MAVO element, skipping it", e);
 		}
 	}
 

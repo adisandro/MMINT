@@ -125,7 +125,7 @@ public class RelationshipDiagramOutlinePage extends ContentOutlinePage {
 			resourceSet.getResources().add(model.getEMFInstanceRoot().eResource());
 		}
 		catch (Exception e) {
-			MMINTException.print(IStatus.WARNING, "Can't get model root, skipping addition to outline", e);;
+			MMINTException.print(IStatus.INFO, "Can't get model root, skipping addition to outline", e);;
 		}
 	}
 

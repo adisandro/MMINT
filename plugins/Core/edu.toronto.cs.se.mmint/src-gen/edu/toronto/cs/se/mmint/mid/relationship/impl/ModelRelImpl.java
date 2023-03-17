@@ -927,7 +927,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
         return FileUtils.getEMFResource(MIDRegistry.getModelUri(this), null, true);
       }
       catch (Exception e) {
-        MMINTException.print(IStatus.WARNING, "Can't load EMF rel resource, returning null", e);
+        MMINTException.print(IStatus.INFO, "Can't load EMF rel resource, returning null", e);
         return null;
       }
     }
@@ -942,7 +942,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
         return this;
       }
       catch (Exception e) {
-        MMINTException.print(IStatus.WARNING, "Can't load root EMF rel object, returning null", e);
+        MMINTException.print(IStatus.INFO, "Can't load root EMF rel object, returning null", e);
         return null;
       }
     }

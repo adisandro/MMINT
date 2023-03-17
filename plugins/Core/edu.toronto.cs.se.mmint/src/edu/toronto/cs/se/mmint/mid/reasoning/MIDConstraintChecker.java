@@ -237,7 +237,7 @@ public class MIDConstraintChecker {
 				MIDRegistry.subtractEndpointCardinality(oldModelEndpoint.getMetatypeUri(), cardinalityTable);
 			}
 			catch (MMINTException e) {
-				MMINTException.print(IStatus.WARNING, "The model endpoint to be replaced can't be found in the model relationship, skipping it", e);
+				MMINTException.print(IStatus.INFO, "The model endpoint to be replaced can't be found in the model relationship, skipping it", e);
 			}
 		}
 		// check allowance
@@ -323,7 +323,7 @@ public class MIDConstraintChecker {
 				MIDRegistry.subtractEndpointCardinality(oldModelElemEndpointRef.getObject().getMetatypeUri(), cardinalityTable);
 			}
 			catch (MMINTException e) {
-				MMINTException.print(IStatus.WARNING, "The model element endpoint to be replaced can't be found in the link, skipping it", e);
+				MMINTException.print(IStatus.INFO, "The model element endpoint to be replaced can't be found in the link, skipping it", e);
 			}
 		}
 		// check allowance

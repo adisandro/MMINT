@@ -78,7 +78,7 @@ public class DecompositionUtils {
         relatedGoal = moveOneDecompositionUp(relatedGoal); // formal argument level
       }
       catch (MMINTException e) {
-        MMINTException.print(IStatus.WARNING, "Bad structure for assisted decomposition", e);
+        MMINTException.print(IStatus.INFO, "Bad structure for assisted decomposition", e);
         return Optional.empty();
       }
     }

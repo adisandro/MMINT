@@ -338,7 +338,7 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
             ((NestingOperatorImpl) newOperator).inMemoryNestedMIDDiagramRoot = nestedMIDDiagramRoot;
         }
         catch (Exception e) {
-            MMINTException.print(IStatus.WARNING, "Can't store the Instance MID to contain this nesting operator's intermediate artifacts, skipping it", e);
+            MMINTException.print(IStatus.INFO, "Can't store the Instance MID to contain this nesting operator's intermediate artifacts, skipping it", e);
         }
     }
 

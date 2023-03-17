@@ -203,7 +203,7 @@ results:
             highlighted.add(SiriusHighlighter.highlight(model, highlightUris, Color.RED));
           }
           catch (Exception e) {
-            MMINTException.print(IStatus.WARNING, "Query result highlighting failed", e);
+            MMINTException.print(IStatus.INFO, "Query result highlighting failed", e);
           }
           buttons = ((i+1) == numResults && j == models.size()) ?
             buttonsDone : ((j < models.size()) ?
@@ -248,7 +248,7 @@ results:
         rel.getModelEndpointRefs().get(0).createModelElementInstanceAndReference((EObject) result, null);
       }
       catch (MMINTException e) {
-        MMINTException.print(IStatus.WARNING, "Failed to store query result " + result + " for model " +
+        MMINTException.print(IStatus.INFO, "Failed to store query result " + result + " for model " +
                              modelPath, e);
         continue;
       }

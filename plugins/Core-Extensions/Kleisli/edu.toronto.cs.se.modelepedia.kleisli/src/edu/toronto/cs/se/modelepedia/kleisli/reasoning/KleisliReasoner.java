@@ -109,7 +109,7 @@ public class KleisliReasoner implements IReasoner {
 					FileUtils.setModelObjectFeature(modelObjReferrer, kModelElemTypeEInfo.getFeatureName(), kModelObj);
 				}
 				catch (MMINTException e) {
-					MMINTException.print(IStatus.WARNING, "Error setting model object feature, skipping it", e);
+					MMINTException.print(IStatus.INFO, "Error setting model object feature, skipping it", e);
 				}
 			}
 			i++;
@@ -130,7 +130,7 @@ public class KleisliReasoner implements IReasoner {
 				FileUtils.setModelObjectFeature(kModelObj, kModelElemTypeEInfo.getFeatureName(), kModelObjAttr);
 			}
 			catch (MMINTException e) {
-				MMINTException.print(IStatus.WARNING, "Error setting model object feature, skipping it", e);
+				MMINTException.print(IStatus.INFO, "Error setting model object feature, skipping it", e);
 			}
 		}
 	}

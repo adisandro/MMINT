@@ -501,7 +501,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 				FileUtils.writeModelFile(kRootModelObj, kModelUri, null, true);
 			}
 			catch (Exception e) {
-				MMINTException.print(IStatus.WARNING, "Error creating extended model file, fallback to no extension", e);
+				MMINTException.print(IStatus.INFO, "Error creating extended model file, fallback to no extension", e);
 			}
 		}
 

@@ -118,7 +118,7 @@ public class Z3IncrementalSolver {
 			return runCheckSatAndGetModel(smtEncoding);
 		}
 		catch (Z3Exception e) {
-			MMINTException.print(IStatus.WARNING, "Z3 problem, returning unknown result and resetting the solver", e);
+			MMINTException.print(IStatus.INFO, "Z3 problem, returning unknown result and resetting the solver", e);
 			reset();
 			return new Z3Model(Status.UNKNOWN, null);
 		}
@@ -128,7 +128,7 @@ public class Z3IncrementalSolver {
 	public @NonNull Z3Model checkSatAndGetModel(@NonNull String smtEncoding, @NonNull Z3IncrementalBehavior incBehavior) {
 
 		if (this.sorts.isEmpty() || this.decls.isEmpty()) {
-			MMINTException.print(IStatus.WARNING, "No incremental model found, invoking firstCheckSatAndGetModel() instead", null);
+			MMINTException.print(IStatus.INFO, "No incremental model found, invoking firstCheckSatAndGetModel() instead", null);
 			return firstCheckSatAndGetModel(smtEncoding);
 		}
 
@@ -167,7 +167,7 @@ public class Z3IncrementalSolver {
 			return z3Model;
 		}
 		catch (Z3Exception e) {
-			MMINTException.print(IStatus.WARNING, "Z3 problem, returning unknown result and resetting the solver", e);
+			MMINTException.print(IStatus.INFO, "Z3 problem, returning unknown result and resetting the solver", e);
 			reset();
 			return new Z3Model(Status.UNKNOWN, null);
 		}
@@ -191,7 +191,7 @@ public class Z3IncrementalSolver {
 			this.solver.pop();
 		}
 		catch (Z3Exception e) {
-			MMINTException.print(IStatus.WARNING, "Z3 problem, resetting the solver", e);
+			MMINTException.print(IStatus.INFO, "Z3 problem, resetting the solver", e);
 			reset();
 		}
 	}

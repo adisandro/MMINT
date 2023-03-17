@@ -88,7 +88,7 @@ public class MODELS15 extends RandomOperatorImpl {
 				cdModelType.createInstance(classDiagram, cdModelPath, cdMID);
 			}
 			catch (Exception e) {
-				MMINTException.print(IStatus.WARNING, "Can't generate class diagram number " + i + " , skipping it", e);
+				MMINTException.print(IStatus.INFO, "Can't generate class diagram number " + i + " , skipping it", e);
 			}
 		}
 

@@ -237,7 +237,7 @@ public class Reduce extends NestingOperatorImpl {
                 composeOperatorType.getOutputs().get(0).getName()));
             }
             catch (Exception e) {
-              MMINTException.print(IStatus.WARNING, "Operator " + composeOperatorType + " execution error, skipping it",
+              MMINTException.print(IStatus.INFO, "Operator " + composeOperatorType + " execution error, skipping it",
                                    e);
             }
           }
@@ -278,7 +278,7 @@ public class Reduce extends NestingOperatorImpl {
               mergedModelRels.add(compositeModelRel2);
             }
             catch (Exception e) {
-              MMINTException.print(IStatus.WARNING, "Operator " + mergeOperatorType + " execution error, skipping it",
+              MMINTException.print(IStatus.INFO, "Operator " + mergeOperatorType + " execution error, skipping it",
                                    e);
             }
           }
@@ -299,7 +299,7 @@ public class Reduce extends NestingOperatorImpl {
 
       // pass 4: clean up to prevent endless loops, even in case of failure
       catch (Exception e) {
-        MMINTException.print(IStatus.WARNING, "Operator " + accumulator + " execution error, skipping it", e);
+        MMINTException.print(IStatus.INFO, "Operator " + accumulator + " execution error, skipping it", e);
       }
       //TODO MMINT[REDUCE] This code does not work well with MIDRels, which have shortcuts to models in other MIDs
       finally {

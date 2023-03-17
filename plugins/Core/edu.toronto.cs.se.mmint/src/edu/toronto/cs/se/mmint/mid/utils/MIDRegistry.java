@@ -355,7 +355,7 @@ public class MIDRegistry {
 				.get();
 		}
 		catch (NoSuchElementException e) {
-			MMINTException.print(IStatus.WARNING, "No diagram registered for model " + model.getName() + ", returning null", e);
+			MMINTException.print(IStatus.INFO, "No diagram registered for model " + model.getName() + ", returning null", e);
 			modelDiagram = null;
 		}
 

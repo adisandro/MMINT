@@ -124,14 +124,14 @@ public class ExperimentRunner implements Runnable {
           executor.shutdown();
         }
         catch (Exception e) {
-          MMINTException.print(IStatus.WARNING, MessageFormat.format("Experiment {0} out of {1}, sample {2} timed out",
+          MMINTException.print(IStatus.INFO, MessageFormat.format("Experiment {0} out of {1}, sample {2} timed out",
                                                                      this.expIndex+1, this.exp.numExperiments, s), e);
           timedOut = true;
           executor.shutdownNow();
         }
         // skip warmup
         if (s < this.exp.skipWarmupSamples) {
-          MMINTException.print(IStatus.WARNING,
+          MMINTException.print(IStatus.INFO,
                                MessageFormat.format("Experiment {0} out of {1}, sample {2} used to warm up",
                                                     this.expIndex+1, this.exp.numExperiments, s), null);
           continue;
@@ -160,7 +160,7 @@ public class ExperimentRunner implements Runnable {
             }
           }
           if (sample == Double.MAX_VALUE) {
-            MMINTException.print(IStatus.WARNING,
+            MMINTException.print(IStatus.INFO,
                                  MessageFormat.format("Experiment {0} out of {1}, sample {2} output {3} skipped",
                                                       this.expIndex+1, this.exp.numExperiments, s, output), null);
             allConfident = outputSamples.isWithinTargetConfidence() && allConfident;
@@ -198,7 +198,7 @@ public class ExperimentRunner implements Runnable {
       expProps.store(new FileOutputStream(expPropsPath), null);
     }
     catch (Exception e) {
-      MMINTException.print(IStatus.WARNING, MessageFormat.format("Experiment {0} out of {1} failed", this.expIndex+1,
+      MMINTException.print(IStatus.INFO, MessageFormat.format("Experiment {0} out of {1} failed", this.expIndex+1,
                                                                  this.exp.numExperiments), e);
       //TODO Write output properties on failure too?
     }

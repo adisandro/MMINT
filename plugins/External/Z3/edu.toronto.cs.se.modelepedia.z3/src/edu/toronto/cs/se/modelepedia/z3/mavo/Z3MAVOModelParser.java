@@ -156,7 +156,7 @@ public class Z3MAVOModelParser {
 			}
 		}
 		catch (Z3Exception e) {
-			MMINTException.print(IStatus.WARNING, "Can't parse Z3 model elements, returning elements so far (possibly none)", e);
+			MMINTException.print(IStatus.INFO, "Can't parse Z3 model elements, returning elements so far (possibly none)", e);
 		}
 
 		return z3ModelObjs;

@@ -64,7 +64,7 @@ public class MIDDiagramViewProvider extends MIDViewProvider {
 			return (Node) createLabel.invoke(this, owner, hint);
 		}
 		catch (Exception e) {
-			MMINTException.print(IStatus.WARNING, "Failed reflection for private GMF method MIDViewProvider.createLabel()", null);
+			MMINTException.print(IStatus.INFO, "Failed reflection for private GMF method MIDViewProvider.createLabel()", null);
 			return null;
 		}
 	}

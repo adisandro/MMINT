@@ -108,7 +108,7 @@ public class REJ15 extends FASE14 {
 	    this.timeAllSAT = System.nanoTime() - startTime;
 		}
 		catch (MMINTException e) {
-      MMINTException.print(IStatus.WARNING, "Skipping allSAT", null);
+      MMINTException.print(IStatus.INFO, "Skipping allSAT", null);
       return;
 		}
 	}

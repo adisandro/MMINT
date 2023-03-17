@@ -44,7 +44,7 @@ public class Z3Solver {
 			return Z3Result.toZ3Result(status);
 		}
 		catch (Z3Exception e) {
-			MMINTException.print(IStatus.WARNING, "Z3 problem, returning unknown result", e);
+			MMINTException.print(IStatus.INFO, "Z3 problem, returning unknown result", e);
 			return Z3Result.UNKNOWN;
 		}
 		finally {
@@ -65,7 +65,7 @@ public class Z3Solver {
 			return new Z3Model(status, model);
 		}
 		catch (Z3Exception e) {
-			MMINTException.print(IStatus.WARNING, "Z3 problem, returning unknown result", e);
+			MMINTException.print(IStatus.INFO, "Z3 problem, returning unknown result", e);
 			return new Z3Model(Status.UNKNOWN, null);
 		}
 		finally {

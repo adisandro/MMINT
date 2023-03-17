@@ -96,7 +96,7 @@ public class SampleRunner implements Runnable {
                                                                         outputMIDsByName, null);
     }
     catch (Exception e) {
-      MMINTException.print(IStatus.WARNING, MessageFormat.format("Experiment {0} out of {1}, sample {2} failed",
+      MMINTException.print(IStatus.INFO, MessageFormat.format("Experiment {0} out of {1}, sample {2} failed",
                                                                  this.runner.expIndex+1, this.runner.exp.numExperiments,
                                                                  this.sampleIndex+1), e);
     }

@@ -315,7 +315,7 @@ public class Slice extends OperatorImpl {
         mappingRef.getObject().setName(mappingName);
       }
       catch (MMINTException e) {
-        MMINTException.print(IStatus.WARNING, "Skipping sliced model element " + modelObj, e);
+        MMINTException.print(IStatus.INFO, "Skipping sliced model element " + modelObj, e);
       }
     }
   }

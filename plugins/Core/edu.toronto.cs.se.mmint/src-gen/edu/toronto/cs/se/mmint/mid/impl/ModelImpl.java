@@ -319,7 +319,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
       return emfResource;
     }
     catch (Exception e) {
-      MMINTException.print(IStatus.WARNING, "Can't load EMF model resource, returning null", e);
+      MMINTException.print(IStatus.INFO, "Can't load EMF model resource, returning null", e);
       return null;
     }
   }
@@ -366,7 +366,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
       MMINTException.mustBeInstance(this);
     }
     catch (Exception e) {
-      MMINTException.print(IStatus.WARNING, "Can't load root EMF model object '" + getUri() + "', returning null", e);
+      MMINTException.print(IStatus.INFO, "Can't load root EMF model object '" + getUri() + "', returning null", e);
       return null;
     }
     /*TODO MMINT[OPERATOR]
@@ -797,7 +797,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
                 newModelType.setFileExtension(MIDTypeFactory.ECORE_REFLECTIVE_FILE_EXTENSION);
             }
             catch (Exception e) {
-                MMINTException.print(IStatus.WARNING, "Error creating extended metamodel file, fallback to no extension", e);
+                MMINTException.print(IStatus.INFO, "Error creating extended metamodel file, fallback to no extension", e);
                 newModelType.setFileExtension(this.getFileExtension());
                 isMetamodelExtension = false;
             }
@@ -1222,7 +1222,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
                         newModelName + MMINTConstants.MODEL_FILEEXTENSION_SEPARATOR,
                         true);
                 } catch (Exception e) {
-                    MMINTException.print(IStatus.WARNING, "Error copying diagram file, skipping it", e);
+                    MMINTException.print(IStatus.INFO, "Error copying diagram file, skipping it", e);
                     continue;
                 }
                 //TODO MMINT[UML] add support for notation extra file (e.g. in UML)

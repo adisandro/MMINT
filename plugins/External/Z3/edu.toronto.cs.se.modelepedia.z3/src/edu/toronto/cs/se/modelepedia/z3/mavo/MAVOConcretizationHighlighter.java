@@ -147,7 +147,7 @@ public class MAVOConcretizationHighlighter {
 			GMFUtils.colorDiagramElement(diagramView, color, fontColor);
 		}
 		catch (MMINTException e) {
-			MMINTException.print(IStatus.WARNING, "Can't color diagram element, skipping it", e);
+			MMINTException.print(IStatus.INFO, "Can't color diagram element, skipping it", e);
 		}
 	}
 

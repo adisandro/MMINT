@@ -199,7 +199,7 @@ public class Map extends NestingOperatorImpl {
         }
         catch (Exception e) {
           // other than errors, the operator can fail because of input constraints due to the cartesian product
-          MMINTException.print(IStatus.WARNING, "Operator " + mapper + " execution error, skipping it", e);
+          MMINTException.print(IStatus.INFO, "Operator " + mapper + " execution error, skipping it", e);
         }
       }
     }

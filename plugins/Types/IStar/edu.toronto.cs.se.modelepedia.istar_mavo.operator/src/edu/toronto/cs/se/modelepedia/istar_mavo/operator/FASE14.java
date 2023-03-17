@@ -131,7 +131,7 @@ public class FASE14 extends RE13 {
 				}
 			}
 			catch (MMINTException e) {
-				MMINTException.print(IStatus.WARNING, "Error creating RNF constraint for model object " + mavoModelObj.getFormulaVariable() + ", skipping it", e);
+				MMINTException.print(IStatus.INFO, "Error creating RNF constraint for model object " + mavoModelObj.getFormulaVariable() + ", skipping it", e);
 				continue;
 			}
 		}
@@ -153,7 +153,7 @@ public class FASE14 extends RE13 {
 			);
 		}
 		catch (Exception e) {
-			MMINTException.print(IStatus.WARNING, "RNF file writing failed", e);
+			MMINTException.print(IStatus.INFO, "RNF file writing failed", e);
 		}
 	}
 

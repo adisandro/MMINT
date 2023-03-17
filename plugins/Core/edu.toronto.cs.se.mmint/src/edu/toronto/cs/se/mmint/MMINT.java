@@ -274,7 +274,7 @@ public class MMINT implements MMINTConstants {
 			var targetModelTypeUri = modelTypeEndpointSubconfig.getAttribute(MMINTConstants.TYPEENDPOINT_ATTR_TARGETTYPEURI);
 			var targetModelType = MIDTypeRegistry.<Model>getType(targetModelTypeUri);
 			if (targetModelType == null) {
-				MMINTException.print(IStatus.WARNING, "Target model type " + targetModelTypeUri + " can't be found, skipping it", null);
+				MMINTException.print(IStatus.INFO, "Target model type " + targetModelTypeUri + " can't be found, skipping it", null);
 				continue;
 			}
       var isBinarySrc = isBinary && ( // required
@@ -312,7 +312,7 @@ public class MMINT implements MMINTConstants {
 						);
 					}
 					catch (Exception e) {
-						MMINTException.print(IStatus.WARNING, "Model element type " + extensionType.getUri() + " can't be created, skipping it", e);
+						MMINTException.print(IStatus.INFO, "Model element type " + extensionType.getUri() + " can't be created, skipping it", e);
 						continue;
 					}
 				}
@@ -338,7 +338,7 @@ public class MMINT implements MMINTConstants {
 				);
 			}
 			catch (Exception e) {
-				MMINTException.print(IStatus.WARNING, "Link type " + extensionType.getUri() + " can't be created, skipping it", e);
+				MMINTException.print(IStatus.INFO, "Link type " + extensionType.getUri() + " can't be created, skipping it", e);
 				continue;
 			}
 			// binary mapping type
@@ -356,7 +356,7 @@ public class MMINT implements MMINTConstants {
 				var targetModelElemTypeUri = modelElemTypeEndpointSubconfig.getAttribute(MMINTConstants.TYPEENDPOINT_ATTR_TARGETTYPEURI);
 				var newModelElemTypeRef = newModelElemTypeRefs.get(targetModelElemTypeUri);
 				if (newModelElemTypeRef == null) {
-					MMINTException.print(IStatus.WARNING, "Target model element type " + targetModelElemTypeUri + " can't be found, skipping it", null);
+					MMINTException.print(IStatus.INFO, "Target model element type " + targetModelElemTypeUri + " can't be found, skipping it", null);
 					continue;
 				}
 				//TODO MMINT[MODELENDPOINT] well model elements should *really* be contained in the model endpoint now that they exist
@@ -452,7 +452,7 @@ public class MMINT implements MMINTConstants {
 			var upperBoundString = modelTypeEndpointSubconfig.getAttribute(MMINTConstants.TYPEENDPOINT_ATTR_UPPERBOUND);
 			var upperBound = (upperBoundString == null) ? 1 : Integer.parseInt(upperBoundString);
 			if (upperBound > 1 && i != paramTypeConfigs.length-1) {
-				MMINTException.print(IStatus.WARNING, "Only the last input parameter can have an upper bound > 1, setting it to 1", null);
+				MMINTException.print(IStatus.INFO, "Only the last input parameter can have an upper bound > 1, setting it to 1", null);
 				upperBound = 1;
 			}
 			MIDTypeFactory.addTypeEndpointCardinality(
@@ -695,7 +695,7 @@ public class MMINT implements MMINTConstants {
 			}
 		}
 		catch (MMINTException e) {
-			MMINTException.print(IStatus.WARNING, "Dynamic type " + dynamicType.getName() + " can't be recreated", e);
+			MMINTException.print(IStatus.INFO, "Dynamic type " + dynamicType.getName() + " can't be recreated", e);
 		}
 
 		return newType;
@@ -732,7 +732,7 @@ public class MMINT implements MMINTConstants {
       typeMID = (MID) FileUtils.readModelFileInState(MMINT.TYPEMID_FILENAME);
     }
     catch (Exception e) {
-      MMINTException.print(IStatus.WARNING, "No previous Type MID found, skipping dynamic types", e);
+      MMINTException.print(IStatus.INFO, "No previous Type MID found, skipping dynamic types", e);
     }
 
 		// model types
@@ -1032,7 +1032,7 @@ public class MMINT implements MMINTConstants {
 			MMINT.activeInstanceMIDFile = instanceMIDFile;
 		}
 		catch (Exception e) {
-			MMINTException.print(IStatus.WARNING, "An instance MID is not active and can't be stored", e);
+			MMINTException.print(IStatus.INFO, "An instance MID is not active and can't be stored", e);
 			MMINT.activeInstanceMIDFile = null;
 		}
 	}

@@ -123,7 +123,7 @@ public class LogicNGReasoner implements IProductLineFeaturesTrait {
       return checkSAT(plFormulas, Map.of()) == Tristate.TRUE;
     }
     catch (ParserException e) {
-      MMINTException.print(IStatus.WARNING,
+      MMINTException.print(IStatus.INFO,
                            "Error parsing " + getName() + " formulas '" + plFormulas + "', returning false", e);
       return false;
     }
@@ -135,7 +135,7 @@ public class LogicNGReasoner implements IProductLineFeaturesTrait {
       return checkSAT(List.of(plFormula), featureValues) == Tristate.TRUE;
     }
     catch (ParserException e) {
-      MMINTException.print(IStatus.WARNING,
+      MMINTException.print(IStatus.INFO,
                            "Error parsing " + getName() + " formula '" + plFormula + "', returning false", e);
       return false;
     }
@@ -191,7 +191,7 @@ public class LogicNGReasoner implements IProductLineFeaturesTrait {
       return Optional.of(newFeatureValues);
     }
     catch (ParserException e) {
-      MMINTException.print(IStatus.WARNING,
+      MMINTException.print(IStatus.INFO,
                            "Error parsing " + getName() + " formula '" + plFormula + "', returning empty model", e);
       if (LogicNGReasoner.statsEnabled) {
         LogicNGReasoner.satTime += System.nanoTime() - startTime;

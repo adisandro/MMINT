@@ -178,7 +178,7 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 			}
 		}
 		catch (MMINTException e) {
-			MMINTException.print(IStatus.WARNING, "Error transforming model object feature, skipping it", e);
+			MMINTException.print(IStatus.INFO, "Error transforming model object feature, skipping it", e);
 		}
 	}
 

@@ -56,7 +56,7 @@ public class MIDDiagramUtils {
 					midFiles.add(GMFUtils.getModelFileFromDiagramFile(diagramFile));
 				}
 				catch (Exception e) {
-					MMINTException.print(IStatus.WARNING, "Can't add model file of MID " + diagramFile.getName(), e);
+					MMINTException.print(IStatus.INFO, "Can't add model file of MID " + diagramFile.getName(), e);
 				}
 				mids.put(mid, midFiles);
 			}
@@ -75,7 +75,7 @@ public class MIDDiagramUtils {
 				files.add(GMFUtils.getModelFileFromDiagramFile(instanceMIDFile));
 			}
 			catch (Exception e) {
-				MMINTException.print(IStatus.WARNING, "Can't add model file of diagram " + instanceMIDFile.getName() + " for gmf transactional command", e);
+				MMINTException.print(IStatus.INFO, "Can't add model file of diagram " + instanceMIDFile.getName() + " for gmf transactional command", e);
 			}
 		}
 

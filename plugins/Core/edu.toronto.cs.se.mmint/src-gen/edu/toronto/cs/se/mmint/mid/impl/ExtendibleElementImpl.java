@@ -871,7 +871,7 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
                 rootStaticModelTypeObj = ((Model) this).getMetatype().getEMFTypeRoot();
             }
             catch (MMINTException e) {
-                MMINTException.print(IStatus.WARNING, "Can't get model root, skipping subtypes filtering", e);
+                MMINTException.print(IStatus.INFO, "Can't get model root, skipping subtypes filtering", e);
                 return metamodelSubtypes;
             }
             var metamodelUri = rootStaticModelTypeObj.getNsURI();

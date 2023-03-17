@@ -77,7 +77,7 @@ public class MAVORefiner {
 				refinedModelObj = (MAVOElement) FileUtils.readModelObject(refinedModelObjUri, refinedResource);
 			}
 			catch (Exception e) {
-				MMINTException.print(IStatus.WARNING, "Can't get model object " + refinedModelObjUri + ", skipping it", e);
+				MMINTException.print(IStatus.INFO, "Can't get model object " + refinedModelObjUri + ", skipping it", e);
 				continue;
 			}
 			modelObjsToRefine.put(refinedModelObj.getFormulaVariable(), refinedModelObj);
@@ -161,7 +161,7 @@ public class MAVORefiner {
 				refinementMappingRef.getObject().setName(linkName);
 			}
 			catch (MMINTException e) {
-				MMINTException.print(IStatus.WARNING, "Can't create refinement link", e);
+				MMINTException.print(IStatus.INFO, "Can't create refinement link", e);
 			}
 		}
 	}
@@ -205,7 +205,7 @@ public class MAVORefiner {
 		var refinedModel = model.getMetatype().createInstance(null, refinedModelPath, instanceMID);
 		ModelRel modelRelType = MIDTypeRegistry.getType(MAVORefiner.MODELRELTYPE_URI);
 		if (modelRelType == null) {
-			MMINTException.print(IStatus.WARNING, "Can't find " + MAVORefiner.MODELRELTYPE_URI + " type, fallback to root ModelRel type", null);
+			MMINTException.print(IStatus.INFO, "Can't find " + MAVORefiner.MODELRELTYPE_URI + " type, fallback to root ModelRel type", null);
 			modelRelType = MIDTypeHierarchy.getRootModelRelType();
 		}
 		var refinementRel = modelRelType.createBinaryInstanceAndEndpoints(

@@ -211,7 +211,7 @@ public class RE13 extends OperatorImpl {
 			}
 		}
 		catch (Z3Exception e) {
-			MMINTException.print(IStatus.WARNING, "Can't optimize analysis, skipping it", e);
+			MMINTException.print(IStatus.INFO, "Can't optimize analysis, skipping it", e);
 		}
 	}
 

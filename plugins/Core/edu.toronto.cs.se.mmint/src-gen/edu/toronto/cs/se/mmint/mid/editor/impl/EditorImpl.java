@@ -678,7 +678,7 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
                 newInstance(wizard);
         }
         catch (Exception e) {
-            MMINTException.print(IStatus.WARNING, "Custom editor creation wizard not found: " + wizardDialogClassName + " , using default as fallback", e);
+            MMINTException.print(IStatus.INFO, "Custom editor creation wizard not found: " + wizardDialogClassName + " , using default as fallback", e);
             wizDialog = new EditorCreationWizardDialog(wizard);
         }
 

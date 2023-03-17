@@ -278,7 +278,7 @@ public class FileUtils {
 			Files.deleteIfExists(path);
 		}
 		catch (Exception e) {
-			MMINTException.print(IStatus.WARNING, "File " + filePath + " not deleted", e);
+			MMINTException.print(IStatus.INFO, "File " + filePath + " not deleted", e);
 		}
 	}
 
@@ -341,7 +341,7 @@ public class FileUtils {
 			});
 		}
 		catch (Exception e) {
-			MMINTException.print(IStatus.WARNING, "Directory " + directoryPath + " not deleted", e);
+			MMINTException.print(IStatus.INFO, "Directory " + directoryPath + " not deleted", e);
 		}
 	}
 

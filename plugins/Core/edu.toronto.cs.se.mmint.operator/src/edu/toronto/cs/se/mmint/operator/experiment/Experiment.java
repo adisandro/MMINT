@@ -198,7 +198,7 @@ public class Experiment extends OperatorImpl {
         executor.submit(new ExperimentRunner(this, expVariables, i));
       }
       catch (Exception e) {
-        MMINTException.print(IStatus.WARNING,
+        MMINTException.print(IStatus.INFO,
                              MessageFormat.format("Experiment {0} out of {1} failed", i+1, this.numExperiments), e);
       }
     }
