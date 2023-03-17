@@ -59,7 +59,7 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:DirectEditLabel" name="EditPresenceCondition">
+          <ownedTools xsi:type="tool:DirectEditLabel" name="EditPresenceCondition" inputLabelExpression="aql: self.presenceCondition">
             <mask mask="{0}"/>
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:SetValue" featureName="presenceCondition" valueExpression="var:0"/>
