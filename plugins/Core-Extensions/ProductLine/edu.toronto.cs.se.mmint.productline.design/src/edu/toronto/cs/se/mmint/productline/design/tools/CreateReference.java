@@ -79,6 +79,7 @@ public class CreateReference extends AbstractExternalJavaAction {
         reference.setType(type);
         reference.setSource(this.srcClass);
         reference.setTarget(this.tgtClass);
+        reference.setPresenceCondition(this.srcClass.getPresenceCondition());
         ((ProductLine) this.srcClass.eContainer()).getReferences().add(reference);
       }
       catch (MIDDialogCancellation e) {

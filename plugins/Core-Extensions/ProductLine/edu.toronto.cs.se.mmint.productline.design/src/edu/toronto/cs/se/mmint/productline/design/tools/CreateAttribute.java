@@ -68,6 +68,7 @@ public class CreateAttribute extends AbstractExternalJavaAction {
                                                          getAttributes(this.clazz), contentProvider, labelProvider);
         var attribute = ProductLineFactory.eINSTANCE.createAttribute();
         attribute.setType(type);
+        attribute.setPresenceCondition(this.clazz.getPresenceCondition());
         this.clazz.getAttributes().add(attribute);
       }
       catch (MIDDialogCancellation e) {
