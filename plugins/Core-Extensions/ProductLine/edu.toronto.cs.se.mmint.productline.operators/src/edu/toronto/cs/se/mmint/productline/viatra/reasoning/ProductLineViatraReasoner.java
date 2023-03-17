@@ -334,7 +334,7 @@ public class ProductLineViatraReasoner extends ViatraReasoner {
       if (edgeFeature instanceof EAttribute edgeAttribute) {
         var dst = pathConstraint.getDst();
         ValueReference plValue;
-        //TODO MMINT[JAVA20] Convert to switch with pattern matching
+        //TODO MMINT[JAVA21] Convert to switch with pattern matching
         if (dst instanceof StringValue strDst) {
           plValue = createStringValue(strDst.getValue());
         }
@@ -453,7 +453,7 @@ public class ProductLineViatraReasoner extends ViatraReasoner {
   private List<? extends Constraint> liftCompareConstraint(CompareConstraint compareConstraint,
                                                            EList<Variable> plParameters, EList<Variable> plVariables,
                                                            Map<String, Variable> plVarsMap) throws Exception {
-    //TODO MMINT[JAVA20] Convert to switch with pattern matching
+    //TODO MMINT[JAVA21] Convert to switch with pattern matching
     var left = compareConstraint.getLeftOperand();
     if (!(left instanceof VariableReference leftVarRef)) {
       throw new MMINTException("Left operand type " + left.getClass().getName() + " not supported");

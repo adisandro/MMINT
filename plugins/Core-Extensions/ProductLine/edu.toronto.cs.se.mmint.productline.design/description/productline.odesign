@@ -62,7 +62,11 @@
           <ownedTools xsi:type="tool:DirectEditLabel" name="EditPresenceCondition" inputLabelExpression="aql: self.presenceCondition">
             <mask mask="{0}"/>
             <initialOperation>
-              <firstModelOperations xsi:type="tool_1:SetValue" featureName="presenceCondition" valueExpression="var:0"/>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="EditPresenceCondition" id="edu.toronto.cs.se.mmint.productline.design.tools.EditPresenceCondition">
+                  <parameters name="newPresenceCondition" value="var:0"/>
+                </subModelOperations>
+              </firstModelOperations>
             </initialOperation>
           </ownedTools>
         </toolSections>

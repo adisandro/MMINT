@@ -35,6 +35,10 @@
             actionClass="edu.toronto.cs.se.mmint.productline.design.tools.CreateReference"
             id="edu.toronto.cs.se.mmint.productline.design.tools.CreateReference">
       </javaActions>
+      <javaActions
+            actionClass="edu.toronto.cs.se.mmint.productline.design.tools.EditPresenceCondition"
+            id="edu.toronto.cs.se.mmint.productline.design.tools.EditPresenceCondition">
+      </javaActions>
    </extension>
 
    <extension
