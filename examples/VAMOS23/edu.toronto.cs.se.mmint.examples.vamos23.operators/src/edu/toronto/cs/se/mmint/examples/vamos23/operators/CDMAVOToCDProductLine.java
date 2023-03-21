@@ -19,6 +19,7 @@ import edu.toronto.cs.se.mavo.MAVOPackage;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.productline.Class;
 import edu.toronto.cs.se.mmint.productline.ProductLineFactory;
 import edu.toronto.cs.se.mmint.productline.operators.ToProductLine;
 import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage;
@@ -81,21 +82,20 @@ public class CDMAVOToCDProductLine extends ToProductLine {
     for (var classIter = this.out.productLine.getClasses().iterator(); classIter.hasNext();) {
       var plClass = classIter.next();
       if (plClass.getType() == ClassDiagram_MAVOPackage.eINSTANCE.getSuperclassReference()) {
-        // turn MAVOReferences from CLass back to Reference
+        // turn MAVOReferences from Class back to Reference
         var plReference = ProductLineFactory.eINSTANCE.createReference();
         plReference.setPresenceCondition("true");
         plReference.setType(ClassDiagramPackage.eINSTANCE.getClass_Superclass());
-        for (var tgtReference : plClass.getReferencesAsTarget()) {
-          this.out.productLine.getReferences().remove(tgtReference);
-          if (tgtReference.getType() == ClassDiagram_MAVOPackage.eINSTANCE.getClass_Superclass()) {
-            plReference.setSource(tgtReference.getSource());
+        for (var subSuperReference : plClass.getReferencesAsTarget()) {
+          var subSuperClass = (Class) subSuperReference.eContainer();
+          subSuperClass.getReferences().remove(subSuperReference);
+          if (subSuperReference.getType() == ClassDiagram_MAVOPackage.eINSTANCE.getClass_Superclass()) {
+            subSuperClass.getReferences().add(plReference);
           }
-          else {
-            plReference.setTarget(tgtReference.getSource());
+          else { // subSuperReference.getType() == ClassDiagram_MAVOPackage.eINSTANCE.getClass_Subclasses()
+            plReference.setTarget(subSuperClass);
           }
-          tgtReference.setSource(null);
         }
-        this.out.productLine.getReferences().add(plReference);
         classIter.remove();
       }
       else {
@@ -116,8 +116,10 @@ public class CDMAVOToCDProductLine extends ToProductLine {
       }
     }
     // pass 2: adjust reference types from CDMAVO to CD
-    for (var plReference : this.out.productLine.getReferences()) {
-      plReference.setType(refTypeSwitch.get(plReference.getType()));
+    for (var plClass : this.out.productLine.getClasses()) {
+      for (var plReference : plClass.getReferences()) {
+        plReference.setType(refTypeSwitch.get(plReference.getType()));
+      }
     }
   }
 }

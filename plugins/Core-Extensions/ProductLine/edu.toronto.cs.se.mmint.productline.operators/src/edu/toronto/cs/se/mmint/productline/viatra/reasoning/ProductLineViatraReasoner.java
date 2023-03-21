@@ -527,7 +527,6 @@ public class ProductLineViatraReasoner extends ViatraReasoner {
      *   Lift or
      *   Figure out how to support transitive closures
      *   Support eopposites
-     *   Automatically delete attached references when deleting a class (or better, let Class own Reference)
      */
     var plBody = PatternLanguageFactory.eINSTANCE.createPatternBody();
     // variables pass #1: parameter references only

@@ -69,7 +69,7 @@ public class EditPresenceCondition extends AbstractExternalJavaAction {
           presenceConditions.add(((Class) plAttr.eContainer()).getPresenceCondition());
         }
         else if (this.plModelObj instanceof Reference plRef) {
-          presenceConditions.add(plRef.getSource().getPresenceCondition());
+          presenceConditions.add(((Class) plRef.eContainer()).getPresenceCondition());
           presenceConditions.add(plRef.getTarget().getPresenceCondition());
         }
         if (!plReasoner.checkConsistency(featuresConstraint, presenceConditions)) {

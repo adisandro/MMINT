@@ -66,7 +66,6 @@ public class ProductLineItemProvider extends ItemProviderAdapter implements IEdi
       addFeaturesConstraintPropertyDescriptor(object);
       addReasonerNamePropertyDescriptor(object);
       addClassesPropertyDescriptor(object);
-      addReferencesPropertyDescriptor(object);
       addMetamodelPropertyDescriptor(object);
     }
     return this.itemPropertyDescriptors;
@@ -126,23 +125,6 @@ public class ProductLineItemProvider extends ItemProviderAdapter implements IEdi
   }
 
   /**
-   * This adds a property descriptor for the References feature.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected void addReferencesPropertyDescriptor(Object object) {
-    this.itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(),
-                                                             getResourceLocator(), getString(
-                                                                                             "_UI_ProductLine_references_feature"),
-                                                             getString("_UI_PropertyDescriptor_description",
-                                                                       "_UI_ProductLine_references_feature",
-                                                                       "_UI_ProductLine_type"),
-                                                             ProductLinePackage.Literals.PRODUCT_LINE__REFERENCES, true,
-                                                             false, true, null, null, null));
-  }
-
-  /**
    * This adds a property descriptor for the Metamodel feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -172,7 +154,6 @@ public class ProductLineItemProvider extends ItemProviderAdapter implements IEdi
     if (this.childrenFeatures == null) {
       super.getChildrenFeatures(object);
       this.childrenFeatures.add(ProductLinePackage.Literals.PRODUCT_LINE__CLASSES);
-      this.childrenFeatures.add(ProductLinePackage.Literals.PRODUCT_LINE__REFERENCES);
     }
     return this.childrenFeatures;
   }
@@ -241,7 +222,6 @@ public class ProductLineItemProvider extends ItemProviderAdapter implements IEdi
       fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
       return;
     case ProductLinePackage.PRODUCT_LINE__CLASSES:
-    case ProductLinePackage.PRODUCT_LINE__REFERENCES:
       fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
       return;
     }
@@ -261,9 +241,6 @@ public class ProductLineItemProvider extends ItemProviderAdapter implements IEdi
 
     newChildDescriptors.add(createChildParameter(ProductLinePackage.Literals.PRODUCT_LINE__CLASSES,
                                                  ProductLineFactory.eINSTANCE.createClass()));
-
-    newChildDescriptors.add(createChildParameter(ProductLinePackage.Literals.PRODUCT_LINE__REFERENCES,
-                                                 ProductLineFactory.eINSTANCE.createReference()));
   }
 
   /**

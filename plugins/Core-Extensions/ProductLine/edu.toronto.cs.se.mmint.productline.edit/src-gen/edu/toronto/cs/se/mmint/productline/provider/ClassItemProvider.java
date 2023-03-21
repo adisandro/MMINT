@@ -53,29 +53,11 @@ public class ClassItemProvider extends PLElementItemProvider {
     if (this.itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
-      addReferencesAsSourcePropertyDescriptor(object);
-      addReferencesAsTargetPropertyDescriptor(object);
       addAttributesPropertyDescriptor(object);
+      addReferencesAsTargetPropertyDescriptor(object);
       addTypePropertyDescriptor(object);
     }
     return this.itemPropertyDescriptors;
-  }
-
-  /**
-   * This adds a property descriptor for the References As Source feature.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected void addReferencesAsSourcePropertyDescriptor(Object object) {
-    this.itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(),
-                                                             getResourceLocator(), getString(
-                                                                                             "_UI_Class_referencesAsSource_feature"),
-                                                             getString("_UI_PropertyDescriptor_description",
-                                                                       "_UI_Class_referencesAsSource_feature",
-                                                                       "_UI_Class_type"),
-                                                             ProductLinePackage.Literals.CLASS__REFERENCES_AS_SOURCE,
-                                                             true, false, true, null, null, null));
   }
 
   /**
@@ -140,6 +122,7 @@ public class ClassItemProvider extends PLElementItemProvider {
     if (this.childrenFeatures == null) {
       super.getChildrenFeatures(object);
       this.childrenFeatures.add(ProductLinePackage.Literals.CLASS__ATTRIBUTES);
+      this.childrenFeatures.add(ProductLinePackage.Literals.CLASS__REFERENCES);
     }
     return this.childrenFeatures;
   }
@@ -204,6 +187,7 @@ public class ClassItemProvider extends PLElementItemProvider {
 
     switch (notification.getFeatureID(edu.toronto.cs.se.mmint.productline.Class.class)) {
     case ProductLinePackage.CLASS__ATTRIBUTES:
+    case ProductLinePackage.CLASS__REFERENCES:
       fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
       return;
     }
@@ -223,6 +207,9 @@ public class ClassItemProvider extends PLElementItemProvider {
 
     newChildDescriptors.add(createChildParameter(ProductLinePackage.Literals.CLASS__ATTRIBUTES,
                                                  ProductLineFactory.eINSTANCE.createAttribute()));
+
+    newChildDescriptors.add(createChildParameter(ProductLinePackage.Literals.CLASS__REFERENCES,
+                                                 ProductLineFactory.eINSTANCE.createReference()));
   }
 
 }

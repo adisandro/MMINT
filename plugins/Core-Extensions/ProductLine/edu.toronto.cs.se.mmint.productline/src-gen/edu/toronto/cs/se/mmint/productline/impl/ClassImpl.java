@@ -38,9 +38,9 @@ import edu.toronto.cs.se.mmint.productline.mid.ProductLineMIDHeavyTypeFactory;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.mmint.productline.impl.ClassImpl#getReferencesAsSource <em>References As Source</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmint.productline.impl.ClassImpl#getReferencesAsTarget <em>References As Target</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.productline.impl.ClassImpl#getAttributes <em>Attributes</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmint.productline.impl.ClassImpl#getReferences <em>References</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmint.productline.impl.ClassImpl#getReferencesAsTarget <em>References As Target</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.productline.impl.ClassImpl#getType <em>Type</em>}</li>
  * </ul>
  *
@@ -48,14 +48,24 @@ import edu.toronto.cs.se.mmint.productline.mid.ProductLineMIDHeavyTypeFactory;
  */
 public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.productline.Class {
   /**
-   * The cached value of the '{@link #getReferencesAsSource() <em>References As Source</em>}' reference list.
+   * The cached value of the '{@link #getAttributes() <em>Attributes</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getReferencesAsSource()
+   * @see #getAttributes()
    * @generated
    * @ordered
    */
-  protected EList<Reference> referencesAsSource;
+  protected EList<Attribute> attributes;
+
+  /**
+   * The cached value of the '{@link #getReferences() <em>References</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getReferences()
+   * @generated
+   * @ordered
+   */
+  protected EList<Reference> references;
 
   /**
    * The cached value of the '{@link #getReferencesAsTarget() <em>References As Target</em>}' reference list.
@@ -66,16 +76,6 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
    * @ordered
    */
   protected EList<Reference> referencesAsTarget;
-
-  /**
-   * The cached value of the '{@link #getAttributes() <em>Attributes</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getAttributes()
-   * @generated
-   * @ordered
-   */
-  protected EList<Attribute> attributes;
 
   /**
    * The cached value of the '{@link #getType() <em>Type</em>}' reference.
@@ -112,21 +112,6 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
    * @generated
    */
   @Override
-  public EList<Reference> getReferencesAsSource() {
-    if (this.referencesAsSource == null) {
-      this.referencesAsSource = new EObjectWithInverseResolvingEList<>(Reference.class, this,
-                                                                           ProductLinePackage.CLASS__REFERENCES_AS_SOURCE,
-                                                                           ProductLinePackage.REFERENCE__SOURCE);
-    }
-    return this.referencesAsSource;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EList<Reference> getReferencesAsTarget() {
     if (this.referencesAsTarget == null) {
       this.referencesAsTarget = new EObjectWithInverseResolvingEList<>(Reference.class, this,
@@ -147,6 +132,19 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
       this.attributes = new EObjectContainmentEList<>(Attribute.class, this, ProductLinePackage.CLASS__ATTRIBUTES);
     }
     return this.attributes;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EList<Reference> getReferences() {
+    if (this.references == null) {
+      this.references = new EObjectContainmentEList<>(Reference.class, this, ProductLinePackage.CLASS__REFERENCES);
+    }
+    return this.references;
   }
 
   /**
@@ -198,8 +196,6 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
   @Override
   public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
-    case ProductLinePackage.CLASS__REFERENCES_AS_SOURCE:
-      return ((InternalEList<InternalEObject>) (InternalEList<?>) getReferencesAsSource()).basicAdd(otherEnd, msgs);
     case ProductLinePackage.CLASS__REFERENCES_AS_TARGET:
       return ((InternalEList<InternalEObject>) (InternalEList<?>) getReferencesAsTarget()).basicAdd(otherEnd, msgs);
     }
@@ -214,12 +210,12 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
-    case ProductLinePackage.CLASS__REFERENCES_AS_SOURCE:
-      return ((InternalEList<?>) getReferencesAsSource()).basicRemove(otherEnd, msgs);
-    case ProductLinePackage.CLASS__REFERENCES_AS_TARGET:
-      return ((InternalEList<?>) getReferencesAsTarget()).basicRemove(otherEnd, msgs);
     case ProductLinePackage.CLASS__ATTRIBUTES:
       return ((InternalEList<?>) getAttributes()).basicRemove(otherEnd, msgs);
+    case ProductLinePackage.CLASS__REFERENCES:
+      return ((InternalEList<?>) getReferences()).basicRemove(otherEnd, msgs);
+    case ProductLinePackage.CLASS__REFERENCES_AS_TARGET:
+      return ((InternalEList<?>) getReferencesAsTarget()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -232,12 +228,12 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
-    case ProductLinePackage.CLASS__REFERENCES_AS_SOURCE:
-      return getReferencesAsSource();
-    case ProductLinePackage.CLASS__REFERENCES_AS_TARGET:
-      return getReferencesAsTarget();
     case ProductLinePackage.CLASS__ATTRIBUTES:
       return getAttributes();
+    case ProductLinePackage.CLASS__REFERENCES:
+      return getReferences();
+    case ProductLinePackage.CLASS__REFERENCES_AS_TARGET:
+      return getReferencesAsTarget();
     case ProductLinePackage.CLASS__TYPE:
       if (resolve)
         return getType();
@@ -255,17 +251,17 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
-    case ProductLinePackage.CLASS__REFERENCES_AS_SOURCE:
-      getReferencesAsSource().clear();
-      getReferencesAsSource().addAll((Collection<? extends Reference>) newValue);
+    case ProductLinePackage.CLASS__ATTRIBUTES:
+      getAttributes().clear();
+      getAttributes().addAll((Collection<? extends Attribute>) newValue);
+      return;
+    case ProductLinePackage.CLASS__REFERENCES:
+      getReferences().clear();
+      getReferences().addAll((Collection<? extends Reference>) newValue);
       return;
     case ProductLinePackage.CLASS__REFERENCES_AS_TARGET:
       getReferencesAsTarget().clear();
       getReferencesAsTarget().addAll((Collection<? extends Reference>) newValue);
-      return;
-    case ProductLinePackage.CLASS__ATTRIBUTES:
-      getAttributes().clear();
-      getAttributes().addAll((Collection<? extends Attribute>) newValue);
       return;
     case ProductLinePackage.CLASS__TYPE:
       setType((EClass) newValue);
@@ -282,14 +278,14 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
-    case ProductLinePackage.CLASS__REFERENCES_AS_SOURCE:
-      getReferencesAsSource().clear();
+    case ProductLinePackage.CLASS__ATTRIBUTES:
+      getAttributes().clear();
+      return;
+    case ProductLinePackage.CLASS__REFERENCES:
+      getReferences().clear();
       return;
     case ProductLinePackage.CLASS__REFERENCES_AS_TARGET:
       getReferencesAsTarget().clear();
-      return;
-    case ProductLinePackage.CLASS__ATTRIBUTES:
-      getAttributes().clear();
       return;
     case ProductLinePackage.CLASS__TYPE:
       setType((EClass) null);
@@ -306,12 +302,12 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
-    case ProductLinePackage.CLASS__REFERENCES_AS_SOURCE:
-      return this.referencesAsSource != null && !this.referencesAsSource.isEmpty();
-    case ProductLinePackage.CLASS__REFERENCES_AS_TARGET:
-      return this.referencesAsTarget != null && !this.referencesAsTarget.isEmpty();
     case ProductLinePackage.CLASS__ATTRIBUTES:
       return this.attributes != null && !this.attributes.isEmpty();
+    case ProductLinePackage.CLASS__REFERENCES:
+      return this.references != null && !this.references.isEmpty();
+    case ProductLinePackage.CLASS__REFERENCES_AS_TARGET:
+      return this.referencesAsTarget != null && !this.referencesAsTarget.isEmpty();
     case ProductLinePackage.CLASS__TYPE:
       return this.type != null;
     }
@@ -323,13 +319,12 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
    */
   @Override
   public String toString() {
-    var attributes = getAttributes().stream()
-      .map(a -> a.getType().getName() + ": " + a.getValue())
-      .collect(Collectors.joining(", "));
+    var attributes = getAttributes().stream().map(a -> a.getType().getName() + ": " + a.getValue()).collect(Collectors
+                                                                                                                      .joining(", "));
     var presenceCondition = ProductLineMIDHeavyTypeFactory.getPLElementLabel(this, true);
-    return getType().getName() +
-      (attributes.isEmpty() ? "" : "{" + attributes + "}") +
-      (presenceCondition.isEmpty() ? "" : " " + presenceCondition);
+    return getType().getName() + (attributes.isEmpty() ? "" : "{" + attributes + "}") + (presenceCondition.isEmpty()
+      ? ""
+      : " " + presenceCondition);
   }
 
 } //ClassImpl

@@ -24,9 +24,9 @@ import org.eclipse.emf.ecore.EClass;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.mmint.productline.Class#getReferencesAsSource <em>References As Source</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmint.productline.Class#getReferencesAsTarget <em>References As Target</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.productline.Class#getAttributes <em>Attributes</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmint.productline.Class#getReferences <em>References</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmint.productline.Class#getReferencesAsTarget <em>References As Target</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.productline.Class#getType <em>Type</em>}</li>
  * </ul>
  *
@@ -35,20 +35,6 @@ import org.eclipse.emf.ecore.EClass;
  * @generated
  */
 public interface Class extends PLElement {
-  /**
-   * Returns the value of the '<em><b>References As Source</b></em>' reference list.
-   * The list contents are of type {@link edu.toronto.cs.se.mmint.productline.Reference}.
-   * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.mmint.productline.Reference#getSource <em>Source</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>References As Source</em>' reference list.
-   * @see edu.toronto.cs.se.mmint.productline.ProductLinePackage#getClass_ReferencesAsSource()
-   * @see edu.toronto.cs.se.mmint.productline.Reference#getSource
-   * @model opposite="source"
-   * @generated
-   */
-  EList<Reference> getReferencesAsSource();
-
   /**
    * Returns the value of the '<em><b>References As Target</b></em>' reference list.
    * The list contents are of type {@link edu.toronto.cs.se.mmint.productline.Reference}.
@@ -74,6 +60,18 @@ public interface Class extends PLElement {
    * @generated
    */
   EList<Attribute> getAttributes();
+
+  /**
+   * Returns the value of the '<em><b>References</b></em>' containment reference list.
+   * The list contents are of type {@link edu.toronto.cs.se.mmint.productline.Reference}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>References</em>' containment reference list.
+   * @see edu.toronto.cs.se.mmint.productline.ProductLinePackage#getClass_References()
+   * @model containment="true"
+   * @generated
+   */
+  EList<Reference> getReferences();
 
   /**
    * Returns the value of the '<em><b>Type</b></em>' reference.

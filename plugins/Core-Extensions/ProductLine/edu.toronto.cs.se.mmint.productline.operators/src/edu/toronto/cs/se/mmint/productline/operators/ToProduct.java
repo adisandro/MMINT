@@ -205,19 +205,21 @@ public class ToProduct extends RandomOperatorImpl {
         FileUtils.setModelObjectFeature(productModelObj, plAttribute.getType().getName(), value);
       }
     }
-    for (var plReference : this.in.pl.getReferences()) {
-      if (!canInstantiateFeatures(plReference)) {
-        continue;
+    for (var plClass : this.in.pl.getClasses()) {
+      for (var plReference : plClass.getReferences()) {
+        if (!canInstantiateFeatures(plReference)) {
+          continue;
+        }
+        var srcProductModelObj = this.out.traceLinks.get(plClass);
+        if (srcProductModelObj == null) {
+          continue;
+        }
+        var tgtProductModelObj = this.out.traceLinks.get(plReference.getTarget());
+        if (tgtProductModelObj == null) {
+          continue;
+        }
+        FileUtils.setModelObjectFeature(srcProductModelObj, plReference.getType().getName(), tgtProductModelObj);
       }
-      var srcProductModelObj = this.out.traceLinks.get(plReference.getSource());
-      if (srcProductModelObj == null) {
-        continue;
-      }
-      var tgtProductModelObj = this.out.traceLinks.get(plReference.getTarget());
-      if (tgtProductModelObj == null) {
-        continue;
-      }
-      FileUtils.setModelObjectFeature(srcProductModelObj, plReference.getType().getName(), tgtProductModelObj);
     }
   }
 

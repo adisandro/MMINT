@@ -23,7 +23,6 @@ import org.eclipse.emf.ecore.EReference;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.mmint.productline.Reference#getSource <em>Source</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.productline.Reference#getTarget <em>Target</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.productline.Reference#getType <em>Type</em>}</li>
  * </ul>
@@ -33,30 +32,6 @@ import org.eclipse.emf.ecore.EReference;
  * @generated
  */
 public interface Reference extends PLElement {
-  /**
-   * Returns the value of the '<em><b>Source</b></em>' reference.
-   * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.mmint.productline.Class#getReferencesAsSource <em>References As Source</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Source</em>' reference.
-   * @see #setSource(edu.toronto.cs.se.mmint.productline.Class)
-   * @see edu.toronto.cs.se.mmint.productline.ProductLinePackage#getReference_Source()
-   * @see edu.toronto.cs.se.mmint.productline.Class#getReferencesAsSource
-   * @model opposite="referencesAsSource" required="true"
-   * @generated
-   */
-  edu.toronto.cs.se.mmint.productline.Class getSource();
-
-  /**
-   * Sets the value of the '{@link edu.toronto.cs.se.mmint.productline.Reference#getSource <em>Source</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Source</em>' reference.
-   * @see #getSource()
-   * @generated
-   */
-  void setSource(edu.toronto.cs.se.mmint.productline.Class value);
-
   /**
    * Returns the value of the '<em><b>Target</b></em>' reference.
    * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.mmint.productline.Class#getReferencesAsTarget <em>References As Target</em>}'.

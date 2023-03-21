@@ -51,28 +51,10 @@ public class ReferenceItemProvider extends PLElementItemProvider {
     if (this.itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
-      addSourcePropertyDescriptor(object);
       addTargetPropertyDescriptor(object);
       addTypePropertyDescriptor(object);
     }
     return this.itemPropertyDescriptors;
-  }
-
-  /**
-   * This adds a property descriptor for the Source feature.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected void addSourcePropertyDescriptor(Object object) {
-    this.itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(),
-                                                             getResourceLocator(), getString(
-                                                                                             "_UI_Reference_source_feature"),
-                                                             getString("_UI_PropertyDescriptor_description",
-                                                                       "_UI_Reference_source_feature",
-                                                                       "_UI_Reference_type"),
-                                                             ProductLinePackage.Literals.REFERENCE__SOURCE, true, false,
-                                                             true, null, null, null));
   }
 
   /**

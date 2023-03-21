@@ -29,7 +29,7 @@ pattern classType(plClass: Class, type: java String) {
 pattern reference(plSrc: Class, srcType: java String, plDst: Class, dstType: java String,
                   plRef: Reference, refType: java String) {
   find classType(plSrc, srcType);
-  Class.referencesAsSource(plSrc, plRef);
+  Class.references(plSrc, plRef);
   Reference.type.name(plRef, refType);
   Reference.target(plRef, plDst);
   find classType(plDst, dstType);

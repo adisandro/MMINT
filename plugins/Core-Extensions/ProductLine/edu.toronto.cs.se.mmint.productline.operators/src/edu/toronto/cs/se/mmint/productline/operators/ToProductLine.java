@@ -123,9 +123,8 @@ public class ToProductLine extends OperatorImpl {
     var plReference = ProductLineFactory.eINSTANCE.createReference();
     plReference.setPresenceCondition("true");
     plReference.setType(plType);
-    plReference.setSource(plSrc);
     plReference.setTarget(plTgt);
-    this.out.productLine.getReferences().add(plReference);
+    plSrc.getReferences().add(plReference);
 
     return plReference;
   }

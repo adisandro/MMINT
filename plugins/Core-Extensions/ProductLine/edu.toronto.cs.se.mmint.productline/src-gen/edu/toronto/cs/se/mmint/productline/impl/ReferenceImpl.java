@@ -30,7 +30,6 @@ import edu.toronto.cs.se.mmint.productline.Reference;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.mmint.productline.impl.ReferenceImpl#getSource <em>Source</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.productline.impl.ReferenceImpl#getTarget <em>Target</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.productline.impl.ReferenceImpl#getType <em>Type</em>}</li>
  * </ul>
@@ -38,16 +37,6 @@ import edu.toronto.cs.se.mmint.productline.Reference;
  * @generated
  */
 public class ReferenceImpl extends PLElementImpl implements Reference {
-  /**
-   * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getSource()
-   * @generated
-   * @ordered
-   */
-  protected edu.toronto.cs.se.mmint.productline.Class source;
-
   /**
    * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
    * <!-- begin-user-doc -->
@@ -85,78 +74,6 @@ public class ReferenceImpl extends PLElementImpl implements Reference {
   @Override
   protected EClass eStaticClass() {
     return ProductLinePackage.Literals.REFERENCE;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public edu.toronto.cs.se.mmint.productline.Class getSource() {
-    if (this.source != null && this.source.eIsProxy()) {
-      var oldSource = (InternalEObject) this.source;
-      this.source = (edu.toronto.cs.se.mmint.productline.Class) eResolveProxy(oldSource);
-      if (this.source != oldSource) {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProductLinePackage.REFERENCE__SOURCE, oldSource,
-                                        this.source));
-      }
-    }
-    return this.source;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public edu.toronto.cs.se.mmint.productline.Class basicGetSource() {
-    return this.source;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetSource(edu.toronto.cs.se.mmint.productline.Class newSource, NotificationChain msgs) {
-    var oldSource = this.source;
-    this.source = newSource;
-    if (eNotificationRequired()) {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-                                                             ProductLinePackage.REFERENCE__SOURCE, oldSource,
-                                                             newSource);
-      if (msgs == null)
-        msgs = notification;
-      else
-        msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setSource(edu.toronto.cs.se.mmint.productline.Class newSource) {
-    if (newSource != this.source) {
-      NotificationChain msgs = null;
-      if (this.source != null)
-        msgs = ((InternalEObject) this.source).eInverseRemove(this, ProductLinePackage.CLASS__REFERENCES_AS_SOURCE,
-                                                         edu.toronto.cs.se.mmint.productline.Class.class, msgs);
-      if (newSource != null)
-        msgs = ((InternalEObject) newSource).eInverseAdd(this, ProductLinePackage.CLASS__REFERENCES_AS_SOURCE,
-                                                         edu.toronto.cs.se.mmint.productline.Class.class, msgs);
-      msgs = basicSetSource(newSource, msgs);
-      if (msgs != null)
-        msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProductLinePackage.REFERENCE__SOURCE, newSource,
-                                    newSource));
   }
 
   /**
@@ -280,11 +197,6 @@ public class ReferenceImpl extends PLElementImpl implements Reference {
   @Override
   public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
-    case ProductLinePackage.REFERENCE__SOURCE:
-      if (this.source != null)
-        msgs = ((InternalEObject) this.source).eInverseRemove(this, ProductLinePackage.CLASS__REFERENCES_AS_SOURCE,
-                                                         edu.toronto.cs.se.mmint.productline.Class.class, msgs);
-      return basicSetSource((edu.toronto.cs.se.mmint.productline.Class) otherEnd, msgs);
     case ProductLinePackage.REFERENCE__TARGET:
       if (this.target != null)
         msgs = ((InternalEObject) this.target).eInverseRemove(this, ProductLinePackage.CLASS__REFERENCES_AS_TARGET,
@@ -302,8 +214,6 @@ public class ReferenceImpl extends PLElementImpl implements Reference {
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
-    case ProductLinePackage.REFERENCE__SOURCE:
-      return basicSetSource(null, msgs);
     case ProductLinePackage.REFERENCE__TARGET:
       return basicSetTarget(null, msgs);
     }
@@ -318,10 +228,6 @@ public class ReferenceImpl extends PLElementImpl implements Reference {
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
-    case ProductLinePackage.REFERENCE__SOURCE:
-      if (resolve)
-        return getSource();
-      return basicGetSource();
     case ProductLinePackage.REFERENCE__TARGET:
       if (resolve)
         return getTarget();
@@ -343,9 +249,6 @@ public class ReferenceImpl extends PLElementImpl implements Reference {
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
-    case ProductLinePackage.REFERENCE__SOURCE:
-      setSource((edu.toronto.cs.se.mmint.productline.Class) newValue);
-      return;
     case ProductLinePackage.REFERENCE__TARGET:
       setTarget((edu.toronto.cs.se.mmint.productline.Class) newValue);
       return;
@@ -364,9 +267,6 @@ public class ReferenceImpl extends PLElementImpl implements Reference {
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
-    case ProductLinePackage.REFERENCE__SOURCE:
-      setSource((edu.toronto.cs.se.mmint.productline.Class) null);
-      return;
     case ProductLinePackage.REFERENCE__TARGET:
       setTarget((edu.toronto.cs.se.mmint.productline.Class) null);
       return;
@@ -385,8 +285,6 @@ public class ReferenceImpl extends PLElementImpl implements Reference {
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
-    case ProductLinePackage.REFERENCE__SOURCE:
-      return this.source != null;
     case ProductLinePackage.REFERENCE__TARGET:
       return this.target != null;
     case ProductLinePackage.REFERENCE__TYPE:

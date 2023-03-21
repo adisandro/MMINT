@@ -31,7 +31,6 @@ import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeaturesTrait;
  *   <li>{@link edu.toronto.cs.se.mmint.productline.ProductLine#getFeaturesConstraint <em>Features Constraint</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.productline.ProductLine#getReasonerName <em>Reasoner Name</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.productline.ProductLine#getClasses <em>Classes</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmint.productline.ProductLine#getReferences <em>References</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.productline.ProductLine#getMetamodel <em>Metamodel</em>}</li>
  * </ul>
  *
@@ -95,18 +94,6 @@ public interface ProductLine extends EObject {
    * @generated
    */
   EList<edu.toronto.cs.se.mmint.productline.Class> getClasses();
-
-  /**
-   * Returns the value of the '<em><b>References</b></em>' containment reference list.
-   * The list contents are of type {@link edu.toronto.cs.se.mmint.productline.Reference}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>References</em>' containment reference list.
-   * @see edu.toronto.cs.se.mmint.productline.ProductLinePackage#getProductLine_References()
-   * @model containment="true"
-   * @generated
-   */
-  EList<Reference> getReferences();
 
   /**
    * Returns the value of the '<em><b>Metamodel</b></em>' reference.

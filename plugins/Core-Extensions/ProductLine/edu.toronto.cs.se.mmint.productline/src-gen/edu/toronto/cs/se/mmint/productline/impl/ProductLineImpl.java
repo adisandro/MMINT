@@ -29,7 +29,6 @@ import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.productline.ProductLinePackage;
-import edu.toronto.cs.se.mmint.productline.Reference;
 import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeaturesTrait;
 
 /**
@@ -43,7 +42,6 @@ import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeaturesTrait;
  *   <li>{@link edu.toronto.cs.se.mmint.productline.impl.ProductLineImpl#getFeaturesConstraint <em>Features Constraint</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.productline.impl.ProductLineImpl#getReasonerName <em>Reasoner Name</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.productline.impl.ProductLineImpl#getClasses <em>Classes</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmint.productline.impl.ProductLineImpl#getReferences <em>References</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.productline.impl.ProductLineImpl#getMetamodel <em>Metamodel</em>}</li>
  * </ul>
  *
@@ -99,16 +97,6 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
    * @ordered
    */
   protected EList<edu.toronto.cs.se.mmint.productline.Class> classes;
-
-  /**
-   * The cached value of the '{@link #getReferences() <em>References</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getReferences()
-   * @generated
-   * @ordered
-   */
-  protected EList<Reference> references;
 
   /**
    * The cached value of the '{@link #getMetamodel() <em>Metamodel</em>}' reference.
@@ -208,20 +196,6 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
    * @generated
    */
   @Override
-  public EList<Reference> getReferences() {
-    if (this.references == null) {
-      this.references = new EObjectContainmentEList<>(Reference.class, this,
-                                                          ProductLinePackage.PRODUCT_LINE__REFERENCES);
-    }
-    return this.references;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EPackage getMetamodel() {
     if (this.metamodel != null && this.metamodel.eIsProxy()) {
       var oldMetamodel = (InternalEObject) this.metamodel;
@@ -280,8 +254,6 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
     switch (featureID) {
     case ProductLinePackage.PRODUCT_LINE__CLASSES:
       return ((InternalEList<?>) getClasses()).basicRemove(otherEnd, msgs);
-    case ProductLinePackage.PRODUCT_LINE__REFERENCES:
-      return ((InternalEList<?>) getReferences()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -300,8 +272,6 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
       return getReasonerName();
     case ProductLinePackage.PRODUCT_LINE__CLASSES:
       return getClasses();
-    case ProductLinePackage.PRODUCT_LINE__REFERENCES:
-      return getReferences();
     case ProductLinePackage.PRODUCT_LINE__METAMODEL:
       if (resolve)
         return getMetamodel();
@@ -329,10 +299,6 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
       getClasses().clear();
       getClasses().addAll((Collection<? extends edu.toronto.cs.se.mmint.productline.Class>) newValue);
       return;
-    case ProductLinePackage.PRODUCT_LINE__REFERENCES:
-      getReferences().clear();
-      getReferences().addAll((Collection<? extends Reference>) newValue);
-      return;
     case ProductLinePackage.PRODUCT_LINE__METAMODEL:
       setMetamodel((EPackage) newValue);
       return;
@@ -357,9 +323,6 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
     case ProductLinePackage.PRODUCT_LINE__CLASSES:
       getClasses().clear();
       return;
-    case ProductLinePackage.PRODUCT_LINE__REFERENCES:
-      getReferences().clear();
-      return;
     case ProductLinePackage.PRODUCT_LINE__METAMODEL:
       setMetamodel((EPackage) null);
       return;
@@ -382,8 +345,6 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
       return ProductLineImpl.REASONER_NAME_EDEFAULT == null ? this.reasonerName != null : !ProductLineImpl.REASONER_NAME_EDEFAULT.equals(this.reasonerName);
     case ProductLinePackage.PRODUCT_LINE__CLASSES:
       return this.classes != null && !this.classes.isEmpty();
-    case ProductLinePackage.PRODUCT_LINE__REFERENCES:
-      return this.references != null && !this.references.isEmpty();
     case ProductLinePackage.PRODUCT_LINE__METAMODEL:
       return this.metamodel != null;
     }

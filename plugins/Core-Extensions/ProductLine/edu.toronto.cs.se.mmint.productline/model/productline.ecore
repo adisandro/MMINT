@@ -11,8 +11,6 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="classes" upperBound="-1"
         eType="#//Class" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="references" upperBound="-1"
-        eType="#//Reference" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="metamodel" lowerBound="1"
         eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EPackage"/>
   </eClassifiers>
@@ -22,17 +20,15 @@
         defaultValueLiteral="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Class" eSuperTypes="#//PLElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="referencesAsSource" upperBound="-1"
-        eType="#//Reference" eOpposite="#//Reference/source"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="referencesAsTarget" upperBound="-1"
-        eType="#//Reference" eOpposite="#//Reference/target"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" upperBound="-1"
         eType="#//Attribute" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="references" upperBound="-1"
+        eType="#//Reference" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="referencesAsTarget" upperBound="-1"
+        eType="#//Reference" eOpposite="#//Reference/target"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Reference" eSuperTypes="#//PLElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
-        eType="#//Class" eOpposite="#//Class/referencesAsSource"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
         eType="#//Class" eOpposite="#//Class/referencesAsTarget"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EReference"/>

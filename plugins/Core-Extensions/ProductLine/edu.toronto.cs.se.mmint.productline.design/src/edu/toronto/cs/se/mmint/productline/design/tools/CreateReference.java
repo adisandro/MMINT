@@ -28,7 +28,6 @@ import org.eclipse.sirius.business.api.session.SessionManager;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.productline.Class;
-import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.productline.ProductLineFactory;
 
 public class CreateReference extends AbstractExternalJavaAction {
@@ -77,10 +76,9 @@ public class CreateReference extends AbstractExternalJavaAction {
                                                          contentProvider, labelProvider);
         var reference = ProductLineFactory.eINSTANCE.createReference();
         reference.setType(type);
-        reference.setSource(this.srcClass);
         reference.setTarget(this.tgtClass);
         reference.setPresenceCondition(this.srcClass.getPresenceCondition());
-        ((ProductLine) this.srcClass.eContainer()).getReferences().add(reference);
+        this.srcClass.getReferences().add(reference);
       }
       catch (MIDDialogCancellation e) {
         // do nothing
