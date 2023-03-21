@@ -15,6 +15,7 @@ package edu.toronto.cs.se.mmint.productline.design.tools;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
@@ -56,6 +57,22 @@ public class EditPresenceCondition extends AbstractExternalJavaAction {
       this.newPresenceCondition = newPresenceCondition;
     }
 
+    private void addContainerPCs(Class plClass, Set<String> presenceConditions) {
+      for (var plReference : plClass.getReferencesAsTarget()) {
+        if (!plReference.getType().isContainment()) {
+          continue;
+        }
+        var plClassContainer = (Class) plReference.eContainer();
+        presenceConditions.add(plClassContainer.getPresenceCondition());
+        addContainerPCs(plClassContainer, presenceConditions);
+      }
+    }
+
+    private void addClassPCs(Class plClass, Set<String> presenceConditions) {
+      presenceConditions.add(plClass.getPresenceCondition());
+      addContainerPCs(plClass, presenceConditions);
+    }
+
     @Override
     protected void doExecute() {
       var pl = this.plModelObj.getProductLine();
@@ -65,12 +82,15 @@ public class EditPresenceCondition extends AbstractExternalJavaAction {
         var presenceConditions = new HashSet<String>();
         presenceConditions.add(this.newPresenceCondition);
         //TODO MMINT[JAVA21] Convert to switch with pattern matching
-        if (this.plModelObj instanceof Attribute plAttr) {
-          presenceConditions.add(((Class) plAttr.eContainer()).getPresenceCondition());
+        if (this.plModelObj instanceof Class plClass) {
+          addContainerPCs(plClass, presenceConditions);
+        }
+        else if (this.plModelObj instanceof Attribute plAttr) {
+          addClassPCs((Class) plAttr.eContainer(), presenceConditions);
         }
         else if (this.plModelObj instanceof Reference plRef) {
-          presenceConditions.add(((Class) plRef.eContainer()).getPresenceCondition());
-          presenceConditions.add(plRef.getTarget().getPresenceCondition());
+          addClassPCs((Class) plRef.eContainer(), presenceConditions);
+          addClassPCs(plRef.getTarget(), presenceConditions);
         }
         if (!plReasoner.checkConsistency(featuresConstraint, presenceConditions)) {
           MMINTException.print(IStatus.WARNING, "The new presence condition is not satisfiable", null);
