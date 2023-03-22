@@ -1,760 +1,760 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <productline:ProductLine xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:productline="model://edu.toronto.cs.se.mmint.productline" featuresConstraint="(GPL) &amp; (~MainGpl | GPL) &amp; (~GPL | MainGpl) &amp; (~HiddenGtp | MainGpl) &amp; (~TestProg | MainGpl) &amp; (~Alg | MainGpl) &amp; (~Src | MainGpl) &amp; (~HiddenWgt | MainGpl) &amp; (~Wgt | MainGpl) &amp; (~Gtp | MainGpl) &amp; (~Implementation | MainGpl) &amp; (~Base | MainGpl) &amp; (~MainGpl | HiddenGtp) &amp; (~MainGpl | TestProg) &amp; (~MainGpl | Alg) &amp; (~MainGpl | Src) &amp; (~MainGpl | HiddenWgt) &amp; (~MainGpl | Wgt) &amp; (~MainGpl | Gtp) &amp; (~MainGpl | Implementation) &amp; (~MainGpl | Base) &amp; (~DirectedWithEdges | HiddenGtp) &amp; (~DirectedWithNeighbors | HiddenGtp) &amp; (~DirectedOnlyVertices | HiddenGtp) &amp; (~UndirectedWithEdges | HiddenGtp) &amp; (~UndirectedWithNeighbors | HiddenGtp) &amp; (~UndirectedOnlyVertices | HiddenGtp) &amp; (~HiddenGtp | DirectedWithEdges | DirectedWithNeighbors | DirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | UndirectedOnlyVertices) &amp; (~DirectedWithNeighbors | ~DirectedWithEdges) &amp; (~DirectedOnlyVertices | ~DirectedWithEdges) &amp; (~UndirectedWithEdges | ~DirectedWithEdges) &amp; (~UndirectedWithNeighbors | ~DirectedWithEdges) &amp; (~UndirectedOnlyVertices | ~DirectedWithEdges) &amp; (~DirectedOnlyVertices | ~DirectedWithNeighbors) &amp; (~UndirectedWithEdges | ~DirectedWithNeighbors) &amp; (~UndirectedWithNeighbors | ~DirectedWithNeighbors) &amp; (~UndirectedOnlyVertices | ~DirectedWithNeighbors) &amp; (~UndirectedWithEdges | ~DirectedOnlyVertices) &amp; (~UndirectedWithNeighbors | ~DirectedOnlyVertices) &amp; (~UndirectedOnlyVertices | ~DirectedOnlyVertices) &amp; (~UndirectedWithNeighbors | ~UndirectedWithEdges) &amp; (~UndirectedOnlyVertices | ~UndirectedWithEdges) &amp; (~UndirectedOnlyVertices | ~UndirectedWithNeighbors) &amp; (~Number | Alg) &amp; (~Connected | Alg) &amp; (~StrongC | Alg) &amp; (~Cycle | Alg) &amp; (~MSTPrim | Alg) &amp; (~MSTKruskal | Alg) &amp; (~Alg | Number | Connected | StrongC | Cycle | MSTPrim | MSTKruskal) &amp; (~StronglyConnected | StrongC) &amp; (~Transpose | StrongC) &amp; (~StrongC | StronglyConnected) &amp; (~StrongC | Transpose) &amp; (~BFS | Src) &amp; (~DFS | Src) &amp; (~Src | BFS | DFS) &amp; (~DFS | ~BFS) &amp; (~WeightOptions | HiddenWgt) &amp; (~HiddenWgt | WeightOptions) &amp; (~WeightedWithEdges | WeightOptions) &amp; (~WeightedWithNeighbors | WeightOptions) &amp; (~WeightedOnlyVertices | WeightOptions) &amp; (~Weighted | Wgt) &amp; (~Unweighted | Wgt) &amp; (~Wgt | Weighted | Unweighted) &amp; (~Unweighted | ~Weighted) &amp; (~Directed | Gtp) &amp; (~Undirected | Gtp) &amp; (~Gtp | Directed | Undirected) &amp; (~Undirected | ~Directed) &amp; (~OnlyVertices | Implementation) &amp; (~WithNeighbors | Implementation) &amp; (~WithEdges | Implementation) &amp; (~Implementation | OnlyVertices | WithNeighbors | WithEdges) &amp; (~WithNeighbors | ~OnlyVertices) &amp; (~WithEdges | ~OnlyVertices) &amp; (~WithEdges | ~WithNeighbors) &amp; (~Number | Gtp) &amp; (~Number | Src) &amp; (~Connected | Undirected) &amp; (~Connected | Src) &amp; (~StrongC | Directed) &amp; (~StrongC | DFS) &amp; (~Cycle | Gtp) &amp; (~Cycle | DFS) &amp; (~MSTKruskal | Undirected) &amp; (~MSTKruskal | Weighted) &amp; (~MSTPrim | Undirected) &amp; (~MSTPrim | Weighted) &amp; (~MSTKruskal | ~MSTPrim) &amp; (~MSTKruskal | WithEdges) &amp; (~OnlyVertices | ~Weighted | WeightedOnlyVertices) &amp; (~WithNeighbors | ~Weighted | WeightedWithNeighbors) &amp; (~WithEdges | ~Weighted | WeightedWithEdges) &amp; (~OnlyVertices | ~Directed | DirectedOnlyVertices) &amp; (~WithNeighbors | ~Directed | DirectedWithNeighbors) &amp; (~WithEdges | ~Directed | DirectedWithEdges) &amp; (~OnlyVertices | ~Undirected | UndirectedOnlyVertices) &amp; (~WithNeighbors | ~Undirected | UndirectedWithNeighbors) &amp; (~WithEdges | ~Undirected | UndirectedWithEdges)" reasonerName="LogicNG">
-  <classes referencesAsSource="//@references.0 //@references.1 //@references.2 //@references.3 //@references.4 //@references.16 //@references.18 //@references.19 //@references.20 //@references.22 //@references.29 //@references.31 //@references.33 //@references.35 //@references.37 //@references.39 //@references.40 //@references.42 //@references.46 //@references.54 //@references.57 //@references.60 //@references.63 //@references.66 //@references.69 //@references.71 //@references.74 //@references.85 //@references.89 //@references.92 //@references.95 //@references.101 //@references.110">
+  <classes>
+    <references presenceCondition="Base | WeightedOnlyVertices | WeightedWithEdges | WeightedWithNeighbors" target="//@classes.1">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/classes"/>
+    </references>
+    <references presenceCondition="Base" target="//@classes.2">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/classes"/>
+    </references>
+    <references presenceCondition="Base" target="//@classes.3">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/classes"/>
+    </references>
+    <references presenceCondition="Base" target="//@classes.4">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/classes"/>
+    </references>
+    <references presenceCondition="BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors" target="//@classes.5">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/classes"/>
+    </references>
+    <references presenceCondition="BFS | Connected | Cycle | DFS | DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | Transpose | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors" target="//@classes.17">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/classes"/>
+    </references>
+    <references presenceCondition="BFS" target="//@classes.19">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/classes"/>
+    </references>
+    <references presenceCondition="BFS | DFS" target="//@classes.20">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/classes"/>
+    </references>
+    <references presenceCondition="Connected" target="//@classes.21">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/classes"/>
+    </references>
+    <references presenceCondition="Cycle" target="//@classes.23">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/classes"/>
+    </references>
+    <references presenceCondition="DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors" target="//@classes.30">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/classes"/>
+    </references>
+    <references presenceCondition="DirectedWithEdges | UndirectedWithEdges | WeightedWithEdges" target="//@classes.32">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/classes"/>
+    </references>
+    <references presenceCondition="Number" target="//@classes.34">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/classes"/>
+    </references>
+    <references presenceCondition="StronglyConnected" target="//@classes.36">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/classes"/>
+    </references>
+    <references presenceCondition="StronglyConnected" target="//@classes.38">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/classes"/>
+    </references>
+    <references presenceCondition="TestProg" target="//@classes.40">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/classes"/>
+    </references>
+    <references target="//@classes.41">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/datatypes"/>
+    </references>
+    <references target="//@classes.42">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/datatypes"/>
+    </references>
+    <references target="//@classes.43">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/datatypes"/>
+    </references>
+    <references presenceCondition="(DirectedOnlyVertices | UndirectedOnlyVertices) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" target="//@classes.44">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
+    </references>
+    <references presenceCondition="(DirectedWithEdges | UndirectedWithEdges) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors)" target="//@classes.45">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
+    </references>
+    <references presenceCondition="(DirectedWithNeighbors | UndirectedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors)" target="//@classes.46">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
+    </references>
+    <references presenceCondition="(MSTKruskal) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" target="//@classes.47">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
+    </references>
+    <references presenceCondition="(MSTKruskal) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" target="//@classes.48">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
+    </references>
+    <references target="//@classes.49">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/datatypes"/>
+    </references>
+    <references presenceCondition="(DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | Transpose | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" target="//@classes.50">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
+    </references>
+    <references presenceCondition="(DirectedWithEdges | UndirectedWithEdges) &amp; (BFS | Connected | Cycle | DFS | DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | Transpose | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (DirectedWithEdges | UndirectedWithEdges | WeightedWithEdges)" target="//@classes.51">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
+    </references>
+    <references presenceCondition="(Cycle) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" target="//@classes.52">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
+    </references>
+    <references presenceCondition="(DirectedWithEdges | UndirectedWithEdges) &amp; (DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" target="//@classes.53">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
+    </references>
+    <references presenceCondition="(DirectedWithEdges | UndirectedWithEdges) &amp; (DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors) &amp; (DirectedWithEdges | UndirectedWithEdges | WeightedWithEdges)" target="//@classes.54">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
+    </references>
+    <references presenceCondition="(DirectedWithNeighbors | UndirectedWithNeighbors) &amp; (DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" target="//@classes.55">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
+    </references>
+    <references presenceCondition="(DirectedWithEdges | UndirectedWithEdges) &amp; (DirectedWithEdges | UndirectedWithEdges | WeightedWithEdges) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" target="//@classes.56">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
+    </references>
+    <references presenceCondition="(TestProg) &amp; (BFS | Connected | Cycle | DFS | DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | Transpose | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" target="//@classes.57">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
+    </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram"/>
   </classes>
-  <classes presenceCondition="Base | WeightedOnlyVertices | WeightedWithEdges | WeightedWithNeighbors" referencesAsTarget="//@references.0 //@references.99">
+  <classes presenceCondition="Base | WeightedOnlyVertices | WeightedWithEdges | WeightedWithNeighbors" referencesAsTarget="//@classes.0/@references.0 //@classes.32/@references.4">
     <attributes presenceCondition="Base | WeightedOnlyVertices | WeightedWithEdges | WeightedWithNeighbors" value="EdgeIfc">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
-  <classes presenceCondition="Base" referencesAsTarget="//@references.1">
+  <classes presenceCondition="Base" referencesAsTarget="//@classes.0/@references.1">
     <attributes presenceCondition="Base" value="EdgeIter">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
-  <classes presenceCondition="Base" referencesAsTarget="//@references.2">
+  <classes presenceCondition="Base" referencesAsTarget="//@classes.0/@references.2">
     <attributes presenceCondition="Base" value="NeighborIfc">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
-  <classes presenceCondition="Base" referencesAsTarget="//@references.3">
+  <classes presenceCondition="Base" referencesAsTarget="//@classes.0/@references.3">
     <attributes presenceCondition="Base" value="VertexIter">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
-  <classes presenceCondition="BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors" referencesAsSource="//@references.5 //@references.6 //@references.7 //@references.8 //@references.9 //@references.10 //@references.11 //@references.12 //@references.13 //@references.14 //@references.15 //@references.55 //@references.56 //@references.58 //@references.61 //@references.64 //@references.65 //@references.67 //@references.68 //@references.73 //@references.87 //@references.91 //@references.97 //@references.103" referencesAsTarget="//@references.4">
+  <classes presenceCondition="BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors" referencesAsTarget="//@classes.0/@references.4">
     <attributes presenceCondition="BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors" value="Vertex">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
+    <references presenceCondition="(BFS | DFS) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" target="//@classes.6">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/ownedAttributes"/>
+    </references>
+    <references presenceCondition="(Connected) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" target="//@classes.7">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/ownedAttributes"/>
+    </references>
+    <references presenceCondition="(Cycle) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" target="//@classes.8">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/ownedAttributes"/>
+    </references>
+    <references presenceCondition="(Cycle) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" target="//@classes.9">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/ownedAttributes"/>
+    </references>
+    <references presenceCondition="(DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" target="//@classes.10">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/ownedAttributes"/>
+    </references>
+    <references presenceCondition="(MSTPrim) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" target="//@classes.11">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/ownedAttributes"/>
+    </references>
+    <references presenceCondition="(MSTPrim) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" target="//@classes.12">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/ownedAttributes"/>
+    </references>
+    <references presenceCondition="(Number) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" target="//@classes.13">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/ownedAttributes"/>
+    </references>
+    <references presenceCondition="(StronglyConnected) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" target="//@classes.14">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/ownedAttributes"/>
+    </references>
+    <references presenceCondition="(StronglyConnected) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" target="//@classes.15">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/ownedAttributes"/>
+    </references>
+    <references presenceCondition="(WeightedOnlyVertices) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" target="//@classes.16">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/ownedAttributes"/>
+    </references>
+    <references presenceCondition="(DirectedOnlyVertices | UndirectedOnlyVertices) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" target="//@classes.44">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
+    </references>
+    <references presenceCondition="(DirectedOnlyVertices | UndirectedOnlyVertices) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" target="//@classes.44">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
+    </references>
+    <references presenceCondition="(DirectedWithEdges | UndirectedWithEdges) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors)" target="//@classes.45">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
+    </references>
+    <references presenceCondition="(DirectedWithNeighbors | UndirectedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors)" target="//@classes.46">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
+    </references>
+    <references presenceCondition="(MSTKruskal) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" target="//@classes.47">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
+    </references>
+    <references presenceCondition="(MSTKruskal) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" target="//@classes.47">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
+    </references>
+    <references presenceCondition="(MSTKruskal) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" target="//@classes.48">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
+    </references>
+    <references presenceCondition="(MSTKruskal) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" target="//@classes.48">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
+    </references>
+    <references presenceCondition="(DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | Transpose | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" target="//@classes.50">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
+    </references>
+    <references presenceCondition="(Cycle) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" target="//@classes.52">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
+    </references>
+    <references presenceCondition="(DirectedWithEdges | UndirectedWithEdges) &amp; (DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" target="//@classes.53">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
+    </references>
+    <references presenceCondition="(DirectedWithNeighbors | UndirectedWithNeighbors) &amp; (DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" target="//@classes.55">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
+    </references>
+    <references presenceCondition="(DirectedWithEdges | UndirectedWithEdges) &amp; (DirectedWithEdges | UndirectedWithEdges | WeightedWithEdges) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" target="//@classes.56">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
+    </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
-  <classes presenceCondition="(BFS | DFS) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" referencesAsSource="//@references.41" referencesAsTarget="//@references.5">
+  <classes presenceCondition="(BFS | DFS) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" referencesAsTarget="//@classes.5/@references.0">
     <attributes presenceCondition="(BFS | DFS) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" value="visited">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <attributes presenceCondition="(BFS | DFS) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" value="true">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/public"/>
     </attributes>
+    <references presenceCondition="(BFS | DFS) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" target="//@classes.41">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/type"/>
+    </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition="(Connected) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" referencesAsSource="//@references.43" referencesAsTarget="//@references.6">
+  <classes presenceCondition="(Connected) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" referencesAsTarget="//@classes.5/@references.1">
     <attributes presenceCondition="(Connected) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" value="componentNumber">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <attributes presenceCondition="(Connected) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" value="true">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/public"/>
     </attributes>
+    <references presenceCondition="(Connected) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" target="//@classes.42">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/type"/>
+    </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition="(Cycle) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" referencesAsSource="//@references.44" referencesAsTarget="//@references.7">
+  <classes presenceCondition="(Cycle) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" referencesAsTarget="//@classes.5/@references.2">
     <attributes presenceCondition="(Cycle) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" value="VertexCycle">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <attributes presenceCondition="(Cycle) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" value="true">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/public"/>
     </attributes>
+    <references presenceCondition="(Cycle) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" target="//@classes.42">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/type"/>
+    </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition="(Cycle) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" referencesAsSource="//@references.45" referencesAsTarget="//@references.8">
+  <classes presenceCondition="(Cycle) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" referencesAsTarget="//@classes.5/@references.3">
     <attributes presenceCondition="(Cycle) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" value="VertexColor">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <attributes presenceCondition="(Cycle) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" value="true">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/public"/>
     </attributes>
+    <references presenceCondition="(Cycle) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" target="//@classes.42">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/type"/>
+    </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition="(DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" referencesAsSource="//@references.47" referencesAsTarget="//@references.9">
+  <classes presenceCondition="(DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" referencesAsTarget="//@classes.5/@references.4">
     <attributes presenceCondition="(DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" value="name">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <attributes presenceCondition="(DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" value="true">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/public"/>
     </attributes>
+    <references presenceCondition="(DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" target="//@classes.43">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/type"/>
+    </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition="(MSTPrim) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" referencesAsSource="//@references.48" referencesAsTarget="//@references.10">
+  <classes presenceCondition="(MSTPrim) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" referencesAsTarget="//@classes.5/@references.5">
     <attributes presenceCondition="(MSTPrim) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" value="pred">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <attributes presenceCondition="(MSTPrim) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" value="true">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/public"/>
     </attributes>
+    <references presenceCondition="(MSTPrim) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" target="//@classes.43">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/type"/>
+    </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition="(MSTPrim) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" referencesAsSource="//@references.49" referencesAsTarget="//@references.11">
+  <classes presenceCondition="(MSTPrim) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" referencesAsTarget="//@classes.5/@references.6">
     <attributes presenceCondition="(MSTPrim) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" value="akey">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <attributes presenceCondition="(MSTPrim) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" value="true">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/public"/>
     </attributes>
+    <references presenceCondition="(MSTPrim) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" target="//@classes.42">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/type"/>
+    </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition="(Number) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" referencesAsSource="//@references.50" referencesAsTarget="//@references.12">
+  <classes presenceCondition="(Number) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" referencesAsTarget="//@classes.5/@references.7">
     <attributes presenceCondition="(Number) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" value="VertexNumber">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <attributes presenceCondition="(Number) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" value="true">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/public"/>
     </attributes>
+    <references presenceCondition="(Number) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" target="//@classes.42">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/type"/>
+    </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition="(StronglyConnected) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" referencesAsSource="//@references.51" referencesAsTarget="//@references.13">
+  <classes presenceCondition="(StronglyConnected) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" referencesAsTarget="//@classes.5/@references.8">
     <attributes presenceCondition="(StronglyConnected) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" value="finishTime">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <attributes presenceCondition="(StronglyConnected) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" value="true">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/public"/>
     </attributes>
+    <references presenceCondition="(StronglyConnected) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" target="//@classes.42">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/type"/>
+    </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition="(StronglyConnected) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" referencesAsSource="//@references.52" referencesAsTarget="//@references.14">
+  <classes presenceCondition="(StronglyConnected) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" referencesAsTarget="//@classes.5/@references.9">
     <attributes presenceCondition="(StronglyConnected) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" value="strongComponentNumber">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <attributes presenceCondition="(StronglyConnected) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" value="true">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/public"/>
     </attributes>
+    <references presenceCondition="(StronglyConnected) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" target="//@classes.42">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/type"/>
+    </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition="(WeightedOnlyVertices) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" referencesAsSource="//@references.53" referencesAsTarget="//@references.15">
+  <classes presenceCondition="(WeightedOnlyVertices) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" referencesAsTarget="//@classes.5/@references.10">
     <attributes presenceCondition="(WeightedOnlyVertices) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" value="weightsList">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <attributes presenceCondition="(WeightedOnlyVertices) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" value="true">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/public"/>
     </attributes>
+    <references presenceCondition="(WeightedOnlyVertices) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" target="//@classes.42">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/type"/>
+    </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition="BFS | Connected | Cycle | DFS | DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | Transpose | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors" referencesAsSource="//@references.17 //@references.72 //@references.75 //@references.112" referencesAsTarget="//@references.16">
+  <classes presenceCondition="BFS | Connected | Cycle | DFS | DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | Transpose | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors" referencesAsTarget="//@classes.0/@references.5">
     <attributes presenceCondition="BFS | Connected | Cycle | DFS | DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | Transpose | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors" value="Graph">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
+    <references presenceCondition="(DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | Transpose | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" target="//@classes.18">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/ownedAttributes"/>
+    </references>
+    <references presenceCondition="(DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | Transpose | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" target="//@classes.50">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
+    </references>
+    <references presenceCondition="(DirectedWithEdges | UndirectedWithEdges) &amp; (BFS | Connected | Cycle | DFS | DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | Transpose | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (DirectedWithEdges | UndirectedWithEdges | WeightedWithEdges)" target="//@classes.51">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
+    </references>
+    <references presenceCondition="(TestProg) &amp; (BFS | Connected | Cycle | DFS | DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | Transpose | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" target="//@classes.57">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
+    </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
-  <classes presenceCondition="(DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | Transpose | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" referencesAsSource="//@references.70" referencesAsTarget="//@references.17">
+  <classes presenceCondition="(DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | Transpose | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" referencesAsTarget="//@classes.17/@references.0">
     <attributes presenceCondition="(DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | Transpose | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" value="isDirected">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <attributes presenceCondition="(DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | Transpose | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" value="true">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/public"/>
     </attributes>
+    <references presenceCondition="(DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | Transpose | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" target="//@classes.49">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/type"/>
+    </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition="BFS" referencesAsTarget="//@references.18">
+  <classes presenceCondition="BFS" referencesAsTarget="//@classes.0/@references.6">
     <attributes presenceCondition="BFS" value="GlobalVarsWrapper">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
-  <classes presenceCondition="BFS | DFS" referencesAsTarget="//@references.19 //@references.77 //@references.104 //@references.106 //@references.108">
+  <classes presenceCondition="BFS | DFS" referencesAsTarget="//@classes.0/@references.7 //@classes.21/@references.1 //@classes.34/@references.1 //@classes.36/@references.1 //@classes.38/@references.1">
     <attributes presenceCondition="BFS | DFS" value="WorkSpace">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
-  <classes presenceCondition="Connected" referencesAsSource="//@references.21 //@references.77" referencesAsTarget="//@references.20">
+  <classes presenceCondition="Connected" referencesAsTarget="//@classes.0/@references.8">
     <attributes presenceCondition="Connected" value="RegionWorkSpace">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
+    <references presenceCondition="Connected" target="//@classes.22">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/ownedAttributes"/>
+    </references>
+    <references presenceCondition="(BFS | DFS) &amp; (Connected)" target="//@classes.20">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/superclass"/>
+    </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
-  <classes presenceCondition="Connected" referencesAsSource="//@references.78" referencesAsTarget="//@references.21">
+  <classes presenceCondition="Connected" referencesAsTarget="//@classes.21/@references.0">
     <attributes presenceCondition="Connected" value="counter">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <attributes presenceCondition="Connected" value="true">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/public"/>
     </attributes>
+    <references presenceCondition="Connected" target="//@classes.42">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/type"/>
+    </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition="Cycle" referencesAsSource="//@references.23 //@references.24 //@references.25 //@references.26 //@references.27 //@references.28 //@references.86" referencesAsTarget="//@references.22">
+  <classes presenceCondition="Cycle" referencesAsTarget="//@classes.0/@references.9">
     <attributes presenceCondition="Cycle" value="CycleWorkSpace">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
+    <references presenceCondition="Cycle" target="//@classes.24">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/ownedAttributes"/>
+    </references>
+    <references presenceCondition="Cycle" target="//@classes.25">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/ownedAttributes"/>
+    </references>
+    <references presenceCondition="Cycle" target="//@classes.26">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/ownedAttributes"/>
+    </references>
+    <references presenceCondition="Cycle" target="//@classes.27">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/ownedAttributes"/>
+    </references>
+    <references presenceCondition="Cycle" target="//@classes.28">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/ownedAttributes"/>
+    </references>
+    <references presenceCondition="Cycle" target="//@classes.29">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/ownedAttributes"/>
+    </references>
+    <references presenceCondition="(Cycle) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" target="//@classes.52">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
+    </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
-  <classes presenceCondition="Cycle" referencesAsSource="//@references.79" referencesAsTarget="//@references.23">
+  <classes presenceCondition="Cycle" referencesAsTarget="//@classes.23/@references.0">
     <attributes presenceCondition="Cycle" value="AnyCycles">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <attributes presenceCondition="Cycle" value="true">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/public"/>
     </attributes>
+    <references presenceCondition="Cycle" target="//@classes.41">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/type"/>
+    </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition="Cycle" referencesAsSource="//@references.80" referencesAsTarget="//@references.24">
+  <classes presenceCondition="Cycle" referencesAsTarget="//@classes.23/@references.1">
     <attributes presenceCondition="Cycle" value="count">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <attributes presenceCondition="Cycle" value="true">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/public"/>
     </attributes>
+    <references presenceCondition="Cycle" target="//@classes.42">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/type"/>
+    </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition="Cycle" referencesAsSource="//@references.81" referencesAsTarget="//@references.25">
+  <classes presenceCondition="Cycle" referencesAsTarget="//@classes.23/@references.2">
     <attributes presenceCondition="Cycle" value="isDirected">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <attributes presenceCondition="Cycle" value="true">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/public"/>
     </attributes>
+    <references presenceCondition="Cycle" target="//@classes.41">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/type"/>
+    </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition="Cycle" referencesAsSource="//@references.82" referencesAsTarget="//@references.26">
+  <classes presenceCondition="Cycle" referencesAsTarget="//@classes.23/@references.3">
     <attributes presenceCondition="Cycle" value="WHITE">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <attributes presenceCondition="Cycle" value="true">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/public"/>
     </attributes>
+    <references presenceCondition="Cycle" target="//@classes.42">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/type"/>
+    </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition="Cycle" referencesAsSource="//@references.83" referencesAsTarget="//@references.27">
+  <classes presenceCondition="Cycle" referencesAsTarget="//@classes.23/@references.4">
     <attributes presenceCondition="Cycle" value="GRAY">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <attributes presenceCondition="Cycle" value="true">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/public"/>
     </attributes>
+    <references presenceCondition="Cycle" target="//@classes.42">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/type"/>
+    </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition="Cycle" referencesAsSource="//@references.84" referencesAsTarget="//@references.28">
+  <classes presenceCondition="Cycle" referencesAsTarget="//@classes.23/@references.5">
     <attributes presenceCondition="Cycle" value="BLACK">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <attributes presenceCondition="Cycle" value="true">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/public"/>
     </attributes>
+    <references presenceCondition="Cycle" target="//@classes.42">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/type"/>
+    </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition="DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors" referencesAsSource="//@references.30 //@references.59 //@references.62 //@references.90 //@references.93 //@references.96" referencesAsTarget="//@references.29 //@references.98">
+  <classes presenceCondition="DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors" referencesAsTarget="//@classes.0/@references.10 //@classes.32/@references.3">
     <attributes presenceCondition="DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors" value="Neighbor">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
+    <references presenceCondition="(WeightedWithNeighbors) &amp; (DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors)" target="//@classes.31">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/ownedAttributes"/>
+    </references>
+    <references presenceCondition="(DirectedWithEdges | UndirectedWithEdges) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors)" target="//@classes.45">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
+    </references>
+    <references presenceCondition="(DirectedWithNeighbors | UndirectedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors)" target="//@classes.46">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
+    </references>
+    <references presenceCondition="(DirectedWithEdges | UndirectedWithEdges) &amp; (DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" target="//@classes.53">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
+    </references>
+    <references presenceCondition="(DirectedWithEdges | UndirectedWithEdges) &amp; (DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors) &amp; (DirectedWithEdges | UndirectedWithEdges | WeightedWithEdges)" target="//@classes.54">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
+    </references>
+    <references presenceCondition="(DirectedWithNeighbors | UndirectedWithNeighbors) &amp; (DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" target="//@classes.55">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
+    </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
-  <classes presenceCondition="(WeightedWithNeighbors) &amp; (DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors)" referencesAsSource="//@references.88" referencesAsTarget="//@references.30">
+  <classes presenceCondition="(WeightedWithNeighbors) &amp; (DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors)" referencesAsTarget="//@classes.30/@references.0">
     <attributes presenceCondition="(WeightedWithNeighbors) &amp; (DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors)" value="weight">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <attributes presenceCondition="(WeightedWithNeighbors) &amp; (DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors)" value="true">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/public"/>
     </attributes>
+    <references presenceCondition="(WeightedWithNeighbors) &amp; (DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors)" target="//@classes.42">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/type"/>
+    </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition="DirectedWithEdges | UndirectedWithEdges | WeightedWithEdges" referencesAsSource="//@references.32 //@references.76 //@references.94 //@references.98 //@references.99 //@references.102" referencesAsTarget="//@references.31">
+  <classes presenceCondition="DirectedWithEdges | UndirectedWithEdges | WeightedWithEdges" referencesAsTarget="//@classes.0/@references.11">
     <attributes presenceCondition="DirectedWithEdges | UndirectedWithEdges | WeightedWithEdges" value="Edge">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
+    <references presenceCondition="(WeightedWithEdges) &amp; (DirectedWithEdges | UndirectedWithEdges | WeightedWithEdges)" target="//@classes.33">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/ownedAttributes"/>
+    </references>
+    <references presenceCondition="(DirectedWithEdges | UndirectedWithEdges) &amp; (BFS | Connected | Cycle | DFS | DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | Transpose | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (DirectedWithEdges | UndirectedWithEdges | WeightedWithEdges)" target="//@classes.51">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
+    </references>
+    <references presenceCondition="(DirectedWithEdges | UndirectedWithEdges) &amp; (DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors) &amp; (DirectedWithEdges | UndirectedWithEdges | WeightedWithEdges)" target="//@classes.54">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
+    </references>
+    <references presenceCondition="(DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors) &amp; (DirectedWithEdges | UndirectedWithEdges | WeightedWithEdges)" target="//@classes.30">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/superclass"/>
+    </references>
+    <references presenceCondition="(Base | WeightedOnlyVertices | WeightedWithEdges | WeightedWithNeighbors) &amp; (DirectedWithEdges | UndirectedWithEdges | WeightedWithEdges)" target="//@classes.1">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/superclass"/>
+    </references>
+    <references presenceCondition="(DirectedWithEdges | UndirectedWithEdges) &amp; (DirectedWithEdges | UndirectedWithEdges | WeightedWithEdges) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" target="//@classes.56">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
+    </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
-  <classes presenceCondition="(WeightedWithEdges) &amp; (DirectedWithEdges | UndirectedWithEdges | WeightedWithEdges)" referencesAsSource="//@references.100" referencesAsTarget="//@references.32">
+  <classes presenceCondition="(WeightedWithEdges) &amp; (DirectedWithEdges | UndirectedWithEdges | WeightedWithEdges)" referencesAsTarget="//@classes.32/@references.0">
     <attributes presenceCondition="(WeightedWithEdges) &amp; (DirectedWithEdges | UndirectedWithEdges | WeightedWithEdges)" value="weight2">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <attributes presenceCondition="(WeightedWithEdges) &amp; (DirectedWithEdges | UndirectedWithEdges | WeightedWithEdges)" value="true">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/public"/>
     </attributes>
+    <references presenceCondition="(WeightedWithEdges) &amp; (DirectedWithEdges | UndirectedWithEdges | WeightedWithEdges)" target="//@classes.42">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/type"/>
+    </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition="Number" referencesAsSource="//@references.34 //@references.104" referencesAsTarget="//@references.33">
+  <classes presenceCondition="Number" referencesAsTarget="//@classes.0/@references.12">
     <attributes presenceCondition="Number" value="NumberWorkSpace">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
+    <references presenceCondition="Number" target="//@classes.35">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/ownedAttributes"/>
+    </references>
+    <references presenceCondition="(BFS | DFS) &amp; (Number)" target="//@classes.20">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/superclass"/>
+    </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
-  <classes presenceCondition="Number" referencesAsSource="//@references.105" referencesAsTarget="//@references.34">
+  <classes presenceCondition="Number" referencesAsTarget="//@classes.34/@references.0">
     <attributes presenceCondition="Number" value="vertexCounter">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <attributes presenceCondition="Number" value="true">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/public"/>
     </attributes>
+    <references presenceCondition="Number" target="//@classes.42">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/type"/>
+    </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition="StronglyConnected" referencesAsSource="//@references.36 //@references.106" referencesAsTarget="//@references.35">
+  <classes presenceCondition="StronglyConnected" referencesAsTarget="//@classes.0/@references.13">
     <attributes presenceCondition="StronglyConnected" value="FinishTimeWorkSpace">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
+    <references presenceCondition="StronglyConnected" target="//@classes.37">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/ownedAttributes"/>
+    </references>
+    <references presenceCondition="(BFS | DFS) &amp; (StronglyConnected)" target="//@classes.20">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/superclass"/>
+    </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
-  <classes presenceCondition="StronglyConnected" referencesAsSource="//@references.107" referencesAsTarget="//@references.36">
+  <classes presenceCondition="StronglyConnected" referencesAsTarget="//@classes.36/@references.0">
     <attributes presenceCondition="StronglyConnected" value="FinishCounter">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <attributes presenceCondition="StronglyConnected" value="true">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/public"/>
     </attributes>
+    <references presenceCondition="StronglyConnected" target="//@classes.42">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/type"/>
+    </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition="StronglyConnected" referencesAsSource="//@references.38 //@references.108" referencesAsTarget="//@references.37">
+  <classes presenceCondition="StronglyConnected" referencesAsTarget="//@classes.0/@references.14">
     <attributes presenceCondition="StronglyConnected" value="WorkSpaceTranspose">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
+    <references presenceCondition="StronglyConnected" target="//@classes.39">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/ownedAttributes"/>
+    </references>
+    <references presenceCondition="(BFS | DFS) &amp; (StronglyConnected)" target="//@classes.20">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/superclass"/>
+    </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
-  <classes presenceCondition="StronglyConnected" referencesAsSource="//@references.109" referencesAsTarget="//@references.38">
+  <classes presenceCondition="StronglyConnected" referencesAsTarget="//@classes.38/@references.0">
     <attributes presenceCondition="StronglyConnected" value="SCCCounter">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <attributes presenceCondition="StronglyConnected" value="true">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/public"/>
     </attributes>
+    <references presenceCondition="StronglyConnected" target="//@classes.42">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/type"/>
+    </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition="TestProg" referencesAsSource="//@references.111" referencesAsTarget="//@references.39">
+  <classes presenceCondition="TestProg" referencesAsTarget="//@classes.0/@references.15">
     <attributes presenceCondition="TestProg" value="Main">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
+    <references presenceCondition="(TestProg) &amp; (BFS | Connected | Cycle | DFS | DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | Transpose | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" target="//@classes.57">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
+    </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
-  <classes referencesAsTarget="//@references.40 //@references.41 //@references.79 //@references.81">
+  <classes referencesAsTarget="//@classes.0/@references.16 //@classes.6/@references.0 //@classes.24/@references.0 //@classes.26/@references.0">
     <attributes value="EBoolean">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//DataType"/>
   </classes>
-  <classes referencesAsTarget="//@references.42 //@references.43 //@references.44 //@references.45 //@references.49 //@references.50 //@references.51 //@references.52 //@references.53 //@references.78 //@references.80 //@references.82 //@references.83 //@references.84 //@references.88 //@references.100 //@references.105 //@references.107 //@references.109">
+  <classes referencesAsTarget="//@classes.0/@references.17 //@classes.7/@references.0 //@classes.8/@references.0 //@classes.9/@references.0 //@classes.12/@references.0 //@classes.13/@references.0 //@classes.14/@references.0 //@classes.15/@references.0 //@classes.16/@references.0 //@classes.22/@references.0 //@classes.25/@references.0 //@classes.27/@references.0 //@classes.28/@references.0 //@classes.29/@references.0 //@classes.31/@references.0 //@classes.33/@references.0 //@classes.35/@references.0 //@classes.37/@references.0 //@classes.39/@references.0">
     <attributes value="EInt">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//DataType"/>
   </classes>
-  <classes referencesAsTarget="//@references.46 //@references.47 //@references.48">
+  <classes referencesAsTarget="//@classes.0/@references.18 //@classes.10/@references.0 //@classes.11/@references.0">
     <attributes value="EString">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//DataType"/>
   </classes>
-  <classes presenceCondition="(DirectedOnlyVertices | UndirectedOnlyVertices) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" referencesAsTarget="//@references.54 //@references.55 //@references.56">
+  <classes presenceCondition="(DirectedOnlyVertices | UndirectedOnlyVertices) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" referencesAsTarget="//@classes.0/@references.19 //@classes.5/@references.11 //@classes.5/@references.12">
     <attributes presenceCondition="(DirectedOnlyVertices | UndirectedOnlyVertices) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" value="adjacentVertices">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes presenceCondition="(DirectedWithEdges | UndirectedWithEdges) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors)" referencesAsTarget="//@references.57 //@references.58 //@references.59">
+  <classes presenceCondition="(DirectedWithEdges | UndirectedWithEdges) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors)" referencesAsTarget="//@classes.0/@references.20 //@classes.5/@references.13 //@classes.30/@references.1">
     <attributes presenceCondition="(DirectedWithEdges | UndirectedWithEdges) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors)" value="neighbors">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes presenceCondition="(DirectedWithNeighbors | UndirectedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors)" referencesAsTarget="//@references.60 //@references.61 //@references.62">
+  <classes presenceCondition="(DirectedWithNeighbors | UndirectedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors)" referencesAsTarget="//@classes.0/@references.21 //@classes.5/@references.14 //@classes.30/@references.2">
     <attributes presenceCondition="(DirectedWithNeighbors | UndirectedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors)" value="adjacentNeighbors">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes presenceCondition="(MSTKruskal) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" referencesAsTarget="//@references.63 //@references.64 //@references.65">
+  <classes presenceCondition="(MSTKruskal) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" referencesAsTarget="//@classes.0/@references.22 //@classes.5/@references.15 //@classes.5/@references.16">
     <attributes presenceCondition="(MSTKruskal) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" value="representative">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes presenceCondition="(MSTKruskal) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" referencesAsTarget="//@references.66 //@references.67 //@references.68">
+  <classes presenceCondition="(MSTKruskal) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" referencesAsTarget="//@classes.0/@references.23 //@classes.5/@references.17 //@classes.5/@references.18">
     <attributes presenceCondition="(MSTKruskal) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" value="members">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes referencesAsTarget="//@references.69 //@references.70">
+  <classes referencesAsTarget="//@classes.0/@references.24 //@classes.18/@references.0">
     <attributes value="EBooleanObject">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//DataType"/>
   </classes>
-  <classes presenceCondition="(DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | Transpose | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" referencesAsTarget="//@references.71 //@references.72 //@references.73">
+  <classes presenceCondition="(DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | Transpose | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" referencesAsTarget="//@classes.0/@references.25 //@classes.17/@references.1 //@classes.5/@references.19">
     <attributes presenceCondition="(DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | Transpose | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" value="vertices">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes presenceCondition="(DirectedWithEdges | UndirectedWithEdges) &amp; (BFS | Connected | Cycle | DFS | DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | Transpose | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (DirectedWithEdges | UndirectedWithEdges | WeightedWithEdges)" referencesAsTarget="//@references.74 //@references.75 //@references.76">
+  <classes presenceCondition="(DirectedWithEdges | UndirectedWithEdges) &amp; (BFS | Connected | Cycle | DFS | DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | Transpose | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (DirectedWithEdges | UndirectedWithEdges | WeightedWithEdges)" referencesAsTarget="//@classes.0/@references.26 //@classes.17/@references.2 //@classes.32/@references.1">
     <attributes presenceCondition="(DirectedWithEdges | UndirectedWithEdges) &amp; (BFS | Connected | Cycle | DFS | DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | Transpose | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (DirectedWithEdges | UndirectedWithEdges | WeightedWithEdges)" value="edges">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes presenceCondition="(Cycle) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" referencesAsTarget="//@references.85 //@references.86 //@references.87">
+  <classes presenceCondition="(Cycle) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" referencesAsTarget="//@classes.0/@references.27 //@classes.23/@references.6 //@classes.5/@references.20">
     <attributes presenceCondition="(Cycle) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" value="vertices">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes presenceCondition="(DirectedWithEdges | UndirectedWithEdges) &amp; (DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" referencesAsTarget="//@references.89 //@references.90 //@references.91">
+  <classes presenceCondition="(DirectedWithEdges | UndirectedWithEdges) &amp; (DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" referencesAsTarget="//@classes.0/@references.28 //@classes.30/@references.3 //@classes.5/@references.21">
     <attributes presenceCondition="(DirectedWithEdges | UndirectedWithEdges) &amp; (DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" value="end">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes presenceCondition="(DirectedWithEdges | UndirectedWithEdges) &amp; (DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors) &amp; (DirectedWithEdges | UndirectedWithEdges | WeightedWithEdges)" referencesAsTarget="//@references.92 //@references.93 //@references.94">
+  <classes presenceCondition="(DirectedWithEdges | UndirectedWithEdges) &amp; (DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors) &amp; (DirectedWithEdges | UndirectedWithEdges | WeightedWithEdges)" referencesAsTarget="//@classes.0/@references.29 //@classes.30/@references.4 //@classes.32/@references.2">
     <attributes presenceCondition="(DirectedWithEdges | UndirectedWithEdges) &amp; (DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors) &amp; (DirectedWithEdges | UndirectedWithEdges | WeightedWithEdges)" value="edge">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes presenceCondition="(DirectedWithNeighbors | UndirectedWithNeighbors) &amp; (DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" referencesAsTarget="//@references.95 //@references.96 //@references.97">
+  <classes presenceCondition="(DirectedWithNeighbors | UndirectedWithNeighbors) &amp; (DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" referencesAsTarget="//@classes.0/@references.30 //@classes.30/@references.5 //@classes.5/@references.22">
     <attributes presenceCondition="(DirectedWithNeighbors | UndirectedWithNeighbors) &amp; (DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" value="neighbor">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes presenceCondition="(DirectedWithEdges | UndirectedWithEdges) &amp; (DirectedWithEdges | UndirectedWithEdges | WeightedWithEdges) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" referencesAsTarget="//@references.101 //@references.102 //@references.103">
+  <classes presenceCondition="(DirectedWithEdges | UndirectedWithEdges) &amp; (DirectedWithEdges | UndirectedWithEdges | WeightedWithEdges) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" referencesAsTarget="//@classes.0/@references.31 //@classes.32/@references.5 //@classes.5/@references.23">
     <attributes presenceCondition="(DirectedWithEdges | UndirectedWithEdges) &amp; (DirectedWithEdges | UndirectedWithEdges | WeightedWithEdges) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" value="start">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes presenceCondition="(TestProg) &amp; (BFS | Connected | Cycle | DFS | DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | Transpose | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" referencesAsTarget="//@references.110 //@references.111 //@references.112">
+  <classes presenceCondition="(TestProg) &amp; (BFS | Connected | Cycle | DFS | DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | Transpose | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" referencesAsTarget="//@classes.0/@references.32 //@classes.40/@references.0 //@classes.17/@references.3">
     <attributes presenceCondition="(TestProg) &amp; (BFS | Connected | Cycle | DFS | DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | Transpose | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" value="g">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <references presenceCondition="Base | WeightedOnlyVertices | WeightedWithEdges | WeightedWithNeighbors" source="//@classes.0" target="//@classes.1">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/classes"/>
-  </references>
-  <references presenceCondition="Base" source="//@classes.0" target="//@classes.2">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/classes"/>
-  </references>
-  <references presenceCondition="Base" source="//@classes.0" target="//@classes.3">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/classes"/>
-  </references>
-  <references presenceCondition="Base" source="//@classes.0" target="//@classes.4">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/classes"/>
-  </references>
-  <references presenceCondition="BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors" source="//@classes.0" target="//@classes.5">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/classes"/>
-  </references>
-  <references presenceCondition="(BFS | DFS) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" source="//@classes.5" target="//@classes.6">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/ownedAttributes"/>
-  </references>
-  <references presenceCondition="(Connected) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" source="//@classes.5" target="//@classes.7">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/ownedAttributes"/>
-  </references>
-  <references presenceCondition="(Cycle) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" source="//@classes.5" target="//@classes.8">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/ownedAttributes"/>
-  </references>
-  <references presenceCondition="(Cycle) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" source="//@classes.5" target="//@classes.9">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/ownedAttributes"/>
-  </references>
-  <references presenceCondition="(DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" source="//@classes.5" target="//@classes.10">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/ownedAttributes"/>
-  </references>
-  <references presenceCondition="(MSTPrim) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" source="//@classes.5" target="//@classes.11">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/ownedAttributes"/>
-  </references>
-  <references presenceCondition="(MSTPrim) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" source="//@classes.5" target="//@classes.12">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/ownedAttributes"/>
-  </references>
-  <references presenceCondition="(Number) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" source="//@classes.5" target="//@classes.13">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/ownedAttributes"/>
-  </references>
-  <references presenceCondition="(StronglyConnected) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" source="//@classes.5" target="//@classes.14">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/ownedAttributes"/>
-  </references>
-  <references presenceCondition="(StronglyConnected) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" source="//@classes.5" target="//@classes.15">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/ownedAttributes"/>
-  </references>
-  <references presenceCondition="(WeightedOnlyVertices) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" source="//@classes.5" target="//@classes.16">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/ownedAttributes"/>
-  </references>
-  <references presenceCondition="BFS | Connected | Cycle | DFS | DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | Transpose | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors" source="//@classes.0" target="//@classes.17">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/classes"/>
-  </references>
-  <references presenceCondition="(DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | Transpose | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" source="//@classes.17" target="//@classes.18">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/ownedAttributes"/>
-  </references>
-  <references presenceCondition="BFS" source="//@classes.0" target="//@classes.19">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/classes"/>
-  </references>
-  <references presenceCondition="BFS | DFS" source="//@classes.0" target="//@classes.20">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/classes"/>
-  </references>
-  <references presenceCondition="Connected" source="//@classes.0" target="//@classes.21">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/classes"/>
-  </references>
-  <references presenceCondition="Connected" source="//@classes.21" target="//@classes.22">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/ownedAttributes"/>
-  </references>
-  <references presenceCondition="Cycle" source="//@classes.0" target="//@classes.23">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/classes"/>
-  </references>
-  <references presenceCondition="Cycle" source="//@classes.23" target="//@classes.24">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/ownedAttributes"/>
-  </references>
-  <references presenceCondition="Cycle" source="//@classes.23" target="//@classes.25">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/ownedAttributes"/>
-  </references>
-  <references presenceCondition="Cycle" source="//@classes.23" target="//@classes.26">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/ownedAttributes"/>
-  </references>
-  <references presenceCondition="Cycle" source="//@classes.23" target="//@classes.27">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/ownedAttributes"/>
-  </references>
-  <references presenceCondition="Cycle" source="//@classes.23" target="//@classes.28">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/ownedAttributes"/>
-  </references>
-  <references presenceCondition="Cycle" source="//@classes.23" target="//@classes.29">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/ownedAttributes"/>
-  </references>
-  <references presenceCondition="DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors" source="//@classes.0" target="//@classes.30">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/classes"/>
-  </references>
-  <references presenceCondition="(WeightedWithNeighbors) &amp; (DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors)" source="//@classes.30" target="//@classes.31">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/ownedAttributes"/>
-  </references>
-  <references presenceCondition="DirectedWithEdges | UndirectedWithEdges | WeightedWithEdges" source="//@classes.0" target="//@classes.32">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/classes"/>
-  </references>
-  <references presenceCondition="(WeightedWithEdges) &amp; (DirectedWithEdges | UndirectedWithEdges | WeightedWithEdges)" source="//@classes.32" target="//@classes.33">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/ownedAttributes"/>
-  </references>
-  <references presenceCondition="Number" source="//@classes.0" target="//@classes.34">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/classes"/>
-  </references>
-  <references presenceCondition="Number" source="//@classes.34" target="//@classes.35">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/ownedAttributes"/>
-  </references>
-  <references presenceCondition="StronglyConnected" source="//@classes.0" target="//@classes.36">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/classes"/>
-  </references>
-  <references presenceCondition="StronglyConnected" source="//@classes.36" target="//@classes.37">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/ownedAttributes"/>
-  </references>
-  <references presenceCondition="StronglyConnected" source="//@classes.0" target="//@classes.38">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/classes"/>
-  </references>
-  <references presenceCondition="StronglyConnected" source="//@classes.38" target="//@classes.39">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/ownedAttributes"/>
-  </references>
-  <references presenceCondition="TestProg" source="//@classes.0" target="//@classes.40">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/classes"/>
-  </references>
-  <references source="//@classes.0" target="//@classes.41">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/datatypes"/>
-  </references>
-  <references presenceCondition="(BFS | DFS) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" source="//@classes.6" target="//@classes.41">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/type"/>
-  </references>
-  <references source="//@classes.0" target="//@classes.42">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/datatypes"/>
-  </references>
-  <references presenceCondition="(Connected) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" source="//@classes.7" target="//@classes.42">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/type"/>
-  </references>
-  <references presenceCondition="(Cycle) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" source="//@classes.8" target="//@classes.42">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/type"/>
-  </references>
-  <references presenceCondition="(Cycle) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" source="//@classes.9" target="//@classes.42">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/type"/>
-  </references>
-  <references source="//@classes.0" target="//@classes.43">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/datatypes"/>
-  </references>
-  <references presenceCondition="(DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" source="//@classes.10" target="//@classes.43">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/type"/>
-  </references>
-  <references presenceCondition="(MSTPrim) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" source="//@classes.11" target="//@classes.43">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/type"/>
-  </references>
-  <references presenceCondition="(MSTPrim) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" source="//@classes.12" target="//@classes.42">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/type"/>
-  </references>
-  <references presenceCondition="(Number) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" source="//@classes.13" target="//@classes.42">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/type"/>
-  </references>
-  <references presenceCondition="(StronglyConnected) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" source="//@classes.14" target="//@classes.42">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/type"/>
-  </references>
-  <references presenceCondition="(StronglyConnected) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" source="//@classes.15" target="//@classes.42">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/type"/>
-  </references>
-  <references presenceCondition="(WeightedOnlyVertices) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" source="//@classes.16" target="//@classes.42">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/type"/>
-  </references>
-  <references presenceCondition="(DirectedOnlyVertices | UndirectedOnlyVertices) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" source="//@classes.0" target="//@classes.44">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
-  </references>
-  <references presenceCondition="(DirectedOnlyVertices | UndirectedOnlyVertices) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" source="//@classes.5" target="//@classes.44">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
-  </references>
-  <references presenceCondition="(DirectedOnlyVertices | UndirectedOnlyVertices) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" source="//@classes.5" target="//@classes.44">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
-  </references>
-  <references presenceCondition="(DirectedWithEdges | UndirectedWithEdges) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors)" source="//@classes.0" target="//@classes.45">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
-  </references>
-  <references presenceCondition="(DirectedWithEdges | UndirectedWithEdges) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors)" source="//@classes.5" target="//@classes.45">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
-  </references>
-  <references presenceCondition="(DirectedWithEdges | UndirectedWithEdges) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors)" source="//@classes.30" target="//@classes.45">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
-  </references>
-  <references presenceCondition="(DirectedWithNeighbors | UndirectedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors)" source="//@classes.0" target="//@classes.46">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
-  </references>
-  <references presenceCondition="(DirectedWithNeighbors | UndirectedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors)" source="//@classes.5" target="//@classes.46">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
-  </references>
-  <references presenceCondition="(DirectedWithNeighbors | UndirectedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors)" source="//@classes.30" target="//@classes.46">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
-  </references>
-  <references presenceCondition="(MSTKruskal) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" source="//@classes.0" target="//@classes.47">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
-  </references>
-  <references presenceCondition="(MSTKruskal) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" source="//@classes.5" target="//@classes.47">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
-  </references>
-  <references presenceCondition="(MSTKruskal) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" source="//@classes.5" target="//@classes.47">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
-  </references>
-  <references presenceCondition="(MSTKruskal) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" source="//@classes.0" target="//@classes.48">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
-  </references>
-  <references presenceCondition="(MSTKruskal) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" source="//@classes.5" target="//@classes.48">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
-  </references>
-  <references presenceCondition="(MSTKruskal) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" source="//@classes.5" target="//@classes.48">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
-  </references>
-  <references source="//@classes.0" target="//@classes.49">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/datatypes"/>
-  </references>
-  <references presenceCondition="(DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | Transpose | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" source="//@classes.18" target="//@classes.49">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/type"/>
-  </references>
-  <references presenceCondition="(DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | Transpose | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" source="//@classes.0" target="//@classes.50">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
-  </references>
-  <references presenceCondition="(DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | Transpose | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" source="//@classes.17" target="//@classes.50">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
-  </references>
-  <references presenceCondition="(DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | Transpose | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" source="//@classes.5" target="//@classes.50">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
-  </references>
-  <references presenceCondition="(DirectedWithEdges | UndirectedWithEdges) &amp; (BFS | Connected | Cycle | DFS | DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | Transpose | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (DirectedWithEdges | UndirectedWithEdges | WeightedWithEdges)" source="//@classes.0" target="//@classes.51">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
-  </references>
-  <references presenceCondition="(DirectedWithEdges | UndirectedWithEdges) &amp; (BFS | Connected | Cycle | DFS | DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | Transpose | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (DirectedWithEdges | UndirectedWithEdges | WeightedWithEdges)" source="//@classes.17" target="//@classes.51">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
-  </references>
-  <references presenceCondition="(DirectedWithEdges | UndirectedWithEdges) &amp; (BFS | Connected | Cycle | DFS | DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | Transpose | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (DirectedWithEdges | UndirectedWithEdges | WeightedWithEdges)" source="//@classes.32" target="//@classes.51">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
-  </references>
-  <references presenceCondition="(BFS | DFS) &amp; (Connected)" source="//@classes.21" target="//@classes.20">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/superclass"/>
-  </references>
-  <references presenceCondition="Connected" source="//@classes.22" target="//@classes.42">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/type"/>
-  </references>
-  <references presenceCondition="Cycle" source="//@classes.24" target="//@classes.41">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/type"/>
-  </references>
-  <references presenceCondition="Cycle" source="//@classes.25" target="//@classes.42">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/type"/>
-  </references>
-  <references presenceCondition="Cycle" source="//@classes.26" target="//@classes.41">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/type"/>
-  </references>
-  <references presenceCondition="Cycle" source="//@classes.27" target="//@classes.42">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/type"/>
-  </references>
-  <references presenceCondition="Cycle" source="//@classes.28" target="//@classes.42">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/type"/>
-  </references>
-  <references presenceCondition="Cycle" source="//@classes.29" target="//@classes.42">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/type"/>
-  </references>
-  <references presenceCondition="(Cycle) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" source="//@classes.0" target="//@classes.52">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
-  </references>
-  <references presenceCondition="(Cycle) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" source="//@classes.23" target="//@classes.52">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
-  </references>
-  <references presenceCondition="(Cycle) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" source="//@classes.5" target="//@classes.52">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
-  </references>
-  <references presenceCondition="(WeightedWithNeighbors) &amp; (DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors)" source="//@classes.31" target="//@classes.42">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/type"/>
-  </references>
-  <references presenceCondition="(DirectedWithEdges | UndirectedWithEdges) &amp; (DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" source="//@classes.0" target="//@classes.53">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
-  </references>
-  <references presenceCondition="(DirectedWithEdges | UndirectedWithEdges) &amp; (DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" source="//@classes.30" target="//@classes.53">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
-  </references>
-  <references presenceCondition="(DirectedWithEdges | UndirectedWithEdges) &amp; (DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" source="//@classes.5" target="//@classes.53">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
-  </references>
-  <references presenceCondition="(DirectedWithEdges | UndirectedWithEdges) &amp; (DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors) &amp; (DirectedWithEdges | UndirectedWithEdges | WeightedWithEdges)" source="//@classes.0" target="//@classes.54">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
-  </references>
-  <references presenceCondition="(DirectedWithEdges | UndirectedWithEdges) &amp; (DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors) &amp; (DirectedWithEdges | UndirectedWithEdges | WeightedWithEdges)" source="//@classes.30" target="//@classes.54">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
-  </references>
-  <references presenceCondition="(DirectedWithEdges | UndirectedWithEdges) &amp; (DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors) &amp; (DirectedWithEdges | UndirectedWithEdges | WeightedWithEdges)" source="//@classes.32" target="//@classes.54">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
-  </references>
-  <references presenceCondition="(DirectedWithNeighbors | UndirectedWithNeighbors) &amp; (DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" source="//@classes.0" target="//@classes.55">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
-  </references>
-  <references presenceCondition="(DirectedWithNeighbors | UndirectedWithNeighbors) &amp; (DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" source="//@classes.30" target="//@classes.55">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
-  </references>
-  <references presenceCondition="(DirectedWithNeighbors | UndirectedWithNeighbors) &amp; (DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" source="//@classes.5" target="//@classes.55">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
-  </references>
-  <references presenceCondition="(DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors) &amp; (DirectedWithEdges | UndirectedWithEdges | WeightedWithEdges)" source="//@classes.32" target="//@classes.30">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/superclass"/>
-  </references>
-  <references presenceCondition="(Base | WeightedOnlyVertices | WeightedWithEdges | WeightedWithNeighbors) &amp; (DirectedWithEdges | UndirectedWithEdges | WeightedWithEdges)" source="//@classes.32" target="//@classes.1">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/superclass"/>
-  </references>
-  <references presenceCondition="(WeightedWithEdges) &amp; (DirectedWithEdges | UndirectedWithEdges | WeightedWithEdges)" source="//@classes.33" target="//@classes.42">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/type"/>
-  </references>
-  <references presenceCondition="(DirectedWithEdges | UndirectedWithEdges) &amp; (DirectedWithEdges | UndirectedWithEdges | WeightedWithEdges) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" source="//@classes.0" target="//@classes.56">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
-  </references>
-  <references presenceCondition="(DirectedWithEdges | UndirectedWithEdges) &amp; (DirectedWithEdges | UndirectedWithEdges | WeightedWithEdges) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" source="//@classes.32" target="//@classes.56">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
-  </references>
-  <references presenceCondition="(DirectedWithEdges | UndirectedWithEdges) &amp; (DirectedWithEdges | UndirectedWithEdges | WeightedWithEdges) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" source="//@classes.5" target="//@classes.56">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
-  </references>
-  <references presenceCondition="(BFS | DFS) &amp; (Number)" source="//@classes.34" target="//@classes.20">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/superclass"/>
-  </references>
-  <references presenceCondition="Number" source="//@classes.35" target="//@classes.42">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/type"/>
-  </references>
-  <references presenceCondition="(BFS | DFS) &amp; (StronglyConnected)" source="//@classes.36" target="//@classes.20">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/superclass"/>
-  </references>
-  <references presenceCondition="StronglyConnected" source="//@classes.37" target="//@classes.42">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/type"/>
-  </references>
-  <references presenceCondition="(BFS | DFS) &amp; (StronglyConnected)" source="//@classes.38" target="//@classes.20">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/superclass"/>
-  </references>
-  <references presenceCondition="StronglyConnected" source="//@classes.39" target="//@classes.42">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/type"/>
-  </references>
-  <references presenceCondition="(TestProg) &amp; (BFS | Connected | Cycle | DFS | DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | Transpose | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" source="//@classes.0" target="//@classes.57">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
-  </references>
-  <references presenceCondition="(TestProg) &amp; (BFS | Connected | Cycle | DFS | DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | Transpose | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" source="//@classes.40" target="//@classes.57">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
-  </references>
-  <references presenceCondition="(TestProg) &amp; (BFS | Connected | Cycle | DFS | DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | Transpose | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" source="//@classes.17" target="//@classes.57">
-    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
-  </references>
   <metamodel href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#/"/>
 </productline:ProductLine>
