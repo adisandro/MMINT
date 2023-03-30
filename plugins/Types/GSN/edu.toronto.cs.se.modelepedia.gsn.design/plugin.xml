@@ -59,6 +59,10 @@
             id="edu.toronto.cs.se.modelepedia.gsn.design.tools.CreatePropertyDecompositionStrategy">
       </javaActions>
       <javaActions
+            actionClass="edu.toronto.cs.se.modelepedia.gsn.design.tools.InstantiateTemplate"
+            id="edu.toronto.cs.se.modelepedia.gsn.design.tools.InstantiateTemplate">
+      </javaActions>
+      <javaActions
             actionClass="edu.toronto.cs.se.modelepedia.gsn.design.context.PropertyDecomposition"
             id="edu.toronto.cs.se.modelepedia.gsn.design.context.PropertyDecomposition">
       </javaActions>
