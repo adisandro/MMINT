@@ -11,7 +11,6 @@
  */
 package edu.toronto.cs.se.mmint.mid.diagram.library;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -20,26 +19,15 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IFolder;
-import org.eclipse.core.resources.IResourceVisitor;
-import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.Adapters;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.jface.resource.JFaceResources;
-import org.eclipse.jface.resource.LocalResourceManager;
-import org.eclipse.jface.viewers.ArrayContentProvider;
-import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.sirius.business.api.action.AbstractExternalJavaAction;
 import org.eclipse.sirius.viewpoint.DSemanticDecorator;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.model.IWorkbenchAdapter;
 
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MMINT;
@@ -57,35 +45,6 @@ import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
 public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
 
-  private static String selectQueryFileToEvaluate(Set<String> fileExtensions) throws Exception {
-    var queryFiles = new ArrayList<IFile>();
-    IResourceVisitor visitor = (var resource) -> {
-      var binFolders = Set.of("bin", "target");
-      if (resource instanceof IFolder folder && binFolders.contains(folder.getName())) {
-        return false;
-      }
-      if (resource instanceof IFile file && fileExtensions.contains(file.getFileExtension())) {
-        queryFiles.add(file);
-      }
-      return true;
-    };
-    ResourcesPlugin.getWorkspace().getRoot().accept(visitor);
-    if (queryFiles.isEmpty()) {
-      throw new MMINTException("There are no query files in the workspace");
-    }
-    var title = "Evaluate query";
-    var message = "Select query file";
-    var imageManager = new LocalResourceManager(JFaceResources.getResources());
-    var labelProvider = LabelProvider.createTextImageProvider(
-      f -> ((IFile) f).getFullPath().toString(),
-      f -> (Image) imageManager.get(Adapters.adapt(f, IWorkbenchAdapter.class).getImageDescriptor(f)));
-    var queryFile = MIDDialogs.<IFile>openListDialog(title, message, queryFiles, new ArrayContentProvider(),
-                                                     labelProvider);
-    imageManager.dispose(); // images are not automatically garbage collected
-
-    return queryFile.getFullPath().toString();
-  }
-
   public static QuerySpec selectQuery(EObject context) throws Exception {
     var allReasoners = MMINT.getReasonersForTrait(IQueryTrait.class, context);
     if (allReasoners.isEmpty()) {
@@ -97,7 +56,10 @@ public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
         fileExtToReasoners.computeIfAbsent(fe, k -> new HashSet<>()).add(reasoner);
       });
     }
-    var queryFilePath = selectQueryFileToEvaluate(fileExtToReasoners.keySet());
+//    var queryFilePath = selectQueryFileToEvaluate(fileExtToReasoners.keySet());
+    var queryFilePath = MIDDialogs.selectFiles("Evaluate query", "Select query file",
+                                               "There are no query files in the workspace",
+                                               fileExtToReasoners.keySet());
     var fileExtension = FileUtils.getFileExtensionFromPath(queryFilePath);
     var reasoners = fileExtToReasoners.get(fileExtension);
     var queryReasoner = MIDDialogs.selectReasoner(reasoners, fileExtension + " queries");

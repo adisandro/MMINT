@@ -11,12 +11,16 @@
  */
 package edu.toronto.cs.se.mmint.mid.ui;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IFolder;
+import org.eclipse.core.resources.IResourceVisitor;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.Adapters;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.EList;
@@ -24,6 +28,8 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.resource.JFaceResources;
+import org.eclipse.jface.resource.LocalResourceManager;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
@@ -33,6 +39,7 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.window.Window;
 import org.eclipse.sirius.business.api.helper.SiriusUtil;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -40,6 +47,7 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.eclipse.ui.dialogs.ListDialog;
 import org.eclipse.ui.model.BaseWorkbenchContentProvider;
+import org.eclipse.ui.model.IWorkbenchAdapter;
 import org.eclipse.ui.model.WorkbenchLabelProvider;
 
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
@@ -483,4 +491,31 @@ public class MIDDialogs {
 		return constraint;
 	}
 
+  public static String selectFiles(String title, String message, String emptyMessage, Set<String> fileExtensions)
+                                  throws Exception {
+    var queryFiles = new ArrayList<IFile>();
+    IResourceVisitor visitor = (var resource) -> {
+      var binFolders = Set.of("bin", "target");
+      if (resource instanceof IFolder folder && binFolders.contains(folder.getName())) {
+        return false;
+      }
+      if (resource instanceof IFile file && fileExtensions.contains(file.getFileExtension())) {
+        queryFiles.add(file);
+      }
+      return true;
+    };
+    ResourcesPlugin.getWorkspace().getRoot().accept(visitor);
+    if (queryFiles.isEmpty()) {
+      throw new MMINTException(emptyMessage);
+    }
+    var imageManager = new LocalResourceManager(JFaceResources.getResources());
+    var labelProvider = LabelProvider.createTextImageProvider(
+      f -> ((IFile) f).getFullPath().toString(),
+      f -> (Image) imageManager.get(Adapters.adapt(f, IWorkbenchAdapter.class).getImageDescriptor(f)));
+    var queryFile = MIDDialogs.<IFile>openListDialog(title, message, queryFiles, new ArrayContentProvider(),
+                                                     labelProvider);
+    imageManager.dispose(); // images are not automatically garbage collected
+
+    return queryFile.getFullPath().toString();
+  }
 }
