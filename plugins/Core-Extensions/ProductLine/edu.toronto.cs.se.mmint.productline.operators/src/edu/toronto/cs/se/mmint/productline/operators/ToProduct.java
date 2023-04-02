@@ -22,7 +22,6 @@ import java.util.stream.Collectors;
 
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.util.ECollections;
-import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.Nullable;
 
@@ -187,21 +186,7 @@ public class ToProduct extends RandomOperatorImpl {
         if (!canInstantiateFeatures(plAttribute)) {
           continue;
         }
-        var emfType = plAttribute.getType().getEAttributeType();
-        Object value;
-        if (emfType instanceof EEnum) {
-          value = emfType.getEPackage().getEFactoryInstance().createFromString(emfType, plAttribute.getValue());
-        }
-        else {
-          value = switch(emfType.getName()) {
-            case "EBoolean" -> Boolean.parseBoolean(plAttribute.getValue());
-            case "EInt"     -> Integer.parseInt(plAttribute.getValue());
-            case "EFloat"   -> Float.parseFloat(plAttribute.getValue());
-            case "EDouble"  -> Double.parseDouble(plAttribute.getValue());
-            case "EString"  -> plAttribute.getValue();
-            default         -> plAttribute.getValue();
-          };
-        }
+        var value = FileUtils.convertStringToEType(plAttribute.getType(), plAttribute.getValue());
         FileUtils.setModelObjectFeature(productModelObj, plAttribute.getType().getName(), value);
       }
     }

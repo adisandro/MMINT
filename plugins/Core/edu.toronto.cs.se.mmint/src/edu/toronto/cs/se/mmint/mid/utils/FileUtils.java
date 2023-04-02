@@ -33,6 +33,8 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.Resource.Diagnostic;
@@ -434,6 +436,26 @@ public class FileUtils {
 		}
 
 		return modelObj.eGet(feature);
+	}
+
+	public static Object convertStringToEType(EAttribute emfAttribute, String value) {
+    var emfType = emfAttribute.getEAttributeType();
+    Object emfValue;
+    if (emfType instanceof EEnum) {
+      emfValue = emfType.getEPackage().getEFactoryInstance().createFromString(emfType, value);
+    }
+    else {
+      emfValue = switch(emfType.getName()) {
+        case "EBoolean" -> Boolean.parseBoolean(value);
+        case "EInt"     -> Integer.parseInt(value);
+        case "EFloat"   -> Float.parseFloat(value);
+        case "EDouble"  -> Double.parseDouble(value);
+        case "EString"  -> value;
+        default         -> value;
+      };
+    }
+
+    return emfValue;
 	}
 
 	public static void setModelObjectFeature(EObject modelObj, String featureName, Object value) throws MMINTException {
