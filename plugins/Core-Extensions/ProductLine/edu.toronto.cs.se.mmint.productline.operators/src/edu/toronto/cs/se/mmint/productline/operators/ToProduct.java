@@ -187,7 +187,7 @@ public class ToProduct extends RandomOperatorImpl {
           continue;
         }
         var value = FileUtils.convertStringToEType(plAttribute.getType(), plAttribute.getValue());
-        FileUtils.setModelObjectFeature(productModelObj, plAttribute.getType().getName(), value);
+        FileUtils.setModelObjectFeature(productModelObj, plAttribute.getType(), value);
       }
     }
     for (var plClass : this.in.pl.getClasses()) {

@@ -36,6 +36,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.Resource.Diagnostic;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -458,25 +459,29 @@ public class FileUtils {
     return emfValue;
 	}
 
+  public static void setModelObjectFeature(EObject modelObj, EStructuralFeature feature, Object value) throws MMINTException {
+    if (feature.isMany()) {
+      if (value instanceof EList<?>) {
+        modelObj.eSet(feature, value);
+      }
+      else {
+        ((EList<Object>) modelObj.eGet(feature)).add(value);
+      }
+    }
+    else {
+      if (value instanceof EList<?>) {
+        throw new MMINTException("Feature " + feature.getName() + " is not multi-valued");
+      }
+      modelObj.eSet(feature, value);
+    }
+  }
+
 	public static void setModelObjectFeature(EObject modelObj, String featureName, Object value) throws MMINTException {
 		var feature = modelObj.eClass().getEStructuralFeature(featureName);
-		if (feature == null) {
-			throw new MMINTException("Feature " + featureName + " not found in " + modelObj);
-		}
-		if (feature.isMany()) {
-			if (value instanceof EList<?>) {
-				modelObj.eSet(feature, value);
-			}
-			else {
-				((EList<Object>) modelObj.eGet(feature)).add(value);
-			}
-		}
-		else {
-			if (value instanceof EList<?>) {
-				throw new MMINTException("Feature " + featureName + " is not multi-valued");
-			}
-			modelObj.eSet(feature, value);
-		}
+    if (feature == null) {
+      throw new MMINTException("Feature " + featureName + " not found in " + modelObj);
+    }
+		setModelObjectFeature(modelObj, feature, value);
 	}
 
 	public static IEditorPart openEclipseEditor(String filePath, @Nullable String editorId, boolean isWorkspaceRelative)
