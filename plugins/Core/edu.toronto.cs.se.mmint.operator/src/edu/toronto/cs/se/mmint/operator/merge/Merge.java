@@ -305,9 +305,6 @@ public class Merge extends OperatorImpl {
   }
 
   private void kmerge() throws Exception {
-    var k = new edu.toronto.cs.se.mmint.kotlin.operator.merge.Merge();
-    var rootMergedModelObj = k.merge(this.in.model1, this.in.model2, this.in.overlap);
-    FileUtils.writeModelFile(rootMergedModelObj, this.out.merged.getUri(), null, true);
   }
 
   private void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws Exception {
