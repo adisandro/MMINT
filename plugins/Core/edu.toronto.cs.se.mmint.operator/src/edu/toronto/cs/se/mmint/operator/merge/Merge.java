@@ -29,6 +29,9 @@ import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MMINTConstants;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorConstraint;
+import edu.toronto.cs.se.mmint.kotlin.operators.merge.MergeKt;
+import edu.toronto.cs.se.mmint.kotlin.structs.MkObj;
+import edu.toronto.cs.se.mmint.kotlin.utils.KotlinUtils;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
@@ -161,6 +164,17 @@ public class Merge extends OperatorImpl {
     return connModelElemRefs;
   }
 
+  private Map<String, String> getOverlapModelElementUris() {
+    var overlapUris = new HashMap<String, String>();
+    for (var modelElemRef1 : this.in.overlap.getModelEndpointRefs().get(0).getModelElemRefs()) { // index 0 == model1
+      var modelElemRef2 = this.getConnected(modelElemRef1).stream().findFirst().get();
+      overlapUris.put(MIDRegistry.getModelObjectUri(modelElemRef1.getObject()),
+                      MIDRegistry.getModelObjectUri(modelElemRef2.getObject()));
+    }
+
+    return overlapUris;
+  }
+
   private void merge() throws Exception {
     var modelElemType = MIDTypeHierarchy.getRootModelElementType();
     var mappingType = MIDTypeHierarchy.getRootMappingType();
@@ -169,12 +183,7 @@ public class Merge extends OperatorImpl {
     var rootModelObj1 = this.in.model1.getEMFInstanceRoot();
     var modelFactory = rootModelObj1.eClass().getEPackage().getEFactoryInstance();
     var rootMergedModelObj = modelFactory.create(rootModelObj1.eClass());
-    var overlapModelElems1 = new HashMap<String, String>(); // uri1 to uri2
-    for (var modelElemRef1 : this.in.overlap.getModelEndpointRefs().get(0).getModelElemRefs()) {
-      var modelElemRef2 = this.getConnected(modelElemRef1).stream().findFirst().get();
-      overlapModelElems1.put(MIDRegistry.getModelObjectUri(modelElemRef1.getObject()),
-                             MIDRegistry.getModelObjectUri(modelElemRef2.getObject()));
-    }
+    var overlapModelElemUris = getOverlapModelElementUris(); // uri1 to uri2
     var mergedModelObjs = new HashMap<String, EObject>(); // uri2 to mergedObj
     var allModelObjs = new LinkedHashMap<EObject, EObject>(); // obj1/obj2 to mergedObj (+ we track insertion order)
 
@@ -185,9 +194,9 @@ public class Merge extends OperatorImpl {
       var mergedModelObj = modelFactory.create(modelObj1.eClass());
       allModelObjs.put(modelObj1, mergedModelObj);
       var modelElemUri1 = MIDRegistry.getModelElementUri(modelObj1);
-      var isMerged = overlapModelElems1.containsKey(modelElemUri1);
+      var isMerged = overlapModelElemUris.containsKey(modelElemUri1);
       if (isMerged) {
-        var modelElemUri2 = overlapModelElems1.get(modelElemUri1);
+        var modelElemUri2 = overlapModelElemUris.get(modelElemUri1);
         mergedModelObjs.put(modelElemUri2, mergedModelObj);
       }
       // containment (pre-requisite for proper creation of trace rel)
@@ -304,7 +313,13 @@ public class Merge extends OperatorImpl {
     }
   }
 
-  private void kmerge() throws Exception {
+  private void kMerge() throws Exception {
+    var kModel1 = KotlinUtils.modelToKModel(this.in.model1);
+    var kModel2 = KotlinUtils.modelToKModel(this.in.model2);
+    var kMergedModel = (MkObj) MergeKt.merge(kModel1, kModel2, getOverlapModelElementUris());
+    var modelPackage = this.in.model1.getEMFInstanceRoot().eClass().getEPackage();
+    var rootMergedModelObj = KotlinUtils.kModelToModel(kMergedModel, modelPackage);
+    FileUtils.writeModelFile(rootMergedModelObj, this.out.merged.getUri(), null, true);
   }
 
   private void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws Exception {
@@ -317,12 +332,9 @@ public class Merge extends OperatorImpl {
                                 Map<String, MID> outputMIDsByName) throws Exception {
     init(inputsByName, outputMIDsByName);
     switch(this.engine) {
-      case "kotlin":
-        kmerge();
-        break;
-      case "java":
-      default:
-        merge();
+      case "kotlin" -> kMerge();
+      case "java" -> merge();
+      default -> merge();
     }
 
     return this.out.packed();
