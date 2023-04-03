@@ -11,12 +11,9 @@
  *     Logan Murphy - Implementation
  *     Alessio Di Sandro - Integration
  *******************************************************************************/
+package edu.toronto.cs.se.mmint.kotlin.operators.slice
 
-
-
-package import edu.toronto.cs.se.mmint.kotlin.operators
-
-import import edu.toronto.cs.se.mmint.kotlin.structs.*
+import edu.toronto.cs.se.mmint.kotlin.structs.*
 
 
 enum class SliceRule {

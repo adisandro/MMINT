@@ -11,10 +11,9 @@
  *     Logan Murphy - Implementation
  *     Alessio Di Sandro - Integration
  *******************************************************************************/
+package edu.toronto.cs.se.mmint.kotlin.operators.merge
 
-package import edu.toronto.cs.se.mmint.kotlin.operators
-
-import import edu.toronto.cs.se.mmint.kotlin.structs.*
+import edu.toronto.cs.se.mmint.kotlin.structs.*
 
 /**
  * This is basically modelFactory.create() . It just makes a new model with a fresh URI to indicate that it is a merge node.

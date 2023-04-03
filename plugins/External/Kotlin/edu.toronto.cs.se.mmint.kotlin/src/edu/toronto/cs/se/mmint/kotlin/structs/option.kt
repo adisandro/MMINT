@@ -1,4 +1,3 @@
-
 /*******************************************************************************
  * Copyright (c) 2023, 2023 Alessio Di Sandro, Logan Murphy.
  *
@@ -12,9 +11,6 @@
  *     Logan Murphy - Implementation
  *     Alessio Di Sandro - Integration
  *******************************************************************************/
-
-
-
 package edu.toronto.cs.se.mmint.kotlin.structs
 
 

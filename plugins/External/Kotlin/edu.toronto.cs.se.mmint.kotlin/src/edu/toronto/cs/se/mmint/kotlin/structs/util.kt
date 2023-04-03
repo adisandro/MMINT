@@ -11,8 +11,6 @@
  *     Logan Murphy - Implementation
  *     Alessio Di Sandro - Integration
  *******************************************************************************/
-
-
 package edu.toronto.cs.se.mmint.kotlin.structs
 
 fun bnot(b:Boolean) : Boolean =

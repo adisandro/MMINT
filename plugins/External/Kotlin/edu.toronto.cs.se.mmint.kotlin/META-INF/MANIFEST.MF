@@ -10,7 +10,9 @@ Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: target/dependency/kotlin-osgi-bundle.jar,
  .,
  target/kotlin/
-Export-Package: edu.toronto.cs.se.mmint.kotlin.operator.merge
+Export-Package: edu.toronto.cs.se.mmint.kotlin.structs,
+ edu.toronto.cs.se.mmint.kotlin.operators.merge,
+ edu.toronto.cs.se.mmint.kotlin.operators.slice
 Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.jdt.annotation;resolution:=optional,
  edu.toronto.cs.se.mmint
