@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -311,6 +312,23 @@ public class Merge extends OperatorImpl {
       var mergeMappingRef = mappingType.createInstanceAndReferenceAndEndpointsAndReferences(true, mergeModelElemRefs);
       mergeMappingRef.getObject().setName(Merge.TRACE_MERGED_NAME);
     }
+  }
+
+  private void kMergeDebug() throws Exception {
+    KotlinUtils.modelToKFile(this.in.model1, FileUtils.replaceFileExtensionInPath(this.in.model1.getUri(), "kt"), true);
+    KotlinUtils.modelToKFile(this.in.model2, FileUtils.replaceFileExtensionInPath(this.in.model2.getUri(), "kt"), true);
+    var overlapKVal = "package edu.toronto.cs.se.mmint.kotlin.operators.examples\n" +
+                      "import edu.toronto.cs.se.mmint.kotlin.operators.merge.*\n\n" +
+                      "fun main() {\n" +
+                      "  val overlap = mapOf(\n";
+    overlapKVal += getOverlapModelElementUris().entrySet().stream()
+      .map(e -> "    \"" + e.getKey() + "\" to \"" + e.getValue() + "\"")
+      .collect(Collectors.joining(",\n"));
+    overlapKVal += ")\n" +
+                   "  val merged = merge(create" + this.in.model1.getName() + "(), create" + this.in.model2.getName() +
+                     "(), overlap)\n" +
+                   "}\n";
+    FileUtils.createTextFile(FileUtils.replaceLastSegmentInPath(this.in.model1.getUri(), "debug.kt"), overlapKVal, true);
   }
 
   private void kMerge() throws Exception {
