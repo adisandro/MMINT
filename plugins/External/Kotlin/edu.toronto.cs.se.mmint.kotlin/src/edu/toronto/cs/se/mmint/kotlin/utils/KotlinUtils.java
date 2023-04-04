@@ -91,7 +91,7 @@ public class KotlinUtils {
     eObjToKObj.put(rootModelObj, rootKObj);
     for (var iter = rootModelObj.eAllContents(); iter.hasNext(); ) {
       var modelObj = iter.next();
-      eObjToKObj.put(iter.next(), eObjectToKObject(modelObj));
+      eObjToKObj.put(modelObj, eObjectToKObject(modelObj));
     }
     for (var entry : eObjToKObj.entrySet()) {
       addKReferences(entry.getKey(), entry.getValue(), eObjToKObj);
