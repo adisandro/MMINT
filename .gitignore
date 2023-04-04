@@ -10,4 +10,6 @@ xtend-gen/
 *.java.lost
 
 # kotlin editor files
-.idea/
+**/.idea/shelf/
+**/.idea/dictionaries/
+**/.idea/workspace.xml

@@ -2,15 +2,14 @@
 <module type="JAVA_MODULE" version="4">
   <component name="NewModuleRootManager">
     <output url="file://$MODULE_DIR$/target/kotlin" />
-    <output-test url="file://$MODULE_DIR$/target/kotlin" />
+    <output-test url="file://$MODULE_DIR$/target/kotlin/test" />
     <exclude-output />
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/src/edu/toronto/cs/se/mmint/kotlin/utils" />
     </content>
-    <orderEntry type="jdk" jdkName="19" jdkType="JavaSDK" />
+    <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="KotlinJavaRuntime" level="project" />
-    <orderEntry type="library" name="mmint" level="project" />
-    <orderEntry type="library" name="eclipse" level="project" />
   </component>
 </module>
