@@ -4,7 +4,7 @@
     modelDirectory="/edu.toronto.cs.se.modelepedia.classdiagram_mavo/src-gen" editDirectory="/edu.toronto.cs.se.modelepedia.classdiagram_mavo.edit/src-gen"
     editorDirectory="/edu.toronto.cs.se.modelepedia.classdiagram_mavo.editor/src-gen"
     modelPluginID="edu.toronto.cs.se.modelepedia.classdiagram_mavo" modelName="ClassDiagram_MAVO"
-    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="20.0" copyrightFields="false"
     usedGenPackages="../../edu.toronto.cs.se.mavo/model/mavo.genmodel#//mavo" operationReflection="true">
   <foreignModel>classdiagram_mavo.ecore</foreignModel>
   <genPackages prefix="ClassDiagram_MAVO" basePackage="edu.toronto.cs.se.modelepedia"
@@ -26,15 +26,11 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference classdiagram_mavo.ecore#//Class/associationsAsSource"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference classdiagram_mavo.ecore#//Class/associationsAsTarget"/>
     </genClasses>
-    <genClasses ecoreClass="classdiagram_mavo.ecore#//Attribute">
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference classdiagram_mavo.ecore#//Attribute/owner"/>
-    </genClasses>
+    <genClasses ecoreClass="classdiagram_mavo.ecore#//Attribute"/>
     <genClasses image="false" ecoreClass="classdiagram_mavo.ecore#//NamedElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute classdiagram_mavo.ecore#//NamedElement/name"/>
     </genClasses>
-    <genClasses ecoreClass="classdiagram_mavo.ecore#//Operation">
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference classdiagram_mavo.ecore#//Operation/owner"/>
-    </genClasses>
+    <genClasses ecoreClass="classdiagram_mavo.ecore#//Operation"/>
     <genClasses ecoreClass="classdiagram_mavo.ecore#//Dependency">
       <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute classdiagram_mavo.ecore#//Dependency/name"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference classdiagram_mavo.ecore#//Dependency/dependee"/>

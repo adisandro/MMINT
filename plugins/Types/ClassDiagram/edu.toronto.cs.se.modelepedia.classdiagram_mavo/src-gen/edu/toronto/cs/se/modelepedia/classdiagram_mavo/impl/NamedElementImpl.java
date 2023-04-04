@@ -5,19 +5,19 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.modelepedia.classdiagram_mavo.impl;
 
-import edu.toronto.cs.se.mavo.impl.MAVOElementImpl;
-import edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage;
-import edu.toronto.cs.se.modelepedia.classdiagram_mavo.NamedElement;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
+import edu.toronto.cs.se.mavo.impl.MAVOElementImpl;
+import edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage;
+import edu.toronto.cs.se.modelepedia.classdiagram_mavo.NamedElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -34,137 +34,139 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public abstract class NamedElementImpl extends MAVOElementImpl implements NamedElement {
 	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getName()
+   * @generated
+   * @ordered
+   */
 	protected static final String NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String name = NAME_EDEFAULT;
+   * @see #getName()
+   * @generated
+   * @ordered
+   */
+	protected String name = NamedElementImpl.NAME_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	protected NamedElementImpl() {
-		super();
-	}
+    super();
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	protected EClass eStaticClass() {
-		return ClassDiagram_MAVOPackage.Literals.NAMED_ELEMENT;
-	}
+    return ClassDiagram_MAVOPackage.Literals.NAMED_ELEMENT;
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getName() {
-		return name;
-	}
+   * @generated
+   */
+	@Override
+  public String getName() {
+    return this.name;
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setName(String newName) {
-		String oldName = name;
-		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ClassDiagram_MAVOPackage.NAMED_ELEMENT__NAME, oldName, name));
-	}
+   * @generated
+   */
+	@Override
+  public void setName(String newName) {
+    var oldName = this.name;
+    this.name = newName;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ClassDiagram_MAVOPackage.NAMED_ELEMENT__NAME, oldName, this.name));
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ClassDiagram_MAVOPackage.NAMED_ELEMENT__NAME:
-				return getName();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+    switch (featureID) {
+      case ClassDiagram_MAVOPackage.NAMED_ELEMENT__NAME:
+        return getName();
+    }
+    return super.eGet(featureID, resolve, coreType);
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ClassDiagram_MAVOPackage.NAMED_ELEMENT__NAME:
-				setName((String)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+    switch (featureID) {
+      case ClassDiagram_MAVOPackage.NAMED_ELEMENT__NAME:
+        setName((String)newValue);
+        return;
+    }
+    super.eSet(featureID, newValue);
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ClassDiagram_MAVOPackage.NAMED_ELEMENT__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+    switch (featureID) {
+      case ClassDiagram_MAVOPackage.NAMED_ELEMENT__NAME:
+        setName(NamedElementImpl.NAME_EDEFAULT);
+        return;
+    }
+    super.eUnset(featureID);
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ClassDiagram_MAVOPackage.NAMED_ELEMENT__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-		}
-		return super.eIsSet(featureID);
-	}
+    switch (featureID) {
+      case ClassDiagram_MAVOPackage.NAMED_ELEMENT__NAME:
+        return NamedElementImpl.NAME_EDEFAULT == null ? this.name != null : !NamedElementImpl.NAME_EDEFAULT.equals(this.name);
+    }
+    return super.eIsSet(featureID);
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+    if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: ");
-		result.append(name);
-		result.append(')');
-		return result.toString();
-	}
+    var result = new StringBuilder(super.toString());
+    result.append(" (name: ");
+    result.append(this.name);
+    result.append(')');
+    return result.toString();
+  }
 
 } //NamedElementImpl

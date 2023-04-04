@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.classdiagram_mavo;singleton:=true
-Automatic-Module-Name: edu.toronto.cs.se.modelepedia.classdiagram.mavo
+Automatic-Module-Name: edu.toronto.cs.se.modelepedia.classdiagram_mavo
 Bundle-Version: 2.16.99.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
