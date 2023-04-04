@@ -25,13 +25,13 @@
       <details key="label" value="name"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedAttributes" upperBound="-1"
-        eType="#//Attribute" containment="true" eOpposite="#//Attribute/owner">
+        eType="#//Attribute" containment="true">
       <eAnnotations source="gmf.compartment">
         <details key="layout" value="list"/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedOperations" upperBound="-1"
-        eType="#//Operation" containment="true" eOpposite="#//Operation/owner">
+        eType="#//Operation" containment="true">
       <eAnnotations source="gmf.compartment">
         <details key="layout" value="list"/>
       </eAnnotations>
@@ -69,8 +69,6 @@
     <eAnnotations source="gmf.node">
       <details key="label" value="name"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="owner" lowerBound="1" eType="#//Class"
-        eOpposite="#//Class/ownedAttributes"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NamedElement" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -79,8 +77,6 @@
     <eAnnotations source="gmf.node">
       <details key="label" value="name"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="owner" lowerBound="1" eType="#//Class"
-        eOpposite="#//Class/ownedOperations"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameterTypes" upperBound="-1"
         eType="#//Typeable"/>
   </eClassifiers>

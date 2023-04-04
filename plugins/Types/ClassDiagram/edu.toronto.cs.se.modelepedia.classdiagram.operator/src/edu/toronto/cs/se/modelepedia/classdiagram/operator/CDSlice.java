@@ -56,8 +56,7 @@ public class CDSlice extends Slice {
 
     // If input is a class diagram, then the following are also impacted:
     // 1) Owned classes, associations, dependencies, data types and compositions.
-    if (modelObj instanceof ClassDiagram) {
-      var cd = (ClassDiagram) modelObj;
+    if (modelObj instanceof ClassDiagram cd) {
       slicedObjs.addAll(cd.getClasses());
       slicedObjs.addAll(cd.getAssociations());
       slicedObjs.addAll(cd.getDependencies());
@@ -72,8 +71,7 @@ public class CDSlice extends Slice {
     // 5) The class that the input is nested in (if any).
     // Note: Since instances of Class are also instances of Typeable,
     // the dependency rules for Typeable will also be triggered.
-    if (modelObj instanceof Class) {
-      var c = (Class) modelObj;
+    if (modelObj instanceof Class c) {
       slicedObjs.addAll(c.getOwnedAttributes());
       slicedObjs.addAll(c.getOwnedOperations());
       slicedObjs.addAll(c.getAssociationsAsSource());
@@ -92,8 +90,7 @@ public class CDSlice extends Slice {
     // then the following are also impacted:
     // 1) All attributes and operations with the input type.
     // 2) All operations with the input as one of its parameter types.
-    if (modelObj instanceof Typeable) {
-      var t = (Typeable) modelObj;
+    if (modelObj instanceof Typeable t) {
       // Get all attributes and operations from the class diagram
       // for checking their type.
       var cd = (ClassDiagram) t.eContainer();
@@ -118,36 +115,31 @@ public class CDSlice extends Slice {
       }
     }
     // If input is an attribute, then its class is also impacted.
-    if (modelObj instanceof Attribute) {
-      var a = (Attribute) modelObj;
-      if (a.getOwner() != null) {
-        slicedObjs.add(a.getOwner());
+    if (modelObj instanceof Attribute a) {
+      if (a.eContainer() != null) {
+        slicedObjs.add(a.eContainer());
       }
     }
     // If input is an operation, then its class is also impacted.
-    if (modelObj instanceof Operation) {
-      var o = (Operation) modelObj;
-      if (o.getOwner() != null) {
-        slicedObjs.add(o.getOwner());
+    if (modelObj instanceof Operation o) {
+      if (o.eContainer() != null) {
+        slicedObjs.add(o.eContainer());
       }
     }
     // If input is an association, then its source class is also impacted.
-    if (modelObj instanceof Association) {
-      var a = (Association) modelObj;
+    if (modelObj instanceof Association a) {
       if (a.getSource() != null) {
         slicedObjs.add(a.getSource());
       }
     }
     // If input is a dependency, then its depender class is also impacted.
-    if (modelObj instanceof Dependency) {
-      var d = (Dependency) modelObj;
+    if (modelObj instanceof Dependency d) {
       if (d.getDepender() != null) {
         slicedObjs.add(d.getDepender());
       }
     }
     // If input is a composition, then its composite class is also impacted.
-    if (modelObj instanceof Composition) {
-      var c = (Composition) modelObj;
+    if (modelObj instanceof Composition c) {
       if (c.getComposite() != null) {
         slicedObjs.add(c.getComposite());
       }

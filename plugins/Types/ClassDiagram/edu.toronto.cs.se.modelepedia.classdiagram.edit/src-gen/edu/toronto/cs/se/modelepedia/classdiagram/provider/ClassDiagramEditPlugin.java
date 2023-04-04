@@ -5,14 +5,13 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.modelepedia.classdiagram.provider;
 
 import org.eclipse.emf.common.EMFPlugin;
-
 import org.eclipse.emf.common.util.ResourceLocator;
 
 /**
@@ -23,76 +22,76 @@ import org.eclipse.emf.common.util.ResourceLocator;
  */
 public final class ClassDiagramEditPlugin extends EMFPlugin {
 	/**
-	 * Keep track of the singleton.
-	 * <!-- begin-user-doc -->
+   * Keep track of the singleton.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public static final ClassDiagramEditPlugin INSTANCE = new ClassDiagramEditPlugin();
 
 	/**
-	 * Keep track of the singleton.
-	 * <!-- begin-user-doc -->
+   * Keep track of the singleton.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	private static Implementation plugin;
 
 	/**
-	 * Create the instance.
-	 * <!-- begin-user-doc -->
+   * Create the instance.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public ClassDiagramEditPlugin() {
-		super
-		  (new ResourceLocator [] {
-		   });
-	}
+    super
+      (new ResourceLocator [] {
+       });
+  }
 
 	/**
-	 * Returns the singleton instance of the Eclipse plugin.
-	 * <!-- begin-user-doc -->
+   * Returns the singleton instance of the Eclipse plugin.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the singleton instance.
-	 * @generated
-	 */
+   * @return the singleton instance.
+   * @generated
+   */
 	@Override
 	public ResourceLocator getPluginResourceLocator() {
-		return plugin;
-	}
+    return ClassDiagramEditPlugin.plugin;
+  }
 
 	/**
-	 * Returns the singleton instance of the Eclipse plugin.
-	 * <!-- begin-user-doc -->
+   * Returns the singleton instance of the Eclipse plugin.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the singleton instance.
-	 * @generated
-	 */
+   * @return the singleton instance.
+   * @generated
+   */
 	public static Implementation getPlugin() {
-		return plugin;
-	}
+    return ClassDiagramEditPlugin.plugin;
+  }
 
 	/**
-	 * The actual implementation of the Eclipse <b>Plugin</b>.
-	 * <!-- begin-user-doc -->
+   * The actual implementation of the Eclipse <b>Plugin</b>.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public static class Implementation extends EclipsePlugin {
 		/**
-		 * Creates an instance.
-		 * <!-- begin-user-doc -->
+     * Creates an instance.
+     * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @generated
-		 */
+     * @generated
+     */
 		public Implementation() {
-			super();
+      super();
 
-			// Remember the static instance.
-			//
-			plugin = this;
-		}
+      // Remember the static instance.
+      //
+      ClassDiagramEditPlugin.plugin = this;
+    }
 	}
 
 }
