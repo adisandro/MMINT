@@ -49,7 +49,7 @@ import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 // e.g. direct access through ext table is useful, but there's that _AS_ thing to be fixed first
 // e.g. there is no direct link from a model to all its connected model rels
 public class Merge extends OperatorImpl {
-  private static final String MERGE_SEPARATOR = "_";
+  protected static final String MERGE_SEPARATOR = "_";
   private static final String TRACE_COPIED_NAME = "copied";
   private static final String TRACE_MERGED_NAME = "merged";
   private In in;
@@ -176,6 +176,18 @@ public class Merge extends OperatorImpl {
     return overlapUris;
   }
 
+  protected void mergeAttribute(String attributeName, EObject modelObj, EObject mergedModelObj, String separator)
+                               throws MMINTException {
+    var attributeValue = FileUtils.getModelObjectFeature(modelObj, attributeName);
+    if (attributeValue instanceof String) {
+      var mergedAttributeValue = FileUtils.getModelObjectFeature(mergedModelObj, attributeName);
+      if (mergedAttributeValue != null && !mergedAttributeValue.equals(attributeValue)) {
+        attributeValue = mergedAttributeValue + separator + attributeValue;
+      }
+    }
+    FileUtils.setModelObjectFeature(mergedModelObj, attributeName, attributeValue);
+  }
+
   private void merge() throws Exception {
     var modelElemType = MIDTypeHierarchy.getRootModelElementType();
     var mappingType = MIDTypeHierarchy.getRootMappingType();
@@ -282,15 +294,7 @@ public class Merge extends OperatorImpl {
         if (!attribute.isChangeable() || attribute.isDerived()) {
           continue;
         }
-        var attributeName = attribute.getName();
-        var attributeValue = FileUtils.getModelObjectFeature(modelObj, attributeName);
-        if (attributeValue instanceof String) {
-          var mergedAttributeValue = FileUtils.getModelObjectFeature(mergedModelObj, attributeName);
-          if (mergedAttributeValue != null && !mergedAttributeValue.equals(attributeValue)) {
-            attributeValue = mergedAttributeValue + Merge.MERGE_SEPARATOR + attributeValue;
-          }
-        }
-        FileUtils.setModelObjectFeature(mergedModelObj, attributeName, attributeValue);
+        mergeAttribute(attribute.getName(), modelObj, mergedModelObj, Merge.MERGE_SEPARATOR);
       }
     }
 
