@@ -460,7 +460,7 @@ public class MIDTypeHierarchy {
 	 *         operators to be run to convert the element into an equivalent one which in turn is an instance of the
 	 *         type or one of its subtypes, or null otherwise.
 	 */
-	public static List<ConversionOperator> instanceOf(ExtendibleElement element, String typeUri) {
+	public static @Nullable List<ConversionOperator> instanceOf(ExtendibleElement element, String typeUri) {
 
 		List<ConversionOperator> conversionOperatorTypes = new ArrayList<>();
 		// static check
@@ -789,7 +789,7 @@ public class MIDTypeHierarchy {
       }
       var inputs = polyOperator.checkAllowedInputs(inputModels);
       if (inputs != null) {
-        return new PolyOperator<T>(polyOperator, inputs);
+        return new PolyOperator<>(polyOperator, inputs);
       }
     }
     throw new MMINTException("Can't find an operator overriding " + operatorId + " for inputs " + inputModels);

@@ -20,6 +20,7 @@ Require-Bundle: org.eclipse.emf.ecore,
  edu.toronto.cs.se.mmint.kotlin
 Export-Package: edu.toronto.cs.se.mmint.operator.experiment,
  edu.toronto.cs.se.mmint.operator.match,
+ edu.toronto.cs.se.mmint.operator.merge,
  edu.toronto.cs.se.mmint.operator.patch,
  edu.toronto.cs.se.mmint.operator.propagate,
  edu.toronto.cs.se.mmint.operator.slice
