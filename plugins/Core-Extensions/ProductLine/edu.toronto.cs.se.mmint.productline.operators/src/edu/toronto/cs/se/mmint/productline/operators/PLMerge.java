@@ -40,7 +40,11 @@ public class PLMerge extends Merge {
       case "presenceCondition" -> super.mergeAttribute(attributeName, modelObj, mergedModelObj, this.orSyntax);
       default -> super.mergeAttribute(attributeName, modelObj, mergedModelObj, Merge.MERGE_SEPARATOR);
     };
-    //TODO add checks for compatible types and refs: in original Merge based on eclasses, here based on type ref
+    //TODO Add checks for compatible types and refs or rely on match correctness?
+    //TODO (in original Merge based on eclasses, here based on type ref)
+    //TODO Attributes and References should not be duplicated: add more match entries vs make PLMerge more intelligent
+    //TODO (Is it possible? What about a legit duplicate?)
+    //TODO How to represent an external reference in Kotlin?
   }
 
   @Override

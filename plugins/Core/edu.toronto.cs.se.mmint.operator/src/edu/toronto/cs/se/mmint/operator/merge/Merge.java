@@ -287,7 +287,11 @@ public class Merge extends OperatorImpl {
           referencedModelObjs.add((EObject) referenceValue);
         }
         for (var referencedModelObj : referencedModelObjs) {
-          FileUtils.setModelObjectFeature(mergedModelObj, reference.getName(), allModelObjs.get(referencedModelObj));
+          var referencedMergedModelObj = allModelObjs.get(referencedModelObj);
+          if (referencedMergedModelObj == null) { // reference to external element
+            referencedMergedModelObj = referencedModelObj;
+          }
+          FileUtils.setModelObjectFeature(mergedModelObj, reference.getName(), referencedMergedModelObj);
         }
       }
       // attributes (runs twice for merged objects, merging string attributes)
