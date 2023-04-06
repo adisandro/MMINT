@@ -70,6 +70,11 @@ public class Z3Reasoner implements IModelConstraintTrait, IMAVOTrait, IProductLi
     return "Z3";
   }
 
+  @Override
+  public String getORSyntax() {
+    return "(or $1 $2)";
+  }
+
 	public Z3MAVOModelParser generateSMTLIBEncoding(Model model) throws Exception {
 
 		if (!(model.getEMFInstanceRoot() instanceof MAVORoot)) {

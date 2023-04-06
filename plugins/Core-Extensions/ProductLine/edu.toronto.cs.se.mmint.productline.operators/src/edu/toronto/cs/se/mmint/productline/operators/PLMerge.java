@@ -12,25 +12,39 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.productline.operators;
 
+import java.util.Map;
+
 import org.eclipse.emf.ecore.EObject;
 
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.mid.MID;
+import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.operator.merge.Merge;
+import edu.toronto.cs.se.mmint.productline.ProductLine;
+import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeaturesTrait;
 
 public class PLMerge extends Merge {
+  private IProductLineFeaturesTrait reasoner;
+  private String orSyntax;
 
   @Override
-  protected void mergeAttribute(String attributeName, EObject modelObj, EObject mergedModelObj, String separator)
+  protected void mergeAttribute(String attributeName, EObject modelObj, EObject mergedModelObj, String syntax)
                                throws MMINTException {
     switch (attributeName) {
       case "featuresConstraint", "reasonerName" ->
         FileUtils.setModelObjectFeature(mergedModelObj, attributeName,
                                         FileUtils.getModelObjectFeature(modelObj, attributeName));
-      //TODO get reasoner name and then ask for the OR syntax
-      case "presenceCondition" -> super.mergeAttribute(attributeName, modelObj, mergedModelObj, " || ");
+      case "presenceCondition" -> super.mergeAttribute(attributeName, modelObj, mergedModelObj, this.orSyntax);
       default -> super.mergeAttribute(attributeName, modelObj, mergedModelObj, Merge.MERGE_SEPARATOR);
     };
-    //TODO add checks for compatible types: in original Merge based on eclasses, here based on type ref
+    //TODO add checks for compatible types and refs: in original Merge based on eclasses, here based on type ref
+  }
+
+  @Override
+  protected void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws Exception {
+    super.init(inputsByName, outputMIDsByName);
+    this.reasoner = ((ProductLine) this.in.model1.getEMFInstanceRoot()).getReasoner();
+    this.orSyntax = this.reasoner.getORSyntax();
   }
 }

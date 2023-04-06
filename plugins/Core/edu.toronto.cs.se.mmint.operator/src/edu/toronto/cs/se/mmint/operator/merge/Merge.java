@@ -52,17 +52,17 @@ public class Merge extends OperatorImpl {
   protected static final String MERGE_SEPARATOR = "_";
   private static final String TRACE_COPIED_NAME = "copied";
   private static final String TRACE_MERGED_NAME = "merged";
-  private In in;
-  private Out out;
-  private String engine;
+  protected In in;
+  protected Out out;
+  protected String engine;
 
-  private static class In {
+  protected static class In {
     private final static String PROP_IN_ENGINE = "engine";
     private final static String PROP_IN_ENGINE_DEFAULT = "java";
     private final static String MODELREL = "overlap";
-    private ModelRel overlap;
-    private Model model1;
-    private Model model2;
+    public ModelRel overlap;
+    public Model model1;
+    public Model model2;
 
     public In(Map<String, Model> inputsByName) {
       this.overlap = (ModelRel) inputsByName.get(In.MODELREL);
@@ -77,16 +77,16 @@ public class Merge extends OperatorImpl {
     }
   }
 
-  private static class Out {
+  protected static class Out {
     private final static String MODEL = "merged";
     private final static String MODELREL1 = "trace1";
     private final static String MODELREL2 = "trace2";
     private final static String MODELREL3 = "mergeTrace";
-    private Model merged;
-    private ModelRel trace1;
-    private ModelRel trace2;
-    private ModelRel mergeTrace;
-    private String mergedModelPath;
+    public Model merged;
+    public ModelRel trace1;
+    public ModelRel trace2;
+    public ModelRel mergeTrace;
+    public String mergedModelPath;
 
     public Out(In input, Map<String, MID> outputMIDsByName) throws Exception {
       var mergedModelMID = outputMIDsByName.get(Out.MODEL);
@@ -176,13 +176,13 @@ public class Merge extends OperatorImpl {
     return overlapUris;
   }
 
-  protected void mergeAttribute(String attributeName, EObject modelObj, EObject mergedModelObj, String separator)
+  protected void mergeAttribute(String attributeName, EObject modelObj, EObject mergedModelObj, String syntax)
                                throws MMINTException {
     var attributeValue = FileUtils.getModelObjectFeature(modelObj, attributeName);
-    if (attributeValue instanceof String) {
-      var mergedAttributeValue = FileUtils.getModelObjectFeature(mergedModelObj, attributeName);
-      if (mergedAttributeValue != null && !mergedAttributeValue.equals(attributeValue)) {
-        attributeValue = mergedAttributeValue + separator + attributeValue;
+    if (attributeValue instanceof String attributeStr) {
+      var mergedAttributeStr = (String) FileUtils.getModelObjectFeature(mergedModelObj, attributeName);
+      if (mergedAttributeStr != null && !mergedAttributeStr.equals(attributeStr)) {
+        attributeValue = syntax.replace("$1", mergedAttributeStr).replace("$2", attributeStr);
       }
     }
     FileUtils.setModelObjectFeature(mergedModelObj, attributeName, attributeValue);
@@ -265,6 +265,7 @@ public class Merge extends OperatorImpl {
     }
 
     // populate structural features
+    var attrMergeSyntax = "$1" + Merge.MERGE_SEPARATOR + "$2";
     for (var entry : allModelObjs.entrySet()) {
       var modelObj = entry.getKey();
       var mergedModelObj = entry.getValue();
@@ -294,7 +295,7 @@ public class Merge extends OperatorImpl {
         if (!attribute.isChangeable() || attribute.isDerived()) {
           continue;
         }
-        mergeAttribute(attribute.getName(), modelObj, mergedModelObj, Merge.MERGE_SEPARATOR);
+        mergeAttribute(attribute.getName(), modelObj, mergedModelObj, attrMergeSyntax);
       }
     }
 
@@ -344,7 +345,7 @@ public class Merge extends OperatorImpl {
     FileUtils.writeModelFile(rootMergedModelObj, this.out.merged.getUri(), null, true);
   }
 
-  private void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws Exception {
+  protected void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws Exception {
     this.in = new In(inputsByName);
     this.out = new Out(this.in, outputMIDsByName);
   }

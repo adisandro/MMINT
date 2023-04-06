@@ -44,4 +44,6 @@ public interface ISATReasoner extends IReasoner {
   default SATStats getStats() {
     return new SATStats(0, 0);
   }
+
+  String getORSyntax();
 }

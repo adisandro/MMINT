@@ -59,6 +59,11 @@ public class LogicNGReasoner implements IProductLineFeaturesTrait {
     return new SATStats(LogicNGReasoner.satTime, LogicNGReasoner.satCalls);
   }
 
+  @Override
+  public String getORSyntax() {
+    return "$1 | $2";
+  }
+
   private Formula substituteVars(FormulaFactory factory, Formula formula, Map<String, Boolean> varValues) {
     var sub = new Substitution();
     for (var varEntry : varValues.entrySet()) {
