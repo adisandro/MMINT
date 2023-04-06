@@ -109,6 +109,10 @@ public class MIDDialogs {
   public static <T> T openListDialog(String title, String message, Object input,
 	                                   IStructuredContentProvider contentProvider, ILabelProvider labelProvider)
 	                                  throws MIDDialogCancellation {
+	  var results = contentProvider.getElements(input);
+	  if (results.length == 1) {
+	    return (T) results[0];
+	  }
     var dialog = new ListDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell());
     dialog.setAddCancelButton(true);
     dialog.setTitle(title);

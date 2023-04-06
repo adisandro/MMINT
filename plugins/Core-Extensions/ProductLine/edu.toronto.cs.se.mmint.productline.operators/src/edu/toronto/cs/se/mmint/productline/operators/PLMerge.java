@@ -23,12 +23,14 @@ import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.operator.merge.Merge;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeaturesTrait;
+import edu.toronto.cs.se.mmint.productline.reasoning.PLPipeline;
 
 public class PLMerge extends Merge {
   private IProductLineFeaturesTrait reasoner;
   private String orSyntax;
 
   @Override
+  @PLPipeline.Modify
   protected void mergeAttribute(String attributeName, EObject modelObj, EObject mergedModelObj, String syntax)
                                throws MMINTException {
     switch (attributeName) {
