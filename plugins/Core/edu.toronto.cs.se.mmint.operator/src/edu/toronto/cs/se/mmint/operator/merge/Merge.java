@@ -22,6 +22,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
@@ -278,20 +279,13 @@ public class Merge extends OperatorImpl {
         if (referenceValue == null || referenceValue instanceof EObjectWithInverseResolvingEList<?>) {
           continue;
         }
-        EList<EObject> referencedModelObjs;
-        if (referenceValue instanceof EList<?>) {
-          referencedModelObjs = (EList<EObject>) referenceValue;
-        }
-        else {
-          referencedModelObjs = new BasicEList<>();
-          referencedModelObjs.add((EObject) referenceValue);
-        }
-        for (var referencedModelObj : referencedModelObjs) {
-          var referencedMergedModelObj = allModelObjs.get(referencedModelObj);
-          if (referencedMergedModelObj == null) { // reference to external element
-            referencedMergedModelObj = referencedModelObj;
-          }
-          FileUtils.setModelObjectFeature(mergedModelObj, reference.getName(), referencedMergedModelObj);
+        var referenceModelObjs = (referenceValue instanceof EList<?>) ?
+          (EList<EObject>) referenceValue :
+          ECollections.asEList((EObject) referenceValue);
+        for (var referenceModelObj : referenceModelObjs) {
+          // the defaule handles reference to external element
+          var referenceMergedModelObj = allModelObjs.getOrDefault(referenceModelObj, referenceModelObj);
+          FileUtils.setModelObjectFeature(mergedModelObj, reference.getName(), referenceMergedModelObj);
         }
       }
       // attributes (runs twice for merged objects, merging string attributes)

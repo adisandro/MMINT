@@ -15,10 +15,12 @@ package edu.toronto.cs.se.mmint.kotlin.utils;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Collectors;
+import java.util.Set;
 
+import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -72,23 +74,21 @@ public class KotlinUtils {
       if (referenceValue == null || referenceValue instanceof EObjectWithInverseResolvingEList<?>) {
         continue;
       }
-      LList<Object> referencedKObjs;
-      if (referenceValue instanceof EList<?> referenceValues) {
-        if (referenceValues.isEmpty()) {
-          continue;
-        }
-        referencedKObjs = LList.Companion.<Object>of(
-          referenceValues.stream().map(v -> eObjToKObj.get(v)).toArray(Object[]::new));
+      var referenceModelObjs = (referenceValue instanceof EList<?>) ?
+        (EList<EObject>) referenceValue :
+        ECollections.asEList((EObject) referenceValue);
+      if (referenceModelObjs.isEmpty()) {
+        continue;
       }
-      else {
-        referencedKObjs = LList.Companion.<Object>of(eObjToKObj.get(referenceValue));
+      var referenceKObjs = new ArrayList<Object>();
+      for (var referenceModelObj : referenceModelObjs) {
+        var referenceKObj = eObjToKObj.computeIfAbsent(referenceModelObj,
+          k -> new MkObj( // reference to external element
+            new MkObjData(MIDRegistry.getModelElementUri(k), k.eClass().getName(), Map.of(), Map.of()), Map.of()));
+        referenceKObjs.add(referenceKObj);
       }
-      if (reference.isContainment()) {
-        kObjCont.put(referenceName, referencedKObjs);
-      }
-      else {
-        kObjRefs.put(referenceName, referencedKObjs);
-      }
+      var kObjMap = (reference.isContainment()) ? kObjCont : kObjRefs;
+      kObjMap.put(referenceName, LList.Companion.<Object>of(referenceKObjs.toArray(new Object[0])));
     }
   }
 
@@ -101,7 +101,7 @@ public class KotlinUtils {
       var modelObj = iter.next();
       eObjToKObj.put(modelObj, eObjectToKObject(modelObj));
     }
-    for (var entry : eObjToKObj.entrySet()) {
+    for (var entry : Set.copyOf(eObjToKObj.entrySet())) {
       eRefsToKRefs(entry.getKey(), entry.getValue(), eObjToKObj);
     }
 
@@ -112,7 +112,7 @@ public class KotlinUtils {
     var kStr = "  val obj" + i + "Refs = mutableMapOf<String, LList<Object>>()\n";
     kStr += "  val obj" + i + "Cont = mutableMapOf<String, LList<Object>>()\n";
     kStr += "  val obj" + i + " = MkObj(MkObjData(uri=\"" + MIDRegistry.getModelElementUri(modelObj) + "\", kind=\"" +
-              modelObj.eClass().getName() + "\", attrs=mapOf(";
+            modelObj.eClass().getName() + "\", attrs=mapOf(";
     for (var attribute : modelObj.eClass().getEAllAttributes()) {
       if (!attribute.isChangeable() || attribute.isDerived()) {
         continue;
@@ -129,7 +129,7 @@ public class KotlinUtils {
     return kStr;
   }
 
-  private static String eRefsToKFile(EObject modelObj, String kObjVar, Map<EObject, String> eObjToKVar)
+  private static String eRefsToKFile(EObject modelObj, String kObjVar, Map<EObject, String> eObjToKVar, int i)
                                     throws MMINTException {
     var kStr = "";
     for (var reference : modelObj.eClass().getEAllReferences()) {
@@ -141,19 +141,27 @@ public class KotlinUtils {
       if (referenceValue == null || referenceValue instanceof EObjectWithInverseResolvingEList<?>) {
         continue;
       }
-      String referencedKVars;
-      if (referenceValue instanceof EList<?> referenceValues) {
-        if (referenceValues.isEmpty()) {
-          continue;
-        }
-        referencedKVars = referenceValues.stream().map(v -> eObjToKVar.get(v)).collect(Collectors.joining(", "));
+      var referenceModelObjs = (referenceValue instanceof EList<?>) ?
+        (EList<EObject>) referenceValue :
+        ECollections.asEList((EObject) referenceValue);
+      if (referenceModelObjs.isEmpty()) {
+        continue;
       }
-      else {
-        referencedKVars = eObjToKVar.get(referenceValue);
+      var referenceKVars = new ArrayList<String>();
+      for (var referenceModelObj : referenceModelObjs) {
+        var kExtVar = "ext" + i;
+        var referenceKVar = eObjToKVar.computeIfAbsent(referenceModelObj, k -> kExtVar);
+        if (referenceKVar.equals(kExtVar)) { // reference to external element
+          kStr += "  val ext" + i + " = MkObj(MkObjData(uri=\"" + MIDRegistry.getModelElementUri(referenceModelObj) +
+                  "\", kind=\"" + referenceModelObj.eClass().getName() +
+                  "\", attrs=mapOf(), refs=mapOf()), contains=mapOf())\n";
+          i++;
+        }
+        referenceKVars.add(referenceKVar);
       }
       kStr += "  " + kObjVar;
       kStr += (reference.isContainment()) ? "Cont" : "Refs";
-      kStr += "[\"" + referenceName + "\"] = LList.of(" + referencedKVars + ")\n";
+      kStr += "[\"" + referenceName + "\"] = LList.of(" + String.join(", ", referenceKVars) + ")\n";
     }
 
     return kStr;
@@ -177,8 +185,11 @@ public class KotlinUtils {
         writer.write(eObjectToKFile(modelObj, i));
         eObjToKVar.put(modelObj, "obj" + i++);
       }
-      for (var entry : eObjToKVar.entrySet()) {
-        writer.write(eRefsToKFile(entry.getKey(), entry.getValue(), eObjToKVar));
+      var j = 0;
+      for (var entry : Set.copyOf(eObjToKVar.entrySet())) {
+        var count = eObjToKVar.size();
+        writer.write(eRefsToKFile(entry.getKey(), entry.getValue(), eObjToKVar, j));
+        j += (eObjToKVar.size() - count);
       }
       writer.write("  return obj0\n}\n");
     }
