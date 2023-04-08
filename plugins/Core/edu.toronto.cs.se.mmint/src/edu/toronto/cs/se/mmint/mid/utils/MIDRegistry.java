@@ -52,6 +52,7 @@ import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
+import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
@@ -434,6 +435,21 @@ public class MIDRegistry {
 			.filter(endpoint -> endpoint.getTarget() == model)
 			.collect(Collectors.toSet());
 	}
+
+	public static Set<ModelElementReference> getConnectedModelElementReferences(ModelElementReference modelElemRef) {
+    var connModelElemRefs = new HashSet<ModelElementReference>();
+    for (var modelElemEndpointRef : modelElemRef.getModelElemEndpointRefs()) {
+      for (var connModelElemEndpointRef : ((MappingReference) modelElemEndpointRef.eContainer())
+             .getModelElemEndpointRefs()) {
+        if (connModelElemEndpointRef == modelElemEndpointRef) {
+          continue;
+        }
+        connModelElemRefs.add(connModelElemEndpointRef.getModelElemRef());
+      }
+    }
+
+    return connModelElemRefs;
+  }
 
 	public static String getNextWorkflowID(MID workflowMID) {
 

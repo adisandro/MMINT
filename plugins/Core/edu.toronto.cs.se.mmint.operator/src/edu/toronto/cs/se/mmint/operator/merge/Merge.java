@@ -13,12 +13,10 @@
 package edu.toronto.cs.se.mmint.operator.merge;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.BasicEList;
@@ -39,7 +37,6 @@ import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
-import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
@@ -51,6 +48,7 @@ import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 // e.g. there is no direct link from a model to all its connected model rels
 public class Merge extends OperatorImpl {
   protected static final String MERGE_SEPARATOR = "_";
+  protected static final String ATTR_MERGE_SYNTAX = "$1" + Merge.MERGE_SEPARATOR + "$2";
   private static final String TRACE_COPIED_NAME = "copied";
   private static final String TRACE_MERGED_NAME = "merged";
   protected In in;
@@ -150,26 +148,10 @@ public class Merge extends OperatorImpl {
                                                                In.PROP_IN_ENGINE_DEFAULT);
   }
 
-  // TODO MMINT[OPERATOR] Make this an api
-  private Set<ModelElementReference> getConnected(ModelElementReference modelElemRef) {
-    var connModelElemRefs = new HashSet<ModelElementReference>();
-    for (var modelElemEndpointRef : modelElemRef.getModelElemEndpointRefs()) {
-      for (var connModelElemEndpointRef : ((MappingReference) modelElemEndpointRef.eContainer())
-             .getModelElemEndpointRefs()) {
-        if (connModelElemEndpointRef == modelElemEndpointRef) {
-          continue;
-        }
-        connModelElemRefs.add(connModelElemEndpointRef.getModelElemRef());
-      }
-    }
-
-    return connModelElemRefs;
-  }
-
-  private Map<String, String> getOverlapModelElementUris() {
+  protected Map<String, String> getOverlapModelElementUris() {
     var overlapUris = new HashMap<String, String>();
     for (var modelElemRef1 : this.in.overlap.getModelEndpointRefs().get(0).getModelElemRefs()) { // index 0 == model1
-      var modelElemRef2 = this.getConnected(modelElemRef1).stream().findFirst().get();
+      var modelElemRef2 = MIDRegistry.getConnectedModelElementReferences(modelElemRef1).stream().findFirst().get();
       overlapUris.put(MIDRegistry.getModelObjectUri(modelElemRef1.getObject()),
                       MIDRegistry.getModelObjectUri(modelElemRef2.getObject()));
     }
@@ -266,7 +248,6 @@ public class Merge extends OperatorImpl {
     }
 
     // populate structural features
-    var attrMergeSyntax = "$1" + Merge.MERGE_SEPARATOR + "$2";
     for (var entry : allModelObjs.entrySet()) {
       var modelObj = entry.getKey();
       var mergedModelObj = entry.getValue();
@@ -293,7 +274,7 @@ public class Merge extends OperatorImpl {
         if (!attribute.isChangeable() || attribute.isDerived()) {
           continue;
         }
-        mergeAttribute(attribute.getName(), modelObj, mergedModelObj, attrMergeSyntax);
+        mergeAttribute(attribute.getName(), modelObj, mergedModelObj, Merge.ATTR_MERGE_SYNTAX);
       }
     }
 

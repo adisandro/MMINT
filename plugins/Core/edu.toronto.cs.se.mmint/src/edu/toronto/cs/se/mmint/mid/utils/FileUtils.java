@@ -459,7 +459,7 @@ public class FileUtils {
     return emfValue;
 	}
 
-  public static void setModelObjectFeature(EObject modelObj, EStructuralFeature feature, Object value) throws MMINTException {
+  public static void setModelObjectFeature(EObject modelObj, EStructuralFeature feature, @Nullable Object value) throws MMINTException {
     if (feature.isMany()) {
       if (value instanceof EList<?>) {
         modelObj.eSet(feature, value);
@@ -476,7 +476,7 @@ public class FileUtils {
     }
   }
 
-	public static void setModelObjectFeature(EObject modelObj, String featureName, Object value) throws MMINTException {
+	public static void setModelObjectFeature(EObject modelObj, String featureName, @Nullable Object value) throws MMINTException {
 		var feature = modelObj.eClass().getEStructuralFeature(featureName);
     if (feature == null) {
       throw new MMINTException("Feature " + featureName + " not found in " + modelObj);
