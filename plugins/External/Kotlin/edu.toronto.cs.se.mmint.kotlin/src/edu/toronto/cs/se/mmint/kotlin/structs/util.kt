@@ -19,6 +19,9 @@ fun bnot(b:Boolean) : Boolean =
         false -> true
     }
 
+public fun <K,V> Map<out K,V>.reverse() : Map<V,K> {
+    return this.entries.associate { (key, value) -> value to key }
+}
 
 // Unsafe
 public fun <K, V> Map<out K, V>.toLList(): LList<Prod<K, V>> {

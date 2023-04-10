@@ -19,12 +19,8 @@ sealed class ObjData {
 
 sealed class VarObject : Object() {}
 
-//data class MkVarObject(val pc : Boolean) : VarObject()
-
 data class MkObjData(val uri : String, val kind: String, val attrs: Map<String, String>, val refs: Map<String, LList<Object>>) : ObjData() {
-    override fun toString(): String =
-        this.uri()
-
+    override fun toString(): String = "URI: "+ this.uri() + ", KIND : " + this.kind() + ", ATTRS : " + this.attrs() + ", REFS : " + this.refs()
 }
 
 fun ObjData.uri() : String = when (this) { is MkObjData -> this.uri}
@@ -49,14 +45,13 @@ fun ObjData.getAttr(s : String) : String? =
         is MkObjData -> this.attrs[s]
     }
 
-
 sealed class Object {
 //    override fun toString(): String = "(" + this.data().uri() + "," + this.contains().toString()
 }
 
 data class MkObj(val data : ObjData, val contains : Map<String, LList<Object>>) : Object()
 {
-    override fun toString(): String = "(" + this.data().uri() + "," + this.contains().toString() + ")"
+    override fun toString(): String = "(" + this.data().toString() + ", CHILDREN : " + this.contains().toString() + ")"
 }
 
 fun Object.data() : ObjData = when (this) { is MkObj -> this.data }
@@ -97,11 +92,56 @@ fun <a> Object.recurseOnChildrenToList(f : (Object) -> LList<a>) : LList<a> =
     concatLists(this.children().map { it -> concatLists(it.snd().map {o -> f(o) })} )
 
 // Rewrite this so it doesn't look so absurd
-fun Object.collectMaxSubtreesAsEdges(container : String, parent : String, p: (ObjData) -> Boolean) : LList<Prod<String,Prod<String,String>>> =
-    if (p(this.data()))
-        append(Cons(MkProd(container, MkProd(parent,this.data().uri())), Nil), recurseOnChildrenToList { o -> o.collectMaxSubtreesAsEdges(container,this.data().uri(),p) })
-    else
-        concatLists(this.childrenFrom(container).map { o -> o.collectMaxSubtreesAsEdges(container, this.data().uri(), p)})
+//fun Object.collectMaxSubtreesAsEdges(container : String, parent : String, p: (ObjData) -> Boolean) : LList<Prod<String,Prod<String,String>>> {
+//    println(this.data().uri())
+//    println(container)
+//    println(p(this.data()))
+//    if (p(this.data()))
+//        return append(
+//            Cons(MkProd(container, MkProd(parent, this.data().uri())), Nil),
+//            recurseOnChildrenToList { o -> o.collectMaxSubtreesAsEdges(container, this.data().uri(), p) })
+//    else
+//        return concatLists(
+//            this.childrenFrom(container).map { o -> o.collectMaxSubtreesAsEdges(container, this.data().uri(), p) })
+//}
+
+// TODO: refactor
+fun Object.dynamicMaxSubtreesAsEdges(container : String, parent : String, p: (ObjData) -> Boolean) : LList<Prod<String,Prod<String,String>>> {
+    val isNonMergeRoot = p(this.data())
+    val children = this.children()
+    val foo = concatLists(concatLists(children.map { pr -> pr.snd().map {it.dynamicMaxSubtreesAsEdges(pr.fst(), this.data().uri(),p)}}))
+    return if (isNonMergeRoot) Cons(MkProd(container, MkProd(parent, this.data().uri())), foo) else foo
+}
+//
+//fun Object.dynamicMaxSubtreesAsEdges(container : String, parent : String, p: (ObjData) -> Boolean) : LList<Prod<String,Prod<String,String>>> {
+//    println(container)
+//    println(this.data().uri())
+//    println(p(this.data()))
+//    when (val cs = this.containments()){
+//        is Nil -> if (p(this.data())) return Cons(MkProd(container, MkProd(parent, this.data().uri())), Nil) else Nil
+//        is Cons ->
+//            if (p(this.data()))
+//            return append(
+//                Cons(MkProd(container, MkProd(parent, this.data().uri())), Nil),
+//                concatLists(cs.map { c ->  this.dynamicMaxSubtreesAsEdges(c, this.data().uri(),p)})
+////            recurseOnChildrenToList { o -> o.collectMaxSubtreesAsEdges(container, this.data().uri(), p) }
+//            )
+//        else
+//            return concatLists(cs.map {c ->  this.dynamicMaxSubtreesAsEdges(c, this.data().uri(),p)})
+//
+//    }
+//
+//    if (p(this.data()))
+//        return append(
+//            Cons(MkProd(container, MkProd(parent, this.data().uri())), Nil),
+//            concatLists(this.containments().map { c ->  this.dynamicMaxSubtreesAsEdges(c, this.data().uri(),p)})
+////            recurseOnChildrenToList { o -> o.collectMaxSubtreesAsEdges(container, this.data().uri(), p) }
+//        )
+//    else
+//        return concatLists(this.containments().map {c ->  this.dynamicMaxSubtreesAsEdges(c, this.data().uri(),p)})
+//}
+
+
 
 
 fun Object.containments() : LList<String> =
@@ -137,3 +177,35 @@ fun Object.getSubObject(uri : String) : Option<Object> =
             )
     }
 
+fun Object.prettyPrint(containmentPath : String) {
+    println("-----Object-------")
+    println(" uri : " + this.data().uri())
+    println(" ancestry : $containmentPath")
+    println(" attrs : " )
+    val attrIterator = this.data().attrs().entries.iterator()
+    while (attrIterator.hasNext()){
+        val i = attrIterator.next()
+        val k = i.key
+        val v = i.value
+        println(" $k : $v ")
+    }
+    println(" refs : ")
+    val refIterator = this.data().refs().entries.iterator()
+    while (refIterator.hasNext()){
+        val i = refIterator.next()
+        val k = i.key
+        val v = i.value.map {it.data().uri()}
+        println(" $k : $v ")
+    }
+    println("------------------")
+
+    val childrenIterator = this.contains().entries.iterator()
+    while(childrenIterator.hasNext()){
+        val i = childrenIterator.next()
+        val container = i.key
+        val v = i.value.toList()
+        for(x in v){
+            x.prettyPrint(containmentPath + ":" + this.data().uri() + ":" + container)
+        }
+    }
+}
