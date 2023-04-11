@@ -264,7 +264,7 @@ public class Merge extends OperatorImpl {
           (EList<EObject>) referenceValue :
           ECollections.asEList((EObject) referenceValue);
         for (var referenceModelObj : referenceModelObjs) {
-          // the defaule handles reference to external element
+          // the default part handles reference to external element
           var referenceMergedModelObj = allModelObjs.getOrDefault(referenceModelObj, referenceModelObj);
           FileUtils.setModelObjectFeature(mergedModelObj, reference.getName(), referenceMergedModelObj);
         }
@@ -315,10 +315,14 @@ public class Merge extends OperatorImpl {
     FileUtils.createTextFile(FileUtils.replaceLastSegmentInPath(this.in.model1.getUri(), "debug.kt"), overlapKVal, true);
   }
 
+  protected MkObj kMerge(MkObj kModel1, MkObj kModel2, Map<String, String> overlap) {
+    return (MkObj) MergeKt.merge(kModel1, kModel2, overlap);
+  }
+
   private void kMerge() throws Exception {
     var kModel1 = KotlinUtils.modelToKModel(this.in.model1);
     var kModel2 = KotlinUtils.modelToKModel(this.in.model2);
-    var kMergedModel = (MkObj) MergeKt.merge(kModel1, kModel2, getOverlapModelElementUris());
+    var kMergedModel = kMerge(kModel1, kModel2, getOverlapModelElementUris());
     var modelPackage = this.in.model1.getEMFInstanceRoot().eClass().getEPackage();
     var rootMergedModelObj = KotlinUtils.kModelToModel(kMergedModel, modelPackage);
     FileUtils.writeModelFile(rootMergedModelObj, this.out.merged.getUri(), null, true);
