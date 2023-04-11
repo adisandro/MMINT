@@ -20,6 +20,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
@@ -230,14 +231,19 @@ public class KotlinUtils {
         var referenceModelObj = kObjToEObj.get(referenceKObj);
         if (referenceModelObj == null) { // reference to external element
           var referenceUri = ((MkObjData) ((MkObj) referenceKObj).getData()).getUri();
-          if (referenceUri.startsWith("http")) {
-            var metamodel = EPackage.Registry.INSTANCE.getEPackage(MIDRegistry.getModelUri(referenceUri));
-            referenceModelObj = FileUtils.readModelObject(referenceUri, metamodel.eResource());
+          try {
+            if (referenceUri.startsWith("http")) {
+              var metamodel = EPackage.Registry.INSTANCE.getEPackage(MIDRegistry.getModelUri(referenceUri));
+              referenceModelObj = FileUtils.readModelObject(referenceUri, metamodel.eResource());
+            }
+            else {
+              referenceModelObj = FileUtils.readModelObject(referenceUri, null);
+            }
+            kObjToEObj.put((MkObj) referenceKObj, referenceModelObj);
           }
-          else {
-            referenceModelObj = FileUtils.readModelObject(referenceUri, null);
+          catch (Exception e) {
+            MMINTException.print(IStatus.INFO, "Reference with uri " + referenceUri + " not found, skipping it", e);
           }
-          kObjToEObj.put((MkObj) referenceKObj, referenceModelObj);
         }
         FileUtils.setModelObjectFeature(modelObj, reference, referenceModelObj);
       }
