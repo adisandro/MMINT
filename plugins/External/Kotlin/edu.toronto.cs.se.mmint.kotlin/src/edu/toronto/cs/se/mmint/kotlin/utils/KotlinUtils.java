@@ -200,9 +200,9 @@ public class KotlinUtils {
     var kObjData = (MkObjData) kObj.getData();
     var modelObj = modelFactory.create((EClass) modelPackage.getEClassifier(kObjData.getKind()));
     for (var kAttrEntry : kObjData.getAttrs().entrySet()) {
-      var eAttr = (EAttribute) modelObj.eClass().getEStructuralFeature(kAttrEntry.getKey());
-      var value = FileUtils.convertStringToEType(eAttr, kAttrEntry.getValue());
-      modelObj.eSet(eAttr, value);
+      var attribute = (EAttribute) modelObj.eClass().getEStructuralFeature(kAttrEntry.getKey());
+      var attributeValue = FileUtils.convertStringToEType(attribute, kAttrEntry.getValue());
+      modelObj.eSet(attribute, attributeValue);
     }
 
     return modelObj;
@@ -213,29 +213,41 @@ public class KotlinUtils {
     var modelObj = kObjectToEObject(kObj, modelPackage);
     kObjToEObj.put(kObj, modelObj);
     for (var kContEntry : kObj.getContains().entrySet()) {
-      var eCont = modelObj.eClass().getEStructuralFeature(kContEntry.getKey());
-      for (var kObjContained : LlistKt.toList(kContEntry.getValue())) {
-        var modelObjContained = kObjectsToEObjects((MkObj) kObjContained, modelPackage, kObjToEObj);
-        FileUtils.setModelObjectFeature(modelObj, eCont, modelObjContained);
+      var containment = modelObj.eClass().getEStructuralFeature(kContEntry.getKey());
+      for (var containedkObj : LlistKt.toList(kContEntry.getValue())) {
+        var containedModelObj = kObjectsToEObjects((MkObj) containedkObj, modelPackage, kObjToEObj);
+        FileUtils.setModelObjectFeature(modelObj, containment, containedModelObj);
       }
     }
 
     return modelObj;
   }
 
-  private static void kRefsToERefs(MkObj kObj, EObject modelObj, Map<MkObj, EObject> kObjToEObj) throws MMINTException {
+  private static void kRefsToERefs(MkObj kObj, EObject modelObj, Map<MkObj, EObject> kObjToEObj) throws Exception {
     for (var kRefEntry : ((MkObjData) kObj.getData()).getRefs().entrySet()) {
-      var eRef = modelObj.eClass().getEStructuralFeature(kRefEntry.getKey());
-      for (var kObjRef : LlistKt.toList(kRefEntry.getValue())) {
-        FileUtils.setModelObjectFeature(modelObj, eRef, kObjToEObj.get(kObjRef));
+      var reference = modelObj.eClass().getEStructuralFeature(kRefEntry.getKey());
+      for (var referenceKObj : LlistKt.toList(kRefEntry.getValue())) {
+        var referenceModelObj = kObjToEObj.get(referenceKObj);
+        if (referenceModelObj == null) { // reference to external element
+          var referenceUri = ((MkObjData) ((MkObj) referenceKObj).getData()).getUri();
+          if (referenceUri.startsWith("http")) {
+            var metamodel = EPackage.Registry.INSTANCE.getEPackage(MIDRegistry.getModelUri(referenceUri));
+            referenceModelObj = FileUtils.readModelObject(referenceUri, metamodel.eResource());
+          }
+          else {
+            referenceModelObj = FileUtils.readModelObject(referenceUri, null);
+          }
+          kObjToEObj.put((MkObj) referenceKObj, referenceModelObj);
+        }
+        FileUtils.setModelObjectFeature(modelObj, reference, referenceModelObj);
       }
     }
   }
 
-  public static EObject kModelToModel(MkObj kModel, EPackage modelPackage) throws MMINTException {
+  public static EObject kModelToModel(MkObj kModel, EPackage modelPackage) throws Exception {
     var kObjToEObj = new HashMap<MkObj, EObject>();
     var rootModelObj = kObjectsToEObjects(kModel, modelPackage, kObjToEObj);
-    for (var entry : kObjToEObj.entrySet()) {
+    for (var entry : Set.copyOf(kObjToEObj.entrySet())) {
       kRefsToERefs(entry.getKey(), entry.getValue(), kObjToEObj);
     }
 

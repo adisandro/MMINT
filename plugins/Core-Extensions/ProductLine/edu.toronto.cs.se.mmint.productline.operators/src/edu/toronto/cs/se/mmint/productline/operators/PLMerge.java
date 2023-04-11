@@ -112,7 +112,6 @@ public class PLMerge extends Merge {
     }
     //TODO Add checks for compatible types and refs or rely on match correctness?
     //TODO (in original Merge based on eclasses, here based on type ref)
-    //TODO Handle returning external references from Kotlin
   }
 
   @Override
