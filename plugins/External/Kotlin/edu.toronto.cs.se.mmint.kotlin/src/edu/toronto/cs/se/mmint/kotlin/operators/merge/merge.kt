@@ -17,6 +17,10 @@ import edu.toronto.cs.se.mmint.kotlin.structs.*
 /**
  * This is basically modelFactory.create() . It just makes a new model with a fresh URI to indicate that it is a merge node.
  */
+
+/**
+ * This is basically modelFactory.create() . It just makes a new model with a fresh URI to indicate that it is a merge node.
+ */
 fun prepareMerge(src : ObjData) : ObjData =
    MkObjData(src.uri()+"M?", src.kind(), src.attrs(), src.refs())
 
@@ -25,8 +29,53 @@ fun prepareMerge(src : ObjData) : ObjData =
  * appends "done" as part of the URI
  */
 
-fun mergeAttrs(left : Map<String,String>, right : Map<String,String>) : Map<String,String> = left
-fun mergeRefs(left :  Map<String,LList<Object>>, right : Map<String,LList<Object>>) : Map<String, LList<Object>> = left
+fun mergeAttrs(left : Map<String,String>, right : Map<String,String>) : Map<String,String> {
+    val leftIt = left.entries.iterator()
+    val newAttrs = mutableMapOf<String,String>()
+    while(leftIt.hasNext()){
+        val entry = leftIt.next()
+        val v1 = entry.value
+        val newv = when (val v2 = right[entry.key]) {
+            null -> v1
+            else -> v1+"_"+v2
+        }
+        newAttrs[entry.key]=newv
+    }
+    val rightIt = right.entries.iterator()
+    while (rightIt.hasNext()){
+        val entry = rightIt.next()
+        if (!left.containsKey(entry.key))
+            newAttrs[entry.key] = entry.value
+    }
+    return newAttrs
+}
+
+
+fun mergeRefs(left :  Map<String,LList<Object>>, right : Map<String,LList<Object>>) : Map<String, LList<Object>>  {
+//    println(left)
+//    println(right)
+    val leftIt = left.entries.iterator()
+    val newRefs = mutableMapOf<String,LList<Object>>()
+    while(leftIt.hasNext()){
+        val entry = leftIt.next()
+        val v1 = entry.value
+        var newv = v1
+        when (val v2 = right[entry.key]) {
+            null -> {newv = v1}
+            else ->{ newv = v1
+            }
+        }
+        newRefs[entry.key]=newv
+    }
+    val rightIt = right.entries.iterator()
+    while (rightIt.hasNext()){
+        val entry = rightIt.next()
+        if (!left.containsKey(entry.key))
+            newRefs[entry.key] = entry.value
+    }
+//    println(newRefs)
+    return newRefs
+}
 
 fun mergeURI(left : String, right : String) :String = left + "_" + right
 
@@ -36,8 +85,8 @@ fun finishMerge(mergedObjs: LList<Prod<String, String>>, left : ObjData, right :
         is Some -> o.x
     }
     val mergedKind = if (left.kind() == right.kind()) left.kind() else "KIND_ERROR"
-    val mergedAttrs = left.attrs() + right.attrs()
-    val mergedRefs = left.refs() + right.refs()
+    val mergedAttrs = mergeAttrs(left.attrs(),right.attrs())
+    val mergedRefs = mergeRefs(left.refs(),right.refs())
     return MkObjData(mergedURI, mergedKind, mergedAttrs, mergedRefs)
 }
 
@@ -47,14 +96,14 @@ fun finishMergePL(mergedObjs: LList<Prod<String, String>>, left : ObjData, right
         is Some -> o.x
     }
     val mergedKind = if (left.kind() == right.kind()) left.kind() else "KIND_ERROR"
-    val mergedAttrs = (left.attrs() + right.attrs()).toMutableMap()
+    val mergedAttrs = mergeAttrs(left.attrs(),right.attrs()).toMutableMap()
     if (left.attrs().containsKey("presenceCondition")) {
         val leftPC = left.getAttr("presenceCondition")
         val rightPC = right.getAttr("presenceCondition")
         val newPC =  "$leftPC | $rightPC"
         mergedAttrs["presenceCondition"] = newPC
     }
-    val mergedRefs = left.refs() + right.refs()
+    val mergedRefs = mergeRefs(left.refs(),right.refs())
     return MkObjData(mergedURI, mergedKind, mergedAttrs, mergedRefs)
 }
 
@@ -126,9 +175,6 @@ fun swapParentsDBG(l : LList<Prod<String, Prod<String, String>>>, toMerge: Map<S
         is Nil -> return Nil
         is Cons -> when (val h = l.head) {
             is MkProd -> {
-                val f = l.head.fst()
-                val g = l.head.snd().fst()
-                val p = l.head.snd().snd()
                 when (val o = toMerge[h.snd().fst()]) {
                 null -> {
                     return Cons(h, swapParentsDBG(l.tail, toMerge))
@@ -199,8 +245,7 @@ fun getMergeURImap(dict : LList<Prod<String,String>>) : LList<Prod<String,String
     when (dict) {
         is Nil -> Nil
         is Cons ->
-            Cons( MkProd(dict.head.fst(), mergeURI(dict.head.fst(),dict.head.snd())), Cons(MkProd(dict.head.snd(), mergeURI(dict.head.fst(),dict.head.snd())), getMergeURImap(dict.tail)))
-
+            Cons(MkProd(dict.head.fst(), mergeURI(dict.head.fst(),dict.head.snd())), Cons(MkProd(dict.head.snd(), mergeURI(dict.head.fst(),dict.head.snd())), getMergeURImap(dict.tail)))
     }
 //
 fun replaceRefsAux(mergeMap : LList<Prod<String,Object>>, curr : ObjData) : ObjData  {
@@ -214,7 +259,9 @@ fun replaceRefsAux(mergeMap : LList<Prod<String,Object>>, curr : ObjData) : ObjD
         for (o in objs){
             when (val new = mergeMap.lookup(o.data().uri())){
                 is None -> newObjs.add(o)
-                is Some -> newObjs.add(new.x)
+                is Some -> {
+                    newObjs.add(new.x)
+                }
             }
         }
         newRefs[entry.key] = newObjs.toList().toLList()
@@ -253,6 +300,7 @@ fun mergePL(model1 : Object, model2 : Object, toMerge : Map<String,String>) : Ob
     tm[model1.data().uri()] = model2.data().uri()
     val mergeURImap = getMergeURImap(tm.toLList())
     val nonMergedRootsWithContainers = getNonMergedRoots(model2.data().uri(), tm, model2)
+    println(nonMergedRootsWithContainers)
 //    println(nonMergedRootsWithContainers)
 //    println("here")
     val withParentsInModel1 = swapParents(nonMergedRootsWithContainers, tm.reverse())
