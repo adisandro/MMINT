@@ -85,15 +85,14 @@ public class Merge extends OperatorImpl {
     public ModelRel trace1;
     public ModelRel trace2;
     public ModelRel mergeTrace;
-    public String mergedModelPath;
 
     public Out(In input, Map<String, MID> outputMIDsByName) throws Exception {
       var mergedModelMID = outputMIDsByName.get(Out.MODEL);
       var mergedModelName = input.model1.getName() + Merge.MERGE_SEPARATOR + input.model2.getName() +
                             MMINTConstants.MODEL_FILEEXTENSION_SEPARATOR + input.model1.getFileExtension();
-      this.mergedModelPath = FileUtils.replaceLastSegmentInPath(MIDRegistry.getModelUri(mergedModelMID),
-                                                                mergedModelName);
-      this.merged = input.model1.getMetatype().createInstance(null, this.mergedModelPath, mergedModelMID);
+      var mergedModelPath = FileUtils.getUniquePath(
+        FileUtils.replaceLastSegmentInPath(MIDRegistry.getModelUri(mergedModelMID), mergedModelName), true, false);
+      this.merged = input.model1.getMetatype().createInstance(null, mergedModelPath, mergedModelMID);
       var modelRelType = MIDTypeHierarchy.getRootModelRelType();
       this.trace1 = modelRelType.createBinaryInstanceAndEndpoints(null, Out.MODELREL1, input.model1, this.merged,
                                                                   outputMIDsByName.get(Out.MODELREL1));
