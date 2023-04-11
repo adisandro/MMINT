@@ -14,7 +14,6 @@
 package edu.toronto.cs.se.mmint.kotlin.operators.merge
 
 import edu.toronto.cs.se.mmint.kotlin.structs.*
-
 /**
  * This is basically modelFactory.create() . It just makes a new model with a fresh URI to indicate that it is a merge node.
  */
@@ -32,7 +31,10 @@ fun mergeRefs(left :  Map<String,LList<Object>>, right : Map<String,LList<Object
 fun mergeURI(left : String, right : String) :String = left + "_" + right
 
 fun finishMerge(mergedObjs: LList<Prod<String, String>>, left : ObjData, right : ObjData) : ObjData {
-    val mergedURI = left.uri() + "_" + right.uri()
+    val mergedURI = when(val o = mergedObjs.lookup(left.uri())) {
+        is None -> left.uri()
+        is Some -> o.x
+    }
     val mergedKind = if (left.kind() == right.kind()) left.kind() else "KIND_ERROR"
     val mergedAttrs = left.attrs() + right.attrs()
     val mergedRefs = left.refs() + right.refs()
@@ -40,13 +42,18 @@ fun finishMerge(mergedObjs: LList<Prod<String, String>>, left : ObjData, right :
 }
 
 fun finishMergePL(mergedObjs: LList<Prod<String, String>>, left : ObjData, right : ObjData) : ObjData {
-    val mergedURI = left.uri() + "_" + right.uri()
+    val mergedURI = when(val o = mergedObjs.lookup(left.uri())) {
+        is None -> left.uri()
+        is Some -> o.x
+    }
     val mergedKind = if (left.kind() == right.kind()) left.kind() else "KIND_ERROR"
-    val leftPC = left.getAttr("presenceCondition")
-    val rightPC = right.getAttr("presenceCondition")
-    val newPC = "$leftPC | $rightPC"
     val mergedAttrs = (left.attrs() + right.attrs()).toMutableMap()
-    mergedAttrs["presenceCondition"] = newPC
+    if (left.attrs().containsKey("presenceCondition")) {
+        val leftPC = left.getAttr("presenceCondition")
+        val rightPC = right.getAttr("presenceCondition")
+        val newPC =  "$leftPC | $rightPC"
+        mergedAttrs["presenceCondition"] = newPC
+    }
     val mergedRefs = left.refs() + right.refs()
     return MkObjData(mergedURI, mergedKind, mergedAttrs, mergedRefs)
 }
@@ -114,6 +121,26 @@ fun swapParents(l : LList<Prod<String, Prod<String, String>>>, toMerge: Map<Stri
         }
     }
 
+fun swapParentsDBG(l : LList<Prod<String, Prod<String, String>>>, toMerge: Map<String, String>) :  LList<Prod<String, Prod<String, String>>> {
+    when (l) {
+        is Nil -> return Nil
+        is Cons -> when (val h = l.head) {
+            is MkProd -> {
+                val f = l.head.fst()
+                val g = l.head.snd().fst()
+                val p = l.head.snd().snd()
+                when (val o = toMerge[h.snd().fst()]) {
+                null -> {
+                    return Cons(h, swapParentsDBG(l.tail, toMerge))
+                }
+                else -> {
+                    return Cons(MkProd(h.fst(), MkProd(o, h.snd().snd())), swapParentsDBG(l.tail, toMerge))
+                }
+            }
+            }
+        }
+    }
+}
 /**
  * Given
  *  mergedObjs : a mapping from merged objects to model 1 objects, and
@@ -199,18 +226,22 @@ fun replaceRefs(model : Object, mergeMap : LList<Prod<String,Object>>) : Object 
     model.mapdata { replaceRefsAux(mergeMap, it) }
 
 fun merge(model1: Object, model2: Object, toMerge: Map<String,String>): Object {
+    // -1. add roots to merge relation
+    val tm : MutableMap<String,String> = toMerge.toMutableMap()
+    tm[model1.data().uri()] = model2.data().uri()
     // 0. Populate a map from model1/model2 URIs to merged model URIs
-    val mergeURImap = getMergeURImap(toMerge.toLList())
+    val mergeURImap = getMergeURImap(tm.toLList())
     // 1. Find roots of nonmerged subtrees in model 2
-    val nonMergedRootsWithContainers = getNonMergedRoots(model2.data().uri(), toMerge, model2)
+    // has form (container, (parent, node))
+    val nonMergedRootsWithContainers = getNonMergedRoots(model2.data().uri(), tm, model2)
     // 2. Replace the "parents" of the nonmerge roots in above map to reflect targets in model1
-    val withParentsInModel1 = swapParents(nonMergedRootsWithContainers, toMerge.reverse())
+    val withParentsInModel1 = swapParents(nonMergedRootsWithContainers, tm.reverse())
     // 3. Append nonmerge below their parents in model 1
     val withModel2Branches = insertNonMergedObjects(model1, withParentsInModel1, model2)
     // 3. Replace the map (uri1, uri2) to map (uri1, obj2)
-    val uri12obj2 = toMerge.toLList().map { MkProd(it.fst(), model2.getSubObject_(it.snd()))}
+    val uri12obj2 = tm.toLList().map { MkProd(it.fst(), model2.getSubObject_(it.snd()))}
     // 4. iterate through the tree, merging those nodes which are in merge relation
-    val mergeModel = withModel2Branches.mapdata { finishAux({ o, p -> finishMerge(mergeURImap, o,p)}, it, toMerge, uri12obj2) }
+    val mergeModel = withModel2Branches.mapdata { finishAux({ o, p -> finishMerge(mergeURImap, o,p)}, it, tm, uri12obj2) }
 
     val mergeObjMap = mergeURImap.map {MkProd(it.fst(), mergeModel.getSubObject_(it.snd()))}
     // 5. Iterate through the merged model again, this time replacing referenced objects with merged ones (where applicable)
@@ -218,12 +249,16 @@ fun merge(model1: Object, model2: Object, toMerge: Map<String,String>): Object {
 }
 
 fun mergePL(model1 : Object, model2 : Object, toMerge : Map<String,String>) : Object {
-    val mergeURImap = getMergeURImap(toMerge.toLList())
-    val nonMergedRootsWithContainers = getNonMergedRoots(model2.data().uri(), toMerge, model2)
-    val withParentsInModel1 = swapParents(nonMergedRootsWithContainers, toMerge.reverse())
+    val tm : MutableMap<String,String> = toMerge.toMutableMap()
+    tm[model1.data().uri()] = model2.data().uri()
+    val mergeURImap = getMergeURImap(tm.toLList())
+    val nonMergedRootsWithContainers = getNonMergedRoots(model2.data().uri(), tm, model2)
+//    println(nonMergedRootsWithContainers)
+//    println("here")
+    val withParentsInModel1 = swapParents(nonMergedRootsWithContainers, tm.reverse())
     val withModel2Branches = insertNonMergedObjects(model1, withParentsInModel1, model2)
-    val uri12obj2 = toMerge.toLList().map { MkProd(it.fst(), model2.getSubObject_(it.snd()))}
-    val mergeModel =  withModel2Branches.mapdata { finishAux({ o, p -> finishMergePL(mergeURImap, o,p)}, it, toMerge, uri12obj2) }
+    val uri12obj2 = tm.toLList().map { MkProd(it.fst(), model2.getSubObject_(it.snd()))}
+    val mergeModel =  withModel2Branches.mapdata { finishAux({ o, p -> finishMergePL(mergeURImap, o,p)}, it, tm, uri12obj2) }
     val mergeObjMap = mergeURImap.map {MkProd(it.fst(), mergeModel.getSubObject_(it.snd()))}
     return replaceRefs(mergeModel, mergeObjMap)
 }
