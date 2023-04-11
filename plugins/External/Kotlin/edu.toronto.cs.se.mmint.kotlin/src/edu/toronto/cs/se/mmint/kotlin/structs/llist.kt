@@ -35,6 +35,12 @@ data class Cons <out a> (val head : a, val tail : LList<a>) : LList<a>() {
         }
 }
 
+fun <a> LList<a>.length() : Int =
+    when (this){
+        is Nil -> 0
+        is Cons -> 1 + this.tail.length()
+    }
+
 // unsafe
 fun <a> LList<a>.toList() : List<a> {
     return when (this) {
