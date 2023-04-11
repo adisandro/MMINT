@@ -15,6 +15,7 @@ package edu.toronto.cs.se.mmint.kotlin.operators.merge
 
 import edu.toronto.cs.se.mmint.kotlin.structs.*
 
+
 /**
  * This is basically modelFactory.create() . It just makes a new model with a fresh URI to indicate that it is a merge node.
  */
@@ -29,8 +30,25 @@ fun prepareMerge(src : ObjData) : ObjData =
 fun mergeAttrs(left : Map<String,String>, right : Map<String,String>) : Map<String,String> = left
 fun mergeRefs(left :  Map<String,LList<Object>>, right : Map<String,LList<Object>>) : Map<String, LList<Object>> = left
 
-fun finishMerge(left : ObjData, right : ObjData) : ObjData =
-    MkObjData(left.uri()+"_done", left.kind(), left.attrs(), left.refs())
+fun finishMerge(left : ObjData, right : ObjData) : ObjData {
+    val mergedURI = left.uri() + "_" + right.uri()
+    val mergedKind = if (left.kind() == right.kind()) left.kind() else "KIND_ERROR"
+    val mergedAttrs = left.attrs() + right.attrs()
+    val mergedRefs = left.refs() + right.refs()
+    return MkObjData(mergedURI, mergedKind, mergedAttrs, mergedRefs)
+}
+
+fun finishMergePL(left : ObjData, right : ObjData) : ObjData {
+    val mergedURI = left.uri() + "_" + right.uri()
+    val mergedKind = if (left.kind() == right.kind()) left.kind() else "KIND_ERROR"
+    val leftPC = left.getAttr("presenceCondition")
+    val rightPC = right.getAttr("presenceCondition")
+    val newPC = "$leftPC | $rightPC"
+    val mergedAttrs = (left.attrs() + right.attrs()).toMutableMap()
+    mergedAttrs["presenceCondition"] = newPC
+    val mergedRefs = left.refs() + right.refs()
+    return MkObjData(mergedURI, mergedKind, mergedAttrs, mergedRefs)
+}
 
 
 /**
@@ -80,7 +98,20 @@ fun getMappingForModel2(mergedObjs : LList<Prod<Object, ObjData>>, toMerge: Map<
 
 // NOTE : Right now, this does not consider whether roots need to be merged, since they're always merged.
 fun getNonMergedRoots(root : String, dict : Map<String,String>, t : Object) : LList<Prod<String,Prod<String,String>>> =
-    concatLists(t.containments().map {c ->  t.collectMaxSubtreesAsEdges(c, root) { !dict.containsValue(it.uri())}})
+    concatLists(t.children().map {c ->  concatLists(c.snd().map {it.dynamicMaxSubtreesAsEdges(c.fst(), root) {o-> !dict.containsValue(o.uri())}})})
+
+
+
+fun swapParents(l : LList<Prod<String, Prod<String, String>>>, toMerge: Map<String, String>) :  LList<Prod<String, Prod<String, String>>> =
+    when(l){
+        is Nil -> Nil
+        is Cons -> when (val h = l.head){
+            is MkProd -> when (val o = toMerge[h.snd().fst()]){
+                null -> Cons(h, swapParents(l.tail, toMerge))
+                else -> Cons(MkProd(h.fst(), MkProd(o, h.snd().snd())), swapParents(l.tail, toMerge))
+            }
+        }
+    }
 
 /**
  * Given
@@ -103,7 +134,7 @@ fun Merged2Sources(mergedObjs : LList<Prod<Object, ObjData>>, toMerge : Map<Stri
     }
 
 fun insertionAux (p : Prod<String, Prod<String,String>>, t : Object, source: Object) : Object {
-    return t.insertUnderNode(source.getSubObject_(p.snd().fst()), p.fst(), p.snd().snd())
+    return t.insertUnderNode(source.getSubObject_(p.snd().snd()), p.fst(), p.snd().fst())
 }
 
 
@@ -127,20 +158,37 @@ fun step3Again(l1 : LList<Prod<String, Object>>, l2 :  LList<Prod<String, Prod<S
         }
     }
 
-fun finishAux(dict : LList<Prod<ObjData, Prod<ObjData, ObjData>>>, f : (ObjData, ObjData) -> ObjData, curr : ObjData) : ObjData =
-    when (val o = dict.lookup(curr)) {
-        is None -> curr
-        is Some -> f(o.x.fst(),o.x.snd())
+fun finishAux(f : (ObjData,ObjData) -> ObjData, leftObjData : ObjData, toMerge: Map<String, String>, uri2Obj : LList<Prod<String,Object>>) : ObjData =
+    when (toMerge[leftObjData.uri()]) {
+        null -> leftObjData
+        else -> when (val o = uri2Obj.lookup(leftObjData.uri())){
+            is None -> leftObjData
+            is Some -> f(leftObjData, o.x.data())
+        }
     }
 
+
+// 3. replace the map (uri1, uri2) to map (uri1, obj2)
+// 4. iterate through the tree, merging those nodes.
+
 fun merge(model1: Object, model2: Object, toMerge: Map<String,String>): Object {
-    val init = emplaceMergeNodesAndGetMapping(::prepareMerge, model1, toMerge)
-    val mergeModel = init.fst()
-    val mergedObjs = init.snd()
-    val model2Mapping = getMappingForModel2(mergedObjs, toMerge)
-    val nonMergedRootsWithContainers = getNonMergedRoots("root2", toMerge, model2) // TODO: fix this
-    val mapping2Merged = step3Again(model2Mapping, nonMergedRootsWithContainers)
-    val withNonMergedNodes = insertNonMergedObjects(mergeModel, mapping2Merged, model2)
-    val merged2sources = Merged2Sources(mergedObjs, toMerge, model2)
-    return withNonMergedNodes.mapdata{ finishAux(merged2sources,::finishMerge,it)}
+    // 1. Find roots of nonmerged subtrees in model 2
+    val nonMergedRootsWithContainers = getNonMergedRoots(model2.data().uri(), toMerge, model2)
+    // 2. Replace the "parents" of the nonmerge roots in above map to reflect targets in model1
+    val withParentsInModel1 = swapParents(nonMergedRootsWithContainers, toMerge.reverse())
+    // 3. Append nonmerge below their parents in model 1
+    val withModel2Branches = insertNonMergedObjects(model1, withParentsInModel1, model2)
+    // 3. Replace the map (uri1, uri2) to map (uri1, obj2)
+    val uri12obj2 = toMerge.toLList().map { MkProd(it.fst(), model2.getSubObject_(it.snd()))}
+    // 4. iterate through the tree, merging those nodes which are in merge relation
+    return withModel2Branches.mapdata { finishAux(::finishMerge, it, toMerge, uri12obj2) }
 }
+
+fun mergePL(model1 : Object, model2 : Object, toMerge : Map<String,String>) : Object {
+    val nonMergedRootsWithContainers = getNonMergedRoots(model2.data().uri(), toMerge, model2)
+    val withParentsInModel1 = swapParents(nonMergedRootsWithContainers, toMerge.reverse())
+    val withModel2Branches = insertNonMergedObjects(model1, withParentsInModel1, model2)
+    val uri12obj2 = toMerge.toLList().map { MkProd(it.fst(), model2.getSubObject_(it.snd()))}
+    return withModel2Branches.mapdata { finishAux(::finishMergePL, it, toMerge, uri12obj2) }
+}
+
