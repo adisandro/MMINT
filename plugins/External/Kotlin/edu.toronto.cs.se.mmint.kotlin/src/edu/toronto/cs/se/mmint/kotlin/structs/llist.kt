@@ -43,6 +43,13 @@ fun <a> LList<a>.toList() : List<a> {
     }
 }
 
+// unsafe
+fun <a> List<a>.toLList() : LList<a> {
+    if (this.isEmpty()) return Nil
+    else
+       return Cons(this[0], this.drop(1).toLList())
+}
+
 fun <a> LList<a>.filter(p : (a) -> Boolean) : LList<a> =
     when(this) {
         is Nil -> Nil
