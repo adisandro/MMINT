@@ -84,7 +84,6 @@ fun <a> Object.fold(f : (ObjData, LList<a>) -> a) : a  =
 fun Object.insertUnderNode(x: Object, container: String, parentURI: String): Object {
     if (this.data().uri() == parentURI) {
         val xURI = x.data().uri()
-        println("inserting $xURI under parent $parentURI in container $container")
         return MkObj(this.data(), this.contains().addChild(container, x))
     }
     else
@@ -149,6 +148,7 @@ fun Object.prettyPrint(containmentPath : String) {
     println(" uri : " + this.data().uri())
     println(" ancestry : $containmentPath")
     println(" attrs : " )
+    println(" kind : " + this.data().kind() )
     val attrIterator = this.data().attrs().entries.iterator()
     while (attrIterator.hasNext()){
         val i = attrIterator.next()
