@@ -17,10 +17,6 @@ import edu.toronto.cs.se.mmint.kotlin.structs.*
 /**
  * This is basically modelFactory.create() . It just makes a new model with a fresh URI to indicate that it is a merge node.
  */
-
-/**
- * This is basically modelFactory.create() . It just makes a new model with a fresh URI to indicate that it is a merge node.
- */
 fun prepareMerge(src : ObjData) : ObjData =
    MkObjData(src.uri()+"M?", src.kind(), src.attrs(), src.refs())
 
@@ -310,4 +306,5 @@ fun mergePL(model1 : Object, model2 : Object, toMerge : Map<String,String>) : Ob
     val mergeObjMap = mergeURImap.map {MkProd(it.fst(), mergeModel.getSubObject_(it.snd()))}
     return replaceRefs(mergeModel, mergeObjMap)
 }
+
 

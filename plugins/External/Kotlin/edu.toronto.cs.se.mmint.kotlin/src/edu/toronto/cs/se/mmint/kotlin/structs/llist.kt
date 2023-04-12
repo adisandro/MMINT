@@ -132,6 +132,13 @@ fun <a,b,c> LList<Prod<a,b>>.join(l : LList<Prod<b,c>>) : LList<Prod<a,c>> =
         }
     }
 
+fun <a> LList<a>.contains(elt : a) : Boolean {
+    return when (this) {
+        is Nil -> false
+        is Cons -> (this.head == elt) || this.tail.contains(elt)
+    }
+}
+
 
 fun <a> LList<Option<a>>.values() : LList<a> =
     when (this) {
