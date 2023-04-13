@@ -227,7 +227,7 @@ public class Merge extends OperatorImpl {
       // containment (pre-requisite for proper creation of trace rel)
       var containerObj2 = modelObj2.eContainer();
       if (containerObj2 != null && // non-root
-          !mergedModelObjs.containsKey(MIDRegistry.getModelElementUri(modelObj2))) { // non-merged
+          !mergedModelObjs.containsKey(modelElemUri2)) { // non-merged
         var mergedContainerObj = allModelObjs.get(containerObj2);
         FileUtils.setModelObjectFeature(mergedContainerObj, modelObj2.eContainingFeature().getName(), mergedModelObj);
       }
