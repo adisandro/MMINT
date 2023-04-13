@@ -17,9 +17,8 @@ sealed class ObjData {
     override fun toString(): String = this.uri()
 }
 
-sealed class VarObject : Object() {}
 
-data class MkObjData(val uri : String, val kind: String, val attrs: Map<String, String>, val refs: Map<String, LList<Object>>) : ObjData() {
+data class MkObjData(val uri : String, val kind: String, val attrs: Map<String, String>, val refs: MutableMap<String, LList<Object>>) : ObjData() {
     override fun toString(): String = "URI: "+ this.uri() + ", KIND : " + this.kind() + ", ATTRS : " + this.attrs() + ", REFS : " + this.refs()
 }
 
@@ -35,7 +34,7 @@ fun ObjData.attrs() : Map<String, String> =
         is MkObjData -> this.attrs
     }
 
-fun ObjData.refs() : Map<String, LList<Object>> =
+fun ObjData.refs() : MutableMap<String, LList<Object>> =
     when (this) {
         is MkObjData -> this.refs
     }
@@ -45,6 +44,12 @@ fun ObjData.getAttr(s : String) : String? =
         is MkObjData -> this.attrs[s]
     }
 
+fun ObjData.setRefs(map: MutableMap<String,LList<Object>>) {
+    this.refs().putAll(map)
+}
+
+
+
 sealed class Object {
 //    override fun toString(): String = "(" + this.data().uri() + "," + this.contains().toString()
 }
@@ -53,6 +58,7 @@ data class MkObj(val data : ObjData, val contains : Map<String, LList<Object>>) 
 {
     override fun toString(): String = "(" + this.data().toString() + ", CHILDREN : " + this.contains().toString() + ")"
 }
+
 
 fun Object.data() : ObjData = when (this) { is MkObj -> this.data }
 
@@ -77,6 +83,9 @@ fun <a> Object.mapAndWrap(f : (Object) -> a) : Map<String,LList<a>> =
 
 fun Object.mapdata(f : (ObjData) -> ObjData) : Object =
     MkObj(f(this.data()), (this.mapAndWrap { x -> x.mapdata(f) }))
+
+//fun <a> Object.mapObjs(f : (Object) -> Object) : Object =
+//    f(this).children (this.mapAndWrap { x -> x.mapdata(f) }))
 
 fun <a> Object.fold(f : (ObjData, LList<a>) -> a) : a  =
     f( this.data(), concatLists( this.children().map { it.snd()}).map { it.fold(f)})
@@ -121,7 +130,7 @@ fun Object.replaceNode(new : Object, oldURI : String) : Object =
 
 fun Object.getSubObject_(uri : String) : Object =
     when (val o = this.getSubObject(uri)) {
-        is None -> MkObj(MkObjData("ERROR", "ERROR", mapOf(), mapOf()), mapOf())
+        is None -> MkObj(MkObjData("ERROR", "ERROR", mapOf(), mutableMapOf()), mapOf())
         is Some -> o.x
     }
 
