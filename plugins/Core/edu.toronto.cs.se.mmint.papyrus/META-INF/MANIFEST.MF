@@ -3,7 +3,7 @@ Automatic-Module-Name: edu.toronto.cs.se.mmint.papyrus
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.mmint.papyrus;singleton:=true
-Bundle-Version: 2.17.0.qualifier
+Bundle-Version: 2.17.99.qualifier
 Bundle-ClassPath: .
 Bundle-RequiredExecutionEnvironment: JavaSE-20
 Bundle-Vendor: %providerName
