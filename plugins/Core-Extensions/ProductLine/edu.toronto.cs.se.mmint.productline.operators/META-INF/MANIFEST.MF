@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.mmint.productline.operators;singleton:=true
-Bundle-Version: 2.16.99.qualifier
+Bundle-Version: 2.17.0.qualifier
 Automatic-Module-Name: edu.toronto.cs.se.mmint.productline.operators
 Bundle-RequiredExecutionEnvironment: JavaSE-20
 Bundle-ActivationPolicy: lazy
