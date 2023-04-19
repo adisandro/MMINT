@@ -46,4 +46,15 @@ public interface ISATReasoner extends IReasoner {
   }
 
   String getORSyntax();
+
+  /**
+   * Simplifies a boolean formula.
+   *
+   * @param formula
+   *          The boolean formula to be simplified.
+   * @return The simplified formula.
+   */
+  default String simplify(String formula) {
+    return formula;
+  }
 }

@@ -89,7 +89,7 @@ public class PLMerge extends Merge {
       mergedPc = pc1;
     }
     else {
-      mergedPc = this.pcMergeSyntax.replace("$1", pc2).replace("$2", pc1);
+      mergedPc = this.reasoner.simplify(this.pcMergeSyntax.replace("$1", pc2).replace("$2", pc1));
     }
 
     return mergedPc;

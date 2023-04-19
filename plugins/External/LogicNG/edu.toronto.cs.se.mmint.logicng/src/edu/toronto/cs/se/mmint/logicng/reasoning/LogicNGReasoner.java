@@ -33,6 +33,7 @@ import org.logicng.formulas.FormulaFactory;
 import org.logicng.io.parsers.ParserException;
 import org.logicng.io.parsers.PropositionalParser;
 import org.logicng.solvers.MiniSat;
+import org.logicng.transformations.simplification.AdvancedSimplifier;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeaturesTrait;
@@ -117,6 +118,20 @@ public class LogicNGReasoner implements IProductLineFeaturesTrait {
     return Arrays.stream(plFormula.strip().split("[\\s\\(\\)\\|&~]|\\b(?:true)\\b"))
       .filter(v -> !v.isBlank())
       .collect(Collectors.toSet());
+  }
+
+  @Override
+  public String simplify(String plFormula) {
+    var factory = new FormulaFactory();
+    var parser = new PropositionalParser(factory);
+    try {
+      var formula = parser.parse(plFormula);
+      var simplified = new AdvancedSimplifier().apply(formula, true);
+      return simplified.toString();
+    }
+    catch (ParserException e) {
+      return plFormula;
+    }
   }
 
   @Override
