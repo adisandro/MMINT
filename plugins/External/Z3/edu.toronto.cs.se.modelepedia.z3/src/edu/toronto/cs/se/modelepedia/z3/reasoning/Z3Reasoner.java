@@ -71,6 +71,16 @@ public class Z3Reasoner implements IModelConstraintTrait, IMAVOTrait, IProductLi
   }
 
   @Override
+  public String getTrueLiteral() {
+    return "true";
+  }
+
+  @Override
+  public String getFalseLiteral() {
+    return "false";
+  }
+
+  @Override
   public String getORSyntax() {
     return "(or $1 $2)";
   }

@@ -61,6 +61,16 @@ public class LogicNGReasoner implements IProductLineFeaturesTrait {
   }
 
   @Override
+  public String getTrueLiteral() {
+    return "$true";
+  }
+
+  @Override
+  public String getFalseLiteral() {
+    return "$false";
+  }
+
+  @Override
   public String getORSyntax() {
     return "$1 | $2";
   }
