@@ -241,5 +241,4 @@ public class AttributeImpl extends PLElementImpl implements Attribute {
   public ProductLine getProductLine() {
     return (ProductLine) eContainer().eContainer();
   }
-
 } //AttributeImpl

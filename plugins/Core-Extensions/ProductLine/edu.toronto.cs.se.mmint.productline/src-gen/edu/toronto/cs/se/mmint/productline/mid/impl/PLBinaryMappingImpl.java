@@ -20,6 +20,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.impl.BinaryMappingImpl;
 import edu.toronto.cs.se.mmint.productline.PLElement;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.productline.ProductLinePackage;
+import edu.toronto.cs.se.mmint.productline.ProductLineUtils;
 import edu.toronto.cs.se.mmint.productline.mid.PLBinaryMapping;
 import edu.toronto.cs.se.mmint.productline.mid.PLMapping;
 import edu.toronto.cs.se.mmint.productline.mid.ProductLineMIDHeavyTypeFactory;
@@ -47,7 +48,7 @@ public class PLBinaryMappingImpl extends BinaryMappingImpl implements PLBinaryMa
    * @generated
    * @ordered
    */
-  protected static final String PRESENCE_CONDITION_EDEFAULT = "true";
+  protected static final String PRESENCE_CONDITION_EDEFAULT = null;
 
   /**
    * The cached value of the '{@link #getPresenceCondition() <em>Presence Condition</em>}' attribute.
@@ -83,9 +84,16 @@ public class PLBinaryMappingImpl extends BinaryMappingImpl implements PLBinaryMa
    * <!-- end-user-doc -->
    * @generated
    */
+  public String getPresenceConditionGen() {
+    return this.presenceCondition;
+  }
+
+  /**
+   * @generated NOT
+   */
   @Override
   public String getPresenceCondition() {
-    return this.presenceCondition;
+    return ProductLineUtils.getPresenceCondition(this, getPresenceConditionGen());
   }
 
   /**
@@ -233,7 +241,7 @@ public class PLBinaryMappingImpl extends BinaryMappingImpl implements PLBinaryMa
    */
   @Override
   public String toMIDCustomPrintLabel() {
-    return ProductLineMIDHeavyTypeFactory.getPLElementLabel(this, true);
+    return ProductLineUtils.getPresenceConditionLabel(this, true);
   }
 
   /**
@@ -241,7 +249,7 @@ public class PLBinaryMappingImpl extends BinaryMappingImpl implements PLBinaryMa
    */
   @Override
   public String toMIDCustomEditLabel() {
-    return ProductLineMIDHeavyTypeFactory.getPLElementLabel(this, false);
+    return ProductLineUtils.getPresenceConditionLabel(this, false);
   }
 
   /**
@@ -250,6 +258,14 @@ public class PLBinaryMappingImpl extends BinaryMappingImpl implements PLBinaryMa
   @Override
   public void updateMIDCustomLabel(String newLabel) {
     setPresenceCondition(newLabel);
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public boolean isAlwaysPresent() {
+    return ProductLineUtils.isAlwaysPresent(this, getPresenceConditionGen());
   }
 
 } //PLBinaryMappingImpl

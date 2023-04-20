@@ -19,22 +19,10 @@ import edu.toronto.cs.se.mmint.extensions.ExtensionPointType;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmint.productline.PLElement;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.productline.ProductLinePackage;
 
 public class ProductLineMIDHeavyTypeFactory extends MIDHeavyTypeFactory {
-
-  public static String getPLElementLabel(PLElement plElem, boolean withParenthesis) {
-    var pc = plElem.getPresenceCondition();
-    if (pc == null || pc == "true") {
-      return "";
-    }
-    if (withParenthesis) {
-      return "(" + pc + ")";
-    }
-    return pc;
-  }
 
   public static ProductLine getProductLine(PLMapping plMapping) {
     return plMapping.getModelElemEndpoints().stream()

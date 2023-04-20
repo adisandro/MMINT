@@ -474,11 +474,13 @@ public class ProductLinePackageImpl extends EPackageImpl implements ProductLineP
     addEException(op, this.getMMINTException());
 
     initEClass(this.plElementEClass, PLElement.class, "PLElement", EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getPLElement_PresenceCondition(), this.ecorePackage.getEString(), "presenceCondition", "true", 0, 1,
+    initEAttribute(getPLElement_PresenceCondition(), this.ecorePackage.getEString(), "presenceCondition", null, 0, 1,
                    PLElement.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE,
                    !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
 
     addEOperation(this.plElementEClass, this.getProductLine(), "getProductLine", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+
+    addEOperation(this.plElementEClass, this.ecorePackage.getEBoolean(), "isAlwaysPresent", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
 
     initEClass(this.classEClass, edu.toronto.cs.se.mmint.productline.Class.class, "Class", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE,
                EPackageImpl.IS_GENERATED_INSTANCE_CLASS);

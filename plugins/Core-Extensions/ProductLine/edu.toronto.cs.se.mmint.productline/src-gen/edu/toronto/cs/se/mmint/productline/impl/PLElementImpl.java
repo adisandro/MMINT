@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import edu.toronto.cs.se.mmint.productline.PLElement;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.productline.ProductLinePackage;
+import edu.toronto.cs.se.mmint.productline.ProductLineUtils;
 
 /**
  * <!-- begin-user-doc -->
@@ -43,7 +44,7 @@ public abstract class PLElementImpl extends MinimalEObjectImpl.Container impleme
    * @generated
    * @ordered
    */
-  protected static final String PRESENCE_CONDITION_EDEFAULT = "true";
+  protected static final String PRESENCE_CONDITION_EDEFAULT = null;
 
   /**
    * The cached value of the '{@link #getPresenceCondition() <em>Presence Condition</em>}' attribute.
@@ -79,9 +80,16 @@ public abstract class PLElementImpl extends MinimalEObjectImpl.Container impleme
    * <!-- end-user-doc -->
    * @generated
    */
+  public String getPresenceConditionGen() {
+    return this.presenceCondition;
+  }
+
+  /**
+   * @generated NOT
+   */
   @Override
   public String getPresenceCondition() {
-    return this.presenceCondition;
+    return ProductLineUtils.getPresenceCondition(this, getPresenceConditionGen());
   }
 
   /**
@@ -104,6 +112,14 @@ public abstract class PLElementImpl extends MinimalEObjectImpl.Container impleme
   @Override
   public ProductLine getProductLine() {
     return (ProductLine) eContainer();
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public boolean isAlwaysPresent() {
+    return ProductLineUtils.isAlwaysPresent(this, getPresenceConditionGen());
   }
 
   /**

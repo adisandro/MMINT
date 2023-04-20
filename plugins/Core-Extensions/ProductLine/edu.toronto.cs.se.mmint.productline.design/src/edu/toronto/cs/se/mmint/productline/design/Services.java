@@ -14,16 +14,29 @@ package edu.toronto.cs.se.mmint.productline.design;
 
 import org.eclipse.emf.ecore.EObject;
 
+import edu.toronto.cs.se.mmint.productline.Attribute;
+import edu.toronto.cs.se.mmint.productline.Class;
+import edu.toronto.cs.se.mmint.productline.PLElement;
+import edu.toronto.cs.se.mmint.productline.ProductLineUtils;
+import edu.toronto.cs.se.mmint.productline.Reference;
+
 /**
  * The services class used by VSM.
  */
 public class Services {
 
-    /**
-    * See http://help.eclipse.org/neon/index.jsp?topic=%2Forg.eclipse.sirius.doc%2Fdoc%2Findex.html&cp=24 for documentation on how to write service methods.
-    */
-    public EObject myService(EObject self, String arg) {
-       // TODO Auto-generated code
-      return self;
+    public String getPLElementLabel(EObject self) {
+      var type = "";
+      if (self instanceof Class c) {
+        type = c.getType().getName();
+      }
+      else if (self instanceof Attribute a) {
+        type = a.getType().getName();
+      }
+      else if (self instanceof Reference r) {
+        type = r.getType().getName();
+      }
+
+      return type + " " + ProductLineUtils.getPresenceConditionLabel((PLElement) self, true);
     }
 }

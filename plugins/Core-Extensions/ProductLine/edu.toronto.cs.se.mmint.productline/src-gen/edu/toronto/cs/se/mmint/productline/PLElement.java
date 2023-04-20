@@ -33,13 +33,12 @@ import org.eclipse.emf.ecore.EObject;
 public interface PLElement extends EObject {
   /**
    * Returns the value of the '<em><b>Presence Condition</b></em>' attribute.
-   * The default value is <code>"true"</code>.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Presence Condition</em>' attribute.
    * @see #setPresenceCondition(String)
    * @see edu.toronto.cs.se.mmint.productline.ProductLinePackage#getPLElement_PresenceCondition()
-   * @model default="true"
+   * @model
    * @generated
    */
   String getPresenceCondition();
@@ -61,5 +60,15 @@ public interface PLElement extends EObject {
    * @generated
    */
   ProductLine getProductLine();
+
+  /**
+   * <!-- begin-user-doc --> Checks whether this Product Line element is always present in each product, i.e. if the
+   * presence condition corresponds to the TRUE literal.
+   *
+   * @return True if always present, false otherwise. <!-- end-user-doc -->
+   * @model kind="operation" required="true"
+   * @generated
+   */
+  boolean isAlwaysPresent();
 
 } // PLElement

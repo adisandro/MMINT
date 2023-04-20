@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.productline.ProductLinePackage;
 import edu.toronto.cs.se.mmint.productline.Reference;
 
@@ -293,4 +294,11 @@ public class ReferenceImpl extends PLElementImpl implements Reference {
     return super.eIsSet(featureID);
   }
 
+  /**
+   * @generated NOT
+   */
+  @Override
+  public ProductLine getProductLine() {
+    return (ProductLine) eContainer().eContainer();
+  }
 } //ReferenceImpl

@@ -24,6 +24,7 @@
     <genClasses ecoreClass="productline.ecore#//PLElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute productline.ecore#//PLElement/presenceCondition"/>
       <genOperations ecoreOperation="productline.ecore#//PLElement/getProductLine"/>
+      <genOperations ecoreOperation="productline.ecore#//PLElement/isAlwaysPresent"/>
     </genClasses>
     <genClasses ecoreClass="productline.ecore#//Class">
       <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference productline.ecore#//Class/attributes"/>

@@ -15,6 +15,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.edit,
  org.eclipse.emf.ecore,
  org.eclipse.emf.ecore.edit,
+ org.eclipse.jdt.annotation;resolution:=optional,
  edu.toronto.cs.se.mmint,
  edu.toronto.cs.se.mmint.edit
 Bundle-ActivationPolicy: lazy
