@@ -26,17 +26,17 @@ import edu.toronto.cs.se.mmint.productline.Reference;
 public class Services {
 
     public String getPLElementLabel(EObject self) {
-      var type = "";
+      var label = "";
       if (self instanceof Class c) {
-        type = c.getType().getName();
+        label = c.getType().getName();
       }
       else if (self instanceof Attribute a) {
-        type = a.getType().getName();
+        label = a.getType().getName() + ": " + a.getValue();
       }
       else if (self instanceof Reference r) {
-        type = r.getType().getName();
+        label = r.getType().getName();
       }
 
-      return type + " " + ProductLineUtils.getPresenceConditionLabel((PLElement) self, true);
+      return label + " " + ProductLineUtils.getPresenceConditionLabel((PLElement) self, true);
     }
 }

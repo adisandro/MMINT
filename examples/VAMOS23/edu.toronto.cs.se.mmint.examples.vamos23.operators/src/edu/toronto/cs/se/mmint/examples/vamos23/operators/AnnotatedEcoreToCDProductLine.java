@@ -68,6 +68,7 @@ public class AnnotatedEcoreToCDProductLine extends ToProductLine {
 
   @Override
   protected void toProductLine() {
+    //TODO MMINT[PL] Refactor to use reasoner's AND syntax + simplifier for formulas
     var ePackage = (EPackage) this.in.productModel.getEMFInstanceRoot();
     var plClasses = new HashMap<String, Class>();
     var plEPackage = createPLClass(ePackage, ClassDiagramPackage.eINSTANCE.getClassDiagram(), plClasses);
@@ -75,7 +76,7 @@ public class AnnotatedEcoreToCDProductLine extends ToProductLine {
     for (var eClassifier : ePackage.getEClassifiers()) {
       var plEClass = createPLClass(eClassifier, ClassDiagramPackage.eINSTANCE.getClass_(), plClasses);
       var plEClassPC = plEClass.getPresenceCondition();
-      var classIsTrue = plEClassPC.equals("true");
+      var classIsTrue = plEClass.isAlwaysPresent();
       createPLReference(ClassDiagramPackage.eINSTANCE.getClassDiagram_Classes(), plEPackage, plEClass)
         .setPresenceCondition(plEClassPC);
       createPLAttribute(ClassDiagramPackage.eINSTANCE.getNamedElement_Name(), eClassifier.getName(), plEClass)
@@ -87,7 +88,7 @@ public class AnnotatedEcoreToCDProductLine extends ToProductLine {
         var plEAttribute = createPLClass(eAttribute, ClassDiagramPackage.eINSTANCE.getAttribute(), plClasses);
         var plEAttributePC = plEAttribute.getPresenceCondition();
         if (!classIsTrue) {
-          plEAttributePC = (plEAttributePC.equals("true")) ?
+          plEAttributePC = (plEAttribute.isAlwaysPresent()) ?
             plEClassPC :
             "(" + plEAttributePC + ") & (" + plEClassPC + ")";
           plEAttribute.setPresenceCondition(plEAttributePC);
@@ -103,7 +104,7 @@ public class AnnotatedEcoreToCDProductLine extends ToProductLine {
         var plEOperation = createPLClass(eOperation, ClassDiagramPackage.eINSTANCE.getOperation(), plClasses);
         var plEOperationPC = plEOperation.getPresenceCondition();
         if (!classIsTrue) {
-          plEOperationPC = (plEOperationPC.equals("true")) ?
+          plEOperationPC = (plEOperation.isAlwaysPresent()) ?
             plEClassPC :
             "(" + plEOperationPC + ") & (" + plEClassPC + ")";
           plEOperation.setPresenceCondition(plEOperationPC);
@@ -121,12 +122,12 @@ public class AnnotatedEcoreToCDProductLine extends ToProductLine {
       }
       var plEClass = plClasses.get(MIDRegistry.getModelElementUri(eClass));
       var plEClassPC = plEClass.getPresenceCondition();
-      var classIsTrue = plEClassPC.equals("true");
+      var classIsTrue = plEClass.isAlwaysPresent();
       for (var eSuperclass : eClass.getESuperTypes()) {
         var plESuperclass = plClasses.get(MIDRegistry.getModelElementUri(eSuperclass));
         var plESuperclassPC = plESuperclass.getPresenceCondition();
         if (!classIsTrue) {
-          plESuperclassPC = (plESuperclassPC.equals("true")) ?
+          plESuperclassPC = (plESuperclass.isAlwaysPresent()) ?
             plEClassPC :
             "(" + plESuperclassPC + ") & (" + plEClassPC + ")";
         }
@@ -162,8 +163,8 @@ public class AnnotatedEcoreToCDProductLine extends ToProductLine {
         var plEClassTgt = plClasses.get(MIDRegistry.getModelElementUri(eReference.getEType()));
         var plEClassTgtPC = plEClassTgt.getPresenceCondition();
         var plEReferencePC = plEReference.getPresenceCondition();
-        var tgtIsTrue = plEClassTgtPC.equals("true");
-        var assocIsTrue = plEReferencePC.equals("true");
+        var tgtIsTrue = plEClassTgt.isAlwaysPresent();
+        var assocIsTrue = plEReference.isAlwaysPresent();
         if (classIsTrue) {
           // tgtIsTrue => plEReferencePC stays as-is
           if (!tgtIsTrue) {

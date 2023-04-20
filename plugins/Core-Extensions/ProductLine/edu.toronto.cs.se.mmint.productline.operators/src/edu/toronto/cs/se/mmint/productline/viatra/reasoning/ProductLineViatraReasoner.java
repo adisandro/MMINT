@@ -138,8 +138,8 @@ public class ProductLineViatraReasoner extends ViatraReasoner {
 
   public Set<String> getPresenceConditions(Set<PLElement> plElements) {
     return plElements.stream()
+      .filter(e -> !e.isAlwaysPresent())
       .map(e -> e.getPresenceCondition())
-      .filter(pc -> pc != null && !pc.strip().equals("true"))
       .collect(Collectors.toSet());
   }
 

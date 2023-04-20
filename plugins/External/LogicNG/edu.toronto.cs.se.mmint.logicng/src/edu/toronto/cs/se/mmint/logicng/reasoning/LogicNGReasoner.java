@@ -72,7 +72,7 @@ public class LogicNGReasoner implements IProductLineFeaturesTrait {
 
   @Override
   public String getORSyntax() {
-    return "$1 | $2";
+    return "($1) | ($2)";
   }
 
   private Formula substituteVars(FormulaFactory factory, Formula formula, Map<String, Boolean> varValues) {

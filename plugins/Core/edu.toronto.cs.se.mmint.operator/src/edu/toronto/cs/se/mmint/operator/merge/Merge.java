@@ -158,14 +158,14 @@ public class Merge extends OperatorImpl {
     return overlapUris;
   }
 
-  protected void mergeAttribute(String attributeName, EObject modelObj, EObject mergedModelObj, String syntax)
-                               throws MMINTException {
+  protected void mergeAttribute(String attributeName, EObject modelObj, EObject mergedModelObj) throws MMINTException {
     var attributeValue = FileUtils.getModelObjectFeature(modelObj, attributeName);
-    if (attributeValue instanceof String attributeStr) {
-      var mergedAttributeStr = (String) FileUtils.getModelObjectFeature(mergedModelObj, attributeName);
-      if (mergedAttributeStr != null && !mergedAttributeStr.equals(attributeStr)) {
-        attributeValue = syntax.replace("$1", mergedAttributeStr).replace("$2", attributeStr);
-      }
+    if (!(attributeValue instanceof String attributeStr)) {
+      return;
+    }
+    var mergedAttributeStr = (String) FileUtils.getModelObjectFeature(mergedModelObj, attributeName);
+    if (mergedAttributeStr != null && !mergedAttributeStr.equals(attributeStr)) {
+      attributeValue = Merge.ATTR_MERGE_SYNTAX.replace("$1", mergedAttributeStr).replace("$2", attributeStr);
     }
     FileUtils.setModelObjectFeature(mergedModelObj, attributeName, attributeValue);
   }
@@ -193,6 +193,15 @@ public class Merge extends OperatorImpl {
       if (isMerged) {
         var modelElemUri2 = overlapModelElemUris.get(modelElemUri1);
         mergedModelObjs.put(modelElemUri2, mergedModelObj);
+      }
+      // attributes
+      for (var attribute : modelObj1.eClass().getEAllAttributes()) {
+        if (!attribute.isChangeable() || attribute.isDerived()) {
+          continue;
+        }
+        var attributeName = attribute.getName();
+        FileUtils.setModelObjectFeature(mergedModelObj, attributeName,
+                                        FileUtils.getModelObjectFeature(modelObj1, attributeName));
       }
       // containment (pre-requisite for proper creation of trace rel)
       var containerObj1 = modelObj1.eContainer();
@@ -224,6 +233,20 @@ public class Merge extends OperatorImpl {
       var isMerged = mergedModelObjs.containsKey(modelElemUri2);
       var mergedModelObj = (isMerged) ? mergedModelObjs.get(modelElemUri2) : modelFactory.create(modelObj2.eClass());
       allModelObjs.put(modelObj2, mergedModelObj);
+      // attributes
+      for (var attribute : modelObj2.eClass().getEAllAttributes()) {
+        if (!attribute.isChangeable() || attribute.isDerived()) {
+          continue;
+        }
+        var attributeName = attribute.getName();
+        if (isMerged) {
+          mergeAttribute(attributeName, modelObj2, mergedModelObj);
+        }
+        else {
+          FileUtils.setModelObjectFeature(mergedModelObj, attributeName,
+                                          FileUtils.getModelObjectFeature(modelObj2, attributeName));
+        }
+      }
       // containment (pre-requisite for proper creation of trace rel)
       var containerObj2 = modelObj2.eContainer();
       if (containerObj2 != null && // non-root
@@ -246,11 +269,10 @@ public class Merge extends OperatorImpl {
       newMappingRef.getObject().setName(traceName);
     }
 
-    // populate structural features
+    // populate references (runs twice for merged objects, merging non-containment references of both sides)
     for (var entry : allModelObjs.entrySet()) {
       var modelObj = entry.getKey();
       var mergedModelObj = entry.getValue();
-      // references (runs twice for merged objects, merging non-containment references of both sides)
       for (var reference : modelObj.eClass().getEAllReferences()) {
         if (reference.isContainment() || !reference.isChangeable() || reference.isDerived()) {
           continue;
@@ -267,13 +289,6 @@ public class Merge extends OperatorImpl {
           var referenceMergedModelObj = allModelObjs.getOrDefault(referenceModelObj, referenceModelObj);
           FileUtils.setModelObjectFeature(mergedModelObj, reference.getName(), referenceMergedModelObj);
         }
-      }
-      // attributes (runs twice for merged objects, merging string attributes)
-      for (var attribute : modelObj.eClass().getEAllAttributes()) {
-        if (!attribute.isChangeable() || attribute.isDerived()) {
-          continue;
-        }
-        mergeAttribute(attribute.getName(), modelObj, mergedModelObj, Merge.ATTR_MERGE_SYNTAX);
       }
     }
 

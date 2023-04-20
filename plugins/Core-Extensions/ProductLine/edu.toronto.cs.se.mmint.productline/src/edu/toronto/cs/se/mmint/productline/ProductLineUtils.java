@@ -32,7 +32,7 @@ public class ProductLineUtils {
 
   public static boolean isAlwaysPresent(PLElement plElem, @Nullable String pcField) {
     try {
-      if (pcField == null || pcField.equals(plElem.getProductLine().getReasoner().getTrueLiteral())) {
+      if (pcField == null || pcField.strip().equals(plElem.getProductLine().getReasoner().getTrueLiteral())) {
         return true;
       }
       return false;

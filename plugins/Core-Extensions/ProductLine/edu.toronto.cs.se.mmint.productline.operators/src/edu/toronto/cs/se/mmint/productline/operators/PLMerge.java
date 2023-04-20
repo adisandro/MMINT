@@ -16,7 +16,6 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.kotlin.operators.merge.MergeKt;
@@ -80,38 +79,27 @@ public class PLMerge extends Merge {
     return overlapUris;
   }
 
-  private @Nullable String mergePresenceConditions(@Nullable String pc1, @Nullable String pc2) {
-    String mergedPc;
-    if (pc1 == null || pc1.equals("true")) {
-      mergedPc = pc2;
-    }
-    else if (pc2 == null || pc1.equals(pc2) || pc2.equals("true")) {
-      mergedPc = pc1;
-    }
-    else {
-      mergedPc = this.reasoner.simplify(this.pcMergeSyntax.replace("$1", pc2).replace("$2", pc1));
-    }
-
-    return mergedPc;
-  }
-
   @Override
   @PLPipeline.Modify
-  protected void mergeAttribute(String attributeName, EObject modelObj, EObject mergedModelObj, String syntax)
+  protected void mergeAttribute(String attributeName, EObject modelObj, EObject mergedModelObj)
                                throws MMINTException {
     switch (attributeName) {
-      case "featuresConstraint", "reasonerName" ->
-        FileUtils.setModelObjectFeature(mergedModelObj, attributeName,
-                                        FileUtils.getModelObjectFeature(modelObj, attributeName));
+      case "featuresConstraint", "reasonerName" -> {}
       case "presenceCondition" -> {
         var pc1 = (String) FileUtils.getModelObjectFeature(modelObj, attributeName);
         var pc2 = (String) FileUtils.getModelObjectFeature(mergedModelObj, attributeName);
-        FileUtils.setModelObjectFeature(mergedModelObj, attributeName, mergePresenceConditions(pc1, pc2));
+        var mergedPc = this.reasoner.simplify(this.pcMergeSyntax.replace("$1", pc2).replace("$2", pc1));
+        FileUtils.setModelObjectFeature(mergedModelObj, attributeName, mergedPc);
       }
-      default -> super.mergeAttribute(attributeName, modelObj, mergedModelObj, Merge.ATTR_MERGE_SYNTAX);
+      default -> super.mergeAttribute(attributeName, modelObj, mergedModelObj);
     }
-    //TODO Add checks for compatible types and refs or rely on match correctness?
-    //TODO (in original Merge based on eclasses, here based on type ref)
+    //TODO update all LogicNG product lines to new true literal
+    //TODO create splc23 project
+    //TODO isolate vamos models into own project (referred from vamos23 and splc23)
+    /**TODO MMINT[PL] Add to input constraint:
+     *  1) checks for compatible overlap types (merge based on eclasses, pl based on type ref)
+     *  2) pls must have same feature model
+     */
   }
 
   @Override
