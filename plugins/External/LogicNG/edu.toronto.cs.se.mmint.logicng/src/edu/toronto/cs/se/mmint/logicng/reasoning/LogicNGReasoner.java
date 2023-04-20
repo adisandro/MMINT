@@ -71,6 +71,11 @@ public class LogicNGReasoner implements IProductLineFeaturesTrait {
   }
 
   @Override
+  public String getANDSyntax() {
+    return "($1) & ($2)";
+  }
+
+  @Override
   public String getORSyntax() {
     return "($1) | ($2)";
   }

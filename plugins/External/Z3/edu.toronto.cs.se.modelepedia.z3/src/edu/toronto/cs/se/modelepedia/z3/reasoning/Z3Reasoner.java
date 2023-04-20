@@ -81,8 +81,13 @@ public class Z3Reasoner implements IModelConstraintTrait, IMAVOTrait, IProductLi
   }
 
   @Override
+  public String getANDSyntax() {
+    return "(and ($1) ($2))";
+  }
+
+  @Override
   public String getORSyntax() {
-    return "(or $1 $2)";
+    return "(or ($1) ($2))";
   }
 
 	public Z3MAVOModelParser generateSMTLIBEncoding(Model model) throws Exception {

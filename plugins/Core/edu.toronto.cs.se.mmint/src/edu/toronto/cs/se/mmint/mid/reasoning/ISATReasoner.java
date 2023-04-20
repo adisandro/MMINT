@@ -60,6 +60,13 @@ public interface ISATReasoner extends IReasoner {
   String getFalseLiteral();
 
   /**
+   * Gets the syntax of the AND operator, using $1 and $2 as placeholders for the two operands.
+   *
+   * @return The AND syntax.
+   */
+  String getANDSyntax();
+
+  /**
    * Gets the syntax of the OR operator, using $1 and $2 as placeholders for the two operands.
    *
    * @return The OR syntax.
