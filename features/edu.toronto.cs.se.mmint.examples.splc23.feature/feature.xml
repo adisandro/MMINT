@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Copyright (c) 2023, 2023 Alessio Di Sandro.
+   
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License 2.0 which is available at
+    https://www.eclipse.org/legal/epl-2.0/
+   
+    SPDX-License-Identifier: EPL-2.0
+   
+    Contributors:
+        Alessio Di Sandro - Implementation
+ -->
+<feature
+      id="edu.toronto.cs.se.mmint.examples.splc23.feature"
+      label="MMINT - SPLC23 paper"
+      version="2.17.99.qualifier"
+      provider-name="Software Engineering Group, University of Toronto">
+
+   <description url="">
+      MMINT support for the SPLC23 paper.
+   </description>
+
+   <copyright>
+      Copyright (c) 2023, 2023 Alessio Di Sandro.
+   </copyright>
+
+   <license url="https://www.eclipse.org/legal/epl-2.0/">
+      This program and the accompanying materials are made available under the terms of the Eclipse Public License 2.0 which is available at https://www.eclipse.org/legal/epl-2.0/
+   </license>
+
+   <requires>
+      <import plugin="org.eclipse.emf.common.ui"/>
+      <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="org.eclipse.emf.validation"/>
+      <import plugin="edu.toronto.cs.se.mavo"/>
+      <import plugin="edu.toronto.cs.se.mmint"/>
+      <import plugin="edu.toronto.cs.se.modelepedia.classdiagram"/>
+      <import plugin="edu.toronto.cs.se.modelepedia.classdiagram_mavo"/>
+      <import plugin="edu.toronto.cs.se.mmint.productline"/>
+      <import plugin="edu.toronto.cs.se.mmint.productline.operators"/>
+      <import feature="edu.toronto.cs.se.mmintpl.feature"/>
+      <import feature="edu.toronto.cs.se.modelepedia.classdiagram.feature"/>
+      <import feature="edu.toronto.cs.se.modelepedia.classdiagram_mavo.feature"/>
+   </requires>
+
+   <plugin
+         id="edu.toronto.cs.se.mmint.examples.splc23"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>
