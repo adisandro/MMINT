@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
+import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
@@ -27,14 +28,18 @@ import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 import edu.toronto.cs.se.mmint.productline.Class;
 import edu.toronto.cs.se.mmint.productline.PLElement;
 import edu.toronto.cs.se.mmint.productline.operators.ToProductLine;
+import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeaturesTrait;
 import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage;
 
 public class AnnotatedEcoreToCDProductLine extends ToProductLine {
+  private IProductLineFeaturesTrait reasoner;
+  private String andSyntax;
 
   protected static class AnnotatedEcoreToCDPLOut extends Out {
-    public AnnotatedEcoreToCDPLOut(Map<String, MID> outputMIDsByName, String workingPath, In in) throws MMINTException {
+    public AnnotatedEcoreToCDPLOut(Map<String, MID> outputMIDsByName, String workingPath, In in,
+                                   IProductLineFeaturesTrait reasoner) throws MMINTException {
       super(outputMIDsByName, workingPath, in);
-      this.productLine.setReasonerName("LogicNG");
+      this.productLine.setReasonerName(reasoner.getName());
       this.productLine.setMetamodel(edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage.eINSTANCE);
     }
   }
@@ -42,11 +47,13 @@ public class AnnotatedEcoreToCDProductLine extends ToProductLine {
   @Override
   protected void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws MMINTException {
     this.in = new In(inputsByName);
-    this.out = new AnnotatedEcoreToCDPLOut(outputMIDsByName, getWorkingPath(), this.in);
+    this.reasoner = (IProductLineFeaturesTrait) MMINT.getReasoner("LogicNG");
+    this.andSyntax = this.reasoner.getANDSyntax();
+    this.out = new AnnotatedEcoreToCDPLOut(outputMIDsByName, getWorkingPath(), this.in, this.reasoner);
   }
 
   private void addPresenceCondition(EModelElement eModelObj, PLElement plElem) {
-    var presenceCondition = "true";
+    var presenceCondition = this.reasoner.getTrueLiteral();
     var eAnnotation = eModelObj.getEAnnotation("presence");
     if (eAnnotation != null) {
       var eDetail = eAnnotation.getDetails().get("condition");
@@ -68,7 +75,6 @@ public class AnnotatedEcoreToCDProductLine extends ToProductLine {
 
   @Override
   protected void toProductLine() {
-    //TODO MMINT[PL] Refactor to use reasoner's AND syntax + simplifier for formulas
     var ePackage = (EPackage) this.in.productModel.getEMFInstanceRoot();
     var plClasses = new HashMap<String, Class>();
     var plEPackage = createPLClass(ePackage, ClassDiagramPackage.eINSTANCE.getClassDiagram(), plClasses);
@@ -90,7 +96,7 @@ public class AnnotatedEcoreToCDProductLine extends ToProductLine {
         if (!classIsTrue) {
           plEAttributePC = (plEAttribute.isAlwaysPresent()) ?
             plEClassPC :
-            "(" + plEAttributePC + ") & (" + plEClassPC + ")";
+            this.reasoner.simplify(this.andSyntax.replace("$1", plEAttributePC).replace("$2", plEClassPC));
           plEAttribute.setPresenceCondition(plEAttributePC);
         }
         createPLReference(ClassDiagramPackage.eINSTANCE.getClass_OwnedAttributes(), plEClass, plEAttribute)
@@ -106,7 +112,7 @@ public class AnnotatedEcoreToCDProductLine extends ToProductLine {
         if (!classIsTrue) {
           plEOperationPC = (plEOperation.isAlwaysPresent()) ?
             plEClassPC :
-            "(" + plEOperationPC + ") & (" + plEClassPC + ")";
+            this.reasoner.simplify(this.andSyntax.replace("$1", plEOperationPC).replace("$2", plEClassPC));
           plEOperation.setPresenceCondition(plEOperationPC);
         }
         createPLReference(ClassDiagramPackage.eINSTANCE.getClass_OwnedOperations(), plEClass, plEOperation)
@@ -129,7 +135,7 @@ public class AnnotatedEcoreToCDProductLine extends ToProductLine {
         if (!classIsTrue) {
           plESuperclassPC = (plESuperclass.isAlwaysPresent()) ?
             plEClassPC :
-            "(" + plESuperclassPC + ") & (" + plEClassPC + ")";
+            this.reasoner.simplify(this.andSyntax.replace("$1", plESuperclassPC).replace("$2", plEClassPC));
         }
         createPLReference(ClassDiagramPackage.eINSTANCE.getClass_Superclass(), plEClass, plESuperclass)
           .setPresenceCondition(plESuperclassPC);
@@ -170,19 +176,20 @@ public class AnnotatedEcoreToCDProductLine extends ToProductLine {
           if (!tgtIsTrue) {
             plEReferencePC = (assocIsTrue) ?
               plEClassTgtPC :
-              "(" + plEReferencePC + ") & (" + plEClassTgtPC + ")";
+              this.reasoner.simplify(this.andSyntax.replace("$1", plEReferencePC).replace("$2", plEClassTgtPC));
           }
         }
         else { // !classIsTrue
           if (tgtIsTrue) {
             plEReferencePC = (assocIsTrue) ?
               plEClassPC :
-              "(" + plEReferencePC + ") & (" + plEClassPC + ")";
+              this.reasoner.simplify(this.andSyntax.replace("$1", plEReferencePC).replace("$2", plEClassPC));
           }
           else { // !tgtIsTrue
             plEReferencePC = (assocIsTrue) ?
-              "(" + plEClassPC + ") & (" + plEClassTgtPC + ")" :
-              "(" + plEReferencePC + ") & (" + plEClassPC + ") & (" + plEClassTgtPC + ")";
+              this.reasoner.simplify(this.andSyntax.replace("$1", plEClassPC).replace("$2", plEClassTgtPC)) :
+              this.reasoner.simplify(this.andSyntax.replace("$1", plEReferencePC).replace("$2",
+                                       this.andSyntax.replace("$1", plEClassPC).replace("$2", plEClassTgtPC)));
           }
         }
         plEReference.setPresenceCondition(plEReferencePC);
