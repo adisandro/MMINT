@@ -226,6 +226,48 @@
       </operatorType>
    </extension>
 
+   <extension
+         point="edu.toronto.cs.se.mmint.operators">
+      <operatorType>
+         <type
+               name="Query"
+               uri="edu.toronto.cs.se.mmint.productline.operators.PLQuery"
+               class="edu.toronto.cs.se.mmint.productline.operators.PLQuery">
+            <superType
+                  uri="edu.toronto.cs.se.mmint.operator.match.Query">
+            </superType>
+         </type>
+         <inputs>
+            <parameter>
+               <type
+                     name="model"
+                     uri="edu.toronto.cs.se.mmint.productline.operators.PLQuery/model">
+                  <superType
+                        uri="edu.toronto.cs.se.mmint.operator.match.Query/model">
+                  </superType>
+               </type>
+               <typeEndpoint
+                     targetTypeUri="model://edu.toronto.cs.se.mmint.productline">
+               </typeEndpoint>
+            </parameter>
+         </inputs>
+         <outputs>
+            <parameter>
+               <type
+                     name="sameModel"
+                     uri="edu.toronto.cs.se.mmint.productline.operators.PLQuery/sameModel">
+                  <superType
+                        uri="edu.toronto.cs.se.mmint.operator.match.Query/sameModel">
+                  </superType>
+               </type>
+               <typeEndpoint
+                     targetTypeUri="model://edu.toronto.cs.se.mmint.productline">
+               </typeEndpoint>
+            </parameter>
+         </outputs>
+      </operatorType>
+   </extension>
+
    <extension point="edu.toronto.cs.se.mmint.reasoners">
       <reasoner class="edu.toronto.cs.se.mmint.productline.viatra.reasoning.ProductLineViatraReasoner"/>
    </extension>

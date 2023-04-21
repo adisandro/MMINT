@@ -27,13 +27,13 @@ import edu.toronto.cs.se.mmint.mid.reasoning.IQueryTrait.QuerySpec;
 import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 
 public class Query extends OperatorImpl {
-  private In in;
-  private Out out;
+  protected In in;
+  protected Out out;
   private IQueryTrait reasoner;
   private String queryPath;
   private String queryName;
 
-  private class In {
+  protected static class In {
     public final static String PROP_IN_REASONERNAME = "reasonerName";
     public final static String PROP_IN_QUERYPATH = "queryPath";
     public final static String PROP_IN_QUERYNAME = "queryName";
@@ -45,35 +45,36 @@ public class Query extends OperatorImpl {
     }
   }
 
-  private class Out {
+  protected static class Out {
     public final static String PROP_OUT_TIMEQUERY = "timeQuery";
     public final static String PROP_OUT_NUMRESULTS = "numResults";
     public final static String MODEL = "sameModel";
+    public Query operator;
     public long timeQuery;
     public int numResults;
     public MID mid;
-    public Model sameModel;
+    public Properties props;
 
-    public Out(In in, Map<String, MID> outputMIDsByName) {
+    public Out(Query operator, Map<String, MID> outputMIDsByName) {
+      this.operator = operator;
       this.timeQuery = 0;
       this.numResults = 0;
       this.mid = outputMIDsByName.get(Out.MODEL);
-      this.sameModel = in.model;
+      this.props = new Properties();
     }
 
     public Map<String, Model> packed() throws Exception {
-      var outProps = new Properties();
-      outProps.setProperty(Out.PROP_OUT_TIMEQUERY, String.valueOf(this.timeQuery));
-      outProps.setProperty(Out.PROP_OUT_NUMRESULTS, String.valueOf(this.numResults));
-      MIDOperatorIOUtils.writeOutputProperties(Query.this, outProps);
+      this.props.setProperty(Out.PROP_OUT_TIMEQUERY, String.valueOf(this.timeQuery));
+      this.props.setProperty(Out.PROP_OUT_NUMRESULTS, String.valueOf(this.numResults));
+      MIDOperatorIOUtils.writeOutputProperties(this.operator, this.props);
 
-      return Map.of(Out.MODEL, this.sameModel);
+      return Map.of(Out.MODEL, this.operator.in.model);
     }
   }
 
-  private void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) {
+  protected void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) {
     this.in = new In(inputsByName);
-    this.out = new Out(this.in, outputMIDsByName);
+    this.out = new Out(this, outputMIDsByName);
   }
 
   @Override
@@ -84,7 +85,7 @@ public class Query extends OperatorImpl {
       MIDOperatorIOUtils.getStringProperty(inputProperties, In.PROP_IN_REASONERNAME));
   }
 
-  private void runQuery() throws Exception {
+  protected void runQuery() throws Exception {
     var modelRootObj = this.in.model.getEMFInstanceRoot();
     var querySpec = new QuerySpec(this.reasoner, this.queryPath, this.queryName);
     var timeQueryStart = System.nanoTime();
