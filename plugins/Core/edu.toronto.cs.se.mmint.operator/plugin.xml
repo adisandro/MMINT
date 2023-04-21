@@ -1537,4 +1537,37 @@
       </operatorType>
    </extension>
 
+   <extension
+         point="edu.toronto.cs.se.mmint.operators">
+      <operatorType>
+         <type
+               name="Query"
+               uri="edu.toronto.cs.se.mmint.operator.match.Query"
+               class="edu.toronto.cs.se.mmint.operator.match.Query">
+         </type>
+         <inputs>
+            <parameter>
+               <type
+                     name="model"
+                     uri="edu.toronto.cs.se.mmint.operator.match.Query/model">
+               </type>
+               <typeEndpoint
+                     targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
+               </typeEndpoint>
+            </parameter>
+         </inputs>
+         <outputs>
+            <parameter>
+               <type
+                     name="sameModel"
+                     uri="edu.toronto.cs.se.mmint.operator.match.Query/sameModel">
+               </type>
+               <typeEndpoint
+                     targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
+               </typeEndpoint>
+            </parameter>
+         </outputs>
+      </operatorType>
+   </extension>
+
 </plugin>

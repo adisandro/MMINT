@@ -86,19 +86,19 @@ public class Merge extends OperatorImpl {
     public ModelRel trace2;
     public ModelRel mergeTrace;
 
-    public Out(In input, Map<String, MID> outputMIDsByName) throws Exception {
+    public Out(In in, Map<String, MID> outputMIDsByName) throws Exception {
       var mergedModelMID = outputMIDsByName.get(Out.MODEL);
-      var mergedModelName = input.model1.getName() + Merge.MERGE_SEPARATOR + input.model2.getName() +
-                            MMINTConstants.MODEL_FILEEXTENSION_SEPARATOR + input.model1.getFileExtension();
+      var mergedModelName = in.model1.getName() + Merge.MERGE_SEPARATOR + in.model2.getName() +
+                            MMINTConstants.MODEL_FILEEXTENSION_SEPARATOR + in.model1.getFileExtension();
       var mergedModelPath = FileUtils.getUniquePath(
         FileUtils.replaceLastSegmentInPath(MIDRegistry.getModelUri(mergedModelMID), mergedModelName), true, false);
-      this.merged = input.model1.getMetatype().createInstance(null, mergedModelPath, mergedModelMID);
+      this.merged = in.model1.getMetatype().createInstance(null, mergedModelPath, mergedModelMID);
       var modelRelType = MIDTypeHierarchy.getRootModelRelType();
-      this.trace1 = modelRelType.createBinaryInstanceAndEndpoints(null, Out.MODELREL1, input.model1, this.merged,
+      this.trace1 = modelRelType.createBinaryInstanceAndEndpoints(null, Out.MODELREL1, in.model1, this.merged,
                                                                   outputMIDsByName.get(Out.MODELREL1));
-      this.trace2 = modelRelType.createBinaryInstanceAndEndpoints(null, Out.MODELREL2, input.model2, this.merged,
+      this.trace2 = modelRelType.createBinaryInstanceAndEndpoints(null, Out.MODELREL2, in.model2, this.merged,
                                                                   outputMIDsByName.get(Out.MODELREL2));
-      this.mergeTrace = modelRelType.createBinaryInstanceAndEndpoints(null, Out.MODELREL3, input.overlap,
+      this.mergeTrace = modelRelType.createBinaryInstanceAndEndpoints(null, Out.MODELREL3, in.overlap,
                                                                       this.merged,
                                                                       outputMIDsByName.get(Out.MODELREL3));
     }
