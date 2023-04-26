@@ -56,8 +56,8 @@ public class Merge extends OperatorImpl {
   protected String engine;
 
   protected static class In {
-    private final static String PROP_IN_ENGINE = "engine";
-    private final static String PROP_IN_ENGINE_DEFAULT = "java";
+    private final static String PROP_ENGINE = "engine";
+    private final static String PROP_ENGINE_DEFAULT = "java";
     private final static String MODELREL = "overlap";
     public ModelRel overlap;
     public Model model1;
@@ -143,8 +143,7 @@ public class Merge extends OperatorImpl {
 
   @Override
   public void readInputProperties(Properties inputProperties) throws MMINTException {
-    this.engine = MIDOperatorIOUtils.getOptionalStringProperty(inputProperties, In.PROP_IN_ENGINE,
-                                                               In.PROP_IN_ENGINE_DEFAULT);
+    this.engine = MIDOperatorIOUtils.getOptionalStringProperty(inputProperties, In.PROP_ENGINE, In.PROP_ENGINE_DEFAULT);
   }
 
   protected Map<String, String> getOverlapModelElementUris() {

@@ -251,7 +251,7 @@
                class="edu.toronto.cs.se.mmint.operator.match.Match">
          </type>
          <constraint
-               implementation="edu.toronto.cs.se.mmint.operator.match.Match$Constraint"
+               implementation="edu.toronto.cs.se.mmint.operator.match.Match$Constraint2"
                language="Java">
          </constraint>
          <inputs>
