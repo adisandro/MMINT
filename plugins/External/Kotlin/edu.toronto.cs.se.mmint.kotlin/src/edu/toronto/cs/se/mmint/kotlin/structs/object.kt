@@ -15,40 +15,51 @@ package edu.toronto.cs.se.mmint.kotlin.structs
 
 
 
-sealed class Object {
-    override fun toString(): String = this.uri()
+
+import edu.toronto.cs.se.mmint.kotlin.operators.merge.mergeAttrs
+import edu.toronto.cs.se.mmint.kotlin.operators.merge.mergeMaps
+import edu.toronto.cs.se.mmint.kotlin.operators.merge.updateMap
+
+
+sealed class Object(
+) {
+    abstract val uri: String
+    abstract val kind : String
+    abstract val attrs : Map<String,String>
+    abstract val refs : MutableMap<String, LList<Tree<Object>>>
+    override fun toString(): String {
+        return uri
+    }
+
+    companion object {
+        open fun union(
+            toMerge: Map<String, String>,
+            mergedObjs: LList<Prod<String, String>>,
+            left: Object,
+            right: Object
+        ): Object {
+            val mergedURI = when (val o = mergedObjs.lookup(left.uri)) {
+                is None -> left.uri
+                is Some -> o.x
+            }
+            val mergedKind = if (left.kind == right.kind) left.kind else "KIND_ERROR"
+            val mergedAttrs = mergeAttrs(left.attrs, right.attrs)
+            val mergedRefs = mergeMaps(left.refs, right.refs, toMerge)
+            return MkObj(mergedURI, mergedKind, mergedAttrs, mergedRefs)
+        }
+
+        fun replaceRefs(model: Tree<Object>, mergeMap: LList<Prod<String, Tree<Object>>>): Unit {
+            model.node().setRefs(updateMap(model.node().refs, mergeMap))
+            model.children().map { it.snd().map { o -> Object.replaceRefs(o, mergeMap) } }
+        }
+    }
 }
+data class MkObj(override val uri : String,
+                 override val kind : String,
+                 override val attrs : Map<String, String>,
+                 override val refs : MutableMap<String, LList<Tree<Object>>>) : Object() {}
 
-
-data class MkObject(val uri : String, val kind: String, val attrs: Map<String, String>, val refs: MutableMap<String, LList<Tree<Object>>>) : Object() {
-    override fun toString(): String = uri
-    override fun equals(other: Any?): Boolean
-    = other is MkObject && uri == other.uri
-}
-
-fun Object.uri() : String = when (this) { is MkObject -> this.uri}
-
-fun Object.kind() : String =
-    when (this) {
-        is MkObject -> this.kind
-    }
-
-fun Object.attrs() : Map<String, String> =
-    when (this) {
-        is MkObject -> this.attrs
-    }
-
-fun Object.refs() : MutableMap<String, LList<Tree<Object>>> =
-    when (this) {
-        is MkObject -> this.refs
-    }
-
-fun Object.getAttr(s : String) : String? =
-    when (this) {
-        is MkObject -> this.attrs[s]
-    }
 
 fun Object.setRefs(map: MutableMap<String,LList<Tree<Object>>>) {
-    this.refs().putAll(map)
+    this.refs.putAll(map)
 }
-

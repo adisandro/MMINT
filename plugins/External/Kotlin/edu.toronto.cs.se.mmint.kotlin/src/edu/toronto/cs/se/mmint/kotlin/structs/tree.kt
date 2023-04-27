@@ -13,7 +13,6 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.kotlin.structs
 
-
 sealed class Tree<out a> {}
 
 data class MkTree <out a> (val node : a, val contains : Map<String,LList<Tree<a>>>) : Tree<a>(){
@@ -82,49 +81,49 @@ fun <a> Tree<a>.getSubObject(uri : String) : Option<Tree<a>> =
             )
     }
 
-
-fun Tree<Object>.prettyPrint(containmentPath : String) {
-    println("-----Object-------")
-    println(" uri : " + this.node().uri())
-    println(" ancestry : $containmentPath")
-    println(" attrs : " )
-    println(" kind : " + this.node().kind() )
-    val attrIterator = this.node().attrs().entries.iterator()
-    while (attrIterator.hasNext()){
-        val i = attrIterator.next()
-        val k = i.key
-        val v = i.value
-        println(" \t $k : $v ")
-    }
-    println(" refs : ")
-    val refIterator = this.node().refs().entries.iterator()
-    while (refIterator.hasNext()){
-        val i = refIterator.next()
-        val k = i.key
-        val v = i.value.map {it.node().uri()}
-        println(" \t $k : $v ")
-    }
-    println("------------------")
-
-    val childrenIterator = this.contains().entries.iterator()
-    while(childrenIterator.hasNext()){
-        val i = childrenIterator.next()
-        val container = i.key
-        val v = i.value.toList()
-        for(x in v){
-            x.prettyPrint(containmentPath + ":" + this.node().uri() + ":" + container)
-        }
-    }
-}
-
+//
+//fun Tree<Object>.prettyPrint(containmentPath : String) {
+//    println("-----Object-------")
+//    println(" uri : " + this.node().uri())
+//    println(" ancestry : $containmentPath")
+//    println(" attrs : " )
+//    println(" kind : " + this.node().kind() )
+//    val attrIterator = this.node().attrs().entries.iterator()
+//    while (attrIterator.hasNext()){
+//        val i = attrIterator.next()
+//        val k = i.key
+//        val v = i.value
+//        println(" \t $k : $v ")
+//    }
+//    println(" refs : ")
+//    val refIterator = this.node().refs().entries.iterator()
+//    while (refIterator.hasNext()){
+//        val i = refIterator.next()
+//        val k = i.key
+//        val v = i.value.map {it.node().uri()}
+//        println(" \t $k : $v ")
+//    }
+//    println("------------------")
+//
+//    val childrenIterator = this.contains().entries.iterator()
+//    while(childrenIterator.hasNext()){
+//        val i = childrenIterator.next()
+//        val container = i.key
+//        val v = i.value.toList()
+//        for(x in v){
+//            x.prettyPrint(containmentPath + ":" + this.node().uri() + ":" + container)
+//        }
+//    }
+//}
+//
 fun Tree<VarObj>.prettyPrintVar(containmentPath : String) {
     println("-----Object-------")
-    println(" PC : " + this.node().pc())
-    println(" uri : " + this.node().uri())
+    println(" PC : " + this.node().pcond)
+    println(" uri : " + this.node().uri)
     println(" ancestry : $containmentPath")
     println(" attrs : " )
-    println(" kind : " + this.node().kind() )
-    val attrIterator = this.node().attrs().entries.iterator()
+    println(" kind : " + this.node().kind )
+    val attrIterator = this.node().attrs.entries.iterator()
     while (attrIterator.hasNext()){
         val i = attrIterator.next()
         val k = i.key
@@ -132,11 +131,11 @@ fun Tree<VarObj>.prettyPrintVar(containmentPath : String) {
         println(" \t $k : $v ")
     }
     println(" refs : ")
-    val refIterator = this.node().refsPL().entries.iterator()
+    val refIterator = this.node().refs.entries.iterator()
     while (refIterator.hasNext()){
         val i = refIterator.next()
         val k = i.key
-        val v = i.value.map {it.node().uri()}
+        val v = i.value.map {it.node().uri}
         println(" \t $k : $v ")
     }
     println("------------------")
@@ -147,7 +146,7 @@ fun Tree<VarObj>.prettyPrintVar(containmentPath : String) {
         val container = i.key
         val v = i.value.toList()
         for(x in v){
-            x.prettyPrintVar(containmentPath + ":" + this.node().uri() + ":" + container)
+            x.prettyPrintVar(containmentPath + ":" + this.node().uri + ":" + container)
         }
     }
 }
