@@ -27,8 +27,8 @@ public class PLQuery extends Query {
     public long timeSat;
     public int satCalls;
 
-    public PLOut(Query operator, Map<String, MID> outputMIDsByName) {
-      super(operator, outputMIDsByName);
+    public PLOut(Query operator) {
+      super(operator);
       this.timeSat = 0;
       this.satCalls = 0;
     }
@@ -45,7 +45,7 @@ public class PLQuery extends Query {
   @Override
   protected void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) {
     this.in = new In(inputsByName);
-    this.out = new PLOut(this, outputMIDsByName);
+    this.out = new PLOut(this);
   }
 
   @Override

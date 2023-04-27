@@ -252,18 +252,6 @@
             </parameter>
          </inputs>
          <outputs>
-            <parameter>
-               <type
-                     name="sameModel"
-                     uri="edu.toronto.cs.se.mmint.productline.operators.PLQuery/sameModel">
-                  <superType
-                        uri="edu.toronto.cs.se.mmint.operator.match.Query/sameModel">
-                  </superType>
-               </type>
-               <typeEndpoint
-                     targetTypeUri="model://edu.toronto.cs.se.mmint.productline">
-               </typeEndpoint>
-            </parameter>
          </outputs>
       </operatorType>
    </extension>
