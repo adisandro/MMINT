@@ -48,18 +48,15 @@ public class Query extends OperatorImpl {
   protected static class Out {
     public final static String PROP_OUT_TIMEQUERY = "timeQuery";
     public final static String PROP_OUT_NUMRESULTS = "numResults";
-    public final static String MODEL = "sameModel";
     public Query operator;
     public long timeQuery;
     public int numResults;
-    public MID mid;
     public Properties props;
 
-    public Out(Query operator, Map<String, MID> outputMIDsByName) {
+    public Out(Query operator) {
       this.operator = operator;
       this.timeQuery = 0;
       this.numResults = 0;
-      this.mid = outputMIDsByName.get(Out.MODEL);
       this.props = new Properties();
     }
 
@@ -68,13 +65,13 @@ public class Query extends OperatorImpl {
       this.props.setProperty(Out.PROP_OUT_NUMRESULTS, String.valueOf(this.numResults));
       MIDOperatorIOUtils.writeOutputProperties(this.operator, this.props);
 
-      return Map.of(Out.MODEL, this.operator.in.model);
+      return Map.of();
     }
   }
 
   protected void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) {
     this.in = new In(inputsByName);
-    this.out = new Out(this, outputMIDsByName);
+    this.out = new Out(this);
   }
 
   @Override

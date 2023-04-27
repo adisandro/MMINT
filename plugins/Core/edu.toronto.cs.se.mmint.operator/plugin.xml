@@ -1603,15 +1603,6 @@
             </parameter>
          </inputs>
          <outputs>
-            <parameter>
-               <type
-                     name="sameModel"
-                     uri="edu.toronto.cs.se.mmint.operator.match.Query/sameModel">
-               </type>
-               <typeEndpoint
-                     targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
-               </typeEndpoint>
-            </parameter>
          </outputs>
       </operatorType>
    </extension>
