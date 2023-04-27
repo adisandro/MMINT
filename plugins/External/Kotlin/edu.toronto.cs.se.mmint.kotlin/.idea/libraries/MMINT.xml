@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="MMINT">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../../../../../adisandro.github.io/mmint/develop/plugins" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/../../../../../adisandro.github.io/mmint/develop/plugins" />
+    </SOURCES>
+    <jarDirectory url="file://$PROJECT_DIR$/../../../../../adisandro.github.io/mmint/develop/plugins" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/../../../../../adisandro.github.io/mmint/develop/plugins" recursive="false" type="SOURCES" />
+  </library>
+</component>
