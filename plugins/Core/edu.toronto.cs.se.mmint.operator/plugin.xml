@@ -205,7 +205,7 @@
                class="edu.toronto.cs.se.mmint.operator.match.UntypedMatch">
          </type>
          <constraint
-               implementation="edu.toronto.cs.se.mmint.operator.match.UntypedMatch$Constraint"
+               implementation="edu.toronto.cs.se.mmint.operator.match.UntypedMatch$UntypedConstraint"
                language="Java">
          </constraint>
          <inputs>
@@ -251,7 +251,7 @@
                class="edu.toronto.cs.se.mmint.operator.match.Match">
          </type>
          <constraint
-               implementation="edu.toronto.cs.se.mmint.operator.match.Match$Constraint2"
+               implementation="edu.toronto.cs.se.mmint.operator.match.Match$Constraint"
                language="Java">
          </constraint>
          <inputs>
@@ -283,6 +283,52 @@
 	           <typeEndpoint
 	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Overlap">
 	           </typeEndpoint>
+            </parameter>
+         </outputs>
+      </operatorType>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.operators">
+      <operatorType>
+         <type
+               name="RandomMatch"
+               uri="edu.toronto.cs.se.mmint.operator.match.RandomMatch"
+               class="edu.toronto.cs.se.mmint.operator.match.RandomMatch">
+         </type>
+         <constraint
+               implementation="edu.toronto.cs.se.mmint.operator.match.Match$Constraint"
+               language="Java">
+         </constraint>
+         <inputs>
+            <parameter>
+             <type
+                   name="model1"
+                   uri="edu.toronto.cs.se.mmint.operator.match.RandomMatch/model1">
+             </type>
+             <typeEndpoint
+                   targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
+             </typeEndpoint>
+            </parameter>
+            <parameter>
+             <type
+                   name="model2"
+                   uri="edu.toronto.cs.se.mmint.operator.match.RandomMatch/model2">
+             </type>
+             <typeEndpoint
+                   targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
+             </typeEndpoint>
+            </parameter>
+         </inputs>
+         <outputs>
+            <parameter>
+             <type
+                   name="overlap"
+                   uri="edu.toronto.cs.se.mmint.operator.match.RandomMatch/overlap">
+             </type>
+             <typeEndpoint
+                   targetTypeUri="http://se.cs.toronto.edu/mmint/Overlap">
+             </typeEndpoint>
             </parameter>
          </outputs>
       </operatorType>

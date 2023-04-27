@@ -52,4 +52,12 @@ public class ProductLineUtils {
     }
     return pc;
   }
+
+  public static @Nullable Class getContainer(Class plClass) {
+    return plClass.getReferencesAsTarget().stream()
+      .filter(r -> r.getType().isContainment())
+      .map(r -> (Class) r.eContainer())
+      .findFirst()
+      .orElse(null);
+  }
 }

@@ -20,6 +20,7 @@ import java.util.Properties;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MMINTException;
@@ -31,17 +32,17 @@ import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.impl.RandomOperatorImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
-import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 
 public class UntypedMatch extends RandomOperatorImpl {
+  protected final static String ATTR_ECLASS = "eClass";
+  protected UntypedIn in;
+  protected UntypedOut out;
   protected String matchOn;
-  protected In in;
-  protected Out out;
 
-  public static class In {
+  public static class UntypedIn {
     private final static String MODEL1 = "model1";
     private final static String MODEL2 = "model2";
     private final static String PROP_MATCHON = "matchOn";
@@ -49,16 +50,16 @@ public class UntypedMatch extends RandomOperatorImpl {
     public Model model1;
     public Model model2;
 
-    public In(Map<String, Model> inputsByName) {
-      this.model1 = inputsByName.get(In.MODEL1);
-      this.model2 = inputsByName.get(In.MODEL2);
+    public UntypedIn(Map<String, Model> inputsByName) {
+      this.model1 = inputsByName.get(UntypedIn.MODEL1);
+      this.model2 = inputsByName.get(UntypedIn.MODEL2);
       if (this.model1.getUri().equals(this.model2.getUri())) {
         throw new IllegalArgumentException();
       }
     }
   }
 
-  public static class Out {
+  public static class UntypedOut {
     private static final String MATCH_SEPARATOR = "_";
     private final static String MODELREL = "overlap";
     public ModelRel modelRelType;
@@ -67,9 +68,9 @@ public class UntypedMatch extends RandomOperatorImpl {
     public ModelElementEndpoint modelElemTypeEndpoint;
     public ModelRel overlap;
 
-    public Out(In in, ModelRel modelRelType, Map<String, MID> outputMIDsByName) throws Exception {
-      var overlapName = in.model1.getName() + Out.MATCH_SEPARATOR + in.model2.getName();
-      var overlapMID = outputMIDsByName.get(Out.MODELREL);
+    public UntypedOut(UntypedIn in, ModelRel modelRelType, Map<String, MID> outputMIDsByName) throws Exception {
+      var overlapName = in.model1.getName() + UntypedOut.MATCH_SEPARATOR + in.model2.getName();
+      var overlapMID = outputMIDsByName.get(UntypedOut.MODELREL);
       this.modelRelType = modelRelType;
       this.modelTypeEndpoint = this.modelRelType.getModelEndpoints().get(0);
       this.mappingType = this.modelRelType.getMappings().get(0);
@@ -78,15 +79,15 @@ public class UntypedMatch extends RandomOperatorImpl {
     }
 
     public Map<String, Model> packed() {
-      return Map.of(Out.MODELREL, this.overlap);
+      return Map.of(UntypedOut.MODELREL, this.overlap);
     }
   }
 
-  public static class Constraint implements IJavaOperatorConstraint {
+  public static class UntypedConstraint implements IJavaOperatorConstraint {
     @Override
     public boolean checkInputs(Map<String, Model> inputsByName) {
       try {
-        new In(inputsByName);
+        new UntypedIn(inputsByName);
         return true;
       }
       catch (IllegalArgumentException e) {
@@ -98,8 +99,8 @@ public class UntypedMatch extends RandomOperatorImpl {
     public Map<ModelRel, List<Model>> getOutputModelRelEndpoints(Map<String, GenericElement> genericsByName,
                                                                  Map<String, Model> inputsByName,
                                                                  Map<String, Model> outputsByName) {
-      var in = new In(inputsByName);
-      return Map.of((ModelRel) outputsByName.get(Out.MODELREL), List.of(in.model1, in.model2));
+      var in = new UntypedIn(inputsByName);
+      return Map.of((ModelRel) outputsByName.get(UntypedOut.MODELREL), List.of(in.model1, in.model2));
     }
   }
 
@@ -110,62 +111,80 @@ public class UntypedMatch extends RandomOperatorImpl {
 
   @Override
   public void readInputProperties(Properties inputProperties) throws MMINTException {
-    this.matchOn = MIDOperatorIOUtils.getOptionalStringProperty(inputProperties, In.PROP_MATCHON,
-                                                                In.PROP_MATCHON_DEFAULT);
+    this.matchOn = MIDOperatorIOUtils.getOptionalStringProperty(inputProperties, UntypedIn.PROP_MATCHON,
+                                                                UntypedIn.PROP_MATCHON_DEFAULT);
   }
 
   protected void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws Exception {
-    this.in = new In(inputsByName);
-    this.out = new Out(this.in, MIDTypeHierarchy.getRootModelRelType(), outputMIDsByName);
+    this.in = new UntypedIn(inputsByName);
+    this.out = new UntypedOut(this.in, MIDTypeHierarchy.getRootModelRelType(), outputMIDsByName);
   }
 
-  protected void matchAttributes(Model model, Map<String, Set<EObject>> modelObjAttrs,
-                                 Map<EObject, ModelEndpointReference> modelObjTable) throws MMINTException {
-    var newModelEndpointRef = this.out.modelTypeEndpoint.createInstance(model, this.out.overlap);
-    var modelRootObj = model.getEMFInstanceRoot();
-    for (var iter = modelRootObj.eAllContents(); iter.hasNext();) {
-      var modelObj = iter.next();
-      Object modelObjAttr = null;
-      try {
-        modelObjAttr = switch (this.matchOn) {
-          case "eClass" -> modelObj.eClass().getName();
-          default -> FileUtils.getModelObjectFeature(modelObj, this.matchOn);
-        };
-      }
-      catch (MMINTException e) {
-        // modelObjAttr = null
-      }
-      if (modelObjAttr == null || !(modelObjAttr instanceof String modelObjStr)) {
-        // matchOn attribute not good for matching
-        continue;
-      }
-      modelObjAttrs.computeIfAbsent(modelObjStr, k -> new HashSet<>()).add(modelObj);
-      modelObjTable.put(modelObj, newModelEndpointRef);
+  protected @Nullable Object getMatchAttributeValue(EObject modelObj) {
+    try {
+      return switch (this.matchOn) {
+        case ATTR_ECLASS -> modelObj.eClass().getName();
+        default -> FileUtils.getModelObjectFeature(modelObj, this.matchOn);
+      };
+    }
+    catch (MMINTException e) {
+      return null;
     }
   }
 
-  protected void createMatchMappings(Map<String, Set<EObject>> modelObjAttrs,
-                                     Map<EObject, ModelEndpointReference> modelObjTable) throws MMINTException {
-    for (var entry : modelObjAttrs.entrySet()) {
-      var modelObjs = entry.getValue();
-      if (modelObjs.size() < 2) {
+  protected Map<String, Set<EObject>> matchModelElements(Model model) throws MMINTException {
+    var modelObjAttrs = new HashMap<String, Set<EObject>>();
+    this.out.modelTypeEndpoint.createInstance(model, this.out.overlap);
+    for (var iter = model.getEMFInstanceRoot().eAllContents(); iter.hasNext();) {
+      var modelObj = iter.next();
+      var attrValue = getMatchAttributeValue(modelObj);
+      if (attrValue == null || !(attrValue instanceof String attrStr)) {
+        // matchOn attribute not good for matching
         continue;
       }
+      modelObjAttrs.computeIfAbsent(attrStr, k -> new HashSet<>()).add(modelObj);
+    }
+
+    return modelObjAttrs;
+  }
+
+  protected void filterMatches(Map<String, Set<EObject>> modelObjAttrs1, Map<String, Set<EObject>> modelObjAttrs2) {
+    // do nothing
+  }
+
+  protected void createMatchMappings(Map<String, Set<EObject>> modelObjAttrs1, Map<String, Set<EObject>> modelObjAttrs2)
+                                    throws MMINTException {
+    for (var entry1 : modelObjAttrs1.entrySet()) {
+      var modelObjs1 = entry1.getValue();
+      if (modelObjs1.isEmpty()) {
+        continue;
+      }
+      var attrValue = entry1.getKey();
+      var modelObjs2 = modelObjAttrs2.get(attrValue);
+      if (modelObjs2 == null || modelObjs2.isEmpty()) {
+        continue;
+      }
+      // mappings are potentially n-ary, with more than one model element on either side of the overlap
       var matchMappingRef = this.out.mappingType.createInstanceAndReference(false, this.out.overlap);
-      matchMappingRef.getObject().setName(entry.getKey());
-      for (var modelObj : modelObjs) {
-        var matchModelElemRef = modelObjTable.get(modelObj).createModelElementInstanceAndReference(modelObj, null);
+      matchMappingRef.getObject().setName(attrValue);
+      var matchModelEndpointRef = this.out.overlap.getModelEndpointRefs().get(0);
+      for (var modelObj1 : modelObjs1) {
+        var matchModelElemRef = matchModelEndpointRef.createModelElementInstanceAndReference(modelObj1, null);
+        this.out.modelElemTypeEndpoint.createInstanceAndReference(matchModelElemRef, matchMappingRef);
+      }
+      matchModelEndpointRef = this.out.overlap.getModelEndpointRefs().get(1);
+      for (var modelObj2 : modelObjs2) {
+        var matchModelElemRef = matchModelEndpointRef.createModelElementInstanceAndReference(modelObj2, null);
         this.out.modelElemTypeEndpoint.createInstanceAndReference(matchModelElemRef, matchMappingRef);
       }
     }
   }
 
   protected void match() throws MMINTException {
-    var modelObjAttrs = new HashMap<String, Set<EObject>>();
-    var modelObjTable = new HashMap<EObject, ModelEndpointReference>();
-    matchAttributes(this.in.model1, modelObjAttrs, modelObjTable);
-    matchAttributes(this.in.model2, modelObjAttrs, modelObjTable);
-    createMatchMappings(modelObjAttrs, modelObjTable);
+    var modelObjAttrs1 = matchModelElements(this.in.model1);
+    var modelObjAttrs2 = matchModelElements(this.in.model2);
+    filterMatches(modelObjAttrs1, modelObjAttrs2);
+    createMatchMappings(modelObjAttrs1, modelObjAttrs2);
   }
 
   @Override
