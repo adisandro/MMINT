@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classdiagram:ClassDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:classdiagram="http://se.cs.toronto.edu/modelepedia/ClassDiagram">
+  <classes name="EdgeIfc" subclasses="//@classes.9"/>
+  <classes name="EdgeIter"/>
+  <classes name="NeighborIfc"/>
+  <classes name="VertexIter"/>
+  <classes name="Vertex" associationsAsSource="//@associations.0" associationsAsTarget="//@associations.1 //@associations.3 //@associations.4 //@associations.6">
+    <ownedAttributes name="visited" type="//@datatypes.0" public="true"/>
+    <ownedAttributes name="VertexCycle" type="//@datatypes.1" public="true"/>
+    <ownedAttributes name="VertexColor" type="//@datatypes.1" public="true"/>
+    <ownedAttributes name="name" type="//@datatypes.2" public="true"/>
+  </classes>
+  <classes name="Graph" associationsAsSource="//@associations.1 //@associations.2" associationsAsTarget="//@associations.7">
+    <ownedAttributes name="isDirected" type="//@datatypes.3" public="true"/>
+  </classes>
+  <classes name="WorkSpace"/>
+  <classes name="CycleWorkSpace" associationsAsSource="//@associations.3">
+    <ownedAttributes name="AnyCycles" type="//@datatypes.0" public="true"/>
+    <ownedAttributes name="count" type="//@datatypes.1" public="true"/>
+    <ownedAttributes name="isDirected" type="//@datatypes.0" public="true"/>
+    <ownedAttributes name="WHITE" type="//@datatypes.1" public="true"/>
+    <ownedAttributes name="GRAY" type="//@datatypes.1" public="true"/>
+    <ownedAttributes name="BLACK" type="//@datatypes.1" public="true"/>
+  </classes>
+  <classes name="Neighbor" associationsAsSource="//@associations.4 //@associations.5" associationsAsTarget="//@associations.0">
+    <ownedAttributes name="weight" type="//@datatypes.1" public="true"/>
+  </classes>
+  <classes name="Edge" superclass="//@classes.0" associationsAsSource="//@associations.6" associationsAsTarget="//@associations.2 //@associations.5"/>
+  <classes name="Main" associationsAsSource="//@associations.7"/>
+  <associations name="neighbors" source="//@classes.4" target="//@classes.8"/>
+  <associations name="vertices" source="//@classes.5" target="//@classes.4"/>
+  <associations name="edges" source="//@classes.5" target="//@classes.9"/>
+  <associations name="vertices" source="//@classes.7" target="//@classes.4"/>
+  <associations name="end" source="//@classes.8" target="//@classes.4"/>
+  <associations name="edge" source="//@classes.8" target="//@classes.9"/>
+  <associations name="start" source="//@classes.9" target="//@classes.4"/>
+  <associations name="g" source="//@classes.10" target="//@classes.5"/>
+  <datatypes name="EBoolean"/>
+  <datatypes name="EInt"/>
+  <datatypes name="EString"/>
+  <datatypes name="EBooleanObject"/>
+</classdiagram:ClassDiagram>
