@@ -13,7 +13,6 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.kotlin.structs
 
-
 sealed class Option<out a> {
     companion object {
         fun <a> isSome(o : Option<a>): Boolean =

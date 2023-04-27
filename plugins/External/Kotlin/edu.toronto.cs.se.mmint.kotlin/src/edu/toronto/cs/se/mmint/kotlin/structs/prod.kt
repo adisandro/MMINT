@@ -13,6 +13,7 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.kotlin.structs
 
+
 sealed class Prod<out a,out b> {
 
 }
