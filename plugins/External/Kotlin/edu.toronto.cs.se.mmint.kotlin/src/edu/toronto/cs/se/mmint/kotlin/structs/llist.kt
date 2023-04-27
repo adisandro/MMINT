@@ -13,6 +13,7 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.kotlin.structs
 
+
 sealed class LList<out a> {
     companion object {
         fun <a> of(vararg args: a): LList<a> {
