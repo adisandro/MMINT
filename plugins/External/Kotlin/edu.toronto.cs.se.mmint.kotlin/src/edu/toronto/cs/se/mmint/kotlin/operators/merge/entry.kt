@@ -13,6 +13,7 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.kotlin.operators.merge
 import edu.toronto.cs.se.mmint.kotlin.structs.*
+import edu.toronto.cs.se.mmint.mid.reasoning.ISATReasoner
 
 /**
  * This can be used to do arbitrary merging of the attributes and references of an Object. Right now it just
@@ -55,7 +56,7 @@ fun merge(model1: Tree<Object>, model2: Tree<Object>, toMerge: Map<String,String
 // We never thought about making the merge relation variability-aware
 // This is an assumption, I guess
 
-fun mergePL(model1 : Tree<VarObj>, model2 : Tree<VarObj>, toMerge : Map<String,String>) : Tree<VarObj> {
+fun mergePL(model1 : Tree<VarObj>, model2 : Tree<VarObj>, toMerge : Map<String,String>, reasoner: ISATReasoner) : Tree<VarObj> {
     val tm : MutableMap<String,String> = toMerge.toMutableMap()
     tm[model1.node().toString()] = model2.node().toString()
     val mergeURImap = getMergeURImap(tm.toLList())
@@ -63,7 +64,7 @@ fun mergePL(model1 : Tree<VarObj>, model2 : Tree<VarObj>, toMerge : Map<String,S
     val withParentsInModel1 = swapParents(nonMergedRootsWithContainers, tm.reverse())
     val withModel2Branches = insertNonMergedObjects(model1, withParentsInModel1, model2)
     val uri12obj2 = tm.toLList().map { MkProd(it.fst(), model2.getSubObject(it.snd())) } .noJunk()
-    val mergeModel =  withModel2Branches.mapdata { checkAndMergePL({ o, p -> unionPL(toMerge, mergeURImap, o,p) }, it, tm, uri12obj2) }
+    val mergeModel =  withModel2Branches.mapdata { checkAndMergePL({ o, p -> unionPL(toMerge, mergeURImap, o, p, reasoner) }, it, tm, uri12obj2) }
     val mergeObjMap = mergeURImap.map {MkProd(it.fst(), mergeModel.getSubObject(it.snd()))} .noJunk()
     replaceRefsPL(mergeModel, mergeObjMap)
     return mergeModel

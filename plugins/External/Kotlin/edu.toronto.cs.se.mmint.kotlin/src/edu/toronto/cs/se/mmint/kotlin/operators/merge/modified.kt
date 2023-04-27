@@ -13,6 +13,7 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.kotlin.operators.merge
 import edu.toronto.cs.se.mmint.kotlin.structs.*
+import edu.toronto.cs.se.mmint.mid.reasoning.ISATReasoner
 
 
 /*****************************/
@@ -57,7 +58,7 @@ fun union(toMerge: Map<String, String>, mergedObjs: LList<Prod<String, String>>,
     return MkObject(mergedURI, mergedKind, mergedAttrs, mergedRefs)
 }
 
-fun unionPL(toMerge: Map<String, String>, mergedObjs: LList<Prod<String, String>>, left : VarObj, right : VarObj) : VarObj {
+fun unionPL(toMerge: Map<String, String>, mergedObjs: LList<Prod<String, String>>, left : VarObj, right : VarObj, reasoner: ISATReasoner) : VarObj {
     val mergedURI = when(val o = mergedObjs.lookup(left.uri())) {
         is None -> left.uri()
         is Some -> o.x
@@ -65,7 +66,8 @@ fun unionPL(toMerge: Map<String, String>, mergedObjs: LList<Prod<String, String>
     val mergedKind = if (left.kind() == right.kind()) left.kind() else "KIND_ERROR"
     val mergedAttrs = mergeAttrs(left.attrs(),right.attrs())
     val mergedRefs = mergeMaps(left.refsPL(),right.refsPL(), toMerge)
-    return MkVarObj(Or(left.pc(),right.pc()),mergedURI, mergedKind, mergedAttrs, mergedRefs)
+    val mergedPC = reasoner.simplify(reasoner.orSyntax.replace("$1", left.pc()).replace("$2", right.pc()))
+    return MkVarObj(mergedPC, mergedURI, mergedKind, mergedAttrs, mergedRefs)
 }
 
 /*****************************/
