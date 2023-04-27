@@ -226,6 +226,7 @@
     <module>../../examples/JASE20/edu.toronto.cs.se.mmint.example.jase20.iso26262</module>
     <module>../../examples/LMS/edu.toronto.cs.se.mmint.example.lms</module>
     <module>../../examples/MASE19/edu.toronto.cs.se.mmint.example.mase19</module>
+    <module>../../examples/MMPL/edu.toronto.cs.se.mmint.examples.mmpl</module>
     <module>../../examples/MoDELS20/edu.toronto.cs.se.mmint.example.models20</module>
     <module>../../examples/MODELS21/edu.toronto.cs.se.mmint.examples.models21</module>
     <module>../../examples/SCICO23/edu.toronto.cs.se.mmint.examples.scico23</module>
