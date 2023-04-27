@@ -15,6 +15,7 @@ package edu.toronto.cs.se.mmint.kotlin.operators.merge
 import edu.toronto.cs.se.mmint.kotlin.structs.*
 
 
+
 fun mergeAttrs(left : Map<String,String>, right : Map<String,String>) : MutableMap<String,String> {
     val leftIt = left.entries.iterator()
     val newAttrs = mutableMapOf<String,String>()
@@ -23,7 +24,7 @@ fun mergeAttrs(left : Map<String,String>, right : Map<String,String>) : MutableM
         val v1 = entry.value
         val newv = when (val v2 = right[entry.key]) {
             null -> v1
-            else -> v1+"_"+v2
+            else -> if (entry.key =="reasonerName"|| entry.key=="featureConstraint" || entry.key=="presenceCondition") v1 else v1+"_"+v2
         }
         newAttrs[entry.key]=newv
     }

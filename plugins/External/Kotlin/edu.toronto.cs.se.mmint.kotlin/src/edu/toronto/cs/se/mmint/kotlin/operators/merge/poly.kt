@@ -14,7 +14,6 @@
 package edu.toronto.cs.se.mmint.kotlin.operators.merge
 import edu.toronto.cs.se.mmint.kotlin.structs.*
 
-
 fun <a> getNonMergedRoots(root : String, dict : Map<String,String>, t : Tree<a>) : LList<Prod<String, Prod<String, String>>> =
     concatLists(t.children().map {c ->  concatLists(c.snd().map {it.dynamicMaxSubtreesAsEdges(c.fst(), root) {o-> !dict.containsValue(o.toString())}}) })
 
@@ -94,3 +93,19 @@ fun <a,b> updateMap(map : MutableMap<a,LList<b>>, from : LList<Prod<a, b>>):  Mu
     return newRefs
 }
 
+fun <a> checkAndMerge(
+    f: (a, a) -> a,
+    leftObject: a,
+    toMerge: Map<String, String>,
+    uri2Obj: LList<Prod<String, Tree<a>>>
+): a {
+    val v = leftObject.toString()
+    println("checking for $v")
+    return when (toMerge[leftObject.toString()]) {
+        null -> leftObject
+        else -> when (val o = uri2Obj.lookup(leftObject.toString())) {
+            is None -> leftObject
+            is Some -> f(leftObject, o.x.node())
+        }
+    }
+}
