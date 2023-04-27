@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mid:MID xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mid="http://se.cs.toronto.edu/mmint/MID" xmlns:relationship="http://se.cs.toronto.edu/mmint/MID/Relationship" level="WORKFLOWS">
+  <models uri="model1" name="model1" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Model" dynamic="true" origin="CREATED" fileExtension="xmi"/>
+  <models uri="model2" name="model2" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Model" dynamic="true" origin="CREATED" fileExtension="xmi"/>
+  <models xsi:type="relationship:ModelRel" uri="match" name="match" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Overlap" dynamic="true" origin="CREATED" fileExtension="">
+    <modelEndpoints uri="" name="model1" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Overlap-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0"/>
+    <modelEndpoints uri="" name="model2" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Overlap-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1"/>
+  </models>
+  <models uri="merged" name="merged" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Model" dynamic="true" origin="CREATED" fileExtension="xmi"/>
+  <models xsi:type="relationship:ModelRel" uri="trace1" name="trace1" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel" dynamic="true" origin="CREATED" fileExtension="">
+    <modelEndpoints uri="" name="model1" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0"/>
+    <modelEndpoints uri="" name="w0" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3"/>
+  </models>
+  <models xsi:type="relationship:ModelRel" uri="trace2" name="trace2" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel" dynamic="true" origin="CREATED" fileExtension="">
+    <modelEndpoints uri="" name="model2" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1"/>
+    <modelEndpoints uri="" name="w0" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3"/>
+  </models>
+  <models xsi:type="relationship:ModelRel" uri="mergeTrace" name="mergeTrace" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel" dynamic="true" origin="CREATED" fileExtension="">
+    <modelEndpoints uri="" name="match" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.2"/>
+    <modelEndpoints uri="" name="w0" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3"/>
+  </models>
+  <operators uri="" name="Query" level="WORKFLOWS" metatypeUri="edu.toronto.cs.se.mmint.operator.match.Query" dynamic="true">
+    <inputs uri="" name="model" level="WORKFLOWS" metatypeUri="edu.toronto.cs.se.mmint.operator.match.Query/model" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0"/>
+  </operators>
+  <operators uri="" name="Query" level="WORKFLOWS" metatypeUri="edu.toronto.cs.se.mmint.operator.match.Query" dynamic="true">
+    <inputs uri="" name="model" level="WORKFLOWS" metatypeUri="edu.toronto.cs.se.mmint.operator.match.Query/model" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1"/>
+  </operators>
+  <operators uri="" name="RandomMatch" level="WORKFLOWS" metatypeUri="edu.toronto.cs.se.mmint.operator.match.RandomMatch" dynamic="true">
+    <inputs uri="" name="model1" level="WORKFLOWS" metatypeUri="edu.toronto.cs.se.mmint.operator.match.RandomMatch/model1" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0"/>
+    <inputs uri="" name="model2" level="WORKFLOWS" metatypeUri="edu.toronto.cs.se.mmint.operator.match.RandomMatch/model2" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1"/>
+    <outputs uri="" name="overlap" level="WORKFLOWS" metatypeUri="edu.toronto.cs.se.mmint.operator.match.RandomMatch/overlap" dynamic="true" lowerBound="1" upperBound="1" target="//@models.2"/>
+  </operators>
+  <operators uri="" name="Merge" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_Merge" dynamic="true">
+    <inputs uri="" name="overlap" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_Merge-Overlap/overlap" dynamic="true" lowerBound="1" upperBound="1" target="//@models.2"/>
+    <outputs uri="" name="merged" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_Merge-Model/merged" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3"/>
+    <outputs uri="" name="trace1" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_Merge-ModelRel/trace1" dynamic="true" lowerBound="1" upperBound="1" target="//@models.4"/>
+    <outputs uri="" name="trace2" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_Merge-ModelRel/trace2" dynamic="true" lowerBound="1" upperBound="1" target="//@models.5"/>
+    <outputs uri="" name="mergeTrace" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_Merge-ModelRel/mergeTrace" dynamic="true" lowerBound="1" upperBound="1" target="//@models.6"/>
+  </operators>
+  <operators uri="" name="Query" level="WORKFLOWS" metatypeUri="edu.toronto.cs.se.mmint.operator.match.Query" dynamic="true">
+    <inputs uri="" name="model" level="WORKFLOWS" metatypeUri="edu.toronto.cs.se.mmint.operator.match.Query/model" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3"/>
+  </operators>
+  <extendibleTable key="model1" value="//@models.0"/>
+  <extendibleTable key="model2" value="//@models.1"/>
+  <extendibleTable key="match" value="//@models.2"/>
+  <extendibleTable key="trace1" value="//@models.4"/>
+  <extendibleTable key="trace2" value="//@models.5"/>
+  <extendibleTable key="merged" value="//@models.3"/>
+  <extendibleTable key="mergeTrace" value="//@models.6"/>
+</mid:MID>
