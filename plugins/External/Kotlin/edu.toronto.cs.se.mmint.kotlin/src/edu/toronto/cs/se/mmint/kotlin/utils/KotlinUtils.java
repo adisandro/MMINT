@@ -33,21 +33,21 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.kotlin.structs.LList;
 import edu.toronto.cs.se.mmint.kotlin.structs.LlistKt;
 import edu.toronto.cs.se.mmint.kotlin.structs.MkObj;
-import edu.toronto.cs.se.mmint.kotlin.structs.MkObjData;
+import edu.toronto.cs.se.mmint.kotlin.structs.MkTree;
 import edu.toronto.cs.se.mmint.kotlin.structs.Object;
+import edu.toronto.cs.se.mmint.kotlin.structs.Tree;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
 public class KotlinUtils {
 
-  private static MkObj eObjectToKObject(EObject modelObj) throws MMINTException {
+  private static Tree<Object> eObjectToKTree(EObject modelObj) throws MMINTException {
     var kObjAttrs = new HashMap<String, String>();
-    var kObjRefs = new HashMap<String, LList<Object>>();
-    var kObjCont = new HashMap<String, LList<Object>>();
-    var kObjData = new MkObjData(MIDRegistry.getModelElementUri(modelObj), modelObj.eClass().getName(), kObjAttrs,
-                                 kObjRefs);
-    var kObj = new MkObj(kObjData, kObjCont);
+    var kObjRefs = new HashMap<String, LList<Tree<Object>>>();
+    var kObjCont = new HashMap<String, LList<Tree<Object>>>();
+    var kObj = new MkObj(MIDRegistry.getModelElementUri(modelObj), modelObj.eClass().getName(), kObjAttrs, kObjRefs);
+    var kTree = new MkTree<>(kObj, kObjCont);
     for (var attribute : modelObj.eClass().getEAllAttributes()) {
       if (!attribute.isChangeable() || attribute.isDerived()) {
         continue;
@@ -60,12 +60,13 @@ public class KotlinUtils {
       kObjAttrs.put(attributeName, attributeValue.toString());
     }
 
-    return kObj;
+    return kTree;
   }
 
-  private static void eRefsToKRefs(EObject modelObj, MkObj kObj, Map<EObject, MkObj> eObjToKObj) throws MMINTException {
-    var kObjRefs = ((MkObjData) kObj.getData()).getRefs();
-    var kObjCont = kObj.getContains();
+  private static void eRefsToKRefs(EObject modelObj, Tree<Object> kTree, Map<EObject, Tree<Object>> eObjToKTree)
+                                  throws MMINTException {
+    var kObjRefs = ((MkTree<Object>) kTree).getNode().getRefs();
+    var kObjCont = ((MkTree<Object>) kTree).getContains();
     for (var reference : modelObj.eClass().getEAllReferences()) {
       if (!reference.isChangeable() || reference.isDerived()) {
         continue;
@@ -81,32 +82,32 @@ public class KotlinUtils {
       if (referenceModelObjs.isEmpty()) {
         continue;
       }
-      var referenceKObjs = new ArrayList<Object>();
+      var referenceKTrees = new ArrayList<Tree<Object>>();
       for (var referenceModelObj : referenceModelObjs) {
-        var referenceKObj = eObjToKObj.computeIfAbsent(referenceModelObj,
-          k -> new MkObj( // reference to external element
-            new MkObjData(MIDRegistry.getModelElementUri(k), k.eClass().getName(), Map.of(), Map.of()), Map.of()));
-        referenceKObjs.add(referenceKObj);
+        var referenceKTree = eObjToKTree.computeIfAbsent(referenceModelObj,
+          k -> new MkTree<>( // reference to external element
+                 new MkObj(MIDRegistry.getModelElementUri(k), k.eClass().getName(), Map.of(), Map.of()), Map.of()));
+        referenceKTrees.add(referenceKTree);
       }
       var kObjMap = (reference.isContainment()) ? kObjCont : kObjRefs;
-      kObjMap.put(referenceName, LList.Companion.<Object>of(referenceKObjs.toArray(new Object[0])));
+      kObjMap.put(referenceName, LlistKt.toLList(referenceKTrees));
     }
   }
 
-  public static MkObj modelToKModel(Model model) throws MMINTException {
-    var eObjToKObj = new HashMap<EObject, MkObj>();
+  public static Tree<Object> modelToKTree(Model model) throws MMINTException {
+    var eObjToKTree = new HashMap<EObject, Tree<Object>>();
     var rootModelObj = model.getEMFInstanceRoot();
-    var rootKObj = eObjectToKObject(rootModelObj);
-    eObjToKObj.put(rootModelObj, rootKObj);
+    var rootKTree = eObjectToKTree(rootModelObj);
+    eObjToKTree.put(rootModelObj, rootKTree);
     for (var iter = rootModelObj.eAllContents(); iter.hasNext(); ) {
       var modelObj = iter.next();
-      eObjToKObj.put(modelObj, eObjectToKObject(modelObj));
+      eObjToKTree.put(modelObj, eObjectToKTree(modelObj));
     }
-    for (var entry : Set.copyOf(eObjToKObj.entrySet())) {
-      eRefsToKRefs(entry.getKey(), entry.getValue(), eObjToKObj);
+    for (var entry : Set.copyOf(eObjToKTree.entrySet())) {
+      eRefsToKRefs(entry.getKey(), entry.getValue(), eObjToKTree);
     }
 
-    return rootKObj;
+    return rootKTree;
   }
 
   private static String eObjectToKFile(EObject modelObj, int i) throws MMINTException {
@@ -196,11 +197,11 @@ public class KotlinUtils {
     }
   }
 
-  private static EObject kObjectToEObject(MkObj kObj, EPackage modelPackage) {
+  private static EObject kTreeToEObject(Tree<? extends Object> kTree, EPackage modelPackage) {
     var modelFactory = modelPackage.getEFactoryInstance();
-    var kObjData = (MkObjData) kObj.getData();
-    var modelObj = modelFactory.create((EClass) modelPackage.getEClassifier(kObjData.getKind()));
-    for (var kAttrEntry : kObjData.getAttrs().entrySet()) {
+    var kObj = ((MkTree<? extends Object>) kTree).getNode();
+    var modelObj = modelFactory.create((EClass) modelPackage.getEClassifier(kObj.getKind()));
+    for (var kAttrEntry : kObj.getAttrs().entrySet()) {
       var attribute = (EAttribute) modelObj.eClass().getEStructuralFeature(kAttrEntry.getKey());
       var attributeValue = FileUtils.convertStringToEType(attribute, kAttrEntry.getValue());
       modelObj.eSet(attribute, attributeValue);
@@ -209,14 +210,14 @@ public class KotlinUtils {
     return modelObj;
   }
 
-  private static EObject kObjectsToEObjects(MkObj kObj, EPackage modelPackage, Map<MkObj, EObject> kObjToEObj)
-                                           throws MMINTException {
-    var modelObj = kObjectToEObject(kObj, modelPackage);
-    kObjToEObj.put(kObj, modelObj);
-    for (var kContEntry : kObj.getContains().entrySet()) {
+  private static EObject kTreesToEObjects(Tree<? extends Object> kTree, EPackage modelPackage,
+                                          Map<Tree<? extends Object>, EObject> kTreeToEObj) throws MMINTException {
+    var modelObj = kTreeToEObject(kTree, modelPackage);
+    kTreeToEObj.put(kTree, modelObj);
+    for (var kContEntry : ((MkTree<? extends Object>) kTree).getContains().entrySet()) {
       var containment = modelObj.eClass().getEStructuralFeature(kContEntry.getKey());
       for (var containedkObj : LlistKt.toList(kContEntry.getValue())) {
-        var containedModelObj = kObjectsToEObjects((MkObj) containedkObj, modelPackage, kObjToEObj);
+        var containedModelObj = kTreesToEObjects(containedkObj, modelPackage, kTreeToEObj);
         FileUtils.setModelObjectFeature(modelObj, containment, containedModelObj);
       }
     }
@@ -224,13 +225,14 @@ public class KotlinUtils {
     return modelObj;
   }
 
-  private static void kRefsToERefs(MkObj kObj, EObject modelObj, Map<MkObj, EObject> kObjToEObj) throws Exception {
-    for (var kRefEntry : ((MkObjData) kObj.getData()).getRefs().entrySet()) {
+  private static void kRefsToERefs(Tree<? extends Object> kTree, EObject modelObj,
+                                   Map<Tree<? extends Object>, EObject> kTreeToEObj) throws Exception {
+    for (var kRefEntry : ((MkTree<? extends Object>) kTree).getNode().getRefs().entrySet()) {
       var reference = modelObj.eClass().getEStructuralFeature(kRefEntry.getKey());
-      for (var referenceKObj : LlistKt.toList(kRefEntry.getValue())) {
-        var referenceModelObj = kObjToEObj.get(referenceKObj);
+      for (var referenceKTree : LlistKt.toList(kRefEntry.getValue())) {
+        var referenceModelObj = kTreeToEObj.get(referenceKTree);
         if (referenceModelObj == null) { // reference to external element
-          var referenceUri = ((MkObjData) ((MkObj) referenceKObj).getData()).getUri();
+          var referenceUri = ((MkTree<? extends Object>) referenceKTree).getNode().getUri();
           try {
             if (referenceUri.startsWith("http")) {
               var metamodel = EPackage.Registry.INSTANCE.getEPackage(MIDRegistry.getModelUri(referenceUri));
@@ -239,7 +241,7 @@ public class KotlinUtils {
             else {
               referenceModelObj = FileUtils.readModelObject(referenceUri, null);
             }
-            kObjToEObj.put((MkObj) referenceKObj, referenceModelObj);
+            kTreeToEObj.put(referenceKTree, referenceModelObj);
           }
           catch (Exception e) {
             MMINTException.print(IStatus.INFO, "Reference with uri " + referenceUri + " not found, skipping it", e);
@@ -250,11 +252,11 @@ public class KotlinUtils {
     }
   }
 
-  public static EObject kModelToModel(MkObj kModel, EPackage modelPackage) throws Exception {
-    var kObjToEObj = new HashMap<MkObj, EObject>();
-    var rootModelObj = kObjectsToEObjects(kModel, modelPackage, kObjToEObj);
-    for (var entry : Set.copyOf(kObjToEObj.entrySet())) {
-      kRefsToERefs(entry.getKey(), entry.getValue(), kObjToEObj);
+  public static EObject kTreeToModel(Tree<? extends Object> kTree, EPackage modelPackage) throws Exception {
+    var kTreeToEObj = new HashMap<Tree<? extends Object>, EObject>();
+    var rootModelObj = kTreesToEObjects(kTree, modelPackage, kTreeToEObj);
+    for (var entry : Set.copyOf(kTreeToEObj.entrySet())) {
+      kRefsToERefs(entry.getKey(), entry.getValue(), kTreeToEObj);
     }
 
     return rootModelObj;

@@ -29,8 +29,9 @@ import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MMINTConstants;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorConstraint;
-import edu.toronto.cs.se.mmint.kotlin.operators.merge.MergeKt;
-import edu.toronto.cs.se.mmint.kotlin.structs.MkObj;
+import edu.toronto.cs.se.mmint.kotlin.operators.merge.EntryKt;
+import edu.toronto.cs.se.mmint.kotlin.structs.Object;
+import edu.toronto.cs.se.mmint.kotlin.structs.Tree;
 import edu.toronto.cs.se.mmint.kotlin.utils.KotlinUtils;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
@@ -327,16 +328,16 @@ public class Merge extends OperatorImpl {
     FileUtils.createTextFile(FileUtils.replaceLastSegmentInPath(this.in.model1.getUri(), "debug.kt"), overlapKVal, true);
   }
 
-  protected MkObj kMerge(MkObj kModel1, MkObj kModel2, Map<String, String> overlap) {
-    return (MkObj) MergeKt.merge(kModel1, kModel2, overlap);
+  protected Tree<? extends Object> kMerge(Tree<Object> kModel1, Tree<Object> kModel2, Map<String, String> overlap) {
+    return EntryKt.merge(kModel1, kModel2, overlap);
   }
 
   private void kMerge() throws Exception {
-    var kModel1 = KotlinUtils.modelToKModel(this.in.model1);
-    var kModel2 = KotlinUtils.modelToKModel(this.in.model2);
+    var kModel1 = KotlinUtils.modelToKTree(this.in.model1);
+    var kModel2 = KotlinUtils.modelToKTree(this.in.model2);
     var kMergedModel = kMerge(kModel1, kModel2, getOverlapModelElementUris());
     var modelPackage = this.in.model1.getEMFInstanceRoot().eClass().getEPackage();
-    var rootMergedModelObj = KotlinUtils.kModelToModel(kMergedModel, modelPackage);
+    var rootMergedModelObj = KotlinUtils.kTreeToModel(kMergedModel, modelPackage);
     FileUtils.writeModelFile(rootMergedModelObj, this.out.merged.getUri(), null, true);
   }
 

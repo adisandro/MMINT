@@ -18,8 +18,10 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.kotlin.operators.merge.MergeKt;
-import edu.toronto.cs.se.mmint.kotlin.structs.MkObj;
+import edu.toronto.cs.se.mmint.kotlin.operators.merge.EntryKt;
+import edu.toronto.cs.se.mmint.kotlin.structs.Object;
+import edu.toronto.cs.se.mmint.kotlin.structs.Tree;
+import edu.toronto.cs.se.mmint.kotlin.structs.VarKt;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
@@ -88,14 +90,11 @@ public class PLMerge extends Merge {
       case "presenceCondition" -> {
         var pc1 = (String) FileUtils.getModelObjectFeature(modelObj, attributeName);
         var pc2 = (String) FileUtils.getModelObjectFeature(mergedModelObj, attributeName);
-        var mergedPc = this.reasoner.simplify(this.pcMergeSyntax.replace("$1", pc2).replace("$2", pc1));
+        var mergedPc = this.reasoner.simplify(this.pcMergeSyntax.replace("$1", pc1).replace("$2", pc2));
         FileUtils.setModelObjectFeature(mergedModelObj, attributeName, mergedPc);
       }
       default -> super.mergeAttribute(attributeName, modelObj, mergedModelObj);
     }
-    //TODO update all LogicNG product lines to new true literal
-    //TODO create splc23 project
-    //TODO isolate vamos models into own project (referred from vamos23 and splc23)
     /**TODO MMINT[PL] Add to input constraint:
      *  1) checks for compatible overlap types (merge based on eclasses, pl based on type ref)
      *  2) pls must have same feature model
@@ -104,8 +103,8 @@ public class PLMerge extends Merge {
 
   @Override
   @PLPipeline.Modify
-  protected MkObj kMerge(MkObj kModel1, MkObj kModel2, Map<String, String> overlap) {
-    return (MkObj) MergeKt.mergePL(kModel1, kModel2, overlap);
+  protected Tree<? extends Object> kMerge(Tree<Object> kModel1, Tree<Object> kModel2, Map<String, String> overlap) {
+    return EntryKt.mergePL(VarKt.toTreeVarObj(kModel1), VarKt.toTreeVarObj(kModel2), overlap, this.reasoner);
   }
 
   @Override
