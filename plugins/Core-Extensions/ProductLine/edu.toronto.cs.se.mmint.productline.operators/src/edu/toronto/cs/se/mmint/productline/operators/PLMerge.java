@@ -103,6 +103,20 @@ public class PLMerge extends Merge {
   }
 
   @Override
+  protected String kMergeDebugCall() {
+    return "  val reasoner = object: ISATReasoner {\n" +
+           "    override fun getName(): String { return \"\" }\n" +
+           "    override fun getTrueLiteral(): String { return \"\" }\n" +
+           "    override fun getFalseLiteral(): String { return \"\" }\n" +
+           "    override fun getANDSyntax(): String { return \"\" }\n" +
+           "    override fun getORSyntax(): String {return \"($1) | ($2)\"}\n" +
+           "  }\n" +
+           "  val merged = mergePL(create" + this.in.model1.getName() + "().toTreeVarObj(), create" +
+              this.in.model2.getName() + "().toTreeVarObj(), overlap, reasoner)\n" +
+           "}\n";
+  }
+
+  @Override
   @PLPipeline.Modify
   protected Tree<? extends Object> kMerge(Tree<Object> kModel1, Tree<Object> kModel2, Map<String, String> overlap) {
     return EntryKt.mergePL(VarKt.toTreeVarObj(kModel1), VarKt.toTreeVarObj(kModel2), overlap, this.reasoner);

@@ -111,9 +111,9 @@ public class KotlinConverter {
   }
 
   protected String eObjectToKFile(EObject modelObj, int i) throws MMINTException {
-    var kStr = "  val obj" + i + "Refs = mutableMapOf<String, LList<Object>>()\n";
-    kStr += "  val obj" + i + "Cont = mutableMapOf<String, LList<Object>>()\n";
-    kStr += "  val obj" + i + " = MkObj(MkObjData(uri=\"" + MIDRegistry.getModelElementUri(modelObj) + "\", kind=\"" +
+    var kStr = "  val obj" + i + "Refs = mutableMapOf<String, LList<Tree<Object>>>()\n";
+    kStr += "  val obj" + i + "Cont = mutableMapOf<String, LList<Tree<Object>>>()\n";
+    kStr += "  val obj" + i + " = MkTree(MkObj(uri=\"" + MIDRegistry.getModelElementUri(modelObj) + "\", kind=\"" +
             modelObj.eClass().getName() + "\", attrs=mapOf(";
     for (var attribute : modelObj.eClass().getEAllAttributes()) {
       if (!attribute.isChangeable() || attribute.isDerived()) {
@@ -124,7 +124,7 @@ public class KotlinConverter {
       if (attributeValue == null) {
         continue;
       }
-      kStr += "\"" + attributeName + "\" to \"" + attributeValue.toString() + "\", ";
+      kStr += "\"" + attributeName + "\" to \"" + attributeValue.toString().replace("$", "\\$") + "\", ";
     }
     kStr += "), refs=obj" + i + "Refs), contains=obj" + i + "Cont)\n";
 
@@ -154,9 +154,9 @@ public class KotlinConverter {
         var kExtVar = "ext" + i;
         var referenceKVar = eObjToKVar.computeIfAbsent(referenceModelObj, k -> kExtVar);
         if (referenceKVar.equals(kExtVar)) { // reference to external element
-          kStr += "  val ext" + i + " = MkObj(MkObjData(uri=\"" + MIDRegistry.getModelElementUri(referenceModelObj) +
+          kStr += "  val ext" + i + " = MkTree(MkObj(uri=\"" + MIDRegistry.getModelElementUri(referenceModelObj) +
                   "\", kind=\"" + referenceModelObj.eClass().getName() +
-                  "\", attrs=mapOf(), refs=mapOf()), contains=mapOf())\n";
+                  "\", attrs=mapOf(), refs=mutableMapOf()), contains=mapOf())\n";
           i++;
         }
         referenceKVars.add(referenceKVar);
@@ -176,7 +176,7 @@ public class KotlinConverter {
     try (var writer = Files.newBufferedWriter(Paths.get(filePath), Charset.forName("UTF-8"))) {
       writer.write("package edu.toronto.cs.se.mmint.kotlin.operators.examples\n" +
                    "import edu.toronto.cs.se.mmint.kotlin.structs.*\n\n" +
-                   "fun create" + model.getName() + "() : Object {\n");
+                   "fun create" + model.getName() + "() : Tree<Object> {\n");
       var i = 0;
       var eObjToKVar = new HashMap<EObject, String>();
       var rootModelObj = model.getEMFInstanceRoot();

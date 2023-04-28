@@ -312,22 +312,27 @@ public class Merge extends OperatorImpl {
     }
   }
 
+  protected String kMergeDebugCall() {
+    return "  val merged = merge(create" + this.in.model1.getName() + "(), create" + this.in.model2.getName() +
+             "(), overlap)\n" +
+           "}\n";
+  }
+
   private void kMergeDebug() throws Exception {
     this.kConverter.modelToKFile(this.in.model1, FileUtils.replaceFileExtensionInPath(this.in.model1.getUri(), "kt"),
                                  true);
     this.kConverter.modelToKFile(this.in.model2, FileUtils.replaceFileExtensionInPath(this.in.model2.getUri(), "kt"),
                                  true);
     var overlapKVal = "package edu.toronto.cs.se.mmint.kotlin.operators.examples\n" +
+                      "import edu.toronto.cs.se.mmint.kotlin.structs.*\n\n" +
                       "import edu.toronto.cs.se.mmint.kotlin.operators.merge.*\n\n" +
+                      "import edu.toronto.cs.se.mmint.mid.reasoning.ISATReasoner\n\n" +
                       "fun main() {\n" +
                       "  val overlap = mapOf(\n";
     overlapKVal += getOverlapModelElementUris().entrySet().stream()
       .map(e -> "    \"" + e.getKey() + "\" to \"" + e.getValue() + "\"")
       .collect(Collectors.joining(",\n"));
-    overlapKVal += ")\n" +
-                   "  val merged = merge(create" + this.in.model1.getName() + "(), create" + this.in.model2.getName() +
-                     "(), overlap)\n" +
-                   "}\n";
+    overlapKVal += ")\n" + kMergeDebugCall();
     FileUtils.createTextFile(FileUtils.replaceLastSegmentInPath(this.in.model1.getUri(), "debug.kt"), overlapKVal, true);
   }
 
