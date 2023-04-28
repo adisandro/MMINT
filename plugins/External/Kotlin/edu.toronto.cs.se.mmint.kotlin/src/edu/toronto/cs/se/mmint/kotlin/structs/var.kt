@@ -40,7 +40,7 @@ data class VarObj(val pcond : String,
             mergedObjs: LList<Prod<String, String>>,
             left: VarObj,
             right: VarObj,
-            reasoner : ISATReasoner
+            reasoner: ISATReasoner
         ): VarObj {
 //            println("here")
             val mergedURI = when (val o = mergedObjs.lookup(left.uri)) {
@@ -51,9 +51,7 @@ data class VarObj(val pcond : String,
             val mergedAttrs = mergeAttrs(left.attrs, right.attrs)
             val mergedRefs = mergeMaps(left.refs, right.refs, toMerge)
             val mergedPC = reasoner.simplify(reasoner.orSyntax.replace("$1", left.pcond).replace("$2", right.pcond))
-            return VarObj(
-                mergedPC,
-                mergedURI, mergedKind, mergedAttrs, mergedRefs
+            return VarObj(mergedPC,mergedURI, mergedKind, mergedAttrs, mergedRefs
             )
         }
 
