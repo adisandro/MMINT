@@ -12,7 +12,6 @@ Bundle-ClassPath: target/dependency/kotlin-osgi-bundle.jar,
  target/kotlin/
 Export-Package: edu.toronto.cs.se.mmint.kotlin.structs,
  edu.toronto.cs.se.mmint.kotlin.operators.merge,
- edu.toronto.cs.se.mmint.kotlin.operators.slice,
  edu.toronto.cs.se.mmint.kotlin.utils
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore,
