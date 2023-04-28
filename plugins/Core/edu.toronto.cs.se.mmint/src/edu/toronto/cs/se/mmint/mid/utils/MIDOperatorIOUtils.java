@@ -17,8 +17,6 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Path;
-import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -91,10 +89,10 @@ public class MIDOperatorIOUtils {
 	}
 
 	public static void writeOutputProperties(Operator operator, Properties outProps) throws Exception {
-	  var outPropsPath = Path.of(operator.getWorkingPath(),
-	                             MessageFormat.format("{0}{1}{2}", operator.getName(), MIDOperatorIOUtils.OUTPUT_PROPERTIES_SUFFIX,
-	                                                  MIDOperatorIOUtils.PROPERTIES_SUFFIX));
-	  outProps.store(new FileOutputStream(FileUtils.prependWorkspacePath(outPropsPath.toString())), null);
+	  var path = operator.getWorkingPath() + File.separator + operator.getName() +
+	             MIDOperatorIOUtils.OUTPUT_PROPERTIES_SUFFIX + MIDOperatorIOUtils.PROPERTIES_SUFFIX;
+	  path = FileUtils.getUniquePath(path, true, false);
+	  outProps.store(new FileOutputStream(FileUtils.prependWorkspacePath(path)), null);
 	}
 
 	//TODO MMINT[OPERATOR] Remove
