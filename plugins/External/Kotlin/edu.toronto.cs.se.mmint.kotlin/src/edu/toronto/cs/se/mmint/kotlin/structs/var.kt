@@ -18,11 +18,6 @@ import edu.toronto.cs.se.mmint.kotlin.operators.merge.mergeAttrs
 import edu.toronto.cs.se.mmint.kotlin.operators.merge.mergeMaps
 import edu.toronto.cs.se.mmint.mid.reasoning.ISATReasoner
 
-//
-
-fun Or(left : String, right : String) : String = "$left | $right"
-
-
 
 data class VarObj(val pcond : String,
                    override val uri: String,
@@ -51,8 +46,7 @@ data class VarObj(val pcond : String,
             val mergedAttrs = mergeAttrs(left.attrs, right.attrs)
             val mergedRefs = mergeMaps(left.refs, right.refs, toMerge)
             val mergedPC = reasoner.simplify(reasoner.orSyntax.replace("$1", left.pcond).replace("$2", right.pcond))
-            return VarObj(mergedPC,mergedURI, mergedKind, mergedAttrs, mergedRefs
-            )
+            return VarObj(mergedPC,mergedURI, mergedKind, mergedAttrs, mergedRefs)
         }
 
     fun VarObj.setRefs(map: MutableMap<String,LList<Tree<VarObj>>>) {
