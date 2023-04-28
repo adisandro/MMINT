@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -312,7 +313,12 @@ public class ModelImpl extends GenericElementImpl implements Model {
       var emfResource = getEMFInstanceResourceGen();
       if (emfResource == null) {
         // load resource within the container MID's resource set
-        emfResource = FileUtils.getEMFResource(getUri(), eResource().getResourceSet(), true);
+        var midResource = eResource(); // can be null when running in an experiment
+        ResourceSet resourceSet = null;
+        if (midResource != null) {
+          resourceSet = midResource.getResourceSet();
+        }
+        emfResource = FileUtils.getEMFResource(getUri(), resourceSet, true);
         // bypass EMF notifications and the need for a write transaction
         this.emfInstanceResource = emfResource;
       }
@@ -585,11 +591,11 @@ public class ModelImpl extends GenericElementImpl implements Model {
     @Override
     public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
     if (baseClass == ExtendibleElement.class) {
-      switch (baseOperationID) {
-        case MIDPackage.EXTENDIBLE_ELEMENT___GET_METATYPE: return MIDPackage.MODEL___GET_METATYPE;
-        case MIDPackage.EXTENDIBLE_ELEMENT___GET_MID_CONTAINER: return MIDPackage.MODEL___GET_MID_CONTAINER;
-        default: return super.eDerivedOperationID(baseOperationID, baseClass);
-      }
+      return switch (baseOperationID) {
+      case MIDPackage.EXTENDIBLE_ELEMENT___GET_METATYPE -> MIDPackage.MODEL___GET_METATYPE;
+      case MIDPackage.EXTENDIBLE_ELEMENT___GET_MID_CONTAINER -> MIDPackage.MODEL___GET_MID_CONTAINER;
+      default -> super.eDerivedOperationID(baseOperationID, baseClass);
+      };
     }
     return super.eDerivedOperationID(baseOperationID, baseClass);
   }

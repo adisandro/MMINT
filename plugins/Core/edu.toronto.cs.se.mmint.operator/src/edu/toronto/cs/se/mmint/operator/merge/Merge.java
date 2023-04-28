@@ -88,12 +88,14 @@ public class Merge extends OperatorImpl {
     public ModelRel trace1;
     public ModelRel trace2;
     public ModelRel mergeTrace;
+    public MID mergedMID;
 
     public Out(String workingPath, In in, Map<String, MID> outputMIDsByName) throws Exception {
+      this.mergedMID = outputMIDsByName.get(Out.MODEL);
       var mergedModelName = in.model1.getName() + Merge.MERGE_SEPARATOR + in.model2.getName() +
                             MMINTConstants.MODEL_FILEEXTENSION_SEPARATOR + in.model1.getFileExtension();
       var mergedModelPath = FileUtils.getUniquePath(workingPath + File.separator + mergedModelName, true, false);
-      this.merged = in.model1.getMetatype().createInstance(null, mergedModelPath, outputMIDsByName.get(Out.MODEL));
+      this.merged = in.model1.getMetatype().createInstance(null, mergedModelPath, this.mergedMID);
       var modelRelType = MIDTypeHierarchy.getRootModelRelType();
       this.trace1 = modelRelType.createBinaryInstanceAndEndpoints(null, Out.MODELREL1, in.model1, this.merged,
                                                                   outputMIDsByName.get(Out.MODELREL1));
@@ -104,7 +106,9 @@ public class Merge extends OperatorImpl {
     }
 
     public Map<String, Model> packed() throws Exception {
-      this.merged.createInstanceEditor(true); // opens the new model editor as side effect
+      if (this.mergedMID != null) { // can happen when running in an experiment
+        this.merged.createInstanceEditor(true);
+      }
 
       return Map.of(Out.MODEL, this.merged,
                     Out.MODELREL1, this.trace1,
