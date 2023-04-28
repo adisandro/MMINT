@@ -27,7 +27,6 @@ import java.util.Properties;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -448,11 +447,11 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
     @Override
     public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
     if (baseClass == ExtendibleElement.class) {
-      switch (baseOperationID) {
-        case MIDPackage.EXTENDIBLE_ELEMENT___GET_METATYPE: return OperatorPackage.OPERATOR___GET_METATYPE;
-        case MIDPackage.EXTENDIBLE_ELEMENT___GET_MID_CONTAINER: return OperatorPackage.OPERATOR___GET_MID_CONTAINER;
-        default: return super.eDerivedOperationID(baseOperationID, baseClass);
-      }
+      return switch (baseOperationID) {
+      case MIDPackage.EXTENDIBLE_ELEMENT___GET_METATYPE -> OperatorPackage.OPERATOR___GET_METATYPE;
+      case MIDPackage.EXTENDIBLE_ELEMENT___GET_MID_CONTAINER -> OperatorPackage.OPERATOR___GET_MID_CONTAINER;
+      default -> super.eDerivedOperationID(baseOperationID, baseClass);
+      };
     }
     return super.eDerivedOperationID(baseOperationID, baseClass);
   }
@@ -1203,42 +1202,31 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
     }
 
     /**
-     * Gets the uri of the properties file of this operator.
-     *
-     * @param suffix
-     *            The suffix of the properties file.
-     * @return The uri of the properties file.
-     * @generated NOT
-     */
-    private String getPropertiesUri(@NonNull String suffix) {
-
-        var workingPath = this.getWorkingPath();
-        if (workingPath == null) {
-            IFile instanceMIDFile = MMINT.getActiveInstanceMIDFile();
-            if (instanceMIDFile == null) { // can happen when an operator is invoked from a model editor
-                return null;
-            }
-            workingPath = instanceMIDFile.getParent().getFullPath().toString();
-        }
-        var propertiesUri = FileUtils.prependWorkspacePath(workingPath) + File.separator + this.getName() + suffix +
-                               MIDOperatorIOUtils.PROPERTIES_SUFFIX;
-
-        return propertiesUri;
-    }
-
-    /**
      * @generated NOT
      */
     @Override
     public Properties getInputProperties() {
-
-        var propertiesUri =  this.getPropertiesUri(MIDOperatorIOUtils.INPUT_PROPERTIES_SUFFIX);
         var inputProperties = new Properties();
+        var workingPath = getWorkingPath();
+        if (workingPath == null) {
+            var instanceMIDFile = MMINT.getActiveInstanceMIDFile();
+            if (instanceMIDFile == null) { // can happen when an operator is invoked from a model editor
+                return inputProperties;
+            }
+            workingPath = instanceMIDFile.getParent().getFullPath().toString();
+        }
+        workingPath = FileUtils.prependWorkspacePath(workingPath);
+        var propertiesPath = workingPath + File.separator + getClass().getSimpleName() +
+                             MIDOperatorIOUtils.INPUT_PROPERTIES_SUFFIX + MIDOperatorIOUtils.PROPERTIES_SUFFIX;
+        if (!FileUtils.isFile(propertiesPath, false)) {
+          propertiesPath = workingPath + File.separator + getName() + MIDOperatorIOUtils.INPUT_PROPERTIES_SUFFIX +
+                           MIDOperatorIOUtils.PROPERTIES_SUFFIX;
+        }
         try {
-            inputProperties.load(new FileInputStream(propertiesUri));
+            inputProperties.load(new FileInputStream(propertiesPath));
         }
         catch (Exception e) {
-            // do nothing
+            // fallback to empty properties
         }
 
         return inputProperties;
