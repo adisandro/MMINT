@@ -68,11 +68,13 @@ public class RandomMatch extends Match {
       var modelObjs1 = entry1.getValue();
       if (modelObjs1.isEmpty()) {
         entries1.remove(ri);
+        i--;
         continue;
       }
       var modelObjs2 = modelObjAttrs2.get(attrStr);
       if (modelObjs2 == null || modelObjs2.isEmpty()) {
         entries1.remove(ri);
+        i--;
         continue;
       }
       ri = r.nextInt(modelObjs1.size());
