@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.mmint.example.lms;singleton:=true
-Bundle-Version: 2.16.99.qualifier
+Bundle-Version: 2.17.0.qualifier
 Automatic-Module-Name: edu.toronto.cs.se.mmint.example.lms
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.emf.common.ui

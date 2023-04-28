@@ -15,6 +15,7 @@ package edu.toronto.cs.se.mmint.productline.design.tools;
 import java.util.Collection;
 import java.util.Map;
 
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -24,10 +25,16 @@ import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.sirius.business.api.action.AbstractExternalJavaAction;
 import org.eclipse.sirius.business.api.session.SessionManager;
 
+import edu.toronto.cs.se.mmint.MIDTypeRegistry;
+import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogLabelProvider;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.productline.ProductLineFactory;
+import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeaturesTrait;
 
 public class CreateClass extends AbstractExternalJavaAction {
 
@@ -55,21 +62,35 @@ public class CreateClass extends AbstractExternalJavaAction {
     @Override
     protected void doExecute() {
       try {
+        if (this.productLine.getMetamodel() == null) {
+          var modelTypes = MIDTypeRegistry.getModelTypes().stream()
+            .filter(m -> !(m instanceof ModelRel))
+            .toArray(Model[]::new);
+          var modelType = MIDDialogs.<Model>openListDialog("Init Product Line", "Select Product model type", modelTypes,
+                                                           new ArrayContentProvider(), new MIDDialogLabelProvider());
+          this.productLine.setMetamodel(modelType.getEMFTypeRoot());
+        }
+        if (this.productLine.getReasonerName() == null) {
+          var plReasoner = MIDDialogs.selectReasoner(IProductLineFeaturesTrait.class, "Product Line features", null);
+          this.productLine.setReasonerName(plReasoner.getName());
+        }
         var labelProvider = LabelProvider.createTextProvider(c -> ((EClass) c).getName());
-        var contentProvider = new ArrayContentProvider();
         var classes = this.productLine.getMetamodel().getEClassifiers().stream()
           .filter(c -> c instanceof EClass)
           .map(c -> (EClass) c)
           .filter(c -> !c.isAbstract() && !c.isInterface())
           .toArray(EClass[]::new);
-        var type = MIDDialogs.<EClass>openListDialog("Create Class", "Select Class", classes, contentProvider,
-                                                     labelProvider);
+        var type = MIDDialogs.<EClass>openListDialog("Create Class", "Select Class", classes,
+                                                     new ArrayContentProvider(), labelProvider);
         var clazz = ProductLineFactory.eINSTANCE.createClass();
         clazz.setType(type);
         this.productLine.getClasses().add(clazz);
       }
       catch (MIDDialogCancellation e) {
         // do nothing
+      }
+      catch (MMINTException e) {
+        MMINTException.print(IStatus.ERROR, "Error initializing product line", e);
       }
     }
   }

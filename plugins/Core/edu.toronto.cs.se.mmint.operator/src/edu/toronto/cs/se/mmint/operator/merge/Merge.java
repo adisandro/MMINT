@@ -85,15 +85,14 @@ public class Merge extends OperatorImpl {
     public ModelRel trace1;
     public ModelRel trace2;
     public ModelRel mergeTrace;
-    public String mergedModelPath;
 
     public Out(In input, Map<String, MID> outputMIDsByName) throws Exception {
       var mergedModelMID = outputMIDsByName.get(Out.MODEL);
       var mergedModelName = input.model1.getName() + Merge.MERGE_SEPARATOR + input.model2.getName() +
                             MMINTConstants.MODEL_FILEEXTENSION_SEPARATOR + input.model1.getFileExtension();
-      this.mergedModelPath = FileUtils.replaceLastSegmentInPath(MIDRegistry.getModelUri(mergedModelMID),
-                                                                mergedModelName);
-      this.merged = input.model1.getMetatype().createInstance(null, this.mergedModelPath, mergedModelMID);
+      var mergedModelPath = FileUtils.getUniquePath(
+        FileUtils.replaceLastSegmentInPath(MIDRegistry.getModelUri(mergedModelMID), mergedModelName), true, false);
+      this.merged = input.model1.getMetatype().createInstance(null, mergedModelPath, mergedModelMID);
       var modelRelType = MIDTypeHierarchy.getRootModelRelType();
       this.trace1 = modelRelType.createBinaryInstanceAndEndpoints(null, Out.MODELREL1, input.model1, this.merged,
                                                                   outputMIDsByName.get(Out.MODELREL1));
@@ -228,7 +227,7 @@ public class Merge extends OperatorImpl {
       // containment (pre-requisite for proper creation of trace rel)
       var containerObj2 = modelObj2.eContainer();
       if (containerObj2 != null && // non-root
-          !mergedModelObjs.containsKey(MIDRegistry.getModelElementUri(modelObj2))) { // non-merged
+          !mergedModelObjs.containsKey(modelElemUri2)) { // non-merged
         var mergedContainerObj = allModelObjs.get(containerObj2);
         FileUtils.setModelObjectFeature(mergedContainerObj, modelObj2.eContainingFeature().getName(), mergedModelObj);
       }
@@ -264,7 +263,7 @@ public class Merge extends OperatorImpl {
           (EList<EObject>) referenceValue :
           ECollections.asEList((EObject) referenceValue);
         for (var referenceModelObj : referenceModelObjs) {
-          // the defaule handles reference to external element
+          // the default part handles reference to external element
           var referenceMergedModelObj = allModelObjs.getOrDefault(referenceModelObj, referenceModelObj);
           FileUtils.setModelObjectFeature(mergedModelObj, reference.getName(), referenceMergedModelObj);
         }
@@ -315,10 +314,14 @@ public class Merge extends OperatorImpl {
     FileUtils.createTextFile(FileUtils.replaceLastSegmentInPath(this.in.model1.getUri(), "debug.kt"), overlapKVal, true);
   }
 
+  protected MkObj kMerge(MkObj kModel1, MkObj kModel2, Map<String, String> overlap) {
+    return (MkObj) MergeKt.merge(kModel1, kModel2, overlap);
+  }
+
   private void kMerge() throws Exception {
     var kModel1 = KotlinUtils.modelToKModel(this.in.model1);
     var kModel2 = KotlinUtils.modelToKModel(this.in.model2);
-    var kMergedModel = (MkObj) MergeKt.merge(kModel1, kModel2, getOverlapModelElementUris());
+    var kMergedModel = kMerge(kModel1, kModel2, getOverlapModelElementUris());
     var modelPackage = this.in.model1.getEMFInstanceRoot().eClass().getEPackage();
     var rootMergedModelObj = KotlinUtils.kModelToModel(kMergedModel, modelPackage);
     FileUtils.writeModelFile(rootMergedModelObj, this.out.merged.getUri(), null, true);

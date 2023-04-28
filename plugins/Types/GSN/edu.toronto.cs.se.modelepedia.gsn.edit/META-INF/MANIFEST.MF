@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.gsn.edit;singleton:=true
 Automatic-Module-Name: edu.toronto.cs.se.modelepedia.gsn.edit
-Bundle-Version: 2.16.99.qualifier
+Bundle-Version: 2.17.0.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: edu.toronto.cs.se.modelepedia.gsn.provider.GSNEditPlugin$Implementation
 Bundle-Vendor: %providerName

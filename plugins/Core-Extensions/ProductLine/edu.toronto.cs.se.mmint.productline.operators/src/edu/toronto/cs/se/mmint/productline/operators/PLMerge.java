@@ -19,6 +19,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.kotlin.operators.merge.MergeKt;
+import edu.toronto.cs.se.mmint.kotlin.structs.MkObj;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
@@ -29,6 +31,7 @@ import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeaturesTrait;
 import edu.toronto.cs.se.mmint.productline.reasoning.PLPipeline;
 
+@PLPipeline.Intercept
 public class PLMerge extends Merge {
   private IProductLineFeaturesTrait reasoner;
   private String pcMergeSyntax;
@@ -109,11 +112,15 @@ public class PLMerge extends Merge {
     }
     //TODO Add checks for compatible types and refs or rely on match correctness?
     //TODO (in original Merge based on eclasses, here based on type ref)
-    //TODO Handle returning external references from Kotlin
   }
 
   @Override
-  @PLPipeline.Intercept
+  @PLPipeline.Modify
+  protected MkObj kMerge(MkObj kModel1, MkObj kModel2, Map<String, String> overlap) {
+    return (MkObj) MergeKt.mergePL(kModel1, kModel2, overlap);
+  }
+
+  @Override
   protected void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws Exception {
     super.init(inputsByName, outputMIDsByName);
     this.reasoner = ((ProductLine) this.in.model1.getEMFInstanceRoot()).getReasoner();
