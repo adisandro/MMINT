@@ -39,7 +39,6 @@ data class VarObj(val pcond : String,
             left: VarObj,
             right: VarObj
         ): VarObj {
-            println("here")
             val mergedURI = when (val o = mergedObjs.lookup(left.uri)) {
                 is None -> left.uri
                 is Some -> o.x
