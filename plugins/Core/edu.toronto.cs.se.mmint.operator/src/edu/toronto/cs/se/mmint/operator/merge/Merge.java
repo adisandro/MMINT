@@ -12,6 +12,7 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.operator.merge;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -88,20 +89,17 @@ public class Merge extends OperatorImpl {
     public ModelRel trace2;
     public ModelRel mergeTrace;
 
-    public Out(In in, Map<String, MID> outputMIDsByName) throws Exception {
-      var mergedModelMID = outputMIDsByName.get(Out.MODEL);
+    public Out(String workingPath, In in, Map<String, MID> outputMIDsByName) throws Exception {
       var mergedModelName = in.model1.getName() + Merge.MERGE_SEPARATOR + in.model2.getName() +
                             MMINTConstants.MODEL_FILEEXTENSION_SEPARATOR + in.model1.getFileExtension();
-      var mergedModelPath = FileUtils.getUniquePath(
-        FileUtils.replaceLastSegmentInPath(MIDRegistry.getModelUri(mergedModelMID), mergedModelName), true, false);
-      this.merged = in.model1.getMetatype().createInstance(null, mergedModelPath, mergedModelMID);
+      var mergedModelPath = FileUtils.getUniquePath(workingPath + File.separator + mergedModelName, true, false);
+      this.merged = in.model1.getMetatype().createInstance(null, mergedModelPath, outputMIDsByName.get(Out.MODEL));
       var modelRelType = MIDTypeHierarchy.getRootModelRelType();
       this.trace1 = modelRelType.createBinaryInstanceAndEndpoints(null, Out.MODELREL1, in.model1, this.merged,
                                                                   outputMIDsByName.get(Out.MODELREL1));
       this.trace2 = modelRelType.createBinaryInstanceAndEndpoints(null, Out.MODELREL2, in.model2, this.merged,
                                                                   outputMIDsByName.get(Out.MODELREL2));
-      this.mergeTrace = modelRelType.createBinaryInstanceAndEndpoints(null, Out.MODELREL3, in.overlap,
-                                                                      this.merged,
+      this.mergeTrace = modelRelType.createBinaryInstanceAndEndpoints(null, Out.MODELREL3, in.overlap, this.merged,
                                                                       outputMIDsByName.get(Out.MODELREL3));
     }
 
@@ -300,8 +298,8 @@ public class Merge extends OperatorImpl {
       var mergeModelElemRefs = new BasicEList<ModelElementReference>();
       mergeModelElemRefs.add(this.out.mergeTrace.getModelEndpointRefs().get(0)
         .createModelElementInstanceAndReference(overlapMapping, null));
-      var modelElemUri2 = overlapMapping.getModelElemEndpoints().stream()
-        .map(mee -> MIDRegistry.getModelObjectUri(mee.getTarget()))
+      var modelElemUri2 = overlapMapping.getModelElemEndpointRefs().stream()
+        .map(mee -> MIDRegistry.getModelObjectUri(mee.getObject().getTarget()))
         .filter(u -> this.in.model2.getUri().equals(MIDRegistry.getModelUri(u)))
         .findFirst().get();
       var mergedModelObj = mergedModelObjs.get(modelElemUri2);
@@ -351,7 +349,7 @@ public class Merge extends OperatorImpl {
 
   protected void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws Exception {
     this.in = new In(inputsByName);
-    this.out = new Out(this.in, outputMIDsByName);
+    this.out = new Out(getWorkingPath(), this.in, outputMIDsByName);
     if (this.engine.equals("kotlin")) {
       this.kConverter = new KotlinConverter();
     }
