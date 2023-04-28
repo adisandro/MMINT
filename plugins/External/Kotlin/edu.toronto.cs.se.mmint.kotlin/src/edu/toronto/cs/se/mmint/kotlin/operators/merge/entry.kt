@@ -58,7 +58,7 @@ fun mergePL(model1 : Tree<VarObj>, model2 : Tree<VarObj>, toMerge : Map<String,S
     val withParentsInModel1 = swapParents(nonMergedRootsWithContainers, tm.reverse())
     val withModel2Branches = insertNonMergedObjects(model1, withParentsInModel1, model2)
     val uri12obj2 = tm.toLList().map { MkProd(it.fst(), model2.getSubObject(it.snd())) } .noJunk()
-    val mergeModel =  withModel2Branches.mapdata { checkAndMerge({ o, p -> VarObj.unionPL(toMerge, mergeURImap, o,p, reasoner) }, it, tm, uri12obj2) }
+    val mergeModel =  withModel2Branches.mapdata { checkAndMerge({ o, p -> VarObj.unionPL(toMerge, mergeURImap, o, p, reasoner) }, it, tm, uri12obj2) }
     val mergeObjMap = mergeURImap.map {MkProd(it.fst(), mergeModel.getSubObject(it.snd()))} .noJunk()
     VarObj.replaceRefsPL(mergeModel, mergeObjMap)
     return mergeModel
