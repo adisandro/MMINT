@@ -28,10 +28,10 @@ public class PLKotlinConverter extends KotlinConverter {
   protected EObject kTreeToEObject(Tree<? extends Object> kTree, EPackage modelPackage) {
     var modelObj = super.kTreeToEObject(kTree, modelPackage);
     var kObj = ((MkTree<? extends Object>) kTree).getNode();
-    if (kObj instanceof VarObj kVarObj) {
+    if (modelObj instanceof PLElement plElem && kObj instanceof VarObj kVarObj) {
       var pc = kVarObj.getPcond();
       if (pc != null && !pc.isBlank()) {
-        ((PLElement) modelObj).setPresenceCondition(pc);
+        plElem.setPresenceCondition(pc);
       }
     }
 

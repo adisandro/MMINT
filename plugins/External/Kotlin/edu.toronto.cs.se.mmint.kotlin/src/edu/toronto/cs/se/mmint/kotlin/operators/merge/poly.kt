@@ -100,7 +100,6 @@ fun <a> checkAndMerge(
     uri2Obj: LList<Prod<String, Tree<a>>>
 ): a {
     val v = leftObject.toString()
-    println("checking for $v")
     return when (toMerge[leftObject.toString()]) {
         null -> leftObject
         else -> when (val o = uri2Obj.lookup(leftObject.toString())) {
