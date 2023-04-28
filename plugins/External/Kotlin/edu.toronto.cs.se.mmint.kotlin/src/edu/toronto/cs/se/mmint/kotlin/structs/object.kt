@@ -21,6 +21,7 @@ import edu.toronto.cs.se.mmint.kotlin.operators.merge.mergeMaps
 import edu.toronto.cs.se.mmint.kotlin.operators.merge.updateMap
 
 
+
 sealed class Object(
 ) {
     abstract val uri: String
@@ -54,6 +55,7 @@ sealed class Object(
         }
     }
 }
+
 data class MkObj(override val uri : String,
                  override val kind : String,
                  override val attrs : Map<String, String>,

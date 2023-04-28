@@ -19,11 +19,16 @@ import edu.toronto.cs.se.mmint.kotlin.operators.merge.mergeMaps
 import edu.toronto.cs.se.mmint.mid.reasoning.ISATReasoner
 
 
+
+fun Or(left : String, right : String) : String = "$left | $right"
+
+
+
 data class VarObj(val pcond : String,
-                   override val uri: String,
-                   override val kind: String,
-                   override val attrs : Map<String,String>,
-                   override val refs: MutableMap<String, LList<Tree<Object>>>
+                    override val uri: String,
+                    override val kind: String,
+                    override val attrs : Map<String,String>,
+                    override val refs: MutableMap<String, LList<Tree<Object>>>
                   ) :
                   Object() {
     override fun toString(): String {
@@ -35,7 +40,7 @@ data class VarObj(val pcond : String,
             mergedObjs: LList<Prod<String, String>>,
             left: VarObj,
             right: VarObj,
-            reasoner: ISATReasoner
+            reasoner : ISATReasoner
         ): VarObj {
 //            println("here")
             val mergedURI = when (val o = mergedObjs.lookup(left.uri)) {
@@ -46,7 +51,10 @@ data class VarObj(val pcond : String,
             val mergedAttrs = mergeAttrs(left.attrs, right.attrs)
             val mergedRefs = mergeMaps(left.refs, right.refs, toMerge)
             val mergedPC = reasoner.simplify(reasoner.orSyntax.replace("$1", left.pcond).replace("$2", right.pcond))
-            return VarObj(mergedPC,mergedURI, mergedKind, mergedAttrs, mergedRefs)
+            return VarObj(
+                Or(left.pcond, right.pcond),
+                mergedURI, mergedKind, mergedAttrs, mergedRefs
+            )
         }
 
     fun VarObj.setRefs(map: MutableMap<String,LList<Tree<VarObj>>>) {
@@ -54,42 +62,13 @@ data class VarObj(val pcond : String,
         }
 
 
-    fun replaceRefsPL(model : Tree<VarObj>, mergeMap : LList<Prod<String,Tree<VarObj>>>) : Unit {
-        val refsIt = model.node().refs.entries.iterator()
-        val newRefs = mutableMapOf<String,LList<Tree<Object>>>()
-        while(refsIt.hasNext()){
-            val entry = refsIt.next()
-            val objs = entry.value.toList()
-            val newObjs : MutableList<Tree<Object>> = mutableListOf()
-            for (o in objs){
-                when (val new = mergeMap.lookup(o.node().uri)){
-                    is None -> newObjs.add(o)
-                    is Some -> {
-                        newObjs.add(new.x)
-                    }
-                }
-            }
-            newRefs[entry.key] = newObjs.toList().toLList()
+        fun replaceRefsPL(model: Tree<VarObj>, mergeMap: LList<Prod<String, Tree<VarObj>>>): Unit {
+            model.node().setRefs(updateMap(model.node().refs, mergeMap))
+            model.children().map { it.snd().map { o -> Object.replaceRefs(o, mergeMap) } }
         }
-        model.node().setRefs(newRefs)
-        model.children().map { it.snd().map {o -> replaceRefsPL(o, mergeMap) }}
-        }
-
-
-
-
-
-    }
-
-
-
-}
-
-
 
 
 fun Object.toVarObj() : VarObj {
-
             if (this.attrs.containsKey("presenceCondition")){
                 val pc = this.attrs["presenceCondition"]
                 return when(pc) {
@@ -101,7 +80,6 @@ fun Object.toVarObj() : VarObj {
                             refs.toLList().map { p -> MkProd(p.fst(), p.snd().map {it.mapdata { x -> x.toVarObj() }})} .toMap().toMutableMap())
                     }
                 }
-
             }
         else {
                return VarObj("true", uri, kind, attrs.minus("presenceCondition").toMutableMap(),
