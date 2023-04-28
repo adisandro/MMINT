@@ -32,7 +32,7 @@ import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorConstraint;
 import edu.toronto.cs.se.mmint.kotlin.operators.merge.EntryKt;
 import edu.toronto.cs.se.mmint.kotlin.structs.Object;
 import edu.toronto.cs.se.mmint.kotlin.structs.Tree;
-import edu.toronto.cs.se.mmint.kotlin.utils.KotlinUtils;
+import edu.toronto.cs.se.mmint.kotlin.utils.KotlinConverter;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
@@ -55,6 +55,7 @@ public class Merge extends OperatorImpl {
   protected In in;
   protected Out out;
   protected String engine;
+  protected KotlinConverter kConverter;
 
   protected static class In {
     private final static String PROP_ENGINE = "engine";
@@ -312,8 +313,10 @@ public class Merge extends OperatorImpl {
   }
 
   private void kMergeDebug() throws Exception {
-    KotlinUtils.modelToKFile(this.in.model1, FileUtils.replaceFileExtensionInPath(this.in.model1.getUri(), "kt"), true);
-    KotlinUtils.modelToKFile(this.in.model2, FileUtils.replaceFileExtensionInPath(this.in.model2.getUri(), "kt"), true);
+    this.kConverter.modelToKFile(this.in.model1, FileUtils.replaceFileExtensionInPath(this.in.model1.getUri(), "kt"),
+                                 true);
+    this.kConverter.modelToKFile(this.in.model2, FileUtils.replaceFileExtensionInPath(this.in.model2.getUri(), "kt"),
+                                 true);
     var overlapKVal = "package edu.toronto.cs.se.mmint.kotlin.operators.examples\n" +
                       "import edu.toronto.cs.se.mmint.kotlin.operators.merge.*\n\n" +
                       "fun main() {\n" +
@@ -333,17 +336,20 @@ public class Merge extends OperatorImpl {
   }
 
   private void kMerge() throws Exception {
-    var kModel1 = KotlinUtils.modelToKTree(this.in.model1);
-    var kModel2 = KotlinUtils.modelToKTree(this.in.model2);
+    var kModel1 = this.kConverter.modelToKTree(this.in.model1);
+    var kModel2 = this.kConverter.modelToKTree(this.in.model2);
     var kMergedModel = kMerge(kModel1, kModel2, getOverlapModelElementUris());
     var modelPackage = this.in.model1.getEMFInstanceRoot().eClass().getEPackage();
-    var rootMergedModelObj = KotlinUtils.kTreeToModel(kMergedModel, modelPackage);
+    var rootMergedModelObj = this.kConverter.kTreeToModel(kMergedModel, modelPackage);
     FileUtils.writeModelFile(rootMergedModelObj, this.out.merged.getUri(), null, true);
   }
 
   protected void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws Exception {
     this.in = new In(inputsByName);
     this.out = new Out(this.in, outputMIDsByName);
+    if (this.engine.equals("kotlin")) {
+      this.kConverter = new KotlinConverter();
+    }
   }
 
   @Override

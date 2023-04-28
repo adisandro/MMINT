@@ -29,6 +29,7 @@ import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 import edu.toronto.cs.se.mmint.operator.merge.Merge;
 import edu.toronto.cs.se.mmint.productline.Class;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
+import edu.toronto.cs.se.mmint.productline.kotlin.PLKotlinConverter;
 import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeaturesTrait;
 import edu.toronto.cs.se.mmint.productline.reasoning.PLPipeline;
 
@@ -110,6 +111,9 @@ public class PLMerge extends Merge {
   @Override
   protected void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws Exception {
     super.init(inputsByName, outputMIDsByName);
+    if (this.engine.equals("kotlin")) {
+      this.kConverter = new PLKotlinConverter();
+    }
     this.reasoner = ((ProductLine) this.in.model1.getEMFInstanceRoot()).getReasoner();
     this.pcMergeSyntax = this.reasoner.getORSyntax();
   }
