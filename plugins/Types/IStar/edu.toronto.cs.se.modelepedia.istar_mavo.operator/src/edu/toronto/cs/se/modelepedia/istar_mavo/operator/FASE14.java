@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -35,8 +35,8 @@ import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver;
 import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver.Z3IncrementalBehavior;
 import edu.toronto.cs.se.modelepedia.z3.Z3Model;
 import edu.toronto.cs.se.modelepedia.z3.Z3Model.Z3Result;
-import edu.toronto.cs.se.modelepedia.z3.mavo.Z3MAVOUtils;
 import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
+import edu.toronto.cs.se.modelepedia.z3.mavo.Z3MAVOUtils;
 
 public class FASE14 extends RE13 {
 
@@ -57,17 +57,17 @@ public class FASE14 extends RE13 {
 		super.init();
 
 		// state
-		mavoModelObjs = new HashMap<>();
-		smtEncodingRNF = "";
+		this.mavoModelObjs = new HashMap<>();
+		this.smtEncodingRNF = "";
 		// output
-		timeRNF = -1;
+		this.timeRNF = -1;
 	}
 
 	@Override
 	protected void writeProperties(Properties properties) {
 
 		super.writeProperties(properties);
-		properties.setProperty(PROPERTY_OUT_TIMERNF, String.valueOf(timeRNF));
+		properties.setProperty(FASE14.PROPERTY_OUT_TIMERNF, String.valueOf(this.timeRNF));
 	}
 
 	private Z3Model checkMAVOAnnotation(MAVOElement mavoModelObj, EStructuralFeature mavoAnnotation, String smtMavoConstraint, Z3IncrementalSolver z3IncSolver, List<MAVOElement> mavoModelObjsToRemove) {
@@ -87,7 +87,7 @@ public class FASE14 extends RE13 {
 			}
 			mavoModelObjsToRemove.add(mavoModelObj);
 			String smtMavoAssertion = Z3Utils.assertion(smtMavoConstraint);
-			smtEncodingRNF += smtMavoAssertion + "\n";
+			this.smtEncodingRNF += smtMavoAssertion + "\n";
 
 			return z3IncSolver.checkSatAndGetModel(smtMavoAssertion, Z3IncrementalBehavior.NORMAL);
 		}
@@ -95,11 +95,11 @@ public class FASE14 extends RE13 {
 
 	protected void doRNF(Z3IncrementalSolver z3IncSolver, Z3Model z3Model) {
 
-		long startTime = System.nanoTime();
+		var startTime = System.nanoTime();
 
 		Z3Model z3TempModel;
-		List<MAVOElement> mavoModelObjsToRemove = new ArrayList<MAVOElement>();
-		for (MAVOElement mavoModelObj : mavoModelObjs.values()) {
+		List<MAVOElement> mavoModelObjsToRemove = new ArrayList<>();
+		for (MAVOElement mavoModelObj : this.mavoModelObjs.values()) {
 			try {
 				if (mavoModelObj.isMay()) {
 					String smtMConstraint = Z3MAVOUtils.getSMTLIBMayModelObjectConstraint(mavoModelObj, false, false);
@@ -120,7 +120,7 @@ public class FASE14 extends RE13 {
 					}
 				}
 				if (mavoModelObj.isVar()) {
-					Set<String> mergeableFormulaVars = MAVOUtils.getMergeableFormulaVars(istar, mavoModelObj);
+					Set<String> mergeableFormulaVars = MAVOUtils.getMergeableFormulaVars(this.istar, mavoModelObj);
 					if (!mergeableFormulaVars.isEmpty()) {
 						String smtVConstraint = Z3MAVOUtils.getSMTLIBVarModelObjectConstraint(mavoModelObj, mergeableFormulaVars, false);
 						z3TempModel = checkMAVOAnnotation(mavoModelObj, MAVOPackage.eINSTANCE.getMAVOElement_Var(), smtVConstraint, z3IncSolver, mavoModelObjsToRemove);
@@ -135,9 +135,9 @@ public class FASE14 extends RE13 {
 				continue;
 			}
 		}
-		mavoModelObjs.values().removeAll(mavoModelObjsToRemove);
+		this.mavoModelObjs.values().removeAll(mavoModelObjsToRemove);
 
-		timeRNF = System.nanoTime() - startTime;
+		this.timeRNF = System.nanoTime() - startTime;
 	}
 
 	protected void writeRNF(Model istarModel) {
@@ -145,10 +145,10 @@ public class FASE14 extends RE13 {
 		try {
 			FileUtils.createTextFile(
 				FileUtils.replaceFileExtensionInPath(
-					FileUtils.addFileNameSuffixInPath(istarModel.getUri(), RNF_OUTPUT_SUFFIX),
+					FileUtils.addFileNameSuffixInPath(istarModel.getUri(), FASE14.RNF_OUTPUT_SUFFIX),
 					Z3Utils.SMTLIB_FILE_EXTENSION
 				),
-				smtEncodingRNF,
+				this.smtEncodingRNF,
 				true
 			);
 		}
@@ -161,7 +161,7 @@ public class FASE14 extends RE13 {
 	protected void collectAnalysisModelObjects(Model istarModel) throws MMINTException {
 
 		super.collectAnalysisModelObjects(istarModel);
-		mavoModelObjs = MAVOUtils.getAnnotatedMAVOModelObjects(istar);
+		this.mavoModelObjs = MAVOUtils.getAnnotatedMAVOModelObjects(this.istar);
 	}
 
 	@Override
@@ -170,16 +170,16 @@ public class FASE14 extends RE13 {
 			Map<String, MID> outputMIDsByName) throws Exception {
 
 		// input
-		Model istarModel = inputsByName.get(IN_MODEL);
+		var istarModel = inputsByName.get(RE13.IN_MODEL);
 		this.init();
 
 		// run
 		collectAnalysisModelObjects(istarModel);
 		Z3IncrementalSolver z3IncSolver = new Z3IncrementalSolver();
 		doAnalysis(z3IncSolver);
-		if (timeTargetsEnabled) {
-			Z3Model z3Model = doTargets(z3IncSolver);
-			if (targets == Z3Result.SAT) {
+		if (this.timeTargetsEnabled) {
+			var z3Model = doTargets(z3IncSolver);
+			if (this.targets == Z3Result.SAT) {
 				doRNF(z3IncSolver, z3Model);
 			}
 		}
@@ -187,14 +187,8 @@ public class FASE14 extends RE13 {
 		// output
 		Properties outputProperties = new Properties();
 		writeProperties(outputProperties);
-		MIDOperatorIOUtils.writePropertiesFile(
-			outputProperties,
-			this,
-			istarModel,
-			null,
-			MIDOperatorIOUtils.OUTPUT_PROPERTIES_SUFFIX
-		);
-		if (timeRNF != -1) {
+		MIDOperatorIOUtils.writeOutputProperties(this, outputProperties);
+		if (this.timeRNF != -1) {
 			writeRNF(istarModel);
 		}
 

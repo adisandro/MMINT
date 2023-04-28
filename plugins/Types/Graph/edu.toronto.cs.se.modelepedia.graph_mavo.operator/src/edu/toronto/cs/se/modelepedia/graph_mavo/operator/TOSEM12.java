@@ -445,13 +445,7 @@ public class TOSEM12 extends RandomOperatorImpl {
 		// output
 		var outputProperties = new Properties();
 		writeProperties(outputProperties);
-		MIDOperatorIOUtils.writePropertiesFile(
-			outputProperties,
-			this,
-			mayModel,
-			getWorkingPath(),
-			MIDOperatorIOUtils.OUTPUT_PROPERTIES_SUFFIX
-		);
+		MIDOperatorIOUtils.writeOutputProperties(this, outputProperties);
 
 		return new HashMap<>();
 	}

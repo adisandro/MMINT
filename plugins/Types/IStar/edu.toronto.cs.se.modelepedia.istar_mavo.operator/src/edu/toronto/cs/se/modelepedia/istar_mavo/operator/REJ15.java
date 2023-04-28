@@ -241,13 +241,7 @@ public class REJ15 extends FASE14 {
 		// output
 		var outputProperties = new Properties();
 		writeProperties(outputProperties);
-		MIDOperatorIOUtils.writePropertiesFile(
-			outputProperties,
-			this,
-			istarModel,
-			null,
-			MIDOperatorIOUtils.OUTPUT_PROPERTIES_SUFFIX
-		);
+		MIDOperatorIOUtils.writeOutputProperties(this, outputProperties);
 		if (this.timeRNF != -1) {
 			writeRNF(istarModel);
 		}

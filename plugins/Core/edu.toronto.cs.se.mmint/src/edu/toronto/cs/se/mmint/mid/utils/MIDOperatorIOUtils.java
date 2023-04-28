@@ -11,12 +11,8 @@
  */
 package edu.toronto.cs.se.mmint.mid.utils;
 
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -25,8 +21,6 @@ import java.util.Properties;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import org.eclipse.core.runtime.IPath;
-import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mmint.MMINTException;
@@ -45,49 +39,6 @@ public class MIDOperatorIOUtils {
 	private static final String PROPERTY_SEPARATOR = ",";
 	public static final String PROP_OUTENABLED_SUFFIX = ".enabled";
 
-//	public void writeOutputPropertiesFile(Properties properties) throws Exception {
-//
-//		String propertiesUri =  getPropertiesUri(MultiModelOperatorUtils.OUTPUT_PROPERTIES_SUFFIX);
-//		properties.store(new FileOutputStream(propertiesUri), null);
-//	}
-
-	private static String getPropertiesUri(Operator operator, Model anyOperatorParameter, String subdirName, boolean readonly) {
-
-		var projectUri = anyOperatorParameter.getUri().substring(0, anyOperatorParameter.getUri().lastIndexOf(IPath.SEPARATOR)+1);
-		String propertiesUri = FileUtils.prependWorkspacePath(projectUri);
-		if (subdirName != null) {
-			File dir = new File(propertiesUri + subdirName);
-			if (!readonly && !dir.exists()) {
-				dir.mkdir();
-			}
-			propertiesUri += subdirName + IPath.SEPARATOR;
-		}
-		propertiesUri += operator.getName();
-
-		return propertiesUri;
-	}
-
-	public static Properties getPropertiesFile(Operator operator, Model anyOperatorParameter, String subdirName, String suffix) throws Exception {
-
-		var inputPropertiesFile =
-			getPropertiesUri(operator, anyOperatorParameter, subdirName, true) +
-			suffix +
-			MIDOperatorIOUtils.PROPERTIES_SUFFIX;
-		Properties inputProperties = new Properties();
-		inputProperties.load(new FileInputStream(inputPropertiesFile));
-
-		return inputProperties;
-	}
-
-	public static void writePropertiesFile(Properties outputProperties, Operator operator, Model anyOperatorParameter, String subdirName, String suffix) throws Exception {
-
-		var outputPropertiesFile =
-			getPropertiesUri(operator, anyOperatorParameter, subdirName, false) +
-			suffix +
-			MIDOperatorIOUtils.PROPERTIES_SUFFIX;
-		outputProperties.store(new FileOutputStream(outputPropertiesFile), null);
-	}
-
 	public static void writeOutputProperties(Operator operator, Properties outProps) throws Exception {
 	  var path = operator.getWorkingPath() + File.separator + operator.getName() +
 	             MIDOperatorIOUtils.OUTPUT_PROPERTIES_SUFFIX + MIDOperatorIOUtils.PROPERTIES_SUFFIX;
@@ -95,20 +46,7 @@ public class MIDOperatorIOUtils {
 	  outProps.store(new FileOutputStream(FileUtils.prependWorkspacePath(path)), null);
 	}
 
-	//TODO MMINT[OPERATOR] Remove
-	@Deprecated
-	public static void writeTextFile(Operator operator, Model anyOperatorParameter, String subdirName, String suffix, StringBuilder fileContent) throws IOException {
-
-		var outputTextFile = getPropertiesUri(operator, anyOperatorParameter, subdirName, false) + suffix;
-		try (BufferedWriter writer = new BufferedWriter(new FileWriter(outputTextFile))) {
-			writer.append(fileContent);
-		}
-		catch (IOException e) {
-			throw e;
-		}
-	}
-
-	public static @NonNull String getStringProperty(@NonNull Properties properties, @NonNull String propertyName) throws MMINTException {
+	public static String getStringProperty(Properties properties, String propertyName) throws MMINTException {
 
 		var property = properties.getProperty(propertyName);
 		if (property == null) {
@@ -118,7 +56,7 @@ public class MIDOperatorIOUtils {
 		return property;
 	}
 
-	public static @Nullable String getOptionalStringProperty(@NonNull Properties properties, @NonNull String propertyName, @Nullable String defaultValue) {
+	public static @Nullable String getOptionalStringProperty(Properties properties, String propertyName, @Nullable String defaultValue) {
 
 		try {
 			return getStringProperty(properties, propertyName);
@@ -128,14 +66,14 @@ public class MIDOperatorIOUtils {
 		}
 	}
 
-	public static @NonNull <E extends Enum<E>> E getEnumProperty(@NonNull Properties properties, @NonNull String propertyName, @NonNull Class<E> enumClass) throws MMINTException {
+	public static <E extends Enum<E>> E getEnumProperty(Properties properties, String propertyName, Class<E> enumClass) throws MMINTException {
 
 		var property = Enum.valueOf(enumClass, getStringProperty(properties, propertyName));
 
 		return property;
 	}
 
-	public static @NonNull <E extends Enum<E>> E getOptionalEnumProperty(@NonNull Properties properties, @NonNull String propertyName, @NonNull E defaultValue, @NonNull Class<E> enumClass) {
+	public static <E extends Enum<E>> E getOptionalEnumProperty(Properties properties, String propertyName, E defaultValue, Class<E> enumClass) {
 
 		try {
 			return getEnumProperty(properties, propertyName, enumClass);
@@ -145,7 +83,7 @@ public class MIDOperatorIOUtils {
 		}
 	}
 
-	public static boolean getBoolProperty(@NonNull Properties properties, @NonNull String propertyName) throws MMINTException {
+	public static boolean getBoolProperty(Properties properties, String propertyName) throws MMINTException {
 
 		var property = Boolean.parseBoolean(getStringProperty(properties, propertyName));
 
@@ -153,7 +91,7 @@ public class MIDOperatorIOUtils {
 	}
 
 	//TODO MMINT[OPERATOR] Make version to read x.enabled with default to false
-	public static @Nullable Boolean getOptionalBoolProperty(@NonNull Properties properties, @NonNull String propertyName, @Nullable Boolean defaultValue) {
+	public static @Nullable Boolean getOptionalBoolProperty(Properties properties, String propertyName, @Nullable Boolean defaultValue) {
 
 		try {
 			return getBoolProperty(properties, propertyName);
@@ -163,7 +101,7 @@ public class MIDOperatorIOUtils {
 		}
 	}
 
-	public static int getIntProperty(@NonNull Properties properties, @NonNull String propertyName) throws MMINTException {
+	public static int getIntProperty(Properties properties, String propertyName) throws MMINTException {
 
 		var property = Integer.parseInt(getStringProperty(properties, propertyName));
 		if (property == -1) {
@@ -173,7 +111,7 @@ public class MIDOperatorIOUtils {
 		return property;
 	}
 
-	public static int getOptionalIntProperty(@NonNull Properties properties, @NonNull String propertyName, int defaultValue) {
+	public static int getOptionalIntProperty(Properties properties, String propertyName, int defaultValue) {
 
 		try {
 			return getIntProperty(properties, propertyName);
@@ -183,7 +121,7 @@ public class MIDOperatorIOUtils {
 		}
 	}
 
-	public static double getDoubleProperty(@NonNull Properties properties, @NonNull String propertyName) throws MMINTException {
+	public static double getDoubleProperty(Properties properties, String propertyName) throws MMINTException {
 
 		var property = Double.parseDouble(getStringProperty(properties, propertyName));
 		if (property == -1) {
@@ -193,7 +131,7 @@ public class MIDOperatorIOUtils {
 		return property;
 	}
 
-	public static double getOptionalDoubleProperty(@NonNull Properties properties, @NonNull String propertyName, double defaultValue) {
+	public static double getOptionalDoubleProperty(Properties properties, String propertyName, double defaultValue) {
 
 		try {
 			return getDoubleProperty(properties, propertyName);
@@ -203,17 +141,17 @@ public class MIDOperatorIOUtils {
 		}
 	}
 
-	public static @NonNull List<String> getStringPropertyList(@NonNull Properties properties, @NonNull String propertyName) throws MMINTException {
+	public static List<String> getStringPropertyList(Properties properties, String propertyName) throws MMINTException {
 
 		return List.of(getStringProperty(properties, propertyName).split(MIDOperatorIOUtils.PROPERTY_SEPARATOR));
 	}
 
-	public static @NonNull Set<String> getStringPropertySet(@NonNull Properties properties, @NonNull String propertyName) throws MMINTException {
+	public static Set<String> getStringPropertySet(Properties properties, String propertyName) throws MMINTException {
 
 	    return Set.of(getStringProperty(properties, propertyName).split(MIDOperatorIOUtils.PROPERTY_SEPARATOR));
 	}
 
-	public static @NonNull List<String> getOptionalStringPropertyList(@NonNull Properties properties, @NonNull String propertyName, @NonNull List<String> defaultValue) {
+	public static List<String> getOptionalStringPropertyList(Properties properties, String propertyName, List<String> defaultValue) {
 
 		try {
 			return getStringPropertyList(properties, propertyName);
@@ -223,7 +161,7 @@ public class MIDOperatorIOUtils {
 		}
 	}
 
-	public static @NonNull Set<String> getOptionalStringPropertySet(@NonNull Properties properties, @NonNull String propertyName, @NonNull Set<String> defaultValue) {
+	public static Set<String> getOptionalStringPropertySet(Properties properties, String propertyName, Set<String> defaultValue) {
 
 		try {
 			return getStringPropertySet(properties, propertyName);
@@ -274,7 +212,7 @@ public class MIDOperatorIOUtils {
 		return outputMIDsByOtherName;
 	}
 
-	public static @NonNull Map<String, MID> createSameOutputMIDsByName(@NonNull Operator operatorType, @Nullable MID outputMID) {
+	public static Map<String, MID> createSameOutputMIDsByName(Operator operatorType, @Nullable MID outputMID) {
 
 		Map<String, MID> outputMIDsByName = new HashMap<>();
 		for (ModelEndpoint outputModelTypeEndpoint : operatorType.getOutputs()) {
@@ -284,7 +222,7 @@ public class MIDOperatorIOUtils {
 		return outputMIDsByName;
 	}
 
-	public static @NonNull Map<String, MID> mixOutputMIDsByName(@NonNull Operator operatorType, @Nullable MID defaultOutputMID, @NonNull Map<String, MID> assignedOutputMIDsByName) {
+	public static Map<String, MID> mixOutputMIDsByName(Operator operatorType, @Nullable MID defaultOutputMID, Map<String, MID> assignedOutputMIDsByName) {
 
 		Map<String, MID> outputMIDsByName = new HashMap<>();
 		for (ModelEndpoint outputModelTypeEndpoint : operatorType.getOutputs()) {
