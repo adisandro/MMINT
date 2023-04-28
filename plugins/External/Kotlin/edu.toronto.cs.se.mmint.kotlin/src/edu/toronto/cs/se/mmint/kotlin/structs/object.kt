@@ -19,6 +19,8 @@ package edu.toronto.cs.se.mmint.kotlin.structs
 import edu.toronto.cs.se.mmint.kotlin.operators.merge.mergeAttrs
 import edu.toronto.cs.se.mmint.kotlin.operators.merge.mergeMaps
 import edu.toronto.cs.se.mmint.kotlin.operators.merge.updateMap
+import edu.toronto.cs.se.mmint.mid.reasoning.ISATReasoner
+
 
 
 sealed class Object(
@@ -32,7 +34,7 @@ sealed class Object(
     }
 
     companion object {
-        open fun union(
+         fun union(
             toMerge: Map<String, String>,
             mergedObjs: LList<Prod<String, String>>,
             left: Object,
@@ -44,6 +46,22 @@ sealed class Object(
             }
             val mergedKind = if (left.kind == right.kind) left.kind else "KIND_ERROR"
             val mergedAttrs = mergeAttrs(left.attrs, right.attrs)
+            val mergedRefs = mergeMaps(left.refs, right.refs, toMerge)
+            return MkObj(mergedURI, mergedKind, mergedAttrs, mergedRefs)
+        }
+         fun unionPL(
+            toMerge: Map<String, String>,
+            mergedObjs: LList<Prod<String, String>>,
+            left: Object,
+            right: Object,
+            reasoner : ISATReasoner
+        ): Object {
+            val mergedURI = when (val o = mergedObjs.lookup(left.uri)) {
+                is None -> left.uri
+                is Some -> o.x
+            }
+            val mergedKind = if (left.kind == right.kind) left.kind else "KIND_ERROR"
+            val mergedAttrs = mergeAttrsPL(left.attrs, right.attrs, reasoner)
             val mergedRefs = mergeMaps(left.refs, right.refs, toMerge)
             return MkObj(mergedURI, mergedKind, mergedAttrs, mergedRefs)
         }
@@ -59,12 +77,12 @@ data class MkObj(override val uri : String,
                  override val kind : String,
                  override val attrs : Map<String, String>,
                  override val refs : MutableMap<String, LList<Tree<Object>>>) : Object() {
-        override fun toString(): String {
+    override fun toString(): String {
         return uri
-    }
-                }
+    } }
 
 
 fun Object.setRefs(map: MutableMap<String,LList<Tree<Object>>>) {
     this.refs.putAll(map)
 }
+
