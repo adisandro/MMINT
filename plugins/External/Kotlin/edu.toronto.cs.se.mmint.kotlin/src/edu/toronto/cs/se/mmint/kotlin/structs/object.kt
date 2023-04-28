@@ -54,17 +54,16 @@ sealed class Object(
         }
     }
 }
-
 data class MkObj(override val uri : String,
                  override val kind : String,
                  override val attrs : Map<String, String>,
                  override val refs : MutableMap<String, LList<Tree<Object>>>) : Object() {
-        override fun toString(): String {
+    override fun toString(): String {
         return uri
-    }
-                }
+    } }
 
 
 fun Object.setRefs(map: MutableMap<String,LList<Tree<Object>>>) {
     this.refs.putAll(map)
 }
+
