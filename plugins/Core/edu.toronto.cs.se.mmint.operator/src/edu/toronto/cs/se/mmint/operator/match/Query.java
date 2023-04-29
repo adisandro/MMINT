@@ -34,9 +34,9 @@ public class Query extends OperatorImpl {
   private String queryName;
 
   protected static class In {
-    public final static String PROP_IN_REASONERNAME = "reasonerName";
-    public final static String PROP_IN_QUERYPATH = "queryPath";
-    public final static String PROP_IN_QUERYNAME = "queryName";
+    public final static String PROP_REASONERNAME = "reasonerName";
+    public final static String PROP_QUERYPATH = "queryPath";
+    public final static String PROP_QUERYNAME = "queryName";
     public final static String MODEL = "model";
     public Model model;
 
@@ -46,23 +46,23 @@ public class Query extends OperatorImpl {
   }
 
   protected static class Out {
-    public final static String PROP_OUT_TIMEQUERY = "timeQuery";
-    public final static String PROP_OUT_NUMRESULTS = "numResults";
+    public final static String PROP_TIMEQUERY = "timeQuery";
+    public final static String PROP_NUMRESULTS = "numResults";
     public Query operator;
+    public Properties props;
     public long timeQuery;
     public int numResults;
-    public Properties props;
 
     public Out(Query operator) {
       this.operator = operator;
+      this.props = new Properties();
       this.timeQuery = 0;
       this.numResults = 0;
-      this.props = new Properties();
     }
 
     public Map<String, Model> packed() throws Exception {
-      this.props.setProperty(Out.PROP_OUT_TIMEQUERY, String.valueOf(this.timeQuery));
-      this.props.setProperty(Out.PROP_OUT_NUMRESULTS, String.valueOf(this.numResults));
+      this.props.setProperty(Out.PROP_TIMEQUERY, String.valueOf(this.timeQuery));
+      this.props.setProperty(Out.PROP_NUMRESULTS, String.valueOf(this.numResults));
       MIDOperatorIOUtils.writeOutputProperties(this.operator, this.props);
 
       return Map.of();
@@ -76,10 +76,10 @@ public class Query extends OperatorImpl {
 
   @Override
   public void readInputProperties(Properties inputProperties) throws MMINTException {
-    this.queryPath = MIDOperatorIOUtils.getStringProperty(inputProperties, In.PROP_IN_QUERYPATH);
-    this.queryName = MIDOperatorIOUtils.getStringProperty(inputProperties, In.PROP_IN_QUERYNAME);
+    this.queryPath = MIDOperatorIOUtils.getStringProperty(inputProperties, In.PROP_QUERYPATH);
+    this.queryName = MIDOperatorIOUtils.getStringProperty(inputProperties, In.PROP_QUERYNAME);
     this.reasoner = (IQueryTrait) MMINT.getReasoner(
-      MIDOperatorIOUtils.getStringProperty(inputProperties, In.PROP_IN_REASONERNAME));
+      MIDOperatorIOUtils.getStringProperty(inputProperties, In.PROP_REASONERNAME));
   }
 
   protected void runQuery() throws Exception {

@@ -45,9 +45,6 @@ import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
-//TODO MMINT[OPERATOR] Review this whole operator to find examples on how to make apis easier to use
-// e.g. direct access through ext table is useful, but there's that _AS_ thing to be fixed first
-// e.g. there is no direct link from a model to all its connected model rels
 public class Merge extends OperatorImpl {
   protected static final String MERGE_SEPARATOR = "_";
   protected static final String ATTR_MERGE_SYNTAX = "$1" + Merge.MERGE_SEPARATOR + "$2";
@@ -80,35 +77,45 @@ public class Merge extends OperatorImpl {
   }
 
   protected static class Out {
+    private final static String PROP_TIMEMERGE = "timeMerge";
     private final static String MODEL = "merged";
     private final static String MODELREL1 = "trace1";
     private final static String MODELREL2 = "trace2";
     private final static String MODELREL3 = "mergeTrace";
+    public Merge operator;
+    public Properties props;
+    public long timeMerge;
     public Model merged;
     public ModelRel trace1;
     public ModelRel trace2;
     public ModelRel mergeTrace;
     public MID mergedMID;
 
-    public Out(String workingPath, In in, Map<String, MID> outputMIDsByName) throws Exception {
+    public Out(Merge operator, Map<String, MID> outputMIDsByName) throws Exception {
+      this.operator = operator;
+      this.props = new Properties();
+      this.timeMerge = 0;
       this.mergedMID = outputMIDsByName.get(Out.MODEL);
-      var mergedModelName = in.model1.getName() + Merge.MERGE_SEPARATOR + in.model2.getName() +
-                            MMINTConstants.MODEL_FILEEXTENSION_SEPARATOR + in.model1.getFileExtension();
-      var mergedModelPath = FileUtils.getUniquePath(workingPath + File.separator + mergedModelName, true, false);
-      this.merged = in.model1.getMetatype().createInstance(null, mergedModelPath, this.mergedMID);
+      var mergedModelName = operator.in.model1.getName() + Merge.MERGE_SEPARATOR + operator.in.model2.getName() +
+                            MMINTConstants.MODEL_FILEEXTENSION_SEPARATOR + operator.in.model1.getFileExtension();
+      var mergedModelPath = FileUtils.getUniquePath(operator.getWorkingPath() + File.separator + mergedModelName, true,
+                                                    false);
+      this.merged = operator.in.model1.getMetatype().createInstance(null, mergedModelPath, this.mergedMID);
       var modelRelType = MIDTypeHierarchy.getRootModelRelType();
-      this.trace1 = modelRelType.createBinaryInstanceAndEndpoints(null, Out.MODELREL1, in.model1, this.merged,
+      this.trace1 = modelRelType.createBinaryInstanceAndEndpoints(null, Out.MODELREL1, operator.in.model1, this.merged,
                                                                   outputMIDsByName.get(Out.MODELREL1));
-      this.trace2 = modelRelType.createBinaryInstanceAndEndpoints(null, Out.MODELREL2, in.model2, this.merged,
+      this.trace2 = modelRelType.createBinaryInstanceAndEndpoints(null, Out.MODELREL2, operator.in.model2, this.merged,
                                                                   outputMIDsByName.get(Out.MODELREL2));
-      this.mergeTrace = modelRelType.createBinaryInstanceAndEndpoints(null, Out.MODELREL3, in.overlap, this.merged,
-                                                                      outputMIDsByName.get(Out.MODELREL3));
+      this.mergeTrace = modelRelType.createBinaryInstanceAndEndpoints(null, Out.MODELREL3, operator.in.overlap,
+                                                                      this.merged, outputMIDsByName.get(Out.MODELREL3));
     }
 
     public Map<String, Model> packed() throws Exception {
       if (this.mergedMID != null) { // can happen when running in an experiment
         this.merged.createInstanceEditor(true);
       }
+      this.props.setProperty(Out.PROP_TIMEMERGE, String.valueOf(this.timeMerge));
+      MIDOperatorIOUtils.writeOutputProperties(this.operator, this.props);
 
       return Map.of(Out.MODEL, this.merged,
                     Out.MODELREL1, this.trace1,
@@ -353,7 +360,7 @@ public class Merge extends OperatorImpl {
 
   protected void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws Exception {
     this.in = new In(inputsByName);
-    this.out = new Out(getWorkingPath(), this.in, outputMIDsByName);
+    this.out = new Out(this, outputMIDsByName);
     if (this.engine.equals("kotlin")) {
       this.kConverter = new KotlinConverter();
     }
@@ -363,11 +370,13 @@ public class Merge extends OperatorImpl {
   public Map<String, Model> run(Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
                                 Map<String, MID> outputMIDsByName) throws Exception {
     init(inputsByName, outputMIDsByName);
+    var startTime = System.nanoTime();
     switch(this.engine) {
       case "kotlin" -> kMerge();
       case "java" -> merge();
       default -> merge();
     }
+    this.out.timeMerge = System.nanoTime() - startTime;
 
     return this.out.packed();
   }
