@@ -17,6 +17,7 @@ package edu.toronto.cs.se.mmint.kotlin.structs
 
 
 import edu.toronto.cs.se.mmint.kotlin.operators.merge.mergeAttrs
+import edu.toronto.cs.se.mmint.kotlin.operators.merge.mergeAttrsPL
 import edu.toronto.cs.se.mmint.kotlin.operators.merge.mergeMaps
 import edu.toronto.cs.se.mmint.kotlin.operators.merge.updateMap
 import edu.toronto.cs.se.mmint.mid.reasoning.ISATReasoner

@@ -53,7 +53,6 @@ fun merge(model1: Tree<Object>, model2: Tree<Object>, toMerge: Map<String,String
 fun mergePL(model1 : Tree<Object>, model2 : Tree<Object>, toMerge : Map<String,String>, reasoner : ISATReasoner) : Tree<Object> {
     val tm : MutableMap<String,String> = toMerge.toMutableMap()
     tm[model1.node().toString()] = model2.node().toString()
-    println(tm)
     val mergeURImap = getMergeURImap(tm.toLList())
     val nonMergedRootsWithContainers = getNonMergedRoots(model2.node().toString(), tm, model2)
     val withParentsInModel1 = swapParents(nonMergedRootsWithContainers, tm.reverse())
@@ -61,6 +60,6 @@ fun mergePL(model1 : Tree<Object>, model2 : Tree<Object>, toMerge : Map<String,S
     val uri12obj2 = tm.toLList().map { MkProd(it.fst(), model2.getSubObject(it.snd())) } .noJunk()
     val mergeModel =  withModel2Branches.mapdata { checkAndMerge({ o, p -> Object.unionPL(toMerge, mergeURImap, o,p, reasoner) }, it, tm, uri12obj2) }
     val mergeObjMap = mergeURImap.map {MkProd(it.fst(), mergeModel.getSubObject(it.snd()))} .noJunk()
-    VarObj.replaceRefsPL(mergeModel, mergeObjMap)
+    Object.replaceRefs(mergeModel, mergeObjMap)
     return mergeModel
 }

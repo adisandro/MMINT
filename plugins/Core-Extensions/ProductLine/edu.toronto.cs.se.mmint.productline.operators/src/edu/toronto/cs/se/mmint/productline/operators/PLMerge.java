@@ -21,7 +21,6 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.kotlin.operators.merge.EntryKt;
 import edu.toronto.cs.se.mmint.kotlin.structs.Object;
 import edu.toronto.cs.se.mmint.kotlin.structs.Tree;
-import edu.toronto.cs.se.mmint.kotlin.structs.VarKt;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
@@ -119,7 +118,7 @@ public class PLMerge extends Merge {
   @Override
   @PLPipeline.Modify
   protected Tree<? extends Object> kMerge(Tree<Object> kModel1, Tree<Object> kModel2, Map<String, String> overlap) {
-    return EntryKt.mergePL(VarKt.toTreeVarObj(kModel1), VarKt.toTreeVarObj(kModel2), overlap, this.reasoner);
+    return EntryKt.mergePL(kModel1, kModel2, overlap, this.reasoner);
   }
 
   @Override
