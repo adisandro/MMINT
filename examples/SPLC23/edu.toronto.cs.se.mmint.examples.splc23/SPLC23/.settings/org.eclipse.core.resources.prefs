@@ -1,6 +1,10 @@
 eclipse.preferences.version=1
-encoding//model/samples_evaluation.mid=UTF-8
-encoding//model/samples_evaluation.middiag=UTF-8
+encoding//model/samples_evaluation_P.mid=UTF-8
+encoding//model/samples_evaluation_P.middiag=UTF-8
+encoding//model/samples_evaluation_PL.mid=UTF-8
+encoding//model/samples_evaluation_PL.middiag=UTF-8
 encoding//model/setup_evaluation.mid=UTF-8
 encoding//model/setup_evaluation.middiag=UTF-8
+encoding//model/workflow.mid=UTF-8
+encoding//model/workflow.middiag=UTF-8
 encoding/<project>=UTF-8

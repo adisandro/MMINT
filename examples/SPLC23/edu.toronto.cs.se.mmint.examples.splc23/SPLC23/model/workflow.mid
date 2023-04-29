@@ -25,11 +25,6 @@
   <operators uri="Query2" name="Query2" level="WORKFLOWS" metatypeUri="edu.toronto.cs.se.mmint.operator.match.Query" dynamic="true">
     <inputs uri="" name="model" level="WORKFLOWS" metatypeUri="edu.toronto.cs.se.mmint.operator.match.Query/model" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1"/>
   </operators>
-  <operators uri="" name="RandomMatch" level="WORKFLOWS" metatypeUri="edu.toronto.cs.se.mmint.operator.match.RandomMatch" dynamic="true">
-    <inputs uri="" name="model1" level="WORKFLOWS" metatypeUri="edu.toronto.cs.se.mmint.operator.match.RandomMatch/model1" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0"/>
-    <inputs uri="" name="model2" level="WORKFLOWS" metatypeUri="edu.toronto.cs.se.mmint.operator.match.RandomMatch/model2" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1"/>
-    <outputs uri="" name="overlap" level="WORKFLOWS" metatypeUri="edu.toronto.cs.se.mmint.operator.match.RandomMatch/overlap" dynamic="true" lowerBound="1" upperBound="1" target="//@models.2"/>
-  </operators>
   <operators uri="" name="Merge" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_Merge" dynamic="true">
     <inputs uri="" name="overlap" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_Merge-Overlap/overlap" dynamic="true" lowerBound="1" upperBound="1" target="//@models.2"/>
     <outputs uri="" name="merged" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_Merge-Model/merged" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3"/>
@@ -43,11 +38,11 @@
   <extendibleTable key="model1" value="//@models.0"/>
   <extendibleTable key="model2" value="//@models.1"/>
   <extendibleTable key="match" value="//@models.2"/>
+  <extendibleTable key="Query1" value="//@operators.0"/>
+  <extendibleTable key="Query2" value="//@operators.1"/>
+  <extendibleTable key="mergeTrace" value="//@models.6"/>
   <extendibleTable key="trace1" value="//@models.4"/>
   <extendibleTable key="trace2" value="//@models.5"/>
   <extendibleTable key="merged" value="//@models.3"/>
-  <extendibleTable key="mergeTrace" value="//@models.6"/>
-  <extendibleTable key="Query1" value="//@operators.0"/>
-  <extendibleTable key="Query2" value="//@operators.1"/>
-  <extendibleTable key="Query3" value="//@operators.4"/>
+  <extendibleTable key="Query3" value="//@operators.3"/>
 </mid:MID>
