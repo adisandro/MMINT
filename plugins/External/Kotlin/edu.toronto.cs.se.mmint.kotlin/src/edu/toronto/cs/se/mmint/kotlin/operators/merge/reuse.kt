@@ -13,7 +13,7 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.kotlin.operators.merge
 import edu.toronto.cs.se.mmint.kotlin.structs.*
-
+import edu.toronto.cs.se.mmint.mid.reasoning.ISATReasoner
 
 
 fun mergeAttrs(left : Map<String,String>, right : Map<String,String>) : MutableMap<String,String> {
@@ -24,7 +24,32 @@ fun mergeAttrs(left : Map<String,String>, right : Map<String,String>) : MutableM
         val v1 = entry.value
         val newv = when (val v2 = right[entry.key]) {
             null -> v1
-            else -> if (entry.key =="reasonerName"|| entry.key=="featureConstraint" || entry.key=="presenceCondition") v1 else v1+"_"+v2
+            else -> if (entry.key =="reasonerName"|| entry.key=="featureConstraint") v1 else v1+"_"+v2
+        }
+        newAttrs[entry.key]=newv
+    }
+    val rightIt = right.entries.iterator()
+    while (rightIt.hasNext()){
+        val entry = rightIt.next()
+        if (!left.containsKey(entry.key))
+            newAttrs[entry.key] = entry.value
+    }
+    return newAttrs
+}
+
+fun mergeAttrsPL(left : Map<String,String>, right : Map<String,String>, reasoner : ISATReasoner) : MutableMap<String,String> {
+    val leftIt = left.entries.iterator()
+    val newAttrs = mutableMapOf<String,String>()
+    while(leftIt.hasNext()){
+        val entry = leftIt.next()
+        val v1 = entry.value
+        val newv = when (val v2 = right[entry.key]) {
+            null -> v1
+            else -> if (entry.key =="reasonerName"|| entry.key=="featureConstraint") v1 else {
+                if (entry.key == "presenceCondition")
+                    reasoner.simplify(reasoner.orSyntax.replace("$1", v1).replace("$2", v2))
+                else v1 + "_" + v2
+            }
         }
         newAttrs[entry.key]=newv
     }
