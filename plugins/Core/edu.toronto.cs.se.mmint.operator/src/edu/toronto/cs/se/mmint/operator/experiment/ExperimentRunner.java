@@ -81,8 +81,10 @@ public class ExperimentRunner implements Runnable {
         var variable = expVariable.getKey();
         var value = expVariable.getValue();
         var variableSpecs = this.exp.variables.get(variable);
-        var props = operatorProps.merge(variableSpecs.operatorName, new Properties(), (oldP, newP) -> oldP);
-        props.setProperty(variable, value);
+        for (var operatorName : variableSpecs.operatorNames) {
+          var props = operatorProps.merge(operatorName, new Properties(), (oldP, newP) -> oldP);
+          props.setProperty(variable, value);
+        }
       }
       for (var propsEntry : operatorProps.entrySet()) {
         var operatorName = propsEntry.getKey();
@@ -156,7 +158,7 @@ public class ExperimentRunner implements Runnable {
                                       .toOSString());
               var sampleProps = new Properties();
               sampleProps.load(new FileInputStream(samplePropsPath));
-              sample = MIDOperatorIOUtils.getDoubleProperty(sampleProps, output);
+              sample = MIDOperatorIOUtils.getDoubleProperty(sampleProps, output.split("\\.")[1]);
             }
           }
           if (sample == Double.MAX_VALUE) {

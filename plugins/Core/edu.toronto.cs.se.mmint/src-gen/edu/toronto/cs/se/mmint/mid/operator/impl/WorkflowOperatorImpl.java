@@ -241,9 +241,15 @@ public class WorkflowOperatorImpl extends NestingOperatorImpl implements Workflo
                     }
                 }
             }
+            //TODO MMINT[WORKFLOW] These are ugly ways to run callbacks
             workflowOperatorType.setWorkingPath(getWorkingPath());
             if (state != null && workflowOperatorType instanceof RandomOperator) {
                 ((RandomOperator) workflowOperatorType).setState(state);
+            }
+            var workflowOperatorTypeName = workflowOperatorType.getName();
+            if (!workflowOperatorTypeName.equals(workflowOperator.getName()) ) {
+              // an operator in a workflow can have its name changed for e.g. distinguishing multiple invocations
+              workflowOperatorType.setName(workflowOperator.getName());
             }
             //TODO MMINT[WORKFLOW] Add api getWorkflowData(Operator prevOperator) to fetch in-memory data
             var operator = workflowOperatorType.startInstance(
@@ -252,6 +258,10 @@ public class WorkflowOperatorImpl extends NestingOperatorImpl implements Workflo
                 workflowGenerics,
                 workflowOutputMIDsByName,
                 nestedMID);
+            if (!workflowOperatorTypeName.equals(workflowOperator.getName()) ) {
+              // restore original name
+              workflowOperatorType.setName(workflowOperatorTypeName);
+            }
             if (operator instanceof RandomOperator) {
                state = ((RandomOperator) operator).getState();
             }

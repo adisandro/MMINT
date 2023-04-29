@@ -19,10 +19,10 @@
     <modelEndpoints uri="" name="match" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.2"/>
     <modelEndpoints uri="" name="w0" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3"/>
   </models>
-  <operators uri="" name="Query" level="WORKFLOWS" metatypeUri="edu.toronto.cs.se.mmint.operator.match.Query" dynamic="true">
+  <operators uri="Query1" name="Query1" level="WORKFLOWS" metatypeUri="edu.toronto.cs.se.mmint.operator.match.Query" dynamic="true">
     <inputs uri="" name="model" level="WORKFLOWS" metatypeUri="edu.toronto.cs.se.mmint.operator.match.Query/model" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0"/>
   </operators>
-  <operators uri="" name="Query" level="WORKFLOWS" metatypeUri="edu.toronto.cs.se.mmint.operator.match.Query" dynamic="true">
+  <operators uri="Query2" name="Query2" level="WORKFLOWS" metatypeUri="edu.toronto.cs.se.mmint.operator.match.Query" dynamic="true">
     <inputs uri="" name="model" level="WORKFLOWS" metatypeUri="edu.toronto.cs.se.mmint.operator.match.Query/model" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1"/>
   </operators>
   <operators uri="" name="RandomMatch" level="WORKFLOWS" metatypeUri="edu.toronto.cs.se.mmint.operator.match.RandomMatch" dynamic="true">
@@ -37,7 +37,7 @@
     <outputs uri="" name="trace2" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_Merge-ModelRel/trace2" dynamic="true" lowerBound="1" upperBound="1" target="//@models.5"/>
     <outputs uri="" name="mergeTrace" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_Merge-ModelRel/mergeTrace" dynamic="true" lowerBound="1" upperBound="1" target="//@models.6"/>
   </operators>
-  <operators uri="" name="Query" level="WORKFLOWS" metatypeUri="edu.toronto.cs.se.mmint.operator.match.Query" dynamic="true">
+  <operators uri="Query3" name="Query3" level="WORKFLOWS" metatypeUri="edu.toronto.cs.se.mmint.operator.match.Query" dynamic="true">
     <inputs uri="" name="model" level="WORKFLOWS" metatypeUri="edu.toronto.cs.se.mmint.operator.match.Query/model" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3"/>
   </operators>
   <extendibleTable key="model1" value="//@models.0"/>
@@ -47,4 +47,7 @@
   <extendibleTable key="trace2" value="//@models.5"/>
   <extendibleTable key="merged" value="//@models.3"/>
   <extendibleTable key="mergeTrace" value="//@models.6"/>
+  <extendibleTable key="Query1" value="//@operators.0"/>
+  <extendibleTable key="Query2" value="//@operators.1"/>
+  <extendibleTable key="Query3" value="//@operators.4"/>
 </mid:MID>
