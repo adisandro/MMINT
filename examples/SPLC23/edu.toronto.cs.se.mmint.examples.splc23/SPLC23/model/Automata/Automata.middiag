@@ -9,6 +9,15 @@
     <element xmi:type="mid:Model" href="Automata.mid#//@models.0"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ypmSZOd3Ee2ioexo_GodPw" x="272" y="64"/>
   </children>
+  <children xmi:type="notation:Node" xmi:id="_2Z8iEOd4Ee2ioexo_GodPw" type="2002">
+    <children xmi:type="notation:DecorationNode" xmi:id="_2Z8iFed4Ee2ioexo_GodPw" type="5003"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_2Z8iFud4Ee2ioexo_GodPw" type="5004"/>
+    <styles xmi:type="notation:DescriptionStyle" xmi:id="_2Z8iEed4Ee2ioexo_GodPw"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_2Z8iEud4Ee2ioexo_GodPw" fontName="Cantarell"/>
+    <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_2Z8iE-d4Ee2ioexo_GodPw" hint="Mid"/>
+    <element xmi:type="mid:Model" href="Automata.mid#//@models.1"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_2Z8iFOd4Ee2ioexo_GodPw" x="576" y="64"/>
+  </children>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_zgukIed2Ee2ioexo_GodPw"/>
   <element xmi:type="mid:MID" href="Automata.mid#/"/>
 </notation:Diagram>

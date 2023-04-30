@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mid:MID xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mid="http://se.cs.toronto.edu/mmint/MID">
-  <models uri="/MMPL/model/Automata/Automata.productline" name="Automata" metatypeUri="model://edu.toronto.cs.se.mmint.productline" dynamic="true" fileExtension="productline" editors="//@editors.0"/>
+  <models uri="/MMPL/model/Automata/Automata.productline" name="Automata1" metatypeUri="model://edu.toronto.cs.se.mmint.productline" dynamic="true" fileExtension="productline" editors="//@editors.0"/>
+  <models uri="/SPLC23/model/Automata/Automata.productline" name="Automata2" metatypeUri="model://edu.toronto.cs.se.mmint.productline" dynamic="true" fileExtension="productline" editors="//@editors.1"/>
   <editors uri="/MMPL/model/Automata/Automata.productline" name="ProductLine EMF Editor for model /MMPL/model/Automata/Automata.productline" metatypeUri="edu.toronto.cs.se.mmint.productline.editor" dynamic="true" modelUri="/MMPL/model/Automata/Automata.productline" id="edu.toronto.cs.se.mmint.productline.presentation.ProductLineEditorID" wizardId="edu.toronto.cs.se.mmint.productline.presentation.ProductLineModelWizardID">
     <fileExtensions>productline</fileExtensions>
   </editors>
+  <editors uri="/SPLC23/model/Automata/Automata.productline" name="ProductLine EMF Editor for model /SPLC23/model/Automata/Automata.productline" metatypeUri="edu.toronto.cs.se.mmint.productline.editor" dynamic="true" modelUri="/SPLC23/model/Automata/Automata.productline" id="edu.toronto.cs.se.mmint.productline.presentation.ProductLineEditorID" wizardId="edu.toronto.cs.se.mmint.productline.presentation.ProductLineModelWizardID">
+    <fileExtensions>productline</fileExtensions>
+  </editors>
   <extendibleTable key="/MMPL/model/Automata/Automata.productline" value="//@models.0"/>
+  <extendibleTable key="/SPLC23/model/Automata/Automata.productline" value="//@models.1"/>
 </mid:MID>
