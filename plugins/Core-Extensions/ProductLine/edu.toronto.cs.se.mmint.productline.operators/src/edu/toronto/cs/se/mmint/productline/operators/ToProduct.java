@@ -127,7 +127,6 @@ public class ToProduct extends RandomOperatorImpl {
     this.featureReasoner = this.in.pl.getReasoner();
     this.allFeatureValues = new HashMap<>();
     this.presenceConditionCache = new HashMap<>();
-    this.userAssigned = null;
   }
 
   private boolean canInstantiateFeatures(@Nullable String plFormula) {

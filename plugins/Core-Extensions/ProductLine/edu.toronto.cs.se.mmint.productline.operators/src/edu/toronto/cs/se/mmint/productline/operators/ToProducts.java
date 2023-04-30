@@ -174,7 +174,6 @@ public class ToProducts extends ToProduct {
     this.featureReasoner = this.in.pls.get(0).getReasoner();
     this.allFeatureValues = new HashMap<>();
     this.presenceConditionCache = new HashMap<>();
-    this.userAssigned = null;
   }
 
   protected ModelRel toProduct(ModelRel plRel, Map<Model, Model> plModelToPModel, Map<Class, EObject> traceLinks, MID mid) throws MMINTException {
@@ -187,12 +186,12 @@ public class ToProducts extends ToProduct {
       plRel.getMetatype().createBinaryInstanceAndEndpoints(null, pRelName, pEndpoints.get(0), pEndpoints.get(1), mid) :
       plRel.getMetatype().createInstanceAndEndpoints(null, pRelName, ECollections.toEList(pEndpoints), mid);
     for (var plMapping : plRel.getMappings()) {
-      var pModelObjs = new ArrayList<EObject>();
+      var pModelObjs = new HashMap<EObject, Model>();
       for (var plModelElemEndpointRef : plMapping.getModelElemEndpointRefs()) {
-        var plClass = plModelElemEndpointRef.getObject().getTarget().getEMFInstanceObject();
-        var pModelObj = traceLinks.get(plClass);
+        var plModelElem = plModelElemEndpointRef.getObject().getTarget();
+        var pModelObj = traceLinks.get(plModelElem.getEMFInstanceObject());
         if (pModelObj != null) {
-          pModelObjs.add(pModelObj);
+          pModelObjs.put(pModelObj, plModelToPModel.get(plModelElem.eContainer()));
         }
       }
       if (plMapping.getModelElemEndpointRefs().size() != pModelObjs.size()) {
@@ -200,12 +199,11 @@ public class ToProducts extends ToProduct {
         continue;
       }
       var pModelElemRefs = new ArrayList<ModelElementReference>();
-      for (var pModelObj : pModelObjs) {
-        var pModelPath = MIDRegistry.getModelUri(pModelObj);
+      for (var pModelObjEntry : pModelObjs.entrySet()) {
         var pModelEndpointRef = pRel.getModelEndpointRefs().stream()
-          .filter(mer -> mer.getTargetUri().equals(pModelPath))
+          .filter(mer -> mer.getTargetUri().equals(pModelObjEntry.getValue().getUri()))
           .findFirst().get();
-        pModelElemRefs.add(pModelEndpointRef.createModelElementInstanceAndReference(pModelObj, null));
+        pModelElemRefs.add(pModelEndpointRef.createModelElementInstanceAndReference(pModelObjEntry.getKey(), null));
       }
       var pMapping = plMapping.getMetatype()
         .createInstanceAndReferenceAndEndpointsAndReferences(plMapping instanceof BinaryMapping,
