@@ -318,19 +318,19 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.0 //@classes.174/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.0 //@classes.174/@references.0">
     <attributes value="String">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.1 //@classes.6/@references.0 //@classes.7/@references.0 //@classes.237/@references.0 //@classes.313/@references.0 //@classes.314/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.1 //@classes.6/@references.0 //@classes.7/@references.0 //@classes.237/@references.0 //@classes.313/@references.0 //@classes.314/@references.0">
     <attributes value="Boolean">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.2 //@classes.54/@references.0 //@classes.57/@references.0 //@classes.123/@references.0 //@classes.179/@references.0 //@classes.256/@references.0 //@classes.292/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.2 //@classes.54/@references.0 //@classes.57/@references.0 //@classes.123/@references.0 //@classes.179/@references.0 //@classes.256/@references.0 //@classes.292/@references.0">
     <attributes value="XXX_FSC System">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -477,7 +477,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.3/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.3/@references.0">
     <attributes value="TimeoutLog">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -489,7 +489,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.3/@references.1">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.3/@references.1">
     <attributes value="XXX_FS coordinator2">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -501,7 +501,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.3/@references.2">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.3/@references.2">
     <attributes value="routeAgreement">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -513,7 +513,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.3/@references.3">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.3/@references.3">
     <attributes value="closeAgreement">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -525,7 +525,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.3/@references.4">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.3/@references.4">
     <attributes value="RoutePlan1">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -537,7 +537,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.3/@references.5">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.3/@references.5">
     <attributes value="bCrash System1">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -549,7 +549,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.3/@references.6">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.3/@references.6">
     <attributes value="&lt;&lt;optional: _r_2_9_10_12>> XXX_Dispatch service2">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -561,7 +561,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.3/@references.7">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.3/@references.7">
     <attributes value="bCrash System1">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -591,7 +591,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.3/@references.10">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.3/@references.10">
     <attributes value="policeCarDispatched">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -600,7 +600,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.3/@references.11">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.3/@references.11">
     <attributes value="policeCarArrived">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -609,7 +609,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.3/@references.12">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.3/@references.12">
     <attributes value="fireTruckObjectiveCompleteFScoordinator">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -618,7 +618,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.3/@references.13">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.3/@references.13">
     <attributes value="crisisCompletePSC">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -627,7 +627,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.3/@references.14">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.3/@references.14">
     <attributes value="reqComPSC">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -636,7 +636,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.3/@references.15">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.3/@references.15">
     <attributes value="authPSC">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -645,7 +645,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.3/@references.16">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.3/@references.16">
     <attributes value="callPScoordinator">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -654,7 +654,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.3/@references.17">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.3/@references.17">
     <attributes value="sendFScoordinatorCredentials">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -663,7 +663,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.3/@references.18">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.3/@references.18">
     <attributes value="sendFSCrisisDetails">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -672,7 +672,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.3/@references.19">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.3/@references.19">
     <attributes value="crisisDetailsPSC">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -681,7 +681,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.3/@references.20">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.3/@references.20">
     <attributes value="deployFireTrucks">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -690,7 +690,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.3/@references.21">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.3/@references.21">
     <attributes value="agreeFireTrucksRoute">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -699,7 +699,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.3/@references.22">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.3/@references.22">
     <attributes value="disagreeFireTrucksRoute">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -708,7 +708,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.3/@references.23">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.3/@references.23">
     <attributes value="fireTruckDispatchedFScoordinator">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -717,7 +717,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.3/@references.24">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.3/@references.24">
     <attributes value="fireTruckArrivedFScoordinator">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -726,7 +726,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.3/@references.25">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.3/@references.25">
     <attributes value="policeCarObjectiveCompleted">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -735,7 +735,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.3/@references.26">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.3/@references.26">
     <attributes value="fireTruckBackFScoordinator">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -744,7 +744,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.3/@references.27">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.3/@references.27">
     <attributes value="policeCarBack">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -753,7 +753,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.3/@references.28">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.3/@references.28">
     <attributes value="closeCrisisFScoordinator">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -762,7 +762,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.3/@references.29">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.3/@references.29">
     <attributes value="closeCrisisPS">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -870,7 +870,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.3 //@classes.99/@references.0 //@classes.228/@references.0 //@classes.308/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.3 //@classes.99/@references.0 //@classes.228/@references.0 //@classes.308/@references.0">
     <attributes value="PoliceOfficer1">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -894,7 +894,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.45/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.45/@references.0">
     <attributes value="Victim">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -906,7 +906,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.45/@references.1">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.45/@references.1">
     <attributes value="Witness">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -918,7 +918,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.45/@references.2">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.45/@references.2">
     <attributes value="XXX_PS coordinator">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -930,7 +930,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.4 //@classes.9/@references.0 //@classes.11/@references.0 //@classes.70/@references.0 //@classes.79/@references.0 //@classes.135/@references.0 //@classes.148/@references.0 //@classes.162/@references.0 //@classes.172/@references.0 //@classes.183/@references.0 //@classes.238/@references.0 //@classes.282/@references.0 //@classes.294/@references.0 //@classes.316/@references.0 //@classes.317/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.4 //@classes.9/@references.0 //@classes.11/@references.0 //@classes.70/@references.0 //@classes.79/@references.0 //@classes.135/@references.0 //@classes.148/@references.0 //@classes.162/@references.0 //@classes.172/@references.0 //@classes.183/@references.0 //@classes.238/@references.0 //@classes.282/@references.0 //@classes.294/@references.0 //@classes.316/@references.0 //@classes.317/@references.0">
     <attributes value="bCrash System1">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1020,7 +1020,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.49/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.49/@references.0">
     <attributes value="Goverment&#xA;Agency">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1032,7 +1032,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.49/@references.1">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.49/@references.1">
     <attributes value="Communication&#xD;&#xA;Infrastructure">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1044,7 +1044,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.49/@references.2">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.49/@references.2">
     <attributes value="Crisis1">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1056,7 +1056,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.49/@references.3">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.49/@references.3">
     <attributes value="XXX_PSC System3">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1068,7 +1068,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.49/@references.4">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.49/@references.4">
     <attributes value="XXX_FSC System">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1080,7 +1080,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.49/@references.5">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.49/@references.5">
     <attributes value="Crisis&#xA;">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1092,7 +1092,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.49/@references.6">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.49/@references.6">
     <attributes value="XXX_PSC System3">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1104,7 +1104,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.49/@references.7">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.49/@references.7">
     <attributes value="XXX_FSC System">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1116,7 +1116,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.49/@references.8">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.49/@references.8">
     <attributes value="PSC system1">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1128,7 +1128,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.49/@references.9">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.49/@references.9">
     <attributes value="FSC system2">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1140,7 +1140,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.49/@references.10">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.49/@references.10">
     <attributes value="&lt;&lt;optional: _r_2_9_10_12>> XXX_Dispatch service2">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1152,7 +1152,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.49/@references.11">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.49/@references.11">
     <attributes value="PSC system&#xD;&#xA;2">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1164,7 +1164,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.49/@references.12">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.49/@references.12">
     <attributes value="FSC system&#xD;&#xA;3">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1176,7 +1176,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.49/@references.13">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.49/@references.13">
     <attributes value="&lt;&lt;optional>>Dispatch service1">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1188,7 +1188,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.5 //@classes.204/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.5 //@classes.204/@references.0">
     <attributes value="Route&#xD;&#xA;PoliceCar1">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1203,7 +1203,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.64/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.64/@references.0">
     <attributes value="XXX_Police Car 3">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1215,7 +1215,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.6 //@classes.71/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.6 //@classes.71/@references.0">
     <attributes value="FS coordinator&#xD;&#xA;1">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1230,7 +1230,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.66/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.66/@references.0">
     <attributes value="FSC system2">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1242,7 +1242,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.66/@references.1">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.66/@references.1">
     <attributes value="-&lt;&lt;optional>> callFireTruck">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1251,7 +1251,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.7 //@classes.59/@references.0 //@classes.67/@references.0 //@classes.296/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.7 //@classes.59/@references.0 //@classes.67/@references.0 //@classes.296/@references.0">
     <attributes value="FSC system2">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1281,7 +1281,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.69/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.69/@references.0">
     <attributes value="bCrash System1">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1293,7 +1293,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.69/@references.1">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.69/@references.1">
     <attributes value="FS coordinator&#xD;&#xA;1">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1305,7 +1305,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.69/@references.2">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.69/@references.2">
     <attributes value="&lt;&lt;optional: _r_2_9_10_12>> XXX_Dispatch service2">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1317,7 +1317,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.69/@references.3">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.69/@references.3">
     <attributes value="-&lt;&lt;optional>>sendMsgFireTruck">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1326,7 +1326,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.69/@references.4">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.69/@references.4">
     <attributes value="-&lt;&lt;optional>> receiveFireTruckData">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1335,7 +1335,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.8 //@classes.63/@references.0 //@classes.137/@references.0 //@classes.141/@references.0 //@classes.164/@references.0 //@classes.185/@references.0 //@classes.199/@references.0 //@classes.154/@references.6 //@classes.217/@references.6">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.8 //@classes.63/@references.0 //@classes.137/@references.0 //@classes.141/@references.0 //@classes.164/@references.0 //@classes.185/@references.0 //@classes.199/@references.0 //@classes.154/@references.6 //@classes.217/@references.6">
     <attributes value="&lt;&lt;optional>>Dispatch service1">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1395,7 +1395,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.75/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.75/@references.0">
     <attributes value="Police car&#xD;&#xA;2">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1407,7 +1407,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.75/@references.1">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.75/@references.1">
     <attributes value="Fire truck&#xD;&#xA;1">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1419,7 +1419,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.75/@references.2">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.75/@references.2">
     <attributes value="Citizen vehicle&#xA;">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1431,7 +1431,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.75/@references.3">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.75/@references.3">
     <attributes value="bCrash System1">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1443,7 +1443,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.75/@references.4">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.75/@references.4">
     <attributes value="PSC system&#xD;&#xA;2">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1455,7 +1455,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.75/@references.5">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.75/@references.5">
     <attributes value="FSC system&#xD;&#xA;3">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1467,7 +1467,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.75/@references.6">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.75/@references.6">
     <attributes value="&lt;&lt;optional>> dispatchPSCRequesttoPoliceCar">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1476,7 +1476,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.75/@references.7">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.75/@references.7">
     <attributes value="&lt;&lt;optional>> dispatchFSCReques">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1485,7 +1485,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.75/@references.8">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.75/@references.8">
     <attributes value="&lt;&lt;optional>> dispatchPSCRequesttoCitVehicle">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1494,7 +1494,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.75/@references.9">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.75/@references.9">
     <attributes value="&lt;&lt;optional>> ForwardPoliceCarRepor">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1503,7 +1503,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.75/@references.10">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.75/@references.10">
     <attributes value="&lt;&lt;optional>> forwardFireTruckReport">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1512,7 +1512,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.75/@references.11">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.75/@references.11">
     <attributes value="&lt;&lt;optional>> forwardCitVehicleReport">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1536,7 +1536,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.88/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.88/@references.0">
     <attributes value="&lt;&lt;optional>> SSLreceiveFSCReques">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1545,7 +1545,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.88/@references.1">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.88/@references.1">
     <attributes value="&lt;&lt;optional>> SSLreporttoFSC">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1569,7 +1569,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.91/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.91/@references.0">
     <attributes value="&lt;&lt;optional>> SSLreporttoPSC">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1578,7 +1578,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.91/@references.1">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.91/@references.1">
     <attributes value="&lt;&lt;optional>> SSLreceivePSCRequest">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1587,7 +1587,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.11 //@classes.182/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.11 //@classes.182/@references.0">
     <attributes value="Communication&#xD;&#xA;Compromiser1">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1602,7 +1602,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.94/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.94/@references.0">
     <attributes value="Communication&#xD;&#xA;Infrastructure">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1614,7 +1614,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.94/@references.1">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.94/@references.1">
     <attributes value="setCom">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1623,7 +1623,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.12 //@classes.48/@references.0 //@classes.177/@references.0 //@classes.206/@references.0 //@classes.293/@references.0 //@classes.312/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.12 //@classes.48/@references.0 //@classes.177/@references.0 //@classes.206/@references.0 //@classes.293/@references.0 //@classes.312/@references.0">
     <attributes value="XXX_PS coordinator">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1707,7 +1707,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.97/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.97/@references.0">
     <attributes value="XXX_Police Car 3">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1719,7 +1719,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.97/@references.1">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.97/@references.1">
     <attributes value="PoliceOfficer1">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1731,7 +1731,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.97/@references.2">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.97/@references.2">
     <attributes value="TimeoutLog">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1743,7 +1743,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.97/@references.3">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.97/@references.3">
     <attributes value="XXX_PSC System3">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1755,7 +1755,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.97/@references.4">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.97/@references.4">
     <attributes value="&lt;&lt;optional: _r_2_9_10_12>> XXX_Dispatch service2">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1767,7 +1767,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.97/@references.5">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.97/@references.5">
     <attributes value="receiveFScoordinatorCall">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1776,7 +1776,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.97/@references.6">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.97/@references.6">
     <attributes value="receiveFScoordinatorCredentials">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1785,7 +1785,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.97/@references.7">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.97/@references.7">
     <attributes value="receiveFScrisisDetails">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1794,7 +1794,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.97/@references.8">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.97/@references.8">
     <attributes value="receiveDeployFireTrucks">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1803,7 +1803,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.97/@references.9">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.97/@references.9">
     <attributes value="receiveFScoordinatorRouteAgreement">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1812,7 +1812,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.97/@references.10">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.97/@references.10">
     <attributes value="receiveFScoordinatorRouteDisagreement">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1821,7 +1821,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.97/@references.11">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.97/@references.11">
     <attributes value="receiveTruckDeliveredToCrisis">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1830,7 +1830,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.97/@references.12">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.97/@references.12">
     <attributes value="receiveFireTruckDispatched">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1839,7 +1839,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.97/@references.13">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.97/@references.13">
     <attributes value="receiveFireTruckArrived">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1848,7 +1848,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.97/@references.14">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.97/@references.14">
     <attributes value="receiveFireTruckObjectiveCompleted">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1857,7 +1857,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.97/@references.15">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.97/@references.15">
     <attributes value="receiveFireTruckBack">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1866,7 +1866,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.97/@references.16">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.97/@references.16">
     <attributes value="receiveCloseCrisisFS">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1875,7 +1875,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.97/@references.17">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.97/@references.17">
     <attributes value="&lt;&lt;optional>> callPoliceCar">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1884,7 +1884,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.97/@references.18">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.97/@references.18">
     <attributes value="&lt;&lt;optional>> callCitizenVehicle">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1893,7 +1893,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.97/@references.19">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.97/@references.19">
     <attributes value="&lt;&lt;optional>> receivereRootFireTrucks">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1911,7 +1911,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.13 //@classes.8/@references.0 //@classes.315/@references.0 //@classes.64/@references.2 //@classes.124/@references.2">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.13 //@classes.8/@references.0 //@classes.315/@references.0 //@classes.64/@references.2 //@classes.124/@references.2">
     <attributes value="RoutePlan1">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1935,7 +1935,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.119/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.119/@references.0">
     <attributes value="ETA">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1944,7 +1944,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.119/@references.1">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.119/@references.1">
     <attributes value="information">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1953,7 +1953,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.119/@references.2">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.119/@references.2">
     <attributes value="XXX_PSC System3">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1965,7 +1965,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.119/@references.3">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.119/@references.3">
     <attributes value="XXX_FSC System">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1977,7 +1977,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.14 //@classes.243/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.14 //@classes.243/@references.0">
     <attributes value="Route&#xD;&#xA;FireTruck1">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -1992,7 +1992,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.124/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.124/@references.0">
     <attributes value="XXX_FireTruck">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2004,7 +2004,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.15 //@classes.147/@references.0 //@classes.318/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.15 //@classes.147/@references.0 //@classes.318/@references.0">
     <attributes value="PS coordinator&#xD;&#xA;2">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2028,7 +2028,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.126/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.126/@references.0">
     <attributes value="XXX_PSC System3">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2040,7 +2040,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.126/@references.1">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.126/@references.1">
     <attributes value="PSC system1">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2052,7 +2052,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.126/@references.2">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.126/@references.2">
     <attributes value="&lt;&lt;optional>> callPoliceCar">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2061,7 +2061,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.126/@references.3">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.126/@references.3">
     <attributes value="&lt;&lt;optional>> callCitizenVehicle">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2070,7 +2070,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.16 //@classes.229/@references.0 //@classes.254/@references.0 //@classes.309/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.16 //@classes.229/@references.0 //@classes.254/@references.0 //@classes.309/@references.0">
     <attributes value="Fireman1">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2091,7 +2091,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.131/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.131/@references.0">
     <attributes value="Witness">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2103,7 +2103,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.131/@references.1">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.131/@references.1">
     <attributes value="XXX_FS coordinator2">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2115,7 +2115,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.17 //@classes.62/@references.0 //@classes.81/@references.0 //@classes.286/@references.0 //@classes.214/@references.2 //@classes.269/@references.2">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.17 //@classes.62/@references.0 //@classes.81/@references.0 //@classes.286/@references.0 //@classes.214/@references.2 //@classes.269/@references.2">
     <attributes value="FSC system&#xD;&#xA;3">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2145,7 +2145,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.134/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.134/@references.0">
     <attributes value="bCrash System1">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2157,7 +2157,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.134/@references.1">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.134/@references.1">
     <attributes value="FS coordinator&#xD;&#xA;&#xD;&#xA;3">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2169,7 +2169,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.134/@references.2">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.134/@references.2">
     <attributes value="&lt;&lt;optional>>Dispatch service1">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2181,7 +2181,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.134/@references.3">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.134/@references.3">
     <attributes value="-&lt;&lt;optional>> requestFireTruckData">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2190,7 +2190,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.134/@references.4">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.134/@references.4">
     <attributes value="&lt;&lt;optional>> receiveFireTruckData">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2199,7 +2199,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.18 //@classes.77/@references.0 //@classes.88/@references.2 //@classes.211/@references.2">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.18 //@classes.77/@references.0 //@classes.88/@references.2 //@classes.211/@references.2">
     <attributes value="Fire truck&#xD;&#xA;1">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2217,7 +2217,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.140/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.140/@references.0">
     <attributes value="&lt;&lt;optional>>Dispatch service1">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2229,7 +2229,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.140/@references.1">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.140/@references.1">
     <attributes value="&lt;&lt;optional>> receiveFSCReques">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2238,7 +2238,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.140/@references.2">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.140/@references.2">
     <attributes value="&lt;&lt;optional>> reporttoFSC">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2247,7 +2247,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.19 //@classes.239/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.19 //@classes.239/@references.0">
     <attributes value="Police Car&#xD;&#xA;">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2259,7 +2259,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.144/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.144/@references.0">
     <attributes value="Crisis&#xA;">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2271,7 +2271,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.20 //@classes.58/@references.0 //@classes.128/@references.0 //@classes.295/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.20 //@classes.58/@references.0 //@classes.128/@references.0 //@classes.295/@references.0">
     <attributes value="PSC system1">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2307,7 +2307,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.146/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.146/@references.0">
     <attributes value="PS coordinator&#xD;&#xA;2">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2319,7 +2319,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.146/@references.1">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.146/@references.1">
     <attributes value="bCrash System1">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2331,7 +2331,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.146/@references.2">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.146/@references.2">
     <attributes value="&lt;&lt;optional: _r_2_9_10_12>> XXX_Dispatch service2">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2343,7 +2343,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.146/@references.3">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.146/@references.3">
     <attributes value="&lt;&lt;optional>> sendMsgPoliceCar">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2352,7 +2352,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.146/@references.4">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.146/@references.4">
     <attributes value="-&lt;&lt;optional>> receivePcarData()">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2361,7 +2361,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.146/@references.5">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.146/@references.5">
     <attributes value="-&lt;&lt;optional>> sendMsgCitizenVehicle">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2370,7 +2370,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.146/@references.6">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.146/@references.6">
     <attributes value="-&lt;&lt;optional>> receiveCitizenVehicleData">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2379,7 +2379,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.21">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.21">
     <attributes value="&lt;&lt;optional>> Dispatch service&#xD;&#xA;SOAP">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2406,7 +2406,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.154/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.154/@references.0">
     <attributes value="&lt;&lt;optional>> SOAPdispatchPSCRequesttoPoliceCar">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2415,7 +2415,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.154/@references.1">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.154/@references.1">
     <attributes value="&lt;&lt;optional>> SOAPdispatchFSCReques">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2424,7 +2424,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.154/@references.2">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.154/@references.2">
     <attributes value="&lt;&lt;optional>> SOAPdispatchPSCRequesttoCitVehicle">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2433,7 +2433,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.154/@references.3">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.154/@references.3">
     <attributes value="&lt;&lt;optional>> SOAPForwardPoliceCarRepor">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2442,7 +2442,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.154/@references.4">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.154/@references.4">
     <attributes value="&lt;&lt;optional>> SOAPforwardFireTruckReport">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2451,7 +2451,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.154/@references.5">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.154/@references.5">
     <attributes value="&lt;&lt;optional>> SOAPforwardCitVehicleReport">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2460,7 +2460,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.22 //@classes.61/@references.0 //@classes.80/@references.0 //@classes.304/@references.0 //@classes.188/@references.4 //@classes.193/@references.4">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.22 //@classes.61/@references.0 //@classes.80/@references.0 //@classes.304/@references.0 //@classes.188/@references.4 //@classes.193/@references.4">
     <attributes value="PSC system&#xD;&#xA;2">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2496,7 +2496,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.161/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.161/@references.0">
     <attributes value="bCrash System1">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2508,7 +2508,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.161/@references.1">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.161/@references.1">
     <attributes value="PS coordinator&#xA;&#xA;">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2520,7 +2520,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.161/@references.2">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.161/@references.2">
     <attributes value="&lt;&lt;optional>>Dispatch service1">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2532,7 +2532,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.161/@references.3">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.161/@references.3">
     <attributes value="&lt;&lt;optional>> requestPoliceCarData">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2541,7 +2541,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.161/@references.4">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.161/@references.4">
     <attributes value="&lt;&lt;optional>> receivePcarData">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2550,7 +2550,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.161/@references.5">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.161/@references.5">
     <attributes value="&lt;&lt;optional>> requestCitizenVehicleData">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2559,7 +2559,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.161/@references.6">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.161/@references.6">
     <attributes value="&lt;&lt;optional>> receiveCitizenVehicleData">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2568,7 +2568,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.23 //@classes.240/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.23 //@classes.240/@references.0">
     <attributes value="Fire Truck&#xD;&#xA;2">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2580,7 +2580,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.169/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.169/@references.0">
     <attributes value="Crisis&#xA;">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2592,7 +2592,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.24 //@classes.50/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.24 //@classes.50/@references.0">
     <attributes value="Goverment&#xA;Agency">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2604,7 +2604,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.171/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.171/@references.0">
     <attributes value="bCrash System1">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2616,7 +2616,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.25 //@classes.4/@references.0 //@classes.100/@references.0 //@classes.255/@references.0 //@classes.311/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.25 //@classes.4/@references.0 //@classes.100/@references.0 //@classes.255/@references.0 //@classes.311/@references.0">
     <attributes value="TimeoutLog">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2655,7 +2655,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.173/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.173/@references.0">
     <attributes value="reason">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2667,7 +2667,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.173/@references.1">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.173/@references.1">
     <attributes value="submissionTime">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2676,7 +2676,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.173/@references.2">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.173/@references.2">
     <attributes value="ocurrenceTime">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2685,7 +2685,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.173/@references.3">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.173/@references.3">
     <attributes value="XXX_PS coordinator">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2697,7 +2697,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.173/@references.4">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.173/@references.4">
     <attributes value="XXX_FS coordinator2">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2709,7 +2709,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.173/@references.5">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.173/@references.5">
     <attributes value="XXX_FSC System">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2721,7 +2721,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.173/@references.6">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.173/@references.6">
     <attributes value="XXX_PSC System3">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2733,7 +2733,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.26 //@classes.51/@references.0 //@classes.95/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.26 //@classes.51/@references.0 //@classes.95/@references.0">
     <attributes value="Communication&#xD;&#xA;Infrastructure">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2751,7 +2751,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.181/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.181/@references.0">
     <attributes value="Communication&#xD;&#xA;Compromiser1">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2763,7 +2763,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.181/@references.1">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.181/@references.1">
     <attributes value="bCrash System1">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2775,7 +2775,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.27 //@classes.78/@references.0 //@classes.224/@references.2 //@classes.272/@references.2">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.27 //@classes.78/@references.0 //@classes.224/@references.2 //@classes.272/@references.2">
     <attributes value="Citizen vehicle&#xA;">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2793,7 +2793,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.184/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.184/@references.0">
     <attributes value="&lt;&lt;optional>>Dispatch service1">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2805,7 +2805,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.184/@references.1">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.184/@references.1">
     <attributes value="&lt;&lt;optional>> receivePSCRequest">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2814,7 +2814,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.184/@references.2">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.184/@references.2">
     <attributes value="&lt;&lt;optional>> reportData">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2844,7 +2844,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.188/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.188/@references.0">
     <attributes value="&lt;&lt;optional>> SSLrequestPoliceCarData">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2853,7 +2853,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.188/@references.1">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.188/@references.1">
     <attributes value="&lt;&lt;optional>> SSLreceivePcarData">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2862,7 +2862,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.188/@references.2">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.188/@references.2">
     <attributes value="&lt;&lt;optional>> SSLrequestCitizenVehicleData">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2871,7 +2871,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.188/@references.3">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.188/@references.3">
     <attributes value="&lt;&lt;optional>> SSLreceiveCitizenVehicleData">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2901,7 +2901,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.193/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.193/@references.0">
     <attributes value="&lt;optional>> SOAPrequestPoliceCarData">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2910,7 +2910,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.193/@references.1">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.193/@references.1">
     <attributes value="&lt;&lt;optional>> SOAPreceivePcarData">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2919,7 +2919,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.193/@references.2">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.193/@references.2">
     <attributes value="&lt;&lt;optional>> SOAPrequestCitizenVehicleData">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2928,7 +2928,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.193/@references.3">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.193/@references.3">
     <attributes value="&lt;&lt;optional>> SOAPreceiveCitizenVehicleData">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2937,7 +2937,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.30 //@classes.76/@references.0 //@classes.91/@references.2 //@classes.249/@references.2">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.30 //@classes.76/@references.0 //@classes.91/@references.2 //@classes.249/@references.2">
     <attributes value="Police car&#xD;&#xA;2">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2955,7 +2955,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.198/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.198/@references.0">
     <attributes value="&lt;&lt;optional>>Dispatch service1">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2967,7 +2967,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.198/@references.1">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.198/@references.1">
     <attributes value="&lt;&lt;optional>> reporttoPSC">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2976,7 +2976,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.198/@references.2">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.198/@references.2">
     <attributes value="&lt;&lt;optional>> receivePSCRequest">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -2985,7 +2985,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.31 //@classes.65/@references.0 //@classes.98/@references.0 //@classes.283/@references.0 //@classes.289/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.31 //@classes.65/@references.0 //@classes.98/@references.0 //@classes.283/@references.0 //@classes.289/@references.0">
     <attributes value="XXX_Police Car 3">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -3027,7 +3027,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.202/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.202/@references.0">
     <attributes value="position">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -3039,7 +3039,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.202/@references.1">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.202/@references.1">
     <attributes value="Route&#xD;&#xA;PoliceCar1">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -3051,7 +3051,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.202/@references.2">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.202/@references.2">
     <attributes value="Crisis1">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -3063,7 +3063,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.202/@references.3">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.202/@references.3">
     <attributes value="XXX_PS coordinator">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -3075,7 +3075,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.202/@references.4">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.202/@references.4">
     <attributes value="&lt;&lt;optional: _r_2_9_10_12>> XXX_Dispatch service2">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -3087,7 +3087,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.202/@references.5">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.202/@references.5">
     <attributes value="&lt;&lt;optional>> reporttoPSC">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -3096,7 +3096,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.202/@references.6">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.202/@references.6">
     <attributes value="&lt;&lt;optional>> receivePSCRequest">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -3129,7 +3129,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.211/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.211/@references.0">
     <attributes value="&lt;&lt;optional>> SOAPreceiveFSCReques">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -3138,7 +3138,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.211/@references.1">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.211/@references.1">
     <attributes value="&lt;&lt;optional>> SOAPreporttoFSC">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -3162,7 +3162,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.214/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.214/@references.0">
     <attributes value="&lt;&lt;optional>> SSLrequestFireTruckData">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -3171,7 +3171,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.214/@references.1">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.214/@references.1">
     <attributes value="&lt;&lt;optional>> SSLreceiveFireTruckData">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -3180,7 +3180,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.34">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.34">
     <attributes value="&lt;&lt;optional>> Dispatch service&#xD;&#xA;SSL">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -3207,7 +3207,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.217/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.217/@references.0">
     <attributes value="&lt;&lt;optional>> SSLdispatchPSCRequesttoPoliceCar">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -3216,7 +3216,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.217/@references.1">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.217/@references.1">
     <attributes value="&lt;&lt;optional>> SSLdispatchFSCReques">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -3225,7 +3225,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.217/@references.2">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.217/@references.2">
     <attributes value="&lt;&lt;optional>> SSLdispatchPSCRequesttoCitVehicle">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -3234,7 +3234,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.217/@references.3">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.217/@references.3">
     <attributes value="&lt;&lt;optional>> SSLForwardPoliceCarRepor">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -3243,7 +3243,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.217/@references.4">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.217/@references.4">
     <attributes value="&lt;&lt;optional>> SSLforwardFireTruckReport">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -3252,7 +3252,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.217/@references.5">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.217/@references.5">
     <attributes value="&lt;&lt;optional>>SSLforwardCitVehicleReport">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -3276,7 +3276,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.224/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.224/@references.0">
     <attributes value="&lt;&lt;optional>> SSLreceivePSCRequest">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -3285,7 +3285,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.224/@references.1">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.224/@references.1">
     <attributes value="&lt;&lt;optional>> SSLreportData">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -3294,7 +3294,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.36 //@classes.47/@references.0 //@classes.132/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.36 //@classes.47/@references.0 //@classes.132/@references.0">
     <attributes value="Witness">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -3312,7 +3312,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.227/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.227/@references.0">
     <attributes value="PoliceOfficer1">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -3324,7 +3324,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.227/@references.1">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.227/@references.1">
     <attributes value="Fireman1">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -3336,7 +3336,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.37 //@classes.55/@references.0 //@classes.145/@references.0 //@classes.170/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.37 //@classes.55/@references.0 //@classes.145/@references.0 //@classes.170/@references.0">
     <attributes value="Crisis&#xA;">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -3399,7 +3399,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.230/@references.2">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.230/@references.2">
     <attributes value="location">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -3408,7 +3408,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.230/@references.3">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.230/@references.3">
     <attributes value="startTime">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -3417,7 +3417,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.230/@references.4">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.230/@references.4">
     <attributes value="endTime">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -3426,7 +3426,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.230/@references.5">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.230/@references.5">
     <attributes value="description">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -3447,7 +3447,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.230/@references.7">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.230/@references.7">
     <attributes value="bCrash System1">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -3459,7 +3459,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.230/@references.8">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.230/@references.8">
     <attributes value="Police Car&#xD;&#xA;">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -3471,7 +3471,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.230/@references.9">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.230/@references.9">
     <attributes value="Fire Truck&#xD;&#xA;2">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -3483,7 +3483,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.38 //@classes.125/@references.0 //@classes.253/@references.0 //@classes.284/@references.0 //@classes.290/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.38 //@classes.125/@references.0 //@classes.253/@references.0 //@classes.284/@references.0 //@classes.290/@references.0">
     <attributes value="XXX_FireTruck">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -3522,7 +3522,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.241/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.241/@references.0">
     <attributes value="position">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -3534,7 +3534,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.241/@references.1">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.241/@references.1">
     <attributes value="Route&#xD;&#xA;FireTruck1">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -3546,7 +3546,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.241/@references.2">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.241/@references.2">
     <attributes value="Crisis1">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -3558,7 +3558,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.241/@references.3">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.241/@references.3">
     <attributes value="XXX_FS coordinator2">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -3570,7 +3570,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.241/@references.4">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.241/@references.4">
     <attributes value="&lt;&lt;optional: _r_2_9_10_12>> XXX_Dispatch service2">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -3591,7 +3591,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.241/@references.6">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.241/@references.6">
     <attributes value="&lt;&lt;optional>> receiveFSCRequest">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -3615,7 +3615,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.249/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.249/@references.0">
     <attributes value="&lt;&lt;optional>> SOAPreporttoPSC">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -3624,7 +3624,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.249/@references.1">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.249/@references.1">
     <attributes value="&lt;&lt;optional>> SOAPreceivePSCRequest">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -3633,7 +3633,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.40 //@classes.5/@references.0 //@classes.133/@references.0 //@classes.178/@references.0 //@classes.245/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.40 //@classes.5/@references.0 //@classes.133/@references.0 //@classes.178/@references.0 //@classes.245/@references.0">
     <attributes value="XXX_FS coordinator2">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -3699,7 +3699,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.252/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.252/@references.0">
     <attributes value="XXX_FireTruck">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -3711,7 +3711,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.252/@references.1">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.252/@references.1">
     <attributes value="Fireman1">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -3723,7 +3723,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.252/@references.2">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.252/@references.2">
     <attributes value="TimeoutLog">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -3735,7 +3735,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.252/@references.3">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.252/@references.3">
     <attributes value="XXX_FSC System">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -3747,7 +3747,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.252/@references.4">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.252/@references.4">
     <attributes value="receivePScoordinatorCall">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -3756,7 +3756,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.252/@references.5">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.252/@references.5">
     <attributes value="receivePScoordinatorCredentials">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -3765,7 +3765,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.252/@references.6">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.252/@references.6">
     <attributes value="receivePScrisisDetails">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -3774,7 +3774,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.252/@references.7">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.252/@references.7">
     <attributes value="receiveFireTrucksRouteProposal">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -3783,7 +3783,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.252/@references.8">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.252/@references.8">
     <attributes value="receivePoliceCarDispatched">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -3792,7 +3792,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.252/@references.9">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.252/@references.9">
     <attributes value="receivePoliceCarArrived">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -3801,7 +3801,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.252/@references.10">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.252/@references.10">
     <attributes value="receivePoliceCarObjectiveCompleted">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -3810,7 +3810,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.252/@references.11">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.252/@references.11">
     <attributes value="receivePoliceCarBack">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -3819,7 +3819,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.252/@references.12">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.252/@references.12">
     <attributes value="receiveCloseCrisisPS">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -3828,7 +3828,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.252/@references.13">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.252/@references.13">
     <attributes value="&lt;&lt;optional>> callFireTruck">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -3837,7 +3837,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.252/@references.14">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.252/@references.14">
     <attributes value="&lt;&lt;optional>> receivereRootPloceCars">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -3870,7 +3870,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.269/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.269/@references.0">
     <attributes value="&lt;&lt;optional>> SOAPrequestFireTruckData">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -3879,7 +3879,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.269/@references.1">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.269/@references.1">
     <attributes value="&lt;&lt;optional>> SOAPreceiveFireTruckData">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -3903,7 +3903,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.272/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.272/@references.0">
     <attributes value="&lt;&lt;optional>> SOAPreceivePSCRequest">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -3912,7 +3912,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.272/@references.1">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.272/@references.1">
     <attributes value="&lt;&lt;optional>> SOAPreportData">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -3921,7 +3921,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.43 //@classes.52/@references.0 //@classes.205/@references.0 //@classes.244/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.43 //@classes.52/@references.0 //@classes.205/@references.0 //@classes.244/@references.0">
     <attributes value="Crisis1">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -3963,7 +3963,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.275/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.275/@references.0">
     <attributes value="id">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -3972,7 +3972,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.275/@references.1">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.275/@references.1">
     <attributes value="location">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -3981,7 +3981,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.275/@references.2">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.275/@references.2">
     <attributes value="startTime">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -3990,7 +3990,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.275/@references.3">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.275/@references.3">
     <attributes value="endTime">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -3999,7 +3999,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.275/@references.4">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.275/@references.4">
     <attributes value="status">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -4008,7 +4008,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.275/@references.5">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.275/@references.5">
     <attributes value="description">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -4017,7 +4017,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.275/@references.6">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.275/@references.6">
     <attributes value="bCrash System1">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -4029,7 +4029,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.275/@references.7">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.275/@references.7">
     <attributes value="XXX_Police Car 3">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -4041,7 +4041,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.275/@references.8">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.275/@references.8">
     <attributes value="XXX_FireTruck">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -4053,7 +4053,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.44 //@classes.136/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.44 //@classes.136/@references.0">
     <attributes value="FS coordinator&#xD;&#xA;&#xD;&#xA;3">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -4068,7 +4068,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.285/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.285/@references.0">
     <attributes value="FSC system&#xD;&#xA;3">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -4080,7 +4080,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.285/@references.1">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.285/@references.1">
     <attributes value="&lt;&lt;optional>> callFireTruc">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -4161,7 +4161,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.288/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.288/@references.0">
     <attributes value="XXX_Police Car 3">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -4173,7 +4173,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.288/@references.1">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.288/@references.1">
     <attributes value="XXX_FireTruck">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -4185,7 +4185,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.288/@references.2">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.288/@references.2">
     <attributes value="Citizen vehicle">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -4197,7 +4197,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.288/@references.3">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.288/@references.3">
     <attributes value="XXX_FSC System">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -4209,7 +4209,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.288/@references.4">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.288/@references.4">
     <attributes value="XXX_PS coordinator">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -4221,7 +4221,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.288/@references.5">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.288/@references.5">
     <attributes value="bCrash System1">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -4233,7 +4233,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.288/@references.6">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.288/@references.6">
     <attributes value="PSC system1">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -4245,7 +4245,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.288/@references.7">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.288/@references.7">
     <attributes value="FSC system2">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -4311,7 +4311,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.46 //@classes.163/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.46 //@classes.163/@references.0">
     <attributes value="PS coordinator&#xA;&#xA;">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -4329,7 +4329,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.303/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.303/@references.0">
     <attributes value="PSC system&#xD;&#xA;2">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -4341,7 +4341,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.303/@references.1">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.303/@references.1">
     <attributes value="-&lt;&lt;optional>> callPoliceCa">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -4350,7 +4350,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.303/@references.2">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.303/@references.2">
     <attributes value="&lt;&lt;optional>> callCitizenVehicle">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -4359,7 +4359,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.47 //@classes.46/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.47 //@classes.46/@references.0">
     <attributes value="Victim">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -4377,7 +4377,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.307/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.307/@references.0">
     <attributes value="PoliceOfficer1">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -4389,7 +4389,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.307/@references.1">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.307/@references.1">
     <attributes value="Fireman1">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -4401,7 +4401,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.48 //@classes.53/@references.0 //@classes.56/@references.0 //@classes.101/@references.0 //@classes.122/@references.0 //@classes.127/@references.0 //@classes.180/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.48 //@classes.53/@references.0 //@classes.56/@references.0 //@classes.101/@references.0 //@classes.122/@references.0 //@classes.127/@references.0 //@classes.180/@references.0">
     <attributes value="XXX_PSC System3">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -4554,7 +4554,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.310/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.310/@references.0">
     <attributes value="TimeoutLog">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -4566,7 +4566,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.310/@references.1">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.310/@references.1">
     <attributes value="XXX_PS coordinator">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -4578,7 +4578,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.310/@references.2">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.310/@references.2">
     <attributes value="routeAgreement">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -4590,7 +4590,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.310/@references.3">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.310/@references.3">
     <attributes value="closeAgreement">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -4602,7 +4602,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.310/@references.4">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.310/@references.4">
     <attributes value="RoutePlan1">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -4614,7 +4614,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.310/@references.5">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.310/@references.5">
     <attributes value="bCrash System1">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -4626,7 +4626,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.310/@references.6">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.310/@references.6">
     <attributes value="bCrash System1">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -4638,7 +4638,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.310/@references.7">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.310/@references.7">
     <attributes value="PS coordinator&#xD;&#xA;2">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -4659,7 +4659,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.310/@references.9">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.310/@references.9">
     <attributes value="fireTruckDispatched">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -4668,7 +4668,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.310/@references.10">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.310/@references.10">
     <attributes value="fireTruckArrived">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -4677,7 +4677,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.310/@references.11">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.310/@references.11">
     <attributes value="policeCarObjectiveCompletedPScoordinator">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -4686,7 +4686,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.310/@references.12">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.310/@references.12">
     <attributes value="crisisCompleteFSC">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -4695,7 +4695,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.310/@references.13">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.310/@references.13">
     <attributes value="reqComFSC">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -4704,7 +4704,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.310/@references.14">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.310/@references.14">
     <attributes value="callFScoordinator">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -4713,7 +4713,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.310/@references.15">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.310/@references.15">
     <attributes value="authFSC">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -4722,7 +4722,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.310/@references.16">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.310/@references.16">
     <attributes value="sendPScoordinatorCredentials">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -4731,7 +4731,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.310/@references.17">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.310/@references.17">
     <attributes value="sendPSCrisisDetails">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -4740,7 +4740,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.310/@references.18">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.310/@references.18">
     <attributes value="crisisDetailsFSC">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -4749,7 +4749,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.310/@references.19">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.310/@references.19">
     <attributes value="proposeFireTrucksRoute">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -4758,7 +4758,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.310/@references.20">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.310/@references.20">
     <attributes value="disagreementFSC">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -4767,7 +4767,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.310/@references.21">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.310/@references.21">
     <attributes value="policeCarDispatchedPScoordinator">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -4776,7 +4776,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.310/@references.22">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.310/@references.22">
     <attributes value="policeCarArrivedPScoordinator">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -4785,7 +4785,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.310/@references.23">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.310/@references.23">
     <attributes value="fireTruckObjectiveCompleted">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -4794,7 +4794,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.310/@references.24">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.310/@references.24">
     <attributes value="policeCarBackPScoordinator">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -4803,7 +4803,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.310/@references.25">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.310/@references.25">
     <attributes value="fireTruckBack">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -4812,7 +4812,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.310/@references.26">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.310/@references.26">
     <attributes value="closeCrisisPScoordinator">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -4821,7 +4821,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.310/@references.27">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.310/@references.27">
     <attributes value="closeCrisisFS">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -4830,7 +4830,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.310/@references.28">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.310/@references.28">
     <attributes value="&lt;&lt;optional>> requestPoliceCarData">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -4839,7 +4839,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.310/@references.29">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.310/@references.29">
     <attributes value="&lt;&lt;optional>> receivePcarData">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -4866,7 +4866,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.310/@references.32">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.310/@references.32">
     <attributes value="&lt;&lt;optional>> reRootFireTrucks">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -4875,7 +4875,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.310/@references.33">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.310/@references.33">
     <attributes value="&lt;&lt;optional>> reRootPoliceCarsPScoordinator">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -4965,7 +4965,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.49 //@classes.291/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.49 //@classes.291/@references.0">
     <attributes value="Citizen vehicle">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -4983,7 +4983,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.354/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.354/@references.0">
     <attributes value="&lt;&lt;optional: _r_2_9_10_12>> XXX_Dispatch service2">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -4995,7 +4995,7 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.354/@references.1">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.354/@references.1">
     <attributes value="&lt;&lt;optional>> receivePSCRequest">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -5004,7 +5004,7 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.354/@references.2">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.354/@references.2">
     <attributes value="&lt;&lt;optional>> reportData">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -5013,19 +5013,19 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.50 //@classes.203/@references.0 //@classes.242/@references.0">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.50 //@classes.203/@references.0 //@classes.242/@references.0">
     <attributes value="Position">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.51 //@classes.131/@references.3 //@classes.227/@references.2">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.51 //@classes.131/@references.3 //@classes.227/@references.2">
     <attributes value="interact">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.52 //@classes.49/@references.15 //@classes.310/@references.43">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.52 //@classes.49/@references.15 //@classes.310/@references.43">
     <attributes value="A_XXX_PSC System3_bCrash System1">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -5043,37 +5043,37 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.55 //@classes.45/@references.3 //@classes.97/@references.23">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.55 //@classes.45/@references.3 //@classes.97/@references.23">
     <attributes value="interact">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.56 //@classes.49/@references.16 //@classes.275/@references.9">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.56 //@classes.49/@references.16 //@classes.275/@references.9">
     <attributes value="handle">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.57 //@classes.173/@references.7 //@classes.252/@references.17">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.57 //@classes.173/@references.7 //@classes.252/@references.17">
     <attributes value="report">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.58 //@classes.3/@references.41 //@classes.49/@references.17">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.58 //@classes.3/@references.41 //@classes.49/@references.17">
     <attributes value="A_XXX_FSC System_bCrash System1">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.59 //@classes.66/@references.2 //@classes.69/@references.5">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.59 //@classes.66/@references.2 //@classes.69/@references.5">
     <attributes value="interact">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.60 //@classes.75/@references.12 //@classes.161/@references.9">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.60 //@classes.75/@references.12 //@classes.161/@references.9">
     <attributes value="call">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -5091,43 +5091,43 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.63 //@classes.49/@references.18 //@classes.230/@references.10">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.63 //@classes.49/@references.18 //@classes.230/@references.10">
     <attributes value="handle">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.64 //@classes.75/@references.13 //@classes.198/@references.3">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.64 //@classes.75/@references.13 //@classes.198/@references.3">
     <attributes value="communicate">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.65 //@classes.131/@references.2 //@classes.252/@references.18">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.65 //@classes.131/@references.2 //@classes.252/@references.18">
     <attributes value="interact">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.66 //@classes.119/@references.4 //@classes.310/@references.46">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.66 //@classes.119/@references.4 //@classes.310/@references.46">
     <attributes value="develop">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.67 //@classes.49/@references.19 //@classes.310/@references.44">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.67 //@classes.49/@references.19 //@classes.310/@references.44">
     <attributes value="A_XXX_PSC System3_bCrash System1">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.68 //@classes.241/@references.10 //@classes.275/@references.10">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.68 //@classes.241/@references.10 //@classes.275/@references.10">
     <attributes value="allocate">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.69 //@classes.97/@references.24 //@classes.173/@references.8">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.69 //@classes.97/@references.24 //@classes.173/@references.8">
     <attributes value="report">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -5145,19 +5145,19 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.72 //@classes.3/@references.44 //@classes.119/@references.5">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.72 //@classes.3/@references.44 //@classes.119/@references.5">
     <attributes value="receive">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.73 //@classes.45/@references.4 //@classes.227/@references.3">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.73 //@classes.45/@references.4 //@classes.227/@references.3">
     <attributes value="interact">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.74 //@classes.202/@references.10 //@classes.275/@references.11">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.74 //@classes.202/@references.10 //@classes.275/@references.11">
     <attributes value="allocate">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -5169,25 +5169,25 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.76 //@classes.126/@references.4 //@classes.310/@references.45">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.76 //@classes.126/@references.4 //@classes.310/@references.45">
     <attributes value="interact">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.77 //@classes.94/@references.2 //@classes.181/@references.2">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.77 //@classes.94/@references.2 //@classes.181/@references.2">
     <attributes value="access">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.78 //@classes.144/@references.1 //@classes.230/@references.11">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.78 //@classes.144/@references.1 //@classes.230/@references.11">
     <attributes value="allocate">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.79 //@classes.3/@references.45 //@classes.252/@references.16">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.79 //@classes.3/@references.45 //@classes.252/@references.16">
     <attributes value="interact">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
@@ -5199,133 +5199,133 @@
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.81 //@classes.49/@references.20 //@classes.146/@references.7">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.81 //@classes.49/@references.20 //@classes.146/@references.7">
     <attributes value="A_PSC system1_bCrash System1">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.82 //@classes.75/@references.17 //@classes.184/@references.3">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.82 //@classes.75/@references.17 //@classes.184/@references.3">
     <attributes value="communicate">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.83 //@classes.49/@references.21 //@classes.75/@references.14">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.83 //@classes.49/@references.21 //@classes.75/@references.14">
     <attributes value="A_&lt;&lt;optional>>Dispatch service1_bCrash System1">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.84 //@classes.173/@references.9 //@classes.310/@references.47">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.84 //@classes.173/@references.9 //@classes.310/@references.47">
     <attributes value="register">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.85 //@classes.45/@references.5 //@classes.307/@references.2">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.85 //@classes.45/@references.5 //@classes.307/@references.2">
     <attributes value="interact">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.86 //@classes.169/@references.1 //@classes.230/@references.12">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.86 //@classes.169/@references.1 //@classes.230/@references.12">
     <attributes value="allocate">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.87 //@classes.49/@references.22 //@classes.161/@references.7">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.87 //@classes.49/@references.22 //@classes.161/@references.7">
     <attributes value="A_PSC system&#xD;&#xA;2_bCrash System1">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.88 //@classes.97/@references.22 //@classes.310/@references.48">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.88 //@classes.97/@references.22 //@classes.310/@references.48">
     <attributes value="interact">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.89 //@classes.131/@references.4 //@classes.307/@references.3">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.89 //@classes.131/@references.4 //@classes.307/@references.3">
     <attributes value="interact">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.90 //@classes.49/@references.23 //@classes.69/@references.6">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.90 //@classes.49/@references.23 //@classes.69/@references.6">
     <attributes value="A_FSC system2_bCrash System1">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.91 //@classes.134/@references.6 //@classes.285/@references.2">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.91 //@classes.134/@references.6 //@classes.285/@references.2">
     <attributes value="interact">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.92 //@classes.75/@references.15 //@classes.134/@references.7">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.92 //@classes.75/@references.15 //@classes.134/@references.7">
     <attributes value="call">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.93 //@classes.124/@references.1 //@classes.241/@references.9">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.93 //@classes.124/@references.1 //@classes.241/@references.9">
     <attributes value="follow">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.94 //@classes.75/@references.16 //@classes.140/@references.3">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.94 //@classes.75/@references.16 //@classes.140/@references.3">
     <attributes value="communicate">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.95 //@classes.49/@references.24 //@classes.134/@references.5">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.95 //@classes.49/@references.24 //@classes.134/@references.5">
     <attributes value="A_FSC system&#xD;&#xA;3_bCrash System1">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.96 //@classes.49/@references.14 //@classes.171/@references.1">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.96 //@classes.49/@references.14 //@classes.171/@references.1">
     <attributes value="regulate">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.97 //@classes.64/@references.1 //@classes.202/@references.11">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.97 //@classes.64/@references.1 //@classes.202/@references.11">
     <attributes value="follow">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.98 //@classes.126/@references.5 //@classes.146/@references.8">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.98 //@classes.126/@references.5 //@classes.146/@references.8">
     <attributes value="interact">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.99 //@classes.3/@references.43 //@classes.49/@references.25">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.99 //@classes.3/@references.43 //@classes.49/@references.25">
     <attributes value="A_XXX_FSC System_bCrash System1">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.100 //@classes.49/@references.26 //@classes.181/@references.3">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.100 //@classes.49/@references.26 //@classes.181/@references.3">
     <attributes value="use">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.101 //@classes.3/@references.46 //@classes.173/@references.10">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.101 //@classes.3/@references.46 //@classes.173/@references.10">
     <attributes value="register">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
   </classes>
-  <classes presenceCondition=" true " referencesAsTarget="//@classes.0/@references.102 //@classes.161/@references.8 //@classes.303/@references.3">
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.102 //@classes.161/@references.8 //@classes.303/@references.3">
     <attributes value="interact">
       <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
     </attributes>
