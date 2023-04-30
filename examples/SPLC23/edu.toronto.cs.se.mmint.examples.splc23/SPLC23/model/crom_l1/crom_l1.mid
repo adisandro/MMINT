@@ -1,8 +1,703 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mid:MID xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mid="http://se.cs.toronto.edu/mmint/MID">
-  <models uri="/MMPL/model/crom_l1/crom_l1.productline" name="crom_l1" metatypeUri="model://edu.toronto.cs.se.mmint.productline" dynamic="true" fileExtension="productline" editors="//@editors.0"/>
+  <models uri="/MMPL/model/crom_l1/crom_l1.productline" name="crom_l1" metatypeUri="model://edu.toronto.cs.se.mmint.productline" dynamic="true" fileExtension="productline" editors="//@editors.0">
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.0_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.1_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.2_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.3_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.4_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.5_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.6_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.7_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.8_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.9_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.10_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.11_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.12_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.13_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.14_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.15_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.16_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.17_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.18_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.19_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.20_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class ~OnCompartments" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.21_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.22_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class OnCompartments" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.23_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class ~Compartments &amp; Roles" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.24_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class CompartmentInheritance" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.25_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class GroupConstraints" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.26_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class GroupConstraints" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.27_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class GroupConstraints" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.28_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class InterRelationshipConstraints" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.29_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class OnRelationships" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.30_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class InterRelationshipConstraints" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.31_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class IntraRelationshipConstraints" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.32_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class IntraRelationshipConstraints" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.33_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class IntraRelationshipConstraints" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.34_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class IntraRelationshipConstraints" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.35_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class OnRelationships" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.36_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class OnRelationships" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.37_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class OnRelationships" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.38_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class OnRelationships" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.39_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class OnRelationships" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.40_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class RelationshipConstraints" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.41_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class RelationshipConstraints | RoleConstraints" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.42_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class RoleBehavior &amp; RoleProperties" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.43_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class RoleConstraints" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.44_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class RoleEquivalence" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.45_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class RoleImplication" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.46_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class RoleInheritance" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.47_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class RoleProhibition" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.48_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.49_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.50_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.51_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.52_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.53_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.54_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.55_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.56_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.57_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class Compartments &amp; Roles" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.58_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class Compartments &amp; ~Roles" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.59_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (~Compartments &amp; Roles) &amp; (~Compartments &amp; Roles)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.60_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class ~Compartments &amp; ~Roles" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.61_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.62_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.63_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.64_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.65_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (~OnCompartments) &amp; (~OnCompartments)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.66_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (OnCompartments) &amp; (OnCompartments)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.67_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class ~OnCompartments" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.68_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.69_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class OnCompartments" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.70_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (OnCompartments &amp; OnRelationships) &amp; (OnCompartments) &amp; (OnRelationships)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.71_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class ((RelationshipConstraints | RoleConstraints) &amp; OnCompartments) &amp; (OnCompartments) &amp; (RelationshipConstraints | RoleConstraints)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.72_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (CompartmentInheritance &amp; OnCompartments) &amp; (CompartmentInheritance) &amp; (OnCompartments)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.73_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (CompartmentInheritance &amp; OnCompartments) &amp; (CompartmentInheritance) &amp; (OnCompartments)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.74_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.75_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class GroupConstraints" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.76_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (InterRelationshipConstraints) &amp; (OnRelationships)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.77_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (InterRelationshipConstraints) &amp; (OnRelationships)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.78_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (OnRelationships) &amp; (OnRelationships)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.79_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (OnRelationships) &amp; (OnRelationships)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.80_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (IntraRelationshipConstraints) &amp; (OnRelationships)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.81_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class OnRelationships" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.82_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class RoleConstraints" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.83_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class RoleConstraints" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.84_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class RoleInheritance" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.85_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class RoleInheritance" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+  </models>
+  <models uri="/SPLC23/model/crom_l1/crom_l1.productline" name="crom_l1" metatypeUri="model://edu.toronto.cs.se.mmint.productline" dynamic="true" fileExtension="productline" editors="//@editors.1">
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.0_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.1_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.2_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.3_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.4_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.5_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.6_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.7_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.8_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.9_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.10_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.11_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.12_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.13_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.14_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.15_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.16_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.17_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.18_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.19_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.20_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class ~OnCompartments" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.21_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.22_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class OnCompartments" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.23_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class ~Compartments &amp; Roles" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.24_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class CompartmentInheritance" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.25_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class GroupConstraints" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.26_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class GroupConstraints" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.27_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class GroupConstraints" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.28_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class InterRelationshipConstraints" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.29_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class OnRelationships" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.30_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class InterRelationshipConstraints" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.31_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class IntraRelationshipConstraints" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.32_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class IntraRelationshipConstraints" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.33_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class IntraRelationshipConstraints" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.34_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class IntraRelationshipConstraints" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.35_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class OnRelationships" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.36_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class OnRelationships" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.37_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class OnRelationships" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.38_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class OnRelationships" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.39_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class OnRelationships" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.40_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class RelationshipConstraints" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.41_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class RelationshipConstraints | RoleConstraints" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.42_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class RoleBehavior &amp; RoleProperties" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.43_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class RoleConstraints" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.44_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class RoleEquivalence" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.45_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class RoleImplication" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.46_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class RoleInheritance" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.47_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class RoleProhibition" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.48_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.49_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.50_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.51_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.52_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.53_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.54_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.55_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.56_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.57_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class Compartments &amp; Roles" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.58_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class Compartments &amp; ~Roles" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.59_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (~Compartments &amp; Roles) &amp; (~Compartments &amp; Roles)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.60_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class ~Compartments &amp; ~Roles" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.61_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.62_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.63_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.64_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.65_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (~OnCompartments) &amp; (~OnCompartments)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.66_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (OnCompartments) &amp; (OnCompartments)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.67_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class ~OnCompartments" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.68_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.69_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class OnCompartments" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.70_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (OnCompartments &amp; OnRelationships) &amp; (OnCompartments) &amp; (OnRelationships)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.71_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class ((RelationshipConstraints | RoleConstraints) &amp; OnCompartments) &amp; (OnCompartments) &amp; (RelationshipConstraints | RoleConstraints)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.72_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (CompartmentInheritance &amp; OnCompartments) &amp; (CompartmentInheritance) &amp; (OnCompartments)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.73_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (CompartmentInheritance &amp; OnCompartments) &amp; (CompartmentInheritance) &amp; (OnCompartments)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.74_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.75_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class GroupConstraints" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.76_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (InterRelationshipConstraints) &amp; (OnRelationships)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.77_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (InterRelationshipConstraints) &amp; (OnRelationships)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.78_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (OnRelationships) &amp; (OnRelationships)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.79_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (OnRelationships) &amp; (OnRelationships)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.80_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (IntraRelationshipConstraints) &amp; (OnRelationships)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.81_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class OnRelationships" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.82_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class RoleConstraints" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.83_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class RoleConstraints" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.84_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class RoleInheritance" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.85_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class RoleInheritance" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+  </models>
   <editors uri="/MMPL/model/crom_l1/crom_l1.productline" name="ProductLine EMF Editor for model /MMPL/model/crom_l1/crom_l1.productline" metatypeUri="edu.toronto.cs.se.mmint.productline.editor" dynamic="true" modelUri="/MMPL/model/crom_l1/crom_l1.productline" id="edu.toronto.cs.se.mmint.productline.presentation.ProductLineEditorID" wizardId="edu.toronto.cs.se.mmint.productline.presentation.ProductLineModelWizardID">
     <fileExtensions>productline</fileExtensions>
   </editors>
+  <editors uri="/SPLC23/model/crom_l1/crom_l1.productline" name="ProductLine EMF Editor for model /SPLC23/model/crom_l1/crom_l1.productline" metatypeUri="edu.toronto.cs.se.mmint.productline.editor" dynamic="true" modelUri="/SPLC23/model/crom_l1/crom_l1.productline" id="edu.toronto.cs.se.mmint.productline.presentation.ProductLineEditorID" wizardId="edu.toronto.cs.se.mmint.productline.presentation.ProductLineModelWizardID">
+    <fileExtensions>productline</fileExtensions>
+  </editors>
   <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline" value="//@models.0"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline" value="//@models.1"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.0_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.0"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.1_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.1"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.2_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.2"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.3_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.3"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.4_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.4"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.5_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.5"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.6_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.6"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.7_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.7"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.8_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.8"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.9_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.9"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.10_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.10"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.11_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.11"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.12_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.12"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.13_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.13"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.14_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.14"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.15_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.15"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.16_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.16"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.17_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.17"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.18_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.18"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.19_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.19"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.20_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.20"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.21_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.21"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.22_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.22"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.23_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.23"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.24_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.24"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.25_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.25"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.26_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.26"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.27_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.27"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.28_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.28"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.29_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.29"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.30_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.30"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.31_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.31"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.32_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.32"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.33_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.33"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.34_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.34"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.35_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.35"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.36_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.36"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.37_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.37"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.38_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.38"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.39_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.39"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.40_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.40"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.41_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.41"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.42_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.42"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.43_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.43"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.44_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.44"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.45_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.45"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.46_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.46"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.47_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.47"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.48_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.48"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.49_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.49"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.50_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.50"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.51_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.51"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.52_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.52"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.53_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.53"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.54_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.54"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.55_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.55"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.56_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.56"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.57_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.57"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.58_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.58"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.59_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.59"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.60_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.60"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.61_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.61"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.62_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.62"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.63_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.63"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.64_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.64"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.65_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.65"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.66_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.66"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.67_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.67"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.68_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.68"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.69_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.69"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.70_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.70"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.71_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.71"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.72_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.72"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.73_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.73"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.74_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.74"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.75_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.75"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.76_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.76"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.77_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.77"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.78_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.78"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.79_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.79"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.80_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.80"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.81_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.81"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.82_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.82"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.83_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.83"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.84_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.84"/>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.85_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.85"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.0_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.0"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.1_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.1"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.2_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.2"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.3_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.3"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.4_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.4"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.5_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.5"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.6_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.6"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.7_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.7"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.8_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.8"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.9_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.9"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.10_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.10"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.11_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.11"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.12_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.12"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.13_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.13"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.14_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.14"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.15_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.15"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.16_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.16"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.17_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.17"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.18_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.18"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.19_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.19"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.20_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.20"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.21_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.21"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.22_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.22"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.23_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.23"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.24_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.24"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.25_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.25"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.26_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.26"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.27_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.27"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.28_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.28"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.29_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.29"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.30_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.30"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.31_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.31"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.32_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.32"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.33_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.33"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.34_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.34"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.35_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.35"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.36_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.36"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.37_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.37"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.38_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.38"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.39_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.39"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.40_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.40"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.41_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.41"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.42_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.42"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.43_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.43"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.44_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.44"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.45_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.45"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.46_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.46"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.47_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.47"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.48_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.48"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.49_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.49"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.50_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.50"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.51_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.51"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.52_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.52"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.53_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.53"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.54_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.54"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.55_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.55"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.56_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.56"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.57_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.57"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.58_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.58"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.59_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.59"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.60_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.60"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.61_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.61"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.62_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.62"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.63_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.63"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.64_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.64"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.65_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.65"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.66_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.66"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.67_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.67"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.68_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.68"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.69_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.69"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.70_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.70"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.71_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.71"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.72_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.72"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.73_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.73"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.74_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.74"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.75_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.75"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.76_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.76"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.77_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.77"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.78_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.78"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.79_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.79"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.80_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.80"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.81_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.81"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.82_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.82"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.83_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.83"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.84_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.84"/>
+  <extendibleTable key="/SPLC23/model/crom_l1/crom_l1.productline#//@classes.85_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.85"/>
 </mid:MID>
