@@ -22,8 +22,4 @@
     <styles xmi:type="notation:DiagramStyle" xmi:id="_zgukIed2Ee2ioexo_GodPw"/>
     <element xmi:type="mid:MID" href="Automata.mid#/"/>
   </notation:Diagram>
-  <notation:Diagram xmi:id="_GFpoIOeIEe2wcPhHM3eVUg" type="Relationship" measurementUnit="Pixel">
-    <styles xmi:type="notation:DiagramStyle" xmi:id="_GFpoIeeIEe2wcPhHM3eVUg"/>
-    <element xmi:type="relationship:BinaryModelRel" href="Automata.mid#//@models.2"/>
-  </notation:Diagram>
 </xmi:XMI>
