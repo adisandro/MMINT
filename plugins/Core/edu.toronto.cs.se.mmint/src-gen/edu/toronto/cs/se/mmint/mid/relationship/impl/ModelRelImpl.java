@@ -344,19 +344,19 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
     @Override
     public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
     if (baseClass == ExtendibleElement.class) {
-      switch (baseOperationID) {
-        case MIDPackage.EXTENDIBLE_ELEMENT___GET_METATYPE: return RelationshipPackage.MODEL_REL___GET_METATYPE;
-        case MIDPackage.EXTENDIBLE_ELEMENT___GET_MID_CONTAINER: return RelationshipPackage.MODEL_REL___GET_MID_CONTAINER;
-        default: return super.eDerivedOperationID(baseOperationID, baseClass);
-      }
+      return switch (baseOperationID) {
+      case MIDPackage.EXTENDIBLE_ELEMENT___GET_METATYPE -> RelationshipPackage.MODEL_REL___GET_METATYPE;
+      case MIDPackage.EXTENDIBLE_ELEMENT___GET_MID_CONTAINER -> RelationshipPackage.MODEL_REL___GET_MID_CONTAINER;
+      default -> super.eDerivedOperationID(baseOperationID, baseClass);
+      };
     }
     if (baseClass == Model.class) {
-      switch (baseOperationID) {
-        case MIDPackage.MODEL___GET_METATYPE: return RelationshipPackage.MODEL_REL___GET_METATYPE;
-        case MIDPackage.MODEL___GET_SUPERTYPE: return RelationshipPackage.MODEL_REL___GET_SUPERTYPE;
-        case MIDPackage.MODEL___GET_MID_CONTAINER: return RelationshipPackage.MODEL_REL___GET_MID_CONTAINER;
-        default: return super.eDerivedOperationID(baseOperationID, baseClass);
-      }
+      return switch (baseOperationID) {
+      case MIDPackage.MODEL___GET_METATYPE -> RelationshipPackage.MODEL_REL___GET_METATYPE;
+      case MIDPackage.MODEL___GET_SUPERTYPE -> RelationshipPackage.MODEL_REL___GET_SUPERTYPE;
+      case MIDPackage.MODEL___GET_MID_CONTAINER -> RelationshipPackage.MODEL_REL___GET_MID_CONTAINER;
+      default -> super.eDerivedOperationID(baseOperationID, baseClass);
+      };
     }
     return super.eDerivedOperationID(baseOperationID, baseClass);
   }
@@ -711,7 +711,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 
         MMINTException.mustBeType(this);
         if (this.isAbstract()) {
-            throw new MMINTException("Can't instanciate an abstract model relationship type");
+            throw new MMINTException("Can't instantiate an abstract model relationship type");
         }
 
         //TODO MMINT[EDITOR] Add editor for modelrel too and relative api?
