@@ -15,9 +15,7 @@ package edu.toronto.cs.se.mmint.productline.kotlin;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
-import edu.toronto.cs.se.mmint.kotlin.structs.MkTree;
 import edu.toronto.cs.se.mmint.kotlin.structs.Object;
-import edu.toronto.cs.se.mmint.kotlin.structs.Tree;
 import edu.toronto.cs.se.mmint.kotlin.structs.VarObj;
 import edu.toronto.cs.se.mmint.kotlin.utils.KotlinConverter;
 import edu.toronto.cs.se.mmint.productline.PLElement;
@@ -25,9 +23,8 @@ import edu.toronto.cs.se.mmint.productline.PLElement;
 public class PLKotlinConverter extends KotlinConverter {
 
   @Override
-  protected EObject kTreeToEObject(Tree<? extends Object> kTree, EPackage modelPackage) {
-    var modelObj = super.kTreeToEObject(kTree, modelPackage);
-    var kObj = ((MkTree<? extends Object>) kTree).getNode();
+  protected EObject kObjToEObject(Object kObj, EPackage modelPackage) {
+    var modelObj = super.kObjToEObject(kObj, modelPackage);
     if (modelObj instanceof PLElement plElem && kObj instanceof VarObj kVarObj) {
       var pc = kVarObj.getPcond();
       if (pc != null && !pc.isBlank()) {

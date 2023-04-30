@@ -17,6 +17,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -197,9 +198,10 @@ public class KotlinConverter {
     }
   }
 
-  protected EObject kTreeToEObject(Tree<? extends Object> kTree, EPackage modelPackage) {
+  public record KEObject (Object kObj, EObject modelObj) {}
+
+  protected EObject kObjToEObject(Object kObj, EPackage modelPackage) {
     var modelFactory = modelPackage.getEFactoryInstance();
-    var kObj = ((MkTree<? extends Object>) kTree).getNode();
     var modelObj = modelFactory.create((EClass) modelPackage.getEClassifier(kObj.getKind()));
     for (var kAttrEntry : kObj.getAttrs().entrySet()) {
       var attribute = (EAttribute) modelObj.eClass().getEStructuralFeature(kAttrEntry.getKey());
@@ -210,14 +212,15 @@ public class KotlinConverter {
     return modelObj;
   }
 
-  protected EObject kTreesToEObjects(Tree<? extends Object> kTree, EPackage modelPackage,
-                                     Map<Tree<? extends Object>, EObject> kTreeToEObj) throws MMINTException {
-    var modelObj = kTreeToEObject(kTree, modelPackage);
-    kTreeToEObj.put(kTree, modelObj);
-    for (var kContEntry : ((MkTree<? extends Object>) kTree).getContains().entrySet()) {
+  protected EObject kTreeToEObjects(MkTree<? extends Object> kTree, EPackage modelPackage,
+                                    Map<String, KEObject> kUrisToKEObj) throws MMINTException {
+    var kObj = kTree.getNode();
+    var modelObj = kObjToEObject(kObj, modelPackage);
+    kUrisToKEObj.put(kObj.getUri(), new KEObject(kObj, modelObj));
+    for (var kContEntry : kTree.getContains().entrySet()) {
       var containment = modelObj.eClass().getEStructuralFeature(kContEntry.getKey());
       for (var containedkObj : LlistKt.toList(kContEntry.getValue())) {
-        var containedModelObj = kTreesToEObjects(containedkObj, modelPackage, kTreeToEObj);
+        var containedModelObj = kTreeToEObjects((MkTree<? extends Object>) containedkObj, modelPackage, kUrisToKEObj);
         FileUtils.setModelObjectFeature(modelObj, containment, containedModelObj);
       }
     }
@@ -225,38 +228,38 @@ public class KotlinConverter {
     return modelObj;
   }
 
-  protected void kRefsToERefs(Tree<? extends Object> kTree, EObject modelObj,
-                              Map<Tree<? extends Object>, EObject> kTreeToEObj) throws Exception {
-    for (var kRefEntry : ((MkTree<? extends Object>) kTree).getNode().getRefs().entrySet()) {
-      var reference = modelObj.eClass().getEStructuralFeature(kRefEntry.getKey());
+  protected void kRefsToERefs(KEObject keObj, Map<String, KEObject> kUriToKEObj) throws Exception {
+    for (var kRefEntry : keObj.kObj().getRefs().entrySet()) {
+      var reference = keObj.modelObj().eClass().getEStructuralFeature(kRefEntry.getKey());
       for (var referenceKTree : LlistKt.toList(kRefEntry.getValue())) {
-        var referenceModelObj = kTreeToEObj.get(referenceKTree);
-        if (referenceModelObj == null) { // reference to external element
-          var referenceUri = ((MkTree<? extends Object>) referenceKTree).getNode().getUri();
+        var referenceUri = ((MkTree<? extends Object>) referenceKTree).getNode().getUri();
+        var referenceKEObj = kUriToKEObj.get(referenceUri);
+        if (referenceKEObj == null) { // reference to external element
           try {
             if (referenceUri.startsWith("http")) {
               var metamodel = EPackage.Registry.INSTANCE.getEPackage(MIDRegistry.getModelUri(referenceUri));
-              referenceModelObj = FileUtils.readModelObject(referenceUri, metamodel.eResource());
+              referenceKEObj = new KEObject(null, FileUtils.readModelObject(referenceUri, metamodel.eResource()));
             }
             else {
-              referenceModelObj = FileUtils.readModelObject(referenceUri, null);
+              referenceKEObj = new KEObject(null, FileUtils.readModelObject(referenceUri, null));
             }
-            kTreeToEObj.put(referenceKTree, referenceModelObj);
+            kUriToKEObj.put(referenceUri, referenceKEObj);
           }
           catch (Exception e) {
             MMINTException.print(IStatus.INFO, "Reference with uri " + referenceUri + " not found, skipping it", e);
           }
         }
-        FileUtils.setModelObjectFeature(modelObj, reference, referenceModelObj);
+        FileUtils.setModelObjectFeature(keObj.modelObj(), reference, referenceKEObj.modelObj());
       }
     }
   }
 
   public EObject kTreeToModel(Tree<? extends Object> kTree, EPackage modelPackage) throws Exception {
-    var kTreeToEObj = new HashMap<Tree<? extends Object>, EObject>();
-    var rootModelObj = kTreesToEObjects(kTree, modelPackage, kTreeToEObj);
-    for (var entry : Set.copyOf(kTreeToEObj.entrySet())) {
-      kRefsToERefs(entry.getKey(), entry.getValue(), kTreeToEObj);
+    // can't use kTrees as keys because they can have circular refs and hashcode will go into an infinite loop
+    var kUriToKEObj = new HashMap<String, KEObject>();
+    var rootModelObj = kTreeToEObjects((MkTree<? extends Object>) kTree, modelPackage, kUriToKEObj);
+    for (var keObj : List.copyOf(kUriToKEObj.values())) {
+      kRefsToERefs(keObj, kUriToKEObj);
     }
 
     return rootModelObj;
