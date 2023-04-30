@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mid:MID xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mid="http://se.cs.toronto.edu/mmint/MID">
+  <models uri="/MMPL/model/Automata/Automata.productline" name="Automata" metatypeUri="model://edu.toronto.cs.se.mmint.productline" dynamic="true" fileExtension="productline" editors="//@editors.0"/>
+  <editors uri="/MMPL/model/Automata/Automata.productline" name="ProductLine EMF Editor for model /MMPL/model/Automata/Automata.productline" metatypeUri="edu.toronto.cs.se.mmint.productline.editor" dynamic="true" modelUri="/MMPL/model/Automata/Automata.productline" id="edu.toronto.cs.se.mmint.productline.presentation.ProductLineEditorID" wizardId="edu.toronto.cs.se.mmint.productline.presentation.ProductLineModelWizardID">
+    <fileExtensions>productline</fileExtensions>
+  </editors>
+  <extendibleTable key="/MMPL/model/Automata/Automata.productline" value="//@models.0"/>
+</mid:MID>

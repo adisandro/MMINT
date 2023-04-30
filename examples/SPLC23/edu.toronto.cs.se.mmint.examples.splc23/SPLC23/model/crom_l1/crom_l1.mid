@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mid:MID xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mid="http://se.cs.toronto.edu/mmint/MID">
+  <models uri="/MMPL/model/crom_l1/crom_l1.productline" name="crom_l1" metatypeUri="model://edu.toronto.cs.se.mmint.productline" dynamic="true" fileExtension="productline" editors="//@editors.0"/>
+  <editors uri="/MMPL/model/crom_l1/crom_l1.productline" name="ProductLine EMF Editor for model /MMPL/model/crom_l1/crom_l1.productline" metatypeUri="edu.toronto.cs.se.mmint.productline.editor" dynamic="true" modelUri="/MMPL/model/crom_l1/crom_l1.productline" id="edu.toronto.cs.se.mmint.productline.presentation.ProductLineEditorID" wizardId="edu.toronto.cs.se.mmint.productline.presentation.ProductLineModelWizardID">
+    <fileExtensions>productline</fileExtensions>
+  </editors>
+  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline" value="//@models.0"/>
+</mid:MID>

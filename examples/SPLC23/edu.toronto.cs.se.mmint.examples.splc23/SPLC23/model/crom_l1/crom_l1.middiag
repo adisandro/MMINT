@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mid="http://se.cs.toronto.edu/mmint/MID" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" xmi:id="_GY68sOd4Ee2ioexo_GodPw" type="MID" name="crom_l1.middiag" measurementUnit="Pixel">
+  <children xmi:type="notation:Node" xmi:id="_HL-KQOd4Ee2ioexo_GodPw" type="2002">
+    <children xmi:type="notation:DecorationNode" xmi:id="_HL-KRed4Ee2ioexo_GodPw" type="5003"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_HL-KRud4Ee2ioexo_GodPw" type="5004"/>
+    <styles xmi:type="notation:DescriptionStyle" xmi:id="_HL-KQed4Ee2ioexo_GodPw"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_HL-KQud4Ee2ioexo_GodPw" fontName="Cantarell"/>
+    <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_HL-KQ-d4Ee2ioexo_GodPw" hint="Mid"/>
+    <element xmi:type="mid:Model" href="crom_l1.mid#//@models.0"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_HL-KROd4Ee2ioexo_GodPw" x="361" y="178"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_GY68sed4Ee2ioexo_GodPw"/>
+  <element xmi:type="mid:MID" href="crom_l1.mid#/"/>
+</notation:Diagram>

@@ -1,4 +1,12 @@
 eclipse.preferences.version=1
+encoding//model/Automata/Automata.mid=UTF-8
+encoding//model/Automata/Automata.middiag=UTF-8
+encoding//model/GPL/GPL.mid=UTF-8
+encoding//model/GPL/GPL.middiag=UTF-8
+encoding//model/bCMS-SPL-PC/bCMS-SPL-PC.mid=UTF-8
+encoding//model/bCMS-SPL-PC/bCMS-SPL-PC.middiag=UTF-8
+encoding//model/crom_l1/crom_l1.mid=UTF-8
+encoding//model/crom_l1/crom_l1.middiag=UTF-8
 encoding//model/samples_evaluation_P.mid=UTF-8
 encoding//model/samples_evaluation_P.middiag=UTF-8
 encoding//model/samples_evaluation_PL.mid=UTF-8

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mid="http://se.cs.toronto.edu/mmint/MID" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" xmi:id="_AietwOd4Ee2ioexo_GodPw" type="MID" name="GPL.middiag" measurementUnit="Pixel">
+  <children xmi:type="notation:Node" xmi:id="_B0E4gOd4Ee2ioexo_GodPw" type="2002">
+    <children xmi:type="notation:DecorationNode" xmi:id="_B0E4hed4Ee2ioexo_GodPw" type="5003"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_B0E4hud4Ee2ioexo_GodPw" type="5004"/>
+    <styles xmi:type="notation:DescriptionStyle" xmi:id="_B0E4ged4Ee2ioexo_GodPw"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_B0E4gud4Ee2ioexo_GodPw" fontName="Cantarell"/>
+    <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_B0E4g-d4Ee2ioexo_GodPw" hint="Mid"/>
+    <element xmi:type="mid:Model" href="GPL.mid#//@models.0"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_B0E4hOd4Ee2ioexo_GodPw" x="336" y="112"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_Aietwed4Ee2ioexo_GodPw"/>
+  <element xmi:type="mid:MID" href="GPL.mid#/"/>
+</notation:Diagram>
