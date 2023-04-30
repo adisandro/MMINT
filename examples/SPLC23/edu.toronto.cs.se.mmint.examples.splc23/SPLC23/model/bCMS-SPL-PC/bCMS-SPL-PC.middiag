@@ -1,14 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mid="http://se.cs.toronto.edu/mmint/MID" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" xmi:id="_7qJs4Od3Ee2ioexo_GodPw" type="MID" name="bCMS-SPL-PC.middiag" measurementUnit="Pixel">
-  <children xmi:type="notation:Node" xmi:id="_8uPnIOd3Ee2ioexo_GodPw" type="2002">
-    <children xmi:type="notation:DecorationNode" xmi:id="_8uPnJed3Ee2ioexo_GodPw" type="5003"/>
-    <children xmi:type="notation:DecorationNode" xmi:id="_8uPnJud3Ee2ioexo_GodPw" type="5004"/>
-    <styles xmi:type="notation:DescriptionStyle" xmi:id="_8uPnIed3Ee2ioexo_GodPw"/>
-    <styles xmi:type="notation:FontStyle" xmi:id="_8uPnIud3Ee2ioexo_GodPw" fontName="Cantarell"/>
-    <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_8uPnI-d3Ee2ioexo_GodPw" hint="Mid"/>
-    <element xmi:type="mid:Model" href="bCMS-SPL-PC.mid#//@models.0"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_8uPnJOd3Ee2ioexo_GodPw" x="465" y="187"/>
-  </children>
-  <styles xmi:type="notation:DiagramStyle" xmi:id="_7qJs4ed3Ee2ioexo_GodPw"/>
-  <element xmi:type="mid:MID" href="bCMS-SPL-PC.mid#/"/>
-</notation:Diagram>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mid="http://se.cs.toronto.edu/mmint/MID" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" xmlns:relationship="http://se.cs.toronto.edu/mmint/MID/Relationship" xsi:schemaLocation="http://se.cs.toronto.edu/mmint/MID/Relationship http://se.cs.toronto.edu/mmint/MID#//relationship">
+  <notation:Diagram xmi:id="_7qJs4Od3Ee2ioexo_GodPw" type="MID" name="bCMS-SPL-PC.middiag" measurementUnit="Pixel">
+    <children xmi:type="notation:Node" xmi:id="_8uPnIOd3Ee2ioexo_GodPw" type="2002">
+      <children xmi:type="notation:DecorationNode" xmi:id="_8uPnJed3Ee2ioexo_GodPw" type="5003"/>
+      <children xmi:type="notation:DecorationNode" xmi:id="_8uPnJud3Ee2ioexo_GodPw" type="5004"/>
+      <styles xmi:type="notation:DescriptionStyle" xmi:id="_8uPnIed3Ee2ioexo_GodPw"/>
+      <styles xmi:type="notation:FontStyle" xmi:id="_8uPnIud3Ee2ioexo_GodPw" fontName="Cantarell"/>
+      <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_8uPnI-d3Ee2ioexo_GodPw" hint="Mid"/>
+      <element xmi:type="mid:Model" href="bCMS-SPL-PC.mid#//@models.0"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_8uPnJOd3Ee2ioexo_GodPw" x="224" y="192"/>
+    </children>
+    <children xmi:type="notation:Node" xmi:id="_-pkHsOegEe2MILJaFRIwKQ" type="2002">
+      <children xmi:type="notation:DecorationNode" xmi:id="_-pkuwOegEe2MILJaFRIwKQ" type="5003"/>
+      <children xmi:type="notation:DecorationNode" xmi:id="_-pkuweegEe2MILJaFRIwKQ" type="5004"/>
+      <styles xmi:type="notation:DescriptionStyle" xmi:id="_-pkHseegEe2MILJaFRIwKQ"/>
+      <styles xmi:type="notation:FontStyle" xmi:id="_-pkHsuegEe2MILJaFRIwKQ" fontName="Cantarell"/>
+      <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_-pkHs-egEe2MILJaFRIwKQ" hint="Mid"/>
+      <element xmi:type="mid:Model" href="bCMS-SPL-PC.mid#//@models.1"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_-pkHtOegEe2MILJaFRIwKQ" x="576" y="192"/>
+    </children>
+    <styles xmi:type="notation:DiagramStyle" xmi:id="_7qJs4ed3Ee2ioexo_GodPw"/>
+    <element xmi:type="mid:MID" href="bCMS-SPL-PC.mid#/"/>
+  </notation:Diagram>
+</xmi:XMI>
