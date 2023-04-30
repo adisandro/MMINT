@@ -1,8 +1,479 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mid:MID xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mid="http://se.cs.toronto.edu/mmint/MID">
-  <models uri="/MMPL/model/GPL/GPL.productline" name="GPL" metatypeUri="model://edu.toronto.cs.se.mmint.productline" dynamic="true" fileExtension="productline" editors="//@editors.0"/>
+  <models uri="/MMPL/model/GPL/GPL.productline" name="GPL" metatypeUri="model://edu.toronto.cs.se.mmint.productline" dynamic="true" fileExtension="productline" editors="//@editors.0">
+    <modelElems uri="/MMPL/model/GPL/GPL.productline#//@classes.0_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/GPL/GPL.productline#//@classes.1_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class Base | WeightedOnlyVertices | WeightedWithEdges | WeightedWithNeighbors" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/GPL/GPL.productline#//@classes.2_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class Base" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/GPL/GPL.productline#//@classes.3_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class Base" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/GPL/GPL.productline#//@classes.4_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class Base" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/GPL/GPL.productline#//@classes.5_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/GPL/GPL.productline#//@classes.6_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (BFS | DFS) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/GPL/GPL.productline#//@classes.7_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (Connected) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/GPL/GPL.productline#//@classes.8_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (Cycle) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/GPL/GPL.productline#//@classes.9_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (Cycle) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/GPL/GPL.productline#//@classes.10_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/GPL/GPL.productline#//@classes.11_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (MSTPrim) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/GPL/GPL.productline#//@classes.12_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (MSTPrim) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/GPL/GPL.productline#//@classes.13_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (Number) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/GPL/GPL.productline#//@classes.14_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (StronglyConnected) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/GPL/GPL.productline#//@classes.15_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (StronglyConnected) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/GPL/GPL.productline#//@classes.16_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (WeightedOnlyVertices) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/GPL/GPL.productline#//@classes.17_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class BFS | Connected | Cycle | DFS | DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | Transpose | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/GPL/GPL.productline#//@classes.18_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | Transpose | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/GPL/GPL.productline#//@classes.19_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class BFS" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/GPL/GPL.productline#//@classes.20_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class BFS | DFS" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/GPL/GPL.productline#//@classes.21_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class Connected" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/GPL/GPL.productline#//@classes.22_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class Connected" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/GPL/GPL.productline#//@classes.23_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class Cycle" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/GPL/GPL.productline#//@classes.24_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class Cycle" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/GPL/GPL.productline#//@classes.25_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class Cycle" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/GPL/GPL.productline#//@classes.26_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class Cycle" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/GPL/GPL.productline#//@classes.27_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class Cycle" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/GPL/GPL.productline#//@classes.28_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class Cycle" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/GPL/GPL.productline#//@classes.29_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class Cycle" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/GPL/GPL.productline#//@classes.30_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/GPL/GPL.productline#//@classes.31_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (WeightedWithNeighbors) &amp; (DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/GPL/GPL.productline#//@classes.32_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class DirectedWithEdges | UndirectedWithEdges | WeightedWithEdges" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/GPL/GPL.productline#//@classes.33_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (WeightedWithEdges) &amp; (DirectedWithEdges | UndirectedWithEdges | WeightedWithEdges)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/GPL/GPL.productline#//@classes.34_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class Number" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/GPL/GPL.productline#//@classes.35_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class Number" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/GPL/GPL.productline#//@classes.36_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class StronglyConnected" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/GPL/GPL.productline#//@classes.37_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class StronglyConnected" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/GPL/GPL.productline#//@classes.38_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class StronglyConnected" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/GPL/GPL.productline#//@classes.39_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class StronglyConnected" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/GPL/GPL.productline#//@classes.40_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class TestProg" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/GPL/GPL.productline#//@classes.41_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/GPL/GPL.productline#//@classes.42_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/GPL/GPL.productline#//@classes.43_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/GPL/GPL.productline#//@classes.44_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (DirectedOnlyVertices | UndirectedOnlyVertices) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/GPL/GPL.productline#//@classes.45_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (DirectedWithEdges | UndirectedWithEdges) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/GPL/GPL.productline#//@classes.46_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (DirectedWithNeighbors | UndirectedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/GPL/GPL.productline#//@classes.47_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (MSTKruskal) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/GPL/GPL.productline#//@classes.48_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (MSTKruskal) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/GPL/GPL.productline#//@classes.49_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/GPL/GPL.productline#//@classes.50_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | Transpose | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/GPL/GPL.productline#//@classes.51_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (DirectedWithEdges | UndirectedWithEdges) &amp; (BFS | Connected | Cycle | DFS | DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | Transpose | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (DirectedWithEdges | UndirectedWithEdges | WeightedWithEdges)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/GPL/GPL.productline#//@classes.52_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (Cycle) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/GPL/GPL.productline#//@classes.53_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (DirectedWithEdges | UndirectedWithEdges) &amp; (DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/GPL/GPL.productline#//@classes.54_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (DirectedWithEdges | UndirectedWithEdges) &amp; (DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors) &amp; (DirectedWithEdges | UndirectedWithEdges | WeightedWithEdges)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/GPL/GPL.productline#//@classes.55_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (DirectedWithNeighbors | UndirectedWithNeighbors) &amp; (DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/GPL/GPL.productline#//@classes.56_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (DirectedWithEdges | UndirectedWithEdges) &amp; (DirectedWithEdges | UndirectedWithEdges | WeightedWithEdges) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MMPL/model/GPL/GPL.productline#//@classes.57_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (TestProg) &amp; (BFS | Connected | Cycle | DFS | DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | Transpose | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+  </models>
+  <models uri="/SPLC23/model/GPL/GPL.productline" name="GPL" metatypeUri="model://edu.toronto.cs.se.mmint.productline" dynamic="true" fileExtension="productline" editors="//@editors.1">
+    <modelElems uri="/SPLC23/model/GPL/GPL.productline#//@classes.0_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/GPL/GPL.productline#//@classes.1_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class Base | WeightedOnlyVertices | WeightedWithEdges | WeightedWithNeighbors" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/GPL/GPL.productline#//@classes.2_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class Base" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/GPL/GPL.productline#//@classes.3_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class Base" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/GPL/GPL.productline#//@classes.4_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class Base" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/GPL/GPL.productline#//@classes.5_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/GPL/GPL.productline#//@classes.6_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (BFS | DFS) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/GPL/GPL.productline#//@classes.7_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (Connected) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/GPL/GPL.productline#//@classes.8_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (Cycle) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/GPL/GPL.productline#//@classes.9_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (Cycle) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/GPL/GPL.productline#//@classes.10_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/GPL/GPL.productline#//@classes.11_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (MSTPrim) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/GPL/GPL.productline#//@classes.12_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (MSTPrim) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/GPL/GPL.productline#//@classes.13_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (Number) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/GPL/GPL.productline#//@classes.14_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (StronglyConnected) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/GPL/GPL.productline#//@classes.15_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (StronglyConnected) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/GPL/GPL.productline#//@classes.16_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (WeightedOnlyVertices) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/GPL/GPL.productline#//@classes.17_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class BFS | Connected | Cycle | DFS | DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | Transpose | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/GPL/GPL.productline#//@classes.18_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | Transpose | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/GPL/GPL.productline#//@classes.19_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class BFS" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/GPL/GPL.productline#//@classes.20_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class BFS | DFS" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/GPL/GPL.productline#//@classes.21_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class Connected" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/GPL/GPL.productline#//@classes.22_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class Connected" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/GPL/GPL.productline#//@classes.23_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class Cycle" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/GPL/GPL.productline#//@classes.24_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class Cycle" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/GPL/GPL.productline#//@classes.25_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class Cycle" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/GPL/GPL.productline#//@classes.26_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class Cycle" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/GPL/GPL.productline#//@classes.27_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class Cycle" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/GPL/GPL.productline#//@classes.28_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class Cycle" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/GPL/GPL.productline#//@classes.29_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class Cycle" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/GPL/GPL.productline#//@classes.30_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/GPL/GPL.productline#//@classes.31_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (WeightedWithNeighbors) &amp; (DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/GPL/GPL.productline#//@classes.32_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class DirectedWithEdges | UndirectedWithEdges | WeightedWithEdges" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/GPL/GPL.productline#//@classes.33_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (WeightedWithEdges) &amp; (DirectedWithEdges | UndirectedWithEdges | WeightedWithEdges)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/GPL/GPL.productline#//@classes.34_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class Number" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/GPL/GPL.productline#//@classes.35_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class Number" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/GPL/GPL.productline#//@classes.36_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class StronglyConnected" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/GPL/GPL.productline#//@classes.37_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class StronglyConnected" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/GPL/GPL.productline#//@classes.38_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class StronglyConnected" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/GPL/GPL.productline#//@classes.39_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class StronglyConnected" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/GPL/GPL.productline#//@classes.40_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class TestProg" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/GPL/GPL.productline#//@classes.41_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/GPL/GPL.productline#//@classes.42_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/GPL/GPL.productline#//@classes.43_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/GPL/GPL.productline#//@classes.44_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (DirectedOnlyVertices | UndirectedOnlyVertices) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/GPL/GPL.productline#//@classes.45_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (DirectedWithEdges | UndirectedWithEdges) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/GPL/GPL.productline#//@classes.46_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (DirectedWithNeighbors | UndirectedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/GPL/GPL.productline#//@classes.47_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (MSTKruskal) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/GPL/GPL.productline#//@classes.48_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (MSTKruskal) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/GPL/GPL.productline#//@classes.49_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/GPL/GPL.productline#//@classes.50_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | Transpose | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/GPL/GPL.productline#//@classes.51_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (DirectedWithEdges | UndirectedWithEdges) &amp; (BFS | Connected | Cycle | DFS | DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | Transpose | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors) &amp; (DirectedWithEdges | UndirectedWithEdges | WeightedWithEdges)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/GPL/GPL.productline#//@classes.52_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (Cycle) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/GPL/GPL.productline#//@classes.53_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (DirectedWithEdges | UndirectedWithEdges) &amp; (DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/GPL/GPL.productline#//@classes.54_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (DirectedWithEdges | UndirectedWithEdges) &amp; (DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors) &amp; (DirectedWithEdges | UndirectedWithEdges | WeightedWithEdges)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/GPL/GPL.productline#//@classes.55_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (DirectedWithNeighbors | UndirectedWithNeighbors) &amp; (DirectedWithEdges | DirectedWithNeighbors | UndirectedWithEdges | UndirectedWithNeighbors | WeightedWithNeighbors) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/GPL/GPL.productline#//@classes.56_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (DirectedWithEdges | UndirectedWithEdges) &amp; (DirectedWithEdges | UndirectedWithEdges | WeightedWithEdges) &amp; (BFS | Connected | Cycle | DFS | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/SPLC23/model/GPL/GPL.productline#//@classes.57_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (TestProg) &amp; (BFS | Connected | Cycle | DFS | DirectedOnlyVertices | DirectedWithEdges | DirectedWithNeighbors | MSTKruskal | MSTPrim | Number | StronglyConnected | Transpose | UndirectedOnlyVertices | UndirectedWithEdges | UndirectedWithNeighbors | WeightedOnlyVertices | WeightedWithNeighbors)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+  </models>
   <editors uri="/MMPL/model/GPL/GPL.productline" name="ProductLine EMF Editor for model /MMPL/model/GPL/GPL.productline" metatypeUri="edu.toronto.cs.se.mmint.productline.editor" dynamic="true" modelUri="/MMPL/model/GPL/GPL.productline" id="edu.toronto.cs.se.mmint.productline.presentation.ProductLineEditorID" wizardId="edu.toronto.cs.se.mmint.productline.presentation.ProductLineModelWizardID">
     <fileExtensions>productline</fileExtensions>
   </editors>
+  <editors uri="/SPLC23/model/GPL/GPL.productline" name="ProductLine EMF Editor for model /SPLC23/model/GPL/GPL.productline" metatypeUri="edu.toronto.cs.se.mmint.productline.editor" dynamic="true" modelUri="/SPLC23/model/GPL/GPL.productline" id="edu.toronto.cs.se.mmint.productline.presentation.ProductLineEditorID" wizardId="edu.toronto.cs.se.mmint.productline.presentation.ProductLineModelWizardID">
+    <fileExtensions>productline</fileExtensions>
+  </editors>
   <extendibleTable key="/MMPL/model/GPL/GPL.productline" value="//@models.0"/>
+  <extendibleTable key="/SPLC23/model/GPL/GPL.productline" value="//@models.1"/>
+  <extendibleTable key="/MMPL/model/GPL/GPL.productline#//@classes.0_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.0"/>
+  <extendibleTable key="/MMPL/model/GPL/GPL.productline#//@classes.1_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.1"/>
+  <extendibleTable key="/MMPL/model/GPL/GPL.productline#//@classes.2_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.2"/>
+  <extendibleTable key="/MMPL/model/GPL/GPL.productline#//@classes.3_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.3"/>
+  <extendibleTable key="/MMPL/model/GPL/GPL.productline#//@classes.4_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.4"/>
+  <extendibleTable key="/MMPL/model/GPL/GPL.productline#//@classes.5_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.5"/>
+  <extendibleTable key="/MMPL/model/GPL/GPL.productline#//@classes.6_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.6"/>
+  <extendibleTable key="/MMPL/model/GPL/GPL.productline#//@classes.7_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.7"/>
+  <extendibleTable key="/MMPL/model/GPL/GPL.productline#//@classes.8_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.8"/>
+  <extendibleTable key="/MMPL/model/GPL/GPL.productline#//@classes.9_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.9"/>
+  <extendibleTable key="/MMPL/model/GPL/GPL.productline#//@classes.10_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.10"/>
+  <extendibleTable key="/MMPL/model/GPL/GPL.productline#//@classes.11_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.11"/>
+  <extendibleTable key="/MMPL/model/GPL/GPL.productline#//@classes.12_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.12"/>
+  <extendibleTable key="/MMPL/model/GPL/GPL.productline#//@classes.13_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.13"/>
+  <extendibleTable key="/MMPL/model/GPL/GPL.productline#//@classes.14_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.14"/>
+  <extendibleTable key="/MMPL/model/GPL/GPL.productline#//@classes.15_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.15"/>
+  <extendibleTable key="/MMPL/model/GPL/GPL.productline#//@classes.16_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.16"/>
+  <extendibleTable key="/MMPL/model/GPL/GPL.productline#//@classes.17_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.17"/>
+  <extendibleTable key="/MMPL/model/GPL/GPL.productline#//@classes.18_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.18"/>
+  <extendibleTable key="/MMPL/model/GPL/GPL.productline#//@classes.19_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.19"/>
+  <extendibleTable key="/MMPL/model/GPL/GPL.productline#//@classes.20_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.20"/>
+  <extendibleTable key="/MMPL/model/GPL/GPL.productline#//@classes.21_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.21"/>
+  <extendibleTable key="/MMPL/model/GPL/GPL.productline#//@classes.22_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.22"/>
+  <extendibleTable key="/MMPL/model/GPL/GPL.productline#//@classes.23_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.23"/>
+  <extendibleTable key="/MMPL/model/GPL/GPL.productline#//@classes.24_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.24"/>
+  <extendibleTable key="/MMPL/model/GPL/GPL.productline#//@classes.25_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.25"/>
+  <extendibleTable key="/MMPL/model/GPL/GPL.productline#//@classes.26_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.26"/>
+  <extendibleTable key="/MMPL/model/GPL/GPL.productline#//@classes.27_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.27"/>
+  <extendibleTable key="/MMPL/model/GPL/GPL.productline#//@classes.28_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.28"/>
+  <extendibleTable key="/MMPL/model/GPL/GPL.productline#//@classes.29_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.29"/>
+  <extendibleTable key="/MMPL/model/GPL/GPL.productline#//@classes.30_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.30"/>
+  <extendibleTable key="/MMPL/model/GPL/GPL.productline#//@classes.31_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.31"/>
+  <extendibleTable key="/MMPL/model/GPL/GPL.productline#//@classes.32_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.32"/>
+  <extendibleTable key="/MMPL/model/GPL/GPL.productline#//@classes.33_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.33"/>
+  <extendibleTable key="/MMPL/model/GPL/GPL.productline#//@classes.34_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.34"/>
+  <extendibleTable key="/MMPL/model/GPL/GPL.productline#//@classes.35_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.35"/>
+  <extendibleTable key="/MMPL/model/GPL/GPL.productline#//@classes.36_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.36"/>
+  <extendibleTable key="/MMPL/model/GPL/GPL.productline#//@classes.37_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.37"/>
+  <extendibleTable key="/MMPL/model/GPL/GPL.productline#//@classes.38_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.38"/>
+  <extendibleTable key="/MMPL/model/GPL/GPL.productline#//@classes.39_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.39"/>
+  <extendibleTable key="/MMPL/model/GPL/GPL.productline#//@classes.40_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.40"/>
+  <extendibleTable key="/MMPL/model/GPL/GPL.productline#//@classes.41_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.41"/>
+  <extendibleTable key="/MMPL/model/GPL/GPL.productline#//@classes.42_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.42"/>
+  <extendibleTable key="/MMPL/model/GPL/GPL.productline#//@classes.43_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.43"/>
+  <extendibleTable key="/MMPL/model/GPL/GPL.productline#//@classes.44_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.44"/>
+  <extendibleTable key="/MMPL/model/GPL/GPL.productline#//@classes.45_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.45"/>
+  <extendibleTable key="/MMPL/model/GPL/GPL.productline#//@classes.46_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.46"/>
+  <extendibleTable key="/MMPL/model/GPL/GPL.productline#//@classes.47_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.47"/>
+  <extendibleTable key="/MMPL/model/GPL/GPL.productline#//@classes.48_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.48"/>
+  <extendibleTable key="/MMPL/model/GPL/GPL.productline#//@classes.49_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.49"/>
+  <extendibleTable key="/MMPL/model/GPL/GPL.productline#//@classes.50_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.50"/>
+  <extendibleTable key="/MMPL/model/GPL/GPL.productline#//@classes.51_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.51"/>
+  <extendibleTable key="/MMPL/model/GPL/GPL.productline#//@classes.52_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.52"/>
+  <extendibleTable key="/MMPL/model/GPL/GPL.productline#//@classes.53_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.53"/>
+  <extendibleTable key="/MMPL/model/GPL/GPL.productline#//@classes.54_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.54"/>
+  <extendibleTable key="/MMPL/model/GPL/GPL.productline#//@classes.55_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.55"/>
+  <extendibleTable key="/MMPL/model/GPL/GPL.productline#//@classes.56_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.56"/>
+  <extendibleTable key="/MMPL/model/GPL/GPL.productline#//@classes.57_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.57"/>
+  <extendibleTable key="/SPLC23/model/GPL/GPL.productline#//@classes.0_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.0"/>
+  <extendibleTable key="/SPLC23/model/GPL/GPL.productline#//@classes.1_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.1"/>
+  <extendibleTable key="/SPLC23/model/GPL/GPL.productline#//@classes.2_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.2"/>
+  <extendibleTable key="/SPLC23/model/GPL/GPL.productline#//@classes.3_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.3"/>
+  <extendibleTable key="/SPLC23/model/GPL/GPL.productline#//@classes.4_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.4"/>
+  <extendibleTable key="/SPLC23/model/GPL/GPL.productline#//@classes.5_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.5"/>
+  <extendibleTable key="/SPLC23/model/GPL/GPL.productline#//@classes.6_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.6"/>
+  <extendibleTable key="/SPLC23/model/GPL/GPL.productline#//@classes.7_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.7"/>
+  <extendibleTable key="/SPLC23/model/GPL/GPL.productline#//@classes.8_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.8"/>
+  <extendibleTable key="/SPLC23/model/GPL/GPL.productline#//@classes.9_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.9"/>
+  <extendibleTable key="/SPLC23/model/GPL/GPL.productline#//@classes.10_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.10"/>
+  <extendibleTable key="/SPLC23/model/GPL/GPL.productline#//@classes.11_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.11"/>
+  <extendibleTable key="/SPLC23/model/GPL/GPL.productline#//@classes.12_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.12"/>
+  <extendibleTable key="/SPLC23/model/GPL/GPL.productline#//@classes.13_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.13"/>
+  <extendibleTable key="/SPLC23/model/GPL/GPL.productline#//@classes.14_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.14"/>
+  <extendibleTable key="/SPLC23/model/GPL/GPL.productline#//@classes.15_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.15"/>
+  <extendibleTable key="/SPLC23/model/GPL/GPL.productline#//@classes.16_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.16"/>
+  <extendibleTable key="/SPLC23/model/GPL/GPL.productline#//@classes.17_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.17"/>
+  <extendibleTable key="/SPLC23/model/GPL/GPL.productline#//@classes.18_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.18"/>
+  <extendibleTable key="/SPLC23/model/GPL/GPL.productline#//@classes.19_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.19"/>
+  <extendibleTable key="/SPLC23/model/GPL/GPL.productline#//@classes.20_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.20"/>
+  <extendibleTable key="/SPLC23/model/GPL/GPL.productline#//@classes.21_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.21"/>
+  <extendibleTable key="/SPLC23/model/GPL/GPL.productline#//@classes.22_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.22"/>
+  <extendibleTable key="/SPLC23/model/GPL/GPL.productline#//@classes.23_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.23"/>
+  <extendibleTable key="/SPLC23/model/GPL/GPL.productline#//@classes.24_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.24"/>
+  <extendibleTable key="/SPLC23/model/GPL/GPL.productline#//@classes.25_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.25"/>
+  <extendibleTable key="/SPLC23/model/GPL/GPL.productline#//@classes.26_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.26"/>
+  <extendibleTable key="/SPLC23/model/GPL/GPL.productline#//@classes.27_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.27"/>
+  <extendibleTable key="/SPLC23/model/GPL/GPL.productline#//@classes.28_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.28"/>
+  <extendibleTable key="/SPLC23/model/GPL/GPL.productline#//@classes.29_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.29"/>
+  <extendibleTable key="/SPLC23/model/GPL/GPL.productline#//@classes.30_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.30"/>
+  <extendibleTable key="/SPLC23/model/GPL/GPL.productline#//@classes.31_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.31"/>
+  <extendibleTable key="/SPLC23/model/GPL/GPL.productline#//@classes.32_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.32"/>
+  <extendibleTable key="/SPLC23/model/GPL/GPL.productline#//@classes.33_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.33"/>
+  <extendibleTable key="/SPLC23/model/GPL/GPL.productline#//@classes.34_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.34"/>
+  <extendibleTable key="/SPLC23/model/GPL/GPL.productline#//@classes.35_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.35"/>
+  <extendibleTable key="/SPLC23/model/GPL/GPL.productline#//@classes.36_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.36"/>
+  <extendibleTable key="/SPLC23/model/GPL/GPL.productline#//@classes.37_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.37"/>
+  <extendibleTable key="/SPLC23/model/GPL/GPL.productline#//@classes.38_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.38"/>
+  <extendibleTable key="/SPLC23/model/GPL/GPL.productline#//@classes.39_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.39"/>
+  <extendibleTable key="/SPLC23/model/GPL/GPL.productline#//@classes.40_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.40"/>
+  <extendibleTable key="/SPLC23/model/GPL/GPL.productline#//@classes.41_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.41"/>
+  <extendibleTable key="/SPLC23/model/GPL/GPL.productline#//@classes.42_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.42"/>
+  <extendibleTable key="/SPLC23/model/GPL/GPL.productline#//@classes.43_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.43"/>
+  <extendibleTable key="/SPLC23/model/GPL/GPL.productline#//@classes.44_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.44"/>
+  <extendibleTable key="/SPLC23/model/GPL/GPL.productline#//@classes.45_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.45"/>
+  <extendibleTable key="/SPLC23/model/GPL/GPL.productline#//@classes.46_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.46"/>
+  <extendibleTable key="/SPLC23/model/GPL/GPL.productline#//@classes.47_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.47"/>
+  <extendibleTable key="/SPLC23/model/GPL/GPL.productline#//@classes.48_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.48"/>
+  <extendibleTable key="/SPLC23/model/GPL/GPL.productline#//@classes.49_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.49"/>
+  <extendibleTable key="/SPLC23/model/GPL/GPL.productline#//@classes.50_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.50"/>
+  <extendibleTable key="/SPLC23/model/GPL/GPL.productline#//@classes.51_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.51"/>
+  <extendibleTable key="/SPLC23/model/GPL/GPL.productline#//@classes.52_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.52"/>
+  <extendibleTable key="/SPLC23/model/GPL/GPL.productline#//@classes.53_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.53"/>
+  <extendibleTable key="/SPLC23/model/GPL/GPL.productline#//@classes.54_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.54"/>
+  <extendibleTable key="/SPLC23/model/GPL/GPL.productline#//@classes.55_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.55"/>
+  <extendibleTable key="/SPLC23/model/GPL/GPL.productline#//@classes.56_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.56"/>
+  <extendibleTable key="/SPLC23/model/GPL/GPL.productline#//@classes.57_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.57"/>
 </mid:MID>
