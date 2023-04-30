@@ -42,7 +42,7 @@
     <styles xmi:type="notation:FontStyle" xmi:id="_AISMguaxEe2gKeF20IqWzw" fontName="Cantarell"/>
     <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_AISMg-axEe2gKeF20IqWzw" hint="Relationship"/>
     <element xmi:type="relationship:ModelRel" href="samples_evaluation_PL.mid#//@models.3"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_AISMhOaxEe2gKeF20IqWzw" x="608" y="80"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_AISMhOaxEe2gKeF20IqWzw" x="608" y="96"/>
   </children>
   <children xmi:type="notation:Node" xmi:id="_AISMh-axEe2gKeF20IqWzw" type="2003">
     <children xmi:type="notation:DecorationNode" xmi:id="_AISMjOaxEe2gKeF20IqWzw" type="5005"/>
@@ -60,7 +60,7 @@
     <styles xmi:type="notation:FontStyle" xmi:id="_AISzkuaxEe2gKeF20IqWzw" fontName="Cantarell"/>
     <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_AISzk-axEe2gKeF20IqWzw" hint="Relationship"/>
     <element xmi:type="relationship:ModelRel" href="samples_evaluation_PL.mid#//@models.5"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_AISzlOaxEe2gKeF20IqWzw" x="608" y="272"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_AISzlOaxEe2gKeF20IqWzw" x="608" y="256"/>
   </children>
   <children xmi:type="notation:Node" xmi:id="_AISzl-axEe2gKeF20IqWzw" type="2005">
     <children xmi:type="notation:DecorationNode" xmi:id="_AISznOaxEe2gKeF20IqWzw" type="5009"/>
