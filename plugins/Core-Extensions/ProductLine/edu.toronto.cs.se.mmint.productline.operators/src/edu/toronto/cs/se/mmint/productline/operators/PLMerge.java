@@ -110,8 +110,8 @@ public class PLMerge extends Merge {
            "    override fun getANDSyntax(): String { return \"\" }\n" +
            "    override fun getORSyntax(): String {return \"($1) | ($2)\"}\n" +
            "  }\n" +
-           "  val merged = mergePL(create" + this.in.model1.getName() + "().toTreeVarObj(), create" +
-              this.in.model2.getName() + "().toTreeVarObj(), overlap, reasoner)\n" +
+           "  val merged = mergePL(create" + this.in.model1.getName() + "(), create" + this.in.model2.getName() +
+              "(), overlap, reasoner)\n" +
            "}\n";
   }
 
