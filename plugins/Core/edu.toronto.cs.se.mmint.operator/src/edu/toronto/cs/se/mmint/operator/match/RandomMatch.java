@@ -13,6 +13,7 @@
 package edu.toronto.cs.se.mmint.operator.match;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
@@ -50,15 +51,24 @@ public class RandomMatch extends Match {
     this.out = new UntypedOut(this.in, MIDTypeRegistry.getType(Match.OVERLAP_TYPE_URI), outputMIDsByName);
   }
 
+  protected boolean areContainersMatched(EObject modelObj1, EObject modelObj2, Map<EObject, EObject> matched) {
+    var modelObjCont1 = modelObj1.eContainer();
+    var modelObjCont2 = modelObj2.eContainer();
+    return (modelObjCont1.eContainer() == null && modelObjCont2.eContainer() == null) || // root children
+           (matched.get(modelObjCont1) ==  modelObjCont2); // containers already matched
+  }
+
   @Override
   protected void createMatchMappings(Map<String, Set<EObject>> modelObjAttrs1, Map<String, Set<EObject>> modelObjAttrs2)
                                     throws MMINTException {
     var r = getState();
     int ri;
-    var entries1 = modelObjAttrs1.entrySet().stream()
-      .filter(e -> e.getValue().size() >= 1)
-      .collect(Collectors.toList());
-    for (var i = 0; i < this.numMatches; i++) {
+    var model1Count = modelObjAttrs1.values().stream().collect(Collectors.summingInt(objs -> objs.size()));
+    var model2Count = modelObjAttrs2.values().stream().collect(Collectors.summingInt(objs -> objs.size()));
+    var maxMatches = Math.min(this.numMatches, Math.min(model1Count, model2Count));
+    var entries1 = new ArrayList<>(modelObjAttrs1.entrySet());
+    var matched = new HashMap<EObject, EObject>();
+    for (var i = 0; i < maxMatches; i++) {
       if (entries1.size() == 0) {
         break;
       }
@@ -77,14 +87,21 @@ public class RandomMatch extends Match {
         i--;
         continue;
       }
+      // random mappings are binary, with only one model element on both sides of the overlap
       ri = r.nextInt(modelObjs1.size());
       var modelObj1 = new ArrayList<>(modelObjs1).get(ri);
       ri = r.nextInt(modelObjs2.size());
       var modelObj2 = new ArrayList<>(modelObjs2).get(ri);
-      //TODO we have to check if the container has been picked
-      // random mappings are binary, with only one model element on both sides of the overlap
+      // since the # of random matches is a subset of all possible matches
+      // we have to check whether the containers have actually been matched already
+      if (!areContainersMatched(modelObj1, modelObj2, matched)) {
+        //TODO MMINT[MATCH] This could cause an infinite loop
+        i--;
+        continue;
+      }
       modelObjs1.remove(modelObj1);
       modelObjs2.remove(modelObj2);
+      matched.put(modelObj1, modelObj2);
       createMatchMapping(Set.of(modelObj1), Set.of(modelObj2), RandomMatch.MAPPING_NAME + i);
     }
   }

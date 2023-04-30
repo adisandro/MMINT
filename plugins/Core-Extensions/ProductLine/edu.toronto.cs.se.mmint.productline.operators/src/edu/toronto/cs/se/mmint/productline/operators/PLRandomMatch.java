@@ -50,26 +50,20 @@ public class PLRandomMatch extends RandomMatch {
   }
 
   @Override
-  protected boolean isContainerMatched(EObject modelObj1, Map<String, Set<EObject>> modelObjAttrs2) {
-    var modelObjContainer1 = ProductLineUtils.getContainer((Class) modelObj1);
-    if (modelObjContainer1 == null) { // root
-      return false;
-    }
-    if (ProductLineUtils.getContainer(modelObjContainer1) == null) { // root children
-      return true;
-    }
-    var containerAttrValue1 = getMatchAttributeValue(modelObjContainer1);
-    if (containerAttrValue1 == null || !(containerAttrValue1 instanceof String containerAttrStr1)) {
-      return false;
-    }
-    if (modelObjAttrs2.get(containerAttrStr1).isEmpty()) {
-      return false;
-    }
-    return true;
+  protected boolean areContainersMatched(EObject modelObj1, EObject modelObj2, Map<EObject, EObject> matched) {
+    var modelObjCont1 = ProductLineUtils.getEContainer((Class) modelObj1);
+    var modelObjCont2 = ProductLineUtils.getEContainer((Class) modelObj2);
+    return (modelObjCont1 == null && modelObjCont2 == null) || // roots
+           (ProductLineUtils.getEContainer(modelObjCont1) == null && ProductLineUtils.getEContainer(modelObjCont2) == null) || // root children
+           (matched.get(modelObjCont1) ==  modelObjCont2); // containers already matched
   }
 
   @Override
   protected void filterMatches(Map<String, Set<EObject>> modelObjAttrs1, Map<String, Set<EObject>> modelObjAttrs2) {
+    if (this.matchOn.equals("eClass")) {
+      // all entries are categorized by type already
+      return;
+    }
     // remove entries that don't share the same type
     for (var entry1 : modelObjAttrs1.entrySet()) {
       var attrStr = entry1.getKey();
@@ -91,15 +85,6 @@ public class PLRandomMatch extends RandomMatch {
           if (type != ((Class) iter2.next()).getType()) {
             iter2.remove();
           }
-        }
-      }
-    }
-    // remove entries with unmatched container
-    for (var entry1 : modelObjAttrs1.entrySet()) {
-      var modelObjs1 = entry1.getValue();
-      for (var iter1 = modelObjs1.iterator(); iter1.hasNext();) {
-        if (!isContainerMatched(iter1.next(), modelObjAttrs2)) {
-          iter1.remove();
         }
       }
     }

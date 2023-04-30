@@ -55,23 +55,12 @@ public class Match extends UntypedMatch {
     this.out = new UntypedOut(this.in, MIDTypeRegistry.getType(Match.OVERLAP_TYPE_URI), outputMIDsByName);
   }
 
-  protected boolean isContainerMatched(EObject modelObj1, Map<String, Set<EObject>> modelObjAttrs2) {
-    var modelObjContainer1 = modelObj1.eContainer();
-    if (modelObjContainer1.eContainer() == null) { // root children
-      return true;
-    }
-    var containerAttrValue1 = getMatchAttributeValue(modelObjContainer1);
-    if (containerAttrValue1 == null || !(containerAttrValue1 instanceof String containerAttrStr1)) {
-      return false;
-    }
-    if (modelObjAttrs2.get(containerAttrStr1).isEmpty()) {
-      return false;
-    }
-    return true;
-  }
-
   @Override
   protected void filterMatches(Map<String, Set<EObject>> modelObjAttrs1, Map<String, Set<EObject>> modelObjAttrs2) {
+    if (this.matchOn.equals("eClass")) {
+      // all entries are categorized by type already
+      return;
+    }
     // remove entries that don't share the same type
     for (var entry1 : modelObjAttrs1.entrySet()) {
       var attrStr = entry1.getKey();
@@ -93,15 +82,6 @@ public class Match extends UntypedMatch {
           if (type != iter2.next().eClass()) {
             iter2.remove();
           }
-        }
-      }
-    }
-    // remove entries with unmatched container
-    for (var entry1 : modelObjAttrs1.entrySet()) {
-      var modelObjs1 = entry1.getValue();
-      for (var iter1 = modelObjs1.iterator(); iter1.hasNext();) {
-        if (!isContainerMatched(iter1.next(), modelObjAttrs2)) {
-          iter1.remove();
         }
       }
     }
