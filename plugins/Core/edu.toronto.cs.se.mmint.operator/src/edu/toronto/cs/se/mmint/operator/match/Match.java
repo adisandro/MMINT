@@ -55,6 +55,21 @@ public class Match extends UntypedMatch {
     this.out = new UntypedOut(this.in, MIDTypeRegistry.getType(Match.OVERLAP_TYPE_URI), outputMIDsByName);
   }
 
+  protected boolean isContainerMatched(EObject modelObj1, Map<String, Set<EObject>> modelObjAttrs2) {
+    var modelObjContainer1 = modelObj1.eContainer();
+    if (modelObjContainer1.eContainer() == null) { // root children
+      return true;
+    }
+    var containerAttrValue1 = getMatchAttributeValue(modelObjContainer1);
+    if (containerAttrValue1 == null || !(containerAttrValue1 instanceof String containerAttrStr1)) {
+      return false;
+    }
+    if (modelObjAttrs2.get(containerAttrStr1).isEmpty()) {
+      return false;
+    }
+    return true;
+  }
+
   @Override
   protected void filterMatches(Map<String, Set<EObject>> modelObjAttrs1, Map<String, Set<EObject>> modelObjAttrs2) {
     // remove entries that don't share the same type
@@ -85,17 +100,7 @@ public class Match extends UntypedMatch {
     for (var entry1 : modelObjAttrs1.entrySet()) {
       var modelObjs1 = entry1.getValue();
       for (var iter1 = modelObjs1.iterator(); iter1.hasNext();) {
-        var modelObj1 = iter1.next();
-        var modelObjContainer1 = modelObj1.eContainer();
-        if (modelObjContainer1.eContainer() == null) { // root children
-          continue;
-        }
-        var containerAttrValue1 = getMatchAttributeValue(modelObjContainer1);
-        if (containerAttrValue1 == null || !(containerAttrValue1 instanceof String containerAttrStr1)) {
-          iter1.remove();
-          continue;
-        }
-        if (modelObjAttrs2.get(containerAttrStr1).isEmpty()) {
+        if (!isContainerMatched(iter1.next(), modelObjAttrs2)) {
           iter1.remove();
         }
       }

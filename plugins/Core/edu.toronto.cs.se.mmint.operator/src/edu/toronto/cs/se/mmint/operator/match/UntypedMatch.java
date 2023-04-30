@@ -152,6 +152,23 @@ public class UntypedMatch extends RandomOperatorImpl {
     // do nothing
   }
 
+  protected void createMatchMapping(Set<EObject> modelObjs1, Set<EObject> modelObjs2, String mappingName)
+                                   throws MMINTException {
+    // mappings are potentially n-ary, with more than one model element on either side of the overlap
+    var matchMappingRef = this.out.mappingType.createInstanceAndReference(false, this.out.overlap);
+    matchMappingRef.getObject().setName(mappingName);
+    var matchModelEndpointRef = this.out.overlap.getModelEndpointRefs().get(0);
+    for (var modelObj1 : modelObjs1) {
+      var matchModelElemRef = matchModelEndpointRef.createModelElementInstanceAndReference(modelObj1, null);
+      this.out.modelElemTypeEndpoint.createInstanceAndReference(matchModelElemRef, matchMappingRef);
+    }
+    matchModelEndpointRef = this.out.overlap.getModelEndpointRefs().get(1);
+    for (var modelObj2 : modelObjs2) {
+      var matchModelElemRef = matchModelEndpointRef.createModelElementInstanceAndReference(modelObj2, null);
+      this.out.modelElemTypeEndpoint.createInstanceAndReference(matchModelElemRef, matchMappingRef);
+    }
+  }
+
   protected void createMatchMappings(Map<String, Set<EObject>> modelObjAttrs1, Map<String, Set<EObject>> modelObjAttrs2)
                                     throws MMINTException {
     for (var entry1 : modelObjAttrs1.entrySet()) {
@@ -164,19 +181,7 @@ public class UntypedMatch extends RandomOperatorImpl {
       if (modelObjs2 == null || modelObjs2.isEmpty()) {
         continue;
       }
-      // mappings are potentially n-ary, with more than one model element on either side of the overlap
-      var matchMappingRef = this.out.mappingType.createInstanceAndReference(false, this.out.overlap);
-      matchMappingRef.getObject().setName(attrValue);
-      var matchModelEndpointRef = this.out.overlap.getModelEndpointRefs().get(0);
-      for (var modelObj1 : modelObjs1) {
-        var matchModelElemRef = matchModelEndpointRef.createModelElementInstanceAndReference(modelObj1, null);
-        this.out.modelElemTypeEndpoint.createInstanceAndReference(matchModelElemRef, matchMappingRef);
-      }
-      matchModelEndpointRef = this.out.overlap.getModelEndpointRefs().get(1);
-      for (var modelObj2 : modelObjs2) {
-        var matchModelElemRef = matchModelEndpointRef.createModelElementInstanceAndReference(modelObj2, null);
-        this.out.modelElemTypeEndpoint.createInstanceAndReference(matchModelElemRef, matchMappingRef);
-      }
+      createMatchMapping(modelObjs1, modelObjs2, attrValue);
     }
   }
 
