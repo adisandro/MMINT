@@ -6218,6 +6218,8 @@
       <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
     </modelElems>
   </models>
+  <models uri="/SPLC23/model/Automata/Automata1_10k.productline" name="Automata1_10k" metatypeUri="model://edu.toronto.cs.se.mmint.productline" dynamic="true" fileExtension="productline" editors="//@editors.4"/>
+  <models uri="/SPLC23/model/Automata/Automata2_10k.productline" name="Automata2_10k" metatypeUri="model://edu.toronto.cs.se.mmint.productline" dynamic="true" fileExtension="productline" editors="//@editors.5"/>
   <editors uri="/MMPL/model/Automata/Automata.productline" name="ProductLine EMF Editor for model /MMPL/model/Automata/Automata.productline" metatypeUri="edu.toronto.cs.se.mmint.productline.editor" dynamic="true" modelUri="/MMPL/model/Automata/Automata.productline" id="edu.toronto.cs.se.mmint.productline.presentation.ProductLineEditorID" wizardId="edu.toronto.cs.se.mmint.productline.presentation.ProductLineModelWizardID">
     <fileExtensions>productline</fileExtensions>
   </editors>
@@ -6228,6 +6230,12 @@
     <fileExtensions>productline</fileExtensions>
   </editors>
   <editors uri="/SPLC23/model/Automata/Automata2_1k.productline" name="ProductLine EMF Editor for model /SPLC23/model/Automata/Automata2_1k.productline" metatypeUri="edu.toronto.cs.se.mmint.productline.editor" dynamic="true" modelUri="/SPLC23/model/Automata/Automata2_1k.productline" id="edu.toronto.cs.se.mmint.productline.presentation.ProductLineEditorID" wizardId="edu.toronto.cs.se.mmint.productline.presentation.ProductLineModelWizardID">
+    <fileExtensions>productline</fileExtensions>
+  </editors>
+  <editors uri="/SPLC23/model/Automata/Automata1_10k.productline" name="ProductLine EMF Editor for model /SPLC23/model/Automata/Automata1_10k.productline" metatypeUri="edu.toronto.cs.se.mmint.productline.editor" dynamic="true" modelUri="/SPLC23/model/Automata/Automata1_10k.productline" id="edu.toronto.cs.se.mmint.productline.presentation.ProductLineEditorID" wizardId="edu.toronto.cs.se.mmint.productline.presentation.ProductLineModelWizardID">
+    <fileExtensions>productline</fileExtensions>
+  </editors>
+  <editors uri="/SPLC23/model/Automata/Automata2_10k.productline" name="ProductLine EMF Editor for model /SPLC23/model/Automata/Automata2_10k.productline" metatypeUri="edu.toronto.cs.se.mmint.productline.editor" dynamic="true" modelUri="/SPLC23/model/Automata/Automata2_10k.productline" id="edu.toronto.cs.se.mmint.productline.presentation.ProductLineEditorID" wizardId="edu.toronto.cs.se.mmint.productline.presentation.ProductLineModelWizardID">
     <fileExtensions>productline</fileExtensions>
   </editors>
   <extendibleTable key="/MMPL/model/Automata/Automata.productline" value="//@models.0"/>
@@ -8304,4 +8312,6 @@
   <extendibleTable key="/SPLC23/model/Automata/Automata2_1k.productline#//@classes.997_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.3/@modelElems.997"/>
   <extendibleTable key="/SPLC23/model/Automata/Automata2_1k.productline#//@classes.998_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.3/@modelElems.998"/>
   <extendibleTable key="/SPLC23/model/Automata/Automata2_1k.productline#//@classes.999_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.3/@modelElems.999"/>
+  <extendibleTable key="/SPLC23/model/Automata/Automata1_10k.productline" value="//@models.4"/>
+  <extendibleTable key="/SPLC23/model/Automata/Automata2_10k.productline" value="//@models.5"/>
 </mid:MID>
