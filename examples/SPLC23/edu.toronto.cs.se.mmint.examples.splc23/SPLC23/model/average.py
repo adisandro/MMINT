@@ -33,7 +33,9 @@ if __name__ == "__main__":
             with open(f'{args.model_name}/results/PL_{size}_{id}.properties') as result_file:
                 result = read_result(result_file)
                 time_merge_pl = result
-            speedup = round(time_merge_p * PRODUCTS[args.model_name] / time_merge_pl)
+            speedup = round(time_merge_p * PRODUCTS[args.model_name] / time_merge_pl, 2)
+            if speedup < 1:
+                speedup = - round(time_merge_pl / (time_merge_p * PRODUCTS[args.model_name]), 2)
             print(f'  Speedup: {speedup}')
             latex += f' & {speedup}'
         print(f'Latex {args.model_name} {size}: {latex}')
