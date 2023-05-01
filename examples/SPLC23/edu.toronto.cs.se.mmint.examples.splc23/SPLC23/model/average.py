@@ -18,7 +18,7 @@ if __name__ == "__main__":
     parser = ArgumentParser()
     parser.add_argument('model_name')
     args = parser.parse_args()
-    SIZES = ['orig', '1k', '10k']
+    SIZES = ['orig', '1k', '5k']
     IDS = ['J10', 'K10', 'J100', 'K100', 'J500', 'K500']
     PRODUCTS = {'GPL': 840, 'Automata': 2016, 'bCMS-SPL-PC': 15360, 'crom_l1': 2395000}
     for size in SIZES:
