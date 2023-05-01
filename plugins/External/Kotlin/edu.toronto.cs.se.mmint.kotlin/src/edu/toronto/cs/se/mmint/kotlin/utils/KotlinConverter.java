@@ -233,23 +233,23 @@ public class KotlinConverter {
       var reference = keObj.modelObj().eClass().getEStructuralFeature(kRefEntry.getKey());
       for (var referenceKTree : LlistKt.toList(kRefEntry.getValue())) {
         var referenceUri = ((MkTree<? extends Object>) referenceKTree).getNode().getUri();
-        var referenceKEObj = kUriToKEObj.get(referenceUri);
-        if (referenceKEObj == null) { // reference to external element
-          try {
-            if (referenceUri.startsWith("http")) {
-              var metamodel = EPackage.Registry.INSTANCE.getEPackage(MIDRegistry.getModelUri(referenceUri));
-              referenceKEObj = new KEObject(null, FileUtils.readModelObject(referenceUri, metamodel.eResource()));
-            }
-            else {
-              referenceKEObj = new KEObject(null, FileUtils.readModelObject(referenceUri, null));
-            }
-            kUriToKEObj.put(referenceUri, referenceKEObj);
+        try {
+          var referenceKEObj = kUriToKEObj.get(referenceUri);
+          if (referenceKEObj == null) { // reference to external element
+              if (referenceUri.startsWith("http")) {
+                var metamodel = EPackage.Registry.INSTANCE.getEPackage(MIDRegistry.getModelUri(referenceUri));
+                referenceKEObj = new KEObject(null, FileUtils.readModelObject(referenceUri, metamodel.eResource()));
+              }
+              else {
+                referenceKEObj = new KEObject(null, FileUtils.readModelObject(referenceUri, null));
+              }
+              kUriToKEObj.put(referenceUri, referenceKEObj);
           }
-          catch (Exception e) {
-            MMINTException.print(IStatus.INFO, "Reference with uri " + referenceUri + " not found, skipping it", e);
-          }
+          FileUtils.setModelObjectFeature(keObj.modelObj(), reference, referenceKEObj.modelObj());
         }
-        FileUtils.setModelObjectFeature(keObj.modelObj(), reference, referenceKEObj.modelObj());
+        catch (Exception e) {
+          MMINTException.print(IStatus.INFO, "Reference with uri " + referenceUri + " not found, skipping it", e);
+        }
       }
     }
   }
