@@ -24,19 +24,20 @@ if __name__ == "__main__":
     for size in SIZES:
         latex = ''
         for id in IDS:
-            print(f'{args.model_name} {size}_{id}:')
-            time_merge_p = 0
-            time_merge_pl = 0
-            with open(f'{args.model_name}/results/P_{size}_{id}.properties') as result_file:
-                result = read_result(result_file)
-                time_merge_p = result
-            with open(f'{args.model_name}/results/PL_{size}_{id}.properties') as result_file:
-                result = read_result(result_file)
-                time_merge_pl = result
-            speedup = round(time_merge_p * PRODUCTS[args.model_name] / time_merge_pl, 2)
-            if speedup < 1:
-                speedup = - round(time_merge_pl / (time_merge_p * PRODUCTS[args.model_name]), 2)
-            print(f'  Speedup: {speedup}')
-            latex += f' & {speedup}'
+            try:
+                with open(f'{args.model_name}/results/P_{size}_{id}.properties') as result_file:
+                    result = read_result(result_file)
+                    time_merge_p = result
+                with open(f'{args.model_name}/results/PL_{size}_{id}.properties') as result_file:
+                    result = read_result(result_file)
+                    time_merge_pl = result
+                speedup = round(time_merge_p * PRODUCTS[args.model_name] / time_merge_pl, 2)
+                if speedup < 1:
+                    speedup = - round(time_merge_pl / (time_merge_p * PRODUCTS[args.model_name]), 2)
+                print(f'{args.model_name} {size}_{id}:')
+                print(f'  Speedup: {speedup}')
+                latex += f' & {speedup}'
+            except:
+                latex += f' & -'
         print(f'Latex {args.model_name} {size}: {latex}')
 
