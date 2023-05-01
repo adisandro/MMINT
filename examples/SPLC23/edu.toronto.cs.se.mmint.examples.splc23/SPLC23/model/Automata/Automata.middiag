@@ -37,23 +37,23 @@
       <element xmi:type="mid:Model" href="Automata.mid#//@models.3"/>
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_50ZapOfDEe2p2qnBQJqG1A" x="592" y="192"/>
     </children>
-    <children xmi:type="notation:Node" xmi:id="_RHL1kOfNEe2yI_wvuQ4Hkw" type="2002">
-      <children xmi:type="notation:DecorationNode" xmi:id="_RHL1lefNEe2yI_wvuQ4Hkw" type="5003"/>
-      <children xmi:type="notation:DecorationNode" xmi:id="_RHL1lufNEe2yI_wvuQ4Hkw" type="5004"/>
-      <styles xmi:type="notation:DescriptionStyle" xmi:id="_RHL1kefNEe2yI_wvuQ4Hkw"/>
-      <styles xmi:type="notation:FontStyle" xmi:id="_RHL1kufNEe2yI_wvuQ4Hkw" fontName="Cantarell"/>
-      <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_RHL1k-fNEe2yI_wvuQ4Hkw" hint="Mid"/>
+    <children xmi:type="notation:Node" xmi:id="_cpSkMOg4Ee2prc69vYdaTA" type="2002">
+      <children xmi:type="notation:DecorationNode" xmi:id="_cpSkNeg4Ee2prc69vYdaTA" type="5003"/>
+      <children xmi:type="notation:DecorationNode" xmi:id="_cpSkNug4Ee2prc69vYdaTA" type="5004"/>
+      <styles xmi:type="notation:DescriptionStyle" xmi:id="_cpSkMeg4Ee2prc69vYdaTA"/>
+      <styles xmi:type="notation:FontStyle" xmi:id="_cpSkMug4Ee2prc69vYdaTA" fontName="Cantarell"/>
+      <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_cpSkM-g4Ee2prc69vYdaTA" hint="Mid"/>
       <element xmi:type="mid:Model" href="Automata.mid#//@models.4"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_RHL1lOfNEe2yI_wvuQ4Hkw" x="240" y="320"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_cpSkNOg4Ee2prc69vYdaTA" x="240" y="336"/>
     </children>
-    <children xmi:type="notation:Node" xmi:id="_Sce0kOfNEe2yI_wvuQ4Hkw" type="2002">
-      <children xmi:type="notation:DecorationNode" xmi:id="_Sce0lefNEe2yI_wvuQ4Hkw" type="5003"/>
-      <children xmi:type="notation:DecorationNode" xmi:id="_Sce0lufNEe2yI_wvuQ4Hkw" type="5004"/>
-      <styles xmi:type="notation:DescriptionStyle" xmi:id="_Sce0kefNEe2yI_wvuQ4Hkw"/>
-      <styles xmi:type="notation:FontStyle" xmi:id="_Sce0kufNEe2yI_wvuQ4Hkw" fontName="Cantarell"/>
-      <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_Sce0k-fNEe2yI_wvuQ4Hkw" hint="Mid"/>
+    <children xmi:type="notation:Node" xmi:id="_fu8GgOg4Ee2prc69vYdaTA" type="2002">
+      <children xmi:type="notation:DecorationNode" xmi:id="_fu8Gheg4Ee2prc69vYdaTA" type="5003"/>
+      <children xmi:type="notation:DecorationNode" xmi:id="_fu8Ghug4Ee2prc69vYdaTA" type="5004"/>
+      <styles xmi:type="notation:DescriptionStyle" xmi:id="_fu8Ggeg4Ee2prc69vYdaTA"/>
+      <styles xmi:type="notation:FontStyle" xmi:id="_fu8Ggug4Ee2prc69vYdaTA" fontName="Cantarell"/>
+      <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_fu8Gg-g4Ee2prc69vYdaTA" hint="Mid"/>
       <element xmi:type="mid:Model" href="Automata.mid#//@models.5"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Sce0lOfNEe2yI_wvuQ4Hkw" x="609" y="311"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_fu8GhOg4Ee2prc69vYdaTA" x="595" y="336"/>
     </children>
     <styles xmi:type="notation:DiagramStyle" xmi:id="_zgukIed2Ee2ioexo_GodPw"/>
     <element xmi:type="mid:MID" href="Automata.mid#/"/>
