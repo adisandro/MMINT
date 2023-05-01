@@ -19,7 +19,32 @@
       <element xmi:type="mid:Model" href="Automata.mid#//@models.1"/>
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_2Z8iFOd4Ee2ioexo_GodPw" x="576" y="64"/>
     </children>
+    <children xmi:type="notation:Node" xmi:id="_3alqoOfDEe2p2qnBQJqG1A" type="2002">
+      <children xmi:type="notation:DecorationNode" xmi:id="_3alqpefDEe2p2qnBQJqG1A" type="5003"/>
+      <children xmi:type="notation:DecorationNode" xmi:id="_3alqpufDEe2p2qnBQJqG1A" type="5004"/>
+      <styles xmi:type="notation:DescriptionStyle" xmi:id="_3alqoefDEe2p2qnBQJqG1A"/>
+      <styles xmi:type="notation:FontStyle" xmi:id="_3alqoufDEe2p2qnBQJqG1A" fontName="Cantarell"/>
+      <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_3alqo-fDEe2p2qnBQJqG1A" hint="Mid"/>
+      <element xmi:type="mid:Model" href="Automata.mid#//@models.2"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_3alqpOfDEe2p2qnBQJqG1A" x="240" y="192"/>
+    </children>
+    <children xmi:type="notation:Node" xmi:id="_50ZaoOfDEe2p2qnBQJqG1A" type="2002">
+      <children xmi:type="notation:DecorationNode" xmi:id="_50aBsOfDEe2p2qnBQJqG1A" type="5003"/>
+      <children xmi:type="notation:DecorationNode" xmi:id="_50aBsefDEe2p2qnBQJqG1A" type="5004"/>
+      <styles xmi:type="notation:DescriptionStyle" xmi:id="_50ZaoefDEe2p2qnBQJqG1A"/>
+      <styles xmi:type="notation:FontStyle" xmi:id="_50ZaoufDEe2p2qnBQJqG1A" fontName="Cantarell"/>
+      <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_50Zao-fDEe2p2qnBQJqG1A" hint="Mid"/>
+      <element xmi:type="mid:Model" href="Automata.mid#//@models.3"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_50ZapOfDEe2p2qnBQJqG1A" x="592" y="192"/>
+    </children>
     <styles xmi:type="notation:DiagramStyle" xmi:id="_zgukIed2Ee2ioexo_GodPw"/>
     <element xmi:type="mid:MID" href="Automata.mid#/"/>
+  </notation:Diagram>
+  <notation:Diagram xmi:id="_AeZxUOfAEe2mzIkLIBALvA" type="Relationship" measurementUnit="Pixel">
+    <styles xmi:type="notation:DiagramStyle" xmi:id="_AeZxUefAEe2mzIkLIBALvA"/>
+  </notation:Diagram>
+  <notation:Diagram xmi:id="_9G2C0OfDEe2p2qnBQJqG1A" type="Relationship" measurementUnit="Pixel">
+    <styles xmi:type="notation:DiagramStyle" xmi:id="_9G2C0efDEe2p2qnBQJqG1A"/>
+    <element xmi:type="relationship:BinaryModelRel" href="Automata.mid#//@models.4"/>
   </notation:Diagram>
 </xmi:XMI>
