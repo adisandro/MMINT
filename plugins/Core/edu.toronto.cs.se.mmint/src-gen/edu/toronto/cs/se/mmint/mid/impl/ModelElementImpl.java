@@ -341,11 +341,11 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
     @Override
     public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
     if (baseClass == ExtendibleElement.class) {
-      switch (baseOperationID) {
-        case MIDPackage.EXTENDIBLE_ELEMENT___GET_METATYPE: return MIDPackage.MODEL_ELEMENT___GET_METATYPE;
-        case MIDPackage.EXTENDIBLE_ELEMENT___GET_MID_CONTAINER: return MIDPackage.MODEL_ELEMENT___GET_MID_CONTAINER;
-        default: return super.eDerivedOperationID(baseOperationID, baseClass);
-      }
+      return switch (baseOperationID) {
+      case MIDPackage.EXTENDIBLE_ELEMENT___GET_METATYPE -> MIDPackage.MODEL_ELEMENT___GET_METATYPE;
+      case MIDPackage.EXTENDIBLE_ELEMENT___GET_MID_CONTAINER -> MIDPackage.MODEL_ELEMENT___GET_MID_CONTAINER;
+      default -> super.eDerivedOperationID(baseOperationID, baseClass);
+      };
     }
     return super.eDerivedOperationID(baseOperationID, baseClass);
   }
@@ -516,29 +516,39 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
     /**
      * @generated NOT
      */
+    //TODO MMINT[OO] Turn it into a mid.ecore api
+    public ModelElement createInstance(String newModelElemUri, String newModelElemName, EMFInfo eInfo, Model containerModel) throws MMINTException {
+      ModelElement newModelElem = null;
+      var instanceMID = containerModel.getMIDContainer();
+      if (instanceMID != null) { // can be null when the containing model is not stored in the MID
+          newModelElem = instanceMID.getExtendibleElement(newModelElemUri);
+      }
+      if (newModelElem == null) {
+          newModelElem = super.createThisEClass();
+          if (instanceMID == null) {
+              super.addBasicInstance(newModelElem, newModelElemUri, newModelElemName, MIDLevel.INSTANCES);
+          }
+          else {
+              super.addInstance(newModelElem, newModelElemUri, newModelElemName, instanceMID);
+          }
+          newModelElem.setEInfo(eInfo);
+          containerModel.getModelElems().add(newModelElem);
+      }
+
+      return newModelElem;
+    }
+
+    /**
+     * @generated NOT
+     */
     @Override
     public ModelElementReference createInstanceAndReference(String newModelElemUri, String newModelElemName, EMFInfo eInfo, ModelEndpointReference containerModelEndpointRef) throws MMINTException {
 
         MMINTException.mustBeType(this);
 
-        var containerModel = containerModelEndpointRef.getObject().getTarget();
-        var instanceMID = containerModel.getMIDContainer();
-        ModelElement newModelElem = null;
         newModelElemUri += MMINTConstants.ROLE_SEPARATOR + this.getUri();
-        if (instanceMID != null) { // can be null when the containing model is not stored in the MID
-            newModelElem = instanceMID.getExtendibleElement(newModelElemUri);
-        }
-        if (newModelElem == null) {
-            newModelElem = super.createThisEClass();
-            if (instanceMID == null) {
-                super.addBasicInstance(newModelElem, newModelElemUri, newModelElemName, MIDLevel.INSTANCES);
-            }
-            else {
-                super.addInstance(newModelElem, newModelElemUri, newModelElemName, instanceMID);
-            }
-            newModelElem.setEInfo(eInfo);
-            containerModel.getModelElems().add(newModelElem);
-        }
+        var containerModel = containerModelEndpointRef.getObject().getTarget();
+        var newModelElem = createInstance(newModelElemUri, newModelElemName, eInfo, containerModel);
         var newModelElemRef = newModelElem.createInstanceReference(containerModelEndpointRef);
 
         return newModelElemRef;

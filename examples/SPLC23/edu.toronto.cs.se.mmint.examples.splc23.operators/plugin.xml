@@ -18,7 +18,7 @@
          point="edu.toronto.cs.se.mmint.operators">
       <operatorType>
          <type
-               name="PLElemPreload"
+               name="PLPreload"
                uri="edu.toronto.cs.se.mmint.examples.splc23.operators.PLPreload"
                class="edu.toronto.cs.se.mmint.examples.splc23.operators.PLPreload">
          </type>

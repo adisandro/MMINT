@@ -14,10 +14,16 @@ package edu.toronto.cs.se.mmint.examples.splc23.operators;
 
 import java.util.Map;
 
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
+import edu.toronto.cs.se.mmint.MMINTConstants;
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
+import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.impl.ModelElementImpl;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
+import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 import edu.toronto.cs.se.mmint.productline.Class;
 
 public class PLPreload extends OperatorImpl {
@@ -36,11 +42,17 @@ public class PLPreload extends OperatorImpl {
     this.in = new In(inputsByName);
   }
 
-  private void preload() throws Exception {
+  private void preload() throws MMINTException {
+    var modelElemType = MIDTypeHierarchy.getRootModelElementType();
     for (var modelObj : this.in.plModel.getEMFInstanceRoot().eContents()) {
       if (!(modelObj instanceof Class plClass)) {
         continue;
       }
+      var modelElemUri = MIDRegistry.getModelElementUri(modelObj) + MMINTConstants.ROLE_SEPARATOR +
+                         modelElemType.getUri();
+      var eInfo = MIDRegistry.getModelElementEMFInfo(modelObj, MIDLevel.INSTANCES);
+      var modelElemName = MIDRegistry.getModelElementName(eInfo, modelObj, MIDLevel.INSTANCES);
+      ((ModelElementImpl) modelElemType).createInstance(modelElemUri, modelElemName, eInfo, this.in.plModel);
     }
   }
 
