@@ -37,6 +37,24 @@
       <element xmi:type="mid:Model" href="bCMS-SPL-PC.mid#//@models.3"/>
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_CsIrZOhIEe2bQs60urblRA" x="576" y="304"/>
     </children>
+    <children xmi:type="notation:Node" xmi:id="_xsbzkOhIEe2bQs60urblRA" type="2002">
+      <children xmi:type="notation:DecorationNode" xmi:id="_xsbzlehIEe2bQs60urblRA" type="5003"/>
+      <children xmi:type="notation:DecorationNode" xmi:id="_xsbzluhIEe2bQs60urblRA" type="5004"/>
+      <styles xmi:type="notation:DescriptionStyle" xmi:id="_xsbzkehIEe2bQs60urblRA"/>
+      <styles xmi:type="notation:FontStyle" xmi:id="_xsbzkuhIEe2bQs60urblRA" fontName="Cantarell"/>
+      <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_xsbzk-hIEe2bQs60urblRA" hint="Mid"/>
+      <element xmi:type="mid:Model" href="bCMS-SPL-PC.mid#//@models.4"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_xsbzlOhIEe2bQs60urblRA" x="208" y="432"/>
+    </children>
+    <children xmi:type="notation:Node" xmi:id="_zNbsQOhIEe2bQs60urblRA" type="2002">
+      <children xmi:type="notation:DecorationNode" xmi:id="_zNbsRehIEe2bQs60urblRA" type="5003"/>
+      <children xmi:type="notation:DecorationNode" xmi:id="_zNbsRuhIEe2bQs60urblRA" type="5004"/>
+      <styles xmi:type="notation:DescriptionStyle" xmi:id="_zNbsQehIEe2bQs60urblRA"/>
+      <styles xmi:type="notation:FontStyle" xmi:id="_zNbsQuhIEe2bQs60urblRA" fontName="Cantarell"/>
+      <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_zNbsQ-hIEe2bQs60urblRA" hint="Mid"/>
+      <element xmi:type="mid:Model" href="bCMS-SPL-PC.mid#//@models.5"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_zNbsROhIEe2bQs60urblRA" x="576" y="432"/>
+    </children>
     <styles xmi:type="notation:DiagramStyle" xmi:id="_7qJs4ed3Ee2ioexo_GodPw"/>
     <element xmi:type="mid:MID" href="bCMS-SPL-PC.mid#/"/>
   </notation:Diagram>
