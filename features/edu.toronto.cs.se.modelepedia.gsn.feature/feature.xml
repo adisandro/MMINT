@@ -6,7 +6,7 @@
       provider-name="Software Engineering Group, University of Toronto">
 
    <description>
-      A safety case metamodel to be used in MMINT.
+      A GSN safety case metamodel to be used in MMINT.
    </description>
 
    <copyright url="http://www.example.com/copyright">
@@ -65,6 +65,13 @@ Famelis, Rick Salay, Nick Fung. All rights reserved.
 
    <plugin
          id="edu.toronto.cs.se.modelepedia.gsn.operator"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="edu.toronto.cs.se.mmint.types.gsn.templates"
          download-size="0"
          install-size="0"
          version="0.0.0"
