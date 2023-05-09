@@ -26,7 +26,7 @@ import org.eclipse.sirius.viewpoint.DSemanticDecorator;
 import org.eclipse.ui.PlatformUI;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.modelepedia.gsn.DecompositionStrategy;
+import edu.toronto.cs.se.mmint.types.gsn.templates.DecompositionStrategy;
 
 public class GoalDecompositionCheck extends AbstractExternalJavaAction {
 

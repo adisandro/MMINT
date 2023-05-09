@@ -393,18 +393,18 @@ public abstract class DecomposableCoreElementImpl extends SupportableImpl implem
   @Override
   public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
     if (baseClass == ArgumentElement.class) {
-      switch (derivedFeatureID) {
-        case GSNPackage.DECOMPOSABLE_CORE_ELEMENT__ID: return GSNPackage.ARGUMENT_ELEMENT__ID;
-        case GSNPackage.DECOMPOSABLE_CORE_ELEMENT__DESCRIPTION: return GSNPackage.ARGUMENT_ELEMENT__DESCRIPTION;
-        case GSNPackage.DECOMPOSABLE_CORE_ELEMENT__CONTENT_VALIDITY: return GSNPackage.ARGUMENT_ELEMENT__CONTENT_VALIDITY;
-        case GSNPackage.DECOMPOSABLE_CORE_ELEMENT__STATUS: return GSNPackage.ARGUMENT_ELEMENT__STATUS;
-        default: return -1;
-      }
+      return switch (derivedFeatureID) {
+      case GSNPackage.DECOMPOSABLE_CORE_ELEMENT__ID -> GSNPackage.ARGUMENT_ELEMENT__ID;
+      case GSNPackage.DECOMPOSABLE_CORE_ELEMENT__DESCRIPTION -> GSNPackage.ARGUMENT_ELEMENT__DESCRIPTION;
+      case GSNPackage.DECOMPOSABLE_CORE_ELEMENT__CONTENT_VALIDITY -> GSNPackage.ARGUMENT_ELEMENT__CONTENT_VALIDITY;
+      case GSNPackage.DECOMPOSABLE_CORE_ELEMENT__STATUS -> GSNPackage.ARGUMENT_ELEMENT__STATUS;
+      default -> -1;
+      };
     }
     if (baseClass == CoreElement.class) {
-      switch (derivedFeatureID) {
-        default: return -1;
-      }
+      return switch (derivedFeatureID) {
+      default -> -1;
+      };
     }
     return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
   }
@@ -416,18 +416,18 @@ public abstract class DecomposableCoreElementImpl extends SupportableImpl implem
   @Override
   public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
     if (baseClass == ArgumentElement.class) {
-      switch (baseFeatureID) {
-        case GSNPackage.ARGUMENT_ELEMENT__ID: return GSNPackage.DECOMPOSABLE_CORE_ELEMENT__ID;
-        case GSNPackage.ARGUMENT_ELEMENT__DESCRIPTION: return GSNPackage.DECOMPOSABLE_CORE_ELEMENT__DESCRIPTION;
-        case GSNPackage.ARGUMENT_ELEMENT__CONTENT_VALIDITY: return GSNPackage.DECOMPOSABLE_CORE_ELEMENT__CONTENT_VALIDITY;
-        case GSNPackage.ARGUMENT_ELEMENT__STATUS: return GSNPackage.DECOMPOSABLE_CORE_ELEMENT__STATUS;
-        default: return -1;
-      }
+      return switch (baseFeatureID) {
+      case GSNPackage.ARGUMENT_ELEMENT__ID -> GSNPackage.DECOMPOSABLE_CORE_ELEMENT__ID;
+      case GSNPackage.ARGUMENT_ELEMENT__DESCRIPTION -> GSNPackage.DECOMPOSABLE_CORE_ELEMENT__DESCRIPTION;
+      case GSNPackage.ARGUMENT_ELEMENT__CONTENT_VALIDITY -> GSNPackage.DECOMPOSABLE_CORE_ELEMENT__CONTENT_VALIDITY;
+      case GSNPackage.ARGUMENT_ELEMENT__STATUS -> GSNPackage.DECOMPOSABLE_CORE_ELEMENT__STATUS;
+      default -> -1;
+      };
     }
     if (baseClass == CoreElement.class) {
-      switch (baseFeatureID) {
-        default: return -1;
-      }
+      return switch (baseFeatureID) {
+      default -> -1;
+      };
     }
     return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
   }

@@ -16,9 +16,9 @@ import java.util.Set;
 
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
-import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
+import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
+import edu.toronto.cs.se.mmint.types.gsn.templates.util.GSNTemplatesBuilder;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
-import edu.toronto.cs.se.modelepedia.gsn.util.DomainBuilder;
 
 public class CreateDomainDecompositionStrategy extends CreateDecompositionElement {
 
@@ -31,14 +31,15 @@ public class CreateDomainDecompositionStrategy extends CreateDecompositionElemen
   private class CreateDomainStrategyCommand extends CreateDecompositionElementCommand {
 
     public CreateDomainStrategyCommand(TransactionalEditingDomain domain, SafetyCase gsnRootModelObj) {
-      super(domain, new DomainBuilder(gsnRootModelObj));
+      super(domain, new GSNTemplatesBuilder(gsnRootModelObj));
     }
 
     @Override
     protected void create() throws Exception {
-      var builder = (DomainBuilder) this.builder;
+      var builder = (GSNTemplatesBuilder) this.builder;
       var domain = builder.createDomain("Create Domain Decomposition Strategy", "Insert the domain",
-                                        Set.of(GSNPackage.INT_DOMAIN, GSNPackage.REAL_DOMAIN, GSNPackage.ENUM_DOMAIN));
+                                        Set.of(GSNTemplatesPackage.INT_DOMAIN, GSNTemplatesPackage.REAL_DOMAIN,
+                                               GSNTemplatesPackage.ENUM_DOMAIN));
       builder.createDomainStrategy("", "", domain);
     }
   }

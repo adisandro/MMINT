@@ -4,11 +4,11 @@
     editDirectory="/edu.toronto.cs.se.modelepedia.gsn.edit/src-gen" editorDirectory="/edu.toronto.cs.se.modelepedia.gsn.editor/src-gen"
     modelPluginID="edu.toronto.cs.se.modelepedia.gsn" modelName="GSN" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     testsDirectory="/edu.toronto.cs.se.modelepedia.gsn.tests/src-gen" importerID="org.eclipse.emf.importer.ecore"
-    complianceLevel="18.0" copyrightFields="false" editPluginID="edu.toronto.cs.se.modelepedia.gsn.edit"
+    complianceLevel="20.0" copyrightFields="false" editPluginID="edu.toronto.cs.se.modelepedia.gsn.edit"
     editorPluginID="edu.toronto.cs.se.modelepedia.gsn.editor" language="" operationReflection="true">
   <foreignModel>gsn.ecore</foreignModel>
   <genPackages prefix="GSN" basePackage="edu.toronto.cs.se.modelepedia" disposableProviderFactory="true"
-      ecorePackage="gsn.ecore#/">
+      extensibleProviderFactory="true" ecorePackage="gsn.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="gsn.ecore#//ASILLevel">
       <genEnumLiterals ecoreEnumLiteral="gsn.ecore#//ASILLevel/D"/>
       <genEnumLiterals ecoreEnumLiteral="gsn.ecore#//ASILLevel/C"/>
@@ -96,46 +96,16 @@
     <genClasses ecoreClass="gsn.ecore#//MofNSupporter">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//MofNSupporter/target"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="gsn.ecore#//DecompositionStrategy">
-      <genOperations ecoreOperation="gsn.ecore#//DecompositionStrategy/validate"/>
+    <genClasses image="false" ecoreClass="gsn.ecore#//Template">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference gsn.ecore#//Template/elements"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//Template/id"/>
+      <genOperations ecoreOperation="gsn.ecore#//Template/validate"/>
+      <genOperations ecoreOperation="gsn.ecore#//Template/instantiate"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="gsn.ecore#//Domain">
-      <genOperations ecoreOperation="gsn.ecore#//Domain/validateDecomposition">
-        <genParameters ecoreParameter="gsn.ecore#//Domain/validateDecomposition/subDomains"/>
-      </genOperations>
-    </genClasses>
-    <genClasses ecoreClass="gsn.ecore#//IntDomain">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//IntDomain/lowerBound"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//IntDomain/upperBound"/>
-    </genClasses>
-    <genClasses ecoreClass="gsn.ecore#//RealDomain">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//RealDomain/lowerBound"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//RealDomain/upperBound"/>
-    </genClasses>
-    <genClasses ecoreClass="gsn.ecore#//EnumDomain">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//EnumDomain/values"/>
-    </genClasses>
-    <genClasses ecoreClass="gsn.ecore#//ValueDomain">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//ValueDomain/value"/>
-    </genClasses>
-    <genClasses image="false" ecoreClass="gsn.ecore#//DomainDecompositionElement">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gsn.ecore#//DomainDecompositionElement/domain"/>
-    </genClasses>
-    <genClasses ecoreClass="gsn.ecore#//DomainDecompositionStrategy"/>
-    <genClasses ecoreClass="gsn.ecore#//DomainGoal"/>
-    <genClasses ecoreClass="gsn.ecore#//Property">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//Property/formal"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//Property/informal"/>
-    </genClasses>
-    <genClasses ecoreClass="gsn.ecore#//PropertyDecompositionElement">
-      <genFeatures createChild="false" ecoreFeature="ecore:EReference gsn.ecore#//PropertyDecompositionElement/property"/>
-    </genClasses>
-    <genClasses ecoreClass="gsn.ecore#//PropertyDecompositionStrategy">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//PropertyDecompositionStrategy/reasonerName"/>
-    </genClasses>
-    <genClasses ecoreClass="gsn.ecore#//PropertyGoal">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//PropertyGoal/valid"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//PropertyGoal/hint"/>
+    <genClasses image="false" ecoreClass="gsn.ecore#//TemplateElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//TemplateElement/valid"/>
+      <genOperations ecoreOperation="gsn.ecore#//TemplateElement/validate"/>
+      <genOperations ecoreOperation="gsn.ecore#//TemplateElement/repair"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

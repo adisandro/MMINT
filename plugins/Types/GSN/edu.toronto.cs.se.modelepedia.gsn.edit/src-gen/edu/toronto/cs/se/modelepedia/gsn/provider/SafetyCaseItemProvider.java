@@ -20,6 +20,7 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.provider.IChildCreationExtender;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -165,16 +166,6 @@ public class SafetyCaseItemProvider extends ItemProviderAdapter implements IEdit
 
     newChildDescriptors.add
       (createChildParameter
-        (GSNPackage.Literals.SAFETY_CASE__GOALS,
-         GSNFactory.eINSTANCE.createDomainGoal()));
-
-    newChildDescriptors.add
-      (createChildParameter
-        (GSNPackage.Literals.SAFETY_CASE__GOALS,
-         GSNFactory.eINSTANCE.createPropertyGoal()));
-
-    newChildDescriptors.add
-      (createChildParameter
         (GSNPackage.Literals.SAFETY_CASE__STRATEGIES,
          GSNFactory.eINSTANCE.createBasicStrategy()));
 
@@ -182,16 +173,6 @@ public class SafetyCaseItemProvider extends ItemProviderAdapter implements IEdit
       (createChildParameter
         (GSNPackage.Literals.SAFETY_CASE__STRATEGIES,
          GSNFactory.eINSTANCE.createASILDecompositionStrategy()));
-
-    newChildDescriptors.add
-      (createChildParameter
-        (GSNPackage.Literals.SAFETY_CASE__STRATEGIES,
-         GSNFactory.eINSTANCE.createDomainDecompositionStrategy()));
-
-    newChildDescriptors.add
-      (createChildParameter
-        (GSNPackage.Literals.SAFETY_CASE__STRATEGIES,
-         GSNFactory.eINSTANCE.createPropertyDecompositionStrategy()));
 
     newChildDescriptors.add
       (createChildParameter
@@ -241,7 +222,7 @@ public class SafetyCaseItemProvider extends ItemProviderAdapter implements IEdit
    */
   @Override
   public ResourceLocator getResourceLocator() {
-    return GSNEditPlugin.INSTANCE;
+    return ((IChildCreationExtender)this.adapterFactory).getResourceLocator();
   }
 
 }

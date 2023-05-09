@@ -20,7 +20,7 @@ import org.eclipse.uml2.uml.PackageableElement;
 import edu.toronto.cs.se.mmint.lean.operators.ToLean;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.modelepedia.gsn.reasoning.IGSNLeanEncoder;
+import edu.toronto.cs.se.mmint.types.gsn.templates.reasoning.IGSNLeanEncoder;
 
 public class UMLToLean extends ToLean implements IGSNLeanEncoder {
 

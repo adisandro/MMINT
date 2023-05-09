@@ -30,24 +30,24 @@ import edu.toronto.cs.se.mmint.mid.ui.FilesOnlyDialogSelectionValidator;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.mid.ui.MIDTreeSelectionDialog;
+import edu.toronto.cs.se.mmint.types.gsn.templates.DecompositionStrategy;
+import edu.toronto.cs.se.mmint.types.gsn.templates.Property;
+import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyGoal;
+import edu.toronto.cs.se.mmint.types.gsn.templates.reasoning.IGSNDecompositionTrait;
+import edu.toronto.cs.se.mmint.types.gsn.templates.reasoning.IGSNLeanEncoder.PropertyTemplate;
+import edu.toronto.cs.se.mmint.types.gsn.templates.util.GSNTemplatesBuilder;
 import edu.toronto.cs.se.modelepedia.gsn.Context;
 import edu.toronto.cs.se.modelepedia.gsn.DecomposableCoreElement;
-import edu.toronto.cs.se.modelepedia.gsn.DecompositionStrategy;
 import edu.toronto.cs.se.modelepedia.gsn.Goal;
-import edu.toronto.cs.se.modelepedia.gsn.Property;
-import edu.toronto.cs.se.modelepedia.gsn.PropertyGoal;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
 import edu.toronto.cs.se.modelepedia.gsn.Strategy;
-import edu.toronto.cs.se.modelepedia.gsn.reasoning.IGSNDecompositionTrait;
-import edu.toronto.cs.se.modelepedia.gsn.reasoning.IGSNLeanEncoder.PropertyTemplate;
 import edu.toronto.cs.se.modelepedia.gsn.util.GSNBuilder;
-import edu.toronto.cs.se.modelepedia.gsn.util.PropertyBuilder;
 
 public class PropertyDecomposition extends GoalDecomposition {
 
   @Override
   protected GSNBuilder createGSNBuilder(Goal goal) {
-    return new PropertyBuilder((SafetyCase) goal.eContainer());
+    return new GSNTemplatesBuilder((SafetyCase) goal.eContainer());
   }
 
   private String getEncodingFile(String title, String message) throws MIDDialogCancellation {
@@ -61,7 +61,7 @@ public class PropertyDecomposition extends GoalDecomposition {
   }
 
   private void createQueryContext(DecomposableCoreElement contextualized, String query, String id, int numCtx,
-                                  Map<String, Context> contexts, PropertyBuilder builder) {
+                                  Map<String, Context> contexts, GSNTemplatesBuilder builder) {
     var context = contexts.get(query);
     if (context == null) {
       var desc = "Query '" + query + "'";
@@ -80,7 +80,7 @@ public class PropertyDecomposition extends GoalDecomposition {
 
   @Override
   protected DecompositionStrategy decompose(Goal decomposed, GSNBuilder gsnBuilder) throws Exception {
-    var builder = (PropertyBuilder) gsnBuilder;
+    var builder = (GSNTemplatesBuilder) gsnBuilder;
     // ask for input
     var title = "Property Decomposition";
     var customMsg = "Insert a description for the custom property";

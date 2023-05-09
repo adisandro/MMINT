@@ -14,4 +14,12 @@
 -->
 <plugin>
 
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated gsn.templates -->
+      <package
+            uri="model://edu.toronto.cs.se.mmint.types.gsn.templates"
+            class="edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage"
+            genModel="model/gsn.templates.genmodel"/>
+   </extension>
+
 </plugin>

@@ -248,16 +248,16 @@ public abstract class GoalImpl extends DecomposableCoreElementImpl implements Go
   @Override
   public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
     if (baseClass == StatefulElement.class) {
-      switch (derivedFeatureID) {
-        case GSNPackage.GOAL__STATE_VALIDITY: return GSNPackage.STATEFUL_ELEMENT__STATE_VALIDITY;
-        default: return -1;
-      }
+      return switch (derivedFeatureID) {
+      case GSNPackage.GOAL__STATE_VALIDITY -> GSNPackage.STATEFUL_ELEMENT__STATE_VALIDITY;
+      default -> -1;
+      };
     }
     if (baseClass == ASILfulElement.class) {
-      switch (derivedFeatureID) {
-        case GSNPackage.GOAL__ASIL: return GSNPackage.ASI_LFUL_ELEMENT__ASIL;
-        default: return -1;
-      }
+      return switch (derivedFeatureID) {
+      case GSNPackage.GOAL__ASIL -> GSNPackage.ASI_LFUL_ELEMENT__ASIL;
+      default -> -1;
+      };
     }
     return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
   }
@@ -269,16 +269,16 @@ public abstract class GoalImpl extends DecomposableCoreElementImpl implements Go
   @Override
   public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
     if (baseClass == StatefulElement.class) {
-      switch (baseFeatureID) {
-        case GSNPackage.STATEFUL_ELEMENT__STATE_VALIDITY: return GSNPackage.GOAL__STATE_VALIDITY;
-        default: return -1;
-      }
+      return switch (baseFeatureID) {
+      case GSNPackage.STATEFUL_ELEMENT__STATE_VALIDITY -> GSNPackage.GOAL__STATE_VALIDITY;
+      default -> -1;
+      };
     }
     if (baseClass == ASILfulElement.class) {
-      switch (baseFeatureID) {
-        case GSNPackage.ASI_LFUL_ELEMENT__ASIL: return GSNPackage.GOAL__ASIL;
-        default: return -1;
-      }
+      return switch (baseFeatureID) {
+      case GSNPackage.ASI_LFUL_ELEMENT__ASIL -> GSNPackage.GOAL__ASIL;
+      default -> -1;
+      };
     }
     return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
   }

@@ -153,10 +153,10 @@ public class SolutionImpl extends CoreElementImpl implements Solution {
   @Override
   public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
     if (baseClass == StatefulElement.class) {
-      switch (derivedFeatureID) {
-        case GSNPackage.SOLUTION__STATE_VALIDITY: return GSNPackage.STATEFUL_ELEMENT__STATE_VALIDITY;
-        default: return -1;
-      }
+      return switch (derivedFeatureID) {
+      case GSNPackage.SOLUTION__STATE_VALIDITY -> GSNPackage.STATEFUL_ELEMENT__STATE_VALIDITY;
+      default -> -1;
+      };
     }
     return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
   }
@@ -168,10 +168,10 @@ public class SolutionImpl extends CoreElementImpl implements Solution {
   @Override
   public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
     if (baseClass == StatefulElement.class) {
-      switch (baseFeatureID) {
-        case GSNPackage.STATEFUL_ELEMENT__STATE_VALIDITY: return GSNPackage.SOLUTION__STATE_VALIDITY;
-        default: return -1;
-      }
+      return switch (baseFeatureID) {
+      case GSNPackage.STATEFUL_ELEMENT__STATE_VALIDITY -> GSNPackage.SOLUTION__STATE_VALIDITY;
+      default -> -1;
+      };
     }
     return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
   }

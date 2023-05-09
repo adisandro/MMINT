@@ -168,10 +168,10 @@ public abstract class CoreElementImpl extends ArgumentElementImpl implements Cor
   @Override
   public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
     if (baseClass == Supporter.class) {
-      switch (derivedFeatureID) {
-        case GSNPackage.CORE_ELEMENT__SUPPORTS: return GSNPackage.SUPPORTER__SUPPORTS;
-        default: return -1;
-      }
+      return switch (derivedFeatureID) {
+      case GSNPackage.CORE_ELEMENT__SUPPORTS -> GSNPackage.SUPPORTER__SUPPORTS;
+      default -> -1;
+      };
     }
     return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
   }
@@ -183,10 +183,10 @@ public abstract class CoreElementImpl extends ArgumentElementImpl implements Cor
   @Override
   public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
     if (baseClass == Supporter.class) {
-      switch (baseFeatureID) {
-        case GSNPackage.SUPPORTER__SUPPORTS: return GSNPackage.CORE_ELEMENT__SUPPORTS;
-        default: return -1;
-      }
+      return switch (baseFeatureID) {
+      case GSNPackage.SUPPORTER__SUPPORTS -> GSNPackage.CORE_ELEMENT__SUPPORTS;
+      default -> -1;
+      };
     }
     return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
   }

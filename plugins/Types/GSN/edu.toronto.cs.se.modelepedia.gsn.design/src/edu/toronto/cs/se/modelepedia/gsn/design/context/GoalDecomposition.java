@@ -25,7 +25,7 @@ import org.eclipse.sirius.viewpoint.DSemanticDecorator;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
-import edu.toronto.cs.se.modelepedia.gsn.DecompositionStrategy;
+import edu.toronto.cs.se.mmint.types.gsn.templates.DecompositionStrategy;
 import edu.toronto.cs.se.modelepedia.gsn.Goal;
 import edu.toronto.cs.se.modelepedia.gsn.util.GSNBuilder;
 
@@ -69,7 +69,8 @@ public abstract class GoalDecomposition extends AbstractExternalJavaAction {
     protected DecompositionStrategy strategy;
     protected GSNBuilder builder;
 
-    public GoalDecompositionCommand(TransactionalEditingDomain domain, DecompositionStrategy strategy, GSNBuilder builder) {
+    public GoalDecompositionCommand(TransactionalEditingDomain domain, DecompositionStrategy strategy,
+                                    GSNBuilder builder) {
       super(domain);
       this.strategy = strategy;
       this.builder = builder;

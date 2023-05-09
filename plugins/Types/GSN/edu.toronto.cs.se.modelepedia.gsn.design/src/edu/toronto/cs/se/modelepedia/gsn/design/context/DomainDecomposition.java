@@ -14,32 +14,33 @@ import java.util.Set;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
-import edu.toronto.cs.se.modelepedia.gsn.DecompositionStrategy;
-import edu.toronto.cs.se.modelepedia.gsn.EnumDomain;
-import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
+import edu.toronto.cs.se.mmint.types.gsn.templates.DecompositionStrategy;
+import edu.toronto.cs.se.mmint.types.gsn.templates.EnumDomain;
+import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
+import edu.toronto.cs.se.mmint.types.gsn.templates.IntDomain;
+import edu.toronto.cs.se.mmint.types.gsn.templates.RealDomain;
+import edu.toronto.cs.se.mmint.types.gsn.templates.util.GSNTemplatesBuilder;
 import edu.toronto.cs.se.modelepedia.gsn.Goal;
-import edu.toronto.cs.se.modelepedia.gsn.IntDomain;
-import edu.toronto.cs.se.modelepedia.gsn.RealDomain;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
-import edu.toronto.cs.se.modelepedia.gsn.util.DomainBuilder;
 import edu.toronto.cs.se.modelepedia.gsn.util.GSNBuilder;
 
 public class DomainDecomposition extends GoalDecomposition {
 
   @Override
   protected GSNBuilder createGSNBuilder(Goal goal) {
-    return new DomainBuilder((SafetyCase) goal.eContainer());
+    return new GSNTemplatesBuilder((SafetyCase) goal.eContainer());
   }
 
   @Override
   protected DecompositionStrategy decompose(Goal decomposed, GSNBuilder gsnBuilder) throws Exception {
-    var builder = (DomainBuilder) gsnBuilder;
+    var builder = (GSNTemplatesBuilder) gsnBuilder;
     // ask for input
     var title = "Domain Decomposition";
     var numDomains = 0;
     Set<Integer> subDomainTypes = null;
     var domain = builder.createDomain(title, "Insert the domain to be decomposed",
-                                      Set.of(GSNPackage.INT_DOMAIN, GSNPackage.REAL_DOMAIN, GSNPackage.ENUM_DOMAIN));
+                                      Set.of(GSNTemplatesPackage.INT_DOMAIN, GSNTemplatesPackage.REAL_DOMAIN,
+                                             GSNTemplatesPackage.ENUM_DOMAIN));
     if (domain instanceof IntDomain || domain instanceof RealDomain) {
       var message = "Insert the number of sub-domains";
       numDomains = Integer.parseInt(MIDDialogs.getStringInput(title, message, null));
@@ -47,15 +48,16 @@ public class DomainDecomposition extends GoalDecomposition {
         throw new MMINTException("A domain must be decomposed into >1 sub-domains");
       }
       if (domain instanceof IntDomain) {
-        subDomainTypes = Set.of(GSNPackage.INT_DOMAIN, GSNPackage.ENUM_DOMAIN, GSNPackage.VALUE_DOMAIN);
+        subDomainTypes = Set.of(GSNTemplatesPackage.INT_DOMAIN, GSNTemplatesPackage.ENUM_DOMAIN,
+                                GSNTemplatesPackage.VALUE_DOMAIN);
       }
       else if (domain instanceof RealDomain) {
-        subDomainTypes = Set.of(GSNPackage.REAL_DOMAIN);
+        subDomainTypes = Set.of(GSNTemplatesPackage.REAL_DOMAIN);
       }
     }
     else if (domain instanceof EnumDomain) {
       numDomains = ((EnumDomain) domain).getValues().size();
-      subDomainTypes = Set.of(GSNPackage.ENUM_DOMAIN, GSNPackage.VALUE_DOMAIN);
+      subDomainTypes = Set.of(GSNTemplatesPackage.ENUM_DOMAIN, GSNTemplatesPackage.VALUE_DOMAIN);
     }
     // create decomposition template
     var id = decomposed.getId();

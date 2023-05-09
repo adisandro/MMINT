@@ -180,57 +180,17 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="target" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong" defaultValueLiteral="1"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DecompositionStrategy" abstract="true"
-      eSuperTypes="#//Strategy">
-    <eOperations name="validate" eExceptions="#//Exception"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Domain" abstract="true">
-    <eOperations name="validateDecomposition" eExceptions="#//Exception">
-      <eParameters name="subDomains" upperBound="-1" eType="#//Domain"/>
-    </eOperations>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="IntDomain" eSuperTypes="#//Domain">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lowerBound" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="upperBound" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="RealDomain" eSuperTypes="#//Domain">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lowerBound" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="upperBound" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="EnumDomain" eSuperTypes="#//Domain">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="values" lowerBound="2"
-        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ValueDomain" eSuperTypes="#//Domain">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DomainDecompositionElement" abstract="true">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="domain" lowerBound="1"
-        eType="#//Domain" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DomainDecompositionStrategy" eSuperTypes="#//DecompositionStrategy #//DomainDecompositionElement"/>
-  <eClassifiers xsi:type="ecore:EClass" name="DomainGoal" eSuperTypes="#//Goal #//DomainDecompositionElement"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Property">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="formal" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="informal" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PropertyDecompositionElement" abstract="true">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="property" lowerBound="1"
-        eType="#//Property" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PropertyDecompositionStrategy" eSuperTypes="#//DecompositionStrategy #//PropertyDecompositionElement">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="reasonerName" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PropertyGoal" eSuperTypes="#//Goal #//PropertyDecompositionElement">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="valid" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="hint" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="Exception" instanceClassName="java.lang.Exception"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Template" abstract="true">
+    <eOperations name="validate" eExceptions="#//Exception"/>
+    <eOperations name="instantiate" eExceptions="#//Exception"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" lowerBound="1"
+        upperBound="-1" eType="#//TemplateElement"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TemplateElement" abstract="true">
+    <eOperations name="validate" eExceptions="#//Exception"/>
+    <eOperations name="repair" eExceptions="#//Exception"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="valid" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
 </ecore:EPackage>

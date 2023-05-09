@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
  *******************************************************************************/
 import org.eclipse.jface.viewers.ITreeContentProvider;
 
-import edu.toronto.cs.se.modelepedia.gsn.reasoning.IGSNLeanEncoder.PropertyTemplate;
+import edu.toronto.cs.se.mmint.types.gsn.templates.reasoning.IGSNLeanEncoder.PropertyTemplate;
 
 public class TemplatePropertyContentProvider implements ITreeContentProvider {
 

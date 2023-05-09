@@ -21,6 +21,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
+import org.eclipse.emf.edit.provider.IChildCreationExtender;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -32,6 +33,7 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import edu.toronto.cs.se.modelepedia.gsn.ASIL;
+import edu.toronto.cs.se.modelepedia.gsn.ASILLevel;
 import edu.toronto.cs.se.modelepedia.gsn.GSNFactory;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 
@@ -185,7 +187,7 @@ public class ASILItemProvider extends ItemProviderAdapter implements IEditingDom
    */
   @Override
   public ResourceLocator getResourceLocator() {
-    return GSNEditPlugin.INSTANCE;
+    return ((IChildCreationExtender)this.adapterFactory).getResourceLocator();
   }
 
 }

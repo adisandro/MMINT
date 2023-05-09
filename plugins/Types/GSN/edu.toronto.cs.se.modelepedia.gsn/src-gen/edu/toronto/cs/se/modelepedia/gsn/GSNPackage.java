@@ -966,15 +966,6 @@ public interface GSNPackage extends EPackage {
   int INDEPENDENCE_GOAL_OPERATION_COUNT = GSNPackage.GOAL_OPERATION_COUNT + 0;
 
   /**
-   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.DomainGoalImpl <em>Domain Goal</em>}' class.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.DomainGoalImpl
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getDomainGoal()
-   * @generated
-   */
-  int DOMAIN_GOAL = 36;
-
-  /**
    * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.StrategyImpl <em>Strategy</em>}' class.
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @see edu.toronto.cs.se.modelepedia.gsn.impl.StrategyImpl
@@ -1819,836 +1810,78 @@ public interface GSNPackage extends EPackage {
   int MOF_NSUPPORTER_OPERATION_COUNT = GSNPackage.SUPPORT_CONNECTOR_OPERATION_COUNT + 0;
 
   /**
-   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.DecompositionStrategyImpl <em>Decomposition Strategy</em>}' class.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.DecompositionStrategyImpl
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getDecompositionStrategy()
+   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.TemplateImpl <em>Template</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.toronto.cs.se.modelepedia.gsn.impl.TemplateImpl
+   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getTemplate()
    * @generated
    */
-  int DECOMPOSITION_STRATEGY = 28;
+  int TEMPLATE = 28;
 
   /**
-   * The feature id for the '<em><b>Supports</b></em>' reference list.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The feature id for the '<em><b>Elements</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DECOMPOSITION_STRATEGY__SUPPORTS = GSNPackage.STRATEGY__SUPPORTS;
-
-  /**
-   * The feature id for the '<em><b>Supported By</b></em>' containment reference list.
-   * <!-- begin-user-doc --> <!--
-   * end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DECOMPOSITION_STRATEGY__SUPPORTED_BY = GSNPackage.STRATEGY__SUPPORTED_BY;
+  int TEMPLATE__ELEMENTS = 0;
 
   /**
    * The feature id for the '<em><b>Id</b></em>' attribute.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DECOMPOSITION_STRATEGY__ID = GSNPackage.STRATEGY__ID;
+  int TEMPLATE__ID = 1;
 
   /**
-   * The feature id for the '<em><b>Description</b></em>' attribute.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The number of structural features of the '<em>Template</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DECOMPOSITION_STRATEGY__DESCRIPTION = GSNPackage.STRATEGY__DESCRIPTION;
-
-  /**
-   * The feature id for the '<em><b>Content Validity</b></em>' attribute.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DECOMPOSITION_STRATEGY__CONTENT_VALIDITY = GSNPackage.STRATEGY__CONTENT_VALIDITY;
-
-  /**
-   * The feature id for the '<em><b>Status</b></em>' containment reference. <!-- begin-user-doc --> <!-- end-user-doc
-   * -->
-   *
-   * @generated
-   * @ordered
-   */
-  int DECOMPOSITION_STRATEGY__STATUS = GSNPackage.STRATEGY__STATUS;
-
-  /**
-   * The feature id for the '<em><b>In Context Of</b></em>' containment reference list.
-   * <!-- begin-user-doc --> <!--
-   * end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DECOMPOSITION_STRATEGY__IN_CONTEXT_OF = GSNPackage.STRATEGY__IN_CONTEXT_OF;
-
-  /**
-   * The number of structural features of the '<em>Decomposition Strategy</em>' class.
-   * <!-- begin-user-doc --> <!--
-   * end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DECOMPOSITION_STRATEGY_FEATURE_COUNT = GSNPackage.STRATEGY_FEATURE_COUNT + 0;
+  int TEMPLATE_FEATURE_COUNT = 2;
 
   /**
    * The operation id for the '<em>Validate</em>' operation.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DECOMPOSITION_STRATEGY___VALIDATE = GSNPackage.STRATEGY_OPERATION_COUNT + 0;
-
-  /**
-   * The number of operations of the '<em>Decomposition Strategy</em>' class. <!-- begin-user-doc --> <!-- end-user-doc
-   * -->
-   *
-   * @generated
-   * @ordered
-   */
-  int DECOMPOSITION_STRATEGY_OPERATION_COUNT = GSNPackage.STRATEGY_OPERATION_COUNT + 1;
-
-  /**
-   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.DomainImpl <em>Domain</em>}' class. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
-   *
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.DomainImpl
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getDomain()
-   * @generated
-   */
-  int DOMAIN = 29;
-
-  /**
-   * The number of structural features of the '<em>Domain</em>' class.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DOMAIN_FEATURE_COUNT = 0;
-
-  /**
-   * The operation id for the '<em>Validate Decomposition</em>' operation.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DOMAIN___VALIDATE_DECOMPOSITION__ELIST = 0;
-
-  /**
-   * The number of operations of the '<em>Domain</em>' class.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DOMAIN_OPERATION_COUNT = 1;
-
-  /**
-   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.IntDomainImpl <em>Int Domain</em>}' class.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.IntDomainImpl
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getIntDomain()
-   * @generated
-   */
-  int INT_DOMAIN = 30;
-
-  /**
-   * The feature id for the '<em><b>Lower Bound</b></em>' attribute.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int INT_DOMAIN__LOWER_BOUND = GSNPackage.DOMAIN_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Upper Bound</b></em>' attribute.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int INT_DOMAIN__UPPER_BOUND = GSNPackage.DOMAIN_FEATURE_COUNT + 1;
-
-  /**
-   * The number of structural features of the '<em>Int Domain</em>' class.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int INT_DOMAIN_FEATURE_COUNT = GSNPackage.DOMAIN_FEATURE_COUNT + 2;
-
-  /**
-   * The operation id for the '<em>Validate Decomposition</em>' operation.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int INT_DOMAIN___VALIDATE_DECOMPOSITION__ELIST = GSNPackage.DOMAIN___VALIDATE_DECOMPOSITION__ELIST;
-
-  /**
-   * The number of operations of the '<em>Int Domain</em>' class.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int INT_DOMAIN_OPERATION_COUNT = GSNPackage.DOMAIN_OPERATION_COUNT + 0;
-
-  /**
-   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.RealDomainImpl <em>Real Domain</em>}' class.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.RealDomainImpl
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getRealDomain()
-   * @generated
-   */
-  int REAL_DOMAIN = 31;
-
-  /**
-   * The feature id for the '<em><b>Lower Bound</b></em>' attribute.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int REAL_DOMAIN__LOWER_BOUND = GSNPackage.DOMAIN_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Upper Bound</b></em>' attribute.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int REAL_DOMAIN__UPPER_BOUND = GSNPackage.DOMAIN_FEATURE_COUNT + 1;
-
-  /**
-   * The number of structural features of the '<em>Real Domain</em>' class. <!-- begin-user-doc --> <!-- end-user-doc
-   * -->
-   *
-   * @generated
-   * @ordered
-   */
-  int REAL_DOMAIN_FEATURE_COUNT = GSNPackage.DOMAIN_FEATURE_COUNT + 2;
-
-  /**
-   * The operation id for the '<em>Validate Decomposition</em>' operation.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int REAL_DOMAIN___VALIDATE_DECOMPOSITION__ELIST = GSNPackage.DOMAIN___VALIDATE_DECOMPOSITION__ELIST;
-
-  /**
-   * The number of operations of the '<em>Real Domain</em>' class.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int REAL_DOMAIN_OPERATION_COUNT = GSNPackage.DOMAIN_OPERATION_COUNT + 0;
-
-  /**
-   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.EnumDomainImpl <em>Enum Domain</em>}' class.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.EnumDomainImpl
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getEnumDomain()
-   * @generated
-   */
-  int ENUM_DOMAIN = 32;
-
-  /**
-   * The feature id for the '<em><b>Values</b></em>' attribute list.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ENUM_DOMAIN__VALUES = GSNPackage.DOMAIN_FEATURE_COUNT + 0;
-
-  /**
-   * The number of structural features of the '<em>Enum Domain</em>' class. <!-- begin-user-doc --> <!-- end-user-doc
-   * -->
-   *
-   * @generated
-   * @ordered
-   */
-  int ENUM_DOMAIN_FEATURE_COUNT = GSNPackage.DOMAIN_FEATURE_COUNT + 1;
-
-  /**
-   * The operation id for the '<em>Validate Decomposition</em>' operation.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ENUM_DOMAIN___VALIDATE_DECOMPOSITION__ELIST = GSNPackage.DOMAIN___VALIDATE_DECOMPOSITION__ELIST;
-
-  /**
-   * The number of operations of the '<em>Enum Domain</em>' class.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ENUM_DOMAIN_OPERATION_COUNT = GSNPackage.DOMAIN_OPERATION_COUNT + 0;
-
-  /**
-   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.ValueDomainImpl <em>Value Domain</em>}' class.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.ValueDomainImpl
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getValueDomain()
-   * @generated
-   */
-  int VALUE_DOMAIN = 33;
-
-  /**
-   * The feature id for the '<em><b>Value</b></em>' attribute.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int VALUE_DOMAIN__VALUE = GSNPackage.DOMAIN_FEATURE_COUNT + 0;
-
-  /**
-   * The number of structural features of the '<em>Value Domain</em>' class. <!-- begin-user-doc --> <!-- end-user-doc
-   * -->
-   *
-   * @generated
-   * @ordered
-   */
-  int VALUE_DOMAIN_FEATURE_COUNT = GSNPackage.DOMAIN_FEATURE_COUNT + 1;
-
-  /**
-   * The operation id for the '<em>Validate Decomposition</em>' operation.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int VALUE_DOMAIN___VALIDATE_DECOMPOSITION__ELIST = GSNPackage.DOMAIN___VALIDATE_DECOMPOSITION__ELIST;
-
-  /**
-   * The number of operations of the '<em>Value Domain</em>' class.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int VALUE_DOMAIN_OPERATION_COUNT = GSNPackage.DOMAIN_OPERATION_COUNT + 0;
-
-  /**
-   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.DomainDecompositionElementImpl <em>Domain Decomposition Element</em>}' class.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.DomainDecompositionElementImpl
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getDomainDecompositionElement()
-   * @generated
-   */
-  int DOMAIN_DECOMPOSITION_ELEMENT = 34;
-
-  /**
-   * The feature id for the '<em><b>Domain</b></em>' containment reference. <!-- begin-user-doc --> <!-- end-user-doc
-   * -->
-   *
-   * @generated
-   * @ordered
-   */
-  int DOMAIN_DECOMPOSITION_ELEMENT__DOMAIN = 0;
-
-  /**
-   * The number of structural features of the '<em>Domain Decomposition Element</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DOMAIN_DECOMPOSITION_ELEMENT_FEATURE_COUNT = 1;
+  int TEMPLATE___VALIDATE = 0;
 
   /**
-   * The number of operations of the '<em>Domain Decomposition Element</em>' class.
-   * <!-- begin-user-doc --> <!--
-   * end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DOMAIN_DECOMPOSITION_ELEMENT_OPERATION_COUNT = 0;
-
-  /**
-   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.DomainDecompositionStrategyImpl <em>Domain Decomposition Strategy</em>}' class.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.DomainDecompositionStrategyImpl
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getDomainDecompositionStrategy()
-   * @generated
-   */
-  int DOMAIN_DECOMPOSITION_STRATEGY = 35;
-
-  /**
-   * The feature id for the '<em><b>Supports</b></em>' reference list.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DOMAIN_DECOMPOSITION_STRATEGY__SUPPORTS = GSNPackage.DECOMPOSITION_STRATEGY__SUPPORTS;
-
-  /**
-   * The feature id for the '<em><b>Supported By</b></em>' containment reference list.
-   * <!-- begin-user-doc --> <!--
-   * end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DOMAIN_DECOMPOSITION_STRATEGY__SUPPORTED_BY = GSNPackage.DECOMPOSITION_STRATEGY__SUPPORTED_BY;
-
-  /**
-   * The feature id for the '<em><b>Id</b></em>' attribute.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DOMAIN_DECOMPOSITION_STRATEGY__ID = GSNPackage.DECOMPOSITION_STRATEGY__ID;
-
-  /**
-   * The feature id for the '<em><b>Description</b></em>' attribute.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DOMAIN_DECOMPOSITION_STRATEGY__DESCRIPTION = GSNPackage.DECOMPOSITION_STRATEGY__DESCRIPTION;
-
-  /**
-   * The feature id for the '<em><b>Content Validity</b></em>' attribute.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DOMAIN_DECOMPOSITION_STRATEGY__CONTENT_VALIDITY = GSNPackage.DECOMPOSITION_STRATEGY__CONTENT_VALIDITY;
-
-  /**
-   * The feature id for the '<em><b>Status</b></em>' containment reference. <!-- begin-user-doc --> <!-- end-user-doc
-   * -->
-   *
-   * @generated
-   * @ordered
-   */
-  int DOMAIN_DECOMPOSITION_STRATEGY__STATUS = GSNPackage.DECOMPOSITION_STRATEGY__STATUS;
-
-  /**
-   * The feature id for the '<em><b>In Context Of</b></em>' containment reference list.
-   * <!-- begin-user-doc --> <!--
-   * end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DOMAIN_DECOMPOSITION_STRATEGY__IN_CONTEXT_OF = GSNPackage.DECOMPOSITION_STRATEGY__IN_CONTEXT_OF;
-
-  /**
-   * The feature id for the '<em><b>Domain</b></em>' containment reference. <!-- begin-user-doc --> <!-- end-user-doc
-   * -->
-   *
-   * @generated
-   * @ordered
-   */
-  int DOMAIN_DECOMPOSITION_STRATEGY__DOMAIN = GSNPackage.DECOMPOSITION_STRATEGY_FEATURE_COUNT + 0;
-
-  /**
-   * The number of structural features of the '<em>Domain Decomposition Strategy</em>' class.
+   * The operation id for the '<em>Instantiate</em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DOMAIN_DECOMPOSITION_STRATEGY_FEATURE_COUNT = GSNPackage.DECOMPOSITION_STRATEGY_FEATURE_COUNT + 1;
+  int TEMPLATE___INSTANTIATE = 1;
 
   /**
-   * The operation id for the '<em>Validate</em>' operation.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DOMAIN_DECOMPOSITION_STRATEGY___VALIDATE = GSNPackage.DECOMPOSITION_STRATEGY___VALIDATE;
-
-  /**
-   * The number of operations of the '<em>Domain Decomposition Strategy</em>' class.
-   * <!-- begin-user-doc --> <!--
-   * end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DOMAIN_DECOMPOSITION_STRATEGY_OPERATION_COUNT = GSNPackage.DECOMPOSITION_STRATEGY_OPERATION_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Supports</b></em>' reference list.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DOMAIN_GOAL__SUPPORTS = GSNPackage.GOAL__SUPPORTS;
-
-  /**
-   * The feature id for the '<em><b>Supported By</b></em>' containment reference list.
-   * <!-- begin-user-doc --> <!--
-   * end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DOMAIN_GOAL__SUPPORTED_BY = GSNPackage.GOAL__SUPPORTED_BY;
-
-  /**
-   * The feature id for the '<em><b>Id</b></em>' attribute.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DOMAIN_GOAL__ID = GSNPackage.GOAL__ID;
-
-  /**
-   * The feature id for the '<em><b>Description</b></em>' attribute.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DOMAIN_GOAL__DESCRIPTION = GSNPackage.GOAL__DESCRIPTION;
-
-  /**
-   * The feature id for the '<em><b>Content Validity</b></em>' attribute.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DOMAIN_GOAL__CONTENT_VALIDITY = GSNPackage.GOAL__CONTENT_VALIDITY;
-
-  /**
-   * The feature id for the '<em><b>Status</b></em>' containment reference. <!-- begin-user-doc --> <!-- end-user-doc
-   * -->
-   *
-   * @generated
-   * @ordered
-   */
-  int DOMAIN_GOAL__STATUS = GSNPackage.GOAL__STATUS;
-
-  /**
-   * The feature id for the '<em><b>In Context Of</b></em>' containment reference list.
-   * <!-- begin-user-doc --> <!--
-   * end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DOMAIN_GOAL__IN_CONTEXT_OF = GSNPackage.GOAL__IN_CONTEXT_OF;
-
-  /**
-   * The feature id for the '<em><b>State Validity</b></em>' attribute.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DOMAIN_GOAL__STATE_VALIDITY = GSNPackage.GOAL__STATE_VALIDITY;
-
-  /**
-   * The feature id for the '<em><b>Asil</b></em>' containment reference.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DOMAIN_GOAL__ASIL = GSNPackage.GOAL__ASIL;
-
-  /**
-   * The feature id for the '<em><b>Domain</b></em>' containment reference. <!-- begin-user-doc --> <!-- end-user-doc
-   * -->
-   *
-   * @generated
-   * @ordered
-   */
-  int DOMAIN_GOAL__DOMAIN = GSNPackage.GOAL_FEATURE_COUNT + 0;
-
-  /**
-   * The number of structural features of the '<em>Domain Goal</em>' class. <!-- begin-user-doc --> <!-- end-user-doc
-   * -->
-   *
-   * @generated
-   * @ordered
-   */
-  int DOMAIN_GOAL_FEATURE_COUNT = GSNPackage.GOAL_FEATURE_COUNT + 1;
-
-  /**
-   * The number of operations of the '<em>Domain Goal</em>' class.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DOMAIN_GOAL_OPERATION_COUNT = GSNPackage.GOAL_OPERATION_COUNT + 0;
-
-  /**
-   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.PropertyImpl <em>Property</em>}' class.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.PropertyImpl
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getProperty()
-   * @generated
-   */
-  int PROPERTY = 37;
-
-  /**
-   * The feature id for the '<em><b>Formal</b></em>' attribute.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PROPERTY__FORMAL = 0;
-
-  /**
-   * The feature id for the '<em><b>Informal</b></em>' attribute.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PROPERTY__INFORMAL = 1;
-
-  /**
-   * The number of structural features of the '<em>Property</em>' class.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PROPERTY_FEATURE_COUNT = 2;
-
-  /**
-   * The number of operations of the '<em>Property</em>' class.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PROPERTY_OPERATION_COUNT = 0;
-
-  /**
-   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.PropertyDecompositionElementImpl <em>Property Decomposition Element</em>}' class.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.PropertyDecompositionElementImpl
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getPropertyDecompositionElement()
-   * @generated
-   */
-  int PROPERTY_DECOMPOSITION_ELEMENT = 38;
-
-  /**
-   * The feature id for the '<em><b>Property</b></em>' containment reference. <!-- begin-user-doc --> <!-- end-user-doc
-   * -->
-   *
-   * @generated
-   * @ordered
-   */
-  int PROPERTY_DECOMPOSITION_ELEMENT__PROPERTY = 0;
-
-  /**
-   * The number of structural features of the '<em>Property Decomposition Element</em>' class.
+   * The number of operations of the '<em>Template</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PROPERTY_DECOMPOSITION_ELEMENT_FEATURE_COUNT = 1;
+  int TEMPLATE_OPERATION_COUNT = 2;
 
   /**
-   * The number of operations of the '<em>Property Decomposition Element</em>' class.
-   * <!-- begin-user-doc --> <!--
-   * end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PROPERTY_DECOMPOSITION_ELEMENT_OPERATION_COUNT = 0;
-
-  /**
-   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.PropertyDecompositionStrategyImpl <em>Property Decomposition Strategy</em>}' class.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.PropertyDecompositionStrategyImpl
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getPropertyDecompositionStrategy()
-   * @generated
-   */
-  int PROPERTY_DECOMPOSITION_STRATEGY = 39;
-
-  /**
-   * The feature id for the '<em><b>Supports</b></em>' reference list.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PROPERTY_DECOMPOSITION_STRATEGY__SUPPORTS = GSNPackage.DECOMPOSITION_STRATEGY__SUPPORTS;
-
-  /**
-   * The feature id for the '<em><b>Supported By</b></em>' containment reference list.
-   * <!-- begin-user-doc --> <!--
-   * end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PROPERTY_DECOMPOSITION_STRATEGY__SUPPORTED_BY = GSNPackage.DECOMPOSITION_STRATEGY__SUPPORTED_BY;
-
-  /**
-   * The feature id for the '<em><b>Id</b></em>' attribute.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PROPERTY_DECOMPOSITION_STRATEGY__ID = GSNPackage.DECOMPOSITION_STRATEGY__ID;
-
-  /**
-   * The feature id for the '<em><b>Description</b></em>' attribute.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PROPERTY_DECOMPOSITION_STRATEGY__DESCRIPTION = GSNPackage.DECOMPOSITION_STRATEGY__DESCRIPTION;
-
-  /**
-   * The feature id for the '<em><b>Content Validity</b></em>' attribute.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PROPERTY_DECOMPOSITION_STRATEGY__CONTENT_VALIDITY = GSNPackage.DECOMPOSITION_STRATEGY__CONTENT_VALIDITY;
-
-  /**
-   * The feature id for the '<em><b>Status</b></em>' containment reference. <!-- begin-user-doc --> <!-- end-user-doc
-   * -->
-   *
-   * @generated
-   * @ordered
-   */
-  int PROPERTY_DECOMPOSITION_STRATEGY__STATUS = GSNPackage.DECOMPOSITION_STRATEGY__STATUS;
-
-  /**
-   * The feature id for the '<em><b>In Context Of</b></em>' containment reference list.
-   * <!-- begin-user-doc --> <!--
-   * end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PROPERTY_DECOMPOSITION_STRATEGY__IN_CONTEXT_OF = GSNPackage.DECOMPOSITION_STRATEGY__IN_CONTEXT_OF;
-
-  /**
-   * The feature id for the '<em><b>Property</b></em>' containment reference. <!-- begin-user-doc --> <!-- end-user-doc
-   * -->
-   *
-   * @generated
-   * @ordered
-   */
-  int PROPERTY_DECOMPOSITION_STRATEGY__PROPERTY = GSNPackage.DECOMPOSITION_STRATEGY_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Reasoner Name</b></em>' attribute.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PROPERTY_DECOMPOSITION_STRATEGY__REASONER_NAME = GSNPackage.DECOMPOSITION_STRATEGY_FEATURE_COUNT + 1;
-
-  /**
-   * The number of structural features of the '<em>Property Decomposition Strategy</em>' class.
+   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.TemplateElementImpl <em>Template Element</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PROPERTY_DECOMPOSITION_STRATEGY_FEATURE_COUNT = GSNPackage.DECOMPOSITION_STRATEGY_FEATURE_COUNT + 2;
-
-  /**
-   * The operation id for the '<em>Validate</em>' operation.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PROPERTY_DECOMPOSITION_STRATEGY___VALIDATE = GSNPackage.DECOMPOSITION_STRATEGY___VALIDATE;
-
-  /**
-   * The number of operations of the '<em>Property Decomposition Strategy</em>' class.
-   * <!-- begin-user-doc --> <!--
-   * end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PROPERTY_DECOMPOSITION_STRATEGY_OPERATION_COUNT = GSNPackage.DECOMPOSITION_STRATEGY_OPERATION_COUNT + 0;
-
-  /**
-   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.PropertyGoalImpl <em>Property Goal</em>}' class.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.PropertyGoalImpl
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getPropertyGoal()
+   * @see edu.toronto.cs.se.modelepedia.gsn.impl.TemplateElementImpl
+   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getTemplateElement()
    * @generated
    */
-  int PROPERTY_GOAL = 40;
-
-  /**
-   * The feature id for the '<em><b>Supports</b></em>' reference list.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PROPERTY_GOAL__SUPPORTS = GSNPackage.GOAL__SUPPORTS;
-
-  /**
-   * The feature id for the '<em><b>Supported By</b></em>' containment reference list.
-   * <!-- begin-user-doc --> <!--
-   * end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PROPERTY_GOAL__SUPPORTED_BY = GSNPackage.GOAL__SUPPORTED_BY;
-
-  /**
-   * The feature id for the '<em><b>Id</b></em>' attribute.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PROPERTY_GOAL__ID = GSNPackage.GOAL__ID;
-
-  /**
-   * The feature id for the '<em><b>Description</b></em>' attribute.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PROPERTY_GOAL__DESCRIPTION = GSNPackage.GOAL__DESCRIPTION;
-
-  /**
-   * The feature id for the '<em><b>Content Validity</b></em>' attribute.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PROPERTY_GOAL__CONTENT_VALIDITY = GSNPackage.GOAL__CONTENT_VALIDITY;
-
-  /**
-   * The feature id for the '<em><b>Status</b></em>' containment reference. <!-- begin-user-doc --> <!-- end-user-doc
-   * -->
-   *
-   * @generated
-   * @ordered
-   */
-  int PROPERTY_GOAL__STATUS = GSNPackage.GOAL__STATUS;
-
-  /**
-   * The feature id for the '<em><b>In Context Of</b></em>' containment reference list.
-   * <!-- begin-user-doc --> <!--
-   * end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PROPERTY_GOAL__IN_CONTEXT_OF = GSNPackage.GOAL__IN_CONTEXT_OF;
-
-  /**
-   * The feature id for the '<em><b>State Validity</b></em>' attribute.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PROPERTY_GOAL__STATE_VALIDITY = GSNPackage.GOAL__STATE_VALIDITY;
-
-  /**
-   * The feature id for the '<em><b>Asil</b></em>' containment reference.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PROPERTY_GOAL__ASIL = GSNPackage.GOAL__ASIL;
-
-  /**
-   * The feature id for the '<em><b>Property</b></em>' containment reference. <!-- begin-user-doc --> <!-- end-user-doc
-   * -->
-   *
-   * @generated
-   * @ordered
-   */
-  int PROPERTY_GOAL__PROPERTY = GSNPackage.GOAL_FEATURE_COUNT + 0;
+  int TEMPLATE_ELEMENT = 29;
 
   /**
    * The feature id for the '<em><b>Valid</b></em>' attribute.
@@ -2657,33 +1890,43 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PROPERTY_GOAL__VALID = GSNPackage.GOAL_FEATURE_COUNT + 1;
+  int TEMPLATE_ELEMENT__VALID = 0;
 
   /**
-   * The feature id for the '<em><b>Hint</b></em>' attribute.
+   * The number of structural features of the '<em>Template Element</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PROPERTY_GOAL__HINT = GSNPackage.GOAL_FEATURE_COUNT + 2;
+  int TEMPLATE_ELEMENT_FEATURE_COUNT = 1;
 
   /**
-   * The number of structural features of the '<em>Property Goal</em>' class. <!-- begin-user-doc --> <!-- end-user-doc
-   * -->
-   *
+   * The operation id for the '<em>Validate</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PROPERTY_GOAL_FEATURE_COUNT = GSNPackage.GOAL_FEATURE_COUNT + 3;
+  int TEMPLATE_ELEMENT___VALIDATE = 0;
 
   /**
-   * The number of operations of the '<em>Property Goal</em>' class.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The operation id for the '<em>Repair</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PROPERTY_GOAL_OPERATION_COUNT = GSNPackage.GOAL_OPERATION_COUNT + 0;
+  int TEMPLATE_ELEMENT___REPAIR = 1;
+
+  /**
+   * The number of operations of the '<em>Template Element</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TEMPLATE_ELEMENT_OPERATION_COUNT = 2;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.ASILLevel <em>ASIL Level</em>}' enum. <!--
@@ -2693,7 +1936,7 @@ public interface GSNPackage extends EPackage {
    * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getASILLevel()
    * @generated
    */
-  int ASIL_LEVEL = 41;
+  int ASIL_LEVEL = 30;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.ValidityValue <em>Validity Value</em>}' enum.
@@ -2702,7 +1945,7 @@ public interface GSNPackage extends EPackage {
    * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getValidityValue()
    * @generated
    */
-  int VALIDITY_VALUE = 42;
+  int VALIDITY_VALUE = 31;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.ImpactType <em>Impact Type</em>}' enum. <!--
@@ -2712,7 +1955,7 @@ public interface GSNPackage extends EPackage {
    * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getImpactType()
    * @generated
    */
-  int IMPACT_TYPE = 43;
+  int IMPACT_TYPE = 32;
 
   /**
    * The meta object id for the '<em>Exception</em>' data type.
@@ -2721,7 +1964,7 @@ public interface GSNPackage extends EPackage {
    * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getException()
    * @generated
    */
-  int EXCEPTION = 44;
+  int EXCEPTION = 33;
 
   /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.gsn.SafetyCase <em>Safety Case</em>}'. <!--
@@ -3043,118 +2286,6 @@ public interface GSNPackage extends EPackage {
   EClass getIndependenceGoal();
 
   /**
-   * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.gsn.DomainGoal <em>Domain Goal</em>}'. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
-   *
-   * @return the meta object for class '<em>Domain Goal</em>'.
-   * @see edu.toronto.cs.se.modelepedia.gsn.DomainGoal
-   * @generated
-   */
-  EClass getDomainGoal();
-
-  /**
-   * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.gsn.Property <em>Property</em>}'. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
-   *
-   * @return the meta object for class '<em>Property</em>'.
-   * @see edu.toronto.cs.se.modelepedia.gsn.Property
-   * @generated
-   */
-  EClass getProperty();
-
-  /**
-   * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.gsn.Property#getInformal <em>Informal</em>}'.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Informal</em>'.
-   * @see edu.toronto.cs.se.modelepedia.gsn.Property#getInformal()
-   * @see #getProperty()
-   * @generated
-   */
-  EAttribute getProperty_Informal();
-
-  /**
-   * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.gsn.Property#getFormal <em>Formal</em>}'.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Formal</em>'.
-   * @see edu.toronto.cs.se.modelepedia.gsn.Property#getFormal()
-   * @see #getProperty()
-   * @generated
-   */
-  EAttribute getProperty_Formal();
-
-  /**
-   * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionElement <em>Property Decomposition Element</em>}'.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @return the meta object for class '<em>Property Decomposition Element</em>'.
-   * @see edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionElement
-   * @generated
-   */
-  EClass getPropertyDecompositionElement();
-
-  /**
-   * Returns the meta object for the containment reference
-   * '{@link edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionElement#getProperty <em>Property</em>}'. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
-   *
-   * @return the meta object for the containment reference '<em>Property</em>'.
-   * @see edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionElement#getProperty()
-   * @see #getPropertyDecompositionElement()
-   * @generated
-   */
-  EReference getPropertyDecompositionElement_Property();
-
-  /**
-   * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionStrategy <em>Property Decomposition Strategy</em>}'.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @return the meta object for class '<em>Property Decomposition Strategy</em>'.
-   * @see edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionStrategy
-   * @generated
-   */
-  EClass getPropertyDecompositionStrategy();
-
-  /**
-   * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionStrategy#getReasonerName <em>Reasoner Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Reasoner Name</em>'.
-   * @see edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionStrategy#getReasonerName()
-   * @see #getPropertyDecompositionStrategy()
-   * @generated
-   */
-  EAttribute getPropertyDecompositionStrategy_ReasonerName();
-
-  /**
-   * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.gsn.PropertyGoal <em>Property Goal</em>}'.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @return the meta object for class '<em>Property Goal</em>'.
-   * @see edu.toronto.cs.se.modelepedia.gsn.PropertyGoal
-   * @generated
-   */
-  EClass getPropertyGoal();
-
-  /**
-   * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.gsn.PropertyGoal#isValid <em>Valid</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Valid</em>'.
-   * @see edu.toronto.cs.se.modelepedia.gsn.PropertyGoal#isValid()
-   * @see #getPropertyGoal()
-   * @generated
-   */
-  EAttribute getPropertyGoal_Valid();
-
-  /**
-   * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.gsn.PropertyGoal#getHint <em>Hint</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Hint</em>'.
-   * @see edu.toronto.cs.se.modelepedia.gsn.PropertyGoal#getHint()
-   * @see #getPropertyGoal()
-   * @generated
-   */
-  EAttribute getPropertyGoal_Hint();
-
-  /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.gsn.Strategy <em>Strategy</em>}'. <!--
    * begin-user-doc --> <!-- end-user-doc -->
    *
@@ -3386,170 +2517,97 @@ public interface GSNPackage extends EPackage {
   EAttribute getMofNSupporter_Target();
 
   /**
-   * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.gsn.DecompositionStrategy <em>Decomposition Strategy</em>}'.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @return the meta object for class '<em>Decomposition Strategy</em>'.
-   * @see edu.toronto.cs.se.modelepedia.gsn.DecompositionStrategy
+   * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.gsn.Template <em>Template</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Template</em>'.
+   * @see edu.toronto.cs.se.modelepedia.gsn.Template
    * @generated
    */
-  EClass getDecompositionStrategy();
+  EClass getTemplate();
 
   /**
-   * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.gsn.DecompositionStrategy#validate() <em>Validate</em>}' operation.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * Returns the meta object for the reference list '{@link edu.toronto.cs.se.modelepedia.gsn.Template#getElements <em>Elements</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference list '<em>Elements</em>'.
+   * @see edu.toronto.cs.se.modelepedia.gsn.Template#getElements()
+   * @see #getTemplate()
+   * @generated
+   */
+  EReference getTemplate_Elements();
+
+  /**
+   * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.gsn.Template#getId <em>Id</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Id</em>'.
+   * @see edu.toronto.cs.se.modelepedia.gsn.Template#getId()
+   * @see #getTemplate()
+   * @generated
+   */
+  EAttribute getTemplate_Id();
+
+  /**
+   * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.gsn.Template#validate() <em>Validate</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @return the meta object for the '<em>Validate</em>' operation.
-   * @see edu.toronto.cs.se.modelepedia.gsn.DecompositionStrategy#validate()
+   * @see edu.toronto.cs.se.modelepedia.gsn.Template#validate()
    * @generated
    */
-  EOperation getDecompositionStrategy__Validate();
+  EOperation getTemplate__Validate();
 
   /**
-   * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.gsn.Domain <em>Domain</em>}'. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
-   *
-   * @return the meta object for class '<em>Domain</em>'.
-   * @see edu.toronto.cs.se.modelepedia.gsn.Domain
+   * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.gsn.Template#instantiate() <em>Instantiate</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>Instantiate</em>' operation.
+   * @see edu.toronto.cs.se.modelepedia.gsn.Template#instantiate()
    * @generated
    */
-  EClass getDomain();
+  EOperation getTemplate__Instantiate();
 
   /**
-   * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.gsn.Domain#validateDecomposition(org.eclipse.emf.common.util.EList) <em>Validate Decomposition</em>}' operation.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @return the meta object for the '<em>Validate Decomposition</em>' operation.
-   * @see edu.toronto.cs.se.modelepedia.gsn.Domain#validateDecomposition(org.eclipse.emf.common.util.EList)
+   * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.gsn.TemplateElement <em>Template Element</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Template Element</em>'.
+   * @see edu.toronto.cs.se.modelepedia.gsn.TemplateElement
    * @generated
    */
-  EOperation getDomain__ValidateDecomposition__EList();
+  EClass getTemplateElement();
 
   /**
-   * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.gsn.IntDomain <em>Int Domain</em>}'. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
-   *
-   * @return the meta object for class '<em>Int Domain</em>'.
-   * @see edu.toronto.cs.se.modelepedia.gsn.IntDomain
+   * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.gsn.TemplateElement#isValid <em>Valid</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Valid</em>'.
+   * @see edu.toronto.cs.se.modelepedia.gsn.TemplateElement#isValid()
+   * @see #getTemplateElement()
    * @generated
    */
-  EClass getIntDomain();
+  EAttribute getTemplateElement_Valid();
 
   /**
-   * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.gsn.IntDomain#getLowerBound <em>Lower Bound</em>}'.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Lower Bound</em>'.
-   * @see edu.toronto.cs.se.modelepedia.gsn.IntDomain#getLowerBound()
-   * @see #getIntDomain()
+   * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.gsn.TemplateElement#validate() <em>Validate</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>Validate</em>' operation.
+   * @see edu.toronto.cs.se.modelepedia.gsn.TemplateElement#validate()
    * @generated
    */
-  EAttribute getIntDomain_LowerBound();
+  EOperation getTemplateElement__Validate();
 
   /**
-   * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.gsn.IntDomain#getUpperBound <em>Upper Bound</em>}'.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Upper Bound</em>'.
-   * @see edu.toronto.cs.se.modelepedia.gsn.IntDomain#getUpperBound()
-   * @see #getIntDomain()
+   * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.gsn.TemplateElement#repair() <em>Repair</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>Repair</em>' operation.
+   * @see edu.toronto.cs.se.modelepedia.gsn.TemplateElement#repair()
    * @generated
    */
-  EAttribute getIntDomain_UpperBound();
-
-  /**
-   * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.gsn.RealDomain <em>Real Domain</em>}'. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
-   *
-   * @return the meta object for class '<em>Real Domain</em>'.
-   * @see edu.toronto.cs.se.modelepedia.gsn.RealDomain
-   * @generated
-   */
-  EClass getRealDomain();
-
-  /**
-   * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.gsn.RealDomain#getLowerBound <em>Lower Bound</em>}'.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Lower Bound</em>'.
-   * @see edu.toronto.cs.se.modelepedia.gsn.RealDomain#getLowerBound()
-   * @see #getRealDomain()
-   * @generated
-   */
-  EAttribute getRealDomain_LowerBound();
-
-  /**
-   * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.gsn.RealDomain#getUpperBound <em>Upper Bound</em>}'.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Upper Bound</em>'.
-   * @see edu.toronto.cs.se.modelepedia.gsn.RealDomain#getUpperBound()
-   * @see #getRealDomain()
-   * @generated
-   */
-  EAttribute getRealDomain_UpperBound();
-
-  /**
-   * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.gsn.EnumDomain <em>Enum Domain</em>}'. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
-   *
-   * @return the meta object for class '<em>Enum Domain</em>'.
-   * @see edu.toronto.cs.se.modelepedia.gsn.EnumDomain
-   * @generated
-   */
-  EClass getEnumDomain();
-
-  /**
-   * Returns the meta object for the attribute list '{@link edu.toronto.cs.se.modelepedia.gsn.EnumDomain#getValues <em>Values</em>}'.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @return the meta object for the attribute list '<em>Values</em>'.
-   * @see edu.toronto.cs.se.modelepedia.gsn.EnumDomain#getValues()
-   * @see #getEnumDomain()
-   * @generated
-   */
-  EAttribute getEnumDomain_Values();
-
-  /**
-   * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.gsn.ValueDomain <em>Value Domain</em>}'.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @return the meta object for class '<em>Value Domain</em>'.
-   * @see edu.toronto.cs.se.modelepedia.gsn.ValueDomain
-   * @generated
-   */
-  EClass getValueDomain();
-
-  /**
-   * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.gsn.ValueDomain#getValue <em>Value</em>}'.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Value</em>'.
-   * @see edu.toronto.cs.se.modelepedia.gsn.ValueDomain#getValue()
-   * @see #getValueDomain()
-   * @generated
-   */
-  EAttribute getValueDomain_Value();
-
-  /**
-   * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.gsn.DomainDecompositionElement <em>Domain Decomposition Element</em>}'.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @return the meta object for class '<em>Domain Decomposition Element</em>'.
-   * @see edu.toronto.cs.se.modelepedia.gsn.DomainDecompositionElement
-   * @generated
-   */
-  EClass getDomainDecompositionElement();
-
-  /**
-   * Returns the meta object for the containment reference
-   * '{@link edu.toronto.cs.se.modelepedia.gsn.DomainDecompositionElement#getDomain <em>Domain</em>}'. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
-   *
-   * @return the meta object for the containment reference '<em>Domain</em>'.
-   * @see edu.toronto.cs.se.modelepedia.gsn.DomainDecompositionElement#getDomain()
-   * @see #getDomainDecompositionElement()
-   * @generated
-   */
-  EReference getDomainDecompositionElement_Domain();
-
-  /**
-   * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.gsn.DomainDecompositionStrategy <em>Domain Decomposition Strategy</em>}'.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @return the meta object for class '<em>Domain Decomposition Strategy</em>'.
-   * @see edu.toronto.cs.se.modelepedia.gsn.DomainDecompositionStrategy
-   * @generated
-   */
-  EClass getDomainDecompositionStrategy();
+  EOperation getTemplateElement__Repair();
 
   /**
    * Returns the meta object for enum '{@link edu.toronto.cs.se.modelepedia.gsn.ASILLevel <em>ASIL Level</em>}'. <!--
@@ -3873,99 +2931,6 @@ public interface GSNPackage extends EPackage {
     EClass INDEPENDENCE_GOAL = GSNPackage.eINSTANCE.getIndependenceGoal();
 
     /**
-     * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.DomainGoalImpl <em>Domain Goal</em>}' class.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @see edu.toronto.cs.se.modelepedia.gsn.impl.DomainGoalImpl
-     * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getDomainGoal()
-     * @generated
-     */
-    EClass DOMAIN_GOAL = GSNPackage.eINSTANCE.getDomainGoal();
-
-    /**
-     * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.PropertyImpl <em>Property</em>}' class.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @see edu.toronto.cs.se.modelepedia.gsn.impl.PropertyImpl
-     * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getProperty()
-     * @generated
-     */
-    EClass PROPERTY = GSNPackage.eINSTANCE.getProperty();
-
-    /**
-     * The meta object literal for the '<em><b>Informal</b></em>' attribute feature.
-     * <!-- begin-user-doc --> <!--
-     * end-user-doc -->
-     * @generated
-     */
-    EAttribute PROPERTY__INFORMAL = GSNPackage.eINSTANCE.getProperty_Informal();
-
-    /**
-     * The meta object literal for the '<em><b>Formal</b></em>' attribute feature.
-     * <!-- begin-user-doc --> <!--
-     * end-user-doc -->
-     * @generated
-     */
-    EAttribute PROPERTY__FORMAL = GSNPackage.eINSTANCE.getProperty_Formal();
-
-    /**
-     * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.PropertyDecompositionElementImpl <em>Property Decomposition Element</em>}' class.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @see edu.toronto.cs.se.modelepedia.gsn.impl.PropertyDecompositionElementImpl
-     * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getPropertyDecompositionElement()
-     * @generated
-     */
-    EClass PROPERTY_DECOMPOSITION_ELEMENT = GSNPackage.eINSTANCE.getPropertyDecompositionElement();
-
-    /**
-     * The meta object literal for the '<em><b>Property</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference PROPERTY_DECOMPOSITION_ELEMENT__PROPERTY = GSNPackage.eINSTANCE.getPropertyDecompositionElement_Property();
-
-    /**
-     * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.PropertyDecompositionStrategyImpl <em>Property Decomposition Strategy</em>}' class.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @see edu.toronto.cs.se.modelepedia.gsn.impl.PropertyDecompositionStrategyImpl
-     * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getPropertyDecompositionStrategy()
-     * @generated
-     */
-    EClass PROPERTY_DECOMPOSITION_STRATEGY = GSNPackage.eINSTANCE.getPropertyDecompositionStrategy();
-
-    /**
-     * The meta object literal for the '<em><b>Reasoner Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute PROPERTY_DECOMPOSITION_STRATEGY__REASONER_NAME = GSNPackage.eINSTANCE.getPropertyDecompositionStrategy_ReasonerName();
-
-    /**
-     * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.PropertyGoalImpl <em>Property Goal</em>}' class.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @see edu.toronto.cs.se.modelepedia.gsn.impl.PropertyGoalImpl
-     * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getPropertyGoal()
-     * @generated
-     */
-    EClass PROPERTY_GOAL = GSNPackage.eINSTANCE.getPropertyGoal();
-
-    /**
-     * The meta object literal for the '<em><b>Valid</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute PROPERTY_GOAL__VALID = GSNPackage.eINSTANCE.getPropertyGoal_Valid();
-
-    /**
-     * The meta object literal for the '<em><b>Hint</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute PROPERTY_GOAL__HINT = GSNPackage.eINSTANCE.getPropertyGoal_Hint();
-
-    /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.StrategyImpl <em>Strategy</em>}' class.
      * <!-- begin-user-doc --> <!-- end-user-doc -->
      * @see edu.toronto.cs.se.modelepedia.gsn.impl.StrategyImpl
@@ -4174,148 +3139,80 @@ public interface GSNPackage extends EPackage {
     EAttribute MOF_NSUPPORTER__TARGET = GSNPackage.eINSTANCE.getMofNSupporter_Target();
 
     /**
-     * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.DecompositionStrategyImpl <em>Decomposition Strategy</em>}' class.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @see edu.toronto.cs.se.modelepedia.gsn.impl.DecompositionStrategyImpl
-     * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getDecompositionStrategy()
+     * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.TemplateImpl <em>Template</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.toronto.cs.se.modelepedia.gsn.impl.TemplateImpl
+     * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getTemplate()
      * @generated
      */
-    EClass DECOMPOSITION_STRATEGY = GSNPackage.eINSTANCE.getDecompositionStrategy();
+    EClass TEMPLATE = GSNPackage.eINSTANCE.getTemplate();
 
     /**
-     * The meta object literal for the '<em><b>Validate</b></em>' operation. <!-- begin-user-doc --> <!-- end-user-doc
-     * -->
-     *
-     * @generated
-     */
-    EOperation DECOMPOSITION_STRATEGY___VALIDATE = GSNPackage.eINSTANCE.getDecompositionStrategy__Validate();
-
-    /**
-     * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.DomainImpl <em>Domain</em>}' class.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @see edu.toronto.cs.se.modelepedia.gsn.impl.DomainImpl
-     * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getDomain()
-     * @generated
-     */
-    EClass DOMAIN = GSNPackage.eINSTANCE.getDomain();
-
-    /**
-     * The meta object literal for the '<em><b>Validate Decomposition</b></em>' operation.
-     * <!-- begin-user-doc --> <!--
-     * end-user-doc -->
-     * @generated
-     */
-    EOperation DOMAIN___VALIDATE_DECOMPOSITION__ELIST = GSNPackage.eINSTANCE.getDomain__ValidateDecomposition__EList();
-
-    /**
-     * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.IntDomainImpl <em>Int Domain</em>}' class.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @see edu.toronto.cs.se.modelepedia.gsn.impl.IntDomainImpl
-     * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getIntDomain()
-     * @generated
-     */
-    EClass INT_DOMAIN = GSNPackage.eINSTANCE.getIntDomain();
-
-    /**
-     * The meta object literal for the '<em><b>Lower Bound</b></em>' attribute feature.
-     * <!-- begin-user-doc --> <!--
-     * end-user-doc -->
-     * @generated
-     */
-    EAttribute INT_DOMAIN__LOWER_BOUND = GSNPackage.eINSTANCE.getIntDomain_LowerBound();
-
-    /**
-     * The meta object literal for the '<em><b>Upper Bound</b></em>' attribute feature.
-     * <!-- begin-user-doc --> <!--
-     * end-user-doc -->
-     * @generated
-     */
-    EAttribute INT_DOMAIN__UPPER_BOUND = GSNPackage.eINSTANCE.getIntDomain_UpperBound();
-
-    /**
-     * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.RealDomainImpl <em>Real Domain</em>}' class.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @see edu.toronto.cs.se.modelepedia.gsn.impl.RealDomainImpl
-     * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getRealDomain()
-     * @generated
-     */
-    EClass REAL_DOMAIN = GSNPackage.eINSTANCE.getRealDomain();
-
-    /**
-     * The meta object literal for the '<em><b>Lower Bound</b></em>' attribute feature.
-     * <!-- begin-user-doc --> <!--
-     * end-user-doc -->
-     * @generated
-     */
-    EAttribute REAL_DOMAIN__LOWER_BOUND = GSNPackage.eINSTANCE.getRealDomain_LowerBound();
-
-    /**
-     * The meta object literal for the '<em><b>Upper Bound</b></em>' attribute feature.
-     * <!-- begin-user-doc --> <!--
-     * end-user-doc -->
-     * @generated
-     */
-    EAttribute REAL_DOMAIN__UPPER_BOUND = GSNPackage.eINSTANCE.getRealDomain_UpperBound();
-
-    /**
-     * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.EnumDomainImpl <em>Enum Domain</em>}' class.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @see edu.toronto.cs.se.modelepedia.gsn.impl.EnumDomainImpl
-     * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getEnumDomain()
-     * @generated
-     */
-    EClass ENUM_DOMAIN = GSNPackage.eINSTANCE.getEnumDomain();
-
-    /**
-     * The meta object literal for the '<em><b>Values</b></em>' attribute list feature.
-     * <!-- begin-user-doc --> <!--
-     * end-user-doc -->
-     * @generated
-     */
-    EAttribute ENUM_DOMAIN__VALUES = GSNPackage.eINSTANCE.getEnumDomain_Values();
-
-    /**
-     * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.ValueDomainImpl <em>Value Domain</em>}' class.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @see edu.toronto.cs.se.modelepedia.gsn.impl.ValueDomainImpl
-     * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getValueDomain()
-     * @generated
-     */
-    EClass VALUE_DOMAIN = GSNPackage.eINSTANCE.getValueDomain();
-
-    /**
-     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
-     * <!-- begin-user-doc --> <!--
-     * end-user-doc -->
-     * @generated
-     */
-    EAttribute VALUE_DOMAIN__VALUE = GSNPackage.eINSTANCE.getValueDomain_Value();
-
-    /**
-     * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.DomainDecompositionElementImpl <em>Domain Decomposition Element</em>}' class.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @see edu.toronto.cs.se.modelepedia.gsn.impl.DomainDecompositionElementImpl
-     * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getDomainDecompositionElement()
-     * @generated
-     */
-    EClass DOMAIN_DECOMPOSITION_ELEMENT = GSNPackage.eINSTANCE.getDomainDecompositionElement();
-
-    /**
-     * The meta object literal for the '<em><b>Domain</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Elements</b></em>' reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference DOMAIN_DECOMPOSITION_ELEMENT__DOMAIN = GSNPackage.eINSTANCE.getDomainDecompositionElement_Domain();
+    EReference TEMPLATE__ELEMENTS = GSNPackage.eINSTANCE.getTemplate_Elements();
 
     /**
-     * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.DomainDecompositionStrategyImpl <em>Domain Decomposition Strategy</em>}' class.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @see edu.toronto.cs.se.modelepedia.gsn.impl.DomainDecompositionStrategyImpl
-     * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getDomainDecompositionStrategy()
+     * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-    EClass DOMAIN_DECOMPOSITION_STRATEGY = GSNPackage.eINSTANCE.getDomainDecompositionStrategy();
+    EAttribute TEMPLATE__ID = GSNPackage.eINSTANCE.getTemplate_Id();
+
+    /**
+     * The meta object literal for the '<em><b>Validate</b></em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EOperation TEMPLATE___VALIDATE = GSNPackage.eINSTANCE.getTemplate__Validate();
+
+    /**
+     * The meta object literal for the '<em><b>Instantiate</b></em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EOperation TEMPLATE___INSTANTIATE = GSNPackage.eINSTANCE.getTemplate__Instantiate();
+
+    /**
+     * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.TemplateElementImpl <em>Template Element</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.toronto.cs.se.modelepedia.gsn.impl.TemplateElementImpl
+     * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getTemplateElement()
+     * @generated
+     */
+    EClass TEMPLATE_ELEMENT = GSNPackage.eINSTANCE.getTemplateElement();
+
+    /**
+     * The meta object literal for the '<em><b>Valid</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute TEMPLATE_ELEMENT__VALID = GSNPackage.eINSTANCE.getTemplateElement_Valid();
+
+    /**
+     * The meta object literal for the '<em><b>Validate</b></em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EOperation TEMPLATE_ELEMENT___VALIDATE = GSNPackage.eINSTANCE.getTemplateElement__Validate();
+
+    /**
+     * The meta object literal for the '<em><b>Repair</b></em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EOperation TEMPLATE_ELEMENT___REPAIR = GSNPackage.eINSTANCE.getTemplateElement__Repair();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.ASILLevel <em>ASIL Level</em>}' enum.

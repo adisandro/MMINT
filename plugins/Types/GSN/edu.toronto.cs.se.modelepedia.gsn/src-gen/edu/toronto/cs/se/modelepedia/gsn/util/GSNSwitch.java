@@ -29,26 +29,14 @@ import edu.toronto.cs.se.modelepedia.gsn.Context;
 import edu.toronto.cs.se.modelepedia.gsn.ContextualElement;
 import edu.toronto.cs.se.modelepedia.gsn.CoreElement;
 import edu.toronto.cs.se.modelepedia.gsn.DecomposableCoreElement;
-import edu.toronto.cs.se.modelepedia.gsn.DecompositionStrategy;
-import edu.toronto.cs.se.modelepedia.gsn.Domain;
-import edu.toronto.cs.se.modelepedia.gsn.DomainDecompositionElement;
-import edu.toronto.cs.se.modelepedia.gsn.DomainDecompositionStrategy;
-import edu.toronto.cs.se.modelepedia.gsn.DomainGoal;
-import edu.toronto.cs.se.modelepedia.gsn.EnumDomain;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.Goal;
 import edu.toronto.cs.se.modelepedia.gsn.ImpactAnnotation;
 import edu.toronto.cs.se.modelepedia.gsn.InContextOf;
 import edu.toronto.cs.se.modelepedia.gsn.IndependenceGoal;
-import edu.toronto.cs.se.modelepedia.gsn.IntDomain;
 import edu.toronto.cs.se.modelepedia.gsn.Justification;
 import edu.toronto.cs.se.modelepedia.gsn.MofNSupporter;
 import edu.toronto.cs.se.modelepedia.gsn.OrSupporter;
-import edu.toronto.cs.se.modelepedia.gsn.Property;
-import edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionElement;
-import edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionStrategy;
-import edu.toronto.cs.se.modelepedia.gsn.PropertyGoal;
-import edu.toronto.cs.se.modelepedia.gsn.RealDomain;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
 import edu.toronto.cs.se.modelepedia.gsn.Solution;
 import edu.toronto.cs.se.modelepedia.gsn.StatefulElement;
@@ -57,7 +45,8 @@ import edu.toronto.cs.se.modelepedia.gsn.SupportConnector;
 import edu.toronto.cs.se.modelepedia.gsn.Supportable;
 import edu.toronto.cs.se.modelepedia.gsn.SupportedBy;
 import edu.toronto.cs.se.modelepedia.gsn.Supporter;
-import edu.toronto.cs.se.modelepedia.gsn.ValueDomain;
+import edu.toronto.cs.se.modelepedia.gsn.Template;
+import edu.toronto.cs.se.modelepedia.gsn.TemplateElement;
 import edu.toronto.cs.se.modelepedia.gsn.XorSupporter;
 
 /**
@@ -348,125 +337,15 @@ public class GSNSwitch<T> extends Switch<T> {
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case GSNPackage.DECOMPOSITION_STRATEGY: {
-        var decompositionStrategy = (DecompositionStrategy)theEObject;
-        var result = caseDecompositionStrategy(decompositionStrategy);
-        if (result == null) result = caseStrategy(decompositionStrategy);
-        if (result == null) result = caseDecomposableCoreElement(decompositionStrategy);
-        if (result == null) result = caseSupportable(decompositionStrategy);
-        if (result == null) result = caseCoreElement(decompositionStrategy);
-        if (result == null) result = caseSupporter(decompositionStrategy);
-        if (result == null) result = caseArgumentElement(decompositionStrategy);
+      case GSNPackage.TEMPLATE: {
+        var template = (Template)theEObject;
+        var result = caseTemplate(template);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case GSNPackage.DOMAIN: {
-        var domain = (Domain)theEObject;
-        var result = caseDomain(domain);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case GSNPackage.INT_DOMAIN: {
-        var intDomain = (IntDomain)theEObject;
-        var result = caseIntDomain(intDomain);
-        if (result == null) result = caseDomain(intDomain);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case GSNPackage.REAL_DOMAIN: {
-        var realDomain = (RealDomain)theEObject;
-        var result = caseRealDomain(realDomain);
-        if (result == null) result = caseDomain(realDomain);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case GSNPackage.ENUM_DOMAIN: {
-        var enumDomain = (EnumDomain)theEObject;
-        var result = caseEnumDomain(enumDomain);
-        if (result == null) result = caseDomain(enumDomain);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case GSNPackage.VALUE_DOMAIN: {
-        var valueDomain = (ValueDomain)theEObject;
-        var result = caseValueDomain(valueDomain);
-        if (result == null) result = caseDomain(valueDomain);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case GSNPackage.DOMAIN_DECOMPOSITION_ELEMENT: {
-        var domainDecompositionElement = (DomainDecompositionElement)theEObject;
-        var result = caseDomainDecompositionElement(domainDecompositionElement);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case GSNPackage.DOMAIN_DECOMPOSITION_STRATEGY: {
-        var domainDecompositionStrategy = (DomainDecompositionStrategy)theEObject;
-        var result = caseDomainDecompositionStrategy(domainDecompositionStrategy);
-        if (result == null) result = caseDecompositionStrategy(domainDecompositionStrategy);
-        if (result == null) result = caseDomainDecompositionElement(domainDecompositionStrategy);
-        if (result == null) result = caseStrategy(domainDecompositionStrategy);
-        if (result == null) result = caseDecomposableCoreElement(domainDecompositionStrategy);
-        if (result == null) result = caseSupportable(domainDecompositionStrategy);
-        if (result == null) result = caseCoreElement(domainDecompositionStrategy);
-        if (result == null) result = caseSupporter(domainDecompositionStrategy);
-        if (result == null) result = caseArgumentElement(domainDecompositionStrategy);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case GSNPackage.DOMAIN_GOAL: {
-        var domainGoal = (DomainGoal)theEObject;
-        var result = caseDomainGoal(domainGoal);
-        if (result == null) result = caseGoal(domainGoal);
-        if (result == null) result = caseDomainDecompositionElement(domainGoal);
-        if (result == null) result = caseDecomposableCoreElement(domainGoal);
-        if (result == null) result = caseStatefulElement(domainGoal);
-        if (result == null) result = caseASILfulElement(domainGoal);
-        if (result == null) result = caseSupportable(domainGoal);
-        if (result == null) result = caseCoreElement(domainGoal);
-        if (result == null) result = caseSupporter(domainGoal);
-        if (result == null) result = caseArgumentElement(domainGoal);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case GSNPackage.PROPERTY: {
-        var property = (Property)theEObject;
-        var result = caseProperty(property);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case GSNPackage.PROPERTY_DECOMPOSITION_ELEMENT: {
-        var propertyDecompositionElement = (PropertyDecompositionElement)theEObject;
-        var result = casePropertyDecompositionElement(propertyDecompositionElement);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case GSNPackage.PROPERTY_DECOMPOSITION_STRATEGY: {
-        var propertyDecompositionStrategy = (PropertyDecompositionStrategy)theEObject;
-        var result = casePropertyDecompositionStrategy(propertyDecompositionStrategy);
-        if (result == null) result = caseDecompositionStrategy(propertyDecompositionStrategy);
-        if (result == null) result = casePropertyDecompositionElement(propertyDecompositionStrategy);
-        if (result == null) result = caseStrategy(propertyDecompositionStrategy);
-        if (result == null) result = caseDecomposableCoreElement(propertyDecompositionStrategy);
-        if (result == null) result = caseSupportable(propertyDecompositionStrategy);
-        if (result == null) result = caseCoreElement(propertyDecompositionStrategy);
-        if (result == null) result = caseSupporter(propertyDecompositionStrategy);
-        if (result == null) result = caseArgumentElement(propertyDecompositionStrategy);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case GSNPackage.PROPERTY_GOAL: {
-        var propertyGoal = (PropertyGoal)theEObject;
-        var result = casePropertyGoal(propertyGoal);
-        if (result == null) result = caseGoal(propertyGoal);
-        if (result == null) result = casePropertyDecompositionElement(propertyGoal);
-        if (result == null) result = caseDecomposableCoreElement(propertyGoal);
-        if (result == null) result = caseStatefulElement(propertyGoal);
-        if (result == null) result = caseASILfulElement(propertyGoal);
-        if (result == null) result = caseSupportable(propertyGoal);
-        if (result == null) result = caseCoreElement(propertyGoal);
-        if (result == null) result = caseSupporter(propertyGoal);
-        if (result == null) result = caseArgumentElement(propertyGoal);
+      case GSNPackage.TEMPLATE_ELEMENT: {
+        var templateElement = (TemplateElement)theEObject;
+        var result = caseTemplateElement(templateElement);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -629,75 +508,6 @@ public class GSNSwitch<T> extends Switch<T> {
    * @generated
    */
   public T caseIndependenceGoal(IndependenceGoal object) {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Domain Goal</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Domain Goal</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseDomainGoal(DomainGoal object) {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Property</em>'.
-   * <!-- begin-user-doc --> This
-   * implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Property</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseProperty(Property object) {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Property Decomposition Element</em>'. <!--
-   * begin-user-doc --> This implementation returns null; returning a non-null result will terminate the switch. <!--
-   * end-user-doc -->
-   *
-   * @param object
-   *          the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Property Decomposition Element</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T casePropertyDecompositionElement(PropertyDecompositionElement object) {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Property Decomposition Strategy</em>'. <!--
-   * begin-user-doc --> This implementation returns null; returning a non-null result will terminate the switch. <!--
-   * end-user-doc -->
-   *
-   * @param object
-   *          the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Property Decomposition Strategy</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T casePropertyDecompositionStrategy(PropertyDecompositionStrategy object) {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Property Goal</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Property Goal</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T casePropertyGoal(PropertyGoal object) {
     return null;
   }
 
@@ -912,112 +722,32 @@ public class GSNSwitch<T> extends Switch<T> {
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Decomposition Strategy</em>'. <!--
-   * begin-user-doc --> This implementation returns null; returning a non-null result will terminate the switch. <!--
-   * end-user-doc -->
-   *
-   * @param object
-   *          the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Decomposition Strategy</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseDecompositionStrategy(DecompositionStrategy object) {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Domain</em>'.
-   * <!-- begin-user-doc --> This
-   * implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Domain</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseDomain(Domain object) {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Int Domain</em>'.
-   * <!-- begin-user-doc --> This
-   * implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Int Domain</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseIntDomain(IntDomain object) {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Real Domain</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Template</em>'.
    * <!-- begin-user-doc -->
-   * This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Real Domain</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Template</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseRealDomain(RealDomain object) {
+  public T caseTemplate(Template object) {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Enum Domain</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Template Element</em>'.
    * <!-- begin-user-doc -->
-   * This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Enum Domain</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Template Element</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseEnumDomain(EnumDomain object) {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Value Domain</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Value Domain</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseValueDomain(ValueDomain object) {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Domain Decomposition Element</em>'. <!--
-   * begin-user-doc --> This implementation returns null; returning a non-null result will terminate the switch. <!--
-   * end-user-doc -->
-   *
-   * @param object
-   *          the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Domain Decomposition Element</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseDomainDecompositionElement(DomainDecompositionElement object) {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Domain Decomposition Strategy</em>'. <!--
-   * begin-user-doc --> This implementation returns null; returning a non-null result will terminate the switch. <!--
-   * end-user-doc -->
-   *
-   * @param object
-   *          the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Domain Decomposition Strategy</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseDomainDecompositionStrategy(DomainDecompositionStrategy object) {
+  public T caseTemplateElement(TemplateElement object) {
     return null;
   }
 

@@ -15,14 +15,19 @@ package edu.toronto.cs.se.modelepedia.gsn.provider;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
+import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ChangeNotifier;
+import org.eclipse.emf.edit.provider.ChildCreationExtenderManager;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IChangeNotifier;
+import org.eclipse.emf.edit.provider.IChildCreationExtender;
 import org.eclipse.emf.edit.provider.IDisposable;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -31,6 +36,7 @@ import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
+import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.util.GSNAdapterFactory;
 
 /**
@@ -41,8 +47,7 @@ import edu.toronto.cs.se.modelepedia.gsn.util.GSNAdapterFactory;
  *
  * @generated
  */
-public class GSNItemProviderAdapterFactory extends GSNAdapterFactory implements ComposeableAdapterFactory,
-  IChangeNotifier, IDisposable {
+public class GSNItemProviderAdapterFactory extends GSNAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable, IChildCreationExtender {
   /**
    * This keeps track of the root adapter factory that delegates to this adapter factory.
    * <!-- begin-user-doc --> <!--
@@ -58,6 +63,14 @@ public class GSNItemProviderAdapterFactory extends GSNAdapterFactory implements 
    * @generated
    */
   protected IChangeNotifier changeNotifier = new ChangeNotifier();
+
+  /**
+   * This helps manage the child creation extenders.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected ChildCreationExtenderManager childCreationExtenderManager = new ChildCreationExtenderManager(GSNEditPlugin.INSTANCE, GSNPackage.eNS_URI);
 
   /**
    * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}. <!--
@@ -188,96 +201,6 @@ public class GSNItemProviderAdapterFactory extends GSNAdapterFactory implements 
     }
 
     return this.independenceGoalItemProvider;
-  }
-
-  /**
-   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.gsn.DomainGoal} instances.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  protected DomainGoalItemProvider domainGoalItemProvider;
-
-  /**
-   * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.gsn.DomainGoal}.
-   * <!-- begin-user-doc --> <!--
-   * end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Adapter createDomainGoalAdapter() {
-    if (this.domainGoalItemProvider == null) {
-      this.domainGoalItemProvider = new DomainGoalItemProvider(this);
-    }
-
-    return this.domainGoalItemProvider;
-  }
-
-  /**
-   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.gsn.Property} instances. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
-   *
-   * @generated
-   */
-  protected PropertyItemProvider propertyItemProvider;
-
-  /**
-   * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.gsn.Property}.
-   * <!-- begin-user-doc --> <!--
-   * end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Adapter createPropertyAdapter() {
-    if (this.propertyItemProvider == null) {
-      this.propertyItemProvider = new PropertyItemProvider(this);
-    }
-
-    return this.propertyItemProvider;
-  }
-
-  /**
-   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionStrategy} instances.
-   * <!-- begin-user-doc --> <!--
-   * end-user-doc -->
-   * @generated
-   */
-  protected PropertyDecompositionStrategyItemProvider propertyDecompositionStrategyItemProvider;
-
-  /**
-   * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionStrategy}. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
-   *
-   * @generated
-   */
-  @Override
-  public Adapter createPropertyDecompositionStrategyAdapter() {
-    if (this.propertyDecompositionStrategyItemProvider == null) {
-      this.propertyDecompositionStrategyItemProvider = new PropertyDecompositionStrategyItemProvider(this);
-    }
-
-    return this.propertyDecompositionStrategyItemProvider;
-  }
-
-  /**
-   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.gsn.PropertyGoal} instances.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  protected PropertyGoalItemProvider propertyGoalItemProvider;
-
-  /**
-   * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.gsn.PropertyGoal}.
-   * <!-- begin-user-doc --> <!--
-   * end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Adapter createPropertyGoalAdapter() {
-    if (this.propertyGoalItemProvider == null) {
-      this.propertyGoalItemProvider = new PropertyGoalItemProvider(this);
-    }
-
-    return this.propertyGoalItemProvider;
   }
 
   /**
@@ -549,117 +472,6 @@ public class GSNItemProviderAdapterFactory extends GSNAdapterFactory implements 
   }
 
   /**
-   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.gsn.IntDomain} instances.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  protected IntDomainItemProvider intDomainItemProvider;
-
-  /**
-   * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.gsn.IntDomain}.
-   * <!-- begin-user-doc --> <!--
-   * end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Adapter createIntDomainAdapter() {
-    if (this.intDomainItemProvider == null) {
-      this.intDomainItemProvider = new IntDomainItemProvider(this);
-    }
-
-    return this.intDomainItemProvider;
-  }
-
-  /**
-   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.gsn.RealDomain} instances.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  protected RealDomainItemProvider realDomainItemProvider;
-
-  /**
-   * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.gsn.RealDomain}.
-   * <!-- begin-user-doc --> <!--
-   * end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Adapter createRealDomainAdapter() {
-    if (this.realDomainItemProvider == null) {
-      this.realDomainItemProvider = new RealDomainItemProvider(this);
-    }
-
-    return this.realDomainItemProvider;
-  }
-
-  /**
-   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.gsn.EnumDomain} instances.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  protected EnumDomainItemProvider enumDomainItemProvider;
-
-  /**
-   * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.gsn.EnumDomain}.
-   * <!-- begin-user-doc --> <!--
-   * end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Adapter createEnumDomainAdapter() {
-    if (this.enumDomainItemProvider == null) {
-      this.enumDomainItemProvider = new EnumDomainItemProvider(this);
-    }
-
-    return this.enumDomainItemProvider;
-  }
-
-  /**
-   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.gsn.ValueDomain} instances.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  protected ValueDomainItemProvider valueDomainItemProvider;
-
-  /**
-   * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.gsn.ValueDomain}.
-   * <!-- begin-user-doc --> <!--
-   * end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Adapter createValueDomainAdapter() {
-    if (this.valueDomainItemProvider == null) {
-      this.valueDomainItemProvider = new ValueDomainItemProvider(this);
-    }
-
-    return this.valueDomainItemProvider;
-  }
-
-  /**
-   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.gsn.DomainDecompositionStrategy} instances.
-   * <!-- begin-user-doc --> <!--
-   * end-user-doc -->
-   * @generated
-   */
-  protected DomainDecompositionStrategyItemProvider domainDecompositionStrategyItemProvider;
-
-  /**
-   * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.gsn.DomainDecompositionStrategy}. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
-   *
-   * @generated
-   */
-  @Override
-  public Adapter createDomainDecompositionStrategyAdapter() {
-    if (this.domainDecompositionStrategyItemProvider == null) {
-      this.domainDecompositionStrategyItemProvider = new DomainDecompositionStrategyItemProvider(this);
-    }
-
-    return this.domainDecompositionStrategyItemProvider;
-  }
-
-  /**
    * This returns the root adapter factory that contains this factory.
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
@@ -713,6 +525,35 @@ public class GSNItemProviderAdapterFactory extends GSNAdapterFactory implements 
     }
 
     return null;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public List<IChildCreationExtender> getChildCreationExtenders() {
+    return this.childCreationExtenderManager.getChildCreationExtenders();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Collection<?> getNewChildDescriptors(Object object, EditingDomain editingDomain) {
+    return this.childCreationExtenderManager.getNewChildDescriptors(object, editingDomain);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public ResourceLocator getResourceLocator() {
+    return this.childCreationExtenderManager;
   }
 
   /**
@@ -774,15 +615,6 @@ public class GSNItemProviderAdapterFactory extends GSNAdapterFactory implements 
     if (this.orSupporterItemProvider != null) this.orSupporterItemProvider.dispose();
     if (this.xorSupporterItemProvider != null) this.xorSupporterItemProvider.dispose();
     if (this.mofNSupporterItemProvider != null) this.mofNSupporterItemProvider.dispose();
-    if (this.intDomainItemProvider != null) this.intDomainItemProvider.dispose();
-    if (this.realDomainItemProvider != null) this.realDomainItemProvider.dispose();
-    if (this.enumDomainItemProvider != null) this.enumDomainItemProvider.dispose();
-    if (this.valueDomainItemProvider != null) this.valueDomainItemProvider.dispose();
-    if (this.domainDecompositionStrategyItemProvider != null) this.domainDecompositionStrategyItemProvider.dispose();
-    if (this.domainGoalItemProvider != null) this.domainGoalItemProvider.dispose();
-    if (this.propertyItemProvider != null) this.propertyItemProvider.dispose();
-    if (this.propertyDecompositionStrategyItemProvider != null) this.propertyDecompositionStrategyItemProvider.dispose();
-    if (this.propertyGoalItemProvider != null) this.propertyGoalItemProvider.dispose();
   }
 
 }

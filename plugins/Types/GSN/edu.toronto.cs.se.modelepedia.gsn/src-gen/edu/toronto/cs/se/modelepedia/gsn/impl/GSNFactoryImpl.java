@@ -28,28 +28,19 @@ import edu.toronto.cs.se.modelepedia.gsn.Assumption;
 import edu.toronto.cs.se.modelepedia.gsn.BasicGoal;
 import edu.toronto.cs.se.modelepedia.gsn.BasicStrategy;
 import edu.toronto.cs.se.modelepedia.gsn.Context;
-import edu.toronto.cs.se.modelepedia.gsn.DomainDecompositionStrategy;
-import edu.toronto.cs.se.modelepedia.gsn.DomainGoal;
-import edu.toronto.cs.se.modelepedia.gsn.EnumDomain;
 import edu.toronto.cs.se.modelepedia.gsn.GSNFactory;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.ImpactAnnotation;
 import edu.toronto.cs.se.modelepedia.gsn.ImpactType;
 import edu.toronto.cs.se.modelepedia.gsn.InContextOf;
 import edu.toronto.cs.se.modelepedia.gsn.IndependenceGoal;
-import edu.toronto.cs.se.modelepedia.gsn.IntDomain;
 import edu.toronto.cs.se.modelepedia.gsn.Justification;
 import edu.toronto.cs.se.modelepedia.gsn.MofNSupporter;
 import edu.toronto.cs.se.modelepedia.gsn.OrSupporter;
-import edu.toronto.cs.se.modelepedia.gsn.Property;
-import edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionStrategy;
-import edu.toronto.cs.se.modelepedia.gsn.PropertyGoal;
-import edu.toronto.cs.se.modelepedia.gsn.RealDomain;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
 import edu.toronto.cs.se.modelepedia.gsn.Solution;
 import edu.toronto.cs.se.modelepedia.gsn.SupportedBy;
 import edu.toronto.cs.se.modelepedia.gsn.ValidityValue;
-import edu.toronto.cs.se.modelepedia.gsn.ValueDomain;
 import edu.toronto.cs.se.modelepedia.gsn.XorSupporter;
 
 /**
@@ -90,36 +81,26 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
    */
   @Override
   public EObject create(EClass eClass) {
-    switch (eClass.getClassifierID()) {
-      case GSNPackage.SAFETY_CASE: return createSafetyCase();
-      case GSNPackage.SUPPORTED_BY: return createSupportedBy();
-      case GSNPackage.IN_CONTEXT_OF: return createInContextOf();
-      case GSNPackage.BASIC_GOAL: return createBasicGoal();
-      case GSNPackage.INDEPENDENCE_GOAL: return createIndependenceGoal();
-      case GSNPackage.BASIC_STRATEGY: return createBasicStrategy();
-      case GSNPackage.ASIL_DECOMPOSITION_STRATEGY: return createASILDecompositionStrategy();
-      case GSNPackage.SOLUTION: return createSolution();
-      case GSNPackage.CONTEXT: return createContext();
-      case GSNPackage.JUSTIFICATION: return createJustification();
-      case GSNPackage.ASSUMPTION: return createAssumption();
-      case GSNPackage.ASIL: return createASIL();
-      case GSNPackage.IMPACT_ANNOTATION: return createImpactAnnotation();
-      case GSNPackage.AND_SUPPORTER: return createAndSupporter();
-      case GSNPackage.OR_SUPPORTER: return createOrSupporter();
-      case GSNPackage.XOR_SUPPORTER: return createXorSupporter();
-      case GSNPackage.MOF_NSUPPORTER: return createMofNSupporter();
-      case GSNPackage.INT_DOMAIN: return createIntDomain();
-      case GSNPackage.REAL_DOMAIN: return createRealDomain();
-      case GSNPackage.ENUM_DOMAIN: return createEnumDomain();
-      case GSNPackage.VALUE_DOMAIN: return createValueDomain();
-      case GSNPackage.DOMAIN_DECOMPOSITION_STRATEGY: return createDomainDecompositionStrategy();
-      case GSNPackage.DOMAIN_GOAL: return createDomainGoal();
-      case GSNPackage.PROPERTY: return createProperty();
-      case GSNPackage.PROPERTY_DECOMPOSITION_STRATEGY: return createPropertyDecompositionStrategy();
-      case GSNPackage.PROPERTY_GOAL: return createPropertyGoal();
-      default:
-        throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-    }
+    return switch (eClass.getClassifierID()) {
+    case GSNPackage.SAFETY_CASE -> createSafetyCase();
+    case GSNPackage.SUPPORTED_BY -> createSupportedBy();
+    case GSNPackage.IN_CONTEXT_OF -> createInContextOf();
+    case GSNPackage.BASIC_GOAL -> createBasicGoal();
+    case GSNPackage.INDEPENDENCE_GOAL -> createIndependenceGoal();
+    case GSNPackage.BASIC_STRATEGY -> createBasicStrategy();
+    case GSNPackage.ASIL_DECOMPOSITION_STRATEGY -> createASILDecompositionStrategy();
+    case GSNPackage.SOLUTION -> createSolution();
+    case GSNPackage.CONTEXT -> createContext();
+    case GSNPackage.JUSTIFICATION -> createJustification();
+    case GSNPackage.ASSUMPTION -> createAssumption();
+    case GSNPackage.ASIL -> createASIL();
+    case GSNPackage.IMPACT_ANNOTATION -> createImpactAnnotation();
+    case GSNPackage.AND_SUPPORTER -> createAndSupporter();
+    case GSNPackage.OR_SUPPORTER -> createOrSupporter();
+    case GSNPackage.XOR_SUPPORTER -> createXorSupporter();
+    case GSNPackage.MOF_NSUPPORTER -> createMofNSupporter();
+    default -> throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+    };
   }
 
   /**
@@ -128,18 +109,13 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
    */
   @Override
   public Object createFromString(EDataType eDataType, String initialValue) {
-    switch (eDataType.getClassifierID()) {
-      case GSNPackage.ASIL_LEVEL:
-        return createASILLevelFromString(eDataType, initialValue);
-      case GSNPackage.VALIDITY_VALUE:
-        return createValidityValueFromString(eDataType, initialValue);
-      case GSNPackage.IMPACT_TYPE:
-        return createImpactTypeFromString(eDataType, initialValue);
-      case GSNPackage.EXCEPTION:
-        return createExceptionFromString(eDataType, initialValue);
-      default:
-        throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
-    }
+    return switch (eDataType.getClassifierID()) {
+    case GSNPackage.ASIL_LEVEL -> createASILLevelFromString(eDataType, initialValue);
+    case GSNPackage.VALIDITY_VALUE -> createValidityValueFromString(eDataType, initialValue);
+    case GSNPackage.IMPACT_TYPE -> createImpactTypeFromString(eDataType, initialValue);
+    case GSNPackage.EXCEPTION -> createExceptionFromString(eDataType, initialValue);
+    default -> throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+    };
   }
 
   /**
@@ -148,18 +124,13 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
    */
   @Override
   public String convertToString(EDataType eDataType, Object instanceValue) {
-    switch (eDataType.getClassifierID()) {
-      case GSNPackage.ASIL_LEVEL:
-        return convertASILLevelToString(eDataType, instanceValue);
-      case GSNPackage.VALIDITY_VALUE:
-        return convertValidityValueToString(eDataType, instanceValue);
-      case GSNPackage.IMPACT_TYPE:
-        return convertImpactTypeToString(eDataType, instanceValue);
-      case GSNPackage.EXCEPTION:
-        return convertExceptionToString(eDataType, instanceValue);
-      default:
-        throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
-    }
+    return switch (eDataType.getClassifierID()) {
+    case GSNPackage.ASIL_LEVEL -> convertASILLevelToString(eDataType, instanceValue);
+    case GSNPackage.VALIDITY_VALUE -> convertValidityValueToString(eDataType, instanceValue);
+    case GSNPackage.IMPACT_TYPE -> convertImpactTypeToString(eDataType, instanceValue);
+    case GSNPackage.EXCEPTION -> convertExceptionToString(eDataType, instanceValue);
+    default -> throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+    };
   }
 
   /**
@@ -210,46 +181,6 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
   public IndependenceGoal createIndependenceGoal() {
     IndependenceGoalImpl independenceGoal = new IndependenceGoalImpl();
     return independenceGoal;
-  }
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public DomainGoal createDomainGoal() {
-    DomainGoalImpl domainGoal = new DomainGoalImpl();
-    return domainGoal;
-  }
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Property createProperty() {
-    PropertyImpl property = new PropertyImpl();
-    return property;
-  }
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public PropertyDecompositionStrategy createPropertyDecompositionStrategy() {
-    PropertyDecompositionStrategyImpl propertyDecompositionStrategy = new PropertyDecompositionStrategyImpl();
-    return propertyDecompositionStrategy;
-  }
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public PropertyGoal createPropertyGoal() {
-    PropertyGoalImpl propertyGoal = new PropertyGoalImpl();
-    return propertyGoal;
   }
 
   /**
@@ -370,56 +301,6 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
   public MofNSupporter createMofNSupporter() {
     MofNSupporterImpl mofNSupporter = new MofNSupporterImpl();
     return mofNSupporter;
-  }
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public IntDomain createIntDomain() {
-    IntDomainImpl intDomain = new IntDomainImpl();
-    return intDomain;
-  }
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public RealDomain createRealDomain() {
-    RealDomainImpl realDomain = new RealDomainImpl();
-    return realDomain;
-  }
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EnumDomain createEnumDomain() {
-    EnumDomainImpl enumDomain = new EnumDomainImpl();
-    return enumDomain;
-  }
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public ValueDomain createValueDomain() {
-    ValueDomainImpl valueDomain = new ValueDomainImpl();
-    return valueDomain;
-  }
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public DomainDecompositionStrategy createDomainDecompositionStrategy() {
-    DomainDecompositionStrategyImpl domainDecompositionStrategy = new DomainDecompositionStrategyImpl();
-    return domainDecompositionStrategy;
   }
 
   /**

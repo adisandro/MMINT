@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="templates" nsURI="model://edu.toronto.cs.se.mmint.types.gsn.templates"
+    nsPrefix="gsn.templates">
+  <eClassifiers xsi:type="ecore:EClass" name="DecompositionStrategy" abstract="true"
+      eSuperTypes="../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Strategy ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//TemplateElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Domain" abstract="true">
+    <eOperations name="validateDecomposition" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Exception">
+      <eParameters name="subDomains" upperBound="-1" eType="#//Domain"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IntDomain" eSuperTypes="#//Domain">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lowerBound" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="upperBound" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RealDomain" eSuperTypes="#//Domain">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lowerBound" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="upperBound" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EnumDomain" eSuperTypes="#//Domain">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="values" lowerBound="2"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ValueDomain" eSuperTypes="#//Domain">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DomainDecompositionElement" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="domain" lowerBound="1"
+        eType="#//Domain" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DomainDecompositionStrategy" eSuperTypes="#//DecompositionStrategy #//DomainDecompositionElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DomainGoal" eSuperTypes="../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Goal #//DomainDecompositionElement ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//TemplateElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Property">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="formal" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="informal" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PropertyDecompositionElement" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="property" lowerBound="1"
+        eType="#//Property" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PropertyDecompositionStrategy" eSuperTypes="#//DecompositionStrategy #//PropertyDecompositionElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="reasonerName" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PropertyGoal" eSuperTypes="../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Goal #//PropertyDecompositionElement ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//TemplateElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="hint" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+</ecore:EPackage>

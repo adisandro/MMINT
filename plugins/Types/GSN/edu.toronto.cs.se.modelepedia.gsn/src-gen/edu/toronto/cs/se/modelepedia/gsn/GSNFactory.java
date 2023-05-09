@@ -70,39 +70,6 @@ public interface GSNFactory extends EFactory {
   IndependenceGoal createIndependenceGoal();
 
   /**
-   * Returns a new object of class '<em>Domain Goal</em>'.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @return a new object of class '<em>Domain Goal</em>'.
-   * @generated
-   */
-  DomainGoal createDomainGoal();
-
-  /**
-   * Returns a new object of class '<em>Property</em>'.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @return a new object of class '<em>Property</em>'.
-   * @generated
-   */
-  Property createProperty();
-
-  /**
-   * Returns a new object of class '<em>Property Decomposition Strategy</em>'. <!-- begin-user-doc --> <!-- end-user-doc
-   * -->
-   *
-   * @return a new object of class '<em>Property Decomposition Strategy</em>'.
-   * @generated
-   */
-  PropertyDecompositionStrategy createPropertyDecompositionStrategy();
-
-  /**
-   * Returns a new object of class '<em>Property Goal</em>'.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @return a new object of class '<em>Property Goal</em>'.
-   * @generated
-   */
-  PropertyGoal createPropertyGoal();
-
-  /**
    * Returns a new object of class '<em>Basic Strategy</em>'.
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @return a new object of class '<em>Basic Strategy</em>'.
@@ -197,47 +164,6 @@ public interface GSNFactory extends EFactory {
    * @generated
    */
   MofNSupporter createMofNSupporter();
-
-  /**
-   * Returns a new object of class '<em>Int Domain</em>'.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @return a new object of class '<em>Int Domain</em>'.
-   * @generated
-   */
-  IntDomain createIntDomain();
-
-  /**
-   * Returns a new object of class '<em>Real Domain</em>'.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @return a new object of class '<em>Real Domain</em>'.
-   * @generated
-   */
-  RealDomain createRealDomain();
-
-  /**
-   * Returns a new object of class '<em>Enum Domain</em>'.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @return a new object of class '<em>Enum Domain</em>'.
-   * @generated
-   */
-  EnumDomain createEnumDomain();
-
-  /**
-   * Returns a new object of class '<em>Value Domain</em>'.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @return a new object of class '<em>Value Domain</em>'.
-   * @generated
-   */
-  ValueDomain createValueDomain();
-
-  /**
-   * Returns a new object of class '<em>Domain Decomposition Strategy</em>'. <!-- begin-user-doc --> <!-- end-user-doc
-   * -->
-   *
-   * @return a new object of class '<em>Domain Decomposition Strategy</em>'.
-   * @generated
-   */
-  DomainDecompositionStrategy createDomainDecompositionStrategy();
 
   /**
    * Returns the package supported by this factory.

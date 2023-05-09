@@ -32,12 +32,12 @@ import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
+import edu.toronto.cs.se.mmint.types.gsn.templates.reasoning.IGSNLeanEncoder;
+import edu.toronto.cs.se.mmint.types.gsn.templates.reasoning.IGSNLeanEncoder.PropertyVariable.VariableEncoder;
+import edu.toronto.cs.se.mmint.types.gsn.templates.reasoning.IGSNLeanEncoder.PropertyVariable.VariableEncoding;
 import edu.toronto.cs.se.mmint.types.lts.LTSPackage;
 import edu.toronto.cs.se.mmint.types.lts.LabeledElement;
 import edu.toronto.cs.se.mmint.types.lts.State;
-import edu.toronto.cs.se.modelepedia.gsn.reasoning.IGSNLeanEncoder;
-import edu.toronto.cs.se.modelepedia.gsn.reasoning.IGSNLeanEncoder.PropertyVariable.VariableEncoder;
-import edu.toronto.cs.se.modelepedia.gsn.reasoning.IGSNLeanEncoder.PropertyVariable.VariableEncoding;
 
 public class LTSToLean extends ToLean implements IGSNLeanEncoder {
 

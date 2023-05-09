@@ -30,26 +30,14 @@ import edu.toronto.cs.se.modelepedia.gsn.Context;
 import edu.toronto.cs.se.modelepedia.gsn.ContextualElement;
 import edu.toronto.cs.se.modelepedia.gsn.CoreElement;
 import edu.toronto.cs.se.modelepedia.gsn.DecomposableCoreElement;
-import edu.toronto.cs.se.modelepedia.gsn.DecompositionStrategy;
-import edu.toronto.cs.se.modelepedia.gsn.Domain;
-import edu.toronto.cs.se.modelepedia.gsn.DomainDecompositionElement;
-import edu.toronto.cs.se.modelepedia.gsn.DomainDecompositionStrategy;
-import edu.toronto.cs.se.modelepedia.gsn.DomainGoal;
-import edu.toronto.cs.se.modelepedia.gsn.EnumDomain;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.Goal;
 import edu.toronto.cs.se.modelepedia.gsn.ImpactAnnotation;
 import edu.toronto.cs.se.modelepedia.gsn.InContextOf;
 import edu.toronto.cs.se.modelepedia.gsn.IndependenceGoal;
-import edu.toronto.cs.se.modelepedia.gsn.IntDomain;
 import edu.toronto.cs.se.modelepedia.gsn.Justification;
 import edu.toronto.cs.se.modelepedia.gsn.MofNSupporter;
 import edu.toronto.cs.se.modelepedia.gsn.OrSupporter;
-import edu.toronto.cs.se.modelepedia.gsn.Property;
-import edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionElement;
-import edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionStrategy;
-import edu.toronto.cs.se.modelepedia.gsn.PropertyGoal;
-import edu.toronto.cs.se.modelepedia.gsn.RealDomain;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
 import edu.toronto.cs.se.modelepedia.gsn.Solution;
 import edu.toronto.cs.se.modelepedia.gsn.StatefulElement;
@@ -58,7 +46,8 @@ import edu.toronto.cs.se.modelepedia.gsn.SupportConnector;
 import edu.toronto.cs.se.modelepedia.gsn.Supportable;
 import edu.toronto.cs.se.modelepedia.gsn.SupportedBy;
 import edu.toronto.cs.se.modelepedia.gsn.Supporter;
-import edu.toronto.cs.se.modelepedia.gsn.ValueDomain;
+import edu.toronto.cs.se.modelepedia.gsn.Template;
+import edu.toronto.cs.se.modelepedia.gsn.TemplateElement;
 import edu.toronto.cs.se.modelepedia.gsn.XorSupporter;
 
 /**
@@ -224,56 +213,12 @@ public class GSNAdapterFactory extends AdapterFactoryImpl {
         return createMofNSupporterAdapter();
       }
       @Override
-      public Adapter caseDecompositionStrategy(DecompositionStrategy object) {
-        return createDecompositionStrategyAdapter();
+      public Adapter caseTemplate(Template object) {
+        return createTemplateAdapter();
       }
       @Override
-      public Adapter caseDomain(Domain object) {
-        return createDomainAdapter();
-      }
-      @Override
-      public Adapter caseIntDomain(IntDomain object) {
-        return createIntDomainAdapter();
-      }
-      @Override
-      public Adapter caseRealDomain(RealDomain object) {
-        return createRealDomainAdapter();
-      }
-      @Override
-      public Adapter caseEnumDomain(EnumDomain object) {
-        return createEnumDomainAdapter();
-      }
-      @Override
-      public Adapter caseValueDomain(ValueDomain object) {
-        return createValueDomainAdapter();
-      }
-      @Override
-      public Adapter caseDomainDecompositionElement(DomainDecompositionElement object) {
-        return createDomainDecompositionElementAdapter();
-      }
-      @Override
-      public Adapter caseDomainDecompositionStrategy(DomainDecompositionStrategy object) {
-        return createDomainDecompositionStrategyAdapter();
-      }
-      @Override
-      public Adapter caseDomainGoal(DomainGoal object) {
-        return createDomainGoalAdapter();
-      }
-      @Override
-      public Adapter caseProperty(Property object) {
-        return createPropertyAdapter();
-      }
-      @Override
-      public Adapter casePropertyDecompositionElement(PropertyDecompositionElement object) {
-        return createPropertyDecompositionElementAdapter();
-      }
-      @Override
-      public Adapter casePropertyDecompositionStrategy(PropertyDecompositionStrategy object) {
-        return createPropertyDecompositionStrategyAdapter();
-      }
-      @Override
-      public Adapter casePropertyGoal(PropertyGoal object) {
-        return createPropertyGoalAdapter();
+      public Adapter caseTemplateElement(TemplateElement object) {
+        return createTemplateElementAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object) {
@@ -438,67 +383,6 @@ public class GSNAdapterFactory extends AdapterFactoryImpl {
    * @generated
    */
   public Adapter createIndependenceGoalAdapter() {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.gsn.DomainGoal <em>Domain Goal</em>}'.
-   * <!-- begin-user-doc --> This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see edu.toronto.cs.se.modelepedia.gsn.DomainGoal
-   * @generated
-   */
-  public Adapter createDomainGoalAdapter() {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.gsn.Property <em>Property</em>}'.
-   * <!-- begin-user-doc --> This default implementation returns null so that we can easily ignore
-   * cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see edu.toronto.cs.se.modelepedia.gsn.Property
-   * @generated
-   */
-  public Adapter createPropertyAdapter() {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionElement <em>Property Decomposition Element</em>}'.
-   * <!-- begin-user-doc --> This default implementation returns null so that
-   * we can easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
-   * end-user-doc -->
-   * @return the new adapter.
-   * @see edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionElement
-   * @generated
-   */
-  public Adapter createPropertyDecompositionElementAdapter() {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionStrategy <em>Property Decomposition Strategy</em>}'.
-   * <!-- begin-user-doc --> This default implementation returns null so that we can easily ignore cases; it's useful to
-   * ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionStrategy
-   * @generated
-   */
-  public Adapter createPropertyDecompositionStrategyAdapter() {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.gsn.PropertyGoal <em>Property Goal</em>}'.
-   * <!-- begin-user-doc --> This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see edu.toronto.cs.se.modelepedia.gsn.PropertyGoal
-   * @generated
-   */
-  public Adapter createPropertyGoalAdapter() {
     return null;
   }
 
@@ -697,101 +581,30 @@ public class GSNAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.gsn.DecompositionStrategy <em>Decomposition Strategy</em>}'.
-   * <!-- begin-user-doc --> This default implementation returns null so that we can
-   * easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
-   * end-user-doc -->
+   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.gsn.Template <em>Template</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see edu.toronto.cs.se.modelepedia.gsn.DecompositionStrategy
+   * @see edu.toronto.cs.se.modelepedia.gsn.Template
    * @generated
    */
-  public Adapter createDecompositionStrategyAdapter() {
+  public Adapter createTemplateAdapter() {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.gsn.Domain <em>Domain</em>}'.
-   * <!-- begin-user-doc --> This default implementation returns null so that we can easily ignore cases; it's useful to
-   * ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
+   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.gsn.TemplateElement <em>Template Element</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see edu.toronto.cs.se.modelepedia.gsn.Domain
+   * @see edu.toronto.cs.se.modelepedia.gsn.TemplateElement
    * @generated
    */
-  public Adapter createDomainAdapter() {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.gsn.IntDomain <em>Int Domain</em>}'.
-   * <!-- begin-user-doc --> This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see edu.toronto.cs.se.modelepedia.gsn.IntDomain
-   * @generated
-   */
-  public Adapter createIntDomainAdapter() {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.gsn.RealDomain <em>Real Domain</em>}'.
-   * <!-- begin-user-doc --> This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see edu.toronto.cs.se.modelepedia.gsn.RealDomain
-   * @generated
-   */
-  public Adapter createRealDomainAdapter() {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.gsn.EnumDomain <em>Enum Domain</em>}'.
-   * <!-- begin-user-doc --> This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see edu.toronto.cs.se.modelepedia.gsn.EnumDomain
-   * @generated
-   */
-  public Adapter createEnumDomainAdapter() {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.gsn.ValueDomain <em>Value Domain</em>}'.
-   * <!-- begin-user-doc --> This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see edu.toronto.cs.se.modelepedia.gsn.ValueDomain
-   * @generated
-   */
-  public Adapter createValueDomainAdapter() {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.gsn.DomainDecompositionElement <em>Domain Decomposition Element</em>}'.
-   * <!-- begin-user-doc --> This default implementation returns null so that
-   * we can easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
-   * end-user-doc -->
-   * @return the new adapter.
-   * @see edu.toronto.cs.se.modelepedia.gsn.DomainDecompositionElement
-   * @generated
-   */
-  public Adapter createDomainDecompositionElementAdapter() {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.gsn.DomainDecompositionStrategy <em>Domain Decomposition Strategy</em>}'.
-   * <!-- begin-user-doc --> This default implementation returns null so that
-   * we can easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
-   * end-user-doc -->
-   * @return the new adapter.
-   * @see edu.toronto.cs.se.modelepedia.gsn.DomainDecompositionStrategy
-   * @generated
-   */
-  public Adapter createDomainDecompositionStrategyAdapter() {
+  public Adapter createTemplateElementAdapter() {
     return null;
   }
 

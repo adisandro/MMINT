@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<!--
+    Copyright (c) 2023, 2023 Alessio Di Sandro.
+   
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License 2.0 which is available at
+    https://www.eclipse.org/legal/epl-2.0/
+   
+    SPDX-License-Identifier: EPL-2.0
+   
+    Contributors:
+        Alessio Di Sandro - Implementation
+-->
+<plugin>
+
+   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <!-- @generated gsn.templates -->
+      <factory
+            uri="model://edu.toronto.cs.se.mmint.types.gsn.templates"
+            class="edu.toronto.cs.se.mmint.types.gsn.templates.provider.GSNTemplatesItemProviderAdapterFactory"
+            supportedTypes=
+              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
+               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
+               org.eclipse.emf.edit.provider.ITreeItemContentProvider
+               org.eclipse.emf.edit.provider.IItemLabelProvider
+               org.eclipse.emf.edit.provider.IItemPropertySource"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.edit.childCreationExtenders">
+      <!-- @generated gsn.templates -->
+      <extender
+            uri="http://se.cs.toronto.edu/modelepedia/GSN"
+            class="edu.toronto.cs.se.mmint.types.gsn.templates.provider.GSNTemplatesItemProviderAdapterFactory$GSNChildCreationExtender"/>
+   </extension>
+
+</plugin>

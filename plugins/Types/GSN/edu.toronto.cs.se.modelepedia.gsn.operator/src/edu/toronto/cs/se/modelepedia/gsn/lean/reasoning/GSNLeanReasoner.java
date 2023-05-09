@@ -33,17 +33,17 @@ import edu.toronto.cs.se.mmint.lean.reasoning.LeanReasoner;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyDecompositionStrategy;
+import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyGoal;
+import edu.toronto.cs.se.mmint.types.gsn.templates.reasoning.IGSNDecompositionTrait;
+import edu.toronto.cs.se.mmint.types.gsn.templates.reasoning.IGSNLeanEncoder;
+import edu.toronto.cs.se.mmint.types.gsn.templates.reasoning.IGSNLeanEncoder.PropertyTemplate;
+import edu.toronto.cs.se.mmint.types.gsn.templates.util.GSNTemplatesBuilder;
 import edu.toronto.cs.se.modelepedia.gsn.Context;
 import edu.toronto.cs.se.modelepedia.gsn.ContextualElement;
 import edu.toronto.cs.se.modelepedia.gsn.InContextOf;
-import edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionStrategy;
-import edu.toronto.cs.se.modelepedia.gsn.PropertyGoal;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
 import edu.toronto.cs.se.modelepedia.gsn.SupportedBy;
-import edu.toronto.cs.se.modelepedia.gsn.reasoning.IGSNDecompositionTrait;
-import edu.toronto.cs.se.modelepedia.gsn.reasoning.IGSNLeanEncoder;
-import edu.toronto.cs.se.modelepedia.gsn.reasoning.IGSNLeanEncoder.PropertyTemplate;
-import edu.toronto.cs.se.modelepedia.gsn.util.PropertyBuilder;
 
 public class GSNLeanReasoner extends LeanReasoner implements IGSNDecompositionTrait {
   private final static String FEEDBACK_BAD_PROPERTY = "P";
@@ -183,7 +183,7 @@ public class GSNLeanReasoner extends LeanReasoner implements IGSNDecompositionTr
     }
     // create justification
     var proof = (valid) ? "proven" : "cannot be proven";
-    var builder = new PropertyBuilder((SafetyCase) strategy.eContainer());
+    var builder = new GSNTemplatesBuilder((SafetyCase) strategy.eContainer());
     var justId = "J." + strategy.getId().split("\\.", 2)[1];
     justDesc = "Decomposition " + proof + " in " + getName() + ": " + justDesc;
     var just = builder.createJustification(justId, justDesc);

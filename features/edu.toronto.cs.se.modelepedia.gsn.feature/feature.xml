@@ -77,4 +77,11 @@ Famelis, Rick Salay, Nick Fung. All rights reserved.
          version="0.0.0"
          unpack="false"/>
 
+   <plugin
+         id="edu.toronto.cs.se.mmint.types.gsn.templates.edit"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
 </feature>

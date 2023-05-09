@@ -31,13 +31,13 @@ import org.eclipse.ui.PlatformUI;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.modelepedia.gsn.Property;
-import edu.toronto.cs.se.modelepedia.gsn.PropertyDecompositionStrategy;
-import edu.toronto.cs.se.modelepedia.gsn.PropertyGoal;
+import edu.toronto.cs.se.mmint.types.gsn.templates.Property;
+import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyDecompositionStrategy;
+import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyGoal;
+import edu.toronto.cs.se.mmint.types.gsn.templates.reasoning.IGSNDecompositionTrait;
+import edu.toronto.cs.se.mmint.types.gsn.templates.reasoning.IGSNLeanEncoder.PropertyTemplate;
+import edu.toronto.cs.se.mmint.types.gsn.templates.util.GSNTemplatesBuilder;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
-import edu.toronto.cs.se.modelepedia.gsn.reasoning.IGSNDecompositionTrait;
-import edu.toronto.cs.se.modelepedia.gsn.reasoning.IGSNLeanEncoder.PropertyTemplate;
-import edu.toronto.cs.se.modelepedia.gsn.util.PropertyBuilder;
 
 public class PropertyDecompositionRepair extends AbstractExternalJavaAction {
 
@@ -89,7 +89,7 @@ public class PropertyDecompositionRepair extends AbstractExternalJavaAction {
       Property property;
       List<String> propQueries = List.of();
       if (template == PropertyTemplate.CUSTOM) {
-        var builder = new PropertyBuilder((SafetyCase) this.invalidGoal.eContainer());
+        var builder = new GSNTemplatesBuilder((SafetyCase) this.invalidGoal.eContainer());
         property = builder.createProperty(title, "Insert the " + reasonerName + " property to be decomposed",
                                           "Insert a description for the custom property");
       }
