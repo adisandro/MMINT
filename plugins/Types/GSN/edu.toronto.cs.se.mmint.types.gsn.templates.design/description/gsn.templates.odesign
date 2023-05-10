@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" name="gsn.templates" version="12.0.0.2017041100">
+  <ownedViewpoints name="GSNTemplatesViewpoint" modelFileExtension="gsn">
+    <ownedRepresentationExtensions xsi:type="description_1:DiagramExtensionDescription" name="GSNTemplatesRepresentation" viewpointURI="viewpoint:/edu.toronto.cs.se.modelepedia.gsn.design/GSNViewpoint" representationName="GSNRepresentation">
+      <metamodel href="../../edu.toronto.cs.se.mmint.types.gsn.templates/model/gsn.templates.ecore#/"/>
+    </ownedRepresentationExtensions>
+  </ownedViewpoints>
+</description:Group>

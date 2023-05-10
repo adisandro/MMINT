@@ -10,7 +10,7 @@
  * Contributors:
  *     Alessio Di Sandro - Implementation
  *******************************************************************************/
-package edu.toronto.cs.se.modelepedia.gsn.design.context;
+package edu.toronto.cs.se.mmint.types.gsn.templates.design.context;
 
 import java.util.HashMap;
 import java.util.List;

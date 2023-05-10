@@ -11,6 +11,6 @@
  *     Alessio Di Sandro - Implementation
  *******************************************************************************/
 @NonNullByDefault
-package edu.toronto.cs.se.modelepedia.gsn.design.tools;
+package edu.toronto.cs.se.mmint.types.gsn.templates.design.tools;
 
 import org.eclipse.jdt.annotation.NonNullByDefault;

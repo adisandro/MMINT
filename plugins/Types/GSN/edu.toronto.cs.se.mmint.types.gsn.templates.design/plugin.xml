@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<!--
+    Copyright (c) 2023, 2023 Alessio Di Sandro.
+   
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License 2.0 which is available at
+    https://www.eclipse.org/legal/epl-2.0/
+   
+    SPDX-License-Identifier: EPL-2.0
+   
+    Contributors:
+        Alessio Di Sandro - Implementation
+-->
+<plugin>
+  <extension point="org.eclipse.sirius.componentization">
+    <component class="edu.toronto.cs.se.mmint.types.gsn.templates.design.Activator"
+               id="edu.toronto.cs.se.mmint.types.gsn.templates.design"
+	       name="gsn">
+    </component>
+  </extension>
+
+   <extension
+         point="org.eclipse.sirius.externalJavaAction">
+      <javaActions
+            actionClass="edu.toronto.cs.se.mmint.types.gsn.templates.design.tools.CreateDomainGoal"
+            id="edu.toronto.cs.se.mmint.types.gsn.templates.design.tools.CreateDomainGoal">
+      </javaActions>
+      <javaActions
+            actionClass="edu.toronto.cs.se.mmint.types.gsn.templates.design.tools.CreateDomainDecompositionStrategy"
+            id="edu.toronto.cs.se.mmint.types.gsn.templates.design.tools.CreateDomainDecompositionStrategy">
+      </javaActions>
+      <javaActions
+            actionClass="edu.toronto.cs.se.mmint.types.gsn.templates.design.context.DomainDecomposition"
+            id="edu.toronto.cs.se.mmint.types.gsn.templates.design.context.DomainDecomposition">
+      </javaActions>
+      <javaActions
+            actionClass="edu.toronto.cs.se.mmint.types.gsn.templates.design.tools.CreatePropertyGoal"
+            id="edu.toronto.cs.se.mmint.types.gsn.templates.design.tools.CreatePropertyGoal">
+      </javaActions>
+      <javaActions
+            actionClass="edu.toronto.cs.se.mmint.types.gsn.templates.design.tools.CreatePropertyDecompositionStrategy"
+            id="edu.toronto.cs.se.mmint.types.gsn.templates.design.tools.CreatePropertyDecompositionStrategy">
+      </javaActions>
+      <javaActions
+            actionClass="edu.toronto.cs.se.mmint.types.gsn.templates.design.context.PropertyDecomposition"
+            id="edu.toronto.cs.se.mmint.types.gsn.templates.design.context.PropertyDecomposition">
+      </javaActions>
+      <javaActions
+            actionClass="edu.toronto.cs.se.mmint.types.gsn.templates.design.context.GoalDecompositionCheck"
+            id="edu.toronto.cs.se.mmint.types.gsn.templates.design.context.GoalDecompositionCheck">
+      </javaActions>
+      <javaActions
+            actionClass="edu.toronto.cs.se.mmint.types.gsn.templates.design.context.PropertyDecompositionRepair"
+            id="edu.toronto.cs.se.mmint.types.gsn.templates.design.context.PropertyDecompositionRepair">
+      </javaActions>
+      <javaActions
+            actionClass="edu.toronto.cs.se.mmint.types.gsn.templates.design.context.InstantiateTemplate"
+            id="edu.toronto.cs.se.mmint.types.gsn.templates.design.context.InstantiateTemplate">
+      </javaActions>
+   </extension>
+
+</plugin>

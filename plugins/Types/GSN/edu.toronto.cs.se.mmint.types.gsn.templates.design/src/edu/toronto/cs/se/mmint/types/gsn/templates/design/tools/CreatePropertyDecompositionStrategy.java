@@ -10,7 +10,7 @@
  * Contributors:
  *     Alessio Di Sandro - Implementation
  *******************************************************************************/
-package edu.toronto.cs.se.modelepedia.gsn.design.tools;
+package edu.toronto.cs.se.mmint.types.gsn.templates.design.tools;
 
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
