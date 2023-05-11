@@ -75,18 +75,10 @@
               </style>
             </conditionnalStyles>
           </borderedNodeMappings>
-          <conditionnalStyles predicateExpression="aql:not self.oclIsKindOf(gsn::PropertyGoal) or self.oclAsType(gsn::PropertyGoal).valid = true">
-            <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="aql:self.id + ' ' + self.description" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW" workspacePath="/edu.toronto.cs.se.modelepedia.gsn.design/icons/Goal.svg">
-              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            </style>
-          </conditionnalStyles>
-          <conditionnalStyles predicateExpression="aql:self.oclIsKindOf(gsn::PropertyGoal) and self.oclAsType(gsn::PropertyGoal).valid = false">
-            <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="aql:self.id + ' ' + self.description" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW" workspacePath="/edu.toronto.cs.se.modelepedia.gsn.design/icons/PropertyGoal_Invalid.svg">
-              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            </style>
-          </conditionnalStyles>
+          <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="aql:self.id + ' ' + self.description" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW" workspacePath="/edu.toronto.cs.se.modelepedia.gsn.design/icons/Goal.svg">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+          </style>
         </nodeMappings>
         <nodeMappings name="StrategyNode" semanticCandidatesExpression="feature:strategies" domainClass="gsn.Strategy" reusedBorderedNodeMappings="//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']/@borderedNodeMappings[name='ElementImpactNode']">
           <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="aql:self.id + ' ' + self.description" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW" workspacePath="/edu.toronto.cs.se.modelepedia.gsn.design/icons/Strategy.svg">
@@ -181,24 +173,6 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:NodeCreationDescription" name="CreateDomainGoal" label="Create domain goal" nodeMappings="//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']">
-            <variable name="container"/>
-            <viewVariable name="containerView"/>
-            <initialOperation>
-              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
-                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="CreateDomainGoal" id="edu.toronto.cs.se.modelepedia.gsn.design.tools.CreateDomainGoal"/>
-              </firstModelOperations>
-            </initialOperation>
-          </ownedTools>
-          <ownedTools xsi:type="tool:NodeCreationDescription" name="CreatePropertyGoal" label="Create property goal" nodeMappings="//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']">
-            <variable name="container"/>
-            <viewVariable name="containerView"/>
-            <initialOperation>
-              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
-                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="CreatePropertyGoal" id="edu.toronto.cs.se.modelepedia.gsn.design.tools.CreatePropertyGoal"/>
-              </firstModelOperations>
-            </initialOperation>
-          </ownedTools>
           <ownedTools xsi:type="tool:NodeCreationDescription" name="CreateBasicStrategy" label="Create basic strategy" nodeMappings="//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='StrategyNode']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
@@ -214,24 +188,6 @@
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
                 <subModelOperations xsi:type="tool_1:CreateInstance" typeName="gsn.ASILDecompositionStrategy" referenceName="strategies"/>
-              </firstModelOperations>
-            </initialOperation>
-          </ownedTools>
-          <ownedTools xsi:type="tool:NodeCreationDescription" name="CreateDomainDecompositionStrategy" label="Create domain decomposition strategy" nodeMappings="//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='StrategyNode']">
-            <variable name="container"/>
-            <viewVariable name="containerView"/>
-            <initialOperation>
-              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
-                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="CreateDomainDecompositionStrategy" id="edu.toronto.cs.se.modelepedia.gsn.design.tools.CreateDomainDecompositionStrategy"/>
-              </firstModelOperations>
-            </initialOperation>
-          </ownedTools>
-          <ownedTools xsi:type="tool:NodeCreationDescription" name="CreatePropertyDecompositionStrategy" label="Create property decomposition strategy" nodeMappings="//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='StrategyNode']">
-            <variable name="container"/>
-            <viewVariable name="containerView"/>
-            <initialOperation>
-              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
-                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="CreatePropertyDecompositionStrategy" id="edu.toronto.cs.se.modelepedia.gsn.design.tools.CreatePropertyDecompositionStrategy"/>
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
@@ -366,10 +322,6 @@
         <toolSections name="Menus">
           <ownedTools xsi:type="tool_1:PopupMenu" name="MMINT">
             <menuItemDescription xsi:type="tool_1:ExternalJavaAction" name="EvaluateQuery" label="Evaluate Query" id="edu.toronto.cs.se.mmint.mid.diagram.context.SiriusEvaluateQuery"/>
-            <menuItemDescription xsi:type="tool_1:ExternalJavaAction" name="DomainDecomposition" label="Domain Decomposition" id="edu.toronto.cs.se.modelepedia.gsn.design.context.DomainDecomposition"/>
-            <menuItemDescription xsi:type="tool_1:ExternalJavaAction" name="PropertyDecomposition" label="Property Decomposition" id="edu.toronto.cs.se.modelepedia.gsn.design.context.PropertyDecomposition"/>
-            <menuItemDescription xsi:type="tool_1:ExternalJavaAction" name="GoalDecompositionCheck" label="Goal Decomposition Check" id="edu.toronto.cs.se.modelepedia.gsn.design.context.GoalDecompositionCheck"/>
-            <menuItemDescription xsi:type="tool_1:ExternalJavaAction" name="PropertyDecompositionRepair" label="Property Decomposition Repair" id="edu.toronto.cs.se.modelepedia.gsn.design.context.PropertyDecompositionRepair"/>
             <menuItemDescription xsi:type="tool_1:ExternalJavaAction" name="InstantiateTemplate" label="Instantiate Template" id="edu.toronto.cs.se.modelepedia.gsn.design.context.InstantiateTemplate"/>
           </ownedTools>
         </toolSections>
@@ -425,6 +377,5 @@
       <ownedColumnMappings name="CountColumn" headerLabelExpression="Total No. (N)" featureName="goals" labelExpression="aql:let goalNum = self.goals -> size(), strategyNum = self.strategies -> size(), solutionNum = self.solutions -> size(), contextNum = self.contexts -> size(), assumptionNum = self.assumptions -> size(), justificationNum = self.justifications -> size(), asilNum = self.goals.asil -> size() in goalNum + strategyNum + solutionNum + contextNum + justificationNum + assumptionNum + asilNum"/>
       <ownedColumnMappings name="ManualColumn" headerLabelExpression="Cost_MIA" featureName="goals" labelExpression="aql:let goalNum = self.goals -> size(), strategyNum = self.strategies -> size(), solutionNum = self.solutions -> size(), contextNum = self.contexts -> size(), assumptionNum = self.assumptions -> size(), justificationNum = self.justifications -> size(), asilNum = self.goals.asil -> size() in goalNum + strategyNum + solutionNum + contextNum + justificationNum + assumptionNum + asilNum"/>
     </ownedRepresentations>
-    <ownedJavaExtensions qualifiedClassName="edu.toronto.cs.se.modelepedia.gsn.design.Services"/>
   </ownedViewpoints>
 </description:Group>

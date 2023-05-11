@@ -16,7 +16,7 @@
   <extension point="org.eclipse.sirius.componentization">
     <component class="edu.toronto.cs.se.mmint.types.gsn.templates.design.Activator"
                id="edu.toronto.cs.se.mmint.types.gsn.templates.design"
-	       name="gsn">
+	       name="gsn.templates">
     </component>
   </extension>
 
@@ -53,10 +53,6 @@
       <javaActions
             actionClass="edu.toronto.cs.se.mmint.types.gsn.templates.design.context.PropertyDecompositionRepair"
             id="edu.toronto.cs.se.mmint.types.gsn.templates.design.context.PropertyDecompositionRepair">
-      </javaActions>
-      <javaActions
-            actionClass="edu.toronto.cs.se.mmint.types.gsn.templates.design.context.InstantiateTemplate"
-            id="edu.toronto.cs.se.mmint.types.gsn.templates.design.context.InstantiateTemplate">
       </javaActions>
    </extension>
 

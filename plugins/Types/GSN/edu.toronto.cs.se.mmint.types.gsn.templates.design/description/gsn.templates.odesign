@@ -1,8 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" name="gsn.templates" version="12.0.0.2017041100">
+<description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:tool="http://www.eclipse.org/sirius/diagram/description/tool/1.1.0" xmlns:tool_1="http://www.eclipse.org/sirius/description/tool/1.1.0" name="gsn.templates" version="12.0.0.2017041100">
   <ownedViewpoints name="GSNTemplatesViewpoint" modelFileExtension="gsn">
     <ownedRepresentationExtensions xsi:type="description_1:DiagramExtensionDescription" name="GSNTemplatesRepresentation" viewpointURI="viewpoint:/edu.toronto.cs.se.modelepedia.gsn.design/GSNViewpoint" representationName="GSNRepresentation">
       <metamodel href="../../edu.toronto.cs.se.mmint.types.gsn.templates/model/gsn.templates.ecore#/"/>
+      <layers name="Templates" optional="false">
+        <toolSections name="Templates">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="CreateDomainGoal" label="Create domain goal">
+            <nodeMappings href="../../edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']"/>
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="CreateDomainGoal" id="edu.toronto.cs.se.mmint.types.gsn.templates.design.tools.CreateDomainGoal"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="CreatePropertyGoal" label="Create property goal">
+            <nodeMappings href="../../edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']"/>
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="CreatePropertyGoal" id="edu.toronto.cs.se.mmint.types.gsn.templates.design.tools.CreatePropertyGoal"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="CreateDomainDecompositionStrategy" label="Create domain decomposition strategy">
+            <nodeMappings href="../../edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='StrategyNode']"/>
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="CreateDomainDecompositionStrategy" id="edu.toronto.cs.se.mmint.types.gsn.templates.design.tools.CreateDomainDecompositionStrategy"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="CreatePropertyDecompositionStrategy" label="Create property decomposition strategy">
+            <nodeMappings href="../../edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='StrategyNode']"/>
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="CreatePropertyDecompositionStrategy" id="edu.toronto.cs.se.mmint.types.gsn.templates.design.tools.CreatePropertyDecompositionStrategy"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+        <toolSections name="Menus">
+          <ownedTools xsi:type="tool_1:PopupMenu" name="MMINT">
+            <menuItemDescription xsi:type="tool_1:ExternalJavaAction" name="DomainDecomposition" label="Domain Decomposition" id="edu.toronto.cs.se.mmint.types.gsn.templates.design.context.DomainDecomposition"/>
+            <menuItemDescription xsi:type="tool_1:ExternalJavaAction" name="PropertyDecomposition" label="Property Decomposition" id="edu.toronto.cs.se.mmint.types.gsn.templates.design.context.PropertyDecomposition"/>
+            <menuItemDescription xsi:type="tool_1:ExternalJavaAction" name="GoalDecompositionCheck" label="Goal Decomposition Check" id="edu.toronto.cs.se.mmint.types.gsn.templates.design.context.GoalDecompositionCheck"/>
+            <menuItemDescription xsi:type="tool_1:ExternalJavaAction" name="PropertyDecompositionRepair" label="Property Decomposition Repair" id="edu.toronto.cs.se.mmint.types.gsn.templates.design.context.PropertyDecompositionRepair"/>
+          </ownedTools>
+        </toolSections>
+      </layers>
     </ownedRepresentationExtensions>
   </ownedViewpoints>
 </description:Group>

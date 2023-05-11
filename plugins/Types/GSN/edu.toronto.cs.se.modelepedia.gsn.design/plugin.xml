@@ -39,38 +39,6 @@
    <extension
          point="org.eclipse.sirius.externalJavaAction">
       <javaActions
-            actionClass="edu.toronto.cs.se.modelepedia.gsn.design.tools.CreateDomainGoal"
-            id="edu.toronto.cs.se.modelepedia.gsn.design.tools.CreateDomainGoal">
-      </javaActions>
-      <javaActions
-            actionClass="edu.toronto.cs.se.modelepedia.gsn.design.tools.CreateDomainDecompositionStrategy"
-            id="edu.toronto.cs.se.modelepedia.gsn.design.tools.CreateDomainDecompositionStrategy">
-      </javaActions>
-      <javaActions
-            actionClass="edu.toronto.cs.se.modelepedia.gsn.design.context.DomainDecomposition"
-            id="edu.toronto.cs.se.modelepedia.gsn.design.context.DomainDecomposition">
-      </javaActions>
-      <javaActions
-            actionClass="edu.toronto.cs.se.modelepedia.gsn.design.tools.CreatePropertyGoal"
-            id="edu.toronto.cs.se.modelepedia.gsn.design.tools.CreatePropertyGoal">
-      </javaActions>
-      <javaActions
-            actionClass="edu.toronto.cs.se.modelepedia.gsn.design.tools.CreatePropertyDecompositionStrategy"
-            id="edu.toronto.cs.se.modelepedia.gsn.design.tools.CreatePropertyDecompositionStrategy">
-      </javaActions>
-      <javaActions
-            actionClass="edu.toronto.cs.se.modelepedia.gsn.design.context.PropertyDecomposition"
-            id="edu.toronto.cs.se.modelepedia.gsn.design.context.PropertyDecomposition">
-      </javaActions>
-      <javaActions
-            actionClass="edu.toronto.cs.se.modelepedia.gsn.design.context.GoalDecompositionCheck"
-            id="edu.toronto.cs.se.modelepedia.gsn.design.context.GoalDecompositionCheck">
-      </javaActions>
-      <javaActions
-            actionClass="edu.toronto.cs.se.modelepedia.gsn.design.context.PropertyDecompositionRepair"
-            id="edu.toronto.cs.se.modelepedia.gsn.design.context.PropertyDecompositionRepair">
-      </javaActions>
-      <javaActions
             actionClass="edu.toronto.cs.se.modelepedia.gsn.design.context.InstantiateTemplate"
             id="edu.toronto.cs.se.modelepedia.gsn.design.context.InstantiateTemplate">
       </javaActions>
