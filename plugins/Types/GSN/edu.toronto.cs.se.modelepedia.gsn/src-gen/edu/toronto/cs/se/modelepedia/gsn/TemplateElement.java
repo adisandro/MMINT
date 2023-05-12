@@ -33,12 +33,13 @@ import org.eclipse.emf.ecore.EObject;
 public interface TemplateElement extends EObject {
   /**
    * Returns the value of the '<em><b>Valid</b></em>' attribute.
+   * The default value is <code>"true"</code>.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Valid</em>' attribute.
    * @see #setValid(boolean)
    * @see edu.toronto.cs.se.modelepedia.gsn.GSNPackage#getTemplateElement_Valid()
-   * @model required="true"
+   * @model default="true" required="true"
    * @generated
    */
   boolean isValid();

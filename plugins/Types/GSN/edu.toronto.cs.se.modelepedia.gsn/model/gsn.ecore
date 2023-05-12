@@ -191,6 +191,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="TemplateElement" abstract="true">
     <eOperations name="validate" eExceptions="#//Exception"/>
     <eOperations name="repair" eExceptions="#//Exception"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="valid" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="valid" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="true"/>
   </eClassifiers>
 </ecore:EPackage>

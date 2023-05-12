@@ -45,7 +45,7 @@ public abstract class TemplateElementImpl extends MinimalEObjectImpl.Container i
    * @generated
    * @ordered
    */
-  protected static final boolean VALID_EDEFAULT = false;
+  protected static final boolean VALID_EDEFAULT = true;
 
   /**
    * The cached value of the '{@link #isValid() <em>Valid</em>}' attribute.
