@@ -327,7 +327,7 @@
           </ownedTools>
         </toolSections>
         <decorationDescriptionsSet>
-          <decorationDescriptions xsi:type="description:SemanticBasedDecoration" name="TemplateDecoration" position="NORTH_WEST" tooltipExpression="Template element" domainClass="gsn.TemplateElement"/>
+          <decorationDescriptions xsi:type="description:SemanticBasedDecoration" name="TemplateDecoration" position="NORTH_WEST" imageExpression="/edu.toronto.cs.se.modelepedia.gsn.design/icons/TemplateElement.png" tooltipExpression="Template element" domainClass="gsn.TemplateElement"/>
         </decorationDescriptionsSet>
         <customization>
           <vsmElementCustomizations xsi:type="description:VSMElementCustomization" predicateExpression="aql: not self.oclAsType(gsn::TemplateElement).valid">
