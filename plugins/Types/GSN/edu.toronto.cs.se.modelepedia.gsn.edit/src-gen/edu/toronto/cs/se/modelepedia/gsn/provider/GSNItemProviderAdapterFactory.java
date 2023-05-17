@@ -472,6 +472,29 @@ public class GSNItemProviderAdapterFactory extends GSNAdapterFactory implements 
   }
 
   /**
+   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.gsn.Template} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected TemplateItemProvider templateItemProvider;
+
+  /**
+   * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.gsn.Template}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createTemplateAdapter() {
+    if (this.templateItemProvider == null) {
+      this.templateItemProvider = new TemplateItemProvider(this);
+    }
+
+    return this.templateItemProvider;
+  }
+
+  /**
    * This returns the root adapter factory that contains this factory.
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
@@ -615,6 +638,7 @@ public class GSNItemProviderAdapterFactory extends GSNAdapterFactory implements 
     if (this.orSupporterItemProvider != null) this.orSupporterItemProvider.dispose();
     if (this.xorSupporterItemProvider != null) this.xorSupporterItemProvider.dispose();
     if (this.mofNSupporterItemProvider != null) this.mofNSupporterItemProvider.dispose();
+    if (this.templateItemProvider != null) this.templateItemProvider.dispose();
   }
 
 }

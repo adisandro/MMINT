@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
@@ -30,6 +31,7 @@ import edu.toronto.cs.se.modelepedia.gsn.DecomposableCoreElement;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.ImpactAnnotation;
 import edu.toronto.cs.se.modelepedia.gsn.InContextOf;
+import edu.toronto.cs.se.modelepedia.gsn.Template;
 import edu.toronto.cs.se.modelepedia.gsn.ValidityValue;
 
 /**
@@ -43,6 +45,7 @@ import edu.toronto.cs.se.modelepedia.gsn.ValidityValue;
  *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.DecomposableCoreElementImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.DecomposableCoreElementImpl#getContentValidity <em>Content Validity</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.DecomposableCoreElementImpl#getStatus <em>Status</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.DecomposableCoreElementImpl#getTemplates <em>Templates</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.DecomposableCoreElementImpl#getInContextOf <em>In Context Of</em>}</li>
  * </ul>
  *
@@ -116,6 +119,16 @@ public abstract class DecomposableCoreElementImpl extends SupportableImpl implem
    * @ordered
    */
   protected ImpactAnnotation status;
+
+  /**
+   * The cached value of the '{@link #getTemplates() <em>Templates</em>}' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getTemplates()
+   * @generated
+   * @ordered
+   */
+  protected EList<Template> templates;
 
   /**
    * The cached value of the '{@link #getInContextOf() <em>In Context Of</em>}' containment reference list. <!--
@@ -250,6 +263,19 @@ public abstract class DecomposableCoreElementImpl extends SupportableImpl implem
   }
 
   /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EList<Template> getTemplates() {
+    if (this.templates == null) {
+      this.templates = new EObjectWithInverseResolvingEList.ManyInverse<>(Template.class, this, GSNPackage.DECOMPOSABLE_CORE_ELEMENT__TEMPLATES, GSNPackage.TEMPLATE__ELEMENTS);
+    }
+    return this.templates;
+  }
+
+  /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
@@ -269,6 +295,8 @@ public abstract class DecomposableCoreElementImpl extends SupportableImpl implem
   @Override
   public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
+      case GSNPackage.DECOMPOSABLE_CORE_ELEMENT__TEMPLATES:
+        return ((InternalEList<InternalEObject>)(InternalEList<?>)getTemplates()).basicAdd(otherEnd, msgs);
       case GSNPackage.DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF:
         return ((InternalEList<InternalEObject>)(InternalEList<?>)getInContextOf()).basicAdd(otherEnd, msgs);
     }
@@ -284,6 +312,8 @@ public abstract class DecomposableCoreElementImpl extends SupportableImpl implem
     switch (featureID) {
       case GSNPackage.DECOMPOSABLE_CORE_ELEMENT__STATUS:
         return basicSetStatus(null, msgs);
+      case GSNPackage.DECOMPOSABLE_CORE_ELEMENT__TEMPLATES:
+        return ((InternalEList<?>)getTemplates()).basicRemove(otherEnd, msgs);
       case GSNPackage.DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF:
         return ((InternalEList<?>)getInContextOf()).basicRemove(otherEnd, msgs);
     }
@@ -305,6 +335,8 @@ public abstract class DecomposableCoreElementImpl extends SupportableImpl implem
         return getContentValidity();
       case GSNPackage.DECOMPOSABLE_CORE_ELEMENT__STATUS:
         return getStatus();
+      case GSNPackage.DECOMPOSABLE_CORE_ELEMENT__TEMPLATES:
+        return getTemplates();
       case GSNPackage.DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF:
         return getInContextOf();
     }
@@ -330,6 +362,10 @@ public abstract class DecomposableCoreElementImpl extends SupportableImpl implem
         return;
       case GSNPackage.DECOMPOSABLE_CORE_ELEMENT__STATUS:
         setStatus((ImpactAnnotation)newValue);
+        return;
+      case GSNPackage.DECOMPOSABLE_CORE_ELEMENT__TEMPLATES:
+        getTemplates().clear();
+        getTemplates().addAll((Collection<? extends Template>)newValue);
         return;
       case GSNPackage.DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF:
         getInContextOf().clear();
@@ -358,6 +394,9 @@ public abstract class DecomposableCoreElementImpl extends SupportableImpl implem
       case GSNPackage.DECOMPOSABLE_CORE_ELEMENT__STATUS:
         setStatus((ImpactAnnotation)null);
         return;
+      case GSNPackage.DECOMPOSABLE_CORE_ELEMENT__TEMPLATES:
+        getTemplates().clear();
+        return;
       case GSNPackage.DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF:
         getInContextOf().clear();
         return;
@@ -380,6 +419,8 @@ public abstract class DecomposableCoreElementImpl extends SupportableImpl implem
         return this.contentValidity != DecomposableCoreElementImpl.CONTENT_VALIDITY_EDEFAULT;
       case GSNPackage.DECOMPOSABLE_CORE_ELEMENT__STATUS:
         return this.status != null;
+      case GSNPackage.DECOMPOSABLE_CORE_ELEMENT__TEMPLATES:
+        return this.templates != null && !this.templates.isEmpty();
       case GSNPackage.DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF:
         return this.inContextOf != null && !this.inContextOf.isEmpty();
     }
@@ -398,6 +439,7 @@ public abstract class DecomposableCoreElementImpl extends SupportableImpl implem
       case GSNPackage.DECOMPOSABLE_CORE_ELEMENT__DESCRIPTION -> GSNPackage.ARGUMENT_ELEMENT__DESCRIPTION;
       case GSNPackage.DECOMPOSABLE_CORE_ELEMENT__CONTENT_VALIDITY -> GSNPackage.ARGUMENT_ELEMENT__CONTENT_VALIDITY;
       case GSNPackage.DECOMPOSABLE_CORE_ELEMENT__STATUS -> GSNPackage.ARGUMENT_ELEMENT__STATUS;
+      case GSNPackage.DECOMPOSABLE_CORE_ELEMENT__TEMPLATES -> GSNPackage.ARGUMENT_ELEMENT__TEMPLATES;
       default -> -1;
       };
     }
@@ -421,6 +463,7 @@ public abstract class DecomposableCoreElementImpl extends SupportableImpl implem
       case GSNPackage.ARGUMENT_ELEMENT__DESCRIPTION -> GSNPackage.DECOMPOSABLE_CORE_ELEMENT__DESCRIPTION;
       case GSNPackage.ARGUMENT_ELEMENT__CONTENT_VALIDITY -> GSNPackage.DECOMPOSABLE_CORE_ELEMENT__CONTENT_VALIDITY;
       case GSNPackage.ARGUMENT_ELEMENT__STATUS -> GSNPackage.DECOMPOSABLE_CORE_ELEMENT__STATUS;
+      case GSNPackage.ARGUMENT_ELEMENT__TEMPLATES -> GSNPackage.DECOMPOSABLE_CORE_ELEMENT__TEMPLATES;
       default -> -1;
       };
     }

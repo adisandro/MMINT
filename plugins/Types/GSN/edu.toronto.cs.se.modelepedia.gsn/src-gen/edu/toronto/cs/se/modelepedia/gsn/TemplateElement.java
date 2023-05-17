@@ -12,8 +12,6 @@
  *******************************************************************************/
 package edu.toronto.cs.se.modelepedia.gsn;
 
-import org.eclipse.emf.ecore.EObject;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Template Element</b></em>'.
@@ -30,7 +28,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model abstract="true"
  * @generated
  */
-public interface TemplateElement extends EObject {
+public interface TemplateElement extends ArgumentElement {
   /**
    * Returns the value of the '<em><b>Valid</b></em>' attribute.
    * The default value is <code>"true"</code>.

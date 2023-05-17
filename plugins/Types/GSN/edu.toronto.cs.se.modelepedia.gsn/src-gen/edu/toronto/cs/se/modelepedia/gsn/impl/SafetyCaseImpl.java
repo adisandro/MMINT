@@ -32,6 +32,7 @@ import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
 import edu.toronto.cs.se.modelepedia.gsn.Solution;
 import edu.toronto.cs.se.modelepedia.gsn.Strategy;
 import edu.toronto.cs.se.modelepedia.gsn.SupportConnector;
+import edu.toronto.cs.se.modelepedia.gsn.Template;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Safety Case</b></em>'. <!-- end-user-doc -->
@@ -46,6 +47,7 @@ import edu.toronto.cs.se.modelepedia.gsn.SupportConnector;
  *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.SafetyCaseImpl#getJustifications <em>Justifications</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.SafetyCaseImpl#getAssumptions <em>Assumptions</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.SafetyCaseImpl#getConnectors <em>Connectors</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.SafetyCaseImpl#getTemplates <em>Templates</em>}</li>
  * </ul>
  *
  * @generated
@@ -120,6 +122,16 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
    * @ordered
    */
   protected EList<SupportConnector> connectors;
+
+  /**
+   * The cached value of the '{@link #getTemplates() <em>Templates</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getTemplates()
+   * @generated
+   * @ordered
+   */
+  protected EList<Template> templates;
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -223,6 +235,19 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
   }
 
   /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EList<Template> getTemplates() {
+    if (this.templates == null) {
+      this.templates = new EObjectContainmentEList<>(Template.class, this, GSNPackage.SAFETY_CASE__TEMPLATES);
+    }
+    return this.templates;
+  }
+
+  /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
@@ -243,6 +268,8 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
         return ((InternalEList<?>)getAssumptions()).basicRemove(otherEnd, msgs);
       case GSNPackage.SAFETY_CASE__CONNECTORS:
         return ((InternalEList<?>)getConnectors()).basicRemove(otherEnd, msgs);
+      case GSNPackage.SAFETY_CASE__TEMPLATES:
+        return ((InternalEList<?>)getTemplates()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -268,6 +295,8 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
         return getAssumptions();
       case GSNPackage.SAFETY_CASE__CONNECTORS:
         return getConnectors();
+      case GSNPackage.SAFETY_CASE__TEMPLATES:
+        return getTemplates();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -308,6 +337,10 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
         getConnectors().clear();
         getConnectors().addAll((Collection<? extends SupportConnector>)newValue);
         return;
+      case GSNPackage.SAFETY_CASE__TEMPLATES:
+        getTemplates().clear();
+        getTemplates().addAll((Collection<? extends Template>)newValue);
+        return;
     }
     super.eSet(featureID, newValue);
   }
@@ -340,6 +373,9 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
       case GSNPackage.SAFETY_CASE__CONNECTORS:
         getConnectors().clear();
         return;
+      case GSNPackage.SAFETY_CASE__TEMPLATES:
+        getTemplates().clear();
+        return;
     }
     super.eUnset(featureID);
   }
@@ -365,6 +401,8 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
         return this.assumptions != null && !this.assumptions.isEmpty();
       case GSNPackage.SAFETY_CASE__CONNECTORS:
         return this.connectors != null && !this.connectors.isEmpty();
+      case GSNPackage.SAFETY_CASE__TEMPLATES:
+        return this.templates != null && !this.templates.isEmpty();
     }
     return super.eIsSet(featureID);
   }

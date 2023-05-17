@@ -65,6 +65,7 @@ public class ArgumentElementItemProvider extends ItemProviderAdapter implements 
       addDescriptionPropertyDescriptor(object);
       addContentValidityPropertyDescriptor(object);
       addStatusPropertyDescriptor(object);
+      addTemplatesPropertyDescriptor(object);
     }
     return this.itemPropertyDescriptors;
   }
@@ -148,6 +149,28 @@ public class ArgumentElementItemProvider extends ItemProviderAdapter implements 
          true,
          false,
          false,
+         null,
+         null,
+         null));
+  }
+
+  /**
+   * This adds a property descriptor for the Templates feature.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected void addTemplatesPropertyDescriptor(Object object) {
+    this.itemPropertyDescriptors.add
+      (createItemPropertyDescriptor
+        (((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
+         getResourceLocator(),
+         getString("_UI_ArgumentElement_templates_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_ArgumentElement_templates_feature", "_UI_ArgumentElement_type"),
+         GSNPackage.Literals.ARGUMENT_ELEMENT__TEMPLATES,
+         true,
+         false,
+         true,
          null,
          null,
          null));

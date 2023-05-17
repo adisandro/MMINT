@@ -346,6 +346,7 @@ public class GSNSwitch<T> extends Switch<T> {
       case GSNPackage.TEMPLATE_ELEMENT: {
         var templateElement = (TemplateElement)theEObject;
         var result = caseTemplateElement(templateElement);
+        if (result == null) result = caseArgumentElement(templateElement);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }

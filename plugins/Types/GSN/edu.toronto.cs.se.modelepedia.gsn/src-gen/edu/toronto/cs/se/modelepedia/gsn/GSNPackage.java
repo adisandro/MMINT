@@ -139,13 +139,22 @@ public interface GSNPackage extends EPackage {
   int SAFETY_CASE__CONNECTORS = 6;
 
   /**
+   * The feature id for the '<em><b>Templates</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SAFETY_CASE__TEMPLATES = 7;
+
+  /**
    * The number of structural features of the '<em>Safety Case</em>' class. <!-- begin-user-doc --> <!-- end-user-doc
    * -->
    *
    * @generated
    * @ordered
    */
-  int SAFETY_CASE_FEATURE_COUNT = 7;
+  int SAFETY_CASE_FEATURE_COUNT = 8;
 
   /**
    * The number of operations of the '<em>Safety Case</em>' class.
@@ -198,13 +207,22 @@ public interface GSNPackage extends EPackage {
   int ARGUMENT_ELEMENT__STATUS = 3;
 
   /**
+   * The feature id for the '<em><b>Templates</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ARGUMENT_ELEMENT__TEMPLATES = 4;
+
+  /**
    * The number of structural features of the '<em>Argument Element</em>' class.
    * <!-- begin-user-doc --> <!--
    * end-user-doc -->
    * @generated
    * @ordered
    */
-  int ARGUMENT_ELEMENT_FEATURE_COUNT = 4;
+  int ARGUMENT_ELEMENT_FEATURE_COUNT = 5;
 
   /**
    * The number of operations of the '<em>Argument Element</em>' class.
@@ -323,6 +341,15 @@ public interface GSNPackage extends EPackage {
    * @ordered
    */
   int CORE_ELEMENT__STATUS = GSNPackage.ARGUMENT_ELEMENT__STATUS;
+
+  /**
+   * The feature id for the '<em><b>Templates</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CORE_ELEMENT__TEMPLATES = GSNPackage.ARGUMENT_ELEMENT__TEMPLATES;
 
   /**
    * The feature id for the '<em><b>Supports</b></em>' reference list.
@@ -485,13 +512,22 @@ public interface GSNPackage extends EPackage {
   int DECOMPOSABLE_CORE_ELEMENT__STATUS = GSNPackage.SUPPORTABLE_FEATURE_COUNT + 3;
 
   /**
+   * The feature id for the '<em><b>Templates</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DECOMPOSABLE_CORE_ELEMENT__TEMPLATES = GSNPackage.SUPPORTABLE_FEATURE_COUNT + 4;
+
+  /**
    * The feature id for the '<em><b>In Context Of</b></em>' containment reference list.
    * <!-- begin-user-doc --> <!--
    * end-user-doc -->
    * @generated
    * @ordered
    */
-  int DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF = GSNPackage.SUPPORTABLE_FEATURE_COUNT + 4;
+  int DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF = GSNPackage.SUPPORTABLE_FEATURE_COUNT + 5;
 
   /**
    * The number of structural features of the '<em>Decomposable Core Element</em>' class.
@@ -500,7 +536,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DECOMPOSABLE_CORE_ELEMENT_FEATURE_COUNT = GSNPackage.SUPPORTABLE_FEATURE_COUNT + 5;
+  int DECOMPOSABLE_CORE_ELEMENT_FEATURE_COUNT = GSNPackage.SUPPORTABLE_FEATURE_COUNT + 6;
 
   /**
    * The number of operations of the '<em>Decomposable Core Element</em>' class.
@@ -552,6 +588,15 @@ public interface GSNPackage extends EPackage {
    * @ordered
    */
   int CONTEXTUAL_ELEMENT__STATUS = GSNPackage.ARGUMENT_ELEMENT__STATUS;
+
+  /**
+   * The feature id for the '<em><b>Templates</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTEXTUAL_ELEMENT__TEMPLATES = GSNPackage.ARGUMENT_ELEMENT__TEMPLATES;
 
   /**
    * The feature id for the '<em><b>Context Of</b></em>' reference list.
@@ -724,6 +769,15 @@ public interface GSNPackage extends EPackage {
   int GOAL__STATUS = GSNPackage.DECOMPOSABLE_CORE_ELEMENT__STATUS;
 
   /**
+   * The feature id for the '<em><b>Templates</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int GOAL__TEMPLATES = GSNPackage.DECOMPOSABLE_CORE_ELEMENT__TEMPLATES;
+
+  /**
    * The feature id for the '<em><b>In Context Of</b></em>' containment reference list.
    * <!-- begin-user-doc --> <!--
    * end-user-doc -->
@@ -824,6 +878,15 @@ public interface GSNPackage extends EPackage {
   int BASIC_GOAL__STATUS = GSNPackage.GOAL__STATUS;
 
   /**
+   * The feature id for the '<em><b>Templates</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BASIC_GOAL__TEMPLATES = GSNPackage.GOAL__TEMPLATES;
+
+  /**
    * The feature id for the '<em><b>In Context Of</b></em>' containment reference list.
    * <!-- begin-user-doc --> <!--
    * end-user-doc -->
@@ -922,6 +985,15 @@ public interface GSNPackage extends EPackage {
    * @ordered
    */
   int INDEPENDENCE_GOAL__STATUS = GSNPackage.GOAL__STATUS;
+
+  /**
+   * The feature id for the '<em><b>Templates</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INDEPENDENCE_GOAL__TEMPLATES = GSNPackage.GOAL__TEMPLATES;
 
   /**
    * The feature id for the '<em><b>In Context Of</b></em>' containment reference list.
@@ -1025,6 +1097,15 @@ public interface GSNPackage extends EPackage {
   int STRATEGY__STATUS = GSNPackage.DECOMPOSABLE_CORE_ELEMENT__STATUS;
 
   /**
+   * The feature id for the '<em><b>Templates</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STRATEGY__TEMPLATES = GSNPackage.DECOMPOSABLE_CORE_ELEMENT__TEMPLATES;
+
+  /**
    * The feature id for the '<em><b>In Context Of</b></em>' containment reference list.
    * <!-- begin-user-doc --> <!--
    * end-user-doc -->
@@ -1107,6 +1188,15 @@ public interface GSNPackage extends EPackage {
    * @ordered
    */
   int BASIC_STRATEGY__STATUS = GSNPackage.STRATEGY__STATUS;
+
+  /**
+   * The feature id for the '<em><b>Templates</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BASIC_STRATEGY__TEMPLATES = GSNPackage.STRATEGY__TEMPLATES;
 
   /**
    * The feature id for the '<em><b>In Context Of</b></em>' containment reference list.
@@ -1194,6 +1284,15 @@ public interface GSNPackage extends EPackage {
   int ASIL_DECOMPOSITION_STRATEGY__STATUS = GSNPackage.STRATEGY__STATUS;
 
   /**
+   * The feature id for the '<em><b>Templates</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ASIL_DECOMPOSITION_STRATEGY__TEMPLATES = GSNPackage.STRATEGY__TEMPLATES;
+
+  /**
    * The feature id for the '<em><b>In Context Of</b></em>' containment reference list.
    * <!-- begin-user-doc --> <!--
    * end-user-doc -->
@@ -1261,6 +1360,15 @@ public interface GSNPackage extends EPackage {
    * @ordered
    */
   int SOLUTION__STATUS = GSNPackage.CORE_ELEMENT__STATUS;
+
+  /**
+   * The feature id for the '<em><b>Templates</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SOLUTION__TEMPLATES = GSNPackage.CORE_ELEMENT__TEMPLATES;
 
   /**
    * The feature id for the '<em><b>Supports</b></em>' reference list.
@@ -1337,6 +1445,15 @@ public interface GSNPackage extends EPackage {
   int CONTEXT__STATUS = GSNPackage.CONTEXTUAL_ELEMENT__STATUS;
 
   /**
+   * The feature id for the '<em><b>Templates</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTEXT__TEMPLATES = GSNPackage.CONTEXTUAL_ELEMENT__TEMPLATES;
+
+  /**
    * The feature id for the '<em><b>Context Of</b></em>' reference list.
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
@@ -1401,6 +1518,15 @@ public interface GSNPackage extends EPackage {
    * @ordered
    */
   int JUSTIFICATION__STATUS = GSNPackage.CONTEXTUAL_ELEMENT__STATUS;
+
+  /**
+   * The feature id for the '<em><b>Templates</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int JUSTIFICATION__TEMPLATES = GSNPackage.CONTEXTUAL_ELEMENT__TEMPLATES;
 
   /**
    * The feature id for the '<em><b>Context Of</b></em>' reference list.
@@ -1468,6 +1594,15 @@ public interface GSNPackage extends EPackage {
    * @ordered
    */
   int ASSUMPTION__STATUS = GSNPackage.CONTEXTUAL_ELEMENT__STATUS;
+
+  /**
+   * The feature id for the '<em><b>Templates</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ASSUMPTION__TEMPLATES = GSNPackage.CONTEXTUAL_ELEMENT__TEMPLATES;
 
   /**
    * The feature id for the '<em><b>Context Of</b></em>' reference list.
@@ -1884,13 +2019,58 @@ public interface GSNPackage extends EPackage {
   int TEMPLATE_ELEMENT = 29;
 
   /**
+   * The feature id for the '<em><b>Id</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TEMPLATE_ELEMENT__ID = GSNPackage.ARGUMENT_ELEMENT__ID;
+
+  /**
+   * The feature id for the '<em><b>Description</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TEMPLATE_ELEMENT__DESCRIPTION = GSNPackage.ARGUMENT_ELEMENT__DESCRIPTION;
+
+  /**
+   * The feature id for the '<em><b>Content Validity</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TEMPLATE_ELEMENT__CONTENT_VALIDITY = GSNPackage.ARGUMENT_ELEMENT__CONTENT_VALIDITY;
+
+  /**
+   * The feature id for the '<em><b>Status</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TEMPLATE_ELEMENT__STATUS = GSNPackage.ARGUMENT_ELEMENT__STATUS;
+
+  /**
+   * The feature id for the '<em><b>Templates</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TEMPLATE_ELEMENT__TEMPLATES = GSNPackage.ARGUMENT_ELEMENT__TEMPLATES;
+
+  /**
    * The feature id for the '<em><b>Valid</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int TEMPLATE_ELEMENT__VALID = 0;
+  int TEMPLATE_ELEMENT__VALID = GSNPackage.ARGUMENT_ELEMENT_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Template Element</em>' class.
@@ -1899,7 +2079,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int TEMPLATE_ELEMENT_FEATURE_COUNT = 1;
+  int TEMPLATE_ELEMENT_FEATURE_COUNT = GSNPackage.ARGUMENT_ELEMENT_FEATURE_COUNT + 1;
 
   /**
    * The operation id for the '<em>Validate</em>' operation.
@@ -1908,7 +2088,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int TEMPLATE_ELEMENT___VALIDATE = 0;
+  int TEMPLATE_ELEMENT___VALIDATE = GSNPackage.ARGUMENT_ELEMENT_OPERATION_COUNT + 0;
 
   /**
    * The operation id for the '<em>Repair</em>' operation.
@@ -1917,7 +2097,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int TEMPLATE_ELEMENT___REPAIR = 1;
+  int TEMPLATE_ELEMENT___REPAIR = GSNPackage.ARGUMENT_ELEMENT_OPERATION_COUNT + 1;
 
   /**
    * The number of operations of the '<em>Template Element</em>' class.
@@ -1926,7 +2106,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int TEMPLATE_ELEMENT_OPERATION_COUNT = 2;
+  int TEMPLATE_ELEMENT_OPERATION_COUNT = GSNPackage.ARGUMENT_ELEMENT_OPERATION_COUNT + 2;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.ASILLevel <em>ASIL Level</em>}' enum. <!--
@@ -2055,6 +2235,17 @@ public interface GSNPackage extends EPackage {
   EReference getSafetyCase_Connectors();
 
   /**
+   * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.gsn.SafetyCase#getTemplates <em>Templates</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Templates</em>'.
+   * @see edu.toronto.cs.se.modelepedia.gsn.SafetyCase#getTemplates()
+   * @see #getSafetyCase()
+   * @generated
+   */
+  EReference getSafetyCase_Templates();
+
+  /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.gsn.ArgumentElement <em>Argument Element</em>}'.
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @return the meta object for class '<em>Argument Element</em>'.
@@ -2105,6 +2296,17 @@ public interface GSNPackage extends EPackage {
    * @generated
    */
   EReference getArgumentElement_Status();
+
+  /**
+   * Returns the meta object for the reference list '{@link edu.toronto.cs.se.modelepedia.gsn.ArgumentElement#getTemplates <em>Templates</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference list '<em>Templates</em>'.
+   * @see edu.toronto.cs.se.modelepedia.gsn.ArgumentElement#getTemplates()
+   * @see #getArgumentElement()
+   * @generated
+   */
+  EReference getArgumentElement_Templates();
 
   /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.gsn.StatefulElement <em>Stateful Element</em>}'.
@@ -2736,6 +2938,14 @@ public interface GSNPackage extends EPackage {
     EReference SAFETY_CASE__CONNECTORS = GSNPackage.eINSTANCE.getSafetyCase_Connectors();
 
     /**
+     * The meta object literal for the '<em><b>Templates</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference SAFETY_CASE__TEMPLATES = GSNPackage.eINSTANCE.getSafetyCase_Templates();
+
+    /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.ArgumentElementImpl <em>Argument Element</em>}' class.
      * <!-- begin-user-doc --> <!-- end-user-doc -->
      * @see edu.toronto.cs.se.modelepedia.gsn.impl.ArgumentElementImpl
@@ -2775,6 +2985,14 @@ public interface GSNPackage extends EPackage {
      * @generated
      */
     EReference ARGUMENT_ELEMENT__STATUS = GSNPackage.eINSTANCE.getArgumentElement_Status();
+
+    /**
+     * The meta object literal for the '<em><b>Templates</b></em>' reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ARGUMENT_ELEMENT__TEMPLATES = GSNPackage.eINSTANCE.getArgumentElement_Templates();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.StatefulElementImpl <em>Stateful Element</em>}' class.

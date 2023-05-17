@@ -16,15 +16,18 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
+import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.Template;
-import edu.toronto.cs.se.modelepedia.gsn.TemplateElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -40,7 +43,7 @@ import edu.toronto.cs.se.modelepedia.gsn.TemplateElement;
  *
  * @generated
  */
-public abstract class TemplateImpl extends MinimalEObjectImpl.Container implements Template {
+public class TemplateImpl extends MinimalEObjectImpl.Container implements Template {
   /**
    * The cached value of the '{@link #getElements() <em>Elements</em>}' reference list.
    * <!-- begin-user-doc -->
@@ -49,7 +52,7 @@ public abstract class TemplateImpl extends MinimalEObjectImpl.Container implemen
    * @generated
    * @ordered
    */
-  protected EList<TemplateElement> elements;
+  protected EList<ArgumentElement> elements;
 
   /**
    * The default value of the '{@link #getId() <em>Id</em>}' attribute.
@@ -96,9 +99,9 @@ public abstract class TemplateImpl extends MinimalEObjectImpl.Container implemen
    * @generated
    */
   @Override
-  public EList<TemplateElement> getElements() {
+  public EList<ArgumentElement> getElements() {
     if (this.elements == null) {
-      this.elements = new EObjectResolvingEList<>(TemplateElement.class, this, GSNPackage.TEMPLATE__ELEMENTS);
+      this.elements = new EObjectWithInverseResolvingEList.ManyInverse<>(ArgumentElement.class, this, GSNPackage.TEMPLATE__ELEMENTS, GSNPackage.ARGUMENT_ELEMENT__TEMPLATES);
     }
     return this.elements;
   }
@@ -155,6 +158,35 @@ public abstract class TemplateImpl extends MinimalEObjectImpl.Container implemen
    * <!-- end-user-doc -->
    * @generated
    */
+  @SuppressWarnings("unchecked")
+  @Override
+  public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    switch (featureID) {
+      case GSNPackage.TEMPLATE__ELEMENTS:
+        return ((InternalEList<InternalEObject>)(InternalEList<?>)getElements()).basicAdd(otherEnd, msgs);
+    }
+    return super.eInverseAdd(otherEnd, featureID, msgs);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    switch (featureID) {
+      case GSNPackage.TEMPLATE__ELEMENTS:
+        return ((InternalEList<?>)getElements()).basicRemove(otherEnd, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
@@ -177,7 +209,7 @@ public abstract class TemplateImpl extends MinimalEObjectImpl.Container implemen
     switch (featureID) {
       case GSNPackage.TEMPLATE__ELEMENTS:
         getElements().clear();
-        getElements().addAll((Collection<? extends TemplateElement>)newValue);
+        getElements().addAll((Collection<? extends ArgumentElement>)newValue);
         return;
       case GSNPackage.TEMPLATE__ID:
         setId((String)newValue);

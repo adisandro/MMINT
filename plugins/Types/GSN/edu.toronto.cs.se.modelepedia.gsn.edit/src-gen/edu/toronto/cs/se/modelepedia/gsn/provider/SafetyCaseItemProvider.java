@@ -84,6 +84,7 @@ public class SafetyCaseItemProvider extends ItemProviderAdapter implements IEdit
       this.childrenFeatures.add(GSNPackage.Literals.SAFETY_CASE__JUSTIFICATIONS);
       this.childrenFeatures.add(GSNPackage.Literals.SAFETY_CASE__ASSUMPTIONS);
       this.childrenFeatures.add(GSNPackage.Literals.SAFETY_CASE__CONNECTORS);
+      this.childrenFeatures.add(GSNPackage.Literals.SAFETY_CASE__TEMPLATES);
     }
     return this.childrenFeatures;
   }
@@ -138,6 +139,7 @@ public class SafetyCaseItemProvider extends ItemProviderAdapter implements IEdit
       case GSNPackage.SAFETY_CASE__JUSTIFICATIONS:
       case GSNPackage.SAFETY_CASE__ASSUMPTIONS:
       case GSNPackage.SAFETY_CASE__CONNECTORS:
+      case GSNPackage.SAFETY_CASE__TEMPLATES:
         fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
         return;
     }
@@ -213,6 +215,11 @@ public class SafetyCaseItemProvider extends ItemProviderAdapter implements IEdit
       (createChildParameter
         (GSNPackage.Literals.SAFETY_CASE__CONNECTORS,
          GSNFactory.eINSTANCE.createMofNSupporter()));
+
+    newChildDescriptors.add
+      (createChildParameter
+        (GSNPackage.Literals.SAFETY_CASE__TEMPLATES,
+         GSNFactory.eINSTANCE.createTemplate()));
   }
 
   /**

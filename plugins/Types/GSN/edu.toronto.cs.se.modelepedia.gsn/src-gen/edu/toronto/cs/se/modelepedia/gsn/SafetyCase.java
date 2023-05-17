@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.SafetyCase#getJustifications <em>Justifications</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.SafetyCase#getAssumptions <em>Assumptions</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.SafetyCase#getConnectors <em>Connectors</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.SafetyCase#getTemplates <em>Templates</em>}</li>
  * </ul>
  *
  * @see edu.toronto.cs.se.modelepedia.gsn.GSNPackage#getSafetyCase()
@@ -114,5 +115,17 @@ public interface SafetyCase extends EObject {
    * @generated
    */
   EList<SupportConnector> getConnectors();
+
+  /**
+   * Returns the value of the '<em><b>Templates</b></em>' containment reference list.
+   * The list contents are of type {@link edu.toronto.cs.se.modelepedia.gsn.Template}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Templates</em>' containment reference list.
+   * @see edu.toronto.cs.se.modelepedia.gsn.GSNPackage#getSafetyCase_Templates()
+   * @model containment="true"
+   * @generated
+   */
+  EList<Template> getTemplates();
 
 } // SafetyCase

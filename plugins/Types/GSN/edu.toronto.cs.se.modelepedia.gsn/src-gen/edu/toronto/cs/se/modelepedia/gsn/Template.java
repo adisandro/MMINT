@@ -29,21 +29,23 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see edu.toronto.cs.se.modelepedia.gsn.GSNPackage#getTemplate()
- * @model abstract="true"
+ * @model
  * @generated
  */
 public interface Template extends EObject {
   /**
    * Returns the value of the '<em><b>Elements</b></em>' reference list.
-   * The list contents are of type {@link edu.toronto.cs.se.modelepedia.gsn.TemplateElement}.
+   * The list contents are of type {@link edu.toronto.cs.se.modelepedia.gsn.ArgumentElement}.
+   * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.gsn.ArgumentElement#getTemplates <em>Templates</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Elements</em>' reference list.
    * @see edu.toronto.cs.se.modelepedia.gsn.GSNPackage#getTemplate_Elements()
-   * @model required="true"
+   * @see edu.toronto.cs.se.modelepedia.gsn.ArgumentElement#getTemplates
+   * @model opposite="templates" required="true"
    * @generated
    */
-  EList<TemplateElement> getElements();
+  EList<ArgumentElement> getElements();
 
   /**
    * Returns the value of the '<em><b>Id</b></em>' attribute.

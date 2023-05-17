@@ -166,6 +166,15 @@ public interface GSNFactory extends EFactory {
   MofNSupporter createMofNSupporter();
 
   /**
+   * Returns a new object of class '<em>Template</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Template</em>'.
+   * @generated
+   */
+  Template createTemplate();
+
+  /**
    * Returns the package supported by this factory.
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @return the package supported by this factory.

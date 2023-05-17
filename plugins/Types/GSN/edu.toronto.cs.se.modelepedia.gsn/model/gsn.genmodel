@@ -36,12 +36,14 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gsn.ecore#//SafetyCase/justifications"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gsn.ecore#//SafetyCase/assumptions"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gsn.ecore#//SafetyCase/connectors"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gsn.ecore#//SafetyCase/templates"/>
     </genClasses>
     <genClasses image="false" ecoreClass="gsn.ecore#//ArgumentElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//ArgumentElement/id"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//ArgumentElement/description"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//ArgumentElement/contentValidity"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EReference gsn.ecore#//ArgumentElement/status"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference gsn.ecore#//ArgumentElement/templates"/>
     </genClasses>
     <genClasses image="false" ecoreClass="gsn.ecore#//StatefulElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//StatefulElement/stateValidity"/>

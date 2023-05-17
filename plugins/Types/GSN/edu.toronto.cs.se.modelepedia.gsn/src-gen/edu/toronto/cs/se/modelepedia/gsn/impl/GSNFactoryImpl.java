@@ -40,6 +40,7 @@ import edu.toronto.cs.se.modelepedia.gsn.OrSupporter;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
 import edu.toronto.cs.se.modelepedia.gsn.Solution;
 import edu.toronto.cs.se.modelepedia.gsn.SupportedBy;
+import edu.toronto.cs.se.modelepedia.gsn.Template;
 import edu.toronto.cs.se.modelepedia.gsn.ValidityValue;
 import edu.toronto.cs.se.modelepedia.gsn.XorSupporter;
 
@@ -99,6 +100,7 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
     case GSNPackage.OR_SUPPORTER -> createOrSupporter();
     case GSNPackage.XOR_SUPPORTER -> createXorSupporter();
     case GSNPackage.MOF_NSUPPORTER -> createMofNSupporter();
+    case GSNPackage.TEMPLATE -> createTemplate();
     default -> throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     };
   }
@@ -301,6 +303,17 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
   public MofNSupporter createMofNSupporter() {
     MofNSupporterImpl mofNSupporter = new MofNSupporterImpl();
     return mofNSupporter;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Template createTemplate() {
+    TemplateImpl template = new TemplateImpl();
+    return template;
   }
 
   /**

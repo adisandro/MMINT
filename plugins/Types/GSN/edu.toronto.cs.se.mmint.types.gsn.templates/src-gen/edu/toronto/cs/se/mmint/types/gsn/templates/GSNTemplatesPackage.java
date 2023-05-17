@@ -134,6 +134,15 @@ public interface GSNTemplatesPackage extends EPackage {
   int DECOMPOSITION_STRATEGY__STATUS = GSNPackage.STRATEGY__STATUS;
 
   /**
+   * The feature id for the '<em><b>Templates</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DECOMPOSITION_STRATEGY__TEMPLATES = GSNPackage.STRATEGY__TEMPLATES;
+
+  /**
    * The feature id for the '<em><b>In Context Of</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -528,6 +537,15 @@ public interface GSNTemplatesPackage extends EPackage {
   int DOMAIN_DECOMPOSITION_STRATEGY__STATUS = GSNTemplatesPackage.DECOMPOSITION_STRATEGY__STATUS;
 
   /**
+   * The feature id for the '<em><b>Templates</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DOMAIN_DECOMPOSITION_STRATEGY__TEMPLATES = GSNTemplatesPackage.DECOMPOSITION_STRATEGY__TEMPLATES;
+
+  /**
    * The feature id for the '<em><b>In Context Of</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -653,6 +671,15 @@ public interface GSNTemplatesPackage extends EPackage {
    * @ordered
    */
   int DOMAIN_GOAL__STATUS = GSNPackage.GOAL__STATUS;
+
+  /**
+   * The feature id for the '<em><b>Templates</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DOMAIN_GOAL__TEMPLATES = GSNPackage.GOAL__TEMPLATES;
 
   /**
    * The feature id for the '<em><b>In Context Of</b></em>' containment reference list.
@@ -883,6 +910,15 @@ public interface GSNTemplatesPackage extends EPackage {
   int PROPERTY_DECOMPOSITION_STRATEGY__STATUS = GSNTemplatesPackage.DECOMPOSITION_STRATEGY__STATUS;
 
   /**
+   * The feature id for the '<em><b>Templates</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_DECOMPOSITION_STRATEGY__TEMPLATES = GSNTemplatesPackage.DECOMPOSITION_STRATEGY__TEMPLATES;
+
+  /**
    * The feature id for the '<em><b>In Context Of</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1017,6 +1053,15 @@ public interface GSNTemplatesPackage extends EPackage {
    * @ordered
    */
   int PROPERTY_GOAL__STATUS = GSNPackage.GOAL__STATUS;
+
+  /**
+   * The feature id for the '<em><b>Templates</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_GOAL__TEMPLATES = GSNPackage.GOAL__TEMPLATES;
 
   /**
    * The feature id for the '<em><b>In Context Of</b></em>' containment reference list.

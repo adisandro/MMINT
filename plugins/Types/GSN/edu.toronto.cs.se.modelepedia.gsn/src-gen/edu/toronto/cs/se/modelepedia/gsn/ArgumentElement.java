@@ -13,6 +13,7 @@
  *******************************************************************************/
 package edu.toronto.cs.se.modelepedia.gsn;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -119,5 +120,19 @@ public interface ArgumentElement extends EObject {
    * @generated
    */
   void setStatus(ImpactAnnotation value);
+
+  /**
+   * Returns the value of the '<em><b>Templates</b></em>' reference list.
+   * The list contents are of type {@link edu.toronto.cs.se.modelepedia.gsn.Template}.
+   * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.gsn.Template#getElements <em>Elements</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Templates</em>' reference list.
+   * @see edu.toronto.cs.se.modelepedia.gsn.GSNPackage#getArgumentElement_Templates()
+   * @see edu.toronto.cs.se.modelepedia.gsn.Template#getElements
+   * @model opposite="elements"
+   * @generated
+   */
+  EList<Template> getTemplates();
 
 } // ArgumentElement

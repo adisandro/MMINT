@@ -8,17 +8,9 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
-import org.eclipse.emf.edit.provider.IChildCreationExtender;
-import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.IItemPropertySource;
-import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
-import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
@@ -31,13 +23,7 @@ import edu.toronto.cs.se.modelepedia.gsn.TemplateElement;
  * @generated
  */
 public class TemplateElementItemProvider
-  extends ItemProviderAdapter
-  implements
-    IEditingDomainItemProvider,
-    IStructuredItemContentProvider,
-    ITreeItemContentProvider,
-    IItemLabelProvider,
-    IItemPropertySource {
+  extends ArgumentElementItemProvider {
   /**
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
@@ -94,8 +80,10 @@ public class TemplateElementItemProvider
    */
   @Override
   public String getText(Object object) {
-    var templateElement = (TemplateElement)object;
-    return getString("_UI_TemplateElement_type") + " " + templateElement.isValid();
+    var label = ((TemplateElement)object).getId();
+    return label == null || label.length() == 0 ?
+      getString("_UI_TemplateElement_type") :
+      getString("_UI_TemplateElement_type") + " " + label;
   }
 
 
@@ -128,17 +116,6 @@ public class TemplateElementItemProvider
   @Override
   protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
     super.collectNewChildDescriptors(newChildDescriptors, object);
-  }
-
-  /**
-   * Return the resource locator for this item provider's resources.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public ResourceLocator getResourceLocator() {
-    return ((IChildCreationExtender)this.adapterFactory).getResourceLocator();
   }
 
 }

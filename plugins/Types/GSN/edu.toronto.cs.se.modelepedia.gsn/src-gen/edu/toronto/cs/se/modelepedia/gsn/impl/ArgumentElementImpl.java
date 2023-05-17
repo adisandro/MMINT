@@ -13,16 +13,22 @@
  *******************************************************************************/
 package edu.toronto.cs.se.modelepedia.gsn.impl;
 
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.ImpactAnnotation;
+import edu.toronto.cs.se.modelepedia.gsn.Template;
 import edu.toronto.cs.se.modelepedia.gsn.ValidityValue;
 
 /**
@@ -109,6 +115,16 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
    * @ordered
    */
   protected ImpactAnnotation status;
+
+  /**
+   * The cached value of the '{@link #getTemplates() <em>Templates</em>}' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getTemplates()
+   * @generated
+   * @ordered
+   */
+  protected EList<Template> templates;
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -233,6 +249,34 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
   }
 
   /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EList<Template> getTemplates() {
+    if (this.templates == null) {
+      this.templates = new EObjectWithInverseResolvingEList.ManyInverse<>(Template.class, this, GSNPackage.ARGUMENT_ELEMENT__TEMPLATES, GSNPackage.TEMPLATE__ELEMENTS);
+    }
+    return this.templates;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @SuppressWarnings("unchecked")
+  @Override
+  public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    switch (featureID) {
+      case GSNPackage.ARGUMENT_ELEMENT__TEMPLATES:
+        return ((InternalEList<InternalEObject>)(InternalEList<?>)getTemplates()).basicAdd(otherEnd, msgs);
+    }
+    return super.eInverseAdd(otherEnd, featureID, msgs);
+  }
+
+  /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
@@ -241,6 +285,8 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
     switch (featureID) {
       case GSNPackage.ARGUMENT_ELEMENT__STATUS:
         return basicSetStatus(null, msgs);
+      case GSNPackage.ARGUMENT_ELEMENT__TEMPLATES:
+        return ((InternalEList<?>)getTemplates()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -260,6 +306,8 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
         return getContentValidity();
       case GSNPackage.ARGUMENT_ELEMENT__STATUS:
         return getStatus();
+      case GSNPackage.ARGUMENT_ELEMENT__TEMPLATES:
+        return getTemplates();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -268,6 +316,7 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
+  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
@@ -282,6 +331,10 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
         return;
       case GSNPackage.ARGUMENT_ELEMENT__STATUS:
         setStatus((ImpactAnnotation)newValue);
+        return;
+      case GSNPackage.ARGUMENT_ELEMENT__TEMPLATES:
+        getTemplates().clear();
+        getTemplates().addAll((Collection<? extends Template>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -306,6 +359,9 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
       case GSNPackage.ARGUMENT_ELEMENT__STATUS:
         setStatus((ImpactAnnotation)null);
         return;
+      case GSNPackage.ARGUMENT_ELEMENT__TEMPLATES:
+        getTemplates().clear();
+        return;
     }
     super.eUnset(featureID);
   }
@@ -325,6 +381,8 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
         return this.contentValidity != ArgumentElementImpl.CONTENT_VALIDITY_EDEFAULT;
       case GSNPackage.ARGUMENT_ELEMENT__STATUS:
         return this.status != null;
+      case GSNPackage.ARGUMENT_ELEMENT__TEMPLATES:
+        return this.templates != null && !this.templates.isEmpty();
     }
     return super.eIsSet(featureID);
   }
