@@ -18,7 +18,6 @@ import java.util.Set;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.sirius.business.api.action.AbstractExternalJavaAction;
@@ -28,7 +27,7 @@ import org.eclipse.sirius.viewpoint.DSemanticDecorator;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
-import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.modelepedia.gsn.GSNFactory;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
 
@@ -47,7 +46,8 @@ public class InstantiateTemplate extends AbstractExternalJavaAction {
     var modelObj = ((DSemanticDecorator) arg0.iterator().next()).getTarget();
     var sSession = SessionManager.INSTANCE.getSession(modelObj);
     var sDomain = sSession.getTransactionalEditingDomain();
-    sDomain.getCommandStack().execute(new InstantiateTemplateCommand(sDomain, (SafetyCase) modelObj.eContainer()));
+    var safetyCase = (modelObj instanceof SafetyCase) ? modelObj : modelObj.eContainer();
+    sDomain.getCommandStack().execute(new InstantiateTemplateCommand(sDomain, (SafetyCase) safetyCase));
   }
 
   private class InstantiateTemplateCommand extends RecordingCommand {
@@ -63,10 +63,11 @@ public class InstantiateTemplate extends AbstractExternalJavaAction {
       try {
         var templatePath = MIDDialogs.selectFiles("Instantiate Template", "Select GSN template file",
                                                   "There are no GSN files in the workspace", Set.of(GSNPackage.eNAME));
-        var templateSafetyCase = (SafetyCase) FileUtils.readModelFile(templatePath, null, true);
-        for (var templateGoal : templateSafetyCase.getGoals()) {
-          this.safetyCase.getGoals().add(EcoreUtil.copy(templateGoal));
-        }
+        var template = GSNFactory.eINSTANCE.createTemplate();
+        template.setId(templatePath);
+        this.safetyCase.getTemplates().add(template);
+        template.instantiate();
+        template.validate();
       }
       catch (MIDDialogCancellation e) {
         // template file selection cancelled

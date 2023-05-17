@@ -25,8 +25,10 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
+import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
 import edu.toronto.cs.se.modelepedia.gsn.Template;
 
 /**
@@ -132,25 +134,43 @@ public class TemplateImpl extends MinimalEObjectImpl.Container implements Templa
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
+   * @generated NOT
    */
   @Override
   public void validate() throws Exception {
-    // TODO: implement this method
-    // Ensure that you remove @generated or mark it @generated NOT
-    throw new UnsupportedOperationException();
+    // do nothing
   }
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
+   * @generated NOT
    */
   @Override
   public void instantiate() throws Exception {
-    // TODO: implement this method
-    // Ensure that you remove @generated or mark it @generated NOT
-    throw new UnsupportedOperationException();
+    var templateSafetyCase = (SafetyCase) FileUtils.readModelFile(getId(), null, true);
+    var safetyCase = (SafetyCase) eContainer();
+    var goals = templateSafetyCase.getGoals();
+    getElements().addAll(goals);
+    safetyCase.getGoals().addAll(goals);
+    var strategies = templateSafetyCase.getStrategies();
+    getElements().addAll(strategies);
+    safetyCase.getStrategies().addAll(strategies);
+    var solutions = templateSafetyCase.getSolutions();
+    getElements().addAll(solutions);
+    safetyCase.getSolutions().addAll(solutions);
+    var contexts = templateSafetyCase.getContexts();
+    getElements().addAll(contexts);
+    safetyCase.getContexts().addAll(contexts);
+    var justifications = templateSafetyCase.getJustifications();
+    getElements().addAll(justifications);
+    safetyCase.getJustifications().addAll(justifications);
+    var assumptions = templateSafetyCase.getAssumptions();
+    getElements().addAll(assumptions);
+    safetyCase.getAssumptions().addAll(assumptions);
+//    var connectors = templateSafetyCase.getConnectors();
+//    safetyCase.getConnectors().addAll(connectors);
+//    getElements().addAll(connectors);
   }
 
   /**
