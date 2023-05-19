@@ -70,7 +70,8 @@ public interface Template extends EObject {
   void setId(String value);
 
   /**
-   * <!-- begin-user-doc -->Validates the correctness of this instantiated template.
+   * <!-- begin-user-doc -->Validates the correctness of this instantiated template. The base implementation does
+   * nothing.
    *
    * @throws Exception
    *           If this template has not been instantiated correctly. <!-- end-user-doc -->
@@ -80,8 +81,12 @@ public interface Template extends EObject {
   void validate() throws Exception;
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> Instantiates this template into the container safety case. The base implementation takes
+   * the GSN template file path from the id field, copies all its GSN elements into the container safety case and adds
+   * them to the template elements. <!-- end-user-doc -->
+   *
+   * @throws Exception
+   *           If this template can not be instantiated. <!-- end-user-doc -->
    * @model exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception"
    * @generated
    */

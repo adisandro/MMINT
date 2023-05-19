@@ -132,8 +132,6 @@ public class TemplateImpl extends MinimalEObjectImpl.Container implements Templa
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
    * @generated NOT
    */
   @Override
@@ -142,8 +140,6 @@ public class TemplateImpl extends MinimalEObjectImpl.Container implements Templa
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
    * @generated NOT
    */
   @Override

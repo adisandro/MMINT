@@ -53,7 +53,8 @@ public interface TemplateElement extends ArgumentElement {
   void setValid(boolean value);
 
   /**
-   * <!-- begin-user-doc -->Validates the correctness of this instantiated template element.
+   * <!-- begin-user-doc -->Validates the correctness of this instantiated template element. The base implementation
+   * does nothing.
    *
    * @throws Exception
    *           If this template element has not been instantiated correctly. <!-- end-user-doc -->
