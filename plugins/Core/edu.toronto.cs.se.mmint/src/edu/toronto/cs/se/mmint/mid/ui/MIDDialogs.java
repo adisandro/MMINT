@@ -497,29 +497,28 @@ public class MIDDialogs {
 
   public static String selectFiles(String title, String message, String emptyMessage, Set<String> fileExtensions)
                                   throws Exception {
-    var queryFiles = new ArrayList<IFile>();
+    var files = new ArrayList<IFile>();
     IResourceVisitor visitor = (var resource) -> {
       var binFolders = Set.of("bin", "target");
       if (resource instanceof IFolder folder && binFolders.contains(folder.getName())) {
         return false;
       }
       if (resource instanceof IFile file && fileExtensions.contains(file.getFileExtension())) {
-        queryFiles.add(file);
+        files.add(file);
       }
       return true;
     };
     ResourcesPlugin.getWorkspace().getRoot().accept(visitor);
-    if (queryFiles.isEmpty()) {
+    if (files.isEmpty()) {
       throw new MMINTException(emptyMessage);
     }
     var imageManager = new LocalResourceManager(JFaceResources.getResources());
     var labelProvider = LabelProvider.createTextImageProvider(
       f -> ((IFile) f).getFullPath().toString(),
       f -> (Image) imageManager.get(Adapters.adapt(f, IWorkbenchAdapter.class).getImageDescriptor(f)));
-    var queryFile = MIDDialogs.<IFile>openListDialog(title, message, queryFiles, new ArrayContentProvider(),
-                                                     labelProvider);
+    var file = MIDDialogs.<IFile>openListDialog(title, message, files, new ArrayContentProvider(), labelProvider);
     imageManager.dispose(); // images are not automatically garbage collected
 
-    return queryFile.getFullPath().toString();
+    return file.getFullPath().toString();
   }
 }

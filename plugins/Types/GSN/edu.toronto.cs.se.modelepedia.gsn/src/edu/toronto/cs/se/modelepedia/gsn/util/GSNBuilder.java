@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
+import edu.toronto.cs.se.modelepedia.gsn.Assumption;
 import edu.toronto.cs.se.modelepedia.gsn.BasicGoal;
 import edu.toronto.cs.se.modelepedia.gsn.BasicStrategy;
 import edu.toronto.cs.se.modelepedia.gsn.Context;
@@ -25,6 +26,7 @@ import edu.toronto.cs.se.modelepedia.gsn.GSNFactory;
 import edu.toronto.cs.se.modelepedia.gsn.Goal;
 import edu.toronto.cs.se.modelepedia.gsn.Justification;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
+import edu.toronto.cs.se.modelepedia.gsn.Solution;
 import edu.toronto.cs.se.modelepedia.gsn.Strategy;
 import edu.toronto.cs.se.modelepedia.gsn.Supportable;
 import edu.toronto.cs.se.modelepedia.gsn.Supporter;
@@ -102,17 +104,23 @@ public class GSNBuilder {
 
   public void commitChanges() {
     for (var gsnElement : this.gsnElements) {
-      if (gsnElement instanceof Strategy strategy) {
+      if (gsnElement instanceof Goal goal) {
+        this.safetyCase.getGoals().add(goal);
+      }
+      else if (gsnElement instanceof Strategy strategy) {
         this.safetyCase.getStrategies().add(strategy);
       }
-      else if (gsnElement instanceof Justification justification) {
-        this.safetyCase.getJustifications().add(justification);
+      else if (gsnElement instanceof Solution solution) {
+        this.safetyCase.getSolutions().add(solution);
       }
       else if (gsnElement instanceof Context context) {
         this.safetyCase.getContexts().add(context);
       }
-      else if (gsnElement instanceof Goal goal) {
-        this.safetyCase.getGoals().add(goal);
+      else if (gsnElement instanceof Justification justification) {
+        this.safetyCase.getJustifications().add(justification);
+      }
+      else if (gsnElement instanceof Assumption assumption) {
+        this.safetyCase.getAssumptions().add(assumption);
       }
     }
   }
