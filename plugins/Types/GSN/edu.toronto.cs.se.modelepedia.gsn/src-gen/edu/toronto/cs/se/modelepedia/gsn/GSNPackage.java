@@ -21,8 +21,6 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
-import edu.toronto.cs.se.modelepedia.gsn.util.GSNBuilder;
-
 /**
  * <!-- begin-user-doc --> The <b>Package</b> for the model. It contains accessors for the meta objects to represent
  * <ul>
@@ -1999,7 +1997,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int TEMPLATE___INSTANTIATE = 1;
+  int TEMPLATE___INSTANTIATE__GSNBUILDER = 1;
 
   /**
    * The number of operations of the '<em>Template</em>' class.
@@ -2147,6 +2145,16 @@ public interface GSNPackage extends EPackage {
    * @generated
    */
   int EXCEPTION = 33;
+
+  /**
+   * The meta object id for the '<em>Builder</em>' data type.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.toronto.cs.se.modelepedia.gsn.util.GSNBuilder
+   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getGSNBuilder()
+   * @generated
+   */
+  int GSN_BUILDER = 34;
 
   /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.gsn.SafetyCase <em>Safety Case</em>}'. <!--
@@ -2763,14 +2771,14 @@ public interface GSNPackage extends EPackage {
   EOperation getTemplate__Validate();
 
   /**
-   * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.gsn.Template#instantiate(GSNBuilder) <em>Instantiate</em>}' operation.
+   * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.gsn.Template#instantiate(edu.toronto.cs.se.modelepedia.gsn.util.GSNBuilder) <em>Instantiate</em>}' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the '<em>Instantiate</em>' operation.
-   * @see edu.toronto.cs.se.modelepedia.gsn.Template#instantiate(GSNBuilder)
+   * @see edu.toronto.cs.se.modelepedia.gsn.Template#instantiate(edu.toronto.cs.se.modelepedia.gsn.util.GSNBuilder)
    * @generated
    */
-  EOperation getTemplate__Instantiate();
+  EOperation getTemplate__Instantiate__GSNBuilder();
 
   /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.gsn.TemplateElement <em>Template Element</em>}'.
@@ -2852,6 +2860,17 @@ public interface GSNPackage extends EPackage {
    * @generated
    */
   EDataType getException();
+
+  /**
+   * Returns the meta object for data type '{@link edu.toronto.cs.se.modelepedia.gsn.util.GSNBuilder <em>Builder</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for data type '<em>Builder</em>'.
+   * @see edu.toronto.cs.se.modelepedia.gsn.util.GSNBuilder
+   * @model instanceClass="edu.toronto.cs.se.modelepedia.gsn.util.GSNBuilder"
+   * @generated
+   */
+  EDataType getGSNBuilder();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -3398,7 +3417,7 @@ public interface GSNPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EOperation TEMPLATE___INSTANTIATE = GSNPackage.eINSTANCE.getTemplate__Instantiate();
+    EOperation TEMPLATE___INSTANTIATE__GSNBUILDER = GSNPackage.eINSTANCE.getTemplate__Instantiate__GSNBuilder();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.TemplateElementImpl <em>Template Element</em>}' class.
@@ -3469,6 +3488,16 @@ public interface GSNPackage extends EPackage {
      * @generated
      */
     EDataType EXCEPTION = GSNPackage.eINSTANCE.getException();
+
+    /**
+     * The meta object literal for the '<em>Builder</em>' data type.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.toronto.cs.se.modelepedia.gsn.util.GSNBuilder
+     * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getGSNBuilder()
+     * @generated
+     */
+    EDataType GSN_BUILDER = GSNPackage.eINSTANCE.getGSNBuilder();
 
   }
 

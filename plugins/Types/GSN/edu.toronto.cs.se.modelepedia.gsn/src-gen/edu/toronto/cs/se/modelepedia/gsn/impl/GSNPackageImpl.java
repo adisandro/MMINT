@@ -57,6 +57,7 @@ import edu.toronto.cs.se.modelepedia.gsn.Template;
 import edu.toronto.cs.se.modelepedia.gsn.TemplateElement;
 import edu.toronto.cs.se.modelepedia.gsn.ValidityValue;
 import edu.toronto.cs.se.modelepedia.gsn.XorSupporter;
+import edu.toronto.cs.se.modelepedia.gsn.util.GSNBuilder;
 import edu.toronto.cs.se.modelepedia.gsn.util.GSNValidator;
 
 /**
@@ -269,6 +270,13 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
    * @generated
    */
   private EDataType exceptionEDataType = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EDataType gsnBuilderEDataType = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry
@@ -899,7 +907,7 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
    * @generated
    */
   @Override
-  public EOperation getTemplate__Instantiate() {
+  public EOperation getTemplate__Instantiate__GSNBuilder() {
     return this.templateEClass.getEOperations().get(1);
   }
 
@@ -977,6 +985,16 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
   @Override
   public EDataType getException() {
     return this.exceptionEDataType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EDataType getGSNBuilder() {
+    return this.gsnBuilderEDataType;
   }
 
   /**
@@ -1094,7 +1112,7 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     createEReference(this.templateEClass, GSNPackage.TEMPLATE__ELEMENTS);
     createEAttribute(this.templateEClass, GSNPackage.TEMPLATE__ID);
     createEOperation(this.templateEClass, GSNPackage.TEMPLATE___VALIDATE);
-    createEOperation(this.templateEClass, GSNPackage.TEMPLATE___INSTANTIATE);
+    createEOperation(this.templateEClass, GSNPackage.TEMPLATE___INSTANTIATE__GSNBUILDER);
 
     this.templateElementEClass = createEClass(GSNPackage.TEMPLATE_ELEMENT);
     createEAttribute(this.templateElementEClass, GSNPackage.TEMPLATE_ELEMENT__VALID);
@@ -1108,6 +1126,7 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
 
     // Create data types
     this.exceptionEDataType = createEDataType(GSNPackage.EXCEPTION);
+    this.gsnBuilderEDataType = createEDataType(GSNPackage.GSN_BUILDER);
   }
 
   /**
@@ -1255,7 +1274,8 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     var op = initEOperation(getTemplate__Validate(), null, "validate", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEException(op, this.getException());
 
-    op = initEOperation(getTemplate__Instantiate(), null, "instantiate", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    op = initEOperation(getTemplate__Instantiate__GSNBuilder(), null, "instantiate", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    addEParameter(op, this.getGSNBuilder(), "builder", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEException(op, this.getException());
 
     initEClass(this.templateElementEClass, TemplateElement.class, "TemplateElement", EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
@@ -1288,6 +1308,7 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
 
     // Initialize data types
     initEDataType(this.exceptionEDataType, Exception.class, "Exception", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+    initEDataType(this.gsnBuilderEDataType, GSNBuilder.class, "GSNBuilder", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 
     // Create resource
     createResource(GSNPackage.eNS_URI);

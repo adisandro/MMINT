@@ -28,6 +28,7 @@
       <genEnumLiterals ecoreEnumLiteral="gsn.ecore#//ImpactType/Reuse"/>
     </genEnums>
     <genDataTypes ecoreDataType="gsn.ecore#//Exception"/>
+    <genDataTypes ecoreDataType="gsn.ecore#//GSNBuilder"/>
     <genClasses ecoreClass="gsn.ecore#//SafetyCase">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gsn.ecore#//SafetyCase/goals"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gsn.ecore#//SafetyCase/strategies"/>
@@ -102,7 +103,9 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference gsn.ecore#//Template/elements"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//Template/id"/>
       <genOperations ecoreOperation="gsn.ecore#//Template/validate"/>
-      <genOperations ecoreOperation="gsn.ecore#//Template/instantiate"/>
+      <genOperations ecoreOperation="gsn.ecore#//Template/instantiate">
+        <genParameters ecoreParameter="gsn.ecore#//Template/instantiate/builder"/>
+      </genOperations>
     </genClasses>
     <genClasses image="false" ecoreClass="gsn.ecore#//TemplateElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//TemplateElement/valid"/>

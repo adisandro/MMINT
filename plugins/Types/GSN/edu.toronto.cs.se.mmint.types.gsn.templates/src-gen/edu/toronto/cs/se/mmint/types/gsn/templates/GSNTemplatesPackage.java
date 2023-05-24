@@ -763,6 +763,70 @@ public interface GSNTemplatesPackage extends EPackage {
   int DOMAIN_GOAL_OPERATION_COUNT = GSNPackage.GOAL_OPERATION_COUNT + 2;
 
   /**
+   * The meta object id for the '{@link edu.toronto.cs.se.mmint.types.gsn.templates.impl.DomainTemplateImpl <em>Domain Template</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.toronto.cs.se.mmint.types.gsn.templates.impl.DomainTemplateImpl
+   * @see edu.toronto.cs.se.mmint.types.gsn.templates.impl.GSNTemplatesPackageImpl#getDomainTemplate()
+   * @generated
+   */
+  int DOMAIN_TEMPLATE = 9;
+
+  /**
+   * The feature id for the '<em><b>Elements</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DOMAIN_TEMPLATE__ELEMENTS = GSNPackage.TEMPLATE__ELEMENTS;
+
+  /**
+   * The feature id for the '<em><b>Id</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DOMAIN_TEMPLATE__ID = GSNPackage.TEMPLATE__ID;
+
+  /**
+   * The number of structural features of the '<em>Domain Template</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DOMAIN_TEMPLATE_FEATURE_COUNT = GSNPackage.TEMPLATE_FEATURE_COUNT + 0;
+
+  /**
+   * The operation id for the '<em>Validate</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DOMAIN_TEMPLATE___VALIDATE = GSNPackage.TEMPLATE___VALIDATE;
+
+  /**
+   * The operation id for the '<em>Instantiate</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DOMAIN_TEMPLATE___INSTANTIATE__GSNBUILDER = GSNPackage.TEMPLATE___INSTANTIATE__GSNBUILDER;
+
+  /**
+   * The number of operations of the '<em>Domain Template</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DOMAIN_TEMPLATE_OPERATION_COUNT = GSNPackage.TEMPLATE_OPERATION_COUNT + 0;
+
+  /**
    * The meta object id for the '{@link edu.toronto.cs.se.mmint.types.gsn.templates.impl.PropertyImpl <em>Property</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -770,7 +834,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @see edu.toronto.cs.se.mmint.types.gsn.templates.impl.GSNTemplatesPackageImpl#getProperty()
    * @generated
    */
-  int PROPERTY = 9;
+  int PROPERTY = 10;
 
   /**
    * The feature id for the '<em><b>Formal</b></em>' attribute.
@@ -816,7 +880,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @see edu.toronto.cs.se.mmint.types.gsn.templates.impl.GSNTemplatesPackageImpl#getPropertyDecompositionElement()
    * @generated
    */
-  int PROPERTY_DECOMPOSITION_ELEMENT = 10;
+  int PROPERTY_DECOMPOSITION_ELEMENT = 11;
 
   /**
    * The feature id for the '<em><b>Property</b></em>' containment reference.
@@ -853,7 +917,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @see edu.toronto.cs.se.mmint.types.gsn.templates.impl.GSNTemplatesPackageImpl#getPropertyDecompositionStrategy()
    * @generated
    */
-  int PROPERTY_DECOMPOSITION_STRATEGY = 11;
+  int PROPERTY_DECOMPOSITION_STRATEGY = 12;
 
   /**
    * The feature id for the '<em><b>Supports</b></em>' reference list.
@@ -998,7 +1062,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @see edu.toronto.cs.se.mmint.types.gsn.templates.impl.GSNTemplatesPackageImpl#getPropertyGoal()
    * @generated
    */
-  int PROPERTY_GOAL = 12;
+  int PROPERTY_GOAL = 13;
 
   /**
    * The feature id for the '<em><b>Supports</b></em>' reference list.
@@ -1152,6 +1216,71 @@ public interface GSNTemplatesPackage extends EPackage {
    * @ordered
    */
   int PROPERTY_GOAL_OPERATION_COUNT = GSNPackage.GOAL_OPERATION_COUNT + 2;
+
+
+  /**
+   * The meta object id for the '{@link edu.toronto.cs.se.mmint.types.gsn.templates.impl.PropertyTemplateImpl <em>Property Template</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.toronto.cs.se.mmint.types.gsn.templates.impl.PropertyTemplateImpl
+   * @see edu.toronto.cs.se.mmint.types.gsn.templates.impl.GSNTemplatesPackageImpl#getPropertyTemplate()
+   * @generated
+   */
+  int PROPERTY_TEMPLATE = 14;
+
+  /**
+   * The feature id for the '<em><b>Elements</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_TEMPLATE__ELEMENTS = GSNPackage.TEMPLATE__ELEMENTS;
+
+  /**
+   * The feature id for the '<em><b>Id</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_TEMPLATE__ID = GSNPackage.TEMPLATE__ID;
+
+  /**
+   * The number of structural features of the '<em>Property Template</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_TEMPLATE_FEATURE_COUNT = GSNPackage.TEMPLATE_FEATURE_COUNT + 0;
+
+  /**
+   * The operation id for the '<em>Validate</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_TEMPLATE___VALIDATE = GSNPackage.TEMPLATE___VALIDATE;
+
+  /**
+   * The operation id for the '<em>Instantiate</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_TEMPLATE___INSTANTIATE__GSNBUILDER = GSNPackage.TEMPLATE___INSTANTIATE__GSNBUILDER;
+
+  /**
+   * The number of operations of the '<em>Property Template</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_TEMPLATE_OPERATION_COUNT = GSNPackage.TEMPLATE_OPERATION_COUNT + 0;
 
 
   /**
@@ -1332,6 +1461,16 @@ public interface GSNTemplatesPackage extends EPackage {
   EClass getDomainGoal();
 
   /**
+   * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.types.gsn.templates.DomainTemplate <em>Domain Template</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Domain Template</em>'.
+   * @see edu.toronto.cs.se.mmint.types.gsn.templates.DomainTemplate
+   * @generated
+   */
+  EClass getDomainTemplate();
+
+  /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.types.gsn.templates.Property <em>Property</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1425,6 +1564,16 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    */
   EAttribute getPropertyGoal_Hint();
+
+  /**
+   * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.types.gsn.templates.PropertyTemplate <em>Property Template</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Property Template</em>'.
+   * @see edu.toronto.cs.se.mmint.types.gsn.templates.PropertyTemplate
+   * @generated
+   */
+  EClass getPropertyTemplate();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -1604,6 +1753,16 @@ public interface GSNTemplatesPackage extends EPackage {
     EClass DOMAIN_GOAL = GSNTemplatesPackage.eINSTANCE.getDomainGoal();
 
     /**
+     * The meta object literal for the '{@link edu.toronto.cs.se.mmint.types.gsn.templates.impl.DomainTemplateImpl <em>Domain Template</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.toronto.cs.se.mmint.types.gsn.templates.impl.DomainTemplateImpl
+     * @see edu.toronto.cs.se.mmint.types.gsn.templates.impl.GSNTemplatesPackageImpl#getDomainTemplate()
+     * @generated
+     */
+    EClass DOMAIN_TEMPLATE = GSNTemplatesPackage.eINSTANCE.getDomainTemplate();
+
+    /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint.types.gsn.templates.impl.PropertyImpl <em>Property</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1682,6 +1841,16 @@ public interface GSNTemplatesPackage extends EPackage {
      * @generated
      */
     EAttribute PROPERTY_GOAL__HINT = GSNTemplatesPackage.eINSTANCE.getPropertyGoal_Hint();
+
+    /**
+     * The meta object literal for the '{@link edu.toronto.cs.se.mmint.types.gsn.templates.impl.PropertyTemplateImpl <em>Property Template</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.toronto.cs.se.mmint.types.gsn.templates.impl.PropertyTemplateImpl
+     * @see edu.toronto.cs.se.mmint.types.gsn.templates.impl.GSNTemplatesPackageImpl#getPropertyTemplate()
+     * @generated
+     */
+    EClass PROPERTY_TEMPLATE = GSNTemplatesPackage.eINSTANCE.getPropertyTemplate();
 
   }
 

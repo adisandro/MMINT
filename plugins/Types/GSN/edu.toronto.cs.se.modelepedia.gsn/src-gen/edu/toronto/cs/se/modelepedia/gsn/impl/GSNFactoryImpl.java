@@ -43,6 +43,7 @@ import edu.toronto.cs.se.modelepedia.gsn.SupportedBy;
 import edu.toronto.cs.se.modelepedia.gsn.Template;
 import edu.toronto.cs.se.modelepedia.gsn.ValidityValue;
 import edu.toronto.cs.se.modelepedia.gsn.XorSupporter;
+import edu.toronto.cs.se.modelepedia.gsn.util.GSNBuilder;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
@@ -116,6 +117,7 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
     case GSNPackage.VALIDITY_VALUE -> createValidityValueFromString(eDataType, initialValue);
     case GSNPackage.IMPACT_TYPE -> createImpactTypeFromString(eDataType, initialValue);
     case GSNPackage.EXCEPTION -> createExceptionFromString(eDataType, initialValue);
+    case GSNPackage.GSN_BUILDER -> createGSNBuilderFromString(eDataType, initialValue);
     default -> throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     };
   }
@@ -131,6 +133,7 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
     case GSNPackage.VALIDITY_VALUE -> convertValidityValueToString(eDataType, instanceValue);
     case GSNPackage.IMPACT_TYPE -> convertImpactTypeToString(eDataType, instanceValue);
     case GSNPackage.EXCEPTION -> convertExceptionToString(eDataType, instanceValue);
+    case GSNPackage.GSN_BUILDER -> convertGSNBuilderToString(eDataType, instanceValue);
     default -> throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     };
   }
@@ -383,6 +386,24 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
    * @generated
    */
   public String convertExceptionToString(EDataType eDataType, Object instanceValue) {
+    return super.convertToString(eDataType, instanceValue);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public GSNBuilder createGSNBuilderFromString(EDataType eDataType, String initialValue) {
+    return (GSNBuilder)super.createFromString(eDataType, initialValue);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertGSNBuilderToString(EDataType eDataType, Object instanceValue) {
     return super.convertToString(eDataType, instanceValue);
   }
 

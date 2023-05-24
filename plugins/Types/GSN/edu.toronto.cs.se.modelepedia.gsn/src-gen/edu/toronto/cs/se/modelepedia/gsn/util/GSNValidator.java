@@ -156,6 +156,7 @@ public class GSNValidator extends EObjectValidator {
     case GSNPackage.VALIDITY_VALUE -> validateValidityValue((ValidityValue)value, diagnostics, context);
     case GSNPackage.IMPACT_TYPE -> validateImpactType((ImpactType)value, diagnostics, context);
     case GSNPackage.EXCEPTION -> validateException((Exception)value, diagnostics, context);
+    case GSNPackage.GSN_BUILDER -> validateGSNBuilder((GSNBuilder)value, diagnostics, context);
     default -> true;
     };
   }
@@ -1199,6 +1200,15 @@ public class GSNValidator extends EObjectValidator {
    * @generated
    */
   public boolean validateException(Exception exception, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    return true;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public boolean validateGSNBuilder(GSNBuilder gsnBuilder, DiagnosticChain diagnostics, Map<Object, Object> context) {
     return true;
   }
 

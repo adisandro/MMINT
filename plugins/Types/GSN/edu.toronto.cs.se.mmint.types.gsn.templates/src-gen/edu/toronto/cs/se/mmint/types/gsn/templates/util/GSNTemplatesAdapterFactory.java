@@ -22,6 +22,7 @@ import edu.toronto.cs.se.mmint.types.gsn.templates.Domain;
 import edu.toronto.cs.se.mmint.types.gsn.templates.DomainDecompositionElement;
 import edu.toronto.cs.se.mmint.types.gsn.templates.DomainDecompositionStrategy;
 import edu.toronto.cs.se.mmint.types.gsn.templates.DomainGoal;
+import edu.toronto.cs.se.mmint.types.gsn.templates.DomainTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.templates.EnumDomain;
 import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
 import edu.toronto.cs.se.mmint.types.gsn.templates.IntDomain;
@@ -29,6 +30,7 @@ import edu.toronto.cs.se.mmint.types.gsn.templates.Property;
 import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyDecompositionElement;
 import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyDecompositionStrategy;
 import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyGoal;
+import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.templates.RealDomain;
 import edu.toronto.cs.se.mmint.types.gsn.templates.ValueDomain;
 import edu.toronto.cs.se.modelepedia.gsn.ASILfulElement;
@@ -40,6 +42,7 @@ import edu.toronto.cs.se.modelepedia.gsn.StatefulElement;
 import edu.toronto.cs.se.modelepedia.gsn.Strategy;
 import edu.toronto.cs.se.modelepedia.gsn.Supportable;
 import edu.toronto.cs.se.modelepedia.gsn.Supporter;
+import edu.toronto.cs.se.modelepedia.gsn.Template;
 import edu.toronto.cs.se.modelepedia.gsn.TemplateElement;
 
 /**
@@ -135,6 +138,10 @@ public class GSNTemplatesAdapterFactory extends AdapterFactoryImpl {
         return createDomainGoalAdapter();
       }
       @Override
+      public Adapter caseDomainTemplate(DomainTemplate object) {
+        return createDomainTemplateAdapter();
+      }
+      @Override
       public Adapter caseProperty(Property object) {
         return createPropertyAdapter();
       }
@@ -149,6 +156,10 @@ public class GSNTemplatesAdapterFactory extends AdapterFactoryImpl {
       @Override
       public Adapter casePropertyGoal(PropertyGoal object) {
         return createPropertyGoalAdapter();
+      }
+      @Override
+      public Adapter casePropertyTemplate(PropertyTemplate object) {
+        return createPropertyTemplateAdapter();
       }
       @Override
       public Adapter caseSupporter(Supporter object) {
@@ -189,6 +200,10 @@ public class GSNTemplatesAdapterFactory extends AdapterFactoryImpl {
       @Override
       public Adapter caseGoal(Goal object) {
         return createGoalAdapter();
+      }
+      @Override
+      public Adapter caseTemplate(Template object) {
+        return createTemplateAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object) {
@@ -337,6 +352,20 @@ public class GSNTemplatesAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.types.gsn.templates.DomainTemplate <em>Domain Template</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.toronto.cs.se.mmint.types.gsn.templates.DomainTemplate
+   * @generated
+   */
+  public Adapter createDomainTemplateAdapter() {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.types.gsn.templates.Property <em>Property</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -389,6 +418,20 @@ public class GSNTemplatesAdapterFactory extends AdapterFactoryImpl {
    * @generated
    */
   public Adapter createPropertyGoalAdapter() {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.types.gsn.templates.PropertyTemplate <em>Property Template</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.toronto.cs.se.mmint.types.gsn.templates.PropertyTemplate
+   * @generated
+   */
+  public Adapter createPropertyTemplateAdapter() {
     return null;
   }
 
@@ -529,6 +572,20 @@ public class GSNTemplatesAdapterFactory extends AdapterFactoryImpl {
    * @generated
    */
   public Adapter createGoalAdapter() {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.gsn.Template <em>Template</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.toronto.cs.se.modelepedia.gsn.Template
+   * @generated
+   */
+  public Adapter createTemplateAdapter() {
     return null;
   }
 

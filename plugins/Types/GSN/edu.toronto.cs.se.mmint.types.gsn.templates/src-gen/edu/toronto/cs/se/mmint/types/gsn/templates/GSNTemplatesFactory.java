@@ -86,6 +86,15 @@ public interface GSNTemplatesFactory extends EFactory {
   DomainGoal createDomainGoal();
 
   /**
+   * Returns a new object of class '<em>Domain Template</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Domain Template</em>'.
+   * @generated
+   */
+  DomainTemplate createDomainTemplate();
+
+  /**
    * Returns a new object of class '<em>Property</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -111,6 +120,15 @@ public interface GSNTemplatesFactory extends EFactory {
    * @generated
    */
   PropertyGoal createPropertyGoal();
+
+  /**
+   * Returns a new object of class '<em>Property Template</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Property Template</em>'.
+   * @generated
+   */
+  PropertyTemplate createPropertyTemplate();
 
   /**
    * Returns the package supported by this factory.

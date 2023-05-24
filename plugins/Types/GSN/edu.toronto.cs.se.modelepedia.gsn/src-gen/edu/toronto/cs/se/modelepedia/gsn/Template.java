@@ -83,13 +83,15 @@ public interface Template extends EObject {
   void validate() throws Exception;
 
   /**
-   * <!-- begin-user-doc --> Instantiates this template into the container safety case. The base implementation takes
-   * the GSN template file path from the id field, copies all its GSN elements into the container safety case and adds
-   * them to the template elements.
-   * @param builder TODO
+   * <!-- begin-user-doc --> Instantiates this template into the builder safety case. The base implementation copies all
+   * the GSN template elements into the builder safety case.
+   *
+   * @param builder
+   *          The builder, i.e. a facade for the target safety case.
    * @throws Exception
    *           If this template can not be instantiated. <!-- end-user-doc -->
    * @model exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception"
+   *        builderDataType="edu.toronto.cs.se.modelepedia.gsn.GSNBuilder" builderRequired="true"
    * @generated
    */
   void instantiate(GSNBuilder builder) throws Exception;

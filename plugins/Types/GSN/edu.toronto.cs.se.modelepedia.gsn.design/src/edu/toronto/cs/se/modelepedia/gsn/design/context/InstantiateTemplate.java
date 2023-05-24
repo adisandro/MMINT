@@ -75,7 +75,7 @@ public class InstantiateTemplate extends AbstractExternalJavaAction {
         this.safetyCase.getTemplates().add(template);
         template.validate();
         //TODO Move instantiate into execute (is it because of querying?)
-        //TODO Regen gsn and gsn.templates
+        //TODO Customize instantiate and validate for templates
         //TODO Delete links and delete template
       }
       catch (MIDDialogCancellation e) {

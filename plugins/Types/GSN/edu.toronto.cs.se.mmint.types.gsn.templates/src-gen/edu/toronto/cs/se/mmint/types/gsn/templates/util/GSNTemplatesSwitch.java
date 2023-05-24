@@ -21,6 +21,7 @@ import edu.toronto.cs.se.mmint.types.gsn.templates.Domain;
 import edu.toronto.cs.se.mmint.types.gsn.templates.DomainDecompositionElement;
 import edu.toronto.cs.se.mmint.types.gsn.templates.DomainDecompositionStrategy;
 import edu.toronto.cs.se.mmint.types.gsn.templates.DomainGoal;
+import edu.toronto.cs.se.mmint.types.gsn.templates.DomainTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.templates.EnumDomain;
 import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
 import edu.toronto.cs.se.mmint.types.gsn.templates.IntDomain;
@@ -28,6 +29,7 @@ import edu.toronto.cs.se.mmint.types.gsn.templates.Property;
 import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyDecompositionElement;
 import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyDecompositionStrategy;
 import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyGoal;
+import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.templates.RealDomain;
 import edu.toronto.cs.se.mmint.types.gsn.templates.ValueDomain;
 import edu.toronto.cs.se.modelepedia.gsn.ASILfulElement;
@@ -39,6 +41,7 @@ import edu.toronto.cs.se.modelepedia.gsn.StatefulElement;
 import edu.toronto.cs.se.modelepedia.gsn.Strategy;
 import edu.toronto.cs.se.modelepedia.gsn.Supportable;
 import edu.toronto.cs.se.modelepedia.gsn.Supporter;
+import edu.toronto.cs.se.modelepedia.gsn.Template;
 import edu.toronto.cs.se.modelepedia.gsn.TemplateElement;
 
 /**
@@ -182,6 +185,13 @@ public class GSNTemplatesSwitch<T> extends Switch<T> {
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case GSNTemplatesPackage.DOMAIN_TEMPLATE: {
+        var domainTemplate = (DomainTemplate)theEObject;
+        var result = caseDomainTemplate(domainTemplate);
+        if (result == null) result = caseTemplate(domainTemplate);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case GSNTemplatesPackage.PROPERTY: {
         var property = (Property)theEObject;
         var result = caseProperty(property);
@@ -222,6 +232,13 @@ public class GSNTemplatesSwitch<T> extends Switch<T> {
         if (result == null) result = caseCoreElement(propertyGoal);
         if (result == null) result = caseSupporter(propertyGoal);
         if (result == null) result = caseArgumentElement(propertyGoal);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case GSNTemplatesPackage.PROPERTY_TEMPLATE: {
+        var propertyTemplate = (PropertyTemplate)theEObject;
+        var result = casePropertyTemplate(propertyTemplate);
+        if (result == null) result = caseTemplate(propertyTemplate);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -365,6 +382,21 @@ public class GSNTemplatesSwitch<T> extends Switch<T> {
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Domain Template</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Domain Template</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseDomainTemplate(DomainTemplate object) {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Property</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -421,6 +453,21 @@ public class GSNTemplatesSwitch<T> extends Switch<T> {
    * @generated
    */
   public T casePropertyGoal(PropertyGoal object) {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Property Template</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Property Template</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePropertyTemplate(PropertyTemplate object) {
     return null;
   }
 
@@ -571,6 +618,21 @@ public class GSNTemplatesSwitch<T> extends Switch<T> {
    * @generated
    */
   public T caseGoal(Goal object) {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Template</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Template</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseTemplate(Template object) {
     return null;
   }
 

@@ -268,9 +268,9 @@ public class TemplateImpl extends MinimalEObjectImpl.Container implements Templa
         catch (Throwable throwable) {
           throw new InvocationTargetException(throwable);
         }
-      case GSNPackage.TEMPLATE___INSTANTIATE:
+      case GSNPackage.TEMPLATE___INSTANTIATE__GSNBUILDER:
         try {
-          instantiate(null);
+          instantiate((GSNBuilder)arguments.get(0));
           return null;
         }
         catch (Throwable throwable) {

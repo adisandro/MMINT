@@ -229,6 +229,29 @@ public class GSNTemplatesItemProviderAdapterFactory extends GSNTemplatesAdapterF
   }
 
   /**
+   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint.types.gsn.templates.DomainTemplate} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected DomainTemplateItemProvider domainTemplateItemProvider;
+
+  /**
+   * This creates an adapter for a {@link edu.toronto.cs.se.mmint.types.gsn.templates.DomainTemplate}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createDomainTemplateAdapter() {
+    if (this.domainTemplateItemProvider == null) {
+      this.domainTemplateItemProvider = new DomainTemplateItemProvider(this);
+    }
+
+    return this.domainTemplateItemProvider;
+  }
+
+  /**
    * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint.types.gsn.templates.Property} instances.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -295,6 +318,29 @@ public class GSNTemplatesItemProviderAdapterFactory extends GSNTemplatesAdapterF
     }
 
     return this.propertyGoalItemProvider;
+  }
+
+  /**
+   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint.types.gsn.templates.PropertyTemplate} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected PropertyTemplateItemProvider propertyTemplateItemProvider;
+
+  /**
+   * This creates an adapter for a {@link edu.toronto.cs.se.mmint.types.gsn.templates.PropertyTemplate}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createPropertyTemplateAdapter() {
+    if (this.propertyTemplateItemProvider == null) {
+      this.propertyTemplateItemProvider = new PropertyTemplateItemProvider(this);
+    }
+
+    return this.propertyTemplateItemProvider;
   }
 
   /**
@@ -408,9 +454,11 @@ public class GSNTemplatesItemProviderAdapterFactory extends GSNTemplatesAdapterF
     if (this.valueDomainItemProvider != null) this.valueDomainItemProvider.dispose();
     if (this.domainDecompositionStrategyItemProvider != null) this.domainDecompositionStrategyItemProvider.dispose();
     if (this.domainGoalItemProvider != null) this.domainGoalItemProvider.dispose();
+    if (this.domainTemplateItemProvider != null) this.domainTemplateItemProvider.dispose();
     if (this.propertyItemProvider != null) this.propertyItemProvider.dispose();
     if (this.propertyDecompositionStrategyItemProvider != null) this.propertyDecompositionStrategyItemProvider.dispose();
     if (this.propertyGoalItemProvider != null) this.propertyGoalItemProvider.dispose();
+    if (this.propertyTemplateItemProvider != null) this.propertyTemplateItemProvider.dispose();
   }
 
   /**
@@ -479,6 +527,16 @@ public class GSNTemplatesItemProviderAdapterFactory extends GSNTemplatesAdapterF
           (createChildParameter
             (GSNPackage.Literals.SAFETY_CASE__STRATEGIES,
              GSNTemplatesFactory.eINSTANCE.createPropertyDecompositionStrategy()));
+
+        this.newChildDescriptors.add
+          (createChildParameter
+            (GSNPackage.Literals.SAFETY_CASE__TEMPLATES,
+             GSNTemplatesFactory.eINSTANCE.createDomainTemplate()));
+
+        this.newChildDescriptors.add
+          (createChildParameter
+            (GSNPackage.Literals.SAFETY_CASE__TEMPLATES,
+             GSNTemplatesFactory.eINSTANCE.createPropertyTemplate()));
 
         return null;
       }

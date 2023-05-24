@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 import edu.toronto.cs.se.mmint.types.gsn.templates.DomainDecompositionStrategy;
 import edu.toronto.cs.se.mmint.types.gsn.templates.DomainGoal;
+import edu.toronto.cs.se.mmint.types.gsn.templates.DomainTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.templates.EnumDomain;
 import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesFactory;
 import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
@@ -27,6 +28,7 @@ import edu.toronto.cs.se.mmint.types.gsn.templates.IntDomain;
 import edu.toronto.cs.se.mmint.types.gsn.templates.Property;
 import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyDecompositionStrategy;
 import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyGoal;
+import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.templates.RealDomain;
 import edu.toronto.cs.se.mmint.types.gsn.templates.ValueDomain;
 
@@ -80,9 +82,11 @@ public class GSNTemplatesFactoryImpl extends EFactoryImpl implements GSNTemplate
     case GSNTemplatesPackage.VALUE_DOMAIN -> createValueDomain();
     case GSNTemplatesPackage.DOMAIN_DECOMPOSITION_STRATEGY -> createDomainDecompositionStrategy();
     case GSNTemplatesPackage.DOMAIN_GOAL -> createDomainGoal();
+    case GSNTemplatesPackage.DOMAIN_TEMPLATE -> createDomainTemplate();
     case GSNTemplatesPackage.PROPERTY -> createProperty();
     case GSNTemplatesPackage.PROPERTY_DECOMPOSITION_STRATEGY -> createPropertyDecompositionStrategy();
     case GSNTemplatesPackage.PROPERTY_GOAL -> createPropertyGoal();
+    case GSNTemplatesPackage.PROPERTY_TEMPLATE -> createPropertyTemplate();
     default -> throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     };
   }
@@ -159,6 +163,17 @@ public class GSNTemplatesFactoryImpl extends EFactoryImpl implements GSNTemplate
    * @generated
    */
   @Override
+  public DomainTemplate createDomainTemplate() {
+    DomainTemplateImpl domainTemplate = new DomainTemplateImpl();
+    return domainTemplate;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public Property createProperty() {
     PropertyImpl property = new PropertyImpl();
     return property;
@@ -184,6 +199,17 @@ public class GSNTemplatesFactoryImpl extends EFactoryImpl implements GSNTemplate
   public PropertyGoal createPropertyGoal() {
     PropertyGoalImpl propertyGoal = new PropertyGoalImpl();
     return propertyGoal;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public PropertyTemplate createPropertyTemplate() {
+    PropertyTemplateImpl propertyTemplate = new PropertyTemplateImpl();
+    return propertyTemplate;
   }
 
   /**
