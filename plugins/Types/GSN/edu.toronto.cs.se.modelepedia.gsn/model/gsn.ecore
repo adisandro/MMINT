@@ -187,7 +187,9 @@
   <eClassifiers xsi:type="ecore:EDataType" name="Exception" instanceClassName="java.lang.Exception"/>
   <eClassifiers xsi:type="ecore:EClass" name="Template">
     <eOperations name="validate" eExceptions="#//Exception"/>
-    <eOperations name="instantiate" eExceptions="#//Exception"/>
+    <eOperations name="instantiate" eExceptions="#//Exception">
+      <eParameters name="builder" lowerBound="1" eType="#//GSNBuilder"/>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="elements" lowerBound="1"
         upperBound="-1" eType="#//ArgumentElement" eOpposite="#//ArgumentElement/templates"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -198,4 +200,5 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="valid" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
         defaultValueLiteral="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="GSNBuilder" instanceClassName="edu.toronto.cs.se.modelepedia.gsn.util.GSNBuilder"/>
 </ecore:EPackage>

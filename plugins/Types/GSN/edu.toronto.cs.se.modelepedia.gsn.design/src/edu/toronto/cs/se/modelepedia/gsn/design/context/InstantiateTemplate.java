@@ -27,9 +27,10 @@ import org.eclipse.sirius.viewpoint.DSemanticDecorator;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
-import edu.toronto.cs.se.modelepedia.gsn.GSNFactory;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
+import edu.toronto.cs.se.modelepedia.gsn.util.GSNBuilder;
 
 public class InstantiateTemplate extends AbstractExternalJavaAction {
 
@@ -63,11 +64,19 @@ public class InstantiateTemplate extends AbstractExternalJavaAction {
       try {
         var templatePath = MIDDialogs.selectFiles("Instantiate Template", "Select GSN template file",
                                                   "There are no GSN files in the workspace", Set.of(GSNPackage.eNAME));
-        var template = GSNFactory.eINSTANCE.createTemplate();
-        template.setId(templatePath);
+        var templateSafetyCase = (SafetyCase) FileUtils.readModelFile(templatePath, null, true);
+        if (templateSafetyCase.getTemplates().isEmpty()) {
+          throw new MMINTException(templatePath + " does not contain a template");
+        }
+        var template = templateSafetyCase.getTemplates().get(0);
+        var builder = new GSNBuilder(this.safetyCase);
+        template.instantiate(builder);
+        builder.commitChanges();
         this.safetyCase.getTemplates().add(template);
-        template.instantiate();
         template.validate();
+        //TODO Move instantiate into execute (is it because of querying?)
+        //TODO Regen gsn and gsn.templates
+        //TODO Delete links and delete template
       }
       catch (MIDDialogCancellation e) {
         // template file selection cancelled

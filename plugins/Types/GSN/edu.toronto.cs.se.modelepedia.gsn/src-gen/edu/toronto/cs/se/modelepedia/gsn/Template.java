@@ -15,6 +15,8 @@ package edu.toronto.cs.se.modelepedia.gsn;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
+import edu.toronto.cs.se.modelepedia.gsn.util.GSNBuilder;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Template</b></em>'.
@@ -83,13 +85,13 @@ public interface Template extends EObject {
   /**
    * <!-- begin-user-doc --> Instantiates this template into the container safety case. The base implementation takes
    * the GSN template file path from the id field, copies all its GSN elements into the container safety case and adds
-   * them to the template elements. <!-- end-user-doc -->
-   *
+   * them to the template elements.
+   * @param builder TODO
    * @throws Exception
    *           If this template can not be instantiated. <!-- end-user-doc -->
    * @model exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception"
    * @generated
    */
-  void instantiate() throws Exception;
+  void instantiate(GSNBuilder builder) throws Exception;
 
 } // Template

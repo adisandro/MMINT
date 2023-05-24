@@ -102,6 +102,10 @@ public class GSNBuilder {
     return context;
   }
 
+  public void addExistingElements(List<? extends ArgumentElement> gsnElements) {
+    this.gsnElements.addAll(gsnElements);
+  }
+
   public void commitChanges() {
     for (var gsnElement : this.gsnElements) {
       if (gsnElement instanceof Goal goal) {
