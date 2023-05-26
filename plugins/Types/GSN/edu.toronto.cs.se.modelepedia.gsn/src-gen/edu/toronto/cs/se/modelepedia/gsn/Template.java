@@ -83,8 +83,9 @@ public interface Template extends EObject {
   void validate() throws Exception;
 
   /**
-   * <!-- begin-user-doc --> Instantiates this template into the builder safety case. The base implementation copies all
-   * the GSN template elements into the builder safety case.
+   * <!-- begin-user-doc --> Instantiates this template into the builder. The base implementation copies all the GSN
+   * template elements into the builder. Instantiation should not make changes directly to a safety case, the builder
+   * will commit those changes later at an appropriate time.
    *
    * @param builder
    *          The builder, i.e. a facade for the target safety case.

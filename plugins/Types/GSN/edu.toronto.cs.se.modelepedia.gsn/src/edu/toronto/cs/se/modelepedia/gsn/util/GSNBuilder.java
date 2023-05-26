@@ -30,16 +30,19 @@ import edu.toronto.cs.se.modelepedia.gsn.Solution;
 import edu.toronto.cs.se.modelepedia.gsn.Strategy;
 import edu.toronto.cs.se.modelepedia.gsn.Supportable;
 import edu.toronto.cs.se.modelepedia.gsn.Supporter;
+import edu.toronto.cs.se.modelepedia.gsn.Template;
 
 public class GSNBuilder {
   protected SafetyCase safetyCase;
   protected GSNFactory factory;
   protected List<ArgumentElement> gsnElements;
+  protected List<Template> templates;
 
   public GSNBuilder(SafetyCase safetyCase) {
     this.safetyCase = safetyCase;
     this.factory = GSNFactory.eINSTANCE;
     this.gsnElements = new ArrayList<>();
+    this.templates = new ArrayList<>();
   }
 
   public void addSupporter(Supportable supportable, Supporter supporter) {
@@ -102,8 +105,16 @@ public class GSNBuilder {
     return context;
   }
 
+  public void addExistingElement(ArgumentElement gsnElement) {
+    this.gsnElements.add(gsnElement);
+  }
+
   public void addExistingElements(List<? extends ArgumentElement> gsnElements) {
     this.gsnElements.addAll(gsnElements);
+  }
+
+  public void addExistingTemplate(Template template) {
+    this.templates.add(template);
   }
 
   public void commitChanges() {
@@ -127,5 +138,6 @@ public class GSNBuilder {
         this.safetyCase.getAssumptions().add(assumption);
       }
     }
+    this.safetyCase.getTemplates().addAll(this.templates);
   }
 }

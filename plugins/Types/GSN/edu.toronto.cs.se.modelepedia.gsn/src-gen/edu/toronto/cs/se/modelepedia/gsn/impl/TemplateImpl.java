@@ -151,6 +151,7 @@ public class TemplateImpl extends MinimalEObjectImpl.Container implements Templa
     builder.addExistingElements(templateSafetyCase.getContexts());
     builder.addExistingElements(templateSafetyCase.getJustifications());
     builder.addExistingElements(templateSafetyCase.getAssumptions());
+    builder.addExistingTemplate(this);
   }
 
   /**

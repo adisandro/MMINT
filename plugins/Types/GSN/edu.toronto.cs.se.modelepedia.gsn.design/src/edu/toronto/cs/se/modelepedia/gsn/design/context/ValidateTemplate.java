@@ -65,7 +65,7 @@ public class ValidateTemplate extends AbstractExternalJavaAction {
       var shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
       var title = "Template Validation";
       for (var template : this.templates) {
-        var message = "The template " + template.getId() + " is ";
+        var message = "The GSN template " + template.getId() + " is ";
         try {
           template.validate();
           MessageDialog.openInformation(shell, title, message + "instantiated correctly");

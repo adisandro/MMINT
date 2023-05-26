@@ -30,6 +30,7 @@ import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
+import edu.toronto.cs.se.modelepedia.gsn.Template;
 import edu.toronto.cs.se.modelepedia.gsn.util.GSNBuilder;
 
 public class InstantiateTemplate extends AbstractExternalJavaAction {
@@ -47,42 +48,49 @@ public class InstantiateTemplate extends AbstractExternalJavaAction {
     var modelObj = ((DSemanticDecorator) arg0.iterator().next()).getTarget();
     var sSession = SessionManager.INSTANCE.getSession(modelObj);
     var sDomain = sSession.getTransactionalEditingDomain();
-    var safetyCase = (modelObj instanceof SafetyCase) ? modelObj : modelObj.eContainer();
-    sDomain.getCommandStack().execute(new InstantiateTemplateCommand(sDomain, (SafetyCase) safetyCase));
+    var safetyCase = (modelObj instanceof SafetyCase sc) ? sc : (SafetyCase) modelObj.eContainer();
+    try {
+      var templatePath = MIDDialogs.selectFiles("Instantiate Template", "Select GSN template file",
+                                                "There are no GSN files in the workspace", Set.of(GSNPackage.eNAME));
+      var templateSafetyCase = (SafetyCase) FileUtils.readModelFile(templatePath, null, true);
+      if (templateSafetyCase.getTemplates().isEmpty()) {
+        throw new MMINTException(templatePath + " does not contain a template");
+      }
+      var template = templateSafetyCase.getTemplates().get(0);
+      var builder = new GSNBuilder(safetyCase);
+      // instantiation does not make changes to the safety case, the builder will commit those changes in the command
+      // this is done because some features (e.g. querying) would not work properly in a command
+      template.instantiate(builder);
+      sDomain.getCommandStack().execute(new InstantiateTemplateCommand(sDomain, template, builder));
+    }
+    catch (MIDDialogCancellation e) {
+      // template file selection cancelled
+    }
+    catch (Exception e) {
+      MMINTException.print(IStatus.ERROR, "Error instantiating GSN template", e);
+    }
   }
 
   private class InstantiateTemplateCommand extends RecordingCommand {
-    SafetyCase safetyCase;
+    Template template;
+    GSNBuilder builder;
 
-    public InstantiateTemplateCommand(TransactionalEditingDomain domain, SafetyCase safetyCase) {
+    public InstantiateTemplateCommand(TransactionalEditingDomain domain, Template template, GSNBuilder builder) {
       super(domain);
-      this.safetyCase = safetyCase;
+      this.template = template;
+      this.builder = builder;
     }
 
     @Override
     protected void doExecute() {
+      this.builder.commitChanges();
       try {
-        var templatePath = MIDDialogs.selectFiles("Instantiate Template", "Select GSN template file",
-                                                  "There are no GSN files in the workspace", Set.of(GSNPackage.eNAME));
-        var templateSafetyCase = (SafetyCase) FileUtils.readModelFile(templatePath, null, true);
-        if (templateSafetyCase.getTemplates().isEmpty()) {
-          throw new MMINTException(templatePath + " does not contain a template");
-        }
-        var template = templateSafetyCase.getTemplates().get(0);
-        var builder = new GSNBuilder(this.safetyCase);
-        template.instantiate(builder);
-        builder.commitChanges();
-        this.safetyCase.getTemplates().add(template);
-        template.validate();
-        //TODO Move instantiate into execute (is it because of querying?)
+        this.template.validate();
         //TODO Customize instantiate and validate for templates
         //TODO Delete links and delete template
       }
-      catch (MIDDialogCancellation e) {
-        // template file selection cancelled
-      }
       catch (Exception e) {
-        MMINTException.print(IStatus.ERROR, "Error instantiating GSN template", e);
+        MMINTException.print(IStatus.ERROR, "GSN template not instantiated correctly", e);
       }
     }
   }
