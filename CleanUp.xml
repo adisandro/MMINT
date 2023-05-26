@@ -51,6 +51,7 @@
         <setting id="cleanup.qualify_static_field_accesses_with_declaring_class" value="true"/>
         <setting id="cleanup.pull_out_if_from_if_else" value="false"/>
         <setting id="cleanup.use_anonymous_class_creation" value="false"/>
+        <setting id="cleanup.stringconcat_stringbuffer_stringbuilder" value="false"/>
         <setting id="cleanup.convert_to_enhanced_for_loop_if_loop_var_used" value="false"/>
         <setting id="cleanup.qualify_static_member_accesses_through_subtypes_with_declaring_class" value="true"/>
         <setting id="cleanup.break_loop" value="false"/>
