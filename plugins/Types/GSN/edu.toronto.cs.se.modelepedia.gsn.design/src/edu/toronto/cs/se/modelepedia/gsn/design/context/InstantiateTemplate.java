@@ -57,17 +57,16 @@ public class InstantiateTemplate extends AbstractExternalJavaAction {
         throw new MMINTException(templatePath + " does not contain a template");
       }
       var template = templateSafetyCase.getTemplates().get(0);
-      var builder = new GSNBuilder(safetyCase);
+      var builder = template.instantiate(safetyCase);
       // instantiation does not make changes to the safety case, the builder will commit those changes in the command
       // this is done because some features (e.g. querying) would not work properly in a command
-      template.instantiate(builder);
       sDomain.getCommandStack().execute(new InstantiateTemplateCommand(sDomain, template, builder));
     }
     catch (MIDDialogCancellation e) {
       // template file selection cancelled
     }
     catch (Exception e) {
-      MMINTException.print(IStatus.ERROR, "Error instantiating GSN template", e);
+      MMINTException.print(IStatus.ERROR, "Error instantiating template", e);
     }
   }
 
@@ -86,11 +85,13 @@ public class InstantiateTemplate extends AbstractExternalJavaAction {
       this.builder.commitChanges();
       try {
         this.template.validate();
-        //TODO Customize instantiate and validate for templates
+        //TODO Customize instantiate and validate for property and domain templates
         //TODO Delete links and delete template
+        //TODO Property and domain decomposition should use elements in the template rather than creating them
+        //TODO Change PropertyTemplate name
       }
       catch (Exception e) {
-        MMINTException.print(IStatus.ERROR, "GSN template not instantiated correctly", e);
+        MMINTException.print(IStatus.ERROR, "The template instantiation is not valid", e);
       }
     }
   }

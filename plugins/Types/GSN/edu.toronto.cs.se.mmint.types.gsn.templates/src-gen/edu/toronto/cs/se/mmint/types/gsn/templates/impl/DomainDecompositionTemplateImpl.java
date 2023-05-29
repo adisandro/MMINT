@@ -14,7 +14,7 @@ package edu.toronto.cs.se.mmint.types.gsn.templates.impl;
 
 import org.eclipse.emf.ecore.EClass;
 
-import edu.toronto.cs.se.mmint.types.gsn.templates.DomainTemplate;
+import edu.toronto.cs.se.mmint.types.gsn.templates.DomainDecompositionTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
 import edu.toronto.cs.se.modelepedia.gsn.impl.TemplateImpl;
 
@@ -25,13 +25,13 @@ import edu.toronto.cs.se.modelepedia.gsn.impl.TemplateImpl;
  *
  * @generated
  */
-public class DomainTemplateImpl extends TemplateImpl implements DomainTemplate {
+public class DomainDecompositionTemplateImpl extends TemplateImpl implements DomainDecompositionTemplate {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected DomainTemplateImpl() {
+  protected DomainDecompositionTemplateImpl() {
     super();
   }
 
@@ -42,7 +42,7 @@ public class DomainTemplateImpl extends TemplateImpl implements DomainTemplate {
    */
   @Override
   protected EClass eStaticClass() {
-    return GSNTemplatesPackage.Literals.DOMAIN_TEMPLATE;
+    return GSNTemplatesPackage.Literals.DOMAIN_DECOMPOSITION_TEMPLATE;
   }
 
 } //DomainTemplateImpl

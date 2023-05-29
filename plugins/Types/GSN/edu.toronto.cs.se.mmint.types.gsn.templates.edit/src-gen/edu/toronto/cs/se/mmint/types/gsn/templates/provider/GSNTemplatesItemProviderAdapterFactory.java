@@ -229,26 +229,26 @@ public class GSNTemplatesItemProviderAdapterFactory extends GSNTemplatesAdapterF
   }
 
   /**
-   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint.types.gsn.templates.DomainTemplate} instances.
+   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint.types.gsn.templates.DomainDecompositionTemplate} instances.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected DomainTemplateItemProvider domainTemplateItemProvider;
+  protected DomainDecompositionTemplateItemProvider domainDecompositionTemplateItemProvider;
 
   /**
-   * This creates an adapter for a {@link edu.toronto.cs.se.mmint.types.gsn.templates.DomainTemplate}.
+   * This creates an adapter for a {@link edu.toronto.cs.se.mmint.types.gsn.templates.DomainDecompositionTemplate}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
   @Override
-  public Adapter createDomainTemplateAdapter() {
-    if (this.domainTemplateItemProvider == null) {
-      this.domainTemplateItemProvider = new DomainTemplateItemProvider(this);
+  public Adapter createDomainDecompositionTemplateAdapter() {
+    if (this.domainDecompositionTemplateItemProvider == null) {
+      this.domainDecompositionTemplateItemProvider = new DomainDecompositionTemplateItemProvider(this);
     }
 
-    return this.domainTemplateItemProvider;
+    return this.domainDecompositionTemplateItemProvider;
   }
 
   /**
@@ -321,26 +321,26 @@ public class GSNTemplatesItemProviderAdapterFactory extends GSNTemplatesAdapterF
   }
 
   /**
-   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint.types.gsn.templates.PropertyTemplate} instances.
+   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint.types.gsn.templates.PropertyDecompositionTemplate} instances.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected PropertyTemplateItemProvider propertyTemplateItemProvider;
+  protected PropertyDecompositionTemplateItemProvider propertyDecompositionTemplateItemProvider;
 
   /**
-   * This creates an adapter for a {@link edu.toronto.cs.se.mmint.types.gsn.templates.PropertyTemplate}.
+   * This creates an adapter for a {@link edu.toronto.cs.se.mmint.types.gsn.templates.PropertyDecompositionTemplate}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
   @Override
-  public Adapter createPropertyTemplateAdapter() {
-    if (this.propertyTemplateItemProvider == null) {
-      this.propertyTemplateItemProvider = new PropertyTemplateItemProvider(this);
+  public Adapter createPropertyDecompositionTemplateAdapter() {
+    if (this.propertyDecompositionTemplateItemProvider == null) {
+      this.propertyDecompositionTemplateItemProvider = new PropertyDecompositionTemplateItemProvider(this);
     }
 
-    return this.propertyTemplateItemProvider;
+    return this.propertyDecompositionTemplateItemProvider;
   }
 
   /**
@@ -454,11 +454,11 @@ public class GSNTemplatesItemProviderAdapterFactory extends GSNTemplatesAdapterF
     if (this.valueDomainItemProvider != null) this.valueDomainItemProvider.dispose();
     if (this.domainDecompositionStrategyItemProvider != null) this.domainDecompositionStrategyItemProvider.dispose();
     if (this.domainGoalItemProvider != null) this.domainGoalItemProvider.dispose();
-    if (this.domainTemplateItemProvider != null) this.domainTemplateItemProvider.dispose();
+    if (this.domainDecompositionTemplateItemProvider != null) this.domainDecompositionTemplateItemProvider.dispose();
     if (this.propertyItemProvider != null) this.propertyItemProvider.dispose();
     if (this.propertyDecompositionStrategyItemProvider != null) this.propertyDecompositionStrategyItemProvider.dispose();
     if (this.propertyGoalItemProvider != null) this.propertyGoalItemProvider.dispose();
-    if (this.propertyTemplateItemProvider != null) this.propertyTemplateItemProvider.dispose();
+    if (this.propertyDecompositionTemplateItemProvider != null) this.propertyDecompositionTemplateItemProvider.dispose();
   }
 
   /**
@@ -531,12 +531,12 @@ public class GSNTemplatesItemProviderAdapterFactory extends GSNTemplatesAdapterF
         this.newChildDescriptors.add
           (createChildParameter
             (GSNPackage.Literals.SAFETY_CASE__TEMPLATES,
-             GSNTemplatesFactory.eINSTANCE.createDomainTemplate()));
+             GSNTemplatesFactory.eINSTANCE.createDomainDecompositionTemplate()));
 
         this.newChildDescriptors.add
           (createChildParameter
             (GSNPackage.Literals.SAFETY_CASE__TEMPLATES,
-             GSNTemplatesFactory.eINSTANCE.createPropertyTemplate()));
+             GSNTemplatesFactory.eINSTANCE.createPropertyDecompositionTemplate()));
 
         return null;
       }

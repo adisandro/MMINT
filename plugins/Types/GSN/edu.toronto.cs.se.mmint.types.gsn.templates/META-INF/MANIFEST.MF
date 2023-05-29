@@ -14,6 +14,7 @@ Export-Package: edu.toronto.cs.se.mmint.types.gsn.templates,
  edu.toronto.cs.se.mmint.types.gsn.templates.util
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
+ org.eclipse.core.resources,
  org.eclipse.emf.ecore,
  org.eclipse.emf.edit,
  org.eclipse.emf.edit.ui,

@@ -83,18 +83,18 @@ public interface Template extends EObject {
   void validate() throws Exception;
 
   /**
-   * <!-- begin-user-doc --> Instantiates this template into the builder. The base implementation copies all the GSN
-   * template elements into the builder. Instantiation should not make changes directly to a safety case, the builder
-   * will commit those changes later at an appropriate time.
+   * <!-- begin-user-doc --> Instantiates this template into a safety case. Instantiation should not make changes
+   * directly to the safety case but through a GSN builder, which must be created and returned to commit them later
+   * within an EMF write command. The base implementation copies all the GSN template elements into the builder.
    *
-   * @param builder
-   *          The builder, i.e. a facade for the target safety case.
+   * @param safetyCase
+   *          The safety case in which to instantiate the template.
+   * @return The GSN builder used as a facade to store changes to the safety case.
    * @throws Exception
    *           If this template can not be instantiated. <!-- end-user-doc -->
-   * @model exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception"
-   *        builderDataType="edu.toronto.cs.se.modelepedia.gsn.GSNBuilder" builderRequired="true"
+   * @model dataType="edu.toronto.cs.se.modelepedia.gsn.GSNBuilder" required="true" exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception" safetyCaseRequired="true"
    * @generated
    */
-  void instantiate(GSNBuilder builder) throws Exception;
+  GSNBuilder instantiate(SafetyCase safetyCase) throws Exception;
 
 } // Template

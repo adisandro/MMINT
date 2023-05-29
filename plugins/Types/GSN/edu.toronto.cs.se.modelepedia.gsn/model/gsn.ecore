@@ -187,8 +187,8 @@
   <eClassifiers xsi:type="ecore:EDataType" name="Exception" instanceClassName="java.lang.Exception"/>
   <eClassifiers xsi:type="ecore:EClass" name="Template">
     <eOperations name="validate" eExceptions="#//Exception"/>
-    <eOperations name="instantiate" eExceptions="#//Exception">
-      <eParameters name="builder" lowerBound="1" eType="#//GSNBuilder"/>
+    <eOperations name="instantiate" lowerBound="1" eType="#//GSNBuilder" eExceptions="#//Exception">
+      <eParameters name="safetyCase" lowerBound="1" eType="#//SafetyCase"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="elements" lowerBound="1"
         upperBound="-1" eType="#//ArgumentElement" eOpposite="#//ArgumentElement/templates"/>

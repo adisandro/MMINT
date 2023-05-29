@@ -23,8 +23,8 @@ import edu.toronto.cs.se.mmint.types.gsn.templates.DecompositionStrategy;
 import edu.toronto.cs.se.mmint.types.gsn.templates.Domain;
 import edu.toronto.cs.se.mmint.types.gsn.templates.DomainDecompositionElement;
 import edu.toronto.cs.se.mmint.types.gsn.templates.DomainDecompositionStrategy;
+import edu.toronto.cs.se.mmint.types.gsn.templates.DomainDecompositionTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.templates.DomainGoal;
-import edu.toronto.cs.se.mmint.types.gsn.templates.DomainTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.templates.EnumDomain;
 import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesFactory;
 import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
@@ -32,8 +32,8 @@ import edu.toronto.cs.se.mmint.types.gsn.templates.IntDomain;
 import edu.toronto.cs.se.mmint.types.gsn.templates.Property;
 import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyDecompositionElement;
 import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyDecompositionStrategy;
+import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyDecompositionTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyGoal;
-import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.templates.RealDomain;
 import edu.toronto.cs.se.mmint.types.gsn.templates.ValueDomain;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
@@ -113,7 +113,7 @@ public class GSNTemplatesPackageImpl extends EPackageImpl implements GSNTemplate
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass domainTemplateEClass = null;
+  private EClass domainDecompositionTemplateEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -148,7 +148,7 @@ public class GSNTemplatesPackageImpl extends EPackageImpl implements GSNTemplate
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass propertyTemplateEClass = null;
+  private EClass propertyDecompositionTemplateEClass = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -389,8 +389,8 @@ public class GSNTemplatesPackageImpl extends EPackageImpl implements GSNTemplate
    * @generated
    */
   @Override
-  public EClass getDomainTemplate() {
-    return this.domainTemplateEClass;
+  public EClass getDomainDecompositionTemplate() {
+    return this.domainDecompositionTemplateEClass;
   }
 
   /**
@@ -489,8 +489,8 @@ public class GSNTemplatesPackageImpl extends EPackageImpl implements GSNTemplate
    * @generated
    */
   @Override
-  public EClass getPropertyTemplate() {
-    return this.propertyTemplateEClass;
+  public EClass getPropertyDecompositionTemplate() {
+    return this.propertyDecompositionTemplateEClass;
   }
 
   /**
@@ -548,7 +548,7 @@ public class GSNTemplatesPackageImpl extends EPackageImpl implements GSNTemplate
 
     this.domainGoalEClass = createEClass(GSNTemplatesPackage.DOMAIN_GOAL);
 
-    this.domainTemplateEClass = createEClass(GSNTemplatesPackage.DOMAIN_TEMPLATE);
+    this.domainDecompositionTemplateEClass = createEClass(GSNTemplatesPackage.DOMAIN_DECOMPOSITION_TEMPLATE);
 
     this.propertyEClass = createEClass(GSNTemplatesPackage.PROPERTY);
     createEAttribute(this.propertyEClass, GSNTemplatesPackage.PROPERTY__FORMAL);
@@ -563,7 +563,7 @@ public class GSNTemplatesPackageImpl extends EPackageImpl implements GSNTemplate
     this.propertyGoalEClass = createEClass(GSNTemplatesPackage.PROPERTY_GOAL);
     createEAttribute(this.propertyGoalEClass, GSNTemplatesPackage.PROPERTY_GOAL__HINT);
 
-    this.propertyTemplateEClass = createEClass(GSNTemplatesPackage.PROPERTY_TEMPLATE);
+    this.propertyDecompositionTemplateEClass = createEClass(GSNTemplatesPackage.PROPERTY_DECOMPOSITION_TEMPLATE);
   }
 
   /**
@@ -608,13 +608,13 @@ public class GSNTemplatesPackageImpl extends EPackageImpl implements GSNTemplate
     this.domainGoalEClass.getESuperTypes().add(theGSNPackage.getGoal());
     this.domainGoalEClass.getESuperTypes().add(this.getDomainDecompositionElement());
     this.domainGoalEClass.getESuperTypes().add(theGSNPackage.getTemplateElement());
-    this.domainTemplateEClass.getESuperTypes().add(theGSNPackage.getTemplate());
+    this.domainDecompositionTemplateEClass.getESuperTypes().add(theGSNPackage.getTemplate());
     this.propertyDecompositionStrategyEClass.getESuperTypes().add(this.getDecompositionStrategy());
     this.propertyDecompositionStrategyEClass.getESuperTypes().add(this.getPropertyDecompositionElement());
     this.propertyGoalEClass.getESuperTypes().add(theGSNPackage.getGoal());
     this.propertyGoalEClass.getESuperTypes().add(this.getPropertyDecompositionElement());
     this.propertyGoalEClass.getESuperTypes().add(theGSNPackage.getTemplateElement());
-    this.propertyTemplateEClass.getESuperTypes().add(theGSNPackage.getTemplate());
+    this.propertyDecompositionTemplateEClass.getESuperTypes().add(theGSNPackage.getTemplate());
 
     // Initialize classes, features, and operations; add parameters
     initEClass(this.decompositionStrategyEClass, DecompositionStrategy.class, "DecompositionStrategy", EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
@@ -646,7 +646,7 @@ public class GSNTemplatesPackageImpl extends EPackageImpl implements GSNTemplate
 
     initEClass(this.domainGoalEClass, DomainGoal.class, "DomainGoal", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(this.domainTemplateEClass, DomainTemplate.class, "DomainTemplate", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+    initEClass(this.domainDecompositionTemplateEClass, DomainDecompositionTemplate.class, "DomainDecompositionTemplate", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(this.propertyEClass, Property.class, "Property", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getProperty_Formal(), this.ecorePackage.getEString(), "formal", null, 1, 1, Property.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
@@ -661,7 +661,7 @@ public class GSNTemplatesPackageImpl extends EPackageImpl implements GSNTemplate
     initEClass(this.propertyGoalEClass, PropertyGoal.class, "PropertyGoal", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getPropertyGoal_Hint(), this.ecorePackage.getEString(), "hint", null, 0, 1, PropertyGoal.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
 
-    initEClass(this.propertyTemplateEClass, PropertyTemplate.class, "PropertyTemplate", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+    initEClass(this.propertyDecompositionTemplateEClass, PropertyDecompositionTemplate.class, "PropertyDecompositionTemplate", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 
     // Create resource
     createResource(GSNTemplatesPackage.eNS_URI);

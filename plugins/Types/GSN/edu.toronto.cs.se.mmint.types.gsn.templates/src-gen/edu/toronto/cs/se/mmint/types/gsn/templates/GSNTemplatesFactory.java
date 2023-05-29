@@ -86,13 +86,13 @@ public interface GSNTemplatesFactory extends EFactory {
   DomainGoal createDomainGoal();
 
   /**
-   * Returns a new object of class '<em>Domain Template</em>'.
+   * Returns a new object of class '<em>Domain Decomposition Template</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Domain Template</em>'.
+   * @return a new object of class '<em>Domain Decomposition Template</em>'.
    * @generated
    */
-  DomainTemplate createDomainTemplate();
+  DomainDecompositionTemplate createDomainDecompositionTemplate();
 
   /**
    * Returns a new object of class '<em>Property</em>'.
@@ -122,13 +122,13 @@ public interface GSNTemplatesFactory extends EFactory {
   PropertyGoal createPropertyGoal();
 
   /**
-   * Returns a new object of class '<em>Property Template</em>'.
+   * Returns a new object of class '<em>Property Decomposition Template</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Property Template</em>'.
+   * @return a new object of class '<em>Property Decomposition Template</em>'.
    * @generated
    */
-  PropertyTemplate createPropertyTemplate();
+  PropertyDecompositionTemplate createPropertyDecompositionTemplate();
 
   /**
    * Returns the package supported by this factory.

@@ -20,9 +20,9 @@ import edu.toronto.cs.se.modelepedia.gsn.Template;
  * <!-- end-user-doc -->
  *
  *
- * @see edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage#getPropertyTemplate()
+ * @see edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage#getPropertyDecompositionTemplate()
  * @model
  * @generated
  */
-public interface PropertyTemplate extends Template {
+public interface PropertyDecompositionTemplate extends Template {
 } // PropertyTemplate

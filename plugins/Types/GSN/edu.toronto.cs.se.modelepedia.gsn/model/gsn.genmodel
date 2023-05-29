@@ -104,7 +104,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//Template/id"/>
       <genOperations ecoreOperation="gsn.ecore#//Template/validate"/>
       <genOperations ecoreOperation="gsn.ecore#//Template/instantiate">
-        <genParameters ecoreParameter="gsn.ecore#//Template/instantiate/builder"/>
+        <genParameters ecoreParameter="gsn.ecore#//Template/instantiate/safetyCase"/>
       </genOperations>
     </genClasses>
     <genClasses image="false" ecoreClass="gsn.ecore#//TemplateElement">

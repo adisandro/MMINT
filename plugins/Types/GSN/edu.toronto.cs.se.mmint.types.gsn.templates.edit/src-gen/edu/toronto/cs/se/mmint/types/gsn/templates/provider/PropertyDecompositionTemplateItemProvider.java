@@ -21,23 +21,23 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
-import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyTemplate;
+import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyDecompositionTemplate;
 import edu.toronto.cs.se.modelepedia.gsn.provider.TemplateItemProvider;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.mmint.types.gsn.templates.PropertyTemplate} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.mmint.types.gsn.templates.PropertyDecompositionTemplate} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class PropertyTemplateItemProvider extends TemplateItemProvider {
+public class PropertyDecompositionTemplateItemProvider extends TemplateItemProvider {
   /**
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  public PropertyTemplateItemProvider(AdapterFactory adapterFactory) {
+  public PropertyDecompositionTemplateItemProvider(AdapterFactory adapterFactory) {
     super(adapterFactory);
   }
 
@@ -57,14 +57,14 @@ public class PropertyTemplateItemProvider extends TemplateItemProvider {
   }
 
   /**
-   * This returns PropertyTemplate.gif.
+   * This returns PropertyDecompositionTemplate.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
   @Override
   public Object getImage(Object object) {
-    return overlayImage(object, getResourceLocator().getImage("full/obj16/PropertyTemplate"));
+    return overlayImage(object, getResourceLocator().getImage("full/obj16/PropertyDecompositionTemplate"));
   }
 
   /**
@@ -75,10 +75,10 @@ public class PropertyTemplateItemProvider extends TemplateItemProvider {
    */
   @Override
   public String getText(Object object) {
-    var label = ((PropertyTemplate)object).getId();
+    var label = ((PropertyDecompositionTemplate)object).getId();
     return label == null || label.length() == 0 ?
-      getString("_UI_PropertyTemplate_type") :
-      getString("_UI_PropertyTemplate_type") + " " + label;
+      getString("_UI_PropertyDecompositionTemplate_type") :
+      getString("_UI_PropertyDecompositionTemplate_type") + " " + label;
   }
 
 

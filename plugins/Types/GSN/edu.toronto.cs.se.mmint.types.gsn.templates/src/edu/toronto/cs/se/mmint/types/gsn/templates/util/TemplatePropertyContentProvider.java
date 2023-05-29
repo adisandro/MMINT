@@ -10,7 +10,7 @@
  * Contributors:
  *     Alessio Di Sandro - Implementation
  *******************************************************************************/
-package edu.toronto.cs.se.mmint.types.gsn.templates.design.context;
+package edu.toronto.cs.se.mmint.types.gsn.templates.util;
 
 import java.util.List;
 import java.util.Map;

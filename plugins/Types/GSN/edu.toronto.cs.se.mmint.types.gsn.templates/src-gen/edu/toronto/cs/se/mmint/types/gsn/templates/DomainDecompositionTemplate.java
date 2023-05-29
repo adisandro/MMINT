@@ -20,9 +20,9 @@ import edu.toronto.cs.se.modelepedia.gsn.Template;
  * <!-- end-user-doc -->
  *
  *
- * @see edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage#getDomainTemplate()
+ * @see edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage#getDomainDecompositionTemplate()
  * @model
  * @generated
  */
-public interface DomainTemplate extends Template {
+public interface DomainDecompositionTemplate extends Template {
 } // DomainTemplate

@@ -21,23 +21,23 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
-import edu.toronto.cs.se.mmint.types.gsn.templates.DomainTemplate;
+import edu.toronto.cs.se.mmint.types.gsn.templates.DomainDecompositionTemplate;
 import edu.toronto.cs.se.modelepedia.gsn.provider.TemplateItemProvider;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.mmint.types.gsn.templates.DomainTemplate} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.mmint.types.gsn.templates.DomainDecompositionTemplate} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class DomainTemplateItemProvider extends TemplateItemProvider {
+public class DomainDecompositionTemplateItemProvider extends TemplateItemProvider {
   /**
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  public DomainTemplateItemProvider(AdapterFactory adapterFactory) {
+  public DomainDecompositionTemplateItemProvider(AdapterFactory adapterFactory) {
     super(adapterFactory);
   }
 
@@ -57,14 +57,14 @@ public class DomainTemplateItemProvider extends TemplateItemProvider {
   }
 
   /**
-   * This returns DomainTemplate.gif.
+   * This returns DomainDecompositionTemplate.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
   @Override
   public Object getImage(Object object) {
-    return overlayImage(object, getResourceLocator().getImage("full/obj16/DomainTemplate"));
+    return overlayImage(object, getResourceLocator().getImage("full/obj16/DomainDecompositionTemplate"));
   }
 
   /**
@@ -75,10 +75,10 @@ public class DomainTemplateItemProvider extends TemplateItemProvider {
    */
   @Override
   public String getText(Object object) {
-    var label = ((DomainTemplate)object).getId();
+    var label = ((DomainDecompositionTemplate)object).getId();
     return label == null || label.length() == 0 ?
-      getString("_UI_DomainTemplate_type") :
-      getString("_UI_DomainTemplate_type") + " " + label;
+      getString("_UI_DomainDecompositionTemplate_type") :
+      getString("_UI_DomainDecompositionTemplate_type") + " " + label;
   }
 
 

@@ -10,7 +10,7 @@
  * Contributors:
  *     Alessio Di Sandro - Implementation
  *******************************************************************************/
-package edu.toronto.cs.se.mmint.types.gsn.templates.design.context;
+package edu.toronto.cs.se.mmint.types.gsn.templates.util;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -35,7 +35,6 @@ import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.mid.ui.MIDTreeSelectionDialog;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyGoal;
-import edu.toronto.cs.se.mmint.types.gsn.templates.design.Activator;
 import edu.toronto.cs.se.mmint.types.gsn.templates.reasoning.IGSNLeanEncoder.PropertyTemplate;
 import edu.toronto.cs.se.modelepedia.gsn.Goal;
 import edu.toronto.cs.se.modelepedia.gsn.Strategy;
@@ -149,9 +148,10 @@ public class DecompositionUtils {
     });
     var contentProvider = new TemplatePropertyContentProvider(templates);
     var dialog = new MIDTreeSelectionDialog(labelProvider, contentProvider, templates);
+    var pluginId = "edu.toronto.cs.se.mmint.types.gsn.templates";
     dialog.setValidator(selection -> (Arrays.stream(selection).anyMatch(s -> s instanceof String)) ?
-                                       new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Property not selected") :
-                                       new Status(IStatus.OK, Activator.PLUGIN_ID, ""));
+                                       new Status(IStatus.ERROR, pluginId, "Property not selected") :
+                                       new Status(IStatus.OK, pluginId, ""));
 
     return (PropertyTemplate) MIDDialogs.openTreeDialogWithDefault(dialog, title, message);
   }

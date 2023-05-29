@@ -20,16 +20,16 @@ import edu.toronto.cs.se.mmint.types.gsn.templates.DecompositionStrategy;
 import edu.toronto.cs.se.mmint.types.gsn.templates.Domain;
 import edu.toronto.cs.se.mmint.types.gsn.templates.DomainDecompositionElement;
 import edu.toronto.cs.se.mmint.types.gsn.templates.DomainDecompositionStrategy;
+import edu.toronto.cs.se.mmint.types.gsn.templates.DomainDecompositionTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.templates.DomainGoal;
-import edu.toronto.cs.se.mmint.types.gsn.templates.DomainTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.templates.EnumDomain;
 import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
 import edu.toronto.cs.se.mmint.types.gsn.templates.IntDomain;
 import edu.toronto.cs.se.mmint.types.gsn.templates.Property;
 import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyDecompositionElement;
 import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyDecompositionStrategy;
+import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyDecompositionTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyGoal;
-import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.templates.RealDomain;
 import edu.toronto.cs.se.mmint.types.gsn.templates.ValueDomain;
 import edu.toronto.cs.se.modelepedia.gsn.ASILfulElement;
@@ -185,10 +185,10 @@ public class GSNTemplatesSwitch<T> extends Switch<T> {
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case GSNTemplatesPackage.DOMAIN_TEMPLATE: {
-        var domainTemplate = (DomainTemplate)theEObject;
-        var result = caseDomainTemplate(domainTemplate);
-        if (result == null) result = caseTemplate(domainTemplate);
+      case GSNTemplatesPackage.DOMAIN_DECOMPOSITION_TEMPLATE: {
+        var domainDecompositionTemplate = (DomainDecompositionTemplate)theEObject;
+        var result = caseDomainDecompositionTemplate(domainDecompositionTemplate);
+        if (result == null) result = caseTemplate(domainDecompositionTemplate);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -235,10 +235,10 @@ public class GSNTemplatesSwitch<T> extends Switch<T> {
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case GSNTemplatesPackage.PROPERTY_TEMPLATE: {
-        var propertyTemplate = (PropertyTemplate)theEObject;
-        var result = casePropertyTemplate(propertyTemplate);
-        if (result == null) result = caseTemplate(propertyTemplate);
+      case GSNTemplatesPackage.PROPERTY_DECOMPOSITION_TEMPLATE: {
+        var propertyDecompositionTemplate = (PropertyDecompositionTemplate)theEObject;
+        var result = casePropertyDecompositionTemplate(propertyDecompositionTemplate);
+        if (result == null) result = caseTemplate(propertyDecompositionTemplate);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -382,17 +382,17 @@ public class GSNTemplatesSwitch<T> extends Switch<T> {
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Domain Template</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Domain Decomposition Template</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Domain Template</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Domain Decomposition Template</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseDomainTemplate(DomainTemplate object) {
+  public T caseDomainDecompositionTemplate(DomainDecompositionTemplate object) {
     return null;
   }
 
@@ -457,17 +457,17 @@ public class GSNTemplatesSwitch<T> extends Switch<T> {
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Property Template</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Property Decomposition Template</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Property Template</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Property Decomposition Template</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T casePropertyTemplate(PropertyTemplate object) {
+  public T casePropertyDecompositionTemplate(PropertyDecompositionTemplate object) {
     return null;
   }
 

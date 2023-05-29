@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2023 Alessio Di Sandro.
+ * Copyright (c) 2023, 2023 Alessio Di Sandro.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -10,7 +10,7 @@
  * Contributors:
  *     Alessio Di Sandro - Implementation
  *******************************************************************************/
-package edu.toronto.cs.se.mmint.types.gsn.templates.design.context;
+package edu.toronto.cs.se.mmint.types.gsn.templates.impl;
 
 import java.util.HashMap;
 import java.util.List;
@@ -31,7 +31,9 @@ import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.mid.ui.MIDTreeSelectionDialog;
 import edu.toronto.cs.se.mmint.types.gsn.templates.DecompositionStrategy;
+import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
 import edu.toronto.cs.se.mmint.types.gsn.templates.Property;
+import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyDecompositionTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyGoal;
 import edu.toronto.cs.se.mmint.types.gsn.templates.reasoning.IGSNDecompositionTrait;
 import edu.toronto.cs.se.mmint.types.gsn.templates.reasoning.IGSNLeanEncoder.PropertyTemplate;
@@ -42,15 +44,47 @@ import edu.toronto.cs.se.modelepedia.gsn.DecomposableCoreElement;
 import edu.toronto.cs.se.modelepedia.gsn.Goal;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
 import edu.toronto.cs.se.modelepedia.gsn.Strategy;
+import edu.toronto.cs.se.modelepedia.gsn.impl.TemplateImpl;
 import edu.toronto.cs.se.modelepedia.gsn.util.GSNBuilder;
 
-public class PropertyDecomposition extends GoalDecomposition {
-
-  @Override
-  protected GSNBuilder createGSNBuilder(Goal goal) {
-    return new GSNTemplatesBuilder((SafetyCase) goal.eContainer());
+/**
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Property Template</b></em>'.
+ * <!-- end-user-doc -->
+ *
+ * @generated
+ */
+public class PropertyDecompositionTemplateImpl extends TemplateImpl implements PropertyDecompositionTemplate {
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected PropertyDecompositionTemplateImpl() {
+    super();
   }
 
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  protected EClass eStaticClass() {
+    return GSNTemplatesPackage.Literals.PROPERTY_DECOMPOSITION_TEMPLATE;
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public void validate() throws Exception {
+    // do nothing
+  }
+
+  /**
+   * @generated NOT
+   */
   private String getEncodingFile(String title, String message) throws MIDDialogCancellation {
     var dialog = new MIDTreeSelectionDialog(new WorkbenchLabelProvider(), new BaseWorkbenchContentProvider(),
                                             ResourcesPlugin.getWorkspace().getRoot());
@@ -61,6 +95,9 @@ public class PropertyDecomposition extends GoalDecomposition {
     return encodingFile.getFullPath().toString();
   }
 
+  /**
+   * @generated NOT
+   */
   private void createQueryContext(DecomposableCoreElement contextualized, String query, String id, int numCtx,
                                   Map<String, Context> contexts, GSNTemplatesBuilder builder) {
     var context = contexts.get(query);
@@ -79,8 +116,10 @@ public class PropertyDecomposition extends GoalDecomposition {
     builder.addInContextOf(contextualized, context);
   }
 
-  @Override
-  protected DecompositionStrategy decompose(Goal decomposed, GSNBuilder gsnBuilder) throws Exception {
+  /**
+   * @generated NOT
+   */
+  private DecompositionStrategy decompose(Goal decomposed, GSNBuilder gsnBuilder) throws Exception {
     var builder = (GSNTemplatesBuilder) gsnBuilder;
     // ask for input
     var title = "Property Decomposition";
@@ -201,4 +240,16 @@ public class PropertyDecomposition extends GoalDecomposition {
 
     return propStrategy;
   }
-}
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public GSNBuilder instantiate(SafetyCase safetyCase) throws Exception {
+    var builder = new GSNTemplatesBuilder(safetyCase);
+    decompose(null, builder);
+
+    return builder;
+  }
+
+} //PropertyTemplateImpl
