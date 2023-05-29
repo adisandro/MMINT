@@ -15,8 +15,10 @@ package edu.toronto.cs.se.modelepedia.gsn.design.context;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -45,10 +47,11 @@ public class InstantiateTemplate extends AbstractExternalJavaAction {
 
   @Override
   public void execute(Collection<? extends EObject> arg0, Map<String, Object> arg1) {
-    var modelObj = ((DSemanticDecorator) arg0.iterator().next()).getTarget();
+    var selection = arg0.stream().map(d -> ((DSemanticDecorator) d).getTarget()).collect(Collectors.toList());
+    var modelObj = selection.get(0);
+    var safetyCase = (modelObj instanceof SafetyCase sc) ? sc : (SafetyCase) modelObj.eContainer();
     var sSession = SessionManager.INSTANCE.getSession(modelObj);
     var sDomain = sSession.getTransactionalEditingDomain();
-    var safetyCase = (modelObj instanceof SafetyCase sc) ? sc : (SafetyCase) modelObj.eContainer();
     try {
       var templatePath = MIDDialogs.selectFiles("Instantiate Template", "Select GSN template file",
                                                 "There are no GSN files in the workspace", Set.of(GSNPackage.eNAME));
@@ -57,7 +60,7 @@ public class InstantiateTemplate extends AbstractExternalJavaAction {
         throw new MMINTException(templatePath + " does not contain a template");
       }
       var template = templateSafetyCase.getTemplates().get(0);
-      var builder = template.instantiate(safetyCase);
+      var builder = template.instantiate(safetyCase, ECollections.toEList(selection));
       // instantiation does not make changes to the safety case, the builder will commit those changes in the command
       // this is done because some features (e.g. querying) would not work properly in a command
       sDomain.getCommandStack().execute(new InstantiateTemplateCommand(sDomain, template, builder));

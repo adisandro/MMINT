@@ -105,6 +105,7 @@
       <genOperations ecoreOperation="gsn.ecore#//Template/validate"/>
       <genOperations ecoreOperation="gsn.ecore#//Template/instantiate">
         <genParameters ecoreParameter="gsn.ecore#//Template/instantiate/safetyCase"/>
+        <genParameters ecoreParameter="gsn.ecore#//Template/instantiate/selection"/>
       </genOperations>
     </genClasses>
     <genClasses image="false" ecoreClass="gsn.ecore#//TemplateElement">

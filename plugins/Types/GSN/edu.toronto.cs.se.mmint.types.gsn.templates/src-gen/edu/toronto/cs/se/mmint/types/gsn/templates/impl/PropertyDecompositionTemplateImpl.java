@@ -19,6 +19,7 @@ import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ui.model.BaseWorkbenchContentProvider;
@@ -245,9 +246,16 @@ public class PropertyDecompositionTemplateImpl extends TemplateImpl implements P
    * @generated NOT
    */
   @Override
-  public GSNBuilder instantiate(SafetyCase safetyCase) throws Exception {
+  public GSNBuilder instantiate(SafetyCase safetyCase, EList<EObject> selection) throws Exception {
     var builder = new GSNTemplatesBuilder(safetyCase);
-    decompose(null, builder);
+    if (selection.size() > 1) {
+      throw new MMINTException("Only one goal must be selected in a property decomposition");
+    }
+    var selected = selection.get(0);
+    if (!(selected instanceof Goal goal)) {
+      throw new MMINTException("The selected element to be decomposed is not a goal");
+    }
+    decompose(goal, builder);
 
     return builder;
   }

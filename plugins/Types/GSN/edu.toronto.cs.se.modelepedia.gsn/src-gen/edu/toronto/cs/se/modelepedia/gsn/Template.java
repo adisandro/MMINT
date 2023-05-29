@@ -89,12 +89,15 @@ public interface Template extends EObject {
    *
    * @param safetyCase
    *          The safety case in which to instantiate the template.
+   * @param selection
+   *          The selected elements in the safety case where the template instantiation starts.
    * @return The GSN builder used as a facade to store changes to the safety case.
    * @throws Exception
    *           If this template can not be instantiated. <!-- end-user-doc -->
-   * @model dataType="edu.toronto.cs.se.modelepedia.gsn.GSNBuilder" required="true" exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception" safetyCaseRequired="true"
+   * @model dataType="edu.toronto.cs.se.modelepedia.gsn.GSNBuilder" required="true"
+   *        exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception" safetyCaseRequired="true" selectionMany="true"
    * @generated
    */
-  GSNBuilder instantiate(SafetyCase safetyCase) throws Exception;
+  GSNBuilder instantiate(SafetyCase safetyCase, EList<EObject> selection) throws Exception;
 
 } // Template

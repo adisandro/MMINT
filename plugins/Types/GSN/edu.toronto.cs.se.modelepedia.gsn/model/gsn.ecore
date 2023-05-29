@@ -189,6 +189,7 @@
     <eOperations name="validate" eExceptions="#//Exception"/>
     <eOperations name="instantiate" lowerBound="1" eType="#//GSNBuilder" eExceptions="#//Exception">
       <eParameters name="safetyCase" lowerBound="1" eType="#//SafetyCase"/>
+      <eParameters name="selection" upperBound="-1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="elements" lowerBound="1"
         upperBound="-1" eType="#//ArgumentElement" eOpposite="#//ArgumentElement/templates"/>

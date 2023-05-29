@@ -815,7 +815,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DOMAIN_DECOMPOSITION_TEMPLATE___INSTANTIATE__SAFETYCASE = GSNPackage.TEMPLATE___INSTANTIATE__SAFETYCASE;
+  int DOMAIN_DECOMPOSITION_TEMPLATE___INSTANTIATE__SAFETYCASE_ELIST = GSNPackage.TEMPLATE___INSTANTIATE__SAFETYCASE_ELIST;
 
   /**
    * The number of operations of the '<em>Domain Decomposition Template</em>' class.
@@ -1271,7 +1271,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PROPERTY_DECOMPOSITION_TEMPLATE___INSTANTIATE__SAFETYCASE = GSNPackage.TEMPLATE___INSTANTIATE__SAFETYCASE;
+  int PROPERTY_DECOMPOSITION_TEMPLATE___INSTANTIATE__SAFETYCASE_ELIST = GSNPackage.TEMPLATE___INSTANTIATE__SAFETYCASE_ELIST;
 
   /**
    * The number of operations of the '<em>Property Decomposition Template</em>' class.

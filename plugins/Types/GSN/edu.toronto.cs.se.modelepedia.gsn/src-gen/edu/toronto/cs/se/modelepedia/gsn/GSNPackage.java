@@ -1997,7 +1997,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int TEMPLATE___INSTANTIATE__SAFETYCASE = 1;
+  int TEMPLATE___INSTANTIATE__SAFETYCASE_ELIST = 1;
 
   /**
    * The number of operations of the '<em>Template</em>' class.
@@ -2771,14 +2771,14 @@ public interface GSNPackage extends EPackage {
   EOperation getTemplate__Validate();
 
   /**
-   * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.gsn.Template#instantiate(edu.toronto.cs.se.modelepedia.gsn.SafetyCase) <em>Instantiate</em>}' operation.
+   * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.gsn.Template#instantiate(edu.toronto.cs.se.modelepedia.gsn.SafetyCase, org.eclipse.emf.common.util.EList) <em>Instantiate</em>}' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the '<em>Instantiate</em>' operation.
-   * @see edu.toronto.cs.se.modelepedia.gsn.Template#instantiate(edu.toronto.cs.se.modelepedia.gsn.SafetyCase)
+   * @see edu.toronto.cs.se.modelepedia.gsn.Template#instantiate(edu.toronto.cs.se.modelepedia.gsn.SafetyCase, org.eclipse.emf.common.util.EList)
    * @generated
    */
-  EOperation getTemplate__Instantiate__SafetyCase();
+  EOperation getTemplate__Instantiate__SafetyCase_EList();
 
   /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.gsn.TemplateElement <em>Template Element</em>}'.
@@ -3417,7 +3417,7 @@ public interface GSNPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EOperation TEMPLATE___INSTANTIATE__SAFETYCASE = GSNPackage.eINSTANCE.getTemplate__Instantiate__SafetyCase();
+    EOperation TEMPLATE___INSTANTIATE__SAFETYCASE_ELIST = GSNPackage.eINSTANCE.getTemplate__Instantiate__SafetyCase_EList();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.TemplateElementImpl <em>Template Element</em>}' class.
