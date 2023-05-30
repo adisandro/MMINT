@@ -13,6 +13,7 @@
 package edu.toronto.cs.se.mmint.types.gsn.templates.impl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
@@ -31,6 +32,7 @@ import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyDecompositionTemplate
 import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyGoal;
 import edu.toronto.cs.se.mmint.types.gsn.templates.RealDomain;
 import edu.toronto.cs.se.mmint.types.gsn.templates.ValueDomain;
+import edu.toronto.cs.se.mmint.types.gsn.templates.util.GSNTemplatesBuilder;
 
 /**
  * <!-- begin-user-doc -->
@@ -88,6 +90,32 @@ public class GSNTemplatesFactoryImpl extends EFactoryImpl implements GSNTemplate
     case GSNTemplatesPackage.PROPERTY_GOAL -> createPropertyGoal();
     case GSNTemplatesPackage.PROPERTY_DECOMPOSITION_TEMPLATE -> createPropertyDecompositionTemplate();
     default -> throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+    };
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Object createFromString(EDataType eDataType, String initialValue) {
+    return switch (eDataType.getClassifierID()) {
+    case GSNTemplatesPackage.GSN_TEMPLATES_BUILDER -> createGSNTemplatesBuilderFromString(eDataType, initialValue);
+    default -> throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+    };
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String convertToString(EDataType eDataType, Object instanceValue) {
+    return switch (eDataType.getClassifierID()) {
+    case GSNTemplatesPackage.GSN_TEMPLATES_BUILDER -> convertGSNTemplatesBuilderToString(eDataType, instanceValue);
+    default -> throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     };
   }
 
@@ -210,6 +238,24 @@ public class GSNTemplatesFactoryImpl extends EFactoryImpl implements GSNTemplate
   public PropertyDecompositionTemplate createPropertyDecompositionTemplate() {
     PropertyDecompositionTemplateImpl propertyDecompositionTemplate = new PropertyDecompositionTemplateImpl();
     return propertyDecompositionTemplate;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public GSNTemplatesBuilder createGSNTemplatesBuilderFromString(EDataType eDataType, String initialValue) {
+    return (GSNTemplatesBuilder)super.createFromString(eDataType, initialValue);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertGSNTemplatesBuilderToString(EDataType eDataType, Object instanceValue) {
+    return super.convertToString(eDataType, instanceValue);
   }
 
   /**

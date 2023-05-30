@@ -19,7 +19,6 @@ import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ui.model.BaseWorkbenchContentProvider;
@@ -31,9 +30,9 @@ import edu.toronto.cs.se.mmint.mid.ui.FilesOnlyDialogSelectionValidator;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.mid.ui.MIDTreeSelectionDialog;
+import edu.toronto.cs.se.mmint.types.gsn.templates.DecompositionStrategy;
 import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
 import edu.toronto.cs.se.mmint.types.gsn.templates.Property;
-import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyDecompositionStrategy;
 import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyDecompositionTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyGoal;
 import edu.toronto.cs.se.mmint.types.gsn.templates.reasoning.IGSNDecompositionTrait;
@@ -43,10 +42,7 @@ import edu.toronto.cs.se.mmint.types.gsn.templates.util.GSNTemplatesBuilder;
 import edu.toronto.cs.se.modelepedia.gsn.Context;
 import edu.toronto.cs.se.modelepedia.gsn.DecomposableCoreElement;
 import edu.toronto.cs.se.modelepedia.gsn.Goal;
-import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
 import edu.toronto.cs.se.modelepedia.gsn.Strategy;
-import edu.toronto.cs.se.modelepedia.gsn.impl.TemplateImpl;
-import edu.toronto.cs.se.modelepedia.gsn.util.GSNBuilder;
 
 /**
  * <!-- begin-user-doc -->
@@ -55,7 +51,7 @@ import edu.toronto.cs.se.modelepedia.gsn.util.GSNBuilder;
  *
  * @generated
  */
-public class PropertyDecompositionTemplateImpl extends TemplateImpl implements PropertyDecompositionTemplate {
+public class PropertyDecompositionTemplateImpl extends DecompositionTemplateImpl implements PropertyDecompositionTemplate {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -81,8 +77,8 @@ public class PropertyDecompositionTemplateImpl extends TemplateImpl implements P
   @Override
   public void validate() throws Exception {
     var strategy = getElements().stream()
-      .filter(e -> e instanceof PropertyDecompositionStrategy)
-      .map(e -> (PropertyDecompositionStrategy) e)
+      .filter(e -> e instanceof DecompositionStrategy)
+      .map(e -> (DecompositionStrategy) e)
       .findFirst()
       .orElseThrow(() -> new MMINTException("Missing decomposition strategy"));
     strategy.validate();
@@ -125,7 +121,8 @@ public class PropertyDecompositionTemplateImpl extends TemplateImpl implements P
   /**
    * @generated NOT
    */
-  private void decompose(Goal decomposed, GSNTemplatesBuilder builder) throws Exception {
+  @Override
+  public void decompose(Goal decomposed, GSNTemplatesBuilder builder) throws Exception {
     // ask for input
     var title = "Property Decomposition";
     var customMsg = "Insert a description for the custom property";
@@ -242,24 +239,6 @@ public class PropertyDecompositionTemplateImpl extends TemplateImpl implements P
       }
     }
     builder.addSupporter(decomposed, chainedStrategy);
-  }
-
-  /**
-   * @generated NOT
-   */
-  @Override
-  public GSNBuilder instantiate(SafetyCase safetyCase, EList<EObject> selection) throws Exception {
-    var builder = new GSNTemplatesBuilder(safetyCase);
-    if (selection.size() > 1) {
-      throw new MMINTException("Only one goal must be selected in a property decomposition");
-    }
-    var selected = selection.get(0);
-    if (!(selected instanceof Goal goal)) {
-      throw new MMINTException("The selected element to be decomposed is not a goal");
-    }
-    decompose(goal, builder);
-
-    return builder;
   }
 
 } //PropertyTemplateImpl

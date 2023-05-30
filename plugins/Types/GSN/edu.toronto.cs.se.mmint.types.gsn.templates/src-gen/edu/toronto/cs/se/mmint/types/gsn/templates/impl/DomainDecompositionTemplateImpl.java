@@ -15,9 +15,7 @@ package edu.toronto.cs.se.mmint.types.gsn.templates.impl;
 import java.util.ArrayList;
 import java.util.Set;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
@@ -28,9 +26,6 @@ import edu.toronto.cs.se.mmint.types.gsn.templates.IntDomain;
 import edu.toronto.cs.se.mmint.types.gsn.templates.RealDomain;
 import edu.toronto.cs.se.mmint.types.gsn.templates.util.GSNTemplatesBuilder;
 import edu.toronto.cs.se.modelepedia.gsn.Goal;
-import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
-import edu.toronto.cs.se.modelepedia.gsn.impl.TemplateImpl;
-import edu.toronto.cs.se.modelepedia.gsn.util.GSNBuilder;
 
 /**
  * <!-- begin-user-doc -->
@@ -39,7 +34,7 @@ import edu.toronto.cs.se.modelepedia.gsn.util.GSNBuilder;
  *
  * @generated
  */
-public class DomainDecompositionTemplateImpl extends TemplateImpl implements DomainDecompositionTemplate {
+public class DomainDecompositionTemplateImpl extends DecompositionTemplateImpl implements DomainDecompositionTemplate {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -62,7 +57,8 @@ public class DomainDecompositionTemplateImpl extends TemplateImpl implements Dom
   /**
    * @generated NOT
    */
-  private void decompose(Goal decomposed, GSNTemplatesBuilder builder) throws Exception {
+  @Override
+  public void decompose(Goal decomposed, GSNTemplatesBuilder builder) throws Exception {
     // ask for input
     var title = "Domain Decomposition";
     var numDomains = 0;
@@ -115,24 +111,6 @@ public class DomainDecompositionTemplateImpl extends TemplateImpl implements Dom
     var goal = builder.createBasicGoal(compGoalId, compGoalDesc + String.join(", ", subDomains));
     builder.addSupporter(strategy, goal);
     builder.addSupporter(decomposed, strategy);
-  }
-
-  /**
-   * @generated NOT
-   */
-  @Override
-  public GSNBuilder instantiate(SafetyCase safetyCase, EList<EObject> selection) throws Exception {
-    var builder = new GSNTemplatesBuilder(safetyCase);
-    if (selection.size() > 1) {
-      throw new MMINTException("Only one goal must be selected in a domain decomposition");
-    }
-    var selected = selection.get(0);
-    if (!(selected instanceof Goal goal)) {
-      throw new MMINTException("The selected element to be decomposed is not a goal");
-    }
-    decompose(goal, builder);
-
-    return builder;
   }
 
 } //DomainTemplateImpl

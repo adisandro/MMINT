@@ -18,24 +18,26 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
-import edu.toronto.cs.se.mmint.types.gsn.templates.DomainDecompositionTemplate;
+import edu.toronto.cs.se.mmint.types.gsn.templates.DecompositionTemplate;
+import edu.toronto.cs.se.modelepedia.gsn.provider.TemplateItemProvider;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.mmint.types.gsn.templates.DomainDecompositionTemplate} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.mmint.types.gsn.templates.DecompositionTemplate} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class DomainDecompositionTemplateItemProvider extends DecompositionTemplateItemProvider {
+public class DecompositionTemplateItemProvider extends TemplateItemProvider {
   /**
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  public DomainDecompositionTemplateItemProvider(AdapterFactory adapterFactory) {
+  public DecompositionTemplateItemProvider(AdapterFactory adapterFactory) {
     super(adapterFactory);
   }
 
@@ -55,17 +57,6 @@ public class DomainDecompositionTemplateItemProvider extends DecompositionTempla
   }
 
   /**
-   * This returns DomainDecompositionTemplate.gif.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Object getImage(Object object) {
-    return overlayImage(object, getResourceLocator().getImage("full/obj16/DomainDecompositionTemplate"));
-  }
-
-  /**
    * This returns the label text for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -73,10 +64,10 @@ public class DomainDecompositionTemplateItemProvider extends DecompositionTempla
    */
   @Override
   public String getText(Object object) {
-    var label = ((DomainDecompositionTemplate)object).getId();
+    var label = ((DecompositionTemplate)object).getId();
     return label == null || label.length() == 0 ?
-      getString("_UI_DomainDecompositionTemplate_type") :
-      getString("_UI_DomainDecompositionTemplate_type") + " " + label;
+      getString("_UI_DecompositionTemplate_type") :
+      getString("_UI_DecompositionTemplate_type") + " " + label;
   }
 
 
@@ -103,6 +94,17 @@ public class DomainDecompositionTemplateItemProvider extends DecompositionTempla
   @Override
   protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
     super.collectNewChildDescriptors(newChildDescriptors, object);
+  }
+
+  /**
+   * Return the resource locator for this item provider's resources.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public ResourceLocator getResourceLocator() {
+    return GSNTemplatesEditPlugin.INSTANCE;
   }
 
 }

@@ -14,6 +14,7 @@ package edu.toronto.cs.se.mmint.types.gsn.templates;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -197,6 +198,79 @@ public interface GSNTemplatesPackage extends EPackage {
   int DECOMPOSITION_STRATEGY_OPERATION_COUNT = GSNPackage.STRATEGY_OPERATION_COUNT + 2;
 
   /**
+   * The meta object id for the '{@link edu.toronto.cs.se.mmint.types.gsn.templates.impl.DecompositionTemplateImpl <em>Decomposition Template</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.toronto.cs.se.mmint.types.gsn.templates.impl.DecompositionTemplateImpl
+   * @see edu.toronto.cs.se.mmint.types.gsn.templates.impl.GSNTemplatesPackageImpl#getDecompositionTemplate()
+   * @generated
+   */
+  int DECOMPOSITION_TEMPLATE = 1;
+
+  /**
+   * The feature id for the '<em><b>Elements</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DECOMPOSITION_TEMPLATE__ELEMENTS = GSNPackage.TEMPLATE__ELEMENTS;
+
+  /**
+   * The feature id for the '<em><b>Id</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DECOMPOSITION_TEMPLATE__ID = GSNPackage.TEMPLATE__ID;
+
+  /**
+   * The number of structural features of the '<em>Decomposition Template</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DECOMPOSITION_TEMPLATE_FEATURE_COUNT = GSNPackage.TEMPLATE_FEATURE_COUNT + 0;
+
+  /**
+   * The operation id for the '<em>Validate</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DECOMPOSITION_TEMPLATE___VALIDATE = GSNPackage.TEMPLATE___VALIDATE;
+
+  /**
+   * The operation id for the '<em>Instantiate</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DECOMPOSITION_TEMPLATE___INSTANTIATE__SAFETYCASE_ELIST = GSNPackage.TEMPLATE___INSTANTIATE__SAFETYCASE_ELIST;
+
+  /**
+   * The operation id for the '<em>Decompose</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DECOMPOSITION_TEMPLATE___DECOMPOSE__GOAL_GSNTEMPLATESBUILDER = GSNPackage.TEMPLATE_OPERATION_COUNT + 0;
+
+  /**
+   * The number of operations of the '<em>Decomposition Template</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DECOMPOSITION_TEMPLATE_OPERATION_COUNT = GSNPackage.TEMPLATE_OPERATION_COUNT + 1;
+
+  /**
    * The meta object id for the '{@link edu.toronto.cs.se.mmint.types.gsn.templates.impl.DomainImpl <em>Domain</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -204,7 +278,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @see edu.toronto.cs.se.mmint.types.gsn.templates.impl.GSNTemplatesPackageImpl#getDomain()
    * @generated
    */
-  int DOMAIN = 1;
+  int DOMAIN = 2;
 
   /**
    * The number of structural features of the '<em>Domain</em>' class.
@@ -241,7 +315,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @see edu.toronto.cs.se.mmint.types.gsn.templates.impl.GSNTemplatesPackageImpl#getIntDomain()
    * @generated
    */
-  int INT_DOMAIN = 2;
+  int INT_DOMAIN = 3;
 
   /**
    * The feature id for the '<em><b>Lower Bound</b></em>' attribute.
@@ -296,7 +370,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @see edu.toronto.cs.se.mmint.types.gsn.templates.impl.GSNTemplatesPackageImpl#getRealDomain()
    * @generated
    */
-  int REAL_DOMAIN = 3;
+  int REAL_DOMAIN = 4;
 
   /**
    * The feature id for the '<em><b>Lower Bound</b></em>' attribute.
@@ -351,7 +425,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @see edu.toronto.cs.se.mmint.types.gsn.templates.impl.GSNTemplatesPackageImpl#getEnumDomain()
    * @generated
    */
-  int ENUM_DOMAIN = 4;
+  int ENUM_DOMAIN = 5;
 
   /**
    * The feature id for the '<em><b>Values</b></em>' attribute list.
@@ -397,7 +471,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @see edu.toronto.cs.se.mmint.types.gsn.templates.impl.GSNTemplatesPackageImpl#getValueDomain()
    * @generated
    */
-  int VALUE_DOMAIN = 5;
+  int VALUE_DOMAIN = 6;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -443,7 +517,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @see edu.toronto.cs.se.mmint.types.gsn.templates.impl.GSNTemplatesPackageImpl#getDomainDecompositionElement()
    * @generated
    */
-  int DOMAIN_DECOMPOSITION_ELEMENT = 6;
+  int DOMAIN_DECOMPOSITION_ELEMENT = 7;
 
   /**
    * The feature id for the '<em><b>Domain</b></em>' containment reference.
@@ -480,7 +554,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @see edu.toronto.cs.se.mmint.types.gsn.templates.impl.GSNTemplatesPackageImpl#getDomainDecompositionStrategy()
    * @generated
    */
-  int DOMAIN_DECOMPOSITION_STRATEGY = 7;
+  int DOMAIN_DECOMPOSITION_STRATEGY = 8;
 
   /**
    * The feature id for the '<em><b>Supports</b></em>' reference list.
@@ -616,7 +690,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @see edu.toronto.cs.se.mmint.types.gsn.templates.impl.GSNTemplatesPackageImpl#getDomainGoal()
    * @generated
    */
-  int DOMAIN_GOAL = 8;
+  int DOMAIN_GOAL = 9;
 
   /**
    * The feature id for the '<em><b>Supports</b></em>' reference list.
@@ -770,7 +844,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @see edu.toronto.cs.se.mmint.types.gsn.templates.impl.GSNTemplatesPackageImpl#getDomainDecompositionTemplate()
    * @generated
    */
-  int DOMAIN_DECOMPOSITION_TEMPLATE = 9;
+  int DOMAIN_DECOMPOSITION_TEMPLATE = 10;
 
   /**
    * The feature id for the '<em><b>Elements</b></em>' reference list.
@@ -779,7 +853,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DOMAIN_DECOMPOSITION_TEMPLATE__ELEMENTS = GSNPackage.TEMPLATE__ELEMENTS;
+  int DOMAIN_DECOMPOSITION_TEMPLATE__ELEMENTS = GSNTemplatesPackage.DECOMPOSITION_TEMPLATE__ELEMENTS;
 
   /**
    * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -788,7 +862,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DOMAIN_DECOMPOSITION_TEMPLATE__ID = GSNPackage.TEMPLATE__ID;
+  int DOMAIN_DECOMPOSITION_TEMPLATE__ID = GSNTemplatesPackage.DECOMPOSITION_TEMPLATE__ID;
 
   /**
    * The number of structural features of the '<em>Domain Decomposition Template</em>' class.
@@ -797,7 +871,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DOMAIN_DECOMPOSITION_TEMPLATE_FEATURE_COUNT = GSNPackage.TEMPLATE_FEATURE_COUNT + 0;
+  int DOMAIN_DECOMPOSITION_TEMPLATE_FEATURE_COUNT = GSNTemplatesPackage.DECOMPOSITION_TEMPLATE_FEATURE_COUNT + 0;
 
   /**
    * The operation id for the '<em>Validate</em>' operation.
@@ -806,7 +880,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DOMAIN_DECOMPOSITION_TEMPLATE___VALIDATE = GSNPackage.TEMPLATE___VALIDATE;
+  int DOMAIN_DECOMPOSITION_TEMPLATE___VALIDATE = GSNTemplatesPackage.DECOMPOSITION_TEMPLATE___VALIDATE;
 
   /**
    * The operation id for the '<em>Instantiate</em>' operation.
@@ -815,7 +889,16 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DOMAIN_DECOMPOSITION_TEMPLATE___INSTANTIATE__SAFETYCASE_ELIST = GSNPackage.TEMPLATE___INSTANTIATE__SAFETYCASE_ELIST;
+  int DOMAIN_DECOMPOSITION_TEMPLATE___INSTANTIATE__SAFETYCASE_ELIST = GSNTemplatesPackage.DECOMPOSITION_TEMPLATE___INSTANTIATE__SAFETYCASE_ELIST;
+
+  /**
+   * The operation id for the '<em>Decompose</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DOMAIN_DECOMPOSITION_TEMPLATE___DECOMPOSE__GOAL_GSNTEMPLATESBUILDER = GSNTemplatesPackage.DECOMPOSITION_TEMPLATE___DECOMPOSE__GOAL_GSNTEMPLATESBUILDER;
 
   /**
    * The number of operations of the '<em>Domain Decomposition Template</em>' class.
@@ -824,7 +907,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DOMAIN_DECOMPOSITION_TEMPLATE_OPERATION_COUNT = GSNPackage.TEMPLATE_OPERATION_COUNT + 0;
+  int DOMAIN_DECOMPOSITION_TEMPLATE_OPERATION_COUNT = GSNTemplatesPackage.DECOMPOSITION_TEMPLATE_OPERATION_COUNT + 0;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.mmint.types.gsn.templates.impl.PropertyImpl <em>Property</em>}' class.
@@ -834,7 +917,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @see edu.toronto.cs.se.mmint.types.gsn.templates.impl.GSNTemplatesPackageImpl#getProperty()
    * @generated
    */
-  int PROPERTY = 10;
+  int PROPERTY = 11;
 
   /**
    * The feature id for the '<em><b>Formal</b></em>' attribute.
@@ -880,7 +963,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @see edu.toronto.cs.se.mmint.types.gsn.templates.impl.GSNTemplatesPackageImpl#getPropertyDecompositionElement()
    * @generated
    */
-  int PROPERTY_DECOMPOSITION_ELEMENT = 11;
+  int PROPERTY_DECOMPOSITION_ELEMENT = 12;
 
   /**
    * The feature id for the '<em><b>Property</b></em>' containment reference.
@@ -917,7 +1000,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @see edu.toronto.cs.se.mmint.types.gsn.templates.impl.GSNTemplatesPackageImpl#getPropertyDecompositionStrategy()
    * @generated
    */
-  int PROPERTY_DECOMPOSITION_STRATEGY = 12;
+  int PROPERTY_DECOMPOSITION_STRATEGY = 13;
 
   /**
    * The feature id for the '<em><b>Supports</b></em>' reference list.
@@ -1062,7 +1145,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @see edu.toronto.cs.se.mmint.types.gsn.templates.impl.GSNTemplatesPackageImpl#getPropertyGoal()
    * @generated
    */
-  int PROPERTY_GOAL = 13;
+  int PROPERTY_GOAL = 14;
 
   /**
    * The feature id for the '<em><b>Supports</b></em>' reference list.
@@ -1226,7 +1309,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @see edu.toronto.cs.se.mmint.types.gsn.templates.impl.GSNTemplatesPackageImpl#getPropertyDecompositionTemplate()
    * @generated
    */
-  int PROPERTY_DECOMPOSITION_TEMPLATE = 14;
+  int PROPERTY_DECOMPOSITION_TEMPLATE = 15;
 
   /**
    * The feature id for the '<em><b>Elements</b></em>' reference list.
@@ -1235,7 +1318,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PROPERTY_DECOMPOSITION_TEMPLATE__ELEMENTS = GSNPackage.TEMPLATE__ELEMENTS;
+  int PROPERTY_DECOMPOSITION_TEMPLATE__ELEMENTS = GSNTemplatesPackage.DECOMPOSITION_TEMPLATE__ELEMENTS;
 
   /**
    * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -1244,7 +1327,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PROPERTY_DECOMPOSITION_TEMPLATE__ID = GSNPackage.TEMPLATE__ID;
+  int PROPERTY_DECOMPOSITION_TEMPLATE__ID = GSNTemplatesPackage.DECOMPOSITION_TEMPLATE__ID;
 
   /**
    * The number of structural features of the '<em>Property Decomposition Template</em>' class.
@@ -1253,7 +1336,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PROPERTY_DECOMPOSITION_TEMPLATE_FEATURE_COUNT = GSNPackage.TEMPLATE_FEATURE_COUNT + 0;
+  int PROPERTY_DECOMPOSITION_TEMPLATE_FEATURE_COUNT = GSNTemplatesPackage.DECOMPOSITION_TEMPLATE_FEATURE_COUNT + 0;
 
   /**
    * The operation id for the '<em>Validate</em>' operation.
@@ -1262,7 +1345,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PROPERTY_DECOMPOSITION_TEMPLATE___VALIDATE = GSNPackage.TEMPLATE___VALIDATE;
+  int PROPERTY_DECOMPOSITION_TEMPLATE___VALIDATE = GSNTemplatesPackage.DECOMPOSITION_TEMPLATE___VALIDATE;
 
   /**
    * The operation id for the '<em>Instantiate</em>' operation.
@@ -1271,7 +1354,16 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PROPERTY_DECOMPOSITION_TEMPLATE___INSTANTIATE__SAFETYCASE_ELIST = GSNPackage.TEMPLATE___INSTANTIATE__SAFETYCASE_ELIST;
+  int PROPERTY_DECOMPOSITION_TEMPLATE___INSTANTIATE__SAFETYCASE_ELIST = GSNTemplatesPackage.DECOMPOSITION_TEMPLATE___INSTANTIATE__SAFETYCASE_ELIST;
+
+  /**
+   * The operation id for the '<em>Decompose</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_DECOMPOSITION_TEMPLATE___DECOMPOSE__GOAL_GSNTEMPLATESBUILDER = GSNTemplatesPackage.DECOMPOSITION_TEMPLATE___DECOMPOSE__GOAL_GSNTEMPLATESBUILDER;
 
   /**
    * The number of operations of the '<em>Property Decomposition Template</em>' class.
@@ -1280,7 +1372,17 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PROPERTY_DECOMPOSITION_TEMPLATE_OPERATION_COUNT = GSNPackage.TEMPLATE_OPERATION_COUNT + 0;
+  int PROPERTY_DECOMPOSITION_TEMPLATE_OPERATION_COUNT = GSNTemplatesPackage.DECOMPOSITION_TEMPLATE_OPERATION_COUNT + 0;
+
+  /**
+   * The meta object id for the '<em>Builder</em>' data type.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.toronto.cs.se.mmint.types.gsn.templates.util.GSNTemplatesBuilder
+   * @see edu.toronto.cs.se.mmint.types.gsn.templates.impl.GSNTemplatesPackageImpl#getGSNTemplatesBuilder()
+   * @generated
+   */
+  int GSN_TEMPLATES_BUILDER = 16;
 
   /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.types.gsn.templates.DecompositionStrategy <em>Decomposition Strategy</em>}'.
@@ -1291,6 +1393,26 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    */
   EClass getDecompositionStrategy();
+
+  /**
+   * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.types.gsn.templates.DecompositionTemplate <em>Decomposition Template</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Decomposition Template</em>'.
+   * @see edu.toronto.cs.se.mmint.types.gsn.templates.DecompositionTemplate
+   * @generated
+   */
+  EClass getDecompositionTemplate();
+
+  /**
+   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.types.gsn.templates.DecompositionTemplate#decompose(edu.toronto.cs.se.modelepedia.gsn.Goal, edu.toronto.cs.se.mmint.types.gsn.templates.util.GSNTemplatesBuilder) <em>Decompose</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>Decompose</em>' operation.
+   * @see edu.toronto.cs.se.mmint.types.gsn.templates.DecompositionTemplate#decompose(edu.toronto.cs.se.modelepedia.gsn.Goal, edu.toronto.cs.se.mmint.types.gsn.templates.util.GSNTemplatesBuilder)
+   * @generated
+   */
+  EOperation getDecompositionTemplate__Decompose__Goal_GSNTemplatesBuilder();
 
   /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.types.gsn.templates.Domain <em>Domain</em>}'.
@@ -1575,6 +1697,17 @@ public interface GSNTemplatesPackage extends EPackage {
   EClass getPropertyDecompositionTemplate();
 
   /**
+   * Returns the meta object for data type '{@link edu.toronto.cs.se.mmint.types.gsn.templates.util.GSNTemplatesBuilder <em>Builder</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for data type '<em>Builder</em>'.
+   * @see edu.toronto.cs.se.mmint.types.gsn.templates.util.GSNTemplatesBuilder
+   * @model instanceClass="edu.toronto.cs.se.mmint.types.gsn.templates.util.GSNTemplatesBuilder"
+   * @generated
+   */
+  EDataType getGSNTemplatesBuilder();
+
+  /**
    * Returns the factory that creates the instances of the model.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1606,6 +1739,24 @@ public interface GSNTemplatesPackage extends EPackage {
      * @generated
      */
     EClass DECOMPOSITION_STRATEGY = GSNTemplatesPackage.eINSTANCE.getDecompositionStrategy();
+
+    /**
+     * The meta object literal for the '{@link edu.toronto.cs.se.mmint.types.gsn.templates.impl.DecompositionTemplateImpl <em>Decomposition Template</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.toronto.cs.se.mmint.types.gsn.templates.impl.DecompositionTemplateImpl
+     * @see edu.toronto.cs.se.mmint.types.gsn.templates.impl.GSNTemplatesPackageImpl#getDecompositionTemplate()
+     * @generated
+     */
+    EClass DECOMPOSITION_TEMPLATE = GSNTemplatesPackage.eINSTANCE.getDecompositionTemplate();
+
+    /**
+     * The meta object literal for the '<em><b>Decompose</b></em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EOperation DECOMPOSITION_TEMPLATE___DECOMPOSE__GOAL_GSNTEMPLATESBUILDER = GSNTemplatesPackage.eINSTANCE.getDecompositionTemplate__Decompose__Goal_GSNTemplatesBuilder();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint.types.gsn.templates.impl.DomainImpl <em>Domain</em>}' class.
@@ -1850,6 +2001,16 @@ public interface GSNTemplatesPackage extends EPackage {
      * @generated
      */
     EClass PROPERTY_DECOMPOSITION_TEMPLATE = GSNTemplatesPackage.eINSTANCE.getPropertyDecompositionTemplate();
+
+    /**
+     * The meta object literal for the '<em>Builder</em>' data type.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.toronto.cs.se.mmint.types.gsn.templates.util.GSNTemplatesBuilder
+     * @see edu.toronto.cs.se.mmint.types.gsn.templates.impl.GSNTemplatesPackageImpl#getGSNTemplatesBuilder()
+     * @generated
+     */
+    EDataType GSN_TEMPLATES_BUILDER = GSNTemplatesPackage.eINSTANCE.getGSNTemplatesBuilder();
 
   }
 

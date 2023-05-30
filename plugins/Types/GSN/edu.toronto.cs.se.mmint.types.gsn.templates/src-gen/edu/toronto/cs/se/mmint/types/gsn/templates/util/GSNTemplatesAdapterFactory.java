@@ -18,6 +18,7 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 
 import edu.toronto.cs.se.mmint.types.gsn.templates.DecompositionStrategy;
+import edu.toronto.cs.se.mmint.types.gsn.templates.DecompositionTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.templates.Domain;
 import edu.toronto.cs.se.mmint.types.gsn.templates.DomainDecompositionElement;
 import edu.toronto.cs.se.mmint.types.gsn.templates.DomainDecompositionStrategy;
@@ -106,6 +107,10 @@ public class GSNTemplatesAdapterFactory extends AdapterFactoryImpl {
         return createDecompositionStrategyAdapter();
       }
       @Override
+      public Adapter caseDecompositionTemplate(DecompositionTemplate object) {
+        return createDecompositionTemplateAdapter();
+      }
+      @Override
       public Adapter caseDomain(Domain object) {
         return createDomainAdapter();
       }
@@ -190,6 +195,10 @@ public class GSNTemplatesAdapterFactory extends AdapterFactoryImpl {
         return createTemplateElementAdapter();
       }
       @Override
+      public Adapter caseTemplate(Template object) {
+        return createTemplateAdapter();
+      }
+      @Override
       public Adapter caseStatefulElement(StatefulElement object) {
         return createStatefulElementAdapter();
       }
@@ -200,10 +209,6 @@ public class GSNTemplatesAdapterFactory extends AdapterFactoryImpl {
       @Override
       public Adapter caseGoal(Goal object) {
         return createGoalAdapter();
-      }
-      @Override
-      public Adapter caseTemplate(Template object) {
-        return createTemplateAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object) {
@@ -236,6 +241,20 @@ public class GSNTemplatesAdapterFactory extends AdapterFactoryImpl {
    * @generated
    */
   public Adapter createDecompositionStrategyAdapter() {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.types.gsn.templates.DecompositionTemplate <em>Decomposition Template</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.toronto.cs.se.mmint.types.gsn.templates.DecompositionTemplate
+   * @generated
+   */
+  public Adapter createDecompositionTemplateAdapter() {
     return null;
   }
 

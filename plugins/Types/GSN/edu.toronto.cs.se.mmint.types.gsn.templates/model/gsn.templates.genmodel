@@ -9,7 +9,14 @@
   <foreignModel>gsn.templates.ecore</foreignModel>
   <genPackages prefix="GSNTemplates" basePackage="edu.toronto.cs.se.mmint.types.gsn"
       disposableProviderFactory="true" childCreationExtenders="true" ecorePackage="gsn.templates.ecore#/">
+    <genDataTypes ecoreDataType="gsn.templates.ecore#//GSNTemplatesBuilder"/>
     <genClasses image="false" ecoreClass="gsn.templates.ecore#//DecompositionStrategy"/>
+    <genClasses image="false" ecoreClass="gsn.templates.ecore#//DecompositionTemplate">
+      <genOperations ecoreOperation="gsn.templates.ecore#//DecompositionTemplate/decompose">
+        <genParameters ecoreParameter="gsn.templates.ecore#//DecompositionTemplate/decompose/decomposed"/>
+        <genParameters ecoreParameter="gsn.templates.ecore#//DecompositionTemplate/decompose/builder"/>
+      </genOperations>
+    </genClasses>
     <genClasses image="false" ecoreClass="gsn.templates.ecore#//Domain">
       <genOperations ecoreOperation="gsn.templates.ecore#//Domain/validateDecomposition">
         <genParameters ecoreParameter="gsn.templates.ecore#//Domain/validateDecomposition/subDomains"/>

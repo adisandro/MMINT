@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
 
 import edu.toronto.cs.se.mmint.types.gsn.templates.DecompositionStrategy;
+import edu.toronto.cs.se.mmint.types.gsn.templates.DecompositionTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.templates.Domain;
 import edu.toronto.cs.se.mmint.types.gsn.templates.DomainDecompositionElement;
 import edu.toronto.cs.se.mmint.types.gsn.templates.DomainDecompositionStrategy;
@@ -114,6 +115,13 @@ public class GSNTemplatesSwitch<T> extends Switch<T> {
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case GSNTemplatesPackage.DECOMPOSITION_TEMPLATE: {
+        var decompositionTemplate = (DecompositionTemplate)theEObject;
+        var result = caseDecompositionTemplate(decompositionTemplate);
+        if (result == null) result = caseTemplate(decompositionTemplate);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case GSNTemplatesPackage.DOMAIN: {
         var domain = (Domain)theEObject;
         var result = caseDomain(domain);
@@ -188,6 +196,7 @@ public class GSNTemplatesSwitch<T> extends Switch<T> {
       case GSNTemplatesPackage.DOMAIN_DECOMPOSITION_TEMPLATE: {
         var domainDecompositionTemplate = (DomainDecompositionTemplate)theEObject;
         var result = caseDomainDecompositionTemplate(domainDecompositionTemplate);
+        if (result == null) result = caseDecompositionTemplate(domainDecompositionTemplate);
         if (result == null) result = caseTemplate(domainDecompositionTemplate);
         if (result == null) result = defaultCase(theEObject);
         return result;
@@ -238,6 +247,7 @@ public class GSNTemplatesSwitch<T> extends Switch<T> {
       case GSNTemplatesPackage.PROPERTY_DECOMPOSITION_TEMPLATE: {
         var propertyDecompositionTemplate = (PropertyDecompositionTemplate)theEObject;
         var result = casePropertyDecompositionTemplate(propertyDecompositionTemplate);
+        if (result == null) result = caseDecompositionTemplate(propertyDecompositionTemplate);
         if (result == null) result = caseTemplate(propertyDecompositionTemplate);
         if (result == null) result = defaultCase(theEObject);
         return result;
@@ -258,6 +268,21 @@ public class GSNTemplatesSwitch<T> extends Switch<T> {
    * @generated
    */
   public T caseDecompositionStrategy(DecompositionStrategy object) {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Decomposition Template</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Decomposition Template</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseDecompositionTemplate(DecompositionTemplate object) {
     return null;
   }
 

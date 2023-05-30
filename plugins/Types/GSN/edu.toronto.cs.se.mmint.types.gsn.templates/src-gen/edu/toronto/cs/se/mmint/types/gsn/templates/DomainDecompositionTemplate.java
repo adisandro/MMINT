@@ -12,8 +12,6 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.types.gsn.templates;
 
-import edu.toronto.cs.se.modelepedia.gsn.Template;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Domain Template</b></em>'.
@@ -24,5 +22,5 @@ import edu.toronto.cs.se.modelepedia.gsn.Template;
  * @model
  * @generated
  */
-public interface DomainDecompositionTemplate extends Template {
+public interface DomainDecompositionTemplate extends DecompositionTemplate {
 } // DomainTemplate

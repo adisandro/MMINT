@@ -12,8 +12,6 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.types.gsn.templates;
 
-import edu.toronto.cs.se.modelepedia.gsn.Template;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Property Template</b></em>'.
@@ -24,5 +22,5 @@ import edu.toronto.cs.se.modelepedia.gsn.Template;
  * @model
  * @generated
  */
-public interface PropertyDecompositionTemplate extends Template {
+public interface PropertyDecompositionTemplate extends DecompositionTemplate {
 } // PropertyTemplate

@@ -18,11 +18,9 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
 import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyDecompositionTemplate;
-import edu.toronto.cs.se.modelepedia.gsn.provider.TemplateItemProvider;
 
 /**
  * This is the item provider adapter for a {@link edu.toronto.cs.se.mmint.types.gsn.templates.PropertyDecompositionTemplate} object.
@@ -30,7 +28,7 @@ import edu.toronto.cs.se.modelepedia.gsn.provider.TemplateItemProvider;
  * <!-- end-user-doc -->
  * @generated
  */
-public class PropertyDecompositionTemplateItemProvider extends TemplateItemProvider {
+public class PropertyDecompositionTemplateItemProvider extends DecompositionTemplateItemProvider {
   /**
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
@@ -105,17 +103,6 @@ public class PropertyDecompositionTemplateItemProvider extends TemplateItemProvi
   @Override
   protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
     super.collectNewChildDescriptors(newChildDescriptors, object);
-  }
-
-  /**
-   * Return the resource locator for this item provider's resources.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public ResourceLocator getResourceLocator() {
-    return GSNTemplatesEditPlugin.INSTANCE;
   }
 
 }

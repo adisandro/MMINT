@@ -4,6 +4,13 @@
     nsPrefix="gsn.templates">
   <eClassifiers xsi:type="ecore:EClass" name="DecompositionStrategy" abstract="true"
       eSuperTypes="../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Strategy ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//TemplateElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DecompositionTemplate" abstract="true"
+      eSuperTypes="../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Template">
+    <eOperations name="decompose" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Exception">
+      <eParameters name="decomposed" lowerBound="1" eType="ecore:EClass ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Goal"/>
+      <eParameters name="builder" lowerBound="1" eType="#//GSNTemplatesBuilder"/>
+    </eOperations>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Domain" abstract="true">
     <eOperations name="validateDecomposition" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Exception">
       <eParameters name="subDomains" upperBound="-1" eType="#//Domain"/>
@@ -34,7 +41,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DomainDecompositionStrategy" eSuperTypes="#//DecompositionStrategy #//DomainDecompositionElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="DomainGoal" eSuperTypes="../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Goal #//DomainDecompositionElement ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//TemplateElement"/>
-  <eClassifiers xsi:type="ecore:EClass" name="DomainDecompositionTemplate" eSuperTypes="../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Template"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DomainDecompositionTemplate" eSuperTypes="#//DecompositionTemplate"/>
   <eClassifiers xsi:type="ecore:EClass" name="Property">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="formal" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -52,5 +59,6 @@
   <eClassifiers xsi:type="ecore:EClass" name="PropertyGoal" eSuperTypes="../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Goal #//PropertyDecompositionElement ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//TemplateElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="hint" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PropertyDecompositionTemplate" eSuperTypes="../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Template"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PropertyDecompositionTemplate" eSuperTypes="#//DecompositionTemplate"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="GSNTemplatesBuilder" instanceClassName="edu.toronto.cs.se.mmint.types.gsn.templates.util.GSNTemplatesBuilder"/>
 </ecore:EPackage>
