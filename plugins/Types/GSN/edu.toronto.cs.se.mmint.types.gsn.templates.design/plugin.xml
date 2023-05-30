@@ -31,10 +31,6 @@
             id="edu.toronto.cs.se.mmint.types.gsn.templates.design.tools.CreateDomainDecompositionStrategy">
       </javaActions>
       <javaActions
-            actionClass="edu.toronto.cs.se.mmint.types.gsn.templates.design.context.DomainDecomposition"
-            id="edu.toronto.cs.se.mmint.types.gsn.templates.design.context.DomainDecomposition">
-      </javaActions>
-      <javaActions
             actionClass="edu.toronto.cs.se.mmint.types.gsn.templates.design.tools.CreatePropertyGoal"
             id="edu.toronto.cs.se.mmint.types.gsn.templates.design.tools.CreatePropertyGoal">
       </javaActions>

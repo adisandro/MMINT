@@ -48,7 +48,6 @@
         </toolSections>
         <toolSections name="Menus">
           <ownedTools xsi:type="tool_1:PopupMenu" name="MMINT">
-            <menuItemDescription xsi:type="tool_1:ExternalJavaAction" name="DomainDecomposition" label="Domain Decomposition" id="edu.toronto.cs.se.mmint.types.gsn.templates.design.context.DomainDecomposition"/>
             <menuItemDescription xsi:type="tool_1:ExternalJavaAction" name="GoalDecompositionCheck" label="Goal Decomposition Check" id="edu.toronto.cs.se.mmint.types.gsn.templates.design.context.GoalDecompositionCheck"/>
             <menuItemDescription xsi:type="tool_1:ExternalJavaAction" name="PropertyDecompositionRepair" label="Property Decomposition Repair" id="edu.toronto.cs.se.mmint.types.gsn.templates.design.context.PropertyDecompositionRepair"/>
           </ownedTools>

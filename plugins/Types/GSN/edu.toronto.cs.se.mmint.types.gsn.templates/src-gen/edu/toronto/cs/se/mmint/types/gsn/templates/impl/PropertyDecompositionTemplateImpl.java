@@ -31,7 +31,6 @@ import edu.toronto.cs.se.mmint.mid.ui.FilesOnlyDialogSelectionValidator;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.mid.ui.MIDTreeSelectionDialog;
-import edu.toronto.cs.se.mmint.types.gsn.templates.DecompositionStrategy;
 import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
 import edu.toronto.cs.se.mmint.types.gsn.templates.Property;
 import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyDecompositionStrategy;
@@ -126,8 +125,7 @@ public class PropertyDecompositionTemplateImpl extends TemplateImpl implements P
   /**
    * @generated NOT
    */
-  private DecompositionStrategy decompose(Goal decomposed, GSNBuilder gsnBuilder) throws Exception {
-    var builder = (GSNTemplatesBuilder) gsnBuilder;
+  private void decompose(Goal decomposed, GSNTemplatesBuilder builder) throws Exception {
     // ask for input
     var title = "Property Decomposition";
     var customMsg = "Insert a description for the custom property";
@@ -244,8 +242,6 @@ public class PropertyDecompositionTemplateImpl extends TemplateImpl implements P
       }
     }
     builder.addSupporter(decomposed, chainedStrategy);
-
-    return propStrategy;
   }
 
   /**
