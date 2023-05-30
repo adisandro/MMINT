@@ -88,7 +88,7 @@ public class InstantiateTemplate extends AbstractExternalJavaAction {
       this.builder.commitChanges();
       try {
         this.template.validate();
-        //TODO Customize instantiate and validate for property and domain templates
+        //TODO Update all paper instructions to use templates
         //TODO Delete links and delete template
         //TODO Property and domain decomposition should use elements in the template rather than creating them
         //TODO Change PropertyTemplate name

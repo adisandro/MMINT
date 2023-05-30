@@ -39,10 +39,6 @@
             id="edu.toronto.cs.se.mmint.types.gsn.templates.design.tools.CreatePropertyDecompositionStrategy">
       </javaActions>
       <javaActions
-            actionClass="edu.toronto.cs.se.mmint.types.gsn.templates.design.context.GoalDecompositionCheck"
-            id="edu.toronto.cs.se.mmint.types.gsn.templates.design.context.GoalDecompositionCheck">
-      </javaActions>
-      <javaActions
             actionClass="edu.toronto.cs.se.mmint.types.gsn.templates.design.context.PropertyDecompositionRepair"
             id="edu.toronto.cs.se.mmint.types.gsn.templates.design.context.PropertyDecompositionRepair">
       </javaActions>

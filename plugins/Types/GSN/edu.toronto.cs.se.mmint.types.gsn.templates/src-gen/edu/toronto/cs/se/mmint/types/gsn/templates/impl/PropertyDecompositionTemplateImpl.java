@@ -30,7 +30,6 @@ import edu.toronto.cs.se.mmint.mid.ui.FilesOnlyDialogSelectionValidator;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.mid.ui.MIDTreeSelectionDialog;
-import edu.toronto.cs.se.mmint.types.gsn.templates.DecompositionStrategy;
 import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
 import edu.toronto.cs.se.mmint.types.gsn.templates.Property;
 import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyDecompositionTemplate;
@@ -69,19 +68,6 @@ public class PropertyDecompositionTemplateImpl extends DecompositionTemplateImpl
   @Override
   protected EClass eStaticClass() {
     return GSNTemplatesPackage.Literals.PROPERTY_DECOMPOSITION_TEMPLATE;
-  }
-
-  /**
-   * @generated NOT
-   */
-  @Override
-  public void validate() throws Exception {
-    var strategy = getElements().stream()
-      .filter(e -> e instanceof DecompositionStrategy)
-      .map(e -> (DecompositionStrategy) e)
-      .findFirst()
-      .orElseThrow(() -> new MMINTException("Missing decomposition strategy"));
-    strategy.validate();
   }
 
   /**

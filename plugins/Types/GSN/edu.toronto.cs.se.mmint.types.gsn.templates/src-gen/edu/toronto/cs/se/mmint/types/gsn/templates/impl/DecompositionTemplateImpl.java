@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.types.gsn.templates.DecompositionStrategy;
 import edu.toronto.cs.se.mmint.types.gsn.templates.DecompositionTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
 import edu.toronto.cs.se.mmint.types.gsn.templates.util.GSNTemplatesBuilder;
@@ -84,6 +85,19 @@ public abstract class DecompositionTemplateImpl extends TemplateImpl implements 
         }
     }
     return super.eInvoke(operationID, arguments);
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public void validate() throws Exception {
+    var strategy = getElements().stream()
+      .filter(e -> e instanceof DecompositionStrategy)
+      .map(e -> (DecompositionStrategy) e)
+      .findFirst()
+      .orElseThrow(() -> new MMINTException("Missing decomposition strategy"));
+    strategy.validate();
   }
 
   /**
