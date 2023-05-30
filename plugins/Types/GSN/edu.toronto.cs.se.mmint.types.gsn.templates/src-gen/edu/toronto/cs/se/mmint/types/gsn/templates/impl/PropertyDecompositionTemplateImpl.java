@@ -34,6 +34,7 @@ import edu.toronto.cs.se.mmint.mid.ui.MIDTreeSelectionDialog;
 import edu.toronto.cs.se.mmint.types.gsn.templates.DecompositionStrategy;
 import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
 import edu.toronto.cs.se.mmint.types.gsn.templates.Property;
+import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyDecompositionStrategy;
 import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyDecompositionTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyGoal;
 import edu.toronto.cs.se.mmint.types.gsn.templates.reasoning.IGSNDecompositionTrait;
@@ -80,7 +81,12 @@ public class PropertyDecompositionTemplateImpl extends TemplateImpl implements P
    */
   @Override
   public void validate() throws Exception {
-    // do nothing
+    var strategy = getElements().stream()
+      .filter(e -> e instanceof PropertyDecompositionStrategy)
+      .map(e -> (PropertyDecompositionStrategy) e)
+      .findFirst()
+      .orElseThrow(() -> new MMINTException("Missing decomposition strategy"));
+    strategy.validate();
   }
 
   /**
