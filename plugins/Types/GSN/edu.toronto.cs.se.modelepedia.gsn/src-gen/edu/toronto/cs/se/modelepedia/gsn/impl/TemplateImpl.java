@@ -146,13 +146,13 @@ public class TemplateImpl extends MinimalEObjectImpl.Container implements Templa
   @Override
   public GSNBuilder instantiate(SafetyCase safetyCase, EList<EObject> selection) throws Exception {
     var builder = new GSNBuilder(safetyCase);
-    var templateSafetyCase = (SafetyCase) eContainer();
-    builder.addExistingElements(templateSafetyCase.getGoals());
-    builder.addExistingElements(templateSafetyCase.getStrategies());
-    builder.addExistingElements(templateSafetyCase.getSolutions());
-    builder.addExistingElements(templateSafetyCase.getContexts());
-    builder.addExistingElements(templateSafetyCase.getJustifications());
-    builder.addExistingElements(templateSafetyCase.getAssumptions());
+    var templateSC = (SafetyCase) eContainer();
+    builder.addExistingElements(templateSC.getGoals());
+    builder.addExistingElements(templateSC.getStrategies());
+    builder.addExistingElements(templateSC.getSolutions());
+    builder.addExistingElements(templateSC.getContexts());
+    builder.addExistingElements(templateSC.getJustifications());
+    builder.addExistingElements(templateSC.getAssumptions());
     builder.addExistingTemplate(this);
 
     return builder;

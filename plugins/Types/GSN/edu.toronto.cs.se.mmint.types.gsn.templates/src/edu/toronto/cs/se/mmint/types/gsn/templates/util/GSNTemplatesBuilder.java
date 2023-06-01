@@ -130,7 +130,6 @@ public class GSNTemplatesBuilder extends GSNBuilder {
     var goal = this.templateFactory.createPropertyGoal();
     addGoal(goal, id, description);
     addPropertyElement(goal, property);
-    goal.setValid(true);
 
     return goal;
   }

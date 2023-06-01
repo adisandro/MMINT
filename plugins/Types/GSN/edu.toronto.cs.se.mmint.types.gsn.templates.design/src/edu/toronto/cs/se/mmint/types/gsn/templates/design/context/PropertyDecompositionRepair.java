@@ -86,7 +86,7 @@ public class PropertyDecompositionRepair extends AbstractExternalJavaAction {
           // do nothing
         }
       }
-      var template = DecompositionUtils.selectTemplate(title, "Select the property to be decomposed", templates);
+      var template = DecompositionUtils.selectPropertyTemplate(title, "Select the property to be decomposed", templates);
       Property property;
       List<String> propQueries = List.of();
       if (template == PropertyTemplate.CUSTOM) {

@@ -32,6 +32,7 @@ import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.mid.ui.MIDTreeSelectionDialog;
 import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
 import edu.toronto.cs.se.mmint.types.gsn.templates.Property;
+import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyDecompositionStrategy;
 import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyDecompositionTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyGoal;
 import edu.toronto.cs.se.mmint.types.gsn.templates.reasoning.IGSNDecompositionTrait;
@@ -41,7 +42,7 @@ import edu.toronto.cs.se.mmint.types.gsn.templates.util.GSNTemplatesBuilder;
 import edu.toronto.cs.se.modelepedia.gsn.Context;
 import edu.toronto.cs.se.modelepedia.gsn.DecomposableCoreElement;
 import edu.toronto.cs.se.modelepedia.gsn.Goal;
-import edu.toronto.cs.se.modelepedia.gsn.Strategy;
+import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
 
 /**
  * <!-- begin-user-doc -->
@@ -115,7 +116,7 @@ public class PropertyDecompositionTemplateImpl extends DecompositionTemplateImpl
     var reasoner = MIDDialogs.selectReasoner(IGSNDecompositionTrait.class, "GSN property decomposition", null);
     var reasonerName = reasoner.getName();
     var relatedModelOpt = DecompositionUtils.getRelatedModel(decomposed);
-    var templates = Map.<String, List<PropertyTemplate>>of();
+    var propTemplates = Map.<String, List<PropertyTemplate>>of();
     var modelObjs = Map.<EClass, List<EObject>>of();
     var queryCache = new HashMap<String, List<Object>>();
     var queryContexts = new HashMap<String, Context>();
@@ -129,8 +130,8 @@ public class PropertyDecompositionTemplateImpl extends DecompositionTemplateImpl
     else {
       var relatedModel = relatedModelOpt.get();
       try {
-        templates = reasoner.getPropertyTemplates(relatedModel);
-        modelObjs = DecompositionUtils.categorizeModelObjects(relatedModel, templates);
+        propTemplates = reasoner.getPropertyTemplates(relatedModel);
+        modelObjs = DecompositionUtils.categorizeModelObjects(relatedModel, propTemplates);
         relatedModelPath = relatedModel.getUri();
       }
       catch (MMINTException e) { // no model encoder: ask to manually provide an encoding
@@ -142,89 +143,113 @@ public class PropertyDecompositionTemplateImpl extends DecompositionTemplateImpl
       property = propDecomposed.getProperty();
     }
     else {
-      var template = DecompositionUtils.selectTemplate(title, "Select the property to be decomposed", templates);
-      if (template == PropertyTemplate.CUSTOM) {
+      var propTemplate = DecompositionUtils.selectPropertyTemplate(title, "Select the property to be decomposed",
+                                                                   propTemplates);
+      if (propTemplate == PropertyTemplate.CUSTOM) {
         property = builder.createProperty(title, "Insert the " + reasonerName + " property to be decomposed",
                                           customMsg);
       }
       else {
-        var result = template.bindVariables(title, modelObjs, queryCache);
+        var result = propTemplate.bindVariables(title, modelObjs, queryCache);
         property = result.property();
         propQueries = result.queries();
       }
     }
-    // create decomposition template
-    var id = decomposed.getId();
-    Strategy chainedStrategy = null;
-    Goal chainedGoal = null;
-    String propStrategyId;
-    var propStrategyDesc = "Decomposition over property ";
-    var numGoals = 1;
-    var numCtx = 0;
-    if (decomposed instanceof PropertyGoal) { // decomposition chain, do not create formal argument level
-      propStrategyId = "S1." + id;
-      propStrategyDesc += "'" + property.getInformal() + "'";
-    }
-    else {
-      var formalStrategyId = "S1." + id;
-      var formalStrategyDesc = "Argument by " + reasonerName + " formalization";
-      var propContextId = "Ctx1." + id;
-      var modelGoalId = id + ".1";
-      var modelGoalDesc = "The related model correctly models all aspects of the system for the property in " +
-                          propContextId;
-      var propGoalId = id + ".2";
-      var propGoalDesc = id + " asserts the property in " + propContextId;
-      var formalGoalId = id + ".3";
-      var formalGoalDesc = "The property in " + propContextId + " holds";
-      chainedStrategy = builder.createBasicStrategy(formalStrategyId, formalStrategyDesc);
-      var propContext = builder.createContext(propContextId, property.getInformal());
-      builder.addInContextOf(chainedStrategy, propContext);
-      var modelGoal = builder.createBasicGoal(modelGoalId, modelGoalDesc);
-      builder.addSupporter(chainedStrategy, modelGoal);
-      var propGoal = builder.createBasicGoal(propGoalId, propGoalDesc);
-      builder.addSupporter(chainedStrategy, propGoal);
-      chainedGoal = builder.createBasicGoal(formalGoalId, formalGoalDesc);
-      builder.addSupporter(chainedStrategy, chainedGoal);
-      propStrategyId = "S2." + id;
-      propStrategyDesc += "in " + propContextId;
-      numGoals = 4;
+    // customize decomposition
+    var templateSC = (SafetyCase) eContainer();
+    var safetyGoal = templateSC.getGoals().get(0);
+    var propGoal = templateSC.getGoals().get(1);
+    var formalGoal = templateSC.getGoals().get(2);
+    var modelGoal = templateSC.getGoals().get(3);
+    var subPropGoalN = (PropertyGoal) templateSC.getGoals().get(4);
+    var formalStrategy = templateSC.getStrategies().get(0);
+    var propStrategy = (PropertyDecompositionStrategy) templateSC.getStrategies().get(1);
+    var propCtx = templateSC.getContexts().get(0);
+    var modelCtx = templateSC.getContexts().get(1);
+    var formalJust = templateSC.getJustifications().get(0);
+    propStrategy.getSupportedBy().clear(); // the real subPropGoals will be added later
+    propStrategy.getInContextOf().remove(1); // the real formalJust will be added by the validation
+    var templateElements = getElements();
+    templateElements.remove(safetyGoal);
+    templateElements.remove(formalJust);
+    templateElements.remove(subPropGoalN);
+    templateElements.add(decomposed);
+    var placeholderId = "CX";
+    var decomposedId = decomposed.getId();
+    int numCtx;
+    int numGoals;
+    if (decomposed instanceof PropertyGoal) { // decomposition chain, do not use formal argument level
+      templateElements.remove(formalStrategy);
+      templateElements.remove(propCtx);
+      templateElements.remove(propGoal);
+      templateElements.remove(formalGoal);
+      templateElements.remove(modelGoal);
+      propStrategy.setId(formalStrategy.getId().replace(placeholderId, decomposedId));
+      propStrategy.setDescription(
+        propStrategy.getDescription().replace("in Ctx1.CX", "'" + property.getInformal() + "'"));
+      propStrategy.getSupports().get(0).setSource(decomposed);
+      modelCtx.setId(propCtx.getId().replace(placeholderId, decomposedId));
       numCtx = 1;
-    }
-    var modelContextId = "Ctx" + ++numCtx + "." + id;
-    var subGoalId = id + ".";
-    var propStrategy = builder.createPropertyStrategy(propStrategyId, propStrategyDesc, reasonerName, property);
-    if (chainedGoal == null) {
-      chainedStrategy = propStrategy;
+      numGoals = 0;
     }
     else {
-      builder.addSupporter(chainedGoal, propStrategy);
+      formalStrategy.getSupports().get(0).setSource(decomposed);
+      formalStrategy.setId(formalStrategy.getId().replace(placeholderId, decomposedId));
+      formalStrategy.setDescription(formalStrategy.getDescription().replace("REASONER", reasonerName));
+      builder.addExistingElement(formalStrategy);
+      propCtx.setId(propCtx.getId().replace(placeholderId, decomposedId));
+      propCtx.setDescription(propCtx.getDescription().replace("SAFETY_PROPERTY", property.getInformal()));
+      builder.addExistingElement(propCtx);
+      propGoal.setId(propGoal.getId().replace(placeholderId, decomposedId));
+      propGoal.setDescription(propGoal.getDescription().replace(placeholderId, decomposedId));
+      builder.addExistingElement(propGoal);
+      formalGoal.setId(formalGoal.getId().replace(placeholderId, decomposedId));
+      formalGoal.setDescription(formalGoal.getDescription().replace(placeholderId, decomposedId));
+      builder.addExistingElement(formalGoal);
+      modelGoal.setId(modelGoal.getId().replace(placeholderId, decomposedId));
+      modelGoal.setDescription(modelGoal.getDescription().replace(placeholderId, decomposedId));
+      builder.addExistingElement(modelGoal);
+      propStrategy.setId(propStrategy.getId().replace(placeholderId, decomposedId));
+      propStrategy.setDescription(propStrategy.getDescription().replace(placeholderId, decomposedId));
+      modelCtx.setId(modelCtx.getId().replace(placeholderId, decomposedId));
+      numCtx = 2;
+      numGoals = 3;
     }
-    var modelContext = builder.createContext(modelContextId, relatedModelPath);
-    builder.addInContextOf(propStrategy, modelContext);
+    propStrategy.setReasonerName(reasonerName);
+    propStrategy.setProperty(property);
+    builder.addExistingElement(propStrategy);
+    modelCtx.setDescription(modelCtx.getDescription().replace("MODEL", relatedModelPath));
+    builder.addExistingElement(modelCtx);
     for (var propQuery : propQueries) {
-      createQueryContext(propStrategy, propQuery, id, numCtx, queryContexts, builder);
+      createQueryContext(propStrategy, propQuery, decomposedId, numCtx, queryContexts, builder);
     }
-    var numProperties = Integer.parseInt(MIDDialogs.getStringInput(title, "Insert the number of sub-properties",
-                                                                   null).strip());
+    var numProperties = Integer.parseInt(
+      MIDDialogs.getStringInput(title, "Insert the number of sub-properties (>= 2)", null).strip());
+    if (numProperties < 2) {
+      throw new MMINTException("Sub-properties must be >= 2");
+    }
+
+    var subPropGoalId = subPropGoalN.getId().replace(placeholderId, decomposedId);
     for (var i = 0; i < numProperties; i++) {
-      var subTemplate = DecompositionUtils.selectTemplate(title, "Select the sub-property #" + (i+1), templates);
+      var subPropTemplate = DecompositionUtils.selectPropertyTemplate(title, "Select the sub-property #" + (i+1),
+                                                                      propTemplates);
       Property subProperty;
       List<String> subPropQueries = List.of();
-      if (subTemplate == PropertyTemplate.CUSTOM) {
+      if (subPropTemplate == PropertyTemplate.CUSTOM) {
         subProperty = builder.createProperty(title, "Insert the sub-property #" + (i+1), customMsg);
       }
       else {
-        var subResult = subTemplate.bindVariables(title, modelObjs, queryCache);
+        var subResult = subPropTemplate.bindVariables(title, modelObjs, queryCache);
         subProperty = subResult.property();
         subPropQueries = subResult.queries();
       }
-      var subGoal = builder.createPropertyGoal(subGoalId + (i+numGoals), subProperty.getInformal(), subProperty);
-      builder.addSupporter(propStrategy, subGoal);
+      var subPropGoal = builder.createPropertyGoal(subPropGoalId.replace("N", String.valueOf(i+1+numGoals)),
+                                                   subProperty.getInformal(), subProperty);
+      builder.addSupporter(propStrategy, subPropGoal);
       for (var subPropQuery : subPropQueries) {
-        createQueryContext(subGoal, subPropQuery, id, numCtx, queryContexts, builder);
+        createQueryContext(subPropGoal, subPropQuery, decomposedId, numCtx, queryContexts, builder);
       }
     }
-    builder.addSupporter(decomposed, chainedStrategy);
   }
 
 } //PropertyTemplateImpl

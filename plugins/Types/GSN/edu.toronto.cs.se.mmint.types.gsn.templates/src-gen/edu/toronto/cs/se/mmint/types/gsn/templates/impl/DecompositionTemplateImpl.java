@@ -114,6 +114,7 @@ public abstract class DecompositionTemplateImpl extends TemplateImpl implements 
       throw new MMINTException("The selected element to be decomposed is not a goal");
     }
     decompose(goal, builder);
+    builder.addExistingTemplate(this);
 
     return builder;
   }

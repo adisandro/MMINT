@@ -137,9 +137,9 @@ public class DecompositionUtils {
     return modelObjs;
   }
 
-  public static PropertyTemplate selectTemplate(String title, String message,
-                                                Map<String, List<PropertyTemplate>> templates)
-                                                  throws MIDDialogCancellation {
+  public static PropertyTemplate selectPropertyTemplate(String title, String message,
+                                                        Map<String, List<PropertyTemplate>> templates)
+                                                         throws MIDDialogCancellation {
     if (templates.isEmpty()) {
       return PropertyTemplate.CUSTOM;
     }
