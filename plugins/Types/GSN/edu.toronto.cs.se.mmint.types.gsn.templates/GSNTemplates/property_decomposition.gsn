@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gsn:SafetyCase xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gsn="http://se.cs.toronto.edu/modelepedia/GSN" xmlns:gsn.templates="model://edu.toronto.cs.se.mmint.types.gsn.templates">
+  <goals xsi:type="gsn:BasicGoal" id="CX" description="Safety goal" templates="//@templates.0">
+    <supportedBy target="//@strategies.0"/>
+  </goals>
+  <goals xsi:type="gsn:BasicGoal" supports="//@strategies.0/@supportedBy.0" id="CX.1" description="CX asserts the property in Ctx1.CX" templates="//@templates.0"/>
+  <goals xsi:type="gsn:BasicGoal" supports="//@strategies.0/@supportedBy.1" id="CX.2" description="The property in Ctx1.CX holds" templates="//@templates.0">
+    <supportedBy target="//@strategies.1"/>
+  </goals>
+  <goals xsi:type="gsn:BasicGoal" supports="//@strategies.0/@supportedBy.2" id="CX.3" description="The related model correctly models all aspects of the system for the property in Ctx1.CX" templates="//@templates.0"/>
+  <goals xsi:type="gsn.templates:PropertyGoal" supports="//@strategies.1/@supportedBy.0" id="CX.N" description="DECOMPOSED_SAFETY_PROPERTIES" templates="//@templates.0">
+    <property formal="DECOMPOSED_FORMAL_PROPERTIES" informal="DECOMPOSED_SAFETY_PROPERTIES"/>
+  </goals>
+  <strategies xsi:type="gsn:BasicStrategy" supports="//@goals.0/@supportedBy.0" id="S1.CX" description="Argument by REASONER formalization" templates="//@templates.0">
+    <supportedBy target="//@goals.1"/>
+    <supportedBy target="//@goals.2"/>
+    <supportedBy target="//@goals.3"/>
+    <inContextOf context="//@contexts.0"/>
+  </strategies>
+  <strategies xsi:type="gsn.templates:PropertyDecompositionStrategy" supports="//@goals.2/@supportedBy.0" id="S2.CX" description="Decomposition over property in Ctx1.CX" templates="//@templates.0" reasonerName="REASONER">
+    <supportedBy target="//@goals.4"/>
+    <inContextOf context="//@contexts.1"/>
+    <inContextOf context="//@justifications.0"/>
+    <property formal="FORMAL_PROPERTY" informal="SAFETY_PROPERTY"/>
+  </strategies>
+  <contexts id="Ctx1.CX" description="SAFETY_PROPERTY" templates="//@templates.0" contextOf="//@strategies.0/@inContextOf.0"/>
+  <contexts id="Ctx2.CX" description="MODEL_PATH" templates="//@templates.0" contextOf="//@strategies.1/@inContextOf.0"/>
+  <justifications id="J1.CX" description="Decomposition RESULT in REASONER: see file PROOF" templates="//@templates.0" contextOf="//@strategies.1/@inContextOf.1"/>
+  <templates xsi:type="gsn.templates:PropertyDecompositionTemplate" elements="//@goals.0 //@goals.1 //@goals.2 //@goals.3 //@strategies.0 //@contexts.0 //@contexts.1 //@justifications.0 //@strategies.1 //@goals.4" id="Property Decomposition"/>
+</gsn:SafetyCase>
