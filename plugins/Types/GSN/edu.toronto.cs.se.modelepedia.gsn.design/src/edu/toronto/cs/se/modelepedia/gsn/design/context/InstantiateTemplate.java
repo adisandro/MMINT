@@ -92,6 +92,8 @@ public class InstantiateTemplate extends AbstractExternalJavaAction {
         //TODO Update all paper instructions to use templates
         //TODO Delete links and delete template
         //TODO Domain decomposition should use elements in the template rather than creating them
+        //TODO Repair framework should be refined
+        //TODO Create separate project for templates
       }
       catch (Exception e) {
         MMINTException.print(IStatus.ERROR, "The template instantiation is not valid", e);

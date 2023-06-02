@@ -64,8 +64,10 @@ public interface TemplateElement extends ArgumentElement {
   void validate() throws Exception;
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> Repairs this invalidly instantiated template element. The base implementation does nothing.
+   *
+   * @throws Exception
+   *           If there is an error during the repair process. <!-- end-user-doc -->
    * @model exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception"
    * @generated
    */

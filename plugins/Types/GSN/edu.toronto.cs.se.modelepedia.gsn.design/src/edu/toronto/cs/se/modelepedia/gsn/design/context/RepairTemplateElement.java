@@ -28,7 +28,7 @@ import org.eclipse.ui.PlatformUI;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.modelepedia.gsn.TemplateElement;
 
-public class ValidateTemplateElement extends AbstractExternalJavaAction {
+public class RepairTemplateElement extends AbstractExternalJavaAction {
 
   @Override
   public boolean canExecute(Collection<? extends EObject> arg0) {
@@ -36,7 +36,7 @@ public class ValidateTemplateElement extends AbstractExternalJavaAction {
       return false;
     }
     var modelObj = ((DSemanticDecorator) arg0.iterator().next()).getTarget();
-    if (!(modelObj instanceof TemplateElement)) {
+    if (!(modelObj instanceof TemplateElement templateElem) || templateElem.isValid()) {
       return false;
     }
     return true;
@@ -47,13 +47,13 @@ public class ValidateTemplateElement extends AbstractExternalJavaAction {
     var templateElem = (TemplateElement) ((DSemanticDecorator) arg0.iterator().next()).getTarget();
     var sSession = SessionManager.INSTANCE.getSession(templateElem);
     var sDomain = sSession.getTransactionalEditingDomain();
-    sDomain.getCommandStack().execute(new ValidateTemplateElementCommand(sDomain, templateElem));
+    sDomain.getCommandStack().execute(new RepairTemplateElementCommand(sDomain, templateElem));
   }
 
-  private class ValidateTemplateElementCommand extends RecordingCommand {
+  private class RepairTemplateElementCommand extends RecordingCommand {
     TemplateElement templateElem;
 
-    public ValidateTemplateElementCommand(TransactionalEditingDomain domain, TemplateElement templateElem) {
+    public RepairTemplateElementCommand(TransactionalEditingDomain domain, TemplateElement templateElem) {
       super(domain);
       this.templateElem = templateElem;
     }
@@ -61,14 +61,15 @@ public class ValidateTemplateElement extends AbstractExternalJavaAction {
     @Override
     protected void doExecute() {
       var shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-      var title = "Template Element Validation";
-      var message = "The template element " + this.templateElem.getId() + " is ";
+      var title = "Template Element Repair";
       try {
-        this.templateElem.validate();
-        MessageDialog.openInformation(shell, title, message + "instantiated correctly");
+        this.templateElem.repair();
+        this.templateElem.getTemplates().get(0).validate();
+        this.templateElem.setValid(true);
+        MessageDialog.openInformation(shell, title, "The template element has been repaired and is now valid");
       }
       catch (Exception e) {
-        MMINTException.print(IStatus.ERROR, message + "not instantiated correctly", e);
+        MMINTException.print(IStatus.ERROR, "The template element is still invalid", e);
       }
     }
   }

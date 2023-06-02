@@ -91,7 +91,7 @@ public class PropertyDecompositionTemplateImpl extends DecompositionTemplateImpl
    * @generated NOT
    */
   private void createQueryContext(DecomposableCoreElement contextualized, String query, String id, int numCtx,
-                                  Map<String, Context> contexts, EList<ArgumentElement> templateElements,
+                                  Map<String, Context> contexts, EList<ArgumentElement> templateElems,
                                   GSNTemplatesBuilder builder) {
     var context = contexts.get(query);
     if (context == null) {
@@ -104,7 +104,7 @@ public class PropertyDecompositionTemplateImpl extends DecompositionTemplateImpl
         // continue without user description
       }
       context = builder.createContext("Ctx" + (numCtx+1+contexts.size()) + "." + id, desc);
-      templateElements.add(context);
+      templateElems.add(context);
       contexts.put(query, context);
     }
     builder.addInContextOf(contextualized, context);
@@ -174,21 +174,21 @@ public class PropertyDecompositionTemplateImpl extends DecompositionTemplateImpl
     var formalJust = templateSC.getJustifications().get(0);
     propStrategy.getSupportedBy().clear(); // the real subPropGoals will be added later
     propStrategy.getInContextOf().remove(1); // the real formalJust will be added by the validation
-    var templateElements = getElements();
-    templateElements.remove(safetyGoal);
-    templateElements.remove(formalJust);
-    templateElements.remove(subPropGoalN);
+    var templateElems = getElements();
+    templateElems.remove(safetyGoal);
+    templateElems.remove(formalJust);
+    templateElems.remove(subPropGoalN);
     var placeholderId = "CX";
     var decomposedId = decomposed.getId();
     Strategy chainedStrategy;
     int numCtx;
     int numGoals;
     if (decomposed instanceof PropertyGoal) { // decomposition chain, do not use formal argument level
-      templateElements.remove(formalStrategy);
-      templateElements.remove(propCtx);
-      templateElements.remove(propGoal);
-      templateElements.remove(formalGoal);
-      templateElements.remove(modelGoal);
+      templateElems.remove(formalStrategy);
+      templateElems.remove(propCtx);
+      templateElems.remove(propGoal);
+      templateElems.remove(formalGoal);
+      templateElems.remove(modelGoal);
       propStrategy.setId(formalStrategy.getId().replace(placeholderId, decomposedId));
       propStrategy.setDescription(
         propStrategy.getDescription().replace("in Ctx1.CX", "'" + property.getInformal() + "'"));
@@ -226,7 +226,7 @@ public class PropertyDecompositionTemplateImpl extends DecompositionTemplateImpl
     modelCtx.setDescription(modelCtx.getDescription().replace("MODEL_PATH", relatedModelPath));
     builder.addExistingElement(modelCtx);
     for (var propQuery : propQueries) {
-      createQueryContext(propStrategy, propQuery, decomposedId, numCtx, queryContexts, templateElements, builder);
+      createQueryContext(propStrategy, propQuery, decomposedId, numCtx, queryContexts, templateElems, builder);
     }
     var numProperties = Integer.parseInt(
       MIDDialogs.getStringInput(title, "Insert the number of sub-properties (>= 2)", null).strip());
@@ -250,13 +250,13 @@ public class PropertyDecompositionTemplateImpl extends DecompositionTemplateImpl
       }
       var subPropGoal = builder.createPropertyGoal(subPropGoalId.replace("N", String.valueOf(i+1+numGoals)),
                                                    subProperty.getInformal(), subProperty);
-      templateElements.add(subPropGoal);
+      templateElems.add(subPropGoal);
       builder.addSupporter(propStrategy, subPropGoal);
       for (var subPropQuery : subPropQueries) {
-        createQueryContext(subPropGoal, subPropQuery, decomposedId, numCtx, queryContexts, templateElements, builder);
+        createQueryContext(subPropGoal, subPropQuery, decomposedId, numCtx, queryContexts, templateElems, builder);
       }
     }
-    templateElements.add(decomposed);
+    templateElems.add(decomposed);
     chainedStrategy.getSupports().get(0).setSource(decomposed);
   }
 

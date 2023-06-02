@@ -13,19 +13,32 @@
 package edu.toronto.cs.se.mmint.types.gsn.templates.impl;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import edu.toronto.cs.se.mmint.MMINT;
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
 import edu.toronto.cs.se.mmint.types.gsn.templates.Property;
 import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyDecompositionElement;
+import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyDecompositionStrategy;
 import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyGoal;
+import edu.toronto.cs.se.mmint.types.gsn.templates.reasoning.IGSNDecompositionTrait;
+import edu.toronto.cs.se.mmint.types.gsn.templates.reasoning.IGSNLeanEncoder.PropertyTemplate;
+import edu.toronto.cs.se.mmint.types.gsn.templates.util.DecompositionUtils;
+import edu.toronto.cs.se.mmint.types.gsn.templates.util.GSNTemplatesBuilder;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
+import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
 import edu.toronto.cs.se.modelepedia.gsn.TemplateElement;
 import edu.toronto.cs.se.modelepedia.gsn.impl.GoalImpl;
 
@@ -218,15 +231,79 @@ public class PropertyGoalImpl extends GoalImpl implements PropertyGoal {
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
+   * @generated NOT
+   */
+  private void repairWithNewProperty(PropertyDecompositionStrategy strategy, IGSNDecompositionTrait reasoner)
+                                    throws Exception {
+    var title = "Property Decomposition Repair";
+    var reasonerName = reasoner.getName();
+    var templates = Map.<String, List<PropertyTemplate>>of();
+    var modelObjs = Map.<EClass, List<EObject>>of();
+    var relatedModelOpt = DecompositionUtils.getRelatedModel(this);
+    if (!relatedModelOpt.isEmpty()) {
+      var relatedModel = relatedModelOpt.get();
+      try {
+        templates = reasoner.getPropertyTemplates(relatedModel);
+        modelObjs = DecompositionUtils.categorizeModelObjects(relatedModel, templates);
+      }
+      catch (MMINTException e) {
+        // do nothing
+      }
+    }
+    var template = DecompositionUtils.selectPropertyTemplate(title, "Select the property to be decomposed", templates);
+    Property property;
+    List<String> propQueries = List.of();
+    if (template == PropertyTemplate.CUSTOM) {
+      var builder = new GSNTemplatesBuilder((SafetyCase) eContainer());
+      property = builder.createProperty(title, "Insert the " + reasonerName + " property to be decomposed",
+                                        "Insert a description for the custom property");
+    }
+    else {
+      var result = template.bindVariables(title, modelObjs, Map.of());
+      property = result.property();
+      propQueries = result.queries();
+    }
+    setProperty(property);
+    setDescription(property.getInformal());
+    //TODO MMINT[GSN] Manage query context nodes (previous and repair)
+  }
+
+  /**
+   * @generated NOT
+   */
+  private void repairWithHint(String hint) {
+    getProperty().setFormal(hint);
+    setHint(null);
+    //TODO MMINT[GSN] Create interface to figure out goal description from hint
+  }
+
+  /**
+   * @generated NOT
    */
   @Override
   public void repair() throws Exception {
-    // TODO: implement this method
-    // Ensure that you remove @generated or mark it @generated NOT
-    throw new UnsupportedOperationException();
+    var strategy = (PropertyDecompositionStrategy) DecompositionUtils.moveOneStrategyUp(this);
+    var reasonerName = strategy.getReasonerName();
+    var reasoner = Objects.requireNonNull(MMINT.getReasoner(reasonerName),
+                                          "The reasoner '" + reasonerName + "' is not installed");
+    if (!(reasoner instanceof IGSNDecompositionTrait gsnReasoner)) {
+      throw new MMINTException("The reasoner '" + reasonerName + "' does not support GSN property decompositions");
+    }
+    var hint = getHint();
+    if (hint == null || hint.isBlank()) {
+      repairWithNewProperty(strategy, gsnReasoner);
+    }
+    else {
+      repairWithHint(hint);
+    }
+    var proofLinks = strategy.getInContextOf().stream()
+      .filter(c -> c.getContext().getDescription().contains(reasonerName))
+      .collect(Collectors.toSet());
+    var proofs = proofLinks.stream()
+      .map(c -> c.getContext())
+      .collect(Collectors.toSet());
+    strategy.getInContextOf().removeAll(proofLinks);
+    ((SafetyCase) strategy.eContainer()).getJustifications().removeAll(proofs);
   }
 
   /**
@@ -432,5 +509,4 @@ public class PropertyGoalImpl extends GoalImpl implements PropertyGoal {
     result.append(')');
     return result.toString();
   }
-
 } //PropertyGoalImpl
