@@ -238,25 +238,24 @@ public class FileUtils {
 			false);
 	}
 
-	private static Path getPath(String filePath, boolean isWorkspaceRelative) {
+	private static Path getPath(String path, boolean isWorkspaceRelative) {
 		if (isWorkspaceRelative) {
-			filePath = FileUtils.prependWorkspacePath(filePath);
+			path = FileUtils.prependWorkspacePath(path);
 		}
-		var path = Paths.get(filePath);
 
-		return path;
+		return Paths.get(path);
 	}
 
-	public static boolean isFile(String path, boolean isWorkspaceRelative) {
-		Path nioPath = FileUtils.getPath(path, isWorkspaceRelative);
+	public static boolean isFile(String filePath, boolean isWorkspaceRelative) {
+		var path = FileUtils.getPath(filePath, isWorkspaceRelative);
 
-		return Files.exists(nioPath) && !Files.isDirectory(nioPath);
+		return Files.exists(path) && !Files.isDirectory(path);
 	}
 
-	public static boolean isDirectory(String path, boolean isWorkspaceRelative) {
-		Path nioPath = FileUtils.getPath(path, isWorkspaceRelative);
+	public static boolean isDirectory(String dirPath, boolean isWorkspaceRelative) {
+		var path = FileUtils.getPath(dirPath, isWorkspaceRelative);
 
-		return Files.exists(nioPath) && Files.isDirectory(nioPath);
+		return Files.exists(path) && Files.isDirectory(path);
 	}
 
 	public static boolean isFileOrDirectory(String path, boolean isWorkspaceRelative) {

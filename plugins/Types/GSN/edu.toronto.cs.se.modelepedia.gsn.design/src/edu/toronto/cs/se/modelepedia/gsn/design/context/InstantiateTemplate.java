@@ -20,6 +20,7 @@ import java.util.stream.Collectors;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.sirius.business.api.action.AbstractExternalJavaAction;
@@ -55,7 +56,7 @@ public class InstantiateTemplate extends AbstractExternalJavaAction {
     try {
       var templatePath = MIDDialogs.selectFiles("Instantiate Template", "Select GSN template file",
                                                 "There are no GSN files in the workspace", Set.of(GSNPackage.eNAME));
-      var templateSafetyCase = (SafetyCase) FileUtils.readModelFile(templatePath, null, true);
+      var templateSafetyCase = (SafetyCase) EcoreUtil.copy(FileUtils.readModelFile(templatePath, null, true));
       if (templateSafetyCase.getTemplates().isEmpty()) {
         throw new MMINTException(templatePath + " does not contain a template");
       }
@@ -90,8 +91,7 @@ public class InstantiateTemplate extends AbstractExternalJavaAction {
         this.template.validate();
         //TODO Update all paper instructions to use templates
         //TODO Delete links and delete template
-        //TODO Property and domain decomposition should use elements in the template rather than creating them
-        //TODO Change PropertyTemplate name
+        //TODO Domain decomposition should use elements in the template rather than creating them
       }
       catch (Exception e) {
         MMINTException.print(IStatus.ERROR, "The template instantiation is not valid", e);

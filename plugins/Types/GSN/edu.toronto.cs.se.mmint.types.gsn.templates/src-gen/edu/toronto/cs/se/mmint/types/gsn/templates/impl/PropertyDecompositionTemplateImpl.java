@@ -19,6 +19,7 @@ import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ui.model.BaseWorkbenchContentProvider;
@@ -39,10 +40,12 @@ import edu.toronto.cs.se.mmint.types.gsn.templates.reasoning.IGSNDecompositionTr
 import edu.toronto.cs.se.mmint.types.gsn.templates.reasoning.IGSNLeanEncoder.PropertyTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.templates.util.DecompositionUtils;
 import edu.toronto.cs.se.mmint.types.gsn.templates.util.GSNTemplatesBuilder;
+import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
 import edu.toronto.cs.se.modelepedia.gsn.Context;
 import edu.toronto.cs.se.modelepedia.gsn.DecomposableCoreElement;
 import edu.toronto.cs.se.modelepedia.gsn.Goal;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
+import edu.toronto.cs.se.modelepedia.gsn.Strategy;
 
 /**
  * <!-- begin-user-doc -->
@@ -88,7 +91,8 @@ public class PropertyDecompositionTemplateImpl extends DecompositionTemplateImpl
    * @generated NOT
    */
   private void createQueryContext(DecomposableCoreElement contextualized, String query, String id, int numCtx,
-                                  Map<String, Context> contexts, GSNTemplatesBuilder builder) {
+                                  Map<String, Context> contexts, EList<ArgumentElement> templateElements,
+                                  GSNTemplatesBuilder builder) {
     var context = contexts.get(query);
     if (context == null) {
       var desc = "Query '" + query + "'";
@@ -100,6 +104,7 @@ public class PropertyDecompositionTemplateImpl extends DecompositionTemplateImpl
         // continue without user description
       }
       context = builder.createContext("Ctx" + (numCtx+1+contexts.size()) + "." + id, desc);
+      templateElements.add(context);
       contexts.put(query, context);
     }
     builder.addInContextOf(contextualized, context);
@@ -173,9 +178,9 @@ public class PropertyDecompositionTemplateImpl extends DecompositionTemplateImpl
     templateElements.remove(safetyGoal);
     templateElements.remove(formalJust);
     templateElements.remove(subPropGoalN);
-    templateElements.add(decomposed);
     var placeholderId = "CX";
     var decomposedId = decomposed.getId();
+    Strategy chainedStrategy;
     int numCtx;
     int numGoals;
     if (decomposed instanceof PropertyGoal) { // decomposition chain, do not use formal argument level
@@ -187,13 +192,12 @@ public class PropertyDecompositionTemplateImpl extends DecompositionTemplateImpl
       propStrategy.setId(formalStrategy.getId().replace(placeholderId, decomposedId));
       propStrategy.setDescription(
         propStrategy.getDescription().replace("in Ctx1.CX", "'" + property.getInformal() + "'"));
-      propStrategy.getSupports().get(0).setSource(decomposed);
       modelCtx.setId(propCtx.getId().replace(placeholderId, decomposedId));
+      chainedStrategy = propStrategy;
       numCtx = 1;
       numGoals = 0;
     }
     else {
-      formalStrategy.getSupports().get(0).setSource(decomposed);
       formalStrategy.setId(formalStrategy.getId().replace(placeholderId, decomposedId));
       formalStrategy.setDescription(formalStrategy.getDescription().replace("REASONER", reasonerName));
       builder.addExistingElement(formalStrategy);
@@ -212,16 +216,17 @@ public class PropertyDecompositionTemplateImpl extends DecompositionTemplateImpl
       propStrategy.setId(propStrategy.getId().replace(placeholderId, decomposedId));
       propStrategy.setDescription(propStrategy.getDescription().replace(placeholderId, decomposedId));
       modelCtx.setId(modelCtx.getId().replace(placeholderId, decomposedId));
+      chainedStrategy = formalStrategy;
       numCtx = 2;
       numGoals = 3;
     }
     propStrategy.setReasonerName(reasonerName);
     propStrategy.setProperty(property);
     builder.addExistingElement(propStrategy);
-    modelCtx.setDescription(modelCtx.getDescription().replace("MODEL", relatedModelPath));
+    modelCtx.setDescription(modelCtx.getDescription().replace("MODEL_PATH", relatedModelPath));
     builder.addExistingElement(modelCtx);
     for (var propQuery : propQueries) {
-      createQueryContext(propStrategy, propQuery, decomposedId, numCtx, queryContexts, builder);
+      createQueryContext(propStrategy, propQuery, decomposedId, numCtx, queryContexts, templateElements, builder);
     }
     var numProperties = Integer.parseInt(
       MIDDialogs.getStringInput(title, "Insert the number of sub-properties (>= 2)", null).strip());
@@ -245,11 +250,14 @@ public class PropertyDecompositionTemplateImpl extends DecompositionTemplateImpl
       }
       var subPropGoal = builder.createPropertyGoal(subPropGoalId.replace("N", String.valueOf(i+1+numGoals)),
                                                    subProperty.getInformal(), subProperty);
+      templateElements.add(subPropGoal);
       builder.addSupporter(propStrategy, subPropGoal);
       for (var subPropQuery : subPropQueries) {
-        createQueryContext(subPropGoal, subPropQuery, decomposedId, numCtx, queryContexts, builder);
+        createQueryContext(subPropGoal, subPropQuery, decomposedId, numCtx, queryContexts, templateElements, builder);
       }
     }
+    templateElements.add(decomposed);
+    chainedStrategy.getSupports().get(0).setSource(decomposed);
   }
 
 } //PropertyTemplateImpl
