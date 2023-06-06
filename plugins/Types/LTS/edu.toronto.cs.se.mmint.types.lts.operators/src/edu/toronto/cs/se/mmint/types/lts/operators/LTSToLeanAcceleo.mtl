@@ -19,7 +19,7 @@
 /]
 
 [template private encodeMain(modelName : String)]
-import justification common_meta aux property_catalogue.LTL
+import justification common_meta auxi property_catalogue.LTL
 import [modelName/]
 open interactive S A
 
@@ -31,7 +31,7 @@ def local_input_name : string := "[modelName/]_input_1"
 def local_strat_name : string := "[modelName/]_strat_1"
 def local_prf_name : string := "[modelName/]_prf_1"
 
-def preamble : string := "import justification [modelName/] common_meta aux property_catalogue.LTL \n open S A"
+def preamble : string := "import justification [modelName/] common_meta auxi property_catalogue.LTL \n open S A"
 
 meta def proof_template (p₁ p₂ : string) : string :=
 "\n\n

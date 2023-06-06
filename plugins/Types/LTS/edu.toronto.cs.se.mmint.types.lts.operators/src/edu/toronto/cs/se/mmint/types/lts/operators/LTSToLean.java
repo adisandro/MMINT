@@ -41,7 +41,7 @@ import edu.toronto.cs.se.mmint.types.lts.State;
 
 public class LTSToLean extends ToLean implements IGSNLeanEncoder {
 
-  private final static String LEAN_AUX_FILE = "aux" + ToLean.LEAN_EXT;
+  private final static String LEAN_AUX_FILE = "auxi" + ToLean.LEAN_EXT;
   private final static int GROUP_THRESHOLD = 100;
 
   @Override
