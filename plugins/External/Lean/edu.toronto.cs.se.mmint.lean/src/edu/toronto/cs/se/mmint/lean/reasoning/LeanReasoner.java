@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -93,6 +94,10 @@ public class LeanReasoner implements IModelConstraintTrait {
     var mathlibPath = MMINT.getPreference(MMINTLeanMathlibPathMenu.PREFERENCE_MENU_LEAN_MATHLIB_PATH);
     if (mathlibPath == null) {
       throw new MMINTException("Mathlib path not configured (set it in the MMINT top menu)");
+    }
+    if (System.getProperty("os.name").startsWith("Windows")) {
+      // workaround for Windows absolute paths not recognized in leanpkg.path
+      mathlibPath = Paths.get(absWorkingPath).relativize(Paths.get(mathlibPath)).toString();
     }
     var config = """
       builtin_path
