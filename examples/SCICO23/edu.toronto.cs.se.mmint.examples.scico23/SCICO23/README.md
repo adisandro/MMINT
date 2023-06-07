@@ -4,19 +4,19 @@ MMINT-A: A Framework for Model-Based Safety Assurance
 
 ## Instructions to reproduce the examples
 
-This example runs natively on Linux only.  
-Alternatively, a virtual machine image for VirtualBox with all the required dependencies is available at <https://doi.org/10.5281/zenodo.7478020> (login password `thisisastrongpassword`), letting you skip to step 2.iv.
+A virtual machine image for VirtualBox with all the required dependencies is available at <https://doi.org/10.5281/zenodo.7478020> (login password `thisisastrongpassword`), letting you skip to step 2.iv.
 
 1. Lean
-    1. Download and extract the Lean theorem prover from [here](https://oleanstorage.azureedge.net/releases/bundles/trylean_linux.tar.gz).
-    2. `mkdir -p ~/.local/bin; cd ~/.local/bin; ln -s /path_to_lean_folder/lean/bin/lean lean`.
+    1. Download and extract the Lean theorem prover for [Linux](https://oleanstorage.azureedge.net/releases/bundles/trylean_linux.tar.gz) or [Windows](https://oleanstorage.azureedge.net/releases/bundles/trylean_windows.zip).
+    2. Run `mkdir -p ~/.local/bin; cd ~/.local/bin; ln -s /path_to_lean_folder/lean/bin/lean lean` in your shell (Linux), or add `C:\path_to_lean_folder` to the environment variable `Path` (Windows).
 2. MMINT
     1. Install Java and Eclipse following the [requirements](/README.md#requirements), then add `https://adisandro.github.io/mmint/release` to the list of software sites (`Help > Install New Software > Available Software Sites`).
     2. From the top menu select `Help > Install New Software` and install `Examples > MMINT - SCICO23 paper`.
-    3. From the top menu select `MMINT > Lean > Change Lean Mathlib Path` and insert `/path_to_lean_folder/mathlib`.
-    4. From the top menu select `File > New > Example > MMINT Examples > SCICO23`.
-    5. Open `/SCICO23/model/example.middiag`.
-    6. Double-click on the yellow box named `warehouse : MID` to open the warehouse fleet megamodel.
+    3. From the top menu select `MMINT > Lean > Change Lean Mathlib Path` and insert `/path_to_lean_folder/mathlib` (Linux) or `C:\path_to_lean_folder\mathlib` (Windows).
+    4. From the top menu select `File > New > Example > MMINT Examples > GSNTemplates`.
+    5. From the top menu select `File > New > Example > MMINT Examples > SCICO23`.
+    6. Open `/SCICO23/model/example.middiag`.
+    7. Double-click on the yellow box named `warehouse : MID` to open the warehouse fleet megamodel.
 3. Model management
     1. From the palette on the right select `Import Model`, click anywhere in the diagram background, select file `/SCICO23/model/fcs.lts` to import the Floor Cleaning System model. You can double-click on the new yellow box named `fcs : LTS` to open and view it.
     2. Repeat step i with files `/SCICO23/model/pts.statemachine` and `/SCICO23/model/vss.classdigram` to import the Package Transport System model and the Video Security System model.
@@ -40,7 +40,7 @@ Alternatively, a virtual machine image for VirtualBox with all the required depe
     5. Repeat steps i-ii-iii-iv twice. Create a relationship between `pts : StateMachine` and `safety : GSN` by mapping model elements `Initial State Off` and `Domain Goal G0.3`, then create a relationship between `vss : ClassDiagram` and `safety : GSN` by mapping model elements `Class Security Device` and `Domain Goal G0.4`.
 7. Property decomposition
     1. Go back to the `safety` GSN editor.
-    2. Right-click on the goal named `G0.2` and select `MMINT > Property Decomposition`.
+    2. Right-click on the goal named `G0.2`, select `MMINT > Instantiate Template`, then select the template `/GSNTemplates/property_decomposition.gsn`.
     3. Select `Absence > $X is not reached` as the property to be decomposed, then select `State Damaged` for variable `$X`.
     4. Insert `2` as the number of sub-properties.
     5. Select `Transitions > Do not begin from $X` as the first sub-property, then select `State Damaged` for variable `$X`.
@@ -50,4 +50,3 @@ Alternatively, a virtual machine image for VirtualBox with all the required depe
 8. Querying
     1. Go back to the `warehouse.middiag` megamodel.
     2. Right-click anywhere in the diagram background, select `MMINT > Evaluate Query`, select file `/SCICO23/src/scico23/example.vql`, select query `noOutgoingTransitions`, check the result(s) textually and visually, select `Done + Store Results`.
-

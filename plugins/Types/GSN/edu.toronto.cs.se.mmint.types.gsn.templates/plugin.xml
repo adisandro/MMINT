@@ -22,4 +22,27 @@
             genModel="model/gsn.templates.genmodel"/>
    </extension>
 
+   <extension point="org.eclipse.ui.newWizards">
+      <category id="edu.toronto.cs.se.mmint.example"
+            name="MMINT Examples"
+            parentCategory="org.eclipse.ui.Examples"/>
+      <wizard id="edu.toronto.cs.se.mmint.types.gsn.templates"
+            category="org.eclipse.ui.Examples/edu.toronto.cs.se.mmint.example"
+            class="org.eclipse.emf.common.ui.wizard.ExampleInstallerWizard"
+            project="true"
+            name="GSNTemplates">
+         <description>Creates a project containing a collection of GSN Templates</description>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.emf.common.ui.examples">
+      <example id="edu.toronto.cs.se.mmint.types.gsn.templates"
+            wizardID="edu.toronto.cs.se.mmint.types.gsn.templates">
+         <projectDescriptor name="GSNTemplates"
+               contentURI="GSNTemplates/"
+               description="Creates a project containing a collection of GSN Templates"/>
+         <fileToOpen location="GSNTemplates/README.md"/>
+      </example>
+   </extension>
+
 </plugin>
