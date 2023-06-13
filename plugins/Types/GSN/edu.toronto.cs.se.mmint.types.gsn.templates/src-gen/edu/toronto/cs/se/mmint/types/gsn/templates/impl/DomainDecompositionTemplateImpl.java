@@ -98,13 +98,17 @@ public class DomainDecompositionTemplateImpl extends DecompositionTemplateImpl i
     var templateElems = getElements();
     templateElems.remove(safetyGoal);
     templateElems.remove(subDomainGoalN);
-    var placeholderId = "CX";
+    var placeholderId = "GX";
     var decomposedId = decomposed.getId();
+    var domainValues = "DOMAIN_VALUES";
+    var subDomainValues = "SUBDOMAIN_VALUES";
     domainStrategy.setId(domainStrategy.getId().replace(placeholderId, decomposedId));
-    domainStrategy.setDescription(domainStrategy.getDescription().replace("DOMAIN_VALUES", domain.toString()));
+    domainStrategy.setDescription(domainStrategy.getDescription().replace(domainValues, domain.toString()));
     domainStrategy.setDomain(domain);
+    builder.addExistingElement(domainStrategy);
     domainJust.setId(domainJust.getId().replace(placeholderId, decomposedId));
-    domainJust.setDescription(domainJust.getDescription().replace("DOMAIN_VALUES", domain.toString()));
+    domainJust.setDescription(domainJust.getDescription().replace(domainValues, domain.toString()));
+    builder.addExistingElement(domainJust);
     compGoal.setId(compGoal.getId().replace(placeholderId, decomposedId));
     var subDomains = new ArrayList<String>();
     var subDomainGoalId = subDomainGoalN.getId().replace(placeholderId, decomposedId);
@@ -116,13 +120,15 @@ public class DomainDecompositionTemplateImpl extends DecompositionTemplateImpl i
       }
       subDomains.add(subDomain.toString());
       var subDomainGoal = builder.createDomainGoal(subDomainGoalId.replace("N", String.valueOf(i+2)),
-                                                   subDomainGoalDesc.replace("SUBDOMAIN_VALUES", subDomain.toString()),
+                                                   subDomainGoalDesc.replace("SAFETY_GOAL", decomposed.getDescription())
+                                                                    .replace(subDomainValues, subDomain.toString()),
                                                    subDomain);
       templateElems.add(subDomainGoal);
       builder.addSupporter(domainStrategy, subDomainGoal);
     }
-    compGoal.setDescription(compGoal.getDescription().replace("DOMAIN_VALUES", domain.toString())
-                                                     .replace("SUBDOMAIN_VALUES", String.join(", ", subDomains)));
+    compGoal.setDescription(compGoal.getDescription().replace(subDomainValues, String.join(", ", subDomains))
+                                                     .replace(domainValues, domain.toString()));
+    builder.addExistingElement(compGoal);
     templateElems.add(decomposed);
     domainStrategy.getSupports().get(0).setSource(decomposed);
   }

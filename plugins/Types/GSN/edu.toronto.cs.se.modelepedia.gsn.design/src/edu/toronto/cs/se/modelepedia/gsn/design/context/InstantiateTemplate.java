@@ -91,7 +91,6 @@ public class InstantiateTemplate extends AbstractExternalJavaAction {
         this.template.validate();
         //TODO Update all paper instructions to use templates
         //TODO Delete links and delete template
-        //TODO Domain decomposition should use elements in the template rather than creating them
         //TODO Repair framework should be refined
       }
       catch (Exception e) {

@@ -9,7 +9,7 @@
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']"/>
         <target xmi:type="gsn:SafetyCase" href="property_decomposition.gsn#/"/>
       </ownedRepresentationDescriptors>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_izhYcAnPEe6Ix_5Zrea_ig" name="domain_decomposition" repPath="#_izgKUAnPEe6Ix_5Zrea_ig" changeId="1686652189571">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_izhYcAnPEe6Ix_5Zrea_ig" name="domain_decomposition" repPath="#_izgKUAnPEe6Ix_5Zrea_ig" changeId="1686655540733">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']"/>
         <target xmi:type="gsn:SafetyCase" href="domain_decomposition.gsn#/"/>
       </ownedRepresentationDescriptors>
@@ -633,7 +633,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DNode" uid="_MwhT8wnSEe6Ix_5Zrea_ig" name="GX.N Safety goal for sub-domain SUBDOMAIN_VALUES" incomingEdges="_bNDO-AnSEe6Ix_5Zrea_ig" width="14" height="7" resizeKind="NSEW">
+    <ownedDiagramElements xmi:type="diagram:DNode" uid="_MwhT8wnSEe6Ix_5Zrea_ig" name="GX.N SAFETY_GOAL for sub-domain SUBDOMAIN_VALUES" incomingEdges="_bNDO-AnSEe6Ix_5Zrea_ig" width="14" height="7" resizeKind="NSEW">
       <target xmi:type="gsn.templates:DomainGoal" href="domain_decomposition.gsn#//@goals.2"/>
       <semanticElements xmi:type="gsn.templates:DomainGoal" href="domain_decomposition.gsn#//@goals.2"/>
       <decorations xmi:type="viewpoint:Decoration" uid="_ObEp5QnVEe6I5K0yuR1Exw">

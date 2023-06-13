@@ -25,7 +25,7 @@ A virtual machine image for VirtualBox with all the required dependencies is ava
     2. From the palette on the right select `Create basic goal`, then click anywhere in the diagram background.
     3. Click to select the newly created goal if not already selected, then from the properties tab on the bottom insert `G0` in the Id field and `All systems in the warehouse fleet operate safely` in the Description field.
 5. Domain decomposition
-    1. Right-click on the `G0` goal and select `MMINT > Domain Decomposition`.
+    1. Right-click on the `G0` goal, select `MMINT > Instantiate Template`, then select the template `/GSNTemplates/domain_decomposition.gsn`.
     2. Insert `FCS,PTS,VSS` as the domain to be decomposed.
     3. Insert `FCS` as the first sub-domain.
     4. Insert `PTS` as the second sub-domain.
