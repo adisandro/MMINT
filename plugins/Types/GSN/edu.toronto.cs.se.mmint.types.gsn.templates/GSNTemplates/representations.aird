@@ -9,7 +9,7 @@
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']"/>
         <target xmi:type="gsn:SafetyCase" href="property_decomposition.gsn#/"/>
       </ownedRepresentationDescriptors>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_izhYcAnPEe6Ix_5Zrea_ig" name="domain_decomposition" repPath="#_izgKUAnPEe6Ix_5Zrea_ig" changeId="1686651124003">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_izhYcAnPEe6Ix_5Zrea_ig" name="domain_decomposition" repPath="#_izgKUAnPEe6Ix_5Zrea_ig" changeId="1686652189571">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']"/>
         <target xmi:type="gsn:SafetyCase" href="domain_decomposition.gsn#/"/>
       </ownedRepresentationDescriptors>
@@ -608,6 +608,9 @@
     <ownedDiagramElements xmi:type="diagram:DNode" uid="_mcxXEAnPEe6Ix_5Zrea_ig" name="GX Safety goal" outgoingEdges="_VaHccAnREe6Ix_5Zrea_ig" width="14" height="7" resizeKind="NSEW">
       <target xmi:type="gsn:BasicGoal" href="domain_decomposition.gsn#//@goals.0"/>
       <semanticElements xmi:type="gsn:BasicGoal" href="domain_decomposition.gsn#//@goals.0"/>
+      <decorations xmi:type="viewpoint:Decoration" uid="_ObEC0QnVEe6I5K0yuR1Exw">
+        <description xmi:type="description:SemanticBasedDecoration" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='TemplateDecoration']"/>
+      </decorations>
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
       <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
       <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
@@ -619,6 +622,9 @@
     <ownedDiagramElements xmi:type="diagram:DNode" uid="_2_pBkAnREe6Ix_5Zrea_ig" name="GX.1 Every possible value in the domain DOMAIN_VALUES is covered by sub-domains SUBDOMAIN_VALUES" incomingEdges="_CbyUxAnSEe6Ix_5Zrea_ig" width="14" height="7" resizeKind="NSEW">
       <target xmi:type="gsn:BasicGoal" href="domain_decomposition.gsn#//@goals.1"/>
       <semanticElements xmi:type="gsn:BasicGoal" href="domain_decomposition.gsn#//@goals.1"/>
+      <decorations xmi:type="viewpoint:Decoration" uid="_ObEp4gnVEe6I5K0yuR1Exw">
+        <description xmi:type="description:SemanticBasedDecoration" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='TemplateDecoration']"/>
+      </decorations>
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
       <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
       <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
@@ -630,6 +636,9 @@
     <ownedDiagramElements xmi:type="diagram:DNode" uid="_MwhT8wnSEe6Ix_5Zrea_ig" name="GX.N Safety goal for sub-domain SUBDOMAIN_VALUES" incomingEdges="_bNDO-AnSEe6Ix_5Zrea_ig" width="14" height="7" resizeKind="NSEW">
       <target xmi:type="gsn.templates:DomainGoal" href="domain_decomposition.gsn#//@goals.2"/>
       <semanticElements xmi:type="gsn.templates:DomainGoal" href="domain_decomposition.gsn#//@goals.2"/>
+      <decorations xmi:type="viewpoint:Decoration" uid="_ObEp5QnVEe6I5K0yuR1Exw">
+        <description xmi:type="description:SemanticBasedDecoration" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='TemplateDecoration']"/>
+      </decorations>
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
       <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
       <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
@@ -641,6 +650,9 @@
     <ownedDiagramElements xmi:type="diagram:DNode" uid="_3BEaYgnQEe6Ix_5Zrea_ig" name="S1.GX Decomposition over domain DOMAIN_VALUES" outgoingEdges="_WFXY4AnREe6Ix_5Zrea_ig _CbyUxAnSEe6Ix_5Zrea_ig _bNDO-AnSEe6Ix_5Zrea_ig" incomingEdges="_VaHccAnREe6Ix_5Zrea_ig" width="-1" height="-1" resizeKind="NSEW">
       <target xmi:type="gsn.templates:DomainDecompositionStrategy" href="domain_decomposition.gsn#//@strategies.0"/>
       <semanticElements xmi:type="gsn.templates:DomainDecompositionStrategy" href="domain_decomposition.gsn#//@strategies.0"/>
+      <decorations xmi:type="viewpoint:Decoration" uid="_ObFQ8QnVEe6I5K0yuR1Exw">
+        <description xmi:type="description:SemanticBasedDecoration" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='TemplateDecoration']"/>
+      </decorations>
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
       <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
       <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
@@ -652,6 +664,9 @@
     <ownedDiagramElements xmi:type="diagram:DNode" uid="_KEMtEAnREe6Ix_5Zrea_ig" name="J.GX Every scenario has a corresponding value in the domain DOMAIN_VALUES" incomingEdges="_WFXY4AnREe6Ix_5Zrea_ig" width="-1" height="-1" resizeKind="NSEW">
       <target xmi:type="gsn:Justification" href="domain_decomposition.gsn#//@justifications.0"/>
       <semanticElements xmi:type="gsn:Justification" href="domain_decomposition.gsn#//@justifications.0"/>
+      <decorations xmi:type="viewpoint:Decoration" uid="_ObFQ9AnVEe6I5K0yuR1Exw">
+        <description xmi:type="description:SemanticBasedDecoration" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='TemplateDecoration']"/>
+      </decorations>
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
       <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
       <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
