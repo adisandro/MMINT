@@ -178,7 +178,7 @@ public class PropertyDecompositionTemplateImpl extends DecompositionTemplateImpl
     templateElems.remove(safetyGoal);
     templateElems.remove(formalJust);
     templateElems.remove(subPropGoalN);
-    var placeholderId = "CX";
+    var placeholderId = "GX";
     var decomposedId = decomposed.getId();
     Strategy chainedStrategy;
     int numCtx;
@@ -191,7 +191,7 @@ public class PropertyDecompositionTemplateImpl extends DecompositionTemplateImpl
       templateElems.remove(modelGoal);
       propStrategy.setId(formalStrategy.getId().replace(placeholderId, decomposedId));
       propStrategy.setDescription(
-        propStrategy.getDescription().replace("in Ctx1.CX", "'" + property.getInformal() + "'"));
+        propStrategy.getDescription().replace("in Ctx1.GX", "'" + property.getInformal() + "'"));
       modelCtx.setId(propCtx.getId().replace(placeholderId, decomposedId));
       chainedStrategy = propStrategy;
       numCtx = 1;
