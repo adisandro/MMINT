@@ -6,37 +6,37 @@
 
 ## Instructions to reproduce the examples
 
-This example runs natively on Linux only.  
-Alternatively, a virtual machine image for VirtualBox with all the required dependencies is available at <https://doi.org/10.5281/zenodo.6360844> (login password `thisisastrongpassword`), letting you skip to step 2.iv.
+A virtual machine image for VirtualBox with all the required dependencies is available at <https://doi.org/10.5281/zenodo.6360844> (login password `thisisastrongpassword`), letting you skip to step 2.iv.
 
 We can't share the K9 Mars Rover case study (Sec. 6.2). To illustrate the use of queries, we provide an alternative FCS example.
 
 1. Lean
-    1. Download and extract the Lean theorem prover from [here](https://oleanstorage.azureedge.net/releases/bundles/trylean_linux.tar.gz).
-    2. `mkdir -p ~/.local/bin; cd ~/.local/bin; ln -s /path_to_lean_folder/lean/bin/lean lean`.
+    1. Download and extract the Lean theorem prover for [Linux](https://oleanstorage.azureedge.net/releases/bundles/trylean_linux.tar.gz) or [Windows](https://oleanstorage.azureedge.net/releases/bundles/trylean_windows.zip).
+    2. Run `mkdir -p ~/.local/bin; cd ~/.local/bin; ln -s /path_to_lean_folder/lean/bin/lean lean` in your shell (Linux), or add `C:\path_to_lean_folder` to the environment variable `Path` (Windows).
 2. MMINT
     1. Install Java and Eclipse following the [requirements](/README.md#requirements), then add `https://adisandro.github.io/mmint/release` to the list of software sites (`Help > Install New Software > Available Software Sites`).
     2. From the top menu select `Help > Install New Software` and install `Examples > MMINT - SOSYM22 paper`.
     3. From the top menu select `MMINT > Lean > Change Lean Mathlib Path` and insert `/path_to_lean_folder/mathlib`.
-    4. From the top menu select `File > New > Example > MMINT Examples > SOSYM22`.
-    5. Open `/SOSYM22/model/examples.middiag`.
-    6. Double-click on the yellow box named `sc : GSN` to open the GSN safety case.
+    4. From the top menu select `File > New > Example > MMINT Examples > GSNTemplates`.
+    5. From the top menu select `File > New > Example > MMINT Examples > SOSYM22`.
+    6. Open `/SOSYM22/model/examples.middiag`.
+    7. Double-click on the yellow box named `sc : GSN` to open the GSN safety case.
 3. FCS example (Sec. 5):
-    1. Right-click on the claim named `C1` and select `MMINT > Property Decomposition`.
+    1. Right-click on the claim named `C1`, select `MMINT > Instantiate Template`, then select the template `/GSNTemplates/property_decomposition.gsn`.
     2. Select `Absence > $X is not reached` as the property to be decomposed, then select `State Damaged` for variable `$X`.
     3. Insert `2` as the number of sub-properties.
     4. Select `Transitions > Do not begin from $X` as the first sub-property, then select `State Damaged` for variable `$X`.
     5. Select `Transitions > Never transition into $X` as the second sub-property, then select `State Damaged` for variable `$X`.
     6. The decomposition succeeds and the GSN justification node `J.C1` points to the results.
 4. FCS example (alternative with query):
-    1. Right-click on the claim named `C1` and select `MMINT > Property Decomposition`.
+    1. Right-click on the claim named `C1`, select `MMINT > Instantiate Template`, then select the template `/GSNTemplates/property_decomposition.gsn`.
     2. Select `Absence > $X is not reached` as the property to be decomposed, then select `Run query to select elements`, `/SOSYM22/src/sosym22/query.vql` as query file, `damaged` as query, and insert `Selects the state named Damaged` as description.
     3. Insert `2` as the number of sub-properties.
     4. Select `Transitions > Do not begin from $X` as the first sub-property, then select `Run query to select elements`, `/SOSYM22/src/sosym22/query.vql` as query file, `damaged` as query.
     5. Select `Transitions > Never transition into $X` as the second sub-property, then select `Run query to select elements`, `/SOSYM22/src/sosym22/query.vql` as query file, `damaged` as query.
     6. The decomposition succeeds and the GSN justification node `J.C1` points to the results.
 5. PCA Infusion Pump case study (Sec. 6.1):
-    1. Right-click on the claim named `C2` and select `MMINT > Property Decomposition`.
+    1. Right-click on the claim named `C2`, select `MMINT > Instantiate Template`, then select the template `/GSNTemplates/property_decomposition.gsn`.
     2. Select `Absence > $X is not reached after $A and until $B` as the property to be decomposed, then select `State BolusRequest` for variable `$X`, `Transition Cond_6_3?` for variable `$A`, `State Infusion_NormalOperation` for variable `$B`.
     3. Insert `3` as the number of sub-properties.
     4. Select `Response > If $X is reached, $Y must follow $X` as the first sub-property, then select `Transition Cond_6_3?` for variable `$X`, `State Alrm_EmptyReservoir` for variable `$Y`.
@@ -44,7 +44,7 @@ We can't share the K9 Mars Rover case study (Sec. 6.2). To illustrate the use of
     6. Select `Absence > $X is not reached after $A and until $B` as the third sub-property, then select `State BolusRequest` for variable `$X`, `State Alrm_EmptyReservoir` for variable `$A`, `State Infusion_NormalOperation` for variable `$B`.
     7. The decomposition succeeds and the GSN justification node `J.C2` points to the results.
 6. LACU case study (Sec. 6.3):
-    1. Right-click on the claim named `C3` and select `MMINT > Property Decomposition`.
+    1. Right-click on the claim named `C3`, select `MMINT > Instantiate Template`, then select the template `/GSNTemplates/property_decomposition.gsn`.
     2. Copy and paste the contents of file `/SOSYM22/model/lacu_properties/parent.property` as the property to be decomposed, then insert `The subcontracts induce a correct decomposition of the LACU contract` as description.
     3. Insert `3` as the number of sub-properties.
     4. Copy and paste the contents of file `/SOSYM22/model/lacu_properties/child1.property` as the first sub-property, then insert `The armPosition component correctly implements its contract` as description.

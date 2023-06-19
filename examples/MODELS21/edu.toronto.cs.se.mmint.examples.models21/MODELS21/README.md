@@ -8,21 +8,21 @@ In this paper, we report on using the interactive theorem prover Lean to bridge 
 
 ## Instructions to reproduce the examples
 
-This example runs natively on Linux only.  
-Alternatively, a virtual machine image for VirtualBox with all the required dependencies is available at <https://doi.org/10.5281/zenodo.5110436> (login password `thisisastrongpassword`), letting you skip to step 2.iv.
+A virtual machine image for VirtualBox with all the required dependencies is available at <https://doi.org/10.5281/zenodo.5110436> (login password `thisisastrongpassword`), letting you skip to step 2.iv.
 
 1. Lean
-    1. Download and extract the Lean theorem prover from [here](https://oleanstorage.azureedge.net/releases/bundles/trylean_linux.tar.gz).
-    2. `mkdir -p ~/.local/bin; cd ~/.local/bin; ln -s /path_to_lean_folder/lean/bin/lean lean`.
+    1. Download and extract the Lean theorem prover for [Linux](https://oleanstorage.azureedge.net/releases/bundles/trylean_linux.tar.gz) or [Windows](https://oleanstorage.azureedge.net/releases/bundles/trylean_windows.zip).
+    2. Run `mkdir -p ~/.local/bin; cd ~/.local/bin; ln -s /path_to_lean_folder/lean/bin/lean lean` in your shell (Linux), or add `C:\path_to_lean_folder` to the environment variable `Path` (Windows).
 2. MMINT
     1. Install Java and Eclipse following the [requirements](/README.md#requirements), then add `https://adisandro.github.io/mmint/release` to the list of software sites (`Help > Install New Software > Available Software Sites`).
     2. From the top menu select `Help > Install New Software` and install `Examples > MMINT - MODELS21 paper`.
     3. From the top menu select `MMINT > Lean > Change Lean Mathlib Path` and insert `/path_to_lean_folder/mathlib`.
-    4. From the top menu select `File > New > Example > MMINT Examples > MODELS21`.
-    5. Open `/MODELS21/examples.middiag`.
-    6. Double-click on the yellow box named `sc : GSN` to open the GSN safety case.
+    4. From the top menu select `File > New > Example > MMINT Examples > GSNTemplates`.
+    5. From the top menu select `File > New > Example > MMINT Examples > MODELS21`.
+    6. Open `/MODELS21/examples.middiag`.
+    7. Double-click on the yellow box named `sc : GSN` to open the GSN safety case.
 3. FCS example (Sec. V-B):
-    1. Right-click on the claim named `C1` and select `MMINT > Property Decomposition`.
+    1. Right-click on the claim named `C1`, select `MMINT > Instantiate Template`, then select the template `/GSNTemplates/property_decomposition.gsn`.
     2. Select `Absence > $X is not reached` as the property to be decomposed, then select `State Damaged` for variable `$X`.
     3. Insert `2` as the number of sub-properties.
     4. Select `Transitions > Do not begin from $X` as the first sub-property, then select `State Damaged` for variable `$X`.
@@ -30,7 +30,7 @@ Alternatively, a virtual machine image for VirtualBox with all the required depe
     6. Repeat FCS steps 1 to 4, then select `Transitions > Never transition into $X` as the second sub-property, then select `State Damaged` for variable `$X`.
     7. The decomposition succeeds and the GSN justification node `J.C1` points to the results.
 4. Infusion Pump case study (Sec. VI-A):
-    1. Right-click on the claim named `C2` and select `MMINT > Property Decomposition`.
+    1. Right-click on the claim named `C2`, select `MMINT > Instantiate Template`, then select the template `/GSNTemplates/property_decomposition.gsn`.
     2. Select `Absence > $X is not reached after $A and until $B` as the property to be decomposed, then select `State BolusRequest` for variable `$X`, `Transition Cond_6_3?` for variable `$A`, `State Infusion_NormalOperation` for variable `$B`.
     3. Insert `3` as the number of sub-properties.
     4. Select `Response > If $X is reached, $Y must follow $X` as the first sub-property, then select `Transition Cond_6_3?` for variable `$X`, `State Alrm_EmptyReservoir` for variable `$Y`.
