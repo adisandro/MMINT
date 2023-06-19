@@ -111,7 +111,7 @@ MoDELS 15
 
 ### Using MMINT
 
-* [The ForeMoSt Approach to Building Valid Model-Based Safety Arguments](https://doi.org/10.1007/s10270-022-01063-4)  
+* <a name="paper-sosym22"></a> [The ForeMoSt Approach to Building Valid Model-Based Safety Arguments](https://doi.org/10.1007/s10270-022-01063-4)  
 SoSyM 22 | Install: `Examples > MMINT - SOSYM22` | [Readme](examples/SOSYM22/edu.toronto.cs.se.mmint.examples.sosym22/SOSYM22/README.md)
 * [Validating Safety Arguments with Lean](https://doi.org/10.1007/978-3-030-92124-8_2)  
 SEFM 21
