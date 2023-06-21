@@ -6,13 +6,12 @@ In recent decades, cyber-physical systems developed using Model-Driven Engineeri
 
 In this paper, we report on using the interactive theorem prover Lean to bridge the gap between safety arguments and rigorous model-based reasoning. We generate formal, model-based machine-checked AC arguments, taking advantage of the traceability between model and safety artifacts, and mitigating errors that could arise from manual argument assessment. The approach is implemented in an extended version of the *MMINT-A* model management [tool](https://doi.org/10.1145/3417990.3422012). Implementation includes a conversion of informal claims into formal Lean properties, decomposition into formal sub-properties and generation of correctness proofs. We demonstrate the applicability of the approach on two safety case studies from the literature.
 
-## Instructions to reproduce the examples
+### Instructions to reproduce the examples
 
 A virtual machine image for VirtualBox with all the required dependencies is available at <https://doi.org/10.5281/zenodo.5110436> (login password `thisisastrongpassword`), letting you skip to step 2.iv.
 
 1. Lean
-    1. Download and extract the Lean theorem prover for [Linux](https://oleanstorage.azureedge.net/releases/bundles/trylean_linux.tar.gz) or [Windows](https://oleanstorage.azureedge.net/releases/bundles/trylean_windows.zip).
-    2. Run `mkdir -p ~/.local/bin; cd ~/.local/bin; ln -s /path_to_lean_folder/lean/bin/lean lean` in your shell (Linux), or add `C:\path_to_lean_folder` to the environment variable `Path` (Windows).
+    1. Install Lean following the [instructions](/plugins/External/Lean/edu.toronto.cs.se.mmint.lean/README.md).
 2. MMINT
     1. Install Java and Eclipse following the [requirements](/README.md#requirements), then add `https://adisandro.github.io/mmint/release` to the list of software sites (`Help > Install New Software > Available Software Sites`).
     2. From the top menu select `Help > Install New Software` and install `Examples > MMINT - MODELS21 paper`.

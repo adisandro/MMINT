@@ -6,7 +6,7 @@ Software product lines are commonly adopted in industry to manage the developmen
 *lifted*, i.e., reengineered to handle variability in a product line. Not only is this process non-trivial, it needs to be redone for each modeling language.  
 In this paper, we propose an Eclipse-based framework, *MMINT-PL*, for creating and managing annotative product lines of software models in a language-agnostic way. Our framework allows extending any modeling language with product line capabilities, and facilitates lifting of a variety of modeling activities to the product line level. We also demonstrate how to use *MMINT-PL* to lift the Viatra Query Language.
 
-## Instructions to reproduce the examples
+### Instructions to reproduce the examples
 
 The evaluation requires Python >= 3.10, and our results are [here](model).
 

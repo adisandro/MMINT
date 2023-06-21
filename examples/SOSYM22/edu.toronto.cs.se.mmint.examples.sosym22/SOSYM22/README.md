@@ -4,15 +4,14 @@
 
 *Safety assurance cases* (ACs) are structured arguments designed to comprehensively show that a system is safe. ACs are often *model-based*, meaning that a model of the system is a primary subject of the argument. ACs use reasoning steps called *strategies* to decompose high-level claims about system safety into refined subclaims that can be directly supported by evidence. Strategies are often informal and difficult to rigorously evaluate in practice, and consequently, AC arguments often contain reasoning errors. This has led to the deployment of unsafe systems, and caused severe real-world consequences. These errors can be mitigated by formalizing and verifying AC strategies using formal methods; however, these techniques are difficult to use without formal methods expertise. To mitigate potential challenges faced by engineers when developing and interpreting formal ACs, we present ForeMoSt, our tool-supported framework for rigorously validating AC strategies using the Lean theorem prover. The goal of the framework is to straddle the level of abstraction used by the theorem prover and by software engineers. We use case studies from the literature to demonstrate that ForeMoSt is able to (i) augment and validate ACs from the research literature, (ii) support AC development for systems with large models, and (iii) support different model types.
 
-## Instructions to reproduce the examples
+### Instructions to reproduce the examples
 
 A virtual machine image for VirtualBox with all the required dependencies is available at <https://doi.org/10.5281/zenodo.6360844> (login password `thisisastrongpassword`), letting you skip to step 2.iv.
 
 We can't share the K9 Mars Rover case study (Sec. 6.2). To illustrate the use of queries, we provide an alternative FCS example.
 
 1. Lean
-    1. Download and extract the Lean theorem prover for [Linux](https://oleanstorage.azureedge.net/releases/bundles/trylean_linux.tar.gz) or [Windows](https://oleanstorage.azureedge.net/releases/bundles/trylean_windows.zip).
-    2. Run `mkdir -p ~/.local/bin; cd ~/.local/bin; ln -s /path_to_lean_folder/lean/bin/lean lean` in your shell (Linux), or add `C:\path_to_lean_folder` to the environment variable `Path` (Windows).
+    1. Install Lean following the [instructions](/plugins/External/Lean/edu.toronto.cs.se.mmint.lean/README.md).
 2. MMINT
     1. Install Java and Eclipse following the [requirements](/README.md#requirements), then add `https://adisandro.github.io/mmint/release` to the list of software sites (`Help > Install New Software > Available Software Sites`).
     2. From the top menu select `Help > Install New Software` and install `Examples > MMINT - SOSYM22 paper`.

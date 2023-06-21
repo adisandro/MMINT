@@ -4,7 +4,7 @@
 
 Model management techniques help tame the complexity caused by the many models used in large-scale software development; however, these techniques have focused on operators to manipulate individual models rather than entire collections of them. In this work, we begin to address this gap by adapting the widely used map, reduce and filter collection operators for collections of models represented by megamodels. Key parts of this adaptation include the special handling of relationships between models and the use of polymorphism to support heterogeneous model collections. We evaluate the complexity of our operators analytically and demonstrate their applicability on six diverse megamodel management scenarios. We describe our tool support for the approach and evaluate its scalability experimentally as well as its applicability on a practical application from the automotive domain.
 
-## Experiments instructions
+### Experiments instructions
 
 1. Install Java and Eclipse following the [requirements](/README.md#requirements), then add `https://adisandro.github.io/mmint/release` to the list of software sites (`Help > Install New Software > Available Software Sites`).
 2. Install `Examples > SoSyM18`.
