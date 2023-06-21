@@ -1,6 +1,6 @@
 ## Lean integration with MMINT
 
-Lean is a theorem prover (available at [https://leanprover.github.io](https://leanprover.github.io)) that can be used within MMINT for various reasoning tasks.
+Lean is a theorem prover (available at <https://leanprover.github.io>) that can be used within MMINT for various reasoning tasks.
 
 ### Installation instructions
 

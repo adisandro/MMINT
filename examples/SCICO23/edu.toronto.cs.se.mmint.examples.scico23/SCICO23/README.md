@@ -6,6 +6,8 @@ MMINT-A: A Framework for Model-Based Safety Assurance
 
 A virtual machine image for VirtualBox with all the required dependencies is available at <https://doi.org/10.5281/zenodo.7478020> (login password `thisisastrongpassword`), letting you skip to step 2.iv.
 
+For more case studies evaluating the property decomposition workflow in step 7, see the [SoSyM 2022](/examples/SOSYM22/edu.toronto.cs.se.mmint.examples.sosym22/SOSYM22/README.md) paper.
+
 1. Lean
     1. Install Lean following the [instructions](/plugins/External/Lean/edu.toronto.cs.se.mmint.lean/README.md).
 2. MMINT
