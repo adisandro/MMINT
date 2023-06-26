@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.models15;singleton:=true
 Automatic-Module-Name: edu.toronto.cs.se.modelepedia.models15
-Bundle-Version: 2.17.99.qualifier
+Bundle-Version: 2.18.0.qualifier
 Bundle-Vendor: %providerName
 Bundle-RequiredExecutionEnvironment: JavaSE-20
 Require-Bundle: org.eclipse.core.runtime,
