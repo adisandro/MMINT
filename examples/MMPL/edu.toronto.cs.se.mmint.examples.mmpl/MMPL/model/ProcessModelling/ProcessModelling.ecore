@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="processModels" nsURI="http://ProcessModelling/PL" nsPrefix="gpl">
+  <eAnnotations source="features">
+    <details key="file" value="model.xml"/>
+  </eAnnotations>
+  <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+    <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+  </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="ProcessModel">
+    <eAnnotations source="presence">
+      <details key="constraint" value="mandatoryFinalTasks"/>
+      <details key="condition" value="FTMandatory"/>
+    </eAnnotations>
+    <eAnnotations source="presence">
+      <details key="constraint" value="mandatoryInitialTasks"/>
+      <details key="condition" value="ITMandatory"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="mandatoryFinalTasks mandatoryInitialTasks"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="mandatoryFinalTasks" value="self.nodes->exists( n | n.oclIsKindOf(FinalTask))"/>
+      <details key="mandatoryInitialTasks" value="self.nodes->exists( n | n.oclIsKindOf(InitialTask))"/>
+    </eAnnotations>
+    <eOperations name="terminatingTasks" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nodes" ordered="false"
+        upperBound="-1" eType="#//Node" containment="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+        <details key="nullFree" value="false"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="edges" ordered="false"
+        upperBound="-1" eType="#//FlowEdge" containment="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+        <details key="nullFree" value="false"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Node" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Task" eSuperTypes="#//Node">
+    <eAnnotations source="modifier">
+      <details key="extends" value="ProcessModel"/>
+      <details key="condition" value="Hierarchical"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ParallelSplit" eSuperTypes="#//Node">
+    <eAnnotations source="presence">
+      <details key="condition" value="ParallelSplit"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Synchronization" eSuperTypes="#//Node">
+    <eAnnotations source="presence">
+      <details key="condition" value="Synchronization"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SimpleMerge" eSuperTypes="#//Node">
+    <eAnnotations source="presence">
+      <details key="condition" value="SimpleMerge"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExclusiveChoice" eSuperTypes="#//Node">
+    <eAnnotations source="presence">
+      <details key="condition" value="ExclusiveChoice"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MultiChoice" eSuperTypes="#//Node">
+    <eAnnotations source="presence">
+      <details key="condition" value="MultiChoice"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FinalTask" eSuperTypes="#//Task">
+    <eAnnotations source="presence">
+      <details key="condition" value="FinalTasks"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InitialTask" eSuperTypes="#//Task">
+    <eAnnotations source="presence">
+      <details key="condition" value="InitialTasks"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FlowEdge">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="input" lowerBound="1" eType="#//Node"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="output" lowerBound="1"
+        eType="#//Node"/>
+  </eClassifiers>
+</ecore:EPackage>

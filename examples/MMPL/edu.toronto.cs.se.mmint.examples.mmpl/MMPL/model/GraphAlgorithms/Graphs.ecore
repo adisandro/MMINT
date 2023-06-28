@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="graphs" nsURI="http://Graphs/PL" nsPrefix="gpl">
+  <eAnnotations source="features">
+    <details key="file" value="model.xml"/>
+  </eAnnotations>
+  <eAnnotations source="http://www.eclipse.org/OCL/Import">
+    <details key="ecore" value="http://www.eclipse.org/emf/2002/Ecore"/>
+  </eAnnotations>
+  <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+    <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+  </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="Graph">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nodes" ordered="false"
+        upperBound="-1" eType="#//Node" containment="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+        <details key="nullFree" value="false"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="edges" ordered="false"
+        upperBound="-1" eType="#//Edge" containment="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+        <details key="nullFree" value="false"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Node">
+    <eAnnotations source="presence">
+      <details key="condition" value="Parallel"/>
+      <details key="constraint" value="parallelEdges"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="parallelEdges"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="parallelEdges" value="self.inputs()->size() = self.inputs()->asSet()->size() and&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;  self.outputs()->size() = self.outputs()->asSet()->size()"/>
+    </eAnnotations>
+    <eOperations name="outputs" ordered="false" upperBound="-1" eType="#//Node"/>
+    <eOperations name="inputs" ordered="false" upperBound="-1" eType="#//Node"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="presence">
+        <details key="condition" value="Identified"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CompositeNode" eSuperTypes="#//Node">
+    <eAnnotations source="presence">
+      <details key="condition" value="Hierarchy"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subGraph" eType="#//Graph"
+        containment="true">
+      <eAnnotations source="presence">
+        <details key="condition" value="Hierarchy"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Edge">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="weight" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
+      <eAnnotations source="presence">
+        <details key="condition" value="Weights"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="src" lowerBound="1" eType="#//Node">
+      <eAnnotations source="presence">
+        <details key="condition" value="Directed"/>
+      </eAnnotations>
+      <eAnnotations source="modifier">
+        <details key="condition" value="Hyperedges"/>
+        <details key="max" value="*"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tar" lowerBound="1" eType="#//Node">
+      <eAnnotations source="presence">
+        <details key="condition" value="Directed"/>
+      </eAnnotations>
+      <eAnnotations source="modifier">
+        <details key="condition" value="Hyperedges"/>
+        <details key="max" value="*"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ends" ordered="false" lowerBound="2"
+        upperBound="2" eType="#//Node">
+      <eAnnotations source="presence">
+        <details key="condition" value="Undirected"/>
+      </eAnnotations>
+      <eAnnotations source="modifier">
+        <details key="condition" value="Hyperedges"/>
+        <details key="max" value="*"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+        <details key="nullFree" value="false"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+</ecore:EPackage>

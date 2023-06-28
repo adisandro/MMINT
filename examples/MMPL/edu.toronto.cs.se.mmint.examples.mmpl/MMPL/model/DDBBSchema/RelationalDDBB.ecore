@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="rdpl" nsURI="http://RelationalDDBB/PL" nsPrefix="rdpl">
+  <eAnnotations source="features">
+    <details key="file" value="model.xml"/>
+  </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="Schema">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tables" ordered="false"
+        upperBound="-1" eType="#//Table" containment="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+        <details key="nullFree" value="false"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="types" ordered="false"
+        upperBound="-1" eType="#//Type" containment="true">
+      <eAnnotations source="presence">
+        <details key="condition" value="OpenObject"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+        <details key="nullFree" value="false"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Table">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="columns" ordered="false"
+        upperBound="-1" eType="#//Column" containment="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+        <details key="nullFree" value="false"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="keyColumns" ordered="false"
+        upperBound="-1" eType="#//Column">
+      <eAnnotations source="presence">
+        <details key="condition" value="Primary"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+        <details key="nullFree" value="false"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="content" ordered="false"
+        upperBound="-1" eType="#//Record" containment="true">
+      <eAnnotations source="presence">
+        <details key="condition" value="Content"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+        <details key="nullFree" value="false"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="foreignKeys" ordered="false"
+        upperBound="-1" eType="#//ForeignKey" containment="true">
+      <eAnnotations source="presence">
+        <details key="condition" value="Foreign"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+        <details key="nullFree" value="false"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ForeignKey">
+    <eAnnotations source="presence">
+      <details key="condition" value="Foreign"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="references" lowerBound="1"
+        eType="#//Table">
+      <eAnnotations source="presence">
+        <details key="condition" value="Foreign"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="columns" ordered="false"
+        lowerBound="1" upperBound="-1" eType="#//Column">
+      <eAnnotations source="presence">
+        <details key="condition" value="Foreign"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+        <details key="nullFree" value="false"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Record">
+    <eAnnotations source="presence">
+      <details key="condition" value="Content"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" ordered="false"
+        upperBound="-1" eType="#//RecordElement" containment="true">
+      <eAnnotations source="presence">
+        <details key="condition" value="Content"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+        <details key="nullFree" value="false"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RecordElement">
+    <eAnnotations source="presence">
+      <details key="condition" value="Content"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="presence">
+        <details key="condition" value="Content"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="#//Column">
+      <eAnnotations source="presence">
+        <details key="condition" value="Content"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Column">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="#//Type">
+      <eAnnotations source="presence">
+        <details key="condition" value="OpenObject"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="stype" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="presence">
+        <details key="condition" value="OpenSimple"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ctype" lowerBound="1" eType="#//BasicType">
+      <eAnnotations source="presence">
+        <details key="condition" value="Closed"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="BasicType">
+    <eAnnotations source="presence">
+      <details key="condition" value="Closed"/>
+    </eAnnotations>
+    <eLiterals name="INT"/>
+    <eLiterals name="CHAR"/>
+    <eLiterals name="REAL"/>
+    <eLiterals name="BOOL"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Type">
+    <eAnnotations source="presence">
+      <details key="condition" value="OpenObject"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+</ecore:EPackage>

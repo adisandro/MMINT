@@ -1,247 +1,247 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mid:MID xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editor="http://se.cs.toronto.edu/mmint/MID/Editor" xmlns:mid="http://se.cs.toronto.edu/mmint/MID" xmlns:operator="http://se.cs.toronto.edu/mmint/MID/Operator" xmlns:relationship="http://se.cs.toronto.edu/mmint/MID/Relationship">
-  <models uri="/MMPL/model/crom_l1/crom_l1.ecore" name="crom_l1" metatypeUri="http://www.eclipse.org/emf/2002/Ecore" dynamic="true" fileExtension="ecore" editors="//@editors.0"/>
-  <models uri="/MMPL/model/crom_l1/crom_l1.productline" name="crom_l1" metatypeUri="model://edu.toronto.cs.se.mmint.productline" dynamic="true" origin="CREATED" fileExtension="productline" editors="//@editors.1">
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.0_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+  <models uri="/MMPL/model/RoleBasedModelling/crom_l1.ecore" name="crom_l1" metatypeUri="http://www.eclipse.org/emf/2002/Ecore" dynamic="true" fileExtension="ecore" editors="//@editors.0"/>
+  <models uri="/MMPL/model/RoleBasedModelling/crom_l1.productline" name="crom_l1" metatypeUri="model://edu.toronto.cs.se.mmint.productline" dynamic="true" origin="CREATED" fileExtension="productline" editors="//@editors.1">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.0_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.1_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.1_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.2_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.2_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.3_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.3_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.4_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.4_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.5_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.5_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.6_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.6_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.7_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.7_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.8_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.8_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.9_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.9_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.10_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.10_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.11_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.11_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.12_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.12_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.13_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.13_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.14_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.14_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.15_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.15_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.16_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.16_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.17_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.17_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.18_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.18_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.19_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.19_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.20_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class ~OnCompartments" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.20_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class ~OnCompartments" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.21_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.21_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.48_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.48_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.49_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.49_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.50_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.50_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.51_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.51_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.52_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.52_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.53_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.53_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.54_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.54_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.55_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.55_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.56_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.56_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.60_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class ~Compartments &amp; ~Roles" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.60_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class ~Compartments &amp; ~Roles" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.61_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.61_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.62_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.62_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.63_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.63_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.64_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.64_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.65_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (~OnCompartments) &amp; (~OnCompartments)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.65_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class (~OnCompartments) &amp; (~OnCompartments)" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.67_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class ~OnCompartments" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.67_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class ~OnCompartments" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.68_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.68_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1.productline#//@classes.74_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.74_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
     </modelElems>
   </models>
-  <models uri="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram" name="crom_l1_prod0" metatypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram" dynamic="true" origin="CREATED" fileExtension="classdiagram" editors="//@editors.2">
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#/_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class Diagram" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+  <models uri="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram" name="crom_l1_prod0" metatypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram" dynamic="true" origin="CREATED" fileExtension="classdiagram" editors="//@editors.2">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#/_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class Diagram" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="ClassDiagram" featureName="root"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@classes.0_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class NamedElement" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@classes.0_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class NamedElement" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Class" featureName="classes" relatedClassName="ClassDiagram"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@classes.0/@ownedAttributes.0_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Attribute name" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@classes.0/@ownedAttributes.0_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Attribute name" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Attribute" featureName="ownedAttributes" relatedClassName="Class"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@classes.1_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class ModelElement" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@classes.1_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class ModelElement" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Class" featureName="classes" relatedClassName="ClassDiagram"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@classes.2_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class Model" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@classes.2_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class Model" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Class" featureName="classes" relatedClassName="ClassDiagram"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@classes.3_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class RigidType" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@classes.3_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class RigidType" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Class" featureName="classes" relatedClassName="ClassDiagram"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@classes.4_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class Group" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@classes.4_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class Group" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Class" featureName="classes" relatedClassName="ClassDiagram"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@classes.5_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class Relation" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@classes.5_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class Relation" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Class" featureName="classes" relatedClassName="ClassDiagram"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@classes.6_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class Parameter" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@classes.6_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class Parameter" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Class" featureName="classes" relatedClassName="ClassDiagram"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@classes.7_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class Operation" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@classes.7_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class Operation" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Class" featureName="classes" relatedClassName="ClassDiagram"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@classes.7/@ownedAttributes.0_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Attribute operation" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@classes.7/@ownedAttributes.0_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Attribute operation" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Attribute" featureName="ownedAttributes" relatedClassName="Class"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@classes.8_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class Attribute" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@classes.8_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class Attribute" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Class" featureName="classes" relatedClassName="ClassDiagram"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@classes.9_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class Type" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@classes.9_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class Type" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Class" featureName="classes" relatedClassName="ClassDiagram"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@classes.10_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class NaturalType" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@classes.10_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class NaturalType" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Class" featureName="classes" relatedClassName="ClassDiagram"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@classes.11_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class RoleType" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@classes.11_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class RoleType" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Class" featureName="classes" relatedClassName="ClassDiagram"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@classes.12_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class Fulfillment" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@classes.12_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class Fulfillment" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Class" featureName="classes" relatedClassName="ClassDiagram"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@classes.13_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class Inheritance" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@classes.13_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class Inheritance" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Class" featureName="classes" relatedClassName="ClassDiagram"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@classes.14_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class NaturalInheritance" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@classes.14_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class NaturalInheritance" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Class" featureName="classes" relatedClassName="ClassDiagram"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@classes.15_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class RelationTarget" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@classes.15_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class RelationTarget" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Class" featureName="classes" relatedClassName="ClassDiagram"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@classes.16_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class AbstractRole" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@classes.16_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class AbstractRole" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Class" featureName="classes" relatedClassName="ClassDiagram"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@classes.17_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class RoleModel" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@classes.17_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class RoleModel" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Class" featureName="classes" relatedClassName="ClassDiagram"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@classes.18_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class TypedElement" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@classes.18_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class TypedElement" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Class" featureName="classes" relatedClassName="ClassDiagram"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@datatypes.0_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Data Type EString" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@datatypes.0_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Data Type EString" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="DataType" featureName="datatypes" relatedClassName="ClassDiagram"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@associations.0_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Association relations" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@associations.0_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Association relations" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Association" featureName="associations" relatedClassName="ClassDiagram"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@associations.1_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Association elements" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@associations.1_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Association elements" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Association" featureName="associations" relatedClassName="ClassDiagram"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@associations.2_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Association params" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@associations.2_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Association params" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Association" featureName="associations" relatedClassName="ClassDiagram"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@associations.3_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Association owner" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@associations.3_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Association owner" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Association" featureName="associations" relatedClassName="ClassDiagram"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@associations.4_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Association owner" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@associations.4_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Association owner" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Association" featureName="associations" relatedClassName="ClassDiagram"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@associations.5_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Association attributes" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@associations.5_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Association attributes" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Association" featureName="associations" relatedClassName="ClassDiagram"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@associations.6_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Association operations" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@associations.6_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Association operations" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Association" featureName="associations" relatedClassName="ClassDiagram"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@associations.7_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Association filled" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@associations.7_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Association filled" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Association" featureName="associations" relatedClassName="ClassDiagram"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@associations.8_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Association fillerNType" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@associations.8_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Association fillerNType" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Association" featureName="associations" relatedClassName="ClassDiagram"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@associations.9_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Association super" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@associations.9_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Association super" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Association" featureName="associations" relatedClassName="ClassDiagram"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@associations.10_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Association sub" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@associations.10_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Association sub" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Association" featureName="associations" relatedClassName="ClassDiagram"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@associations.11_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Association incoming" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@associations.11_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Association incoming" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Association" featureName="associations" relatedClassName="ClassDiagram"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@associations.12_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Association outgoing" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@associations.12_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Association outgoing" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Association" featureName="associations" relatedClassName="ClassDiagram"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@associations.13_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Association model" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@associations.13_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Association model" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Association" featureName="associations" relatedClassName="ClassDiagram"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@associations.14_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Association roles" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@associations.14_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Association roles" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Association" featureName="associations" relatedClassName="ClassDiagram"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@associations.15_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Association type" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@associations.15_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Association type" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Association" featureName="associations" relatedClassName="ClassDiagram"/>
     </modelElems>
-    <modelElems uri="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@datatypes.1_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Data Type EBigInteger" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@datatypes.1_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Data Type EBigInteger" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="DataType" featureName="datatypes" relatedClassName="ClassDiagram"/>
     </modelElems>
   </models>
@@ -653,105 +653,105 @@
       <modelElemEndpointRefs referencedObject="//@models.3/@mappings.39/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.3/@modelEndpointRefs.1/@modelElemRefs.39"/>
     </mappingRefs>
   </models>
-  <editors uri="/MMPL/model/crom_l1/crom_l1.ecore" name="Ecore tree for model /MMPL/model/crom_l1/crom_l1.ecore" metatypeUri="http://www.eclipse.org/emf/2002/Ecore_tree" dynamic="true" modelUri="/MMPL/model/crom_l1/crom_l1.ecore" id="org.eclipse.emf.ecore.presentation.EcoreEditorID" wizardId="org.eclipse.emf.ecore.presentation.EcoreModelWizardID">
+  <editors uri="/MMPL/model/RoleBasedModelling/crom_l1.ecore" name="Ecore tree for model /MMPL/model/RoleBasedModelling/crom_l1.ecore" metatypeUri="http://www.eclipse.org/emf/2002/Ecore_tree" dynamic="true" modelUri="/MMPL/model/RoleBasedModelling/crom_l1.ecore" id="org.eclipse.emf.ecore.presentation.EcoreEditorID" wizardId="org.eclipse.emf.ecore.presentation.EcoreModelWizardID">
     <fileExtensions>ecore</fileExtensions>
   </editors>
-  <editors uri="/MMPL/model/crom_l1/crom_l1.productline" name="ProductLine EMF Editor for model /MMPL/model/crom_l1/crom_l1.productline" metatypeUri="edu.toronto.cs.se.mmint.productline.editor" dynamic="true" modelUri="/MMPL/model/crom_l1/crom_l1.productline" id="edu.toronto.cs.se.mmint.productline.presentation.ProductLineEditorID" wizardId="edu.toronto.cs.se.mmint.productline.presentation.ProductLineModelWizardID">
+  <editors uri="/MMPL/model/RoleBasedModelling/crom_l1.productline" name="ProductLine EMF Editor for model /MMPL/model/RoleBasedModelling/crom_l1.productline" metatypeUri="edu.toronto.cs.se.mmint.productline.editor" dynamic="true" modelUri="/MMPL/model/RoleBasedModelling/crom_l1.productline" id="edu.toronto.cs.se.mmint.productline.presentation.ProductLineEditorID" wizardId="edu.toronto.cs.se.mmint.productline.presentation.ProductLineModelWizardID">
     <fileExtensions>productline</fileExtensions>
   </editors>
-  <editors uri="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram" name="ClassDiagram tree for model /MMPL/model/crom_l1/crom_l1_prod0.classdiagram" metatypeUri="http://se.cs.toronto.edu/modelepedia/Tree_ClassDiagram" dynamic="true" modelUri="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram" id="edu.toronto.cs.se.modelepedia.classdiagram.presentation.ClassDiagramEditorID" wizardId="edu.toronto.cs.se.modelepedia.classdiagram.presentation.ClassDiagramModelWizardID">
+  <editors uri="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram" name="ClassDiagram tree for model /MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram" metatypeUri="http://se.cs.toronto.edu/modelepedia/Tree_ClassDiagram" dynamic="true" modelUri="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram" id="edu.toronto.cs.se.modelepedia.classdiagram.presentation.ClassDiagramEditorID" wizardId="edu.toronto.cs.se.modelepedia.classdiagram.presentation.ClassDiagramModelWizardID">
     <fileExtensions>classdiagram</fileExtensions>
   </editors>
-  <operators uri="" name="ToProductLine" metatypeUri="edu.toronto.cs.se.mmint.examples.MMPL.operators.AnnotatedEcoreToCDProductLine" dynamic="true" workingPath="/MMPL/model/crom_l1" executionTime="620854309">
-    <inputs uri="" name="product" metatypeUri="edu.toronto.cs.se.mmint.examples.MMPL.operators.AnnotatedEcoreToCDProductLine/product" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0"/>
-    <outputs uri="" name="productLine" metatypeUri="edu.toronto.cs.se.mmint.examples.MMPL.operators.AnnotatedEcoreToCDProductLine/productLine" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1"/>
+  <operators uri="" name="ToProductLine" metatypeUri="edu.toronto.cs.se.mmint.examples.vamos23.operators.AnnotatedEcoreToCDProductLine" dynamic="true" workingPath="/MMPL/model/crom_l1" executionTime="620854309">
+    <inputs uri="" name="product" metatypeUri="edu.toronto.cs.se.mmint.examples.vamos23.operators.AnnotatedEcoreToCDProductLine/product" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0"/>
+    <outputs uri="" name="productLine" metatypeUri="edu.toronto.cs.se.mmint.examples.vamos23.operators.AnnotatedEcoreToCDProductLine/productLine" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1"/>
   </operators>
   <operators xsi:type="operator:RandomOperator" uri="" name="ToProduct" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.ToProduct" dynamic="true" workingPath="/MMPL/model/crom_l1" executionTime="1526130697">
     <inputs uri="" name="productLine" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.ToProduct/productLine" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1"/>
     <outputs uri="" name="product" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.ToProduct/product" dynamic="true" lowerBound="1" upperBound="1" target="//@models.2"/>
     <outputs uri="" name="trace" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.ToProduct/trace" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3"/>
   </operators>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.ecore" value="//@models.0"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline" value="//@models.1"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram" value="//@models.2"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.0_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.0"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#/_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.0"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.1_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.1"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@classes.0_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.1"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.2_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.2"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@classes.0/@ownedAttributes.0_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.2"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.3_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.3"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@classes.1_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.3"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.4_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.4"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@classes.2_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.4"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.5_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.5"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@classes.3_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.5"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.6_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.6"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@classes.4_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.6"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.7_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.7"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@classes.5_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.7"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.8_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.8"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@classes.6_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.8"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.9_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.9"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@classes.7_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.9"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.10_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.10"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@classes.7/@ownedAttributes.0_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.10"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.11_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.11"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@classes.8_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.11"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.12_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.12"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@classes.9_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.12"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.13_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.13"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@classes.10_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.13"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.14_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.14"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@classes.11_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.14"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.15_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.15"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@classes.12_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.15"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.16_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.16"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@classes.13_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.16"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.17_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.17"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@classes.14_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.17"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.18_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.18"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@classes.15_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.18"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.19_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.19"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@classes.16_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.19"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.20_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.20"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@classes.17_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.20"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.21_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.21"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@classes.18_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.21"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.48_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.22"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@datatypes.0_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.22"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.49_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.23"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@associations.0_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.23"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.50_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.24"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@associations.1_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.24"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.51_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.25"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@associations.2_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.25"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.52_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.26"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@associations.3_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.26"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.53_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.27"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@associations.4_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.27"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.54_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.28"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@associations.5_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.28"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.55_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.29"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@associations.6_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.29"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.56_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.30"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@associations.7_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.30"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.60_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.31"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@associations.8_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.31"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.61_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.32"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@associations.9_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.32"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.62_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.33"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@associations.10_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.33"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.63_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.34"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@associations.11_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.34"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.64_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.35"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@associations.12_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.35"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.65_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.36"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@associations.13_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.36"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.67_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.37"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@associations.14_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.37"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.68_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.38"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@associations.15_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.38"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1.productline#//@classes.74_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.39"/>
-  <extendibleTable key="/MMPL/model/crom_l1/crom_l1_prod0.classdiagram#//@datatypes.1_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.39"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1.ecore" value="//@models.0"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1.productline" value="//@models.1"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram" value="//@models.2"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.0_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.0"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#/_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.0"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.1_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.1"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@classes.0_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.1"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.2_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.2"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@classes.0/@ownedAttributes.0_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.2"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.3_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.3"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@classes.1_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.3"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.4_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.4"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@classes.2_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.4"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.5_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.5"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@classes.3_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.5"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.6_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.6"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@classes.4_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.6"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.7_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.7"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@classes.5_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.7"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.8_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.8"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@classes.6_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.8"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.9_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.9"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@classes.7_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.9"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.10_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.10"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@classes.7/@ownedAttributes.0_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.10"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.11_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.11"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@classes.8_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.11"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.12_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.12"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@classes.9_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.12"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.13_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.13"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@classes.10_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.13"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.14_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.14"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@classes.11_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.14"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.15_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.15"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@classes.12_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.15"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.16_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.16"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@classes.13_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.16"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.17_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.17"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@classes.14_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.17"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.18_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.18"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@classes.15_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.18"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.19_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.19"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@classes.16_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.19"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.20_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.20"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@classes.17_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.20"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.21_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.21"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@classes.18_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.21"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.48_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.22"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@datatypes.0_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.22"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.49_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.23"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@associations.0_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.23"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.50_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.24"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@associations.1_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.24"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.51_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.25"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@associations.2_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.25"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.52_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.26"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@associations.3_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.26"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.53_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.27"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@associations.4_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.27"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.54_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.28"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@associations.5_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.28"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.55_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.29"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@associations.6_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.29"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.56_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.30"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@associations.7_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.30"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.60_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.31"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@associations.8_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.31"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.61_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.32"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@associations.9_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.32"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.62_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.33"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@associations.10_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.33"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.63_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.34"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@associations.11_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.34"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.64_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.35"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@associations.12_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.35"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.65_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.36"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@associations.13_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.36"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.67_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.37"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@associations.14_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.37"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.68_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.38"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@associations.15_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.38"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1.productline#//@classes.74_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.39"/>
+  <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1_prod0.classdiagram#//@datatypes.1_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.39"/>
 </mid:MID>

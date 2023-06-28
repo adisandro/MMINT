@@ -2265,9 +2265,9 @@
   <editors uri="/MMPL/model/GPL/GPL_prod4.classdiagram" name="ClassDiagram tree for model /MMPL/model/GPL/GPL_prod4.classdiagram" metatypeUri="http://se.cs.toronto.edu/modelepedia/Tree_ClassDiagram" dynamic="true" modelUri="/MMPL/model/GPL/GPL_prod4.classdiagram" id="edu.toronto.cs.se.modelepedia.classdiagram.presentation.ClassDiagramEditorID" wizardId="edu.toronto.cs.se.modelepedia.classdiagram.presentation.ClassDiagramModelWizardID">
     <fileExtensions>classdiagram</fileExtensions>
   </editors>
-  <operators uri="" name="ToProductLine" metatypeUri="edu.toronto.cs.se.mmint.examples.MMPL.operators.AnnotatedEcoreToCDProductLine" dynamic="true" workingPath="/MMPL/model/GPL" executionTime="433230428">
-    <inputs uri="" name="product" metatypeUri="edu.toronto.cs.se.mmint.examples.MMPL.operators.AnnotatedEcoreToCDProductLine/product" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0"/>
-    <outputs uri="" name="productLine" metatypeUri="edu.toronto.cs.se.mmint.examples.MMPL.operators.AnnotatedEcoreToCDProductLine/productLine" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1"/>
+  <operators uri="" name="ToProductLine" metatypeUri="edu.toronto.cs.se.mmint.examples.vamos23.operators.AnnotatedEcoreToCDProductLine" dynamic="true" workingPath="/MMPL/model/GPL" executionTime="433230428">
+    <inputs uri="" name="product" metatypeUri="edu.toronto.cs.se.mmint.examples.vamos23.operators.AnnotatedEcoreToCDProductLine/product" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0"/>
+    <outputs uri="" name="productLine" metatypeUri="edu.toronto.cs.se.mmint.examples.vamos23.operators.AnnotatedEcoreToCDProductLine/productLine" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1"/>
   </operators>
   <operators xsi:type="operator:RandomOperator" uri="" name="ToProduct" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.ToProduct" dynamic="true" workingPath="/MMPL/model/GPL" executionTime="2269880856">
     <inputs uri="" name="productLine" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.ToProduct/productLine" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1"/>
