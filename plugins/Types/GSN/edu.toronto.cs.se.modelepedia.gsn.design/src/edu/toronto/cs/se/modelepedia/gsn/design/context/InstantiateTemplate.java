@@ -89,7 +89,6 @@ public class InstantiateTemplate extends AbstractExternalJavaAction {
       this.builder.commitChanges();
       try {
         this.template.validate();
-        //TODO Update all paper instructions to use templates
         //TODO Delete links and delete template
         //TODO Repair framework should be refined
       }

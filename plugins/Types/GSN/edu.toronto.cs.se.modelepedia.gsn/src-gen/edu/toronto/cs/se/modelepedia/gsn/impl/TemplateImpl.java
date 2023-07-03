@@ -14,6 +14,7 @@ package edu.toronto.cs.se.modelepedia.gsn.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
+import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -30,6 +31,7 @@ import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
 import edu.toronto.cs.se.modelepedia.gsn.Template;
+import edu.toronto.cs.se.modelepedia.gsn.TemplateElement;
 import edu.toronto.cs.se.modelepedia.gsn.util.GSNBuilder;
 
 /**
@@ -137,7 +139,12 @@ public class TemplateImpl extends MinimalEObjectImpl.Container implements Templa
    */
   @Override
   public void validate() throws Exception {
-    // do nothing
+    for (var elem : List.copyOf(getElements())) {
+      // copy to avoid concurrent modifications: template element validation may modify the template
+      if (elem instanceof TemplateElement templateElem) {
+        templateElem.validate();
+      }
+    }
   }
 
   /**
