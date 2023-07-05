@@ -51,7 +51,7 @@
             <viewVariable name="containerView"/>
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
-                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="templates.FilesContext" referenceName="contexts"/>
+                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="CreateFilesContext" label="CreateFilesContext" id="edu.toronto.cs.se.mmint.types.gsn.templates.design.tools.CreateFilesContext"/>
               </firstModelOperations>
             </initialOperation>
           </ownedTools>

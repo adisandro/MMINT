@@ -17,18 +17,17 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import edu.toronto.cs.se.mmint.types.gsn.templates.util.GSNTemplatesBuilder;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
 
-public class CreatePropertyGoal extends CreateDecompositionElement {
+public class CreatePropertyGoal extends CreateTemplateElement {
 
   @Override
-  protected CreateDecompositionElementCommand createCommand(TransactionalEditingDomain domain,
-                                                            SafetyCase gsnRootModelObj) {
-    return new CreatePropertyGoalCommand(domain, gsnRootModelObj);
+  protected CreateTemplateElementCommand createCommand(TransactionalEditingDomain domain, SafetyCase safetyCase) {
+    return new CreatePropertyGoalCommand(domain, safetyCase);
   }
 
-  private class CreatePropertyGoalCommand extends CreateDecompositionElementCommand {
+  private class CreatePropertyGoalCommand extends CreateTemplateElementCommand {
 
-    public CreatePropertyGoalCommand(TransactionalEditingDomain domain, SafetyCase gsnRootModelObj) {
-      super(domain, new GSNTemplatesBuilder(gsnRootModelObj));
+    public CreatePropertyGoalCommand(TransactionalEditingDomain domain, SafetyCase safetyCase) {
+      super(domain, new GSNTemplatesBuilder(safetyCase));
     }
 
     @Override

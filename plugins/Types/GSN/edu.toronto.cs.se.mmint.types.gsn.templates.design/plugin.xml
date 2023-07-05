@@ -39,8 +39,8 @@
             id="edu.toronto.cs.se.mmint.types.gsn.templates.design.tools.CreatePropertyDecompositionStrategy">
       </javaActions>
       <javaActions
-            actionClass="edu.toronto.cs.se.mmint.types.gsn.templates.design.context.PropertyDecompositionRepair"
-            id="edu.toronto.cs.se.mmint.types.gsn.templates.design.context.PropertyDecompositionRepair">
+            actionClass="edu.toronto.cs.se.mmint.types.gsn.templates.design.tools.CreateFilesContext"
+            id="edu.toronto.cs.se.mmint.types.gsn.templates.design.tools.CreateFilesContext">
       </javaActions>
    </extension>
 

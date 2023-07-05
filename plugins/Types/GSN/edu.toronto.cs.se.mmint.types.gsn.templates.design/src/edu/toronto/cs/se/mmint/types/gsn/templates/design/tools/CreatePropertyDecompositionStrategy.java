@@ -19,18 +19,17 @@ import edu.toronto.cs.se.mmint.types.gsn.templates.reasoning.IGSNDecompositionTr
 import edu.toronto.cs.se.mmint.types.gsn.templates.util.GSNTemplatesBuilder;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
 
-public class CreatePropertyDecompositionStrategy extends CreateDecompositionElement {
+public class CreatePropertyDecompositionStrategy extends CreateTemplateElement {
 
   @Override
-  protected CreateDecompositionElementCommand createCommand(TransactionalEditingDomain domain,
-                                                            SafetyCase gsnRootModelObj) {
-    return new CreatePropertyStrategyCommand(domain, gsnRootModelObj);
+  protected CreateTemplateElementCommand createCommand(TransactionalEditingDomain domain, SafetyCase safetyCase) {
+    return new CreatePropertyStrategyCommand(domain, safetyCase);
   }
 
-  private class CreatePropertyStrategyCommand extends CreateDecompositionElementCommand {
+  private class CreatePropertyStrategyCommand extends CreateTemplateElementCommand {
 
-    public CreatePropertyStrategyCommand(TransactionalEditingDomain domain, SafetyCase gsnRootModelObj) {
-      super(domain, new GSNTemplatesBuilder(gsnRootModelObj));
+    public CreatePropertyStrategyCommand(TransactionalEditingDomain domain, SafetyCase safetyCase) {
+      super(domain, new GSNTemplatesBuilder(safetyCase));
     }
 
     @Override

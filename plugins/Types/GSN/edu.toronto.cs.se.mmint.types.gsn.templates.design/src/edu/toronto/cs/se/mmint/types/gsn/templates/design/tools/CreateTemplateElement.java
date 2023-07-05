@@ -27,10 +27,10 @@ import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
 import edu.toronto.cs.se.modelepedia.gsn.util.GSNBuilder;
 
-public abstract class CreateDecompositionElement extends AbstractExternalJavaAction {
+public abstract class CreateTemplateElement extends AbstractExternalJavaAction {
 
-  protected abstract CreateDecompositionElementCommand createCommand(TransactionalEditingDomain domain,
-                                                                     SafetyCase gsnRootModelObj);
+  protected abstract CreateTemplateElementCommand createCommand(TransactionalEditingDomain domain,
+                                                                SafetyCase safetyCase);
 
   @Override
   public boolean canExecute(Collection<? extends EObject> arg0) {
@@ -39,16 +39,16 @@ public abstract class CreateDecompositionElement extends AbstractExternalJavaAct
 
   @Override
   public void execute(Collection<? extends EObject> arg0, Map<String, Object> arg1) {
-    var gsnRootModelObj = (SafetyCase) arg0.iterator().next();
-    var sSession = SessionManager.INSTANCE.getSession(gsnRootModelObj);
+    var safetyCase = (SafetyCase) arg0.iterator().next();
+    var sSession = SessionManager.INSTANCE.getSession(safetyCase);
     var sDomain = sSession.getTransactionalEditingDomain();
-    sDomain.getCommandStack().execute(createCommand(sDomain, gsnRootModelObj));
+    sDomain.getCommandStack().execute(createCommand(sDomain, safetyCase));
   }
 
-  protected abstract class CreateDecompositionElementCommand extends RecordingCommand {
+  protected abstract class CreateTemplateElementCommand extends RecordingCommand {
     protected GSNBuilder builder;
 
-    public CreateDecompositionElementCommand(TransactionalEditingDomain domain, GSNBuilder builder) {
+    public CreateTemplateElementCommand(TransactionalEditingDomain domain, GSNBuilder builder) {
       super(domain);
       this.builder = builder;
     }
@@ -65,7 +65,7 @@ public abstract class CreateDecompositionElement extends AbstractExternalJavaAct
         // do nothing
       }
       catch (Exception e) {
-        MMINTException.print(IStatus.ERROR, "Error creating decomposition element", e);
+        MMINTException.print(IStatus.ERROR, "Error creating template element", e);
       }
     }
   }

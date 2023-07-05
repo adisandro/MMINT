@@ -20,18 +20,17 @@ import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
 import edu.toronto.cs.se.mmint.types.gsn.templates.util.GSNTemplatesBuilder;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
 
-public class CreateDomainGoal extends CreateDecompositionElement {
+public class CreateDomainGoal extends CreateTemplateElement {
 
   @Override
-  protected CreateDecompositionElementCommand createCommand(TransactionalEditingDomain domain,
-                                                            SafetyCase gsnRootModelObj) {
-    return new CreateDomainGoalCommand(domain, gsnRootModelObj);
+  protected CreateTemplateElementCommand createCommand(TransactionalEditingDomain domain, SafetyCase safetyCase) {
+    return new CreateDomainGoalCommand(domain, safetyCase);
   }
 
-  private class CreateDomainGoalCommand extends CreateDecompositionElementCommand {
+  private class CreateDomainGoalCommand extends CreateTemplateElementCommand {
 
-    public CreateDomainGoalCommand(TransactionalEditingDomain domain, SafetyCase gsnRootModelObj) {
-      super(domain, new GSNTemplatesBuilder(gsnRootModelObj));
+    public CreateDomainGoalCommand(TransactionalEditingDomain domain, SafetyCase safetyCase) {
+      super(domain, new GSNTemplatesBuilder(safetyCase));
     }
 
     @Override
