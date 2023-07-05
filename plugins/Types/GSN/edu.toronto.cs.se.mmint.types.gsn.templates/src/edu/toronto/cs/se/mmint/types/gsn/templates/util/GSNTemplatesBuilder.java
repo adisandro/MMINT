@@ -12,6 +12,7 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.types.gsn.templates.util;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
@@ -25,6 +26,7 @@ import edu.toronto.cs.se.mmint.types.gsn.templates.DomainDecompositionElement;
 import edu.toronto.cs.se.mmint.types.gsn.templates.DomainDecompositionStrategy;
 import edu.toronto.cs.se.mmint.types.gsn.templates.DomainGoal;
 import edu.toronto.cs.se.mmint.types.gsn.templates.EnumDomain;
+import edu.toronto.cs.se.mmint.types.gsn.templates.FilesContext;
 import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesFactory;
 import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
 import edu.toronto.cs.se.mmint.types.gsn.templates.IntDomain;
@@ -142,5 +144,13 @@ public class GSNTemplatesBuilder extends GSNBuilder {
     strategy.setReasonerName(reasonerName);
 
     return strategy;
+  }
+
+  public FilesContext createFilesContext(String id, String description, List<String> paths) {
+    var context = this.templateFactory.createFilesContext();
+    addContext(context, id, description);
+    context.getPaths().addAll(paths);
+
+    return context;
   }
 }

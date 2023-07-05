@@ -111,7 +111,7 @@ public class DecompositionUtils {
   }
 
   public static Map<EClass, List<EObject>> categorizeModelObjects(Model model,
-                                                            Map<String, List<PropertyTemplate>> templates) {
+                                                                  Map<String, List<PropertyTemplate>> templates) {
     var validClasses = templates.values().stream()
       .flatMap(l -> l.stream())
       .flatMap(t -> t.variables.stream())

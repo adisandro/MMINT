@@ -375,15 +375,11 @@ public class DomainDecompositionStrategyImpl extends StrategyImpl implements Dom
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
+   * @generated NOT
    */
   @Override
   public void repair() throws Exception {
-    // TODO: implement this method
-    // Ensure that you remove @generated or mark it @generated NOT
-    throw new UnsupportedOperationException();
+    // do nothing
   }
 
 } //DomainDecompositionStrategyImpl
