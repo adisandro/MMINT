@@ -31,6 +31,8 @@ import edu.toronto.cs.se.mmint.mid.ui.FilesOnlyDialogSelectionValidator;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.mid.ui.MIDTreeSelectionDialog;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.mmint.types.gsn.templates.FilesContext;
 import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
 import edu.toronto.cs.se.mmint.types.gsn.templates.Property;
 import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyDecompositionStrategy;
@@ -170,7 +172,7 @@ public class PropertyDecompositionTemplateImpl extends DecompositionTemplateImpl
     var formalStrategy = templateSC.getStrategies().get(0);
     var propStrategy = (PropertyDecompositionStrategy) templateSC.getStrategies().get(1);
     var propCtx = templateSC.getContexts().get(0);
-    var modelCtx = templateSC.getContexts().get(1);
+    var modelCtx = (FilesContext) templateSC.getContexts().get(1);
     var formalJust = templateSC.getJustifications().get(0);
     propStrategy.getSupportedBy().clear(); // the real subPropGoals will be added later
     propStrategy.getInContextOf().remove(1); // the real formalJust will be added by the validation
@@ -224,6 +226,7 @@ public class PropertyDecompositionTemplateImpl extends DecompositionTemplateImpl
     propStrategy.setProperty(property);
     builder.addExistingElement(propStrategy);
     modelCtx.setDescription(modelCtx.getDescription().replace("MODEL_PATH", relatedModelPath));
+    modelCtx.getPaths().set(0, FileUtils.prependWorkspacePath(relatedModelPath));
     builder.addExistingElement(modelCtx);
     for (var propQuery : propQueries) {
       createQueryContext(propStrategy, propQuery, decomposedId, numCtx, queryContexts, templateElems, builder);

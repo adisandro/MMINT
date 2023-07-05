@@ -24,7 +24,9 @@
     <property formal="FORMAL_PROPERTY" informal="SAFETY_PROPERTY"/>
   </strategies>
   <contexts id="Ctx1.GX" description="SAFETY_PROPERTY" templates="//@templates.0" contextOf="//@strategies.0/@inContextOf.0"/>
-  <contexts id="Ctx2.GX" description="MODEL_PATH" templates="//@templates.0" contextOf="//@strategies.1/@inContextOf.0"/>
+  <contexts xsi:type="gsn.templates:FilesContext" id="Ctx2.GX" description="MODEL_PATH" templates="//@templates.0" contextOf="//@strategies.1/@inContextOf.0">
+    <paths>MODEL_PATH</paths>
+  </contexts>
   <justifications id="J1.GX" description="Decomposition RESULT in REASONER: see file PROOF" templates="//@templates.0" contextOf="//@strategies.1/@inContextOf.1"/>
   <templates xsi:type="gsn.templates:PropertyDecompositionTemplate" elements="//@goals.0 //@goals.1 //@goals.2 //@goals.3 //@strategies.0 //@contexts.0 //@contexts.1 //@justifications.0 //@strategies.1 //@goals.4" id="Property Decomposition"/>
 </gsn:SafetyCase>

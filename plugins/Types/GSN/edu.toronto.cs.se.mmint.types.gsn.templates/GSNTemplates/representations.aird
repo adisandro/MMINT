@@ -376,8 +376,8 @@
       <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='ContextNode']"/>
     </ownedDiagramElements>
     <ownedDiagramElements xmi:type="diagram:DNode" uid="_yPhjZAF_Ee6iZs9805rffg" name="Ctx2.GX MODEL_PATH" incomingEdges="_yPixjAF_Ee6iZs9805rffg" width="-1" height="-1" resizeKind="NSEW">
-      <target xmi:type="gsn:Context" href="property_decomposition.gsn#//@contexts.1"/>
-      <semanticElements xmi:type="gsn:Context" href="property_decomposition.gsn#//@contexts.1"/>
+      <target xmi:type="gsn.templates:FilesContext" href="property_decomposition.gsn#//@contexts.1"/>
+      <semanticElements xmi:type="gsn.templates:FilesContext" href="property_decomposition.gsn#//@contexts.1"/>
       <decorations xmi:type="viewpoint:Decoration" uid="_yPhjZgF_Ee6iZs9805rffg">
         <description xmi:type="description:SemanticBasedDecoration" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='TemplateDecoration']"/>
       </decorations>
