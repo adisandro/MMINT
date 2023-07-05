@@ -28,7 +28,6 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesFactory;
 import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
 import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyDecompositionStrategy;
-import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.provider.StrategyItemProvider;
 
 /**
@@ -59,32 +58,9 @@ public class PropertyDecompositionStrategyItemProvider extends StrategyItemProvi
     if (this.itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
-      addValidPropertyDescriptor(object);
       addReasonerNamePropertyDescriptor(object);
     }
     return this.itemPropertyDescriptors;
-  }
-
-  /**
-   * This adds a property descriptor for the Valid feature.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected void addValidPropertyDescriptor(Object object) {
-    this.itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_TemplateElement_valid_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_TemplateElement_valid_feature", "_UI_TemplateElement_type"),
-         GSNPackage.Literals.TEMPLATE_ELEMENT__VALID,
-         true,
-         false,
-         false,
-         ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-         null,
-         null));
   }
 
   /**
@@ -177,7 +153,6 @@ public class PropertyDecompositionStrategyItemProvider extends StrategyItemProvi
     updateChildren(notification);
 
     switch (notification.getFeatureID(PropertyDecompositionStrategy.class)) {
-      case GSNTemplatesPackage.PROPERTY_DECOMPOSITION_STRATEGY__VALID:
       case GSNTemplatesPackage.PROPERTY_DECOMPOSITION_STRATEGY__REASONER_NAME:
         fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
         return;

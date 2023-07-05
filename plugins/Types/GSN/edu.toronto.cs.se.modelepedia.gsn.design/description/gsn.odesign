@@ -334,8 +334,8 @@
           <decorationDescriptions xsi:type="description:SemanticBasedDecoration" name="TemplateDecoration" position="NORTH_WEST" preconditionExpression="aql: self.templates->size() > 0" imageExpression="/edu.toronto.cs.se.modelepedia.gsn.design/icons/TemplateElement.png" tooltipExpression="Template element" domainClass="gsn.ArgumentElement"/>
         </decorationDescriptionsSet>
         <customization>
-          <vsmElementCustomizations xsi:type="description:VSMElementCustomization" predicateExpression="aql: self.oclIsKindOf(gsn::TemplateElement) and not self.oclAsType(gsn::TemplateElement).valid">
-            <featureCustomizations xsi:type="description:EReferenceCustomization" appliedOn="//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']/@style" referenceName="color">
+          <vsmElementCustomizations xsi:type="description:VSMElementCustomization" predicateExpression="aql: self.oclIsKindOf(gsn::ArgumentElement) and not self.oclAsType(gsn::ArgumentElement).valid">
+            <featureCustomizations xsi:type="description:EReferenceCustomization" appliedOn="//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']/@style" referenceName="borderColor">
               <value href="environment:/viewpoint#//@systemColors/@entries[name='red']"/>
             </featureCustomizations>
           </vsmElementCustomizations>

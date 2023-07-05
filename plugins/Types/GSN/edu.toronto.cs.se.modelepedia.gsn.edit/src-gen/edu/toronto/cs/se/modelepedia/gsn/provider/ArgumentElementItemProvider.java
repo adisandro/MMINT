@@ -63,9 +63,9 @@ public class ArgumentElementItemProvider extends ItemProviderAdapter implements 
 
       addIdPropertyDescriptor(object);
       addDescriptionPropertyDescriptor(object);
-      addContentValidityPropertyDescriptor(object);
       addStatusPropertyDescriptor(object);
       addTemplatesPropertyDescriptor(object);
+      addValidPropertyDescriptor(object);
     }
     return this.itemPropertyDescriptors;
   }
@@ -104,27 +104,6 @@ public class ArgumentElementItemProvider extends ItemProviderAdapter implements 
          getString("_UI_ArgumentElement_description_feature"),
          getString("_UI_PropertyDescriptor_description", "_UI_ArgumentElement_description_feature", "_UI_ArgumentElement_type"),
          GSNPackage.Literals.ARGUMENT_ELEMENT__DESCRIPTION,
-         true,
-         false,
-         false,
-         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-         null,
-         null));
-  }
-
-  /**
-   * This adds a property descriptor for the Content Validity feature.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  protected void addContentValidityPropertyDescriptor(Object object) {
-    this.itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_ArgumentElement_contentValidity_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_ArgumentElement_contentValidity_feature", "_UI_ArgumentElement_type"),
-         GSNPackage.Literals.ARGUMENT_ELEMENT__CONTENT_VALIDITY,
          true,
          false,
          false,
@@ -177,6 +156,28 @@ public class ArgumentElementItemProvider extends ItemProviderAdapter implements 
   }
 
   /**
+   * This adds a property descriptor for the Valid feature.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected void addValidPropertyDescriptor(Object object) {
+    this.itemPropertyDescriptors.add
+      (createItemPropertyDescriptor
+        (((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
+         getResourceLocator(),
+         getString("_UI_ArgumentElement_valid_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_ArgumentElement_valid_feature", "_UI_ArgumentElement_type"),
+         GSNPackage.Literals.ARGUMENT_ELEMENT__VALID,
+         true,
+         false,
+         false,
+         ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+         null,
+         null));
+  }
+
+  /**
    * This returns the label text for the adapted class.
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
@@ -202,8 +203,8 @@ public class ArgumentElementItemProvider extends ItemProviderAdapter implements 
     switch (notification.getFeatureID(ArgumentElement.class)) {
       case GSNPackage.ARGUMENT_ELEMENT__ID:
       case GSNPackage.ARGUMENT_ELEMENT__DESCRIPTION:
-      case GSNPackage.ARGUMENT_ELEMENT__CONTENT_VALIDITY:
       case GSNPackage.ARGUMENT_ELEMENT__STATUS:
+      case GSNPackage.ARGUMENT_ELEMENT__VALID:
         fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
         return;
     }

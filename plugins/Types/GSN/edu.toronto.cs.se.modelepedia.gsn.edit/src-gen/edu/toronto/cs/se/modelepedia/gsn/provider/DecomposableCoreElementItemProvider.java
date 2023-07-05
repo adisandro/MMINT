@@ -21,7 +21,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import edu.toronto.cs.se.modelepedia.gsn.DecomposableCoreElement;
@@ -33,7 +32,7 @@ import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
  * <!-- begin-user-doc --> <!-- end-user-doc -->
  * @generated
  */
-public class DecomposableCoreElementItemProvider extends SupportableItemProvider {
+public class DecomposableCoreElementItemProvider extends CoreElementItemProvider {
   /**
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -53,113 +52,25 @@ public class DecomposableCoreElementItemProvider extends SupportableItemProvider
     if (this.itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
-      addIdPropertyDescriptor(object);
-      addDescriptionPropertyDescriptor(object);
-      addContentValidityPropertyDescriptor(object);
-      addStatusPropertyDescriptor(object);
-      addTemplatesPropertyDescriptor(object);
+      addSupportedByPropertyDescriptor(object);
     }
     return this.itemPropertyDescriptors;
   }
 
   /**
-   * This adds a property descriptor for the Id feature.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  protected void addIdPropertyDescriptor(Object object) {
-    this.itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_ArgumentElement_id_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_ArgumentElement_id_feature", "_UI_ArgumentElement_type"),
-         GSNPackage.Literals.ARGUMENT_ELEMENT__ID,
-         true,
-         false,
-         false,
-         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-         null,
-         null));
-  }
-
-  /**
-   * This adds a property descriptor for the Description feature.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  protected void addDescriptionPropertyDescriptor(Object object) {
-    this.itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_ArgumentElement_description_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_ArgumentElement_description_feature", "_UI_ArgumentElement_type"),
-         GSNPackage.Literals.ARGUMENT_ELEMENT__DESCRIPTION,
-         true,
-         false,
-         false,
-         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-         null,
-         null));
-  }
-
-  /**
-   * This adds a property descriptor for the Content Validity feature.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  protected void addContentValidityPropertyDescriptor(Object object) {
-    this.itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_ArgumentElement_contentValidity_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_ArgumentElement_contentValidity_feature", "_UI_ArgumentElement_type"),
-         GSNPackage.Literals.ARGUMENT_ELEMENT__CONTENT_VALIDITY,
-         true,
-         false,
-         false,
-         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-         null,
-         null));
-  }
-
-  /**
-   * This adds a property descriptor for the Status feature.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  protected void addStatusPropertyDescriptor(Object object) {
-    this.itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_ArgumentElement_status_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_ArgumentElement_status_feature", "_UI_ArgumentElement_type"),
-         GSNPackage.Literals.ARGUMENT_ELEMENT__STATUS,
-         true,
-         false,
-         false,
-         null,
-         null,
-         null));
-  }
-
-  /**
-   * This adds a property descriptor for the Templates feature.
+   * This adds a property descriptor for the Supported By feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected void addTemplatesPropertyDescriptor(Object object) {
+  protected void addSupportedByPropertyDescriptor(Object object) {
     this.itemPropertyDescriptors.add
       (createItemPropertyDescriptor
         (((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
-         getString("_UI_ArgumentElement_templates_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_ArgumentElement_templates_feature", "_UI_ArgumentElement_type"),
-         GSNPackage.Literals.ARGUMENT_ELEMENT__TEMPLATES,
+         getString("_UI_Supportable_supportedBy_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_Supportable_supportedBy_feature", "_UI_Supportable_type"),
+         GSNPackage.Literals.SUPPORTABLE__SUPPORTED_BY,
          true,
          false,
          true,
@@ -180,6 +91,7 @@ public class DecomposableCoreElementItemProvider extends SupportableItemProvider
   public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
     if (this.childrenFeatures == null) {
       super.getChildrenFeatures(object);
+      this.childrenFeatures.add(GSNPackage.Literals.SUPPORTABLE__SUPPORTED_BY);
       this.childrenFeatures.add(GSNPackage.Literals.DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF);
     }
     return this.childrenFeatures;
@@ -221,12 +133,7 @@ public class DecomposableCoreElementItemProvider extends SupportableItemProvider
     updateChildren(notification);
 
     switch (notification.getFeatureID(DecomposableCoreElement.class)) {
-      case GSNPackage.DECOMPOSABLE_CORE_ELEMENT__ID:
-      case GSNPackage.DECOMPOSABLE_CORE_ELEMENT__DESCRIPTION:
-      case GSNPackage.DECOMPOSABLE_CORE_ELEMENT__CONTENT_VALIDITY:
-      case GSNPackage.DECOMPOSABLE_CORE_ELEMENT__STATUS:
-        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-        return;
+      case GSNPackage.DECOMPOSABLE_CORE_ELEMENT__SUPPORTED_BY:
       case GSNPackage.DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF:
         fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
         return;
@@ -243,6 +150,11 @@ public class DecomposableCoreElementItemProvider extends SupportableItemProvider
   @Override
   protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
     super.collectNewChildDescriptors(newChildDescriptors, object);
+
+    newChildDescriptors.add
+      (createChildParameter
+        (GSNPackage.Literals.SUPPORTABLE__SUPPORTED_BY,
+         GSNFactory.eINSTANCE.createSupportedBy()));
 
     newChildDescriptors.add
       (createChildParameter

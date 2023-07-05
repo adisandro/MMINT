@@ -46,7 +46,6 @@ import edu.toronto.cs.se.modelepedia.gsn.Strategy;
 import edu.toronto.cs.se.modelepedia.gsn.Supportable;
 import edu.toronto.cs.se.modelepedia.gsn.Supporter;
 import edu.toronto.cs.se.modelepedia.gsn.Template;
-import edu.toronto.cs.se.modelepedia.gsn.TemplateElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -177,20 +176,16 @@ public class GSNTemplatesAdapterFactory extends AdapterFactoryImpl {
         return createArgumentElementAdapter();
       }
       @Override
-      public Adapter caseTemplateElement(TemplateElement object) {
-        return createTemplateElementAdapter();
-      }
-      @Override
       public Adapter caseSupporter(Supporter object) {
         return createSupporterAdapter();
       }
       @Override
-      public Adapter caseSupportable(Supportable object) {
-        return createSupportableAdapter();
-      }
-      @Override
       public Adapter caseCoreElement(CoreElement object) {
         return createCoreElementAdapter();
+      }
+      @Override
+      public Adapter caseSupportable(Supportable object) {
+        return createSupportableAdapter();
       }
       @Override
       public Adapter caseDecomposableCoreElement(DecomposableCoreElement object) {
@@ -545,20 +540,6 @@ public class GSNTemplatesAdapterFactory extends AdapterFactoryImpl {
    * @generated
    */
   public Adapter createStrategyAdapter() {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.gsn.TemplateElement <em>Template Element</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see edu.toronto.cs.se.modelepedia.gsn.TemplateElement
-   * @generated
-   */
-  public Adapter createTemplateElementAdapter() {
     return null;
   }
 

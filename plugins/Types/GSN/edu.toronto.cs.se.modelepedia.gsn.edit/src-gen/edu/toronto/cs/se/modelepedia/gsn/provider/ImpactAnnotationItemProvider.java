@@ -33,7 +33,6 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.ImpactAnnotation;
-import edu.toronto.cs.se.modelepedia.gsn.ImpactType;
 
 /**
  * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.gsn.ImpactAnnotation} object. <!--

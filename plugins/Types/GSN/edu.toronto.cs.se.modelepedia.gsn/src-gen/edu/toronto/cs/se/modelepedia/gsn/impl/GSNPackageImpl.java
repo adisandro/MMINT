@@ -54,7 +54,6 @@ import edu.toronto.cs.se.modelepedia.gsn.Supportable;
 import edu.toronto.cs.se.modelepedia.gsn.SupportedBy;
 import edu.toronto.cs.se.modelepedia.gsn.Supporter;
 import edu.toronto.cs.se.modelepedia.gsn.Template;
-import edu.toronto.cs.se.modelepedia.gsn.TemplateElement;
 import edu.toronto.cs.se.modelepedia.gsn.ValidityValue;
 import edu.toronto.cs.se.modelepedia.gsn.XorSupporter;
 import edu.toronto.cs.se.modelepedia.gsn.util.GSNBuilder;
@@ -239,13 +238,6 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
    * @generated
    */
   private EClass templateEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass templateElementEClass = null;
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -460,17 +452,8 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
    * @generated
    */
   @Override
-  public EAttribute getArgumentElement_ContentValidity() {
-    return (EAttribute)this.argumentElementEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EReference getArgumentElement_Status() {
-    return (EReference)this.argumentElementEClass.getEStructuralFeatures().get(3);
+    return (EReference)this.argumentElementEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -480,7 +463,37 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
    */
   @Override
   public EReference getArgumentElement_Templates() {
-    return (EReference)this.argumentElementEClass.getEStructuralFeatures().get(4);
+    return (EReference)this.argumentElementEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getArgumentElement_Valid() {
+    return (EAttribute)this.argumentElementEClass.getEStructuralFeatures().get(4);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EOperation getArgumentElement__Validate() {
+    return this.argumentElementEClass.getEOperations().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EOperation getArgumentElement__Repair() {
+    return this.argumentElementEClass.getEOperations().get(1);
   }
 
   /**
@@ -912,46 +925,6 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EClass getTemplateElement() {
-    return this.templateElementEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getTemplateElement_Valid() {
-    return (EAttribute)this.templateElementEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EOperation getTemplateElement__Validate() {
-    return this.templateElementEClass.getEOperations().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EOperation getTemplateElement__Repair() {
-    return this.templateElementEClass.getEOperations().get(1);
-  }
-
-  /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
@@ -1036,9 +1009,11 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     this.argumentElementEClass = createEClass(GSNPackage.ARGUMENT_ELEMENT);
     createEAttribute(this.argumentElementEClass, GSNPackage.ARGUMENT_ELEMENT__ID);
     createEAttribute(this.argumentElementEClass, GSNPackage.ARGUMENT_ELEMENT__DESCRIPTION);
-    createEAttribute(this.argumentElementEClass, GSNPackage.ARGUMENT_ELEMENT__CONTENT_VALIDITY);
     createEReference(this.argumentElementEClass, GSNPackage.ARGUMENT_ELEMENT__STATUS);
     createEReference(this.argumentElementEClass, GSNPackage.ARGUMENT_ELEMENT__TEMPLATES);
+    createEAttribute(this.argumentElementEClass, GSNPackage.ARGUMENT_ELEMENT__VALID);
+    createEOperation(this.argumentElementEClass, GSNPackage.ARGUMENT_ELEMENT___VALIDATE);
+    createEOperation(this.argumentElementEClass, GSNPackage.ARGUMENT_ELEMENT___REPAIR);
 
     this.statefulElementEClass = createEClass(GSNPackage.STATEFUL_ELEMENT);
     createEAttribute(this.statefulElementEClass, GSNPackage.STATEFUL_ELEMENT__STATE_VALIDITY);
@@ -1114,11 +1089,6 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     createEOperation(this.templateEClass, GSNPackage.TEMPLATE___VALIDATE);
     createEOperation(this.templateEClass, GSNPackage.TEMPLATE___INSTANTIATE__SAFETYCASE_ELIST);
 
-    this.templateElementEClass = createEClass(GSNPackage.TEMPLATE_ELEMENT);
-    createEAttribute(this.templateElementEClass, GSNPackage.TEMPLATE_ELEMENT__VALID);
-    createEOperation(this.templateElementEClass, GSNPackage.TEMPLATE_ELEMENT___VALIDATE);
-    createEOperation(this.templateElementEClass, GSNPackage.TEMPLATE_ELEMENT___REPAIR);
-
     // Create enums
     this.asilLevelEEnum = createEEnum(GSNPackage.ASIL_LEVEL);
     this.validityValueEEnum = createEEnum(GSNPackage.VALIDITY_VALUE);
@@ -1157,8 +1127,8 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     // Add supertypes to classes
     this.coreElementEClass.getESuperTypes().add(this.getArgumentElement());
     this.coreElementEClass.getESuperTypes().add(this.getSupporter());
-    this.decomposableCoreElementEClass.getESuperTypes().add(this.getSupportable());
     this.decomposableCoreElementEClass.getESuperTypes().add(this.getCoreElement());
+    this.decomposableCoreElementEClass.getESuperTypes().add(this.getSupportable());
     this.contextualElementEClass.getESuperTypes().add(this.getArgumentElement());
     this.goalEClass.getESuperTypes().add(this.getDecomposableCoreElement());
     this.goalEClass.getESuperTypes().add(this.getStatefulElement());
@@ -1179,7 +1149,6 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     this.orSupporterEClass.getESuperTypes().add(this.getSupportConnector());
     this.xorSupporterEClass.getESuperTypes().add(this.getSupportConnector());
     this.mofNSupporterEClass.getESuperTypes().add(this.getSupportConnector());
-    this.templateElementEClass.getESuperTypes().add(this.getArgumentElement());
 
     // Initialize classes, features, and operations; add parameters
     initEClass(this.safetyCaseEClass, SafetyCase.class, "SafetyCase", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
@@ -1195,9 +1164,15 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     initEClass(this.argumentElementEClass, ArgumentElement.class, "ArgumentElement", EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getArgumentElement_Id(), this.ecorePackage.getEString(), "id", null, 1, 1, ArgumentElement.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
     initEAttribute(getArgumentElement_Description(), this.ecorePackage.getEString(), "description", null, 0, 1, ArgumentElement.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
-    initEAttribute(getArgumentElement_ContentValidity(), this.getValidityValue(), "contentValidity", null, 0, 1, ArgumentElement.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
     initEReference(getArgumentElement_Status(), this.getImpactAnnotation(), null, "status", null, 0, 1, ArgumentElement.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, EPackageImpl.IS_COMPOSITE, !EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
     initEReference(getArgumentElement_Templates(), this.getTemplate(), this.getTemplate_Elements(), "templates", null, 0, -1, ArgumentElement.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
+    initEAttribute(getArgumentElement_Valid(), this.ecorePackage.getEBoolean(), "valid", "true", 1, 1, ArgumentElement.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
+
+    var op = initEOperation(getArgumentElement__Validate(), null, "validate", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    addEException(op, this.getException());
+
+    op = initEOperation(getArgumentElement__Repair(), null, "repair", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    addEException(op, this.getException());
 
     initEClass(this.statefulElementEClass, StatefulElement.class, "StatefulElement", EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getStatefulElement_StateValidity(), this.getValidityValue(), "stateValidity", null, 0, 1, StatefulElement.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
@@ -1271,21 +1246,12 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     initEReference(getTemplate_Elements(), this.getArgumentElement(), this.getArgumentElement_Templates(), "elements", null, 1, -1, Template.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
     initEAttribute(getTemplate_Id(), this.ecorePackage.getEString(), "id", null, 1, 1, Template.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
 
-    var op = initEOperation(getTemplate__Validate(), null, "validate", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    op = initEOperation(getTemplate__Validate(), null, "validate", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEException(op, this.getException());
 
     op = initEOperation(getTemplate__Instantiate__SafetyCase_EList(), this.getGSNBuilder(), "instantiate", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEParameter(op, this.getSafetyCase(), "safetyCase", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEParameter(op, this.ecorePackage.getEObject(), "selection", 0, -1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
-    addEException(op, this.getException());
-
-    initEClass(this.templateElementEClass, TemplateElement.class, "TemplateElement", EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getTemplateElement_Valid(), this.ecorePackage.getEBoolean(), "valid", "true", 1, 1, TemplateElement.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
-
-    op = initEOperation(getTemplateElement__Validate(), null, "validate", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
-    addEException(op, this.getException());
-
-    op = initEOperation(getTemplateElement__Repair(), null, "repair", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEException(op, this.getException());
 
     // Initialize enums and add enum literals

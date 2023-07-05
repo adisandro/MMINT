@@ -666,20 +666,17 @@ public class GSNTemplatesPackageImpl extends EPackageImpl implements GSNTemplate
     this.realDomainEClass.getESuperTypes().add(this.getDomain());
     this.enumDomainEClass.getESuperTypes().add(this.getDomain());
     this.valueDomainEClass.getESuperTypes().add(this.getDomain());
-    this.domainDecompositionElementEClass.getESuperTypes().add(theGSNPackage.getTemplateElement());
     this.domainDecompositionStrategyEClass.getESuperTypes().add(theGSNPackage.getStrategy());
     this.domainDecompositionStrategyEClass.getESuperTypes().add(this.getDomainDecompositionElement());
     this.domainGoalEClass.getESuperTypes().add(theGSNPackage.getGoal());
     this.domainGoalEClass.getESuperTypes().add(this.getDomainDecompositionElement());
     this.domainDecompositionTemplateEClass.getESuperTypes().add(this.getDecompositionTemplate());
-    this.propertyDecompositionElementEClass.getESuperTypes().add(theGSNPackage.getTemplateElement());
     this.propertyDecompositionStrategyEClass.getESuperTypes().add(theGSNPackage.getStrategy());
     this.propertyDecompositionStrategyEClass.getESuperTypes().add(this.getPropertyDecompositionElement());
     this.propertyGoalEClass.getESuperTypes().add(theGSNPackage.getGoal());
     this.propertyGoalEClass.getESuperTypes().add(this.getPropertyDecompositionElement());
     this.propertyDecompositionTemplateEClass.getESuperTypes().add(this.getDecompositionTemplate());
     this.filesContextEClass.getESuperTypes().add(theGSNPackage.getContext());
-    this.filesContextEClass.getESuperTypes().add(theGSNPackage.getTemplateElement());
 
     // Initialize classes, features, and operations; add parameters
     initEClass(this.decompositionTemplateEClass, DecompositionTemplate.class, "DecompositionTemplate", EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);

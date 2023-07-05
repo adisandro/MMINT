@@ -46,7 +46,6 @@ import edu.toronto.cs.se.modelepedia.gsn.Supportable;
 import edu.toronto.cs.se.modelepedia.gsn.SupportedBy;
 import edu.toronto.cs.se.modelepedia.gsn.Supporter;
 import edu.toronto.cs.se.modelepedia.gsn.Template;
-import edu.toronto.cs.se.modelepedia.gsn.TemplateElement;
 import edu.toronto.cs.se.modelepedia.gsn.XorSupporter;
 
 /**
@@ -132,10 +131,10 @@ public class GSNSwitch<T> extends Switch<T> {
       case GSNPackage.DECOMPOSABLE_CORE_ELEMENT: {
         var decomposableCoreElement = (DecomposableCoreElement)theEObject;
         var result = caseDecomposableCoreElement(decomposableCoreElement);
-        if (result == null) result = caseSupportable(decomposableCoreElement);
         if (result == null) result = caseCoreElement(decomposableCoreElement);
-        if (result == null) result = caseSupporter(decomposableCoreElement);
+        if (result == null) result = caseSupportable(decomposableCoreElement);
         if (result == null) result = caseArgumentElement(decomposableCoreElement);
+        if (result == null) result = caseSupporter(decomposableCoreElement);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -164,10 +163,10 @@ public class GSNSwitch<T> extends Switch<T> {
         if (result == null) result = caseDecomposableCoreElement(goal);
         if (result == null) result = caseStatefulElement(goal);
         if (result == null) result = caseASILfulElement(goal);
-        if (result == null) result = caseSupportable(goal);
         if (result == null) result = caseCoreElement(goal);
-        if (result == null) result = caseSupporter(goal);
+        if (result == null) result = caseSupportable(goal);
         if (result == null) result = caseArgumentElement(goal);
+        if (result == null) result = caseSupporter(goal);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -178,10 +177,10 @@ public class GSNSwitch<T> extends Switch<T> {
         if (result == null) result = caseDecomposableCoreElement(basicGoal);
         if (result == null) result = caseStatefulElement(basicGoal);
         if (result == null) result = caseASILfulElement(basicGoal);
-        if (result == null) result = caseSupportable(basicGoal);
         if (result == null) result = caseCoreElement(basicGoal);
-        if (result == null) result = caseSupporter(basicGoal);
+        if (result == null) result = caseSupportable(basicGoal);
         if (result == null) result = caseArgumentElement(basicGoal);
+        if (result == null) result = caseSupporter(basicGoal);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -192,10 +191,10 @@ public class GSNSwitch<T> extends Switch<T> {
         if (result == null) result = caseDecomposableCoreElement(independenceGoal);
         if (result == null) result = caseStatefulElement(independenceGoal);
         if (result == null) result = caseASILfulElement(independenceGoal);
-        if (result == null) result = caseSupportable(independenceGoal);
         if (result == null) result = caseCoreElement(independenceGoal);
-        if (result == null) result = caseSupporter(independenceGoal);
+        if (result == null) result = caseSupportable(independenceGoal);
         if (result == null) result = caseArgumentElement(independenceGoal);
+        if (result == null) result = caseSupporter(independenceGoal);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -203,10 +202,10 @@ public class GSNSwitch<T> extends Switch<T> {
         var strategy = (Strategy)theEObject;
         var result = caseStrategy(strategy);
         if (result == null) result = caseDecomposableCoreElement(strategy);
-        if (result == null) result = caseSupportable(strategy);
         if (result == null) result = caseCoreElement(strategy);
-        if (result == null) result = caseSupporter(strategy);
+        if (result == null) result = caseSupportable(strategy);
         if (result == null) result = caseArgumentElement(strategy);
+        if (result == null) result = caseSupporter(strategy);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -215,10 +214,10 @@ public class GSNSwitch<T> extends Switch<T> {
         var result = caseBasicStrategy(basicStrategy);
         if (result == null) result = caseStrategy(basicStrategy);
         if (result == null) result = caseDecomposableCoreElement(basicStrategy);
-        if (result == null) result = caseSupportable(basicStrategy);
         if (result == null) result = caseCoreElement(basicStrategy);
-        if (result == null) result = caseSupporter(basicStrategy);
+        if (result == null) result = caseSupportable(basicStrategy);
         if (result == null) result = caseArgumentElement(basicStrategy);
+        if (result == null) result = caseSupporter(basicStrategy);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -227,10 +226,10 @@ public class GSNSwitch<T> extends Switch<T> {
         var result = caseASILDecompositionStrategy(asilDecompositionStrategy);
         if (result == null) result = caseStrategy(asilDecompositionStrategy);
         if (result == null) result = caseDecomposableCoreElement(asilDecompositionStrategy);
-        if (result == null) result = caseSupportable(asilDecompositionStrategy);
         if (result == null) result = caseCoreElement(asilDecompositionStrategy);
-        if (result == null) result = caseSupporter(asilDecompositionStrategy);
+        if (result == null) result = caseSupportable(asilDecompositionStrategy);
         if (result == null) result = caseArgumentElement(asilDecompositionStrategy);
+        if (result == null) result = caseSupporter(asilDecompositionStrategy);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -340,13 +339,6 @@ public class GSNSwitch<T> extends Switch<T> {
       case GSNPackage.TEMPLATE: {
         var template = (Template)theEObject;
         var result = caseTemplate(template);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case GSNPackage.TEMPLATE_ELEMENT: {
-        var templateElement = (TemplateElement)theEObject;
-        var result = caseTemplateElement(templateElement);
-        if (result == null) result = caseArgumentElement(templateElement);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -734,21 +726,6 @@ public class GSNSwitch<T> extends Switch<T> {
    * @generated
    */
   public T caseTemplate(Template object) {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Template Element</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Template Element</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseTemplateElement(TemplateElement object) {
     return null;
   }
 

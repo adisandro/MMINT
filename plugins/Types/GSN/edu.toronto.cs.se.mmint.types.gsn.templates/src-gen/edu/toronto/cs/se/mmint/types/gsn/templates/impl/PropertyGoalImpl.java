@@ -12,7 +12,6 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.types.gsn.templates.impl;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -20,7 +19,6 @@ import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -37,9 +35,7 @@ import edu.toronto.cs.se.mmint.types.gsn.templates.reasoning.IGSNDecompositionTr
 import edu.toronto.cs.se.mmint.types.gsn.templates.reasoning.IGSNLeanEncoder.PropertyTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.templates.util.DecompositionUtils;
 import edu.toronto.cs.se.mmint.types.gsn.templates.util.GSNTemplatesBuilder;
-import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
-import edu.toronto.cs.se.modelepedia.gsn.TemplateElement;
 import edu.toronto.cs.se.modelepedia.gsn.impl.GoalImpl;
 
 /**
@@ -50,7 +46,6 @@ import edu.toronto.cs.se.modelepedia.gsn.impl.GoalImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.mmint.types.gsn.templates.impl.PropertyGoalImpl#isValid <em>Valid</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.types.gsn.templates.impl.PropertyGoalImpl#getProperty <em>Property</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.types.gsn.templates.impl.PropertyGoalImpl#getHint <em>Hint</em>}</li>
  * </ul>
@@ -58,26 +53,6 @@ import edu.toronto.cs.se.modelepedia.gsn.impl.GoalImpl;
  * @generated
  */
 public class PropertyGoalImpl extends GoalImpl implements PropertyGoal {
-  /**
-   * The default value of the '{@link #isValid() <em>Valid</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #isValid()
-   * @generated
-   * @ordered
-   */
-  protected static final boolean VALID_EDEFAULT = true;
-
-  /**
-   * The cached value of the '{@link #isValid() <em>Valid</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #isValid()
-   * @generated
-   * @ordered
-   */
-  protected boolean valid = PropertyGoalImpl.VALID_EDEFAULT;
-
   /**
    * The cached value of the '{@link #getProperty() <em>Property</em>}' containment reference.
    * <!-- begin-user-doc -->
@@ -170,29 +145,6 @@ public class PropertyGoalImpl extends GoalImpl implements PropertyGoal {
     }
     else if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, GSNTemplatesPackage.PROPERTY_GOAL__PROPERTY, newProperty, newProperty));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public boolean isValid() {
-    return this.valid;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setValid(boolean newValid) {
-    var oldValid = this.valid;
-    this.valid = newValid;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GSNTemplatesPackage.PROPERTY_GOAL__VALID, oldValid, this.valid));
   }
 
   /**
@@ -324,8 +276,6 @@ public class PropertyGoalImpl extends GoalImpl implements PropertyGoal {
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
-      case GSNTemplatesPackage.PROPERTY_GOAL__VALID:
-        return isValid();
       case GSNTemplatesPackage.PROPERTY_GOAL__PROPERTY:
         return getProperty();
       case GSNTemplatesPackage.PROPERTY_GOAL__HINT:
@@ -342,9 +292,6 @@ public class PropertyGoalImpl extends GoalImpl implements PropertyGoal {
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
-      case GSNTemplatesPackage.PROPERTY_GOAL__VALID:
-        setValid((Boolean)newValue);
-        return;
       case GSNTemplatesPackage.PROPERTY_GOAL__PROPERTY:
         setProperty((Property)newValue);
         return;
@@ -363,9 +310,6 @@ public class PropertyGoalImpl extends GoalImpl implements PropertyGoal {
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
-      case GSNTemplatesPackage.PROPERTY_GOAL__VALID:
-        setValid(PropertyGoalImpl.VALID_EDEFAULT);
-        return;
       case GSNTemplatesPackage.PROPERTY_GOAL__PROPERTY:
         setProperty((Property)null);
         return;
@@ -384,8 +328,6 @@ public class PropertyGoalImpl extends GoalImpl implements PropertyGoal {
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
-      case GSNTemplatesPackage.PROPERTY_GOAL__VALID:
-        return this.valid != PropertyGoalImpl.VALID_EDEFAULT;
       case GSNTemplatesPackage.PROPERTY_GOAL__PROPERTY:
         return this.property != null;
       case GSNTemplatesPackage.PROPERTY_GOAL__HINT:
@@ -401,12 +343,6 @@ public class PropertyGoalImpl extends GoalImpl implements PropertyGoal {
    */
   @Override
   public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-    if (baseClass == TemplateElement.class) {
-      return switch (derivedFeatureID) {
-      case GSNTemplatesPackage.PROPERTY_GOAL__VALID -> GSNPackage.TEMPLATE_ELEMENT__VALID;
-      default -> -1;
-      };
-    }
     if (baseClass == PropertyDecompositionElement.class) {
       return switch (derivedFeatureID) {
       case GSNTemplatesPackage.PROPERTY_GOAL__PROPERTY -> GSNTemplatesPackage.PROPERTY_DECOMPOSITION_ELEMENT__PROPERTY;
@@ -423,12 +359,6 @@ public class PropertyGoalImpl extends GoalImpl implements PropertyGoal {
    */
   @Override
   public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-    if (baseClass == TemplateElement.class) {
-      return switch (baseFeatureID) {
-      case GSNPackage.TEMPLATE_ELEMENT__VALID -> GSNTemplatesPackage.PROPERTY_GOAL__VALID;
-      default -> -1;
-      };
-    }
     if (baseClass == PropertyDecompositionElement.class) {
       return switch (baseFeatureID) {
       case GSNTemplatesPackage.PROPERTY_DECOMPOSITION_ELEMENT__PROPERTY -> GSNTemplatesPackage.PROPERTY_GOAL__PROPERTY;
@@ -444,63 +374,11 @@ public class PropertyGoalImpl extends GoalImpl implements PropertyGoal {
    * @generated
    */
   @Override
-  public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
-    if (baseClass == TemplateElement.class) {
-      return switch (baseOperationID) {
-      case GSNPackage.TEMPLATE_ELEMENT___VALIDATE -> GSNTemplatesPackage.PROPERTY_GOAL___VALIDATE;
-      case GSNPackage.TEMPLATE_ELEMENT___REPAIR -> GSNTemplatesPackage.PROPERTY_GOAL___REPAIR;
-      default -> -1;
-      };
-    }
-    if (baseClass == PropertyDecompositionElement.class) {
-      return switch (baseOperationID) {
-      default -> -1;
-      };
-    }
-    return super.eDerivedOperationID(baseOperationID, baseClass);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-    switch (operationID) {
-      case GSNTemplatesPackage.PROPERTY_GOAL___VALIDATE:
-        try {
-          validate();
-          return null;
-        }
-        catch (Throwable throwable) {
-          throw new InvocationTargetException(throwable);
-        }
-      case GSNTemplatesPackage.PROPERTY_GOAL___REPAIR:
-        try {
-          repair();
-          return null;
-        }
-        catch (Throwable throwable) {
-          throw new InvocationTargetException(throwable);
-        }
-    }
-    return super.eInvoke(operationID, arguments);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public String toString() {
     if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (valid: ");
-    result.append(this.valid);
-    result.append(", hint: ");
+    result.append(" (hint: ");
     result.append(this.hint);
     result.append(')');
     return result.toString();

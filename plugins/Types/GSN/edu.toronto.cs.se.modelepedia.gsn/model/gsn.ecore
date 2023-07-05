@@ -34,17 +34,20 @@
         eType="#//Template" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ArgumentElement" abstract="true">
+    <eOperations name="validate" eExceptions="#//Exception"/>
+    <eOperations name="repair" eExceptions="#//Exception"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="gmf.label">
         <details key="label" value="description"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="contentValidity" eType="#//ValidityValue"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="status" eType="#//ImpactAnnotation"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="templates" upperBound="-1"
         eType="#//Template" eOpposite="#//Template/elements"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="valid" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StatefulElement" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="stateValidity" eType="#//ValidityValue"/>
@@ -55,7 +58,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CoreElement" abstract="true" eSuperTypes="#//ArgumentElement #//Supporter"/>
   <eClassifiers xsi:type="ecore:EClass" name="DecomposableCoreElement" abstract="true"
-      eSuperTypes="#//Supportable #//CoreElement">
+      eSuperTypes="#//CoreElement #//Supportable">
     <eStructuralFeatures xsi:type="ecore:EReference" name="inContextOf" upperBound="-1"
         eType="#//InContextOf" containment="true" eOpposite="#//InContextOf/contextOf"/>
   </eClassifiers>
@@ -194,12 +197,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="elements" lowerBound="1"
         upperBound="-1" eType="#//ArgumentElement" eOpposite="#//ArgumentElement/templates"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TemplateElement" abstract="true" eSuperTypes="#//ArgumentElement">
-    <eOperations name="validate" eExceptions="#//Exception"/>
-    <eOperations name="repair" eExceptions="#//Exception"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="valid" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
-        defaultValueLiteral="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="GSNBuilder" instanceClassName="edu.toronto.cs.se.modelepedia.gsn.util.GSNBuilder"/>
 </ecore:EPackage>

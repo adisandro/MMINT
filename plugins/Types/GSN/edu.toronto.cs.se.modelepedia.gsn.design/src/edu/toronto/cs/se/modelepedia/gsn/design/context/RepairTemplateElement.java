@@ -26,7 +26,7 @@ import org.eclipse.sirius.viewpoint.DSemanticDecorator;
 import org.eclipse.ui.PlatformUI;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.modelepedia.gsn.TemplateElement;
+import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
 
 public class RepairTemplateElement extends AbstractExternalJavaAction {
 
@@ -36,7 +36,8 @@ public class RepairTemplateElement extends AbstractExternalJavaAction {
       return false;
     }
     var modelObj = ((DSemanticDecorator) arg0.iterator().next()).getTarget();
-    if (!(modelObj instanceof TemplateElement templateElem) || templateElem.isValid()) {
+    if (!(modelObj instanceof ArgumentElement templateElem) || templateElem.getTemplates().isEmpty() ||
+        templateElem.isValid()) {
       return false;
     }
     return true;
@@ -44,16 +45,16 @@ public class RepairTemplateElement extends AbstractExternalJavaAction {
 
   @Override
   public void execute(Collection<? extends EObject> arg0, Map<String, Object> arg1) {
-    var templateElem = (TemplateElement) ((DSemanticDecorator) arg0.iterator().next()).getTarget();
+    var templateElem = (ArgumentElement) ((DSemanticDecorator) arg0.iterator().next()).getTarget();
     var sSession = SessionManager.INSTANCE.getSession(templateElem);
     var sDomain = sSession.getTransactionalEditingDomain();
     sDomain.getCommandStack().execute(new RepairTemplateElementCommand(sDomain, templateElem));
   }
 
   private class RepairTemplateElementCommand extends RecordingCommand {
-    TemplateElement templateElem;
+    ArgumentElement templateElem;
 
-    public RepairTemplateElementCommand(TransactionalEditingDomain domain, TemplateElement templateElem) {
+    public RepairTemplateElementCommand(TransactionalEditingDomain domain, ArgumentElement templateElem) {
       super(domain);
       this.templateElem = templateElem;
     }

@@ -52,7 +52,6 @@ import edu.toronto.cs.se.modelepedia.gsn.Supportable;
 import edu.toronto.cs.se.modelepedia.gsn.SupportedBy;
 import edu.toronto.cs.se.modelepedia.gsn.Supporter;
 import edu.toronto.cs.se.modelepedia.gsn.Template;
-import edu.toronto.cs.se.modelepedia.gsn.TemplateElement;
 import edu.toronto.cs.se.modelepedia.gsn.ValidityValue;
 import edu.toronto.cs.se.modelepedia.gsn.XorSupporter;
 
@@ -151,7 +150,6 @@ public class GSNValidator extends EObjectValidator {
     case GSNPackage.XOR_SUPPORTER -> validateXorSupporter((XorSupporter)value, diagnostics, context);
     case GSNPackage.MOF_NSUPPORTER -> validateMofNSupporter((MofNSupporter)value, diagnostics, context);
     case GSNPackage.TEMPLATE -> validateTemplate((Template)value, diagnostics, context);
-    case GSNPackage.TEMPLATE_ELEMENT -> validateTemplateElement((TemplateElement)value, diagnostics, context);
     case GSNPackage.ASIL_LEVEL -> validateASILLevel((ASILLevel)value, diagnostics, context);
     case GSNPackage.VALIDITY_VALUE -> validateValidityValue((ValidityValue)value, diagnostics, context);
     case GSNPackage.IMPACT_TYPE -> validateImpactType((ImpactType)value, diagnostics, context);
@@ -1159,15 +1157,6 @@ public class GSNValidator extends EObjectValidator {
    */
   public boolean validateTemplate(Template template, DiagnosticChain diagnostics, Map<Object, Object> context) {
     return validate_EveryDefaultConstraint(template, diagnostics, context);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public boolean validateTemplateElement(TemplateElement templateElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    return validate_EveryDefaultConstraint(templateElement, diagnostics, context);
   }
 
   /**

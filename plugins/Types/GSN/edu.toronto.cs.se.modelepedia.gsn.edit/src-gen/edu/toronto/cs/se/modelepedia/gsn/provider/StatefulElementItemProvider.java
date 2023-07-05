@@ -33,7 +33,6 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.StatefulElement;
-import edu.toronto.cs.se.modelepedia.gsn.ValidityValue;
 
 /**
  * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.gsn.StatefulElement} object. <!--

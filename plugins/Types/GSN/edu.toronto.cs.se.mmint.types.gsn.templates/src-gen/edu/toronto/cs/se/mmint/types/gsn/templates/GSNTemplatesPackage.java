@@ -393,67 +393,13 @@ public interface GSNTemplatesPackage extends EPackage {
   int DOMAIN_DECOMPOSITION_ELEMENT = 6;
 
   /**
-   * The feature id for the '<em><b>Id</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DOMAIN_DECOMPOSITION_ELEMENT__ID = GSNPackage.TEMPLATE_ELEMENT__ID;
-
-  /**
-   * The feature id for the '<em><b>Description</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DOMAIN_DECOMPOSITION_ELEMENT__DESCRIPTION = GSNPackage.TEMPLATE_ELEMENT__DESCRIPTION;
-
-  /**
-   * The feature id for the '<em><b>Content Validity</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DOMAIN_DECOMPOSITION_ELEMENT__CONTENT_VALIDITY = GSNPackage.TEMPLATE_ELEMENT__CONTENT_VALIDITY;
-
-  /**
-   * The feature id for the '<em><b>Status</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DOMAIN_DECOMPOSITION_ELEMENT__STATUS = GSNPackage.TEMPLATE_ELEMENT__STATUS;
-
-  /**
-   * The feature id for the '<em><b>Templates</b></em>' reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DOMAIN_DECOMPOSITION_ELEMENT__TEMPLATES = GSNPackage.TEMPLATE_ELEMENT__TEMPLATES;
-
-  /**
-   * The feature id for the '<em><b>Valid</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DOMAIN_DECOMPOSITION_ELEMENT__VALID = GSNPackage.TEMPLATE_ELEMENT__VALID;
-
-  /**
    * The feature id for the '<em><b>Domain</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DOMAIN_DECOMPOSITION_ELEMENT__DOMAIN = GSNPackage.TEMPLATE_ELEMENT_FEATURE_COUNT + 0;
+  int DOMAIN_DECOMPOSITION_ELEMENT__DOMAIN = 0;
 
   /**
    * The number of structural features of the '<em>Domain Decomposition Element</em>' class.
@@ -462,25 +408,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DOMAIN_DECOMPOSITION_ELEMENT_FEATURE_COUNT = GSNPackage.TEMPLATE_ELEMENT_FEATURE_COUNT + 1;
-
-  /**
-   * The operation id for the '<em>Validate</em>' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DOMAIN_DECOMPOSITION_ELEMENT___VALIDATE = GSNPackage.TEMPLATE_ELEMENT___VALIDATE;
-
-  /**
-   * The operation id for the '<em>Repair</em>' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DOMAIN_DECOMPOSITION_ELEMENT___REPAIR = GSNPackage.TEMPLATE_ELEMENT___REPAIR;
+  int DOMAIN_DECOMPOSITION_ELEMENT_FEATURE_COUNT = 1;
 
   /**
    * The number of operations of the '<em>Domain Decomposition Element</em>' class.
@@ -489,7 +417,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DOMAIN_DECOMPOSITION_ELEMENT_OPERATION_COUNT = GSNPackage.TEMPLATE_ELEMENT_OPERATION_COUNT + 0;
+  int DOMAIN_DECOMPOSITION_ELEMENT_OPERATION_COUNT = 0;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.mmint.types.gsn.templates.impl.DomainDecompositionStrategyImpl <em>Domain Decomposition Strategy</em>}' class.
@@ -500,24 +428,6 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    */
   int DOMAIN_DECOMPOSITION_STRATEGY = 7;
-
-  /**
-   * The feature id for the '<em><b>Supports</b></em>' reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DOMAIN_DECOMPOSITION_STRATEGY__SUPPORTS = GSNPackage.STRATEGY__SUPPORTS;
-
-  /**
-   * The feature id for the '<em><b>Supported By</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DOMAIN_DECOMPOSITION_STRATEGY__SUPPORTED_BY = GSNPackage.STRATEGY__SUPPORTED_BY;
 
   /**
    * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -538,15 +448,6 @@ public interface GSNTemplatesPackage extends EPackage {
   int DOMAIN_DECOMPOSITION_STRATEGY__DESCRIPTION = GSNPackage.STRATEGY__DESCRIPTION;
 
   /**
-   * The feature id for the '<em><b>Content Validity</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DOMAIN_DECOMPOSITION_STRATEGY__CONTENT_VALIDITY = GSNPackage.STRATEGY__CONTENT_VALIDITY;
-
-  /**
    * The feature id for the '<em><b>Status</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -565,6 +466,33 @@ public interface GSNTemplatesPackage extends EPackage {
   int DOMAIN_DECOMPOSITION_STRATEGY__TEMPLATES = GSNPackage.STRATEGY__TEMPLATES;
 
   /**
+   * The feature id for the '<em><b>Valid</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DOMAIN_DECOMPOSITION_STRATEGY__VALID = GSNPackage.STRATEGY__VALID;
+
+  /**
+   * The feature id for the '<em><b>Supports</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DOMAIN_DECOMPOSITION_STRATEGY__SUPPORTS = GSNPackage.STRATEGY__SUPPORTS;
+
+  /**
+   * The feature id for the '<em><b>Supported By</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DOMAIN_DECOMPOSITION_STRATEGY__SUPPORTED_BY = GSNPackage.STRATEGY__SUPPORTED_BY;
+
+  /**
    * The feature id for the '<em><b>In Context Of</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -574,22 +502,13 @@ public interface GSNTemplatesPackage extends EPackage {
   int DOMAIN_DECOMPOSITION_STRATEGY__IN_CONTEXT_OF = GSNPackage.STRATEGY__IN_CONTEXT_OF;
 
   /**
-   * The feature id for the '<em><b>Valid</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DOMAIN_DECOMPOSITION_STRATEGY__VALID = GSNPackage.STRATEGY_FEATURE_COUNT + 0;
-
-  /**
    * The feature id for the '<em><b>Domain</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DOMAIN_DECOMPOSITION_STRATEGY__DOMAIN = GSNPackage.STRATEGY_FEATURE_COUNT + 1;
+  int DOMAIN_DECOMPOSITION_STRATEGY__DOMAIN = GSNPackage.STRATEGY_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Domain Decomposition Strategy</em>' class.
@@ -598,7 +517,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DOMAIN_DECOMPOSITION_STRATEGY_FEATURE_COUNT = GSNPackage.STRATEGY_FEATURE_COUNT + 2;
+  int DOMAIN_DECOMPOSITION_STRATEGY_FEATURE_COUNT = GSNPackage.STRATEGY_FEATURE_COUNT + 1;
 
   /**
    * The operation id for the '<em>Validate</em>' operation.
@@ -607,7 +526,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DOMAIN_DECOMPOSITION_STRATEGY___VALIDATE = GSNPackage.STRATEGY_OPERATION_COUNT + 0;
+  int DOMAIN_DECOMPOSITION_STRATEGY___VALIDATE = GSNPackage.STRATEGY___VALIDATE;
 
   /**
    * The operation id for the '<em>Repair</em>' operation.
@@ -616,7 +535,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DOMAIN_DECOMPOSITION_STRATEGY___REPAIR = GSNPackage.STRATEGY_OPERATION_COUNT + 1;
+  int DOMAIN_DECOMPOSITION_STRATEGY___REPAIR = GSNPackage.STRATEGY___REPAIR;
 
   /**
    * The number of operations of the '<em>Domain Decomposition Strategy</em>' class.
@@ -625,7 +544,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DOMAIN_DECOMPOSITION_STRATEGY_OPERATION_COUNT = GSNPackage.STRATEGY_OPERATION_COUNT + 2;
+  int DOMAIN_DECOMPOSITION_STRATEGY_OPERATION_COUNT = GSNPackage.STRATEGY_OPERATION_COUNT + 0;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.mmint.types.gsn.templates.impl.DomainGoalImpl <em>Domain Goal</em>}' class.
@@ -636,24 +555,6 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    */
   int DOMAIN_GOAL = 8;
-
-  /**
-   * The feature id for the '<em><b>Supports</b></em>' reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DOMAIN_GOAL__SUPPORTS = GSNPackage.GOAL__SUPPORTS;
-
-  /**
-   * The feature id for the '<em><b>Supported By</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DOMAIN_GOAL__SUPPORTED_BY = GSNPackage.GOAL__SUPPORTED_BY;
 
   /**
    * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -674,15 +575,6 @@ public interface GSNTemplatesPackage extends EPackage {
   int DOMAIN_GOAL__DESCRIPTION = GSNPackage.GOAL__DESCRIPTION;
 
   /**
-   * The feature id for the '<em><b>Content Validity</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DOMAIN_GOAL__CONTENT_VALIDITY = GSNPackage.GOAL__CONTENT_VALIDITY;
-
-  /**
    * The feature id for the '<em><b>Status</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -699,6 +591,33 @@ public interface GSNTemplatesPackage extends EPackage {
    * @ordered
    */
   int DOMAIN_GOAL__TEMPLATES = GSNPackage.GOAL__TEMPLATES;
+
+  /**
+   * The feature id for the '<em><b>Valid</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DOMAIN_GOAL__VALID = GSNPackage.GOAL__VALID;
+
+  /**
+   * The feature id for the '<em><b>Supports</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DOMAIN_GOAL__SUPPORTS = GSNPackage.GOAL__SUPPORTS;
+
+  /**
+   * The feature id for the '<em><b>Supported By</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DOMAIN_GOAL__SUPPORTED_BY = GSNPackage.GOAL__SUPPORTED_BY;
 
   /**
    * The feature id for the '<em><b>In Context Of</b></em>' containment reference list.
@@ -728,22 +647,13 @@ public interface GSNTemplatesPackage extends EPackage {
   int DOMAIN_GOAL__ASIL = GSNPackage.GOAL__ASIL;
 
   /**
-   * The feature id for the '<em><b>Valid</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DOMAIN_GOAL__VALID = GSNPackage.GOAL_FEATURE_COUNT + 0;
-
-  /**
    * The feature id for the '<em><b>Domain</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DOMAIN_GOAL__DOMAIN = GSNPackage.GOAL_FEATURE_COUNT + 1;
+  int DOMAIN_GOAL__DOMAIN = GSNPackage.GOAL_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Domain Goal</em>' class.
@@ -752,7 +662,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DOMAIN_GOAL_FEATURE_COUNT = GSNPackage.GOAL_FEATURE_COUNT + 2;
+  int DOMAIN_GOAL_FEATURE_COUNT = GSNPackage.GOAL_FEATURE_COUNT + 1;
 
   /**
    * The operation id for the '<em>Validate</em>' operation.
@@ -761,7 +671,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DOMAIN_GOAL___VALIDATE = GSNPackage.GOAL_OPERATION_COUNT + 0;
+  int DOMAIN_GOAL___VALIDATE = GSNPackage.GOAL___VALIDATE;
 
   /**
    * The operation id for the '<em>Repair</em>' operation.
@@ -770,7 +680,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DOMAIN_GOAL___REPAIR = GSNPackage.GOAL_OPERATION_COUNT + 1;
+  int DOMAIN_GOAL___REPAIR = GSNPackage.GOAL___REPAIR;
 
   /**
    * The number of operations of the '<em>Domain Goal</em>' class.
@@ -779,7 +689,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DOMAIN_GOAL_OPERATION_COUNT = GSNPackage.GOAL_OPERATION_COUNT + 2;
+  int DOMAIN_GOAL_OPERATION_COUNT = GSNPackage.GOAL_OPERATION_COUNT + 0;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.mmint.types.gsn.templates.impl.DomainDecompositionTemplateImpl <em>Domain Decomposition Template</em>}' class.
@@ -911,67 +821,13 @@ public interface GSNTemplatesPackage extends EPackage {
   int PROPERTY_DECOMPOSITION_ELEMENT = 11;
 
   /**
-   * The feature id for the '<em><b>Id</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PROPERTY_DECOMPOSITION_ELEMENT__ID = GSNPackage.TEMPLATE_ELEMENT__ID;
-
-  /**
-   * The feature id for the '<em><b>Description</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PROPERTY_DECOMPOSITION_ELEMENT__DESCRIPTION = GSNPackage.TEMPLATE_ELEMENT__DESCRIPTION;
-
-  /**
-   * The feature id for the '<em><b>Content Validity</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PROPERTY_DECOMPOSITION_ELEMENT__CONTENT_VALIDITY = GSNPackage.TEMPLATE_ELEMENT__CONTENT_VALIDITY;
-
-  /**
-   * The feature id for the '<em><b>Status</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PROPERTY_DECOMPOSITION_ELEMENT__STATUS = GSNPackage.TEMPLATE_ELEMENT__STATUS;
-
-  /**
-   * The feature id for the '<em><b>Templates</b></em>' reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PROPERTY_DECOMPOSITION_ELEMENT__TEMPLATES = GSNPackage.TEMPLATE_ELEMENT__TEMPLATES;
-
-  /**
-   * The feature id for the '<em><b>Valid</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PROPERTY_DECOMPOSITION_ELEMENT__VALID = GSNPackage.TEMPLATE_ELEMENT__VALID;
-
-  /**
    * The feature id for the '<em><b>Property</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PROPERTY_DECOMPOSITION_ELEMENT__PROPERTY = GSNPackage.TEMPLATE_ELEMENT_FEATURE_COUNT + 0;
+  int PROPERTY_DECOMPOSITION_ELEMENT__PROPERTY = 0;
 
   /**
    * The number of structural features of the '<em>Property Decomposition Element</em>' class.
@@ -980,25 +836,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PROPERTY_DECOMPOSITION_ELEMENT_FEATURE_COUNT = GSNPackage.TEMPLATE_ELEMENT_FEATURE_COUNT + 1;
-
-  /**
-   * The operation id for the '<em>Validate</em>' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PROPERTY_DECOMPOSITION_ELEMENT___VALIDATE = GSNPackage.TEMPLATE_ELEMENT___VALIDATE;
-
-  /**
-   * The operation id for the '<em>Repair</em>' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PROPERTY_DECOMPOSITION_ELEMENT___REPAIR = GSNPackage.TEMPLATE_ELEMENT___REPAIR;
+  int PROPERTY_DECOMPOSITION_ELEMENT_FEATURE_COUNT = 1;
 
   /**
    * The number of operations of the '<em>Property Decomposition Element</em>' class.
@@ -1007,7 +845,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PROPERTY_DECOMPOSITION_ELEMENT_OPERATION_COUNT = GSNPackage.TEMPLATE_ELEMENT_OPERATION_COUNT + 0;
+  int PROPERTY_DECOMPOSITION_ELEMENT_OPERATION_COUNT = 0;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.mmint.types.gsn.templates.impl.PropertyDecompositionStrategyImpl <em>Property Decomposition Strategy</em>}' class.
@@ -1018,24 +856,6 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    */
   int PROPERTY_DECOMPOSITION_STRATEGY = 12;
-
-  /**
-   * The feature id for the '<em><b>Supports</b></em>' reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PROPERTY_DECOMPOSITION_STRATEGY__SUPPORTS = GSNPackage.STRATEGY__SUPPORTS;
-
-  /**
-   * The feature id for the '<em><b>Supported By</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PROPERTY_DECOMPOSITION_STRATEGY__SUPPORTED_BY = GSNPackage.STRATEGY__SUPPORTED_BY;
 
   /**
    * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -1056,15 +876,6 @@ public interface GSNTemplatesPackage extends EPackage {
   int PROPERTY_DECOMPOSITION_STRATEGY__DESCRIPTION = GSNPackage.STRATEGY__DESCRIPTION;
 
   /**
-   * The feature id for the '<em><b>Content Validity</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PROPERTY_DECOMPOSITION_STRATEGY__CONTENT_VALIDITY = GSNPackage.STRATEGY__CONTENT_VALIDITY;
-
-  /**
    * The feature id for the '<em><b>Status</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1083,6 +894,33 @@ public interface GSNTemplatesPackage extends EPackage {
   int PROPERTY_DECOMPOSITION_STRATEGY__TEMPLATES = GSNPackage.STRATEGY__TEMPLATES;
 
   /**
+   * The feature id for the '<em><b>Valid</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_DECOMPOSITION_STRATEGY__VALID = GSNPackage.STRATEGY__VALID;
+
+  /**
+   * The feature id for the '<em><b>Supports</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_DECOMPOSITION_STRATEGY__SUPPORTS = GSNPackage.STRATEGY__SUPPORTS;
+
+  /**
+   * The feature id for the '<em><b>Supported By</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_DECOMPOSITION_STRATEGY__SUPPORTED_BY = GSNPackage.STRATEGY__SUPPORTED_BY;
+
+  /**
    * The feature id for the '<em><b>In Context Of</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1092,22 +930,13 @@ public interface GSNTemplatesPackage extends EPackage {
   int PROPERTY_DECOMPOSITION_STRATEGY__IN_CONTEXT_OF = GSNPackage.STRATEGY__IN_CONTEXT_OF;
 
   /**
-   * The feature id for the '<em><b>Valid</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PROPERTY_DECOMPOSITION_STRATEGY__VALID = GSNPackage.STRATEGY_FEATURE_COUNT + 0;
-
-  /**
    * The feature id for the '<em><b>Property</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PROPERTY_DECOMPOSITION_STRATEGY__PROPERTY = GSNPackage.STRATEGY_FEATURE_COUNT + 1;
+  int PROPERTY_DECOMPOSITION_STRATEGY__PROPERTY = GSNPackage.STRATEGY_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Reasoner Name</b></em>' attribute.
@@ -1116,7 +945,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PROPERTY_DECOMPOSITION_STRATEGY__REASONER_NAME = GSNPackage.STRATEGY_FEATURE_COUNT + 2;
+  int PROPERTY_DECOMPOSITION_STRATEGY__REASONER_NAME = GSNPackage.STRATEGY_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Property Decomposition Strategy</em>' class.
@@ -1125,7 +954,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PROPERTY_DECOMPOSITION_STRATEGY_FEATURE_COUNT = GSNPackage.STRATEGY_FEATURE_COUNT + 3;
+  int PROPERTY_DECOMPOSITION_STRATEGY_FEATURE_COUNT = GSNPackage.STRATEGY_FEATURE_COUNT + 2;
 
   /**
    * The operation id for the '<em>Validate</em>' operation.
@@ -1134,7 +963,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PROPERTY_DECOMPOSITION_STRATEGY___VALIDATE = GSNPackage.STRATEGY_OPERATION_COUNT + 0;
+  int PROPERTY_DECOMPOSITION_STRATEGY___VALIDATE = GSNPackage.STRATEGY___VALIDATE;
 
   /**
    * The operation id for the '<em>Repair</em>' operation.
@@ -1143,7 +972,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PROPERTY_DECOMPOSITION_STRATEGY___REPAIR = GSNPackage.STRATEGY_OPERATION_COUNT + 1;
+  int PROPERTY_DECOMPOSITION_STRATEGY___REPAIR = GSNPackage.STRATEGY___REPAIR;
 
   /**
    * The number of operations of the '<em>Property Decomposition Strategy</em>' class.
@@ -1152,7 +981,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PROPERTY_DECOMPOSITION_STRATEGY_OPERATION_COUNT = GSNPackage.STRATEGY_OPERATION_COUNT + 2;
+  int PROPERTY_DECOMPOSITION_STRATEGY_OPERATION_COUNT = GSNPackage.STRATEGY_OPERATION_COUNT + 0;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.mmint.types.gsn.templates.impl.PropertyGoalImpl <em>Property Goal</em>}' class.
@@ -1163,24 +992,6 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    */
   int PROPERTY_GOAL = 13;
-
-  /**
-   * The feature id for the '<em><b>Supports</b></em>' reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PROPERTY_GOAL__SUPPORTS = GSNPackage.GOAL__SUPPORTS;
-
-  /**
-   * The feature id for the '<em><b>Supported By</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PROPERTY_GOAL__SUPPORTED_BY = GSNPackage.GOAL__SUPPORTED_BY;
 
   /**
    * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -1201,15 +1012,6 @@ public interface GSNTemplatesPackage extends EPackage {
   int PROPERTY_GOAL__DESCRIPTION = GSNPackage.GOAL__DESCRIPTION;
 
   /**
-   * The feature id for the '<em><b>Content Validity</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PROPERTY_GOAL__CONTENT_VALIDITY = GSNPackage.GOAL__CONTENT_VALIDITY;
-
-  /**
    * The feature id for the '<em><b>Status</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1226,6 +1028,33 @@ public interface GSNTemplatesPackage extends EPackage {
    * @ordered
    */
   int PROPERTY_GOAL__TEMPLATES = GSNPackage.GOAL__TEMPLATES;
+
+  /**
+   * The feature id for the '<em><b>Valid</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_GOAL__VALID = GSNPackage.GOAL__VALID;
+
+  /**
+   * The feature id for the '<em><b>Supports</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_GOAL__SUPPORTS = GSNPackage.GOAL__SUPPORTS;
+
+  /**
+   * The feature id for the '<em><b>Supported By</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_GOAL__SUPPORTED_BY = GSNPackage.GOAL__SUPPORTED_BY;
 
   /**
    * The feature id for the '<em><b>In Context Of</b></em>' containment reference list.
@@ -1255,22 +1084,13 @@ public interface GSNTemplatesPackage extends EPackage {
   int PROPERTY_GOAL__ASIL = GSNPackage.GOAL__ASIL;
 
   /**
-   * The feature id for the '<em><b>Valid</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PROPERTY_GOAL__VALID = GSNPackage.GOAL_FEATURE_COUNT + 0;
-
-  /**
    * The feature id for the '<em><b>Property</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PROPERTY_GOAL__PROPERTY = GSNPackage.GOAL_FEATURE_COUNT + 1;
+  int PROPERTY_GOAL__PROPERTY = GSNPackage.GOAL_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Hint</b></em>' attribute.
@@ -1279,7 +1099,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PROPERTY_GOAL__HINT = GSNPackage.GOAL_FEATURE_COUNT + 2;
+  int PROPERTY_GOAL__HINT = GSNPackage.GOAL_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Property Goal</em>' class.
@@ -1288,7 +1108,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PROPERTY_GOAL_FEATURE_COUNT = GSNPackage.GOAL_FEATURE_COUNT + 3;
+  int PROPERTY_GOAL_FEATURE_COUNT = GSNPackage.GOAL_FEATURE_COUNT + 2;
 
   /**
    * The operation id for the '<em>Validate</em>' operation.
@@ -1297,7 +1117,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PROPERTY_GOAL___VALIDATE = GSNPackage.GOAL_OPERATION_COUNT + 0;
+  int PROPERTY_GOAL___VALIDATE = GSNPackage.GOAL___VALIDATE;
 
   /**
    * The operation id for the '<em>Repair</em>' operation.
@@ -1306,7 +1126,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PROPERTY_GOAL___REPAIR = GSNPackage.GOAL_OPERATION_COUNT + 1;
+  int PROPERTY_GOAL___REPAIR = GSNPackage.GOAL___REPAIR;
 
   /**
    * The number of operations of the '<em>Property Goal</em>' class.
@@ -1315,7 +1135,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PROPERTY_GOAL_OPERATION_COUNT = GSNPackage.GOAL_OPERATION_COUNT + 2;
+  int PROPERTY_GOAL_OPERATION_COUNT = GSNPackage.GOAL_OPERATION_COUNT + 0;
 
 
   /**
@@ -1420,15 +1240,6 @@ public interface GSNTemplatesPackage extends EPackage {
   int FILES_CONTEXT__DESCRIPTION = GSNPackage.CONTEXT__DESCRIPTION;
 
   /**
-   * The feature id for the '<em><b>Content Validity</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int FILES_CONTEXT__CONTENT_VALIDITY = GSNPackage.CONTEXT__CONTENT_VALIDITY;
-
-  /**
    * The feature id for the '<em><b>Status</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1447,6 +1258,15 @@ public interface GSNTemplatesPackage extends EPackage {
   int FILES_CONTEXT__TEMPLATES = GSNPackage.CONTEXT__TEMPLATES;
 
   /**
+   * The feature id for the '<em><b>Valid</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FILES_CONTEXT__VALID = GSNPackage.CONTEXT__VALID;
+
+  /**
    * The feature id for the '<em><b>Context Of</b></em>' reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1456,22 +1276,13 @@ public interface GSNTemplatesPackage extends EPackage {
   int FILES_CONTEXT__CONTEXT_OF = GSNPackage.CONTEXT__CONTEXT_OF;
 
   /**
-   * The feature id for the '<em><b>Valid</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int FILES_CONTEXT__VALID = GSNPackage.CONTEXT_FEATURE_COUNT + 0;
-
-  /**
    * The feature id for the '<em><b>Paths</b></em>' attribute list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FILES_CONTEXT__PATHS = GSNPackage.CONTEXT_FEATURE_COUNT + 1;
+  int FILES_CONTEXT__PATHS = GSNPackage.CONTEXT_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Files Context</em>' class.
@@ -1480,7 +1291,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int FILES_CONTEXT_FEATURE_COUNT = GSNPackage.CONTEXT_FEATURE_COUNT + 2;
+  int FILES_CONTEXT_FEATURE_COUNT = GSNPackage.CONTEXT_FEATURE_COUNT + 1;
 
   /**
    * The operation id for the '<em>Validate</em>' operation.
@@ -1489,7 +1300,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int FILES_CONTEXT___VALIDATE = GSNPackage.CONTEXT_OPERATION_COUNT + 0;
+  int FILES_CONTEXT___VALIDATE = GSNPackage.CONTEXT___VALIDATE;
 
   /**
    * The operation id for the '<em>Repair</em>' operation.
@@ -1498,7 +1309,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int FILES_CONTEXT___REPAIR = GSNPackage.CONTEXT_OPERATION_COUNT + 1;
+  int FILES_CONTEXT___REPAIR = GSNPackage.CONTEXT___REPAIR;
 
   /**
    * The number of operations of the '<em>Files Context</em>' class.
@@ -1507,7 +1318,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int FILES_CONTEXT_OPERATION_COUNT = GSNPackage.CONTEXT_OPERATION_COUNT + 2;
+  int FILES_CONTEXT_OPERATION_COUNT = GSNPackage.CONTEXT_OPERATION_COUNT + 0;
 
   /**
    * The meta object id for the '<em>Builder</em>' data type.

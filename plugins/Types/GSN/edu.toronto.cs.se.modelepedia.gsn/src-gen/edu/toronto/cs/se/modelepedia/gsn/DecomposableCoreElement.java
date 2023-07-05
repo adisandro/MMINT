@@ -30,7 +30,7 @@ import org.eclipse.emf.common.util.EList;
  * @model abstract="true"
  * @generated
  */
-public interface DecomposableCoreElement extends Supportable, CoreElement {
+public interface DecomposableCoreElement extends CoreElement, Supportable {
   /**
    * Returns the value of the '<em><b>In Context Of</b></em>' containment reference list.
    * The list contents are of type {@link edu.toronto.cs.se.modelepedia.gsn.InContextOf}.

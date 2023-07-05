@@ -28,7 +28,6 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesFactory;
 import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
 import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyGoal;
-import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.provider.GoalItemProvider;
 
 /**
@@ -59,32 +58,9 @@ public class PropertyGoalItemProvider extends GoalItemProvider {
     if (this.itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
-      addValidPropertyDescriptor(object);
       addHintPropertyDescriptor(object);
     }
     return this.itemPropertyDescriptors;
-  }
-
-  /**
-   * This adds a property descriptor for the Valid feature.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected void addValidPropertyDescriptor(Object object) {
-    this.itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_TemplateElement_valid_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_TemplateElement_valid_feature", "_UI_TemplateElement_type"),
-         GSNPackage.Literals.TEMPLATE_ELEMENT__VALID,
-         true,
-         false,
-         false,
-         ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-         null,
-         null));
   }
 
   /**
@@ -177,7 +153,6 @@ public class PropertyGoalItemProvider extends GoalItemProvider {
     updateChildren(notification);
 
     switch (notification.getFeatureID(PropertyGoal.class)) {
-      case GSNTemplatesPackage.PROPERTY_GOAL__VALID:
       case GSNTemplatesPackage.PROPERTY_GOAL__HINT:
         fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
         return;

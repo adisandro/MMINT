@@ -33,8 +33,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="ValueDomain" eSuperTypes="#//Domain">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DomainDecompositionElement" abstract="true"
-      eSuperTypes="../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//TemplateElement">
+  <eClassifiers xsi:type="ecore:EClass" name="DomainDecompositionElement" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EReference" name="domain" lowerBound="1"
         eType="#//Domain" containment="true"/>
   </eClassifiers>
@@ -47,8 +46,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="informal" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PropertyDecompositionElement" abstract="true"
-      eSuperTypes="../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//TemplateElement">
+  <eClassifiers xsi:type="ecore:EClass" name="PropertyDecompositionElement" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EReference" name="property" lowerBound="1"
         eType="#//Property" containment="true"/>
   </eClassifiers>
@@ -61,7 +59,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PropertyDecompositionTemplate" eSuperTypes="#//DecompositionTemplate"/>
   <eClassifiers xsi:type="ecore:EDataType" name="GSNTemplatesBuilder" instanceClassName="edu.toronto.cs.se.mmint.types.gsn.templates.util.GSNTemplatesBuilder"/>
-  <eClassifiers xsi:type="ecore:EClass" name="FilesContext" eSuperTypes="../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Context ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//TemplateElement">
+  <eClassifiers xsi:type="ecore:EClass" name="FilesContext" eSuperTypes="../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Context">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="paths" lowerBound="1" upperBound="-1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>

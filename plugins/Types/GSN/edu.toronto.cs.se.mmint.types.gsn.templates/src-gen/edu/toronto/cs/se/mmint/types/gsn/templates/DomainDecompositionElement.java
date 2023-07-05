@@ -12,7 +12,7 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.types.gsn.templates;
 
-import edu.toronto.cs.se.modelepedia.gsn.TemplateElement;
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,7 +30,7 @@ import edu.toronto.cs.se.modelepedia.gsn.TemplateElement;
  * @model abstract="true"
  * @generated
  */
-public interface DomainDecompositionElement extends TemplateElement {
+public interface DomainDecompositionElement extends EObject {
   /**
    * Returns the value of the '<em><b>Domain</b></em>' containment reference.
    * <!-- begin-user-doc -->

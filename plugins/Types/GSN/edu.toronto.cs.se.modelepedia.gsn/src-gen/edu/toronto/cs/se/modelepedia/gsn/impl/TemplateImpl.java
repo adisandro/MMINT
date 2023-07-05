@@ -15,7 +15,6 @@ package edu.toronto.cs.se.modelepedia.gsn.impl;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -28,13 +27,11 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
 import edu.toronto.cs.se.modelepedia.gsn.Template;
-import edu.toronto.cs.se.modelepedia.gsn.TemplateElement;
 import edu.toronto.cs.se.modelepedia.gsn.util.GSNBuilder;
 
 /**
@@ -140,37 +137,16 @@ public class TemplateImpl extends MinimalEObjectImpl.Container implements Templa
   /**
    * @generated NOT
    */
-  private Optional<String> findPattern(String text) {
-    var i = text.indexOf(GSNBuilder.PATTERN1);
-    if (i == -1) {
-      return Optional.empty();
-    }
-    var j = text.indexOf(GSNBuilder.PATTERN2, i);
-    if (j == -1) {
-      return Optional.empty();
-    }
-
-    return Optional.of(text.substring(i+GSNBuilder.PATTERN1.length(), j));
-  }
-
-  /**
-   * @generated NOT
-   */
   @Override
   public void validate() throws Exception {
     for (var elem : List.copyOf(getElements())) {
       // copy to avoid concurrent modifications: template element validation may modify the template
-      if (elem instanceof TemplateElement templateElem) {
-        try {
-          templateElem.validate();
-        }
-        catch (Exception e) {
-          templateElem.setValid(false);
-          throw e;
-        }
+      try {
+        elem.validate();
       }
-      else if (findPattern(elem.getDescription()).isPresent()) {
-        throw new MMINTException("Element " + elem.getId() + " description contains text that is not instantiated");
+      catch (Exception e) {
+        elem.setValid(false);
+        throw e;
       }
     }
   }
@@ -192,7 +168,7 @@ public class TemplateImpl extends MinimalEObjectImpl.Container implements Templa
     for (var elem : builder.getGSNElements()) {
       while (true) {
         var desc = elem.getDescription();
-        var pattern = findPattern(desc);
+        var pattern = GSNBuilder.findPattern(desc);
         if (pattern.isEmpty()) {
           break;
         }

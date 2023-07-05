@@ -12,21 +12,16 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.types.gsn.templates.impl;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.types.gsn.templates.FilesContext;
 import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
-import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
-import edu.toronto.cs.se.modelepedia.gsn.TemplateElement;
 import edu.toronto.cs.se.modelepedia.gsn.impl.ContextImpl;
 
 /**
@@ -37,33 +32,12 @@ import edu.toronto.cs.se.modelepedia.gsn.impl.ContextImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.mmint.types.gsn.templates.impl.FilesContextImpl#isValid <em>Valid</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.types.gsn.templates.impl.FilesContextImpl#getPaths <em>Paths</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class FilesContextImpl extends ContextImpl implements FilesContext {
-  /**
-   * The default value of the '{@link #isValid() <em>Valid</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #isValid()
-   * @generated
-   * @ordered
-   */
-  protected static final boolean VALID_EDEFAULT = true;
-
-  /**
-   * The cached value of the '{@link #isValid() <em>Valid</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #isValid()
-   * @generated
-   * @ordered
-   */
-  protected boolean valid = FilesContextImpl.VALID_EDEFAULT;
-
   /**
    * The cached value of the '{@link #getPaths() <em>Paths</em>}' attribute list.
    * <!-- begin-user-doc -->
@@ -91,29 +65,6 @@ public class FilesContextImpl extends ContextImpl implements FilesContext {
   @Override
   protected EClass eStaticClass() {
     return GSNTemplatesPackage.Literals.FILES_CONTEXT;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public boolean isValid() {
-    return this.valid;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setValid(boolean newValid) {
-    var oldValid = this.valid;
-    this.valid = newValid;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GSNTemplatesPackage.FILES_CONTEXT__VALID, oldValid, this.valid));
   }
 
   /**
@@ -157,8 +108,6 @@ public class FilesContextImpl extends ContextImpl implements FilesContext {
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
-      case GSNTemplatesPackage.FILES_CONTEXT__VALID:
-        return isValid();
       case GSNTemplatesPackage.FILES_CONTEXT__PATHS:
         return getPaths();
     }
@@ -174,9 +123,6 @@ public class FilesContextImpl extends ContextImpl implements FilesContext {
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
-      case GSNTemplatesPackage.FILES_CONTEXT__VALID:
-        setValid((Boolean)newValue);
-        return;
       case GSNTemplatesPackage.FILES_CONTEXT__PATHS:
         getPaths().clear();
         getPaths().addAll((Collection<? extends String>)newValue);
@@ -193,9 +139,6 @@ public class FilesContextImpl extends ContextImpl implements FilesContext {
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
-      case GSNTemplatesPackage.FILES_CONTEXT__VALID:
-        setValid(FilesContextImpl.VALID_EDEFAULT);
-        return;
       case GSNTemplatesPackage.FILES_CONTEXT__PATHS:
         getPaths().clear();
         return;
@@ -211,8 +154,6 @@ public class FilesContextImpl extends ContextImpl implements FilesContext {
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
-      case GSNTemplatesPackage.FILES_CONTEXT__VALID:
-        return this.valid != FilesContextImpl.VALID_EDEFAULT;
       case GSNTemplatesPackage.FILES_CONTEXT__PATHS:
         return this.paths != null && !this.paths.isEmpty();
     }
@@ -225,90 +166,11 @@ public class FilesContextImpl extends ContextImpl implements FilesContext {
    * @generated
    */
   @Override
-  public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-    if (baseClass == TemplateElement.class) {
-      return switch (derivedFeatureID) {
-      case GSNTemplatesPackage.FILES_CONTEXT__VALID -> GSNPackage.TEMPLATE_ELEMENT__VALID;
-      default -> -1;
-      };
-    }
-    return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-    if (baseClass == TemplateElement.class) {
-      return switch (baseFeatureID) {
-      case GSNPackage.TEMPLATE_ELEMENT__VALID -> GSNTemplatesPackage.FILES_CONTEXT__VALID;
-      default -> -1;
-      };
-    }
-    return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
-    if (baseClass == TemplateElement.class) {
-      return switch (baseOperationID) {
-      case GSNPackage.TEMPLATE_ELEMENT___VALIDATE -> GSNTemplatesPackage.FILES_CONTEXT___VALIDATE;
-      case GSNPackage.TEMPLATE_ELEMENT___REPAIR -> GSNTemplatesPackage.FILES_CONTEXT___REPAIR;
-      default -> -1;
-      };
-    }
-    return super.eDerivedOperationID(baseOperationID, baseClass);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-    switch (operationID) {
-      case GSNTemplatesPackage.FILES_CONTEXT___VALIDATE:
-        try {
-          validate();
-          return null;
-        }
-        catch (Throwable throwable) {
-          throw new InvocationTargetException(throwable);
-        }
-      case GSNTemplatesPackage.FILES_CONTEXT___REPAIR:
-        try {
-          repair();
-          return null;
-        }
-        catch (Throwable throwable) {
-          throw new InvocationTargetException(throwable);
-        }
-    }
-    return super.eInvoke(operationID, arguments);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public String toString() {
     if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (valid: ");
-    result.append(this.valid);
-    result.append(", paths: ");
+    result.append(" (paths: ");
     result.append(this.paths);
     result.append(')');
     return result.toString();

@@ -20,15 +20,12 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import edu.toronto.cs.se.mmint.types.gsn.templates.DomainDecompositionStrategy;
 import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesFactory;
 import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
-import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.provider.StrategyItemProvider;
 
 /**
@@ -59,31 +56,8 @@ public class DomainDecompositionStrategyItemProvider extends StrategyItemProvide
     if (this.itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
-      addValidPropertyDescriptor(object);
     }
     return this.itemPropertyDescriptors;
-  }
-
-  /**
-   * This adds a property descriptor for the Valid feature.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected void addValidPropertyDescriptor(Object object) {
-    this.itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_TemplateElement_valid_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_TemplateElement_valid_feature", "_UI_TemplateElement_type"),
-         GSNPackage.Literals.TEMPLATE_ELEMENT__VALID,
-         true,
-         false,
-         false,
-         ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-         null,
-         null));
   }
 
   /**
@@ -154,9 +128,6 @@ public class DomainDecompositionStrategyItemProvider extends StrategyItemProvide
     updateChildren(notification);
 
     switch (notification.getFeatureID(DomainDecompositionStrategy.class)) {
-      case GSNTemplatesPackage.DOMAIN_DECOMPOSITION_STRATEGY__VALID:
-        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-        return;
       case GSNTemplatesPackage.DOMAIN_DECOMPOSITION_STRATEGY__DOMAIN:
         fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
         return;

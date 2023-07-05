@@ -47,7 +47,6 @@ import edu.toronto.cs.se.modelepedia.gsn.Supportable;
 import edu.toronto.cs.se.modelepedia.gsn.SupportedBy;
 import edu.toronto.cs.se.modelepedia.gsn.Supporter;
 import edu.toronto.cs.se.modelepedia.gsn.Template;
-import edu.toronto.cs.se.modelepedia.gsn.TemplateElement;
 import edu.toronto.cs.se.modelepedia.gsn.XorSupporter;
 
 /**
@@ -215,10 +214,6 @@ public class GSNAdapterFactory extends AdapterFactoryImpl {
       @Override
       public Adapter caseTemplate(Template object) {
         return createTemplateAdapter();
-      }
-      @Override
-      public Adapter caseTemplateElement(TemplateElement object) {
-        return createTemplateElementAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object) {
@@ -591,20 +586,6 @@ public class GSNAdapterFactory extends AdapterFactoryImpl {
    * @generated
    */
   public Adapter createTemplateAdapter() {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.gsn.TemplateElement <em>Template Element</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see edu.toronto.cs.se.modelepedia.gsn.TemplateElement
-   * @generated
-   */
-  public Adapter createTemplateElementAdapter() {
     return null;
   }
 

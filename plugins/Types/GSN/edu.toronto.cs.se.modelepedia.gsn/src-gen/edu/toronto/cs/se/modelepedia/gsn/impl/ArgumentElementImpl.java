@@ -13,6 +13,7 @@
  *******************************************************************************/
 package edu.toronto.cs.se.modelepedia.gsn.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -25,11 +26,13 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.ImpactAnnotation;
 import edu.toronto.cs.se.modelepedia.gsn.Template;
-import edu.toronto.cs.se.modelepedia.gsn.ValidityValue;
+import edu.toronto.cs.se.modelepedia.gsn.util.GSNBuilder;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Argument Element</b></em>'. <!-- end-user-doc
@@ -87,26 +90,6 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
   protected String description = ArgumentElementImpl.DESCRIPTION_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getContentValidity() <em>Content Validity</em>}' attribute.
-   * <!-- begin-user-doc
-   * --> <!-- end-user-doc -->
-   * @see #getContentValidity()
-   * @generated
-   * @ordered
-   */
-  protected static final ValidityValue CONTENT_VALIDITY_EDEFAULT = ValidityValue.INVALID;
-
-  /**
-   * The cached value of the '{@link #getContentValidity() <em>Content Validity</em>}' attribute.
-   * <!-- begin-user-doc
-   * --> <!-- end-user-doc -->
-   * @see #getContentValidity()
-   * @generated
-   * @ordered
-   */
-  protected ValidityValue contentValidity = ArgumentElementImpl.CONTENT_VALIDITY_EDEFAULT;
-
-  /**
    * The cached value of the '{@link #getStatus() <em>Status</em>}' containment reference.
    * <!-- begin-user-doc --> <!--
    * end-user-doc -->
@@ -125,6 +108,26 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
    * @ordered
    */
   protected EList<Template> templates;
+
+  /**
+   * The default value of the '{@link #isValid() <em>Valid</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isValid()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean VALID_EDEFAULT = true;
+
+  /**
+   * The cached value of the '{@link #isValid() <em>Valid</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isValid()
+   * @generated
+   * @ordered
+   */
+  protected boolean valid = ArgumentElementImpl.VALID_EDEFAULT;
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -190,27 +193,6 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
    * @generated
    */
   @Override
-  public ValidityValue getContentValidity() {
-    return this.contentValidity;
-  }
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setContentValidity(ValidityValue newContentValidity) {
-    var oldContentValidity = this.contentValidity;
-    this.contentValidity = newContentValidity == null ? ArgumentElementImpl.CONTENT_VALIDITY_EDEFAULT : newContentValidity;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.ARGUMENT_ELEMENT__CONTENT_VALIDITY, oldContentValidity, this.contentValidity));
-  }
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public ImpactAnnotation getStatus() {
     return this.status;
   }
@@ -266,6 +248,29 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
+  public boolean isValid() {
+    return this.valid;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setValid(boolean newValid) {
+    var oldValid = this.valid;
+    this.valid = newValid;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.ARGUMENT_ELEMENT__VALID, oldValid, this.valid));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @SuppressWarnings("unchecked")
   @Override
   public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -302,12 +307,12 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
         return getId();
       case GSNPackage.ARGUMENT_ELEMENT__DESCRIPTION:
         return getDescription();
-      case GSNPackage.ARGUMENT_ELEMENT__CONTENT_VALIDITY:
-        return getContentValidity();
       case GSNPackage.ARGUMENT_ELEMENT__STATUS:
         return getStatus();
       case GSNPackage.ARGUMENT_ELEMENT__TEMPLATES:
         return getTemplates();
+      case GSNPackage.ARGUMENT_ELEMENT__VALID:
+        return isValid();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -326,15 +331,15 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
       case GSNPackage.ARGUMENT_ELEMENT__DESCRIPTION:
         setDescription((String)newValue);
         return;
-      case GSNPackage.ARGUMENT_ELEMENT__CONTENT_VALIDITY:
-        setContentValidity((ValidityValue)newValue);
-        return;
       case GSNPackage.ARGUMENT_ELEMENT__STATUS:
         setStatus((ImpactAnnotation)newValue);
         return;
       case GSNPackage.ARGUMENT_ELEMENT__TEMPLATES:
         getTemplates().clear();
         getTemplates().addAll((Collection<? extends Template>)newValue);
+        return;
+      case GSNPackage.ARGUMENT_ELEMENT__VALID:
+        setValid((Boolean)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -353,14 +358,14 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
       case GSNPackage.ARGUMENT_ELEMENT__DESCRIPTION:
         setDescription(ArgumentElementImpl.DESCRIPTION_EDEFAULT);
         return;
-      case GSNPackage.ARGUMENT_ELEMENT__CONTENT_VALIDITY:
-        setContentValidity(ArgumentElementImpl.CONTENT_VALIDITY_EDEFAULT);
-        return;
       case GSNPackage.ARGUMENT_ELEMENT__STATUS:
         setStatus((ImpactAnnotation)null);
         return;
       case GSNPackage.ARGUMENT_ELEMENT__TEMPLATES:
         getTemplates().clear();
+        return;
+      case GSNPackage.ARGUMENT_ELEMENT__VALID:
+        setValid(ArgumentElementImpl.VALID_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -377,14 +382,42 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
         return ArgumentElementImpl.ID_EDEFAULT == null ? this.id != null : !ArgumentElementImpl.ID_EDEFAULT.equals(this.id);
       case GSNPackage.ARGUMENT_ELEMENT__DESCRIPTION:
         return ArgumentElementImpl.DESCRIPTION_EDEFAULT == null ? this.description != null : !ArgumentElementImpl.DESCRIPTION_EDEFAULT.equals(this.description);
-      case GSNPackage.ARGUMENT_ELEMENT__CONTENT_VALIDITY:
-        return this.contentValidity != ArgumentElementImpl.CONTENT_VALIDITY_EDEFAULT;
       case GSNPackage.ARGUMENT_ELEMENT__STATUS:
         return this.status != null;
       case GSNPackage.ARGUMENT_ELEMENT__TEMPLATES:
         return this.templates != null && !this.templates.isEmpty();
+      case GSNPackage.ARGUMENT_ELEMENT__VALID:
+        return this.valid != ArgumentElementImpl.VALID_EDEFAULT;
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+    switch (operationID) {
+      case GSNPackage.ARGUMENT_ELEMENT___VALIDATE:
+        try {
+          validate();
+          return null;
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case GSNPackage.ARGUMENT_ELEMENT___REPAIR:
+        try {
+          repair();
+          return null;
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+    }
+    return super.eInvoke(operationID, arguments);
   }
 
   /**
@@ -400,10 +433,38 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
     result.append(this.id);
     result.append(", description: ");
     result.append(this.description);
-    result.append(", contentValidity: ");
-    result.append(this.contentValidity);
+    result.append(", valid: ");
+    result.append(this.valid);
     result.append(')');
     return result.toString();
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public void validate() throws Exception {
+    if (GSNBuilder.findPattern(getDescription()).isPresent()) {
+      throw new MMINTException("Element " + getId() + " description contains text that is not instantiated");
+    }
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public void repair() throws Exception {
+    while (true) {
+      var desc = getDescription();
+      var pattern = GSNBuilder.findPattern(desc);
+      if (pattern.isEmpty()) {
+        break;
+      }
+      var toReplace = pattern.get();
+      var msg = "Replace '" + toReplace + "' in '" + desc + "' with:";
+      var replacement = MIDDialogs.getStringInput("Instantiate Template", msg, null);
+      setDescription(desc.replace(GSNBuilder.PATTERN1 + toReplace + GSNBuilder.PATTERN2, replacement));
+    }
   }
 
 } // ArgumentElementImpl

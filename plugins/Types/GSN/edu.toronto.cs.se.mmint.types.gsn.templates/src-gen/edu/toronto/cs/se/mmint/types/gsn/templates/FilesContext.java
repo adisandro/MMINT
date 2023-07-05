@@ -15,7 +15,6 @@ package edu.toronto.cs.se.mmint.types.gsn.templates;
 import org.eclipse.emf.common.util.EList;
 
 import edu.toronto.cs.se.modelepedia.gsn.Context;
-import edu.toronto.cs.se.modelepedia.gsn.TemplateElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -33,7 +32,7 @@ import edu.toronto.cs.se.modelepedia.gsn.TemplateElement;
  * @model
  * @generated
  */
-public interface FilesContext extends Context, TemplateElement {
+public interface FilesContext extends Context {
   /**
    * Returns the value of the '<em><b>Paths</b></em>' attribute list.
    * The list contents are of type {@link java.lang.String}.

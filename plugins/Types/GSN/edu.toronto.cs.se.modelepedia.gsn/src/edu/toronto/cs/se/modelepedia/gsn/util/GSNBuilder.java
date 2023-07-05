@@ -14,6 +14,7 @@ package edu.toronto.cs.se.modelepedia.gsn.util;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
 import edu.toronto.cs.se.modelepedia.gsn.Assumption;
@@ -46,6 +47,19 @@ public class GSNBuilder {
     this.factory = GSNFactory.eINSTANCE;
     this.gsnElements = new ArrayList<>();
     this.templates = new ArrayList<>();
+  }
+
+  public static Optional<String> findPattern(String text) {
+    var i = text.indexOf(GSNBuilder.PATTERN1);
+    if (i == -1) {
+      return Optional.empty();
+    }
+    var j = text.indexOf(GSNBuilder.PATTERN2, i);
+    if (j == -1) {
+      return Optional.empty();
+    }
+
+    return Optional.of(text.substring(i+GSNBuilder.PATTERN1.length(), j));
   }
 
   public void addSupporter(Supportable supportable, Supporter supporter) {

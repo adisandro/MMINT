@@ -12,11 +12,8 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.types.gsn.templates.impl;
 
-import java.lang.reflect.InvocationTargetException;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -25,8 +22,6 @@ import edu.toronto.cs.se.mmint.types.gsn.templates.Domain;
 import edu.toronto.cs.se.mmint.types.gsn.templates.DomainDecompositionElement;
 import edu.toronto.cs.se.mmint.types.gsn.templates.DomainGoal;
 import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
-import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
-import edu.toronto.cs.se.modelepedia.gsn.TemplateElement;
 import edu.toronto.cs.se.modelepedia.gsn.impl.GoalImpl;
 
 /**
@@ -37,33 +32,12 @@ import edu.toronto.cs.se.modelepedia.gsn.impl.GoalImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.mmint.types.gsn.templates.impl.DomainGoalImpl#isValid <em>Valid</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.types.gsn.templates.impl.DomainGoalImpl#getDomain <em>Domain</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class DomainGoalImpl extends GoalImpl implements DomainGoal {
-  /**
-   * The default value of the '{@link #isValid() <em>Valid</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #isValid()
-   * @generated
-   * @ordered
-   */
-  protected static final boolean VALID_EDEFAULT = true;
-
-  /**
-   * The cached value of the '{@link #isValid() <em>Valid</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #isValid()
-   * @generated
-   * @ordered
-   */
-  protected boolean valid = DomainGoalImpl.VALID_EDEFAULT;
-
   /**
    * The cached value of the '{@link #getDomain() <em>Domain</em>}' containment reference.
    * <!-- begin-user-doc -->
@@ -139,29 +113,6 @@ public class DomainGoalImpl extends GoalImpl implements DomainGoal {
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public boolean isValid() {
-    return this.valid;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setValid(boolean newValid) {
-    var oldValid = this.valid;
-    this.valid = newValid;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GSNTemplatesPackage.DOMAIN_GOAL__VALID, oldValid, this.valid));
-  }
-
-  /**
    * @generated NOT
    */
   @Override
@@ -199,8 +150,6 @@ public class DomainGoalImpl extends GoalImpl implements DomainGoal {
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
-      case GSNTemplatesPackage.DOMAIN_GOAL__VALID:
-        return isValid();
       case GSNTemplatesPackage.DOMAIN_GOAL__DOMAIN:
         return getDomain();
     }
@@ -215,9 +164,6 @@ public class DomainGoalImpl extends GoalImpl implements DomainGoal {
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
-      case GSNTemplatesPackage.DOMAIN_GOAL__VALID:
-        setValid((Boolean)newValue);
-        return;
       case GSNTemplatesPackage.DOMAIN_GOAL__DOMAIN:
         setDomain((Domain)newValue);
         return;
@@ -233,9 +179,6 @@ public class DomainGoalImpl extends GoalImpl implements DomainGoal {
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
-      case GSNTemplatesPackage.DOMAIN_GOAL__VALID:
-        setValid(DomainGoalImpl.VALID_EDEFAULT);
-        return;
       case GSNTemplatesPackage.DOMAIN_GOAL__DOMAIN:
         setDomain((Domain)null);
         return;
@@ -251,8 +194,6 @@ public class DomainGoalImpl extends GoalImpl implements DomainGoal {
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
-      case GSNTemplatesPackage.DOMAIN_GOAL__VALID:
-        return this.valid != DomainGoalImpl.VALID_EDEFAULT;
       case GSNTemplatesPackage.DOMAIN_GOAL__DOMAIN:
         return this.domain != null;
     }
@@ -266,12 +207,6 @@ public class DomainGoalImpl extends GoalImpl implements DomainGoal {
    */
   @Override
   public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-    if (baseClass == TemplateElement.class) {
-      return switch (derivedFeatureID) {
-      case GSNTemplatesPackage.DOMAIN_GOAL__VALID -> GSNPackage.TEMPLATE_ELEMENT__VALID;
-      default -> -1;
-      };
-    }
     if (baseClass == DomainDecompositionElement.class) {
       return switch (derivedFeatureID) {
       case GSNTemplatesPackage.DOMAIN_GOAL__DOMAIN -> GSNTemplatesPackage.DOMAIN_DECOMPOSITION_ELEMENT__DOMAIN;
@@ -288,12 +223,6 @@ public class DomainGoalImpl extends GoalImpl implements DomainGoal {
    */
   @Override
   public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-    if (baseClass == TemplateElement.class) {
-      return switch (baseFeatureID) {
-      case GSNPackage.TEMPLATE_ELEMENT__VALID -> GSNTemplatesPackage.DOMAIN_GOAL__VALID;
-      default -> -1;
-      };
-    }
     if (baseClass == DomainDecompositionElement.class) {
       return switch (baseFeatureID) {
       case GSNTemplatesPackage.DOMAIN_DECOMPOSITION_ELEMENT__DOMAIN -> GSNTemplatesPackage.DOMAIN_GOAL__DOMAIN;
@@ -301,72 +230,6 @@ public class DomainGoalImpl extends GoalImpl implements DomainGoal {
       };
     }
     return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
-    if (baseClass == TemplateElement.class) {
-      return switch (baseOperationID) {
-      case GSNPackage.TEMPLATE_ELEMENT___VALIDATE -> GSNTemplatesPackage.DOMAIN_GOAL___VALIDATE;
-      case GSNPackage.TEMPLATE_ELEMENT___REPAIR -> GSNTemplatesPackage.DOMAIN_GOAL___REPAIR;
-      default -> -1;
-      };
-    }
-    if (baseClass == DomainDecompositionElement.class) {
-      return switch (baseOperationID) {
-      default -> -1;
-      };
-    }
-    return super.eDerivedOperationID(baseOperationID, baseClass);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-    switch (operationID) {
-      case GSNTemplatesPackage.DOMAIN_GOAL___VALIDATE:
-        try {
-          validate();
-          return null;
-        }
-        catch (Throwable throwable) {
-          throw new InvocationTargetException(throwable);
-        }
-      case GSNTemplatesPackage.DOMAIN_GOAL___REPAIR:
-        try {
-          repair();
-          return null;
-        }
-        catch (Throwable throwable) {
-          throw new InvocationTargetException(throwable);
-        }
-    }
-    return super.eInvoke(operationID, arguments);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString() {
-    if (eIsProxy()) return super.toString();
-
-    StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (valid: ");
-    result.append(this.valid);
-    result.append(')');
-    return result.toString();
   }
 
 } //DomainGoalImpl

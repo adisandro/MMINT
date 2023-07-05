@@ -27,7 +27,6 @@ import org.eclipse.ui.PlatformUI;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
-import edu.toronto.cs.se.modelepedia.gsn.TemplateElement;
 
 public class ValidateTemplateElement extends AbstractExternalJavaAction {
 
@@ -45,16 +44,16 @@ public class ValidateTemplateElement extends AbstractExternalJavaAction {
 
   @Override
   public void execute(Collection<? extends EObject> arg0, Map<String, Object> arg1) {
-    var templateElem = (TemplateElement) ((DSemanticDecorator) arg0.iterator().next()).getTarget();
+    var templateElem = (ArgumentElement) ((DSemanticDecorator) arg0.iterator().next()).getTarget();
     var sSession = SessionManager.INSTANCE.getSession(templateElem);
     var sDomain = sSession.getTransactionalEditingDomain();
     sDomain.getCommandStack().execute(new ValidateTemplateElementCommand(sDomain, templateElem));
   }
 
   private class ValidateTemplateElementCommand extends RecordingCommand {
-    TemplateElement templateElem;
+    ArgumentElement templateElem;
 
-    public ValidateTemplateElementCommand(TransactionalEditingDomain domain, TemplateElement templateElem) {
+    public ValidateTemplateElementCommand(TransactionalEditingDomain domain, ArgumentElement templateElem) {
       super(domain);
       this.templateElem = templateElem;
     }

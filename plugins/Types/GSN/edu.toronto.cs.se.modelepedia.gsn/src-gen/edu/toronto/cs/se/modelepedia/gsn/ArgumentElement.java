@@ -78,29 +78,6 @@ public interface ArgumentElement extends EObject {
   void setDescription(String value);
 
   /**
-   * Returns the value of the '<em><b>Content Validity</b></em>' attribute.
-   * The literals are from the enumeration {@link edu.toronto.cs.se.modelepedia.gsn.ValidityValue}.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @return the value of the '<em>Content Validity</em>' attribute.
-   * @see edu.toronto.cs.se.modelepedia.gsn.ValidityValue
-   * @see #setContentValidity(ValidityValue)
-   * @see edu.toronto.cs.se.modelepedia.gsn.GSNPackage#getArgumentElement_ContentValidity()
-   * @model
-   * @generated
-   */
-  ValidityValue getContentValidity();
-
-  /**
-   * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.gsn.ArgumentElement#getContentValidity <em>Content Validity</em>}' attribute.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @param value the new value of the '<em>Content Validity</em>' attribute.
-   * @see edu.toronto.cs.se.modelepedia.gsn.ValidityValue
-   * @see #getContentValidity()
-   * @generated
-   */
-  void setContentValidity(ValidityValue value);
-
-  /**
    * Returns the value of the '<em><b>Status</b></em>' containment reference. <!-- begin-user-doc --> <!-- end-user-doc
    * -->
    *
@@ -134,5 +111,49 @@ public interface ArgumentElement extends EObject {
    * @generated
    */
   EList<Template> getTemplates();
+
+  /**
+   * Returns the value of the '<em><b>Valid</b></em>' attribute.
+   * The default value is <code>"true"</code>.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Valid</em>' attribute.
+   * @see #setValid(boolean)
+   * @see edu.toronto.cs.se.modelepedia.gsn.GSNPackage#getArgumentElement_Valid()
+   * @model default="true" required="true"
+   * @generated
+   */
+  boolean isValid();
+
+  /**
+   * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.gsn.ArgumentElement#isValid <em>Valid</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Valid</em>' attribute.
+   * @see #isValid()
+   * @generated
+   */
+  void setValid(boolean value);
+
+  /**
+   * <!-- begin-user-doc -->Validates the correctness of this instantiated template element. The base implementation
+   * does nothing.
+   *
+   * @throws Exception
+   *           If this template element has not been instantiated correctly. <!-- end-user-doc -->
+   * @model exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception"
+   * @generated
+   */
+  void validate() throws Exception;
+
+  /**
+   * <!-- begin-user-doc --> Repairs this invalidly instantiated template element. The base implementation does nothing.
+   *
+   * @throws Exception
+   *           If there is an error during the repair process. <!-- end-user-doc -->
+   * @model exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception"
+   * @generated
+   */
+  void repair() throws Exception;
 
 } // ArgumentElement
