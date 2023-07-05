@@ -10,7 +10,6 @@
   <genPackages prefix="GSNTemplates" basePackage="edu.toronto.cs.se.mmint.types.gsn"
       disposableProviderFactory="true" childCreationExtenders="true" ecorePackage="gsn.templates.ecore#/">
     <genDataTypes ecoreDataType="gsn.templates.ecore#//GSNTemplatesBuilder"/>
-    <genClasses image="false" ecoreClass="gsn.templates.ecore#//DecompositionStrategy"/>
     <genClasses image="false" ecoreClass="gsn.templates.ecore#//DecompositionTemplate">
       <genOperations ecoreOperation="gsn.templates.ecore#//DecompositionTemplate/decompose">
         <genParameters ecoreParameter="gsn.templates.ecore#//DecompositionTemplate/decompose/decomposed"/>
@@ -56,5 +55,8 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.templates.ecore#//PropertyGoal/hint"/>
     </genClasses>
     <genClasses ecoreClass="gsn.templates.ecore#//PropertyDecompositionTemplate"/>
+    <genClasses ecoreClass="gsn.templates.ecore#//FilesContext">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.templates.ecore#//FilesContext/paths"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

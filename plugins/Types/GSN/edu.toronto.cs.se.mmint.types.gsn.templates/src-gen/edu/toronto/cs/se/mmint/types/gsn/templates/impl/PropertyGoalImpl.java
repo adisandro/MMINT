@@ -50,24 +50,14 @@ import edu.toronto.cs.se.modelepedia.gsn.impl.GoalImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.mmint.types.gsn.templates.impl.PropertyGoalImpl#getProperty <em>Property</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.types.gsn.templates.impl.PropertyGoalImpl#isValid <em>Valid</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmint.types.gsn.templates.impl.PropertyGoalImpl#getProperty <em>Property</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.types.gsn.templates.impl.PropertyGoalImpl#getHint <em>Hint</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class PropertyGoalImpl extends GoalImpl implements PropertyGoal {
-  /**
-   * The cached value of the '{@link #getProperty() <em>Property</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getProperty()
-   * @generated
-   * @ordered
-   */
-  protected Property property;
-
   /**
    * The default value of the '{@link #isValid() <em>Valid</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -87,6 +77,16 @@ public class PropertyGoalImpl extends GoalImpl implements PropertyGoal {
    * @ordered
    */
   protected boolean valid = PropertyGoalImpl.VALID_EDEFAULT;
+
+  /**
+   * The cached value of the '{@link #getProperty() <em>Property</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getProperty()
+   * @generated
+   * @ordered
+   */
+  protected Property property;
 
   /**
    * The default value of the '{@link #getHint() <em>Hint</em>}' attribute.
@@ -324,10 +324,10 @@ public class PropertyGoalImpl extends GoalImpl implements PropertyGoal {
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
-      case GSNTemplatesPackage.PROPERTY_GOAL__PROPERTY:
-        return getProperty();
       case GSNTemplatesPackage.PROPERTY_GOAL__VALID:
         return isValid();
+      case GSNTemplatesPackage.PROPERTY_GOAL__PROPERTY:
+        return getProperty();
       case GSNTemplatesPackage.PROPERTY_GOAL__HINT:
         return getHint();
     }
@@ -342,11 +342,11 @@ public class PropertyGoalImpl extends GoalImpl implements PropertyGoal {
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
-      case GSNTemplatesPackage.PROPERTY_GOAL__PROPERTY:
-        setProperty((Property)newValue);
-        return;
       case GSNTemplatesPackage.PROPERTY_GOAL__VALID:
         setValid((Boolean)newValue);
+        return;
+      case GSNTemplatesPackage.PROPERTY_GOAL__PROPERTY:
+        setProperty((Property)newValue);
         return;
       case GSNTemplatesPackage.PROPERTY_GOAL__HINT:
         setHint((String)newValue);
@@ -363,11 +363,11 @@ public class PropertyGoalImpl extends GoalImpl implements PropertyGoal {
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
-      case GSNTemplatesPackage.PROPERTY_GOAL__PROPERTY:
-        setProperty((Property)null);
-        return;
       case GSNTemplatesPackage.PROPERTY_GOAL__VALID:
         setValid(PropertyGoalImpl.VALID_EDEFAULT);
+        return;
+      case GSNTemplatesPackage.PROPERTY_GOAL__PROPERTY:
+        setProperty((Property)null);
         return;
       case GSNTemplatesPackage.PROPERTY_GOAL__HINT:
         setHint(PropertyGoalImpl.HINT_EDEFAULT);
@@ -384,10 +384,10 @@ public class PropertyGoalImpl extends GoalImpl implements PropertyGoal {
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
-      case GSNTemplatesPackage.PROPERTY_GOAL__PROPERTY:
-        return this.property != null;
       case GSNTemplatesPackage.PROPERTY_GOAL__VALID:
         return this.valid != PropertyGoalImpl.VALID_EDEFAULT;
+      case GSNTemplatesPackage.PROPERTY_GOAL__PROPERTY:
+        return this.property != null;
       case GSNTemplatesPackage.PROPERTY_GOAL__HINT:
         return PropertyGoalImpl.HINT_EDEFAULT == null ? this.hint != null : !PropertyGoalImpl.HINT_EDEFAULT.equals(this.hint);
     }
@@ -401,15 +401,15 @@ public class PropertyGoalImpl extends GoalImpl implements PropertyGoal {
    */
   @Override
   public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-    if (baseClass == PropertyDecompositionElement.class) {
-      return switch (derivedFeatureID) {
-      case GSNTemplatesPackage.PROPERTY_GOAL__PROPERTY -> GSNTemplatesPackage.PROPERTY_DECOMPOSITION_ELEMENT__PROPERTY;
-      default -> -1;
-      };
-    }
     if (baseClass == TemplateElement.class) {
       return switch (derivedFeatureID) {
       case GSNTemplatesPackage.PROPERTY_GOAL__VALID -> GSNPackage.TEMPLATE_ELEMENT__VALID;
+      default -> -1;
+      };
+    }
+    if (baseClass == PropertyDecompositionElement.class) {
+      return switch (derivedFeatureID) {
+      case GSNTemplatesPackage.PROPERTY_GOAL__PROPERTY -> GSNTemplatesPackage.PROPERTY_DECOMPOSITION_ELEMENT__PROPERTY;
       default -> -1;
       };
     }
@@ -423,15 +423,15 @@ public class PropertyGoalImpl extends GoalImpl implements PropertyGoal {
    */
   @Override
   public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-    if (baseClass == PropertyDecompositionElement.class) {
-      return switch (baseFeatureID) {
-      case GSNTemplatesPackage.PROPERTY_DECOMPOSITION_ELEMENT__PROPERTY -> GSNTemplatesPackage.PROPERTY_GOAL__PROPERTY;
-      default -> -1;
-      };
-    }
     if (baseClass == TemplateElement.class) {
       return switch (baseFeatureID) {
       case GSNPackage.TEMPLATE_ELEMENT__VALID -> GSNTemplatesPackage.PROPERTY_GOAL__VALID;
+      default -> -1;
+      };
+    }
+    if (baseClass == PropertyDecompositionElement.class) {
+      return switch (baseFeatureID) {
+      case GSNTemplatesPackage.PROPERTY_DECOMPOSITION_ELEMENT__PROPERTY -> GSNTemplatesPackage.PROPERTY_GOAL__PROPERTY;
       default -> -1;
       };
     }
@@ -445,15 +445,15 @@ public class PropertyGoalImpl extends GoalImpl implements PropertyGoal {
    */
   @Override
   public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
-    if (baseClass == PropertyDecompositionElement.class) {
-      return switch (baseOperationID) {
-      default -> -1;
-      };
-    }
     if (baseClass == TemplateElement.class) {
       return switch (baseOperationID) {
       case GSNPackage.TEMPLATE_ELEMENT___VALIDATE -> GSNTemplatesPackage.PROPERTY_GOAL___VALIDATE;
       case GSNPackage.TEMPLATE_ELEMENT___REPAIR -> GSNTemplatesPackage.PROPERTY_GOAL___REPAIR;
+      default -> -1;
+      };
+    }
+    if (baseClass == PropertyDecompositionElement.class) {
+      return switch (baseOperationID) {
       default -> -1;
       };
     }

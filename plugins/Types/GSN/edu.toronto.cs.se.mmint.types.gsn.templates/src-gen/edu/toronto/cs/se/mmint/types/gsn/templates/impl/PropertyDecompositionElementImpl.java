@@ -17,11 +17,11 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
 import edu.toronto.cs.se.mmint.types.gsn.templates.Property;
 import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyDecompositionElement;
+import edu.toronto.cs.se.modelepedia.gsn.impl.TemplateElementImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,7 +36,7 @@ import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyDecompositionElement;
  *
  * @generated
  */
-public abstract class PropertyDecompositionElementImpl extends MinimalEObjectImpl.Container implements PropertyDecompositionElement {
+public abstract class PropertyDecompositionElementImpl extends TemplateElementImpl implements PropertyDecompositionElement {
   /**
    * The cached value of the '{@link #getProperty() <em>Property</em>}' containment reference.
    * <!-- begin-user-doc -->

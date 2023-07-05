@@ -23,6 +23,7 @@ import edu.toronto.cs.se.mmint.types.gsn.templates.DomainDecompositionStrategy;
 import edu.toronto.cs.se.mmint.types.gsn.templates.DomainDecompositionTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.templates.DomainGoal;
 import edu.toronto.cs.se.mmint.types.gsn.templates.EnumDomain;
+import edu.toronto.cs.se.mmint.types.gsn.templates.FilesContext;
 import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesFactory;
 import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
 import edu.toronto.cs.se.mmint.types.gsn.templates.IntDomain;
@@ -89,6 +90,7 @@ public class GSNTemplatesFactoryImpl extends EFactoryImpl implements GSNTemplate
     case GSNTemplatesPackage.PROPERTY_DECOMPOSITION_STRATEGY -> createPropertyDecompositionStrategy();
     case GSNTemplatesPackage.PROPERTY_GOAL -> createPropertyGoal();
     case GSNTemplatesPackage.PROPERTY_DECOMPOSITION_TEMPLATE -> createPropertyDecompositionTemplate();
+    case GSNTemplatesPackage.FILES_CONTEXT -> createFilesContext();
     default -> throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     };
   }
@@ -238,6 +240,17 @@ public class GSNTemplatesFactoryImpl extends EFactoryImpl implements GSNTemplate
   public PropertyDecompositionTemplate createPropertyDecompositionTemplate() {
     PropertyDecompositionTemplateImpl propertyDecompositionTemplate = new PropertyDecompositionTemplateImpl();
     return propertyDecompositionTemplate;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public FilesContext createFilesContext() {
+    FilesContextImpl filesContext = new FilesContextImpl();
+    return filesContext;
   }
 
   /**

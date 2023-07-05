@@ -17,11 +17,11 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import edu.toronto.cs.se.mmint.types.gsn.templates.Domain;
 import edu.toronto.cs.se.mmint.types.gsn.templates.DomainDecompositionElement;
 import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
+import edu.toronto.cs.se.modelepedia.gsn.impl.TemplateElementImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,7 +36,7 @@ import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
  *
  * @generated
  */
-public abstract class DomainDecompositionElementImpl extends MinimalEObjectImpl.Container implements DomainDecompositionElement {
+public abstract class DomainDecompositionElementImpl extends TemplateElementImpl implements DomainDecompositionElement {
   /**
    * The cached value of the '{@link #getDomain() <em>Domain</em>}' containment reference.
    * <!-- begin-user-doc -->

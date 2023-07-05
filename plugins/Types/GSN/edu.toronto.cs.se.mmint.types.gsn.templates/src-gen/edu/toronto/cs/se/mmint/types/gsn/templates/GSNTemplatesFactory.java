@@ -131,6 +131,15 @@ public interface GSNTemplatesFactory extends EFactory {
   PropertyDecompositionTemplate createPropertyDecompositionTemplate();
 
   /**
+   * Returns a new object of class '<em>Files Context</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Files Context</em>'.
+   * @generated
+   */
+  FilesContext createFilesContext();
+
+  /**
    * Returns the package supported by this factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

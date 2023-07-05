@@ -2,8 +2,6 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="templates" nsURI="model://edu.toronto.cs.se.mmint.types.gsn.templates"
     nsPrefix="gsn.templates">
-  <eClassifiers xsi:type="ecore:EClass" name="DecompositionStrategy" abstract="true"
-      eSuperTypes="../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Strategy ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//TemplateElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="DecompositionTemplate" abstract="true"
       eSuperTypes="../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Template">
     <eOperations name="decompose" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Exception">
@@ -35,12 +33,13 @@
   <eClassifiers xsi:type="ecore:EClass" name="ValueDomain" eSuperTypes="#//Domain">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DomainDecompositionElement" abstract="true">
+  <eClassifiers xsi:type="ecore:EClass" name="DomainDecompositionElement" abstract="true"
+      eSuperTypes="../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//TemplateElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="domain" lowerBound="1"
         eType="#//Domain" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DomainDecompositionStrategy" eSuperTypes="#//DecompositionStrategy #//DomainDecompositionElement"/>
-  <eClassifiers xsi:type="ecore:EClass" name="DomainGoal" eSuperTypes="../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Goal #//DomainDecompositionElement ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//TemplateElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DomainDecompositionStrategy" eSuperTypes="../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Strategy #//DomainDecompositionElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DomainGoal" eSuperTypes="../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Goal #//DomainDecompositionElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="DomainDecompositionTemplate" eSuperTypes="#//DecompositionTemplate"/>
   <eClassifiers xsi:type="ecore:EClass" name="Property">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="formal" lowerBound="1"
@@ -48,17 +47,22 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="informal" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PropertyDecompositionElement" abstract="true">
+  <eClassifiers xsi:type="ecore:EClass" name="PropertyDecompositionElement" abstract="true"
+      eSuperTypes="../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//TemplateElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="property" lowerBound="1"
         eType="#//Property" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PropertyDecompositionStrategy" eSuperTypes="#//DecompositionStrategy #//PropertyDecompositionElement">
+  <eClassifiers xsi:type="ecore:EClass" name="PropertyDecompositionStrategy" eSuperTypes="../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Strategy #//PropertyDecompositionElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="reasonerName" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PropertyGoal" eSuperTypes="../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Goal #//PropertyDecompositionElement ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//TemplateElement">
+  <eClassifiers xsi:type="ecore:EClass" name="PropertyGoal" eSuperTypes="../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Goal #//PropertyDecompositionElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="hint" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PropertyDecompositionTemplate" eSuperTypes="#//DecompositionTemplate"/>
   <eClassifiers xsi:type="ecore:EDataType" name="GSNTemplatesBuilder" instanceClassName="edu.toronto.cs.se.mmint.types.gsn.templates.util.GSNTemplatesBuilder"/>
+  <eClassifiers xsi:type="ecore:EClass" name="FilesContext" eSuperTypes="../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Context ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//TemplateElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="paths" lowerBound="1" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
 </ecore:EPackage>

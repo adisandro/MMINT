@@ -18,6 +18,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -27,6 +28,8 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesFactory;
 import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
 import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyDecompositionStrategy;
+import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
+import edu.toronto.cs.se.modelepedia.gsn.provider.StrategyItemProvider;
 
 /**
  * This is the item provider adapter for a {@link edu.toronto.cs.se.mmint.types.gsn.templates.PropertyDecompositionStrategy} object.
@@ -34,7 +37,7 @@ import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyDecompositionStrategy
  * <!-- end-user-doc -->
  * @generated
  */
-public class PropertyDecompositionStrategyItemProvider extends DecompositionStrategyItemProvider {
+public class PropertyDecompositionStrategyItemProvider extends StrategyItemProvider {
   /**
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
@@ -56,9 +59,32 @@ public class PropertyDecompositionStrategyItemProvider extends DecompositionStra
     if (this.itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
+      addValidPropertyDescriptor(object);
       addReasonerNamePropertyDescriptor(object);
     }
     return this.itemPropertyDescriptors;
+  }
+
+  /**
+   * This adds a property descriptor for the Valid feature.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected void addValidPropertyDescriptor(Object object) {
+    this.itemPropertyDescriptors.add
+      (createItemPropertyDescriptor
+        (((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
+         getResourceLocator(),
+         getString("_UI_TemplateElement_valid_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_TemplateElement_valid_feature", "_UI_TemplateElement_type"),
+         GSNPackage.Literals.TEMPLATE_ELEMENT__VALID,
+         true,
+         false,
+         false,
+         ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+         null,
+         null));
   }
 
   /**
@@ -151,6 +177,7 @@ public class PropertyDecompositionStrategyItemProvider extends DecompositionStra
     updateChildren(notification);
 
     switch (notification.getFeatureID(PropertyDecompositionStrategy.class)) {
+      case GSNTemplatesPackage.PROPERTY_DECOMPOSITION_STRATEGY__VALID:
       case GSNTemplatesPackage.PROPERTY_DECOMPOSITION_STRATEGY__REASONER_NAME:
         fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
         return;
@@ -176,6 +203,17 @@ public class PropertyDecompositionStrategyItemProvider extends DecompositionStra
       (createChildParameter
         (GSNTemplatesPackage.Literals.PROPERTY_DECOMPOSITION_ELEMENT__PROPERTY,
          GSNTemplatesFactory.eINSTANCE.createProperty()));
+  }
+
+  /**
+   * Return the resource locator for this item provider's resources.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public ResourceLocator getResourceLocator() {
+    return GSNTemplatesEditPlugin.INSTANCE;
   }
 
 }

@@ -344,6 +344,29 @@ public class GSNTemplatesItemProviderAdapterFactory extends GSNTemplatesAdapterF
   }
 
   /**
+   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint.types.gsn.templates.FilesContext} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected FilesContextItemProvider filesContextItemProvider;
+
+  /**
+   * This creates an adapter for a {@link edu.toronto.cs.se.mmint.types.gsn.templates.FilesContext}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createFilesContextAdapter() {
+    if (this.filesContextItemProvider == null) {
+      this.filesContextItemProvider = new FilesContextItemProvider(this);
+    }
+
+    return this.filesContextItemProvider;
+  }
+
+  /**
    * This returns the root adapter factory that contains this factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -459,6 +482,7 @@ public class GSNTemplatesItemProviderAdapterFactory extends GSNTemplatesAdapterF
     if (this.propertyDecompositionStrategyItemProvider != null) this.propertyDecompositionStrategyItemProvider.dispose();
     if (this.propertyGoalItemProvider != null) this.propertyGoalItemProvider.dispose();
     if (this.propertyDecompositionTemplateItemProvider != null) this.propertyDecompositionTemplateItemProvider.dispose();
+    if (this.filesContextItemProvider != null) this.filesContextItemProvider.dispose();
   }
 
   /**
@@ -527,6 +551,11 @@ public class GSNTemplatesItemProviderAdapterFactory extends GSNTemplatesAdapterF
           (createChildParameter
             (GSNPackage.Literals.SAFETY_CASE__STRATEGIES,
              GSNTemplatesFactory.eINSTANCE.createPropertyDecompositionStrategy()));
+
+        this.newChildDescriptors.add
+          (createChildParameter
+            (GSNPackage.Literals.SAFETY_CASE__CONTEXTS,
+             GSNTemplatesFactory.eINSTANCE.createFilesContext()));
 
         this.newChildDescriptors.add
           (createChildParameter

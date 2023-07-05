@@ -12,6 +12,8 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.types.gsn.templates;
 
+import edu.toronto.cs.se.modelepedia.gsn.Strategy;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -23,5 +25,5 @@ package edu.toronto.cs.se.mmint.types.gsn.templates;
  * @model
  * @generated
  */
-public interface DomainDecompositionStrategy extends DecompositionStrategy, DomainDecompositionElement {
+public interface DomainDecompositionStrategy extends Strategy, DomainDecompositionElement {
 } // DomainDecompositionStrategy

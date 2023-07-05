@@ -24,25 +24,25 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import edu.toronto.cs.se.mmint.types.gsn.templates.DecompositionStrategy;
+import edu.toronto.cs.se.mmint.types.gsn.templates.FilesContext;
 import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
-import edu.toronto.cs.se.modelepedia.gsn.provider.StrategyItemProvider;
+import edu.toronto.cs.se.modelepedia.gsn.provider.ContextItemProvider;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.mmint.types.gsn.templates.DecompositionStrategy} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.mmint.types.gsn.templates.FilesContext} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class DecompositionStrategyItemProvider extends StrategyItemProvider {
+public class FilesContextItemProvider extends ContextItemProvider {
   /**
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  public DecompositionStrategyItemProvider(AdapterFactory adapterFactory) {
+  public FilesContextItemProvider(AdapterFactory adapterFactory) {
     super(adapterFactory);
   }
 
@@ -58,6 +58,7 @@ public class DecompositionStrategyItemProvider extends StrategyItemProvider {
       super.getPropertyDescriptors(object);
 
       addValidPropertyDescriptor(object);
+      addPathsPropertyDescriptor(object);
     }
     return this.itemPropertyDescriptors;
   }
@@ -85,6 +86,39 @@ public class DecompositionStrategyItemProvider extends StrategyItemProvider {
   }
 
   /**
+   * This adds a property descriptor for the Paths feature.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected void addPathsPropertyDescriptor(Object object) {
+    this.itemPropertyDescriptors.add
+      (createItemPropertyDescriptor
+        (((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
+         getResourceLocator(),
+         getString("_UI_FilesContext_paths_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_FilesContext_paths_feature", "_UI_FilesContext_type"),
+         GSNTemplatesPackage.Literals.FILES_CONTEXT__PATHS,
+         true,
+         false,
+         false,
+         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+         null,
+         null));
+  }
+
+  /**
+   * This returns FilesContext.gif.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Object getImage(Object object) {
+    return overlayImage(object, getResourceLocator().getImage("full/obj16/FilesContext"));
+  }
+
+  /**
    * This returns the label text for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -92,10 +126,10 @@ public class DecompositionStrategyItemProvider extends StrategyItemProvider {
    */
   @Override
   public String getText(Object object) {
-    var label = ((DecompositionStrategy)object).getId();
+    var label = ((FilesContext)object).getId();
     return label == null || label.length() == 0 ?
-      getString("_UI_DecompositionStrategy_type") :
-      getString("_UI_DecompositionStrategy_type") + " " + label;
+      getString("_UI_FilesContext_type") :
+      getString("_UI_FilesContext_type") + " " + label;
   }
 
 
@@ -110,8 +144,9 @@ public class DecompositionStrategyItemProvider extends StrategyItemProvider {
   public void notifyChanged(Notification notification) {
     updateChildren(notification);
 
-    switch (notification.getFeatureID(DecompositionStrategy.class)) {
-      case GSNTemplatesPackage.DECOMPOSITION_STRATEGY__VALID:
+    switch (notification.getFeatureID(FilesContext.class)) {
+      case GSNTemplatesPackage.FILES_CONTEXT__VALID:
+      case GSNTemplatesPackage.FILES_CONTEXT__PATHS:
         fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
         return;
     }

@@ -13,32 +13,35 @@
 package edu.toronto.cs.se.mmint.types.gsn.templates.impl;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 
-import edu.toronto.cs.se.mmint.types.gsn.templates.DecompositionStrategy;
+import edu.toronto.cs.se.mmint.types.gsn.templates.FilesContext;
 import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.TemplateElement;
-import edu.toronto.cs.se.modelepedia.gsn.impl.StrategyImpl;
+import edu.toronto.cs.se.modelepedia.gsn.impl.ContextImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Decomposition Strategy</b></em>'.
+ * An implementation of the model object '<em><b>Files Context</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.mmint.types.gsn.templates.impl.DecompositionStrategyImpl#isValid <em>Valid</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmint.types.gsn.templates.impl.FilesContextImpl#isValid <em>Valid</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmint.types.gsn.templates.impl.FilesContextImpl#getPaths <em>Paths</em>}</li>
  * </ul>
  *
  * @generated
  */
-public abstract class DecompositionStrategyImpl extends StrategyImpl implements DecompositionStrategy {
+public class FilesContextImpl extends ContextImpl implements FilesContext {
   /**
    * The default value of the '{@link #isValid() <em>Valid</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -57,14 +60,24 @@ public abstract class DecompositionStrategyImpl extends StrategyImpl implements 
    * @generated
    * @ordered
    */
-  protected boolean valid = DecompositionStrategyImpl.VALID_EDEFAULT;
+  protected boolean valid = FilesContextImpl.VALID_EDEFAULT;
+
+  /**
+   * The cached value of the '{@link #getPaths() <em>Paths</em>}' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getPaths()
+   * @generated
+   * @ordered
+   */
+  protected EList<String> paths;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected DecompositionStrategyImpl() {
+  protected FilesContextImpl() {
     super();
   }
 
@@ -75,7 +88,7 @@ public abstract class DecompositionStrategyImpl extends StrategyImpl implements 
    */
   @Override
   protected EClass eStaticClass() {
-    return GSNTemplatesPackage.Literals.DECOMPOSITION_STRATEGY;
+    return GSNTemplatesPackage.Literals.FILES_CONTEXT;
   }
 
   /**
@@ -98,7 +111,20 @@ public abstract class DecompositionStrategyImpl extends StrategyImpl implements 
     var oldValid = this.valid;
     this.valid = newValid;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GSNTemplatesPackage.DECOMPOSITION_STRATEGY__VALID, oldValid, this.valid));
+      eNotify(new ENotificationImpl(this, Notification.SET, GSNTemplatesPackage.FILES_CONTEXT__VALID, oldValid, this.valid));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EList<String> getPaths() {
+    if (this.paths == null) {
+      this.paths = new EDataTypeUniqueEList<>(String.class, this, GSNTemplatesPackage.FILES_CONTEXT__PATHS);
+    }
+    return this.paths;
   }
 
   /**
@@ -133,8 +159,10 @@ public abstract class DecompositionStrategyImpl extends StrategyImpl implements 
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
-      case GSNTemplatesPackage.DECOMPOSITION_STRATEGY__VALID:
+      case GSNTemplatesPackage.FILES_CONTEXT__VALID:
         return isValid();
+      case GSNTemplatesPackage.FILES_CONTEXT__PATHS:
+        return getPaths();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -144,11 +172,16 @@ public abstract class DecompositionStrategyImpl extends StrategyImpl implements 
    * <!-- end-user-doc -->
    * @generated
    */
+  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
-      case GSNTemplatesPackage.DECOMPOSITION_STRATEGY__VALID:
+      case GSNTemplatesPackage.FILES_CONTEXT__VALID:
         setValid((Boolean)newValue);
+        return;
+      case GSNTemplatesPackage.FILES_CONTEXT__PATHS:
+        getPaths().clear();
+        getPaths().addAll((Collection<? extends String>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -162,8 +195,11 @@ public abstract class DecompositionStrategyImpl extends StrategyImpl implements 
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
-      case GSNTemplatesPackage.DECOMPOSITION_STRATEGY__VALID:
-        setValid(DecompositionStrategyImpl.VALID_EDEFAULT);
+      case GSNTemplatesPackage.FILES_CONTEXT__VALID:
+        setValid(FilesContextImpl.VALID_EDEFAULT);
+        return;
+      case GSNTemplatesPackage.FILES_CONTEXT__PATHS:
+        getPaths().clear();
         return;
     }
     super.eUnset(featureID);
@@ -177,8 +213,10 @@ public abstract class DecompositionStrategyImpl extends StrategyImpl implements 
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
-      case GSNTemplatesPackage.DECOMPOSITION_STRATEGY__VALID:
-        return this.valid != DecompositionStrategyImpl.VALID_EDEFAULT;
+      case GSNTemplatesPackage.FILES_CONTEXT__VALID:
+        return this.valid != FilesContextImpl.VALID_EDEFAULT;
+      case GSNTemplatesPackage.FILES_CONTEXT__PATHS:
+        return this.paths != null && !this.paths.isEmpty();
     }
     return super.eIsSet(featureID);
   }
@@ -192,7 +230,7 @@ public abstract class DecompositionStrategyImpl extends StrategyImpl implements 
   public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
     if (baseClass == TemplateElement.class) {
       return switch (derivedFeatureID) {
-      case GSNTemplatesPackage.DECOMPOSITION_STRATEGY__VALID -> GSNPackage.TEMPLATE_ELEMENT__VALID;
+      case GSNTemplatesPackage.FILES_CONTEXT__VALID -> GSNPackage.TEMPLATE_ELEMENT__VALID;
       default -> -1;
       };
     }
@@ -208,7 +246,7 @@ public abstract class DecompositionStrategyImpl extends StrategyImpl implements 
   public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
     if (baseClass == TemplateElement.class) {
       return switch (baseFeatureID) {
-      case GSNPackage.TEMPLATE_ELEMENT__VALID -> GSNTemplatesPackage.DECOMPOSITION_STRATEGY__VALID;
+      case GSNPackage.TEMPLATE_ELEMENT__VALID -> GSNTemplatesPackage.FILES_CONTEXT__VALID;
       default -> -1;
       };
     }
@@ -224,8 +262,8 @@ public abstract class DecompositionStrategyImpl extends StrategyImpl implements 
   public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
     if (baseClass == TemplateElement.class) {
       return switch (baseOperationID) {
-      case GSNPackage.TEMPLATE_ELEMENT___VALIDATE -> GSNTemplatesPackage.DECOMPOSITION_STRATEGY___VALIDATE;
-      case GSNPackage.TEMPLATE_ELEMENT___REPAIR -> GSNTemplatesPackage.DECOMPOSITION_STRATEGY___REPAIR;
+      case GSNPackage.TEMPLATE_ELEMENT___VALIDATE -> GSNTemplatesPackage.FILES_CONTEXT___VALIDATE;
+      case GSNPackage.TEMPLATE_ELEMENT___REPAIR -> GSNTemplatesPackage.FILES_CONTEXT___REPAIR;
       default -> -1;
       };
     }
@@ -240,7 +278,7 @@ public abstract class DecompositionStrategyImpl extends StrategyImpl implements 
   @Override
   public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
     switch (operationID) {
-      case GSNTemplatesPackage.DECOMPOSITION_STRATEGY___VALIDATE:
+      case GSNTemplatesPackage.FILES_CONTEXT___VALIDATE:
         try {
           validate();
           return null;
@@ -248,7 +286,7 @@ public abstract class DecompositionStrategyImpl extends StrategyImpl implements 
         catch (Throwable throwable) {
           throw new InvocationTargetException(throwable);
         }
-      case GSNTemplatesPackage.DECOMPOSITION_STRATEGY___REPAIR:
+      case GSNTemplatesPackage.FILES_CONTEXT___REPAIR:
         try {
           repair();
           return null;
@@ -272,8 +310,10 @@ public abstract class DecompositionStrategyImpl extends StrategyImpl implements 
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (valid: ");
     result.append(this.valid);
+    result.append(", paths: ");
+    result.append(this.paths);
     result.append(')');
     return result.toString();
   }
 
-} //DecompositionStrategyImpl
+} //FilesContextImpl

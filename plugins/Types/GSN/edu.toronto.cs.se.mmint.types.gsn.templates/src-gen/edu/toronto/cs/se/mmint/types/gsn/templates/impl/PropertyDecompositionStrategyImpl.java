@@ -12,10 +12,12 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.types.gsn.templates.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Objects;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -27,6 +29,9 @@ import edu.toronto.cs.se.mmint.types.gsn.templates.Property;
 import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyDecompositionElement;
 import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyDecompositionStrategy;
 import edu.toronto.cs.se.mmint.types.gsn.templates.reasoning.IGSNDecompositionTrait;
+import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
+import edu.toronto.cs.se.modelepedia.gsn.TemplateElement;
+import edu.toronto.cs.se.modelepedia.gsn.impl.StrategyImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,13 +41,34 @@ import edu.toronto.cs.se.mmint.types.gsn.templates.reasoning.IGSNDecompositionTr
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link edu.toronto.cs.se.mmint.types.gsn.templates.impl.PropertyDecompositionStrategyImpl#isValid <em>Valid</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.types.gsn.templates.impl.PropertyDecompositionStrategyImpl#getProperty <em>Property</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.types.gsn.templates.impl.PropertyDecompositionStrategyImpl#getReasonerName <em>Reasoner Name</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class PropertyDecompositionStrategyImpl extends DecompositionStrategyImpl implements PropertyDecompositionStrategy {
+public class PropertyDecompositionStrategyImpl extends StrategyImpl implements PropertyDecompositionStrategy {
+  /**
+   * The default value of the '{@link #isValid() <em>Valid</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isValid()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean VALID_EDEFAULT = true;
+
+  /**
+   * The cached value of the '{@link #isValid() <em>Valid</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isValid()
+   * @generated
+   * @ordered
+   */
+  protected boolean valid = PropertyDecompositionStrategyImpl.VALID_EDEFAULT;
+
   /**
    * The cached value of the '{@link #getProperty() <em>Property</em>}' containment reference.
    * <!-- begin-user-doc -->
@@ -90,6 +116,29 @@ public class PropertyDecompositionStrategyImpl extends DecompositionStrategyImpl
   @Override
   protected EClass eStaticClass() {
     return GSNTemplatesPackage.Literals.PROPERTY_DECOMPOSITION_STRATEGY;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public boolean isValid() {
+    return this.valid;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setValid(boolean newValid) {
+    var oldValid = this.valid;
+    this.valid = newValid;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GSNTemplatesPackage.PROPERTY_DECOMPOSITION_STRATEGY__VALID, oldValid, this.valid));
   }
 
   /**
@@ -182,6 +231,8 @@ public class PropertyDecompositionStrategyImpl extends DecompositionStrategyImpl
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
+      case GSNTemplatesPackage.PROPERTY_DECOMPOSITION_STRATEGY__VALID:
+        return isValid();
       case GSNTemplatesPackage.PROPERTY_DECOMPOSITION_STRATEGY__PROPERTY:
         return getProperty();
       case GSNTemplatesPackage.PROPERTY_DECOMPOSITION_STRATEGY__REASONER_NAME:
@@ -198,6 +249,9 @@ public class PropertyDecompositionStrategyImpl extends DecompositionStrategyImpl
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
+      case GSNTemplatesPackage.PROPERTY_DECOMPOSITION_STRATEGY__VALID:
+        setValid((Boolean)newValue);
+        return;
       case GSNTemplatesPackage.PROPERTY_DECOMPOSITION_STRATEGY__PROPERTY:
         setProperty((Property)newValue);
         return;
@@ -216,6 +270,9 @@ public class PropertyDecompositionStrategyImpl extends DecompositionStrategyImpl
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
+      case GSNTemplatesPackage.PROPERTY_DECOMPOSITION_STRATEGY__VALID:
+        setValid(PropertyDecompositionStrategyImpl.VALID_EDEFAULT);
+        return;
       case GSNTemplatesPackage.PROPERTY_DECOMPOSITION_STRATEGY__PROPERTY:
         setProperty((Property)null);
         return;
@@ -234,6 +291,8 @@ public class PropertyDecompositionStrategyImpl extends DecompositionStrategyImpl
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
+      case GSNTemplatesPackage.PROPERTY_DECOMPOSITION_STRATEGY__VALID:
+        return this.valid != PropertyDecompositionStrategyImpl.VALID_EDEFAULT;
       case GSNTemplatesPackage.PROPERTY_DECOMPOSITION_STRATEGY__PROPERTY:
         return this.property != null;
       case GSNTemplatesPackage.PROPERTY_DECOMPOSITION_STRATEGY__REASONER_NAME:
@@ -249,6 +308,12 @@ public class PropertyDecompositionStrategyImpl extends DecompositionStrategyImpl
    */
   @Override
   public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+    if (baseClass == TemplateElement.class) {
+      return switch (derivedFeatureID) {
+      case GSNTemplatesPackage.PROPERTY_DECOMPOSITION_STRATEGY__VALID -> GSNPackage.TEMPLATE_ELEMENT__VALID;
+      default -> -1;
+      };
+    }
     if (baseClass == PropertyDecompositionElement.class) {
       return switch (derivedFeatureID) {
       case GSNTemplatesPackage.PROPERTY_DECOMPOSITION_STRATEGY__PROPERTY -> GSNTemplatesPackage.PROPERTY_DECOMPOSITION_ELEMENT__PROPERTY;
@@ -265,6 +330,12 @@ public class PropertyDecompositionStrategyImpl extends DecompositionStrategyImpl
    */
   @Override
   public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+    if (baseClass == TemplateElement.class) {
+      return switch (baseFeatureID) {
+      case GSNPackage.TEMPLATE_ELEMENT__VALID -> GSNTemplatesPackage.PROPERTY_DECOMPOSITION_STRATEGY__VALID;
+      default -> -1;
+      };
+    }
     if (baseClass == PropertyDecompositionElement.class) {
       return switch (baseFeatureID) {
       case GSNTemplatesPackage.PROPERTY_DECOMPOSITION_ELEMENT__PROPERTY -> GSNTemplatesPackage.PROPERTY_DECOMPOSITION_STRATEGY__PROPERTY;
@@ -280,11 +351,63 @@ public class PropertyDecompositionStrategyImpl extends DecompositionStrategyImpl
    * @generated
    */
   @Override
+  public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
+    if (baseClass == TemplateElement.class) {
+      return switch (baseOperationID) {
+      case GSNPackage.TEMPLATE_ELEMENT___VALIDATE -> GSNTemplatesPackage.PROPERTY_DECOMPOSITION_STRATEGY___VALIDATE;
+      case GSNPackage.TEMPLATE_ELEMENT___REPAIR -> GSNTemplatesPackage.PROPERTY_DECOMPOSITION_STRATEGY___REPAIR;
+      default -> -1;
+      };
+    }
+    if (baseClass == PropertyDecompositionElement.class) {
+      return switch (baseOperationID) {
+      default -> -1;
+      };
+    }
+    return super.eDerivedOperationID(baseOperationID, baseClass);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+    switch (operationID) {
+      case GSNTemplatesPackage.PROPERTY_DECOMPOSITION_STRATEGY___VALIDATE:
+        try {
+          validate();
+          return null;
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case GSNTemplatesPackage.PROPERTY_DECOMPOSITION_STRATEGY___REPAIR:
+        try {
+          repair();
+          return null;
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+    }
+    return super.eInvoke(operationID, arguments);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public String toString() {
     if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (reasonerName: ");
+    result.append(" (valid: ");
+    result.append(this.valid);
+    result.append(", reasonerName: ");
     result.append(this.reasonerName);
     result.append(')');
     return result.toString();
@@ -303,6 +426,18 @@ public class PropertyDecompositionStrategyImpl extends DecompositionStrategyImpl
     }
     Objects.requireNonNull(getProperty(), "Property not specified");
     gsnReasoner.validatePropertyDecomposition(this);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void repair() throws Exception {
+    // TODO: implement this method
+    // Ensure that you remove @generated or mark it @generated NOT
+    throw new UnsupportedOperationException();
   }
 
 } //PropertyDecompositionStrategyImpl

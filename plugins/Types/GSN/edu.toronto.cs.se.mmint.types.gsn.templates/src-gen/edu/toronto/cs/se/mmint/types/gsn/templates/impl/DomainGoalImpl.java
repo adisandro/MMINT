@@ -37,23 +37,13 @@ import edu.toronto.cs.se.modelepedia.gsn.impl.GoalImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.mmint.types.gsn.templates.impl.DomainGoalImpl#getDomain <em>Domain</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.types.gsn.templates.impl.DomainGoalImpl#isValid <em>Valid</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmint.types.gsn.templates.impl.DomainGoalImpl#getDomain <em>Domain</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class DomainGoalImpl extends GoalImpl implements DomainGoal {
-  /**
-   * The cached value of the '{@link #getDomain() <em>Domain</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getDomain()
-   * @generated
-   * @ordered
-   */
-  protected Domain domain;
-
   /**
    * The default value of the '{@link #isValid() <em>Valid</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -73,6 +63,16 @@ public class DomainGoalImpl extends GoalImpl implements DomainGoal {
    * @ordered
    */
   protected boolean valid = DomainGoalImpl.VALID_EDEFAULT;
+
+  /**
+   * The cached value of the '{@link #getDomain() <em>Domain</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getDomain()
+   * @generated
+   * @ordered
+   */
+  protected Domain domain;
 
   /**
    * <!-- begin-user-doc -->
@@ -162,15 +162,11 @@ public class DomainGoalImpl extends GoalImpl implements DomainGoal {
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
+   * @generated NOT
    */
   @Override
   public void validate() throws Exception {
-    // TODO: implement this method
-    // Ensure that you remove @generated or mark it @generated NOT
-    throw new UnsupportedOperationException();
+    // do nothing
   }
 
   /**
@@ -207,10 +203,10 @@ public class DomainGoalImpl extends GoalImpl implements DomainGoal {
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
-      case GSNTemplatesPackage.DOMAIN_GOAL__DOMAIN:
-        return getDomain();
       case GSNTemplatesPackage.DOMAIN_GOAL__VALID:
         return isValid();
+      case GSNTemplatesPackage.DOMAIN_GOAL__DOMAIN:
+        return getDomain();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -223,11 +219,11 @@ public class DomainGoalImpl extends GoalImpl implements DomainGoal {
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
-      case GSNTemplatesPackage.DOMAIN_GOAL__DOMAIN:
-        setDomain((Domain)newValue);
-        return;
       case GSNTemplatesPackage.DOMAIN_GOAL__VALID:
         setValid((Boolean)newValue);
+        return;
+      case GSNTemplatesPackage.DOMAIN_GOAL__DOMAIN:
+        setDomain((Domain)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -241,11 +237,11 @@ public class DomainGoalImpl extends GoalImpl implements DomainGoal {
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
-      case GSNTemplatesPackage.DOMAIN_GOAL__DOMAIN:
-        setDomain((Domain)null);
-        return;
       case GSNTemplatesPackage.DOMAIN_GOAL__VALID:
         setValid(DomainGoalImpl.VALID_EDEFAULT);
+        return;
+      case GSNTemplatesPackage.DOMAIN_GOAL__DOMAIN:
+        setDomain((Domain)null);
         return;
     }
     super.eUnset(featureID);
@@ -259,10 +255,10 @@ public class DomainGoalImpl extends GoalImpl implements DomainGoal {
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
-      case GSNTemplatesPackage.DOMAIN_GOAL__DOMAIN:
-        return this.domain != null;
       case GSNTemplatesPackage.DOMAIN_GOAL__VALID:
         return this.valid != DomainGoalImpl.VALID_EDEFAULT;
+      case GSNTemplatesPackage.DOMAIN_GOAL__DOMAIN:
+        return this.domain != null;
     }
     return super.eIsSet(featureID);
   }
@@ -274,15 +270,15 @@ public class DomainGoalImpl extends GoalImpl implements DomainGoal {
    */
   @Override
   public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-    if (baseClass == DomainDecompositionElement.class) {
-      return switch (derivedFeatureID) {
-      case GSNTemplatesPackage.DOMAIN_GOAL__DOMAIN -> GSNTemplatesPackage.DOMAIN_DECOMPOSITION_ELEMENT__DOMAIN;
-      default -> -1;
-      };
-    }
     if (baseClass == TemplateElement.class) {
       return switch (derivedFeatureID) {
       case GSNTemplatesPackage.DOMAIN_GOAL__VALID -> GSNPackage.TEMPLATE_ELEMENT__VALID;
+      default -> -1;
+      };
+    }
+    if (baseClass == DomainDecompositionElement.class) {
+      return switch (derivedFeatureID) {
+      case GSNTemplatesPackage.DOMAIN_GOAL__DOMAIN -> GSNTemplatesPackage.DOMAIN_DECOMPOSITION_ELEMENT__DOMAIN;
       default -> -1;
       };
     }
@@ -296,15 +292,15 @@ public class DomainGoalImpl extends GoalImpl implements DomainGoal {
    */
   @Override
   public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-    if (baseClass == DomainDecompositionElement.class) {
-      return switch (baseFeatureID) {
-      case GSNTemplatesPackage.DOMAIN_DECOMPOSITION_ELEMENT__DOMAIN -> GSNTemplatesPackage.DOMAIN_GOAL__DOMAIN;
-      default -> -1;
-      };
-    }
     if (baseClass == TemplateElement.class) {
       return switch (baseFeatureID) {
       case GSNPackage.TEMPLATE_ELEMENT__VALID -> GSNTemplatesPackage.DOMAIN_GOAL__VALID;
+      default -> -1;
+      };
+    }
+    if (baseClass == DomainDecompositionElement.class) {
+      return switch (baseFeatureID) {
+      case GSNTemplatesPackage.DOMAIN_DECOMPOSITION_ELEMENT__DOMAIN -> GSNTemplatesPackage.DOMAIN_GOAL__DOMAIN;
       default -> -1;
       };
     }
@@ -318,15 +314,15 @@ public class DomainGoalImpl extends GoalImpl implements DomainGoal {
    */
   @Override
   public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
-    if (baseClass == DomainDecompositionElement.class) {
-      return switch (baseOperationID) {
-      default -> -1;
-      };
-    }
     if (baseClass == TemplateElement.class) {
       return switch (baseOperationID) {
       case GSNPackage.TEMPLATE_ELEMENT___VALIDATE -> GSNTemplatesPackage.DOMAIN_GOAL___VALIDATE;
       case GSNPackage.TEMPLATE_ELEMENT___REPAIR -> GSNTemplatesPackage.DOMAIN_GOAL___REPAIR;
+      default -> -1;
+      };
+    }
+    if (baseClass == DomainDecompositionElement.class) {
+      return switch (baseOperationID) {
       default -> -1;
       };
     }

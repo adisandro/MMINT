@@ -13,7 +13,6 @@
 package edu.toronto.cs.se.mmint.types.gsn.templates;
 
 import edu.toronto.cs.se.modelepedia.gsn.Goal;
-import edu.toronto.cs.se.modelepedia.gsn.TemplateElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -25,5 +24,5 @@ import edu.toronto.cs.se.modelepedia.gsn.TemplateElement;
  * @model
  * @generated
  */
-public interface DomainGoal extends Goal, DomainDecompositionElement, TemplateElement {
+public interface DomainGoal extends Goal, DomainDecompositionElement {
 } // DomainGoal

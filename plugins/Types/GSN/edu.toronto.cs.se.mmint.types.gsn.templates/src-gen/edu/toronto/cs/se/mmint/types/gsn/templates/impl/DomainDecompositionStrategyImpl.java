@@ -12,12 +12,14 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.types.gsn.templates.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.ECollections;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -28,7 +30,10 @@ import edu.toronto.cs.se.mmint.types.gsn.templates.DomainDecompositionElement;
 import edu.toronto.cs.se.mmint.types.gsn.templates.DomainDecompositionStrategy;
 import edu.toronto.cs.se.mmint.types.gsn.templates.DomainGoal;
 import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
+import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.SupportedBy;
+import edu.toronto.cs.se.modelepedia.gsn.TemplateElement;
+import edu.toronto.cs.se.modelepedia.gsn.impl.StrategyImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -38,12 +43,31 @@ import edu.toronto.cs.se.modelepedia.gsn.SupportedBy;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link edu.toronto.cs.se.mmint.types.gsn.templates.impl.DomainDecompositionStrategyImpl#isValid <em>Valid</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.types.gsn.templates.impl.DomainDecompositionStrategyImpl#getDomain <em>Domain</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class DomainDecompositionStrategyImpl extends DecompositionStrategyImpl implements DomainDecompositionStrategy {
+public class DomainDecompositionStrategyImpl extends StrategyImpl implements DomainDecompositionStrategy {
+  /**
+   * The default value of the '{@link #isValid() <em>Valid</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isValid()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean VALID_EDEFAULT = true;
+  /**
+   * The cached value of the '{@link #isValid() <em>Valid</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isValid()
+   * @generated
+   * @ordered
+   */
+  protected boolean valid = DomainDecompositionStrategyImpl.VALID_EDEFAULT;
   /**
    * The cached value of the '{@link #getDomain() <em>Domain</em>}' containment reference.
    * <!-- begin-user-doc -->
@@ -71,6 +95,29 @@ public class DomainDecompositionStrategyImpl extends DecompositionStrategyImpl i
   @Override
   protected EClass eStaticClass() {
     return GSNTemplatesPackage.Literals.DOMAIN_DECOMPOSITION_STRATEGY;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public boolean isValid() {
+    return this.valid;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setValid(boolean newValid) {
+    var oldValid = this.valid;
+    this.valid = newValid;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GSNTemplatesPackage.DOMAIN_DECOMPOSITION_STRATEGY__VALID, oldValid, this.valid));
   }
 
   /**
@@ -140,6 +187,8 @@ public class DomainDecompositionStrategyImpl extends DecompositionStrategyImpl i
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
+      case GSNTemplatesPackage.DOMAIN_DECOMPOSITION_STRATEGY__VALID:
+        return isValid();
       case GSNTemplatesPackage.DOMAIN_DECOMPOSITION_STRATEGY__DOMAIN:
         return getDomain();
     }
@@ -154,6 +203,9 @@ public class DomainDecompositionStrategyImpl extends DecompositionStrategyImpl i
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
+      case GSNTemplatesPackage.DOMAIN_DECOMPOSITION_STRATEGY__VALID:
+        setValid((Boolean)newValue);
+        return;
       case GSNTemplatesPackage.DOMAIN_DECOMPOSITION_STRATEGY__DOMAIN:
         setDomain((Domain)newValue);
         return;
@@ -169,6 +221,9 @@ public class DomainDecompositionStrategyImpl extends DecompositionStrategyImpl i
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
+      case GSNTemplatesPackage.DOMAIN_DECOMPOSITION_STRATEGY__VALID:
+        setValid(DomainDecompositionStrategyImpl.VALID_EDEFAULT);
+        return;
       case GSNTemplatesPackage.DOMAIN_DECOMPOSITION_STRATEGY__DOMAIN:
         setDomain((Domain)null);
         return;
@@ -184,6 +239,8 @@ public class DomainDecompositionStrategyImpl extends DecompositionStrategyImpl i
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
+      case GSNTemplatesPackage.DOMAIN_DECOMPOSITION_STRATEGY__VALID:
+        return this.valid != DomainDecompositionStrategyImpl.VALID_EDEFAULT;
       case GSNTemplatesPackage.DOMAIN_DECOMPOSITION_STRATEGY__DOMAIN:
         return this.domain != null;
     }
@@ -197,6 +254,12 @@ public class DomainDecompositionStrategyImpl extends DecompositionStrategyImpl i
    */
   @Override
   public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+    if (baseClass == TemplateElement.class) {
+      return switch (derivedFeatureID) {
+      case GSNTemplatesPackage.DOMAIN_DECOMPOSITION_STRATEGY__VALID -> GSNPackage.TEMPLATE_ELEMENT__VALID;
+      default -> -1;
+      };
+    }
     if (baseClass == DomainDecompositionElement.class) {
       return switch (derivedFeatureID) {
       case GSNTemplatesPackage.DOMAIN_DECOMPOSITION_STRATEGY__DOMAIN -> GSNTemplatesPackage.DOMAIN_DECOMPOSITION_ELEMENT__DOMAIN;
@@ -213,6 +276,12 @@ public class DomainDecompositionStrategyImpl extends DecompositionStrategyImpl i
    */
   @Override
   public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+    if (baseClass == TemplateElement.class) {
+      return switch (baseFeatureID) {
+      case GSNPackage.TEMPLATE_ELEMENT__VALID -> GSNTemplatesPackage.DOMAIN_DECOMPOSITION_STRATEGY__VALID;
+      default -> -1;
+      };
+    }
     if (baseClass == DomainDecompositionElement.class) {
       return switch (baseFeatureID) {
       case GSNTemplatesPackage.DOMAIN_DECOMPOSITION_ELEMENT__DOMAIN -> GSNTemplatesPackage.DOMAIN_DECOMPOSITION_STRATEGY__DOMAIN;
@@ -220,6 +289,72 @@ public class DomainDecompositionStrategyImpl extends DecompositionStrategyImpl i
       };
     }
     return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
+    if (baseClass == TemplateElement.class) {
+      return switch (baseOperationID) {
+      case GSNPackage.TEMPLATE_ELEMENT___VALIDATE -> GSNTemplatesPackage.DOMAIN_DECOMPOSITION_STRATEGY___VALIDATE;
+      case GSNPackage.TEMPLATE_ELEMENT___REPAIR -> GSNTemplatesPackage.DOMAIN_DECOMPOSITION_STRATEGY___REPAIR;
+      default -> -1;
+      };
+    }
+    if (baseClass == DomainDecompositionElement.class) {
+      return switch (baseOperationID) {
+      default -> -1;
+      };
+    }
+    return super.eDerivedOperationID(baseOperationID, baseClass);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+    switch (operationID) {
+      case GSNTemplatesPackage.DOMAIN_DECOMPOSITION_STRATEGY___VALIDATE:
+        try {
+          validate();
+          return null;
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case GSNTemplatesPackage.DOMAIN_DECOMPOSITION_STRATEGY___REPAIR:
+        try {
+          repair();
+          return null;
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+    }
+    return super.eInvoke(operationID, arguments);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString() {
+    if (eIsProxy()) return super.toString();
+
+    StringBuilder result = new StringBuilder(super.toString());
+    result.append(" (valid: ");
+    result.append(this.valid);
+    result.append(')');
+    return result.toString();
   }
 
   /**
@@ -237,6 +372,18 @@ public class DomainDecompositionStrategyImpl extends DecompositionStrategyImpl i
       throw new MMINTException("A domain must be decomposed into sub-domains");
     }
     domain.validateDecomposition(ECollections.toEList(subDomains));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void repair() throws Exception {
+    // TODO: implement this method
+    // Ensure that you remove @generated or mark it @generated NOT
+    throw new UnsupportedOperationException();
   }
 
 } //DomainDecompositionStrategyImpl

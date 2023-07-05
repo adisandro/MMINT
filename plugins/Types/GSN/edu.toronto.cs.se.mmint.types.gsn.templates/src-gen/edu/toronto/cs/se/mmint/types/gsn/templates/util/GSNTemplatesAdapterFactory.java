@@ -17,7 +17,6 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 
-import edu.toronto.cs.se.mmint.types.gsn.templates.DecompositionStrategy;
 import edu.toronto.cs.se.mmint.types.gsn.templates.DecompositionTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.templates.Domain;
 import edu.toronto.cs.se.mmint.types.gsn.templates.DomainDecompositionElement;
@@ -25,6 +24,7 @@ import edu.toronto.cs.se.mmint.types.gsn.templates.DomainDecompositionStrategy;
 import edu.toronto.cs.se.mmint.types.gsn.templates.DomainDecompositionTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.templates.DomainGoal;
 import edu.toronto.cs.se.mmint.types.gsn.templates.EnumDomain;
+import edu.toronto.cs.se.mmint.types.gsn.templates.FilesContext;
 import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
 import edu.toronto.cs.se.mmint.types.gsn.templates.IntDomain;
 import edu.toronto.cs.se.mmint.types.gsn.templates.Property;
@@ -36,6 +36,8 @@ import edu.toronto.cs.se.mmint.types.gsn.templates.RealDomain;
 import edu.toronto.cs.se.mmint.types.gsn.templates.ValueDomain;
 import edu.toronto.cs.se.modelepedia.gsn.ASILfulElement;
 import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
+import edu.toronto.cs.se.modelepedia.gsn.Context;
+import edu.toronto.cs.se.modelepedia.gsn.ContextualElement;
 import edu.toronto.cs.se.modelepedia.gsn.CoreElement;
 import edu.toronto.cs.se.modelepedia.gsn.DecomposableCoreElement;
 import edu.toronto.cs.se.modelepedia.gsn.Goal;
@@ -103,10 +105,6 @@ public class GSNTemplatesAdapterFactory extends AdapterFactoryImpl {
   protected GSNTemplatesSwitch<Adapter> modelSwitch =
     new GSNTemplatesSwitch<>() {
       @Override
-      public Adapter caseDecompositionStrategy(DecompositionStrategy object) {
-        return createDecompositionStrategyAdapter();
-      }
-      @Override
       public Adapter caseDecompositionTemplate(DecompositionTemplate object) {
         return createDecompositionTemplateAdapter();
       }
@@ -167,16 +165,28 @@ public class GSNTemplatesAdapterFactory extends AdapterFactoryImpl {
         return createPropertyDecompositionTemplateAdapter();
       }
       @Override
+      public Adapter caseFilesContext(FilesContext object) {
+        return createFilesContextAdapter();
+      }
+      @Override
+      public Adapter caseTemplate(Template object) {
+        return createTemplateAdapter();
+      }
+      @Override
+      public Adapter caseArgumentElement(ArgumentElement object) {
+        return createArgumentElementAdapter();
+      }
+      @Override
+      public Adapter caseTemplateElement(TemplateElement object) {
+        return createTemplateElementAdapter();
+      }
+      @Override
       public Adapter caseSupporter(Supporter object) {
         return createSupporterAdapter();
       }
       @Override
       public Adapter caseSupportable(Supportable object) {
         return createSupportableAdapter();
-      }
-      @Override
-      public Adapter caseArgumentElement(ArgumentElement object) {
-        return createArgumentElementAdapter();
       }
       @Override
       public Adapter caseCoreElement(CoreElement object) {
@@ -191,14 +201,6 @@ public class GSNTemplatesAdapterFactory extends AdapterFactoryImpl {
         return createStrategyAdapter();
       }
       @Override
-      public Adapter caseTemplateElement(TemplateElement object) {
-        return createTemplateElementAdapter();
-      }
-      @Override
-      public Adapter caseTemplate(Template object) {
-        return createTemplateAdapter();
-      }
-      @Override
       public Adapter caseStatefulElement(StatefulElement object) {
         return createStatefulElementAdapter();
       }
@@ -209,6 +211,14 @@ public class GSNTemplatesAdapterFactory extends AdapterFactoryImpl {
       @Override
       public Adapter caseGoal(Goal object) {
         return createGoalAdapter();
+      }
+      @Override
+      public Adapter caseContextualElement(ContextualElement object) {
+        return createContextualElementAdapter();
+      }
+      @Override
+      public Adapter caseContext(Context object) {
+        return createContextAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object) {
@@ -229,20 +239,6 @@ public class GSNTemplatesAdapterFactory extends AdapterFactoryImpl {
     return this.modelSwitch.doSwitch((EObject)target);
   }
 
-
-  /**
-   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.types.gsn.templates.DecompositionStrategy <em>Decomposition Strategy</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see edu.toronto.cs.se.mmint.types.gsn.templates.DecompositionStrategy
-   * @generated
-   */
-  public Adapter createDecompositionStrategyAdapter() {
-    return null;
-  }
 
   /**
    * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.types.gsn.templates.DecompositionTemplate <em>Decomposition Template</em>}'.
@@ -455,6 +451,20 @@ public class GSNTemplatesAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.types.gsn.templates.FilesContext <em>Files Context</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.toronto.cs.se.mmint.types.gsn.templates.FilesContext
+   * @generated
+   */
+  public Adapter createFilesContextAdapter() {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.gsn.Supporter <em>Supporter</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -591,6 +601,34 @@ public class GSNTemplatesAdapterFactory extends AdapterFactoryImpl {
    * @generated
    */
   public Adapter createGoalAdapter() {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.gsn.ContextualElement <em>Contextual Element</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.toronto.cs.se.modelepedia.gsn.ContextualElement
+   * @generated
+   */
+  public Adapter createContextualElementAdapter() {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.gsn.Context <em>Context</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.toronto.cs.se.modelepedia.gsn.Context
+   * @generated
+   */
+  public Adapter createContextAdapter() {
     return null;
   }
 

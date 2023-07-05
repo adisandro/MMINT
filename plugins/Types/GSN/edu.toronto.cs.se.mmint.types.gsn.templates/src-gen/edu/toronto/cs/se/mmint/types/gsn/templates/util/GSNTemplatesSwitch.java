@@ -16,7 +16,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
 
-import edu.toronto.cs.se.mmint.types.gsn.templates.DecompositionStrategy;
 import edu.toronto.cs.se.mmint.types.gsn.templates.DecompositionTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.templates.Domain;
 import edu.toronto.cs.se.mmint.types.gsn.templates.DomainDecompositionElement;
@@ -24,6 +23,7 @@ import edu.toronto.cs.se.mmint.types.gsn.templates.DomainDecompositionStrategy;
 import edu.toronto.cs.se.mmint.types.gsn.templates.DomainDecompositionTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.templates.DomainGoal;
 import edu.toronto.cs.se.mmint.types.gsn.templates.EnumDomain;
+import edu.toronto.cs.se.mmint.types.gsn.templates.FilesContext;
 import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
 import edu.toronto.cs.se.mmint.types.gsn.templates.IntDomain;
 import edu.toronto.cs.se.mmint.types.gsn.templates.Property;
@@ -35,6 +35,8 @@ import edu.toronto.cs.se.mmint.types.gsn.templates.RealDomain;
 import edu.toronto.cs.se.mmint.types.gsn.templates.ValueDomain;
 import edu.toronto.cs.se.modelepedia.gsn.ASILfulElement;
 import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
+import edu.toronto.cs.se.modelepedia.gsn.Context;
+import edu.toronto.cs.se.modelepedia.gsn.ContextualElement;
 import edu.toronto.cs.se.modelepedia.gsn.CoreElement;
 import edu.toronto.cs.se.modelepedia.gsn.DecomposableCoreElement;
 import edu.toronto.cs.se.modelepedia.gsn.Goal;
@@ -102,19 +104,6 @@ public class GSNTemplatesSwitch<T> extends Switch<T> {
   @Override
   protected T doSwitch(int classifierID, EObject theEObject) {
     switch (classifierID) {
-      case GSNTemplatesPackage.DECOMPOSITION_STRATEGY: {
-        var decompositionStrategy = (DecompositionStrategy)theEObject;
-        var result = caseDecompositionStrategy(decompositionStrategy);
-        if (result == null) result = caseStrategy(decompositionStrategy);
-        if (result == null) result = caseTemplateElement(decompositionStrategy);
-        if (result == null) result = caseDecomposableCoreElement(decompositionStrategy);
-        if (result == null) result = caseSupportable(decompositionStrategy);
-        if (result == null) result = caseCoreElement(decompositionStrategy);
-        if (result == null) result = caseSupporter(decompositionStrategy);
-        if (result == null) result = caseArgumentElement(decompositionStrategy);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
       case GSNTemplatesPackage.DECOMPOSITION_TEMPLATE: {
         var decompositionTemplate = (DecompositionTemplate)theEObject;
         var result = caseDecompositionTemplate(decompositionTemplate);
@@ -159,17 +148,18 @@ public class GSNTemplatesSwitch<T> extends Switch<T> {
       case GSNTemplatesPackage.DOMAIN_DECOMPOSITION_ELEMENT: {
         var domainDecompositionElement = (DomainDecompositionElement)theEObject;
         var result = caseDomainDecompositionElement(domainDecompositionElement);
+        if (result == null) result = caseTemplateElement(domainDecompositionElement);
+        if (result == null) result = caseArgumentElement(domainDecompositionElement);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
       case GSNTemplatesPackage.DOMAIN_DECOMPOSITION_STRATEGY: {
         var domainDecompositionStrategy = (DomainDecompositionStrategy)theEObject;
         var result = caseDomainDecompositionStrategy(domainDecompositionStrategy);
-        if (result == null) result = caseDecompositionStrategy(domainDecompositionStrategy);
-        if (result == null) result = caseDomainDecompositionElement(domainDecompositionStrategy);
         if (result == null) result = caseStrategy(domainDecompositionStrategy);
-        if (result == null) result = caseTemplateElement(domainDecompositionStrategy);
+        if (result == null) result = caseDomainDecompositionElement(domainDecompositionStrategy);
         if (result == null) result = caseDecomposableCoreElement(domainDecompositionStrategy);
+        if (result == null) result = caseTemplateElement(domainDecompositionStrategy);
         if (result == null) result = caseSupportable(domainDecompositionStrategy);
         if (result == null) result = caseCoreElement(domainDecompositionStrategy);
         if (result == null) result = caseSupporter(domainDecompositionStrategy);
@@ -182,10 +172,10 @@ public class GSNTemplatesSwitch<T> extends Switch<T> {
         var result = caseDomainGoal(domainGoal);
         if (result == null) result = caseGoal(domainGoal);
         if (result == null) result = caseDomainDecompositionElement(domainGoal);
-        if (result == null) result = caseTemplateElement(domainGoal);
         if (result == null) result = caseDecomposableCoreElement(domainGoal);
         if (result == null) result = caseStatefulElement(domainGoal);
         if (result == null) result = caseASILfulElement(domainGoal);
+        if (result == null) result = caseTemplateElement(domainGoal);
         if (result == null) result = caseSupportable(domainGoal);
         if (result == null) result = caseCoreElement(domainGoal);
         if (result == null) result = caseSupporter(domainGoal);
@@ -210,17 +200,18 @@ public class GSNTemplatesSwitch<T> extends Switch<T> {
       case GSNTemplatesPackage.PROPERTY_DECOMPOSITION_ELEMENT: {
         var propertyDecompositionElement = (PropertyDecompositionElement)theEObject;
         var result = casePropertyDecompositionElement(propertyDecompositionElement);
+        if (result == null) result = caseTemplateElement(propertyDecompositionElement);
+        if (result == null) result = caseArgumentElement(propertyDecompositionElement);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
       case GSNTemplatesPackage.PROPERTY_DECOMPOSITION_STRATEGY: {
         var propertyDecompositionStrategy = (PropertyDecompositionStrategy)theEObject;
         var result = casePropertyDecompositionStrategy(propertyDecompositionStrategy);
-        if (result == null) result = caseDecompositionStrategy(propertyDecompositionStrategy);
-        if (result == null) result = casePropertyDecompositionElement(propertyDecompositionStrategy);
         if (result == null) result = caseStrategy(propertyDecompositionStrategy);
-        if (result == null) result = caseTemplateElement(propertyDecompositionStrategy);
+        if (result == null) result = casePropertyDecompositionElement(propertyDecompositionStrategy);
         if (result == null) result = caseDecomposableCoreElement(propertyDecompositionStrategy);
+        if (result == null) result = caseTemplateElement(propertyDecompositionStrategy);
         if (result == null) result = caseSupportable(propertyDecompositionStrategy);
         if (result == null) result = caseCoreElement(propertyDecompositionStrategy);
         if (result == null) result = caseSupporter(propertyDecompositionStrategy);
@@ -233,10 +224,10 @@ public class GSNTemplatesSwitch<T> extends Switch<T> {
         var result = casePropertyGoal(propertyGoal);
         if (result == null) result = caseGoal(propertyGoal);
         if (result == null) result = casePropertyDecompositionElement(propertyGoal);
-        if (result == null) result = caseTemplateElement(propertyGoal);
         if (result == null) result = caseDecomposableCoreElement(propertyGoal);
         if (result == null) result = caseStatefulElement(propertyGoal);
         if (result == null) result = caseASILfulElement(propertyGoal);
+        if (result == null) result = caseTemplateElement(propertyGoal);
         if (result == null) result = caseSupportable(propertyGoal);
         if (result == null) result = caseCoreElement(propertyGoal);
         if (result == null) result = caseSupporter(propertyGoal);
@@ -252,23 +243,18 @@ public class GSNTemplatesSwitch<T> extends Switch<T> {
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case GSNTemplatesPackage.FILES_CONTEXT: {
+        var filesContext = (FilesContext)theEObject;
+        var result = caseFilesContext(filesContext);
+        if (result == null) result = caseContext(filesContext);
+        if (result == null) result = caseTemplateElement(filesContext);
+        if (result == null) result = caseContextualElement(filesContext);
+        if (result == null) result = caseArgumentElement(filesContext);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       default: return defaultCase(theEObject);
     }
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Decomposition Strategy</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Decomposition Strategy</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseDecompositionStrategy(DecompositionStrategy object) {
-    return null;
   }
 
   /**
@@ -497,6 +483,21 @@ public class GSNTemplatesSwitch<T> extends Switch<T> {
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Files Context</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Files Context</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseFilesContext(FilesContext object) {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Supporter</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -643,6 +644,36 @@ public class GSNTemplatesSwitch<T> extends Switch<T> {
    * @generated
    */
   public T caseGoal(Goal object) {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Contextual Element</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Contextual Element</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseContextualElement(ContextualElement object) {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Context</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Context</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseContext(Context object) {
     return null;
   }
 

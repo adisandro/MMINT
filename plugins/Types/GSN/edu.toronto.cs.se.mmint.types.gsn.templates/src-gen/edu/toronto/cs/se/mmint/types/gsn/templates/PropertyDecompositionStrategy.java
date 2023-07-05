@@ -12,6 +12,8 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.types.gsn.templates;
 
+import edu.toronto.cs.se.modelepedia.gsn.Strategy;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -29,7 +31,7 @@ package edu.toronto.cs.se.mmint.types.gsn.templates;
  * @model
  * @generated
  */
-public interface PropertyDecompositionStrategy extends DecompositionStrategy, PropertyDecompositionElement {
+public interface PropertyDecompositionStrategy extends Strategy, PropertyDecompositionElement {
   /**
    * Returns the value of the '<em><b>Reasoner Name</b></em>' attribute.
    * <!-- begin-user-doc -->

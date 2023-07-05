@@ -13,7 +13,6 @@
 package edu.toronto.cs.se.mmint.types.gsn.templates;
 
 import edu.toronto.cs.se.modelepedia.gsn.Goal;
-import edu.toronto.cs.se.modelepedia.gsn.TemplateElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -31,7 +30,7 @@ import edu.toronto.cs.se.modelepedia.gsn.TemplateElement;
  * @model
  * @generated
  */
-public interface PropertyGoal extends Goal, PropertyDecompositionElement, TemplateElement {
+public interface PropertyGoal extends Goal, PropertyDecompositionElement {
   /**
    * Returns the value of the '<em><b>Hint</b></em>' attribute.
    * <!-- begin-user-doc -->
