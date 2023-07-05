@@ -43,6 +43,10 @@
             id="edu.toronto.cs.se.modelepedia.gsn.design.context.InstantiateTemplate">
       </javaActions>
       <javaActions
+            actionClass="edu.toronto.cs.se.modelepedia.gsn.design.context.CreateTemplate"
+            id="edu.toronto.cs.se.modelepedia.gsn.design.context.CreateTemplate">
+      </javaActions>
+      <javaActions
             actionClass="edu.toronto.cs.se.modelepedia.gsn.design.context.ValidateTemplate"
             id="edu.toronto.cs.se.modelepedia.gsn.design.context.ValidateTemplate">
       </javaActions>

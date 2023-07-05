@@ -91,6 +91,7 @@ public class InstantiateTemplate extends AbstractExternalJavaAction {
         this.template.validate();
         //TODO Delete links and delete template
         //TODO Repair framework should be refined
+        //TODO FilesJustification?
       }
       catch (Exception e) {
         MMINTException.print(IStatus.ERROR, "The template instantiation is not valid", e);

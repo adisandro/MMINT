@@ -170,7 +170,7 @@ public class TemplateImpl extends MinimalEObjectImpl.Container implements Templa
         }
       }
       else if (findPattern(elem.getDescription()).isPresent()) {
-        throw new MMINTException("Element " + elem.getId() + "'s description contains uninstantiated text");
+        throw new MMINTException("Element " + elem.getId() + " description contains text that is not instantiated");
       }
     }
   }
