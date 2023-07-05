@@ -38,7 +38,7 @@ public class ValidateTemplate extends AbstractExternalJavaAction {
       return false;
     }
     var modelObj = ((DSemanticDecorator) arg0.iterator().next()).getTarget();
-    if (!(modelObj instanceof ArgumentElement templateElement) || templateElement.getTemplates().isEmpty()) {
+    if (!(modelObj instanceof ArgumentElement templateElem) || templateElem.getTemplates().isEmpty()) {
       return false;
     }
     return true;

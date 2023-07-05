@@ -15,6 +15,7 @@ package edu.toronto.cs.se.modelepedia.gsn.impl;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -27,6 +28,8 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
@@ -137,12 +140,37 @@ public class TemplateImpl extends MinimalEObjectImpl.Container implements Templa
   /**
    * @generated NOT
    */
+  private Optional<String> findPattern(String text) {
+    var i = text.indexOf(GSNBuilder.PATTERN1);
+    if (i == -1) {
+      return Optional.empty();
+    }
+    var j = text.indexOf(GSNBuilder.PATTERN2, i);
+    if (j == -1) {
+      return Optional.empty();
+    }
+
+    return Optional.of(text.substring(i+GSNBuilder.PATTERN1.length(), j));
+  }
+
+  /**
+   * @generated NOT
+   */
   @Override
   public void validate() throws Exception {
     for (var elem : List.copyOf(getElements())) {
       // copy to avoid concurrent modifications: template element validation may modify the template
       if (elem instanceof TemplateElement templateElem) {
-        templateElem.validate();
+        try {
+          templateElem.validate();
+        }
+        catch (Exception e) {
+          templateElem.setValid(false);
+          throw e;
+        }
+      }
+      else if (findPattern(elem.getDescription()).isPresent()) {
+        throw new MMINTException("Element " + elem.getId() + "'s description contains uninstantiated text");
       }
     }
   }
@@ -161,6 +189,19 @@ public class TemplateImpl extends MinimalEObjectImpl.Container implements Templa
     builder.addExistingElements(templateSC.getJustifications());
     builder.addExistingElements(templateSC.getAssumptions());
     builder.addExistingTemplate(this);
+    for (var elem : builder.getGSNElements()) {
+      while (true) {
+        var desc = elem.getDescription();
+        var pattern = findPattern(desc);
+        if (pattern.isEmpty()) {
+          break;
+        }
+        var toReplace = pattern.get();
+        var msg = "Replace '" + toReplace + "' in '" + desc + "' with:";
+        var replacement = MIDDialogs.getStringInput("Instantiate Template", msg, null);
+        elem.setDescription(desc.replace(GSNBuilder.PATTERN1 + toReplace + GSNBuilder.PATTERN2, replacement));
+      }
+    }
 
     return builder;
   }

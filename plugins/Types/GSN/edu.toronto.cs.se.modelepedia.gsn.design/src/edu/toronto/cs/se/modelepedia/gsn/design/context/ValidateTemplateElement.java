@@ -26,6 +26,7 @@ import org.eclipse.sirius.viewpoint.DSemanticDecorator;
 import org.eclipse.ui.PlatformUI;
 
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
 import edu.toronto.cs.se.modelepedia.gsn.TemplateElement;
 
 public class ValidateTemplateElement extends AbstractExternalJavaAction {
@@ -36,7 +37,7 @@ public class ValidateTemplateElement extends AbstractExternalJavaAction {
       return false;
     }
     var modelObj = ((DSemanticDecorator) arg0.iterator().next()).getTarget();
-    if (!(modelObj instanceof TemplateElement)) {
+    if (!(modelObj instanceof ArgumentElement templateElem) || templateElem.getTemplates().isEmpty()) {
       return false;
     }
     return true;
@@ -68,6 +69,7 @@ public class ValidateTemplateElement extends AbstractExternalJavaAction {
         MessageDialog.openInformation(shell, title, message + "instantiated correctly");
       }
       catch (Exception e) {
+        this.templateElem.setValid(false);
         MMINTException.print(IStatus.ERROR, message + "not instantiated correctly", e);
       }
     }

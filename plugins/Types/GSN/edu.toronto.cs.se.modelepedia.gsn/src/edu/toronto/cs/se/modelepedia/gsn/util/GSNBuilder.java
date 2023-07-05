@@ -33,6 +33,9 @@ import edu.toronto.cs.se.modelepedia.gsn.Supporter;
 import edu.toronto.cs.se.modelepedia.gsn.Template;
 
 public class GSNBuilder {
+  public final static String PATTERN1 = "${";
+  public final static String PATTERN2 = "}";
+
   protected SafetyCase safetyCase;
   protected GSNFactory factory;
   protected List<ArgumentElement> gsnElements;
@@ -115,6 +118,10 @@ public class GSNBuilder {
 
   public void addExistingTemplate(Template template) {
     this.templates.add(template);
+  }
+
+  public List<ArgumentElement> getGSNElements() {
+    return this.gsnElements;
   }
 
   public void commitChanges() {
