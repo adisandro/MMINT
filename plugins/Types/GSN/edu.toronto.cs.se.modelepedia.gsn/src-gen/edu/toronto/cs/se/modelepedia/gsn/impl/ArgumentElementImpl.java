@@ -416,6 +416,14 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
         catch (Throwable throwable) {
           throw new InvocationTargetException(throwable);
         }
+      case GSNPackage.ARGUMENT_ELEMENT___INSTANTIATE:
+        try {
+          instantiate();
+          return null;
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
     }
     return super.eInvoke(operationID, arguments);
   }

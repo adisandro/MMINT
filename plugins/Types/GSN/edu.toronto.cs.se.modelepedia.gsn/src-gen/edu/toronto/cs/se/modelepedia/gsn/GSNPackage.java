@@ -244,12 +244,21 @@ public interface GSNPackage extends EPackage {
   int ARGUMENT_ELEMENT___REPAIR = 1;
 
   /**
+   * The operation id for the '<em>Instantiate</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ARGUMENT_ELEMENT___INSTANTIATE = 2;
+
+  /**
    * The number of operations of the '<em>Argument Element</em>' class.
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ARGUMENT_ELEMENT_OPERATION_COUNT = 2;
+  int ARGUMENT_ELEMENT_OPERATION_COUNT = 3;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.StatefulElementImpl <em>Stateful Element</em>}' class.
@@ -407,6 +416,15 @@ public interface GSNPackage extends EPackage {
   int CORE_ELEMENT___REPAIR = GSNPackage.ARGUMENT_ELEMENT___REPAIR;
 
   /**
+   * The operation id for the '<em>Instantiate</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CORE_ELEMENT___INSTANTIATE = GSNPackage.ARGUMENT_ELEMENT___INSTANTIATE;
+
+  /**
    * The number of operations of the '<em>Core Element</em>' class.
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
@@ -538,6 +556,15 @@ public interface GSNPackage extends EPackage {
   int DECOMPOSABLE_CORE_ELEMENT___REPAIR = GSNPackage.CORE_ELEMENT___REPAIR;
 
   /**
+   * The operation id for the '<em>Instantiate</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DECOMPOSABLE_CORE_ELEMENT___INSTANTIATE = GSNPackage.CORE_ELEMENT___INSTANTIATE;
+
+  /**
    * The number of operations of the '<em>Decomposable Core Element</em>' class.
    * <!-- begin-user-doc --> <!--
    * end-user-doc -->
@@ -632,6 +659,15 @@ public interface GSNPackage extends EPackage {
    * @ordered
    */
   int CONTEXTUAL_ELEMENT___REPAIR = GSNPackage.ARGUMENT_ELEMENT___REPAIR;
+
+  /**
+   * The operation id for the '<em>Instantiate</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTEXTUAL_ELEMENT___INSTANTIATE = GSNPackage.ARGUMENT_ELEMENT___INSTANTIATE;
 
   /**
    * The number of operations of the '<em>Contextual Element</em>' class.
@@ -848,6 +884,15 @@ public interface GSNPackage extends EPackage {
   int GOAL___REPAIR = GSNPackage.DECOMPOSABLE_CORE_ELEMENT___REPAIR;
 
   /**
+   * The operation id for the '<em>Instantiate</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int GOAL___INSTANTIATE = GSNPackage.DECOMPOSABLE_CORE_ELEMENT___INSTANTIATE;
+
+  /**
    * The number of operations of the '<em>Goal</em>' class.
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
@@ -974,6 +1019,15 @@ public interface GSNPackage extends EPackage {
    * @ordered
    */
   int BASIC_GOAL___REPAIR = GSNPackage.GOAL___REPAIR;
+
+  /**
+   * The operation id for the '<em>Instantiate</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BASIC_GOAL___INSTANTIATE = GSNPackage.GOAL___INSTANTIATE;
 
   /**
    * The number of operations of the '<em>Basic Goal</em>' class.
@@ -1105,6 +1159,15 @@ public interface GSNPackage extends EPackage {
   int INDEPENDENCE_GOAL___REPAIR = GSNPackage.GOAL___REPAIR;
 
   /**
+   * The operation id for the '<em>Instantiate</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INDEPENDENCE_GOAL___INSTANTIATE = GSNPackage.GOAL___INSTANTIATE;
+
+  /**
    * The number of operations of the '<em>Independence Goal</em>' class.
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
@@ -1215,6 +1278,15 @@ public interface GSNPackage extends EPackage {
    * @ordered
    */
   int STRATEGY___REPAIR = GSNPackage.DECOMPOSABLE_CORE_ELEMENT___REPAIR;
+
+  /**
+   * The operation id for the '<em>Instantiate</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STRATEGY___INSTANTIATE = GSNPackage.DECOMPOSABLE_CORE_ELEMENT___INSTANTIATE;
 
   /**
    * The number of operations of the '<em>Strategy</em>' class.
@@ -1330,6 +1402,15 @@ public interface GSNPackage extends EPackage {
   int BASIC_STRATEGY___REPAIR = GSNPackage.STRATEGY___REPAIR;
 
   /**
+   * The operation id for the '<em>Instantiate</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BASIC_STRATEGY___INSTANTIATE = GSNPackage.STRATEGY___INSTANTIATE;
+
+  /**
    * The number of operations of the '<em>Basic Strategy</em>' class.
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
@@ -1443,6 +1524,15 @@ public interface GSNPackage extends EPackage {
   int ASIL_DECOMPOSITION_STRATEGY___REPAIR = GSNPackage.STRATEGY___REPAIR;
 
   /**
+   * The operation id for the '<em>Instantiate</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ASIL_DECOMPOSITION_STRATEGY___INSTANTIATE = GSNPackage.STRATEGY___INSTANTIATE;
+
+  /**
    * The number of operations of the '<em>ASIL Decomposition Strategy</em>' class.
    * <!-- begin-user-doc --> <!--
    * end-user-doc -->
@@ -1546,6 +1636,15 @@ public interface GSNPackage extends EPackage {
   int SOLUTION___REPAIR = GSNPackage.CORE_ELEMENT___REPAIR;
 
   /**
+   * The operation id for the '<em>Instantiate</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SOLUTION___INSTANTIATE = GSNPackage.CORE_ELEMENT___INSTANTIATE;
+
+  /**
    * The number of operations of the '<em>Solution</em>' class.
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
@@ -1638,6 +1737,15 @@ public interface GSNPackage extends EPackage {
    * @ordered
    */
   int CONTEXT___REPAIR = GSNPackage.CONTEXTUAL_ELEMENT___REPAIR;
+
+  /**
+   * The operation id for the '<em>Instantiate</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTEXT___INSTANTIATE = GSNPackage.CONTEXTUAL_ELEMENT___INSTANTIATE;
 
   /**
    * The number of operations of the '<em>Context</em>' class.
@@ -1735,6 +1843,15 @@ public interface GSNPackage extends EPackage {
   int JUSTIFICATION___REPAIR = GSNPackage.CONTEXTUAL_ELEMENT___REPAIR;
 
   /**
+   * The operation id for the '<em>Instantiate</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int JUSTIFICATION___INSTANTIATE = GSNPackage.CONTEXTUAL_ELEMENT___INSTANTIATE;
+
+  /**
    * The number of operations of the '<em>Justification</em>' class.
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
@@ -1827,6 +1944,15 @@ public interface GSNPackage extends EPackage {
    * @ordered
    */
   int ASSUMPTION___REPAIR = GSNPackage.CONTEXTUAL_ELEMENT___REPAIR;
+
+  /**
+   * The operation id for the '<em>Instantiate</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ASSUMPTION___INSTANTIATE = GSNPackage.CONTEXTUAL_ELEMENT___INSTANTIATE;
 
   /**
    * The number of operations of the '<em>Assumption</em>' class.
@@ -2504,6 +2630,16 @@ public interface GSNPackage extends EPackage {
   EOperation getArgumentElement__Repair();
 
   /**
+   * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.gsn.ArgumentElement#instantiate() <em>Instantiate</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>Instantiate</em>' operation.
+   * @see edu.toronto.cs.se.modelepedia.gsn.ArgumentElement#instantiate()
+   * @generated
+   */
+  EOperation getArgumentElement__Instantiate();
+
+  /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.gsn.StatefulElement <em>Stateful Element</em>}'.
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @return the meta object for class '<em>Stateful Element</em>'.
@@ -3174,6 +3310,14 @@ public interface GSNPackage extends EPackage {
      * @generated
      */
     EOperation ARGUMENT_ELEMENT___REPAIR = GSNPackage.eINSTANCE.getArgumentElement__Repair();
+
+    /**
+     * The meta object literal for the '<em><b>Instantiate</b></em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EOperation ARGUMENT_ELEMENT___INSTANTIATE = GSNPackage.eINSTANCE.getArgumentElement__Instantiate();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.StatefulElementImpl <em>Stateful Element</em>}' class.

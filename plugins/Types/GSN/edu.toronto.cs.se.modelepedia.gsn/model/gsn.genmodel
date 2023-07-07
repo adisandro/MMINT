@@ -47,6 +47,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//ArgumentElement/valid"/>
       <genOperations ecoreOperation="gsn.ecore#//ArgumentElement/validate"/>
       <genOperations ecoreOperation="gsn.ecore#//ArgumentElement/repair"/>
+      <genOperations ecoreOperation="gsn.ecore#//ArgumentElement/instantiate"/>
     </genClasses>
     <genClasses image="false" ecoreClass="gsn.ecore#//StatefulElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//StatefulElement/stateValidity"/>

@@ -538,6 +538,15 @@ public interface GSNTemplatesPackage extends EPackage {
   int DOMAIN_DECOMPOSITION_STRATEGY___REPAIR = GSNPackage.STRATEGY___REPAIR;
 
   /**
+   * The operation id for the '<em>Instantiate</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DOMAIN_DECOMPOSITION_STRATEGY___INSTANTIATE = GSNPackage.STRATEGY___INSTANTIATE;
+
+  /**
    * The number of operations of the '<em>Domain Decomposition Strategy</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -681,6 +690,15 @@ public interface GSNTemplatesPackage extends EPackage {
    * @ordered
    */
   int DOMAIN_GOAL___REPAIR = GSNPackage.GOAL___REPAIR;
+
+  /**
+   * The operation id for the '<em>Instantiate</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DOMAIN_GOAL___INSTANTIATE = GSNPackage.GOAL___INSTANTIATE;
 
   /**
    * The number of operations of the '<em>Domain Goal</em>' class.
@@ -975,6 +993,15 @@ public interface GSNTemplatesPackage extends EPackage {
   int PROPERTY_DECOMPOSITION_STRATEGY___REPAIR = GSNPackage.STRATEGY___REPAIR;
 
   /**
+   * The operation id for the '<em>Instantiate</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_DECOMPOSITION_STRATEGY___INSTANTIATE = GSNPackage.STRATEGY___INSTANTIATE;
+
+  /**
    * The number of operations of the '<em>Property Decomposition Strategy</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1127,6 +1154,15 @@ public interface GSNTemplatesPackage extends EPackage {
    * @ordered
    */
   int PROPERTY_GOAL___REPAIR = GSNPackage.GOAL___REPAIR;
+
+  /**
+   * The operation id for the '<em>Instantiate</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_GOAL___INSTANTIATE = GSNPackage.GOAL___INSTANTIATE;
 
   /**
    * The number of operations of the '<em>Property Goal</em>' class.
@@ -1310,6 +1346,15 @@ public interface GSNTemplatesPackage extends EPackage {
    * @ordered
    */
   int FILES_CONTEXT___REPAIR = GSNPackage.CONTEXT___REPAIR;
+
+  /**
+   * The operation id for the '<em>Instantiate</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FILES_CONTEXT___INSTANTIATE = GSNPackage.CONTEXT___INSTANTIATE;
 
   /**
    * The number of operations of the '<em>Files Context</em>' class.

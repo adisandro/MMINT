@@ -497,6 +497,16 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
   }
 
   /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EOperation getArgumentElement__Instantiate() {
+    return this.argumentElementEClass.getEOperations().get(2);
+  }
+
+  /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
@@ -1014,6 +1024,7 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     createEAttribute(this.argumentElementEClass, GSNPackage.ARGUMENT_ELEMENT__VALID);
     createEOperation(this.argumentElementEClass, GSNPackage.ARGUMENT_ELEMENT___VALIDATE);
     createEOperation(this.argumentElementEClass, GSNPackage.ARGUMENT_ELEMENT___REPAIR);
+    createEOperation(this.argumentElementEClass, GSNPackage.ARGUMENT_ELEMENT___INSTANTIATE);
 
     this.statefulElementEClass = createEClass(GSNPackage.STATEFUL_ELEMENT);
     createEAttribute(this.statefulElementEClass, GSNPackage.STATEFUL_ELEMENT__STATE_VALIDITY);
@@ -1172,6 +1183,9 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     addEException(op, this.getException());
 
     op = initEOperation(getArgumentElement__Repair(), null, "repair", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    addEException(op, this.getException());
+
+    op = initEOperation(getArgumentElement__Instantiate(), null, "instantiate", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEException(op, this.getException());
 
     initEClass(this.statefulElementEClass, StatefulElement.class, "StatefulElement", EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
