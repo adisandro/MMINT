@@ -16,6 +16,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.ui.model.BaseWorkbenchContentProvider;
+import org.eclipse.ui.model.WorkbenchLabelProvider;
+
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
+import edu.toronto.cs.se.mmint.mid.ui.MIDTreeSelectionDialog;
 import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
 import edu.toronto.cs.se.modelepedia.gsn.Assumption;
 import edu.toronto.cs.se.modelepedia.gsn.BasicGoal;
@@ -60,6 +68,14 @@ public class GSNBuilder {
     }
 
     return Optional.of(text.substring(i+GSNBuilder.PATTERN1.length(), j));
+  }
+
+  public static String askForPath(String title, String message) throws MIDDialogCancellation {
+    var dialog = new MIDTreeSelectionDialog(new WorkbenchLabelProvider(), new BaseWorkbenchContentProvider(),
+                                            ResourcesPlugin.getWorkspace().getRoot());
+    var resource = (IResource) MIDDialogs.openTreeDialog(dialog, title, message);
+
+    return resource.getFullPath().toString();
   }
 
   public void addSupporter(Supportable supportable, Supporter supporter) {

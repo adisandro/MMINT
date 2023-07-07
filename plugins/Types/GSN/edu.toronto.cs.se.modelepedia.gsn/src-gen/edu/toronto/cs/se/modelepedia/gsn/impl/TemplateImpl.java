@@ -27,7 +27,6 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
@@ -166,17 +165,7 @@ public class TemplateImpl extends MinimalEObjectImpl.Container implements Templa
     builder.addExistingElements(templateSC.getAssumptions());
     builder.addExistingTemplate(this);
     for (var elem : builder.getGSNElements()) {
-      while (true) {
-        var desc = elem.getDescription();
-        var pattern = GSNBuilder.findPattern(desc);
-        if (pattern.isEmpty()) {
-          break;
-        }
-        var toReplace = pattern.get();
-        var msg = "Replace '" + toReplace + "' in '" + desc + "' with:";
-        var replacement = MIDDialogs.getStringInput("Instantiate Template", msg, null);
-        elem.setDescription(desc.replace(GSNBuilder.PATTERN1 + toReplace + GSNBuilder.PATTERN2, replacement));
-      }
+      elem.instantiate();
     }
 
     return builder;

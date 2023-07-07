@@ -36,6 +36,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="ArgumentElement" abstract="true">
     <eOperations name="validate" eExceptions="#//Exception"/>
     <eOperations name="repair" eExceptions="#//Exception"/>
+    <eOperations name="instantiate" lowerBound="1" eExceptions="#//Exception"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="gmf.label">

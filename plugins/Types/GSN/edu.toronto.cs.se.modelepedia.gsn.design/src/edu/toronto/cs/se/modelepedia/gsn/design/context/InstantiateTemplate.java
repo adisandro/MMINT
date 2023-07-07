@@ -91,7 +91,7 @@ public class InstantiateTemplate extends AbstractExternalJavaAction {
         this.template.validate();
         //TODO Delete links and delete template when deleting argument elements
         //TODO FilesJustification?
-        //TODO FilexContext needs instantiation in Template.instantiate()
+        //TODO Reuse FilesContext workflow ideas for other template elements (need to fix how repair works for prop decomposition)
         //TODO Chain the instantiated template if an element was selected
         //TODO Select template from file if multiple templates are present?
       }

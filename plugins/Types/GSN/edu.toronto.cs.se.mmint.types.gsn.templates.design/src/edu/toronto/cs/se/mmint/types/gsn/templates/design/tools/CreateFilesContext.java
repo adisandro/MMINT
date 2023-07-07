@@ -12,19 +12,15 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.types.gsn.templates.design.tools;
 
-import java.util.List;
+import java.util.ArrayList;
 
-import org.eclipse.core.resources.IResource;
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.ui.model.BaseWorkbenchContentProvider;
-import org.eclipse.ui.model.WorkbenchLabelProvider;
 
-import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
-import edu.toronto.cs.se.mmint.mid.ui.MIDTreeSelectionDialog;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.types.gsn.templates.util.GSNTemplatesBuilder;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
+import edu.toronto.cs.se.modelepedia.gsn.util.GSNBuilder;
 
 public class CreateFilesContext extends CreateTemplateElement {
 
@@ -42,12 +38,17 @@ public class CreateFilesContext extends CreateTemplateElement {
     @Override
     protected void create() throws Exception {
       var builder = (GSNTemplatesBuilder) this.builder;
-      var dialog = new MIDTreeSelectionDialog(new WorkbenchLabelProvider(), new BaseWorkbenchContentProvider(),
-                                              ResourcesPlugin.getWorkspace().getRoot());
-      var resource = (IResource) MIDDialogs.openTreeDialog(dialog, "Create Files Context",
-                                                           "Select a file or directory");
-      var path = resource.getFullPath().toString();
-      builder.createFilesContext("", path, List.of(FileUtils.prependWorkspacePath(path)));
+      String path;
+      var paths = new ArrayList<String>(1);
+      try {
+        path = GSNBuilder.askForPath("Create Files Context", "Select a file or directory");
+        paths.add(FileUtils.prependWorkspacePath(path));
+      }
+      catch (MIDDialogCancellation e) {
+        // create without paths
+        path = "PATH MISSING";
+      }
+      builder.createFilesContext("", path, paths);
     }
   }
 }

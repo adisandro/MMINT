@@ -442,18 +442,7 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
   /**
    * @generated NOT
    */
-  @Override
-  public void validate() throws Exception {
-    if (GSNBuilder.findPattern(getDescription()).isPresent()) {
-      throw new MMINTException("Element " + getId() + " description contains text that is not instantiated");
-    }
-  }
-
-  /**
-   * @generated NOT
-   */
-  @Override
-  public void repair() throws Exception {
+  private void replacePlaceholders(String title) throws Exception {
     while (true) {
       var desc = getDescription();
       var pattern = GSNBuilder.findPattern(desc);
@@ -462,9 +451,35 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
       }
       var toReplace = pattern.get();
       var msg = "Replace '" + toReplace + "' in '" + desc + "' with:";
-      var replacement = MIDDialogs.getStringInput("Instantiate Template", msg, null);
+      var replacement = MIDDialogs.getStringInput(title, msg, null);
       setDescription(desc.replace(GSNBuilder.PATTERN1 + toReplace + GSNBuilder.PATTERN2, replacement));
     }
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public void instantiate() throws Exception {
+    replacePlaceholders("Instantiate Placeholder Text");
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public void validate() throws Exception {
+    if (GSNBuilder.findPattern(getDescription()).isPresent()) {
+      throw new MMINTException("Element " + getId() + " description contains placeholder text to be instantiated");
+    }
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public void repair() throws Exception {
+    replacePlaceholders("Repair Placeholder Text");
   }
 
 } // ArgumentElementImpl

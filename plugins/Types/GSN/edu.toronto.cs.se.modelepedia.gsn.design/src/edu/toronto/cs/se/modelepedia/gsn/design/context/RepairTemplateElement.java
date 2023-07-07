@@ -65,7 +65,7 @@ public class RepairTemplateElement extends AbstractExternalJavaAction {
       var title = "Template Element Repair";
       try {
         this.templateElem.repair();
-        this.templateElem.getTemplates().get(0).validate();
+        this.templateElem.validate();
         this.templateElem.setValid(true);
         MessageDialog.openInformation(shell, title, "The template element has been repaired and is now valid");
       }

@@ -226,7 +226,7 @@ public class PropertyDecompositionTemplateImpl extends DecompositionTemplateImpl
     propStrategy.setProperty(property);
     builder.addExistingElement(propStrategy);
     modelCtx.setDescription(modelCtx.getDescription().replace("MODEL_PATH", relatedModelPath));
-    modelCtx.getPaths().set(0, FileUtils.prependWorkspacePath(relatedModelPath));
+    modelCtx.getPaths().add(FileUtils.prependWorkspacePath(relatedModelPath));
     builder.addExistingElement(modelCtx);
     for (var propQuery : propQueries) {
       createQueryContext(propStrategy, propQuery, decomposedId, numCtx, queryContexts, templateElems, builder);

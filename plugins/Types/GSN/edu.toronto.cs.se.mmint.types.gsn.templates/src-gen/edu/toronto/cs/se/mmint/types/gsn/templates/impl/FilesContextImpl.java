@@ -23,6 +23,7 @@ import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.types.gsn.templates.FilesContext;
 import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
 import edu.toronto.cs.se.modelepedia.gsn.impl.ContextImpl;
+import edu.toronto.cs.se.modelepedia.gsn.util.GSNBuilder;
 
 /**
  * <!-- begin-user-doc -->
@@ -84,8 +85,25 @@ public class FilesContextImpl extends ContextImpl implements FilesContext {
    * @generated NOT
    */
   @Override
+  public void instantiate() throws Exception {
+    var paths = getPaths();
+    if (paths.size() > 0) {
+      return;
+    }
+    paths.add(FileUtils.prependWorkspacePath(GSNBuilder.askForPath("Instantiate Files Context",
+                                                                   "Select a file or directory")));
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
   public void validate() throws Exception {
-    for (var path : getPaths()) {
+    var paths = getPaths();
+    if (paths.size() == 0) {
+      throw new MMINTException("There is no path associated with this context");
+    }
+    for (var path : paths) {
       if (!FileUtils.isFileOrDirectory(path, false)) {
         throw new MMINTException("There are no files or directories at '" + path + "'");
       }
@@ -97,7 +115,21 @@ public class FilesContextImpl extends ContextImpl implements FilesContext {
    */
   @Override
   public void repair() throws Exception {
-    // do nothing
+    var paths = getPaths();
+    var title = "Repair Files Context";
+    var msg = "Select a file or directory";
+    if (paths.size() == 0) {
+      paths.add(FileUtils.prependWorkspacePath(GSNBuilder.askForPath(title, msg)));
+    }
+    else {
+      for (var i = 0; i < paths.size(); i++) {
+        var path = paths.get(i);
+        if (!FileUtils.isFileOrDirectory(path, false)) {
+          paths.set(i, FileUtils.prependWorkspacePath(
+                         GSNBuilder.askForPath(title, msg + " to replace '" + path + "'")));
+        }
+      }
+    }
   }
 
   /**
