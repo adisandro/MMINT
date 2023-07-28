@@ -7,7 +7,7 @@ Bundle-Version: 2.18.99.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-20
+Bundle-RequiredExecutionEnvironment: JavaSE-21
 Export-Package: edu.toronto.cs.se.modelepedia.statemachine_mavo,
  edu.toronto.cs.se.modelepedia.statemachine_mavo.impl,
  edu.toronto.cs.se.modelepedia.statemachine_mavo.util

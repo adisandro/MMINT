@@ -4,7 +4,7 @@ Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.mmint.example.jase20;singleton:=true
 Bundle-Version: 2.18.99.qualifier
 Automatic-Module-Name: edu.toronto.cs.se.mmint.example.jase20
-Bundle-RequiredExecutionEnvironment: JavaSE-20
+Bundle-RequiredExecutionEnvironment: JavaSE-21
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.emf.common.ui
