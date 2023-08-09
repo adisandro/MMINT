@@ -1,6 +1,9 @@
 ## SciCo 2023 paper
 
-MMINT-A: A Framework for Model-Based Safety Assurance
+[MMINT-A: A Framework for Model-Based Safety Assurance](https://doi.org/10.1016/j.scico.2023.103004)
+
+As the complexity of safety-critical systems increases, it becomes more and more challenging to assure that these systems will operate safely and reliably. This has led to the development of industry-specific safety standards that regulate the development of these systems. These standards involve developing model-based safety artifacts to assure the system is safe, such as safety cases and fault trees. Given the significant safety implications of these models, tool assistance is needed to support their creation and management throughout their lifecycle while maintaining traceability to their associated system models.  
+To address this need, we have developed *MMINT-A*, a tool-supported framework that facilitates the creation, analysis and evolution of system safety models. In this paper, we report on recent extensions to *MMINT-A* supporting the development of provably correct assurance arguments. We highlight *MMINT-A*'s features, demonstrate them over an example of a fleet of systems for a warehouse facility, and discuss *MMINT-A*'s impact on research in assurance model management.
 
 ### Instructions to reproduce the examples
 

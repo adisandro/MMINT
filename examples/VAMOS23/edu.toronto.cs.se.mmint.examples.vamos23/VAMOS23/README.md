@@ -2,8 +2,7 @@
 
 [Adding Product-Line Capabilities to Your Favourite Modeling Language](https://doi.org/10.1145/3571788.3571791)
 
-Software product lines are commonly adopted in industry to manage the development of complex families of software systems. Software engineering activities use models at their core, and extending a modeling language to support product lines is an expensive task. Moreover, many useful techniques and analyses such as model querying and model refactoring, are defined at the level of individual products. Before they can take advantage of a product line representation, they need to be 
-*lifted*, i.e., reengineered to handle variability in a product line. Not only is this process non-trivial, it needs to be redone for each modeling language.  
+Software product lines are commonly adopted in industry to manage the development of complex families of software systems. Software engineering activities use models at their core, and extending a modeling language to support product lines is an expensive task. Moreover, many useful techniques and analyses such as model querying and model refactoring, are defined at the level of individual products. Before they can take advantage of a product line representation, they need to be *lifted*, i.e., reengineered to handle variability in a product line. Not only is this process non-trivial, it needs to be redone for each modeling language.  
 In this paper, we propose an Eclipse-based framework, *MMINT-PL*, for creating and managing annotative product lines of software models in a language-agnostic way. Our framework allows extending any modeling language with product line capabilities, and facilitates lifting of a variety of modeling activities to the product line level. We also demonstrate how to use *MMINT-PL* to lift the Viatra Query Language.
 
 ### Instructions to reproduce the examples
