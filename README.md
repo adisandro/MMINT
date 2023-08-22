@@ -36,7 +36,7 @@ Binary packages for the current development version of MMINT are similarly avail
 ### Source code
 
 Add the following update sites to Eclipse (`Help > Install New Software > Available Software Sites`):
-  * `https://download.eclipse.org/tools/orbit/downloads/2023-09`
+  * `https://download.eclipse.org/tools/orbit/simrel/orbit-aggregation/2023-09`
   * `http://download.eclipse.org/modeling/emft/henshin/updates/release`
   * `https://static.incquerylabs.com/projects/massif/release/0.7.0/repository`
 
