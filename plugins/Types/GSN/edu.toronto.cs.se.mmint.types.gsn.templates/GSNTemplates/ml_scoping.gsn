@@ -15,7 +15,7 @@
   <contexts id="C1.1.2" description="Description of the OE: ${a list of scene changes} and ${their distribution in the OE}" templates="//@templates.0" contextOf="//@goals.0/@inContextOf.2"/>
   <contexts id="C1.2" description="System description" templates="//@templates.0" contextOf="//@goals.0/@inContextOf.3"/>
   <contexts id="C1.3.1" description="ML component description" templates="//@templates.0" contextOf="//@goals.0/@inContextOf.4"/>
-  <contexts id="C1.3.2" description="${Vision task} and ${evaluation metrics S and M} of the ML component" templates="//@templates.0" contextOf="//@goals.0/@inContextOf.5"/>
+  <contexts id="C1.3.2" description="Vision task is ${task}, evaluation metrics are ${metrics} of the ML component" templates="//@templates.0" contextOf="//@goals.0/@inContextOf.5"/>
   <contexts id="C1.4" description="System safety requirements allocated to ML component" templates="//@templates.0" contextOf="//@goals.0/@inContextOf.6"/>
   <assumptions id="A1.1" description="The system safety process has identified the system requirements allocated to the ML component" templates="//@templates.0" contextOf="//@goals.0/@inContextOf.0"/>
   <templates elements="//@assumptions.0 //@goals.0 //@strategies.0 //@contexts.5 //@contexts.0 //@contexts.4 //@contexts.3 //@contexts.2 //@contexts.1" id="ML Scoping"/>

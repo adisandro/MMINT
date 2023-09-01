@@ -14,7 +14,7 @@
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']"/>
         <target xmi:type="gsn:SafetyCase" href="domain_decomposition.gsn#/"/>
       </ownedRepresentationDescriptors>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_uk3_0EdKEe6DhodP7_eQ5Q" name="ml_scoping" repPath="#_uk08gEdKEe6DhodP7_eQ5Q" changeId="1693412868242">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_uk3_0EdKEe6DhodP7_eQ5Q" name="ml_scoping" repPath="#_uk08gEdKEe6DhodP7_eQ5Q" changeId="1693586705219">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']"/>
         <target xmi:type="gsn:SafetyCase" href="ml_scoping.gsn#/"/>
       </ownedRepresentationDescriptors>
@@ -1073,7 +1073,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='ContextNode']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DNode" uid="_xp82MEdREe6NRowhD4RZeg" name="C1.3.2 ${Vision task} and ${evaluation metrics S and M} of the ML component" incomingEdges="_5STHpEdREe6NRowhD4RZeg" width="-1" height="-1" resizeKind="NSEW">
+    <ownedDiagramElements xmi:type="diagram:DNode" uid="_xp82MEdREe6NRowhD4RZeg" name="C1.3.2 Vision task is ${task}, evaluation metrics are ${metrics} of the ML component" incomingEdges="_5STHpEdREe6NRowhD4RZeg" width="-1" height="-1" resizeKind="NSEW">
       <target xmi:type="gsn:Context" href="ml_scoping.gsn#//@contexts.4"/>
       <semanticElements xmi:type="gsn:Context" href="ml_scoping.gsn#//@contexts.4"/>
       <decorations xmi:type="viewpoint:Decoration" uid="_KDLq5EdSEe6NRowhD4RZeg">
