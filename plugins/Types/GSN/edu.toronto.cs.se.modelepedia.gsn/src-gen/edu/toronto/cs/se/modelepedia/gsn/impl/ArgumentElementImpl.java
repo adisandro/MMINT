@@ -469,7 +469,7 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
    */
   @Override
   public void instantiate() throws Exception {
-    replacePlaceholders("Instantiate Placeholder Text");
+    replacePlaceholders("Instantiate Placeholder Text in " + eClass().getName() + " " + getId());
   }
 
   /**
