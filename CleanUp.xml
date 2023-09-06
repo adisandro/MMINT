@@ -14,6 +14,7 @@
         <setting id="cleanup.stringbuilder" value="false"/>
         <setting id="cleanup.push_down_negation" value="false"/>
         <setting id="cleanup.system_property_path_separator" value="false"/>
+        <setting id="cleanup.also_simplify_lambda" value="true"/>
         <setting id="cleanup.use_var" value="true"/>
         <setting id="cleanup.use_blocks_only_for_return_and_throw" value="false"/>
         <setting id="cleanup.convert_functional_interfaces" value="false"/>
@@ -69,9 +70,9 @@
         <setting id="cleanup.primitive_rather_than_wrapper" value="false"/>
         <setting id="cleanup.remove_unnecessary_nls_tags" value="true"/>
         <setting id="cleanup.remove_unused_private_methods" value="true"/>
+        <setting id="cleanup.qualify_static_member_accesses_through_instances_with_declaring_class" value="true"/>
         <setting id="cleanup.primitive_serialization" value="false"/>
         <setting id="cleanup.always_use_this_for_non_static_method_access" value="true"/>
-        <setting id="cleanup.qualify_static_member_accesses_through_instances_with_declaring_class" value="true"/>
         <setting id="cleanup.sort_members" value="false"/>
         <setting id="cleanup.insert_inferred_type_arguments" value="false"/>
         <setting id="cleanup.add_missing_override_annotations" value="true"/>
