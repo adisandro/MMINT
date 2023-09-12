@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gsn:SafetyCase xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gsn="http://se.cs.toronto.edu/modelepedia/GSN">
-  <goals xsi:type="gsn:BasicGoal" id="G1.1" description="The object recognition component satisfies its allocated system safety requirements in the OE" templates="//@templates.0">
+  <goals xsi:type="gsn:BasicGoal" id="G1.1" description="The ML component satisfies its allocated system safety requirements in the OE" templates="//@templates.0">
     <supportedBy target="//@strategies.0"/>
     <inContextOf context="//@assumptions.0"/>
     <inContextOf context="//@contexts.0"/>
@@ -11,12 +11,12 @@
     <inContextOf context="//@contexts.5"/>
   </goals>
   <strategies xsi:type="gsn:BasicStrategy" id="S1.1" description="Argument over the development of the ML component" templates="//@templates.0" supports="//@goals.0/@supportedBy.0"/>
-  <contexts id="C1.1.1" description="Description of the OE: ${input distribution}" templates="//@templates.0" contextOf="//@goals.0/@inContextOf.1"/>
-  <contexts id="C1.1.2" description="Description of the OE: ${a list of scene changes} and ${their distribution in the OE}" templates="//@templates.0" contextOf="//@goals.0/@inContextOf.2"/>
-  <contexts id="C1.2" description="System description" templates="//@templates.0" contextOf="//@goals.0/@inContextOf.3"/>
-  <contexts id="C1.3.1" description="ML component description" templates="//@templates.0" contextOf="//@goals.0/@inContextOf.4"/>
-  <contexts id="C1.3.2" description="Vision task is ${task}, evaluation metrics are ${metrics} of the ML component" templates="//@templates.0" contextOf="//@goals.0/@inContextOf.5"/>
-  <contexts id="C1.4" description="System safety requirements allocated to ML component" templates="//@templates.0" contextOf="//@goals.0/@inContextOf.6"/>
+  <contexts id="C1.1" description="Description of the OE: ${input distribution}" templates="//@templates.0" contextOf="//@goals.0/@inContextOf.1"/>
+  <contexts id="C1.2" description="Description of the OE: ${a list of scene changes} and ${their distribution in the OE}" templates="//@templates.0" contextOf="//@goals.0/@inContextOf.2"/>
+  <contexts id="C1.3" description="${System description}" templates="//@templates.0" contextOf="//@goals.0/@inContextOf.3"/>
+  <contexts id="C1.4" description="${ML component description}" templates="//@templates.0" contextOf="//@goals.0/@inContextOf.4"/>
+  <contexts id="C1.5" description="Vision task is ${task}, evaluation metrics are ${metrics} of the ML component" templates="//@templates.0" contextOf="//@goals.0/@inContextOf.5"/>
+  <contexts id="C1.6" description="System safety requirements allocated to the ML component are ${requirements}" templates="//@templates.0" contextOf="//@goals.0/@inContextOf.6"/>
   <assumptions id="A1.1" description="The system safety process has identified the system requirements allocated to the ML component" templates="//@templates.0" contextOf="//@goals.0/@inContextOf.0"/>
   <templates elements="//@assumptions.0 //@goals.0 //@strategies.0 //@contexts.5 //@contexts.0 //@contexts.4 //@contexts.3 //@contexts.2 //@contexts.1" id="ML Scoping"/>
 </gsn:SafetyCase>
