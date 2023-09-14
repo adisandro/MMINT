@@ -81,17 +81,15 @@ public class EditPresenceCondition extends AbstractExternalJavaAction {
         var plReasoner = pl.getReasoner();
         var presenceConditions = new HashSet<String>();
         presenceConditions.add(this.newPresenceCondition);
-        //TODO MMINT[JAVA21] Convert to switch with pattern matching
-        if (this.plModelObj instanceof Class plClass) {
-          addContainerPCs(plClass, presenceConditions);
-        }
-        else if (this.plModelObj instanceof Attribute plAttr) {
-          addClassPCs((Class) plAttr.eContainer(), presenceConditions);
-        }
-        else if (this.plModelObj instanceof Reference plRef) {
-          addClassPCs((Class) plRef.eContainer(), presenceConditions);
-          addClassPCs(plRef.getTarget(), presenceConditions);
-        }
+        switch (this.plModelObj) {
+          case Class plClass    -> addContainerPCs(plClass, presenceConditions);
+          case Attribute plAttr -> addClassPCs((Class) plAttr.eContainer(), presenceConditions);
+          case Reference plRef  -> {
+            addClassPCs((Class) plRef.eContainer(), presenceConditions);
+            addClassPCs(plRef.getTarget(), presenceConditions);
+          }
+          default -> {}
+        };
         if (!plReasoner.checkConsistency(featuresConstraint, presenceConditions)) {
           MMINTException.print(IStatus.WARNING, "The new presence condition is not satisfiable", null);
         }

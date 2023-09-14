@@ -333,32 +333,24 @@ public class ProductLineViatraReasoner extends ViatraReasoner {
       // attribute value
       if (edgeFeature instanceof EAttribute edgeAttribute) {
         var dst = pathConstraint.getDst();
-        ValueReference plValue;
-        //TODO MMINT[JAVA21] Convert to switch with pattern matching
-        if (dst instanceof StringValue strDst) {
-          plValue = createStringValue(strDst.getValue());
-        }
-        else if (dst instanceof EnumValue enumDst) {
-          plValue = createStringValue(enumDst.getLiteral().getLiteral());
-        }
-        else if (dst instanceof BoolValue boolDst) {
-          plValue = createStringValue(String.valueOf(boolDst.getValue().isIsTrue()));
-        }
-        else if (dst instanceof VariableReference varRefDst) {
-          var varDst = varRefDst.getVariable();
-          var valueName = varDst.getName();
-          var plValueVar = plVarsMap.get(valueName);
-          if (plValueVar == null) {
-            // primitive type with no presence condition, no need to create a parameter
-            plValueVar = createVariable(varDst.eClass(), valueName);
-            plVarsMap.put(valueName, plValueVar);
-            plVariables.add(plValueVar);
+        var plValue = switch (dst) {
+          case StringValue strDst -> createStringValue(strDst.getValue());
+          case EnumValue enumDst  -> createStringValue(enumDst.getLiteral().getLiteral());
+          case BoolValue boolDst  -> createStringValue(String.valueOf(boolDst.getValue().isIsTrue()));
+          case VariableReference varRefDst -> {
+            var varDst = varRefDst.getVariable();
+            var valueName = varDst.getName();
+            var plValueVar = plVarsMap.get(valueName);
+            if (plValueVar == null) {
+              // primitive type with no presence condition, no need to create a parameter
+              plValueVar = createVariable(varDst.eClass(), valueName);
+              plVarsMap.put(valueName, plValueVar);
+              plVariables.add(plValueVar);
+            }
+            yield createVariableReference(plValueVar);
           }
-          plValue = createVariableReference(plValueVar);
-        }
-        else {
-          throw new MMINTException("Path constraint type " + dst.getClass().getName() + " not supported");
-        }
+          default -> throw new MMINTException("Path constraint type " + dst.getClass().getName() + " not supported");
+        };
         plCall.getParameters().add(plValue);
       }
       plConstraints.add(plConstraint);
@@ -453,7 +445,6 @@ public class ProductLineViatraReasoner extends ViatraReasoner {
   private List<? extends Constraint> liftCompareConstraint(CompareConstraint compareConstraint,
                                                            EList<Variable> plParameters, EList<Variable> plVariables,
                                                            Map<String, Variable> plVarsMap) throws Exception {
-    //TODO MMINT[JAVA21] Convert to switch with pattern matching
     var left = compareConstraint.getLeftOperand();
     if (!(left instanceof VariableReference leftVarRef)) {
       throw new MMINTException("Left operand type " + left.getClass().getName() + " not supported");
