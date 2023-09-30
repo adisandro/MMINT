@@ -37,18 +37,14 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.window.Window;
-import org.eclipse.sirius.business.api.helper.SiriusUtil;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.eclipse.ui.dialogs.ListDialog;
-import org.eclipse.ui.model.BaseWorkbenchContentProvider;
 import org.eclipse.ui.model.IWorkbenchAdapter;
-import org.eclipse.ui.model.WorkbenchLabelProvider;
 
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.MMINT;
@@ -237,14 +233,13 @@ public class MIDDialogs {
     return selectReasoner(reasoners, traitDesc);
 	}
 
-  public static String selectSiriusRepresentationsFileToContainModelDiagram(String modelPath)
-                         throws MIDDialogCancellation {
-    // try a default representations file next to the model first..
+  public static String selectSiriusRepresentationsFile(String modelPath) throws MMINTException {
+    // try a representations file next to the model first..
     var sAirdPath = FileUtils.replaceLastSegmentInPath(modelPath, SiriusUtils.DEFAULT_REPR_FILE);
     if (FileUtils.isFile(sAirdPath, true)) {
       return sAirdPath;
     }
-    // ..then a default representations file at the top level..
+    // ..or a representations file at the top level of the project
     Object dialogRoot;
     var project = FileUtils.getWorkspaceProject(modelPath);
     if (project == null) {
@@ -255,19 +250,9 @@ public class MIDDialogs {
       dialogRoot = project;
       sAirdPath = project.getFullPath().toString() + IPath.SEPARATOR + SiriusUtils.DEFAULT_REPR_FILE;
     }
-    if (FileUtils.isFile(sAirdPath, true)) {
-      return sAirdPath;
+    if (!FileUtils.isFile(sAirdPath, true)) {
+      throw new MMINTException("Representations file not found");
     }
-    // ..or let the user choose otherwise
-    var dialog = new MIDTreeSelectionDialog(new WorkbenchLabelProvider(), new BaseWorkbenchContentProvider(),
-                                            dialogRoot);
-    dialog.addFilter(new FileExtensionsDialogFilter(Set.of(SiriusUtil.SESSION_RESOURCE_EXTENSION)));
-    dialog.setValidator(new FilesOnlyDialogSelectionValidator());
-
-    var title = "Model with Sirius Representation";
-    var message = "Select Sirius representations file";
-    var sAirdFile = (IFile) MIDDialogs.openTreeDialogWithDefault(dialog, title, message);
-    sAirdPath = sAirdFile.getFullPath().toString();
 
     return sAirdPath;
   }
@@ -515,7 +500,7 @@ public class MIDDialogs {
     var imageManager = new LocalResourceManager(JFaceResources.getResources());
     var labelProvider = LabelProvider.createTextImageProvider(
       f -> ((IFile) f).getFullPath().toString(),
-      f -> (Image) imageManager.get(Adapters.adapt(f, IWorkbenchAdapter.class).getImageDescriptor(f)));
+      f -> imageManager.get(Adapters.adapt(f, IWorkbenchAdapter.class).getImageDescriptor(f)));
     var file = MIDDialogs.<IFile>openListDialog(title, message, files, new ArrayContentProvider(), labelProvider);
     imageManager.dispose(); // images are not automatically garbage collected
 

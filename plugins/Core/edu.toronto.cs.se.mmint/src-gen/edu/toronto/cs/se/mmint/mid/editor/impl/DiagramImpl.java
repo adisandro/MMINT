@@ -91,7 +91,7 @@ public class DiagramImpl extends EditorImpl implements Diagram {
         String diagramUri = null;
         if (createDiagramFile) { // model created programmatically
             if (SiriusUtils.isSirius(this)) { // Sirius
-                var sAirdPath = MIDDialogs.selectSiriusRepresentationsFileToContainModelDiagram(modelPath);
+                var sAirdPath = MIDDialogs.selectSiriusRepresentationsFile(modelPath);
                 DRepresentation sRepr;
                 try {
                   sRepr = SiriusUtils.createRepresentation(modelPath, sAirdPath);
@@ -123,9 +123,9 @@ public class DiagramImpl extends EditorImpl implements Diagram {
                 var isImported = false;
                 String sAirdPath = null;
                 try {
-                    sAirdPath = MIDDialogs.selectSiriusRepresentationsFileToContainModelDiagram(modelPath);
+                    sAirdPath = MIDDialogs.selectSiriusRepresentationsFile(modelPath);
                 }
-                catch (MIDDialogCancellation e) {
+                catch (MMINTException e) {
                     throw e;
                 }
                 finally {

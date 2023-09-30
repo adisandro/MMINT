@@ -173,8 +173,8 @@ public class FileUtils {
 		return uniquePath;
 	}
 
-	public static IProject getWorkspaceProject(String relativePath) {
-	  String projectName = FileUtils.getFirstSegmentFromPath(relativePath);
+	public static @Nullable IProject getWorkspaceProject(String relativePath) {
+	  var projectName = FileUtils.getFirstSegmentFromPath(relativePath);
       var workspaceRoot = ResourcesPlugin.getWorkspace().getRoot();
       var project = workspaceRoot.getProject(projectName);
 
@@ -182,7 +182,7 @@ public class FileUtils {
 	}
 
 	public static String prependWorkspacePath(String relativePath) {
-		IProject project = FileUtils.getWorkspaceProject(relativePath);
+		var project = FileUtils.getWorkspaceProject(relativePath);
 		var absolutePath = (project == null) ?
 			ResourcesPlugin.getWorkspace().getRoot().getLocation().toString() + relativePath :
 			project.getLocation().toString() + relativePath.replaceFirst(IPath.SEPARATOR + project.getName(), "");

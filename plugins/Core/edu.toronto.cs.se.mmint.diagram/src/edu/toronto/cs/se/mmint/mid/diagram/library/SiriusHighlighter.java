@@ -79,7 +79,7 @@ public class SiriusHighlighter {
 
   public static IEditorPart highlight(Model model, Set<String> modelObjUris, Color color) throws Exception {
     var editorPart = model.openInstance();
-    var sAirdPath = MIDDialogs.selectSiriusRepresentationsFileToContainModelDiagram(model.getUri());
+    var sAirdPath = MIDDialogs.selectSiriusRepresentationsFile(model.getUri());
     var sSession = SessionManager.INSTANCE.getSession(FileUtils.createEMFUri(sAirdPath, true),
                                                       new NullProgressMonitor());
     var sSessionResource = sSession.getSessionResource();
