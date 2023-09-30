@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mid:MID xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mid="http://se.cs.toronto.edu/mmint/MID">
+  <models uri="/MMPL/model/DDBBSchema/RelationalDDBB.ecore" name="RelationalDDBB" metatypeUri="http://www.eclipse.org/emf/2002/Ecore" dynamic="true" fileExtension="ecore" editors="//@editors.0"/>
+  <models uri="/MMPL/model/DDBBSchema/RelationalDDBB.productline" name="RelationalDDBB" metatypeUri="model://edu.toronto.cs.se.mmint.productline" dynamic="true" origin="CREATED" fileExtension="productline" editors="//@editors.1"/>
+  <editors uri="/MMPL/model/DDBBSchema/RelationalDDBB.ecore" name="Ecore tree for model /MMPL/model/DDBBSchema/RelationalDDBB.ecore" metatypeUri="http://www.eclipse.org/emf/2002/Ecore_tree" dynamic="true" modelUri="/MMPL/model/DDBBSchema/RelationalDDBB.ecore" id="org.eclipse.emf.ecore.presentation.EcoreEditorID" wizardId="org.eclipse.emf.ecore.presentation.EcoreModelWizardID">
+    <fileExtensions>ecore</fileExtensions>
+  </editors>
+  <editors uri="/MMPL/model/DDBBSchema/RelationalDDBB.productline" name="ProductLine EMF Editor for model /MMPL/model/DDBBSchema/RelationalDDBB.productline" metatypeUri="edu.toronto.cs.se.mmint.productline.editor" dynamic="true" modelUri="/MMPL/model/DDBBSchema/RelationalDDBB.productline" id="edu.toronto.cs.se.mmint.productline.presentation.ProductLineEditorID" wizardId="edu.toronto.cs.se.mmint.productline.presentation.ProductLineModelWizardID">
+    <fileExtensions>productline</fileExtensions>
+  </editors>
+  <operators uri="" name="ToProductLine" metatypeUri="edu.toronto.cs.se.mmint.examples.vamos23.operators.AnnotatedEcoreToCDProductLine" dynamic="true" workingPath="/MMPL/model/DDBBSchema" executionTime="13524673">
+    <inputs uri="" name="product" metatypeUri="edu.toronto.cs.se.mmint.examples.vamos23.operators.AnnotatedEcoreToCDProductLine/product" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0"/>
+    <outputs uri="" name="productLine" metatypeUri="edu.toronto.cs.se.mmint.examples.vamos23.operators.AnnotatedEcoreToCDProductLine/productLine" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1"/>
+  </operators>
+  <extendibleTable key="/MMPL/model/DDBBSchema/RelationalDDBB.ecore" value="//@models.0"/>
+  <extendibleTable key="/MMPL/model/DDBBSchema/RelationalDDBB.productline" value="//@models.1"/>
+</mid:MID>
