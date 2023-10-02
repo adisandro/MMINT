@@ -7,7 +7,7 @@
     <styles xmi:type="notation:FontStyle" xmi:id="_ghq5YkNEEe2os4oFZ-bqCw" fontName="Cantarell"/>
     <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_ghq5Y0NEEe2os4oFZ-bqCw" hint="Mid"/>
     <element xmi:type="mid:Model" href="WashingMachine.mid#//@models.0"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ghq5ZENEEe2os4oFZ-bqCw" x="348" y="154"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ghq5ZENEEe2os4oFZ-bqCw" x="340" y="160" height="81"/>
   </children>
   <styles xmi:type="notation:DiagramStyle" xmi:id="__cqAUUNDEe2os4oFZ-bqCw"/>
   <element xmi:type="mid:MID" href="WashingMachine.mid#/"/>
