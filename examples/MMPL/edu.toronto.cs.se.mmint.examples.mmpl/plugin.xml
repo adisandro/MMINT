@@ -25,7 +25,7 @@
             class="org.eclipse.emf.common.ui.wizard.ExampleInstallerWizard"
             project="true"
             name="MMPL">
-         <description>Creates a project containing the MetaModel Product Line example artifacts</description>
+         <description>Creates a project containing the artifacts from the MetaModel Product Line example</description>
       </wizard>
    </extension>
 
@@ -34,7 +34,7 @@
             wizardID="edu.toronto.cs.se.mmint.examples.mmpl">
          <projectDescriptor name="MMPL"
                contentURI="MMPL/"
-               description="Creates a project containing the MetaModel Product Line example artifacts"/>
+               description="Creates a project containing the artifacts from the MetaModel Product Line example"/>
          <fileToOpen location="MMPL/README.md"/>
       </example>
    </extension>

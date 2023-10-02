@@ -12,7 +12,8 @@ The evaluation requires Python >= 3.10, and our results are [here](model).
 1. MMINT-PL
     1. Install Java and Eclipse following the [requirements](/README.md#requirements), then add `https://adisandro.github.io/mmint/release` to the list of software sites (`Help > Install New Software > Available Software Sites`).
     2. From the top menu select `Help > Install New Software` and install `Examples > MMINT - VAMOS23 paper`.
-    3. From the top menu select `File > New > Example > MMINT Examples > VAMOS23`.
+    3. From the top menu select `File > New > Example > MMINT Examples > MMPL`.
+    4. From the top menu select `File > New > Example > MMINT Examples > VAMOS23`.
 2. Washing Machine example (Sec. 4):
     1. Open `/VAMOS23/model/WashingMachine/WashingMachine.middiag`.
     2. Run a Product Line query:
