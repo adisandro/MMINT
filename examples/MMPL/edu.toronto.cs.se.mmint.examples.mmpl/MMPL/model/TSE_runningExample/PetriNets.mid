@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mid:MID xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mid="http://se.cs.toronto.edu/mmint/MID">
+  <models uri="/MMPL/model/TSE_runningExample/PetriNets.ecore" name="PetriNets" metatypeUri="http://www.eclipse.org/emf/2002/Ecore" dynamic="true" fileExtension="ecore" editors="//@editors.0"/>
+  <models uri="/MMPL/model/TSE_runningExample/PetriNets.productline" name="PetriNets" metatypeUri="model://edu.toronto.cs.se.mmint.productline" dynamic="true" origin="CREATED" fileExtension="productline" editors="//@editors.1"/>
+  <editors uri="/MMPL/model/TSE_runningExample/PetriNets.ecore" name="Ecore tree for model /MMPL/model/TSE_runningExample/PetriNets.ecore" metatypeUri="http://www.eclipse.org/emf/2002/Ecore_tree" dynamic="true" modelUri="/MMPL/model/TSE_runningExample/PetriNets.ecore" id="org.eclipse.emf.ecore.presentation.EcoreEditorID" wizardId="org.eclipse.emf.ecore.presentation.EcoreModelWizardID">
+    <fileExtensions>ecore</fileExtensions>
+  </editors>
+  <editors uri="/MMPL/model/TSE_runningExample/PetriNets.productline" name="ProductLine EMF Editor for model /MMPL/model/TSE_runningExample/PetriNets.productline" metatypeUri="edu.toronto.cs.se.mmint.productline.editor" dynamic="true" modelUri="/MMPL/model/TSE_runningExample/PetriNets.productline" id="edu.toronto.cs.se.mmint.productline.presentation.ProductLineEditorID" wizardId="edu.toronto.cs.se.mmint.productline.presentation.ProductLineModelWizardID">
+    <fileExtensions>productline</fileExtensions>
+  </editors>
+  <operators uri="" name="ToProductLine" metatypeUri="edu.toronto.cs.se.mmint.examples.vamos23.operators.AnnotatedEcoreToCDProductLine" dynamic="true" workingPath="/MMPL/model/TSE_runningExample" executionTime="15016580">
+    <inputs uri="" name="product" metatypeUri="edu.toronto.cs.se.mmint.examples.vamos23.operators.AnnotatedEcoreToCDProductLine/product" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0"/>
+    <outputs uri="" name="productLine" metatypeUri="edu.toronto.cs.se.mmint.examples.vamos23.operators.AnnotatedEcoreToCDProductLine/productLine" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1"/>
+  </operators>
+  <extendibleTable key="/MMPL/model/TSE_runningExample/PetriNets.ecore" value="//@models.0"/>
+  <extendibleTable key="/MMPL/model/TSE_runningExample/PetriNets.productline" value="//@models.1"/>
+</mid:MID>

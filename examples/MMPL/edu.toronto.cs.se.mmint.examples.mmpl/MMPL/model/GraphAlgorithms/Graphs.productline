@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<productline:ProductLine xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:productline="model://edu.toronto.cs.se.mmint.productline" featuresConstraint="(GraphAlgorithms) &amp; (~Edges | GraphAlgorithms) &amp; (~Nodes | GraphAlgorithms) &amp; (~Search | GraphAlgorithms) &amp; (~GraphAlgorithms | Edges) &amp; (~GraphAlgorithms | Nodes) &amp; (~GraphAlgorithms | Search) &amp; (~Direction | Edges) &amp; (~Weights | Edges) &amp; (~Hyperedges | Edges) &amp; (~Parallel | Edges) &amp; (~Edges | Direction) &amp; (~Directed | Direction) &amp; (~Undirected | Direction) &amp; (~Direction | Directed | Undirected) &amp; (~Undirected | ~Directed) &amp; (~Hierarchy | Nodes) &amp; (~Identified | Nodes) &amp; (~DepthFirst | Search) &amp; (~BreadthFirst | Search) &amp; (~None | Search) &amp; (~Search | DepthFirst | BreadthFirst | None) &amp; (~BreadthFirst | ~DepthFirst) &amp; (~None | ~DepthFirst) &amp; (~None | ~BreadthFirst)" reasonerName="LogicNG">
+  <classes presenceCondition="$true">
+    <references presenceCondition="$true" target="//@classes.1">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/classes"/>
+    </references>
+    <references presenceCondition="Parallel" target="//@classes.2">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/classes"/>
+    </references>
+    <references presenceCondition="Hierarchy" target="//@classes.6">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/classes"/>
+    </references>
+    <references presenceCondition="$true" target="//@classes.7">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/classes"/>
+    </references>
+    <references presenceCondition="Parallel" target="//@classes.9">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
+    </references>
+    <references presenceCondition="$true" target="//@classes.10">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
+    </references>
+    <references presenceCondition="true" target="//@classes.11">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/datatypes"/>
+    </references>
+    <references presenceCondition="Hierarchy" target="//@classes.12">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
+    </references>
+    <references presenceCondition="true" target="//@classes.13">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/datatypes"/>
+    </references>
+    <references presenceCondition="Directed &amp; Parallel" target="//@classes.14">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
+    </references>
+    <references presenceCondition="Directed &amp; Parallel" target="//@classes.15">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
+    </references>
+    <references presenceCondition="Undirected &amp; Parallel" target="//@classes.16">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
+    </references>
+    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram"/>
+  </classes>
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.0">
+    <attributes presenceCondition="$true" value="Graph">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
+    </attributes>
+    <references presenceCondition="Parallel" target="//@classes.9">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
+    </references>
+    <references presenceCondition="$true" target="//@classes.10">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
+    </references>
+    <references presenceCondition="Hierarchy" target="//@classes.12">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
+    </references>
+    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
+  </classes>
+  <classes presenceCondition="Parallel" referencesAsTarget="//@classes.0/@references.1 //@classes.4/@references.0 //@classes.5/@references.0 //@classes.6/@references.0">
+    <attributes presenceCondition="Parallel" value="Node">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
+    </attributes>
+    <references presenceCondition="Identified &amp; Parallel" target="//@classes.3">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/ownedAttributes"/>
+    </references>
+    <references presenceCondition="Parallel" target="//@classes.4">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/ownedOperations"/>
+    </references>
+    <references presenceCondition="Parallel" target="//@classes.5">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/ownedOperations"/>
+    </references>
+    <references presenceCondition="Parallel" target="//@classes.9">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
+    </references>
+    <references presenceCondition="Directed &amp; Parallel" target="//@classes.14">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
+    </references>
+    <references presenceCondition="Directed &amp; Parallel" target="//@classes.15">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
+    </references>
+    <references presenceCondition="Undirected &amp; Parallel" target="//@classes.16">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
+    </references>
+    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
+  </classes>
+  <classes presenceCondition="Identified &amp; Parallel" referencesAsTarget="//@classes.2/@references.0">
+    <attributes presenceCondition="Identified &amp; Parallel" value="name">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
+    </attributes>
+    <attributes presenceCondition="Identified &amp; Parallel" value="true">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/public"/>
+    </attributes>
+    <references presenceCondition="Identified &amp; Parallel" target="//@classes.11">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/type"/>
+    </references>
+    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
+  </classes>
+  <classes presenceCondition="Parallel" referencesAsTarget="//@classes.2/@references.1">
+    <attributes presenceCondition="Parallel" value="outputs">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
+    </attributes>
+    <references presenceCondition="Parallel" target="//@classes.2">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/type"/>
+    </references>
+    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
+  </classes>
+  <classes presenceCondition="Parallel" referencesAsTarget="//@classes.2/@references.2">
+    <attributes presenceCondition="Parallel" value="inputs">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
+    </attributes>
+    <references presenceCondition="Parallel" target="//@classes.2">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/type"/>
+    </references>
+    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
+  </classes>
+  <classes presenceCondition="Hierarchy" referencesAsTarget="//@classes.0/@references.2">
+    <attributes presenceCondition="Hierarchy" value="CompositeNode">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
+    </attributes>
+    <references presenceCondition="Parallel &amp; Hierarchy" target="//@classes.2">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/superclass"/>
+    </references>
+    <references presenceCondition="Hierarchy" target="//@classes.12">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
+    </references>
+    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
+  </classes>
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.3">
+    <attributes presenceCondition="$true" value="Edge">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
+    </attributes>
+    <references presenceCondition="Weights" target="//@classes.8">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/ownedAttributes"/>
+    </references>
+    <references presenceCondition="$true" target="//@classes.10">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
+    </references>
+    <references presenceCondition="Directed &amp; Parallel" target="//@classes.14">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
+    </references>
+    <references presenceCondition="Directed &amp; Parallel" target="//@classes.15">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
+    </references>
+    <references presenceCondition="Undirected &amp; Parallel" target="//@classes.16">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
+    </references>
+    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
+  </classes>
+  <classes presenceCondition="Weights" referencesAsTarget="//@classes.7/@references.0">
+    <attributes presenceCondition="Weights" value="weight">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
+    </attributes>
+    <attributes presenceCondition="Weights" value="true">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/public"/>
+    </attributes>
+    <references presenceCondition="Weights" target="//@classes.13">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/type"/>
+    </references>
+    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
+  </classes>
+  <classes presenceCondition="Parallel" referencesAsTarget="//@classes.0/@references.4 //@classes.1/@references.0 //@classes.2/@references.3">
+    <attributes presenceCondition="Parallel" value="nodes">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
+    </attributes>
+    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
+  </classes>
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.5 //@classes.1/@references.1 //@classes.7/@references.1">
+    <attributes presenceCondition="$true" value="edges">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
+    </attributes>
+    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
+  </classes>
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.6 //@classes.3/@references.0">
+    <attributes presenceCondition="true" value="EString">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
+    </attributes>
+    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//DataType"/>
+  </classes>
+  <classes presenceCondition="Hierarchy" referencesAsTarget="//@classes.0/@references.7 //@classes.6/@references.1 //@classes.1/@references.2">
+    <attributes presenceCondition="Hierarchy" value="subGraph">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
+    </attributes>
+    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
+  </classes>
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.8 //@classes.8/@references.0">
+    <attributes presenceCondition="true" value="EInt">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
+    </attributes>
+    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//DataType"/>
+  </classes>
+  <classes presenceCondition="Directed &amp; Parallel" referencesAsTarget="//@classes.0/@references.9 //@classes.7/@references.2 //@classes.2/@references.4">
+    <attributes presenceCondition="Directed &amp; Parallel" value="src">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
+    </attributes>
+    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
+  </classes>
+  <classes presenceCondition="Directed &amp; Parallel" referencesAsTarget="//@classes.0/@references.10 //@classes.7/@references.3 //@classes.2/@references.5">
+    <attributes presenceCondition="Directed &amp; Parallel" value="tar">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
+    </attributes>
+    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
+  </classes>
+  <classes presenceCondition="Undirected &amp; Parallel" referencesAsTarget="//@classes.0/@references.11 //@classes.7/@references.4 //@classes.2/@references.6">
+    <attributes presenceCondition="Undirected &amp; Parallel" value="ends">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
+    </attributes>
+    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
+  </classes>
+  <metamodel href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#/"/>
+</productline:ProductLine>

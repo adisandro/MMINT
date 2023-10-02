@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    name="PetriNets" nsURI="http://www.petrinets.org/" nsPrefix="ex">
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="PetriNets" nsURI="http://www.petrinets.org/" nsPrefix="ex">
   <eAnnotations source="features">
     <details key="file" value="model.xml"/>
   </eAnnotations>
@@ -13,10 +13,10 @@
     <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
   </eAnnotations>
   <eClassifiers xsi:type="ecore:EClass" name="PetriNet">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="places" ordered="false" upperBound="-1" eType="#//Place" containment="true"
-        eOpposite="#//Place/net"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="trans" ordered="false" upperBound="-1" eType="#//Transition" containment="true"
-        eOpposite="#//Transition/net"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="places" ordered="false"
+        upperBound="-1" eType="#//Place" containment="true" eOpposite="#//Place/net"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="trans" ordered="false"
+        upperBound="-1" eType="#//Transition" containment="true" eOpposite="#//Transition/net"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Place">
     <eAnnotations source="presence">
@@ -29,14 +29,16 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
       <details key="isMarkedGraph" value="&#xA;&#x9;&#x9;&#x9;Transition.allInstances()->one(ins->includes(self)) and&#xA;&#x9;&#x9;&#x9;Transition.allInstances()->one(outs->includes(self))"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="itokens" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="itokens" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
       <eAnnotations source="presence">
         <details key="condition" value="Simple"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="net" lowerBound="1" eType="#//PetriNet" eOpposite="#//PetriNet/places"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="tokens" ordered="false" upperBound="-1" eType="#//Token" containment="true"
-        eOpposite="#//Token/place">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="net" lowerBound="1" eType="#//PetriNet"
+        eOpposite="#//PetriNet/places"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tokens" ordered="false"
+        upperBound="-1" eType="#//Token" containment="true" eOpposite="#//Token/place">
       <eAnnotations source="presence">
         <details key="condition" value="Object"/>
       </eAnnotations>
@@ -46,7 +48,8 @@
     <eAnnotations source="presence">
       <details key="condition" value="Object"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="place" lowerBound="1" eType="#//Place" eOpposite="#//Place/tokens"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="place" lowerBound="1" eType="#//Place"
+        eOpposite="#//Place/tokens"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Transition" eSuperTypes="#//PetriNet">
     <eAnnotations source="presence">
@@ -63,8 +66,10 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
       <details key="isHierarchical" value="&#xA;&#x9;&#x9;&#x9;(places->size()>0 or trans->size()>0) &#xA;&#x9;&#x9;&#x9;implies &#xA;&#x9;&#x9;&#x9;(ins->size()=0 and outs->size()=0)"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="net" lowerBound="1" eType="#//PetriNet" eOpposite="#//PetriNet/trans"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ins" ordered="false" upperBound="-1" eType="#//Place">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="net" lowerBound="1" eType="#//PetriNet"
+        eOpposite="#//PetriNet/trans"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ins" ordered="false" upperBound="-1"
+        eType="#//Place">
       <eAnnotations source="modifier">
         <details key="condition" value="StateMachine"/>
         <details key="min" value="1"/>
@@ -74,7 +79,8 @@
         <details key="nullFree" value="false"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="outs" ordered="false" upperBound="-1" eType="#//Place">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outs" ordered="false" upperBound="-1"
+        eType="#//Place">
       <eAnnotations source="modifier">
         <details key="condition" value="StateMachine"/>
         <details key="min" value="1"/>

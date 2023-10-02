@@ -1,4 +1,12 @@
 eclipse.preferences.version=1
 encoding//model/DDBBSchema/RelationalDDBB.mid=UTF-8
 encoding//model/DDBBSchema/RelationalDDBB.middiag=UTF-8
+encoding//model/GraphAlgorithms/Graphs.mid=UTF-8
+encoding//model/GraphAlgorithms/Graphs.middiag=UTF-8
+encoding//model/ProcessModelling/ProcessModelling.mid=UTF-8
+encoding//model/ProcessModelling/ProcessModelling.middiag=UTF-8
+encoding//model/StateMachines/StateMachinePL.mid=UTF-8
+encoding//model/StateMachines/StateMachinePL.middiag=UTF-8
+encoding//model/TSE_runningExample/PetriNets.mid=UTF-8
+encoding//model/TSE_runningExample/PetriNets.middiag=UTF-8
 encoding/<project>=UTF-8

@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<productline:ProductLine xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:productline="model://edu.toronto.cs.se.mmint.productline" featuresConstraint="(PetriNets) &amp; (~Tokens | PetriNets) &amp; (~Structure | PetriNets) &amp; (~Hierarchical | PetriNets) &amp; (~PetriNets | Tokens) &amp; (~Simple | Tokens) &amp; (~Object | Tokens) &amp; (~Tokens | Simple | Object) &amp; (~Object | ~Simple) &amp; (~StateMachine | Structure) &amp; (~MarkedGraph | Structure) &amp; (~Structure | StateMachine | MarkedGraph)" reasonerName="LogicNG">
+  <classes presenceCondition="$true">
+    <references presenceCondition="$true" target="//@classes.1">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/classes"/>
+    </references>
+    <references presenceCondition="MarkedGraph" target="//@classes.2">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/classes"/>
+    </references>
+    <references presenceCondition="Object" target="//@classes.4">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/classes"/>
+    </references>
+    <references presenceCondition="Hierarchical" target="//@classes.5">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/classes"/>
+    </references>
+    <references presenceCondition="MarkedGraph" target="//@classes.6">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
+    </references>
+    <references presenceCondition="Hierarchical" target="//@classes.7">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
+    </references>
+    <references presenceCondition="true" target="//@classes.8">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/datatypes"/>
+    </references>
+    <references presenceCondition="MarkedGraph" target="//@classes.9">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
+    </references>
+    <references presenceCondition="MarkedGraph &amp; Object" target="//@classes.10">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
+    </references>
+    <references presenceCondition="Object &amp; MarkedGraph" target="//@classes.11">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
+    </references>
+    <references presenceCondition="Hierarchical" target="//@classes.12">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
+    </references>
+    <references presenceCondition="Hierarchical &amp; MarkedGraph" target="//@classes.13">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
+    </references>
+    <references presenceCondition="Hierarchical &amp; MarkedGraph" target="//@classes.14">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram/associations"/>
+    </references>
+    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//ClassDiagram"/>
+  </classes>
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.0 //@classes.5/@references.1">
+    <attributes presenceCondition="$true" value="PetriNet">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
+    </attributes>
+    <references presenceCondition="MarkedGraph" target="//@classes.6">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
+    </references>
+    <references presenceCondition="Hierarchical" target="//@classes.7">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
+    </references>
+    <references presenceCondition="MarkedGraph" target="//@classes.9">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
+    </references>
+    <references presenceCondition="Hierarchical" target="//@classes.12">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
+    </references>
+    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
+  </classes>
+  <classes presenceCondition="MarkedGraph" referencesAsTarget="//@classes.0/@references.1">
+    <attributes presenceCondition="MarkedGraph" value="Place">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
+    </attributes>
+    <references presenceCondition="Simple &amp; MarkedGraph" target="//@classes.3">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/ownedAttributes"/>
+    </references>
+    <references presenceCondition="MarkedGraph" target="//@classes.6">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
+    </references>
+    <references presenceCondition="MarkedGraph" target="//@classes.9">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
+    </references>
+    <references presenceCondition="MarkedGraph &amp; Object" target="//@classes.10">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
+    </references>
+    <references presenceCondition="Object &amp; MarkedGraph" target="//@classes.11">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
+    </references>
+    <references presenceCondition="Hierarchical &amp; MarkedGraph" target="//@classes.13">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
+    </references>
+    <references presenceCondition="Hierarchical &amp; MarkedGraph" target="//@classes.14">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
+    </references>
+    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
+  </classes>
+  <classes presenceCondition="Simple &amp; MarkedGraph" referencesAsTarget="//@classes.2/@references.0">
+    <attributes presenceCondition="Simple &amp; MarkedGraph" value="itokens">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
+    </attributes>
+    <attributes presenceCondition="Simple &amp; MarkedGraph" value="true">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/public"/>
+    </attributes>
+    <references presenceCondition="Simple &amp; MarkedGraph" target="//@classes.8">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//TypedElement/type"/>
+    </references>
+    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Attribute"/>
+  </classes>
+  <classes presenceCondition="Object" referencesAsTarget="//@classes.0/@references.2">
+    <attributes presenceCondition="Object" value="Token">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
+    </attributes>
+    <references presenceCondition="MarkedGraph &amp; Object" target="//@classes.10">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
+    </references>
+    <references presenceCondition="Object &amp; MarkedGraph" target="//@classes.11">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
+    </references>
+    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
+  </classes>
+  <classes presenceCondition="Hierarchical" referencesAsTarget="//@classes.0/@references.3">
+    <attributes presenceCondition="Hierarchical" value="Transition">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
+    </attributes>
+    <references presenceCondition="Hierarchical" target="//@classes.7">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsTarget"/>
+    </references>
+    <references presenceCondition="Hierarchical" target="//@classes.1">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/superclass"/>
+    </references>
+    <references presenceCondition="Hierarchical" target="//@classes.12">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
+    </references>
+    <references presenceCondition="Hierarchical &amp; MarkedGraph" target="//@classes.13">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
+    </references>
+    <references presenceCondition="Hierarchical &amp; MarkedGraph" target="//@classes.14">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class/associationsAsSource"/>
+    </references>
+    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Class"/>
+  </classes>
+  <classes presenceCondition="MarkedGraph" referencesAsTarget="//@classes.0/@references.4 //@classes.1/@references.0 //@classes.2/@references.1">
+    <attributes presenceCondition="MarkedGraph" value="places">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
+    </attributes>
+    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
+  </classes>
+  <classes presenceCondition="Hierarchical" referencesAsTarget="//@classes.0/@references.5 //@classes.1/@references.1 //@classes.5/@references.0">
+    <attributes presenceCondition="Hierarchical" value="trans">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
+    </attributes>
+    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
+  </classes>
+  <classes presenceCondition="$true" referencesAsTarget="//@classes.0/@references.6 //@classes.3/@references.0">
+    <attributes presenceCondition="true" value="EInt">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
+    </attributes>
+    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//DataType"/>
+  </classes>
+  <classes presenceCondition="MarkedGraph" referencesAsTarget="//@classes.0/@references.7 //@classes.2/@references.2 //@classes.1/@references.2">
+    <attributes presenceCondition="MarkedGraph" value="net">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
+    </attributes>
+    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
+  </classes>
+  <classes presenceCondition="MarkedGraph &amp; Object" referencesAsTarget="//@classes.0/@references.8 //@classes.2/@references.3 //@classes.4/@references.0">
+    <attributes presenceCondition="MarkedGraph &amp; Object" value="tokens">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
+    </attributes>
+    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
+  </classes>
+  <classes presenceCondition="Object &amp; MarkedGraph" referencesAsTarget="//@classes.0/@references.9 //@classes.4/@references.1 //@classes.2/@references.4">
+    <attributes presenceCondition="Object &amp; MarkedGraph" value="place">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
+    </attributes>
+    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
+  </classes>
+  <classes presenceCondition="Hierarchical" referencesAsTarget="//@classes.0/@references.10 //@classes.5/@references.2 //@classes.1/@references.3">
+    <attributes presenceCondition="Hierarchical" value="net">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
+    </attributes>
+    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
+  </classes>
+  <classes presenceCondition="Hierarchical &amp; MarkedGraph" referencesAsTarget="//@classes.0/@references.11 //@classes.5/@references.3 //@classes.2/@references.5">
+    <attributes presenceCondition="Hierarchical &amp; MarkedGraph" value="ins">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
+    </attributes>
+    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
+  </classes>
+  <classes presenceCondition="Hierarchical &amp; MarkedGraph" referencesAsTarget="//@classes.0/@references.12 //@classes.5/@references.4 //@classes.2/@references.6">
+    <attributes presenceCondition="Hierarchical &amp; MarkedGraph" value="outs">
+      <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
+    </attributes>
+    <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Association"/>
+  </classes>
+  <metamodel href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#/"/>
+</productline:ProductLine>
