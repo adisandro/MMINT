@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classdiagram:ClassDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:classdiagram="http://se.cs.toronto.edu/modelepedia/ClassDiagram">
+  <classes name="Schema" associationsAsSource="//@associations.0">
+    <ownedAttributes name="name" type="//@datatypes.0" public="true"/>
+  </classes>
+  <classes name="Table" associationsAsSource="//@associations.1 //@associations.2 //@associations.3" associationsAsTarget="//@associations.0 //@associations.4">
+    <ownedAttributes name="name" type="//@datatypes.0" public="true"/>
+  </classes>
+  <classes name="ForeignKey" associationsAsSource="//@associations.4 //@associations.5" associationsAsTarget="//@associations.3"/>
+  <classes name="Column" associationsAsTarget="//@associations.1 //@associations.2 //@associations.5">
+    <ownedAttributes name="name" type="//@datatypes.0" public="true"/>
+    <ownedAttributes name="ctype" type="//@classes.4" public="true"/>
+  </classes>
+  <classes name="BasicType"/>
+  <associations name="tables" source="//@classes.0" target="//@classes.1"/>
+  <associations name="columns" source="//@classes.1" target="//@classes.3"/>
+  <associations name="keyColumns" source="//@classes.1" target="//@classes.3"/>
+  <associations name="foreignKeys" source="//@classes.1" target="//@classes.2"/>
+  <associations name="references" source="//@classes.2" target="//@classes.1"/>
+  <associations name="columns" source="//@classes.2" target="//@classes.3"/>
+  <datatypes name="EString"/>
+</classdiagram:ClassDiagram>
