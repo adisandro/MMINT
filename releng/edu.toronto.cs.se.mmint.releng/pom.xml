@@ -37,6 +37,11 @@
       <layout>p2</layout>
       <url>https://download.eclipse.org/modeling/mdt/papyrus/components/sysml16/2022-12</url>
     </repository>
+    <repository>
+      <id>Papyrus</id>
+      <layout>p2</layout>
+      <url>https://download.eclipse.org/modeling/mdt/papyrus/updates/releases/2023-06</url>
+    </repository>
   </repositories>
   <pluginRepositories>
     <pluginRepository>
