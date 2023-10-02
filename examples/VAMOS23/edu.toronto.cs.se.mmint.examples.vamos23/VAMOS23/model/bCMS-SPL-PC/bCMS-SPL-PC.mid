@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mid:MID xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editor="http://se.cs.toronto.edu/mmint/MID/Editor" xmlns:mid="http://se.cs.toronto.edu/mmint/MID">
-  <models uri="/VAMOS23/model/bCMS-SPL-PC/bCMS-SPL-PC.productline" name="bCMS-SPL-PC" metatypeUri="model://edu.toronto.cs.se.mmint.productline" dynamic="true" fileExtension="productline" editors="//@editors.0"/>
+  <models uri="/MMPL/model/bCMS-SPL-PC/bCMS-SPL-PC.productline" name="bCMS-SPL-PC" metatypeUri="model://edu.toronto.cs.se.mmint.productline" dynamic="true" fileExtension="productline" editors="//@editors.0"/>
   <models uri="/VAMOS23/model/bCMS-SPL-PC/bCMS-SPL-PC_prod0.classdiagram" name="bCMS-SPL-PC_prod0" metatypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram" dynamic="true" fileExtension="classdiagram" editors="//@editors.1"/>
   <models uri="/VAMOS23/model/bCMS-SPL-PC/bCMS-SPL-PC_prod1.classdiagram" name="bCMS-SPL-PC_prod1" metatypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram" dynamic="true" fileExtension="classdiagram" editors="//@editors.2"/>
   <models uri="/VAMOS23/model/bCMS-SPL-PC/bCMS-SPL-PC_prod2.classdiagram" name="bCMS-SPL-PC_prod2" metatypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram" dynamic="true" fileExtension="classdiagram" editors="//@editors.3"/>
@@ -21,7 +21,7 @@
   <models uri="/VAMOS23/model/bCMS-SPL-PC/bCMS-SPL-PC_prod4291.classdiagram" name="bCMS-SPL-PC_prod4291" metatypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram" dynamic="true" origin="CREATED" fileExtension="classdiagram" editors="//@editors.18"/>
   <models uri="/VAMOS23/model/bCMS-SPL-PC/bCMS-SPL-PC_prod7122.classdiagram" name="bCMS-SPL-PC_prod7122" metatypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram" dynamic="true" origin="CREATED" fileExtension="classdiagram" editors="//@editors.19"/>
   <models uri="/VAMOS23/model/bCMS-SPL-PC/bCMS-SPL-PC_prod14005.classdiagram" name="bCMS-SPL-PC_prod14005" metatypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram" dynamic="true" origin="CREATED" fileExtension="classdiagram" editors="//@editors.20"/>
-  <editors uri="/VAMOS23/model/bCMS-SPL-PC/bCMS-SPL-PC.productline" name="ProductLine EMF Editor for model /VAMOS23/model/bCMS-SPL-PC/bCMS-SPL-PC.productline" metatypeUri="edu.toronto.cs.se.mmint.productline.editor" dynamic="true" modelUri="/VAMOS23/model/bCMS-SPL-PC/bCMS-SPL-PC.productline" id="edu.toronto.cs.se.mmint.productline.presentation.ProductLineEditorID" wizardId="edu.toronto.cs.se.mmint.productline.presentation.ProductLineModelWizardID">
+  <editors uri="/MMPL/model/bCMS-SPL-PC/bCMS-SPL-PC.productline" name="ProductLine EMF Editor for model /MMPL/model/bCMS-SPL-PC/bCMS-SPL-PC.productline" metatypeUri="edu.toronto.cs.se.mmint.productline.editor" dynamic="true" modelUri="/MMPL/model/bCMS-SPL-PC/bCMS-SPL-PC.productline" id="edu.toronto.cs.se.mmint.productline.presentation.ProductLineEditorID" wizardId="edu.toronto.cs.se.mmint.productline.presentation.ProductLineModelWizardID">
     <fileExtensions>productline</fileExtensions>
   </editors>
   <editors uri="/VAMOS23/model/bCMS-SPL-PC/bCMS-SPL-PC_prod0.classdiagram" name="ClassDiagram tree for model /VAMOS23/model/bCMS-SPL-PC/bCMS-SPL-PC_prod0.classdiagram" metatypeUri="http://se.cs.toronto.edu/modelepedia/Tree_ClassDiagram" dynamic="true" modelUri="/VAMOS23/model/bCMS-SPL-PC/bCMS-SPL-PC_prod0.classdiagram" id="edu.toronto.cs.se.modelepedia.classdiagram.presentation.ClassDiagramEditorID" wizardId="edu.toronto.cs.se.modelepedia.classdiagram.presentation.ClassDiagramModelWizardID">
@@ -84,7 +84,7 @@
   <editors uri="/VAMOS23/model/bCMS-SPL-PC/bCMS-SPL-PC_prod14005.classdiagram" name="ClassDiagram tree for model /VAMOS23/model/bCMS-SPL-PC/bCMS-SPL-PC_prod14005.classdiagram" metatypeUri="http://se.cs.toronto.edu/modelepedia/Tree_ClassDiagram" dynamic="true" modelUri="/VAMOS23/model/bCMS-SPL-PC/bCMS-SPL-PC_prod14005.classdiagram" id="edu.toronto.cs.se.modelepedia.classdiagram.presentation.ClassDiagramEditorID" wizardId="edu.toronto.cs.se.modelepedia.classdiagram.presentation.ClassDiagramModelWizardID">
     <fileExtensions>classdiagram</fileExtensions>
   </editors>
-  <extendibleTable key="/VAMOS23/model/bCMS-SPL-PC/bCMS-SPL-PC.productline" value="//@models.0"/>
+  <extendibleTable key="/MMPL/model/bCMS-SPL-PC/bCMS-SPL-PC.productline" value="//@models.0"/>
   <extendibleTable key="/VAMOS23/model/bCMS-SPL-PC/bCMS-SPL-PC_prod0.classdiagram" value="//@models.1"/>
   <extendibleTable key="/VAMOS23/model/bCMS-SPL-PC/bCMS-SPL-PC_prod1.classdiagram" value="//@models.2"/>
   <extendibleTable key="/VAMOS23/model/bCMS-SPL-PC/bCMS-SPL-PC_prod2.classdiagram" value="//@models.3"/>
