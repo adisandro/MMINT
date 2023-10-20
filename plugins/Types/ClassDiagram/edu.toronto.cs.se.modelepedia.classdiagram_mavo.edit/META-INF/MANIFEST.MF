@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.classdiagram_mavo.edit;singleton:=true
 Automatic-Module-Name: edu.toronto.cs.se.modelepedia.classdiagram_mavo.edit
-Bundle-Version: 2.19.0.qualifier
+Bundle-Version: 2.19.99.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: edu.toronto.cs.se.modelepedia.classdiagram_mavo.provider.ClassDiagram_MAVOEditPlugin$Implementation
 Bundle-Vendor: %providerName
