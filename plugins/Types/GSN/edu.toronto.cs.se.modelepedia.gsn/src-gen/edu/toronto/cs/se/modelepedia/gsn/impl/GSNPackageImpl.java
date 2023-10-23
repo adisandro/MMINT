@@ -930,8 +930,18 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
    * @generated
    */
   @Override
-  public EOperation getTemplate__Instantiate__SafetyCase_EList() {
+  public EOperation getTemplate__Import___SafetyCase_EList() {
     return this.templateEClass.getEOperations().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EOperation getTemplate__Instantiate() {
+    return this.templateEClass.getEOperations().get(2);
   }
 
   /**
@@ -1098,7 +1108,8 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     createEReference(this.templateEClass, GSNPackage.TEMPLATE__ELEMENTS);
     createEAttribute(this.templateEClass, GSNPackage.TEMPLATE__ID);
     createEOperation(this.templateEClass, GSNPackage.TEMPLATE___VALIDATE);
-    createEOperation(this.templateEClass, GSNPackage.TEMPLATE___INSTANTIATE__SAFETYCASE_ELIST);
+    createEOperation(this.templateEClass, GSNPackage.TEMPLATE___IMPORT____SAFETYCASE_ELIST);
+    createEOperation(this.templateEClass, GSNPackage.TEMPLATE___INSTANTIATE);
 
     // Create enums
     this.asilLevelEEnum = createEEnum(GSNPackage.ASIL_LEVEL);
@@ -1185,7 +1196,7 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     op = initEOperation(getArgumentElement__Repair(), null, "repair", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEException(op, this.getException());
 
-    op = initEOperation(getArgumentElement__Instantiate(), null, "instantiate", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    op = initEOperation(getArgumentElement__Instantiate(), null, "instantiate", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEException(op, this.getException());
 
     initEClass(this.statefulElementEClass, StatefulElement.class, "StatefulElement", EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
@@ -1263,9 +1274,12 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     op = initEOperation(getTemplate__Validate(), null, "validate", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEException(op, this.getException());
 
-    op = initEOperation(getTemplate__Instantiate__SafetyCase_EList(), this.getGSNBuilder(), "instantiate", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    op = initEOperation(getTemplate__Import___SafetyCase_EList(), this.getGSNBuilder(), "import_", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEParameter(op, this.getSafetyCase(), "safetyCase", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEParameter(op, this.ecorePackage.getEObject(), "selection", 0, -1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    addEException(op, this.getException());
+
+    op = initEOperation(getTemplate__Instantiate(), null, "instantiate", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEException(op, this.getException());
 
     // Initialize enums and add enum literals

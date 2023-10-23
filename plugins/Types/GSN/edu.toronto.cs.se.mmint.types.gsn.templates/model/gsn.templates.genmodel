@@ -4,7 +4,7 @@
     editDirectory="/edu.toronto.cs.se.mmint.types.gsn.templates.edit/src-gen" editorDirectory="/edu.toronto.cs.se.mmint.types.gsn.templates.editor/src-gen"
     modelPluginID="edu.toronto.cs.se.mmint.types.gsn.templates" modelName="GSNTemplates"
     rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore"
-    complianceLevel="20.0" copyrightFields="false" usedGenPackages="../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.genmodel#//gsn"
+    complianceLevel="21.0" copyrightFields="false" usedGenPackages="../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.genmodel#//gsn"
     operationReflection="true" importOrganizing="true">
   <foreignModel>gsn.templates.ecore</foreignModel>
   <genPackages prefix="GSNTemplates" basePackage="edu.toronto.cs.se.mmint.types.gsn"

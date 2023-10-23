@@ -2383,13 +2383,22 @@ public interface GSNPackage extends EPackage {
   int TEMPLATE___VALIDATE = 0;
 
   /**
+   * The operation id for the '<em>Import </em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TEMPLATE___IMPORT____SAFETYCASE_ELIST = 1;
+
+  /**
    * The operation id for the '<em>Instantiate</em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int TEMPLATE___INSTANTIATE__SAFETYCASE_ELIST = 1;
+  int TEMPLATE___INSTANTIATE = 2;
 
   /**
    * The number of operations of the '<em>Template</em>' class.
@@ -2398,7 +2407,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int TEMPLATE_OPERATION_COUNT = 2;
+  int TEMPLATE_OPERATION_COUNT = 3;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.ASILLevel <em>ASIL Level</em>}' enum. <!--
@@ -3092,14 +3101,24 @@ public interface GSNPackage extends EPackage {
   EOperation getTemplate__Validate();
 
   /**
-   * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.gsn.Template#import_(edu.toronto.cs.se.modelepedia.gsn.SafetyCase, org.eclipse.emf.common.util.EList) <em>Instantiate</em>}' operation.
+   * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.gsn.Template#import_(edu.toronto.cs.se.modelepedia.gsn.SafetyCase, org.eclipse.emf.common.util.EList) <em>Import </em>}' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the '<em>Instantiate</em>' operation.
+   * @return the meta object for the '<em>Import </em>' operation.
    * @see edu.toronto.cs.se.modelepedia.gsn.Template#import_(edu.toronto.cs.se.modelepedia.gsn.SafetyCase, org.eclipse.emf.common.util.EList)
    * @generated
    */
-  EOperation getTemplate__Instantiate__SafetyCase_EList();
+  EOperation getTemplate__Import___SafetyCase_EList();
+
+  /**
+   * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.gsn.Template#instantiate() <em>Instantiate</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>Instantiate</em>' operation.
+   * @see edu.toronto.cs.se.modelepedia.gsn.Template#instantiate()
+   * @generated
+   */
+  EOperation getTemplate__Instantiate();
 
   /**
    * Returns the meta object for enum '{@link edu.toronto.cs.se.modelepedia.gsn.ASILLevel <em>ASIL Level</em>}'. <!--
@@ -3716,12 +3735,20 @@ public interface GSNPackage extends EPackage {
     EOperation TEMPLATE___VALIDATE = GSNPackage.eINSTANCE.getTemplate__Validate();
 
     /**
+     * The meta object literal for the '<em><b>Import </b></em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EOperation TEMPLATE___IMPORT____SAFETYCASE_ELIST = GSNPackage.eINSTANCE.getTemplate__Import___SafetyCase_EList();
+
+    /**
      * The meta object literal for the '<em><b>Instantiate</b></em>' operation.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EOperation TEMPLATE___INSTANTIATE__SAFETYCASE_ELIST = GSNPackage.eINSTANCE.getTemplate__Instantiate__SafetyCase_EList();
+    EOperation TEMPLATE___INSTANTIATE = GSNPackage.eINSTANCE.getTemplate__Instantiate();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.ASILLevel <em>ASIL Level</em>}' enum.

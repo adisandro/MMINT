@@ -117,13 +117,22 @@ public interface GSNTemplatesPackage extends EPackage {
   int DECOMPOSITION_TEMPLATE___VALIDATE = GSNPackage.TEMPLATE___VALIDATE;
 
   /**
+   * The operation id for the '<em>Import </em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DECOMPOSITION_TEMPLATE___IMPORT____SAFETYCASE_ELIST = GSNPackage.TEMPLATE___IMPORT____SAFETYCASE_ELIST;
+
+  /**
    * The operation id for the '<em>Instantiate</em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DECOMPOSITION_TEMPLATE___INSTANTIATE__SAFETYCASE_ELIST = GSNPackage.TEMPLATE___INSTANTIATE__SAFETYCASE_ELIST;
+  int DECOMPOSITION_TEMPLATE___INSTANTIATE = GSNPackage.TEMPLATE___INSTANTIATE;
 
   /**
    * The operation id for the '<em>Decompose</em>' operation.
@@ -756,13 +765,22 @@ public interface GSNTemplatesPackage extends EPackage {
   int DOMAIN_DECOMPOSITION_TEMPLATE___VALIDATE = GSNTemplatesPackage.DECOMPOSITION_TEMPLATE___VALIDATE;
 
   /**
+   * The operation id for the '<em>Import </em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DOMAIN_DECOMPOSITION_TEMPLATE___IMPORT____SAFETYCASE_ELIST = GSNTemplatesPackage.DECOMPOSITION_TEMPLATE___IMPORT____SAFETYCASE_ELIST;
+
+  /**
    * The operation id for the '<em>Instantiate</em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DOMAIN_DECOMPOSITION_TEMPLATE___INSTANTIATE__SAFETYCASE_ELIST = GSNTemplatesPackage.DECOMPOSITION_TEMPLATE___INSTANTIATE__SAFETYCASE_ELIST;
+  int DOMAIN_DECOMPOSITION_TEMPLATE___INSTANTIATE = GSNTemplatesPackage.DECOMPOSITION_TEMPLATE___INSTANTIATE;
 
   /**
    * The operation id for the '<em>Decompose</em>' operation.
@@ -1221,13 +1239,22 @@ public interface GSNTemplatesPackage extends EPackage {
   int PROPERTY_DECOMPOSITION_TEMPLATE___VALIDATE = GSNTemplatesPackage.DECOMPOSITION_TEMPLATE___VALIDATE;
 
   /**
+   * The operation id for the '<em>Import </em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_DECOMPOSITION_TEMPLATE___IMPORT____SAFETYCASE_ELIST = GSNTemplatesPackage.DECOMPOSITION_TEMPLATE___IMPORT____SAFETYCASE_ELIST;
+
+  /**
    * The operation id for the '<em>Instantiate</em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PROPERTY_DECOMPOSITION_TEMPLATE___INSTANTIATE__SAFETYCASE_ELIST = GSNTemplatesPackage.DECOMPOSITION_TEMPLATE___INSTANTIATE__SAFETYCASE_ELIST;
+  int PROPERTY_DECOMPOSITION_TEMPLATE___INSTANTIATE = GSNTemplatesPackage.DECOMPOSITION_TEMPLATE___INSTANTIATE;
 
   /**
    * The operation id for the '<em>Decompose</em>' operation.

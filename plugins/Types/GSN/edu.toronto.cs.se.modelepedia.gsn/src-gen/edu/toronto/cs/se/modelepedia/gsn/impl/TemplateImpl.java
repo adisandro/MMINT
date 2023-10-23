@@ -137,23 +137,6 @@ public class TemplateImpl extends MinimalEObjectImpl.Container implements Templa
    * @generated NOT
    */
   @Override
-  public void validate() throws Exception {
-    for (var elem : List.copyOf(getElements())) {
-      // copy to avoid concurrent modifications: template element validation may modify the template
-      try {
-        elem.validate();
-      }
-      catch (Exception e) {
-        elem.setValid(false);
-        throw e;
-      }
-    }
-  }
-
-  /**
-   * @generated NOT
-   */
-  @Override
   public GSNBuilder import_(SafetyCase safetyCase, EList<EObject> selection) throws Exception {
     var builder = new GSNBuilder(safetyCase);
     var templateSC = (SafetyCase) eContainer();
@@ -171,9 +154,27 @@ public class TemplateImpl extends MinimalEObjectImpl.Container implements Templa
   /**
    * @generated NOT
    */
+  @Override
   public void instantiate() throws Exception {
     for (var elem : getElements()) {
       elem.instantiate();
+    }
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public void validate() throws Exception {
+    for (var elem : List.copyOf(getElements())) {
+      // copy to avoid concurrent modifications: template element validation may modify the template
+      try {
+        elem.validate();
+      }
+      catch (Exception e) {
+        elem.setValid(false);
+        throw e;
+      }
     }
   }
 
@@ -293,9 +294,17 @@ public class TemplateImpl extends MinimalEObjectImpl.Container implements Templa
         catch (Throwable throwable) {
           throw new InvocationTargetException(throwable);
         }
-      case GSNPackage.TEMPLATE___INSTANTIATE__SAFETYCASE_ELIST:
+      case GSNPackage.TEMPLATE___IMPORT____SAFETYCASE_ELIST:
         try {
           return import_((SafetyCase)arguments.get(0), (EList<EObject>)arguments.get(1));
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case GSNPackage.TEMPLATE___INSTANTIATE:
+        try {
+          instantiate();
+          return null;
         }
         catch (Throwable throwable) {
           throw new InvocationTargetException(throwable);

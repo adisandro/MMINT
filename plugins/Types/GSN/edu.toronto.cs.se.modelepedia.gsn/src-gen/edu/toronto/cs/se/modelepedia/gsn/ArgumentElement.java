@@ -136,18 +136,18 @@ public interface ArgumentElement extends EObject {
   void setValid(boolean value);
 
   /**
-   * <!-- begin-user-doc -->Instantiates this template element. The base implementation searches and replaces
+   * <!-- begin-user-doc --> Instantiates this template element. The base implementation searches and replaces
    * placeholder text (${placeholder}) in the description.
    *
    * @throws Exception
-   *           If there is an error during the instantiation process. <!-- end-user-doc -->
+   *           If this template element can not be instantiated. <!-- end-user-doc -->
    * @model exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception"
    * @generated
    */
   void instantiate() throws Exception;
 
   /**
-   * <!-- begin-user-doc -->Validates the correctness of this instantiated template element. The base implementation
+   * <!-- begin-user-doc --> Validates the correctness of this instantiated template element. The base implementation
    * checks that no placeholder text (${placeholder}) is present in the description.
    *
    * @throws Exception

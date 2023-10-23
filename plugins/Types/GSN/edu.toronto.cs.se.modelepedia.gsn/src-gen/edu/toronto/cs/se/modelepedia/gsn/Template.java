@@ -72,8 +72,8 @@ public interface Template extends EObject {
   void setId(String value);
 
   /**
-   * <!-- begin-user-doc -->Validates the correctness of this instantiated template. The base implementation does
-   * nothing.
+   * <!-- begin-user-doc --> Validates the correctness of this instantiated template. The base implementation invokes
+   * {@link ArgumentElement#validate()} for each template element.
    *
    * @throws Exception
    *           If this template has not been instantiated correctly. <!-- end-user-doc -->
@@ -85,7 +85,7 @@ public interface Template extends EObject {
   /**
    * <!-- begin-user-doc --> Imports this template into a safety case. Importing should not make changes directly to the
    * safety case but through a GSN builder, which must be created and returned to commit them later within an EMF write
-   * command. The base implementation copies all the GSN template elements into the builder.
+   * command. The base implementation copies all the template elements into the builder.
    *
    * @param safetyCase
    *          The safety case in which to import the template.
@@ -94,10 +94,20 @@ public interface Template extends EObject {
    * @return The GSN builder used as a facade to store changes to the safety case.
    * @throws Exception
    *           If this template can not be imported. <!-- end-user-doc -->
-   * @model dataType="edu.toronto.cs.se.modelepedia.gsn.GSNBuilder" required="true"
-   *        exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception" safetyCaseRequired="true" selectionMany="true"
+   * @model dataType="edu.toronto.cs.se.modelepedia.gsn.GSNBuilder" required="true" exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception" safetyCaseRequired="true" selectionMany="true"
    * @generated
    */
   GSNBuilder import_(SafetyCase safetyCase, EList<EObject> selection) throws Exception;
+
+  /**
+   * <!-- begin-user-doc --> Instantiates this template. The base implementation invokes
+   * {@link ArgumentElement#instantiate()} for each template element.
+   *
+   * @throws Exception
+   *           If this template can not be instantiated. <!-- end-user-doc -->
+   * @model exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception"
+   * @generated
+   */
+  void instantiate() throws Exception;
 
 } // Template
