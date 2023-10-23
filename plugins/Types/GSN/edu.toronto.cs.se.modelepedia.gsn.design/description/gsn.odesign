@@ -323,6 +323,7 @@
         <toolSections name="Menus">
           <ownedTools xsi:type="tool_1:PopupMenu" name="MMINT">
             <menuItemDescription xsi:type="tool_1:ExternalJavaAction" name="EvaluateQuery" label="Evaluate Query" id="edu.toronto.cs.se.mmint.mid.diagram.context.SiriusEvaluateQuery"/>
+            <menuItemDescription xsi:type="tool_1:ExternalJavaAction" name="ImportTemplate" label="Import Template" id="edu.toronto.cs.se.modelepedia.gsn.design.context.ImportTemplate"/>
             <menuItemDescription xsi:type="tool_1:ExternalJavaAction" name="InstantiateTemplate" label="Instantiate Template" id="edu.toronto.cs.se.modelepedia.gsn.design.context.InstantiateTemplate"/>
             <menuItemDescription xsi:type="tool_1:ExternalJavaAction" name="CreateTemplate" label="Group as Template" id="edu.toronto.cs.se.modelepedia.gsn.design.context.CreateTemplate"/>
             <menuItemDescription xsi:type="tool_1:ExternalJavaAction" name="ValidateTemplate" label="Validate Template" id="edu.toronto.cs.se.modelepedia.gsn.design.context.ValidateTemplate"/>

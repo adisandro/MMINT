@@ -3092,11 +3092,11 @@ public interface GSNPackage extends EPackage {
   EOperation getTemplate__Validate();
 
   /**
-   * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.gsn.Template#instantiate(edu.toronto.cs.se.modelepedia.gsn.SafetyCase, org.eclipse.emf.common.util.EList) <em>Instantiate</em>}' operation.
+   * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.gsn.Template#import_(edu.toronto.cs.se.modelepedia.gsn.SafetyCase, org.eclipse.emf.common.util.EList) <em>Instantiate</em>}' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the '<em>Instantiate</em>' operation.
-   * @see edu.toronto.cs.se.modelepedia.gsn.Template#instantiate(edu.toronto.cs.se.modelepedia.gsn.SafetyCase, org.eclipse.emf.common.util.EList)
+   * @see edu.toronto.cs.se.modelepedia.gsn.Template#import_(edu.toronto.cs.se.modelepedia.gsn.SafetyCase, org.eclipse.emf.common.util.EList)
    * @generated
    */
   EOperation getTemplate__Instantiate__SafetyCase_EList();

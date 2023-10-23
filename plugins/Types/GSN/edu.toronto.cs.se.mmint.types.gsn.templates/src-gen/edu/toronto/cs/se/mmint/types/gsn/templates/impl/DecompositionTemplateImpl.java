@@ -90,7 +90,7 @@ public abstract class DecompositionTemplateImpl extends TemplateImpl implements 
    * @generated NOT
    */
   @Override
-  public GSNBuilder instantiate(SafetyCase safetyCase, EList<EObject> selection) throws Exception {
+  public GSNBuilder import_(SafetyCase safetyCase, EList<EObject> selection) throws Exception {
     var builder = new GSNTemplatesBuilder(safetyCase);
     if (selection.size() > 1) {
       throw new MMINTException("Only one goal must be selected in a goal decomposition");

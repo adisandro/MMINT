@@ -39,6 +39,10 @@
    <extension
          point="org.eclipse.sirius.externalJavaAction">
       <javaActions
+            actionClass="edu.toronto.cs.se.modelepedia.gsn.design.context.ImportTemplate"
+            id="edu.toronto.cs.se.modelepedia.gsn.design.context.ImportTemplate">
+      </javaActions>
+      <javaActions
             actionClass="edu.toronto.cs.se.modelepedia.gsn.design.context.InstantiateTemplate"
             id="edu.toronto.cs.se.modelepedia.gsn.design.context.InstantiateTemplate">
       </javaActions>

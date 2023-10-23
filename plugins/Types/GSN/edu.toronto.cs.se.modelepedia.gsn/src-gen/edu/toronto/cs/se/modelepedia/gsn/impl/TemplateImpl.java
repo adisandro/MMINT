@@ -154,7 +154,7 @@ public class TemplateImpl extends MinimalEObjectImpl.Container implements Templa
    * @generated NOT
    */
   @Override
-  public GSNBuilder instantiate(SafetyCase safetyCase, EList<EObject> selection) throws Exception {
+  public GSNBuilder import_(SafetyCase safetyCase, EList<EObject> selection) throws Exception {
     var builder = new GSNBuilder(safetyCase);
     var templateSC = (SafetyCase) eContainer();
     builder.addExistingElements(templateSC.getGoals());
@@ -164,11 +164,17 @@ public class TemplateImpl extends MinimalEObjectImpl.Container implements Templa
     builder.addExistingElements(templateSC.getJustifications());
     builder.addExistingElements(templateSC.getAssumptions());
     builder.addExistingTemplate(this);
-    for (var elem : builder.getGSNElements()) {
-      elem.instantiate();
-    }
 
     return builder;
+  }
+
+  /**
+   * @generated NOT
+   */
+  public void instantiate() throws Exception {
+    for (var elem : getElements()) {
+      elem.instantiate();
+    }
   }
 
   /**
@@ -289,7 +295,7 @@ public class TemplateImpl extends MinimalEObjectImpl.Container implements Templa
         }
       case GSNPackage.TEMPLATE___INSTANTIATE__SAFETYCASE_ELIST:
         try {
-          return instantiate((SafetyCase)arguments.get(0), (EList<EObject>)arguments.get(1));
+          return import_((SafetyCase)arguments.get(0), (EList<EObject>)arguments.get(1));
         }
         catch (Throwable throwable) {
           throw new InvocationTargetException(throwable);

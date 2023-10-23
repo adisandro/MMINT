@@ -156,23 +156,14 @@ public class GSNBuilder {
 
   public void commitChanges() {
     for (var gsnElement : this.gsnElements) {
-      if (gsnElement instanceof Goal goal) {
-        this.safetyCase.getGoals().add(goal);
-      }
-      else if (gsnElement instanceof Strategy strategy) {
-        this.safetyCase.getStrategies().add(strategy);
-      }
-      else if (gsnElement instanceof Solution solution) {
-        this.safetyCase.getSolutions().add(solution);
-      }
-      else if (gsnElement instanceof Context context) {
-        this.safetyCase.getContexts().add(context);
-      }
-      else if (gsnElement instanceof Justification justification) {
-        this.safetyCase.getJustifications().add(justification);
-      }
-      else if (gsnElement instanceof Assumption assumption) {
-        this.safetyCase.getAssumptions().add(assumption);
+      switch (gsnElement) {
+        case Goal goal -> this.safetyCase.getGoals().add(goal);
+        case Strategy strategy -> this.safetyCase.getStrategies().add(strategy);
+        case Solution solution -> this.safetyCase.getSolutions().add(solution);
+        case Context context -> this.safetyCase.getContexts().add(context);
+        case Justification justification -> this.safetyCase.getJustifications().add(justification);
+        case Assumption assumption -> this.safetyCase.getAssumptions().add(assumption);
+        default -> {}
       }
     }
     this.safetyCase.getTemplates().addAll(this.templates);

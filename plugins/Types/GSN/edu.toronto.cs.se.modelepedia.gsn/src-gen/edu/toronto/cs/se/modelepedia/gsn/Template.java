@@ -83,20 +83,21 @@ public interface Template extends EObject {
   void validate() throws Exception;
 
   /**
-   * <!-- begin-user-doc --> Instantiates this template into a safety case. Instantiation should not make changes
-   * directly to the safety case but through a GSN builder, which must be created and returned to commit them later
-   * within an EMF write command. The base implementation copies all the GSN template elements into the builder.
+   * <!-- begin-user-doc --> Imports this template into a safety case. Importing should not make changes directly to the
+   * safety case but through a GSN builder, which must be created and returned to commit them later within an EMF write
+   * command. The base implementation copies all the GSN template elements into the builder.
    *
    * @param safetyCase
-   *          The safety case in which to instantiate the template.
+   *          The safety case in which to import the template.
    * @param selection
-   *          The selected elements in the safety case where the template instantiation starts.
+   *          The selected elements in the safety case where the template import starts.
    * @return The GSN builder used as a facade to store changes to the safety case.
    * @throws Exception
-   *           If this template can not be instantiated. <!-- end-user-doc -->
-   * @model dataType="edu.toronto.cs.se.modelepedia.gsn.GSNBuilder" required="true" exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception" safetyCaseRequired="true" selectionMany="true"
+   *           If this template can not be imported. <!-- end-user-doc -->
+   * @model dataType="edu.toronto.cs.se.modelepedia.gsn.GSNBuilder" required="true"
+   *        exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception" safetyCaseRequired="true" selectionMany="true"
    * @generated
    */
-  GSNBuilder instantiate(SafetyCase safetyCase, EList<EObject> selection) throws Exception;
+  GSNBuilder import_(SafetyCase safetyCase, EList<EObject> selection) throws Exception;
 
 } // Template
