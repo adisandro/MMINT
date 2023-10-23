@@ -61,6 +61,7 @@ public class InstantiateTemplateElement extends AbstractExternalJavaAction {
       try {
         this.templateElem.instantiate();
         this.templateElem.validate();
+        this.templateElem.setValid(true);
       }
       catch (Exception e) {
         this.templateElem.setValid(false);

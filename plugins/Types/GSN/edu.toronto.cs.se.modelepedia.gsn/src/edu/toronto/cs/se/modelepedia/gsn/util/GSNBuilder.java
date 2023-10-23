@@ -42,7 +42,7 @@ import edu.toronto.cs.se.modelepedia.gsn.Supporter;
 import edu.toronto.cs.se.modelepedia.gsn.Template;
 
 public class GSNBuilder {
-  public final static String PATTERN1 = "${";
+  public final static String PATTERN1 = "{";
   public final static String PATTERN2 = "}";
 
   protected SafetyCase safetyCase;

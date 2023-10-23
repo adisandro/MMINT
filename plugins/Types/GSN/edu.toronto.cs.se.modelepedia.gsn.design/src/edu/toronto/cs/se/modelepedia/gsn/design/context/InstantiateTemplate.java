@@ -75,6 +75,7 @@ public class InstantiateTemplate extends AbstractExternalJavaAction {
       //TODO Chain the instantiated template if an element was selected
       //TODO Select template from file if multiple templates are present?
       //TODO Supporting prop decomposition import+instantiate requires gsn builder support for element change and removal
+      //TODO Instantiation does not mark elements as invalid, should it? Incomplete instantiation vs invalid instantiation
       //TODO Who invokes validate now for prop decomposition import?
     }
   }
