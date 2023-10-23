@@ -327,6 +327,7 @@
             <menuItemDescription xsi:type="tool_1:ExternalJavaAction" name="InstantiateTemplate" label="Instantiate Template" id="edu.toronto.cs.se.modelepedia.gsn.design.context.InstantiateTemplate"/>
             <menuItemDescription xsi:type="tool_1:ExternalJavaAction" name="CreateTemplate" label="Group as Template" id="edu.toronto.cs.se.modelepedia.gsn.design.context.CreateTemplate"/>
             <menuItemDescription xsi:type="tool_1:ExternalJavaAction" name="ValidateTemplate" label="Validate Template" id="edu.toronto.cs.se.modelepedia.gsn.design.context.ValidateTemplate"/>
+            <menuItemDescription xsi:type="tool_1:ExternalJavaAction" name="InstantiateTemplateElement" label="Instantiate Template Element" id="edu.toronto.cs.se.modelepedia.gsn.design.context.InstantiateTemplateElement"/>
             <menuItemDescription xsi:type="tool_1:ExternalJavaAction" name="ValidateTemplateElement" label="Validate Template Element" id="edu.toronto.cs.se.modelepedia.gsn.design.context.ValidateTemplateElement"/>
             <menuItemDescription xsi:type="tool_1:ExternalJavaAction" name="RepaitTemplateElement" label="Repair Template Element" id="edu.toronto.cs.se.modelepedia.gsn.design.context.RepairTemplateElement"/>
           </ownedTools>

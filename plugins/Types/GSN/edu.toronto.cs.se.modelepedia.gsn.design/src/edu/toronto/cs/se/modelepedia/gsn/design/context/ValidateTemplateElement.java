@@ -61,8 +61,8 @@ public class ValidateTemplateElement extends AbstractExternalJavaAction {
     @Override
     protected void doExecute() {
       var shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-      var title = "Template Element Validation";
-      var message = "The template element " + this.templateElem.getId() + " is ";
+      var title = "Validate Template Element";
+      var message = "The GSN template element " + this.templateElem.getId() + " is ";
       try {
         this.templateElem.validate();
         MessageDialog.openInformation(shell, title, message + "instantiated correctly");

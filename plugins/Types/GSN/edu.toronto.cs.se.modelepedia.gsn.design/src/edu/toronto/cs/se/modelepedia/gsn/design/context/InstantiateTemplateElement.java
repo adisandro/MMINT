@@ -13,24 +13,20 @@
 package edu.toronto.cs.se.modelepedia.gsn.design.context;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.sirius.business.api.action.AbstractExternalJavaAction;
 import org.eclipse.sirius.business.api.session.SessionManager;
 import org.eclipse.sirius.viewpoint.DSemanticDecorator;
-import org.eclipse.ui.PlatformUI;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
-import edu.toronto.cs.se.modelepedia.gsn.Template;
 
-public class ValidateTemplate extends AbstractExternalJavaAction {
+public class InstantiateTemplateElement extends AbstractExternalJavaAction {
 
   @Override
   public boolean canExecute(Collection<? extends EObject> arg0) {
@@ -46,33 +42,29 @@ public class ValidateTemplate extends AbstractExternalJavaAction {
 
   @Override
   public void execute(Collection<? extends EObject> arg0, Map<String, Object> arg1) {
-    var templates = ((ArgumentElement) ((DSemanticDecorator) arg0.iterator().next()).getTarget()).getTemplates();
-    var sSession = SessionManager.INSTANCE.getSession(templates.get(0));
+    var templateElem = (ArgumentElement) ((DSemanticDecorator) arg0.iterator().next()).getTarget();
+    var sSession = SessionManager.INSTANCE.getSession(templateElem);
     var sDomain = sSession.getTransactionalEditingDomain();
-    sDomain.getCommandStack().execute(new ValidateTemplateCommand(sDomain, templates));
+    sDomain.getCommandStack().execute(new InstantiateTemplateElementCommand(sDomain, templateElem));
   }
 
-  private class ValidateTemplateCommand extends RecordingCommand {
-    List<Template> templates;
+  private class InstantiateTemplateElementCommand extends RecordingCommand {
+    ArgumentElement templateElem;
 
-    public ValidateTemplateCommand(TransactionalEditingDomain domain, List<Template> templates) {
+    public InstantiateTemplateElementCommand(TransactionalEditingDomain domain, ArgumentElement templateElem) {
       super(domain);
-      this.templates = templates;
+      this.templateElem = templateElem;
     }
 
     @Override
     protected void doExecute() {
-      var shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-      var title = "Validate Template";
-      for (var template : this.templates) {
-        var message = "The GSN template " + template.getId() + " is ";
-        try {
-          template.validate();
-          MessageDialog.openInformation(shell, title, message + "instantiated correctly");
-        }
-        catch (Exception e) {
-          MMINTException.print(IStatus.ERROR, message + "not instantiated correctly", e);
-        }
+      try {
+        this.templateElem.instantiate();
+        this.templateElem.validate();
+      }
+      catch (Exception e) {
+        this.templateElem.setValid(false);
+        MMINTException.print(IStatus.ERROR, "Error instantiating GSN template element " + this.templateElem.getId(), e);
       }
     }
   }

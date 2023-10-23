@@ -70,7 +70,7 @@ public class ImportTemplate extends AbstractExternalJavaAction {
       // template file selection cancelled
     }
     catch (Exception e) {
-      MMINTException.print(IStatus.ERROR, "Error importing template", e);
+      MMINTException.print(IStatus.ERROR, "Error importing GSN template", e);
     }
   }
 

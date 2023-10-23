@@ -13,14 +13,11 @@
 package edu.toronto.cs.se.modelepedia.gsn.design.context;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.sirius.business.api.action.AbstractExternalJavaAction;
@@ -28,19 +25,18 @@ import org.eclipse.sirius.business.api.session.SessionManager;
 import org.eclipse.sirius.viewpoint.DSemanticDecorator;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
-import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
-import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
-import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
-import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
+import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
 import edu.toronto.cs.se.modelepedia.gsn.Template;
-import edu.toronto.cs.se.modelepedia.gsn.util.GSNBuilder;
 
 public class InstantiateTemplate extends AbstractExternalJavaAction {
 
   @Override
   public boolean canExecute(Collection<? extends EObject> arg0) {
-    if (arg0.isEmpty()) {
+    if (arg0.size() != 1) {
+      return false;
+    }
+    var modelObj = ((DSemanticDecorator) arg0.iterator().next()).getTarget();
+    if (!(modelObj instanceof ArgumentElement templateElem) || templateElem.getTemplates().isEmpty()) {
       return false;
     }
     return true;
@@ -48,67 +44,38 @@ public class InstantiateTemplate extends AbstractExternalJavaAction {
 
   @Override
   public void execute(Collection<? extends EObject> arg0, Map<String, Object> arg1) {
-    var selection = arg0.stream().map(d -> ((DSemanticDecorator) d).getTarget()).collect(Collectors.toList());
-    var modelObj = selection.get(0);
-    var safetyCase = (modelObj instanceof SafetyCase sc) ? sc : (SafetyCase) modelObj.eContainer();
-    var sSession = SessionManager.INSTANCE.getSession(modelObj);
+    var templates = ((ArgumentElement) ((DSemanticDecorator) arg0.iterator().next()).getTarget()).getTemplates();
+    var sSession = SessionManager.INSTANCE.getSession(templates.get(0));
     var sDomain = sSession.getTransactionalEditingDomain();
-    try {
-      var templatePath = MIDDialogs.selectFiles("Instantiate Template", "Select GSN template file",
-                                                "There are no GSN files in the workspace", Set.of(GSNPackage.eNAME));
-      var templateSafetyCase = (SafetyCase) EcoreUtil.copy(FileUtils.readModelFile(templatePath, null, true));
-      if (templateSafetyCase.getTemplates().isEmpty()) {
-        throw new MMINTException(templatePath + " does not contain a template");
-      }
-      var template = templateSafetyCase.getTemplates().get(0);
-      var builder = template.import_(safetyCase, ECollections.toEList(selection));
-      // import does not make changes to the safety case, the builder will commit those changes in the command
-      // this is done because some features (e.g. querying) would not work properly in a command
-      sDomain.getCommandStack().execute(new InstantiateTemplateCommand(sDomain, template, builder));
-    }
-    catch (MIDDialogCancellation e) {
-      // template file selection cancelled
-    }
-    catch (Exception e) {
-      MMINTException.print(IStatus.ERROR, "Error instantiating template", e);
-    }
+    sDomain.getCommandStack().execute(new InstantiateTemplateCommand(sDomain, templates));
   }
 
   private class InstantiateTemplateCommand extends RecordingCommand {
-    Template template;
-    GSNBuilder builder;
+    List<Template> templates;
 
-    public InstantiateTemplateCommand(TransactionalEditingDomain domain, Template template, GSNBuilder builder) {
+    public InstantiateTemplateCommand(TransactionalEditingDomain domain, List<Template> templates) {
       super(domain);
-      this.template = template;
-      this.builder = builder;
+      this.templates = templates;
     }
 
     @Override
     protected void doExecute() {
-      this.builder.commitChanges();
-      try {
-        this.template.validate();
-        /**TODO New workflow
-         * 1) Separate copying template from instantiating it:
-         *   a) create two different context actions, i.e. move elem instantiation and template validation from this
-         *   b) remove initial anchor to copy anywhere (but then one may screw up the manual connection)
-         *   c) how to account for manual user changes to the copied template before instantiation?
-         *   d) gsn builders must support element removal and change, because the template elements now are in the safety case
-         *   e) add instantiate template element, just like validate
-         * 2) Migrate property decomposition:
-         *   a) copy and instantiate like the other
-         */
-        //TODO Delete links and delete template when deleting argument elements
-        //TODO FilesJustification?
-        //TODO Reuse FilesContext workflow ideas for other template elements (need to fix how repair works for prop decomposition)
-        //TODO Should template elem creation tools invoke instantiate()?
-        //TODO Chain the instantiated template if an element was selected
-        //TODO Select template from file if multiple templates are present?
+      for (var template : this.templates) {
+        try {
+          template.instantiate();
+          template.validate();
+        }
+        catch (Exception e) {
+          MMINTException.print(IStatus.ERROR, "Error instantiating GSN template " + template.getId(), e);
+        }
       }
-      catch (Exception e) {
-        MMINTException.print(IStatus.ERROR, "The template instantiation is not valid", e);
-      }
+      //TODO Delete links and delete template when deleting argument elements
+      //TODO FilesJustification?
+      //TODO Reuse FilesContext workflow ideas for other template elements (need to fix how repair works for prop decomposition)
+      //TODO Chain the instantiated template if an element was selected
+      //TODO Select template from file if multiple templates are present?
+      //TODO Supporting prop decomposition import+instantiate requires gsn builder support for element change and removal
+      //TODO Who invokes validate now for prop decomposition import?
     }
   }
 }
