@@ -17,8 +17,8 @@
   </strategies>
   <strategies xsi:type="gsn:BasicStrategy" id="S2.2" description="Argument over satisfaction of different types of ML safety requirements" supports="//@goals.1/@supportedBy.0"/>
   <strategies xsi:type="gsn:BasicStrategy" id="S2.91" description="Identify ML safety requirements relevant for reliability analysis" supports="//@goals.2/@supportedBy.0"/>
-  <contexts id="C2.1" description="{ML safety requirements developed from allocated system safety requirements}" contextOf="//@strategies.0/@inContextOf.1"/>
+  <contexts id="C2.1" description="{ML safety requirements developed from allocated system safety requirements}" valid="false" contextOf="//@strategies.0/@inContextOf.1"/>
   <contexts id="C2.2" description="ML data"/>
   <contexts id="C2.3" description="ML model"/>
-  <justifications id="J1.1" description="{Justification for the development of the ML safety requirements}" contextOf="//@strategies.0/@inContextOf.0"/>
+  <justifications id="J1.1" description="{Justification for the development of the ML safety requirements}" valid="false" contextOf="//@strategies.0/@inContextOf.0"/>
 </gsn:SafetyCase>

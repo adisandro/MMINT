@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gsn:SafetyCase xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gsn="http://se.cs.toronto.edu/modelepedia/GSN">
-  <goals xsi:type="gsn:BasicGoal" id="G1.1" description="{ML Component (MLC)} satisfies its allocated system requirements in the defined environment" templates="//@templates.0">
+  <goals xsi:type="gsn:BasicGoal" id="G1.1" description="{ML Component (MLC)} satisfies its allocated system requirements in the defined environment" templates="//@templates.0" valid="false">
     <inContextOf context="//@assumptions.0"/>
     <inContextOf context="//@assumptions.1"/>
     <inContextOf context="//@contexts.0"/>
@@ -8,10 +8,10 @@
     <inContextOf context="//@contexts.2"/>
     <inContextOf context="//@contexts.3"/>
   </goals>
-  <contexts id="C1.1" description="{Description of the operational environment (OE)} and {Changes and their distribution in the OE}" templates="//@templates.0" contextOf="//@goals.0/@inContextOf.2"/>
-  <contexts id="C1.2" description="{Description of system and system architecture}" templates="//@templates.0" contextOf="//@goals.0/@inContextOf.3"/>
-  <contexts id="C1.3" description="{MLC description} and {MLC task and decomposition}" templates="//@templates.0" contextOf="//@goals.0/@inContextOf.4"/>
-  <contexts id="C1.4" description="{System safety requirements allocated to MLC}" templates="//@templates.0" contextOf="//@goals.0/@inContextOf.5"/>
+  <contexts id="C1.1" description="{Description of the operational environment (OE)} and {Changes and their distribution in the OE}" templates="//@templates.0" valid="false" contextOf="//@goals.0/@inContextOf.2"/>
+  <contexts id="C1.2" description="{Description of system and system architecture}" templates="//@templates.0" valid="false" contextOf="//@goals.0/@inContextOf.3"/>
+  <contexts id="C1.3" description="{MLC description} and {MLC task and decomposition}" templates="//@templates.0" valid="false" contextOf="//@goals.0/@inContextOf.4"/>
+  <contexts id="C1.4" description="{System safety requirements allocated to MLC}" templates="//@templates.0" valid="false" contextOf="//@goals.0/@inContextOf.5"/>
   <assumptions id="A1.1" description="The system safety process has identified the system safety requirements allocated to the MLC" templates="//@templates.0" contextOf="//@goals.0/@inContextOf.0"/>
   <assumptions id="A1.2" description="The list of changes are relevant to the system and its OE" templates="//@templates.0" contextOf="//@goals.0/@inContextOf.1"/>
   <templates elements="//@contexts.0 //@contexts.1 //@contexts.2 //@goals.0 //@assumptions.1 //@contexts.3 //@assumptions.0" id="MLC Scoping"/>
