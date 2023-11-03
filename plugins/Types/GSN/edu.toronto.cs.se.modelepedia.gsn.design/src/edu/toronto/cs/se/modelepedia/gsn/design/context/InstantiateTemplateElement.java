@@ -24,6 +24,7 @@ import org.eclipse.sirius.business.api.session.SessionManager;
 import org.eclipse.sirius.viewpoint.DSemanticDecorator;
 
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
 
 public class InstantiateTemplateElement extends AbstractExternalJavaAction {
@@ -61,10 +62,9 @@ public class InstantiateTemplateElement extends AbstractExternalJavaAction {
       try {
         this.templateElem.instantiate();
         this.templateElem.validate();
-        this.templateElem.setValid(true);
       }
+      catch (MIDDialogCancellation e) {}
       catch (Exception e) {
-        this.templateElem.setValid(false);
         MMINTException.print(IStatus.ERROR, "Error instantiating GSN template element " + this.templateElem.getId(), e);
       }
     }

@@ -478,8 +478,10 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
   @Override
   public void validate() throws Exception {
     if (GSNBuilder.findPattern(getDescription()).isPresent()) {
+      setValid(false);
       throw new MMINTException("Element " + getId() + " description contains placeholder text to be instantiated");
     }
+    setValid(true);
   }
 
   /**
@@ -487,7 +489,7 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
    */
   @Override
   public void repair() throws Exception {
-    replacePlaceholders("Repair Placeholder Text");
+    replacePlaceholders("Repair Placeholder Text in " + eClass().getName() + " " + getId());
   }
 
 } // ArgumentElementImpl

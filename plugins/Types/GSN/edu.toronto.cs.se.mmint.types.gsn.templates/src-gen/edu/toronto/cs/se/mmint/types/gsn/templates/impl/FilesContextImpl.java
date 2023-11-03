@@ -86,6 +86,7 @@ public class FilesContextImpl extends ContextImpl implements FilesContext {
    */
   @Override
   public void instantiate() throws Exception {
+    super.instantiate();
     var paths = getPaths();
     if (paths.size() > 0) {
       return;
@@ -99,12 +100,15 @@ public class FilesContextImpl extends ContextImpl implements FilesContext {
    */
   @Override
   public void validate() throws Exception {
+    super.validate();
     var paths = getPaths();
     if (paths.size() == 0) {
+      setValid(false);
       throw new MMINTException("There is no path associated with this context");
     }
     for (var path : paths) {
       if (!FileUtils.isFileOrDirectory(path, false)) {
+        setValid(false);
         throw new MMINTException("There are no files or directories at '" + path + "'");
       }
     }

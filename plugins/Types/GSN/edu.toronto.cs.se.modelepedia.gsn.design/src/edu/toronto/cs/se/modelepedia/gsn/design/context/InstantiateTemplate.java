@@ -25,6 +25,7 @@ import org.eclipse.sirius.business.api.session.SessionManager;
 import org.eclipse.sirius.viewpoint.DSemanticDecorator;
 
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
 import edu.toronto.cs.se.modelepedia.gsn.Template;
 
@@ -65,18 +66,22 @@ public class InstantiateTemplate extends AbstractExternalJavaAction {
           template.instantiate();
           template.validate();
         }
+        catch (MIDDialogCancellation e) {}
         catch (Exception e) {
           MMINTException.print(IStatus.ERROR, "Error instantiating GSN template " + template.getId(), e);
         }
       }
-      //TODO Delete links and delete template when deleting argument elements
-      //TODO FilesJustification?
-      //TODO Reuse FilesContext workflow ideas for other template elements (need to fix how repair works for prop decomposition)
-      //TODO Chain the instantiated template if an element was selected
-      //TODO Select template from file if multiple templates are present?
-      //TODO Supporting prop decomposition import+instantiate requires gsn builder support for element change and removal
-      //TODO Instantiation does not mark elements as invalid, should it? Incomplete instantiation vs invalid instantiation
-      //TODO Who invokes validate now for prop decomposition import?
+      /**TODO MMINT[GSN]
+       *  Delete links and delete template when deleting argument elements
+       *  FilesJustification?
+       *  Chain the instantiated template if an element was selected
+       *  Select template from file if multiple templates are present?
+       *  How is repair different from instantiate? (no instantiation and wrong instantiation are both invalid)
+       *  Add invalid figures for all elements
+       *  Review prop decomposition with import+instantiate pipeline:
+       *   1) instantiate would need gsn builder support for element change and removal
+       *   2) who invokes validate now for import?
+       */
     }
   }
 }

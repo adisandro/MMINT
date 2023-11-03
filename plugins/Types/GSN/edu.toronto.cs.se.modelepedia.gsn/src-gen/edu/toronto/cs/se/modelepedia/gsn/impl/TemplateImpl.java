@@ -168,13 +168,7 @@ public class TemplateImpl extends MinimalEObjectImpl.Container implements Templa
   public void validate() throws Exception {
     for (var elem : List.copyOf(getElements())) {
       // copy to avoid concurrent modifications: template element validation may modify the template
-      try {
-        elem.validate();
-      }
-      catch (Exception e) {
-        elem.setValid(false);
-        throw e;
-      }
+      elem.validate();
     }
   }
 
