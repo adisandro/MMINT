@@ -77,7 +77,6 @@ public class InstantiateTemplate extends AbstractExternalJavaAction {
        *  Chain the instantiated template if an element was selected
        *  Select template from file if multiple templates are present?
        *  How is repair different from instantiate? (no instantiation and wrong instantiation are both invalid)
-       *  Add invalid figures for all elements
        *  Review prop decomposition with import+instantiate pipeline:
        *   1) instantiate would need gsn builder support for element change and removal
        *   2) who invokes validate now for import?
