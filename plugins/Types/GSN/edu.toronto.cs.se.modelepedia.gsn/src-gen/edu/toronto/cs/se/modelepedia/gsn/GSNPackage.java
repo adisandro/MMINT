@@ -235,22 +235,13 @@ public interface GSNPackage extends EPackage {
   int ARGUMENT_ELEMENT___VALIDATE = 0;
 
   /**
-   * The operation id for the '<em>Repair</em>' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ARGUMENT_ELEMENT___REPAIR = 1;
-
-  /**
    * The operation id for the '<em>Instantiate</em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ARGUMENT_ELEMENT___INSTANTIATE = 2;
+  int ARGUMENT_ELEMENT___INSTANTIATE = 1;
 
   /**
    * The number of operations of the '<em>Argument Element</em>' class.
@@ -258,7 +249,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ARGUMENT_ELEMENT_OPERATION_COUNT = 3;
+  int ARGUMENT_ELEMENT_OPERATION_COUNT = 2;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.StatefulElementImpl <em>Stateful Element</em>}' class.
@@ -407,15 +398,6 @@ public interface GSNPackage extends EPackage {
   int CORE_ELEMENT___VALIDATE = GSNPackage.ARGUMENT_ELEMENT___VALIDATE;
 
   /**
-   * The operation id for the '<em>Repair</em>' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CORE_ELEMENT___REPAIR = GSNPackage.ARGUMENT_ELEMENT___REPAIR;
-
-  /**
    * The operation id for the '<em>Instantiate</em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -547,15 +529,6 @@ public interface GSNPackage extends EPackage {
   int DECOMPOSABLE_CORE_ELEMENT___VALIDATE = GSNPackage.CORE_ELEMENT___VALIDATE;
 
   /**
-   * The operation id for the '<em>Repair</em>' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DECOMPOSABLE_CORE_ELEMENT___REPAIR = GSNPackage.CORE_ELEMENT___REPAIR;
-
-  /**
    * The operation id for the '<em>Instantiate</em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -650,15 +623,6 @@ public interface GSNPackage extends EPackage {
    * @ordered
    */
   int CONTEXTUAL_ELEMENT___VALIDATE = GSNPackage.ARGUMENT_ELEMENT___VALIDATE;
-
-  /**
-   * The operation id for the '<em>Repair</em>' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CONTEXTUAL_ELEMENT___REPAIR = GSNPackage.ARGUMENT_ELEMENT___REPAIR;
 
   /**
    * The operation id for the '<em>Instantiate</em>' operation.
@@ -875,15 +839,6 @@ public interface GSNPackage extends EPackage {
   int GOAL___VALIDATE = GSNPackage.DECOMPOSABLE_CORE_ELEMENT___VALIDATE;
 
   /**
-   * The operation id for the '<em>Repair</em>' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int GOAL___REPAIR = GSNPackage.DECOMPOSABLE_CORE_ELEMENT___REPAIR;
-
-  /**
    * The operation id for the '<em>Instantiate</em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1010,15 +965,6 @@ public interface GSNPackage extends EPackage {
    * @ordered
    */
   int BASIC_GOAL___VALIDATE = GSNPackage.GOAL___VALIDATE;
-
-  /**
-   * The operation id for the '<em>Repair</em>' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int BASIC_GOAL___REPAIR = GSNPackage.GOAL___REPAIR;
 
   /**
    * The operation id for the '<em>Instantiate</em>' operation.
@@ -1150,15 +1096,6 @@ public interface GSNPackage extends EPackage {
   int INDEPENDENCE_GOAL___VALIDATE = GSNPackage.GOAL___VALIDATE;
 
   /**
-   * The operation id for the '<em>Repair</em>' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int INDEPENDENCE_GOAL___REPAIR = GSNPackage.GOAL___REPAIR;
-
-  /**
    * The operation id for the '<em>Instantiate</em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1269,15 +1206,6 @@ public interface GSNPackage extends EPackage {
    * @ordered
    */
   int STRATEGY___VALIDATE = GSNPackage.DECOMPOSABLE_CORE_ELEMENT___VALIDATE;
-
-  /**
-   * The operation id for the '<em>Repair</em>' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int STRATEGY___REPAIR = GSNPackage.DECOMPOSABLE_CORE_ELEMENT___REPAIR;
 
   /**
    * The operation id for the '<em>Instantiate</em>' operation.
@@ -1393,15 +1321,6 @@ public interface GSNPackage extends EPackage {
   int BASIC_STRATEGY___VALIDATE = GSNPackage.STRATEGY___VALIDATE;
 
   /**
-   * The operation id for the '<em>Repair</em>' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int BASIC_STRATEGY___REPAIR = GSNPackage.STRATEGY___REPAIR;
-
-  /**
    * The operation id for the '<em>Instantiate</em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1515,15 +1434,6 @@ public interface GSNPackage extends EPackage {
   int ASIL_DECOMPOSITION_STRATEGY___VALIDATE = GSNPackage.STRATEGY___VALIDATE;
 
   /**
-   * The operation id for the '<em>Repair</em>' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ASIL_DECOMPOSITION_STRATEGY___REPAIR = GSNPackage.STRATEGY___REPAIR;
-
-  /**
    * The operation id for the '<em>Instantiate</em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1627,15 +1537,6 @@ public interface GSNPackage extends EPackage {
   int SOLUTION___VALIDATE = GSNPackage.CORE_ELEMENT___VALIDATE;
 
   /**
-   * The operation id for the '<em>Repair</em>' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SOLUTION___REPAIR = GSNPackage.CORE_ELEMENT___REPAIR;
-
-  /**
    * The operation id for the '<em>Instantiate</em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1728,15 +1629,6 @@ public interface GSNPackage extends EPackage {
    * @ordered
    */
   int CONTEXT___VALIDATE = GSNPackage.CONTEXTUAL_ELEMENT___VALIDATE;
-
-  /**
-   * The operation id for the '<em>Repair</em>' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CONTEXT___REPAIR = GSNPackage.CONTEXTUAL_ELEMENT___REPAIR;
 
   /**
    * The operation id for the '<em>Instantiate</em>' operation.
@@ -1834,15 +1726,6 @@ public interface GSNPackage extends EPackage {
   int JUSTIFICATION___VALIDATE = GSNPackage.CONTEXTUAL_ELEMENT___VALIDATE;
 
   /**
-   * The operation id for the '<em>Repair</em>' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int JUSTIFICATION___REPAIR = GSNPackage.CONTEXTUAL_ELEMENT___REPAIR;
-
-  /**
    * The operation id for the '<em>Instantiate</em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1935,15 +1818,6 @@ public interface GSNPackage extends EPackage {
    * @ordered
    */
   int ASSUMPTION___VALIDATE = GSNPackage.CONTEXTUAL_ELEMENT___VALIDATE;
-
-  /**
-   * The operation id for the '<em>Repair</em>' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ASSUMPTION___REPAIR = GSNPackage.CONTEXTUAL_ELEMENT___REPAIR;
 
   /**
    * The operation id for the '<em>Instantiate</em>' operation.
@@ -2389,7 +2263,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int TEMPLATE___IMPORT____SAFETYCASE_ELIST = 1;
+  int TEMPLATE___IMPORT____SAFETYCASE = 1;
 
   /**
    * The operation id for the '<em>Instantiate</em>' operation.
@@ -2627,16 +2501,6 @@ public interface GSNPackage extends EPackage {
    * @generated
    */
   EOperation getArgumentElement__Validate();
-
-  /**
-   * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.gsn.ArgumentElement#repair() <em>Repair</em>}' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the '<em>Repair</em>' operation.
-   * @see edu.toronto.cs.se.modelepedia.gsn.ArgumentElement#repair()
-   * @generated
-   */
-  EOperation getArgumentElement__Repair();
 
   /**
    * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.gsn.ArgumentElement#instantiate() <em>Instantiate</em>}' operation.
@@ -3108,7 +2972,7 @@ public interface GSNPackage extends EPackage {
    * @see edu.toronto.cs.se.modelepedia.gsn.Template#import_(edu.toronto.cs.se.modelepedia.gsn.SafetyCase)
    * @generated
    */
-  EOperation getTemplate__Import___SafetyCase_EList();
+  EOperation getTemplate__Import___SafetyCase();
 
   /**
    * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.gsn.Template#instantiate() <em>Instantiate</em>}' operation.
@@ -3321,14 +3185,6 @@ public interface GSNPackage extends EPackage {
      * @generated
      */
     EOperation ARGUMENT_ELEMENT___VALIDATE = GSNPackage.eINSTANCE.getArgumentElement__Validate();
-
-    /**
-     * The meta object literal for the '<em><b>Repair</b></em>' operation.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EOperation ARGUMENT_ELEMENT___REPAIR = GSNPackage.eINSTANCE.getArgumentElement__Repair();
 
     /**
      * The meta object literal for the '<em><b>Instantiate</b></em>' operation.
@@ -3740,7 +3596,7 @@ public interface GSNPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EOperation TEMPLATE___IMPORT____SAFETYCASE_ELIST = GSNPackage.eINSTANCE.getTemplate__Import___SafetyCase_EList();
+    EOperation TEMPLATE___IMPORT____SAFETYCASE = GSNPackage.eINSTANCE.getTemplate__Import___SafetyCase();
 
     /**
      * The meta object literal for the '<em><b>Instantiate</b></em>' operation.

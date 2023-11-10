@@ -408,14 +408,6 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
         catch (Throwable throwable) {
           throw new InvocationTargetException(throwable);
         }
-      case GSNPackage.ARGUMENT_ELEMENT___REPAIR:
-        try {
-          repair();
-          return null;
-        }
-        catch (Throwable throwable) {
-          throw new InvocationTargetException(throwable);
-        }
       case GSNPackage.ARGUMENT_ELEMENT___INSTANTIATE:
         try {
           instantiate();
@@ -482,14 +474,6 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
       throw new MMINTException("Element " + getId() + " description contains placeholder text to be instantiated");
     }
     setValid(true);
-  }
-
-  /**
-   * @generated NOT
-   */
-  @Override
-  public void repair() throws Exception {
-    replacePlaceholders("Repair Placeholder Text in " + eClass().getName() + " " + getId());
   }
 
 } // ArgumentElementImpl

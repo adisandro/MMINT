@@ -88,8 +88,7 @@ public interface Template extends EObject {
    *          The safety case in which to import the template.
    * @throws Exception
    *           If this template can not be imported. <!-- end-user-doc -->
-   * @model dataType="edu.toronto.cs.se.modelepedia.gsn.GSNBuilder" required="true"
-   *        exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception" safetyCaseRequired="true" selectionMany="true"
+   * @model exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception" safetyCaseRequired="true"
    * @generated
    */
   void import_(SafetyCase safetyCase) throws Exception;

@@ -62,10 +62,6 @@
             actionClass="edu.toronto.cs.se.modelepedia.gsn.design.context.ValidateTemplateElement"
             id="edu.toronto.cs.se.modelepedia.gsn.design.context.ValidateTemplateElement">
       </javaActions>
-      <javaActions
-            actionClass="edu.toronto.cs.se.modelepedia.gsn.design.context.RepairTemplateElement"
-            id="edu.toronto.cs.se.modelepedia.gsn.design.context.RepairTemplateElement">
-      </javaActions>
    </extension>
 
 </plugin>

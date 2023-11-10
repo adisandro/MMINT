@@ -288,9 +288,10 @@ public class TemplateImpl extends MinimalEObjectImpl.Container implements Templa
         catch (Throwable throwable) {
           throw new InvocationTargetException(throwable);
         }
-      case GSNPackage.TEMPLATE___IMPORT____SAFETYCASE_ELIST:
+      case GSNPackage.TEMPLATE___IMPORT____SAFETYCASE:
         try {
           import_((SafetyCase)arguments.get(0));
+          return null;
         }
         catch (Throwable throwable) {
           throw new InvocationTargetException(throwable);
