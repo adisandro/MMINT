@@ -81,11 +81,11 @@ public class InstantiateTemplate extends AbstractExternalJavaAction {
        *  Chain the instantiated template if an element was selected
        *  Select template from file if multiple templates are present?
        *  How is repair different from instantiate? (no instantiation and wrong instantiation are both invalid)
-       *   1) Remove repair
-       *   2) Check FilesContext to be up to date
-       *   3) Fix usage of GSN builders
-       *   4) Regen gsn.ecore
+       *   1) Remove repair and regen gsn.ecore
        *   5) Update instructions
+       *   6) Fix PropertyDecompositionTemplate.instantiate() to be able to fix a broken instantiation == aka repair
+       *   7) Review domain decomposition
+       *   8) Prop/Domain decomp: think about all possible combinations of user actions
        */
     }
   }

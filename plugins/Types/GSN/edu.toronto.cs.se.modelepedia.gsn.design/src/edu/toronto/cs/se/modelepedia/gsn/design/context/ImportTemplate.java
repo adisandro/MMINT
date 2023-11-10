@@ -39,14 +39,16 @@ public class ImportTemplate extends AbstractExternalJavaAction {
     if (arg0.isEmpty()) {
       return false;
     }
+    if (!(((DSemanticDecorator) arg0.iterator().next()).getTarget() instanceof SafetyCase)) {
+      return false;
+    }
     return true;
   }
 
   @Override
   public void execute(Collection<? extends EObject> arg0, Map<String, Object> arg1) {
-    var modelObj = ((DSemanticDecorator) arg0.iterator().next()).getTarget();
-    var safetyCase = (modelObj instanceof SafetyCase sc) ? sc : (SafetyCase) modelObj.eContainer();
-    var sSession = SessionManager.INSTANCE.getSession(modelObj);
+    var safetyCase = (SafetyCase) ((DSemanticDecorator) arg0.iterator().next()).getTarget();
+    var sSession = SessionManager.INSTANCE.getSession(safetyCase);
     var sDomain = sSession.getTransactionalEditingDomain();
     sDomain.getCommandStack().execute(new ImportTemplateCommand(sDomain, safetyCase));
   }

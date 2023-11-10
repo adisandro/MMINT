@@ -21,6 +21,7 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.types.gsn.templates.DecompositionTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
 import edu.toronto.cs.se.mmint.types.gsn.templates.util.GSNTemplatesBuilder;
+import edu.toronto.cs.se.modelepedia.gsn.BasicStrategy;
 import edu.toronto.cs.se.modelepedia.gsn.Goal;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
 import edu.toronto.cs.se.modelepedia.gsn.Strategy;
@@ -91,10 +92,10 @@ public abstract class DecompositionTemplateImpl extends TemplateImpl implements 
   @Override
   public void instantiate() throws Exception {
     var builder = new GSNTemplatesBuilder((SafetyCase) eContainer());
-    var strategy = (Strategy) getElements().stream().filter(e -> e.getId().equals("S1.G1")).findAny().get();
+    var strategy = (Strategy) getElements().stream().filter(e -> e instanceof BasicStrategy).findAny().get();
     var supports = strategy.getSupports();
     if (supports.isEmpty() || !(strategy.getSupports().get(0).getSource() instanceof Goal goal)) {
-      throw new MMINTException("The template does not have a top-level goal to be decomposed");
+      throw new MMINTException("The template does not have a goal to be decomposed");
     }
     decompose(goal, builder);
   }

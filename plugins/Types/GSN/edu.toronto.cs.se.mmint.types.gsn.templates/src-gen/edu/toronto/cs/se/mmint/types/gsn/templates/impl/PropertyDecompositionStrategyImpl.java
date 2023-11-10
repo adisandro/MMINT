@@ -306,12 +306,4 @@ public class PropertyDecompositionStrategyImpl extends StrategyImpl implements P
     gsnReasoner.validatePropertyDecomposition(this);
   }
 
-  /**
-   * @generated NOT
-   */
-  @Override
-  public void repair() throws Exception {
-    // do nothing
-  }
-
 } //PropertyDecompositionStrategyImpl

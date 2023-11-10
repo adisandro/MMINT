@@ -175,15 +175,17 @@ public class PropertyGoalImpl extends GoalImpl implements PropertyGoal {
    */
   @Override
   public void validate() throws Exception {
-    // do nothing
+    var strategy = (PropertyDecompositionStrategy) DecompositionUtils.moveOneStrategyUp(this);
+    strategy.validate();
+    setValid(true);
   }
 
   /**
    * @generated NOT
    */
-  private void repairWithNewProperty(PropertyDecompositionStrategy strategy, IGSNDecompositionTrait reasoner)
+  private void instantiateWithNewProperty(PropertyDecompositionStrategy strategy, IGSNDecompositionTrait reasoner)
                                     throws Exception {
-    var title = "Property Decomposition Repair";
+    var title = "Property Decomposition";
     var reasonerName = reasoner.getName();
     var templates = Map.<String, List<PropertyTemplate>>of();
     var modelObjs = Map.<EClass, List<EObject>>of();
@@ -213,13 +215,13 @@ public class PropertyGoalImpl extends GoalImpl implements PropertyGoal {
     }
     setProperty(property);
     setDescription(property.getInformal());
-    //TODO MMINT[GSN] Manage query context nodes (previous and repair)
+    //TODO MMINT[GSN] Manage query context nodes (previous and current)
   }
 
   /**
    * @generated NOT
    */
-  private void repairWithHint(String hint) {
+  private void instantiateWithHint(String hint) {
     getProperty().setFormal(hint);
     setHint(null);
     //TODO MMINT[GSN] Create interface to figure out goal description from hint
@@ -229,7 +231,7 @@ public class PropertyGoalImpl extends GoalImpl implements PropertyGoal {
    * @generated NOT
    */
   @Override
-  public void repair() throws Exception {
+  public void instantiate() throws Exception {
     var strategy = (PropertyDecompositionStrategy) DecompositionUtils.moveOneStrategyUp(this);
     var reasonerName = strategy.getReasonerName();
     var reasoner = Objects.requireNonNull(MMINT.getReasoner(reasonerName),
@@ -239,10 +241,10 @@ public class PropertyGoalImpl extends GoalImpl implements PropertyGoal {
     }
     var hint = getHint();
     if (hint == null || hint.isBlank()) {
-      repairWithNewProperty(strategy, gsnReasoner);
+      instantiateWithNewProperty(strategy, gsnReasoner);
     }
     else {
-      repairWithHint(hint);
+      instantiateWithHint(hint);
     }
     var proofLinks = strategy.getInContextOf().stream()
       .filter(c -> c.getContext().getDescription().contains(reasonerName))

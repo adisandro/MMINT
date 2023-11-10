@@ -88,11 +88,20 @@ public class FilesContextImpl extends ContextImpl implements FilesContext {
   public void instantiate() throws Exception {
     super.instantiate();
     var paths = getPaths();
-    if (paths.size() > 0) {
-      return;
+    var title = "Instantiate Files Context";
+    var msg = "Select a file or directory";
+    if (paths.size() == 0) {
+      paths.add(FileUtils.prependWorkspacePath(GSNBuilder.askForPath(title, msg)));
     }
-    paths.add(FileUtils.prependWorkspacePath(GSNBuilder.askForPath("Instantiate Files Context",
-                                                                   "Select a file or directory")));
+    else {
+      for (var i = 0; i < paths.size(); i++) {
+        var path = paths.get(i);
+        if (!FileUtils.isFileOrDirectory(path, false)) {
+          paths.set(i, FileUtils.prependWorkspacePath(
+                         GSNBuilder.askForPath(title, msg + " to replace '" + path + "'")));
+        }
+      }
+    }
   }
 
   /**
@@ -110,28 +119,6 @@ public class FilesContextImpl extends ContextImpl implements FilesContext {
       if (!FileUtils.isFileOrDirectory(path, false)) {
         setValid(false);
         throw new MMINTException("There are no files or directories at '" + path + "'");
-      }
-    }
-  }
-
-  /**
-   * @generated NOT
-   */
-  @Override
-  public void repair() throws Exception {
-    var paths = getPaths();
-    var title = "Repair Files Context";
-    var msg = "Select a file or directory";
-    if (paths.size() == 0) {
-      paths.add(FileUtils.prependWorkspacePath(GSNBuilder.askForPath(title, msg)));
-    }
-    else {
-      for (var i = 0; i < paths.size(); i++) {
-        var path = paths.get(i);
-        if (!FileUtils.isFileOrDirectory(path, false)) {
-          paths.set(i, FileUtils.prependWorkspacePath(
-                         GSNBuilder.askForPath(title, msg + " to replace '" + path + "'")));
-        }
       }
     }
   }

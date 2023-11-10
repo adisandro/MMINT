@@ -192,10 +192,15 @@ public class PropertyDecompositionTemplateImpl extends DecompositionTemplateImpl
     int numGoals;
     if (decomposed instanceof PropertyGoal) { // decomposition chain, do not use formal argument level
       templateElems.remove(formalStrategy);
+      safetyCase.getStrategies().remove(formalStrategy);
       templateElems.remove(propCtx);
+      safetyCase.getContexts().remove(propCtx);
       templateElems.remove(propGoal);
+      safetyCase.getGoals().remove(propGoal);
       templateElems.remove(formalGoal);
+      safetyCase.getGoals().remove(formalGoal);
       templateElems.remove(modelGoal);
+      safetyCase.getGoals().remove(modelGoal);
       propStrategy.setId(formalStrategy.getId().replace(placeholderId, decomposedId));
       propStrategy.setDescription(
         propStrategy.getDescription().replace("in Ctx1.G1", "'" + property.getInformal() + "'"));
