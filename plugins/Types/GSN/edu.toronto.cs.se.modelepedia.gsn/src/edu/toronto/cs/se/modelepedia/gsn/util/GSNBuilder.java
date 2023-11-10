@@ -12,7 +12,6 @@
  *******************************************************************************/
 package edu.toronto.cs.se.modelepedia.gsn.util;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -47,14 +46,10 @@ public class GSNBuilder {
 
   protected SafetyCase safetyCase;
   protected GSNFactory factory;
-  protected List<ArgumentElement> gsnElements;
-  protected List<Template> templates;
 
   public GSNBuilder(SafetyCase safetyCase) {
     this.safetyCase = safetyCase;
     this.factory = GSNFactory.eINSTANCE;
-    this.gsnElements = new ArrayList<>();
-    this.templates = new ArrayList<>();
   }
 
   public static Optional<String> findPattern(String text) {
@@ -97,12 +92,12 @@ public class GSNBuilder {
 
   public void addGoal(Goal goal, String id, String description) {
     addArgumentElement(goal, id, description);
-    this.gsnElements.add(goal);
+    this.safetyCase.getGoals().add(goal);
   }
 
   public void addStrategy(Strategy strategy, String id, String description) {
     addArgumentElement(strategy, id, description);
-    this.gsnElements.add(strategy);
+    this.safetyCase.getStrategies().add(strategy);
   }
 
   public BasicGoal createBasicGoal(String id, String description) {
@@ -119,14 +114,19 @@ public class GSNBuilder {
     return strategy;
   }
 
-  public void addContext(ContextualElement context, String id, String description) {
+  public void addJustification(Justification justification, String id, String description) {
+    addArgumentElement(justification, id, description);
+    this.safetyCase.getJustifications().add(justification);
+  }
+
+  public void addContext(Context context, String id, String description) {
     addArgumentElement(context, id, description);
-    this.gsnElements.add(context);
+    this.safetyCase.getContexts().add(context);
   }
 
   public Justification createJustification(String id, String description) {
     var justification = this.factory.createJustification();
-    addContext(justification, id, description);
+    addJustification(justification, id, description);
 
     return justification;
   }
@@ -139,33 +139,24 @@ public class GSNBuilder {
   }
 
   public void addExistingElement(ArgumentElement gsnElement) {
-    this.gsnElements.add(gsnElement);
+    switch (gsnElement) {
+      case Goal goal -> this.safetyCase.getGoals().add(goal);
+      case Strategy strategy -> this.safetyCase.getStrategies().add(strategy);
+      case Solution solution -> this.safetyCase.getSolutions().add(solution);
+      case Context context -> this.safetyCase.getContexts().add(context);
+      case Justification justification -> this.safetyCase.getJustifications().add(justification);
+      case Assumption assumption -> this.safetyCase.getAssumptions().add(assumption);
+      default -> {}
+    }
   }
 
   public void addExistingElements(List<? extends ArgumentElement> gsnElements) {
-    this.gsnElements.addAll(gsnElements);
+    for (var gsnElement : List.copyOf(gsnElements)) {
+      addExistingElement(gsnElement);
+    }
   }
 
   public void addExistingTemplate(Template template) {
-    this.templates.add(template);
-  }
-
-  public List<ArgumentElement> getGSNElements() {
-    return this.gsnElements;
-  }
-
-  public void commitChanges() {
-    for (var gsnElement : this.gsnElements) {
-      switch (gsnElement) {
-        case Goal goal -> this.safetyCase.getGoals().add(goal);
-        case Strategy strategy -> this.safetyCase.getStrategies().add(strategy);
-        case Solution solution -> this.safetyCase.getSolutions().add(solution);
-        case Context context -> this.safetyCase.getContexts().add(context);
-        case Justification justification -> this.safetyCase.getJustifications().add(justification);
-        case Assumption assumption -> this.safetyCase.getAssumptions().add(assumption);
-        default -> {}
-      }
-    }
-    this.safetyCase.getTemplates().addAll(this.templates);
+    this.safetyCase.getTemplates().add(template);
   }
 }

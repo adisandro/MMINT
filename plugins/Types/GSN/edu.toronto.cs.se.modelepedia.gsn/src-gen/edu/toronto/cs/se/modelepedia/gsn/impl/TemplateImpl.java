@@ -20,7 +20,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
@@ -137,7 +136,7 @@ public class TemplateImpl extends MinimalEObjectImpl.Container implements Templa
    * @generated NOT
    */
   @Override
-  public GSNBuilder import_(SafetyCase safetyCase, EList<EObject> selection) throws Exception {
+  public void import_(SafetyCase safetyCase) throws Exception {
     var builder = new GSNBuilder(safetyCase);
     var templateSC = (SafetyCase) eContainer();
     builder.addExistingElements(templateSC.getGoals());
@@ -147,8 +146,6 @@ public class TemplateImpl extends MinimalEObjectImpl.Container implements Templa
     builder.addExistingElements(templateSC.getJustifications());
     builder.addExistingElements(templateSC.getAssumptions());
     builder.addExistingTemplate(this);
-
-    return builder;
   }
 
   /**
@@ -157,6 +154,9 @@ public class TemplateImpl extends MinimalEObjectImpl.Container implements Templa
   @Override
   public void instantiate() throws Exception {
     for (var elem : getElements()) {
+      if (elem.isValid()) {
+        continue;
+      }
       elem.instantiate();
     }
   }
@@ -290,7 +290,7 @@ public class TemplateImpl extends MinimalEObjectImpl.Container implements Templa
         }
       case GSNPackage.TEMPLATE___IMPORT____SAFETYCASE_ELIST:
         try {
-          return import_((SafetyCase)arguments.get(0), (EList<EObject>)arguments.get(1));
+          import_((SafetyCase)arguments.get(0));
         }
         catch (Throwable throwable) {
           throw new InvocationTargetException(throwable);

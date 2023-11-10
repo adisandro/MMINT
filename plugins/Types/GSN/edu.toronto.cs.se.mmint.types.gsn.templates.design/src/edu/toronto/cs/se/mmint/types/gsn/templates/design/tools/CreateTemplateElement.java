@@ -59,7 +59,6 @@ public abstract class CreateTemplateElement extends AbstractExternalJavaAction {
     protected void doExecute() {
       try {
         create();
-        this.builder.commitChanges();
       }
       catch (MIDDialogCancellation e) {
         // do nothing

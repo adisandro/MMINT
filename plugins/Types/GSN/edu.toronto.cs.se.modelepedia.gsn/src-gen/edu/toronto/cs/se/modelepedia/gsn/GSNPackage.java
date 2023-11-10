@@ -3101,11 +3101,11 @@ public interface GSNPackage extends EPackage {
   EOperation getTemplate__Validate();
 
   /**
-   * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.gsn.Template#import_(edu.toronto.cs.se.modelepedia.gsn.SafetyCase, org.eclipse.emf.common.util.EList) <em>Import </em>}' operation.
+   * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.gsn.Template#import_(edu.toronto.cs.se.modelepedia.gsn.SafetyCase) <em>Import </em>}' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the '<em>Import </em>' operation.
-   * @see edu.toronto.cs.se.modelepedia.gsn.Template#import_(edu.toronto.cs.se.modelepedia.gsn.SafetyCase, org.eclipse.emf.common.util.EList)
+   * @see edu.toronto.cs.se.modelepedia.gsn.Template#import_(edu.toronto.cs.se.modelepedia.gsn.SafetyCase)
    * @generated
    */
   EOperation getTemplate__Import___SafetyCase_EList();

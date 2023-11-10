@@ -37,7 +37,11 @@ public class InstantiateTemplate extends AbstractExternalJavaAction {
       return false;
     }
     var modelObj = ((DSemanticDecorator) arg0.iterator().next()).getTarget();
-    if (!(modelObj instanceof ArgumentElement templateElem) || templateElem.getTemplates().isEmpty()) {
+    if (!(modelObj instanceof ArgumentElement templateElem)) {
+      return false;
+    }
+    var templates = templateElem.getTemplates();
+    if (templates.isEmpty() || templates.stream().flatMap(t -> t.getElements().stream()).allMatch(e -> e.isValid())) {
       return false;
     }
     return true;
@@ -77,9 +81,11 @@ public class InstantiateTemplate extends AbstractExternalJavaAction {
        *  Chain the instantiated template if an element was selected
        *  Select template from file if multiple templates are present?
        *  How is repair different from instantiate? (no instantiation and wrong instantiation are both invalid)
-       *  Review prop decomposition with import+instantiate pipeline:
-       *   1) instantiate would need gsn builder support for element change and removal
-       *   2) who invokes validate now for import?
+       *   1) Remove repair
+       *   2) Check FilesContext to be up to date
+       *   3) Fix usage of GSN builders
+       *   4) Regen gsn.ecore
+       *   5) Update instructions
        */
     }
   }

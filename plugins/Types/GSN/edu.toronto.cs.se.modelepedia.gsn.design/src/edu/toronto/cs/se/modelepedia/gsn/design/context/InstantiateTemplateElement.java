@@ -35,7 +35,9 @@ public class InstantiateTemplateElement extends AbstractExternalJavaAction {
       return false;
     }
     var modelObj = ((DSemanticDecorator) arg0.iterator().next()).getTarget();
-    if (!(modelObj instanceof ArgumentElement templateElem) || templateElem.getTemplates().isEmpty()) {
+    if (!(modelObj instanceof ArgumentElement templateElem) ||
+        templateElem.getTemplates().isEmpty() ||
+        templateElem.isValid()) {
       return false;
     }
     return true;

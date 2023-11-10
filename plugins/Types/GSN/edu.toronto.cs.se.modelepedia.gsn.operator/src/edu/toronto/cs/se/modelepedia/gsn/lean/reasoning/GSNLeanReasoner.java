@@ -193,10 +193,13 @@ public class GSNLeanReasoner extends LeanReasoner implements IGSNDecompositionTr
       .filter(t -> t instanceof PropertyDecompositionTemplate)
       .findFirst()
       .ifPresent(t -> t.getElements().add(just));
-    builder.commitChanges();
     WorkspaceSynchronizer.getFile(instanceMID.eResource()).getParent()
       .refreshLocal(IResource.DEPTH_ONE, new NullProgressMonitor());
-    if (!valid) {
+    if (valid) {
+      strategy.setValid(true);
+    }
+    else {
+      strategy.setValid(false);
       for (var i = 0; i < badGoals.size(); i++) {
         var badGoal = badGoals.get(i);
         badGoal.setValid(false);

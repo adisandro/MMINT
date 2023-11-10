@@ -16,7 +16,6 @@ import java.lang.reflect.InvocationTargetException;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.types.gsn.templates.DecompositionTemplate;
@@ -24,8 +23,8 @@ import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
 import edu.toronto.cs.se.mmint.types.gsn.templates.util.GSNTemplatesBuilder;
 import edu.toronto.cs.se.modelepedia.gsn.Goal;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
+import edu.toronto.cs.se.modelepedia.gsn.Strategy;
 import edu.toronto.cs.se.modelepedia.gsn.impl.TemplateImpl;
-import edu.toronto.cs.se.modelepedia.gsn.util.GSNBuilder;
 
 /**
  * <!-- begin-user-doc -->
@@ -90,19 +89,14 @@ public abstract class DecompositionTemplateImpl extends TemplateImpl implements 
    * @generated NOT
    */
   @Override
-  public GSNBuilder import_(SafetyCase safetyCase, EList<EObject> selection) throws Exception {
-    var builder = new GSNTemplatesBuilder(safetyCase);
-    if (selection.size() > 1) {
-      throw new MMINTException("Only one goal must be selected in a goal decomposition");
-    }
-    var selected = selection.get(0);
-    if (!(selected instanceof Goal goal)) {
-      throw new MMINTException("The selected element to be decomposed is not a goal");
+  public void instantiate() throws Exception {
+    var builder = new GSNTemplatesBuilder((SafetyCase) eContainer());
+    var strategy = (Strategy) getElements().stream().filter(e -> e.getId().equals("S1.G1")).findAny().get();
+    var supports = strategy.getSupports();
+    if (supports.isEmpty() || !(strategy.getSupports().get(0).getSource() instanceof Goal goal)) {
+      throw new MMINTException("The template does not have a top-level goal to be decomposed");
     }
     decompose(goal, builder);
-    builder.addExistingTemplate(this);
-
-    return builder;
   }
 
 } //DecompositionTemplateImpl

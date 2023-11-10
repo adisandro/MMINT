@@ -76,7 +76,7 @@ public interface IGSNLeanEncoder {
     public BindingResult bindVariables(String title, Map<EClass, List<EObject>> modelObjs,
                                        Map<String, List<Object>> queryCache) throws Exception {
       var property = GSNTemplatesFactory.eINSTANCE.createProperty();
-      var result = new BindingResult(property, new ArrayList<String>());
+      var result = new BindingResult(property, new ArrayList<>());
       if (this.variables.isEmpty()) {
         property.setFormal(this.formal);
         property.setInformal(this.informal);
@@ -125,7 +125,7 @@ public interface IGSNLeanEncoder {
             throw new MMINTException("The query '" + querySpec.query() + "' returned zero valid model objects");
           }
           //TODO MMINT[GSN] Figure out why displayQueryResults does not work
-          //SiriusEvaluateQuery.displayQueryResults(instanceMID, selectedObjs);
+          //SiriusEvaluateQuery.displayQueryResults(instanceMID, selectedObjs, querySpec.query().toString());
           result.queries().add(queryId);
           queryInformal = "[elements from query \"" + querySpec.query() + "\"]";
         }
