@@ -240,12 +240,4 @@ public class DomainDecompositionStrategyImpl extends StrategyImpl implements Dom
     domain.validateDecomposition(ECollections.toEList(subDomains));
   }
 
-  /**
-   * @generated NOT
-   */
-  @Override
-  public void repair() throws Exception {
-    // do nothing
-  }
-
 } //DomainDecompositionStrategyImpl

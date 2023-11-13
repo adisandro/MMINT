@@ -123,7 +123,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DECOMPOSITION_TEMPLATE___IMPORT____SAFETYCASE_ELIST = GSNPackage.TEMPLATE___IMPORT____SAFETYCASE_ELIST;
+  int DECOMPOSITION_TEMPLATE___IMPORT____SAFETYCASE = GSNPackage.TEMPLATE___IMPORT____SAFETYCASE;
 
   /**
    * The operation id for the '<em>Instantiate</em>' operation.
@@ -538,15 +538,6 @@ public interface GSNTemplatesPackage extends EPackage {
   int DOMAIN_DECOMPOSITION_STRATEGY___VALIDATE = GSNPackage.STRATEGY___VALIDATE;
 
   /**
-   * The operation id for the '<em>Repair</em>' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DOMAIN_DECOMPOSITION_STRATEGY___REPAIR = GSNPackage.STRATEGY___REPAIR;
-
-  /**
    * The operation id for the '<em>Instantiate</em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -692,15 +683,6 @@ public interface GSNTemplatesPackage extends EPackage {
   int DOMAIN_GOAL___VALIDATE = GSNPackage.GOAL___VALIDATE;
 
   /**
-   * The operation id for the '<em>Repair</em>' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DOMAIN_GOAL___REPAIR = GSNPackage.GOAL___REPAIR;
-
-  /**
    * The operation id for the '<em>Instantiate</em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -771,7 +753,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DOMAIN_DECOMPOSITION_TEMPLATE___IMPORT____SAFETYCASE_ELIST = GSNTemplatesPackage.DECOMPOSITION_TEMPLATE___IMPORT____SAFETYCASE_ELIST;
+  int DOMAIN_DECOMPOSITION_TEMPLATE___IMPORT____SAFETYCASE = GSNTemplatesPackage.DECOMPOSITION_TEMPLATE___IMPORT____SAFETYCASE;
 
   /**
    * The operation id for the '<em>Instantiate</em>' operation.
@@ -1002,15 +984,6 @@ public interface GSNTemplatesPackage extends EPackage {
   int PROPERTY_DECOMPOSITION_STRATEGY___VALIDATE = GSNPackage.STRATEGY___VALIDATE;
 
   /**
-   * The operation id for the '<em>Repair</em>' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PROPERTY_DECOMPOSITION_STRATEGY___REPAIR = GSNPackage.STRATEGY___REPAIR;
-
-  /**
    * The operation id for the '<em>Instantiate</em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1165,15 +1138,6 @@ public interface GSNTemplatesPackage extends EPackage {
   int PROPERTY_GOAL___VALIDATE = GSNPackage.GOAL___VALIDATE;
 
   /**
-   * The operation id for the '<em>Repair</em>' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PROPERTY_GOAL___REPAIR = GSNPackage.GOAL___REPAIR;
-
-  /**
    * The operation id for the '<em>Instantiate</em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1245,7 +1209,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PROPERTY_DECOMPOSITION_TEMPLATE___IMPORT____SAFETYCASE_ELIST = GSNTemplatesPackage.DECOMPOSITION_TEMPLATE___IMPORT____SAFETYCASE_ELIST;
+  int PROPERTY_DECOMPOSITION_TEMPLATE___IMPORT____SAFETYCASE = GSNTemplatesPackage.DECOMPOSITION_TEMPLATE___IMPORT____SAFETYCASE;
 
   /**
    * The operation id for the '<em>Instantiate</em>' operation.
@@ -1364,15 +1328,6 @@ public interface GSNTemplatesPackage extends EPackage {
    * @ordered
    */
   int FILES_CONTEXT___VALIDATE = GSNPackage.CONTEXT___VALIDATE;
-
-  /**
-   * The operation id for the '<em>Repair</em>' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int FILES_CONTEXT___REPAIR = GSNPackage.CONTEXT___REPAIR;
 
   /**
    * The operation id for the '<em>Instantiate</em>' operation.

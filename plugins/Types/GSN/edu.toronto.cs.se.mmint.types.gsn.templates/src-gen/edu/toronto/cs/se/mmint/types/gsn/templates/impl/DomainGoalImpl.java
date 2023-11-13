@@ -121,14 +121,6 @@ public class DomainGoalImpl extends GoalImpl implements DomainGoal {
   }
 
   /**
-   * @generated NOT
-   */
-  @Override
-  public void repair() throws Exception {
-    // do nothing
-  }
-
-  /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
