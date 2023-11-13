@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gsn:SafetyCase xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gsn="http://se.cs.toronto.edu/modelepedia/GSN" xmlns:gsn.templates="model://edu.toronto.cs.se.mmint.types.gsn.templates">
-  <goals xsi:type="gsn:BasicGoal" id="G1" description="Safety goal" templates="//@templates.0">
+  <goals xsi:type="gsn:BasicGoal" id="G1" description="{Safety goal}" templates="//@templates.0" valid="false">
     <supportedBy target="//@strategies.0"/>
   </goals>
-  <goals xsi:type="gsn:BasicGoal" id="G1.1" description="Every possible value in the domain {values} is covered by sub-domains {sub-values}" templates="//@templates.0" valid="false" supports="//@strategies.0/@supportedBy.0"/>
+  <goals xsi:type="gsn:BasicGoal" id="G1.1" description="Every possible value in the domain is covered by sub-domains" templates="//@templates.0" supports="//@strategies.0/@supportedBy.0"/>
   <goals xsi:type="gsn.templates:DomainGoal" id="G1.N" description="{Safety goal} for sub-domain {sub-values}" templates="//@templates.0" valid="false" supports="//@strategies.0/@supportedBy.1">
     <domain xsi:type="gsn.templates:ValueDomain" value="{Sub-values}"/>
   </goals>
-  <strategies xsi:type="gsn.templates:DomainDecompositionStrategy" id="S1.G1" description="Decomposition over domain {values}" templates="//@templates.0" valid="false" supports="//@goals.0/@supportedBy.0">
+  <strategies xsi:type="gsn.templates:DomainDecompositionStrategy" id="S1.G1" description="Decomposition over domain in Ctx1.G1" templates="//@templates.0" valid="false" supports="//@goals.0/@supportedBy.0">
     <supportedBy target="//@goals.1"/>
     <supportedBy target="//@goals.2"/>
     <inContextOf context="//@justifications.0"/>
+    <inContextOf context="//@contexts.0"/>
     <domain xsi:type="gsn.templates:EnumDomain">
       <values>{Values}</values>
     </domain>
   </strategies>
-  <justifications id="J.G1" description="Every scenario has a corresponding value in the domain {values}" templates="//@templates.0" valid="false" contextOf="//@strategies.0/@inContextOf.0"/>
-  <templates xsi:type="gsn.templates:DomainDecompositionTemplate" elements="//@goals.0 //@goals.1 //@strategies.0 //@goals.2 //@justifications.0" id="Domain Decomposition"/>
+  <contexts id="Ctx1.G1" description="{Domain}" templates="//@templates.0" valid="false" contextOf="//@strategies.0/@inContextOf.1"/>
+  <justifications id="J1.G1" description="Every scenario has a corresponding value in the domain in Ctx1.G1" templates="//@templates.0" contextOf="//@strategies.0/@inContextOf.0"/>
+  <templates xsi:type="gsn.templates:DomainDecompositionTemplate" elements="//@goals.0 //@goals.1 //@strategies.0 //@goals.2 //@justifications.0 //@contexts.0" id="Domain Decomposition"/>
 </gsn:SafetyCase>

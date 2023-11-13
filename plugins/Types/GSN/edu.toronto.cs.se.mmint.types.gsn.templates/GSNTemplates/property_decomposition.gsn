@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gsn:SafetyCase xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gsn="http://se.cs.toronto.edu/modelepedia/GSN" xmlns:gsn.templates="model://edu.toronto.cs.se.mmint.types.gsn.templates">
-  <goals xsi:type="gsn:BasicGoal" id="G1" description="Safety goal" templates="//@templates.0">
+  <goals xsi:type="gsn:BasicGoal" id="G1" description="{Safety goal}" templates="//@templates.0" valid="false">
     <supportedBy target="//@strategies.0"/>
   </goals>
   <goals xsi:type="gsn:BasicGoal" id="G1.1" description="G1 asserts the property in Ctx1.G1" templates="//@templates.0" supports="//@strategies.0/@supportedBy.0"/>
@@ -24,7 +24,9 @@
     <property formal="{Formal property}" informal="{Safety property}"/>
   </strategies>
   <contexts id="Ctx1.G1" description="{Safety property}" templates="//@templates.0" valid="false" contextOf="//@strategies.0/@inContextOf.0"/>
-  <contexts xsi:type="gsn.templates:FilesContext" id="Ctx2.G1" description="{Model path}" templates="//@templates.0" valid="false" contextOf="//@strategies.1/@inContextOf.0"/>
+  <contexts xsi:type="gsn.templates:FilesContext" id="Ctx2.G1" description="{Model path}" templates="//@templates.0" valid="false" contextOf="//@strategies.1/@inContextOf.0">
+    <paths>{Model path}</paths>
+  </contexts>
   <justifications id="J1.G1" description="Decomposition {result} in {reasoner}: see file {proof}" templates="//@templates.0" valid="false" contextOf="//@strategies.1/@inContextOf.1"/>
   <templates xsi:type="gsn.templates:PropertyDecompositionTemplate" elements="//@goals.0 //@goals.1 //@goals.2 //@goals.3 //@strategies.0 //@contexts.0 //@contexts.1 //@justifications.0 //@strategies.1 //@goals.4" id="Property Decomposition"/>
 </gsn:SafetyCase>
