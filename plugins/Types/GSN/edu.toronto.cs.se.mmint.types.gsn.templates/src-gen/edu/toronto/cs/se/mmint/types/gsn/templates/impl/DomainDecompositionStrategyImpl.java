@@ -227,6 +227,14 @@ public class DomainDecompositionStrategyImpl extends StrategyImpl implements Dom
    * @generated NOT
    */
   @Override
+  public void instantiate() throws Exception {
+    getTemplates().get(0).instantiate();
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
   public void validate() throws Exception {
     try {
       var domain = Objects.requireNonNull(getDomain(), "Domain not specified");

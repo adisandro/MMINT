@@ -28,6 +28,8 @@ import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyDecompositionElement;
 import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyDecompositionStrategy;
 import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyGoal;
 import edu.toronto.cs.se.mmint.types.gsn.templates.reasoning.IGSNDecompositionTrait;
+import edu.toronto.cs.se.modelepedia.gsn.Justification;
+import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
 import edu.toronto.cs.se.modelepedia.gsn.SupportedBy;
 import edu.toronto.cs.se.modelepedia.gsn.impl.StrategyImpl;
 
@@ -297,6 +299,14 @@ public class PropertyDecompositionStrategyImpl extends StrategyImpl implements P
    * @generated NOT
    */
   @Override
+  public void instantiate() throws Exception {
+    getTemplates().get(0).instantiate();
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
   public void validate() throws Exception {
     try {
       var reasonerName = Objects.requireNonNull(getReasonerName(), "Reasoner not specified");
@@ -306,6 +316,12 @@ public class PropertyDecompositionStrategyImpl extends StrategyImpl implements P
         throw new MMINTException("The reasoner '" + reasonerName + "' does not support GSN property decompositions");
       }
       Objects.requireNonNull(getProperty(), "Property not specified");
+      // clean up previous validation
+      var proofJust = (Justification) getInContextOf().get(1).getContext();
+      getInContextOf().remove(1);
+      getTemplates().get(0).getElements().remove(proofJust);
+      ((SafetyCase) eContainer()).getJustifications().remove(proofJust);
+      // validate
       gsnReasoner.validatePropertyDecomposition(this);
       setValid(true);
       getSupportedBy().stream()

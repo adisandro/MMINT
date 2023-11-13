@@ -75,38 +75,38 @@
               </style>
             </conditionnalStyles>
           </borderedNodeMappings>
-          <style xsi:type="style:SquareDescription" borderSizeComputationExpression="1" showIcon="false" labelExpression="aql:self.id + ' ' + self.description" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW" width="14" height="7">
+          <style xsi:type="style:SquareDescription" borderSizeComputationExpression="1" labelSize="10" showIcon="false" labelExpression="aql:self.id + ' ' + self.description" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW" width="20" height="10">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
           </style>
         </nodeMappings>
         <nodeMappings name="StrategyNode" semanticCandidatesExpression="feature:strategies" domainClass="gsn.Strategy" reusedBorderedNodeMappings="//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']/@borderedNodeMappings[name='ElementImpactNode']">
-          <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="aql:self.id + ' ' + self.description" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW" workspacePath="/edu.toronto.cs.se.modelepedia.gsn.design/icons/Strategy.svg">
+          <style xsi:type="style:WorkspaceImageDescription" labelSize="10" showIcon="false" labelExpression="aql:self.id + ' ' + self.description" sizeComputationExpression="20" labelPosition="node" resizeKind="NSEW" arcWidth="15" arcHeight="15" workspacePath="/edu.toronto.cs.se.modelepedia.gsn.design/icons/Strategy.svg">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
           </style>
         </nodeMappings>
         <nodeMappings name="SolutionNode" semanticCandidatesExpression="feature:solutions" domainClass="gsn.Solution" reusedBorderedNodeMappings="//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']/@borderedNodeMappings[name='ElementImpactNode']">
-          <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="aql:self.id + ' ' + self.description" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW" workspacePath="/edu.toronto.cs.se.modelepedia.gsn.design/icons/Solution.svg">
+          <style xsi:type="style:WorkspaceImageDescription" labelSize="10" showIcon="false" labelExpression="aql:self.id + ' ' + self.description" sizeComputationExpression="20" labelPosition="node" resizeKind="NSEW" arcWidth="15" arcHeight="15" workspacePath="/edu.toronto.cs.se.modelepedia.gsn.design/icons/Solution.svg">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
           </style>
         </nodeMappings>
         <nodeMappings name="ContextNode" semanticCandidatesExpression="feature:contexts" domainClass="gsn.Context" reusedBorderedNodeMappings="//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']/@borderedNodeMappings[name='ElementImpactNode']">
-          <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="aql:self.id + ' ' + self.description" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW" workspacePath="/edu.toronto.cs.se.modelepedia.gsn.design/icons/Context.svg">
+          <style xsi:type="style:WorkspaceImageDescription" labelSize="10" showIcon="false" labelExpression="aql:self.id + ' ' + self.description" sizeComputationExpression="20" labelPosition="node" resizeKind="NSEW" arcWidth="15" arcHeight="15" workspacePath="/edu.toronto.cs.se.modelepedia.gsn.design/icons/Context.svg">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
           </style>
         </nodeMappings>
         <nodeMappings name="JustificationNode" semanticCandidatesExpression="feature:justifications" domainClass="gsn.Justification" reusedBorderedNodeMappings="//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']/@borderedNodeMappings[name='ElementImpactNode']">
-          <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="aql:self.id + ' ' + self.description" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW" workspacePath="/edu.toronto.cs.se.modelepedia.gsn.design/icons/Justification.svg">
+          <style xsi:type="style:WorkspaceImageDescription" labelSize="10" showIcon="false" labelExpression="aql:self.id + ' ' + self.description" sizeComputationExpression="20" labelPosition="node" resizeKind="NSEW" arcWidth="15" arcHeight="15" workspacePath="/edu.toronto.cs.se.modelepedia.gsn.design/icons/Justification.svg">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
           </style>
         </nodeMappings>
         <nodeMappings name="AssumptionNode" semanticCandidatesExpression="feature:assumptions" domainClass="gsn.Assumption" reusedBorderedNodeMappings="//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']/@borderedNodeMappings[name='ElementImpactNode']">
-          <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="aql:self.id + ' ' + self.description" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW" workspacePath="/edu.toronto.cs.se.modelepedia.gsn.design/icons/Assumption.svg">
+          <style xsi:type="style:WorkspaceImageDescription" labelSize="10" showIcon="false" labelExpression="aql:self.id + ' ' + self.description" sizeComputationExpression="20" labelPosition="node" resizeKind="NSEW" arcWidth="15" arcHeight="15" workspacePath="/edu.toronto.cs.se.modelepedia.gsn.design/icons/Assumption.svg">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
           </style>
@@ -323,9 +323,9 @@
         <toolSections name="Menus">
           <ownedTools xsi:type="tool_1:PopupMenu" name="MMINT">
             <menuItemDescription xsi:type="tool_1:ExternalJavaAction" name="EvaluateQuery" label="Evaluate Query" id="edu.toronto.cs.se.mmint.mid.diagram.context.SiriusEvaluateQuery"/>
+            <menuItemDescription xsi:type="tool_1:ExternalJavaAction" name="CreateTemplate" label="Group as Template" id="edu.toronto.cs.se.modelepedia.gsn.design.context.CreateTemplate"/>
             <menuItemDescription xsi:type="tool_1:ExternalJavaAction" name="ImportTemplate" label="Import Template" id="edu.toronto.cs.se.modelepedia.gsn.design.context.ImportTemplate"/>
             <menuItemDescription xsi:type="tool_1:ExternalJavaAction" name="InstantiateTemplate" label="Instantiate Template" id="edu.toronto.cs.se.modelepedia.gsn.design.context.InstantiateTemplate"/>
-            <menuItemDescription xsi:type="tool_1:ExternalJavaAction" name="CreateTemplate" label="Group as Template" id="edu.toronto.cs.se.modelepedia.gsn.design.context.CreateTemplate"/>
             <menuItemDescription xsi:type="tool_1:ExternalJavaAction" name="ValidateTemplate" label="Validate Template" id="edu.toronto.cs.se.modelepedia.gsn.design.context.ValidateTemplate"/>
             <menuItemDescription xsi:type="tool_1:ExternalJavaAction" name="InstantiateTemplateElement" label="Instantiate Template Element" id="edu.toronto.cs.se.modelepedia.gsn.design.context.InstantiateTemplateElement"/>
             <menuItemDescription xsi:type="tool_1:ExternalJavaAction" name="ValidateTemplateElement" label="Validate Template Element" id="edu.toronto.cs.se.modelepedia.gsn.design.context.ValidateTemplateElement"/>

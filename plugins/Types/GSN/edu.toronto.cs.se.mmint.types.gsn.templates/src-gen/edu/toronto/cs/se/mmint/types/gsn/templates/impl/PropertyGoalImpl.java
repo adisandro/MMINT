@@ -15,7 +15,6 @@ package edu.toronto.cs.se.mmint.types.gsn.templates.impl;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -175,16 +174,15 @@ public class PropertyGoalImpl extends GoalImpl implements PropertyGoal {
    */
   @Override
   public void validate() throws Exception {
-    if (!isValid()) {
-      throw new MMINTException("The validity of this element is managed by its supporting strategy");
-    }
+    // the validity of this goal is managed by its supporting strategy
+    var strategy = (PropertyDecompositionStrategy) DecompositionUtils.moveOneStrategyUp(this);
+    strategy.validate();
   }
 
   /**
    * @generated NOT
    */
-  private void instantiateWithNewProperty(PropertyDecompositionStrategy strategy, IGSNDecompositionTrait reasoner)
-                                    throws Exception {
+  private void instantiateWithNewProperty(IGSNDecompositionTrait reasoner) throws Exception {
     var title = "Property Decomposition";
     var reasonerName = reasoner.getName();
     var templates = Map.<String, List<PropertyTemplate>>of();
@@ -232,8 +230,8 @@ public class PropertyGoalImpl extends GoalImpl implements PropertyGoal {
    */
   @Override
   public void instantiate() throws Exception {
-    var strategy = (PropertyDecompositionStrategy) DecompositionUtils.moveOneStrategyUp(this);
-    var reasonerName = strategy.getReasonerName();
+    var propStrategy = (PropertyDecompositionStrategy) DecompositionUtils.moveOneStrategyUp(this);
+    var reasonerName = propStrategy.getReasonerName();
     var reasoner = Objects.requireNonNull(MMINT.getReasoner(reasonerName),
                                           "The reasoner '" + reasonerName + "' is not installed");
     if (!(reasoner instanceof IGSNDecompositionTrait gsnReasoner)) {
@@ -241,19 +239,11 @@ public class PropertyGoalImpl extends GoalImpl implements PropertyGoal {
     }
     var hint = getHint();
     if (hint == null || hint.isBlank()) {
-      instantiateWithNewProperty(strategy, gsnReasoner);
+      instantiateWithNewProperty(gsnReasoner);
     }
     else {
       instantiateWithHint(hint);
     }
-    var proofLinks = strategy.getInContextOf().stream()
-      .filter(c -> c.getContext().getDescription().contains(reasonerName))
-      .collect(Collectors.toSet());
-    var proofs = proofLinks.stream()
-      .map(c -> c.getContext())
-      .collect(Collectors.toSet());
-    strategy.getInContextOf().removeAll(proofLinks);
-    ((SafetyCase) strategy.eContainer()).getJustifications().removeAll(proofs);
   }
 
   /**

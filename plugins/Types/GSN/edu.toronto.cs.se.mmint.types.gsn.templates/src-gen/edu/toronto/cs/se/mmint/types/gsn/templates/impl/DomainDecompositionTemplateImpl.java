@@ -14,6 +14,8 @@ package edu.toronto.cs.se.mmint.types.gsn.templates.impl;
 
 import java.util.ArrayList;
 import java.util.Set;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EClass;
 
@@ -27,9 +29,11 @@ import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
 import edu.toronto.cs.se.mmint.types.gsn.templates.IntDomain;
 import edu.toronto.cs.se.mmint.types.gsn.templates.RealDomain;
 import edu.toronto.cs.se.mmint.types.gsn.templates.util.GSNTemplatesBuilder;
+import edu.toronto.cs.se.modelepedia.gsn.Context;
 import edu.toronto.cs.se.modelepedia.gsn.Goal;
 import edu.toronto.cs.se.modelepedia.gsn.Justification;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
+import edu.toronto.cs.se.modelepedia.gsn.SupportedBy;
 
 /**
  * <!-- begin-user-doc -->
@@ -95,41 +99,51 @@ public class DomainDecompositionTemplateImpl extends DecompositionTemplateImpl i
       .map(DomainDecompositionStrategy.class::cast)
       .findFirst().get();
     var domainJust = (Justification) domainStrategy.getInContextOf().get(0).getContext();
+    var domainCtx = (Context) domainStrategy.getInContextOf().get(1).getContext();
     var compGoal = (Goal) domainStrategy.getSupportedBy().get(0).getTarget();
-    var subDomainGoalN = (DomainGoal) domainStrategy.getSupportedBy().get(1).getTarget();
+    var subDomainGoals = domainStrategy.getSupportedBy().stream()
+      .map(SupportedBy::getTarget)
+      .filter(DomainGoal.class::isInstance)
+      .map(DomainGoal.class::cast)
+      .collect(Collectors.toList());
     var templateElems = getElements();
-    domainStrategy.getSupportedBy().remove(1); // the real subDomainGoals will be added later
-    templateElems.remove(subDomainGoalN);
-    safetyCase.getGoals().remove(subDomainGoalN);
+    domainStrategy.getSupportedBy().removeIf(sb -> sb.getTarget() instanceof DomainGoal); // the real subDomainGoals will be added later
+    templateElems.removeAll(subDomainGoals);
+    safetyCase.getGoals().removeAll(subDomainGoals);
     var placeholderId = domainStrategy.getId().substring(domainStrategy.getId().indexOf(".") + 1);
     var decomposedId = decomposed.getId();
-    var domainValues = "{values}";
-    var subDomainValues = "{sub-values}";
     domainStrategy.setId(domainStrategy.getId().replace(placeholderId, decomposedId));
-    domainStrategy.setDescription(domainStrategy.getDescription().replace(domainValues, domain.toString()));
+    domainStrategy.setDescription(domainStrategy.getDescription().replace(placeholderId, decomposedId));
     domainStrategy.setDomain(domain);
     domainJust.setId(domainJust.getId().replace(placeholderId, decomposedId));
-    domainJust.setDescription(domainJust.getDescription().replace(domainValues, domain.toString()));
+    domainJust.setDescription(domainJust.getDescription().replace(placeholderId, decomposedId));
+    domainCtx.setId(domainCtx.getId().replace(placeholderId, decomposedId));
+    domainCtx.setDescription(domain.toString());
     compGoal.setId(compGoal.getId().replace(placeholderId, decomposedId));
     var subDomains = new ArrayList<String>();
-    var subDomainGoalId = subDomainGoalN.getId().replace(placeholderId, decomposedId);
-    var subDomainGoalDesc = subDomainGoalN.getDescription();
+    var subDomainGoalId = decomposedId + ".";
+    var subDomainGoalDesc = decomposed.getDescription() + " for sub-domain ";
     for (var i = 0; i < numDomains; i++) {
       var subDomain = builder.createDomain(title, "Insert the sub-domain #" + (i+1), subDomainTypes);
       if (domain instanceof EnumDomain && subDomain instanceof EnumDomain subEnumDomain) {
         numDomains -= (subEnumDomain.getValues().size()-1);
       }
       subDomains.add(subDomain.toString());
-      var subDomainGoal = builder.createDomainGoal(subDomainGoalId.replace("N", String.valueOf(i+2)),
-                                                   subDomainGoalDesc.replace("{Safety goal}", decomposed.getDescription())
-                                                                    .replace(subDomainValues, subDomain.toString()),
+      var subDomainGoal = builder.createDomainGoal(subDomainGoalId + (i+2), subDomainGoalDesc + subDomain.toString(),
                                                    subDomain);
       templateElems.add(subDomainGoal);
       builder.addSupporter(domainStrategy, subDomainGoal);
     }
-    compGoal.setDescription(compGoal.getDescription().replace(subDomainValues, String.join(", ", subDomains))
-                                                     .replace(domainValues, domain.toString()));
     templateElems.add(decomposed);
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public void validate() throws Exception {
+    // strategy validation will manage supported goals
+    validate(getElements().stream().filter(Predicate.not(DomainGoal.class::isInstance)).collect(Collectors.toList()));
   }
 
 } //DomainTemplateImpl

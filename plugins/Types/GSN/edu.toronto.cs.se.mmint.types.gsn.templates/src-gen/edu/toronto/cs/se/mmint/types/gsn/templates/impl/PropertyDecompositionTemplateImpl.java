@@ -16,6 +16,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -46,7 +48,6 @@ import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
 import edu.toronto.cs.se.modelepedia.gsn.Context;
 import edu.toronto.cs.se.modelepedia.gsn.DecomposableCoreElement;
 import edu.toronto.cs.se.modelepedia.gsn.Goal;
-import edu.toronto.cs.se.modelepedia.gsn.Justification;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
 import edu.toronto.cs.se.modelepedia.gsn.Strategy;
 
@@ -174,16 +175,14 @@ public class PropertyDecompositionTemplateImpl extends DecompositionTemplateImpl
     var modelGoal = (Goal) formalStrategy.getSupportedBy().get(2).getTarget();
     var propCtx = (Context) formalStrategy.getInContextOf().get(0).getContext();
     var propStrategy = (PropertyDecompositionStrategy) formalGoal.getSupportedBy().get(0).getTarget();
-    var subPropGoalN = (PropertyGoal) propStrategy.getSupportedBy().get(0).getTarget();
+    var subPropGoals = propStrategy.getSupportedBy().stream()
+      .map(sb -> (PropertyGoal) sb.getTarget())
+      .collect(Collectors.toList());
     var modelCtx = (FilesContext) propStrategy.getInContextOf().get(0).getContext();
-    var formalJust = (Justification) propStrategy.getInContextOf().get(1).getContext();
     var templateElems = getElements();
-    propStrategy.getInContextOf().remove(1); // the real formalJust will be added by the validation
-    templateElems.remove(formalJust);
-    safetyCase.getJustifications().remove(formalJust);
     propStrategy.getSupportedBy().clear(); // the real subPropGoals will be added later
-    templateElems.remove(subPropGoalN);
-    safetyCase.getGoals().remove(subPropGoalN);
+    templateElems.removeAll(subPropGoals);
+    safetyCase.getGoals().removeAll(subPropGoals);
     var placeholderId = formalStrategy.getId().substring(formalStrategy.getId().indexOf(".") + 1);
     var decomposedId = decomposed.getId();
     Strategy chainedStrategy;
@@ -212,7 +211,7 @@ public class PropertyDecompositionTemplateImpl extends DecompositionTemplateImpl
       formalStrategy.setId(formalStrategy.getId().replace(placeholderId, decomposedId));
       formalStrategy.setDescription(formalStrategy.getDescription().replace("{reasoner}", reasonerName));
       propCtx.setId(propCtx.getId().replace(placeholderId, decomposedId));
-      propCtx.setDescription(propCtx.getDescription().replace("{Safety property}", property.getInformal()));
+      propCtx.setDescription(property.getInformal());
       propGoal.setId(propGoal.getId().replace(placeholderId, decomposedId));
       propGoal.setDescription(propGoal.getDescription().replace(placeholderId, decomposedId));
       formalGoal.setId(formalGoal.getId().replace(placeholderId, decomposedId));
@@ -228,7 +227,8 @@ public class PropertyDecompositionTemplateImpl extends DecompositionTemplateImpl
     }
     propStrategy.setReasonerName(reasonerName);
     propStrategy.setProperty(property);
-    modelCtx.setDescription(modelCtx.getDescription().replace("{Model path}", relatedModelPath));
+    modelCtx.setDescription(relatedModelPath);
+    modelCtx.getPaths().clear();
     modelCtx.getPaths().add(FileUtils.prependWorkspacePath(relatedModelPath));
     for (var propQuery : propQueries) {
       createQueryContext(propStrategy, propQuery, decomposedId, numCtx, queryContexts, templateElems, builder);
@@ -239,7 +239,7 @@ public class PropertyDecompositionTemplateImpl extends DecompositionTemplateImpl
       throw new MMINTException("Sub-properties must be >= 2");
     }
 
-    var subPropGoalId = subPropGoalN.getId().replace(placeholderId, decomposedId);
+    var subPropGoalId = decomposedId + ".";
     for (var i = 0; i < numProperties; i++) {
       var subPropTemplate = DecompositionUtils.selectPropertyTemplate(title, "Select the sub-property #" + (i+1),
                                                                       propTemplates);
@@ -253,8 +253,8 @@ public class PropertyDecompositionTemplateImpl extends DecompositionTemplateImpl
         subProperty = subResult.property();
         subPropQueries = subResult.queries();
       }
-      var subPropGoal = builder.createPropertyGoal(subPropGoalId.replace("N", String.valueOf(i+1+numGoals)),
-                                                   subProperty.getInformal(), subProperty);
+      var subPropGoal = builder.createPropertyGoal(subPropGoalId + (i+1+numGoals), subProperty.getInformal(),
+                                                   subProperty);
       templateElems.add(subPropGoal);
       builder.addSupporter(propStrategy, subPropGoal);
       for (var subPropQuery : subPropQueries) {
@@ -262,6 +262,15 @@ public class PropertyDecompositionTemplateImpl extends DecompositionTemplateImpl
       }
     }
     templateElems.add(decomposed);
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public void validate() throws Exception {
+    // strategy validation will manage supported goals
+    validate(getElements().stream().filter(Predicate.not(PropertyGoal.class::isInstance)).collect(Collectors.toList()));
   }
 
 } //PropertyTemplateImpl

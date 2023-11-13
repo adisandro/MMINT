@@ -79,10 +79,9 @@ public class InstantiateTemplate extends AbstractExternalJavaAction {
        *  Delete links and delete template when deleting argument elements
        *  FilesJustification?
        *  Select template from file if multiple templates are present?
+       *  Fix prop decomposition chain re-instantiation
        *  How is repair different from instantiate? (no instantiation and wrong instantiation are both invalid)
        *   5) Update instructions
-       *   6) Fix DecompositionTemplate.instantiate() to be able to fix a broken instantiation == aka repair
-       *   8) Prop/Domain decomp: think about all possible combinations of user actions
        */
     }
   }
