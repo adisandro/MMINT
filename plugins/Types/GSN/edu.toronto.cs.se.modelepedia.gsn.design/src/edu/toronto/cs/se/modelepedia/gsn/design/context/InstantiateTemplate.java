@@ -78,13 +78,10 @@ public class InstantiateTemplate extends AbstractExternalJavaAction {
       /**TODO MMINT[GSN]
        *  Delete links and delete template when deleting argument elements
        *  FilesJustification?
-       *  Chain the instantiated template if an element was selected
        *  Select template from file if multiple templates are present?
        *  How is repair different from instantiate? (no instantiation and wrong instantiation are both invalid)
-       *   1) Remove repair and regen gsn.ecore
        *   5) Update instructions
-       *   6) Fix PropertyDecompositionTemplate.instantiate() to be able to fix a broken instantiation == aka repair
-       *   7) Review domain decomposition
+       *   6) Fix DecompositionTemplate.instantiate() to be able to fix a broken instantiation == aka repair
        *   8) Prop/Domain decomp: think about all possible combinations of user actions
        */
     }

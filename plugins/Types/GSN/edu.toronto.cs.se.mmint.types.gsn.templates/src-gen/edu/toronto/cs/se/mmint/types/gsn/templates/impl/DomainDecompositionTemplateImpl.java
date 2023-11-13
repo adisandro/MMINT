@@ -28,6 +28,7 @@ import edu.toronto.cs.se.mmint.types.gsn.templates.IntDomain;
 import edu.toronto.cs.se.mmint.types.gsn.templates.RealDomain;
 import edu.toronto.cs.se.mmint.types.gsn.templates.util.GSNTemplatesBuilder;
 import edu.toronto.cs.se.modelepedia.gsn.Goal;
+import edu.toronto.cs.se.modelepedia.gsn.Justification;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
 
 /**
@@ -88,27 +89,27 @@ public class DomainDecompositionTemplateImpl extends DecompositionTemplateImpl i
       subDomainTypes = Set.of(GSNTemplatesPackage.ENUM_DOMAIN, GSNTemplatesPackage.VALUE_DOMAIN);
     }
     // customize decomposition
-    var templateSC = (SafetyCase) eContainer();
-    var safetyGoal = templateSC.getGoals().get(0);
-    var compGoal = templateSC.getGoals().get(1);
-    var subDomainGoalN = (DomainGoal) templateSC.getGoals().get(2);
-    var domainStrategy = (DomainDecompositionStrategy) templateSC.getStrategies().get(0);
-    var domainJust = templateSC.getJustifications().get(0);
-    domainStrategy.getSupportedBy().remove(1); // the real subDomainGoals will be added later
+    var safetyCase = (SafetyCase) eContainer();
+    var domainStrategy = getElements().stream()
+      .filter(DomainDecompositionStrategy.class::isInstance)
+      .map(DomainDecompositionStrategy.class::cast)
+      .findFirst().get();
+    var domainJust = (Justification) domainStrategy.getInContextOf().get(0).getContext();
+    var compGoal = (Goal) domainStrategy.getSupportedBy().get(0).getTarget();
+    var subDomainGoalN = (DomainGoal) domainStrategy.getSupportedBy().get(1).getTarget();
     var templateElems = getElements();
-    templateElems.remove(safetyGoal);
+    domainStrategy.getSupportedBy().remove(1); // the real subDomainGoals will be added later
     templateElems.remove(subDomainGoalN);
-    var placeholderId = "GX";
+    safetyCase.getGoals().remove(subDomainGoalN);
+    var placeholderId = domainStrategy.getId().substring(domainStrategy.getId().indexOf(".") + 1);
     var decomposedId = decomposed.getId();
-    var domainValues = "DOMAIN_VALUES";
-    var subDomainValues = "SUBDOMAIN_VALUES";
+    var domainValues = "{values}";
+    var subDomainValues = "{sub-values}";
     domainStrategy.setId(domainStrategy.getId().replace(placeholderId, decomposedId));
     domainStrategy.setDescription(domainStrategy.getDescription().replace(domainValues, domain.toString()));
     domainStrategy.setDomain(domain);
-    builder.addExistingElement(domainStrategy);
     domainJust.setId(domainJust.getId().replace(placeholderId, decomposedId));
     domainJust.setDescription(domainJust.getDescription().replace(domainValues, domain.toString()));
-    builder.addExistingElement(domainJust);
     compGoal.setId(compGoal.getId().replace(placeholderId, decomposedId));
     var subDomains = new ArrayList<String>();
     var subDomainGoalId = subDomainGoalN.getId().replace(placeholderId, decomposedId);
@@ -120,7 +121,7 @@ public class DomainDecompositionTemplateImpl extends DecompositionTemplateImpl i
       }
       subDomains.add(subDomain.toString());
       var subDomainGoal = builder.createDomainGoal(subDomainGoalId.replace("N", String.valueOf(i+2)),
-                                                   subDomainGoalDesc.replace("SAFETY_GOAL", decomposed.getDescription())
+                                                   subDomainGoalDesc.replace("{Safety goal}", decomposed.getDescription())
                                                                     .replace(subDomainValues, subDomain.toString()),
                                                    subDomain);
       templateElems.add(subDomainGoal);
@@ -128,9 +129,7 @@ public class DomainDecompositionTemplateImpl extends DecompositionTemplateImpl i
     }
     compGoal.setDescription(compGoal.getDescription().replace(subDomainValues, String.join(", ", subDomains))
                                                      .replace(domainValues, domain.toString()));
-    builder.addExistingElement(compGoal);
     templateElems.add(decomposed);
-    domainStrategy.getSupports().get(0).setSource(decomposed);
   }
 
 } //DomainTemplateImpl

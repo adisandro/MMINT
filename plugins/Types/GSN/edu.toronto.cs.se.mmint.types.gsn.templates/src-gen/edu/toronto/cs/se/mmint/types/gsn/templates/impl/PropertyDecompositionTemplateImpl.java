@@ -165,11 +165,10 @@ public class PropertyDecompositionTemplateImpl extends DecompositionTemplateImpl
     }
     // customize decomposition
     var safetyCase = (SafetyCase) eContainer();
-    var formalStrategy = (Strategy) decomposed.getSupportedBy().stream()
-      .map(sb -> (ArgumentElement) sb.getTarget())
-      .filter(t -> t.getId().equals("S1.G1"))
-      .findAny()
-      .get();
+    var formalStrategy = getElements().stream()
+      .filter(Strategy.class::isInstance)
+      .map(Strategy.class::cast)
+      .findFirst().get();
     var propGoal = (Goal) formalStrategy.getSupportedBy().get(0).getTarget();
     var formalGoal = (Goal) formalStrategy.getSupportedBy().get(1).getTarget();
     var modelGoal = (Goal) formalStrategy.getSupportedBy().get(2).getTarget();
@@ -185,7 +184,7 @@ public class PropertyDecompositionTemplateImpl extends DecompositionTemplateImpl
     propStrategy.getSupportedBy().clear(); // the real subPropGoals will be added later
     templateElems.remove(subPropGoalN);
     safetyCase.getGoals().remove(subPropGoalN);
-    var placeholderId = "G1";
+    var placeholderId = formalStrategy.getId().substring(formalStrategy.getId().indexOf(".") + 1);
     var decomposedId = decomposed.getId();
     Strategy chainedStrategy;
     int numCtx;
@@ -203,7 +202,7 @@ public class PropertyDecompositionTemplateImpl extends DecompositionTemplateImpl
       safetyCase.getGoals().remove(modelGoal);
       propStrategy.setId(formalStrategy.getId().replace(placeholderId, decomposedId));
       propStrategy.setDescription(
-        propStrategy.getDescription().replace("in Ctx1.G1", "'" + property.getInformal() + "'"));
+        propStrategy.getDescription().replace("in Ctx1." + placeholderId, "'" + property.getInformal() + "'"));
       modelCtx.setId(propCtx.getId().replace(placeholderId, decomposedId));
       chainedStrategy = propStrategy;
       numCtx = 1;
@@ -263,7 +262,6 @@ public class PropertyDecompositionTemplateImpl extends DecompositionTemplateImpl
       }
     }
     templateElems.add(decomposed);
-    chainedStrategy.getSupports().get(0).setSource(decomposed);
   }
 
 } //PropertyTemplateImpl

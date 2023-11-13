@@ -175,9 +175,9 @@ public class PropertyGoalImpl extends GoalImpl implements PropertyGoal {
    */
   @Override
   public void validate() throws Exception {
-    var strategy = (PropertyDecompositionStrategy) DecompositionUtils.moveOneStrategyUp(this);
-    strategy.validate();
-    setValid(true);
+    if (!isValid()) {
+      throw new MMINTException("The validity of this element is managed by its supporting strategy");
+    }
   }
 
   /**

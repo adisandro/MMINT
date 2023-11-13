@@ -163,7 +163,7 @@ public class EnumDomainImpl extends DomainImpl implements EnumDomain {
    */
   @Override
   public String toString() {
-    return "{" + String.join(", ", getValues()) + "}";
+    return "(" + String.join(", ", getValues()) + ")";
   }
 
   /**

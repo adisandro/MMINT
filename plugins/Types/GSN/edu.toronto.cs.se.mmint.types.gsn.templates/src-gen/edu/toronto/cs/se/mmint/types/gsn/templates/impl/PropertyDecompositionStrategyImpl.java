@@ -26,7 +26,9 @@ import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
 import edu.toronto.cs.se.mmint.types.gsn.templates.Property;
 import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyDecompositionElement;
 import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyDecompositionStrategy;
+import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyGoal;
 import edu.toronto.cs.se.mmint.types.gsn.templates.reasoning.IGSNDecompositionTrait;
+import edu.toronto.cs.se.modelepedia.gsn.SupportedBy;
 import edu.toronto.cs.se.modelepedia.gsn.impl.StrategyImpl;
 
 /**
@@ -296,14 +298,26 @@ public class PropertyDecompositionStrategyImpl extends StrategyImpl implements P
    */
   @Override
   public void validate() throws Exception {
-    var reasonerName = Objects.requireNonNull(getReasonerName(), "Reasoner not specified");
-    var reasoner = Objects.requireNonNull(MMINT.getReasoner(reasonerName),
-                                          "The reasoner '" + reasonerName + "' is not installed");
-    if (!(reasoner instanceof IGSNDecompositionTrait gsnReasoner)) {
-      throw new MMINTException("The reasoner '" + reasonerName + "' does not support GSN property decompositions");
+    try {
+      var reasonerName = Objects.requireNonNull(getReasonerName(), "Reasoner not specified");
+      var reasoner = Objects.requireNonNull(MMINT.getReasoner(reasonerName),
+                                            "The reasoner '" + reasonerName + "' is not installed");
+      if (!(reasoner instanceof IGSNDecompositionTrait gsnReasoner)) {
+        throw new MMINTException("The reasoner '" + reasonerName + "' does not support GSN property decompositions");
+      }
+      Objects.requireNonNull(getProperty(), "Property not specified");
+      gsnReasoner.validatePropertyDecomposition(this);
+      setValid(true);
+      getSupportedBy().stream()
+        .map(SupportedBy::getTarget)
+        .filter(PropertyGoal.class::isInstance)
+        .map(PropertyGoal.class::cast)
+        .forEach(pg -> pg.setValid(true));
     }
-    Objects.requireNonNull(getProperty(), "Property not specified");
-    gsnReasoner.validatePropertyDecomposition(this);
+    catch (Exception e) {
+      setValid(false);
+      throw e;
+    }
   }
 
 } //PropertyDecompositionStrategyImpl

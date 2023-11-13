@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.types.gsn.templates.Domain;
 import edu.toronto.cs.se.mmint.types.gsn.templates.DomainDecompositionElement;
 import edu.toronto.cs.se.mmint.types.gsn.templates.DomainGoal;
@@ -117,7 +118,9 @@ public class DomainGoalImpl extends GoalImpl implements DomainGoal {
    */
   @Override
   public void validate() throws Exception {
-    // do nothing
+    if (!isValid()) {
+      throw new MMINTException("The validity of this element is managed by its supporting strategy");
+    }
   }
 
   /**

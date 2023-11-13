@@ -228,16 +228,25 @@ public class DomainDecompositionStrategyImpl extends StrategyImpl implements Dom
    */
   @Override
   public void validate() throws Exception {
-    var domain = Objects.requireNonNull(getDomain(), "Domain not specified");
-    var subDomains = getSupportedBy().stream()
-      .map(SupportedBy::getTarget)
-      .filter(g -> g instanceof DomainGoal)
-      .map(g -> ((DomainGoal) g).getDomain())
-      .filter(d -> d != null).collect(Collectors.toList());
-    if (subDomains.size() == 0) {
-      throw new MMINTException("A domain must be decomposed into sub-domains");
+    try {
+      var domain = Objects.requireNonNull(getDomain(), "Domain not specified");
+      var subGoals = getSupportedBy().stream()
+        .map(SupportedBy::getTarget)
+        .filter(DomainGoal.class::isInstance)
+        .map(DomainGoal.class::cast)
+        .collect(Collectors.toList());
+      if (subGoals.size() == 0) {
+        throw new MMINTException("A domain must be decomposed into sub-domains");
+      }
+      var subDomains = subGoals.stream().map(DomainGoal::getDomain).collect(Collectors.toList());
+      domain.validateDecomposition(ECollections.toEList(subDomains));
+      setValid(true);
+      subGoals.forEach(g -> g.setValid(true));
     }
-    domain.validateDecomposition(ECollections.toEList(subDomains));
+    catch (Exception e) {
+      setValid(false);
+      throw e;
+    }
   }
 
 } //DomainDecompositionStrategyImpl
