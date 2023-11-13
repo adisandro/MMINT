@@ -4,15 +4,15 @@
     <supportedBy target="//@strategies.0"/>
   </goals>
   <goals xsi:type="gsn:BasicGoal" id="G1.1" description="Every possible value in the domain {values} is covered by sub-domains {sub-values}" templates="//@templates.0" valid="false" supports="//@strategies.0/@supportedBy.0"/>
-  <goals xsi:type="gsn.templates:DomainGoal" id="G1.N" description="Safety goal for sub-domain {sub-values}" templates="//@templates.0" valid="false" supports="//@strategies.0/@supportedBy.1">
-    <domain xsi:type="gsn.templates:ValueDomain" value="SUBVALUEN"/>
+  <goals xsi:type="gsn.templates:DomainGoal" id="G1.N" description="{Safety goal} for sub-domain {sub-values}" templates="//@templates.0" valid="false" supports="//@strategies.0/@supportedBy.1">
+    <domain xsi:type="gsn.templates:ValueDomain" value="{Sub-values}"/>
   </goals>
   <strategies xsi:type="gsn.templates:DomainDecompositionStrategy" id="S1.G1" description="Decomposition over domain {values}" templates="//@templates.0" valid="false" supports="//@goals.0/@supportedBy.0">
     <supportedBy target="//@goals.1"/>
     <supportedBy target="//@goals.2"/>
     <inContextOf context="//@justifications.0"/>
     <domain xsi:type="gsn.templates:EnumDomain">
-      <values>VALUES</values>
+      <values>{Values}</values>
     </domain>
   </strategies>
   <justifications id="J.G1" description="Every scenario has a corresponding value in the domain {values}" templates="//@templates.0" valid="false" contextOf="//@strategies.0/@inContextOf.0"/>

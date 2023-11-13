@@ -7,11 +7,11 @@
     <semanticResources>ML/requirements.gsn</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" uid="_u24MkAF_Ee6iZs9805rffg">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']"/>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_yOnkcAF_Ee6iZs9805rffg" name="property_decomposition" repPath="#_yOlvQAF_Ee6iZs9805rffg" changeId="1699613411510">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_yOnkcAF_Ee6iZs9805rffg" name="property_decomposition" repPath="#_yOlvQAF_Ee6iZs9805rffg" changeId="1699888184542">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']"/>
         <target xmi:type="gsn:SafetyCase" href="property_decomposition.gsn#/"/>
       </ownedRepresentationDescriptors>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_izhYcAnPEe6Ix_5Zrea_ig" name="domain_decomposition" repPath="#_izgKUAnPEe6Ix_5Zrea_ig" changeId="1699614560171">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_izhYcAnPEe6Ix_5Zrea_ig" name="domain_decomposition" repPath="#_izgKUAnPEe6Ix_5Zrea_ig" changeId="1699895323948">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']"/>
         <target xmi:type="gsn:SafetyCase" href="domain_decomposition.gsn#/"/>
       </ownedRepresentationDescriptors>
@@ -345,7 +345,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DNode" uid="_yPgVRwF_Ee6iZs9805rffg" name="G1.3 The related model correctly models all aspects of the system for the property in Ctx1.GX" incomingEdges="_yPiKhAF_Ee6iZs9805rffg" width="14" height="7" resizeKind="NSEW">
+    <ownedDiagramElements xmi:type="diagram:DNode" uid="_yPgVRwF_Ee6iZs9805rffg" name="G1.3 The related model correctly models all aspects of the system for the property in Ctx1.G1" incomingEdges="_yPiKhAF_Ee6iZs9805rffg" width="14" height="7" resizeKind="NSEW">
       <target xmi:type="gsn:BasicGoal" href="property_decomposition.gsn#//@goals.3"/>
       <semanticElements xmi:type="gsn:BasicGoal" href="property_decomposition.gsn#//@goals.3"/>
       <decorations xmi:type="viewpoint:Decoration" uid="_yPgVSQF_Ee6iZs9805rffg">
@@ -380,7 +380,7 @@
       <ownedStyle xmi:type="diagram:WorkspaceImage" uid="_CHmntn-2Ee6RFscd_5AMpQ" showIcon="false" labelColor="239,41,41" description="_CHmntH-2Ee6RFscd_5AMpQ" labelPosition="node" workspacePath="/edu.toronto.cs.se.modelepedia.gsn.design/icons/Strategy.svg"/>
       <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='StrategyNode']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DNode" uid="_yPg8WQF_Ee6iZs9805rffg" name="S2.G1 Decomposition over property in Ctx1.GX" outgoingEdges="_yPixggF_Ee6iZs9805rffg _yPixjAF_Ee6iZs9805rffg _yPixkQF_Ee6iZs9805rffg" incomingEdges="_yPiKdQF_Ee6iZs9805rffg" width="-1" height="-1" resizeKind="NSEW">
+    <ownedDiagramElements xmi:type="diagram:DNode" uid="_yPg8WQF_Ee6iZs9805rffg" name="S2.G1 Decomposition over property in Ctx1.G1" outgoingEdges="_yPixggF_Ee6iZs9805rffg _yPixjAF_Ee6iZs9805rffg _yPixkQF_Ee6iZs9805rffg" incomingEdges="_yPiKdQF_Ee6iZs9805rffg" width="-1" height="-1" resizeKind="NSEW">
       <target xmi:type="gsn.templates:PropertyDecompositionStrategy" href="property_decomposition.gsn#//@strategies.1"/>
       <semanticElements xmi:type="gsn.templates:PropertyDecompositionStrategy" href="property_decomposition.gsn#//@strategies.1"/>
       <decorations xmi:type="viewpoint:Decoration" uid="_yPg8WwF_Ee6iZs9805rffg">
@@ -682,7 +682,7 @@
       <ownedStyle xmi:type="diagram:Square" uid="_Z4uMIX-5Ee6RFscd_5AMpQ" showIcon="false" labelColor="239,41,41" description="_Z4tlNH-5Ee6RFscd_5AMpQ" borderSize="1" borderSizeComputationExpression="1" labelPosition="node" width="14" height="7" color="255,255,255"/>
       <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DNode" uid="_MwhT8wnSEe6Ix_5Zrea_ig" name="G1.N Safety goal for sub-domain {sub-values}" incomingEdges="_bNDO-AnSEe6Ix_5Zrea_ig" width="14" height="7" resizeKind="NSEW">
+    <ownedDiagramElements xmi:type="diagram:DNode" uid="_MwhT8wnSEe6Ix_5Zrea_ig" name="G1.N {Safety goal} for sub-domain {sub-values}" incomingEdges="_bNDO-AnSEe6Ix_5Zrea_ig" width="14" height="7" resizeKind="NSEW">
       <target xmi:type="gsn.templates:DomainGoal" href="domain_decomposition.gsn#//@goals.2"/>
       <semanticElements xmi:type="gsn.templates:DomainGoal" href="domain_decomposition.gsn#//@goals.2"/>
       <decorations xmi:type="viewpoint:Decoration" uid="_ObEp5QnVEe6I5K0yuR1Exw">

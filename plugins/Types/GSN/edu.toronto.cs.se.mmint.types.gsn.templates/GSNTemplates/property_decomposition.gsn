@@ -7,7 +7,7 @@
   <goals xsi:type="gsn:BasicGoal" id="G1.2" description="The property in Ctx1.G1 holds" templates="//@templates.0" supports="//@strategies.0/@supportedBy.1">
     <supportedBy target="//@strategies.1"/>
   </goals>
-  <goals xsi:type="gsn:BasicGoal" id="G1.3" description="The related model correctly models all aspects of the system for the property in Ctx1.GX" templates="//@templates.0" supports="//@strategies.0/@supportedBy.2"/>
+  <goals xsi:type="gsn:BasicGoal" id="G1.3" description="The related model correctly models all aspects of the system for the property in Ctx1.G1" templates="//@templates.0" supports="//@strategies.0/@supportedBy.2"/>
   <goals xsi:type="gsn.templates:PropertyGoal" id="G1.N" description="{Decomposed safety properties}" templates="//@templates.0" valid="false" supports="//@strategies.1/@supportedBy.0">
     <property formal="{Decomposed formal properties}" informal="{Decomposed safety properties}"/>
   </goals>
@@ -17,7 +17,7 @@
     <supportedBy target="//@goals.3"/>
     <inContextOf context="//@contexts.0"/>
   </strategies>
-  <strategies xsi:type="gsn.templates:PropertyDecompositionStrategy" id="S2.G1" description="Decomposition over property in Ctx1.GX" templates="//@templates.0" valid="false" supports="//@goals.2/@supportedBy.0" reasonerName="REASONER">
+  <strategies xsi:type="gsn.templates:PropertyDecompositionStrategy" id="S2.G1" description="Decomposition over property in Ctx1.G1" templates="//@templates.0" valid="false" supports="//@goals.2/@supportedBy.0" reasonerName="REASONER">
     <supportedBy target="//@goals.4"/>
     <inContextOf context="//@contexts.1"/>
     <inContextOf context="//@justifications.0"/>
