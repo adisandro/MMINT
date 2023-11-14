@@ -14,7 +14,7 @@ For more case studies evaluating the property decomposition workflow in step 7, 
 1. Lean
     1. Install Lean following the [instructions](/plugins/External/Lean/edu.toronto.cs.se.mmint.lean/README.md).
 2. MMINT
-    1. Install Java and Eclipse following the [requirements](/README.md#requirements), then add `https://adisandro.github.io/mmint/release` to the list of software sites (`Help > Install New Software > Available Software Sites`).
+    1. Install Java and Eclipse following the [requirements](/README.md#requirements) and add `https://adisandro.github.io/mmint/release` to the list of software sites (`Help > Install New Software > Available Software Sites`).
     2. From the top menu select `Help > Install New Software` and install `Examples > MMINT - SCICO23 paper`.
     3. From the top menu select `MMINT > Lean > Change Lean Mathlib Path` and insert `/path_to_lean_folder/mathlib` (Linux) or `C:\path_to_lean_folder\mathlib` (Windows).
     4. From the top menu select `File > New > Example > MMINT Examples > GSNTemplates`.
@@ -22,35 +22,39 @@ For more case studies evaluating the property decomposition workflow in step 7, 
     6. Open `/SCICO23/model/example.middiag`.
     7. Double-click on the yellow box named `warehouse : MID` to open the warehouse fleet megamodel.
 3. Model management
-    1. From the palette on the right select `Import Model`, click anywhere in the diagram background, select file `/SCICO23/model/fcs.lts` to import the Floor Cleaning System model. You can double-click on the new yellow box named `fcs : LTS` to open and view it.
+    1. From the palette on the right select `Import Model`, click in the diagram background, select file `/SCICO23/model/fcs.lts` to import the Floor Cleaning System model. You can double-click on the new yellow box named `fcs : LTS` to open and view it.
     2. Repeat step i with files `/SCICO23/model/pts.statemachine` and `/SCICO23/model/vss.classdigram` to import the Package Transport System model and the Video Security System model.
 4. GSN editor
     1. From the palette on the right select `New Model`, select `GSN > GSN Sirius Diagram`, name it `safety.gsn`, press `Next`, select `Safety Case` as model object, press `Finish`. The GSN editor will open.
-    2. From the palette on the right select `Create basic goal`, then click anywhere in the diagram background.
-    3. Click to select the newly created goal if not already selected, then from the properties tab on the bottom insert `G0` in the Id field and `All systems in the warehouse fleet operate safely` in the Description field.
+    2. From the palette on the right select `Create basic goal`, click in the diagram background.
+    3. Click to select the newly created goal if not already selected, from the properties tab on the bottom insert `G0` in the Id field and `All systems in the warehouse fleet operate safely` in the Description field.
 5. Domain decomposition
-    1. Right-click on the `G0` goal, select `MMINT > Instantiate Template`, then select the template `/GSNTemplates/domain_decomposition.gsn`.
-    2. Insert `FCS,PTS,VSS` as the domain to be decomposed.
-    3. Insert `FCS` as the first sub-domain.
-    4. Insert `PTS` as the second sub-domain.
-    5. Insert `VSS` as the third sub-domain.
-    6. The decomposition succeeds and the justification node `J.G0` contains the rationale.
-    7. Save the GSN model.
+    1. Right-click in the diagram background, select `MMINT > Import Template`, select the template `/GSNTemplates/domain_decomposition.gsn`.
+    2. Click on the goal named `G1`, press delete on your keyboard to delete it, from the palette on the right select `Add supported-by link`, click on the goal named `G0`, click on the strategy named `S1.G1` to connect them.
+    3. Right-click on any of the imported nodes, select `MMINT > Instantiate Template`.
+    4. Insert `FCS,PTS,VSS` as the domain to be decomposed.
+    5. Insert `FCS` as the first sub-domain.
+    6. Insert `PTS` as the second sub-domain.
+    7. Insert `VSS` as the third sub-domain.
+    8. The decomposition succeeds and the justification node `J1.G0` contains the rationale.
+    9. Save the GSN model.
 6. Megamodel relationships
     1. Go back to the `warehouse.middiag` megamodel.
     2. From the palette on the right select `New Binary Rel`, click on the yellow box named `fcs : LTS` without releasing the mouse button, release it on the yellow box named `safety : GSN`, select `ModelRel` as model relationship type.
     3. Double-click on the blue arrow named `fcs->safety : ModelRel` to open the relationship editor. From the outline tab on the left expand the two model trees, then drag and drop `State Damaged` and `Domain Goal G0.2` anywhere in the relationship diagram. From the palette on the right select `New Binary Mapping`, click on the yellow box named `State Damaged : ModelElement` without releasing the mouse button, release it on the yellow box named `Domain Goal G0.2 : ModelElement`.
     4. Save the model relationship.
-    5. Repeat steps i-ii-iii-iv twice. Create a relationship between `pts : StateMachine` and `safety : GSN` by mapping model elements `Initial State Off` and `Domain Goal G0.3`, then create a relationship between `vss : ClassDiagram` and `safety : GSN` by mapping model elements `Class Security Device` and `Domain Goal G0.4`.
+    5. Repeat steps i-ii-iii-iv twice. Create a relationship between `pts : StateMachine` and `safety : GSN` by mapping model elements `Initial State Off` and `Domain Goal G0.3`, create a relationship between `vss : ClassDiagram` and `safety : GSN` by mapping model elements `Class Security Device` and `Domain Goal G0.4`.
 7. Property decomposition
     1. Go back to the `safety` GSN editor.
-    2. Right-click on the goal named `G0.2`, select `MMINT > Instantiate Template`, then select the template `/GSNTemplates/property_decomposition.gsn`.
-    3. Select `Absence > $X is not reached` as the property to be decomposed, then select `State Damaged` for variable `$X`.
-    4. Insert `2` as the number of sub-properties.
-    5. Select `Transitions > Do not begin from $X` as the first sub-property, then select `State Damaged` for variable `$X`.
-    6. Select `Transitions > Never transition into $X` as the second sub-property, then select `State Damaged` for variable `$X`.
-    7. The decomposition succeeds and the GSN justification node `J.G0.2` points to the results. Optionally right-click, then `Layout > Arrange All` to auto-arrange all the GSN elements.
-    8. Save the GSN model.
+    2. Right-click in the diagram background, select `MMINT > Import Template`, select the template `/GSNTemplates/property_decomposition.gsn`.
+    3. Click on the goal named `G1`, press delete on your keyboard to delete it, from the palette on the right select `Add supported-by link`, click on the goal named `G0.2`, click on the strategy named `S1.G1` to connect them.
+    4. Right-click on any of the imported nodes, select `MMINT > Instantiate Template`.
+    5. Select `Absence > $X is not reached` as the property to be decomposed, select `State Damaged` for variable `$X`.
+    6. Insert `2` as the number of sub-properties.
+    7. Select `Transitions > Do not begin from $X` as the first sub-property, select `State Damaged` for variable `$X`.
+    8. Select `Transitions > Never transition into $X` as the second sub-property, select `State Damaged` for variable `$X`.
+    9. The decomposition succeeds and the GSN justification node `J1.G0.2` points to the results. Optionally right-click, then `Layout > Arrange All` to auto-arrange all the GSN elements.
+    10. Save the GSN model.
 8. Querying
     1. Go back to the `warehouse.middiag` megamodel.
-    2. Right-click anywhere in the diagram background, select `MMINT > Evaluate Query`, select file `/SCICO23/src/scico23/example.vql`, select query `noOutgoingTransitions`, check the result(s) textually and visually, select `Done + Store Results`.
+    2. Right-click in the diagram background, select `MMINT > Evaluate Query`, select file `/SCICO23/src/scico23/example.vql`, select query `noOutgoingTransitions`, check the result(s) textually and visually, select `Done + Store Results`.

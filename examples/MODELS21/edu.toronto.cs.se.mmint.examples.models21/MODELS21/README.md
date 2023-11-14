@@ -13,27 +13,31 @@ A virtual machine image for VirtualBox with all the required dependencies is ava
 1. Lean
     1. Install Lean following the [instructions](/plugins/External/Lean/edu.toronto.cs.se.mmint.lean/README.md).
 2. MMINT
-    1. Install Java and Eclipse following the [requirements](/README.md#requirements), then add `https://adisandro.github.io/mmint/release` to the list of software sites (`Help > Install New Software > Available Software Sites`).
+    1. Install Java and Eclipse following the [requirements](/README.md#requirements) and add `https://adisandro.github.io/mmint/release` to the list of software sites (`Help > Install New Software > Available Software Sites`).
     2. From the top menu select `Help > Install New Software` and install `Examples > MMINT - MODELS21 paper`.
-    3. From the top menu select `MMINT > Lean > Change Lean Mathlib Path` and insert `/path_to_lean_folder/mathlib`.
+    3. From the top menu select `MMINT > Lean > Change Lean Mathlib Path` and insert `/path_to_lean_folder/mathlib` (Linux) or `C:\path_to_lean_folder\mathlib` (Windows).
     4. From the top menu select `File > New > Example > MMINT Examples > GSNTemplates`.
     5. From the top menu select `File > New > Example > MMINT Examples > MODELS21`.
     6. Open `/MODELS21/examples.middiag`.
     7. Double-click on the yellow box named `sc : GSN` to open the GSN safety case.
 3. FCS example (Sec. V-B):
-    1. Right-click on the claim named `C1`, select `MMINT > Instantiate Template`, then select the template `/GSNTemplates/property_decomposition.gsn`.
-    2. Select `Absence > $X is not reached` as the property to be decomposed, then select `State Damaged` for variable `$X`.
-    3. Insert `2` as the number of sub-properties.
-    4. Select `Transitions > Do not begin from $X` as the first sub-property, then select `State Damaged` for variable `$X`.
-    5. Select `Transitions > Never transition out of $X` as the second sub-property, then select `State Damaged` for variable `$X`. The decomposition fails, the user is notified about possible corrective actions, and the GSN justification node `J.C1` points to the results.
-    6. Repeat FCS steps 1 to 4, then select `Transitions > Never transition into $X` as the second sub-property, then select `State Damaged` for variable `$X`.
-    7. The decomposition succeeds and the GSN justification node `J.C1` points to the results.
+    1. Right-click in the diagram background, select `MMINT > Import Template`, select the template `/GSNTemplates/property_decomposition.gsn`.
+    2. Click on the claim named `G1`, press delete on your keyboard to delete it, from the palette on the right select `Add supported-by link`, click on the claim named `C1`, click on the strategy named `S1.G1` to connect them.
+    3. Right-click on any of the imported nodes, select `MMINT > Instantiate Template`.
+    4. Select `Absence > $X is not reached` as the property to be decomposed, select `State Damaged` for variable `$X`.
+    5. Insert `2` as the number of sub-properties.
+    6. Select `Transitions > Do not begin from $X` as the first sub-property, select `State Damaged` for variable `$X`.
+    7. Select `Transitions > Never transition out of $X` as the second sub-property, select `State Damaged` for variable `$X`. The decomposition fails, the user is notified about possible corrective actions, and the GSN justification node `J1.C1` points to the results.
+    8. Repeat FCS steps 3 to 6, select `Transitions > Never transition into $X` as the second sub-property, select `State Damaged` for variable `$X`.
+    9. The decomposition succeeds and the GSN justification node `J1.C1` points to the results.
 4. Infusion Pump case study (Sec. VI-A):
-    1. Right-click on the claim named `C2`, select `MMINT > Instantiate Template`, then select the template `/GSNTemplates/property_decomposition.gsn`.
-    2. Select `Absence > $X is not reached after $A and until $B` as the property to be decomposed, then select `State BolusRequest` for variable `$X`, `Transition Cond_6_3?` for variable `$A`, `State Infusion_NormalOperation` for variable `$B`.
-    3. Insert `3` as the number of sub-properties.
-    4. Select `Response > If $X is reached, $Y must follow $X` as the first sub-property, then select `Transition Cond_6_3?` for variable `$X`, `State Alrm_EmptyReservoir` for variable `$Y`.
-    5. Select `Absence > $X is not reached between $A and $B` as the second sub-property, then select `State BolusRequest` for variable `$X`, `Transition Cond_6_3?` for variable `$A`, `State Alrm_EmptyReservoir` for variable `$B`.
-    6. Select `Absence > $X is not reached after $A and until $B` as the third sub-property, then select `State BolusRequest` for variable `$X`, `State Alrm_EmptyReservoir` for variable `$A`, `State Infusion_NormalOperation` for variable `$B`.
-    7. The decomposition succeeds and the GSN justification node `J.C2` points to the results.
+    1. Right-click in the diagram background, select `MMINT > Import Template`, select the template `/GSNTemplates/property_decomposition.gsn`.
+    2. Click on the claim named `G1`, press delete on your keyboard to delete it, from the palette on the right select `Add supported-by link`, click on the claim named `C2`, click on the strategy named `S1.G1` to connect them.
+    3. Right-click on any of the imported nodes, select `MMINT > Instantiate Template`.
+    4. Select `Absence > $X is not reached after $A and until $B` as the property to be decomposed, select `State BolusRequest` for variable `$X`, `Transition Cond_6_3?` for variable `$A`, `State Infusion_NormalOperation` for variable `$B`.
+    5. Insert `3` as the number of sub-properties.
+    6. Select `Response > If $X is reached, $Y must follow $X` as the first sub-property, select `Transition Cond_6_3?` for variable `$X`, `State Alrm_EmptyReservoir` for variable `$Y`.
+    7. Select `Absence > $X is not reached between $A and $B` as the second sub-property, select `State BolusRequest` for variable `$X`, `Transition Cond_6_3?` for variable `$A`, `State Alrm_EmptyReservoir` for variable `$B`.
+    8. Select `Absence > $X is not reached after $A and until $B` as the third sub-property, select `State BolusRequest` for variable `$X`, `State Alrm_EmptyReservoir` for variable `$A`, `State Infusion_NormalOperation` for variable `$B`.
+    9. The decomposition succeeds and the GSN justification node `J1.C2` points to the results.
     

@@ -13,40 +13,48 @@ We can't share the K9 Mars Rover case study (Sec. 6.2). To illustrate the use of
 1. Lean
     1. Install Lean following the [instructions](/plugins/External/Lean/edu.toronto.cs.se.mmint.lean/README.md).
 2. MMINT
-    1. Install Java and Eclipse following the [requirements](/README.md#requirements), then add `https://adisandro.github.io/mmint/release` to the list of software sites (`Help > Install New Software > Available Software Sites`).
+    1. Install Java and Eclipse following the [requirements](/README.md#requirements) and add `https://adisandro.github.io/mmint/release` to the list of software sites (`Help > Install New Software > Available Software Sites`).
     2. From the top menu select `Help > Install New Software` and install `Examples > MMINT - SOSYM22 paper`.
-    3. From the top menu select `MMINT > Lean > Change Lean Mathlib Path` and insert `/path_to_lean_folder/mathlib`.
+    3. From the top menu select `MMINT > Lean > Change Lean Mathlib Path` and insert `/path_to_lean_folder/mathlib` (Linux) or `C:\path_to_lean_folder\mathlib` (Windows).
     4. From the top menu select `File > New > Example > MMINT Examples > GSNTemplates`.
     5. From the top menu select `File > New > Example > MMINT Examples > SOSYM22`.
     6. Open `/SOSYM22/model/examples.middiag`.
     7. Double-click on the yellow box named `sc : GSN` to open the GSN safety case.
 3. FCS example (Sec. 5):
-    1. Right-click on the claim named `C1`, select `MMINT > Instantiate Template`, then select the template `/GSNTemplates/property_decomposition.gsn`.
-    2. Select `Absence > $X is not reached` as the property to be decomposed, then select `State Damaged` for variable `$X`.
-    3. Insert `2` as the number of sub-properties.
-    4. Select `Transitions > Do not begin from $X` as the first sub-property, then select `State Damaged` for variable `$X`.
-    5. Select `Transitions > Never transition into $X` as the second sub-property, then select `State Damaged` for variable `$X`.
-    6. The decomposition succeeds and the GSN justification node `J.C1` points to the results.
+    1. Right-click in the diagram background, select `MMINT > Import Template`, select the template `/GSNTemplates/property_decomposition.gsn`.
+    2. Click on the claim named `G1`, press delete on your keyboard to delete it, from the palette on the right select `Add supported-by link`, click on the claim named `C1`, click on the strategy named `S1.G1` to connect them.
+    3. Right-click on any of the imported nodes, select `MMINT > Instantiate Template`.
+    4. Select `Absence > $X is not reached` as the property to be decomposed, select `State Damaged` for variable `$X`.
+    5. Insert `2` as the number of sub-properties.
+    6. Select `Transitions > Do not begin from $X` as the first sub-property, select `State Damaged` for variable `$X`.
+    7. Select `Transitions > Never transition into $X` as the second sub-property, select `State Damaged` for variable `$X`.
+    8. The decomposition succeeds and the GSN justification node `J1.C1` points to the results.
 4. FCS example (alternative with query):
-    1. Right-click on the claim named `C1`, select `MMINT > Instantiate Template`, then select the template `/GSNTemplates/property_decomposition.gsn`.
-    2. Select `Absence > $X is not reached` as the property to be decomposed, then select `Run query to select elements`, `/SOSYM22/src/sosym22/query.vql` as query file, `damaged` as query, and insert `Selects the state named Damaged` as description.
-    3. Insert `2` as the number of sub-properties.
-    4. Select `Transitions > Do not begin from $X` as the first sub-property, then select `Run query to select elements`, `/SOSYM22/src/sosym22/query.vql` as query file, `damaged` as query.
-    5. Select `Transitions > Never transition into $X` as the second sub-property, then select `Run query to select elements`, `/SOSYM22/src/sosym22/query.vql` as query file, `damaged` as query.
-    6. The decomposition succeeds and the GSN justification node `J.C1` points to the results.
+    1. Right-click in the diagram background, select `MMINT > Import Template`, select the template `/GSNTemplates/property_decomposition.gsn`.
+    2. Click on the claim named `G1`, press delete on your keyboard to delete it, from the palette on the right select `Add supported-by link`, click on the claim named `C1`, click on the strategy named `S1.G1` to connect them.
+    3. Right-click on any of the imported nodes, select `MMINT > Instantiate Template`.
+    4. Select `Absence > $X is not reached` as the property to be decomposed, select `Run query to select elements`, `/SOSYM22/src/sosym22/query.vql` as query file, `damaged` as query, insert `Selects the state named Damaged` as description.
+    5. Insert `2` as the number of sub-properties.
+    6. Select `Transitions > Do not begin from $X` as the first sub-property, select `Run query to select elements`, `/SOSYM22/src/sosym22/query.vql` as query file, `damaged` as query.
+    7. Select `Transitions > Never transition into $X` as the second sub-property, select `Run query to select elements`, `/SOSYM22/src/sosym22/query.vql` as query file, `damaged` as query.
+    8. The decomposition succeeds and the GSN justification node `J1.C1` points to the results.
 5. PCA Infusion Pump case study (Sec. 6.1):
-    1. Right-click on the claim named `C2`, select `MMINT > Instantiate Template`, then select the template `/GSNTemplates/property_decomposition.gsn`.
-    2. Select `Absence > $X is not reached after $A and until $B` as the property to be decomposed, then select `State BolusRequest` for variable `$X`, `Transition Cond_6_3?` for variable `$A`, `State Infusion_NormalOperation` for variable `$B`.
-    3. Insert `3` as the number of sub-properties.
-    4. Select `Response > If $X is reached, $Y must follow $X` as the first sub-property, then select `Transition Cond_6_3?` for variable `$X`, `State Alrm_EmptyReservoir` for variable `$Y`.
-    5. Select `Absence > $X is not reached between $A and $B` as the second sub-property, then select `State BolusRequest` for variable `$X`, `Transition Cond_6_3?` for variable `$A`, `State Alrm_EmptyReservoir` for variable `$B`.
-    6. Select `Absence > $X is not reached after $A and until $B` as the third sub-property, then select `State BolusRequest` for variable `$X`, `State Alrm_EmptyReservoir` for variable `$A`, `State Infusion_NormalOperation` for variable `$B`.
-    7. The decomposition succeeds and the GSN justification node `J.C2` points to the results.
+    1. Right-click in the diagram background, select `MMINT > Import Template`, select the template `/GSNTemplates/property_decomposition.gsn`.
+    2. Click on the claim named `G1`, press delete on your keyboard to delete it, from the palette on the right select `Add supported-by link`, click on the claim named `C2`, click on the strategy named `S1.G1` to connect them.
+    3. Right-click on any of the imported nodes, select `MMINT > Instantiate Template`.
+    4. Select `Absence > $X is not reached after $A and until $B` as the property to be decomposed, select `State BolusRequest` for variable `$X`, `Transition Cond_6_3?` for variable `$A`, `State Infusion_NormalOperation` for variable `$B`.
+    5. Insert `3` as the number of sub-properties.
+    6. Select `Response > If $X is reached, $Y must follow $X` as the first sub-property, select `Transition Cond_6_3?` for variable `$X`, `State Alrm_EmptyReservoir` for variable `$Y`.
+    7. Select `Absence > $X is not reached between $A and $B` as the second sub-property, select `State BolusRequest` for variable `$X`, `Transition Cond_6_3?` for variable `$A`, `State Alrm_EmptyReservoir` for variable `$B`.
+    8. Select `Absence > $X is not reached after $A and until $B` as the third sub-property, select `State BolusRequest` for variable `$X`, `State Alrm_EmptyReservoir` for variable `$A`, `State Infusion_NormalOperation` for variable `$B`.
+    9. The decomposition succeeds and the GSN justification node `J1.C2` points to the results.
 6. LACU case study (Sec. 6.3):
-    1. Right-click on the claim named `C3`, select `MMINT > Instantiate Template`, then select the template `/GSNTemplates/property_decomposition.gsn`.
-    2. Copy and paste the contents of file `/SOSYM22/model/lacu_properties/parent.property` as the property to be decomposed, then insert `The subcontracts induce a correct decomposition of the LACU contract` as description.
+    1. Right-click in the diagram background, select `MMINT > Import Template`, select the template `/GSNTemplates/property_decomposition.gsn`.
+    2. Click on the claim named `G1`, press delete on your keyboard to delete it, from the palette on the right select `Add supported-by link`, click on the claim named `C3`, click on the strategy named `S1.G1` to connect them.
+    3. Right-click on any of the imported nodes, select `MMINT > Instantiate Template`.
+    2. Copy and paste the contents of file `/SOSYM22/model/lacu_properties/parent.property` as the property to be decomposed, insert `The subcontracts induce a correct decomposition of the LACU contract` as description.
     3. Insert `3` as the number of sub-properties.
-    4. Copy and paste the contents of file `/SOSYM22/model/lacu_properties/child1.property` as the first sub-property, then insert `The armPosition component correctly implements its contract` as description.
-    5. Copy and paste the contents of file `/SOSYM22/model/lacu_properties/child2.property` as the second sub-property, then insert `The armController component correctly implements its contract` as description.
-    6. Copy and paste the contents of file `/SOSYM22/model/lacu_properties/child3.property` as the third sub-property, then insert `The LAAP component correctly implements its contract` as description.
-    7. The decomposition succeeds and the GSN justification node `J.C3` points to the results.
+    4. Copy and paste the contents of file `/SOSYM22/model/lacu_properties/child1.property` as the first sub-property, insert `The armPosition component correctly implements its contract` as description.
+    5. Copy and paste the contents of file `/SOSYM22/model/lacu_properties/child2.property` as the second sub-property, insert `The armController component correctly implements its contract` as description.
+    6. Copy and paste the contents of file `/SOSYM22/model/lacu_properties/child3.property` as the third sub-property, insert `The LAAP component correctly implements its contract` as description.
+    7. The decomposition succeeds and the GSN justification node `J1.C3` points to the results.
