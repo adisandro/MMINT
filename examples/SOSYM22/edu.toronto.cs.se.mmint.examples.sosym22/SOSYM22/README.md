@@ -1,4 +1,4 @@
-## SoSyM 2022 paper
+## SoSyM Vol. 22-5 2022 paper
 
 [The ForeMoSt Approach to Building Valid Model-Based Safety Arguments](https://doi.org/10.1007/s10270-022-01063-4)
 

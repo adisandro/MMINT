@@ -10,7 +10,7 @@ In this paper, we propose an Eclipse-based framework, *MMINT-PL*, for creating a
 The evaluation requires Python >= 3.10, and our results are [here](model).
 
 1. MMINT-PL
-    1. Install Java and Eclipse following the [requirements](/README.md#requirements), then add `https://adisandro.github.io/mmint/release` to the list of software sites (`Help > Install New Software > Available Software Sites`).
+    1. Install Java and Eclipse following the [requirements](/README.md#requirements) and add `https://adisandro.github.io/mmint/release` to the list of software sites (`Help > Install New Software > Available Software Sites`).
     2. From the top menu select `Help > Install New Software` and install `Examples > MMINT - VAMOS23 paper`.
     3. From the top menu select `File > New > Example > MMINT Examples > MMPL`.
     4. From the top menu select `File > New > Example > MMINT Examples > VAMOS23`.
@@ -27,12 +27,12 @@ The evaluation requires Python >= 3.10, and our results are [here](model).
         2. Repeat steps a-b-c-d with query `numOutgoingTransitions`.
 3. Evaluation (Sec. 5):
     1. From the top menu select `MMINT > Open Type MID`.
-    2. Click on `New Operator Type` in the palette, click in the diagram background, select `VAMOS23 > model > setup_evaluation.mid`, choose a name.
+    2. From the palette on the right select `New Operator Type`, click in the diagram background, select file `/VAMOS23/model/setup_evaluation.mid`, choose a name and save.
     3. Repeat step ii using `VAMOS23 > model > samples_evaluation.mid`.
     4. Open `/VAMOS23/model/X/X.middiag`, where `X` is one of `Automata`, `bCMS-SPL-PC`, `crom_l1`, `GPL`.
-    5. Right-click on the yellow box named `X : ProductLine`, select `MMINT > Run Operator > Experiment<SETUP,SAMPLES>(Model inputs=X)`, choose the name you entered in step ii, then choose the name you entered in step iii and the experiment will take some time to collect samples for statistical significance.
-    6. Open a command line at `/VAMOS23/model` and run `python3 collect.py X PL`.
+    5. Right-click on the yellow box named `X : ProductLine`, select `MMINT > Run Operator > Experiment<SETUP,SAMPLES>(Model inputs=X)`, choose the name you entered in step ii, choose the name you entered in step iii, the experiment will take some time to collect samples for statistical significance.
+    6. Open a command line at `/VAMOS23/model`, run `python3 collect.py X PL`.
     7. Repeat the next steps viii-ix, where `Y` is one of `0`, `1`, `2`, `3`, `4`.
-    8. Right-click on the yellow box named `X_prodY : ClassDiagram`, select `MMINT > Run Operator > Experiment<SETUP,SAMPLES>(Model inputs=X)`, choose the name you entered in step ii, then choose the name you entered in step iii and the experiment will take some time to collect samples for statistical significance.
-    9. Open a command line at `/VAMOS23/model` and run `python3 collect.py X PY`.
-    10. Open a command line at `/VAMOS23/model`, run `python3 average.py X` and check the results.
+    8. Right-click on the yellow box named `X_prodY : ClassDiagram`, select `MMINT > Run Operator > Experiment<SETUP,SAMPLES>(Model inputs=X)`, choose the name you entered in step ii, choose the name you entered in step iii, the experiment will take some time to collect samples for statistical significance.
+    9. Open a command line at `/VAMOS23/model`, run `python3 collect.py X PY`.
+    10. Open a command line at `/VAMOS23/model`, run `python3 average.py X`, check the results.
