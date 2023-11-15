@@ -183,6 +183,7 @@ public class PropertyDecompositionTemplateImpl extends DecompositionTemplateImpl
     propStrategy.getSupportedBy().clear(); // the real subPropGoals will be added later
     templateElems.removeAll(subPropGoals);
     safetyCase.getGoals().removeAll(subPropGoals);
+    PropertyDecompositionStrategyImpl.cleanPreviousValidations(propStrategy);
     var placeholderId = formalStrategy.getId().substring(formalStrategy.getId().indexOf(".") + 1);
     var decomposedId = decomposed.getId();
     Strategy chainedStrategy;

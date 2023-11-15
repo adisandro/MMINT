@@ -12,6 +12,7 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.types.gsn.templates.impl;
 
+import java.util.HashSet;
 import java.util.Objects;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -28,6 +29,7 @@ import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyDecompositionElement;
 import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyDecompositionStrategy;
 import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyGoal;
 import edu.toronto.cs.se.mmint.types.gsn.templates.reasoning.IGSNDecompositionTrait;
+import edu.toronto.cs.se.modelepedia.gsn.InContextOf;
 import edu.toronto.cs.se.modelepedia.gsn.Justification;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
 import edu.toronto.cs.se.modelepedia.gsn.SupportedBy;
@@ -316,12 +318,7 @@ public class PropertyDecompositionStrategyImpl extends StrategyImpl implements P
         throw new MMINTException("The reasoner '" + reasonerName + "' does not support GSN property decompositions");
       }
       Objects.requireNonNull(getProperty(), "Property not specified");
-      // clean up previous validation
-      var proofJust = (Justification) getInContextOf().get(1).getContext();
-      getInContextOf().remove(1);
-      getTemplates().get(0).getElements().remove(proofJust);
-      ((SafetyCase) eContainer()).getJustifications().remove(proofJust);
-      // validate
+      cleanPreviousValidations(this);
       gsnReasoner.validatePropertyDecomposition(this);
       setValid(true);
       getSupportedBy().stream()
@@ -334,6 +331,23 @@ public class PropertyDecompositionStrategyImpl extends StrategyImpl implements P
       setValid(false);
       throw e;
     }
+  }
+
+  /**
+   * @generated NOT
+   */
+  public static void cleanPreviousValidations(PropertyDecompositionStrategy propStrategy) {
+    var proofInContextOfs = new HashSet<InContextOf>();
+    var proofJusts = new HashSet<Justification>();
+    for (var ico : propStrategy.getInContextOf()) {
+      if (ico.getContext() instanceof Justification j) {
+        proofInContextOfs.add(ico);
+        proofJusts.add(j);
+      }
+    }
+    propStrategy.getInContextOf().removeAll(proofInContextOfs);
+    propStrategy.getTemplates().get(0).getElements().removeAll(proofJusts);
+    ((SafetyCase) propStrategy.eContainer()).getJustifications().removeAll(proofJusts);
   }
 
 } //PropertyDecompositionStrategyImpl

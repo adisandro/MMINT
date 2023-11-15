@@ -172,16 +172,6 @@ public class PropertyGoalImpl extends GoalImpl implements PropertyGoal {
   /**
    * @generated NOT
    */
-  @Override
-  public void validate() throws Exception {
-    // the validity of this goal is managed by its supporting strategy
-    var strategy = (PropertyDecompositionStrategy) DecompositionUtils.moveOneStrategyUp(this);
-    strategy.validate();
-  }
-
-  /**
-   * @generated NOT
-   */
   private void instantiateWithNewProperty(IGSNDecompositionTrait reasoner) throws Exception {
     var title = "Property Decomposition";
     var reasonerName = reasoner.getName();
@@ -244,6 +234,16 @@ public class PropertyGoalImpl extends GoalImpl implements PropertyGoal {
     else {
       instantiateWithHint(hint);
     }
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public void validate() throws Exception {
+    // the validity of this goal is managed by its supporting strategy
+    var strategy = (PropertyDecompositionStrategy) DecompositionUtils.moveOneStrategyUp(this);
+    strategy.validate();
   }
 
   /**

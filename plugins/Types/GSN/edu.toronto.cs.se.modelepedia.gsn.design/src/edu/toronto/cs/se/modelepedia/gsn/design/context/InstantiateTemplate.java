@@ -80,8 +80,6 @@ public class InstantiateTemplate extends AbstractExternalJavaAction {
        *  FilesJustification?
        *  Select template from file if multiple templates are present?
        *  Fix prop decomposition chain re-instantiation
-       *  How is repair different from instantiate? (no instantiation and wrong instantiation are both invalid)
-       *   5) Update instructions
        */
     }
   }
