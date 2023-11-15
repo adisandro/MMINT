@@ -1,4 +1,4 @@
-## SciCo 2023 paper
+## SciCo Vol. 231 2023 paper
 
 [MMINT-A: A Framework for Model-Based Safety Assurance](https://doi.org/10.1016/j.scico.2023.103004)
 
