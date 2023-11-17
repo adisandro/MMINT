@@ -40,7 +40,7 @@
     </genClasses>
     <genClasses ecoreClass="gsn.templates.ecore#//DomainDecompositionStrategy"/>
     <genClasses ecoreClass="gsn.templates.ecore#//DomainGoal"/>
-    <genClasses ecoreClass="gsn.templates.ecore#//DomainDecompositionTemplate"/>
+    <genClasses image="false" ecoreClass="gsn.templates.ecore#//DomainDecompositionTemplate"/>
     <genClasses ecoreClass="gsn.templates.ecore#//Property">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.templates.ecore#//Property/formal"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.templates.ecore#//Property/informal"/>
@@ -54,7 +54,7 @@
     <genClasses ecoreClass="gsn.templates.ecore#//PropertyGoal">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.templates.ecore#//PropertyGoal/hint"/>
     </genClasses>
-    <genClasses ecoreClass="gsn.templates.ecore#//PropertyDecompositionTemplate"/>
+    <genClasses image="false" ecoreClass="gsn.templates.ecore#//PropertyDecompositionTemplate"/>
     <genClasses ecoreClass="gsn.templates.ecore#//FilesContext">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.templates.ecore#//FilesContext/paths"/>
     </genClasses>

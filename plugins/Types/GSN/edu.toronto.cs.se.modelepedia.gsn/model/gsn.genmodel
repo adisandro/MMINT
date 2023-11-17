@@ -101,7 +101,7 @@
     <genClasses ecoreClass="gsn.ecore#//MofNSupporter">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//MofNSupporter/target"/>
     </genClasses>
-    <genClasses ecoreClass="gsn.ecore#//Template">
+    <genClasses image="false" ecoreClass="gsn.ecore#//Template">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference gsn.ecore#//Template/elements"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//Template/id"/>
       <genOperations ecoreOperation="gsn.ecore#//Template/validate"/>

@@ -115,9 +115,16 @@ public class TemplateItemProvider
    * <!-- end-user-doc -->
    * @generated
    */
+  public Object getImageGen(Object object) {
+    return overlayImage(object, getResourceLocator().getImage("full/obj16/Template"));
+  }
+
+  /**
+   * @generated NOT
+   */
   @Override
   public Object getImage(Object object) {
-    return overlayImage(object, getResourceLocator().getImage("full/obj16/Template"));
+    return overlayImage(object, getResourceLocator().getImage("full/obj16/Template.png"));
   }
 
   /**

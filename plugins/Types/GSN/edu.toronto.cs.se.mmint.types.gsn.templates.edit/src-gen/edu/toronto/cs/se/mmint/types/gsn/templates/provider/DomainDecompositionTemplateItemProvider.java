@@ -61,8 +61,16 @@ public class DomainDecompositionTemplateItemProvider extends DecompositionTempla
    * @generated
    */
   @Override
-  public Object getImage(Object object) {
+  public Object getImageGen(Object object) {
     return overlayImage(object, getResourceLocator().getImage("full/obj16/DomainDecompositionTemplate"));
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public Object getImage(Object object) {
+    return overlayImage(object, getResourceLocator().getImage("full/obj16/DomainDecompositionTemplate.png"));
   }
 
   /**
