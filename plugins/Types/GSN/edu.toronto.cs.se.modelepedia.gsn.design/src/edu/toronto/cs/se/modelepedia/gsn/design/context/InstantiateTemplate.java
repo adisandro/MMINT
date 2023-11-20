@@ -78,7 +78,6 @@ public class InstantiateTemplate extends AbstractExternalJavaAction {
       /**TODO MMINT[GSN]
        *  Delete links and delete template when deleting argument elements
        *  FilesJustification?
-       *  Select template from file if multiple templates are present?
        *  Fix prop decomposition chain re-instantiation
        */
     }

@@ -31,6 +31,8 @@ import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
+import edu.toronto.cs.se.modelepedia.gsn.Template;
+import edu.toronto.cs.se.modelepedia.gsn.provider.GSNItemProviderAdapterFactory;
 
 public class ImportTemplate extends AbstractExternalJavaAction {
 
@@ -64,14 +66,22 @@ public class ImportTemplate extends AbstractExternalJavaAction {
     @Override
     protected void doExecute() {
       try {
-        var templatePath = MIDDialogs.selectFiles("Import Template", "Select GSN template file",
+        var templatePath = MIDDialogs.selectFile("Import Template", "Select GSN template file",
                                                   "There are no GSN files in the workspace", Set.of(GSNPackage.eNAME));
         var templateSC = (SafetyCase) FileUtils.readModelFile(templatePath, null, true);
         if (templateSC.getTemplates().isEmpty()) {
             throw new MMINTException(templatePath + " does not contain a template");
         }
         templateSC = EcoreUtil.copy(templateSC);
-        var template = templateSC.getTemplates().get(0);
+        Template template = null;
+        if (templateSC.getTemplates().size() > 1) {
+          template = MIDDialogs.selectModelObject("Import Template", "Select GSN template",
+                                                  new GSNItemProviderAdapterFactory().createTemplateAdapter(),
+                                                  templateSC.getTemplates());
+        }
+        else {
+          template = templateSC.getTemplates().get(0);
+        }
         template.import_(this.safetyCase);
       }
       catch (MIDDialogCancellation e) {

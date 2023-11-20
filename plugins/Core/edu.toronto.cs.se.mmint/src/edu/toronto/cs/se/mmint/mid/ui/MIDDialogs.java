@@ -23,7 +23,10 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.Adapters;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.edit.provider.IItemLabelProvider;
+import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.jface.dialogs.InputDialog;
@@ -480,8 +483,18 @@ public class MIDDialogs {
 		return constraint;
 	}
 
-  public static String selectFiles(String title, String message, String emptyMessage, Set<String> fileExtensions)
-                                  throws Exception {
+  public static <T> T selectModelObject(String title, String message, Adapter adapter, EList<T> modelObjects)
+                                       throws MIDDialogCancellation {
+    var itemLabelProvider = Adapters.adapt(adapter, IItemLabelProvider.class);
+    var labelProvider = LabelProvider.createTextImageProvider(
+      t -> itemLabelProvider.getText(t),
+      t -> ExtendedImageRegistry.INSTANCE.getImage(itemLabelProvider.getImage(t)));
+
+    return MIDDialogs.openListDialog(title, message, modelObjects, new ArrayContentProvider(), labelProvider);
+  }
+
+  public static String selectFile(String title, String message, String emptyMessage, Set<String> fileExtensions)
+                                 throws Exception {
     var files = new ArrayList<IFile>();
     IResourceVisitor visitor = (var resource) -> {
       var binFolders = Set.of("bin", "target");
