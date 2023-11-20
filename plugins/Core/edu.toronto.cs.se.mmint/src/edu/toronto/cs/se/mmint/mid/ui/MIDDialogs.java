@@ -23,8 +23,9 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.Adapters;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
-import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
 import org.eclipse.jdt.annotation.NonNull;
@@ -483,12 +484,23 @@ public class MIDDialogs {
 		return constraint;
 	}
 
-  public static <T> T selectModelObject(String title, String message, Adapter adapter, EList<T> modelObjects)
+  public static <T> T selectModelObject(String title, String message, EList<T> modelObjects)
                                        throws MIDDialogCancellation {
-    var itemLabelProvider = Adapters.adapt(adapter, IItemLabelProvider.class);
     var labelProvider = LabelProvider.createTextImageProvider(
-      t -> itemLabelProvider.getText(t),
-      t -> ExtendedImageRegistry.INSTANCE.getImage(itemLabelProvider.getImage(t)));
+      o -> {
+        var itemProvider = (IItemLabelProvider) ComposedAdapterFactory.Descriptor.Registry.INSTANCE.getDescriptor(
+            List.of(((EObject) o).eClass().getEPackage(), IItemLabelProvider.class))
+          .createAdapterFactory()
+          .adapt(o, IItemLabelProvider.class);
+        return itemProvider.getText(o);
+      },
+      o -> {
+        var itemProvider = (IItemLabelProvider) ComposedAdapterFactory.Descriptor.Registry.INSTANCE.getDescriptor(
+            List.of(((EObject) o).eClass().getEPackage(), IItemLabelProvider.class))
+          .createAdapterFactory()
+          .adapt(o, IItemLabelProvider.class);
+        return ExtendedImageRegistry.INSTANCE.getImage(itemProvider.getImage(o));
+      });
 
     return MIDDialogs.openListDialog(title, message, modelObjects, new ArrayContentProvider(), labelProvider);
   }

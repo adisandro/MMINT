@@ -32,7 +32,6 @@ import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
 import edu.toronto.cs.se.modelepedia.gsn.Template;
-import edu.toronto.cs.se.modelepedia.gsn.provider.GSNItemProviderAdapterFactory;
 
 public class ImportTemplate extends AbstractExternalJavaAction {
 
@@ -75,9 +74,7 @@ public class ImportTemplate extends AbstractExternalJavaAction {
         templateSC = EcoreUtil.copy(templateSC);
         Template template = null;
         if (templateSC.getTemplates().size() > 1) {
-          template = MIDDialogs.selectModelObject("Import Template", "Select GSN template",
-                                                  new GSNItemProviderAdapterFactory().createTemplateAdapter(),
-                                                  templateSC.getTemplates());
+          template = MIDDialogs.selectModelObject("Import Template", "Select GSN template", templateSC.getTemplates());
         }
         else {
           template = templateSC.getTemplates().get(0);
