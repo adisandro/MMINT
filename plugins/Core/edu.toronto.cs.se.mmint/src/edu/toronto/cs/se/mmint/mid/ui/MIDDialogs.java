@@ -484,23 +484,18 @@ public class MIDDialogs {
 		return constraint;
 	}
 
-  public static <T> T selectModelObject(String title, String message, EList<T> modelObjects)
+	private static IItemLabelProvider getModelObjectItemLabelProvider(EObject modelObj) {
+	  var description = List.of(modelObj.eClass().getEPackage(), IItemLabelProvider.class);
+	  return (IItemLabelProvider) ComposedAdapterFactory.Descriptor.Registry.INSTANCE.getDescriptor(description)
+      .createAdapterFactory()
+      .adapt(modelObj, IItemLabelProvider.class);
+	}
+
+	public static <T> T selectModelObject(String title, String message, EList<T> modelObjects)
                                        throws MIDDialogCancellation {
     var labelProvider = LabelProvider.createTextImageProvider(
-      o -> {
-        var itemProvider = (IItemLabelProvider) ComposedAdapterFactory.Descriptor.Registry.INSTANCE.getDescriptor(
-            List.of(((EObject) o).eClass().getEPackage(), IItemLabelProvider.class))
-          .createAdapterFactory()
-          .adapt(o, IItemLabelProvider.class);
-        return itemProvider.getText(o);
-      },
-      o -> {
-        var itemProvider = (IItemLabelProvider) ComposedAdapterFactory.Descriptor.Registry.INSTANCE.getDescriptor(
-            List.of(((EObject) o).eClass().getEPackage(), IItemLabelProvider.class))
-          .createAdapterFactory()
-          .adapt(o, IItemLabelProvider.class);
-        return ExtendedImageRegistry.INSTANCE.getImage(itemProvider.getImage(o));
-      });
+      o -> getModelObjectItemLabelProvider((EObject) o).getText(o),
+      o -> ExtendedImageRegistry.INSTANCE.getImage(getModelObjectItemLabelProvider((EObject) o).getImage(o)));
 
     return MIDDialogs.openListDialog(title, message, modelObjects, new ArrayContentProvider(), labelProvider);
   }
