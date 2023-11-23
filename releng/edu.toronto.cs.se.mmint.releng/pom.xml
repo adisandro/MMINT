@@ -178,6 +178,7 @@
     <module>../../plugins/Types/GSN/edu.toronto.cs.se.modelepedia.gsn.edit</module>
     <module>../../plugins/Types/GSN/edu.toronto.cs.se.modelepedia.gsn.editor</module>
     <module>../../plugins/Types/GSN/edu.toronto.cs.se.modelepedia.gsn.operator</module>
+    <module>../../plugins/Types/GSN/edu.toronto.cs.se.mmint.types.gsn.productline.design</module>
     <module>../../plugins/Types/GSN/edu.toronto.cs.se.mmint.types.gsn.templates</module>
     <module>../../plugins/Types/GSN/edu.toronto.cs.se.mmint.types.gsn.templates.design</module>
     <module>../../plugins/Types/GSN/edu.toronto.cs.se.mmint.types.gsn.templates.edit</module>
