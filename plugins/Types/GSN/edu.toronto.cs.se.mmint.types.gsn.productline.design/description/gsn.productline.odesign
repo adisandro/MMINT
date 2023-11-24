@@ -3,15 +3,35 @@
   <ownedViewpoints name="GSNProductLineViewpoint" modelFileExtension="productline">
     <ownedRepresentationExtensions xsi:type="description_1:DiagramExtensionDescription" name="GSNProductLineDiagram" viewpointURI="viewpoint:/edu.toronto.cs.se.mmint.productline.design/ProductLineViewpoint" representationName="ProductLineDiagram">
       <layers name="GSNProductLine">
-        <containerMappings xsi:type="description_1:ContainerMappingImport" name="StrategyClassContainer" preconditionExpression="aql: self.type.name = 'Strategy'" semanticCandidatesExpression="feature:classes" domainClass="productline.Class">
-          <style xsi:type="style:WorkspaceImageDescription" labelSize="10" showIcon="false" labelExpression="service: getPLElementLabel" sizeComputationExpression="20" labelPosition="node" resizeKind="NSEW" arcWidth="15" arcHeight="15" workspacePath="/edu.toronto.cs.se.modelepedia.gsn.design/icons/Strategy.svg">
+        <edgeMappings name="SupportedByEdge" preconditionExpression="aql: self.type.name = 'SupportedBy'" semanticCandidatesExpression="feature:classes" sourceMapping="//@ownedViewpoints[name='GSNProductLineViewpoint']/@ownedRepresentationExtensions[name='GSNProductLineDiagram']/@layers[name='GSNProductLine']/@containerMappings[name='GoalClassContainer'] //@ownedViewpoints[name='GSNProductLineViewpoint']/@ownedRepresentationExtensions[name='GSNProductLineDiagram']/@layers[name='GSNProductLine']/@containerMappings[name='StrategyClassContainer']" targetMapping="//@ownedViewpoints[name='GSNProductLineViewpoint']/@ownedRepresentationExtensions[name='GSNProductLineDiagram']/@layers[name='GSNProductLine']/@containerMappings[name='GoalClassContainer'] //@ownedViewpoints[name='GSNProductLineViewpoint']/@ownedRepresentationExtensions[name='GSNProductLineDiagram']/@layers[name='GSNProductLine']/@containerMappings[name='StrategyClassContainer']" targetFinderExpression="aql: self.referencesAsTarget->select(r | r.type.name = 'supports')->collect(r | r.eContainer())" sourceFinderExpression="aql: self.referencesAsTarget->select(r | r.type.name = 'supportedBy')->collect(r | r.eContainer())" domainClass="productline.Class" useDomainElement="true">
+          <style targetArrow="InputFillClosedArrow">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <centerLabelStyleDescription>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
+        <containerMappings xsi:type="description_1:ContainerMappingImport" name="GoalClassContainer" preconditionExpression="aql: self.type.eSuperTypes->exists(s | s.name = 'Goal')" semanticCandidatesExpression="feature:classes" domainClass="productline.Class">
+          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="10" showIcon="false" labelExpression="service: getGSNPLElementLabel" widthComputationExpression="20" heightComputationExpression="10">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+            <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+          </style>
+          <importedMapping href="../../edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@containerMappings[name='ClassContainer']"/>
+        </containerMappings>
+        <containerMappings xsi:type="description_1:ContainerMappingImport" name="StrategyClassContainer" preconditionExpression="aql: self.type.eSuperTypes->exists(s | s.name = 'Strategy')" semanticCandidatesExpression="feature:classes" domainClass="productline.Class">
+          <style xsi:type="style:WorkspaceImageDescription" labelSize="10" showIcon="false" labelExpression="service: getGSNPLElementLabel" sizeComputationExpression="20" labelPosition="node" resizeKind="NSEW" arcWidth="15" arcHeight="15" workspacePath="/edu.toronto.cs.se.modelepedia.gsn.design/icons/Strategy.svg">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
           </style>
           <importedMapping href="../../edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@containerMappings[name='ClassContainer']"/>
         </containerMappings>
+        <containerMappings xsi:type="description_1:ContainerMappingImport" name="SupportedByClassContainer" preconditionExpression="aql: self.type.name = 'SupportedBy'" semanticCandidatesExpression="feature:classes" domainClass="productline.Class">
+          <importedMapping href="../../edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@containerMappings[name='ClassContainer']"/>
+        </containerMappings>
       </layers>
     </ownedRepresentationExtensions>
-    <ownedJavaExtensions qualifiedClassName="edu.toronto.cs.se.mmint.types.gsn.productline.design.Services"/>
+    <ownedJavaExtensions qualifiedClassName="edu.toronto.cs.se.mmint.types.gsn.productline.design.GSNProductLineServices"/>
   </ownedViewpoints>
 </description:Group>

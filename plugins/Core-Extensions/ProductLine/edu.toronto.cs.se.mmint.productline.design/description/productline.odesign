@@ -72,6 +72,6 @@
         </toolSections>
       </defaultLayer>
     </ownedRepresentations>
-    <ownedJavaExtensions qualifiedClassName="edu.toronto.cs.se.mmint.productline.design.Services"/>
+    <ownedJavaExtensions qualifiedClassName="edu.toronto.cs.se.mmint.productline.design.ProductLineServices"/>
   </ownedViewpoints>
 </description:Group>

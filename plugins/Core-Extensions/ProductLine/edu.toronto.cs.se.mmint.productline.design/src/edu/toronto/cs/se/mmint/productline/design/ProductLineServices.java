@@ -23,20 +23,18 @@ import edu.toronto.cs.se.mmint.productline.Reference;
 /**
  * The services class used by VSM.
  */
-public class Services {
+public class ProductLineServices {
 
-    public String getPLElementLabel(EObject self) {
-      var label = "";
-      if (self instanceof Class c) {
-        label = c.getType().getName();
-      }
-      else if (self instanceof Attribute a) {
-        label = a.getType().getName() + ": " + a.getValue();
-      }
-      else if (self instanceof Reference r) {
-        label = r.getType().getName();
-      }
+  protected String getElementLabel(EObject self) {
+    return switch (self) {
+      case Class c     -> c.getType().getName();
+      case Attribute a -> a.getType().getName() + ": " + a.getValue();
+      case Reference r -> r.getType().getName();
+      default          -> "";
+    };
+  }
 
-      return label + " " + ProductLineUtils.getPresenceConditionLabel((PLElement) self, true);
-    }
+  public String getPLElementLabel(EObject self) {
+    return getElementLabel(self) + " " + ProductLineUtils.getPresenceConditionLabel((PLElement) self, true);
+  }
 }
