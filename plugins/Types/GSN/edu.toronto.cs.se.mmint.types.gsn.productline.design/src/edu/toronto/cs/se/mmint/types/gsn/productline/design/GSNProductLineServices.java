@@ -39,11 +39,11 @@ public class GSNProductLineServices extends ProductLineServices {
         }
         yield id + " " + desc;
       }
-      default -> super.getElementLabel(self);
+      default -> getElementLabel(self);
     };
   }
 
-  // use different method names to allow full disable of GSN layer
+  // use different method names to allow full disabling of GSN layer
   public String getGSNPLElementLabel(EObject self) {
     return getGSNElementLabel(self) + " " + ProductLineUtils.getPresenceConditionLabel((PLElement) self, true);
   }
