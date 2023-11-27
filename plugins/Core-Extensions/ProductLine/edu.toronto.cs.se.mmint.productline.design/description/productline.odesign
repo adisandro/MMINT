@@ -73,6 +73,11 @@
             </initialOperation>
           </ownedTools>
         </toolSections>
+        <toolSections name="Menus" label="Menus">
+          <ownedTools xsi:type="tool_1:PopupMenu" name="MMINT">
+            <menuItemDescription xsi:type="tool_1:ExternalJavaAction" name="EvaluateQuery" label="Evaluate Query" id="edu.toronto.cs.se.mmint.mid.diagram.context.SiriusEvaluateQuery"/>
+          </ownedTools>
+        </toolSections>
       </defaultLayer>
     </ownedRepresentations>
     <ownedJavaExtensions qualifiedClassName="edu.toronto.cs.se.mmint.productline.design.ProductLineServices"/>
