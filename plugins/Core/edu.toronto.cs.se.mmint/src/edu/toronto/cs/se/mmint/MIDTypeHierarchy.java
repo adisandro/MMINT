@@ -385,28 +385,6 @@ public class MIDTypeHierarchy {
 			MMINT.conversionsMID;
 	}
 
-	public static Map<Model, Set<List<ConversionOperator>>> getMultiplePathConversions(String srcModelTypeUri) {
-
-		Map<String, Set<List<String>>> srcModelTypeConversionUris = getConversionTable(MMINT.cachedTypeMID).get(srcModelTypeUri);
-		Map<Model, Set<List<ConversionOperator>>> multiplePathConversions = new HashMap<>();
-		for (Map.Entry<String, Set<List<String>>> srcModelTypeConversionUrisEntry : srcModelTypeConversionUris.entrySet()) {
-			if (srcModelTypeConversionUrisEntry.getValue().size() == 1) {
-				continue;
-			}
-			Set<List<ConversionOperator>> conversionPaths = new HashSet<>();
-			multiplePathConversions.put(MIDTypeRegistry.<Model>getType(srcModelTypeConversionUrisEntry.getKey()), conversionPaths);
-			for (List<String> conversionPathUris : srcModelTypeConversionUrisEntry.getValue()) {
-				List<ConversionOperator> conversionPath = new ArrayList<>();
-				conversionPaths.add(conversionPath);
-				for (String conversionUri : conversionPathUris) {
-					conversionPath.add(MIDTypeRegistry.<ConversionOperator>getType(conversionUri));
-				}
-			}
-		}
-
-		return multiplePathConversions;
-	}
-
 	/**
 	 * Determines if a subtype-supertype relationship holds for two types.
 	 *

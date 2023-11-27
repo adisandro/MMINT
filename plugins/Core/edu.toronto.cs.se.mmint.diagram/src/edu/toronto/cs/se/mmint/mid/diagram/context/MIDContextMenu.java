@@ -15,8 +15,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.ECollections;
@@ -45,7 +43,6 @@ import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelRel2EditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelRelEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.library.AddModifyConstraintListener;
-import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
@@ -63,7 +60,6 @@ public class MIDContextMenu extends ContributionItem {
   private static final String MMINT_MENU_OPERATOR_LABEL_INSTANCES = "Run Operator";
   private static final String MMINT_MENU_OPERATOR_LABEL_WORKFLOWS = "Add Operator";
   private static final String MMINT_MENU_CAST_LABEL = "Cast Type";
-  private static final String MMINT_MENU_COHERENCE_LABEL = "Check Runtime Coherence";
   private static final String MMINT_MENU_ADDCONSTRAINT_LABEL = "Add/Modify Constraint";
   private static final String MMINT_MENU_CHECKCONSTRAINT_LABEL = "Check Constraint";
   public static final String MMINT_MENU_EVALUATEQUERY_LABEL = "Evaluate Query";
@@ -96,13 +92,12 @@ public class MIDContextMenu extends ContributionItem {
       return;
     }
     var objects = ((StructuredSelection) selection).toArray();
-    boolean doAddConstraint = true, doCast = true, doCheckConstraint = true, doCoherence = true, doCopy = true,
-            doModelepedia = true, doOperator = true, doQuery = true;
+    boolean doAddConstraint = true, doCast = true, doCheckConstraint = true, doCopy = true, doModelepedia = true,
+            doOperator = true, doQuery = true;
     if (objects.length > 1) { // actions that don't work on multiple objects
       doAddConstraint = false;
       doCast = false;
       doCheckConstraint = false;
-      doCoherence = false;
       doModelepedia = false;
     }
 
@@ -128,7 +123,6 @@ public class MIDContextMenu extends ContributionItem {
         doAddConstraint = false;
         doCast = false;
         doCheckConstraint = false;
-        doCoherence = false;
         doCopy = false;
         doModelepedia = false;
         if (((MID) editPartElement).isInstancesLevel() || ((MID) editPartElement).isWorkflowsLevel()) {
@@ -141,7 +135,6 @@ public class MIDContextMenu extends ContributionItem {
         if (model.isTypesLevel() || model.isWorkflowsLevel()) {
           doCast = false;
           doCheckConstraint = false;
-          doCoherence = false;
           doCopy = false;
         }
         if (model.isTypesLevel()) {
@@ -153,7 +146,7 @@ public class MIDContextMenu extends ContributionItem {
         if (model instanceof ModelRel) { // actions that don't work on model relationships
           doCopy = false;
         }
-        if (doAddConstraint || doCast || doCheckConstraint || doCoherence || doCopy || doModelepedia || doOperator ||
+        if (doAddConstraint || doCast || doCheckConstraint || doCopy || doModelepedia || doOperator ||
             doQuery) {
           selectedModels.add(model);
         }
@@ -169,8 +162,8 @@ public class MIDContextMenu extends ContributionItem {
           editParts.add(editPart);
         }
       }
-      if (!doOperator && !doCast && !doCheckConstraint && !doCopy && !doAddConstraint && !doModelepedia && !doCoherence
-          && !doQuery) { // no action available
+      if (!doOperator && !doCast && !doCheckConstraint && !doCopy && !doAddConstraint && !doModelepedia && !doQuery) {
+        // no action available
         return;
       }
     }
@@ -281,24 +274,6 @@ public class MIDContextMenu extends ContributionItem {
           castSubitem.setText(text);
           castSubitem.addSelectionListener(
             new MIDContextCastTypeListener(MIDContextMenu.MMINT_MENU_CAST_LABEL, selectedModels.get(0), runtimeModelType, editPartLabel)
-          );
-        }
-      }
-    }
-    // coherence
-    doCoherence = false; //TODO MMINT[TYPES] Deprecated
-    if (doCoherence) {
-      var multiplePathConversions = MIDTypeHierarchy.getMultiplePathConversions(selectedModels.get(0).getMetatypeUri());
-      if (!multiplePathConversions.isEmpty()) {
-        MenuItem coherenceItem = new MenuItem(mmintMenu, SWT.CASCADE);
-        coherenceItem.setText(MIDContextMenu.MMINT_MENU_COHERENCE_LABEL);
-        Menu coherenceMenu = new Menu(mmintMenu);
-        coherenceItem.setMenu(coherenceMenu);
-        for (Map.Entry<Model, Set<List<ConversionOperator>>> conversionPathsEntry : multiplePathConversions.entrySet()) {
-          MenuItem coherenceSubitem = new MenuItem(coherenceMenu, SWT.NONE);
-          coherenceSubitem.setText("To " + conversionPathsEntry.getKey().getName());
-          coherenceSubitem.addSelectionListener(
-            new MIDContextCheckCoherenceListener(MIDContextMenu.MMINT_MENU_COHERENCE_LABEL, selectedModels.get(0), conversionPathsEntry.getValue())
           );
         }
       }
