@@ -39,6 +39,7 @@ public class GSNProductLineServices extends ProductLineServices {
         }
         yield id + " " + desc;
       }
+      case Class c -> "";
       default -> getElementLabel(self);
     };
   }
