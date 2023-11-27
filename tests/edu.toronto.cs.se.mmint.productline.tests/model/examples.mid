@@ -1,36 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mid:MID xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editor="http://se.cs.toronto.edu/mmint/MID/Editor" xmlns:mid="http://se.cs.toronto.edu/mmint/MID" xmlns:productline.mid="rel://edu.toronto.cs.se.mmint.productline.mid.PLModelRel">
   <models uri="/edu.toronto.cs.se.mmint.productline.tests/model/cd.productline" name="cd" metatypeUri="model://edu.toronto.cs.se.mmint.productline" dynamic="true" origin="CREATED" fileExtension="productline" editors="//@editors.0">
-    <modelElems uri="/edu.toronto.cs.se.mmint.productline.tests/model/cd.productline#//@classes.2_AS_model://edu.toronto.cs.se.mmint.productline#//PLElement" name="Class p1" metatypeUri="model://edu.toronto.cs.se.mmint.productline#//PLElement" dynamic="true">
+    <modelElems uri="/edu.toronto.cs.se.mmint.productline.tests/model/cd.productline#//@classes.2_AS_model://edu.toronto.cs.se.mmint.productline#//PLElement" name="Class f1" metatypeUri="model://edu.toronto.cs.se.mmint.productline#//PLElement" dynamic="true">
       <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
     </modelElems>
-    <modelElems uri="/edu.toronto.cs.se.mmint.productline.tests/model/cd.productline#//@classes.3_AS_model://edu.toronto.cs.se.mmint.productline#//PLElement" name="Class p2" metatypeUri="model://edu.toronto.cs.se.mmint.productline#//PLElement" dynamic="true">
+    <modelElems uri="/edu.toronto.cs.se.mmint.productline.tests/model/cd.productline#//@classes.3_AS_model://edu.toronto.cs.se.mmint.productline#//PLElement" name="Class f2" metatypeUri="model://edu.toronto.cs.se.mmint.productline#//PLElement" dynamic="true">
       <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
     </modelElems>
     <modelElems uri="/edu.toronto.cs.se.mmint.productline.tests/model/cd.productline#//@classes.1_AS_model://edu.toronto.cs.se.mmint.productline#//PLElement" name="Class true" metatypeUri="model://edu.toronto.cs.se.mmint.productline#//PLElement" dynamic="true">
       <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
     </modelElems>
-    <modelElems uri="/edu.toronto.cs.se.mmint.productline.tests/model/cd.productline#//@classes.1_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
-      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
-    </modelElems>
-    <modelElems uri="/edu.toronto.cs.se.mmint.productline.tests/model/cd.productline#//@classes.3_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class f2" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
-      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
-    </modelElems>
-    <modelElems uri="/edu.toronto.cs.se.mmint.productline.tests/model/cd.productline#//@classes.2_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class f1" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
-      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
-    </modelElems>
   </models>
   <models uri="/edu.toronto.cs.se.mmint.productline.tests/model/gsn.productline" name="gsn" metatypeUri="model://edu.toronto.cs.se.mmint.productline" dynamic="true" origin="CREATED" fileExtension="productline" editors="//@editors.1">
-    <modelElems uri="/edu.toronto.cs.se.mmint.productline.tests/model/gsn.productline#//@classes.1_AS_model://edu.toronto.cs.se.mmint.productline#//PLElement" name="Class p1" metatypeUri="model://edu.toronto.cs.se.mmint.productline#//PLElement" dynamic="true">
+    <modelElems uri="/edu.toronto.cs.se.mmint.productline.tests/model/gsn.productline#//@classes.1_AS_model://edu.toronto.cs.se.mmint.productline#//PLElement" name="Class f1" metatypeUri="model://edu.toronto.cs.se.mmint.productline#//PLElement" dynamic="true">
       <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
     </modelElems>
-    <modelElems uri="/edu.toronto.cs.se.mmint.productline.tests/model/gsn.productline#//@classes.2_AS_model://edu.toronto.cs.se.mmint.productline#//PLElement" name="Class p2" metatypeUri="model://edu.toronto.cs.se.mmint.productline#//PLElement" dynamic="true">
-      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
-    </modelElems>
-    <modelElems uri="/edu.toronto.cs.se.mmint.productline.tests/model/gsn.productline#//@classes.2_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class f2" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
-      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
-    </modelElems>
-    <modelElems uri="/edu.toronto.cs.se.mmint.productline.tests/model/gsn.productline#//@classes.1_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class f1" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+    <modelElems uri="/edu.toronto.cs.se.mmint.productline.tests/model/gsn.productline#//@classes.2_AS_model://edu.toronto.cs.se.mmint.productline#//PLElement" name="Class f2" metatypeUri="model://edu.toronto.cs.se.mmint.productline#//PLElement" dynamic="true">
       <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
     </modelElems>
   </models>
@@ -38,20 +23,20 @@
     <modelEndpoints uri="" name="cd" metatypeUri="edu.toronto.cs.se.mmint.productline.mid.PLModelRel.PLModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0"/>
     <modelEndpoints uri="" name="gsn" metatypeUri="edu.toronto.cs.se.mmint.productline.mid.PLModelRel.PLModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1"/>
     <mappings xsi:type="productline.mid:PLMapping" uri="" name="" metatypeUri="edu.toronto.cs.se.mmint.productline.mid.PLModelRel.PLMapping" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.0/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.0/@modelElemEndpointRefs.1" presenceCondition="f1">
-      <modelElemEndpoints uri="" name="Class p1" metatypeUri="edu.toronto.cs.se.mmint.productline.mid.PLModelRel.PLMapping.PLModelElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.0"/>
-      <modelElemEndpoints uri="" name="Class p1" metatypeUri="edu.toronto.cs.se.mmint.productline.mid.PLModelRel.PLMapping.PLModelElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.0"/>
+      <modelElemEndpoints uri="" name="Class f1" metatypeUri="edu.toronto.cs.se.mmint.productline.mid.PLModelRel.PLMapping.PLModelElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.0"/>
+      <modelElemEndpoints uri="" name="Class f1" metatypeUri="edu.toronto.cs.se.mmint.productline.mid.PLModelRel.PLMapping.PLModelElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.0"/>
     </mappings>
     <mappings xsi:type="productline.mid:PLMapping" uri="" name="" metatypeUri="edu.toronto.cs.se.mmint.productline.mid.PLModelRel.PLMapping" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.1/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.1/@modelElemEndpointRefs.1" presenceCondition="f2">
-      <modelElemEndpoints uri="" name="Class p2" metatypeUri="edu.toronto.cs.se.mmint.productline.mid.PLModelRel.PLMapping.PLModelElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.1"/>
-      <modelElemEndpoints uri="" name="Class p2" metatypeUri="edu.toronto.cs.se.mmint.productline.mid.PLModelRel.PLMapping.PLModelElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.1"/>
+      <modelElemEndpoints uri="" name="Class f2" metatypeUri="edu.toronto.cs.se.mmint.productline.mid.PLModelRel.PLMapping.PLModelElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.1"/>
+      <modelElemEndpoints uri="" name="Class f2" metatypeUri="edu.toronto.cs.se.mmint.productline.mid.PLModelRel.PLMapping.PLModelElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.1"/>
     </mappings>
     <mappings xsi:type="productline.mid:PLMapping" uri="" name="" metatypeUri="edu.toronto.cs.se.mmint.productline.mid.PLModelRel.PLMapping" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.2/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.2/@modelElemEndpointRefs.1" presenceCondition="f1">
       <modelElemEndpoints uri="" name="Class true" metatypeUri="edu.toronto.cs.se.mmint.productline.mid.PLModelRel.PLMapping.PLModelElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.2"/>
-      <modelElemEndpoints uri="" name="Class p1" metatypeUri="edu.toronto.cs.se.mmint.productline.mid.PLModelRel.PLMapping.PLModelElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.0"/>
+      <modelElemEndpoints uri="" name="Class f1" metatypeUri="edu.toronto.cs.se.mmint.productline.mid.PLModelRel.PLMapping.PLModelElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.0"/>
     </mappings>
     <mappings xsi:type="productline.mid:PLMapping" uri="" name="" metatypeUri="edu.toronto.cs.se.mmint.productline.mid.PLModelRel.PLMapping" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.3/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.3/@modelElemEndpointRefs.1" presenceCondition="f2">
       <modelElemEndpoints uri="" name="Class true" metatypeUri="edu.toronto.cs.se.mmint.productline.mid.PLModelRel.PLMapping.PLModelElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.2"/>
-      <modelElemEndpoints uri="" name="Class p2" metatypeUri="edu.toronto.cs.se.mmint.productline.mid.PLModelRel.PLMapping.PLModelElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.1"/>
+      <modelElemEndpoints uri="" name="Class f2" metatypeUri="edu.toronto.cs.se.mmint.productline.mid.PLModelRel.PLMapping.PLModelElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.1"/>
     </mappings>
     <modelEndpointRefs referencedObject="//@models.2/@modelEndpoints.0" modifiable="true">
       <modelElemRefs referencedObject="//@models.0/@modelElems.0" modifiable="true" modelElemEndpointRefs="//@models.2/@mappingRefs.0/@modelElemEndpointRefs.1"/>
@@ -92,9 +77,4 @@
   <extendibleTable key="/edu.toronto.cs.se.mmint.productline.tests/model/cd.productline#//@classes.2_AS_model://edu.toronto.cs.se.mmint.productline#//PLElement" value="//@models.0/@modelElems.0"/>
   <extendibleTable key="/edu.toronto.cs.se.mmint.productline.tests/model/cd.productline#//@classes.3_AS_model://edu.toronto.cs.se.mmint.productline#//PLElement" value="//@models.0/@modelElems.1"/>
   <extendibleTable key="/edu.toronto.cs.se.mmint.productline.tests/model/cd.productline#//@classes.1_AS_model://edu.toronto.cs.se.mmint.productline#//PLElement" value="//@models.0/@modelElems.2"/>
-  <extendibleTable key="/edu.toronto.cs.se.mmint.productline.tests/model/cd.productline#//@classes.1_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.3"/>
-  <extendibleTable key="/edu.toronto.cs.se.mmint.productline.tests/model/gsn.productline#//@classes.2_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.2"/>
-  <extendibleTable key="/edu.toronto.cs.se.mmint.productline.tests/model/cd.productline#//@classes.3_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.4"/>
-  <extendibleTable key="/edu.toronto.cs.se.mmint.productline.tests/model/cd.productline#//@classes.2_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.5"/>
-  <extendibleTable key="/edu.toronto.cs.se.mmint.productline.tests/model/gsn.productline#//@classes.1_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.1/@modelElems.3"/>
 </mid:MID>
