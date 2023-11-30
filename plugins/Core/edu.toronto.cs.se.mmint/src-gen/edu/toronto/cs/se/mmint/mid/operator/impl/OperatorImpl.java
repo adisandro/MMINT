@@ -259,8 +259,9 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
     public void setWorkingPath(String newWorkingPath) {
     var oldWorkingPath = this.workingPath;
     this.workingPath = newWorkingPath;
-    if (eNotificationRequired())
+    if (eNotificationRequired()) {
       eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.OPERATOR__WORKING_PATH, oldWorkingPath, this.workingPath));
+    }
   }
 
     /**
@@ -282,8 +283,9 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
     public void setExecutionTime(long newExecutionTime) {
     var oldExecutionTime = this.executionTime;
     this.executionTime = newExecutionTime;
-    if (eNotificationRequired())
+    if (eNotificationRequired()) {
       eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.OPERATOR__EXECUTION_TIME, oldExecutionTime, this.executionTime));
+    }
   }
 
     /**
@@ -305,8 +307,9 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
     public void setCommutative(boolean newCommutative) {
     var oldCommutative = this.commutative;
     this.commutative = newCommutative;
-    if (eNotificationRequired())
+    if (eNotificationRequired()) {
       eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.OPERATOR__COMMUTATIVE, oldCommutative, this.commutative));
+    }
   }
 
     /**
@@ -639,7 +642,9 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
    */
     @Override
     public String toStringGen() {
-    if (eIsProxy()) return super.toString();
+    if (eIsProxy()) {
+      return super.toString();
+    }
 
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (workingPath: ");
@@ -1421,7 +1426,8 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
         MMINTException.mustBeType(this);
 
         //TODO MMINT[OPERATOR] Run in its own thread to avoid blocking the user interface (needs ui parts to be passed for GMFDiagramUtils functions to work)
-        if (!Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_OPERATORS_ENABLED))) {
+        if (instanceMID != null &&
+              !Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_OPERATORS_ENABLED))) {
             instanceMID = null;
         }
         var newOperator = this.createInstance(instanceMID);
