@@ -40,7 +40,17 @@
     <repository>
       <id>Papyrus</id>
       <layout>p2</layout>
-      <url>https://download.eclipse.org/modeling/mdt/papyrus/updates/releases/2023-06</url>
+      <url>https://ci.eclipse.org/papyrus/job/Papyrus-Master/lastSuccessfulBuild/artifact/repository</url>
+    </repository>
+    <repository>
+      <id>XWT</id>
+      <layout>p2</layout>
+      <url>https://ci.eclipse.org/xwt/job/XWT-Master/lastSuccessfulBuild/artifact/repository</url>
+    </repository>
+    <repository>
+      <id>XText old</id>
+      <layout>p2</layout>
+      <url>https://download.eclipse.org/modeling/tmf/xtext/updates/releases/2.32.0</url>
     </repository>
   </repositories>
   <pluginRepositories>
