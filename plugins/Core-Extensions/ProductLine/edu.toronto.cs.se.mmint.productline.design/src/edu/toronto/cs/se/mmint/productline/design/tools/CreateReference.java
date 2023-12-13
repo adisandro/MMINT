@@ -15,6 +15,7 @@ package edu.toronto.cs.se.mmint.productline.design.tools;
 import java.util.Collection;
 import java.util.Map;
 
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -25,6 +26,7 @@ import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.sirius.business.api.action.AbstractExternalJavaAction;
 import org.eclipse.sirius.business.api.session.SessionManager;
 
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.productline.Class;
@@ -66,6 +68,7 @@ public class CreateReference extends AbstractExternalJavaAction {
     @Override
     protected void doExecute() {
       try {
+        var reasoner = this.srcClass.getProductLine().getReasoner();
         var labelProvider = LabelProvider.createTextProvider(c -> ((EReference) c).getName());
         var contentProvider = new ArrayContentProvider();
         var references = getReferences(this.srcClass, this.tgtClass);
@@ -77,11 +80,17 @@ public class CreateReference extends AbstractExternalJavaAction {
         var reference = ProductLineFactory.eINSTANCE.createReference();
         reference.setType(type);
         reference.setTarget(this.tgtClass);
-        reference.setPresenceCondition(this.srcClass.getPresenceCondition());
+        var pc = reasoner.simplify(reasoner.getANDSyntax()
+          .replace("$1", this.srcClass.getPresenceCondition())
+          .replace("$2", this.tgtClass.getPresenceCondition()));
+        reference.setPresenceCondition(pc);
         this.srcClass.getReferences().add(reference);
       }
       catch (MIDDialogCancellation e) {
         // do nothing
+      }
+      catch (MMINTException e) {
+        MMINTException.print(IStatus.ERROR, "Error creating reference", e);
       }
     }
   }
