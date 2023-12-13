@@ -80,9 +80,8 @@ public class CreateReference extends AbstractExternalJavaAction {
         var reference = ProductLineFactory.eINSTANCE.createReference();
         reference.setType(type);
         reference.setTarget(this.tgtClass);
-        var pc = reasoner.simplify(reasoner.getANDSyntax()
-          .replace("$1", this.srcClass.getPresenceCondition())
-          .replace("$2", this.tgtClass.getPresenceCondition()));
+        var pc = reasoner.simplify(
+          reasoner.and(this.srcClass.getPresenceCondition(), this.tgtClass.getPresenceCondition()));
         reference.setPresenceCondition(pc);
         this.srcClass.getReferences().add(reference);
       }

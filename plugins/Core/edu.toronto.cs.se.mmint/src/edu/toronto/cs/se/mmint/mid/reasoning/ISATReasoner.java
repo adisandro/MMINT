@@ -74,6 +74,47 @@ public interface ISATReasoner extends IReasoner {
   String getORSyntax();
 
   /**
+   * Creates a new formula by joining two formulas with some specified syntax.
+   *
+   * @param syntax
+   *          The syntax to join the two formulas, using $1 and $2 as placeholders for the two operands.
+   * @param formula1
+   *          The first formula to be joined.
+   * @param formula2
+   *          The second formula to be joined.
+   * @return The formula joined using the specified syntax.
+   */
+  private String join(String syntax, String formula1, String formula2) {
+    return syntax.replace("$1", formula1).replace("$2", formula2);
+  }
+
+  /**
+   * Creates a new formula by joining two formulas with the AND operator.
+   *
+   * @param formula1
+   *          The first formula to be joined.
+   * @param formula2
+   *          The second formula to be joined.
+   * @return The formula joined using the AND operator.
+   */
+  default String and(String formula1, String formula2) {
+    return join(getANDSyntax(), formula1, formula2);
+  }
+
+  /**
+   * Creates a new formula by joining two formulas with the OR operator.
+   *
+   * @param formula1
+   *          The first formula to be joined.
+   * @param formula2
+   *          The second formula to be joined.
+   * @return The formula joined using the OR operator.
+   */
+  default String or(String formula1, String formula2) {
+    return join(getORSyntax(), formula1, formula2);
+  }
+
+  /**
    * Simplifies a boolean formula.
    *
    * @param formula

@@ -33,7 +33,6 @@ import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage;
 
 public class AnnotatedEcoreToCDProductLine extends ToProductLine {
   private IProductLineFeaturesTrait reasoner;
-  private String andSyntax;
 
   protected static class AnnotatedEcoreToCDPLOut extends Out {
     public AnnotatedEcoreToCDPLOut(Map<String, MID> outputMIDsByName, String workingPath, In in,
@@ -48,7 +47,6 @@ public class AnnotatedEcoreToCDProductLine extends ToProductLine {
   protected void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws MMINTException {
     this.in = new In(inputsByName);
     this.reasoner = (IProductLineFeaturesTrait) MMINT.getReasoner("LogicNG");
-    this.andSyntax = this.reasoner.getANDSyntax();
     this.out = new AnnotatedEcoreToCDPLOut(outputMIDsByName, getWorkingPath(), this.in, this.reasoner);
   }
 
@@ -96,7 +94,7 @@ public class AnnotatedEcoreToCDProductLine extends ToProductLine {
         if (!classIsTrue) {
           plEAttributePC = (plEAttribute.isAlwaysPresent()) ?
             plEClassPC :
-            this.reasoner.simplify(this.andSyntax.replace("$1", plEAttributePC).replace("$2", plEClassPC));
+            this.reasoner.simplify(this.reasoner.and(plEAttributePC, plEClassPC));
           plEAttribute.setPresenceCondition(plEAttributePC);
         }
         createPLReference(ClassDiagramPackage.eINSTANCE.getClass_OwnedAttributes(), plEClass, plEAttribute)
@@ -112,7 +110,7 @@ public class AnnotatedEcoreToCDProductLine extends ToProductLine {
         if (!classIsTrue) {
           plEOperationPC = (plEOperation.isAlwaysPresent()) ?
             plEClassPC :
-            this.reasoner.simplify(this.andSyntax.replace("$1", plEOperationPC).replace("$2", plEClassPC));
+            this.reasoner.simplify(this.reasoner.and(plEOperationPC, plEClassPC));
           plEOperation.setPresenceCondition(plEOperationPC);
         }
         createPLReference(ClassDiagramPackage.eINSTANCE.getClass_OwnedOperations(), plEClass, plEOperation)
@@ -135,7 +133,7 @@ public class AnnotatedEcoreToCDProductLine extends ToProductLine {
         if (!classIsTrue) {
           plESuperclassPC = (plESuperclass.isAlwaysPresent()) ?
             plEClassPC :
-            this.reasoner.simplify(this.andSyntax.replace("$1", plESuperclassPC).replace("$2", plEClassPC));
+            this.reasoner.simplify(this.reasoner.and(plESuperclassPC, plEClassPC));
         }
         createPLReference(ClassDiagramPackage.eINSTANCE.getClass_Superclass(), plEClass, plESuperclass)
           .setPresenceCondition(plESuperclassPC);
@@ -176,20 +174,19 @@ public class AnnotatedEcoreToCDProductLine extends ToProductLine {
           if (!tgtIsTrue) {
             plEReferencePC = (assocIsTrue) ?
               plEClassTgtPC :
-              this.reasoner.simplify(this.andSyntax.replace("$1", plEReferencePC).replace("$2", plEClassTgtPC));
+              this.reasoner.simplify(this.reasoner.and(plEReferencePC, plEClassTgtPC));
           }
         }
         else { // !classIsTrue
           if (tgtIsTrue) {
             plEReferencePC = (assocIsTrue) ?
               plEClassPC :
-              this.reasoner.simplify(this.andSyntax.replace("$1", plEReferencePC).replace("$2", plEClassPC));
+              this.reasoner.simplify(this.reasoner.and(plEReferencePC, plEClassPC));
           }
           else { // !tgtIsTrue
             plEReferencePC = (assocIsTrue) ?
-              this.reasoner.simplify(this.andSyntax.replace("$1", plEClassPC).replace("$2", plEClassTgtPC)) :
-              this.reasoner.simplify(this.andSyntax.replace("$1", plEReferencePC).replace("$2",
-                                       this.andSyntax.replace("$1", plEClassPC).replace("$2", plEClassTgtPC)));
+              this.reasoner.simplify(this.reasoner.and(plEClassPC, plEClassTgtPC)) :
+              this.reasoner.simplify(this.reasoner.and(plEReferencePC, this.reasoner.and(plEClassPC, plEClassTgtPC)));
           }
         }
         plEReference.setPresenceCondition(plEReferencePC);
