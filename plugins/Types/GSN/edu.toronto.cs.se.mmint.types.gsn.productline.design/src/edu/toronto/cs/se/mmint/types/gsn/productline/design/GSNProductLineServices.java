@@ -20,9 +20,6 @@ import edu.toronto.cs.se.mmint.productline.ProductLineUtils;
 import edu.toronto.cs.se.mmint.productline.design.ProductLineServices;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 
-/**
- * The services class used by VSM.
- */
 public class GSNProductLineServices extends ProductLineServices {
 
   protected String getGSNElementLabel(EObject self) {
@@ -37,7 +34,7 @@ public class GSNProductLineServices extends ProductLineServices {
             desc += a.getValue();
           }
         }
-        yield id + " " + desc;
+        yield (id + " " + desc).strip();
       }
       case Class c -> "";
       default -> getElementLabel(self);
