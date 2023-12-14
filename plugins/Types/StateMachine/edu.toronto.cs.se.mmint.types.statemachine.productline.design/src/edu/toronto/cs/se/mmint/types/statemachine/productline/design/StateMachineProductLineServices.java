@@ -28,7 +28,7 @@ public class StateMachineProductLineServices extends ProductLineServices {
         var name = "";
         for (var a : c.getAttributes()) {
           if (a.getType() == StateMachinePackage.eINSTANCE.getAbstractState_Name()) {
-            name = a.getValue();
+            name += a.getValue();
             break;
           }
         }
@@ -38,10 +38,10 @@ public class StateMachineProductLineServices extends ProductLineServices {
         String action = "", trigger = "";
         for (var a : c.getAttributes()) {
           if (a.getType() == StateMachinePackage.eINSTANCE.getFiringElement_Action()) {
-            action = a.getValue();
+            action += a.getValue();
           }
           if (a.getType() == StateMachinePackage.eINSTANCE.getFiringElement_Trigger()) {
-            trigger = "[" + a.getValue() + "]";
+            trigger += "[" + a.getValue() + ProductLineUtils.getPresenceConditionLabel(a, true) + "]";
           }
         }
         yield (action + " " + trigger).strip();
@@ -50,10 +50,10 @@ public class StateMachineProductLineServices extends ProductLineServices {
         String action = "", trigger = "";
         for (var a : c.getAttributes()) {
           if (a.getType() == StateMachinePackage.eINSTANCE.getFiringElement_Action()) {
-            action = a.getValue();
+            action += a.getValue();
           }
           if (a.getType() == StateMachinePackage.eINSTANCE.getFiringElement_Trigger()) {
-            trigger = a.getValue();
+            trigger += a.getValue();
           }
         }
         yield (trigger + "/" + action).strip();
@@ -65,6 +65,8 @@ public class StateMachineProductLineServices extends ProductLineServices {
 
   // use different method names to allow full disabling of StateMachine layer
   public String getStateMachinePLElementLabel(EObject self) {
-    return getStateMachineElementLabel(self) + " " + ProductLineUtils.getPresenceConditionLabel((PLElement) self, true);
+    return
+      (getStateMachineElementLabel(self) + " " + ProductLineUtils.getPresenceConditionLabel((PLElement) self, true))
+        .strip();
   }
 }

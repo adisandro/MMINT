@@ -43,6 +43,7 @@ public class GSNProductLineServices extends ProductLineServices {
 
   // use different method names to allow full disabling of GSN layer
   public String getGSNPLElementLabel(EObject self) {
-    return getGSNElementLabel(self) + " " + ProductLineUtils.getPresenceConditionLabel((PLElement) self, true);
+    return (getGSNElementLabel(self) + " " + ProductLineUtils.getPresenceConditionLabel((PLElement) self, true))
+      .strip();
   }
 }
