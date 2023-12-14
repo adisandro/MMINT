@@ -19,4 +19,12 @@
 	       name="gsn.productline">
     </component>
   </extension>
+
+   <extension
+         point="org.eclipse.sirius.externalJavaAction">
+      <javaActions
+            actionClass="edu.toronto.cs.se.mmint.types.gsn.productline.design.context.PLImportTemplate"
+            id="edu.toronto.cs.se.mmint.types.gsn.productline.design.context.PLImportTemplate">
+      </javaActions>
+   </extension>
 </plugin>
