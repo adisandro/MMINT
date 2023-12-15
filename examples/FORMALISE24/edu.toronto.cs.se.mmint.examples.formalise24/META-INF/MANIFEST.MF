@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: edu.toronto.cs.se.mmint.examples.formalise24;singleton:=true
+Bundle-Version: 2.19.99.qualifier
+Automatic-Module-Name: edu.toronto.cs.se.mmint.examples.formalise24
+Bundle-RequiredExecutionEnvironment: JavaSE-21
+Bundle-Vendor: %providerName
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.emf.common.ui
