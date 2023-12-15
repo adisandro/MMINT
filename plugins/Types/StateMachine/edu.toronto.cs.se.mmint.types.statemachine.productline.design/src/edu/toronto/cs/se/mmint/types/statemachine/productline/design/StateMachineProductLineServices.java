@@ -22,51 +22,30 @@ import edu.toronto.cs.se.modelepedia.statemachine.StateMachinePackage;
 
 public class StateMachineProductLineServices extends ProductLineServices {
 
-  protected String getStateMachineElementLabel(EObject self) {
-    return switch (self) {
-      case Class c when StateMachinePackage.eINSTANCE.getState() == c.getType() -> {
-        var name = "";
-        for (var a : c.getAttributes()) {
-          if (a.getType() == StateMachinePackage.eINSTANCE.getAbstractState_Name()) {
-            name += a.getValue();
-            break;
-          }
-        }
-        yield name;
-      }
-      case Class c when StateMachinePackage.eINSTANCE.getTransition() == c.getType() -> {
-        String action = "", trigger = "";
-        for (var a : c.getAttributes()) {
-          if (a.getType() == StateMachinePackage.eINSTANCE.getFiringElement_Action()) {
-            action += a.getValue();
-          }
-          if (a.getType() == StateMachinePackage.eINSTANCE.getFiringElement_Trigger()) {
-            trigger += "[" + a.getValue() + ProductLineUtils.getPresenceConditionLabel(a, true) + "]";
-          }
-        }
-        yield (action + " " + trigger).strip();
-      }
-      case Class c when StateMachinePackage.eINSTANCE.getStateAction() == c.getType() -> {
-        String action = "", trigger = "";
-        for (var a : c.getAttributes()) {
-          if (a.getType() == StateMachinePackage.eINSTANCE.getFiringElement_Action()) {
-            action += a.getValue();
-          }
-          if (a.getType() == StateMachinePackage.eINSTANCE.getFiringElement_Trigger()) {
-            trigger += a.getValue();
-          }
-        }
-        yield (trigger + "/" + action).strip();
-      }
-      case Class c -> "";
-      default -> getElementLabel(self);
-    };
-  }
-
   // use different method names to allow full disabling of StateMachine layer
   public String getStateMachinePLElementLabel(EObject self) {
-    return
-      (getStateMachineElementLabel(self) + " " + ProductLineUtils.getPresenceConditionLabel((PLElement) self, true))
-        .strip();
+    var pc = ProductLineUtils.getPresenceConditionLabel((PLElement) self, true);
+    var label = switch (self) {
+      case Class c when StateMachinePackage.eINSTANCE.getState() == c.getType() -> {
+        var name = mergePLAttributeLabels(c, StateMachinePackage.eINSTANCE.getAbstractState_Name());
+        yield (pc.isBlank()) ? name : pc + "\n" + name;
+      }
+      case Class c when StateMachinePackage.eINSTANCE.getTransition() == c.getType() -> {
+        var trigger = mergePLAttributeLabels(c, StateMachinePackage.eINSTANCE.getFiringElement_Trigger());
+        var action = mergePLAttributeLabels(c, StateMachinePackage.eINSTANCE.getFiringElement_Action());
+        var text = (action.isBlank()) ? trigger.strip() : (trigger + "/" + action).strip();
+        yield (pc.isBlank()) ? text : pc + "\n" + text;
+      }
+      case Class c when StateMachinePackage.eINSTANCE.getStateAction() == c.getType() -> {
+        var trigger = mergePLAttributeLabels(c, StateMachinePackage.eINSTANCE.getFiringElement_Trigger());
+        var action = mergePLAttributeLabels(c, StateMachinePackage.eINSTANCE.getFiringElement_Action());
+        var text = (action.isBlank()) ? trigger.strip() : (trigger + "/" + action).strip();
+        yield (pc.isBlank()) ? text : pc + "\n" + text;
+      }
+      case Class c -> "";
+      default -> getPLElementLabel(self);
+    };
+
+    return label;
   }
 }

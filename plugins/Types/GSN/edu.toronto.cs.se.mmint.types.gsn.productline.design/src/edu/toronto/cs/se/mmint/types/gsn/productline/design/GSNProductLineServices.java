@@ -22,28 +22,20 @@ import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 
 public class GSNProductLineServices extends ProductLineServices {
 
-  protected String getGSNElementLabel(EObject self) {
-    return switch (self) {
-      case Class c when GSNPackage.eINSTANCE.getArgumentElement().isSuperTypeOf(c.getType()) -> {
-        String id = "", desc = "";
-        for (var a : c.getAttributes()) {
-          if (a.getType() == GSNPackage.eINSTANCE.getArgumentElement_Id()) {
-            id += a.getValue();
-          }
-          if (a.getType() == GSNPackage.eINSTANCE.getArgumentElement_Description()) {
-            desc += a.getValue();
-          }
-        }
-        yield (id + " " + desc).strip();
-      }
-      case Class c -> "";
-      default -> getElementLabel(self);
-    };
-  }
-
   // use different method names to allow full disabling of GSN layer
   public String getGSNPLElementLabel(EObject self) {
-    return (getGSNElementLabel(self) + " " + ProductLineUtils.getPresenceConditionLabel((PLElement) self, true))
-      .strip();
+    var pc = ProductLineUtils.getPresenceConditionLabel((PLElement) self, true);
+    var label = switch (self) {
+      case Class c when GSNPackage.eINSTANCE.getArgumentElement().isSuperTypeOf(c.getType()) -> {
+        var id = mergePLAttributeLabels(c, GSNPackage.eINSTANCE.getArgumentElement_Id());
+        var desc = mergePLAttributeLabels(c, GSNPackage.eINSTANCE.getArgumentElement_Description());
+        var text = (id + " " + desc).strip();
+        yield (pc.isBlank()) ? text : pc + "\n" + text;
+      }
+      case Class c -> "";
+      default -> getPLElementLabel(self);
+    };
+
+    return label;
   }
 }

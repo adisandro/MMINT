@@ -12,6 +12,9 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.productline.design;
 
+import java.util.stream.Collectors;
+
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 
 import edu.toronto.cs.se.mmint.productline.Attribute;
@@ -25,16 +28,41 @@ import edu.toronto.cs.se.mmint.productline.Reference;
  */
 public class ProductLineServices {
 
-  protected String getElementLabel(EObject self) {
-    return switch (self) {
-      case Class c     -> c.getType().getName();
-      case Attribute a -> a.getType().getName() + ": " + a.getValue();
-      case Reference r -> r.getType().getName();
-      default          -> "";
-    };
+  protected String mergePLAttributeLabels(Class plClass, EAttribute attrType) {
+    var label = "";
+    var attributes = plClass.getAttributes().stream()
+      .filter(a -> a.getType() == attrType)
+      .collect(Collectors.toList());
+    if (attributes.size() > 1) {
+      label = attributes.stream()
+        .map(t -> ProductLineUtils.getPresenceConditionLabel(t, true) + " " + t.getValue())
+        .collect(Collectors.joining("\n"));
+    }
+    else if (attributes.size() > 0) {
+      label = attributes.get(0).getValue();
+    }
+
+    return label;
   }
 
   public String getPLElementLabel(EObject self) {
-    return getElementLabel(self) + " " + ProductLineUtils.getPresenceConditionLabel((PLElement) self, true);
+    var pc = ProductLineUtils.getPresenceConditionLabel((PLElement) self, true);
+    var label = switch (self) {
+      case Class c -> {
+        var l = c.getType().getName();
+        yield (pc.isBlank()) ? l : pc + "\n" + l;
+      }
+      case Attribute a -> {
+        var l = a.getType().getName() + ": " + a.getValue();
+        yield (pc.isBlank()) ? l : pc + " " + l;
+      }
+      case Reference r -> {
+        var l = r.getType().getName();
+        yield (pc.isBlank()) ? l : pc + "\n" + l;
+      }
+      default -> "";
+    };
+
+    return label;
   }
 }
