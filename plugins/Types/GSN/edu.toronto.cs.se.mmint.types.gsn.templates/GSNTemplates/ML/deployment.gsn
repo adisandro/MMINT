@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gsn:SafetyCase xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gsn="http://se.cs.toronto.edu/modelepedia/GSN">
+  <goals xsi:type="gsn:BasicGoal" id="G6.1" description="The allocated system safety requirements are satisfied by the deployment of the ML component into the system">
+    <supportedBy target="//@strategies.0"/>
+  </goals>
+  <goals xsi:type="gsn:BasicGoal" id="G6.2" description="Allocated system safety requirements are satisfied under all defined operating scenarios when the ML component is integrated into the system" supports="//@strategies.0/@supportedBy.0">
+    <inContextOf context="//@contexts.0"/>
+    <inContextOf context="//@justifications.0"/>
+  </goals>
+  <goals xsi:type="gsn:BasicGoal" id="G6.3" description="Allocated system safety requirements are satisfied throughout system operation" supports="//@strategies.0/@supportedBy.1"/>
+  <strategies xsi:type="gsn:BasicStrategy" id="S6.1" description="Argument over the integration and operation of the ML component" supports="//@goals.0/@supportedBy.0">
+    <supportedBy target="//@goals.1"/>
+    <supportedBy target="//@goals.2"/>
+  </strategies>
+  <contexts id="C6.1" description="{Operating scenario}" valid="false" contextOf="//@goals.1/@inContextOf.0"/>
+  <justifications id="J6.1" description="{Rationale for the sufficiency of the operating scenarios}" valid="false" contextOf="//@goals.1/@inContextOf.1"/>
+</gsn:SafetyCase>
