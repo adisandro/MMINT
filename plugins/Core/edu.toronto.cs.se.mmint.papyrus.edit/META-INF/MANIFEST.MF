@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.mmint.papyrus.edit;singleton:=true
 Automatic-Module-Name: edu.toronto.cs.se.mmint.papyrus.edit
-Bundle-Version: 2.19.99.qualifier
+Bundle-Version: 2.20.0.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: edu.toronto.cs.se.mmint.papyrus.provider.PapyrusEditPlugin$Implementation
 Bundle-Vendor: %providerName
