@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.sequencediagram.design;singleton:=true
 Automatic-Module-Name: edu.toronto.cs.se.modelepedia.sequencediagram.design
-Bundle-Version: 2.20.0.qualifier
+Bundle-Version: 2.20.99.qualifier
 Bundle-Activator: edu.toronto.cs.se.modelepedia.sequencediagram.design.Activator
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.ui,

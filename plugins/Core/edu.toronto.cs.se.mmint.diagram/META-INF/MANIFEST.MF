@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.mmint.diagram; singleton:=true
 Automatic-Module-Name: edu.toronto.cs.se.mmint.diagram
-Bundle-Version: 2.20.0.qualifier
+Bundle-Version: 2.20.99.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorPlugin
 Bundle-Vendor: %providerName

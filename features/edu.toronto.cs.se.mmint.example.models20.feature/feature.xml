@@ -14,7 +14,7 @@
 <feature
       id="edu.toronto.cs.se.mmint.example.models20.feature"
       label="MMINT - MoDELS20 paper"
-      version="2.20.0.qualifier"
+      version="2.20.99.qualifier"
       provider-name="Software Engineering Group, University of Toronto">
 
    <description url="https://doi.org/10.1145/3417990.3422012">
