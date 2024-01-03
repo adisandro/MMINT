@@ -115,4 +115,7 @@
    <repository-reference location="https://static.incquerylabs.com/projects/massif/release/0.7.0/repository" enabled="true" />
    <repository-reference location="https://download.eclipse.org/modeling/mdt/papyrus/components/sysml16/2022-12" enabled="true" />
    <repository-reference location="https://download.eclipse.org/justj/jres/latest" enabled="true" />
+   <repository-reference location="https://ci.eclipse.org/papyrus/job/Papyrus-Master/7130/artifact/repository" enabled="true" />
+   <repository-reference location="https://ci.eclipse.org/xwt/job/XWT-Master/1732/artifact/repository" enabled="true" />
+   <repository-reference location="https://download.eclipse.org/modeling/tmf/xtext/updates/releases/2.32.0" enabled="true" />
 </site>

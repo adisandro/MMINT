@@ -40,12 +40,12 @@
     <repository>
       <id>Papyrus</id>
       <layout>p2</layout>
-      <url>https://ci.eclipse.org/papyrus/job/Papyrus-Master/lastSuccessfulBuild/artifact/repository</url>
+      <url>https://ci.eclipse.org/papyrus/job/Papyrus-Master/7130/artifact/repository</url>
     </repository>
     <repository>
       <id>XWT</id>
       <layout>p2</layout>
-      <url>https://ci.eclipse.org/xwt/job/XWT-Master/lastSuccessfulBuild/artifact/repository</url>
+      <url>https://ci.eclipse.org/xwt/job/XWT-Master/1732/artifact/repository</url>
     </repository>
     <repository>
       <id>XText old</id>
