@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Copyright (c) 2024, 2024 Alessio Di Sandro.
+   
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License 2.0 which is available at
+    https://www.eclipse.org/legal/epl-2.0/
+   
+    SPDX-License-Identifier: EPL-2.0
+   
+    Contributors:
+        Alessio Di Sandro - Implementation
+ -->
+<feature
+      id="edu.toronto.cs.se.mmintpl.types.feature"
+      label="MMINT-PL + Types"
+      version="2.19.99.qualifier"
+      provider-name="Software Engineering Group, University of Toronto">
+
+   <description url="https://github.com/adisandro/MMINT">
+      MMINT-PL is a version of MMINT that supports Product Lines. This feature includes supported metamodels with custom Product Line editors.
+   </description>
+
+   <copyright>
+      Copyright (c) 2024, 2024 Alessio Di Sandro.
+   </copyright>
+
+   <license url="https://www.eclipse.org/legal/epl-2.0/">
+      This program and the accompanying materials are made available under the terms of the Eclipse Public License 2.0 which is available at https://www.eclipse.org/legal/epl-2.0/
+   </license>
+
+   <includes
+         id="edu.toronto.cs.se.mmintpl.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="edu.toronto.cs.se.modelepedia.gsn.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="edu.toronto.cs.se.modelepedia.statemachine.feature"
+         version="0.0.0"/>
+
+   <plugin
+         id="edu.toronto.cs.se.mmint.types.gsn.productline.design"
+         version="0.0.0"/>
+
+   <plugin
+         id="edu.toronto.cs.se.mmint.types.statemachine.productline.design"
+         version="0.0.0"/>
+
+</feature>

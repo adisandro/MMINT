@@ -265,6 +265,7 @@
     <module>../../features/edu.toronto.cs.se.mminta.feature</module>
     <module>../../features/edu.toronto.cs.se.mmintpl.feature</module>
     <module>../../features/edu.toronto.cs.se.mummint.feature</module>
+    <module>../../features/edu.toronto.cs.se.mmintpl.types.feature</module>
     <module>../../features/edu.toronto.cs.se.mmint.kotlin.feature</module>
     <module>../../features/edu.toronto.cs.se.mmint.lean.feature</module>
     <module>../../features/edu.toronto.cs.se.mmint.logicng.feature</module>
