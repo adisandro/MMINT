@@ -24,7 +24,7 @@
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']"/>
         <target xmi:type="gsn:SafetyCase" href="ML/requirements.gsn#/"/>
       </ownedRepresentationDescriptors>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_DLhzIKmVEe6YItBA_GdBOg" name="deployment" repPath="#_DLglAKmVEe6YItBA_GdBOg" changeId="1704217251292">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_DLhzIKmVEe6YItBA_GdBOg" name="deployment" repPath="#_DLglAKmVEe6YItBA_GdBOg" changeId="1704386732187">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']"/>
         <target xmi:type="gsn:SafetyCase" href="ML/deployment.gsn#/"/>
       </ownedRepresentationDescriptors>
@@ -2546,6 +2546,138 @@
           <styles xmi:type="notation:ShapeStyle" xmi:id="_-V_yMamVEe6YItBA_GdBOg" fontName="Cantarell" fontHeight="10"/>
           <layoutConstraint xmi:type="notation:Bounds" xmi:id="_-V_yMqmVEe6YItBA_GdBOg" x="940" y="420" width="200" height="100"/>
         </children>
+        <children xmi:type="notation:Node" xmi:id="_IUb7oKsfEe6EGt8hkIKpKQ" type="2001" element="_IUF9YKsfEe6EGt8hkIKpKQ">
+          <children xmi:type="notation:Node" xmi:id="_IUoI4KsfEe6EGt8hkIKpKQ" type="5002">
+            <layoutConstraint xmi:type="notation:Location" xmi:id="_IUoI4asfEe6EGt8hkIKpKQ" y="5"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_IVXIsKsfEe6EGt8hkIKpKQ" type="3005" element="_IUIZoKsfEe6EGt8hkIKpKQ">
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_IVXIsasfEe6EGt8hkIKpKQ" fontName="Cantarell"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_IVXIsqsfEe6EGt8hkIKpKQ"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_IUb7oasfEe6EGt8hkIKpKQ" fontName="Cantarell" fontHeight="10"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_IUb7oqsfEe6EGt8hkIKpKQ" x="940" y="600" width="200" height="95"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_fxGaYKsfEe6EGt8hkIKpKQ" type="2001" element="_fw-ekKsfEe6EGt8hkIKpKQ">
+          <children xmi:type="notation:Node" xmi:id="_fxHBcKsfEe6EGt8hkIKpKQ" type="5002">
+            <layoutConstraint xmi:type="notation:Location" xmi:id="_fxHBcasfEe6EGt8hkIKpKQ" y="5"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_fxIPkKsfEe6EGt8hkIKpKQ" type="3003" element="_fw_FoKsfEe6EGt8hkIKpKQ">
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_fxIPkasfEe6EGt8hkIKpKQ" fontName="Cantarell"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_fxIPkqsfEe6EGt8hkIKpKQ"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_fxGaYasfEe6EGt8hkIKpKQ" fontName="Cantarell" fontHeight="10"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_fxGaYqsfEe6EGt8hkIKpKQ" x="800" y="760" width="200" height="100"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_nHGXkKsfEe6EGt8hkIKpKQ" type="2001" element="_nG_p4KsfEe6EGt8hkIKpKQ">
+          <children xmi:type="notation:Node" xmi:id="_nHG-oKsfEe6EGt8hkIKpKQ" type="5002">
+            <layoutConstraint xmi:type="notation:Location" xmi:id="_nHG-oasfEe6EGt8hkIKpKQ" y="5"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_nHG-oqsfEe6EGt8hkIKpKQ" type="3003" element="_nHAQ8KsfEe6EGt8hkIKpKQ">
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_nHG-o6sfEe6EGt8hkIKpKQ" fontName="Cantarell"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_nHG-pKsfEe6EGt8hkIKpKQ"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_nHGXkasfEe6EGt8hkIKpKQ" fontName="Cantarell" fontHeight="10"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_nHGXkqsfEe6EGt8hkIKpKQ" x="1060" y="760" width="200" height="100"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_vJlAQKsfEe6EGt8hkIKpKQ" type="2001" element="_vJfgsKsfEe6EGt8hkIKpKQ">
+          <children xmi:type="notation:Node" xmi:id="_vJlnUKsfEe6EGt8hkIKpKQ" type="5002">
+            <layoutConstraint xmi:type="notation:Location" xmi:id="_vJlnUasfEe6EGt8hkIKpKQ" y="5"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_vJ4iQKsfEe6EGt8hkIKpKQ" type="3005" element="_vJfgsasfEe6EGt8hkIKpKQ">
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_vJ4iQasfEe6EGt8hkIKpKQ" fontName="Cantarell"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_vJ4iQqsfEe6EGt8hkIKpKQ"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_vJlAQasfEe6EGt8hkIKpKQ" fontName="Cantarell" fontHeight="10"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_vJlAQqsfEe6EGt8hkIKpKQ" x="800" y="920" width="200" height="95"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_0_iuEKsfEe6EGt8hkIKpKQ" type="2001" element="_0_cncKsfEe6EGt8hkIKpKQ">
+          <children xmi:type="notation:Node" xmi:id="_0_jVIKsfEe6EGt8hkIKpKQ" type="5002">
+            <layoutConstraint xmi:type="notation:Location" xmi:id="_0_jVIasfEe6EGt8hkIKpKQ" y="5"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_4HR7EKsfEe6EGt8hkIKpKQ" type="3005" element="_4HPe0KsfEe6EGt8hkIKpKQ">
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_4HR7EasfEe6EGt8hkIKpKQ" fontName="Cantarell"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4HR7EqsfEe6EGt8hkIKpKQ"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_0_iuEasfEe6EGt8hkIKpKQ" fontName="Cantarell" fontHeight="10"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0_iuEqsfEe6EGt8hkIKpKQ" x="1060" y="920" width="200" height="98"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_5kPBSKsfEe6EGt8hkIKpKQ" type="2001" element="_5kKIwKsfEe6EGt8hkIKpKQ">
+          <children xmi:type="notation:Node" xmi:id="_5kPoUKsfEe6EGt8hkIKpKQ" type="5002">
+            <layoutConstraint xmi:type="notation:Location" xmi:id="_5kPoUasfEe6EGt8hkIKpKQ" y="5"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_-C494KsfEe6EGt8hkIKpKQ" type="3005" element="_-C16k6sfEe6EGt8hkIKpKQ">
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_-C494asfEe6EGt8hkIKpKQ" fontName="Cantarell"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_-C494qsfEe6EGt8hkIKpKQ"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_5kPBSasfEe6EGt8hkIKpKQ" fontName="Cantarell" fontHeight="10"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_5kPBSqsfEe6EGt8hkIKpKQ" x="540" y="919" width="200" height="98"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_AF27MKsgEe6EGt8hkIKpKQ" type="2001" element="_AFyCsKsgEe6EGt8hkIKpKQ">
+          <children xmi:type="notation:Node" xmi:id="_AF27M6sgEe6EGt8hkIKpKQ" type="5002">
+            <layoutConstraint xmi:type="notation:Location" xmi:id="_AF27NKsgEe6EGt8hkIKpKQ" y="5"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_AF27NasgEe6EGt8hkIKpKQ" type="3003" element="_AFyCsasgEe6EGt8hkIKpKQ">
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_AF27NqsgEe6EGt8hkIKpKQ" fontName="Cantarell"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_AF27N6sgEe6EGt8hkIKpKQ"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_AF27MasgEe6EGt8hkIKpKQ" fontName="Cantarell" fontHeight="10"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_AF27MqsgEe6EGt8hkIKpKQ" x="660" y="1080" width="200" height="100"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_AcHfEKsgEe6EGt8hkIKpKQ" type="2001" element="_AcCmkKsgEe6EGt8hkIKpKQ">
+          <children xmi:type="notation:Node" xmi:id="_AcHfE6sgEe6EGt8hkIKpKQ" type="5002">
+            <layoutConstraint xmi:type="notation:Location" xmi:id="_AcHfFKsgEe6EGt8hkIKpKQ" y="5"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_AcIGIKsgEe6EGt8hkIKpKQ" type="3003" element="_AcCmkasgEe6EGt8hkIKpKQ">
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_AcIGIasgEe6EGt8hkIKpKQ" fontName="Cantarell"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_AcIGIqsgEe6EGt8hkIKpKQ"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_AcHfEasgEe6EGt8hkIKpKQ" fontName="Cantarell" fontHeight="10"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_AcHfEqsgEe6EGt8hkIKpKQ" x="920" y="1080" width="200" height="100"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_OsB6aKsgEe6EGt8hkIKpKQ" type="2001" element="_Or9o8KsgEe6EGt8hkIKpKQ">
+          <children xmi:type="notation:Node" xmi:id="_OsChcKsgEe6EGt8hkIKpKQ" type="5002">
+            <layoutConstraint xmi:type="notation:Location" xmi:id="_OsChcasgEe6EGt8hkIKpKQ" y="5"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_OsLrYKsgEe6EGt8hkIKpKQ" type="3005" element="_Or9o8asgEe6EGt8hkIKpKQ">
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_OsLrYasgEe6EGt8hkIKpKQ" fontName="Cantarell"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_OsLrYqsgEe6EGt8hkIKpKQ"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_OsB6aasgEe6EGt8hkIKpKQ" fontName="Cantarell" fontHeight="10"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_OsB6aqsgEe6EGt8hkIKpKQ" x="280" y="600" width="200" height="95"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_TLiyoKsgEe6EGt8hkIKpKQ" type="2001" element="_TLehMKsgEe6EGt8hkIKpKQ">
+          <children xmi:type="notation:Node" xmi:id="_TLjZsKsgEe6EGt8hkIKpKQ" type="5002">
+            <layoutConstraint xmi:type="notation:Location" xmi:id="_TLjZsasgEe6EGt8hkIKpKQ" y="5"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_TLjZsqsgEe6EGt8hkIKpKQ" type="3003" element="_TLehMasgEe6EGt8hkIKpKQ">
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_TLjZs6sgEe6EGt8hkIKpKQ" fontName="Cantarell"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_TLjZtKsgEe6EGt8hkIKpKQ"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_TLiyoasgEe6EGt8hkIKpKQ" fontName="Cantarell" fontHeight="10"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_TLiyoqsgEe6EGt8hkIKpKQ" x="120" y="760" width="200" height="100"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_TfjTwKsgEe6EGt8hkIKpKQ" type="2001" element="_TfebQKsgEe6EGt8hkIKpKQ">
+          <children xmi:type="notation:Node" xmi:id="_TfjTw6sgEe6EGt8hkIKpKQ" type="5002">
+            <layoutConstraint xmi:type="notation:Location" xmi:id="_TfjTxKsgEe6EGt8hkIKpKQ" y="5"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_Tfj60KsgEe6EGt8hkIKpKQ" type="3003" element="_TfebQasgEe6EGt8hkIKpKQ">
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_Tfj60asgEe6EGt8hkIKpKQ" fontName="Cantarell"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Tfj60qsgEe6EGt8hkIKpKQ"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_TfjTwasgEe6EGt8hkIKpKQ" fontName="Cantarell" fontHeight="10"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_TfjTwqsgEe6EGt8hkIKpKQ" x="400" y="760" width="200" height="100"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_iNIigKsgEe6EGt8hkIKpKQ" type="2001" element="_iNDqAKsgEe6EGt8hkIKpKQ">
+          <children xmi:type="notation:Node" xmi:id="_iNJJkKsgEe6EGt8hkIKpKQ" type="5002">
+            <layoutConstraint xmi:type="notation:Location" xmi:id="_iNJJkasgEe6EGt8hkIKpKQ" y="5"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_quNLsKsgEe6EGt8hkIKpKQ" type="3005" element="_quKIYasgEe6EGt8hkIKpKQ">
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_quNLsasgEe6EGt8hkIKpKQ" fontName="Cantarell"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_quNLsqsgEe6EGt8hkIKpKQ"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_iNIigasgEe6EGt8hkIKpKQ" fontName="Cantarell" fontHeight="10"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_iNIigqsgEe6EGt8hkIKpKQ" x="140" y="920" width="160" height="142"/>
+        </children>
         <styles xmi:type="notation:DiagramStyle" xmi:id="_DLpH4qmVEe6YItBA_GdBOg"/>
         <edges xmi:type="notation:Edge" xmi:id="_qUdWdKmVEe6YItBA_GdBOg" type="4001" element="_qUWBsKmVEe6YItBA_GdBOg" source="_SMpB4KmVEe6YItBA_GdBOg" target="_ZiBUAKmVEe6YItBA_GdBOg">
           <children xmi:type="notation:Node" xmi:id="_qUdWeKmVEe6YItBA_GdBOg" type="6001">
@@ -2627,6 +2759,198 @@
           <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_C0xDiqmWEe6YItBA_GdBOg" id="(0.56,0.9473684210526315)"/>
           <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_C0xDi6mWEe6YItBA_GdBOg" id="(0.6,0.0)"/>
         </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_ag8IUKsfEe6EGt8hkIKpKQ" type="4001" element="_agzlcKsfEe6EGt8hkIKpKQ" source="_-V_yMKmVEe6YItBA_GdBOg" target="_IUb7oKsfEe6EGt8hkIKpKQ">
+          <children xmi:type="notation:Node" xmi:id="_ag8vYKsfEe6EGt8hkIKpKQ" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ag8vYasfEe6EGt8hkIKpKQ" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_ag9WcKsfEe6EGt8hkIKpKQ" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ag9WcasfEe6EGt8hkIKpKQ" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_ag99gKsfEe6EGt8hkIKpKQ" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ag99gasfEe6EGt8hkIKpKQ" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_ag8IUasfEe6EGt8hkIKpKQ"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_ag8IUqsfEe6EGt8hkIKpKQ" fontName="Cantarell" fontHeight="8"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_ag8IU6sfEe6EGt8hkIKpKQ" points="[0, 0, 0, -80]$[0, 80, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_ag_LoKsfEe6EGt8hkIKpKQ" id="(0.5,1.0)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_ag_LoasfEe6EGt8hkIKpKQ" id="(0.5,0.0)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_rtf68KsfEe6EGt8hkIKpKQ" type="4001" element="_rtabbKsfEe6EGt8hkIKpKQ" source="_IUb7oKsfEe6EGt8hkIKpKQ" target="_fxGaYKsfEe6EGt8hkIKpKQ">
+          <children xmi:type="notation:Node" xmi:id="_rtgiAKsfEe6EGt8hkIKpKQ" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_rtgiAasfEe6EGt8hkIKpKQ" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_rthJEKsfEe6EGt8hkIKpKQ" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_rthJEasfEe6EGt8hkIKpKQ" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_rthJEqsfEe6EGt8hkIKpKQ" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_rthJE6sfEe6EGt8hkIKpKQ" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_rtf68asfEe6EGt8hkIKpKQ"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_rtf68qsfEe6EGt8hkIKpKQ" fontName="Cantarell" fontHeight="8"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_rtf686sfEe6EGt8hkIKpKQ" points="[0, 0, 120, -65]$[-120, 65, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_rthJFKsfEe6EGt8hkIKpKQ" id="(0.4,1.0)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_rthJFasfEe6EGt8hkIKpKQ" id="(0.5,0.0)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_sKn70KsfEe6EGt8hkIKpKQ" type="4001" element="_sKhOMqsfEe6EGt8hkIKpKQ" source="_IUb7oKsfEe6EGt8hkIKpKQ" target="_nHGXkKsfEe6EGt8hkIKpKQ">
+          <children xmi:type="notation:Node" xmi:id="_sKn71KsfEe6EGt8hkIKpKQ" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_sKn71asfEe6EGt8hkIKpKQ" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_sKn71qsfEe6EGt8hkIKpKQ" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_sKn716sfEe6EGt8hkIKpKQ" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_sKoi4KsfEe6EGt8hkIKpKQ" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_sKoi4asfEe6EGt8hkIKpKQ" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_sKn70asfEe6EGt8hkIKpKQ"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_sKn70qsfEe6EGt8hkIKpKQ" fontName="Cantarell" fontHeight="8"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_sKn706sfEe6EGt8hkIKpKQ" points="[0, 0, -140, -65]$[140, 65, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_sKoi4qsfEe6EGt8hkIKpKQ" id="(0.5,1.0)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_sKoi46sfEe6EGt8hkIKpKQ" id="(0.6,0.0)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_zNwAUKsfEe6EGt8hkIKpKQ" type="4001" element="_zNrH5KsfEe6EGt8hkIKpKQ" source="_fxGaYKsfEe6EGt8hkIKpKQ" target="_vJlAQKsfEe6EGt8hkIKpKQ">
+          <children xmi:type="notation:Node" xmi:id="_zNwAVKsfEe6EGt8hkIKpKQ" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_zNwAVasfEe6EGt8hkIKpKQ" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_zNwAVqsfEe6EGt8hkIKpKQ" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_zNwAV6sfEe6EGt8hkIKpKQ" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_zNwAWKsfEe6EGt8hkIKpKQ" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_zNwAWasfEe6EGt8hkIKpKQ" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_zNwAUasfEe6EGt8hkIKpKQ"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_zNwAUqsfEe6EGt8hkIKpKQ" fontName="Cantarell" fontHeight="8"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_zNwAU6sfEe6EGt8hkIKpKQ" points="[0, 0, 0, -60]$[0, 60, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_zNwnYKsfEe6EGt8hkIKpKQ" id="(0.5,1.0)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_zNwnYasfEe6EGt8hkIKpKQ" id="(0.5,0.0)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_44QFAKsfEe6EGt8hkIKpKQ" type="4001" element="_44LzkKsfEe6EGt8hkIKpKQ" source="_vJlAQKsfEe6EGt8hkIKpKQ" target="_0_iuEKsfEe6EGt8hkIKpKQ">
+          <children xmi:type="notation:Node" xmi:id="_44QsEKsfEe6EGt8hkIKpKQ" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_44QsEasfEe6EGt8hkIKpKQ" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_44QsEqsfEe6EGt8hkIKpKQ" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_44QsE6sfEe6EGt8hkIKpKQ" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_44QsFKsfEe6EGt8hkIKpKQ" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_44QsFasfEe6EGt8hkIKpKQ" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_44QFAasfEe6EGt8hkIKpKQ"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_44QFAqsfEe6EGt8hkIKpKQ" fontName="Cantarell" fontHeight="8"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_44QFA6sfEe6EGt8hkIKpKQ" points="[0, 0, -60, 0]$[60, 0, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_44QsFqsfEe6EGt8hkIKpKQ" id="(1.0,0.5157894736842106)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_44QsF6sfEe6EGt8hkIKpKQ" id="(0.0,0.5)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="__Bmo4KsfEe6EGt8hkIKpKQ" type="4001" element="__BiXfKsfEe6EGt8hkIKpKQ" source="_vJlAQKsfEe6EGt8hkIKpKQ" target="_5kPBSKsfEe6EGt8hkIKpKQ">
+          <children xmi:type="notation:Node" xmi:id="__BnP8KsfEe6EGt8hkIKpKQ" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="__BnP8asfEe6EGt8hkIKpKQ" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="__BnP8qsfEe6EGt8hkIKpKQ" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="__BnP86sfEe6EGt8hkIKpKQ" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="__BnP9KsfEe6EGt8hkIKpKQ" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="__BnP9asfEe6EGt8hkIKpKQ" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="__Bmo4asfEe6EGt8hkIKpKQ"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="__Bmo4qsfEe6EGt8hkIKpKQ" fontName="Cantarell" fontHeight="8"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="__Bmo46sfEe6EGt8hkIKpKQ" points="[0, 0, 60, 0]$[-60, 0, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="__BnP9qsfEe6EGt8hkIKpKQ" id="(0.0,0.5052631578947369)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="__BnP96sfEe6EGt8hkIKpKQ" id="(1.0,0.5)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_CHDW4KsgEe6EGt8hkIKpKQ" type="4001" element="_CG_FgKsgEe6EGt8hkIKpKQ" source="_vJlAQKsfEe6EGt8hkIKpKQ" target="_AF27MKsgEe6EGt8hkIKpKQ">
+          <children xmi:type="notation:Node" xmi:id="_CHD98KsgEe6EGt8hkIKpKQ" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_CHD98asgEe6EGt8hkIKpKQ" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_CHD98qsgEe6EGt8hkIKpKQ" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_CHD986sgEe6EGt8hkIKpKQ" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_CHD99KsgEe6EGt8hkIKpKQ" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_CHD99asgEe6EGt8hkIKpKQ" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_CHDW4asgEe6EGt8hkIKpKQ"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_CHDW4qsgEe6EGt8hkIKpKQ" fontName="Cantarell" fontHeight="8"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_CHDW46sgEe6EGt8hkIKpKQ" points="[0, 0, 120, -65]$[-120, 65, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_CHD99qsgEe6EGt8hkIKpKQ" id="(0.4,1.0)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_CHD996sgEe6EGt8hkIKpKQ" id="(0.5,0.0)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_Cl_8sKsgEe6EGt8hkIKpKQ" type="4001" element="_Cl6dQKsgEe6EGt8hkIKpKQ" source="_vJlAQKsfEe6EGt8hkIKpKQ" target="_AcHfEKsgEe6EGt8hkIKpKQ">
+          <children xmi:type="notation:Node" xmi:id="_Cl_8tKsgEe6EGt8hkIKpKQ" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Cl_8tasgEe6EGt8hkIKpKQ" x="-3" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_Cl_8tqsgEe6EGt8hkIKpKQ" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Cl_8t6sgEe6EGt8hkIKpKQ" y="9"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_CmAjwKsgEe6EGt8hkIKpKQ" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_CmAjwasgEe6EGt8hkIKpKQ" x="1" y="8"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_Cl_8sasgEe6EGt8hkIKpKQ"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_Cl_8sqsgEe6EGt8hkIKpKQ" fontName="Cantarell" fontHeight="8"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Cl_8s6sgEe6EGt8hkIKpKQ" points="[0, -1, -150, -78]$[127, 65, -23, -12]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_CmAjwqsgEe6EGt8hkIKpKQ" id="(0.5,1.0)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_CmAjw6sgEe6EGt8hkIKpKQ" id="(0.65,0.12)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_SRch4KsgEe6EGt8hkIKpKQ" type="4001" element="_SRXpg6sgEe6EGt8hkIKpKQ" source="_rRgNgKmVEe6YItBA_GdBOg" target="_OsB6aKsgEe6EGt8hkIKpKQ">
+          <children xmi:type="notation:Node" xmi:id="_SRdI8KsgEe6EGt8hkIKpKQ" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_SRdI8asgEe6EGt8hkIKpKQ" y="-9"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_SRdI8qsgEe6EGt8hkIKpKQ" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_SRdI86sgEe6EGt8hkIKpKQ" y="11"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_SRdI9KsgEe6EGt8hkIKpKQ" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_SRdI9asgEe6EGt8hkIKpKQ" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_SRch4asgEe6EGt8hkIKpKQ"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_SRch4qsgEe6EGt8hkIKpKQ" fontName="Cantarell" fontHeight="8"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_SRch46sgEe6EGt8hkIKpKQ" points="[0, 0, 1, -80]$[-1, 80, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_SRdI9qsgEe6EGt8hkIKpKQ" id="(0.505,1.0)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_SRdI96sgEe6EGt8hkIKpKQ" id="(0.5,0.0)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_VD1xAKsgEe6EGt8hkIKpKQ" type="4001" element="_VDzU4KsgEe6EGt8hkIKpKQ" source="_OsB6aKsgEe6EGt8hkIKpKQ" target="_TLiyoKsgEe6EGt8hkIKpKQ">
+          <children xmi:type="notation:Node" xmi:id="_VD1xBKsgEe6EGt8hkIKpKQ" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_VD1xBasgEe6EGt8hkIKpKQ" x="2" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_VD1xBqsgEe6EGt8hkIKpKQ" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_VD1xB6sgEe6EGt8hkIKpKQ" x="-1" y="11"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_VD1xCKsgEe6EGt8hkIKpKQ" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_VD1xCasgEe6EGt8hkIKpKQ" x="-3" y="11"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_VD1xAasgEe6EGt8hkIKpKQ"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_VD1xAqsgEe6EGt8hkIKpKQ" fontName="Cantarell" fontHeight="8"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_VD1xA6sgEe6EGt8hkIKpKQ" points="[0, 0, 139, -65]$[-139, 65, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_VD1xCqsgEe6EGt8hkIKpKQ" id="(0.395,1.0)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_VD1xC6sgEe6EGt8hkIKpKQ" id="(0.5,0.0)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_Vjh9sKsgEe6EGt8hkIKpKQ" type="4001" element="_VjdsXKsgEe6EGt8hkIKpKQ" source="_OsB6aKsgEe6EGt8hkIKpKQ" target="_TfjTwKsgEe6EGt8hkIKpKQ">
+          <children xmi:type="notation:Node" xmi:id="_VjikwKsgEe6EGt8hkIKpKQ" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_VjikwasgEe6EGt8hkIKpKQ" x="-1" y="-9"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_VjikwqsgEe6EGt8hkIKpKQ" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Vjikw6sgEe6EGt8hkIKpKQ" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_VjikxKsgEe6EGt8hkIKpKQ" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_VjikxasgEe6EGt8hkIKpKQ" y="9"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_Vjh9sasgEe6EGt8hkIKpKQ"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_Vjh9sqsgEe6EGt8hkIKpKQ" fontName="Cantarell" fontHeight="8"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Vjh9s6sgEe6EGt8hkIKpKQ" points="[22, 11, -131, -65]$[153, 76, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_VjikxqsgEe6EGt8hkIKpKQ" id="(0.435,0.8842105263157894)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Vjikx6sgEe6EGt8hkIKpKQ" id="(0.6,0.0)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_rNPREKsgEe6EGt8hkIKpKQ" type="4001" element="_rNK_uKsgEe6EGt8hkIKpKQ" source="_TLiyoKsgEe6EGt8hkIKpKQ" target="_iNIigKsgEe6EGt8hkIKpKQ">
+          <children xmi:type="notation:Node" xmi:id="_rNPRFKsgEe6EGt8hkIKpKQ" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_rNPRFasgEe6EGt8hkIKpKQ" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_rNP4IKsgEe6EGt8hkIKpKQ" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_rNP4IasgEe6EGt8hkIKpKQ" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_rNP4IqsgEe6EGt8hkIKpKQ" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_rNP4I6sgEe6EGt8hkIKpKQ" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_rNPREasgEe6EGt8hkIKpKQ"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_rNPREqsgEe6EGt8hkIKpKQ" fontName="Cantarell" fontHeight="8"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_rNPRE6sgEe6EGt8hkIKpKQ" points="[0, 0, 0, -60]$[0, 60, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_rNP4JKsgEe6EGt8hkIKpKQ" id="(0.5,1.0)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_rNP4JasgEe6EGt8hkIKpKQ" id="(0.5,0.0)"/>
+        </edges>
       </data>
     </ownedAnnotationEntries>
     <ownedAnnotationEntries xmi:type="description:AnnotationEntry" uid="_DLqWAKmVEe6YItBA_GdBOg" source="DANNOTATION_CUSTOMIZATION_KEY">
@@ -2636,6 +2960,10 @@
           <labelColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='red']"/>
         </computedStyleDescriptions>
         <computedStyleDescriptions xmi:type="style:WorkspaceImageDescription" xmi:id="_5GOhqKmVEe6YItBA_GdBOg" labelSize="10" showIcon="false" labelExpression="aql:self.id + ' ' + self.description" sizeComputationExpression="20" labelPosition="node" resizeKind="NSEW" arcWidth="15" arcHeight="15" workspacePath="/edu.toronto.cs.se.modelepedia.gsn.design/icons/Justification.svg">
+          <borderColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+          <labelColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='red']"/>
+        </computedStyleDescriptions>
+        <computedStyleDescriptions xmi:type="style:WorkspaceImageDescription" xmi:id="_quJhWasgEe6EGt8hkIKpKQ" labelSize="10" showIcon="false" labelExpression="aql:self.id + ' ' + self.description" sizeComputationExpression="20" labelPosition="node" resizeKind="NSEW" arcWidth="15" arcHeight="15" workspacePath="/edu.toronto.cs.se.modelepedia.gsn.design/icons/Solution.svg">
           <borderColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
           <labelColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='red']"/>
         </computedStyleDescriptions>
@@ -2649,7 +2977,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DNode" uid="_rRY4wKmVEe6YItBA_GdBOg" name="G6.2 Allocated system safety requirements are satisfied under all defined operating scenarios when the ML component is integrated into the system" outgoingEdges="_8byIMKmVEe6YItBA_GdBOg _81BupKmVEe6YItBA_GdBOg" incomingEdges="_9tkgNKmVEe6YItBA_GdBOg" width="20" height="10" resizeKind="NSEW">
+    <ownedDiagramElements xmi:type="diagram:DNode" uid="_rRY4wKmVEe6YItBA_GdBOg" name="G6.2 Allocated system safety requirements are satisfied under all defined operating scenarios when the ML component is integrated into the system" outgoingEdges="_8byIMKmVEe6YItBA_GdBOg _81BupKmVEe6YItBA_GdBOg _SRXpg6sgEe6EGt8hkIKpKQ" incomingEdges="_9tkgNKmVEe6YItBA_GdBOg" width="20" height="10" resizeKind="NSEW">
       <target xmi:type="gsn:BasicGoal" href="ML/deployment.gsn#//@goals.1"/>
       <semanticElements xmi:type="gsn:BasicGoal" href="ML/deployment.gsn#//@goals.1"/>
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
@@ -2660,13 +2988,73 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DNode" uid="_-V5EcKmVEe6YItBA_GdBOg" name="G6.3 Allocated system safety requirements are satisfied throughout system operation" incomingEdges="_C0puyKmWEe6YItBA_GdBOg" width="20" height="10" resizeKind="NSEW">
+    <ownedDiagramElements xmi:type="diagram:DNode" uid="_-V5EcKmVEe6YItBA_GdBOg" name="G6.3 Allocated system safety requirements are satisfied throughout system operation" outgoingEdges="_agzlcKsfEe6EGt8hkIKpKQ" incomingEdges="_C0puyKmWEe6YItBA_GdBOg" width="20" height="10" resizeKind="NSEW">
       <target xmi:type="gsn:BasicGoal" href="ML/deployment.gsn#//@goals.2"/>
       <semanticElements xmi:type="gsn:BasicGoal" href="ML/deployment.gsn#//@goals.2"/>
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
       <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
       <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
       <ownedStyle xmi:type="diagram:Square" uid="_-V5EcamVEe6YItBA_GdBOg" labelSize="10" showIcon="false" borderSize="1" borderSizeComputationExpression="1" labelPosition="node" width="20" height="10" color="255,255,255">
+        <description xmi:type="style:SquareDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DNode" uid="_fw-ekKsfEe6EGt8hkIKpKQ" name="G6.6 The design of the system into which the ML component is integrated ensures the allocated system safety requirements are satisfied throughout operation" outgoingEdges="_zNrH5KsfEe6EGt8hkIKpKQ" incomingEdges="_rtabbKsfEe6EGt8hkIKpKQ" width="20" height="10" resizeKind="NSEW">
+      <target xmi:type="gsn:BasicGoal" href="ML/deployment.gsn#//@goals.3"/>
+      <semanticElements xmi:type="gsn:BasicGoal" href="ML/deployment.gsn#//@goals.3"/>
+      <ownedStyle xmi:type="diagram:Square" uid="_fw_FoKsfEe6EGt8hkIKpKQ" labelSize="10" showIcon="false" borderSize="1" borderSizeComputationExpression="1" labelPosition="node" width="20" height="10" color="255,255,255">
+        <description xmi:type="style:SquareDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DNode" uid="_nG_p4KsfEe6EGt8hkIKpKQ" name="G6.7 The operational achievement of the deployed component satisfies the safety requirements" incomingEdges="_sKhOMqsfEe6EGt8hkIKpKQ" width="20" height="10" resizeKind="NSEW">
+      <target xmi:type="gsn:BasicGoal" href="ML/deployment.gsn#//@goals.4"/>
+      <semanticElements xmi:type="gsn:BasicGoal" href="ML/deployment.gsn#//@goals.4"/>
+      <ownedStyle xmi:type="diagram:Square" uid="_nHAQ8KsfEe6EGt8hkIKpKQ" labelSize="10" showIcon="false" borderSize="1" borderSizeComputationExpression="1" labelPosition="node" width="20" height="10" color="255,255,255">
+        <description xmi:type="style:SquareDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DNode" uid="_AFyCsKsgEe6EGt8hkIKpKQ" name="G6.8 System design provides sufficient monitoring of erroneous inputs, outputs and assumptions" incomingEdges="_CG_FgKsgEe6EGt8hkIKpKQ" width="20" height="10" resizeKind="NSEW">
+      <target xmi:type="gsn:BasicGoal" href="ML/deployment.gsn#//@goals.5"/>
+      <semanticElements xmi:type="gsn:BasicGoal" href="ML/deployment.gsn#//@goals.5"/>
+      <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+      <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+      <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+      <ownedStyle xmi:type="diagram:Square" uid="_AFyCsasgEe6EGt8hkIKpKQ" labelSize="10" showIcon="false" borderSize="1" borderSizeComputationExpression="1" labelPosition="node" width="20" height="10" color="255,255,255">
+        <description xmi:type="style:SquareDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DNode" uid="_AcCmkKsgEe6EGt8hkIKpKQ" name="G6.9 System design provides acceptable system response to erroneous inputs, outputs and assumptions" incomingEdges="_Cl6dQKsgEe6EGt8hkIKpKQ" width="20" height="10" resizeKind="NSEW">
+      <target xmi:type="gsn:BasicGoal" href="ML/deployment.gsn#//@goals.6"/>
+      <semanticElements xmi:type="gsn:BasicGoal" href="ML/deployment.gsn#//@goals.6"/>
+      <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+      <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+      <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+      <ownedStyle xmi:type="diagram:Square" uid="_AcCmkasgEe6EGt8hkIKpKQ" labelSize="10" showIcon="false" borderSize="1" borderSizeComputationExpression="1" labelPosition="node" width="20" height="10" color="255,255,255">
+        <description xmi:type="style:SquareDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DNode" uid="_TLehMKsgEe6EGt8hkIKpKQ" name="G6.4 Integration test results show that allocated system safety requirements are satisfied" outgoingEdges="_rNK_uKsgEe6EGt8hkIKpKQ" incomingEdges="_VDzU4KsgEe6EGt8hkIKpKQ" width="20" height="10" resizeKind="NSEW">
+      <target xmi:type="gsn:BasicGoal" href="ML/deployment.gsn#//@goals.7"/>
+      <semanticElements xmi:type="gsn:BasicGoal" href="ML/deployment.gsn#//@goals.7"/>
+      <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+      <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+      <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+      <ownedStyle xmi:type="diagram:Square" uid="_TLehMasgEe6EGt8hkIKpKQ" labelSize="10" showIcon="false" borderSize="1" borderSizeComputationExpression="1" labelPosition="node" width="20" height="10" color="255,255,255">
+        <description xmi:type="style:SquareDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DNode" uid="_TfebQKsgEe6EGt8hkIKpKQ" name="G6.5 Simulations are sufficiently representative of the operational system" incomingEdges="_VjdsXKsgEe6EGt8hkIKpKQ" width="20" height="10" resizeKind="NSEW">
+      <target xmi:type="gsn:BasicGoal" href="ML/deployment.gsn#//@goals.8"/>
+      <semanticElements xmi:type="gsn:BasicGoal" href="ML/deployment.gsn#//@goals.8"/>
+      <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+      <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+      <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+      <ownedStyle xmi:type="diagram:Square" uid="_TfebQasgEe6EGt8hkIKpKQ" labelSize="10" showIcon="false" borderSize="1" borderSizeComputationExpression="1" labelPosition="node" width="20" height="10" color="255,255,255">
         <description xmi:type="style:SquareDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']/@style"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']"/>
@@ -2678,6 +3066,36 @@
       <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
       <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
       <ownedStyle xmi:type="diagram:WorkspaceImage" uid="_Zh6mUamVEe6YItBA_GdBOg" labelSize="10" showIcon="false" labelPosition="node" workspacePath="/edu.toronto.cs.se.modelepedia.gsn.design/icons/Strategy.svg">
+        <description xmi:type="style:WorkspaceImageDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='StrategyNode']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='StrategyNode']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DNode" uid="_IUF9YKsfEe6EGt8hkIKpKQ" name="S6.3 Argument over the design of the system and its behaviour during operation" outgoingEdges="_rtabbKsfEe6EGt8hkIKpKQ _sKhOMqsfEe6EGt8hkIKpKQ" incomingEdges="_agzlcKsfEe6EGt8hkIKpKQ" width="20" height="20" resizeKind="NSEW">
+      <target xmi:type="gsn:BasicStrategy" href="ML/deployment.gsn#//@strategies.1"/>
+      <semanticElements xmi:type="gsn:BasicStrategy" href="ML/deployment.gsn#//@strategies.1"/>
+      <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+      <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+      <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+      <ownedStyle xmi:type="diagram:WorkspaceImage" uid="_IUIZoKsfEe6EGt8hkIKpKQ" labelSize="10" showIcon="false" labelPosition="node" workspacePath="/edu.toronto.cs.se.modelepedia.gsn.design/icons/Strategy.svg">
+        <description xmi:type="style:WorkspaceImageDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='StrategyNode']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='StrategyNode']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DNode" uid="_vJfgsKsfEe6EGt8hkIKpKQ" name="S6.4 Argument over the monitoring of and response to erroneous behaviour" outgoingEdges="_44LzkKsfEe6EGt8hkIKpKQ __BiXfKsfEe6EGt8hkIKpKQ _CG_FgKsgEe6EGt8hkIKpKQ _Cl6dQKsgEe6EGt8hkIKpKQ" incomingEdges="_zNrH5KsfEe6EGt8hkIKpKQ" width="20" height="20" resizeKind="NSEW">
+      <target xmi:type="gsn:BasicStrategy" href="ML/deployment.gsn#//@strategies.2"/>
+      <semanticElements xmi:type="gsn:BasicStrategy" href="ML/deployment.gsn#//@strategies.2"/>
+      <ownedStyle xmi:type="diagram:WorkspaceImage" uid="_vJfgsasfEe6EGt8hkIKpKQ" labelSize="10" showIcon="false" labelPosition="node" workspacePath="/edu.toronto.cs.se.modelepedia.gsn.design/icons/Strategy.svg">
+        <description xmi:type="style:WorkspaceImageDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='StrategyNode']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='StrategyNode']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DNode" uid="_Or9o8KsgEe6EGt8hkIKpKQ" name="S6.2 Argument over the defined operating scenarios" outgoingEdges="_VDzU4KsgEe6EGt8hkIKpKQ _VjdsXKsgEe6EGt8hkIKpKQ" incomingEdges="_SRXpg6sgEe6EGt8hkIKpKQ" width="20" height="20" resizeKind="NSEW">
+      <target xmi:type="gsn:BasicStrategy" href="ML/deployment.gsn#//@strategies.3"/>
+      <semanticElements xmi:type="gsn:BasicStrategy" href="ML/deployment.gsn#//@strategies.3"/>
+      <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+      <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+      <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+      <ownedStyle xmi:type="diagram:WorkspaceImage" uid="_Or9o8asgEe6EGt8hkIKpKQ" labelSize="10" showIcon="false" labelPosition="node" workspacePath="/edu.toronto.cs.se.modelepedia.gsn.design/icons/Strategy.svg">
         <description xmi:type="style:WorkspaceImageDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='StrategyNode']/@style"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='StrategyNode']"/>
@@ -2700,6 +3118,12 @@
       <ownedStyle xmi:type="diagram:WorkspaceImage" uid="_1TsEKKmVEe6YItBA_GdBOg" labelSize="10" showIcon="false" labelColor="239,41,41" description="_1TsEJqmVEe6YItBA_GdBOg" labelPosition="node" workspacePath="/edu.toronto.cs.se.modelepedia.gsn.design/icons/Context.svg"/>
       <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='ContextNode']"/>
     </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DNode" uid="_0_cncKsfEe6EGt8hkIKpKQ" name="C6.3 {Erroneous behaviour}" incomingEdges="_44LzkKsfEe6EGt8hkIKpKQ" width="20" height="20" resizeKind="NSEW">
+      <target xmi:type="gsn:Context" href="ML/deployment.gsn#//@contexts.1"/>
+      <semanticElements xmi:type="gsn:Context" href="ML/deployment.gsn#//@contexts.1"/>
+      <ownedStyle xmi:type="diagram:WorkspaceImage" uid="_4HPe0KsfEe6EGt8hkIKpKQ" labelSize="10" showIcon="false" labelColor="239,41,41" description="_1TsEJqmVEe6YItBA_GdBOg" labelPosition="node" workspacePath="/edu.toronto.cs.se.modelepedia.gsn.design/icons/Context.svg"/>
+      <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='ContextNode']"/>
+    </ownedDiagramElements>
     <ownedDiagramElements xmi:type="diagram:DNode" uid="_4FEmoKmVEe6YItBA_GdBOg" name="J6.1 {Rationale for the sufficiency of the operating scenarios}" incomingEdges="_81BupKmVEe6YItBA_GdBOg" width="20" height="20" resizeKind="NSEW">
       <target xmi:type="gsn:Justification" href="ML/deployment.gsn#//@justifications.0"/>
       <semanticElements xmi:type="gsn:Justification" href="ML/deployment.gsn#//@justifications.0"/>
@@ -2707,6 +3131,15 @@
       <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
       <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
       <ownedStyle xmi:type="diagram:WorkspaceImage" uid="_5GOhqqmVEe6YItBA_GdBOg" labelSize="10" showIcon="false" labelColor="239,41,41" description="_5GOhqKmVEe6YItBA_GdBOg" labelPosition="node" workspacePath="/edu.toronto.cs.se.modelepedia.gsn.design/icons/Justification.svg"/>
+      <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='JustificationNode']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DNode" uid="_5kKIwKsfEe6EGt8hkIKpKQ" name="J6.2 {Rationale for the sufficiency of the identified erroneous behaviour}" incomingEdges="__BiXfKsfEe6EGt8hkIKpKQ" width="20" height="20" resizeKind="NSEW">
+      <target xmi:type="gsn:Justification" href="ML/deployment.gsn#//@justifications.1"/>
+      <semanticElements xmi:type="gsn:Justification" href="ML/deployment.gsn#//@justifications.1"/>
+      <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+      <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+      <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+      <ownedStyle xmi:type="diagram:WorkspaceImage" uid="_-C16k6sfEe6EGt8hkIKpKQ" labelSize="10" showIcon="false" labelColor="239,41,41" description="_5GOhqKmVEe6YItBA_GdBOg" labelPosition="node" workspacePath="/edu.toronto.cs.se.modelepedia.gsn.design/icons/Justification.svg"/>
       <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='JustificationNode']"/>
     </ownedDiagramElements>
     <ownedDiagramElements xmi:type="diagram:DEdge" uid="_8byIMKmVEe6YItBA_GdBOg" sourceNode="_rRY4wKmVEe6YItBA_GdBOg" targetNode="_0NeqAKmVEe6YItBA_GdBOg">
@@ -2742,6 +3175,123 @@
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_C0puyamWEe6YItBA_GdBOg" targetArrow="InputFillClosedArrow" strokeColor="0,0,0">
         <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@edgeMappings[name='SupportedByEdge']/@style"/>
         <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_C0puyqmWEe6YItBA_GdBOg"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@edgeMappings[name='SupportedByEdge']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_agzlcKsfEe6EGt8hkIKpKQ" sourceNode="_-V5EcKmVEe6YItBA_GdBOg" targetNode="_IUF9YKsfEe6EGt8hkIKpKQ">
+      <target xmi:type="gsn:SupportedBy" href="ML/deployment.gsn#//@goals.2/@supportedBy.0"/>
+      <semanticElements xmi:type="gsn:SupportedBy" href="ML/deployment.gsn#//@goals.2/@supportedBy.0"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_agzlcasfEe6EGt8hkIKpKQ" targetArrow="InputFillClosedArrow" strokeColor="0,0,0">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@edgeMappings[name='SupportedByEdge']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_agzlcqsfEe6EGt8hkIKpKQ"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@edgeMappings[name='SupportedByEdge']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_rtabbKsfEe6EGt8hkIKpKQ" sourceNode="_IUF9YKsfEe6EGt8hkIKpKQ" targetNode="_fw-ekKsfEe6EGt8hkIKpKQ">
+      <target xmi:type="gsn:SupportedBy" href="ML/deployment.gsn#//@strategies.1/@supportedBy.0"/>
+      <semanticElements xmi:type="gsn:SupportedBy" href="ML/deployment.gsn#//@strategies.1/@supportedBy.0"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_rtabbasfEe6EGt8hkIKpKQ" targetArrow="InputFillClosedArrow" strokeColor="0,0,0">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@edgeMappings[name='SupportedByEdge']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_rtabbqsfEe6EGt8hkIKpKQ"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@edgeMappings[name='SupportedByEdge']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_sKhOMqsfEe6EGt8hkIKpKQ" sourceNode="_IUF9YKsfEe6EGt8hkIKpKQ" targetNode="_nG_p4KsfEe6EGt8hkIKpKQ">
+      <target xmi:type="gsn:SupportedBy" href="ML/deployment.gsn#//@strategies.1/@supportedBy.1"/>
+      <semanticElements xmi:type="gsn:SupportedBy" href="ML/deployment.gsn#//@strategies.1/@supportedBy.1"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_sKh1MKsfEe6EGt8hkIKpKQ" targetArrow="InputFillClosedArrow" strokeColor="0,0,0">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@edgeMappings[name='SupportedByEdge']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_sKh1MasfEe6EGt8hkIKpKQ"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@edgeMappings[name='SupportedByEdge']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_zNrH5KsfEe6EGt8hkIKpKQ" sourceNode="_fw-ekKsfEe6EGt8hkIKpKQ" targetNode="_vJfgsKsfEe6EGt8hkIKpKQ">
+      <target xmi:type="gsn:SupportedBy" href="ML/deployment.gsn#//@goals.3/@supportedBy.0"/>
+      <semanticElements xmi:type="gsn:SupportedBy" href="ML/deployment.gsn#//@goals.3/@supportedBy.0"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_zNrH5asfEe6EGt8hkIKpKQ" targetArrow="InputFillClosedArrow" strokeColor="0,0,0">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@edgeMappings[name='SupportedByEdge']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_zNrH5qsfEe6EGt8hkIKpKQ"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@edgeMappings[name='SupportedByEdge']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_44LzkKsfEe6EGt8hkIKpKQ" sourceNode="_vJfgsKsfEe6EGt8hkIKpKQ" targetNode="_0_cncKsfEe6EGt8hkIKpKQ">
+      <target xmi:type="gsn:InContextOf" href="ML/deployment.gsn#//@strategies.2/@inContextOf.0"/>
+      <semanticElements xmi:type="gsn:InContextOf" href="ML/deployment.gsn#//@strategies.2/@inContextOf.0"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_44LzkasfEe6EGt8hkIKpKQ" targetArrow="InputClosedArrow" strokeColor="0,0,0">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@edgeMappings[name='InContextOfEdge']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_44LzkqsfEe6EGt8hkIKpKQ"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@edgeMappings[name='InContextOfEdge']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="__BiXfKsfEe6EGt8hkIKpKQ" sourceNode="_vJfgsKsfEe6EGt8hkIKpKQ" targetNode="_5kKIwKsfEe6EGt8hkIKpKQ">
+      <target xmi:type="gsn:InContextOf" href="ML/deployment.gsn#//@strategies.2/@inContextOf.1"/>
+      <semanticElements xmi:type="gsn:InContextOf" href="ML/deployment.gsn#//@strategies.2/@inContextOf.1"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="__BiXfasfEe6EGt8hkIKpKQ" targetArrow="InputClosedArrow" strokeColor="0,0,0">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@edgeMappings[name='InContextOfEdge']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="__BiXfqsfEe6EGt8hkIKpKQ"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@edgeMappings[name='InContextOfEdge']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_CG_FgKsgEe6EGt8hkIKpKQ" sourceNode="_vJfgsKsfEe6EGt8hkIKpKQ" targetNode="_AFyCsKsgEe6EGt8hkIKpKQ">
+      <target xmi:type="gsn:SupportedBy" href="ML/deployment.gsn#//@strategies.2/@supportedBy.0"/>
+      <semanticElements xmi:type="gsn:SupportedBy" href="ML/deployment.gsn#//@strategies.2/@supportedBy.0"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_CG_FgasgEe6EGt8hkIKpKQ" targetArrow="InputFillClosedArrow" strokeColor="0,0,0">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@edgeMappings[name='SupportedByEdge']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_CG_FgqsgEe6EGt8hkIKpKQ"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@edgeMappings[name='SupportedByEdge']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_Cl6dQKsgEe6EGt8hkIKpKQ" sourceNode="_vJfgsKsfEe6EGt8hkIKpKQ" targetNode="_AcCmkKsgEe6EGt8hkIKpKQ">
+      <target xmi:type="gsn:SupportedBy" href="ML/deployment.gsn#//@strategies.2/@supportedBy.1"/>
+      <semanticElements xmi:type="gsn:SupportedBy" href="ML/deployment.gsn#//@strategies.2/@supportedBy.1"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_Cl6dQasgEe6EGt8hkIKpKQ" targetArrow="InputFillClosedArrow" strokeColor="0,0,0">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@edgeMappings[name='SupportedByEdge']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_Cl6dQqsgEe6EGt8hkIKpKQ"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@edgeMappings[name='SupportedByEdge']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_SRXpg6sgEe6EGt8hkIKpKQ" sourceNode="_rRY4wKmVEe6YItBA_GdBOg" targetNode="_Or9o8KsgEe6EGt8hkIKpKQ">
+      <target xmi:type="gsn:SupportedBy" href="ML/deployment.gsn#//@goals.1/@supportedBy.0"/>
+      <semanticElements xmi:type="gsn:SupportedBy" href="ML/deployment.gsn#//@goals.1/@supportedBy.0"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_SRXphKsgEe6EGt8hkIKpKQ" targetArrow="InputFillClosedArrow" strokeColor="0,0,0">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@edgeMappings[name='SupportedByEdge']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_SRXphasgEe6EGt8hkIKpKQ"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@edgeMappings[name='SupportedByEdge']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_VDzU4KsgEe6EGt8hkIKpKQ" sourceNode="_Or9o8KsgEe6EGt8hkIKpKQ" targetNode="_TLehMKsgEe6EGt8hkIKpKQ">
+      <target xmi:type="gsn:SupportedBy" href="ML/deployment.gsn#//@strategies.3/@supportedBy.0"/>
+      <semanticElements xmi:type="gsn:SupportedBy" href="ML/deployment.gsn#//@strategies.3/@supportedBy.0"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_VDzU4asgEe6EGt8hkIKpKQ" targetArrow="InputFillClosedArrow" strokeColor="0,0,0">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@edgeMappings[name='SupportedByEdge']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_VDzU4qsgEe6EGt8hkIKpKQ"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@edgeMappings[name='SupportedByEdge']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_VjdsXKsgEe6EGt8hkIKpKQ" sourceNode="_Or9o8KsgEe6EGt8hkIKpKQ" targetNode="_TfebQKsgEe6EGt8hkIKpKQ">
+      <target xmi:type="gsn:SupportedBy" href="ML/deployment.gsn#//@strategies.3/@supportedBy.1"/>
+      <semanticElements xmi:type="gsn:SupportedBy" href="ML/deployment.gsn#//@strategies.3/@supportedBy.1"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_VjdsXasgEe6EGt8hkIKpKQ" targetArrow="InputFillClosedArrow" strokeColor="0,0,0">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@edgeMappings[name='SupportedByEdge']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_VjdsXqsgEe6EGt8hkIKpKQ"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@edgeMappings[name='SupportedByEdge']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DNode" uid="_iNDqAKsgEe6EGt8hkIKpKQ" name="Sn6.2 {Integration test results}" incomingEdges="_rNK_uKsgEe6EGt8hkIKpKQ" width="20" height="20" resizeKind="NSEW">
+      <target xmi:type="gsn:Solution" href="ML/deployment.gsn#//@solutions.0"/>
+      <semanticElements xmi:type="gsn:Solution" href="ML/deployment.gsn#//@solutions.0"/>
+      <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+      <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+      <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+      <ownedStyle xmi:type="diagram:WorkspaceImage" uid="_quKIYasgEe6EGt8hkIKpKQ" labelSize="10" showIcon="false" labelColor="239,41,41" description="_quJhWasgEe6EGt8hkIKpKQ" labelPosition="node" workspacePath="/edu.toronto.cs.se.modelepedia.gsn.design/icons/Solution.svg"/>
+      <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='SolutionNode']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_rNK_uKsgEe6EGt8hkIKpKQ" sourceNode="_TLehMKsgEe6EGt8hkIKpKQ" targetNode="_iNDqAKsgEe6EGt8hkIKpKQ">
+      <target xmi:type="gsn:SupportedBy" href="ML/deployment.gsn#//@goals.7/@supportedBy.0"/>
+      <semanticElements xmi:type="gsn:SupportedBy" href="ML/deployment.gsn#//@goals.7/@supportedBy.0"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_rNK_uasgEe6EGt8hkIKpKQ" targetArrow="InputFillClosedArrow" strokeColor="0,0,0">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@edgeMappings[name='SupportedByEdge']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_rNK_uqsgEe6EGt8hkIKpKQ"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@edgeMappings[name='SupportedByEdge']"/>
     </ownedDiagramElements>

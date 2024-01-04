@@ -4,14 +4,44 @@
     <supportedBy target="//@strategies.0"/>
   </goals>
   <goals xsi:type="gsn:BasicGoal" id="G6.2" description="Allocated system safety requirements are satisfied under all defined operating scenarios when the ML component is integrated into the system" supports="//@strategies.0/@supportedBy.0">
+    <supportedBy target="//@strategies.3"/>
     <inContextOf context="//@contexts.0"/>
     <inContextOf context="//@justifications.0"/>
   </goals>
-  <goals xsi:type="gsn:BasicGoal" id="G6.3" description="Allocated system safety requirements are satisfied throughout system operation" supports="//@strategies.0/@supportedBy.1"/>
+  <goals xsi:type="gsn:BasicGoal" id="G6.3" description="Allocated system safety requirements are satisfied throughout system operation" supports="//@strategies.0/@supportedBy.1">
+    <supportedBy target="//@strategies.1"/>
+  </goals>
+  <goals xsi:type="gsn:BasicGoal" id="G6.6" description="The design of the system into which the ML component is integrated ensures the allocated system safety requirements are satisfied throughout operation" supports="//@strategies.1/@supportedBy.0">
+    <supportedBy target="//@strategies.2"/>
+  </goals>
+  <goals xsi:type="gsn:BasicGoal" id="G6.7" description="The operational achievement of the deployed component satisfies the safety requirements" supports="//@strategies.1/@supportedBy.1"/>
+  <goals xsi:type="gsn:BasicGoal" id="G6.8" description="System design provides sufficient monitoring of erroneous inputs, outputs and assumptions" supports="//@strategies.2/@supportedBy.0"/>
+  <goals xsi:type="gsn:BasicGoal" id="G6.9" description="System design provides acceptable system response to erroneous inputs, outputs and assumptions" supports="//@strategies.2/@supportedBy.1"/>
+  <goals xsi:type="gsn:BasicGoal" id="G6.4" description="Integration test results show that allocated system safety requirements are satisfied" supports="//@strategies.3/@supportedBy.0">
+    <supportedBy target="//@solutions.0"/>
+  </goals>
+  <goals xsi:type="gsn:BasicGoal" id="G6.5" description="Simulations are sufficiently representative of the operational system" supports="//@strategies.3/@supportedBy.1"/>
   <strategies xsi:type="gsn:BasicStrategy" id="S6.1" description="Argument over the integration and operation of the ML component" supports="//@goals.0/@supportedBy.0">
     <supportedBy target="//@goals.1"/>
     <supportedBy target="//@goals.2"/>
   </strategies>
+  <strategies xsi:type="gsn:BasicStrategy" id="S6.3" description="Argument over the design of the system and its behaviour during operation" supports="//@goals.2/@supportedBy.0">
+    <supportedBy target="//@goals.3"/>
+    <supportedBy target="//@goals.4"/>
+  </strategies>
+  <strategies xsi:type="gsn:BasicStrategy" id="S6.4" description="Argument over the monitoring of and response to erroneous behaviour" supports="//@goals.3/@supportedBy.0">
+    <supportedBy target="//@goals.5"/>
+    <supportedBy target="//@goals.6"/>
+    <inContextOf context="//@contexts.1"/>
+    <inContextOf context="//@justifications.1"/>
+  </strategies>
+  <strategies xsi:type="gsn:BasicStrategy" id="S6.2" description="Argument over the defined operating scenarios" supports="//@goals.1/@supportedBy.0">
+    <supportedBy target="//@goals.7"/>
+    <supportedBy target="//@goals.8"/>
+  </strategies>
+  <solutions id="Sn6.2" description="{Integration test results}" valid="false" supports="//@goals.7/@supportedBy.0"/>
   <contexts id="C6.1" description="{Operating scenario}" valid="false" contextOf="//@goals.1/@inContextOf.0"/>
+  <contexts id="C6.3" description="{Erroneous behaviour}" valid="false" contextOf="//@strategies.2/@inContextOf.0"/>
   <justifications id="J6.1" description="{Rationale for the sufficiency of the operating scenarios}" valid="false" contextOf="//@goals.1/@inContextOf.1"/>
+  <justifications id="J6.2" description="{Rationale for the sufficiency of the identified erroneous behaviour}" valid="false" contextOf="//@strategies.2/@inContextOf.1"/>
 </gsn:SafetyCase>
