@@ -14,13 +14,21 @@
   <goals xsi:type="gsn:BasicGoal" id="G6.6" description="The design of the system into which the ML component is integrated ensures the allocated system safety requirements are satisfied throughout operation" templates="//@templates.0" supports="//@strategies.1/@supportedBy.0">
     <supportedBy target="//@strategies.2"/>
   </goals>
-  <goals xsi:type="gsn:BasicGoal" id="G6.7" description="The operational achievement of the deployed component satisfies the safety requirements" templates="//@templates.0" supports="//@strategies.1/@supportedBy.1"/>
-  <goals xsi:type="gsn:BasicGoal" id="G6.8" description="System design provides sufficient monitoring of erroneous inputs, outputs and assumptions" templates="//@templates.0" supports="//@strategies.2/@supportedBy.0"/>
-  <goals xsi:type="gsn:BasicGoal" id="G6.9" description="System design provides acceptable system response to erroneous inputs, outputs and assumptions" templates="//@templates.0" supports="//@strategies.2/@supportedBy.1"/>
+  <goals xsi:type="gsn:BasicGoal" id="G6.7" description="The operational achievement of the deployed component satisfies the safety requirements" templates="//@templates.0" supports="//@strategies.1/@supportedBy.1">
+    <undeveloped/>
+  </goals>
+  <goals xsi:type="gsn:BasicGoal" id="G6.8" description="System design provides sufficient monitoring of erroneous inputs, outputs and assumptions" templates="//@templates.0" supports="//@strategies.2/@supportedBy.0">
+    <undeveloped/>
+  </goals>
+  <goals xsi:type="gsn:BasicGoal" id="G6.9" description="System design provides acceptable system response to erroneous inputs, outputs and assumptions" templates="//@templates.0" supports="//@strategies.2/@supportedBy.1">
+    <undeveloped/>
+  </goals>
   <goals xsi:type="gsn:BasicGoal" id="G6.4" description="Integration test results show that allocated system safety requirements are satisfied" templates="//@templates.0" supports="//@strategies.3/@supportedBy.0">
     <supportedBy target="//@solutions.0"/>
   </goals>
-  <goals xsi:type="gsn:BasicGoal" id="G6.5" description="Simulations are sufficiently representative of the operational system" templates="//@templates.0" supports="//@strategies.3/@supportedBy.1"/>
+  <goals xsi:type="gsn:BasicGoal" id="G6.5" description="Simulations are sufficiently representative of the operational system" templates="//@templates.0" supports="//@strategies.3/@supportedBy.1">
+    <undeveloped/>
+  </goals>
   <strategies xsi:type="gsn:BasicStrategy" id="S6.1" description="Argument over the integration and operation of the ML component" templates="//@templates.0" supports="//@goals.0/@supportedBy.0">
     <supportedBy target="//@goals.1"/>
     <supportedBy target="//@goals.2"/>
@@ -38,6 +46,7 @@
   <strategies xsi:type="gsn:BasicStrategy" id="S6.2" description="Argument over the defined operating scenarios" templates="//@templates.0" supports="//@goals.1/@supportedBy.0">
     <supportedBy target="//@goals.7"/>
     <supportedBy target="//@goals.8"/>
+    <undeveloped/>
   </strategies>
   <solutions id="Sn6.2" description="{Integration test results}" templates="//@templates.0" valid="false" supports="//@goals.7/@supportedBy.0"/>
   <contexts id="C6.1" description="{Operating scenario}" templates="//@templates.0" valid="false" contextOf="//@goals.1/@inContextOf.0"/>

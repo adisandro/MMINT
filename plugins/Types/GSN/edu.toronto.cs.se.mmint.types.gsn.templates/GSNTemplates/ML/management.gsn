@@ -32,6 +32,7 @@
     <supportedBy target="//@goals.4"/>
     <supportedBy target="//@goals.5"/>
     <inContextOf context="//@justifications.1"/>
+    <undeveloped/>
   </strategies>
   <solutions id="Sn3.2" description="{Validation results}" templates="//@templates.0" valid="false" supports="//@goals.2/@supportedBy.0"/>
   <solutions id="Sn3.3" description="{Validation results}" templates="//@templates.0" valid="false" supports="//@goals.3/@supportedBy.0"/>
