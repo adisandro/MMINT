@@ -14,5 +14,5 @@
   <contexts id="C1.4" description="{System safety requirements allocated to MLC}" templates="//@templates.0" valid="false" contextOf="//@goals.0/@inContextOf.5"/>
   <assumptions id="A1.1" description="The system safety process has identified the system safety requirements allocated to the MLC" templates="//@templates.0" contextOf="//@goals.0/@inContextOf.0"/>
   <assumptions id="A1.2" description="The list of changes are relevant to the system and its OE" templates="//@templates.0" contextOf="//@goals.0/@inContextOf.1"/>
-  <templates elements="//@contexts.0 //@contexts.1 //@contexts.2 //@goals.0 //@assumptions.1 //@contexts.3 //@assumptions.0" id="MLC Scoping"/>
+  <templates elements="//@contexts.0 //@contexts.1 //@contexts.2 //@goals.0 //@assumptions.1 //@contexts.3 //@assumptions.0" id="ML Scoping"/>
 </gsn:SafetyCase>
