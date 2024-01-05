@@ -495,6 +495,29 @@ public class GSNItemProviderAdapterFactory extends GSNAdapterFactory implements 
   }
 
   /**
+   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.gsn.Undeveloped} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected UndevelopedItemProvider undevelopedItemProvider;
+
+  /**
+   * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.gsn.Undeveloped}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createUndevelopedAdapter() {
+    if (this.undevelopedItemProvider == null) {
+      this.undevelopedItemProvider = new UndevelopedItemProvider(this);
+    }
+
+    return this.undevelopedItemProvider;
+  }
+
+  /**
    * This returns the root adapter factory that contains this factory.
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
@@ -621,24 +644,63 @@ public class GSNItemProviderAdapterFactory extends GSNAdapterFactory implements 
    */
   @Override
   public void dispose() {
-    if (this.safetyCaseItemProvider != null) this.safetyCaseItemProvider.dispose();
-    if (this.supportedByItemProvider != null) this.supportedByItemProvider.dispose();
-    if (this.inContextOfItemProvider != null) this.inContextOfItemProvider.dispose();
-    if (this.basicGoalItemProvider != null) this.basicGoalItemProvider.dispose();
-    if (this.independenceGoalItemProvider != null) this.independenceGoalItemProvider.dispose();
-    if (this.basicStrategyItemProvider != null) this.basicStrategyItemProvider.dispose();
-    if (this.asilDecompositionStrategyItemProvider != null) this.asilDecompositionStrategyItemProvider.dispose();
-    if (this.solutionItemProvider != null) this.solutionItemProvider.dispose();
-    if (this.contextItemProvider != null) this.contextItemProvider.dispose();
-    if (this.justificationItemProvider != null) this.justificationItemProvider.dispose();
-    if (this.assumptionItemProvider != null) this.assumptionItemProvider.dispose();
-    if (this.asilItemProvider != null) this.asilItemProvider.dispose();
-    if (this.impactAnnotationItemProvider != null) this.impactAnnotationItemProvider.dispose();
-    if (this.andSupporterItemProvider != null) this.andSupporterItemProvider.dispose();
-    if (this.orSupporterItemProvider != null) this.orSupporterItemProvider.dispose();
-    if (this.xorSupporterItemProvider != null) this.xorSupporterItemProvider.dispose();
-    if (this.mofNSupporterItemProvider != null) this.mofNSupporterItemProvider.dispose();
-    if (this.templateItemProvider != null) this.templateItemProvider.dispose();
+    if (this.safetyCaseItemProvider != null) {
+      this.safetyCaseItemProvider.dispose();
+    }
+    if (this.supportedByItemProvider != null) {
+      this.supportedByItemProvider.dispose();
+    }
+    if (this.inContextOfItemProvider != null) {
+      this.inContextOfItemProvider.dispose();
+    }
+    if (this.basicGoalItemProvider != null) {
+      this.basicGoalItemProvider.dispose();
+    }
+    if (this.independenceGoalItemProvider != null) {
+      this.independenceGoalItemProvider.dispose();
+    }
+    if (this.basicStrategyItemProvider != null) {
+      this.basicStrategyItemProvider.dispose();
+    }
+    if (this.asilDecompositionStrategyItemProvider != null) {
+      this.asilDecompositionStrategyItemProvider.dispose();
+    }
+    if (this.solutionItemProvider != null) {
+      this.solutionItemProvider.dispose();
+    }
+    if (this.contextItemProvider != null) {
+      this.contextItemProvider.dispose();
+    }
+    if (this.justificationItemProvider != null) {
+      this.justificationItemProvider.dispose();
+    }
+    if (this.assumptionItemProvider != null) {
+      this.assumptionItemProvider.dispose();
+    }
+    if (this.asilItemProvider != null) {
+      this.asilItemProvider.dispose();
+    }
+    if (this.impactAnnotationItemProvider != null) {
+      this.impactAnnotationItemProvider.dispose();
+    }
+    if (this.andSupporterItemProvider != null) {
+      this.andSupporterItemProvider.dispose();
+    }
+    if (this.orSupporterItemProvider != null) {
+      this.orSupporterItemProvider.dispose();
+    }
+    if (this.xorSupporterItemProvider != null) {
+      this.xorSupporterItemProvider.dispose();
+    }
+    if (this.mofNSupporterItemProvider != null) {
+      this.mofNSupporterItemProvider.dispose();
+    }
+    if (this.templateItemProvider != null) {
+      this.templateItemProvider.dispose();
+    }
+    if (this.undevelopedItemProvider != null) {
+      this.undevelopedItemProvider.dispose();
+    }
   }
 
 }

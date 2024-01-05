@@ -88,8 +88,9 @@ public class SolutionImpl extends CoreElementImpl implements Solution {
   public void setStateValidity(ValidityValue newStateValidity) {
     var oldStateValidity = this.stateValidity;
     this.stateValidity = newStateValidity == null ? SolutionImpl.STATE_VALIDITY_EDEFAULT : newStateValidity;
-    if (eNotificationRequired())
+    if (eNotificationRequired()) {
       eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.SOLUTION__STATE_VALIDITY, oldStateValidity, this.stateValidity));
+    }
   }
 
   /**
@@ -182,7 +183,9 @@ public class SolutionImpl extends CoreElementImpl implements Solution {
    */
   @Override
   public String toString() {
-    if (eIsProxy()) return super.toString();
+    if (eIsProxy()) {
+      return super.toString();
+    }
 
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (stateValidity: ");

@@ -175,6 +175,15 @@ public interface GSNFactory extends EFactory {
   Template createTemplate();
 
   /**
+   * Returns a new object of class '<em>Undeveloped</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Undeveloped</em>'.
+   * @generated
+   */
+  Undeveloped createUndeveloped();
+
+  /**
    * Returns the package supported by this factory.
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @return the package supported by this factory.

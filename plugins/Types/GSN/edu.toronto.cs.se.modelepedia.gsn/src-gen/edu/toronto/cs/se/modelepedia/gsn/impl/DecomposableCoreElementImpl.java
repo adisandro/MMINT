@@ -15,10 +15,12 @@ package edu.toronto.cs.se.modelepedia.gsn.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -27,6 +29,7 @@ import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.InContextOf;
 import edu.toronto.cs.se.modelepedia.gsn.Supportable;
 import edu.toronto.cs.se.modelepedia.gsn.SupportedBy;
+import edu.toronto.cs.se.modelepedia.gsn.Undeveloped;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Decomposable Core Element</b></em>'. <!--
@@ -37,6 +40,7 @@ import edu.toronto.cs.se.modelepedia.gsn.SupportedBy;
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.DecomposableCoreElementImpl#getSupportedBy <em>Supported By</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.DecomposableCoreElementImpl#getInContextOf <em>In Context Of</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.DecomposableCoreElementImpl#getUndeveloped <em>Undeveloped</em>}</li>
  * </ul>
  *
  * @generated
@@ -61,6 +65,16 @@ public abstract class DecomposableCoreElementImpl extends CoreElementImpl implem
    * @ordered
    */
   protected EList<InContextOf> inContextOf;
+
+  /**
+   * The cached value of the '{@link #getUndeveloped() <em>Undeveloped</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getUndeveloped()
+   * @generated
+   * @ordered
+   */
+  protected Undeveloped undeveloped;
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -105,6 +119,61 @@ public abstract class DecomposableCoreElementImpl extends CoreElementImpl implem
   }
 
   /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Undeveloped getUndeveloped() {
+    return this.undeveloped;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetUndeveloped(Undeveloped newUndeveloped, NotificationChain msgs) {
+    var oldUndeveloped = this.undeveloped;
+    this.undeveloped = newUndeveloped;
+    if (eNotificationRequired()) {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GSNPackage.DECOMPOSABLE_CORE_ELEMENT__UNDEVELOPED, oldUndeveloped, newUndeveloped);
+      if (msgs == null) {
+        msgs = notification;
+      }
+      else {
+        msgs.add(notification);
+      }
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setUndeveloped(Undeveloped newUndeveloped) {
+    if (newUndeveloped != this.undeveloped) {
+      NotificationChain msgs = null;
+      if (this.undeveloped != null) {
+        msgs = ((InternalEObject)this.undeveloped).eInverseRemove(this, InternalEObject.EOPPOSITE_FEATURE_BASE - GSNPackage.DECOMPOSABLE_CORE_ELEMENT__UNDEVELOPED, null, msgs);
+      }
+      if (newUndeveloped != null) {
+        msgs = ((InternalEObject)newUndeveloped).eInverseAdd(this, InternalEObject.EOPPOSITE_FEATURE_BASE - GSNPackage.DECOMPOSABLE_CORE_ELEMENT__UNDEVELOPED, null, msgs);
+      }
+      msgs = basicSetUndeveloped(newUndeveloped, msgs);
+      if (msgs != null) {
+        msgs.dispatch();
+      }
+    }
+    else if (eNotificationRequired()) {
+      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.DECOMPOSABLE_CORE_ELEMENT__UNDEVELOPED, newUndeveloped, newUndeveloped));
+    }
+  }
+
+  /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
@@ -131,6 +200,8 @@ public abstract class DecomposableCoreElementImpl extends CoreElementImpl implem
         return ((InternalEList<?>)getSupportedBy()).basicRemove(otherEnd, msgs);
       case GSNPackage.DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF:
         return ((InternalEList<?>)getInContextOf()).basicRemove(otherEnd, msgs);
+      case GSNPackage.DECOMPOSABLE_CORE_ELEMENT__UNDEVELOPED:
+        return basicSetUndeveloped(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -146,6 +217,8 @@ public abstract class DecomposableCoreElementImpl extends CoreElementImpl implem
         return getSupportedBy();
       case GSNPackage.DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF:
         return getInContextOf();
+      case GSNPackage.DECOMPOSABLE_CORE_ELEMENT__UNDEVELOPED:
+        return getUndeveloped();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -166,6 +239,9 @@ public abstract class DecomposableCoreElementImpl extends CoreElementImpl implem
         getInContextOf().clear();
         getInContextOf().addAll((Collection<? extends InContextOf>)newValue);
         return;
+      case GSNPackage.DECOMPOSABLE_CORE_ELEMENT__UNDEVELOPED:
+        setUndeveloped((Undeveloped)newValue);
+        return;
     }
     super.eSet(featureID, newValue);
   }
@@ -183,6 +259,9 @@ public abstract class DecomposableCoreElementImpl extends CoreElementImpl implem
       case GSNPackage.DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF:
         getInContextOf().clear();
         return;
+      case GSNPackage.DECOMPOSABLE_CORE_ELEMENT__UNDEVELOPED:
+        setUndeveloped((Undeveloped)null);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -198,6 +277,8 @@ public abstract class DecomposableCoreElementImpl extends CoreElementImpl implem
         return this.supportedBy != null && !this.supportedBy.isEmpty();
       case GSNPackage.DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF:
         return this.inContextOf != null && !this.inContextOf.isEmpty();
+      case GSNPackage.DECOMPOSABLE_CORE_ELEMENT__UNDEVELOPED:
+        return this.undeveloped != null;
     }
     return super.eIsSet(featureID);
   }

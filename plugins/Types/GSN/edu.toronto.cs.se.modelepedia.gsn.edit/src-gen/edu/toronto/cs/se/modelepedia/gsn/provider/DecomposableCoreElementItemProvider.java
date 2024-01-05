@@ -93,6 +93,7 @@ public class DecomposableCoreElementItemProvider extends CoreElementItemProvider
       super.getChildrenFeatures(object);
       this.childrenFeatures.add(GSNPackage.Literals.SUPPORTABLE__SUPPORTED_BY);
       this.childrenFeatures.add(GSNPackage.Literals.DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF);
+      this.childrenFeatures.add(GSNPackage.Literals.DECOMPOSABLE_CORE_ELEMENT__UNDEVELOPED);
     }
     return this.childrenFeatures;
   }
@@ -135,6 +136,7 @@ public class DecomposableCoreElementItemProvider extends CoreElementItemProvider
     switch (notification.getFeatureID(DecomposableCoreElement.class)) {
       case GSNPackage.DECOMPOSABLE_CORE_ELEMENT__SUPPORTED_BY:
       case GSNPackage.DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF:
+      case GSNPackage.DECOMPOSABLE_CORE_ELEMENT__UNDEVELOPED:
         fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
         return;
     }
@@ -160,6 +162,11 @@ public class DecomposableCoreElementItemProvider extends CoreElementItemProvider
       (createChildParameter
         (GSNPackage.Literals.DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF,
          GSNFactory.eINSTANCE.createInContextOf()));
+
+    newChildDescriptors.add
+      (createChildParameter
+        (GSNPackage.Literals.DECOMPOSABLE_CORE_ELEMENT__UNDEVELOPED,
+         GSNFactory.eINSTANCE.createUndeveloped()));
   }
 
 }

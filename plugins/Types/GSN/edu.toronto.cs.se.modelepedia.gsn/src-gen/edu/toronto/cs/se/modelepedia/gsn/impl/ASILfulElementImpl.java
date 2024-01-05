@@ -82,7 +82,12 @@ public abstract class ASILfulElementImpl extends MinimalEObjectImpl.Container im
     this.asil = newAsil;
     if (eNotificationRequired()) {
       ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GSNPackage.ASI_LFUL_ELEMENT__ASIL, oldAsil, newAsil);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
+      if (msgs == null) {
+        msgs = notification;
+      }
+      else {
+        msgs.add(notification);
+      }
     }
     return msgs;
   }
@@ -95,15 +100,20 @@ public abstract class ASILfulElementImpl extends MinimalEObjectImpl.Container im
   public void setAsil(ASIL newAsil) {
     if (newAsil != this.asil) {
       NotificationChain msgs = null;
-      if (this.asil != null)
+      if (this.asil != null) {
         msgs = ((InternalEObject)this.asil).eInverseRemove(this, GSNPackage.ASIL__TARGET, ASIL.class, msgs);
-      if (newAsil != null)
+      }
+      if (newAsil != null) {
         msgs = ((InternalEObject)newAsil).eInverseAdd(this, GSNPackage.ASIL__TARGET, ASIL.class, msgs);
+      }
       msgs = basicSetAsil(newAsil, msgs);
-      if (msgs != null) msgs.dispatch();
+      if (msgs != null) {
+        msgs.dispatch();
+      }
     }
-    else if (eNotificationRequired())
+    else if (eNotificationRequired()) {
       eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.ASI_LFUL_ELEMENT__ASIL, newAsil, newAsil));
+    }
   }
 
   /**
@@ -114,8 +124,9 @@ public abstract class ASILfulElementImpl extends MinimalEObjectImpl.Container im
   public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
       case GSNPackage.ASI_LFUL_ELEMENT__ASIL:
-        if (this.asil != null)
+        if (this.asil != null) {
           msgs = ((InternalEObject)this.asil).eInverseRemove(this, InternalEObject.EOPPOSITE_FEATURE_BASE - GSNPackage.ASI_LFUL_ELEMENT__ASIL, null, msgs);
+        }
         return basicSetAsil((ASIL)otherEnd, msgs);
     }
     return super.eInverseAdd(otherEnd, featureID, msgs);

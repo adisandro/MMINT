@@ -128,8 +128,9 @@ public class TemplateImpl extends MinimalEObjectImpl.Container implements Templa
   public void setId(String newId) {
     var oldId = this.id;
     this.id = newId;
-    if (eNotificationRequired())
+    if (eNotificationRequired()) {
       eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.TEMPLATE__ID, oldId, this.id));
+    }
   }
 
   /**
@@ -322,7 +323,9 @@ public class TemplateImpl extends MinimalEObjectImpl.Container implements Templa
    */
   @Override
   public String toString() {
-    if (eIsProxy()) return super.toString();
+    if (eIsProxy()) {
+      return super.toString();
+    }
 
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (id: ");

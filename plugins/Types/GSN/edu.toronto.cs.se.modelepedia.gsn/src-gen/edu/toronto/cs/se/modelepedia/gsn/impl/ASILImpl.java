@@ -105,8 +105,9 @@ public class ASILImpl extends MinimalEObjectImpl.Container implements ASIL {
   public void setValue(ASILLevel newValue) {
     var oldValue = this.value;
     this.value = newValue == null ? ASILImpl.VALUE_EDEFAULT : newValue;
-    if (eNotificationRequired())
+    if (eNotificationRequired()) {
       eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.ASIL__VALUE, oldValue, this.value));
+    }
   }
 
   /**
@@ -115,7 +116,9 @@ public class ASILImpl extends MinimalEObjectImpl.Container implements ASIL {
    */
   @Override
   public ASILfulElement getTarget() {
-    if (eContainerFeatureID() != GSNPackage.ASIL__TARGET) return null;
+    if (eContainerFeatureID() != GSNPackage.ASIL__TARGET) {
+      return null;
+    }
     return (ASILfulElement)eInternalContainer();
   }
 
@@ -135,18 +138,24 @@ public class ASILImpl extends MinimalEObjectImpl.Container implements ASIL {
   @Override
   public void setTarget(ASILfulElement newTarget) {
     if (newTarget != eInternalContainer() || (eContainerFeatureID() != GSNPackage.ASIL__TARGET && newTarget != null)) {
-      if (EcoreUtil.isAncestor(this, newTarget))
+      if (EcoreUtil.isAncestor(this, newTarget)) {
         throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+      }
       NotificationChain msgs = null;
-      if (eInternalContainer() != null)
+      if (eInternalContainer() != null) {
         msgs = eBasicRemoveFromContainer(msgs);
-      if (newTarget != null)
+      }
+      if (newTarget != null) {
         msgs = ((InternalEObject)newTarget).eInverseAdd(this, GSNPackage.ASI_LFUL_ELEMENT__ASIL, ASILfulElement.class, msgs);
+      }
       msgs = basicSetTarget(newTarget, msgs);
-      if (msgs != null) msgs.dispatch();
+      if (msgs != null) {
+        msgs.dispatch();
+      }
     }
-    else if (eNotificationRequired())
+    else if (eNotificationRequired()) {
       eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.ASIL__TARGET, newTarget, newTarget));
+    }
   }
 
   /**
@@ -167,7 +176,12 @@ public class ASILImpl extends MinimalEObjectImpl.Container implements ASIL {
     this.status = newStatus;
     if (eNotificationRequired()) {
       ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GSNPackage.ASIL__STATUS, oldStatus, newStatus);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
+      if (msgs == null) {
+        msgs = notification;
+      }
+      else {
+        msgs.add(notification);
+      }
     }
     return msgs;
   }
@@ -180,15 +194,20 @@ public class ASILImpl extends MinimalEObjectImpl.Container implements ASIL {
   public void setStatus(ImpactAnnotation newStatus) {
     if (newStatus != this.status) {
       NotificationChain msgs = null;
-      if (this.status != null)
+      if (this.status != null) {
         msgs = ((InternalEObject)this.status).eInverseRemove(this, InternalEObject.EOPPOSITE_FEATURE_BASE - GSNPackage.ASIL__STATUS, null, msgs);
-      if (newStatus != null)
+      }
+      if (newStatus != null) {
         msgs = ((InternalEObject)newStatus).eInverseAdd(this, InternalEObject.EOPPOSITE_FEATURE_BASE - GSNPackage.ASIL__STATUS, null, msgs);
+      }
       msgs = basicSetStatus(newStatus, msgs);
-      if (msgs != null) msgs.dispatch();
+      if (msgs != null) {
+        msgs.dispatch();
+      }
     }
-    else if (eNotificationRequired())
+    else if (eNotificationRequired()) {
       eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.ASIL__STATUS, newStatus, newStatus));
+    }
   }
 
   /**
@@ -199,8 +218,9 @@ public class ASILImpl extends MinimalEObjectImpl.Container implements ASIL {
   public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
       case GSNPackage.ASIL__TARGET:
-        if (eInternalContainer() != null)
+        if (eInternalContainer() != null) {
           msgs = eBasicRemoveFromContainer(msgs);
+        }
         return basicSetTarget((ASILfulElement)otherEnd, msgs);
     }
     return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -314,7 +334,9 @@ public class ASILImpl extends MinimalEObjectImpl.Container implements ASIL {
    */
   @Override
   public String toString() {
-    if (eIsProxy()) return super.toString();
+    if (eIsProxy()) {
+      return super.toString();
+    }
 
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (value: ");

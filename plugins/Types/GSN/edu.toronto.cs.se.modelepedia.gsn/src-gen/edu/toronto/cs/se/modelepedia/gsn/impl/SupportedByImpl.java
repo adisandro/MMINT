@@ -72,7 +72,9 @@ public class SupportedByImpl extends MinimalEObjectImpl.Container implements Sup
    */
   @Override
   public Supportable getSource() {
-    if (eContainerFeatureID() != GSNPackage.SUPPORTED_BY__SOURCE) return null;
+    if (eContainerFeatureID() != GSNPackage.SUPPORTED_BY__SOURCE) {
+      return null;
+    }
     return (Supportable)eInternalContainer();
   }
 
@@ -92,18 +94,24 @@ public class SupportedByImpl extends MinimalEObjectImpl.Container implements Sup
   @Override
   public void setSource(Supportable newSource) {
     if (newSource != eInternalContainer() || (eContainerFeatureID() != GSNPackage.SUPPORTED_BY__SOURCE && newSource != null)) {
-      if (EcoreUtil.isAncestor(this, newSource))
+      if (EcoreUtil.isAncestor(this, newSource)) {
         throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+      }
       NotificationChain msgs = null;
-      if (eInternalContainer() != null)
+      if (eInternalContainer() != null) {
         msgs = eBasicRemoveFromContainer(msgs);
-      if (newSource != null)
+      }
+      if (newSource != null) {
         msgs = ((InternalEObject)newSource).eInverseAdd(this, GSNPackage.SUPPORTABLE__SUPPORTED_BY, Supportable.class, msgs);
+      }
       msgs = basicSetSource(newSource, msgs);
-      if (msgs != null) msgs.dispatch();
+      if (msgs != null) {
+        msgs.dispatch();
+      }
     }
-    else if (eNotificationRequired())
+    else if (eNotificationRequired()) {
       eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.SUPPORTED_BY__SOURCE, newSource, newSource));
+    }
   }
 
   /**
@@ -116,8 +124,9 @@ public class SupportedByImpl extends MinimalEObjectImpl.Container implements Sup
       var oldTarget = (InternalEObject)this.target;
       this.target = (Supporter)eResolveProxy(oldTarget);
       if (this.target != oldTarget) {
-        if (eNotificationRequired())
+        if (eNotificationRequired()) {
           eNotify(new ENotificationImpl(this, Notification.RESOLVE, GSNPackage.SUPPORTED_BY__TARGET, oldTarget, this.target));
+        }
       }
     }
     return this.target;
@@ -140,7 +149,12 @@ public class SupportedByImpl extends MinimalEObjectImpl.Container implements Sup
     this.target = newTarget;
     if (eNotificationRequired()) {
       ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GSNPackage.SUPPORTED_BY__TARGET, oldTarget, newTarget);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
+      if (msgs == null) {
+        msgs = notification;
+      }
+      else {
+        msgs.add(notification);
+      }
     }
     return msgs;
   }
@@ -153,15 +167,20 @@ public class SupportedByImpl extends MinimalEObjectImpl.Container implements Sup
   public void setTarget(Supporter newTarget) {
     if (newTarget != this.target) {
       NotificationChain msgs = null;
-      if (this.target != null)
+      if (this.target != null) {
         msgs = ((InternalEObject)this.target).eInverseRemove(this, GSNPackage.SUPPORTER__SUPPORTS, Supporter.class, msgs);
-      if (newTarget != null)
+      }
+      if (newTarget != null) {
         msgs = ((InternalEObject)newTarget).eInverseAdd(this, GSNPackage.SUPPORTER__SUPPORTS, Supporter.class, msgs);
+      }
       msgs = basicSetTarget(newTarget, msgs);
-      if (msgs != null) msgs.dispatch();
+      if (msgs != null) {
+        msgs.dispatch();
+      }
     }
-    else if (eNotificationRequired())
+    else if (eNotificationRequired()) {
       eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.SUPPORTED_BY__TARGET, newTarget, newTarget));
+    }
   }
 
   /**
@@ -172,12 +191,14 @@ public class SupportedByImpl extends MinimalEObjectImpl.Container implements Sup
   public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
       case GSNPackage.SUPPORTED_BY__SOURCE:
-        if (eInternalContainer() != null)
+        if (eInternalContainer() != null) {
           msgs = eBasicRemoveFromContainer(msgs);
+        }
         return basicSetSource((Supportable)otherEnd, msgs);
       case GSNPackage.SUPPORTED_BY__TARGET:
-        if (this.target != null)
+        if (this.target != null) {
           msgs = ((InternalEObject)this.target).eInverseRemove(this, GSNPackage.SUPPORTER__SUPPORTS, Supporter.class, msgs);
+        }
         return basicSetTarget((Supporter)otherEnd, msgs);
     }
     return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -221,7 +242,9 @@ public class SupportedByImpl extends MinimalEObjectImpl.Container implements Sup
       case GSNPackage.SUPPORTED_BY__SOURCE:
         return getSource();
       case GSNPackage.SUPPORTED_BY__TARGET:
-        if (resolve) return getTarget();
+        if (resolve) {
+          return getTarget();
+        }
         return basicGetTarget();
     }
     return super.eGet(featureID, resolve, coreType);

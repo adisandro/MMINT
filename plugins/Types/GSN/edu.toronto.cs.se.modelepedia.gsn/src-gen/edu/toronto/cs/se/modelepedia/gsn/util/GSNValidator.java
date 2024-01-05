@@ -52,6 +52,7 @@ import edu.toronto.cs.se.modelepedia.gsn.Supportable;
 import edu.toronto.cs.se.modelepedia.gsn.SupportedBy;
 import edu.toronto.cs.se.modelepedia.gsn.Supporter;
 import edu.toronto.cs.se.modelepedia.gsn.Template;
+import edu.toronto.cs.se.modelepedia.gsn.Undeveloped;
 import edu.toronto.cs.se.modelepedia.gsn.ValidityValue;
 import edu.toronto.cs.se.modelepedia.gsn.XorSupporter;
 
@@ -150,6 +151,7 @@ public class GSNValidator extends EObjectValidator {
     case GSNPackage.XOR_SUPPORTER -> validateXorSupporter((XorSupporter)value, diagnostics, context);
     case GSNPackage.MOF_NSUPPORTER -> validateMofNSupporter((MofNSupporter)value, diagnostics, context);
     case GSNPackage.TEMPLATE -> validateTemplate((Template)value, diagnostics, context);
+    case GSNPackage.UNDEVELOPED -> validateUndeveloped((Undeveloped)value, diagnostics, context);
     case GSNPackage.ASIL_LEVEL -> validateASILLevel((ASILLevel)value, diagnostics, context);
     case GSNPackage.VALIDITY_VALUE -> validateValidityValue((ValidityValue)value, diagnostics, context);
     case GSNPackage.IMPACT_TYPE -> validateImpactType((ImpactType)value, diagnostics, context);
@@ -164,16 +166,34 @@ public class GSNValidator extends EObjectValidator {
    * @generated
    */
   public boolean validateSafetyCase(SafetyCase safetyCase, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    if (!validate_NoCircularContainment(safetyCase, diagnostics, context)) return false;
+    if (!validate_NoCircularContainment(safetyCase, diagnostics, context)) {
+      return false;
+    }
     var result = validate_EveryMultiplicityConforms(safetyCase, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryDataValueConforms(safetyCase, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(safetyCase, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(safetyCase, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryProxyResolves(safetyCase, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_UniqueID(safetyCase, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryKeyUnique(safetyCase, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(safetyCase, diagnostics, context);
-    if (result || diagnostics != null) result &= validateSafetyCase_SingleRoot(safetyCase, diagnostics, context);
+    if (result || diagnostics != null) {
+      result &= validate_EveryDataValueConforms(safetyCase, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryReferenceIsContained(safetyCase, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryBidirectionalReferenceIsPaired(safetyCase, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryProxyResolves(safetyCase, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_UniqueID(safetyCase, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryKeyUnique(safetyCase, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryMapEntryUnique(safetyCase, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validateSafetyCase_SingleRoot(safetyCase, diagnostics, context);
+    }
     return result;
   }
 
@@ -240,16 +260,34 @@ public class GSNValidator extends EObjectValidator {
    */
   public boolean validateCoreElement(CoreElement coreElement, DiagnosticChain diagnostics,
                                      Map<Object, Object> context) {
-    if (!validate_NoCircularContainment(coreElement, diagnostics, context)) return false;
+    if (!validate_NoCircularContainment(coreElement, diagnostics, context)) {
+      return false;
+    }
     var result = validate_EveryMultiplicityConforms(coreElement, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryDataValueConforms(coreElement, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(coreElement, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(coreElement, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryProxyResolves(coreElement, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_UniqueID(coreElement, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryKeyUnique(coreElement, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(coreElement, diagnostics, context);
-    if (result || diagnostics != null) result &= validateSupporter_GoalRoot(coreElement, diagnostics, context);
+    if (result || diagnostics != null) {
+      result &= validate_EveryDataValueConforms(coreElement, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryReferenceIsContained(coreElement, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryBidirectionalReferenceIsPaired(coreElement, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryProxyResolves(coreElement, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_UniqueID(coreElement, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryKeyUnique(coreElement, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryMapEntryUnique(coreElement, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validateSupporter_GoalRoot(coreElement, diagnostics, context);
+    }
     return result;
   }
 
@@ -259,18 +297,40 @@ public class GSNValidator extends EObjectValidator {
    */
   public boolean validateDecomposableCoreElement(DecomposableCoreElement decomposableCoreElement,
                                                  DiagnosticChain diagnostics, Map<Object, Object> context) {
-    if (!validate_NoCircularContainment(decomposableCoreElement, diagnostics, context)) return false;
+    if (!validate_NoCircularContainment(decomposableCoreElement, diagnostics, context)) {
+      return false;
+    }
     var result = validate_EveryMultiplicityConforms(decomposableCoreElement, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryDataValueConforms(decomposableCoreElement, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(decomposableCoreElement, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(decomposableCoreElement, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryProxyResolves(decomposableCoreElement, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_UniqueID(decomposableCoreElement, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryKeyUnique(decomposableCoreElement, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(decomposableCoreElement, diagnostics, context);
-    if (result || diagnostics != null) result &= validateSupporter_GoalRoot(decomposableCoreElement, diagnostics, context);
-    if (result || diagnostics != null) result &= validateSupportable_SupportCycle(decomposableCoreElement, diagnostics, context);
-    if (result || diagnostics != null) result &= validateSupportable_NonSupportableLeaves(decomposableCoreElement, diagnostics, context);
+    if (result || diagnostics != null) {
+      result &= validate_EveryDataValueConforms(decomposableCoreElement, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryReferenceIsContained(decomposableCoreElement, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryBidirectionalReferenceIsPaired(decomposableCoreElement, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryProxyResolves(decomposableCoreElement, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_UniqueID(decomposableCoreElement, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryKeyUnique(decomposableCoreElement, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryMapEntryUnique(decomposableCoreElement, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validateSupporter_GoalRoot(decomposableCoreElement, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validateSupportable_SupportCycle(decomposableCoreElement, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validateSupportable_NonSupportableLeaves(decomposableCoreElement, diagnostics, context);
+    }
     return result;
   }
 
@@ -280,17 +340,37 @@ public class GSNValidator extends EObjectValidator {
    */
   public boolean validateContextualElement(ContextualElement contextualElement, DiagnosticChain diagnostics,
                                            Map<Object, Object> context) {
-    if (!validate_NoCircularContainment(contextualElement, diagnostics, context)) return false;
+    if (!validate_NoCircularContainment(contextualElement, diagnostics, context)) {
+      return false;
+    }
     var result = validate_EveryMultiplicityConforms(contextualElement, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryDataValueConforms(contextualElement, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(contextualElement, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(contextualElement, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryProxyResolves(contextualElement, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_UniqueID(contextualElement, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryKeyUnique(contextualElement, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(contextualElement, diagnostics, context);
-    if (result || diagnostics != null) result &= validateContextualElement_ContextualElementSupporter(contextualElement, diagnostics, context);
-    if (result || diagnostics != null) result &= validateContextualElement_ContextualElementContext(contextualElement, diagnostics, context);
+    if (result || diagnostics != null) {
+      result &= validate_EveryDataValueConforms(contextualElement, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryReferenceIsContained(contextualElement, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryBidirectionalReferenceIsPaired(contextualElement, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryProxyResolves(contextualElement, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_UniqueID(contextualElement, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryKeyUnique(contextualElement, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryMapEntryUnique(contextualElement, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validateContextualElement_ContextualElementSupporter(contextualElement, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validateContextualElement_ContextualElementContext(contextualElement, diagnostics, context);
+    }
     return result;
   }
 
@@ -378,21 +458,49 @@ public class GSNValidator extends EObjectValidator {
    * @generated
    */
   public boolean validateGoal(Goal goal, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    if (!validate_NoCircularContainment(goal, diagnostics, context)) return false;
+    if (!validate_NoCircularContainment(goal, diagnostics, context)) {
+      return false;
+    }
     var result = validate_EveryMultiplicityConforms(goal, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryDataValueConforms(goal, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(goal, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(goal, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryProxyResolves(goal, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_UniqueID(goal, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryKeyUnique(goal, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(goal, diagnostics, context);
-    if (result || diagnostics != null) result &= validateSupporter_GoalRoot(goal, diagnostics, context);
-    if (result || diagnostics != null) result &= validateSupportable_SupportCycle(goal, diagnostics, context);
-    if (result || diagnostics != null) result &= validateSupportable_NonSupportableLeaves(goal, diagnostics, context);
-    if (result || diagnostics != null) result &= validateGoal_GoalSupporter(goal, diagnostics, context);
-    if (result || diagnostics != null) result &= validateGoal_GoalContext(goal, diagnostics, context);
-    if (result || diagnostics != null) result &= validateGoal_ASILInheritance(goal, diagnostics, context);
+    if (result || diagnostics != null) {
+      result &= validate_EveryDataValueConforms(goal, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryReferenceIsContained(goal, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryBidirectionalReferenceIsPaired(goal, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryProxyResolves(goal, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_UniqueID(goal, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryKeyUnique(goal, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryMapEntryUnique(goal, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validateSupporter_GoalRoot(goal, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validateSupportable_SupportCycle(goal, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validateSupportable_NonSupportableLeaves(goal, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validateGoal_GoalSupporter(goal, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validateGoal_GoalContext(goal, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validateGoal_ASILInheritance(goal, diagnostics, context);
+    }
     return result;
   }
 
@@ -489,21 +597,49 @@ public class GSNValidator extends EObjectValidator {
    * @generated
    */
   public boolean validateBasicGoal(BasicGoal basicGoal, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    if (!validate_NoCircularContainment(basicGoal, diagnostics, context)) return false;
+    if (!validate_NoCircularContainment(basicGoal, diagnostics, context)) {
+      return false;
+    }
     var result = validate_EveryMultiplicityConforms(basicGoal, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryDataValueConforms(basicGoal, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(basicGoal, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(basicGoal, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryProxyResolves(basicGoal, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_UniqueID(basicGoal, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryKeyUnique(basicGoal, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(basicGoal, diagnostics, context);
-    if (result || diagnostics != null) result &= validateSupporter_GoalRoot(basicGoal, diagnostics, context);
-    if (result || diagnostics != null) result &= validateSupportable_SupportCycle(basicGoal, diagnostics, context);
-    if (result || diagnostics != null) result &= validateSupportable_NonSupportableLeaves(basicGoal, diagnostics, context);
-    if (result || diagnostics != null) result &= validateGoal_GoalSupporter(basicGoal, diagnostics, context);
-    if (result || diagnostics != null) result &= validateGoal_GoalContext(basicGoal, diagnostics, context);
-    if (result || diagnostics != null) result &= validateGoal_ASILInheritance(basicGoal, diagnostics, context);
+    if (result || diagnostics != null) {
+      result &= validate_EveryDataValueConforms(basicGoal, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryReferenceIsContained(basicGoal, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryBidirectionalReferenceIsPaired(basicGoal, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryProxyResolves(basicGoal, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_UniqueID(basicGoal, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryKeyUnique(basicGoal, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryMapEntryUnique(basicGoal, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validateSupporter_GoalRoot(basicGoal, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validateSupportable_SupportCycle(basicGoal, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validateSupportable_NonSupportableLeaves(basicGoal, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validateGoal_GoalSupporter(basicGoal, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validateGoal_GoalContext(basicGoal, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validateGoal_ASILInheritance(basicGoal, diagnostics, context);
+    }
     return result;
   }
 
@@ -513,21 +649,49 @@ public class GSNValidator extends EObjectValidator {
    */
   public boolean validateIndependenceGoal(IndependenceGoal independenceGoal, DiagnosticChain diagnostics,
                                           Map<Object, Object> context) {
-    if (!validate_NoCircularContainment(independenceGoal, diagnostics, context)) return false;
+    if (!validate_NoCircularContainment(independenceGoal, diagnostics, context)) {
+      return false;
+    }
     var result = validate_EveryMultiplicityConforms(independenceGoal, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryDataValueConforms(independenceGoal, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(independenceGoal, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(independenceGoal, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryProxyResolves(independenceGoal, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_UniqueID(independenceGoal, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryKeyUnique(independenceGoal, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(independenceGoal, diagnostics, context);
-    if (result || diagnostics != null) result &= validateSupporter_GoalRoot(independenceGoal, diagnostics, context);
-    if (result || diagnostics != null) result &= validateSupportable_SupportCycle(independenceGoal, diagnostics, context);
-    if (result || diagnostics != null) result &= validateSupportable_NonSupportableLeaves(independenceGoal, diagnostics, context);
-    if (result || diagnostics != null) result &= validateGoal_GoalSupporter(independenceGoal, diagnostics, context);
-    if (result || diagnostics != null) result &= validateGoal_GoalContext(independenceGoal, diagnostics, context);
-    if (result || diagnostics != null) result &= validateGoal_ASILInheritance(independenceGoal, diagnostics, context);
+    if (result || diagnostics != null) {
+      result &= validate_EveryDataValueConforms(independenceGoal, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryReferenceIsContained(independenceGoal, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryBidirectionalReferenceIsPaired(independenceGoal, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryProxyResolves(independenceGoal, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_UniqueID(independenceGoal, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryKeyUnique(independenceGoal, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryMapEntryUnique(independenceGoal, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validateSupporter_GoalRoot(independenceGoal, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validateSupportable_SupportCycle(independenceGoal, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validateSupportable_NonSupportableLeaves(independenceGoal, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validateGoal_GoalSupporter(independenceGoal, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validateGoal_GoalContext(independenceGoal, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validateGoal_ASILInheritance(independenceGoal, diagnostics, context);
+    }
     return result;
   }
 
@@ -536,20 +700,46 @@ public class GSNValidator extends EObjectValidator {
    * @generated
    */
   public boolean validateStrategy(Strategy strategy, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    if (!validate_NoCircularContainment(strategy, diagnostics, context)) return false;
+    if (!validate_NoCircularContainment(strategy, diagnostics, context)) {
+      return false;
+    }
     var result = validate_EveryMultiplicityConforms(strategy, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryDataValueConforms(strategy, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(strategy, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(strategy, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryProxyResolves(strategy, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_UniqueID(strategy, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryKeyUnique(strategy, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(strategy, diagnostics, context);
-    if (result || diagnostics != null) result &= validateSupporter_GoalRoot(strategy, diagnostics, context);
-    if (result || diagnostics != null) result &= validateSupportable_SupportCycle(strategy, diagnostics, context);
-    if (result || diagnostics != null) result &= validateSupportable_NonSupportableLeaves(strategy, diagnostics, context);
-    if (result || diagnostics != null) result &= validateStrategy_StrategySupporter(strategy, diagnostics, context);
-    if (result || diagnostics != null) result &= validateStrategy_StrategyContext(strategy, diagnostics, context);
+    if (result || diagnostics != null) {
+      result &= validate_EveryDataValueConforms(strategy, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryReferenceIsContained(strategy, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryBidirectionalReferenceIsPaired(strategy, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryProxyResolves(strategy, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_UniqueID(strategy, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryKeyUnique(strategy, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryMapEntryUnique(strategy, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validateSupporter_GoalRoot(strategy, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validateSupportable_SupportCycle(strategy, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validateSupportable_NonSupportableLeaves(strategy, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validateStrategy_StrategySupporter(strategy, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validateStrategy_StrategyContext(strategy, diagnostics, context);
+    }
     return result;
   }
 
@@ -619,20 +809,46 @@ public class GSNValidator extends EObjectValidator {
    */
   public boolean validateBasicStrategy(BasicStrategy basicStrategy, DiagnosticChain diagnostics,
                                        Map<Object, Object> context) {
-    if (!validate_NoCircularContainment(basicStrategy, diagnostics, context)) return false;
+    if (!validate_NoCircularContainment(basicStrategy, diagnostics, context)) {
+      return false;
+    }
     var result = validate_EveryMultiplicityConforms(basicStrategy, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryDataValueConforms(basicStrategy, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(basicStrategy, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(basicStrategy, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryProxyResolves(basicStrategy, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_UniqueID(basicStrategy, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryKeyUnique(basicStrategy, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(basicStrategy, diagnostics, context);
-    if (result || diagnostics != null) result &= validateSupporter_GoalRoot(basicStrategy, diagnostics, context);
-    if (result || diagnostics != null) result &= validateSupportable_SupportCycle(basicStrategy, diagnostics, context);
-    if (result || diagnostics != null) result &= validateSupportable_NonSupportableLeaves(basicStrategy, diagnostics, context);
-    if (result || diagnostics != null) result &= validateStrategy_StrategySupporter(basicStrategy, diagnostics, context);
-    if (result || diagnostics != null) result &= validateStrategy_StrategyContext(basicStrategy, diagnostics, context);
+    if (result || diagnostics != null) {
+      result &= validate_EveryDataValueConforms(basicStrategy, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryReferenceIsContained(basicStrategy, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryBidirectionalReferenceIsPaired(basicStrategy, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryProxyResolves(basicStrategy, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_UniqueID(basicStrategy, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryKeyUnique(basicStrategy, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryMapEntryUnique(basicStrategy, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validateSupporter_GoalRoot(basicStrategy, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validateSupportable_SupportCycle(basicStrategy, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validateSupportable_NonSupportableLeaves(basicStrategy, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validateStrategy_StrategySupporter(basicStrategy, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validateStrategy_StrategyContext(basicStrategy, diagnostics, context);
+    }
     return result;
   }
 
@@ -642,23 +858,55 @@ public class GSNValidator extends EObjectValidator {
    */
   public boolean validateASILDecompositionStrategy(ASILDecompositionStrategy asilDecompositionStrategy,
                                                    DiagnosticChain diagnostics, Map<Object, Object> context) {
-    if (!validate_NoCircularContainment(asilDecompositionStrategy, diagnostics, context)) return false;
+    if (!validate_NoCircularContainment(asilDecompositionStrategy, diagnostics, context)) {
+      return false;
+    }
     var result = validate_EveryMultiplicityConforms(asilDecompositionStrategy, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryDataValueConforms(asilDecompositionStrategy, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(asilDecompositionStrategy, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(asilDecompositionStrategy, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryProxyResolves(asilDecompositionStrategy, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_UniqueID(asilDecompositionStrategy, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryKeyUnique(asilDecompositionStrategy, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(asilDecompositionStrategy, diagnostics, context);
-    if (result || diagnostics != null) result &= validateSupporter_GoalRoot(asilDecompositionStrategy, diagnostics, context);
-    if (result || diagnostics != null) result &= validateSupportable_SupportCycle(asilDecompositionStrategy, diagnostics, context);
-    if (result || diagnostics != null) result &= validateSupportable_NonSupportableLeaves(asilDecompositionStrategy, diagnostics, context);
-    if (result || diagnostics != null) result &= validateStrategy_StrategySupporter(asilDecompositionStrategy, diagnostics, context);
-    if (result || diagnostics != null) result &= validateStrategy_StrategyContext(asilDecompositionStrategy, diagnostics, context);
-    if (result || diagnostics != null) result &= validateASILDecompositionStrategy_ASILDecompositionIndependence(asilDecompositionStrategy, diagnostics, context);
-    if (result || diagnostics != null) result &= validateASILDecompositionStrategy_ASILDecompositionComponents(asilDecompositionStrategy, diagnostics, context);
-    if (result || diagnostics != null) result &= validateASILDecompositionStrategy_ASILDescendants(asilDecompositionStrategy, diagnostics, context);
+    if (result || diagnostics != null) {
+      result &= validate_EveryDataValueConforms(asilDecompositionStrategy, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryReferenceIsContained(asilDecompositionStrategy, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryBidirectionalReferenceIsPaired(asilDecompositionStrategy, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryProxyResolves(asilDecompositionStrategy, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_UniqueID(asilDecompositionStrategy, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryKeyUnique(asilDecompositionStrategy, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryMapEntryUnique(asilDecompositionStrategy, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validateSupporter_GoalRoot(asilDecompositionStrategy, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validateSupportable_SupportCycle(asilDecompositionStrategy, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validateSupportable_NonSupportableLeaves(asilDecompositionStrategy, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validateStrategy_StrategySupporter(asilDecompositionStrategy, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validateStrategy_StrategyContext(asilDecompositionStrategy, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validateASILDecompositionStrategy_ASILDecompositionIndependence(asilDecompositionStrategy, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validateASILDecompositionStrategy_ASILDecompositionComponents(asilDecompositionStrategy, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validateASILDecompositionStrategy_ASILDescendants(asilDecompositionStrategy, diagnostics, context);
+    }
     return result;
   }
 
@@ -768,18 +1016,40 @@ public class GSNValidator extends EObjectValidator {
    * @generated
    */
   public boolean validateSolution(Solution solution, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    if (!validate_NoCircularContainment(solution, diagnostics, context)) return false;
+    if (!validate_NoCircularContainment(solution, diagnostics, context)) {
+      return false;
+    }
     var result = validate_EveryMultiplicityConforms(solution, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryDataValueConforms(solution, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(solution, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(solution, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryProxyResolves(solution, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_UniqueID(solution, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryKeyUnique(solution, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(solution, diagnostics, context);
-    if (result || diagnostics != null) result &= validateSupporter_GoalRoot(solution, diagnostics, context);
-    if (result || diagnostics != null) result &= validateSolution_SolutionSupporter(solution, diagnostics, context);
-    if (result || diagnostics != null) result &= validateSolution_SolutionContext(solution, diagnostics, context);
+    if (result || diagnostics != null) {
+      result &= validate_EveryDataValueConforms(solution, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryReferenceIsContained(solution, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryBidirectionalReferenceIsPaired(solution, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryProxyResolves(solution, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_UniqueID(solution, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryKeyUnique(solution, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryMapEntryUnique(solution, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validateSupporter_GoalRoot(solution, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validateSolution_SolutionSupporter(solution, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validateSolution_SolutionContext(solution, diagnostics, context);
+    }
     return result;
   }
 
@@ -846,17 +1116,37 @@ public class GSNValidator extends EObjectValidator {
    * @generated
    */
   public boolean validateContext(Context context, DiagnosticChain diagnostics, Map<Object, Object> theContext) {
-    if (!validate_NoCircularContainment(context, diagnostics, theContext)) return false;
+    if (!validate_NoCircularContainment(context, diagnostics, theContext)) {
+      return false;
+    }
     var result = validate_EveryMultiplicityConforms(context, diagnostics, theContext);
-    if (result || diagnostics != null) result &= validate_EveryDataValueConforms(context, diagnostics, theContext);
-    if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(context, diagnostics, theContext);
-    if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(context, diagnostics, theContext);
-    if (result || diagnostics != null) result &= validate_EveryProxyResolves(context, diagnostics, theContext);
-    if (result || diagnostics != null) result &= validate_UniqueID(context, diagnostics, theContext);
-    if (result || diagnostics != null) result &= validate_EveryKeyUnique(context, diagnostics, theContext);
-    if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(context, diagnostics, theContext);
-    if (result || diagnostics != null) result &= validateContextualElement_ContextualElementSupporter(context, diagnostics, theContext);
-    if (result || diagnostics != null) result &= validateContextualElement_ContextualElementContext(context, diagnostics, theContext);
+    if (result || diagnostics != null) {
+      result &= validate_EveryDataValueConforms(context, diagnostics, theContext);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryReferenceIsContained(context, diagnostics, theContext);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryBidirectionalReferenceIsPaired(context, diagnostics, theContext);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryProxyResolves(context, diagnostics, theContext);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_UniqueID(context, diagnostics, theContext);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryKeyUnique(context, diagnostics, theContext);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryMapEntryUnique(context, diagnostics, theContext);
+    }
+    if (result || diagnostics != null) {
+      result &= validateContextualElement_ContextualElementSupporter(context, diagnostics, theContext);
+    }
+    if (result || diagnostics != null) {
+      result &= validateContextualElement_ContextualElementContext(context, diagnostics, theContext);
+    }
     return result;
   }
 
@@ -866,17 +1156,37 @@ public class GSNValidator extends EObjectValidator {
    */
   public boolean validateJustification(Justification justification, DiagnosticChain diagnostics,
                                        Map<Object, Object> context) {
-    if (!validate_NoCircularContainment(justification, diagnostics, context)) return false;
+    if (!validate_NoCircularContainment(justification, diagnostics, context)) {
+      return false;
+    }
     var result = validate_EveryMultiplicityConforms(justification, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryDataValueConforms(justification, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(justification, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(justification, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryProxyResolves(justification, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_UniqueID(justification, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryKeyUnique(justification, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(justification, diagnostics, context);
-    if (result || diagnostics != null) result &= validateContextualElement_ContextualElementSupporter(justification, diagnostics, context);
-    if (result || diagnostics != null) result &= validateContextualElement_ContextualElementContext(justification, diagnostics, context);
+    if (result || diagnostics != null) {
+      result &= validate_EveryDataValueConforms(justification, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryReferenceIsContained(justification, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryBidirectionalReferenceIsPaired(justification, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryProxyResolves(justification, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_UniqueID(justification, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryKeyUnique(justification, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryMapEntryUnique(justification, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validateContextualElement_ContextualElementSupporter(justification, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validateContextualElement_ContextualElementContext(justification, diagnostics, context);
+    }
     return result;
   }
 
@@ -885,17 +1195,37 @@ public class GSNValidator extends EObjectValidator {
    * @generated
    */
   public boolean validateAssumption(Assumption assumption, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    if (!validate_NoCircularContainment(assumption, diagnostics, context)) return false;
+    if (!validate_NoCircularContainment(assumption, diagnostics, context)) {
+      return false;
+    }
     var result = validate_EveryMultiplicityConforms(assumption, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryDataValueConforms(assumption, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(assumption, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(assumption, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryProxyResolves(assumption, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_UniqueID(assumption, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryKeyUnique(assumption, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(assumption, diagnostics, context);
-    if (result || diagnostics != null) result &= validateContextualElement_ContextualElementSupporter(assumption, diagnostics, context);
-    if (result || diagnostics != null) result &= validateContextualElement_ContextualElementContext(assumption, diagnostics, context);
+    if (result || diagnostics != null) {
+      result &= validate_EveryDataValueConforms(assumption, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryReferenceIsContained(assumption, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryBidirectionalReferenceIsPaired(assumption, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryProxyResolves(assumption, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_UniqueID(assumption, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryKeyUnique(assumption, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryMapEntryUnique(assumption, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validateContextualElement_ContextualElementSupporter(assumption, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validateContextualElement_ContextualElementContext(assumption, diagnostics, context);
+    }
     return result;
   }
 
@@ -922,18 +1252,40 @@ public class GSNValidator extends EObjectValidator {
    */
   public boolean validateSupportable(Supportable supportable, DiagnosticChain diagnostics,
                                      Map<Object, Object> context) {
-    if (!validate_NoCircularContainment(supportable, diagnostics, context)) return false;
+    if (!validate_NoCircularContainment(supportable, diagnostics, context)) {
+      return false;
+    }
     var result = validate_EveryMultiplicityConforms(supportable, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryDataValueConforms(supportable, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(supportable, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(supportable, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryProxyResolves(supportable, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_UniqueID(supportable, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryKeyUnique(supportable, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(supportable, diagnostics, context);
-    if (result || diagnostics != null) result &= validateSupporter_GoalRoot(supportable, diagnostics, context);
-    if (result || diagnostics != null) result &= validateSupportable_SupportCycle(supportable, diagnostics, context);
-    if (result || diagnostics != null) result &= validateSupportable_NonSupportableLeaves(supportable, diagnostics, context);
+    if (result || diagnostics != null) {
+      result &= validate_EveryDataValueConforms(supportable, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryReferenceIsContained(supportable, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryBidirectionalReferenceIsPaired(supportable, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryProxyResolves(supportable, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_UniqueID(supportable, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryKeyUnique(supportable, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryMapEntryUnique(supportable, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validateSupporter_GoalRoot(supportable, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validateSupportable_SupportCycle(supportable, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validateSupportable_NonSupportableLeaves(supportable, diagnostics, context);
+    }
     return result;
   }
 
@@ -1003,16 +1355,34 @@ public class GSNValidator extends EObjectValidator {
    * @generated
    */
   public boolean validateSupporter(Supporter supporter, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    if (!validate_NoCircularContainment(supporter, diagnostics, context)) return false;
+    if (!validate_NoCircularContainment(supporter, diagnostics, context)) {
+      return false;
+    }
     var result = validate_EveryMultiplicityConforms(supporter, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryDataValueConforms(supporter, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(supporter, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(supporter, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryProxyResolves(supporter, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_UniqueID(supporter, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryKeyUnique(supporter, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(supporter, diagnostics, context);
-    if (result || diagnostics != null) result &= validateSupporter_GoalRoot(supporter, diagnostics, context);
+    if (result || diagnostics != null) {
+      result &= validate_EveryDataValueConforms(supporter, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryReferenceIsContained(supporter, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryBidirectionalReferenceIsPaired(supporter, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryProxyResolves(supporter, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_UniqueID(supporter, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryKeyUnique(supporter, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryMapEntryUnique(supporter, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validateSupporter_GoalRoot(supporter, diagnostics, context);
+    }
     return result;
   }
 
@@ -1051,18 +1421,40 @@ public class GSNValidator extends EObjectValidator {
    */
   public boolean validateSupportConnector(SupportConnector supportConnector, DiagnosticChain diagnostics,
                                           Map<Object, Object> context) {
-    if (!validate_NoCircularContainment(supportConnector, diagnostics, context)) return false;
+    if (!validate_NoCircularContainment(supportConnector, diagnostics, context)) {
+      return false;
+    }
     var result = validate_EveryMultiplicityConforms(supportConnector, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryDataValueConforms(supportConnector, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(supportConnector, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(supportConnector, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryProxyResolves(supportConnector, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_UniqueID(supportConnector, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryKeyUnique(supportConnector, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(supportConnector, diagnostics, context);
-    if (result || diagnostics != null) result &= validateSupporter_GoalRoot(supportConnector, diagnostics, context);
-    if (result || diagnostics != null) result &= validateSupportable_SupportCycle(supportConnector, diagnostics, context);
-    if (result || diagnostics != null) result &= validateSupportable_NonSupportableLeaves(supportConnector, diagnostics, context);
+    if (result || diagnostics != null) {
+      result &= validate_EveryDataValueConforms(supportConnector, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryReferenceIsContained(supportConnector, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryBidirectionalReferenceIsPaired(supportConnector, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryProxyResolves(supportConnector, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_UniqueID(supportConnector, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryKeyUnique(supportConnector, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryMapEntryUnique(supportConnector, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validateSupporter_GoalRoot(supportConnector, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validateSupportable_SupportCycle(supportConnector, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validateSupportable_NonSupportableLeaves(supportConnector, diagnostics, context);
+    }
     return result;
   }
 
@@ -1072,18 +1464,40 @@ public class GSNValidator extends EObjectValidator {
    */
   public boolean validateAndSupporter(AndSupporter andSupporter, DiagnosticChain diagnostics,
                                       Map<Object, Object> context) {
-    if (!validate_NoCircularContainment(andSupporter, diagnostics, context)) return false;
+    if (!validate_NoCircularContainment(andSupporter, diagnostics, context)) {
+      return false;
+    }
     var result = validate_EveryMultiplicityConforms(andSupporter, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryDataValueConforms(andSupporter, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(andSupporter, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(andSupporter, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryProxyResolves(andSupporter, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_UniqueID(andSupporter, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryKeyUnique(andSupporter, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(andSupporter, diagnostics, context);
-    if (result || diagnostics != null) result &= validateSupporter_GoalRoot(andSupporter, diagnostics, context);
-    if (result || diagnostics != null) result &= validateSupportable_SupportCycle(andSupporter, diagnostics, context);
-    if (result || diagnostics != null) result &= validateSupportable_NonSupportableLeaves(andSupporter, diagnostics, context);
+    if (result || diagnostics != null) {
+      result &= validate_EveryDataValueConforms(andSupporter, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryReferenceIsContained(andSupporter, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryBidirectionalReferenceIsPaired(andSupporter, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryProxyResolves(andSupporter, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_UniqueID(andSupporter, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryKeyUnique(andSupporter, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryMapEntryUnique(andSupporter, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validateSupporter_GoalRoot(andSupporter, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validateSupportable_SupportCycle(andSupporter, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validateSupportable_NonSupportableLeaves(andSupporter, diagnostics, context);
+    }
     return result;
   }
 
@@ -1093,18 +1507,40 @@ public class GSNValidator extends EObjectValidator {
    */
   public boolean validateOrSupporter(OrSupporter orSupporter, DiagnosticChain diagnostics,
                                      Map<Object, Object> context) {
-    if (!validate_NoCircularContainment(orSupporter, diagnostics, context)) return false;
+    if (!validate_NoCircularContainment(orSupporter, diagnostics, context)) {
+      return false;
+    }
     var result = validate_EveryMultiplicityConforms(orSupporter, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryDataValueConforms(orSupporter, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(orSupporter, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(orSupporter, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryProxyResolves(orSupporter, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_UniqueID(orSupporter, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryKeyUnique(orSupporter, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(orSupporter, diagnostics, context);
-    if (result || diagnostics != null) result &= validateSupporter_GoalRoot(orSupporter, diagnostics, context);
-    if (result || diagnostics != null) result &= validateSupportable_SupportCycle(orSupporter, diagnostics, context);
-    if (result || diagnostics != null) result &= validateSupportable_NonSupportableLeaves(orSupporter, diagnostics, context);
+    if (result || diagnostics != null) {
+      result &= validate_EveryDataValueConforms(orSupporter, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryReferenceIsContained(orSupporter, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryBidirectionalReferenceIsPaired(orSupporter, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryProxyResolves(orSupporter, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_UniqueID(orSupporter, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryKeyUnique(orSupporter, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryMapEntryUnique(orSupporter, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validateSupporter_GoalRoot(orSupporter, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validateSupportable_SupportCycle(orSupporter, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validateSupportable_NonSupportableLeaves(orSupporter, diagnostics, context);
+    }
     return result;
   }
 
@@ -1114,18 +1550,40 @@ public class GSNValidator extends EObjectValidator {
    */
   public boolean validateXorSupporter(XorSupporter xorSupporter, DiagnosticChain diagnostics,
                                       Map<Object, Object> context) {
-    if (!validate_NoCircularContainment(xorSupporter, diagnostics, context)) return false;
+    if (!validate_NoCircularContainment(xorSupporter, diagnostics, context)) {
+      return false;
+    }
     var result = validate_EveryMultiplicityConforms(xorSupporter, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryDataValueConforms(xorSupporter, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(xorSupporter, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(xorSupporter, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryProxyResolves(xorSupporter, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_UniqueID(xorSupporter, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryKeyUnique(xorSupporter, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(xorSupporter, diagnostics, context);
-    if (result || diagnostics != null) result &= validateSupporter_GoalRoot(xorSupporter, diagnostics, context);
-    if (result || diagnostics != null) result &= validateSupportable_SupportCycle(xorSupporter, diagnostics, context);
-    if (result || diagnostics != null) result &= validateSupportable_NonSupportableLeaves(xorSupporter, diagnostics, context);
+    if (result || diagnostics != null) {
+      result &= validate_EveryDataValueConforms(xorSupporter, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryReferenceIsContained(xorSupporter, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryBidirectionalReferenceIsPaired(xorSupporter, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryProxyResolves(xorSupporter, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_UniqueID(xorSupporter, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryKeyUnique(xorSupporter, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryMapEntryUnique(xorSupporter, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validateSupporter_GoalRoot(xorSupporter, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validateSupportable_SupportCycle(xorSupporter, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validateSupportable_NonSupportableLeaves(xorSupporter, diagnostics, context);
+    }
     return result;
   }
 
@@ -1135,18 +1593,40 @@ public class GSNValidator extends EObjectValidator {
    */
   public boolean validateMofNSupporter(MofNSupporter mofNSupporter, DiagnosticChain diagnostics,
                                        Map<Object, Object> context) {
-    if (!validate_NoCircularContainment(mofNSupporter, diagnostics, context)) return false;
+    if (!validate_NoCircularContainment(mofNSupporter, diagnostics, context)) {
+      return false;
+    }
     var result = validate_EveryMultiplicityConforms(mofNSupporter, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryDataValueConforms(mofNSupporter, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(mofNSupporter, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(mofNSupporter, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryProxyResolves(mofNSupporter, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_UniqueID(mofNSupporter, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryKeyUnique(mofNSupporter, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(mofNSupporter, diagnostics, context);
-    if (result || diagnostics != null) result &= validateSupporter_GoalRoot(mofNSupporter, diagnostics, context);
-    if (result || diagnostics != null) result &= validateSupportable_SupportCycle(mofNSupporter, diagnostics, context);
-    if (result || diagnostics != null) result &= validateSupportable_NonSupportableLeaves(mofNSupporter, diagnostics, context);
+    if (result || diagnostics != null) {
+      result &= validate_EveryDataValueConforms(mofNSupporter, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryReferenceIsContained(mofNSupporter, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryBidirectionalReferenceIsPaired(mofNSupporter, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryProxyResolves(mofNSupporter, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_UniqueID(mofNSupporter, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryKeyUnique(mofNSupporter, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validate_EveryMapEntryUnique(mofNSupporter, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validateSupporter_GoalRoot(mofNSupporter, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validateSupportable_SupportCycle(mofNSupporter, diagnostics, context);
+    }
+    if (result || diagnostics != null) {
+      result &= validateSupportable_NonSupportableLeaves(mofNSupporter, diagnostics, context);
+    }
     return result;
   }
 
@@ -1157,6 +1637,15 @@ public class GSNValidator extends EObjectValidator {
    */
   public boolean validateTemplate(Template template, DiagnosticChain diagnostics, Map<Object, Object> context) {
     return validate_EveryDefaultConstraint(template, diagnostics, context);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public boolean validateUndeveloped(Undeveloped undeveloped, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    return validate_EveryDefaultConstraint(undeveloped, diagnostics, context);
   }
 
   /**

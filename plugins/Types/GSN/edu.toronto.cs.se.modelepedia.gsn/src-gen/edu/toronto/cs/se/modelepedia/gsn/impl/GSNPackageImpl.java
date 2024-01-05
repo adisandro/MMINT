@@ -54,6 +54,7 @@ import edu.toronto.cs.se.modelepedia.gsn.Supportable;
 import edu.toronto.cs.se.modelepedia.gsn.SupportedBy;
 import edu.toronto.cs.se.modelepedia.gsn.Supporter;
 import edu.toronto.cs.se.modelepedia.gsn.Template;
+import edu.toronto.cs.se.modelepedia.gsn.Undeveloped;
 import edu.toronto.cs.se.modelepedia.gsn.ValidityValue;
 import edu.toronto.cs.se.modelepedia.gsn.XorSupporter;
 import edu.toronto.cs.se.modelepedia.gsn.util.GSNBuilder;
@@ -240,6 +241,13 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
   private EClass templateEClass = null;
 
   /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass undevelopedEClass = null;
+
+  /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
@@ -306,7 +314,9 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
    * @generated
    */
   public static GSNPackage init() {
-    if (GSNPackageImpl.isInited) return (GSNPackage)EPackage.Registry.INSTANCE.getEPackage(GSNPackage.eNS_URI);
+    if (GSNPackageImpl.isInited) {
+      return (GSNPackage)EPackage.Registry.INSTANCE.getEPackage(GSNPackage.eNS_URI);
+    }
 
     // Obtain or create and register package
     var registeredGSNPackage = EPackage.Registry.INSTANCE.get(GSNPackage.eNS_URI);
@@ -557,6 +567,16 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
   @Override
   public EReference getDecomposableCoreElement_InContextOf() {
     return (EReference)this.decomposableCoreElementEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getDecomposableCoreElement_Undeveloped() {
+    return (EReference)this.decomposableCoreElementEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -935,6 +955,16 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
   }
 
   /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getUndeveloped() {
+    return this.undevelopedEClass;
+  }
+
+  /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
@@ -1002,7 +1032,9 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
    * @generated
    */
   public void createPackageContents() {
-    if (this.isCreated) return;
+    if (this.isCreated) {
+      return;
+    }
     this.isCreated = true;
 
     // Create classes and their features
@@ -1035,6 +1067,7 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
 
     this.decomposableCoreElementEClass = createEClass(GSNPackage.DECOMPOSABLE_CORE_ELEMENT);
     createEReference(this.decomposableCoreElementEClass, GSNPackage.DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF);
+    createEReference(this.decomposableCoreElementEClass, GSNPackage.DECOMPOSABLE_CORE_ELEMENT__UNDEVELOPED);
 
     this.contextualElementEClass = createEClass(GSNPackage.CONTEXTUAL_ELEMENT);
     createEReference(this.contextualElementEClass, GSNPackage.CONTEXTUAL_ELEMENT__CONTEXT_OF);
@@ -1100,6 +1133,8 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     createEOperation(this.templateEClass, GSNPackage.TEMPLATE___IMPORT____SAFETYCASE);
     createEOperation(this.templateEClass, GSNPackage.TEMPLATE___INSTANTIATE);
 
+    this.undevelopedEClass = createEClass(GSNPackage.UNDEVELOPED);
+
     // Create enums
     this.asilLevelEEnum = createEEnum(GSNPackage.ASIL_LEVEL);
     this.validityValueEEnum = createEEnum(GSNPackage.VALIDITY_VALUE);
@@ -1123,7 +1158,9 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
    * @generated
    */
   public void initializePackageContents() {
-    if (this.isInitialized) return;
+    if (this.isInitialized) {
+      return;
+    }
     this.isInitialized = true;
 
     // Initialize package
@@ -1195,6 +1232,7 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
 
     initEClass(this.decomposableCoreElementEClass, DecomposableCoreElement.class, "DecomposableCoreElement", EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
     initEReference(getDecomposableCoreElement_InContextOf(), this.getInContextOf(), this.getInContextOf_ContextOf(), "inContextOf", null, 0, -1, DecomposableCoreElement.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, EPackageImpl.IS_COMPOSITE, !EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
+    initEReference(getDecomposableCoreElement_Undeveloped(), this.getUndeveloped(), null, "undeveloped", null, 0, 1, DecomposableCoreElement.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, EPackageImpl.IS_COMPOSITE, !EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
 
     initEClass(this.contextualElementEClass, ContextualElement.class, "ContextualElement", EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
     initEReference(getContextualElement_ContextOf(), this.getInContextOf(), this.getInContextOf_Context(), "contextOf", null, 1, -1, ContextualElement.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
@@ -1266,6 +1304,8 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
 
     op = initEOperation(getTemplate__Instantiate(), null, "instantiate", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEException(op, this.getException());
+
+    initEClass(this.undevelopedEClass, Undeveloped.class, "Undeveloped", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 
     // Initialize enums and add enum literals
     initEEnum(this.asilLevelEEnum, ASILLevel.class, "ASILLevel");

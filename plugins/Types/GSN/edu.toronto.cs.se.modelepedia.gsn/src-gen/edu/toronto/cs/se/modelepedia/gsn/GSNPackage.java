@@ -511,13 +511,22 @@ public interface GSNPackage extends EPackage {
   int DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF = GSNPackage.CORE_ELEMENT_FEATURE_COUNT + 1;
 
   /**
+   * The feature id for the '<em><b>Undeveloped</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DECOMPOSABLE_CORE_ELEMENT__UNDEVELOPED = GSNPackage.CORE_ELEMENT_FEATURE_COUNT + 2;
+
+  /**
    * The number of structural features of the '<em>Decomposable Core Element</em>' class.
    * <!-- begin-user-doc --> <!--
    * end-user-doc -->
    * @generated
    * @ordered
    */
-  int DECOMPOSABLE_CORE_ELEMENT_FEATURE_COUNT = GSNPackage.CORE_ELEMENT_FEATURE_COUNT + 2;
+  int DECOMPOSABLE_CORE_ELEMENT_FEATURE_COUNT = GSNPackage.CORE_ELEMENT_FEATURE_COUNT + 3;
 
   /**
    * The operation id for the '<em>Validate</em>' operation.
@@ -806,6 +815,15 @@ public interface GSNPackage extends EPackage {
   int GOAL__IN_CONTEXT_OF = GSNPackage.DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF;
 
   /**
+   * The feature id for the '<em><b>Undeveloped</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int GOAL__UNDEVELOPED = GSNPackage.DECOMPOSABLE_CORE_ELEMENT__UNDEVELOPED;
+
+  /**
    * The feature id for the '<em><b>State Validity</b></em>' attribute.
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
@@ -934,6 +952,15 @@ public interface GSNPackage extends EPackage {
   int BASIC_GOAL__IN_CONTEXT_OF = GSNPackage.GOAL__IN_CONTEXT_OF;
 
   /**
+   * The feature id for the '<em><b>Undeveloped</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BASIC_GOAL__UNDEVELOPED = GSNPackage.GOAL__UNDEVELOPED;
+
+  /**
    * The feature id for the '<em><b>State Validity</b></em>' attribute.
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
@@ -1060,6 +1087,15 @@ public interface GSNPackage extends EPackage {
    * @ordered
    */
   int INDEPENDENCE_GOAL__IN_CONTEXT_OF = GSNPackage.GOAL__IN_CONTEXT_OF;
+
+  /**
+   * The feature id for the '<em><b>Undeveloped</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INDEPENDENCE_GOAL__UNDEVELOPED = GSNPackage.GOAL__UNDEVELOPED;
 
   /**
    * The feature id for the '<em><b>State Validity</b></em>' attribute.
@@ -1191,6 +1227,15 @@ public interface GSNPackage extends EPackage {
   int STRATEGY__IN_CONTEXT_OF = GSNPackage.DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF;
 
   /**
+   * The feature id for the '<em><b>Undeveloped</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STRATEGY__UNDEVELOPED = GSNPackage.DECOMPOSABLE_CORE_ELEMENT__UNDEVELOPED;
+
+  /**
    * The number of structural features of the '<em>Strategy</em>' class.
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
@@ -1301,6 +1346,15 @@ public interface GSNPackage extends EPackage {
    * @ordered
    */
   int BASIC_STRATEGY__IN_CONTEXT_OF = GSNPackage.STRATEGY__IN_CONTEXT_OF;
+
+  /**
+   * The feature id for the '<em><b>Undeveloped</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BASIC_STRATEGY__UNDEVELOPED = GSNPackage.STRATEGY__UNDEVELOPED;
 
   /**
    * The number of structural features of the '<em>Basic Strategy</em>' class. <!-- begin-user-doc --> <!-- end-user-doc
@@ -1414,6 +1468,15 @@ public interface GSNPackage extends EPackage {
    * @ordered
    */
   int ASIL_DECOMPOSITION_STRATEGY__IN_CONTEXT_OF = GSNPackage.STRATEGY__IN_CONTEXT_OF;
+
+  /**
+   * The feature id for the '<em><b>Undeveloped</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ASIL_DECOMPOSITION_STRATEGY__UNDEVELOPED = GSNPackage.STRATEGY__UNDEVELOPED;
 
   /**
    * The number of structural features of the '<em>ASIL Decomposition Strategy</em>' class.
@@ -2284,6 +2347,34 @@ public interface GSNPackage extends EPackage {
   int TEMPLATE_OPERATION_COUNT = 3;
 
   /**
+   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.UndevelopedImpl <em>Undeveloped</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.toronto.cs.se.modelepedia.gsn.impl.UndevelopedImpl
+   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getUndeveloped()
+   * @generated
+   */
+  int UNDEVELOPED = 29;
+
+  /**
+   * The number of structural features of the '<em>Undeveloped</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int UNDEVELOPED_FEATURE_COUNT = 0;
+
+  /**
+   * The number of operations of the '<em>Undeveloped</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int UNDEVELOPED_OPERATION_COUNT = 0;
+
+  /**
    * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.ASILLevel <em>ASIL Level</em>}' enum. <!--
    * begin-user-doc --> <!-- end-user-doc -->
    *
@@ -2291,7 +2382,7 @@ public interface GSNPackage extends EPackage {
    * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getASILLevel()
    * @generated
    */
-  int ASIL_LEVEL = 29;
+  int ASIL_LEVEL = 30;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.ValidityValue <em>Validity Value</em>}' enum.
@@ -2300,7 +2391,7 @@ public interface GSNPackage extends EPackage {
    * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getValidityValue()
    * @generated
    */
-  int VALIDITY_VALUE = 30;
+  int VALIDITY_VALUE = 31;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.ImpactType <em>Impact Type</em>}' enum. <!--
@@ -2310,7 +2401,7 @@ public interface GSNPackage extends EPackage {
    * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getImpactType()
    * @generated
    */
-  int IMPACT_TYPE = 31;
+  int IMPACT_TYPE = 32;
 
   /**
    * The meta object id for the '<em>Exception</em>' data type.
@@ -2319,7 +2410,7 @@ public interface GSNPackage extends EPackage {
    * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getException()
    * @generated
    */
-  int EXCEPTION = 32;
+  int EXCEPTION = 33;
 
   /**
    * The meta object id for the '<em>Builder</em>' data type.
@@ -2329,7 +2420,7 @@ public interface GSNPackage extends EPackage {
    * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getGSNBuilder()
    * @generated
    */
-  int GSN_BUILDER = 33;
+  int GSN_BUILDER = 34;
 
   /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.gsn.SafetyCase <em>Safety Case</em>}'. <!--
@@ -2582,6 +2673,17 @@ public interface GSNPackage extends EPackage {
    * @generated
    */
   EReference getDecomposableCoreElement_InContextOf();
+
+  /**
+   * Returns the meta object for the containment reference '{@link edu.toronto.cs.se.modelepedia.gsn.DecomposableCoreElement#getUndeveloped <em>Undeveloped</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Undeveloped</em>'.
+   * @see edu.toronto.cs.se.modelepedia.gsn.DecomposableCoreElement#getUndeveloped()
+   * @see #getDecomposableCoreElement()
+   * @generated
+   */
+  EReference getDecomposableCoreElement_Undeveloped();
 
   /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.gsn.ContextualElement <em>Contextual Element</em>}'.
@@ -2985,6 +3087,16 @@ public interface GSNPackage extends EPackage {
   EOperation getTemplate__Instantiate();
 
   /**
+   * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.gsn.Undeveloped <em>Undeveloped</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Undeveloped</em>'.
+   * @see edu.toronto.cs.se.modelepedia.gsn.Undeveloped
+   * @generated
+   */
+  EClass getUndeveloped();
+
+  /**
    * Returns the meta object for enum '{@link edu.toronto.cs.se.modelepedia.gsn.ASILLevel <em>ASIL Level</em>}'. <!--
    * begin-user-doc --> <!-- end-user-doc -->
    *
@@ -3253,6 +3365,14 @@ public interface GSNPackage extends EPackage {
      * @generated
      */
     EReference DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF = GSNPackage.eINSTANCE.getDecomposableCoreElement_InContextOf();
+
+    /**
+     * The meta object literal for the '<em><b>Undeveloped</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference DECOMPOSABLE_CORE_ELEMENT__UNDEVELOPED = GSNPackage.eINSTANCE.getDecomposableCoreElement_Undeveloped();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.ContextualElementImpl <em>Contextual Element</em>}' class.
@@ -3605,6 +3725,16 @@ public interface GSNPackage extends EPackage {
      * @generated
      */
     EOperation TEMPLATE___INSTANTIATE = GSNPackage.eINSTANCE.getTemplate__Instantiate();
+
+    /**
+     * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.UndevelopedImpl <em>Undeveloped</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.toronto.cs.se.modelepedia.gsn.impl.UndevelopedImpl
+     * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getUndeveloped()
+     * @generated
+     */
+    EClass UNDEVELOPED = GSNPackage.eINSTANCE.getUndeveloped();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.ASILLevel <em>ASIL Level</em>}' enum.

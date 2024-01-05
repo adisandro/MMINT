@@ -24,6 +24,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.DecomposableCoreElement#getInContextOf <em>In Context Of</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.DecomposableCoreElement#getUndeveloped <em>Undeveloped</em>}</li>
  * </ul>
  *
  * @see edu.toronto.cs.se.modelepedia.gsn.GSNPackage#getDecomposableCoreElement()
@@ -44,5 +45,27 @@ public interface DecomposableCoreElement extends CoreElement, Supportable {
    * @generated
    */
   EList<InContextOf> getInContextOf();
+
+  /**
+   * Returns the value of the '<em><b>Undeveloped</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Undeveloped</em>' containment reference.
+   * @see #setUndeveloped(Undeveloped)
+   * @see edu.toronto.cs.se.modelepedia.gsn.GSNPackage#getDecomposableCoreElement_Undeveloped()
+   * @model containment="true"
+   * @generated
+   */
+  Undeveloped getUndeveloped();
+
+  /**
+   * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.gsn.DecomposableCoreElement#getUndeveloped <em>Undeveloped</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Undeveloped</em>' containment reference.
+   * @see #getUndeveloped()
+   * @generated
+   */
+  void setUndeveloped(Undeveloped value);
 
 } // DecomposableCoreElement

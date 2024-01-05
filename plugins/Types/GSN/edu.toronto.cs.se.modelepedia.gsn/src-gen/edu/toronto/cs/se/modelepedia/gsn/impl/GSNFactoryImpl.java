@@ -41,6 +41,7 @@ import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
 import edu.toronto.cs.se.modelepedia.gsn.Solution;
 import edu.toronto.cs.se.modelepedia.gsn.SupportedBy;
 import edu.toronto.cs.se.modelepedia.gsn.Template;
+import edu.toronto.cs.se.modelepedia.gsn.Undeveloped;
 import edu.toronto.cs.se.modelepedia.gsn.ValidityValue;
 import edu.toronto.cs.se.modelepedia.gsn.XorSupporter;
 import edu.toronto.cs.se.modelepedia.gsn.util.GSNBuilder;
@@ -102,6 +103,7 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
     case GSNPackage.XOR_SUPPORTER -> createXorSupporter();
     case GSNPackage.MOF_NSUPPORTER -> createMofNSupporter();
     case GSNPackage.TEMPLATE -> createTemplate();
+    case GSNPackage.UNDEVELOPED -> createUndeveloped();
     default -> throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     };
   }
@@ -320,12 +322,25 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
   }
 
   /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Undeveloped createUndeveloped() {
+    UndevelopedImpl undeveloped = new UndevelopedImpl();
+    return undeveloped;
+  }
+
+  /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   public ASILLevel createASILLevelFromString(EDataType eDataType, String initialValue) {
     var result = ASILLevel.get(initialValue);
-    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    if (result == null) {
+      throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    }
     return result;
   }
 
@@ -343,7 +358,9 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
    */
   public ValidityValue createValidityValueFromString(EDataType eDataType, String initialValue) {
     var result = ValidityValue.get(initialValue);
-    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    if (result == null) {
+      throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    }
     return result;
   }
 
@@ -361,7 +378,9 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
    */
   public ImpactType createImpactTypeFromString(EDataType eDataType, String initialValue) {
     var result = ImpactType.get(initialValue);
-    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    if (result == null) {
+      throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    }
     return result;
   }
 

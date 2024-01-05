@@ -103,8 +103,9 @@ public abstract class GoalImpl extends DecomposableCoreElementImpl implements Go
   public void setStateValidity(ValidityValue newStateValidity) {
     var oldStateValidity = this.stateValidity;
     this.stateValidity = newStateValidity == null ? GoalImpl.STATE_VALIDITY_EDEFAULT : newStateValidity;
-    if (eNotificationRequired())
+    if (eNotificationRequired()) {
       eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.GOAL__STATE_VALIDITY, oldStateValidity, this.stateValidity));
+    }
   }
 
   /**
@@ -125,7 +126,12 @@ public abstract class GoalImpl extends DecomposableCoreElementImpl implements Go
     this.asil = newAsil;
     if (eNotificationRequired()) {
       ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GSNPackage.GOAL__ASIL, oldAsil, newAsil);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
+      if (msgs == null) {
+        msgs = notification;
+      }
+      else {
+        msgs.add(notification);
+      }
     }
     return msgs;
   }
@@ -138,15 +144,20 @@ public abstract class GoalImpl extends DecomposableCoreElementImpl implements Go
   public void setAsil(ASIL newAsil) {
     if (newAsil != this.asil) {
       NotificationChain msgs = null;
-      if (this.asil != null)
+      if (this.asil != null) {
         msgs = ((InternalEObject)this.asil).eInverseRemove(this, GSNPackage.ASIL__TARGET, ASIL.class, msgs);
-      if (newAsil != null)
+      }
+      if (newAsil != null) {
         msgs = ((InternalEObject)newAsil).eInverseAdd(this, GSNPackage.ASIL__TARGET, ASIL.class, msgs);
+      }
       msgs = basicSetAsil(newAsil, msgs);
-      if (msgs != null) msgs.dispatch();
+      if (msgs != null) {
+        msgs.dispatch();
+      }
     }
-    else if (eNotificationRequired())
+    else if (eNotificationRequired()) {
       eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.GOAL__ASIL, newAsil, newAsil));
+    }
   }
 
   /**
@@ -157,8 +168,9 @@ public abstract class GoalImpl extends DecomposableCoreElementImpl implements Go
   public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
       case GSNPackage.GOAL__ASIL:
-        if (this.asil != null)
+        if (this.asil != null) {
           msgs = ((InternalEObject)this.asil).eInverseRemove(this, InternalEObject.EOPPOSITE_FEATURE_BASE - GSNPackage.GOAL__ASIL, null, msgs);
+        }
         return basicSetAsil((ASIL)otherEnd, msgs);
     }
     return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -289,7 +301,9 @@ public abstract class GoalImpl extends DecomposableCoreElementImpl implements Go
    */
   @Override
   public String toString() {
-    if (eIsProxy()) return super.toString();
+    if (eIsProxy()) {
+      return super.toString();
+    }
 
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (stateValidity: ");

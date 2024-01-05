@@ -109,8 +109,9 @@ public class ImpactAnnotationImpl extends MinimalEObjectImpl.Container implement
   public void setType(ImpactType newType) {
     var oldType = this.type;
     this.type = newType == null ? ImpactAnnotationImpl.TYPE_EDEFAULT : newType;
-    if (eNotificationRequired())
+    if (eNotificationRequired()) {
       eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.IMPACT_ANNOTATION__TYPE, oldType, this.type));
+    }
   }
 
   /**
@@ -130,8 +131,9 @@ public class ImpactAnnotationImpl extends MinimalEObjectImpl.Container implement
   public void setSource(String newSource) {
     var oldSource = this.source;
     this.source = newSource;
-    if (eNotificationRequired())
+    if (eNotificationRequired()) {
       eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.IMPACT_ANNOTATION__SOURCE, oldSource, this.source));
+    }
   }
 
   /**
@@ -204,7 +206,9 @@ public class ImpactAnnotationImpl extends MinimalEObjectImpl.Container implement
    */
   @Override
   public String toString() {
-    if (eIsProxy()) return super.toString();
+    if (eIsProxy()) {
+      return super.toString();
+    }
 
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (type: ");

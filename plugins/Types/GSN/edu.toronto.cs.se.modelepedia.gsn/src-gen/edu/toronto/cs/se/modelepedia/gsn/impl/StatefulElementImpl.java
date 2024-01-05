@@ -89,8 +89,9 @@ public abstract class StatefulElementImpl extends MinimalEObjectImpl.Container i
   public void setStateValidity(ValidityValue newStateValidity) {
     var oldStateValidity = this.stateValidity;
     this.stateValidity = newStateValidity == null ? StatefulElementImpl.STATE_VALIDITY_EDEFAULT : newStateValidity;
-    if (eNotificationRequired())
+    if (eNotificationRequired()) {
       eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.STATEFUL_ELEMENT__STATE_VALIDITY, oldStateValidity, this.stateValidity));
+    }
   }
 
   /**
@@ -153,7 +154,9 @@ public abstract class StatefulElementImpl extends MinimalEObjectImpl.Container i
    */
   @Override
   public String toString() {
-    if (eIsProxy()) return super.toString();
+    if (eIsProxy()) {
+      return super.toString();
+    }
 
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (stateValidity: ");

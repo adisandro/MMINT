@@ -57,6 +57,7 @@
     <genClasses image="false" ecoreClass="gsn.ecore#//CoreElement"/>
     <genClasses image="false" ecoreClass="gsn.ecore#//DecomposableCoreElement">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gsn.ecore#//DecomposableCoreElement/inContextOf"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gsn.ecore#//DecomposableCoreElement/undeveloped"/>
     </genClasses>
     <genClasses image="false" ecoreClass="gsn.ecore#//ContextualElement">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference gsn.ecore#//ContextualElement/contextOf"/>
@@ -110,5 +111,6 @@
       </genOperations>
       <genOperations ecoreOperation="gsn.ecore#//Template/instantiate"/>
     </genClasses>
+    <genClasses ecoreClass="gsn.ecore#//Undeveloped"/>
   </genPackages>
 </genmodel:GenModel>

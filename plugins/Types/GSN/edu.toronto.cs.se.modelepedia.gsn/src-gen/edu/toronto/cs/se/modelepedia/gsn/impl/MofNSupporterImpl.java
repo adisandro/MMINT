@@ -86,8 +86,9 @@ public class MofNSupporterImpl extends SupportConnectorImpl implements MofNSuppo
   public void setTarget(long newTarget) {
     var oldTarget = this.target;
     this.target = newTarget;
-    if (eNotificationRequired())
+    if (eNotificationRequired()) {
       eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.MOF_NSUPPORTER__TARGET, oldTarget, this.target));
+    }
   }
 
   /**
@@ -150,7 +151,9 @@ public class MofNSupporterImpl extends SupportConnectorImpl implements MofNSuppo
    */
   @Override
   public String toString() {
-    if (eIsProxy()) return super.toString();
+    if (eIsProxy()) {
+      return super.toString();
+    }
 
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (target: ");

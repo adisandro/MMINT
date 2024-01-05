@@ -163,8 +163,9 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
   public void setId(String newId) {
     var oldId = this.id;
     this.id = newId;
-    if (eNotificationRequired())
+    if (eNotificationRequired()) {
       eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.ARGUMENT_ELEMENT__ID, oldId, this.id));
+    }
   }
 
   /**
@@ -184,8 +185,9 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
   public void setDescription(String newDescription) {
     var oldDescription = this.description;
     this.description = newDescription;
-    if (eNotificationRequired())
+    if (eNotificationRequired()) {
       eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.ARGUMENT_ELEMENT__DESCRIPTION, oldDescription, this.description));
+    }
   }
 
   /**
@@ -206,7 +208,12 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
     this.status = newStatus;
     if (eNotificationRequired()) {
       ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GSNPackage.ARGUMENT_ELEMENT__STATUS, oldStatus, newStatus);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
+      if (msgs == null) {
+        msgs = notification;
+      }
+      else {
+        msgs.add(notification);
+      }
     }
     return msgs;
   }
@@ -219,15 +226,20 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
   public void setStatus(ImpactAnnotation newStatus) {
     if (newStatus != this.status) {
       NotificationChain msgs = null;
-      if (this.status != null)
+      if (this.status != null) {
         msgs = ((InternalEObject)this.status).eInverseRemove(this, InternalEObject.EOPPOSITE_FEATURE_BASE - GSNPackage.ARGUMENT_ELEMENT__STATUS, null, msgs);
-      if (newStatus != null)
+      }
+      if (newStatus != null) {
         msgs = ((InternalEObject)newStatus).eInverseAdd(this, InternalEObject.EOPPOSITE_FEATURE_BASE - GSNPackage.ARGUMENT_ELEMENT__STATUS, null, msgs);
+      }
       msgs = basicSetStatus(newStatus, msgs);
-      if (msgs != null) msgs.dispatch();
+      if (msgs != null) {
+        msgs.dispatch();
+      }
     }
-    else if (eNotificationRequired())
+    else if (eNotificationRequired()) {
       eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.ARGUMENT_ELEMENT__STATUS, newStatus, newStatus));
+    }
   }
 
   /**
@@ -262,8 +274,9 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
   public void setValid(boolean newValid) {
     var oldValid = this.valid;
     this.valid = newValid;
-    if (eNotificationRequired())
+    if (eNotificationRequired()) {
       eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.ARGUMENT_ELEMENT__VALID, oldValid, this.valid));
+    }
   }
 
   /**
@@ -426,7 +439,9 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
    */
   @Override
   public String toString() {
-    if (eIsProxy()) return super.toString();
+    if (eIsProxy()) {
+      return super.toString();
+    }
 
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (id: ");

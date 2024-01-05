@@ -46,6 +46,7 @@ import edu.toronto.cs.se.modelepedia.gsn.Supportable;
 import edu.toronto.cs.se.modelepedia.gsn.SupportedBy;
 import edu.toronto.cs.se.modelepedia.gsn.Supporter;
 import edu.toronto.cs.se.modelepedia.gsn.Template;
+import edu.toronto.cs.se.modelepedia.gsn.Undeveloped;
 import edu.toronto.cs.se.modelepedia.gsn.XorSupporter;
 
 /**
@@ -99,247 +100,457 @@ public class GSNSwitch<T> extends Switch<T> {
       case GSNPackage.SAFETY_CASE: {
         var safetyCase = (SafetyCase)theEObject;
         var result = caseSafetyCase(safetyCase);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       case GSNPackage.ARGUMENT_ELEMENT: {
         var argumentElement = (ArgumentElement)theEObject;
         var result = caseArgumentElement(argumentElement);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       case GSNPackage.STATEFUL_ELEMENT: {
         var statefulElement = (StatefulElement)theEObject;
         var result = caseStatefulElement(statefulElement);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       case GSNPackage.ASI_LFUL_ELEMENT: {
         var asiLfulElement = (ASILfulElement)theEObject;
         var result = caseASILfulElement(asiLfulElement);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       case GSNPackage.CORE_ELEMENT: {
         var coreElement = (CoreElement)theEObject;
         var result = caseCoreElement(coreElement);
-        if (result == null) result = caseArgumentElement(coreElement);
-        if (result == null) result = caseSupporter(coreElement);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null) {
+          result = caseArgumentElement(coreElement);
+        }
+        if (result == null) {
+          result = caseSupporter(coreElement);
+        }
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       case GSNPackage.DECOMPOSABLE_CORE_ELEMENT: {
         var decomposableCoreElement = (DecomposableCoreElement)theEObject;
         var result = caseDecomposableCoreElement(decomposableCoreElement);
-        if (result == null) result = caseCoreElement(decomposableCoreElement);
-        if (result == null) result = caseSupportable(decomposableCoreElement);
-        if (result == null) result = caseArgumentElement(decomposableCoreElement);
-        if (result == null) result = caseSupporter(decomposableCoreElement);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null) {
+          result = caseCoreElement(decomposableCoreElement);
+        }
+        if (result == null) {
+          result = caseSupportable(decomposableCoreElement);
+        }
+        if (result == null) {
+          result = caseArgumentElement(decomposableCoreElement);
+        }
+        if (result == null) {
+          result = caseSupporter(decomposableCoreElement);
+        }
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       case GSNPackage.CONTEXTUAL_ELEMENT: {
         var contextualElement = (ContextualElement)theEObject;
         var result = caseContextualElement(contextualElement);
-        if (result == null) result = caseArgumentElement(contextualElement);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null) {
+          result = caseArgumentElement(contextualElement);
+        }
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       case GSNPackage.SUPPORTED_BY: {
         var supportedBy = (SupportedBy)theEObject;
         var result = caseSupportedBy(supportedBy);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       case GSNPackage.IN_CONTEXT_OF: {
         var inContextOf = (InContextOf)theEObject;
         var result = caseInContextOf(inContextOf);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       case GSNPackage.GOAL: {
         var goal = (Goal)theEObject;
         var result = caseGoal(goal);
-        if (result == null) result = caseDecomposableCoreElement(goal);
-        if (result == null) result = caseStatefulElement(goal);
-        if (result == null) result = caseASILfulElement(goal);
-        if (result == null) result = caseCoreElement(goal);
-        if (result == null) result = caseSupportable(goal);
-        if (result == null) result = caseArgumentElement(goal);
-        if (result == null) result = caseSupporter(goal);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null) {
+          result = caseDecomposableCoreElement(goal);
+        }
+        if (result == null) {
+          result = caseStatefulElement(goal);
+        }
+        if (result == null) {
+          result = caseASILfulElement(goal);
+        }
+        if (result == null) {
+          result = caseCoreElement(goal);
+        }
+        if (result == null) {
+          result = caseSupportable(goal);
+        }
+        if (result == null) {
+          result = caseArgumentElement(goal);
+        }
+        if (result == null) {
+          result = caseSupporter(goal);
+        }
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       case GSNPackage.BASIC_GOAL: {
         var basicGoal = (BasicGoal)theEObject;
         var result = caseBasicGoal(basicGoal);
-        if (result == null) result = caseGoal(basicGoal);
-        if (result == null) result = caseDecomposableCoreElement(basicGoal);
-        if (result == null) result = caseStatefulElement(basicGoal);
-        if (result == null) result = caseASILfulElement(basicGoal);
-        if (result == null) result = caseCoreElement(basicGoal);
-        if (result == null) result = caseSupportable(basicGoal);
-        if (result == null) result = caseArgumentElement(basicGoal);
-        if (result == null) result = caseSupporter(basicGoal);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null) {
+          result = caseGoal(basicGoal);
+        }
+        if (result == null) {
+          result = caseDecomposableCoreElement(basicGoal);
+        }
+        if (result == null) {
+          result = caseStatefulElement(basicGoal);
+        }
+        if (result == null) {
+          result = caseASILfulElement(basicGoal);
+        }
+        if (result == null) {
+          result = caseCoreElement(basicGoal);
+        }
+        if (result == null) {
+          result = caseSupportable(basicGoal);
+        }
+        if (result == null) {
+          result = caseArgumentElement(basicGoal);
+        }
+        if (result == null) {
+          result = caseSupporter(basicGoal);
+        }
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       case GSNPackage.INDEPENDENCE_GOAL: {
         var independenceGoal = (IndependenceGoal)theEObject;
         var result = caseIndependenceGoal(independenceGoal);
-        if (result == null) result = caseGoal(independenceGoal);
-        if (result == null) result = caseDecomposableCoreElement(independenceGoal);
-        if (result == null) result = caseStatefulElement(independenceGoal);
-        if (result == null) result = caseASILfulElement(independenceGoal);
-        if (result == null) result = caseCoreElement(independenceGoal);
-        if (result == null) result = caseSupportable(independenceGoal);
-        if (result == null) result = caseArgumentElement(independenceGoal);
-        if (result == null) result = caseSupporter(independenceGoal);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null) {
+          result = caseGoal(independenceGoal);
+        }
+        if (result == null) {
+          result = caseDecomposableCoreElement(independenceGoal);
+        }
+        if (result == null) {
+          result = caseStatefulElement(independenceGoal);
+        }
+        if (result == null) {
+          result = caseASILfulElement(independenceGoal);
+        }
+        if (result == null) {
+          result = caseCoreElement(independenceGoal);
+        }
+        if (result == null) {
+          result = caseSupportable(independenceGoal);
+        }
+        if (result == null) {
+          result = caseArgumentElement(independenceGoal);
+        }
+        if (result == null) {
+          result = caseSupporter(independenceGoal);
+        }
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       case GSNPackage.STRATEGY: {
         var strategy = (Strategy)theEObject;
         var result = caseStrategy(strategy);
-        if (result == null) result = caseDecomposableCoreElement(strategy);
-        if (result == null) result = caseCoreElement(strategy);
-        if (result == null) result = caseSupportable(strategy);
-        if (result == null) result = caseArgumentElement(strategy);
-        if (result == null) result = caseSupporter(strategy);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null) {
+          result = caseDecomposableCoreElement(strategy);
+        }
+        if (result == null) {
+          result = caseCoreElement(strategy);
+        }
+        if (result == null) {
+          result = caseSupportable(strategy);
+        }
+        if (result == null) {
+          result = caseArgumentElement(strategy);
+        }
+        if (result == null) {
+          result = caseSupporter(strategy);
+        }
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       case GSNPackage.BASIC_STRATEGY: {
         var basicStrategy = (BasicStrategy)theEObject;
         var result = caseBasicStrategy(basicStrategy);
-        if (result == null) result = caseStrategy(basicStrategy);
-        if (result == null) result = caseDecomposableCoreElement(basicStrategy);
-        if (result == null) result = caseCoreElement(basicStrategy);
-        if (result == null) result = caseSupportable(basicStrategy);
-        if (result == null) result = caseArgumentElement(basicStrategy);
-        if (result == null) result = caseSupporter(basicStrategy);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null) {
+          result = caseStrategy(basicStrategy);
+        }
+        if (result == null) {
+          result = caseDecomposableCoreElement(basicStrategy);
+        }
+        if (result == null) {
+          result = caseCoreElement(basicStrategy);
+        }
+        if (result == null) {
+          result = caseSupportable(basicStrategy);
+        }
+        if (result == null) {
+          result = caseArgumentElement(basicStrategy);
+        }
+        if (result == null) {
+          result = caseSupporter(basicStrategy);
+        }
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       case GSNPackage.ASIL_DECOMPOSITION_STRATEGY: {
         var asilDecompositionStrategy = (ASILDecompositionStrategy)theEObject;
         var result = caseASILDecompositionStrategy(asilDecompositionStrategy);
-        if (result == null) result = caseStrategy(asilDecompositionStrategy);
-        if (result == null) result = caseDecomposableCoreElement(asilDecompositionStrategy);
-        if (result == null) result = caseCoreElement(asilDecompositionStrategy);
-        if (result == null) result = caseSupportable(asilDecompositionStrategy);
-        if (result == null) result = caseArgumentElement(asilDecompositionStrategy);
-        if (result == null) result = caseSupporter(asilDecompositionStrategy);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null) {
+          result = caseStrategy(asilDecompositionStrategy);
+        }
+        if (result == null) {
+          result = caseDecomposableCoreElement(asilDecompositionStrategy);
+        }
+        if (result == null) {
+          result = caseCoreElement(asilDecompositionStrategy);
+        }
+        if (result == null) {
+          result = caseSupportable(asilDecompositionStrategy);
+        }
+        if (result == null) {
+          result = caseArgumentElement(asilDecompositionStrategy);
+        }
+        if (result == null) {
+          result = caseSupporter(asilDecompositionStrategy);
+        }
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       case GSNPackage.SOLUTION: {
         var solution = (Solution)theEObject;
         var result = caseSolution(solution);
-        if (result == null) result = caseCoreElement(solution);
-        if (result == null) result = caseStatefulElement(solution);
-        if (result == null) result = caseArgumentElement(solution);
-        if (result == null) result = caseSupporter(solution);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null) {
+          result = caseCoreElement(solution);
+        }
+        if (result == null) {
+          result = caseStatefulElement(solution);
+        }
+        if (result == null) {
+          result = caseArgumentElement(solution);
+        }
+        if (result == null) {
+          result = caseSupporter(solution);
+        }
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       case GSNPackage.CONTEXT: {
         var context = (Context)theEObject;
         var result = caseContext(context);
-        if (result == null) result = caseContextualElement(context);
-        if (result == null) result = caseArgumentElement(context);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null) {
+          result = caseContextualElement(context);
+        }
+        if (result == null) {
+          result = caseArgumentElement(context);
+        }
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       case GSNPackage.JUSTIFICATION: {
         var justification = (Justification)theEObject;
         var result = caseJustification(justification);
-        if (result == null) result = caseContextualElement(justification);
-        if (result == null) result = caseArgumentElement(justification);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null) {
+          result = caseContextualElement(justification);
+        }
+        if (result == null) {
+          result = caseArgumentElement(justification);
+        }
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       case GSNPackage.ASSUMPTION: {
         var assumption = (Assumption)theEObject;
         var result = caseAssumption(assumption);
-        if (result == null) result = caseContextualElement(assumption);
-        if (result == null) result = caseArgumentElement(assumption);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null) {
+          result = caseContextualElement(assumption);
+        }
+        if (result == null) {
+          result = caseArgumentElement(assumption);
+        }
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       case GSNPackage.ASIL: {
         var asil = (ASIL)theEObject;
         var result = caseASIL(asil);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       case GSNPackage.IMPACT_ANNOTATION: {
         var impactAnnotation = (ImpactAnnotation)theEObject;
         var result = caseImpactAnnotation(impactAnnotation);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       case GSNPackage.SUPPORTABLE: {
         var supportable = (Supportable)theEObject;
         var result = caseSupportable(supportable);
-        if (result == null) result = caseSupporter(supportable);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null) {
+          result = caseSupporter(supportable);
+        }
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       case GSNPackage.SUPPORTER: {
         var supporter = (Supporter)theEObject;
         var result = caseSupporter(supporter);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       case GSNPackage.SUPPORT_CONNECTOR: {
         var supportConnector = (SupportConnector)theEObject;
         var result = caseSupportConnector(supportConnector);
-        if (result == null) result = caseSupportable(supportConnector);
-        if (result == null) result = caseSupporter(supportConnector);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null) {
+          result = caseSupportable(supportConnector);
+        }
+        if (result == null) {
+          result = caseSupporter(supportConnector);
+        }
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       case GSNPackage.AND_SUPPORTER: {
         var andSupporter = (AndSupporter)theEObject;
         var result = caseAndSupporter(andSupporter);
-        if (result == null) result = caseSupportConnector(andSupporter);
-        if (result == null) result = caseSupportable(andSupporter);
-        if (result == null) result = caseSupporter(andSupporter);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null) {
+          result = caseSupportConnector(andSupporter);
+        }
+        if (result == null) {
+          result = caseSupportable(andSupporter);
+        }
+        if (result == null) {
+          result = caseSupporter(andSupporter);
+        }
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       case GSNPackage.OR_SUPPORTER: {
         var orSupporter = (OrSupporter)theEObject;
         var result = caseOrSupporter(orSupporter);
-        if (result == null) result = caseSupportConnector(orSupporter);
-        if (result == null) result = caseSupportable(orSupporter);
-        if (result == null) result = caseSupporter(orSupporter);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null) {
+          result = caseSupportConnector(orSupporter);
+        }
+        if (result == null) {
+          result = caseSupportable(orSupporter);
+        }
+        if (result == null) {
+          result = caseSupporter(orSupporter);
+        }
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       case GSNPackage.XOR_SUPPORTER: {
         var xorSupporter = (XorSupporter)theEObject;
         var result = caseXorSupporter(xorSupporter);
-        if (result == null) result = caseSupportConnector(xorSupporter);
-        if (result == null) result = caseSupportable(xorSupporter);
-        if (result == null) result = caseSupporter(xorSupporter);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null) {
+          result = caseSupportConnector(xorSupporter);
+        }
+        if (result == null) {
+          result = caseSupportable(xorSupporter);
+        }
+        if (result == null) {
+          result = caseSupporter(xorSupporter);
+        }
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       case GSNPackage.MOF_NSUPPORTER: {
         var mofNSupporter = (MofNSupporter)theEObject;
         var result = caseMofNSupporter(mofNSupporter);
-        if (result == null) result = caseSupportConnector(mofNSupporter);
-        if (result == null) result = caseSupportable(mofNSupporter);
-        if (result == null) result = caseSupporter(mofNSupporter);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null) {
+          result = caseSupportConnector(mofNSupporter);
+        }
+        if (result == null) {
+          result = caseSupportable(mofNSupporter);
+        }
+        if (result == null) {
+          result = caseSupporter(mofNSupporter);
+        }
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       case GSNPackage.TEMPLATE: {
         var template = (Template)theEObject;
         var result = caseTemplate(template);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
+        return result;
+      }
+      case GSNPackage.UNDEVELOPED: {
+        var undeveloped = (Undeveloped)theEObject;
+        var result = caseUndeveloped(undeveloped);
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       default: return defaultCase(theEObject);
@@ -726,6 +937,21 @@ public class GSNSwitch<T> extends Switch<T> {
    * @generated
    */
   public T caseTemplate(Template object) {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Undeveloped</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Undeveloped</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseUndeveloped(Undeveloped object) {
     return null;
   }
 
